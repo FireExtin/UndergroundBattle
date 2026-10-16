@@ -1,0 +1,78 @@
+{
+  "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "serialSinglePass": true,
+  "checks": [
+    {
+      "name": "production-build",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "sites",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 18.846,
+      "bytes": 1705,
+      "sha256": "a94d0538e042def4369e810e5f21310d0e94bf2b0990a7ea90c4216e41fc6d83",
+      "reusedFrom": "/workspace/collection-layout-20261016/verified-3492f77",
+      "sourceUnchanged": true
+    },
+    {
+      "name": "production-layout-browser",
+      "command": [
+        "python3",
+        "tools/cloud-playtest/deck_collection_layout.py",
+        "--source",
+        "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+        "--output",
+        "/workspace/collection-layout-20261016/verified-3492f77-clean-preview/layout-browser"
+      ],
+      "exitCode": 0,
+      "seconds": 29.931,
+      "bytes": 468,
+      "sha256": "c4a9b2751f691cf065ca5f6ef60b62e6da0bba7486772ebd06d3d6dced37a921"
+    },
+    {
+      "name": "production-browser",
+      "command": [
+        "python3",
+        "tools/cloud-playtest/deck_collection_page.py",
+        "--source",
+        "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+        "--output",
+        "/workspace/collection-layout-20261016/verified-3492f77-clean-preview/browser"
+      ],
+      "exitCode": 0,
+      "seconds": 17.777,
+      "bytes": 2965,
+      "sha256": "d56b65e371fc8e76462b73100ddd8da6938ef94e39da6001cfe9af8bbe41499d"
+    },
+    {
+      "name": "web-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/collection-layout-20261016/verified-3492f77-clean-preview/web-full-vitest.json"
+      ],
+      "exitCode": 0,
+      "seconds": 288.958,
+      "bytes": 28586,
+      "sha256": "144e5f4033cba4d8880203040ccb110cd76e8bebfecf388d26f5dd602a193121"
+    }
+  ],
+  "mainPush": false,
+  "deployment": false
+}

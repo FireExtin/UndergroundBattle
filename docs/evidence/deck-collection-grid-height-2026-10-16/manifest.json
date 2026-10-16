@@ -1,0 +1,133 @@
+{
+  "testedSource": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "base": "736fbc3fb5afe0f34da6e467f1718e221249de4f",
+  "productionBuild": true,
+  "pcViewports": 4,
+  "layoutChecksPerViewport": 33,
+  "existingBrowserChecks": 37,
+  "webFiles": 124,
+  "webTestsPassed": 1158,
+  "webTestsFailed": 0,
+  "sourceUnchangedDuringTests": true,
+  "ownedPreviewStopped": true,
+  "mainPush": false,
+  "sitePublication": false,
+  "libraryScreenshotSaveCompleted": false,
+  "files": [
+    {
+      "path": "artifact-and-source-binding.json.gz",
+      "bytes": 8634,
+      "sha256": "a29e528a1e704738fa374737d9ab2d0b8a912843b7468c9bb4f04448471c1b5e"
+    },
+    {
+      "path": "baseline-measurements.json",
+      "bytes": 6294,
+      "sha256": "ac88d770a85116dca87c3d6f2757faa90ce63812853f1459174a454f809ceeba"
+    },
+    {
+      "path": "existing-browser-result.json",
+      "bytes": 78214,
+      "sha256": "c787395d39cefa65b9ff5fb7056a3dd2a6134655decadb19247eb0532bcd1a8c"
+    },
+    {
+      "path": "initial-preview-guard.json",
+      "bytes": 198,
+      "sha256": "8fb79755d48a774d81e698d9d4345f8a4a652859fce59cb3321ee44692685689"
+    },
+    {
+      "path": "layout-browser-result.json",
+      "bytes": 121262,
+      "sha256": "cbc9d43c983e6e2697fb320f76cff7d0161659eadc66f40f563e59bf920351a9"
+    },
+    {
+      "path": "library-save-limit.json",
+      "bytes": 414,
+      "sha256": "75018b02e885da931f285da8deb7c5509db49a8e0d685e6dacff7d68b7453b45"
+    },
+    {
+      "path": "local-preview.log.gz",
+      "bytes": 2794,
+      "sha256": "2cb910a3b30ce2ca370f6f236d5550003f1ab3890c79ecfe28bf3724ebfb60ae"
+    },
+    {
+      "path": "measure-baseline.py",
+      "bytes": 2697,
+      "sha256": "868d1c4d0b2972981d1dea7b454f4fcdf36b38181ac5017336bf1e98b1477376"
+    },
+    {
+      "path": "preview-readiness.json",
+      "bytes": 584,
+      "sha256": "3824e9297ec09ddb2183eef85180354711d2148ab83487b578b028748d98b4c2"
+    },
+    {
+      "path": "production-browser.log.gz",
+      "bytes": 767,
+      "sha256": "9b7384d23c1c5d6da7e3d1737ffebd4dc91bbebd26b1d631e980e5a9ee2f139c"
+    },
+    {
+      "path": "production-build.log.gz",
+      "bytes": 755,
+      "sha256": "dfabd3fa269c2e00b4e66b6038c75414b59e8338a825b0ede0799bbb5f290e35"
+    },
+    {
+      "path": "production-layout-browser.log.gz",
+      "bytes": 159,
+      "sha256": "874e90547a39a4eb5d33ac5304ce2888fa294b15f407df86c96a025b2e94bb74"
+    },
+    {
+      "path": "results.json",
+      "bytes": 2168,
+      "sha256": "b5ae3e58d716dddb22e788853178caff4a8167f4afbc933280e5241114e6bdab"
+    },
+    {
+      "path": "screenshots/collection-grid-01-before-125pct.png",
+      "bytes": 1060943,
+      "sha256": "cdbabacf221a9d83f0f7805355e54c64c268efea3cba6a4b6e758b460aff63e2"
+    },
+    {
+      "path": "screenshots/collection-grid-02-after-entry-125pct.png",
+      "bytes": 1302528,
+      "sha256": "8eaeaa986865b7b9e1505e8a297e14fed196fb3160c9469405ef07aed34bc04b"
+    },
+    {
+      "path": "screenshots/collection-grid-03-full-cards-125pct.png",
+      "bytes": 1887636,
+      "sha256": "a37049a06ee910867dfd507a23672020eebab9c1a30b59c6c1b04361807d86bc"
+    },
+    {
+      "path": "screenshots/collection-grid-04-full-cards-2048x1122.png",
+      "bytes": 1297203,
+      "sha256": "c4a7250efa09e4a998302fd997f1bf9d4442e3fe2b5c90176ac8dbdf0e65a6ef"
+    },
+    {
+      "path": "screenshots/collection-grid-05-full-cards-1366x900.png",
+      "bytes": 906813,
+      "sha256": "904836bc011ee1916fbb8aa8cf16441fd8f6fd71f7a749869e7b625b7ce9aca0"
+    },
+    {
+      "path": "screenshots/collection-grid-06-full-cards-1366x768.png",
+      "bytes": 572880,
+      "sha256": "152774f0b0b51de28096e3e38e105df2fecc148a02f08ea6a13e5a7cbcf3a4fe"
+    },
+    {
+      "path": "screenshots.json",
+      "bytes": 1763,
+      "sha256": "d83ef98ea62249956ad6eb01afce822918a7ac454a823001f1d355889dec4132"
+    },
+    {
+      "path": "verification-controller.py",
+      "bytes": 5276,
+      "sha256": "a03c4d7bc184486c19d55539d2668236040910996e5dabe88593e219a68377bd"
+    },
+    {
+      "path": "web-full-vitest.json.gz",
+      "bytes": 50515,
+      "sha256": "d8245a892c69f24a69980cd67600d38e6b8ef8e8efe659fe9407712c19618ba4"
+    },
+    {
+      "path": "web-full.log.gz",
+      "bytes": 7592,
+      "sha256": "e7dbc4f9d14547bef8478ff5af59fcb0fe441a60835cce98b42d9ad449a78375"
+    }
+  ]
+}

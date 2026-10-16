@@ -1,0 +1,9 @@
+{
+  "stage": "hosted apps tools/list",
+  "httpStatus": 401,
+  "helperExit": 1,
+  "error": "library upload failed: hosted apps tools/list request failed with HTTP status 401",
+  "preparedUploadStarted": false,
+  "libraryFilesCreated": false,
+  "fallback": "Commit own local-production screenshots as review evidence in the existing authorized Git review branch; original user Library screenshot stays unchanged."
+}

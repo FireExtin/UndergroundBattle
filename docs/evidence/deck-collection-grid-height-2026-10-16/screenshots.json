@@ -1,0 +1,44 @@
+[
+  {
+    "path": "screenshots/collection-grid-01-before-125pct.png",
+    "bytes": 1060943,
+    "sha256": "cdbabacf221a9d83f0f7805355e54c64c268efea3cba6a4b6e758b460aff63e2",
+    "source": "736fbc3fb5afe0f34da6e467f1718e221249de4f",
+    "kind": "own-local-production-browser-screenshot"
+  },
+  {
+    "path": "screenshots/collection-grid-02-after-entry-125pct.png",
+    "bytes": 1302528,
+    "sha256": "8eaeaa986865b7b9e1505e8a297e14fed196fb3160c9469405ef07aed34bc04b",
+    "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+    "kind": "own-local-production-browser-screenshot"
+  },
+  {
+    "path": "screenshots/collection-grid-03-full-cards-125pct.png",
+    "bytes": 1887636,
+    "sha256": "a37049a06ee910867dfd507a23672020eebab9c1a30b59c6c1b04361807d86bc",
+    "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+    "kind": "own-local-production-browser-screenshot"
+  },
+  {
+    "path": "screenshots/collection-grid-04-full-cards-2048x1122.png",
+    "bytes": 1297203,
+    "sha256": "c4a7250efa09e4a998302fd997f1bf9d4442e3fe2b5c90176ac8dbdf0e65a6ef",
+    "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+    "kind": "own-local-production-browser-screenshot"
+  },
+  {
+    "path": "screenshots/collection-grid-05-full-cards-1366x900.png",
+    "bytes": 906813,
+    "sha256": "904836bc011ee1916fbb8aa8cf16441fd8f6fd71f7a749869e7b625b7ce9aca0",
+    "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+    "kind": "own-local-production-browser-screenshot"
+  },
+  {
+    "path": "screenshots/collection-grid-06-full-cards-1366x768.png",
+    "bytes": 572880,
+    "sha256": "152774f0b0b51de28096e3e38e105df2fecc148a02f08ea6a13e5a7cbcf3a4fe",
+    "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+    "kind": "own-local-production-browser-screenshot"
+  }
+]

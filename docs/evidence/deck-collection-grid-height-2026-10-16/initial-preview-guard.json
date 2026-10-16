@@ -1,0 +1,5 @@
+{
+  "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "error": "AssertionError: Port 8090 unexpectedly occupied; do not duplicate or stop another process",
+  "earlierResultsPreserved": true
+}

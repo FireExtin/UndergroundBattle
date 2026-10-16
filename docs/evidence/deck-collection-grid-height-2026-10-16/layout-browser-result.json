@@ -1,0 +1,4306 @@
+{
+  "source": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "kind": "local-production-browser-layout",
+  "atUtc": "2026-10-16T03:53:21.016503+00:00",
+  "results": [
+    {
+      "viewport": {
+        "width": 2048,
+        "height": 1122,
+        "deviceScaleFactor": 1
+      },
+      "checks": [
+        {
+          "name": "production-root-200",
+          "passed": true
+        },
+        {
+          "name": "home-has-no-card-images",
+          "passed": true
+        },
+        {
+          "name": "default-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "default-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "default-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "catalog-keeps-all-133-buildable-rows",
+          "passed": true
+        },
+        {
+          "name": "far-card-images-remain-deferred",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "black-filter-keeps-25-real-cards",
+          "passed": true
+        },
+        {
+          "name": "whole-first-row-images-visible",
+          "passed": true
+        },
+        {
+          "name": "full-images-use-contain",
+          "passed": true
+        },
+        {
+          "name": "lower-left-defense-and-card-bottom-uncovered",
+          "passed": true
+        },
+        {
+          "name": "two-real-add-clicks-produce-two-copies",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "saved-name-restores",
+          "passed": true
+        },
+        {
+          "name": "saved-two-copies-restore",
+          "passed": true
+        },
+        {
+          "name": "faction-and-density-restore",
+          "passed": true
+        },
+        {
+          "name": "unsaved-third-copy-restores",
+          "passed": true
+        },
+        {
+          "name": "after-reload-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "after-reload-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "after-reload-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "keyboard-end-reaches-last-card",
+          "passed": true
+        },
+        {
+          "name": "keyboard-home-returns-to-first-card",
+          "passed": true
+        },
+        {
+          "name": "leaving-collection-unmounts-card-grid",
+          "passed": true
+        },
+        {
+          "name": "no-game-posts",
+          "passed": true
+        },
+        {
+          "name": "no-page-errors",
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "default-compact": {
+          "viewport": {
+            "width": 2048,
+            "height": 1122,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 263.390625,
+            "y": 574.265625,
+            "width": 1162.03125,
+            "height": 1128,
+            "bottom": 1702.265625,
+            "right": 1425.421875
+          },
+          "gridClientHeight": 1128,
+          "gridScrollHeight": 8196,
+          "firstRowHeight": 418.390625,
+          "rowGap": 12,
+          "rowCapacity": 2.630168814666909,
+          "rowTops": [
+            578,
+            1009,
+            1439,
+            1869
+          ],
+          "count": 133,
+          "loadedImages": 14,
+          "deferred": 119,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC125",
+              "card": {
+                "x": 267.390625,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 419.8125
+              },
+              "face": {
+                "x": 277.1875,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 410.015625
+              },
+              "badge": {
+                "x": 277.1875,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 410.015625
+              },
+              "add": {
+                "x": 374.015625,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 410.015625
+              }
+            },
+            {
+              "id": "LC19",
+              "card": {
+                "x": 431.8125,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 584.25
+              },
+              "face": {
+                "x": 441.609375,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 574.453125
+              },
+              "badge": {
+                "x": 441.609375,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 574.453125
+              },
+              "add": {
+                "x": 538.453125,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 574.453125
+              }
+            },
+            {
+              "id": "LC20",
+              "card": {
+                "x": 596.25,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 748.6875
+              },
+              "face": {
+                "x": 606.046875,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 738.890625
+              },
+              "badge": {
+                "x": 606.046875,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 738.890625
+              },
+              "add": {
+                "x": 702.890625,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 738.890625
+              }
+            },
+            {
+              "id": "LC21",
+              "card": {
+                "x": 760.6875,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 913.109375
+              },
+              "face": {
+                "x": 770.484375,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 903.3125
+              },
+              "badge": {
+                "x": 770.484375,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 903.3125
+              },
+              "add": {
+                "x": 867.3125,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 903.3125
+              }
+            },
+            {
+              "id": "LC22",
+              "card": {
+                "x": 925.109375,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 1077.546875
+              },
+              "face": {
+                "x": 934.90625,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 1067.75
+              },
+              "badge": {
+                "x": 934.90625,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 1067.75
+              },
+              "add": {
+                "x": 1031.75,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 1067.75
+              }
+            },
+            {
+              "id": "LC23",
+              "card": {
+                "x": 1089.546875,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 1241.984375
+              },
+              "face": {
+                "x": 1099.34375,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 1232.1875
+              },
+              "badge": {
+                "x": 1099.34375,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 1232.1875
+              },
+              "add": {
+                "x": 1196.1875,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 1232.1875
+              }
+            },
+            {
+              "id": "LC24",
+              "card": {
+                "x": 1253.984375,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 1406.40625
+              },
+              "face": {
+                "x": 1263.78125,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 1396.609375
+              },
+              "badge": {
+                "x": 1263.78125,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 1396.609375
+              },
+              "add": {
+                "x": 1360.609375,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 1396.609375
+              }
+            }
+          ]
+        },
+        "black-comfortable": {
+          "viewport": {
+            "width": 2048,
+            "height": 1122,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 263.390625,
+            "y": 574.265625,
+            "width": 1162.03125,
+            "height": 1303,
+            "bottom": 1877.265625,
+            "right": 1425.421875
+          },
+          "gridClientHeight": 1303,
+          "gridScrollHeight": 2608,
+          "firstRowHeight": 510.484375,
+          "rowGap": 12,
+          "rowCapacity": 2.5015102126259756,
+          "rowTops": [
+            578,
+            1101,
+            1623,
+            2146
+          ],
+          "count": 25,
+          "loadedImages": 10,
+          "deferred": 15,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 267.390625,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 485.59375
+              },
+              "face": {
+                "x": 277.1875,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 475.796875
+              },
+              "badge": {
+                "x": 277.1875,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 475.796875
+              },
+              "add": {
+                "x": 420.515625,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 475.796875
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 497.59375,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 715.796875
+              },
+              "face": {
+                "x": 507.390625,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 706
+              },
+              "badge": {
+                "x": 507.390625,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 706
+              },
+              "add": {
+                "x": 650.71875,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 706
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 727.796875,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 946
+              },
+              "face": {
+                "x": 737.59375,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 936.203125
+              },
+              "badge": {
+                "x": 737.59375,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 936.203125
+              },
+              "add": {
+                "x": 880.921875,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 936.203125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 958,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 491.28125,
+                "bottom": 1069.546875,
+                "right": 1176.203125
+              },
+              "face": {
+                "x": 967.796875,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 1166.40625
+              },
+              "badge": {
+                "x": 967.796875,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 1166.40625
+              },
+              "add": {
+                "x": 1111.125,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 1166.40625
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 1188.203125,
+                "y": 578.265625,
+                "width": 218.21875,
+                "height": 510.484375,
+                "bottom": 1088.75,
+                "right": 1406.421875
+              },
+              "face": {
+                "x": 1198,
+                "y": 588.0625,
+                "width": 198.625,
+                "height": 278.0625,
+                "bottom": 866.125,
+                "right": 1396.625
+              },
+              "badge": {
+                "x": 1198,
+                "y": 872.515625,
+                "width": 198.625,
+                "height": 27.5625,
+                "bottom": 900.078125,
+                "right": 1396.625
+              },
+              "add": {
+                "x": 1341.34375,
+                "y": 910.46875,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.46875,
+                "right": 1396.625
+              }
+            }
+          ]
+        },
+        "after-reload": {
+          "viewport": {
+            "width": 2048,
+            "height": 1122,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 263.390625,
+            "y": 724.265625,
+            "width": 1162.03125,
+            "height": 1303,
+            "bottom": 2027.265625,
+            "right": 1425.421875
+          },
+          "gridClientHeight": 1303,
+          "gridScrollHeight": 2608,
+          "firstRowHeight": 510.484375,
+          "rowGap": 12,
+          "rowCapacity": 2.5015102126259756,
+          "rowTops": [
+            728,
+            1251,
+            1773,
+            2296
+          ],
+          "count": 25,
+          "loadedImages": 10,
+          "deferred": 15,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 267.390625,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 485.59375
+              },
+              "face": {
+                "x": 277.1875,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 475.796875
+              },
+              "badge": {
+                "x": 277.1875,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 475.796875
+              },
+              "add": {
+                "x": 420.515625,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 475.796875
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 497.59375,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 715.796875
+              },
+              "face": {
+                "x": 507.390625,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 706
+              },
+              "badge": {
+                "x": 507.390625,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 706
+              },
+              "add": {
+                "x": 650.71875,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 706
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 727.796875,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 946
+              },
+              "face": {
+                "x": 737.59375,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 936.203125
+              },
+              "badge": {
+                "x": 737.59375,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 936.203125
+              },
+              "add": {
+                "x": 880.921875,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 936.203125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 958,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 491.28125,
+                "bottom": 1219.546875,
+                "right": 1176.203125
+              },
+              "face": {
+                "x": 967.796875,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 1166.40625
+              },
+              "badge": {
+                "x": 967.796875,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 1166.40625
+              },
+              "add": {
+                "x": 1111.125,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 1166.40625
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 1188.203125,
+                "y": 728.265625,
+                "width": 218.21875,
+                "height": 510.484375,
+                "bottom": 1238.75,
+                "right": 1406.421875
+              },
+              "face": {
+                "x": 1198,
+                "y": 738.0625,
+                "width": 198.625,
+                "height": 278.0625,
+                "bottom": 1016.125,
+                "right": 1396.625
+              },
+              "badge": {
+                "x": 1198,
+                "y": 1022.515625,
+                "width": 198.625,
+                "height": 27.5625,
+                "bottom": 1050.078125,
+                "right": 1396.625
+              },
+              "add": {
+                "x": 1341.34375,
+                "y": 1060.46875,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.46875,
+                "right": 1396.625
+              }
+            }
+          ]
+        },
+        "switched-back-compact": {
+          "viewport": {
+            "width": 2048,
+            "height": 1122,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 263.390625,
+            "y": 724.265625,
+            "width": 1162.03125,
+            "height": 1072,
+            "bottom": 1796.265625,
+            "right": 1425.421875
+          },
+          "gridClientHeight": 1072,
+          "gridScrollHeight": 1718,
+          "firstRowHeight": 418.390625,
+          "rowGap": 12,
+          "rowCapacity": 2.5000544563441642,
+          "rowTops": [
+            728,
+            1159,
+            1589,
+            2019
+          ],
+          "count": 25,
+          "loadedImages": 14,
+          "deferred": 11,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 267.390625,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 419.8125
+              },
+              "face": {
+                "x": 277.1875,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 410.015625
+              },
+              "badge": {
+                "x": 277.1875,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 410.015625
+              },
+              "add": {
+                "x": 374.015625,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 410.015625
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 431.8125,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 584.25
+              },
+              "face": {
+                "x": 441.609375,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 574.453125
+              },
+              "badge": {
+                "x": 441.609375,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 574.453125
+              },
+              "add": {
+                "x": 538.453125,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 574.453125
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 596.25,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 748.6875
+              },
+              "face": {
+                "x": 606.046875,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 738.890625
+              },
+              "badge": {
+                "x": 606.046875,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 738.890625
+              },
+              "add": {
+                "x": 702.890625,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 738.890625
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 760.6875,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 913.109375
+              },
+              "face": {
+                "x": 770.484375,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 903.3125
+              },
+              "badge": {
+                "x": 770.484375,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 903.3125
+              },
+              "add": {
+                "x": 867.3125,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 903.3125
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 925.109375,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 1077.546875
+              },
+              "face": {
+                "x": 934.90625,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 1067.75
+              },
+              "badge": {
+                "x": 934.90625,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 1067.75
+              },
+              "add": {
+                "x": 1031.75,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 1067.75
+              }
+            },
+            {
+              "id": "JC085",
+              "card": {
+                "x": 1089.546875,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 1241.984375
+              },
+              "face": {
+                "x": 1099.34375,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 1232.1875
+              },
+              "badge": {
+                "x": 1099.34375,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 1232.1875
+              },
+              "add": {
+                "x": 1196.1875,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 1232.1875
+              }
+            },
+            {
+              "id": "JC088",
+              "card": {
+                "x": 1253.984375,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 1406.40625
+              },
+              "face": {
+                "x": 1263.78125,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 1396.609375
+              },
+              "badge": {
+                "x": 1263.78125,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 1396.609375
+              },
+              "add": {
+                "x": 1360.609375,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 1396.609375
+              }
+            }
+          ]
+        }
+      },
+      "screenshots": [
+        "2048x1122-dpr1-entry.png",
+        "2048x1122-dpr1-whole-first-row.png",
+        "2048x1122-dpr1-restored.png"
+      ],
+      "pageErrors": [],
+      "posts": [],
+      "firstRowFaces": [
+        {
+          "id": "JC086",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC092",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC091",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JZ54",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC084",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1638,
+        "height": 898,
+        "deviceScaleFactor": 1.25
+      },
+      "checks": [
+        {
+          "name": "production-root-200",
+          "passed": true
+        },
+        {
+          "name": "home-has-no-card-images",
+          "passed": true
+        },
+        {
+          "name": "default-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "default-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "default-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "catalog-keeps-all-133-buildable-rows",
+          "passed": true
+        },
+        {
+          "name": "far-card-images-remain-deferred",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "black-filter-keeps-25-real-cards",
+          "passed": true
+        },
+        {
+          "name": "whole-first-row-images-visible",
+          "passed": true
+        },
+        {
+          "name": "full-images-use-contain",
+          "passed": true
+        },
+        {
+          "name": "lower-left-defense-and-card-bottom-uncovered",
+          "passed": true
+        },
+        {
+          "name": "two-real-add-clicks-produce-two-copies",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "saved-name-restores",
+          "passed": true
+        },
+        {
+          "name": "saved-two-copies-restore",
+          "passed": true
+        },
+        {
+          "name": "faction-and-density-restore",
+          "passed": true
+        },
+        {
+          "name": "unsaved-third-copy-restores",
+          "passed": true
+        },
+        {
+          "name": "after-reload-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "after-reload-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "after-reload-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "keyboard-end-reaches-last-card",
+          "passed": true
+        },
+        {
+          "name": "keyboard-home-returns-to-first-card",
+          "passed": true
+        },
+        {
+          "name": "leaving-collection-unmounts-card-grid",
+          "passed": true
+        },
+        {
+          "name": "no-game-posts",
+          "passed": true
+        },
+        {
+          "name": "no-page-errors",
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "default-compact": {
+          "viewport": {
+            "width": 1638,
+            "height": 898,
+            "dpr": 1.25
+          },
+          "grid": {
+            "x": 58.390625,
+            "y": 574.265625,
+            "width": 1162.03125,
+            "height": 1128,
+            "bottom": 1702.265625,
+            "right": 1220.421875
+          },
+          "gridClientHeight": 1128,
+          "gridScrollHeight": 8196,
+          "firstRowHeight": 418.390625,
+          "rowGap": 12,
+          "rowCapacity": 2.630168814666909,
+          "rowTops": [
+            578,
+            1009,
+            1439,
+            1869
+          ],
+          "count": 133,
+          "loadedImages": 14,
+          "deferred": 119,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC125",
+              "card": {
+                "x": 62.390625,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 214.8125
+              },
+              "face": {
+                "x": 72.1875,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 205.015625
+              },
+              "badge": {
+                "x": 72.1875,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 205.015625
+              },
+              "add": {
+                "x": 169.015625,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 205.015625
+              }
+            },
+            {
+              "id": "LC19",
+              "card": {
+                "x": 226.8125,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 379.25
+              },
+              "face": {
+                "x": 236.609375,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 369.453125
+              },
+              "badge": {
+                "x": 236.609375,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 369.453125
+              },
+              "add": {
+                "x": 333.453125,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 369.453125
+              }
+            },
+            {
+              "id": "LC20",
+              "card": {
+                "x": 391.25,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 543.6875
+              },
+              "face": {
+                "x": 401.046875,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 533.890625
+              },
+              "badge": {
+                "x": 401.046875,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 533.890625
+              },
+              "add": {
+                "x": 497.890625,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 533.890625
+              }
+            },
+            {
+              "id": "LC21",
+              "card": {
+                "x": 555.6875,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 708.109375
+              },
+              "face": {
+                "x": 565.484375,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 698.3125
+              },
+              "badge": {
+                "x": 565.484375,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 698.3125
+              },
+              "add": {
+                "x": 662.3125,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 698.3125
+              }
+            },
+            {
+              "id": "LC22",
+              "card": {
+                "x": 720.109375,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 872.546875
+              },
+              "face": {
+                "x": 729.90625,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 862.75
+              },
+              "badge": {
+                "x": 729.90625,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 862.75
+              },
+              "add": {
+                "x": 826.75,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 862.75
+              }
+            },
+            {
+              "id": "LC23",
+              "card": {
+                "x": 884.546875,
+                "y": 578.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 996.65625,
+                "right": 1036.984375
+              },
+              "face": {
+                "x": 894.34375,
+                "y": 588.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 774.03125,
+                "right": 1027.1875
+              },
+              "badge": {
+                "x": 894.34375,
+                "y": 780.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 807.984375,
+                "right": 1027.1875
+              },
+              "add": {
+                "x": 991.1875,
+                "y": 818.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.375,
+                "right": 1027.1875
+              }
+            },
+            {
+              "id": "LC24",
+              "card": {
+                "x": 1048.984375,
+                "y": 578.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 996.640625,
+                "right": 1201.40625
+              },
+              "face": {
+                "x": 1058.78125,
+                "y": 588.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 774.015625,
+                "right": 1191.609375
+              },
+              "badge": {
+                "x": 1058.78125,
+                "y": 780.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 807.96875,
+                "right": 1191.609375
+              },
+              "add": {
+                "x": 1155.609375,
+                "y": 818.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 856.359375,
+                "right": 1191.609375
+              }
+            }
+          ]
+        },
+        "black-comfortable": {
+          "viewport": {
+            "width": 1638,
+            "height": 898,
+            "dpr": 1.25
+          },
+          "grid": {
+            "x": 58.390625,
+            "y": 574.265625,
+            "width": 1162.03125,
+            "height": 1303,
+            "bottom": 1877.265625,
+            "right": 1220.421875
+          },
+          "gridClientHeight": 1303,
+          "gridScrollHeight": 2608,
+          "firstRowHeight": 510.484375,
+          "rowGap": 12,
+          "rowCapacity": 2.5015102126259756,
+          "rowTops": [
+            578,
+            1101,
+            1623,
+            2146
+          ],
+          "count": 25,
+          "loadedImages": 5,
+          "deferred": 20,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 62.390625,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 280.59375
+              },
+              "face": {
+                "x": 72.1875,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 270.796875
+              },
+              "badge": {
+                "x": 72.1875,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 270.796875
+              },
+              "add": {
+                "x": 215.515625,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 270.796875
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 292.59375,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 510.796875
+              },
+              "face": {
+                "x": 302.390625,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 501
+              },
+              "badge": {
+                "x": 302.390625,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 501
+              },
+              "add": {
+                "x": 445.71875,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 501
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 522.796875,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1088.734375,
+                "right": 741
+              },
+              "face": {
+                "x": 532.59375,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 731.203125
+              },
+              "badge": {
+                "x": 532.59375,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 731.203125
+              },
+              "add": {
+                "x": 675.921875,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 731.203125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 753,
+                "y": 578.265625,
+                "width": 218.203125,
+                "height": 491.28125,
+                "bottom": 1069.546875,
+                "right": 971.203125
+              },
+              "face": {
+                "x": 762.796875,
+                "y": 588.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 866.109375,
+                "right": 961.40625
+              },
+              "badge": {
+                "x": 762.796875,
+                "y": 872.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 900.0625,
+                "right": 961.40625
+              },
+              "add": {
+                "x": 906.125,
+                "y": 910.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.453125,
+                "right": 961.40625
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 983.203125,
+                "y": 578.265625,
+                "width": 218.21875,
+                "height": 510.484375,
+                "bottom": 1088.75,
+                "right": 1201.421875
+              },
+              "face": {
+                "x": 993,
+                "y": 588.0625,
+                "width": 198.625,
+                "height": 278.0625,
+                "bottom": 866.125,
+                "right": 1191.625
+              },
+              "badge": {
+                "x": 993,
+                "y": 872.515625,
+                "width": 198.625,
+                "height": 27.5625,
+                "bottom": 900.078125,
+                "right": 1191.625
+              },
+              "add": {
+                "x": 1136.34375,
+                "y": 910.46875,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 948.46875,
+                "right": 1191.625
+              }
+            }
+          ]
+        },
+        "after-reload": {
+          "viewport": {
+            "width": 1638,
+            "height": 898,
+            "dpr": 1.25
+          },
+          "grid": {
+            "x": 58.390625,
+            "y": 724.265625,
+            "width": 1162.03125,
+            "height": 1303,
+            "bottom": 2027.265625,
+            "right": 1220.421875
+          },
+          "gridClientHeight": 1303,
+          "gridScrollHeight": 2608,
+          "firstRowHeight": 510.484375,
+          "rowGap": 12,
+          "rowCapacity": 2.5015102126259756,
+          "rowTops": [
+            728,
+            1251,
+            1773,
+            2296
+          ],
+          "count": 25,
+          "loadedImages": 5,
+          "deferred": 20,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 62.390625,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 280.59375
+              },
+              "face": {
+                "x": 72.1875,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 270.796875
+              },
+              "badge": {
+                "x": 72.1875,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 270.796875
+              },
+              "add": {
+                "x": 215.515625,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 270.796875
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 292.59375,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 510.796875
+              },
+              "face": {
+                "x": 302.390625,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 501
+              },
+              "badge": {
+                "x": 302.390625,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 501
+              },
+              "add": {
+                "x": 445.71875,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 501
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 522.796875,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 510.46875,
+                "bottom": 1238.734375,
+                "right": 741
+              },
+              "face": {
+                "x": 532.59375,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 731.203125
+              },
+              "badge": {
+                "x": 532.59375,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 731.203125
+              },
+              "add": {
+                "x": 675.921875,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 731.203125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 753,
+                "y": 728.265625,
+                "width": 218.203125,
+                "height": 491.28125,
+                "bottom": 1219.546875,
+                "right": 971.203125
+              },
+              "face": {
+                "x": 762.796875,
+                "y": 738.0625,
+                "width": 198.609375,
+                "height": 278.046875,
+                "bottom": 1016.109375,
+                "right": 961.40625
+              },
+              "badge": {
+                "x": 762.796875,
+                "y": 1022.5,
+                "width": 198.609375,
+                "height": 27.5625,
+                "bottom": 1050.0625,
+                "right": 961.40625
+              },
+              "add": {
+                "x": 906.125,
+                "y": 1060.453125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.453125,
+                "right": 961.40625
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 983.203125,
+                "y": 728.265625,
+                "width": 218.21875,
+                "height": 510.484375,
+                "bottom": 1238.75,
+                "right": 1201.421875
+              },
+              "face": {
+                "x": 993,
+                "y": 738.0625,
+                "width": 198.625,
+                "height": 278.0625,
+                "bottom": 1016.125,
+                "right": 1191.625
+              },
+              "badge": {
+                "x": 993,
+                "y": 1022.515625,
+                "width": 198.625,
+                "height": 27.5625,
+                "bottom": 1050.078125,
+                "right": 1191.625
+              },
+              "add": {
+                "x": 1136.34375,
+                "y": 1060.46875,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 1098.46875,
+                "right": 1191.625
+              }
+            }
+          ]
+        },
+        "switched-back-compact": {
+          "viewport": {
+            "width": 1638,
+            "height": 898,
+            "dpr": 1.25
+          },
+          "grid": {
+            "x": 58.390625,
+            "y": 724.265625,
+            "width": 1162.03125,
+            "height": 1072,
+            "bottom": 1796.265625,
+            "right": 1220.421875
+          },
+          "gridClientHeight": 1072,
+          "gridScrollHeight": 1718,
+          "firstRowHeight": 418.390625,
+          "rowGap": 12,
+          "rowCapacity": 2.5000544563441642,
+          "rowTops": [
+            728,
+            1159,
+            1589,
+            2019
+          ],
+          "count": 25,
+          "loadedImages": 7,
+          "deferred": 18,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 62.390625,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 214.8125
+              },
+              "face": {
+                "x": 72.1875,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 205.015625
+              },
+              "badge": {
+                "x": 72.1875,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 205.015625
+              },
+              "add": {
+                "x": 169.015625,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 205.015625
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 226.8125,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 379.25
+              },
+              "face": {
+                "x": 236.609375,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 369.453125
+              },
+              "badge": {
+                "x": 236.609375,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 369.453125
+              },
+              "add": {
+                "x": 333.453125,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 369.453125
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 391.25,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 543.6875
+              },
+              "face": {
+                "x": 401.046875,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 533.890625
+              },
+              "badge": {
+                "x": 401.046875,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 533.890625
+              },
+              "add": {
+                "x": 497.890625,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 533.890625
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 555.6875,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 708.109375
+              },
+              "face": {
+                "x": 565.484375,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 698.3125
+              },
+              "badge": {
+                "x": 565.484375,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 698.3125
+              },
+              "add": {
+                "x": 662.3125,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 698.3125
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 720.109375,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 872.546875
+              },
+              "face": {
+                "x": 729.90625,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 862.75
+              },
+              "badge": {
+                "x": 729.90625,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 862.75
+              },
+              "add": {
+                "x": 826.75,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 862.75
+              }
+            },
+            {
+              "id": "JC085",
+              "card": {
+                "x": 884.546875,
+                "y": 728.265625,
+                "width": 152.4375,
+                "height": 418.390625,
+                "bottom": 1146.65625,
+                "right": 1036.984375
+              },
+              "face": {
+                "x": 894.34375,
+                "y": 738.0625,
+                "width": 132.84375,
+                "height": 185.96875,
+                "bottom": 924.03125,
+                "right": 1027.1875
+              },
+              "badge": {
+                "x": 894.34375,
+                "y": 930.421875,
+                "width": 132.84375,
+                "height": 27.5625,
+                "bottom": 957.984375,
+                "right": 1027.1875
+              },
+              "add": {
+                "x": 991.1875,
+                "y": 968.375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.375,
+                "right": 1027.1875
+              }
+            },
+            {
+              "id": "JC088",
+              "card": {
+                "x": 1048.984375,
+                "y": 728.265625,
+                "width": 152.421875,
+                "height": 418.375,
+                "bottom": 1146.640625,
+                "right": 1201.40625
+              },
+              "face": {
+                "x": 1058.78125,
+                "y": 738.0625,
+                "width": 132.828125,
+                "height": 185.953125,
+                "bottom": 924.015625,
+                "right": 1191.609375
+              },
+              "badge": {
+                "x": 1058.78125,
+                "y": 930.40625,
+                "width": 132.828125,
+                "height": 27.5625,
+                "bottom": 957.96875,
+                "right": 1191.609375
+              },
+              "add": {
+                "x": 1155.609375,
+                "y": 968.359375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1006.359375,
+                "right": 1191.609375
+              }
+            }
+          ]
+        }
+      },
+      "screenshots": [
+        "1638x898-dpr1.25-entry.png",
+        "1638x898-dpr1.25-whole-first-row.png",
+        "1638x898-dpr1.25-restored.png"
+      ],
+      "pageErrors": [],
+      "posts": [],
+      "firstRowFaces": [
+        {
+          "id": "JC086",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC092",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC091",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JZ54",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC084",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "checks": [
+        {
+          "name": "production-root-200",
+          "passed": true
+        },
+        {
+          "name": "home-has-no-card-images",
+          "passed": true
+        },
+        {
+          "name": "default-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "default-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "default-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "catalog-keeps-all-133-buildable-rows",
+          "passed": true
+        },
+        {
+          "name": "far-card-images-remain-deferred",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "black-filter-keeps-25-real-cards",
+          "passed": true
+        },
+        {
+          "name": "whole-first-row-images-visible",
+          "passed": true
+        },
+        {
+          "name": "full-images-use-contain",
+          "passed": true
+        },
+        {
+          "name": "lower-left-defense-and-card-bottom-uncovered",
+          "passed": true
+        },
+        {
+          "name": "two-real-add-clicks-produce-two-copies",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "saved-name-restores",
+          "passed": true
+        },
+        {
+          "name": "saved-two-copies-restore",
+          "passed": true
+        },
+        {
+          "name": "faction-and-density-restore",
+          "passed": true
+        },
+        {
+          "name": "unsaved-third-copy-restores",
+          "passed": true
+        },
+        {
+          "name": "after-reload-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "after-reload-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "after-reload-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "keyboard-end-reaches-last-card",
+          "passed": true
+        },
+        {
+          "name": "keyboard-home-returns-to-first-card",
+          "passed": true
+        },
+        {
+          "name": "leaving-collection-unmounts-card-grid",
+          "passed": true
+        },
+        {
+          "name": "no-game-posts",
+          "passed": true
+        },
+        {
+          "name": "no-page-errors",
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "default-compact": {
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 574.265625,
+            "width": 928.03125,
+            "height": 1139,
+            "bottom": 1713.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1139,
+          "gridScrollHeight": 12334,
+          "firstRowHeight": 444.953125,
+          "rowGap": 12,
+          "rowCapacity": 2.5013506582321763,
+          "rowTops": [
+            578,
+            1035,
+            1492,
+            1949
+          ],
+          "count": 133,
+          "loadedImages": 10,
+          "deferred": 123,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC125",
+              "card": {
+                "x": 43.390625,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 214.796875
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 205
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 205
+              },
+              "add": {
+                "x": 169,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 205
+              }
+            },
+            {
+              "id": "LC19",
+              "card": {
+                "x": 226.796875,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 398.203125
+              },
+              "face": {
+                "x": 236.59375,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 388.40625
+              },
+              "badge": {
+                "x": 236.59375,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 388.40625
+              },
+              "add": {
+                "x": 352.40625,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 388.40625
+              }
+            },
+            {
+              "id": "LC20",
+              "card": {
+                "x": 410.203125,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 581.609375
+              },
+              "face": {
+                "x": 420,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 571.8125
+              },
+              "badge": {
+                "x": 420,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 571.8125
+              },
+              "add": {
+                "x": 535.8125,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 571.8125
+              }
+            },
+            {
+              "id": "LC21",
+              "card": {
+                "x": 593.609375,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 765.015625
+              },
+              "face": {
+                "x": 603.40625,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 755.21875
+              },
+              "badge": {
+                "x": 603.40625,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 755.21875
+              },
+              "add": {
+                "x": 719.21875,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 755.21875
+              }
+            },
+            {
+              "id": "LC22",
+              "card": {
+                "x": 777.015625,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 786.8125,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 786.8125,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 938.625
+              },
+              "add": {
+                "x": 902.625,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "black-comfortable": {
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 574.265625,
+            "width": 928.03125,
+            "height": 1299,
+            "bottom": 1873.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1299,
+          "gridScrollHeight": 3644,
+          "firstRowHeight": 509.15625,
+          "rowGap": 12,
+          "rowCapacity": 2.500209869880674,
+          "rowTops": [
+            578,
+            1099,
+            1621,
+            2142
+          ],
+          "count": 25,
+          "loadedImages": 4,
+          "deferred": 21,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 578.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1087.40625,
+                "right": 260.640625
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 588.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 864.78125,
+                "right": 250.84375
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 871.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 898.734375,
+                "right": 250.84375
+              },
+              "add": {
+                "x": 195.5625,
+                "y": 909.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.125,
+                "right": 250.84375
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 272.640625,
+                "y": 578.265625,
+                "width": 217.265625,
+                "height": 509.15625,
+                "bottom": 1087.421875,
+                "right": 489.90625
+              },
+              "face": {
+                "x": 282.4375,
+                "y": 588.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 864.796875,
+                "right": 480.109375
+              },
+              "badge": {
+                "x": 282.4375,
+                "y": 871.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 898.75,
+                "right": 480.109375
+              },
+              "add": {
+                "x": 424.828125,
+                "y": 909.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.140625,
+                "right": 480.109375
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 501.90625,
+                "y": 578.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1087.40625,
+                "right": 719.15625
+              },
+              "face": {
+                "x": 511.703125,
+                "y": 588.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 864.78125,
+                "right": 709.359375
+              },
+              "badge": {
+                "x": 511.703125,
+                "y": 871.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 898.734375,
+                "right": 709.359375
+              },
+              "add": {
+                "x": 654.078125,
+                "y": 909.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.125,
+                "right": 709.359375
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 731.15625,
+                "y": 578.265625,
+                "width": 217.265625,
+                "height": 489.96875,
+                "bottom": 1068.234375,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 740.953125,
+                "y": 588.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 864.796875,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 740.953125,
+                "y": 871.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 898.75,
+                "right": 938.625
+              },
+              "add": {
+                "x": 883.34375,
+                "y": 909.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.140625,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "after-reload": {
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 507.265625,
+            "width": 928.03125,
+            "height": 1299,
+            "bottom": 1806.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1299,
+          "gridScrollHeight": 3644,
+          "firstRowHeight": 509.15625,
+          "rowGap": 12,
+          "rowCapacity": 2.500209869880674,
+          "rowTops": [
+            511,
+            1032,
+            1554,
+            2075
+          ],
+          "count": 25,
+          "loadedImages": 8,
+          "deferred": 17,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 511.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1020.40625,
+                "right": 260.640625
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 521.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 797.78125,
+                "right": 250.84375
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 804.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 831.734375,
+                "right": 250.84375
+              },
+              "add": {
+                "x": 195.5625,
+                "y": 842.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.125,
+                "right": 250.84375
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 272.640625,
+                "y": 511.265625,
+                "width": 217.265625,
+                "height": 509.15625,
+                "bottom": 1020.421875,
+                "right": 489.90625
+              },
+              "face": {
+                "x": 282.4375,
+                "y": 521.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 797.796875,
+                "right": 480.109375
+              },
+              "badge": {
+                "x": 282.4375,
+                "y": 804.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 831.75,
+                "right": 480.109375
+              },
+              "add": {
+                "x": 424.828125,
+                "y": 842.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.140625,
+                "right": 480.109375
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 501.90625,
+                "y": 511.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1020.40625,
+                "right": 719.15625
+              },
+              "face": {
+                "x": 511.703125,
+                "y": 521.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 797.78125,
+                "right": 709.359375
+              },
+              "badge": {
+                "x": 511.703125,
+                "y": 804.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 831.734375,
+                "right": 709.359375
+              },
+              "add": {
+                "x": 654.078125,
+                "y": 842.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.125,
+                "right": 709.359375
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 731.15625,
+                "y": 511.265625,
+                "width": 217.265625,
+                "height": 489.96875,
+                "bottom": 1001.234375,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 740.953125,
+                "y": 521.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 797.796875,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 740.953125,
+                "y": 804.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 831.75,
+                "right": 938.625
+              },
+              "add": {
+                "x": 883.34375,
+                "y": 842.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.140625,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "switched-back-compact": {
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 724.265625,
+            "width": 928.03125,
+            "height": 1139,
+            "bottom": 1863.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1139,
+          "gridScrollHeight": 2281,
+          "firstRowHeight": 444.953125,
+          "rowGap": 12,
+          "rowCapacity": 2.5013506582321763,
+          "rowTops": [
+            728,
+            1185,
+            1642,
+            2099
+          ],
+          "count": 25,
+          "loadedImages": 5,
+          "deferred": 20,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 214.796875
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 205
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 205
+              },
+              "add": {
+                "x": 169,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 205
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 226.796875,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 398.203125
+              },
+              "face": {
+                "x": 236.59375,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 388.40625
+              },
+              "badge": {
+                "x": 236.59375,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 388.40625
+              },
+              "add": {
+                "x": 352.40625,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 388.40625
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 410.203125,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 581.609375
+              },
+              "face": {
+                "x": 420,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 571.8125
+              },
+              "badge": {
+                "x": 420,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 571.8125
+              },
+              "add": {
+                "x": 535.8125,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 571.8125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 593.609375,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 765.015625
+              },
+              "face": {
+                "x": 603.40625,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 755.21875
+              },
+              "badge": {
+                "x": 603.40625,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 755.21875
+              },
+              "add": {
+                "x": 719.21875,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 755.21875
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 777.015625,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 786.8125,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 786.8125,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 938.625
+              },
+              "add": {
+                "x": 902.625,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 938.625
+              }
+            }
+          ]
+        }
+      },
+      "screenshots": [
+        "1366x900-dpr1-entry.png",
+        "1366x900-dpr1-whole-first-row.png",
+        "1366x900-dpr1-restored.png"
+      ],
+      "pageErrors": [],
+      "posts": [],
+      "firstRowFaces": [
+        {
+          "id": "JC086",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC092",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC091",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JZ54",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1
+      },
+      "checks": [
+        {
+          "name": "production-root-200",
+          "passed": true
+        },
+        {
+          "name": "home-has-no-card-images",
+          "passed": true
+        },
+        {
+          "name": "default-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "default-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "default-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "catalog-keeps-all-133-buildable-rows",
+          "passed": true
+        },
+        {
+          "name": "far-card-images-remain-deferred",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "black-comfortable-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "black-filter-keeps-25-real-cards",
+          "passed": true
+        },
+        {
+          "name": "whole-first-row-images-visible",
+          "passed": true
+        },
+        {
+          "name": "full-images-use-contain",
+          "passed": true
+        },
+        {
+          "name": "lower-left-defense-and-card-bottom-uncovered",
+          "passed": true
+        },
+        {
+          "name": "two-real-add-clicks-produce-two-copies",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "one-preview-dialog-after-repeated-open",
+          "passed": true
+        },
+        {
+          "name": "saved-name-restores",
+          "passed": true
+        },
+        {
+          "name": "saved-two-copies-restore",
+          "passed": true
+        },
+        {
+          "name": "faction-and-density-restore",
+          "passed": true
+        },
+        {
+          "name": "unsaved-third-copy-restores",
+          "passed": true
+        },
+        {
+          "name": "after-reload-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "after-reload-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "after-reload-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-at-least-2.5-card-rows",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-no-horizontal-overflow",
+          "passed": true
+        },
+        {
+          "name": "switched-back-compact-badges-outside-image",
+          "passed": true
+        },
+        {
+          "name": "keyboard-end-reaches-last-card",
+          "passed": true
+        },
+        {
+          "name": "keyboard-home-returns-to-first-card",
+          "passed": true
+        },
+        {
+          "name": "leaving-collection-unmounts-card-grid",
+          "passed": true
+        },
+        {
+          "name": "no-game-posts",
+          "passed": true
+        },
+        {
+          "name": "no-page-errors",
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "default-compact": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 574.265625,
+            "width": 928.03125,
+            "height": 1139,
+            "bottom": 1713.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1139,
+          "gridScrollHeight": 12334,
+          "firstRowHeight": 444.953125,
+          "rowGap": 12,
+          "rowCapacity": 2.5013506582321763,
+          "rowTops": [
+            578,
+            1035,
+            1492,
+            1949
+          ],
+          "count": 133,
+          "loadedImages": 5,
+          "deferred": 128,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC125",
+              "card": {
+                "x": 43.390625,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 214.796875
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 205
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 205
+              },
+              "add": {
+                "x": 169,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 205
+              }
+            },
+            {
+              "id": "LC19",
+              "card": {
+                "x": 226.796875,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 398.203125
+              },
+              "face": {
+                "x": 236.59375,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 388.40625
+              },
+              "badge": {
+                "x": 236.59375,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 388.40625
+              },
+              "add": {
+                "x": 352.40625,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 388.40625
+              }
+            },
+            {
+              "id": "LC20",
+              "card": {
+                "x": 410.203125,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 581.609375
+              },
+              "face": {
+                "x": 420,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 571.8125
+              },
+              "badge": {
+                "x": 420,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 571.8125
+              },
+              "add": {
+                "x": 535.8125,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 571.8125
+              }
+            },
+            {
+              "id": "LC21",
+              "card": {
+                "x": 593.609375,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 765.015625
+              },
+              "face": {
+                "x": 603.40625,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 755.21875
+              },
+              "badge": {
+                "x": 603.40625,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 755.21875
+              },
+              "add": {
+                "x": 719.21875,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 755.21875
+              }
+            },
+            {
+              "id": "LC22",
+              "card": {
+                "x": 777.015625,
+                "y": 578.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1023.21875,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 786.8125,
+                "y": 588.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 800.59375,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 786.8125,
+                "y": 806.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 834.546875,
+                "right": 938.625
+              },
+              "add": {
+                "x": 902.625,
+                "y": 844.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 882.9375,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "black-comfortable": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 574.265625,
+            "width": 928.03125,
+            "height": 1299,
+            "bottom": 1873.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1299,
+          "gridScrollHeight": 3644,
+          "firstRowHeight": 509.15625,
+          "rowGap": 12,
+          "rowCapacity": 2.500209869880674,
+          "rowTops": [
+            578,
+            1099,
+            1621,
+            2142
+          ],
+          "count": 25,
+          "loadedImages": 4,
+          "deferred": 21,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 578.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1087.40625,
+                "right": 260.640625
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 588.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 864.78125,
+                "right": 250.84375
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 871.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 898.734375,
+                "right": 250.84375
+              },
+              "add": {
+                "x": 195.5625,
+                "y": 909.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.125,
+                "right": 250.84375
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 272.640625,
+                "y": 578.265625,
+                "width": 217.265625,
+                "height": 509.15625,
+                "bottom": 1087.421875,
+                "right": 489.90625
+              },
+              "face": {
+                "x": 282.4375,
+                "y": 588.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 864.796875,
+                "right": 480.109375
+              },
+              "badge": {
+                "x": 282.4375,
+                "y": 871.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 898.75,
+                "right": 480.109375
+              },
+              "add": {
+                "x": 424.828125,
+                "y": 909.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.140625,
+                "right": 480.109375
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 501.90625,
+                "y": 578.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1087.40625,
+                "right": 719.15625
+              },
+              "face": {
+                "x": 511.703125,
+                "y": 588.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 864.78125,
+                "right": 709.359375
+              },
+              "badge": {
+                "x": 511.703125,
+                "y": 871.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 898.734375,
+                "right": 709.359375
+              },
+              "add": {
+                "x": 654.078125,
+                "y": 909.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.125,
+                "right": 709.359375
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 731.15625,
+                "y": 578.265625,
+                "width": 217.265625,
+                "height": 489.96875,
+                "bottom": 1068.234375,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 740.953125,
+                "y": 588.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 864.796875,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 740.953125,
+                "y": 871.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 898.75,
+                "right": 938.625
+              },
+              "add": {
+                "x": 883.34375,
+                "y": 909.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 947.140625,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "after-reload": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 507.265625,
+            "width": 928.03125,
+            "height": 1299,
+            "bottom": 1806.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1299,
+          "gridScrollHeight": 3644,
+          "firstRowHeight": 509.15625,
+          "rowGap": 12,
+          "rowCapacity": 2.500209869880674,
+          "rowTops": [
+            511,
+            1032,
+            1554,
+            2075
+          ],
+          "count": 25,
+          "loadedImages": 4,
+          "deferred": 21,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 511.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1020.40625,
+                "right": 260.640625
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 521.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 797.78125,
+                "right": 250.84375
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 804.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 831.734375,
+                "right": 250.84375
+              },
+              "add": {
+                "x": 195.5625,
+                "y": 842.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.125,
+                "right": 250.84375
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 272.640625,
+                "y": 511.265625,
+                "width": 217.265625,
+                "height": 509.15625,
+                "bottom": 1020.421875,
+                "right": 489.90625
+              },
+              "face": {
+                "x": 282.4375,
+                "y": 521.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 797.796875,
+                "right": 480.109375
+              },
+              "badge": {
+                "x": 282.4375,
+                "y": 804.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 831.75,
+                "right": 480.109375
+              },
+              "add": {
+                "x": 424.828125,
+                "y": 842.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.140625,
+                "right": 480.109375
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 501.90625,
+                "y": 511.265625,
+                "width": 217.25,
+                "height": 509.140625,
+                "bottom": 1020.40625,
+                "right": 719.15625
+              },
+              "face": {
+                "x": 511.703125,
+                "y": 521.0625,
+                "width": 197.65625,
+                "height": 276.71875,
+                "bottom": 797.78125,
+                "right": 709.359375
+              },
+              "badge": {
+                "x": 511.703125,
+                "y": 804.171875,
+                "width": 197.65625,
+                "height": 27.5625,
+                "bottom": 831.734375,
+                "right": 709.359375
+              },
+              "add": {
+                "x": 654.078125,
+                "y": 842.125,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.125,
+                "right": 709.359375
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 731.15625,
+                "y": 511.265625,
+                "width": 217.265625,
+                "height": 489.96875,
+                "bottom": 1001.234375,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 740.953125,
+                "y": 521.0625,
+                "width": 197.671875,
+                "height": 276.734375,
+                "bottom": 797.796875,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 740.953125,
+                "y": 804.1875,
+                "width": 197.671875,
+                "height": 27.5625,
+                "bottom": 831.75,
+                "right": 938.625
+              },
+              "add": {
+                "x": 883.34375,
+                "y": 842.140625,
+                "width": 55.28125,
+                "height": 38,
+                "bottom": 880.140625,
+                "right": 938.625
+              }
+            }
+          ]
+        },
+        "switched-back-compact": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "dpr": 1
+          },
+          "grid": {
+            "x": 39.390625,
+            "y": 724.265625,
+            "width": 928.03125,
+            "height": 1139,
+            "bottom": 1863.265625,
+            "right": 967.421875
+          },
+          "gridClientHeight": 1139,
+          "gridScrollHeight": 2281,
+          "firstRowHeight": 444.953125,
+          "rowGap": 12,
+          "rowCapacity": 2.5013506582321763,
+          "rowTops": [
+            728,
+            1185,
+            1642,
+            2099
+          ],
+          "count": 25,
+          "loadedImages": 5,
+          "deferred": 20,
+          "overflowX": false,
+          "firstRow": [
+            {
+              "id": "JC086",
+              "card": {
+                "x": 43.390625,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 214.796875
+              },
+              "face": {
+                "x": 53.1875,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 205
+              },
+              "badge": {
+                "x": 53.1875,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 205
+              },
+              "add": {
+                "x": 169,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 205
+              }
+            },
+            {
+              "id": "JC092",
+              "card": {
+                "x": 226.796875,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 398.203125
+              },
+              "face": {
+                "x": 236.59375,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 388.40625
+              },
+              "badge": {
+                "x": 236.59375,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 388.40625
+              },
+              "add": {
+                "x": 352.40625,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 388.40625
+              }
+            },
+            {
+              "id": "JC091",
+              "card": {
+                "x": 410.203125,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 581.609375
+              },
+              "face": {
+                "x": 420,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 571.8125
+              },
+              "badge": {
+                "x": 420,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 571.8125
+              },
+              "add": {
+                "x": 535.8125,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 571.8125
+              }
+            },
+            {
+              "id": "JZ54",
+              "card": {
+                "x": 593.609375,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 765.015625
+              },
+              "face": {
+                "x": 603.40625,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 755.21875
+              },
+              "badge": {
+                "x": 603.40625,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 755.21875
+              },
+              "add": {
+                "x": 719.21875,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 755.21875
+              }
+            },
+            {
+              "id": "JC084",
+              "card": {
+                "x": 777.015625,
+                "y": 728.265625,
+                "width": 171.40625,
+                "height": 444.953125,
+                "bottom": 1173.21875,
+                "right": 948.421875
+              },
+              "face": {
+                "x": 786.8125,
+                "y": 738.0625,
+                "width": 151.8125,
+                "height": 212.53125,
+                "bottom": 950.59375,
+                "right": 938.625
+              },
+              "badge": {
+                "x": 786.8125,
+                "y": 956.984375,
+                "width": 151.8125,
+                "height": 27.5625,
+                "bottom": 984.546875,
+                "right": 938.625
+              },
+              "add": {
+                "x": 902.625,
+                "y": 994.9375,
+                "width": 36,
+                "height": 38,
+                "bottom": 1032.9375,
+                "right": 938.625
+              }
+            }
+          ]
+        }
+      },
+      "screenshots": [
+        "1366x768-dpr1-entry.png",
+        "1366x768-dpr1-whole-first-row.png",
+        "1366x768-dpr1-restored.png"
+      ],
+      "pageErrors": [],
+      "posts": [],
+      "firstRowFaces": [
+        {
+          "id": "JC086",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC092",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JC091",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "JZ54",
+          "loaded": true,
+          "objectFit": "contain",
+          "fullFaceInsideGrid": true,
+          "fullFaceInsideViewport": true,
+          "badgeBelowFace": true,
+          "bottomHitTests": [
+            true,
+            true,
+            true
+          ]
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

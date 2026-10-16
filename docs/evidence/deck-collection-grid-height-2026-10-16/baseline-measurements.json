@@ -1,0 +1,286 @@
+{
+  "source": "736fbc3fb5afe0f34da6e467f1718e221249de4f",
+  "kind": "local-production-baseline",
+  "results": [
+    {
+      "viewport": {
+        "width": 2048,
+        "height": 1122,
+        "dpr": 1
+      },
+      "page": {
+        "x": 224,
+        "y": 90.578125,
+        "width": 1600,
+        "height": 1031,
+        "bottom": 1121.578125
+      },
+      "catalog": {
+        "x": 248,
+        "y": 286.140625,
+        "width": 1192.8125,
+        "height": 815.4375,
+        "bottom": 1101.578125
+      },
+      "grid": {
+        "x": 263.390625,
+        "y": 574.265625,
+        "width": 1162.03125,
+        "height": 499.125,
+        "bottom": 1073.390625
+      },
+      "gridClientHeight": 499,
+      "gridScrollHeight": 2439,
+      "rowPitch": 489,
+      "firstCard": {
+        "x": 267.390625,
+        "y": 578.265625,
+        "width": 218.203125,
+        "height": 476.515625,
+        "bottom": 1054.78125
+      },
+      "face": {
+        "x": 277.1875,
+        "y": 588.0625,
+        "width": 198.609375,
+        "height": 278.046875,
+        "bottom": 866.109375
+      },
+      "badge": {
+        "x": 283.578125,
+        "y": 832.15625,
+        "width": 185.828125,
+        "height": 27.5625,
+        "bottom": 859.71875
+      },
+      "add": {
+        "x": 420.515625,
+        "y": 876.5,
+        "width": 55.28125,
+        "height": 38,
+        "bottom": 914.5
+      },
+      "image": {
+        "x": 277.1875,
+        "y": 588.0625,
+        "width": 198.609375,
+        "height": 278.046875,
+        "bottom": 866.109375
+      },
+      "loadedImages": 5,
+      "deferred": 20,
+      "overflowX": false,
+      "screenshot": "2048x1122-dpr1.png"
+    },
+    {
+      "viewport": {
+        "width": 1638,
+        "height": 898,
+        "dpr": 1.25
+      },
+      "page": {
+        "x": 19,
+        "y": 90.578125,
+        "width": 1600,
+        "height": 807,
+        "bottom": 897.578125
+      },
+      "catalog": {
+        "x": 43,
+        "y": 286.140625,
+        "width": 1192.8125,
+        "height": 591.4375,
+        "bottom": 877.578125
+      },
+      "grid": {
+        "x": 58.390625,
+        "y": 574.265625,
+        "width": 1162.03125,
+        "height": 275.125,
+        "bottom": 849.390625
+      },
+      "gridClientHeight": 275,
+      "gridScrollHeight": 2439,
+      "rowPitch": 489,
+      "firstCard": {
+        "x": 62.390625,
+        "y": 578.265625,
+        "width": 218.203125,
+        "height": 476.515625,
+        "bottom": 1054.78125
+      },
+      "face": {
+        "x": 72.1875,
+        "y": 588.0625,
+        "width": 198.609375,
+        "height": 278.046875,
+        "bottom": 866.109375
+      },
+      "badge": {
+        "x": 78.578125,
+        "y": 832.15625,
+        "width": 185.828125,
+        "height": 27.5625,
+        "bottom": 859.71875
+      },
+      "add": {
+        "x": 215.515625,
+        "y": 876.5,
+        "width": 55.28125,
+        "height": 38,
+        "bottom": 914.5
+      },
+      "image": {
+        "x": 72.1875,
+        "y": 588.0625,
+        "width": 198.609375,
+        "height": 278.046875,
+        "bottom": 866.109375
+      },
+      "loadedImages": 5,
+      "deferred": 20,
+      "overflowX": false,
+      "screenshot": "1638x898-dpr1.25.png"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900,
+        "dpr": 1
+      },
+      "page": {
+        "x": 0,
+        "y": 90.578125,
+        "width": 1366,
+        "height": 809,
+        "bottom": 899.578125
+      },
+      "catalog": {
+        "x": 24,
+        "y": 286.140625,
+        "width": 958.8125,
+        "height": 593.4375,
+        "bottom": 879.578125
+      },
+      "grid": {
+        "x": 39.390625,
+        "y": 574.265625,
+        "width": 928.03125,
+        "height": 277.125,
+        "bottom": 851.390625
+      },
+      "gridClientHeight": 277,
+      "gridScrollHeight": 3406,
+      "rowPitch": 487,
+      "firstCard": {
+        "x": 43.390625,
+        "y": 578.265625,
+        "width": 217.25,
+        "height": 475.1875,
+        "bottom": 1053.453125
+      },
+      "face": {
+        "x": 53.1875,
+        "y": 588.0625,
+        "width": 197.65625,
+        "height": 276.71875,
+        "bottom": 864.78125
+      },
+      "badge": {
+        "x": 59.578125,
+        "y": 830.828125,
+        "width": 184.875,
+        "height": 27.5625,
+        "bottom": 858.390625
+      },
+      "add": {
+        "x": 195.5625,
+        "y": 875.171875,
+        "width": 55.28125,
+        "height": 38,
+        "bottom": 913.171875
+      },
+      "image": {
+        "x": 53.1875,
+        "y": 588.0625,
+        "width": 197.65625,
+        "height": 276.71875,
+        "bottom": 864.78125
+      },
+      "loadedImages": 4,
+      "deferred": 21,
+      "overflowX": false,
+      "screenshot": "1366x900-dpr1.png"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "dpr": 1
+      },
+      "page": {
+        "x": 0,
+        "y": 90.578125,
+        "width": 1366,
+        "height": 677,
+        "bottom": 767.578125
+      },
+      "catalog": {
+        "x": 24,
+        "y": 286.140625,
+        "width": 958.8125,
+        "height": 461.4375,
+        "bottom": 747.578125
+      },
+      "grid": {
+        "x": 39.390625,
+        "y": 574.265625,
+        "width": 928.03125,
+        "height": 145.125,
+        "bottom": 719.390625
+      },
+      "gridClientHeight": 145,
+      "gridScrollHeight": 3406,
+      "rowPitch": 487,
+      "firstCard": {
+        "x": 43.390625,
+        "y": 578.265625,
+        "width": 217.25,
+        "height": 475.1875,
+        "bottom": 1053.453125
+      },
+      "face": {
+        "x": 53.1875,
+        "y": 588.0625,
+        "width": 197.65625,
+        "height": 276.71875,
+        "bottom": 864.78125
+      },
+      "badge": {
+        "x": 59.578125,
+        "y": 830.828125,
+        "width": 184.875,
+        "height": 27.5625,
+        "bottom": 858.390625
+      },
+      "add": {
+        "x": 195.5625,
+        "y": 875.171875,
+        "width": 55.28125,
+        "height": 38,
+        "bottom": 913.171875
+      },
+      "image": {
+        "x": 53.1875,
+        "y": 588.0625,
+        "width": 197.65625,
+        "height": 276.71875,
+        "bottom": 864.78125
+      },
+      "loadedImages": 4,
+      "deferred": 21,
+      "overflowX": false,
+      "screenshot": "1366x768-dpr1.png"
+    }
+  ]
+}
