@@ -465,6 +465,50 @@ fn confirm(t: &mut Trace, actor: usize) {
         },
     );
 }
+fn pass_one(t: &mut Trace) {
+    if let Some(p) = t.room.game.pending.clone() {
+        let selected = p
+            .choice
+            .options
+            .iter()
+            .take(p.choice.min.unwrap_or(1))
+            .map(|o| o.id.clone())
+            .collect();
+        t.action(
+            p.seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(selected),
+                ..Action::new("choose")
+            },
+        );
+    } else if let Some(w) = t.room.pacing.window.clone() {
+        let seat = *w
+            .members
+            .iter()
+            .find(|(_, d)| matches!(d, Decision::Undecided { .. }))
+            .unwrap()
+            .0;
+        t.command(seat, SessionAction::PassResponse { window_id: w.id }, false);
+    } else {
+        let seat = (0..4)
+            .find(|s| {
+                t.room
+                    .game
+                    .legal_actions(*s)
+                    .iter()
+                    .any(|a| a.action.kind == "pass")
+            })
+            .unwrap();
+        t.command(
+            seat,
+            SessionAction::Game {
+                action: Action::new("pass"),
+            },
+            false,
+        );
+    }
+}
 #[test]
 fn jz46_print_and_definition_are_complete_and_cannot_be_transplanted() {
     let c = catalog::card("JZ46");
@@ -527,7 +571,17 @@ fn jz46_paid_private_criminal_and_noncriminal_all_four_actors() {
         let mut t = Trace::new(name, g);
         let source = attach(&mut t, actor, &held);
         assert_eq!(t.room.game.resources(actor), 2);
+        assert_eq!(
+            t.room.game.contest_counts(2, 2),
+            [1, 1],
+            "the region attachment contributes its own printed influence"
+        );
         inspect(&mut t, actor, &source, &target);
+        let (region, live) = t.room.game.board(&source).unwrap();
+        assert_eq!(t.room.game.current_icons(live, region).influence, 1);
+        assert_eq!(t.room.game.icons(live, region), Icons::default());
+        assert_eq!(t.room.game.current_icons(live, 1), Icons::default());
+        assert_eq!(t.room.game.contest_counts(2, 2)[t.room.game.team(actor)], 0);
         for seat in 0..4 {
             let v = t.room.game.view(seat);
             if seat == actor {
@@ -567,10 +621,23 @@ fn jz46_paid_private_criminal_and_noncriminal_all_four_actors() {
             },
             true,
         );
+        t.command(
+            actor,
+            SessionAction::Game {
+                action: Action {
+                    choice_id: Some(choice.clone()),
+                    region: Some(2),
+                    selected: Some(vec![]),
+                    ..Action::new("choose")
+                },
+            },
+            true,
+        );
         confirm(&mut t, actor);
         let c = t.room.game.board(&target).unwrap().1;
         assert!(c.face_down && c.exhausted);
         assert_eq!(c.lock_markers, 1);
+        assert_eq!(t.room.game.contest_counts(2, 2), [0, 0]);
         assert!(t.room.game.pending.is_none());
         t.command(
             actor,
@@ -603,6 +670,40 @@ fn jz46_paid_private_criminal_and_noncriminal_all_four_actors() {
     t.export();
 }
 #[test]
+fn jz46_attachment_alone_participates_and_its_controller_receives_influence_reward() {
+    let mut g = base(1);
+    u::fund(&mut g, 1, "JZ46", 4);
+    let held = u::held(&mut g, "JZ46", 1);
+    g.players[1]
+        .hand
+        .iter_mut()
+        .find(|c| c.id == held)
+        .unwrap()
+        .owner = 3;
+    let mut t = Trace::new("attachment-alone-influence-reward", g);
+    let source = attach(&mut t, 1, &held);
+    let (_, live) = t.room.game.board(&source).unwrap();
+    assert_eq!((live.owner, live.controller), (3, 1));
+    assert!(t.room.game.regions[2].cards.is_empty());
+    assert_eq!(t.room.game.contest_counts(2, 0), [0, 0]);
+    assert_eq!(t.room.game.contest_counts(2, 1), [0, 0]);
+    assert_eq!(t.room.game.contest_counts(2, 2), [1, 0]);
+    assert_eq!(t.room.game.contributors(0, 2, 2), vec![1]);
+    assert!(t.room.game.contributors(1, 2, 2).is_empty());
+    let mut stale = live.clone();
+    stale.controller = 0;
+    assert_eq!(t.room.game.current_icons(&stale, 2), Icons::default());
+    for _ in 0..250 {
+        if t.room.game.regions[2].influence[0] > 0 {
+            break;
+        }
+        pass_one(&mut t);
+    }
+    assert_eq!(t.room.game.regions[2].influence, [1, 0]);
+    assert_eq!(t.room.game.contributors(0, 2, 2), vec![1]);
+    t.export();
+}
+#[test]
 fn jz46_target_legality_has_no_criminal_or_enemy_filter_and_costs_are_atomic() {
     let (mut g, held, target) = prepared(0, true, 0);
     let other = crate::jc029_tests::board(&mut g, "JC125", 1, 2);
@@ -628,6 +729,9 @@ fn jz46_target_legality_has_no_criminal_or_enemy_filter_and_costs_are_atomic() {
         .collect::<Vec<_>>();
     assert!(offered.contains(&target) && offered.contains(&other));
     assert!(!offered.contains(&distant) && !offered.contains(&faceup));
+    let mut extra = a(&target);
+    extra.option = Some("skip-inspection".into());
+    t.command(0, SessionAction::Game { action: extra }, true);
     for id in [&distant, &faceup] {
         t.command(0, SessionAction::Game { action: a(id) }, true);
         assert!(
@@ -708,6 +812,20 @@ fn jz46_pending_and_response_restore_mutations_fail_in_game_and_room() {
     let mut duplicate = pending.clone();
     duplicate["stack"] = response["stack"].clone();
     bad("duplicate-pending-stack", duplicate);
+    for (name, definition) in [
+        ("unknown-front", "NOT_ADMITTED"),
+        ("attachment-front", "JZ46"),
+    ] {
+        let mut v = pending.clone();
+        v["pending"]["resolution"]["Frame"]["choice"]["JZ46InspectHidden"]["inspected"]
+            ["definition"] = json!(definition);
+        for c in v["regions"][2]["cards"].as_array_mut().unwrap() {
+            if c["id"] == target {
+                c["definition"] = json!(definition);
+            }
+        }
+        bad(name, v);
+    }
     for n in 0..8 {
         let mut v = response.clone();
         let f = &mut v["stack"][0]["frame"];

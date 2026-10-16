@@ -128,6 +128,26 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     Ok(())
 }
 impl Game {
+    // Printed ability icons belong to the attachment itself, not its host.
+    // JZ46 is the only admitted attachment with printed permanent icons.
+    pub(crate) fn jz46_region_cards(&self, region: usize) -> impl Iterator<Item = &Card> {
+        self.attachments
+            .iter()
+            .filter(move |a| {
+                a.card.definition == "JZ46"
+                    && !a.card.face_down
+                    && self.attachment_region(a) == Some(region)
+                    && self.attachment_host_valid(a)
+            })
+            .map(|a| &a.card)
+    }
+    pub(crate) fn jz46_current_icons(&self, c: &Card, region: usize) -> Icons {
+        if c.definition == "JZ46" && self.jz46_region_cards(region).any(|live| same(live, c)) {
+            catalog::card("JZ46").permanent_icons
+        } else {
+            Icons::default()
+        }
+    }
     pub(crate) fn validate_jz46_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if !related(f) {
             return Ok(());
@@ -230,6 +250,10 @@ impl Game {
             && inspected.id == f.targets[0].id
             && inspected.owner < self.players.len()
             && inspected.controller < self.players.len()
+            && catalog::catalog()
+                .cards
+                .iter()
+                .any(|d| d.id == inspected.definition && d.supported && d.kind == "character")
             && self.valid_bound_target(f.actor, &f.source, &f.targets[0])
             && self
                 .board(&inspected.id)
@@ -321,6 +345,13 @@ impl Game {
     pub(crate) fn validate_jz46_state(&self) -> RuleResult<()> {
         let mut seen = BTreeSet::new();
         let mut frames = BTreeSet::new();
+        if self
+            .regions
+            .iter()
+            .any(|r| r.cards.iter().any(|c| c.definition == "JZ46"))
+        {
+            return Err("JZ46只能作为真实地区附属在场，不能充当角色或暗藏者".into());
+        }
         for a in self
             .attachments
             .iter()

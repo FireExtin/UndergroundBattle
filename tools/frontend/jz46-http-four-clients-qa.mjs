@@ -1,4 +1,4 @@
-// Two real browser contexts, production GameApp/assets, listening HTTP,
+// Four real browser contexts, production GameApp/assets, listening HTTP,
 // workerd/WASM and persistent local D1. Only the initial layout and clock are
 // deterministic test inputs; no API mocking, opaque-state rewrite or live Site.
 import assert from 'node:assert/strict';
@@ -111,7 +111,11 @@ try {
       const legal=step.state&&JSON.parse(abi.view(step.state,step.seat)).legalActions.find(a=>
         a.kind===gameAction.kind&&a.cardId===gameAction.cardId&&a.abilityId===gameAction.abilityId&&a.targetId===gameAction.targetId&&a.region===gameAction.region);
       assert(legal,'Native legal action');
-      await page.locator(`[data-card-instance="${gameAction.cardId}"]`).first().click();
+      await page.locator(`[data-card-instance="${gameAction.cardId}"], [data-attachment-instance="${gameAction.cardId}"]`).first().click();
+      const grouped=page.locator('button[data-object-action]');
+      await expect(grouped).toHaveCount(1);await grouped.first().click();
+      if(gameAction.region!==undefined)await page.locator(`button.hg-region-center[data-region-index="${gameAction.region}"]`).click();
+      if(gameAction.targetId)await page.locator(`[data-card-instance="${gameAction.targetId}"]`).first().click();
       const buttons=page.locator('button[data-action-id]');
       const ids=await buttons.evaluateAll(nodes=>nodes.map(n=>n.getAttribute('data-action-id')));
       const match=ids.indexOf(legal.id);assert(match>=0,`No real UI control for ${gameAction.kind}`);
@@ -145,5 +149,5 @@ try {
   await writeFile(join(output,'report.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify({passed:report.passed,commands:report.commands.length,reopened:report.reopened,clientPosts:report.clientPosts,failure:report.failure,output}));
 }
-const store = () => new RoomStore(db);
-const snapshot = async () => ({ room: await store().room(id), commands: (await db.prepare('SELECT command_id,intent_hash,response,version FROM commands WHERE room_id=? ORDER BY version').bind(id).all()).results });
+function store() { return new RoomStore(db); }
+async function snapshot() { return { room: await store().room(id), commands: (await db.prepare('SELECT command_id,intent_hash,response,version FROM commands WHERE room_id=? ORDER BY version').bind(id).all()).results }; }
