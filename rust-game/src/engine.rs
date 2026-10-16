@@ -2773,44 +2773,8 @@ mod tests {
         }
     }
     fn move_fixture(g: &mut Game, target: &str, region: usize) {
-        let (r, c) = g.board(target).unwrap();
-        let source = g.source_snapshot(c, Some(r));
-        let slot = rules::TargetSlotSpec {
-            zone: rules::Zone::Region,
-            kind: rules::EntityKind::Any,
-            relation: rules::Relation::Any,
-            range: rules::Range::Anywhere,
-            subtype: None,
-            printed_subtype: false,
-            subtypes_any: vec![],
-            printed_cost_max: None,
-            predicate: None,
-            equipment_host: false,
-            requires_magic: false,
-            exclude_source: false,
-            exclude_attachment_host: false,
-            attachment_host_condition: None,
-            min: 1,
-            max: 1,
-        };
-        let id = format!("region:{region}");
-        let public = g.public_target(c.controller, &source, &slot, &id);
-        let mut spec = rules::definition("JC014").abilities[0].clone();
-        spec.requires_ready_source = false;
-        let frame = g.make_frame(
-            c.controller,
-            source,
-            &spec,
-            vec![BoundTarget {
-                region_instance: None,
-                id,
-                spec: slot,
-                public,
-            }],
-            vec![],
-            None,
-        );
-        g.resolve_frame(frame).unwrap();
+        // Explicit operation fixture; no character is granted an invented ability.
+        g.move_on_board_instance(target, region);
     }
     fn pass_stack(g: &mut Game) {
         let mut n = 0;
@@ -2859,7 +2823,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 133);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 134);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

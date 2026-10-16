@@ -1,0 +1,67 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+error[E0425]: cannot find function `apply` in module `u`
+   --> rust-game/src/bq035_tests.rs:725:8
+    |
+725 |     u::apply(
+    |        ^^^^^ not found in `u`
+    |
+help: consider importing this function
+    |
+  2 + use crate::jc029_tests::apply;
+    |
+help: if you import `apply`, refer to it directly
+    |
+725 -     u::apply(
+725 +     apply(
+    |
+
+error[E0425]: cannot find function `pass_top` in module `u`
+   --> rust-game/src/bq035_tests.rs:733:8
+    |
+733 |     u::pass_top(&mut g);
+    |        ^^^^^^^^ not found in `u`
+    |
+note: these functions exist but are inaccessible
+   --> rust-game/src/control_tests.rs:214:1
+    |
+214 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::control_tests::pass_top`: not accessible
+    |
+   ::: rust-game/src/jc004_tests.rs:54:1
+    |
+ 54 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::jc004_tests::pass_top`: not accessible
+    |
+   ::: rust-game/src/jc005_tests.rs:72:1
+    |
+ 72 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::jc005_tests::pass_top`: not accessible
+    |
+   ::: rust-game/src/jc008_tests.rs:69:1
+    |
+ 69 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::jc008_tests::pass_top`: not accessible
+    |
+   ::: rust-game/src/protection_tests.rs:89:1
+    |
+ 89 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::protection_tests::pass_top`: not accessible
+    |
+   ::: rust-game/src/renown_tests.rs:89:1
+    |
+ 89 | fn pass_top(g: &mut Game) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::renown_tests::pass_top`: not accessible
+help: consider importing one of these functions
+    |
+  2 + use crate::jc029_tests::pass_top;
+    |
+  2 + use crate::msjc01_tests::pass_top;
+    |
+help: if you import `pass_top`, refer to it directly
+    |
+733 -     u::pass_top(&mut g);
+733 +     pass_top(&mut g);
+    |
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `hegemony-server` (lib test) due to 2 previous errors

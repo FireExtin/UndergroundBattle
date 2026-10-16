@@ -1,0 +1,22 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+warning: unused imports: `AbilitySpec`, `EntityRef`, `Op`, `RegionRef`, `ResponsePolicy`, and `Timing`
+   --> rust-game/src/attachment.rs:227:24
+    |
+227 |     use crate::rules::{AbilitySpec, EntityRef, Op, RegionRef, ResponsePolicy, Timing};
+    |                        ^^^^^^^^^^^  ^^^^^^^^^  ^^  ^^^^^^^^^  ^^^^^^^^^^^^^^  ^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: `hegemony-server` (lib test) generated 1 warning (run `cargo fix --lib -p hegemony-server --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized] target(s) in 38.88s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 5 tests
+test attachment::tests::ordinary_move_preserves_equipment_but_host_departure_and_attachment_destruction_differ ... ok
+test engine::tests::board_move_primitive_preserves_entity_without_enter_or_unique_events ... ok
+test engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal ... ok
+test engine::tests::local_targets_revalidate_and_events_enter_graveyard_after_effect ... ok
+test region_aura_tests::xq43_moving_character_enters_and_leaves_exact_region_with_equipment ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 1122 filtered out; finished in 0.25s
+

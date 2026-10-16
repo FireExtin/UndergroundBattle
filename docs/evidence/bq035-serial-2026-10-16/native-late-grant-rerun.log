@@ -1,0 +1,9 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 35.09s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 1 test
+test bq035_tests::bq035_real_paid_reveal_after_confrontation_start_grants_now_but_does_not_recapture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1127 filtered out; finished in 0.27s
+

@@ -3,6 +3,398 @@ use crate::{catalog, model::*, room::*, rules::*, unit_support as u};
 use serde_json::{json, Value};
 use std::path::Path;
 
+// Hash the files captured by the compiler, including this recorder itself.
+// JavaScript must compare this binding before accepting or packaging an oracle.
+fn source_bindings() -> &'static Value {
+    static BINDINGS: std::sync::OnceLock<Value> = std::sync::OnceLock::new();
+    BINDINGS.get_or_init(|| {
+        use sha2::{Digest, Sha256};
+        let files: &[(&str, &[u8])] = &[
+            ("Cargo.lock", include_bytes!("../../Cargo.lock")),
+            ("Cargo.toml", include_bytes!("../../Cargo.toml")),
+            (
+                "rust-game-wasm/Cargo.toml",
+                include_bytes!("../../rust-game-wasm/Cargo.toml"),
+            ),
+            (
+                "rust-game-wasm/build.sh",
+                include_bytes!("../../rust-game-wasm/build.sh"),
+            ),
+            (
+                "rust-game-wasm/src/lib.rs",
+                include_bytes!("../../rust-game-wasm/src/lib.rs"),
+            ),
+            ("rust-game/Cargo.toml", include_bytes!("../Cargo.toml")),
+            (
+                "rust-game/data/cards.json",
+                include_bytes!("../data/cards.json"),
+            ),
+            (
+                "rust-game/src/attachment.rs",
+                include_bytes!("attachment.rs"),
+            ),
+            (
+                "rust-game/src/attributes.rs",
+                include_bytes!("attributes.rs"),
+            ),
+            (
+                "rust-game/src/bin/hegemony-audit.rs",
+                include_bytes!("bin/hegemony-audit.rs"),
+            ),
+            (
+                "rust-game/src/black_expansion.rs",
+                include_bytes!("black_expansion.rs"),
+            ),
+            (
+                "rust-game/src/black_expansion_tests.rs",
+                include_bytes!("black_expansion_tests.rs"),
+            ),
+            (
+                "rust-game/src/blue_expansion.rs",
+                include_bytes!("blue_expansion.rs"),
+            ),
+            (
+                "rust-game/src/blue_expansion_tests.rs",
+                include_bytes!("blue_expansion_tests.rs"),
+            ),
+            (
+                "rust-game/src/blue_minimum.rs",
+                include_bytes!("blue_minimum.rs"),
+            ),
+            (
+                "rust-game/src/blue_minimum_tests.rs",
+                include_bytes!("blue_minimum_tests.rs"),
+            ),
+            (
+                "rust-game/src/bounded_entry_fresh_tests.rs",
+                include_bytes!("bounded_entry_fresh_tests.rs"),
+            ),
+            (
+                "rust-game/src/bounded_search.rs",
+                include_bytes!("bounded_search.rs"),
+            ),
+            (
+                "rust-game/src/bounded_search_tests.rs",
+                include_bytes!("bounded_search_tests.rs"),
+            ),
+            ("rust-game/src/bq030.rs", include_bytes!("bq030.rs")),
+            (
+                "rust-game/src/bq030_preparation.rs",
+                include_bytes!("bq030_preparation.rs"),
+            ),
+            ("rust-game/src/bq035.rs", include_bytes!("bq035.rs")),
+            (
+                "rust-game/src/bq035_tests.rs",
+                include_bytes!("bq035_tests.rs"),
+            ),
+            ("rust-game/src/catalog.rs", include_bytes!("catalog.rs")),
+            ("rust-game/src/control.rs", include_bytes!("control.rs")),
+            (
+                "rust-game/src/control_tests.rs",
+                include_bytes!("control_tests.rs"),
+            ),
+            (
+                "rust-game/src/death_observer_tests.rs",
+                include_bytes!("death_observer_tests.rs"),
+            ),
+            (
+                "rust-game/src/death_observers.rs",
+                include_bytes!("death_observers.rs"),
+            ),
+            ("rust-game/src/deck.rs", include_bytes!("deck.rs")),
+            (
+                "rust-game/src/deck_seal_search.rs",
+                include_bytes!("deck_seal_search.rs"),
+            ),
+            (
+                "rust-game/src/deck_seal_search_draft.rs",
+                include_bytes!("deck_seal_search_draft.rs"),
+            ),
+            (
+                "rust-game/src/deck_seal_search_tests.rs",
+                include_bytes!("deck_seal_search_tests.rs"),
+            ),
+            (
+                "rust-game/src/defence_equipment_tests.rs",
+                include_bytes!("defence_equipment_tests.rs"),
+            ),
+            (
+                "rust-game/src/dream_reveal_tests.rs",
+                include_bytes!("dream_reveal_tests.rs"),
+            ),
+            ("rust-game/src/engine.rs", include_bytes!("engine.rs")),
+            (
+                "rust-game/src/equipment_abilities_tests.rs",
+                include_bytes!("equipment_abilities_tests.rs"),
+            ),
+            (
+                "rust-game/src/gray_expansion.rs",
+                include_bytes!("gray_expansion.rs"),
+            ),
+            (
+                "rust-game/src/gray_expansion_tests.rs",
+                include_bytes!("gray_expansion_tests.rs"),
+            ),
+            ("rust-game/src/gray_lock.rs", include_bytes!("gray_lock.rs")),
+            (
+                "rust-game/src/gray_lock_tests.rs",
+                include_bytes!("gray_lock_tests.rs"),
+            ),
+            (
+                "rust-game/src/green_minimum_tests.rs",
+                include_bytes!("green_minimum_tests.rs"),
+            ),
+            (
+                "rust-game/src/hand_deck_tests.rs",
+                include_bytes!("hand_deck_tests.rs"),
+            ),
+            (
+                "rust-game/src/hand_interactions_tests.rs",
+                include_bytes!("hand_interactions_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc004_tests.rs",
+                include_bytes!("jc004_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc005_tests.rs",
+                include_bytes!("jc005_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc008_tests.rs",
+                include_bytes!("jc008_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc029_tests.rs",
+                include_bytes!("jc029_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc030_tests.rs",
+                include_bytes!("jc030_tests.rs"),
+            ),
+            ("rust-game/src/jc037.rs", include_bytes!("jc037.rs")),
+            (
+                "rust-game/src/jc037_tests.rs",
+                include_bytes!("jc037_tests.rs"),
+            ),
+            ("rust-game/src/jc046.rs", include_bytes!("jc046.rs")),
+            (
+                "rust-game/src/jc046_tests.rs",
+                include_bytes!("jc046_tests.rs"),
+            ),
+            ("rust-game/src/jc050.rs", include_bytes!("jc050.rs")),
+            (
+                "rust-game/src/jc050_tests.rs",
+                include_bytes!("jc050_tests.rs"),
+            ),
+            ("rust-game/src/jc052.rs", include_bytes!("jc052.rs")),
+            (
+                "rust-game/src/jc052_tests.rs",
+                include_bytes!("jc052_tests.rs"),
+            ),
+            ("rust-game/src/jc060.rs", include_bytes!("jc060.rs")),
+            (
+                "rust-game/src/jc060_tests.rs",
+                include_bytes!("jc060_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc061_tests.rs",
+                include_bytes!("jc061_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc087_tests.rs",
+                include_bytes!("jc087_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc089_tests.rs",
+                include_bytes!("jc089_tests.rs"),
+            ),
+            (
+                "rust-game/src/jc094_tests.rs",
+                include_bytes!("jc094_tests.rs"),
+            ),
+            ("rust-game/src/jc095.rs", include_bytes!("jc095.rs")),
+            (
+                "rust-game/src/jc095_tests.rs",
+                include_bytes!("jc095_tests.rs"),
+            ),
+            ("rust-game/src/jz22.rs", include_bytes!("jz22.rs")),
+            (
+                "rust-game/src/jz22_tests.rs",
+                include_bytes!("jz22_tests.rs"),
+            ),
+            (
+                "rust-game/src/jz31_tests.rs",
+                include_bytes!("jz31_tests.rs"),
+            ),
+            ("rust-game/src/jz35.rs", include_bytes!("jz35.rs")),
+            (
+                "rust-game/src/jz35_tests.rs",
+                include_bytes!("jz35_tests.rs"),
+            ),
+            (
+                "rust-game/src/jz48_tests.rs",
+                include_bytes!("jz48_tests.rs"),
+            ),
+            (
+                "rust-game/src/jz49_tests.rs",
+                include_bytes!("jz49_tests.rs"),
+            ),
+            (
+                "rust-game/src/jz50_search.rs",
+                include_bytes!("jz50_search.rs"),
+            ),
+            (
+                "rust-game/src/jz50_search_tests.rs",
+                include_bytes!("jz50_search_tests.rs"),
+            ),
+            (
+                "rust-game/src/jz55_tests.rs",
+                include_bytes!("jz55_tests.rs"),
+            ),
+            ("rust-game/src/lib.rs", include_bytes!("lib.rs")),
+            ("rust-game/src/main.rs", include_bytes!("main.rs")),
+            (
+                "rust-game/src/mill_public_tests.rs",
+                include_bytes!("mill_public_tests.rs"),
+            ),
+            ("rust-game/src/mobility.rs", include_bytes!("mobility.rs")),
+            ("rust-game/src/model.rs", include_bytes!("model.rs")),
+            (
+                "rust-game/src/msjc01_tests.rs",
+                include_bytes!("msjc01_tests.rs"),
+            ),
+            (
+                "rust-game/src/msjc06_tests.rs",
+                include_bytes!("msjc06_tests.rs"),
+            ),
+            (
+                "rust-game/src/msjc07_tests.rs",
+                include_bytes!("msjc07_tests.rs"),
+            ),
+            (
+                "rust-game/src/msjc08_tests.rs",
+                include_bytes!("msjc08_tests.rs"),
+            ),
+            (
+                "rust-game/src/msjc11_tests.rs",
+                include_bytes!("msjc11_tests.rs"),
+            ),
+            (
+                "rust-game/src/play_sources.rs",
+                include_bytes!("play_sources.rs"),
+            ),
+            (
+                "rust-game/src/protection_tests.rs",
+                include_bytes!("protection_tests.rs"),
+            ),
+            (
+                "rust-game/src/purple_tools_tests.rs",
+                include_bytes!("purple_tools_tests.rs"),
+            ),
+            ("rust-game/src/red_time.rs", include_bytes!("red_time.rs")),
+            (
+                "rust-game/src/red_time_tests.rs",
+                include_bytes!("red_time_tests.rs"),
+            ),
+            (
+                "rust-game/src/region_aura_tests.rs",
+                include_bytes!("region_aura_tests.rs"),
+            ),
+            ("rust-game/src/renown.rs", include_bytes!("renown.rs")),
+            (
+                "rust-game/src/renown_tests.rs",
+                include_bytes!("renown_tests.rs"),
+            ),
+            (
+                "rust-game/src/repress_assets_tests.rs",
+                include_bytes!("repress_assets_tests.rs"),
+            ),
+            (
+                "rust-game/src/resolution.rs",
+                include_bytes!("resolution.rs"),
+            ),
+            ("rust-game/src/room.rs", include_bytes!("room.rs")),
+            ("rust-game/src/rules.rs", include_bytes!("rules.rs")),
+            ("rust-game/src/sealing.rs", include_bytes!("sealing.rs")),
+            (
+                "rust-game/src/sealing_tests.rs",
+                include_bytes!("sealing_tests.rs"),
+            ),
+            ("rust-game/src/service.rs", include_bytes!("service.rs")),
+            ("rust-game/src/society.rs", include_bytes!("society.rs")),
+            (
+                "rust-game/src/society_msjc09_tests.rs",
+                include_bytes!("society_msjc09_tests.rs"),
+            ),
+            (
+                "rust-game/src/unit_support.rs",
+                include_bytes!("unit_support.rs"),
+            ),
+            (
+                "rust-game/src/white_wound_tests.rs",
+                include_bytes!("white_wound_tests.rs"),
+            ),
+            (
+                "rust-game/src/win_flow_tests.rs",
+                include_bytes!("win_flow_tests.rs"),
+            ),
+            ("rust-game/src/wm023.rs", include_bytes!("wm023.rs")),
+            (
+                "rust-game/src/wm023_tests.rs",
+                include_bytes!("wm023_tests.rs"),
+            ),
+            ("rust-game/src/wm038.rs", include_bytes!("wm038.rs")),
+            (
+                "rust-game/src/wm038_tests.rs",
+                include_bytes!("wm038_tests.rs"),
+            ),
+            ("rust-game/src/wm056.rs", include_bytes!("wm056.rs")),
+            (
+                "rust-game/src/wm056_tests.rs",
+                include_bytes!("wm056_tests.rs"),
+            ),
+            ("rust-game/src/world.rs", include_bytes!("world.rs")),
+            (
+                "rust-game/src/wound_defence_tests.rs",
+                include_bytes!("wound_defence_tests.rs"),
+            ),
+            (
+                "rust-game/src/xq18_tests.rs",
+                include_bytes!("xq18_tests.rs"),
+            ),
+            (
+                "rust-game/src/xq24_tests.rs",
+                include_bytes!("xq24_tests.rs"),
+            ),
+            ("rust-game/src/xq25.rs", include_bytes!("xq25.rs")),
+            (
+                "rust-game/src/xq25_tests.rs",
+                include_bytes!("xq25_tests.rs"),
+            ),
+            ("rust-game/src/xq27.rs", include_bytes!("xq27.rs")),
+            (
+                "rust-game/src/xq27_tests.rs",
+                include_bytes!("xq27_tests.rs"),
+            ),
+            ("rust-game/src/xq37.rs", include_bytes!("xq37.rs")),
+            (
+                "rust-game/src/xq37_tests.rs",
+                include_bytes!("xq37_tests.rs"),
+            ),
+            (
+                "rust-game/src/yellow_search_batch_tests.rs",
+                include_bytes!("yellow_search_batch_tests.rs"),
+            ),
+        ];
+        let hashes = files
+            .iter()
+            .map(|(name, bytes)| (*name, format!("{:x}", Sha256::digest(bytes))))
+            .collect::<std::collections::BTreeMap<_, _>>();
+        json!({"algorithm":"sha256","files":hashes})
+    })
+}
+
 fn field(g: &mut Game, def: &str, seat: usize, r: usize) -> String {
     let c = g.make_card(def, seat);
     let id = c.id.clone();
@@ -57,23 +449,22 @@ fn pending_declaration(g: &mut Game) -> &mut Declaration {
     }
 }
 fn invalid(g: &Game, name: &str) {
-    assert!(
-        Game::from_persisted(&serde_json::to_string(g).unwrap()).is_err(),
-        "Game accepted {name}"
-    );
+    let game_error = Game::from_persisted(&serde_json::to_string(g).unwrap())
+        .err()
+        .unwrap_or_else(|| panic!("Game accepted {name}"));
     // A malformed Game must not pass through the helper that deliberately
     // validates positive fixtures before returning an envelope.
     let room = crate::room::RoomEnvelope::from_game(g.clone());
     let raw = serde_json::to_string(&room).unwrap();
-    assert!(
-        crate::room::RoomEnvelope::from_persisted(&raw).is_err(),
-        "Room accepted {name}"
-    );
+    let room_error = crate::room::RoomEnvelope::from_persisted(&raw)
+        .err()
+        .unwrap_or_else(|| panic!("Room accepted {name}"));
     if let Ok(dir) = std::env::var("BQ035_INVALID_DIR") {
         let dir = std::path::Path::new(&dir);
         std::fs::create_dir_all(dir).unwrap();
         let path = dir.join(format!("{name}.json"));
-        let bytes = serde_json::to_vec(&json!({"state":raw})).unwrap();
+        let bytes =
+            serde_json::to_vec(&json!({"state":raw,"gameError":game_error,"roomError":room_error,"sourceBindings":source_bindings()})).unwrap();
         if path.exists() {
             assert_eq!(std::fs::read(&path).unwrap(), bytes);
         } else {
@@ -318,6 +709,39 @@ fn bq035_granted_mobility_decline_does_not_requeue_on_repeated_events_or_reattac
             .count(),
         1
     );
+}
+
+#[test]
+fn bq035_real_paid_reveal_after_confrontation_start_grants_now_but_does_not_recapture() {
+    let mut g = u::game();
+    let host = field(&mut g, "JC029", 0, 0);
+    let hidden_knight = field(&mut g, "BQ035", 0, 4);
+    g.board_mut(&hidden_knight).unwrap().face_down = true;
+    attach(&mut g, "XQ14", 0, &host);
+    u::fund(&mut g, 0, "JC029", 6);
+    start_mobility(&mut g);
+    assert!(g.pending.is_none());
+    assert!(!g.has_mobility(g.board(&host).unwrap().1));
+    u::act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(hidden_knight),
+            ..Action::new("reveal")
+        },
+    );
+    u::top(&mut g);
+    assert!(g.has_mobility(g.board(&host).unwrap().1));
+    assert!(g.pending.is_none());
+    assert!(!g
+        .turn_ability_usage
+        .iter()
+        .any(|u| u.ability_key == "mobility"));
+    assert!(!g
+        .effects
+        .iter()
+        .any(|e| matches!(e,Effect::Declare{declaration}if declaration.ability.key=="mobility")));
+    u::restore(&mut g);
 }
 
 #[test]
@@ -926,7 +1350,7 @@ impl Trace {
     fn export(&self) {
         if let Ok(dir) = std::env::var("BQ035_NATIVE_DIR") {
             std::fs::create_dir_all(&dir).unwrap();
-            let bytes=serde_json::to_vec(&json!({"name":self.name,"scope":"Explicit prepared Native layout; continuous real Room commands, strict restore and journal replay; not browser play or migration","catalog":catalog::catalog(),"initial":self.initial,"steps":self.steps})).unwrap();
+            let bytes=serde_json::to_vec(&json!({"name":self.name,"scope":"Explicit prepared Native layout; continuous real Room commands, strict restore and journal replay; not browser play or migration","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"initial":self.initial,"steps":self.steps})).unwrap();
             let path = Path::new(&dir).join(format!("{}.json", self.name));
             use std::io::Write;
             std::fs::OpenOptions::new()
@@ -984,6 +1408,27 @@ fn bq035_room_continuous_paid_grants_responses_duel_and_round_boundary() {
     assert_eq!(t.room.game.regions[1].influence[0], 1);
     let turn = t.room.game.turn;
     t.until(|g| g.turn > turn);
+    t.until(|g|matches!(&g.pending,Some(p)if matches!(&p.resolution,ChoiceResolution::Declare{declaration,..}if declaration.ability.key=="mobility"&&declaration.source.card.id==host)));
+    let next = match &t.room.game.pending.as_ref().unwrap().resolution {
+        ChoiceResolution::Declare { declaration, .. } => declaration,
+        _ => unreachable!(),
+    };
+    assert_eq!(
+        next.source.observed_mobility_grant.as_ref().unwrap().turn,
+        turn + 1
+    );
+    assert_eq!(
+        t.room
+            .game
+            .turn_ability_usage
+            .iter()
+            .filter(|u| u.ability_key == "mobility"
+                && u.source_instance == host
+                && u.turn == turn + 1)
+            .count(),
+        1
+    );
+    t.choose(vec![]);
     t.export();
 
     for queued in [false, true] {

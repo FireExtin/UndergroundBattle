@@ -224,7 +224,6 @@ impl Game {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::rules::{AbilitySpec, EntityRef, Op, RegionRef, ResponsePolicy, Timing};
 
     // Explicit initial layouts isolate rules. After setup, ordinary card scenarios
     // below use real Actions, never administration commands or live room edits.
@@ -309,30 +308,6 @@ mod tests {
                 .unwrap();
             g.apply(seat, Action::new("pass")).unwrap();
         }
-    }
-    fn primitive(g: &mut Game, source: &str, ops: Vec<Op>) {
-        // A primitive contract fixture, not a claim that BQ022 grants these actions.
-        let (r, c) = g.board(source).unwrap();
-        let snapshot = g.source_snapshot(c, Some(r));
-        let spec = AbilitySpec {
-            play_only: false,
-            activation_only: false,
-            key: "lifecycle-fixture".into(),
-            label: "primitive fixture".into(),
-            timing: Timing::Fast,
-            response_policy: ResponsePolicy::Respondable,
-            costs: vec![],
-            targets: vec![],
-            ops,
-            event: None,
-            modes: vec![],
-            requires_ready_source: false,
-            once_per_game: false,
-            per_turn_limit: None,
-        };
-        let frame = g.make_frame(c.controller, snapshot, &spec, vec![], vec![], None);
-        g.resolve_frame(frame).unwrap();
-        g.settle_deaths();
     }
     #[test]
     fn attachment_targets_public_humans_or_vampires_any_team_any_region_and_pays_atomically() {
@@ -545,47 +520,16 @@ mod tests {
         let attachment_id = g.attachments[0].card.id.clone();
         g.board_mut(&host).unwrap().damage = 1;
         g.board_mut(&host).unwrap().exhausted = true;
-        primitive(
-            &mut g,
-            &host,
-            vec![Op::MoveOnBoard {
-                entity: EntityRef::Source,
-                region: RegionRef::Chosen,
-            }],
-        );
-        // Above has no chosen region and is a no-op; explicit next frame tests actual movement.
-        let source = g.source_snapshot(g.board(&host).unwrap().1, Some(0));
-        let mut frame = ResolutionFrame {
-            frame_id: "move".into(),
-            ability_key: "move".into(),
-            actor: 0,
-            source,
-            targets: vec![],
-            already_paid: vec![],
-            guard: GuardState::Unchecked,
-            cursor: 0,
-            steps: vec![Step {
-                context: 0,
-                op: Op::MoveOnBoard {
-                    entity: EntityRef::Source,
-                    region: RegionRef::Chosen,
-                },
-            }],
-            chosen_region: Some(1),
-        };
-        g.resolve_frame(frame.clone()).unwrap();
+        // This test covers the operation and attachment lifecycle. Real mobility
+        // declaration/response admission is exercised by the continuous BQ035 tests.
+        g.move_on_board_instance(&host, 1);
         assert_eq!(g.board(&host).unwrap().0, 1);
         assert_eq!(g.board(&host).unwrap().1.damage, 1);
         assert!(g.board(&host).unwrap().1.exhausted);
         assert_eq!(g.attachments[0].card.id, attachment_id);
         assert_eq!(g.view(1).attachments[0].card.region, Some(1));
-        frame.steps = vec![Step {
-            context: 0,
-            op: Op::Destroy(EntityRef::Source),
-        }];
-        frame.source = g.source_snapshot(g.board(&attachment_id).unwrap().1, Some(1));
-        frame.cursor = 0;
-        g.resolve_frame(frame).unwrap();
+        g.remove_dead(&attachment_id, RemovalCause::Destroy);
+        g.settle_deaths();
         assert!(g.board(&host).is_some());
         assert!(g.attachments.is_empty());
         assert!(g.players[0]

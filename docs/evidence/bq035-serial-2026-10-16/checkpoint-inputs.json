@@ -1,0 +1,30 @@
+{
+  "status": "WIP; full Native running; ABI78 WASM and new Worker/frontend tests not run",
+  "logs": [
+    {
+      "path": "native-five-rerun.log",
+      "bytes": 1390,
+      "sha256": "f95dec06b90de881046dcb4f3bf62c609a5eab25f7d13b458d5d71c73e6827a4"
+    },
+    {
+      "path": "native-late-grant.log",
+      "bytes": 2091,
+      "sha256": "85b92da8109236cd0d901ed687caa4558a29437e5ddc00757751bb7331b27716"
+    },
+    {
+      "path": "native-late-grant-rerun.log",
+      "bytes": 484,
+      "sha256": "010af824c3f6256ad3de9bdbaa76177879cd578f48199905d2ac9959c8733b28"
+    },
+    {
+      "path": "source-final.log",
+      "bytes": 4370,
+      "sha256": "e5be8cb45305cdf9f9a4c21cb7d5be1709e99551982f2729695d2dbaeeac3f8b"
+    },
+    {
+      "path": "legacy-loader-native-require.log",
+      "bytes": 539,
+      "sha256": "dfcf1f8422b4495b47169180d491a905f5b1263b551df053c1c1c9b98e6baccc"
+    }
+  ]
+}

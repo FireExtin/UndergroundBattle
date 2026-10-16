@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/CurrentLifecycleChoices.test.jsx --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  12:26:20
+   Duration  6.50s (transform 533ms, setup 153ms, import 691ms, tests 4.90s, environment 569ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

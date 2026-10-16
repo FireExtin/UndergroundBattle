@@ -16,6 +16,8 @@ rmSync(base + '/generated', { recursive: true, force: true });
 mkdirSync(base + '/generated', { recursive: true });
 const current = repository + 'rust-game-wasm/' + (fixture ? 'pkg-society-fixtures/' : 'pkg/');
 for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(current + name, base + '/generated/' + name);
+const { stageFrozenAbi77 } = await import(pathToFileURL(repository + 'tools/frozen-kernels.mjs').href);
+stageFrozenAbi77(base + '/generated/abi77');
 writeFileSync(base + '/wrangler.json', JSON.stringify({ name: fixture ? 'hegemony-society-fixture-test' : 'hegemony-society-candidate-test', main: 'src/index.mjs', compatibility_date: '2026-10-02', d1_databases: [{ binding: 'DB', database_name: 'hegemony-test' }] }));
 writeFileSync(base + '/package.json', '{"type":"module","private":true}\n');
 // Only the isolated test copy selects a fixture-feature core.

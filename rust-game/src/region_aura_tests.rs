@@ -561,19 +561,8 @@ fn xq43_actual_win_batch_returns_region_attachment_to_owner_before_replacing_reg
 }
 
 fn move_primitive(g: &mut Game, id: &str, to: usize) {
-    let (r, c) = g.board(id).unwrap();
-    let source = g.source_snapshot(c, Some(r));
-    let mut spec = definition("JC014").abilities[0].clone();
-    spec.event = None;
-    spec.targets.clear();
-    spec.requires_ready_source = false;
-    spec.ops = vec![Op::MoveOnBoard {
-        entity: EntityRef::Source,
-        region: RegionRef::Chosen,
-    }];
-    let mut frame = g.make_frame(source.card.controller, source, &spec, vec![], vec![], None);
-    frame.chosen_region = Some(to);
-    g.resolve_frame(frame).unwrap();
+    // Lower-level movement contract, not an admitted mobility action for a spirit.
+    g.move_on_board_instance(id, to);
     restore(g);
 }
 #[test]

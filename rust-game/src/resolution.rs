@@ -8,6 +8,19 @@ use crate::{
 use std::collections::{BTreeMap, BTreeSet};
 
 impl Game {
+    // The operation beneath authenticated movement programs. It preserves the
+    // existing entity and attachments, and emits EnterRegion only. Primitive
+    // unit fixtures call this operation rather than inventing a legal ability.
+    pub(crate) fn move_on_board_instance(&mut self, id: &str, region: usize) {
+        if self.board(id).is_some_and(|(from, _)| from != region) {
+            if let Some((_, c)) = self.remove_board(id) {
+                let actor = c.controller;
+                let source = self.source_snapshot(&c, Some(region));
+                self.regions[region].cards.push(c);
+                self.emit_event(actor, source, Event::EnterRegion);
+            }
+        }
+    }
     // Shared with XQ24; preserve the existing single-character Hide cleanup,
     // identity reset, orientation and region rather than creating a second rule.
     pub(crate) fn hide_in_place(&mut self, id: &str) -> bool {
@@ -1809,14 +1822,7 @@ impl Game {
                         Self::frame_entity(&frame, entity),
                         self.frame_region(&frame, region),
                     ) {
-                        if self.board(id).is_some_and(|(from, _)| from != region) {
-                            if let Some((_, c)) = self.remove_board(id) {
-                                let actor = c.controller;
-                                let source = self.source_snapshot(&c, Some(region));
-                                self.regions[region].cards.push(c);
-                                self.emit_event(actor, source, Event::EnterRegion);
-                            }
-                        }
+                        self.move_on_board_instance(id, region);
                     }
                 }
                 Op::DestroyPublicAttachmentOrAsset { slot } => {

@@ -147,15 +147,15 @@ fn icon(g: &Game, id: &str) -> hegemony_server::model::Icons {
     g.current_icons(c, r)
 }
 fn boundary(kind: &str) -> Value {
-    use hegemony_server::model::{
-        Effect, GuardState, Icons, ResolutionFrame, SourceSnapshot, Step,
-    };
-    use hegemony_server::rules::{EntityRef, Op, RegionRef};
+    use hegemony_server::model::Icons;
     let mut g = initial(kind);
     let enemy = field(&mut g, "JZ58", 3, 2);
     let friend = field(&mut g, "JZ58", 0, 0);
     let human = field(&mut g, "JC049", 2, 2);
-    if matches!(kind, "rear" | "ordinary-turn-bonus" | "movement-primitive") {
+    if matches!(
+        kind,
+        "rear" | "ordinary-turn-bonus" | "prepared-relocated-host"
+    ) {
         g.first_team = 1;
     }
     if kind == "hidden-initial" {
@@ -171,7 +171,7 @@ fn boundary(kind: &str) -> Value {
     let xq = held(&mut g, "XQ43", 0);
     let net = matches!(
         kind,
-        "granted-temporary" | "ordinary-turn-bonus" | "movement-primitive"
+        "granted-temporary" | "ordinary-turn-bonus" | "prepared-relocated-host"
     )
     .then(|| held(&mut g, "JC073", 0));
     let blade = (kind == "ordinary-turn-bonus").then(|| held(&mut g, "JC093", 0));
@@ -217,7 +217,7 @@ fn boundary(kind: &str) -> Value {
         kind,
         "paid-region-replaced"
             | "dangling-exact-host"
-            | "movement-primitive"
+            | "prepared-relocated-host"
             | "win-four-owner-return"
     );
     if paid_checkpoint {
@@ -228,7 +228,7 @@ fn boundary(kind: &str) -> Value {
         if matches!(kind, "paid-region-replaced" | "dangling-exact-host") {
             pre.game.regions[0].card = pre.game.make_card("DQJC107", 0);
         }
-        if kind == "movement-primitive" {
+        if kind == "prepared-relocated-host" {
             apply_game(
                 &mut pre,
                 &mut preparation,
@@ -236,35 +236,17 @@ fn boundary(kind: &str) -> Value {
                 play(net.as_ref().unwrap(), &friend),
             );
             drain(&mut pre, &mut preparation);
-            let frame = ResolutionFrame {
-                frame_id: "disclosed-movement-primitive".into(),
-                ability_key: "movement-primitive".into(),
-                actor: 0,
-                source: SourceSnapshot {
-                    observed_death: None,
-                    observed_mobility_grant: None,
-                    source_region_instance: None,
-                    card: board(&pre, &friend).unwrap().clone(),
-                    region: Some(0),
-                    attachment_host_instance: None,
-                    play_source: None,
-                },
-                targets: vec![],
-                already_paid: vec![],
-                guard: GuardState::Unchecked,
-                cursor: 0,
-                steps: vec![Step {
-                    context: 0,
-                    op: Op::MoveOnBoard {
-                        entity: EntityRef::Source,
-                        region: RegionRef::Chosen,
-                    },
-                }],
-                chosen_region: Some(1),
-            };
-            pre.game.effects.push_back(Effect::Frame {
-                frame: Box::new(frame),
-            });
+            // Explicit pre-export layout boundary. JZ58 has no movement ability.
+            // The actual movement operation is tested inside the Native crate;
+            // this external oracle only checks the aura and attachment projection
+            // after a disclosed relocation, followed by real Room commands.
+            let position = pre.game.regions[0]
+                .cards
+                .iter()
+                .position(|c| c.id == friend)
+                .unwrap();
+            let card = pre.game.regions[0].cards.remove(position);
+            pre.game.regions[1].cards.push(card);
         }
         if kind == "win-four-owner-return" {
             prepared_win(&mut pre.game, 0, 0);
@@ -308,8 +290,8 @@ fn boundary(kind: &str) -> Value {
             .graveyard
             .iter()
             .any(|c| c.definition == "XQ43"));
-    } else if kind == "movement-primitive" {
-        assert_eq!(icon(&r, &friend).investigation, 1);
+    } else if kind == "prepared-relocated-host" {
+        assert_eq!(icon(&r, &friend), Icons::default());
         pass(&mut r, &mut steps);
         assert_eq!(icon(&r, &friend), Icons::default());
         assert!(r.regions[1].cards.iter().any(|c| c.id == friend));
@@ -561,7 +543,7 @@ fn boundary(kind: &str) -> Value {
     json!({"name":format!("XQ43-{kind}"),"seed":"9007199254740993","steps":steps,
         "syntheticInitialLayout":true,"syntheticPaidCheckpoint":paid_checkpoint,
         "syntheticRegionReplacement":matches!(kind,"paid-region-replaced"|"dangling-exact-host"),
-        "syntheticMovementPrimitiveFrame":kind=="movement-primitive","syntheticWinWindow":kind=="win-four-owner-return",
+        "syntheticHostRelocationBeforeCheckpoint":kind=="prepared-relocated-host","syntheticWinWindow":kind=="win-four-owner-return",
         "syntheticCardRegistry":false,"publicNaturalUiAcceptance":false,"ordinaryTurnBonusesReclassified":false})
 }
 fn natural_deck() -> deck::DeckDraft {
@@ -988,7 +970,7 @@ pub(super) fn cases() -> impl Iterator<Item = Value> {
         "reject-host-zone",
         "paid-region-replaced",
         "dangling-exact-host",
-        "movement-primitive",
+        "prepared-relocated-host",
         "destroy-source",
         "jc005-no-mind",
         "jc005-mind-qualified",

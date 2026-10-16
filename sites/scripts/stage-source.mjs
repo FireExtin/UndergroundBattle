@@ -24,6 +24,13 @@ const copy = (from, relative, directory = false) => copies.push({ from, relative
 for (const file of ['package.json', 'package-lock.json', 'wrangler.jsonc', 'drizzle.config.ts', 'README.md', '.openai/hosting.json']) copy(project + file, file);
 for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(project + directory, directory, true);
 copy(repository + 'tools/build-storage.mjs', 'tools/build-storage.mjs');
+for (const file of ['frozen-kernels.mjs', 'bq035-oracle.mjs']) copy(repository + 'tools/' + file, 'tools/' + file);
+for (const file of ['Cargo.toml', 'Cargo.lock']) copy(repository + file, file);
+copy(repository + 'rust-game-wasm/build.sh', 'rust-game-wasm/build.sh');
+copy(repository + 'rust-game-wasm/frozen/abi77/identity.json', 'rust-game-wasm/frozen/abi77/identity.json');
+for (const file of ['legacy77-kernel.mjs', 'current78-kernel.mjs', 'bq035-compare.mjs', 'bq035Native78.fixture.json.gz']) {
+  copy(repository + 'rust-game-wasm/tests/' + file, 'rust-game-wasm/tests/' + file);
+}
 copy(repository + 'web/src', 'web/src', true);
 copy(repository + 'web/public', 'web/public', true);
 for (const file of ['package.json', 'package-lock.json', 'index.html', 'vite.config.ts', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json']) copy(repository + 'web/' + file, 'web/' + file);
@@ -36,8 +43,8 @@ for (const crate of ['rust-game', 'rust-game-wasm']) {
 const removedDirectories = ['rust-game/data'];
 copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
-// A reused private checkout may still contain old executable kernels. They are
-// recoverable in the game repository's Git history, not part of current builds.
+// Unlisted old kernels are not part of a candidate build. The retained ABI77
+// identity is source; its exact runtime must be supplied externally to the build.
 const wasmDestination = path.join(destination, 'rust-game-wasm');
 if (existsSync(wasmDestination)) {
   for (const name of readdirSync(wasmDestination).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) removedDirectories.push('rust-game-wasm/' + name);
