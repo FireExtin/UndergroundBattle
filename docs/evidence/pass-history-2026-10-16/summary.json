@@ -1,0 +1,40 @@
+{
+  "featureSourceCommit": "8a27c1ca9cfc065cc03a543d73f14b140ac93515",
+  "reviewedBase": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "progressDeltaBase": "d3406a5d719d2ce748b7935350ec56c0dc65467a",
+  "featurePatchSha256": "d5bb0797e3b86c67cb8df5f983f130b2cf1b4c316592132022b791c62b063a06",
+  "reviewedOverlayTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "entireQaTrackedTreeFiles": 3440,
+  "frontend": {
+    "files": 128,
+    "passed": 1211,
+    "failed": 0
+  },
+  "worker": {
+    "passed": 189,
+    "failed": 0
+  },
+  "nativeJournalReplay": {
+    "passed": 1,
+    "fullNativeRun": false
+  },
+  "productionBuildPassed": true,
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "workerSha256": "a94d911f5b2aaa5abbc7ee442d08fbb36a0e9258b4e21b2a8b4fd091af27cb92",
+  "browser": {
+    "scope": "local-production-bundle-only",
+    "freshContexts": 2,
+    "checks": 10,
+    "visualChecks": 4,
+    "publicRecords": 18,
+    "assetChecks": 26,
+    "allAssetsMatch": true,
+    "minimumTextContrast": 13.747284662638762,
+    "finishedAtUtc": "2026-10-16T11:55:19.019560+00:00",
+    "outcome": "passed"
+  },
+  "independentReview": "pending parent serial review",
+  "officialDeployment": "not performed",
+  "onlineGameplay": "not executed; normal v58 TLS blocked at 2026-10-16T11:26:55.418928+00:00",
+  "unfinishedBq035": "preserved at d3406a5 and ancestors; excluded from this reviewed overlay"
+}

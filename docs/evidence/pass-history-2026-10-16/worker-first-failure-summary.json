@@ -1,0 +1,110 @@
+{
+  "scope": "first complete ABI77 Worker run before adapting old HTTP expectations",
+  "tests": 189,
+  "passed": 178,
+  "failed": 11,
+  "rawLogSha256": "d951e657ed3d7a170b1433815f5ea465f7a51aea69b7b04715e6a15418fa8511",
+  "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/release-worker-full-first.log",
+  "failures": [
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 combat-exhausted: continuous Native commands, journals, D1 reopening and receipts (4085.260512ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 combat-hidden: continuous Native commands, journals, D1 reopening and receipts (4043.085826ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 combat-kill-two: continuous Native commands, journals, D1 reopening and receipts (4286.324256ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 combat-other-region: continuous Native commands, journals, D1 reopening and receipts (3657.644729ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 combat-two-sources: continuous Native commands, journals, D1 reopening and receipts (3967.581558ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 continuation-container-reference: continuous Native commands, journals, D1 reopening and receipts (5726.819631ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 duplicate-frame-reference: continuous Native commands, journals, D1 reopening and receipts (4739.992805ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 pending-guard-reference: continuous Native commands, journals, D1 reopening and receipts (4460.678994ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 prepared-response-source-destroyed: continuous Native commands, journals, D1 reopening and receipts (7534.390538ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc046-integration.test.mjs:31:44",
+      "test": "✖ JC046 ABI77 prepared-source-control-change: continuous Native commands, journals, D1 reopening and receipts (4600.514644ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc046-integration.test.mjs:97:47)"
+      ]
+    },
+    {
+      "testLocation": "test/jc095-integration.test.mjs:19:44",
+      "test": "✖ JC095 ABI77 renown-team: continuous Native commands, journals, D1 reopening and receipts (6610.392464ms)",
+      "assertion": "ERR_ASSERTION/deepStrictEqual",
+      "additivePassHistoryPresentInDiff": true,
+      "stack": [
+        "at TestContext.<anonymous> (file:///workspace/pass-context-abi77-review-20261016/sites/test/jc095-integration.test.mjs:77:45)"
+      ]
+    }
+  ],
+  "note": "Original full log retained locally; only whitelisted failure summaries are archived to avoid including complete test seat views."
+}

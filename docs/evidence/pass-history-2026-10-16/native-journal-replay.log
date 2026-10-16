@@ -1,0 +1,63 @@
+   Compiling hegemony-server v0.1.0 (/workspace/pass-context-abi77-review-20261016/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 1m 10s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 1 test
+test service::public_pass_metadata_tests::public_pass_metadata_preserves_native_journal_replay ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1102 filtered out; finished in 0.03s
+
+     Running unittests src/bin/hegemony-audit.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_audit-63bcce57fd73352d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fa86e5692415edfd)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/attachment_service.rs (/workspace/undergroundbattle-build/target/debug/deps/attachment_service-910a0216cc894d0a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests/bq030_attachment_regression.rs (/workspace/undergroundbattle-build/target/debug/deps/bq030_attachment_regression-77c06b9c11ba7356)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 27 filtered out; finished in 0.00s
+
+     Running tests/deck_construction.rs (/workspace/undergroundbattle-build/target/debug/deps/deck_construction-dad209cedcedf88a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests/jc059_friendly.rs (/workspace/undergroundbattle-build/target/debug/deps/jc059_friendly-79ebf50ffa421112)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests/room_pacing.rs (/workspace/undergroundbattle-build/target/debug/deps/room_pacing-feb3dcb8504c6c86)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests/service.rs (/workspace/undergroundbattle-build/target/debug/deps/service-7f6175c1018173f7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests/session_service.rs (/workspace/undergroundbattle-build/target/debug/deps/session_service-0682a822adeccbac)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+

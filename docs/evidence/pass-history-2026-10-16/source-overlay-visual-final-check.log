@@ -1,0 +1,12 @@
+{
+  "reviewedBase": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "progressDeltaBase": "d3406a5d719d2ce748b7935350ec56c0dc65467a",
+  "featureSourceCommit": "8a27c1ca9cfc065cc03a543d73f14b140ac93515",
+  "featurePatchSha256": "d5bb0797e3b86c67cb8df5f983f130b2cf1b4c316592132022b791c62b063a06",
+  "reviewedOverlayTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "entireTrackedQaTreeMatches": true,
+  "trackedFiles": 3440,
+  "published77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "published77JsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "note": "Apply only this delta to the reviewed base. The progress branch includes unfinished ABI78 ancestors and must not be deployed wholesale."
+}

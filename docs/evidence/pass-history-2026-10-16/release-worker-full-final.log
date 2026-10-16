@@ -1,0 +1,346 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ historical assassin fixture rejects without altering persisted data (3641.642598ms)
+✔ bounded employee/1: private candidates, pause/reopen, exact result and one receipt (3851.443196ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":1,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (3661.994898ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/0: private candidates, pause/reopen, exact result and one receipt (2515.098137ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/3: private candidates, pause/reopen, exact result and one receipt (2296.282125ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":3,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passersEmpty/0: private candidates, pause/reopen, exact result and one receipt (2053.058596ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ historical control-pair fixture rejects without altering persisted data (3721.660078ms)
+✔ deck seal51 Native/D1 0: private choice, pause/reopen, sealing/event and duplicate receipt (4467.06867ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 1: private choice, pause/reopen, sealing/event and duplicate receipt (2870.823171ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 2: private choice, pause/reopen, sealing/event and duplicate receipt (2504.383161ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 3: private choice, pause/reopen, sealing/event and duplicate receipt (2698.893189ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 4: private choice, pause/reopen, sealing/event and duplicate receipt (2869.159939ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ historical fire-scholar fixture rejects without altering persisted data (3418.226874ms)
+✔ gray lock52 Native/D1 0: lock/chase, pause/reopen, real responses and duplicate receipt (4455.021476ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 1: lock/chase, pause/reopen, real responses and duplicate receipt (3793.854318ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 2: lock/chase, pause/reopen, real responses and duplicate receipt (4396.43908ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (10425.439318ms)
+ℹ {"currentVersion":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /workspace/undergroundbattle-build/tmp/hegemony-worker-d1-bIOLtX
+✔ JC037 ABI77 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (4004.712436ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 leader-replace: continuous Native commands, journals, D1 reopening and receipts (5311.178429ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 paid-deploy: continuous Native commands, journals, D1 reopening and receipts (4305.148828ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 paid-reveal: continuous Native commands, journals, D1 reopening and receipts (3971.013878ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 secret-deployment: continuous Native commands, journals, D1 reopening and receipts (1972.357348ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-control: continuous Native commands, journals, D1 reopening and receipts (3964.808085ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-hide: continuous Native commands, journals, D1 reopening and receipts (5525.4896ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-return: continuous Native commands, journals, D1 reopening and receipts (3988.334341ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 aura-loss-before-next-seat: continuous Native commands, journals, D1 reopening and receipts (6969.005258ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 choose-self-among-others: continuous Native commands, journals, D1 reopening and receipts (5552.268721ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-exhausted: continuous Native commands, journals, D1 reopening and receipts (3192.40064ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-hidden: continuous Native commands, journals, D1 reopening and receipts (3288.025564ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-kill-two: continuous Native commands, journals, D1 reopening and receipts (3137.091185ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-other-region: continuous Native commands, journals, D1 reopening and receipts (3306.156902ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-two-sources: continuous Native commands, journals, D1 reopening and receipts (3346.969115ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 conceal-no-trigger: continuous Native commands, journals, D1 reopening and receipts (2014.363802ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 continuation-container-reference: continuous Native commands, journals, D1 reopening and receipts (3715.507028ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 control-source-sacrifice-restores-next-seat: continuous Native commands, journals, D1 reopening and receipts (5566.188211ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 current-control-owner-graves: continuous Native commands, journals, D1 reopening and receipts (7282.047854ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":2,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 death-callbacks-after-all-seats: continuous Native commands, journals, D1 reopening and receipts (7535.090622ms)
+ℹ {"preparedNativeLayout":true,"accepted":15,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 deploy-no-trigger: continuous Native commands, journals, D1 reopening and receipts (3713.381374ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 duel-seat-zero-first: continuous Native commands, journals, D1 reopening and receipts (4196.162023ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 duplicate-frame-reference: continuous Native commands, journals, D1 reopening and receipts (4153.613419ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 illegal-and-stale-choices: continuous Native commands, journals, D1 reopening and receipts (8690.365159ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":6,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 paid-entry-guard-reference: continuous Native commands, journals, D1 reopening and receipts (4065.151672ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 paid-seat0: continuous Native commands, journals, D1 reopening and receipts (6215.666055ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 paid-seat1: continuous Native commands, journals, D1 reopening and receipts (6350.430972ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 paid-seat2: continuous Native commands, journals, D1 reopening and receipts (7522.806025ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 paid-seat3: continuous Native commands, journals, D1 reopening and receipts (6686.803903ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 pending-guard-reference: continuous Native commands, journals, D1 reopening and receipts (4189.558911ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 pre-eliminated-seat-skip: continuous Native commands, journals, D1 reopening and receipts (6758.933173ms)
+ℹ {"preparedNativeLayout":true,"accepted":9,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-florence-free-reveal: continuous Native commands, journals, D1 reopening and receipts (6189.454457ms)
+ℹ {"preparedNativeLayout":true,"accepted":12,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-granted-glory: continuous Native commands, journals, D1 reopening and receipts (4305.366665ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-granted-renown: continuous Native commands, journals, D1 reopening and receipts (4660.688368ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-leader-paused-continuation: continuous Native commands, journals, D1 reopening and receipts (4645.604526ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-response-source-destroyed: continuous Native commands, journals, D1 reopening and receipts (7568.032273ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 prepared-source-control-change: continuous Native commands, journals, D1 reopening and receipts (4896.888023ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 response-source-bounce: continuous Native commands, journals, D1 reopening and receipts (8992.828968ms)
+ℹ {"preparedNativeLayout":true,"accepted":17,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 response-source-hide: continuous Native commands, journals, D1 reopening and receipts (10455.56998ms)
+ℹ {"preparedNativeLayout":true,"accepted":18,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 reveal-extra-target: continuous Native commands, journals, D1 reopening and receipts (1989.911276ms)
+ℹ {"preparedNativeLayout":true,"accepted":0,"rejected":1,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":true,"duplicateOriginalReceipt":false}
+✔ JC046 ABI77 reveal-low-assets: continuous Native commands, journals, D1 reopening and receipts (2497.436318ms)
+ℹ {"preparedNativeLayout":true,"accepted":0,"rejected":1,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":true,"duplicateOriginalReceipt":false}
+✔ JC046 ABI77 reveal-no-red-loyalty: continuous Native commands, journals, D1 reopening and receipts (2174.48123ms)
+ℹ {"preparedNativeLayout":true,"accepted":0,"rejected":1,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":true,"duplicateOriginalReceipt":false}
+✔ JC046 ABI77 sacrifice-bypasses-protection: continuous Native commands, journals, D1 reopening and receipts (7805.116697ms)
+ℹ {"preparedNativeLayout":true,"accepted":12,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 self-sacrifice-continues: continuous Native commands, journals, D1 reopening and receipts (7095.421192ms)
+ℹ {"preparedNativeLayout":true,"accepted":12,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 two-real-reveals-independent-frames: continuous Native commands, journals, D1 reopening and receipts (13954.404857ms)
+ℹ {"preparedNativeLayout":true,"accepted":30,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 mandatory sacrifice: pauseRoom, paused D1 reopen, resumeRoom and all four choices continue (10211.337643ms)
+ℹ {"preparedNativeLayout":true,"nativePrefixCommands":9,"accepted":15,"pausedD1Reopened":true,"resumedD1Reopened":true,"reopened":3,"mandatoryChoicePreserved":true,"choiceSeats":[0,1,2,3],"pausedChoiceRejectedWithoutWrite":true,"completeKernelStatesAndJournalsEqual":true,"nativeGameProjectionsEqual":true,"duplicatePauseResumeReceipts":true}
+✔ jc050-red55 chosen-region: native transition, D1 reopening, privacy and duplicate receipt (2047.198342ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"original-native-choose","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ JC052 deploy: complete Native command, D1 reopen and original HTTP receipt (2283.514146ms)
+✔ JC052 entry-accept: complete Native command, D1 reopen and original HTTP receipt (1960.726759ms)
+✔ JC052 entry-decline: complete Native command, D1 reopen and original HTTP receipt (1941.337202ms)
+✔ JC052 leader-sacrifice: complete Native command, D1 reopen and original HTTP receipt (1976.471732ms)
+✔ JC060 ABI77 current-magic-return: continuous Native commands, journals, D1 reopening and receipts (4204.378758ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (2641.569628ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 holy-water-current-domain: continuous Native commands, journals, D1 reopening and receipts (5652.072557ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 magic-target-revalidation: continuous Native commands, journals, D1 reopening and receipts (6399.202354ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 paid-deploy-team: continuous Native commands, journals, D1 reopening and receipts (3883.036614ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 paid-reveal-team: continuous Native commands, journals, D1 reopening and receipts (3759.570586ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 recipient-control: continuous Native commands, journals, D1 reopening and receipts (3782.836871ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 source-control: continuous Native commands, journals, D1 reopening and receipts (4040.433536ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 source-hide: continuous Native commands, journals, D1 reopening and receipts (5518.542183ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 spirit-two-domains: continuous Native commands, journals, D1 reopening and receipts (7872.744963ms)
+ℹ {"preparedNativeLayout":true,"accepted":20,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC060 ABI77 stacking-return: continuous Native commands, journals, D1 reopening and receipts (3976.445564ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (3553.150311ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 leader-sacrifice-new: continuous Native commands, journals, D1 reopening and receipts (6982.081758ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":1,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 paid-deploy-accept: continuous Native commands, journals, D1 reopening and receipts (5944.760829ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 paid-deploy-decline: continuous Native commands, journals, D1 reopening and receipts (4468.856776ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 renown-team: continuous Native commands, journals, D1 reopening and receipts (4940.073257ms)
+ℹ {"preparedNativeLayout":true,"accepted":9,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 response-increase: continuous Native commands, journals, D1 reopening and receipts (9801.499704ms)
+ℹ {"preparedNativeLayout":true,"accepted":23,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 response-zero: continuous Native commands, journals, D1 reopening and receipts (9617.069336ms)
+ℹ {"preparedNativeLayout":true,"accepted":21,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 secret-reveal: continuous Native commands, journals, D1 reopening and receipts (5560.725691ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 source-hide: continuous Native commands, journals, D1 reopening and receipts (7240.97198ms)
+ℹ {"preparedNativeLayout":true,"accepted":16,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 source-return: continuous Native commands, journals, D1 reopening and receipts (7761.43499ms)
+ℹ {"preparedNativeLayout":true,"accepted":16,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC095 ABI77 win-window-fixed-winner: continuous Native commands, journals, D1 reopening and receipts (7755.894577ms)
+ℹ {"preparedNativeLayout":true,"accepted":14,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 placement: native transition, D1 reopening, privacy and duplicate receipt (2130.744092ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0015.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 accept: native transition, D1 reopening, privacy and duplicate receipt (1929.358799ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0138.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 decline: native transition, D1 reopening, privacy and duplicate receipt (1990.893349ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0208.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 deploy: native transition, D1 reopening, privacy and duplicate receipt (1756.926798ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0215.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 glory: native transition, D1 reopening, privacy and duplicate receipt (1821.059872ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0287.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 enemyCompose: native transition, D1 reopening, privacy and duplicate receipt (1823.558887ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0414.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ jz22-blue54 enemySubmit: native transition, D1 reopening, privacy and duplicate receipt (1873.053443ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0415.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ fixed production Site identity agrees with the candidate source-built ABI77 (4.84316ms)
+✔ strict lazy initialization rejects a mismatching frozen identity (2.335678ms)
+✔ current-only Site keeps the source ABI bytes, reviewed prior definitions and exact new-room flow (37.113963ms)
+✔ every historical tuple and altered identity rejects before any current state operation (21.622833ms)
+ℹ {"historicalTuplesRejected":40,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ production generated modules and Worker contain only the candidate current WASM (2.849873ms)
+✔ engine74 rejects preserved actual57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation (37.96054ms)
+✔ current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (49718.367327ms)
+ℹ {"engineVersion":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2326,"acceptedCommands":457,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"expiredHolderTransitions":2,"sameInstanceNaturalNextTurnReset":true}
+✔ all 37 original Native77 traces preserve opaque states, core views, journals and duplicate receipts while recording passes (141182.379587ms)
+ℹ {"scenarios":37,"acceptedCommands":322,"publicPassRecords":224,"originalOpaqueStatesEqual":true,"originalCoreViewsEqual":true}
+✔ timeout, cancellation, pause and late rejection record only committed public passes and preserve their original contexts (2649.231161ms)
+✔ real HTTP manual passes traverse a complete duel turn; both clients and a reopened Worker see identical event-time history (6473.74036ms)
+ℹ {"publicPasses":48,"windows":["start/prepare","start/draw","action/team:0","action/team:1","confrontation/mobility","confrontation/region:0:investigation:before","confrontation/region:0:investigation:after","confrontation/region:0:combat:before","confrontation/region:0:combat:after","confrontation/region:0:influence:before","confrontation/region:0:influence:after","confrontation/region:1:investigation:before","confrontation/region:1:investigation:after","confrontation/region:1:combat:before","confrontation/region:1:combat:after","confrontation/region:1:influence:before","confrontation/region:1:influence:after","confrontation/region:2:investigation:before","confrontation/region:2:investigation:after","confrontation/region:2:combat:before","confrontation/region:2:combat:after","confrontation/region:2:influence:before","confrontation/region:2:influence:after","end/end"],"fullTurn":true,"bothClients":true,"reopened":true}
+✔ pass metadata shares the command CAS: rollback and concurrent retries leave exactly one committed event (1585.2865ms)
+✔ accepted pass context keeps public event-time actor, step and original region, without private fields (3.590205ms)
+✔ nonregional windows are global even when the stack has a region target (1.281247ms)
+✔ manual, response, cancel and timeout records use only accepted journal events (1.139314ms)
+✔ a command after Tick uses the post-timeout phase instead of borrowing the prior region (2.535205ms)
+✔ inconsistent public metadata fails closed or is omitted without exposing injected objects (0.774697ms)
+✔ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (4834.356021ms)
+✔ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (5519.527637ms)
+✔ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (5111.116344ms)
+✔ engine50 rejects preserved actual rust-v0.2.46-pause-resume-candidate paused room without relabelling its state (24.086659ms)
+✔ engine50 rejects preserved actual rust-v0.2.47-sealed-cards-candidate paused room without relabelling its state (9.897586ms)
+✔ engine50 rejects preserved actual rust-v0.2.48-jz50-death-search-candidate paused room without relabelling its state (11.219991ms)
+✔ engine50 rejects preserved actual rust-v0.2.49-sealed-restart-candidate paused room without relabelling its state (10.467715ms)
+✔ ABI77 rejects a genuine source-built ABI72 lobby before operations and preserves D1 after reopen (1986.212693ms)
+✔ ABI77 rejects a genuine source-built ABI73 lobby and preserves every D1 table after reopen (2209.564203ms)
+✔ historical rescue-forecast fixture rejects without altering persisted data (2074.065354ms)
+✔ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (3167.522499ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (5.561895ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (30.545117ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (4.071536ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (2.22245ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (1.565035ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (3.490516ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.539006ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (2.344668ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (2006.053049ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (3252.117296ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (2048.716664ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (2063.317738ms)
+✔ seven60 BQ028 attachment=false discard=false seat=1: private HTTP, exact Native state and reopened receipt (3326.340361ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=false seat=1: private HTTP, exact Native state and reopened receipt (2761.374872ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=true seat=1: private HTTP, exact Native state and reopened receipt (2385.857021ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+✔ seven60 BQ028 attachment=true discard=false seat=2: private HTTP, exact Native state and reopened receipt (2065.884985ms)
+ℹ {"nativeStateByteEqual":true,"privateHttpViews":4,"duplicateHttpOriginalReceipt":true,"persistReopen":true,"browserAcceptance":false}
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (192.665563ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.447807ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (666.743515ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.843187ms)
+✔ three-color53 declare: native transition, D1 reopening, privacy and duplicate receipt (2309.151963ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0004.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 randomDiscard: native transition, D1 reopening, privacy and duplicate receipt (2003.837645ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0017.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 influence: native transition, D1 reopening, privacy and duplicate receipt (2092.120611ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0049.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 ordinaryDiscard: native transition, D1 reopening, privacy and duplicate receipt (2110.295602ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0064.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ three-color53 timeMarker: native transition, D1 reopening, privacy and duplicate receipt (1882.56882ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0076.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ historical two-card fixture rejects without altering persisted data (2236.810869ms)
+✔ engine63 entry-XQ37-0-first-0: continuous Native commands, journals, D1 reopening and receipts (10404.995954ms)
+ℹ {"preparedNativeLayout":true,"accepted":21,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 nested-reveal-Before(1, 0): continuous Native commands, journals, D1 reopening and receipts (15453.719384ms)
+ℹ {"preparedNativeLayout":true,"accepted":34,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 privilege-renown-true: continuous Native commands, journals, D1 reopening and receipts (7666.636324ms)
+ℹ {"preparedNativeLayout":true,"accepted":12,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 privilege-already-wins: continuous Native commands, journals, D1 reopening and receipts (6705.878125ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-nested-2-1: continuous Native commands, journals, D1 reopening and receipts (16123.37138ms)
+ℹ {"preparedNativeLayout":true,"accepted":38,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-jc050: continuous Native commands, journals, D1 reopening and receipts (4316.969222ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-conservation: continuous Native commands, journals, D1 reopening and receipts (15339.009603ms)
+ℹ {"preparedNativeLayout":true,"accepted":32,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 world-empty-duel: continuous Native commands, journals, D1 reopening and receipts (8377.344406ms)
+ℹ {"preparedNativeLayout":true,"accepted":18,"rejected":1,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 lethal-offboard-accept: continuous Native commands, journals, D1 reopening and receipts (4791.880499ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 lethal-offboard-decline: continuous Native commands, journals, D1 reopening and receipts (2037.768987ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 multiple-observer-order: continuous Native commands, journals, D1 reopening and receipts (4147.161272ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 empty-deck-elimination: continuous Native commands, journals, D1 reopening and receipts (2351.704732ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-renown: continuous Native commands, journals, D1 reopening and receipts (4875.233889ms)
+ℹ {"preparedNativeLayout":true,"accepted":13,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-combat-glory: continuous Native commands, journals, D1 reopening and receipts (2996.000369ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ engine63 BQ030 granted-renown-vacant: continuous Native commands, journals, D1 reopening and receipts (5447.442978ms)
+ℹ {"preparedNativeLayout":true,"accepted":9,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ XQ18 same-name carrier i240: exact Native choice and D1 reopened receipt (2098.829507ms)
+✔ XQ18 same-name carrier i241: exact Native choice and D1 reopened receipt (1923.668792ms)
+✔ XQ18 pause, reopen, resume and exact carrier choice preserve all Native state strings (3961.771469ms)
+✔ XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling (4742.27337ms)
+ℹ {"invalidNativeSaves":4,"workerdD1Reopens":4,"httpRestoreRejections":8,"savedStateUnchanged":true,"noCommandsOrJournal":true}
+✔ XQ24 duel-accept: Native journals, continuous D1 restore and original receipts (9429.859931ms)
+ℹ {"preparedNativeLayout":true,"commands":10,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-decline: Native journals, continuous D1 restore and original receipts (4924.915376ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":3,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-murder-response: Native journals, continuous D1 restore and original receipts (8936.749478ms)
+ℹ {"preparedNativeLayout":true,"commands":15,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-region-replaced-fixture: Native journals, continuous D1 restore and original receipts (5940.145347ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-region-vacant-fixture: Native journals, continuous D1 restore and original receipts (7536.357279ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 duel-source-moved-fixture: Native journals, continuous D1 restore and original receipts (5467.694096ms)
+ℹ {"preparedNativeLayout":true,"commands":6,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":2,"originalReceipts":true}
+✔ XQ24 teams-accept: Native journals, continuous D1 restore and original receipts (11480.593762ms)
+ℹ {"preparedNativeLayout":true,"commands":14,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-decline: Native journals, continuous D1 restore and original receipts (7385.189023ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":3,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-murder-response: Native journals, continuous D1 restore and original receipts (12004.640817ms)
+ℹ {"preparedNativeLayout":true,"commands":22,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-region-replaced-fixture: Native journals, continuous D1 restore and original receipts (7028.237717ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-region-vacant-fixture: Native journals, continuous D1 restore and original receipts (7264.424488ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ XQ24 teams-source-moved-fixture: Native journals, continuous D1 restore and original receipts (5402.726892ms)
+ℹ {"preparedNativeLayout":true,"commands":8,"reopened":5,"fullJournals":true,"opaqueStates":true,"seatViews":4,"originalReceipts":true}
+✔ xq27-gray56 final response: native transition, D1 reopening, privacy and duplicate receipt (2317.314842ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ XQ27-IR-01 rejects the hidden root flag in both production ABI entrypoints (3.451602ms)
+✔ current-only routing rejects the exact previous engine55 room identity (3.409468ms)
+✔ xq37-black57 accept: native transition, D1 reopening, privacy and duplicate receipt (3206.886178ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0002.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ xq37-black57 decline: native transition, D1 reopening, privacy and duplicate receipt (2074.063851ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"inputName":"step-0036.json","completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ xq37-black57 placement: native transition, D1 reopening, privacy and duplicate receipt (1952.710091ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"completeOpaqueStateEqual":true,"fourSeatViewsEqual":true,"persistReopen":true,"duplicateOriginalReceipt":true}
+✔ rejects the hidden root flag in both production ABI entrypoints (5.064584ms)
+✔ current-only routing rejects the exact previous engine56 room identity (5.825931ms)
+ℹ tests 189
+ℹ suites 0
+ℹ pass 189
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346314.526166
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

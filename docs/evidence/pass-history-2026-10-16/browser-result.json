@@ -1,0 +1,409 @@
+{
+  "scope": "local-production-bundle-only",
+  "startedAtUtc": "2026-10-16T11:54:55.389198+00:00",
+  "publicSiteVisited": false,
+  "userTablesAccessed": false,
+  "freshBrowserContexts": 2,
+  "ignoreHttpsErrors": false,
+  "bypassUsed": false,
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "featureSourceCommit": "8a27c1ca9cfc065cc03a543d73f14b140ac93515",
+  "checks": {
+    "manualRepeatClickOneCommand": true,
+    "bothClientsGlobalPass": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 1） · 第 1 回合 · 开始阶段 · 重置与准备 · 全局 · 让过",
+    "globalHistoryAfterPhaseChange": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 2） · 第 1 回合 · 开始阶段 · 重置与准备 · 全局 · 让过",
+    "automaticEmptyPassBothClients": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 2） · 第 1 回合 · 开始阶段 · 抓牌 · 全局 · 让过",
+    "manualResponseGlobalContext": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 1） · 第 1 回合 · 行动阶段 · 团队 1 行动 · 全局 · 响应让过",
+    "serverTimeoutBothClients": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 2） · 第 1 回合 · 行动阶段 · 团队 1 行动 · 全局 · 响应超时，自动让过",
+    "regionalBothClients": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 1） · 第 1 回合 · 对抗阶段 · 战斗 · 奖励前快速窗口 · 地区 1 · 香港 · 让过",
+    "regionalHistoryAfterStepChangeAndBothRefresh": "最近让过\n同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家同名玩家（席位 2） · 第 1 回合 · 对抗阶段 · 战斗 · 奖励前快速窗口 · 地区 1 · 香港 · 让过",
+    "recordIdsUniqueAfterRefresh": true,
+    "sameFortyCharacterNameSeatsDistinguished": true
+  },
+  "browserErrors": [],
+  "commandsFromUi": [
+    {
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "pass"
+    },
+    {
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "pass"
+    },
+    {
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "pass"
+    },
+    {
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "pass"
+    },
+    {
+      "seat": 0,
+      "kind": "passResponse",
+      "gameKind": null
+    },
+    {
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "pass"
+    },
+    {
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "pass"
+    }
+  ],
+  "assetIdentityChecks": [
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-CFNG9Utw.css",
+      "sha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "expectedSha256": "e14cb42d9edfcb42d354b100f648ff387663de13d91b09ff08fbc04e805f077e",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-zaBaENHi.js",
+      "sha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "expectedSha256": "b8eac822936d90867485326e6b92b5743259af13607dd2e90667113ff4b51637",
+      "matches": true
+    }
+  ],
+  "browserVersion": "151.0.7922.173",
+  "publicRecordCount": 18,
+  "visualChecks": [
+    {
+      "seat": 0,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "notice": {
+        "left": 46,
+        "right": 1394,
+        "top": 317.5625,
+        "bottom": 352.25,
+        "width": 1348,
+        "height": 34.6875
+      },
+      "status": {
+        "left": 34,
+        "right": 1406,
+        "top": 288.375,
+        "bottom": 352.25,
+        "width": 1372,
+        "height": 63.875
+      },
+      "round": {
+        "left": 46,
+        "right": 352.046875,
+        "top": 290.875,
+        "bottom": 310.0625,
+        "width": 306.046875,
+        "height": 19.1875
+      },
+      "opponent": {
+        "left": 34,
+        "right": 1406,
+        "top": 358.25,
+        "bottom": 466.25,
+        "width": 1372,
+        "height": 108
+      },
+      "scrollWidth": 1346,
+      "clientWidth": 1346,
+      "recordColor": "rgb(239, 230, 204)",
+      "recordBackground": "rgba(27, 20, 14, 0.973)",
+      "recordsOpen": true,
+      "minimumContrastOnWhiteBackdrop": 13.747284662638762,
+      "passed": true
+    },
+    {
+      "seat": 1,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "notice": {
+        "left": 46,
+        "right": 1394,
+        "top": 317.5625,
+        "bottom": 352.25,
+        "width": 1348,
+        "height": 34.6875
+      },
+      "status": {
+        "left": 34,
+        "right": 1406,
+        "top": 288.375,
+        "bottom": 352.25,
+        "width": 1372,
+        "height": 63.875
+      },
+      "round": {
+        "left": 46,
+        "right": 352.046875,
+        "top": 290.875,
+        "bottom": 310.0625,
+        "width": 306.046875,
+        "height": 19.1875
+      },
+      "opponent": {
+        "left": 34,
+        "right": 1406,
+        "top": 358.25,
+        "bottom": 466.25,
+        "width": 1372,
+        "height": 108
+      },
+      "scrollWidth": 1346,
+      "clientWidth": 1346,
+      "recordColor": "rgb(239, 230, 204)",
+      "recordBackground": "rgba(27, 20, 14, 0.973)",
+      "recordsOpen": true,
+      "minimumContrastOnWhiteBackdrop": 13.747284662638762,
+      "passed": true
+    },
+    {
+      "seat": 0,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "notice": {
+        "left": 46,
+        "right": 1320,
+        "top": 317.5625,
+        "bottom": 352.25,
+        "width": 1274,
+        "height": 34.6875
+      },
+      "status": {
+        "left": 34,
+        "right": 1332,
+        "top": 288.375,
+        "bottom": 352.25,
+        "width": 1298,
+        "height": 63.875
+      },
+      "round": {
+        "left": 46,
+        "right": 352.046875,
+        "top": 290.875,
+        "bottom": 310.0625,
+        "width": 306.046875,
+        "height": 19.1875
+      },
+      "opponent": {
+        "left": 34,
+        "right": 1332,
+        "top": 358.25,
+        "bottom": 466.25,
+        "width": 1298,
+        "height": 108
+      },
+      "scrollWidth": 1272,
+      "clientWidth": 1272,
+      "recordColor": "rgb(239, 230, 204)",
+      "recordBackground": "rgba(27, 20, 14, 0.973)",
+      "recordsOpen": true,
+      "minimumContrastOnWhiteBackdrop": 13.747284662638762,
+      "passed": true
+    },
+    {
+      "seat": 1,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "notice": {
+        "left": 46,
+        "right": 1320,
+        "top": 317.5625,
+        "bottom": 352.25,
+        "width": 1274,
+        "height": 34.6875
+      },
+      "status": {
+        "left": 34,
+        "right": 1332,
+        "top": 288.375,
+        "bottom": 352.25,
+        "width": 1298,
+        "height": 63.875
+      },
+      "round": {
+        "left": 46,
+        "right": 352.046875,
+        "top": 290.875,
+        "bottom": 310.0625,
+        "width": 306.046875,
+        "height": 19.1875
+      },
+      "opponent": {
+        "left": 34,
+        "right": 1332,
+        "top": 358.25,
+        "bottom": 466.25,
+        "width": 1298,
+        "height": 108
+      },
+      "scrollWidth": 1272,
+      "clientWidth": 1272,
+      "recordColor": "rgb(239, 230, 204)",
+      "recordBackground": "rgba(27, 20, 14, 0.973)",
+      "recordsOpen": true,
+      "minimumContrastOnWhiteBackdrop": 13.747284662638762,
+      "passed": true
+    }
+  ],
+  "outcome": "passed",
+  "finishedAtUtc": "2026-10-16T11:55:19.019560+00:00"
+}

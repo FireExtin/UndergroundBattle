@@ -1,0 +1,29 @@
+✔ accepted pass context keeps public event-time actor, step and original region, without private fields (2.369348ms)
+✔ nonregional windows are global even when the stack has a region target (0.2845ms)
+✔ manual, response, cancel and timeout records use only accepted journal events (1.252833ms)
+✔ a command after Tick uses the post-timeout phase instead of borrowing the prior region (1.685299ms)
+✔ inconsistent public metadata fails closed or is omitted without exposing injected objects (0.677236ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (5.549293ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (16.456621ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (3.285809ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.784979ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (2.594275ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (3.044661ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.817827ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.501196ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (233.018993ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.487736ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (774.733426ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.90339ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1134.167286

@@ -1,0 +1,91 @@
+{
+  "note": "Overlapping runs are listed separately and must not be summed. Full logs with complete synthetic seat views stay local; public failure summary is archived.",
+  "finalFrontend": {
+    "files": 128,
+    "passed": 1211,
+    "failed": 0,
+    "source": "3c8a392; subsequent 8a27c1c changes only CSS and task documentation; final production JS bytes remain identical"
+  },
+  "finalWorker": {
+    "passed": 189,
+    "failed": 0,
+    "source": "3c8a392; backend bytes identical at 8a27c1c"
+  },
+  "native": {
+    "passed": 1,
+    "fullNativeRun": false,
+    "scope": "journal deserialization and exact state/all-seat replay only"
+  },
+  "priorFrontend": {
+    "files": 128,
+    "passed": 1210,
+    "failed": 0,
+    "note": "before the additional same-name-seat test"
+  },
+  "priorWorker": {
+    "passed": 178,
+    "failed": 11,
+    "note": "all 11 differences were additive passHistory at original HTTP receipt comparisons"
+  },
+  "browserFailedRuns": [
+    {
+      "case": "browser-first-evidence",
+      "outcome": "failed",
+      "startedAtUtc": "2026-10-16T11:38:56.515391+00:00",
+      "finishedAtUtc": "2026-10-16T11:39:10.586416+00:00",
+      "reason": "test script compared both clients before polling converged",
+      "rawResultPath": "/workspace/pass-context-evidence-20261016/browser-first-evidence/browser-result.json",
+      "rawResultSha256": "499f06a7f00cb75c834b9f88097a180d2e3b80279f75b6b55466dcd263d8accc",
+      "scriptSha256": "caab7b329d370cd79085abc4757a927876582a715e20d7bddf35a78683c044d9"
+    },
+    {
+      "case": "browser-second-evidence",
+      "outcome": "failed",
+      "startedAtUtc": "2026-10-16T11:39:58.327212+00:00",
+      "finishedAtUtc": "2026-10-16T11:40:09.354530+00:00",
+      "reason": "test script selected play instead of the legal character deploy action",
+      "rawResultPath": "/workspace/pass-context-evidence-20261016/browser-second-evidence/browser-result.json",
+      "rawResultSha256": "e9d9b0e93ced02188f5d2da54876558f5b67d930cd34494bd2d7454958b5c0b3",
+      "scriptSha256": "b35393e2b4920f8280a3af2d84b62a70aecb5c58e55a488da57cbe9f51dd2ad8"
+    },
+    {
+      "case": "browser-visual-first-evidence",
+      "outcome": "failed",
+      "startedAtUtc": "2026-10-16T11:53:30.829033+00:00",
+      "finishedAtUtc": "2026-10-16T11:53:53.680526+00:00",
+      "reason": "contrast test sampled the closed details transparent background; final test opens the real record panel before measuring",
+      "rawResultPath": "/workspace/pass-context-evidence-20261016/browser-visual-first-evidence/browser-result.json",
+      "rawResultSha256": "64ac8fba6af0d7173ea437da2c160c0ce65acea3bfe602827bc54ad9905e9cc7",
+      "scriptSha256": "f1fc0ed04d2687e9a2bb2c4ea3a43f0aae046773ebfc59ec5e4f053db73aaa3d"
+    }
+  ],
+  "otherFailedRuns": [
+    {
+      "file": "integration-first.log",
+      "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/integration-first.log",
+      "bytes": 14529,
+      "sha256": "c73d34e2119925d2639c35c4a862e6372d50e748ebe20d4ffd28a039ff702eba",
+      "reason": "workerd harness modulesRoot startup failure; fixed before behavior tests"
+    },
+    {
+      "file": "release-production-build-first.log",
+      "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/release-production-build-first.log",
+      "bytes": 1648,
+      "sha256": "a4f0f40e7e9266d2b588fac67e882c199fec221c1650eec48ce45af2189500e2",
+      "reason": "new test passed unsupported Testing Library exact option to getByRole; TypeScript rejected"
+    },
+    {
+      "file": "release-production-build-final.log",
+      "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/release-production-build-final.log",
+      "bytes": 1648,
+      "sha256": "ff0e887af7754ba91cd24c97f089882bf63e1be239bca4cfba0d75afa2982152",
+      "reason": "same TypeScript issue on the QA copy before the fixed test file was copied"
+    }
+  ],
+  "visualProductFix": {
+    "source": "8a27c1c",
+    "cause": "actual screenshot showed low contrast and crowded one-line status",
+    "fix": "inherit history text color and reserve a complete pass-status row",
+    "finalContrast": 13.747284662638762
+  }
+}

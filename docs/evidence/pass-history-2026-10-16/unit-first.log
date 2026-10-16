@@ -1,0 +1,13 @@
+✔ accepted pass context keeps public event-time actor, step and original region, without private fields (2.052176ms)
+✔ nonregional windows are global even when the stack has a region target (0.376588ms)
+✔ manual, response, cancel and timeout records use only accepted journal events (0.980789ms)
+✔ a command after Tick uses the post-timeout phase instead of borrowing the prior region (1.446523ms)
+✔ inconsistent public metadata fails closed or is omitted without exposing injected objects (0.556045ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.168429
