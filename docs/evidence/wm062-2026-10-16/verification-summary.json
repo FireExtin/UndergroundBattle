@@ -1,0 +1,184 @@
+{
+  "format": "wm062-local-batch-verification-v1",
+  "codeCommit": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+  "branch": "codex/stage-pass-progress-20261016",
+  "rules": "hegemony-pdf-v1",
+  "pool": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+  "engine": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate",
+  "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+  "wasmBytes": 3047680,
+  "nativeCompilerInputs": 125,
+  "sourceChecks": {
+    "passed": 52,
+    "total": 52
+  },
+  "frozenKernelTools": {
+    "passed": 9,
+    "total": 9
+  },
+  "nativeFeatureFinal": {
+    "round": 5,
+    "passed": 12,
+    "total": 12
+  },
+  "nativeWorkspaceHistory": [
+    {
+      "passed": 1145,
+      "total": 1152,
+      "failed": 7,
+      "reason": "stale catalog/color totals; integration did not run"
+    },
+    {
+      "passed": 1152,
+      "total": 1153,
+      "failed": 1,
+      "reason": "stale nonregion player count135vs136; integration did not run"
+    }
+  ],
+  "nativePostCountFix": {
+    "catalogTargetedPassed": 1,
+    "integrationTargets": 7,
+    "integrationPassed": 67,
+    "wasmCrateNativeLibTests": 0,
+    "full1153SingleGreenRun": false
+  },
+  "wasmNativeParity": {
+    "scenarios": 14,
+    "commands": 111,
+    "seatProjections": 490,
+    "expectedCommandRejections": 18,
+    "fixedNegativeRecords": 45,
+    "roomRestoreCalls": 540,
+    "opaqueStateAllViewsJournalsAndReceiptsCompared": true
+  },
+  "productionDryRun": {
+    "passed": true,
+    "clientFiles": 161,
+    "serverRuntimeFiles": 5,
+    "wasmModules": 4,
+    "published": false
+  },
+  "newWm062HttpD1Final": {
+    "tests": 20,
+    "pass": 20,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 124699.261987
+  },
+  "existingWorkerWholeFirstRun": {
+    "tests": 219,
+    "pass": 213,
+    "fail": 6,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 949848.072838
+  },
+  "existingWorkerFailureScope": "Only stale current catalog145/79 assertions in integration.test.mjs(1), msjc09-society-integration.test.mjs(1), seven-card-integration.test.mjs(4). Original traces and old-room assertions untouched. Files changed only after each had executed in the first whole run.",
+  "existingWorkerTargetedFollowups": {
+    "worker-current-integration-fixed": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 8329.526081
+    },
+    "worker-msjc09-current-fixed": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 38727.890086
+    },
+    "worker-seven-card-current-fixed": {
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 9311.053268
+    }
+  },
+  "full219SingleGreenRun": false,
+  "frontendHistory": {
+    "oldEf68FullPassed": 1255,
+    "oldEf68Files": 132,
+    "final0229DefaultBudgetPassed": 1255,
+    "final0229DefaultBudgetTotal": 1256,
+    "defaultBudgetFailure": "DeckBuilderGrid.test.tsx: selected-only last-copy preview test exceeded5000ms; no assertion failure",
+    "final0229ExtendedBudgetPassed": 1256,
+    "final0229ExtendedBudgetFiles": 132,
+    "extendedBudgetMs": 15000,
+    "finalDurationSeconds": 347.52,
+    "productAndAssertionsUnchangedForExtendedBudget": true
+  },
+  "realLocalBrowsers": [
+    {
+      "report": "browser/browser-final-move/report.json",
+      "scenario": "pause-successor-resume",
+      "productionUiAcceptedCommands": 8,
+      "expectedBrowserFetchRejections": 1,
+      "workerReopens": 2,
+      "fourRealBrowserContexts": true,
+      "draftRestoredAfterReopenAndReload": true,
+      "doubleClickProducedOneSubmission": true,
+      "originalConfirmationReceiptRestored": true,
+      "pageErrors": 0,
+      "onlineGameplay": false
+    },
+    {
+      "report": "browser/browser-final-decline/report.json",
+      "scenario": "decline-cleanup",
+      "productionUiAcceptedCommands": 6,
+      "expectedBrowserFetchRejections": 0,
+      "workerReopens": 1,
+      "fourRealBrowserContexts": true,
+      "draftRestoredAfterReopenAndReload": true,
+      "doubleClickProducedOneSubmission": true,
+      "originalConfirmationReceiptRestored": true,
+      "pageErrors": 0,
+      "onlineGameplay": false
+    },
+    {
+      "report": "browser/browser-final-defense/report.json",
+      "scenario": "last-criminal-defense-loss",
+      "productionUiAcceptedCommands": 6,
+      "expectedBrowserFetchRejections": 0,
+      "workerReopens": 1,
+      "fourRealBrowserContexts": true,
+      "draftRestoredAfterReopenAndReload": true,
+      "doubleClickProducedOneSubmission": true,
+      "originalConfirmationReceiptRestored": true,
+      "pageErrors": 0,
+      "onlineGameplay": false
+    }
+  ],
+  "publishedV61NormalTls": {
+    "evidence": "published-v61-tls-212835.json",
+    "navigationAtUtc": "2026-10-16T21:28:35.763231+00:00",
+    "error": "net::ERR_CERT_AUTHORITY_INVALID",
+    "navigationAttempts": 1,
+    "posts": 0,
+    "roomsCreatedOrJoined": 0,
+    "identityReached": false,
+    "onlineGames": 0,
+    "bypassUsed": false
+  },
+  "environmentNotifications": "Original command sessions kept running; no test restarted due to disconnect notices and no actual tool connection error observed.",
+  "pending": [
+    "parent-arranged serial independent review; no publication requested for WM062"
+  ],
+  "publicationPerformed": false,
+  "mainModified": false,
+  "newActionsStarted": false,
+  "developmentAgentsSpawned": 0,
+  "worktreesCreated": 0,
+  "newDevelopmentBranchesCreated": 0
+}

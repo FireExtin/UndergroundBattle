@@ -1,0 +1,12 @@
+{
+  "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "node": "v24.19.0",
+  "wasmBindgen": "wasm-bindgen 0.2.104",
+  "chromium": "151.0.7922.173",
+  "nativeCompilerJobs": 1,
+  "existingWorkerTestConcurrency": 1,
+  "frontendMaxWorkers": 1,
+  "finalFrontendTestTimeoutMs": 15000,
+  "storageAndMemoryGuard": "tools/build-storage.mjs; no bypass or cache cleanup"
+}

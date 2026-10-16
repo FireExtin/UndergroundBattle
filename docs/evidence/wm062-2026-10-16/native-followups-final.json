@@ -1,0 +1,37 @@
+{
+  "allExitZero": true,
+  "commands": [
+    [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "hegemony-server",
+      "--lib",
+      "engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "hegemony-server",
+      "--test",
+      "*",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "hegemony-wasm",
+      "--lib",
+      "--",
+      "--test-threads=1"
+    ]
+  ]
+}

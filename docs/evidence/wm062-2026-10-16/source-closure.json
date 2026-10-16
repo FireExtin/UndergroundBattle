@@ -1,0 +1,317 @@
+{
+  "format": "wm062-code-and-runtime-closure-v1",
+  "baseCommit": "27026fd864b96da5950c07ca1f58a8315c27a70e",
+  "codeCommit": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+  "codeTree": "8748333b7fef974dca81a880c868c27bed4ae10e",
+  "nativeInputCount": 125,
+  "nativeBindingsMatchWorkingTreeAndGit": true,
+  "changedNonDocumentationFiles": {
+    ".gitignore": {
+      "sha256": "915a9f5c6f4be39142163f47a9b54cb9525e2dfa2b620561c06cb886c84a0378",
+      "bytes": 551
+    },
+    "rust-game-wasm/frozen/abi79/identity.json": {
+      "sha256": "e5886eefaad7822e694c92bc72c74ab5b69ebf80fd309e9d9199f1e6f078962f",
+      "bytes": 745
+    },
+    "rust-game-wasm/frozen/abi79/native-source-binding.json": {
+      "sha256": "7798a036b71b9fa7da95af7fd10f72a501173e7db7a1c71512a33be1c5026549",
+      "bytes": 12851
+    },
+    "rust-game-wasm/tests/current79-kernel.mjs": {
+      "sha256": "28132d5968231fd2fa7c27340e596e75f92ce7c7c4db613ca1b04d8e68085dd3",
+      "bytes": 845
+    },
+    "rust-game-wasm/tests/current80-kernel.mjs": {
+      "sha256": "92a41262b526153a3cdac836de0aee9ed23fe4b8a85918c88521cee8e78c3983",
+      "bytes": 874
+    },
+    "rust-game-wasm/tests/wm062-compare.mjs": {
+      "sha256": "9373cae3732089784e416b7c4d088a1f6356c0b885a79a0bff303edd330d42b9",
+      "bytes": 203
+    },
+    "rust-game-wasm/tests/wm062Native80.fixture.json.gz": {
+      "sha256": "319cfa610957694c8fa4f849c0ad628f6cab0d5650a5a1644fe58d3f854a0b19",
+      "bytes": 1723141
+    },
+    "rust-game/data/cards.json": {
+      "sha256": "e1d5be1245498fb99f09f14ec3c4377b000fbbc12fe99b1f0bd04e559010e371",
+      "bytes": 156288
+    },
+    "rust-game/data/source-verification.json": {
+      "sha256": "e7506ce2ac2066c3cd7fb97c89744d9028be7d0746fd5a721c3bad7efda07cbf",
+      "bytes": 8948
+    },
+    "rust-game/src/bounded_search_tests.rs": {
+      "sha256": "71eb5d288575e20b1dc3544af978688ee7de144dea7c2bdf39ac0331125f205f",
+      "bytes": 31102
+    },
+    "rust-game/src/catalog.rs": {
+      "sha256": "b7ea239e4eebeda1851411b6e066dbed81ae98422665cd497d9032b05a294046",
+      "bytes": 8336
+    },
+    "rust-game/src/deck_seal_search_tests.rs": {
+      "sha256": "78932ab057c09618c1daf9c7e9960eb693a2a83ea750d1197e80c63b660fe9ea",
+      "bytes": 44645
+    },
+    "rust-game/src/engine.rs": {
+      "sha256": "f2ec8b29bf46209186c01febd27ec598511e2a318419675f1e5d9930650aee80",
+      "bytes": 262584
+    },
+    "rust-game/src/gray_lock_tests.rs": {
+      "sha256": "8a68ac1c3eb1595d8abce8163193149ae33c4b16d7b443cbb8b1d6d9a5e113db",
+      "bytes": 33612
+    },
+    "rust-game/src/jc089_tests.rs": {
+      "sha256": "f905f5c6fa6a2900f5fab23c24188c9d998c3f37d2f575a3a82a25855e8aa46c",
+      "bytes": 35129
+    },
+    "rust-game/src/lib.rs": {
+      "sha256": "f6c5668ef9c90e30ea5b43c1bf90dcc9f83104d75e0af030c0e22f8401d3c963",
+      "bytes": 5128
+    },
+    "rust-game/src/model.rs": {
+      "sha256": "ec84dd25819574a1c5d87b4935f6e248a20698f01604ae8f6661a1e64ea9c99e",
+      "bytes": 30930
+    },
+    "rust-game/src/msjc07_tests.rs": {
+      "sha256": "fc2fa07d52c484acc8b46411db413684aee36e11bd8dfcd1dc4876b29eb9c119",
+      "bytes": 1428
+    },
+    "rust-game/src/renown_tests.rs": {
+      "sha256": "90a00b929edfd7d0216679c1798a24dce077bf4f601d3676c2dc054d05eb4898",
+      "bytes": 21509
+    },
+    "rust-game/src/resolution.rs": {
+      "sha256": "d05d29a0e20074311a32100d8f55ed87149faeb7a1238d0ff2ab8da805c6fcae",
+      "bytes": 111388
+    },
+    "rust-game/src/room.rs": {
+      "sha256": "f21679ba1d9d5559877a3e6e0cb69af10764e83cafb29a8729d43657bfcd8f7d",
+      "bytes": 30720
+    },
+    "rust-game/src/rules.rs": {
+      "sha256": "45e6b155956271f9141bae2e7a0007bf868f16d4259b0e897e7f831c159ca985",
+      "bytes": 160340
+    },
+    "rust-game/src/wm062.rs": {
+      "sha256": "b8dbc472ef022d2ce15ed95b4eda68d42d7389a5886f0b6411f49b9e87353e2a",
+      "bytes": 17894
+    },
+    "rust-game/src/wm062_tests.rs": {
+      "sha256": "a1be65839d66764d8476b06c70d7f238f5530a47d111aabd4b955dc510a991d6",
+      "bytes": 43868
+    },
+    "sites/scripts/build-backend-test.mjs": {
+      "sha256": "dc217b57f48f78a938896654330e4d63571453528cf8fc63b611a2c4b7319e97",
+      "bytes": 3800
+    },
+    "sites/scripts/build-bq035-test.mjs": {
+      "sha256": "f7a90dcc1475971df5b8dedbdea0b5b8a39b0d79862b7d620f51dafc3329104e",
+      "bytes": 4054
+    },
+    "sites/scripts/build-jz46-test.mjs": {
+      "sha256": "59d135f572e247d5f09b011eef44395f6c9022e0aee2305fb12d7dd0a01cb60c",
+      "bytes": 4101
+    },
+    "sites/scripts/build-wm062-test.mjs": {
+      "sha256": "05300c1607d6da07555b31743b4cd55bea32839cef0e698955760413ca509244",
+      "bytes": 4154
+    },
+    "sites/scripts/build.mjs": {
+      "sha256": "cea8d78673e60d1dce20162c57faeef695fd8ec8e0fd72773050e9bd73653ef6",
+      "bytes": 2111
+    },
+    "sites/scripts/stage-source.mjs": {
+      "sha256": "097d5eaa85329510c57fce3e8a66c945110ccb0fd9541c7b92cfeb334715bd03",
+      "bytes": 5875
+    },
+    "sites/src/kernel.mjs": {
+      "sha256": "538ca352fa6a7f1fe1640f9997967c9fbcf1a41d40dd345fe27603a42b8b1d6a",
+      "bytes": 1747
+    },
+    "sites/test/bq035-integration.test.mjs": {
+      "sha256": "212da929cb889687c490f64e7140ab1c1779dc5986eaea8fddf01472356f6300",
+      "bytes": 7170
+    },
+    "sites/test/integration.test.mjs": {
+      "sha256": "a39e5cf3c4205b9f92961f1845eec5b67f11f7c2aa1e040150218a2868906301",
+      "bytes": 17954
+    },
+    "sites/test/jz46-integration.test.mjs": {
+      "sha256": "6440e5b2cc9423ae0486003c763afacf2a3a611c9455498927952f49657e80cb",
+      "bytes": 9223
+    },
+    "sites/test/kernel-binding.test.mjs": {
+      "sha256": "5ea3f82de8970be66ab232c2d5a390592153d3caf51dcc2538065124c4fce41a",
+      "bytes": 1337
+    },
+    "sites/test/kernel-routing.test.mjs": {
+      "sha256": "f4bc87da9c3512771cad31210a5e01003d001857379e7d6bd539de59ec35dfa0",
+      "bytes": 8314
+    },
+    "sites/test/msjc09-society-integration.test.mjs": {
+      "sha256": "3c16064825c2dec1f6ba63cbd1f6f6da270dd74ca739d5f4812971f818a4022e",
+      "bytes": 12295
+    },
+    "sites/test/seven-card-integration.test.mjs": {
+      "sha256": "400e98c12fbfa5bf2af5b97a2aa74046fccd9e25dd6dee84f563da9de38a5ed0",
+      "bytes": 5492
+    },
+    "sites/test/wm062-integration.test.mjs": {
+      "sha256": "2bfe40d70f04538a2d2840dbe21b9a3ff2ede686ee984782391878028e18967a",
+      "bytes": 10805
+    },
+    "tools/cards/bq030-source.test.mjs": {
+      "sha256": "5c5cbfc512a30c085507679ac19095bd7b410ae3ed32bebd72b618c8ba098697",
+      "bytes": 7967
+    },
+    "tools/cards/bq035-source.test.mjs": {
+      "sha256": "69e5a0544e7c046fd5cebb44cab6a13876619b653922195799f1d7d6da5da225",
+      "bytes": 3061
+    },
+    "tools/cards/jc037-source.test.mjs": {
+      "sha256": "a60c6ae5cbc8420e9c99a896b383a97995db8318673da2cd0a31d462bff0fbca",
+      "bytes": 2754
+    },
+    "tools/cards/jc046-source.test.mjs": {
+      "sha256": "3977ad5e31cf47c07a954ca501de5fd37d4c609792dcf7ad3f7b1ee5c1652116",
+      "bytes": 3722
+    },
+    "tools/cards/jc052-source.test.mjs": {
+      "sha256": "52cd17b4d2e89d719114ec3347ce677922cec4b351f576caa8a371337c0a690f",
+      "bytes": 2776
+    },
+    "tools/cards/jc060-source.test.mjs": {
+      "sha256": "9e65440896efc8ac41888906ee99c4f313520b9721ebbfd7ff6e41aed1cbccaa",
+      "bytes": 2681
+    },
+    "tools/cards/jc094-source.test.mjs": {
+      "sha256": "e02fd96cfc891f2297686c26ebc20e80d264209ed304ff0f0911f0436663115a",
+      "bytes": 3042
+    },
+    "tools/cards/jc095-source.test.mjs": {
+      "sha256": "d2700d2b2395c4cce8f9f51b8eb5ae4aad18f4a1f7019d34b25dbf8415ce142a",
+      "bytes": 2747
+    },
+    "tools/cards/jz35-source.test.mjs": {
+      "sha256": "7fe5c5d034be2c570d17a1cf9ddcaf57dcfaa25f15d0cf7e6ccee7acefbc6cf3",
+      "bytes": 2733
+    },
+    "tools/cards/jz46-source.test.mjs": {
+      "sha256": "963a23fba1584cd10ea26c18e8182ba2be2a505b0b6656993a4adeb04afe5a5a",
+      "bytes": 2581
+    },
+    "tools/cards/wm023-source.test.mjs": {
+      "sha256": "fbd8d615d28722ca061ce8b1629037fe770f11ac0a0e8d387773a9945560251e",
+      "bytes": 2895
+    },
+    "tools/cards/wm038-source.test.mjs": {
+      "sha256": "9fdfe4390552fe8844151408827d501867bae7ed7513175d045e4d92a5f923cb",
+      "bytes": 2854
+    },
+    "tools/cards/wm056-source.test.mjs": {
+      "sha256": "dff6f294005f395f5d0f2ec01cb67870b600e18333dd46bcffdceb27f0d3e92b",
+      "bytes": 2901
+    },
+    "tools/cards/wm062-source.test.mjs": {
+      "sha256": "c26bbe3ba455b1847e5cd237ed30b173864d966445cd2ac77d728ab2188b4033",
+      "bytes": 2561
+    },
+    "tools/cards/xq24-source.test.mjs": {
+      "sha256": "b5ce45786ad01e305407ac0e5b7d8f4a0c327b96d4cf10ddf0b52be99461cb62",
+      "bytes": 4368
+    },
+    "tools/cards/xq25-source.test.mjs": {
+      "sha256": "469fa16d034b5fe1737ef6eaf0759201acfd9fa36913a209a18a63c9a0564ba3",
+      "bytes": 2860
+    },
+    "tools/frontend/wm062-http-four-clients-qa.mjs": {
+      "sha256": "150956a4a1cc593ed0c96ef5058f03211600dbe602d4f29f7cd980db6dd57313",
+      "bytes": 15832
+    },
+    "tools/frozen-abi79.test.mjs": {
+      "sha256": "5a611aab1cc49ecdf620bf53a27ecba17c1f401072c4376fe74dae39e7c4ec9f",
+      "bytes": 1742
+    },
+    "tools/frozen-kernels.mjs": {
+      "sha256": "0bc1883094c1119e856adcbce54813d00a3b1fe59ed9e01194b536cf484865a2",
+      "bytes": 5552
+    },
+    "tools/jz46-oracle.mjs": {
+      "sha256": "a8b67c9c2fef9596f760802ce884eab6530924024bb4efdaff6977d246d3fbd8",
+      "bytes": 6617
+    },
+    "tools/wm062-oracle.mjs": {
+      "sha256": "6daf65d6ea57f389ffc55e51c9718c56d05876d6ddc710147d89ba3326448457",
+      "bytes": 6833
+    },
+    "web/public/card-scans.json": {
+      "sha256": "5888e65a7fd80379549684c00896bbb8fa7533dbbe2838d484401c2e208190d2",
+      "bytes": 32111
+    },
+    "web/public/cards/WM062.jpg": {
+      "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335",
+      "bytes": 1188701
+    },
+    "web/src/game/ChoicePanel.tsx": {
+      "sha256": "63365fb840303f0148c7ccfb3d2e3e450bb37ab8809cbe49cf49c7386c4b24d2",
+      "bytes": 20870
+    },
+    "web/src/game/JZ55UniqueDestroy.test.jsx": {
+      "sha256": "e7587fe3934f310f24011c8a768f91f8cb3fba6769ffaf526d4944bb936e9f3c",
+      "bytes": 7470
+    },
+    "web/src/game/WM062Native80.test.jsx": {
+      "sha256": "9bf0709ef79e5aa572feff2c2270ac5c10fcbba0add970389d9cf267431a2017",
+      "bytes": 4483
+    },
+    "web/src/game/cardScans.ts": {
+      "sha256": "ce3aad82042b10114c939f4affd6a4c1f75d645adbf8a29690e002387a6033f1",
+      "bytes": 5099
+    }
+  },
+  "productionClientFiles": 161,
+  "productionServerRuntimeFiles": 5,
+  "runtimeTotalFiles": 166,
+  "productionRuntimeManifest": "runtime-manifest.json",
+  "retainedKernels": {
+    "77": {
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "wasmBytes": 2909006,
+      "bindingSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bindingBytes": 18203,
+      "gzipSha256": "2b041aa5daa089e00f3157cfdb4a54c10a6f531bc3527998a43e835c580438ff",
+      "allRuntimeIdentityFieldsVerified": true
+    },
+    "78": {
+      "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "wasmBytes": 2976205,
+      "bindingSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bindingBytes": 18203,
+      "gzipSha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e",
+      "allRuntimeIdentityFieldsVerified": true
+    },
+    "79": {
+      "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "wasmBytes": 3005332,
+      "bindingSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bindingBytes": 18203,
+      "gzipSha256": "816390c4997a73785c23db506e9a69558aef9c5ecdb34999e0d697b4273f41d1",
+      "allRuntimeIdentityFieldsVerified": true
+    }
+  },
+  "old145CardDefinitionsExactlyPreserved": true,
+  "oldDecksWorldRulesAndPdfHashExactlyPreserved": true,
+  "oldScanMappingExactlyPreservedAfterRemovingOnlyWM062": true,
+  "wm062Fixture": {
+    "path": "rust-game-wasm/tests/wm062Native80.fixture.json.gz",
+    "sha256": "319cfa610957694c8fa4f849c0ad628f6cab0d5650a5a1644fe58d3f854a0b19"
+  },
+  "publicationPerformed": false,
+  "testOnlyLastCodeChanges": [
+    "sites/test/integration.test.mjs: current146/catalog80/pool73 and paced engine expectations",
+    "sites/test/msjc09-society-integration.test.mjs: current80 expected engine only",
+    "sites/test/seven-card-integration.test.mjs: current80 health expected engine and stale comment only; original77 inputs untouched"
+  ]
+}

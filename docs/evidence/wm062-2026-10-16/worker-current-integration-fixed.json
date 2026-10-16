@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "test/integration.test.mjs"
+  ],
+  "cwd": "sites",
+  "exitCode": 0,
+  "scope": "Only the existing current-catalog D1 integration after test-only candidate80/count146/pacing expectations were updated; not a rerun of the full existing Worker suite."
+}

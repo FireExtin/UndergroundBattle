@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "test/seven-card-integration.test.mjs"
+  ],
+  "cwd": "sites",
+  "exitCode": 0,
+  "scope": "Only existing seven-card Worker health expected current79to80 and stale comment changed; original Native77 fixtures, old room catalog143, privacy, state and receipt assertions unchanged."
+}

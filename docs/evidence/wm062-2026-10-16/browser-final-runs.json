@@ -1,0 +1,17 @@
+[
+  {
+    "scenario": "pause-successor-resume",
+    "output": "/workspace/wm062-evidence-20261016/browser-final-move",
+    "exitCode": 0
+  },
+  {
+    "scenario": "decline-cleanup",
+    "output": "/workspace/wm062-evidence-20261016/browser-final-decline",
+    "exitCode": 0
+  },
+  {
+    "scenario": "last-criminal-defense-loss",
+    "output": "/workspace/wm062-evidence-20261016/browser-final-defense",
+    "exitCode": 0
+  }
+]

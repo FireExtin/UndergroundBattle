@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    "sites/scripts/build.mjs",
+    "sites/scripts/build-wm062-test.mjs",
+    "sites/scripts/build-jz46-test.mjs",
+    "sites/scripts/build-bq035-test.mjs"
+  ],
+  "allExitZero": true,
+  "published": false
+}

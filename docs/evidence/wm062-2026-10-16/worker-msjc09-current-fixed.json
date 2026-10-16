@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "test/msjc09-society-integration.test.mjs"
+  ],
+  "cwd": "sites",
+  "exitCode": 0,
+  "scope": "Only existing MSJC09 current-version assertion changed79to80. No society definition, reducer or assertions about behavior changed."
+}

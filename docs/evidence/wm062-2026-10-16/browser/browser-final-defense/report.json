@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "scope": "Explicit prepared criminal/funds, then real paid WM062, four production browser clients, successor movement or decline, draft/restart, pause and duplicate confirmation; local fixed clock, not online gameplay",
+  "scenario": "last-criminal-defense-loss",
+  "engine": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate",
+  "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+  "workerSha256": "af265001275511e309a418567744509e9cd4f3170b8349fffc08c9c7a7290836",
+  "wasmModules": [
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "productionWorkerSha256": "43c4b40fbd789680995d2430fa00c11edae00226a1ea3a6b25a9d0c658749b50",
+  "productionClientIndexSha256": "114f8744822d9e65e5ddd659d512c0ab448aa2dfb22854c79bc1c057f9d2d259",
+  "clientDirectory": "/workspace/UndergroundBattle/sites/dist/client",
+  "fixtureSha256": "319cfa610957694c8fa4f849c0ad628f6cab0d5650a5a1644fe58d3f854a0b19",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "play",
+      "via": "production-ui",
+      "status": 200,
+      "version": 9,
+      "stateSha256": "4151ff9383d7b619f1d2f70fb3dacf2047bc943e851b42ca99f818daaa720d66"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 10,
+      "stateSha256": "bf5826648584793f4f6bea064bd2de9206d61e84b24508383ba7cdab4a57e912"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 11,
+      "stateSha256": "5b6e337423d46fb6cb2af7797750b4ff19a1ed8afc63103a1b77b0f074d9ae3c"
+    },
+    {
+      "index": 3,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 12,
+      "stateSha256": "65945a70403d8f894e47e3a296559545772412fafc6af983654feae6c0af606b"
+    },
+    {
+      "index": 4,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 13,
+      "stateSha256": "5197f52e6a325ac5fb04a21387f39a1916dde46539d7dd13a11d55b3500b3005"
+    },
+    {
+      "index": 5,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "choose",
+      "via": "production-ui",
+      "status": 200,
+      "version": 14,
+      "stateSha256": "c178e80aecb2a25fad026be9f58811a26a7fed2a1ae8ca8a4f609fa4605a4a4c"
+    }
+  ],
+  "clientRequests": [
+    27,
+    20,
+    20,
+    19
+  ],
+  "clientPosts": [
+    4,
+    1,
+    1,
+    1
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "wm062-play-preview.png",
+    "successor-before-confirm-seat0.png",
+    "successor-before-confirm-seat1.png",
+    "successor-before-confirm-seat2.png",
+    "successor-before-confirm-seat3.png",
+    "confirmed-once-seat0.png",
+    "confirmed-once-seat1.png",
+    "confirmed-once-seat2.png",
+    "confirmed-once-seat3.png"
+  ],
+  "choiceLayoutChecks": [],
+  "targetHitChecks": [
+    {
+      "targetId": "i244",
+      "x": 612.796875,
+      "y": 482.875,
+      "width": 66,
+      "height": 88,
+      "hitInstance": "i244",
+      "regionRows": "125px 54px 125px"
+    }
+  ],
+  "reopened": 1,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 5,
+    "seat": 0,
+    "kind": "game",
+    "gameKind": "choose"
+  },
+  "successorAndSelectionDraftRestoredAfterWorkerAndBrowserRestart": true,
+  "confirmPostsBefore": 2,
+  "doubleClickProducedOneSubmission": true,
+  "originalConfirmationReceiptAfterRestart": true,
+  "onlineGameplay": false,
+  "mainOrSiteChanged": false
+}
