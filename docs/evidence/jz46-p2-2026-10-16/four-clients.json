@@ -1,0 +1,207 @@
+{
+  "passed": true,
+  "scope": "Explicit prepared hidden target and funds, followed by real paid JZ46 play, action, four-client privacy, pause/restart and duplicate confirmation; local deterministic server clock, not online gameplay",
+  "engine": "rust-v0.2.79-jz46-private-criminal-inspection-candidate",
+  "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+  "workerSha256": "d06d252a0cd9def6e9cd606aed96e4c279ec1b3074a1d5c1c750ccf0a41730c8",
+  "wasmModules": [
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "productionWorkerSha256": "fe130743b40dbfdba17fd255d33b76afcd72dd9ff770156aeb554e3f5b8dbc10",
+  "productionClientIndexSha256": "60234789579b3e06d18ab8da56ac3f8137daa46c58c60e1bbd36dabca0efded4",
+  "clientDirectory": "/workspace/UndergroundBattle/sites/dist/client",
+  "fixtureSha256": "d4bb40cd2c57b6d8134b4d4402463959c9ca7f9b87e059d9b5c2fbe5115c2930",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "play",
+      "via": "production-ui",
+      "status": 200,
+      "version": 9,
+      "stateSha256": "f40c906648a64dfa3d094d70bcdca24f099e1a49af8f5c40fc1e4cbec049382a"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 10,
+      "stateSha256": "baca9ba21abdcb98ff4fead9235cc92945c3976aae653d2bbffcbb029568e367"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 11,
+      "stateSha256": "763d7c45206f7c247dd5280a6e8b966e056a5bf317f6c02576cbf1cdd634fe1c"
+    },
+    {
+      "index": 3,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 12,
+      "stateSha256": "7225d488fc710d228e349673f8d7911b3f1775e1038bed3cf965c7cb159e89de"
+    },
+    {
+      "index": 4,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 13,
+      "stateSha256": "c6c1ffcaac5c03e2eb61490ecb16e9002a8263cfa2b086563aaa9164b7a07ccd"
+    },
+    {
+      "index": 5,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "activate",
+      "via": "production-ui",
+      "status": 200,
+      "version": 14,
+      "stateSha256": "b065d86b53594b1b7c913dc6bcfcbfd0495432e258a3f032eeb265b1865372be"
+    },
+    {
+      "index": 6,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 15,
+      "stateSha256": "f1a4a0596bc8c036a6698907d382fde189ed82d01f3490de3d3f13aa41b74d93"
+    },
+    {
+      "index": 7,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 16,
+      "stateSha256": "9206d2756811a1137e4d9e697e8dc69e9d13d5c29d5ba9b54aac178eeb6685b6"
+    },
+    {
+      "index": 8,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 17,
+      "stateSha256": "a56ecd5f7916a81f445fc42d4970581a983514a5b3261ac8d2ff35f8edab9903"
+    },
+    {
+      "index": 9,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 18,
+      "stateSha256": "0a13eff99728f54079011167b0e0f20c991d23ed4985f80a40064f02a6c36817"
+    },
+    {
+      "index": 10,
+      "seat": 1,
+      "kind": "pauseRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 19,
+      "stateSha256": "adcbe66df4234e5455a072fc5681c46a76c3886fc7d927828cdf0bdfb8ff4cf6"
+    },
+    {
+      "index": 11,
+      "seat": 0,
+      "via": "browser-fetch-expected-rejection",
+      "status": 409
+    },
+    {
+      "index": 12,
+      "seat": 2,
+      "kind": "resumeRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 20,
+      "stateSha256": "824631c5578f7cb704acbe91b0c881a2b978eb6a878ef6daf95c8433f4c54153"
+    },
+    {
+      "index": 13,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "choose",
+      "via": "production-ui",
+      "status": 200,
+      "version": 21,
+      "stateSha256": "4026a83c8d2c26f8dcacadf87f9968d187b6f6a9cc5622d60a04d431cd07de86"
+    }
+  ],
+  "clientRequests": [
+    43,
+    34,
+    34,
+    32
+  ],
+  "clientPosts": [
+    7,
+    3,
+    3,
+    2
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "private-original-front.png",
+    "private-before-confirm-seat0.png",
+    "private-before-confirm-seat1.png",
+    "private-before-confirm-seat2.png",
+    "private-before-confirm-seat3.png",
+    "confirmed-once-seat0.png",
+    "confirmed-once-seat1.png",
+    "confirmed-once-seat2.png",
+    "confirmed-once-seat3.png"
+  ],
+  "choiceLayoutChecks": [],
+  "targetHitChecks": [
+    {
+      "targetId": "i244",
+      "x": 612.796875,
+      "y": 340.25,
+      "width": 66,
+      "height": 88,
+      "hitInstance": "i244",
+      "regionRows": "124px 54px 29px 124px"
+    }
+  ],
+  "reopened": 2,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 13,
+    "seat": 0,
+    "kind": "game",
+    "gameKind": "choose"
+  },
+  "privateOriginalFrontReadableWithoutCommand": true,
+  "privateInspectionRestoredAfterWorkerAndBrowserRestart": true,
+  "confirmPostsBefore": 5,
+  "doubleClickProducedOneSubmission": true,
+  "originalConfirmationReceiptAfterRestart": true,
+  "onlineGameplay": false,
+  "mainOrSiteChanged": false
+}

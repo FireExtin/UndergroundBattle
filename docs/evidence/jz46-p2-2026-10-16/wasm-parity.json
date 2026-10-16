@@ -1,0 +1,10 @@
+{
+  "scenarios": 11,
+  "commands": 368,
+  "projections": 1516,
+  "rejected": 16,
+  "invalid": 35,
+  "negativeRestoreCalls": 420,
+  "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+  "completeOpaqueStateAndAllViews": true
+}

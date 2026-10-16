@@ -92,11 +92,11 @@ async function runScenario(t, scenario, expectedCards = 145) {
 }
 for (const scenario of fixture.scenarios) test(`JZ46 ABI79 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
-for (const name of ['pending-00', 'unknown-front']) test(`JZ46 ABI79 corrupted ${name} rejects before D1 writes and after reopening`, async t => {
+for (const name of ['pending-00', 'unknown-front', 'play-stack-exhausted']) test(`JZ46 ABI79 corrupted ${name} rejects before D1 writes and after reopening`, async t => {
   const index=fixture.negative.findIndex(row=>row.file===name+'.json');
   const invalid=index<0?undefined:fixture.invalid[index];
   // The raw Native input has a known79 tuple and an intentionally invalid
-  // pending continuation. Keep its opaque bytes, rather than repairing it.
+  // continuation or paid play container. Keep the opaque bytes unchanged.
   assert(invalid, name);
   const outer=JSON.parse(invalid.state),reference=fixture.scenarios[0];
   const scenario={name:'invalid-'+name,initial:{state:invalid.state,views:reference.initial.views.map(v=>({...v,version:outer.revision}))}};

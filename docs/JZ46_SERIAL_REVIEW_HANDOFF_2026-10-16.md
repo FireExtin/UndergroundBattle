@@ -1,5 +1,7 @@
 # JZ46 狴犴铜雕：串行审查交接（WIP）
 
+> P2独审暂不放行修前445e制品。本文件以下保留修前历史；最新定点修正、重新构建的79及再次复审证据见 [JZ46 P2交接](JZ46_P2_PLAY_CONTAINER_REVIEW_2026-10-16.md)。
+
 本批尚未独立复审、合入 main 或发布。沿既有 `codex/stage-pass-progress-20261016` 单线程实现，没有新分支、worktree、开发子任务、Actions 或线上未审测试。最终完整源码为 **`b858fd8baa2bb6c55cd45daec658623cf8ccb4f5`**；Rust编译输入对应 `ccc0b5b0e79a126bf0c095ba311955210a23e664`，生产UI对应 `8788af17a4f7d77e2957d7d9efb640079ddcf7b8`，其后只增加HTTP恢复测试及文档。本地实现及适用验证已收口；分轮失败与限定复跑边界保留，不把它们称为一次整组全绿。最终来源及产物见 [Git闭合清单](evidence/jz46-2026-10-16/source-closure.json)。
 
 ## 整卡与真相源

@@ -750,6 +750,123 @@ fn jz46_target_legality_has_no_criminal_or_enemy_filter_and_costs_are_atomic() {
     t.export();
 }
 #[test]
+fn jz46_play_stack_single_exhausted_mutation_rejects_game_and_room_restore() {
+    let (g, held, _) = prepared(0, true, 2);
+    let mut t = Trace::new("play-stack-exhausted", g);
+    let action = t.legal(0, "play", &held, None, Some(2));
+    t.action(0, action);
+    assert_eq!(t.room.game.resources(0), 2);
+    let good = serde_json::to_value(&t.room).unwrap();
+    let last = good["game"]["stack"].as_array().unwrap().len() - 1;
+    assert_eq!(good["game"]["stack"][last]["card"]["exhausted"], false);
+    assert_eq!(
+        good["game"]["stack"][last]["frame"]["source"]["card"]["exhausted"],
+        false
+    );
+    let mut bad = good.clone();
+    bad["game"]["stack"][last]["card"]["exhausted"] = json!(true);
+    let mut reverted = bad.clone();
+    reverted["game"]["stack"][last]["card"]["exhausted"] = json!(false);
+    assert_eq!(reverted, good, "only the reviewer's single boolean changed");
+    let state = serde_json::to_string(&bad).unwrap();
+    let game_state = serde_json::to_string(&bad["game"]).unwrap();
+    let game_error = Game::from_persisted(&game_state).err();
+    let restored = RoomEnvelope::from_persisted(&state);
+    let room_error = restored.as_ref().err().cloned();
+    let mut observation = json!({"gameAccepted":game_error.is_none(),"roomAccepted":room_error.is_none(),"gameError":game_error,"roomError":room_error});
+    if let Ok(room) = restored {
+        let mut probe = Trace {
+            name: "p2-accepted-corruption",
+            room,
+            initial: Value::Null,
+            steps: vec![],
+        };
+        probe.finish();
+        let c = &probe
+            .room
+            .game
+            .attachments
+            .iter()
+            .find(|a| a.card.definition == "JZ46")
+            .unwrap()
+            .card;
+        observation["settledExhausted"] = json!(c.exhausted);
+        observation["contestCounts"] = json!(probe.room.game.contest_counts(2, 2));
+        observation["canActivate"] = json!(probe.room.game.legal_actions(0).iter().any(|a| a
+            .action
+            .kind
+            == "activate"
+            && a.action.card_id.as_deref() == Some(&c.id)));
+    }
+    eprintln!("JZ46_P2_OBSERVATION {observation}");
+    if let Ok(dir) = std::env::var("JZ46_P2_REPRO_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(
+            Path::new(&dir).join("observation.json"),
+            serde_json::to_vec_pretty(&observation).unwrap(),
+        )
+        .unwrap();
+        std::fs::write(Path::new(&dir).join("raw-input.json"),serde_json::to_vec(&json!({"goodState":serde_json::to_string(&good).unwrap(),"state":state,"gameState":game_state})).unwrap()).unwrap();
+    }
+    assert!(
+        game_error.is_some() && room_error.is_some(),
+        "a play container cannot change a fresh-preserved field independently of its frozen source"
+    );
+    if let Ok(dir) = std::env::var("JZ46_INVALID_DIR") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(Path::new(&dir).join("play-stack-exhausted.json"),serde_json::to_vec(&json!({"state":state,"gameState":game_state,"gameError":game_error.unwrap(),"roomError":room_error.unwrap(),"sourceBindings":source_bindings()})).unwrap()).unwrap();
+    }
+}
+#[test]
+fn jz46_play_stack_normalization_allows_new_uid_and_cleared_markers() {
+    let (g, held, _) = prepared(0, true, 2);
+    let mut t = Trace::new("play-fresh-normalization", g);
+    let action = t.legal(0, "play", &held, None, Some(2));
+    t.action(0, action);
+    let top = t.room.game.stack.last().unwrap();
+    let source = &top.frame.as_ref().unwrap().source.card;
+    let container = top.card.as_ref().unwrap();
+    assert_ne!(source.id, container.id);
+    assert_eq!((source.time_markers, source.lock_markers), (0, 0));
+    assert_eq!((container.time_markers, container.lock_markers), (0, 0));
+    let stacked_uid = container.id.clone();
+    // Unit-check this validator's fresh projection in isolation. Nonzero time
+    // markers on an attachment in hand remain forbidden by the global guard;
+    // this copied snapshot is not exported or claimed a valid Room archive.
+    let mut projected = t.room.game.clone();
+    let snapshot = &mut projected
+        .stack
+        .last_mut()
+        .unwrap()
+        .frame
+        .as_mut()
+        .unwrap()
+        .source
+        .card;
+    snapshot.time_markers = 5;
+    snapshot.lock_markers = 2;
+    projected.validate_jz46_state().unwrap();
+    t.finish();
+    let c = &t
+        .room
+        .game
+        .attachments
+        .iter()
+        .find(|a| a.card.definition == "JZ46")
+        .unwrap()
+        .card;
+    assert_ne!(c.id, stacked_uid);
+    assert!(!c.exhausted);
+    assert_eq!(t.room.game.contest_counts(2, 2), [1, 1]);
+    assert!(t
+        .room
+        .game
+        .legal_actions(0)
+        .iter()
+        .any(|a| a.action.kind == "activate" && a.action.card_id.as_deref() == Some(&c.id)));
+    t.export();
+}
+#[test]
 fn jz46_pending_and_response_restore_mutations_fail_in_game_and_room() {
     let (g, held, target) = prepared(0, true, 2);
     let mut t = Trace::new("restore-guards", g);

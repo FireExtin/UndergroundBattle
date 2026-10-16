@@ -384,10 +384,14 @@ impl Game {
                         || item.target != f.targets.first().map(|t| t.id.clone())
                         || (if play {
                             item.card.as_ref().is_none_or(|c| {
-                                c.definition != "JZ46"
-                                    || c.face_down
-                                    || c.controller != f.actor
-                                    || c.owner != f.source.card.owner
+                                // Hand -> stack fresh() changes the UID and
+                                // clears these markers; every other Card field
+                                // survives and later enters from this container.
+                                let mut expected = f.source.card.clone();
+                                expected.id = c.id.clone();
+                                expected.time_markers = 0;
+                                expected.lock_markers = 0;
+                                !same(c, &expected)
                             })
                         } else {
                             item.card.is_some()

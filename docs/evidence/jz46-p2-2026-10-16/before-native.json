@@ -1,0 +1,12 @@
+{
+  "canActivate": false,
+  "contestCounts": [
+    0,
+    1
+  ],
+  "gameAccepted": true,
+  "gameError": null,
+  "roomAccepted": true,
+  "roomError": null,
+  "settledExhausted": true
+}

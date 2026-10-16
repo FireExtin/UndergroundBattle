@@ -9,8 +9,8 @@ const moduleUrl = import.meta.url;
 const root = fileURLToPath(new URL('../', moduleUrl));
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
 export const identity = { rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.72-jz46-private-criminal-inspection-candidate', engineVersion: 'rust-v0.2.79-jz46-private-criminal-inspection-candidate' };
-export const positiveNames = ['criminal-seat0','criminal-seat1','criminal-seat2','criminal-seat3','noncriminal-unchanged','all-hidden-no-identity-leak','target-paid-reveal-cancels','pause-inspection-resume','repeat-lock-next-turn','attachment-alone-influence-reward'].sort();
-export const negativeNames = [...Array.from({length:22},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:8},(_,i)=>`response-${String(i).padStart(2,'0')}`),'effect-transplant','duplicate-pending-stack','unknown-front','attachment-front'].sort();
+export const positiveNames = ['criminal-seat0','criminal-seat1','criminal-seat2','criminal-seat3','noncriminal-unchanged','all-hidden-no-identity-leak','target-paid-reveal-cancels','pause-inspection-resume','repeat-lock-next-turn','attachment-alone-influence-reward','play-fresh-normalization'].sort();
+export const negativeNames = [...Array.from({length:22},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:8},(_,i)=>`response-${String(i).padStart(2,'0')}`),'effect-transplant','duplicate-pending-stack','unknown-front','attachment-front','play-stack-exhausted'].sort();
 export function assertSources(binding) {
   assert.equal(binding.algorithm, 'sha256');
   const files = ['Cargo.lock','Cargo.toml','rust-game-wasm/Cargo.toml','rust-game-wasm/build.sh','rust-game-wasm/src/lib.rs','rust-game/Cargo.toml','rust-game/data/cards.json',
