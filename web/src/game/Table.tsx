@@ -219,6 +219,19 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const [targetNotice, setTargetNotice] = useState('');
   const submittedDraft = useRef(false);
   const tableRoot = useRef<HTMLElement>(null);
+  useLayoutEffect(() => {
+    const root = tableRoot.current;
+    const dock = root?.querySelector<HTMLElement>('.hg-hand-dock');
+    if (!root || !dock) return;
+    const measure = () => {
+      const height = Math.ceil(dock.getBoundingClientRect().height);
+      if (height > 0) root.style.setProperty('--hg-dock-height', `${height}px`);
+    };
+    measure();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(dock); window.addEventListener('resize', measure);
+    return () => { observer?.disconnect(); window.removeEventListener('resize', measure); };
+  }, []);
   const nextFocus = useRef<'targets' | 'actions' | 'confirm' | null>(null);
   const definitions = useMemo(() => new Map<string, CardDefinition>([...(catalog?.cards || []), ...(catalog?.societies || [])].map(card => [card.id, card])), [catalog]);
   const activeRegions = view.regions.filter(region => region.cardId !== '');
