@@ -1,0 +1,20 @@
+{
+  "from": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+  "to": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "files": [
+    "docs/BQ035_P2_WM023_TARGET_RESOLUTION_2026-10-16.md",
+    "docs/BQ035_SERIAL_REVIEW_HANDOFF_2026-10-16.md",
+    "docs/evidence/bq035-p2-2026-10-16/README.md",
+    "docs/evidence/bq035-p2-2026-10-16/evidence-file-hashes.json",
+    "docs/evidence/bq035-p2-2026-10-16/review-source-delta.json",
+    "docs/evidence/bq035-p2-2026-10-16/source-closure-audit.log.gz",
+    "docs/evidence/bq035-p2-2026-10-16/source-closure.json",
+    "docs/evidence/bq035-p2-2026-10-16/source-copy-bq035-replay.log.gz",
+    "docs/evidence/bq035-p2-2026-10-16/source-copy-retained77.log.gz",
+    "docs/evidence/bq035-p2-2026-10-16/source-stage-final.log.gz",
+    "docs/evidence/bq035-p2-2026-10-16/staged-source-files.json",
+    "docs/evidence/bq035-p2-2026-10-16/verification.json",
+    "docs/evidence/bq035-p2-2026-10-16/verify-source-closure.py",
+    "docs/evidence/reviewed-v59-main-2026-10-16/evidence-file-hashes.json"
+  ]
+}

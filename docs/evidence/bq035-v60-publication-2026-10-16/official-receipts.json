@@ -1,0 +1,53 @@
+{
+  "opening": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "a2a002fb7cafb9030405853a1c98bd91800b627c"
+  },
+  "packaged": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "6d1a1fed34b5abad208488f09055554269e3df10",
+    "archive": "/workspace/bq035-publication-20261016/deployment.tar.gz"
+  },
+  "saved": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_a728ca07f2c88191a553f801afe28fd2",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 60,
+    "source": {
+      "commit_sha": "6d1a1fed34b5abad208488f09055554269e3df10"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000ba2c8230917cbed95ae366d5",
+      "content_hash": "sha256:42cbc8a77a6f7e64376a15d718190e35b1cd5720f4aaca56f6a97bff7d9e7e6b",
+      "size_bytes": 100679680,
+      "file_count": 166
+    },
+    "screenshot_url": null,
+    "deployment_id": "appgdep_6ad24d37555c819187d15d9b5cb1c21a"
+  },
+  "deployment": {
+    "id": "appgdep_6ad24d37555c819187d15d9b5cb1c21a",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_a728ca07f2c88191a553f801afe28fd2",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-16T16:13:55.867581+00:00"
+  },
+  "siteAfter": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "status": "active",
+    "latest_version_number": 60,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "audience": "public",
+    "accessRevision": 2
+  }
+}

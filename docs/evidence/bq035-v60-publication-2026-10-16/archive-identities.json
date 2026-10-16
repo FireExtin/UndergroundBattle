@@ -1,0 +1,21 @@
+{
+  "localGzip": {
+    "sha256": "4fb894bc9d753dcd2be5e98b12c52851e14ac6bdafeb89fd8eb8273365636f06",
+    "bytes": 70304417
+  },
+  "localDecompressedTar": {
+    "sha256": "a84e62308c385f0e209090dcad092a5044d0eb318bef195e580da437971d39b8",
+    "bytes": 100689920
+  },
+  "nativeSavedTar": {
+    "archive_format": "tar",
+    "content_hash": "sha256:42cbc8a77a6f7e64376a15d718190e35b1cd5720f4aaca56f6a97bff7d9e7e6b",
+    "size_bytes": 100679680,
+    "file_count": 166
+  },
+  "sameWholeArchiveBytesClaimed": false,
+  "runtimeEntriesIndividuallyVerified": 163,
+  "allLocalArchiveFileEntries": 166,
+  "nativeReportedFileCount": 166,
+  "note": "Native saved tar envelope differs from the supplied local tar. Local runtime entries were checked individually against the approved tested artifacts; saved source and deployment provenance were confirmed through native Sites. Native saved runtime byte-for-byte download verification was not performed."
+}
