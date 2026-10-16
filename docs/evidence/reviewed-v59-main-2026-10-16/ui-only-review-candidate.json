@@ -12,5 +12,7 @@
   "newWorktree": false,
   "newCommit": false,
   "fullStandalone143OverlayTestRerun": false,
-  "validationScope": "same CSS verified through current candidate live GameApp; historical v59 source/artifact audit remains identity evidence, not acceptance of the new patch"
+  "validationScope": "same CSS verified through current candidate live GameApp; historical v59 source/artifact audit remains identity evidence, not acceptance of the new patch",
+  "patchFile": "ui-viewport-only.patch.gz",
+  "patchGzipSha256": "6df0663df3912308a9b36a788389ee8b17a930434a8653311b5abec89e74edac"
 }
