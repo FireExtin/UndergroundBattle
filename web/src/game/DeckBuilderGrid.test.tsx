@@ -90,7 +90,7 @@ describe('card-face deck workspace', () => {
 
   it('keeps admission catalog-driven even when an unavailable card has a real original', () => {
     render(<DeckLibrary catalog={catalog} />);
-    fireEvent.change(screen.getByRole('combobox', { name: '实现状态' }), { target: { value: 'all' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '组牌准入' }), { target: { value: 'all' } });
     expect(within(options()).getByRole('img', { name: '墓穴食尸鬼原始牌面' })).toHaveAttribute('src', '/cards/JZ50.jpg');
     expect(screen.getByRole('button', { name: '添加 墓穴食尸鬼（JZ50）' })).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: '预览 墓穴食尸鬼（JZ50）' }));
@@ -191,10 +191,10 @@ describe('card-face deck workspace', () => {
     const preview = screen.getByRole('dialog');
     expect(within(preview).getByRole('list', { name: '此卡构筑提示' })).toHaveTextContent('当前合计 4 张');
     expect(within(preview).getByText('其他编号也有此牌：同名合计 4 张。')).toBeInTheDocument();
-    expect(within(preview).getByText('牌组共 54 张 · 暂不可开局')).toBeInTheDocument();
+    expect(within(preview).getByText('当前牌组共 54 张 · 暂不可开局')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '预览减少 巨石阵看护人（same-name）' }));
     expect(within(preview).queryByRole('list', { name: '此卡构筑提示' })).not.toBeInTheDocument();
-    expect(within(preview).getByText('牌组共 53 张 · 构筑校验通过')).toBeInTheDocument();
+    expect(within(preview).getByText('当前牌组共 53 张 · 构筑校验通过')).toBeInTheDocument();
   });
 
   it('browses the filtered card sequence without adding cards or leaving the active reader', () => {
@@ -216,7 +216,7 @@ describe('card-face deck workspace', () => {
     fireEvent.keyDown(close, { key: 'ArrowLeft' });
     expect(reader).toHaveAccessibleName('卡面预览 缺图事务（no-scan）');
     expect(screen.getByRole('status')).toHaveTextContent('已加入 0 张');
-    expect(screen.getByText('牌组共 0 张 · 暂不可开局')).toBeInTheDocument();
+    expect(screen.getByText('当前牌组共 0 张 · 暂不可开局')).toBeInTheDocument();
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(screen.getByRole('dialog')).toHaveAccessibleName('卡面组卡工作台');
     expect(opener).toHaveFocus();
@@ -293,7 +293,7 @@ describe('card-face deck workspace', () => {
     fireEvent.click(screen.getByRole('button', { name: '添加 蓝色测试牌（FIXTURE_BLUE）' }));
     fireEvent.change(screen.getByRole('combobox', { name: '卡牌排序' }), { target: { value: 'selected' } });
     expect(within(options()).getAllByRole('listitem')[0]).toHaveAttribute('data-catalog-card', 'FIXTURE_BLUE');
-    fireEvent.change(screen.getByRole('combobox', { name: '实现状态' }), { target: { value: 'unavailable' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '组牌准入' }), { target: { value: 'unavailable' } });
     fireEvent.change(screen.getByRole('combobox', { name: '印刷费用' }), { target: { value: '9' } });
     fireEvent.click(within(quick).getByRole('button', { name: '灰 · 国家机构' }));
     expect(within(options()).getAllByRole('listitem')).toHaveLength(1);

@@ -1,0 +1,40 @@
+{
+  "phase": "WIP per-card admission implemented; final build/browser/full Web pending",
+  "files": [
+    {
+      "path": "6e07-browser-result.json",
+      "bytes": 11812,
+      "sha256": "94b38a559b717c5f7164f11509bf6a3c75dda61b4ab72158b98495642594937d"
+    },
+    {
+      "path": "6e07-production-browser.log.gz",
+      "bytes": 199,
+      "sha256": "dfd6958217a0c6f5d601e65a05a1ed4ba5b6d520d55f5a1de71f9445e9f557b2"
+    },
+    {
+      "path": "6e07-production-build.log.gz",
+      "bytes": 755,
+      "sha256": "3a40296c279234f77defb4ffa5514897e97c011002ec30c638e4f5b83b2d0a9c"
+    },
+    {
+      "path": "6e07-results.json",
+      "bytes": 944,
+      "sha256": "69bdc8d8ba4e13f842b610592b19480de21f3521afcdaf0d089b388838ba0d52"
+    },
+    {
+      "path": "preview-diagnostic.json",
+      "bytes": 457,
+      "sha256": "b5e0acc8d3c760976a57dd08c0c60394dc46001c6f4aa76c6153ac5456b6173a"
+    },
+    {
+      "path": "targeted-caption-fix.log.gz",
+      "bytes": 355,
+      "sha256": "920dd1ac1060d4747e95c980175c09a6b2da230de08dc96e7a4315671147485d"
+    },
+    {
+      "path": "targeted-tests-02.log.gz",
+      "bytes": 3757,
+      "sha256": "9800a05666d6ff4d76feadff70c5c10bb6fb312d7b771b39595d0382a350cd43"
+    }
+  ]
+}

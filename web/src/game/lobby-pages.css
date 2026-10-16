@@ -47,6 +47,10 @@
 .hg-library-page .hg-library-card-options li > small { order: 3; }
 .hg-library-page .hg-library-card-options li > details { order: 4; }
 .hg-library-face-waiting { height: 100%; display: grid; place-items: center; background: radial-gradient(ellipse, #463a2630, #11151b); color: #b99b6145; font-size: 42px; border: 1px solid #b99b6125; border-radius: inherit; }
+.hg-admission-buildable { color: #e8d49e; }
+.hg-library-card-badge.hg-admission-view-only { color: #c4c5cc; border-color: #898d9a; }
+.hg-library-card-badge.hg-admission-unavailable { color: #edbba2; border-color: #a57762; }
+.hg-card-admission { padding: .6rem .7rem; border: 1px solid #b99b6145; background: #11151b; font-size: .85rem; }
 @media (max-width: 1000px) {
   .hg-lobby.hg-lobby-collection { padding-inline: 16px; }
   .hg-library-page .hg-library-editor { grid-template-columns: minmax(0, 1fr) 300px; gap: 12px; }

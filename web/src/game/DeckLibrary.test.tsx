@@ -77,7 +77,7 @@ describe('local named deck editor', () => {
   });
   it('never enables adding regions or unsupported cards and searches only the supplied catalog', () => {
     render(<DeckLibrary catalog={catalog} onSelectDraft={vi.fn()} />);
-    fireEvent.change(screen.getByRole('combobox', { name: '实现状态' }), { target: { value: 'all' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '组牌准入' }), { target: { value: 'all' } });
     expect(screen.getByRole('button', { name: '添加 世界地区（world）' })).toBeDisabled();
     expect(screen.getByRole('button', { name: '添加 未实现卡（pending）' })).toBeDisabled();
     fireEvent.change(screen.getByRole('searchbox', { name: '检索卡牌' }), { target: { value: 'green' } });

@@ -1,0 +1,38 @@
+{
+  "source": "6e07e75521c0316d6916f183d11bf9d5de970f97",
+  "serialSinglePass": true,
+  "checks": [
+    {
+      "name": "production-build",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "sites",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 18.936,
+      "bytes": 1705,
+      "sha256": "b4ef7fa6fe70937c5eeec87e3e8fdfe7114e44dedbe86a152a8afe733c3ce769"
+    },
+    {
+      "name": "production-browser",
+      "command": [
+        "python3",
+        "tools/cloud-playtest/deck_collection_page.py",
+        "--source",
+        "6e07e75521c0316d6916f183d11bf9d5de970f97",
+        "--output",
+        "/workspace/deck-collection-ui-20261016/verified-6e07e75/browser"
+      ],
+      "exitCode": 1,
+      "seconds": 2.285,
+      "bytes": 233,
+      "sha256": "954e0d78020368fe2ba7c4ab6bc517b9bb82bb28e4e3bda6d48aa2e9b43adaca"
+    }
+  ]
+}

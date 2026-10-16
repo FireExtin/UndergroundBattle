@@ -4,7 +4,7 @@ import { IconStrip } from './CardTile';
 import { cardScanUrl } from './cardScans';
 import { DeckCardFace } from './DeckCardFace';
 import type { DeckCardDefinition, DeckIssue, DeckValidation } from './deckLibrary';
-import { isEditableDeckCard } from './deckLibrary';
+import { deckCardAdmission, isEditableDeckCard } from './deckLibrary';
 import { useDialogFocus } from './useDialogFocus';
 
 export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCount, issues, validation, navigation, onChangeCount, onClose }: {
@@ -16,6 +16,7 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
   const dialog = useRef<HTMLElement>(null);
   const focusedControl = useRef<HTMLElement | null>(null);
   const editable = isEditableDeckCard(card);
+  const admission = deckCardAdmission(card);
   useDialogFocus(dialog, true, onClose);
   useLayoutEffect(() => { if (dialog.current) dialog.current.scrollTop = 0; }, [card.id]);
   useLayoutEffect(() => {
@@ -56,6 +57,7 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
         <div><DeckCardFace key={card.id} card={card} large />{source && <a className="hg-library-original-link" href={source} target="_blank" rel="noreferrer">打开原图 ↗</a>}</div>
         <div className="hg-library-preview-details">
           <h2>{card.name}</h2>{card.subtitle && <p>{card.subtitle}</p>}
+          <p className={`hg-card-admission hg-admission-${admission.status}`} data-card-admission={admission.status}>卡牌准入：{admission.label} · {admission.reason}</p>
           <p>{card.id} · {({ character: '角色', spell: '事务', event: '事务（旧目录）', attachment: '附属', region: '地区', society: '秘社' }[card.kind] || card.kind)}{card.subtypes?.length ? ` · ${card.subtypes.join(' / ')}` : card.type ? ` · ${card.type}` : ''}</p>
           {card.kind !== 'society' && card.kind !== 'region' && <p>印刷费用 {card.cost} · {card.color || '颜色未标'}{card.magic ? ` · ${card.magic}` : ''}</p>}
           {(card.icons?.permanent || card.permanentIcons) && <p>永久图标 <IconStrip icons={card.icons?.permanent || card.permanentIcons} /></p>}
@@ -68,10 +70,9 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
           <div className="hg-library-preview-validation" aria-live="polite" aria-atomic="true">
             {sameNameCount !== count && <p>其他编号也有此牌：同名合计 {sameNameCount} 张。</p>}
             {issues.length > 0 && <ul className="hg-library-issues" aria-label="此卡构筑提示">{issues.map((issue, index) => <li key={`${issue.code}-${index}`}>{issue.message}</li>)}</ul>}
-            <p className={validation.valid ? 'hg-library-notice' : 'hg-muted'}>牌组共 {validation.total} 张 · {validation.valid ? '构筑校验通过' : '暂不可开局'}</p>
+            <p className={validation.valid ? 'hg-library-notice' : 'hg-muted'}>当前牌组共 {validation.total} 张 · {validation.valid ? '构筑校验通过' : '暂不可开局'}</p>
             {validation.issues.length > 0 && <details><summary>查看牌组的 {validation.issues.length} 项构筑提示</summary><ul className="hg-library-issues">{validation.issues.map((issue, index) => <li key={`${issue.code}-${index}`}>{issue.message}</li>)}</ul></details>}
           </div>
-          {!editable && <p className="hg-library-warning">此卡不可加入玩家牌组。请在目录指定的入口选择秘社或查看地区。</p>}
           <small>构筑校验以当前目录为准；对局中的费用与效果由服务端裁定。</small>
         </div>
       </div>

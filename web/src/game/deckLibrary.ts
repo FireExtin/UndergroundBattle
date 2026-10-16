@@ -33,8 +33,18 @@ export const DECK_DELETED_STORAGE_PREFIX = 'hegemony.deckDeleted.v2.';
 // The live Rust catalog calls transaction cards "spell"; "event" is retained
 // only for reading older public catalogs, not as a replacement runtime kind.
 const playerKinds = new Set(['character', 'spell', 'event', 'attachment']);
+export function deckCardAdmission(card: DeckCardDefinition): { status: 'buildable' | 'view-only' | 'unavailable'; label: string; reason: string } {
+  if (card.supported !== true) return { status: 'unavailable', label: '暂不可用', reason: '此卡尚未确认完整实现，暂不能加入牌组。' };
+  if (card.kind === 'region') return { status: 'view-only', label: '仅查看', reason: '地区由世界牌库提供，不加入玩家牌组。' };
+  if (card.kind === 'society') return { status: 'view-only', label: '仅查看', reason: '秘社在牌组设置中选择，不加入玩家卡张数。' };
+  if (!playerKinds.has(card.kind)) return { status: 'view-only', label: '仅查看', reason: '此卡类型不在玩家牌组准入范围内。' };
+  if (card.deckCopyLimit !== null && (!Number.isSafeInteger(card.deckCopyLimit) || Number(card.deckCopyLimit) < 1)) {
+    return { status: 'unavailable', label: '暂不可用', reason: '同名副本准入尚未确认，暂不能加入牌组。' };
+  }
+  return { status: 'buildable', label: '可组牌', reason: '已确认实现并准入玩家牌组；当前构筑限制仍需满足。' };
+}
 export function isEditableDeckCard(card: DeckCardDefinition): boolean {
-  return card.supported === true && playerKinds.has(card.kind);
+  return deckCardAdmission(card).status === 'buildable';
 }
 
 export function selectableSocieties(catalog: DeckCatalog): SocietyDefinition[] {

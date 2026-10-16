@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { factions, neutral } from './factions';
-import { createDeckDraft, isDeckDraftDeleted, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, removeDeckDraft, revalidateDraftVersions, saveDeckDraft, selectableSocieties, setDraftCardCount, societyColorCount, validateDeckDraft } from './deckLibrary';
+import { createDeckDraft, deckCardAdmission, isDeckDraftDeleted, isEditableDeckCard, localDeckStorage, publicDeckDraft, readDeckLibrary, removeDeckDraft, revalidateDraftVersions, saveDeckDraft, selectableSocieties, setDraftCardCount, societyColorCount, validateDeckDraft } from './deckLibrary';
 import type { DeckCardDefinition, DeckCatalog, DeckDraft, DeckStorage, DeckIssue } from './deckLibrary';
 import { DeckCardFace } from './DeckCardFace';
 import { DeckCardPreview } from './DeckCardPreview';
@@ -281,7 +281,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           <label className="hg-field">卡牌类型<select value={kind} onChange={event => setKind(event.target.value)} disabled={disabled}><option value="all">全部类型</option>{kind !== 'all' && !catalog.cards.some(card => card.kind === kind) && <option value={kind}>{kinds[kind] || kind}（当前目录无此类型）</option>}{Object.entries(kinds).filter(([value]) => catalog.cards.some(card => card.kind === value)).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
           <label className="hg-field">印刷费用<select value={cost} onChange={event => setCost(event.target.value)} disabled={disabled}><option value="all">全部费用</option>{cost !== 'all' && !costs.some(value => String(value) === cost) && <option value={cost}>{cost} 费（当前目录无此费用）</option>}{costs.map(value => <option key={value} value={value}>{value} 费</option>)}</select></label>
           <label className="hg-field">特性<select value={feature} onChange={event => setFeature(event.target.value)} disabled={disabled}><option value="all">全部特性</option>{feature !== 'all' && !features.includes(feature) && <option value={feature}>{featureLabel(feature)}（当前目录无此特性）</option>}{features.map(value => <option key={value} value={value}>{featureLabel(value)}</option>)}</select></label>
-          <label className="hg-field">实现状态<select value={implementation} onChange={event => setImplementation(event.target.value)} disabled={disabled}><option value="implemented">已实现玩家卡</option><option value="unavailable">不可加入牌组</option><option value="all">当前目录全部</option></select></label>
+          <label className="hg-field">组牌准入<select value={implementation} onChange={event => setImplementation(event.target.value)} disabled={disabled}><option value="implemented">可组牌</option><option value="unavailable">仅查看 / 暂不可用</option><option value="all">当前目录全部</option></select></label>
         </div>
         {expanded && !showFilters && advancedFilterLabels.length > 0 && <p className="hg-library-active-filters" aria-label="生效的更多筛选">筛选：{advancedFilterLabels.join(' · ')}</p>}
         <div className="hg-library-filter-footer"><p className="hg-library-match-count" role="status">找到 {choices.length} 种卡牌 · 点击卡面放大</p><label className="hg-library-selected-filter"><input type="checkbox" checked={selectedOnly} onChange={event => setSelectedOnly(event.target.checked)} disabled={disabled} />只看已加入</label><button type="button" className="hg-button hg-button-quiet" onClick={resetFilters} disabled={disabled}>重置筛选</button></div>
@@ -294,14 +294,15 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           const count = counts.get(card.id) || 0;
           const label = `${card.name}（${card.id}）`;
           const issue = issuesForCard(card, validation.issues, definitions)[0];
-          return <li key={card.id} data-catalog-card={card.id} data-selected-count={count} data-card-issue={issue?.code} className={count ? 'hg-library-card-selected' : undefined}>
-            <button type="button" className="hg-library-card-preview" aria-label={`预览 ${label}`} onKeyDown={event => moveCardGridFocus(event, catalogGrid.current)} onClick={event => openPreview(card.id, event.currentTarget, choices.map(item => item.id))}><DeckCardFace key={card.id} card={card} /><span className="hg-library-card-badge">{count ? `✓ 已加入 ×${count}` : '点击放大'}</span></button>
+          const admission = deckCardAdmission(card);
+          return <li key={card.id} data-catalog-card={card.id} data-card-admission={admission.status} data-selected-count={count} data-card-issue={issue?.code} className={count ? 'hg-library-card-selected' : undefined}>
+            <button type="button" className="hg-library-card-preview" aria-label={`预览 ${label}`} onKeyDown={event => moveCardGridFocus(event, catalogGrid.current)} onClick={event => openPreview(card.id, event.currentTarget, choices.map(item => item.id))}><DeckCardFace key={card.id} card={card} /><span className={`hg-library-card-badge hg-admission-${admission.status}`}>{admission.label}{count ? ` · 已加入 ×${count}` : ''}</span></button>
             <div className="hg-library-card-heading"><strong>{card.name}</strong></div>
             <div className="hg-library-grid-counter"><button type="button" className="hg-button hg-button-quiet" aria-label={`目录减少 ${label}`} disabled={disabled || count === 0} onClick={() => changeCount(card.id, -1)}>−</button><span aria-label={`${label}已加入张数`}>{count} 张</span><button type="button" className="hg-button hg-button-quiet" aria-label={`添加 ${label}`} disabled={disabled || !isEditableDeckCard(card)} onClick={() => changeCount(card.id, 1)}>{density === 'compact' ? '+' : '+ 添加'}</button></div>
             <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind}{card.kind !== 'society' && ` · 费用 ${card.cost}`}</small>
             <small>{copyLabel(card)}</small>
-            {issue && <p className="hg-library-warning">{issue.message}</p>}
-            {!isEditableDeckCard(card) && <p className="hg-library-warning">{card.kind === 'region' ? '地区由世界牌库提供，不可加入玩家牌组。' : card.kind === 'society' ? '秘社须在独立选择中选取，不加入玩家卡张数。' : '该卡尚未确认已实现，不可添加。'}</p>}
+            {issue && <p className="hg-library-warning">当前牌组：{issue.message}</p>}
+            {admission.status !== 'buildable' && <p className="hg-library-warning">{admission.reason}</p>}
             <details><summary>查看规则文字</summary><p className="hg-library-card-text">{card.text}</p>{card.loyaltyText && <p>{card.loyaltyText}</p>}</details>
           </li>;
         })}</ul>

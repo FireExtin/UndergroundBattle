@@ -1,0 +1,19 @@
+{
+  "scope": "local only",
+  "rootHttpStatus": 500,
+  "catalogHttpStatus": 200,
+  "catalogCards": 143,
+  "catalogAllSupported": true,
+  "playerCardsMissingCopyLimit": 0,
+  "fourColorCatalogCounts": {
+    "red": 13,
+    "black": 25,
+    "blue": 16,
+    "gray": 13
+  },
+  "oldOwnedIdlePreviewPid": 927,
+  "stoppedWith": "SIGINT",
+  "noBrowserOrTestWasRunningDuringStop": true,
+  "noProductionAccessOrBypass": true,
+  "finalPreviewMustStartAfterBuild": true
+}

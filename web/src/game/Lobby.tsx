@@ -117,7 +117,7 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
       </> : <div className="hg-loading"><span>正在连接牌组档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
       <FactionCoverage catalog={catalog} />
     </section>}
-    {page === 'collection' && <div className="hg-collection-heading"><div><span className="hg-eyebrow">CARD ARCHIVE · 我的构筑</span><h1 ref={heading} tabIndex={-1}>卡牌收藏与组牌</h1></div><p>先检索，再落子。所选卡牌始终留在当前牌组中。</p></div>}
+    {page === 'collection' && <div className="hg-collection-heading"><div><span className="hg-eyebrow">CARD ARCHIVE · 我的构筑</span><h1 ref={heading} tabIndex={-1}>卡牌收藏与组牌</h1></div><p>按逐卡准入标记组牌；派系标签不代表整派系已开放。</p></div>}
     {catalog && (openedCollection || page === 'collection') && <DeckLibrary catalog={catalog} disabled={busy} active={page === 'collection'} pageMode selectedDraftId={selectedDraft?.id} onSelectDraft={draft => { setSelectedDraft(publicDeckDraft(draft)); onSelectDraft?.(publicDeckDraft(draft)); navigateLobby('play'); }} />}
     {page === 'collection' && !catalog && <div className="hg-loading"><span>正在连接卡牌档案…</span><button type="button" className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
   </main>;
