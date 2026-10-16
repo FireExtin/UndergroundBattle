@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+  "comparisonBase": "9967fabf9155486bef85190d20055fcb69be12d5",
+  "changedWebPaths": {
+    "web/src/game/DeckBuilderGrid.test.tsx": {
+      "bytes": 33048,
+      "sha256": "f6ef911df6b82237fc7133852c95562390021c2a1e8bccb2458eb7547ea11e0a"
+    },
+    "web/src/game/DeckLibraryPanel.tsx": {
+      "bytes": 33678,
+      "sha256": "346f649cec97d29db365f69db1f9a232ea57998049df43ecb5fbc38067af35c7"
+    },
+    "web/src/game/GameApp.tsx": {
+      "bytes": 7647,
+      "sha256": "db58eddf0c8789a9f51c1e720416575596961cb654b3853aef2ad1d102751fda"
+    },
+    "web/src/game/Lobby.tsx": {
+      "bytes": 15141,
+      "sha256": "074f10f9dc8833355958e2c4394eb6446d7986631707d6b308febd54d7fb6297"
+    },
+    "web/src/game/PlayerSessions.test.tsx": {
+      "bytes": 22026,
+      "sha256": "9d63226f62a3d75843e35607dde0dcdf72802dcd13f805d59f388c68faa10b72"
+    },
+    "web/src/game/Table.tsx": {
+      "bytes": 57323,
+      "sha256": "d4996157fef54e0ce96cc6e11d1d0e1cbc26574c19c61541622497a52f2f3808"
+    },
+    "web/src/game/deckLibrary.ts": {
+      "bytes": 17606,
+      "sha256": "8e9fafcfa914e7aa17c2fa317633996e6a4222b614284f42b341a1b91bc92c60"
+    }
+  },
+  "note": "Follow-up to independent review; no Rust/WASM/Worker source changes. ChangedWebPaths includes tests."
+}

@@ -1,0 +1,63 @@
+{
+  "sourceCommit": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+  "pendingRecovery": {
+    "logicAlreadyPresentAt": "bbe7612772e6a3578db1ab3c2d9377b13ae80fca",
+    "explicitExitCopyAndExtraRegressionAt": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+    "code": [
+      "web/src/game/GameApp.tsx:41",
+      "web/src/game/useGame.ts:294",
+      "web/src/game/useGame.ts:334",
+      "web/src/game/PlayerSessions.test.tsx:119"
+    ],
+    "guarantees": [
+      "No automatic room-A polling or extra command before explicit exit",
+      "Pending and original session preserved",
+      "Explicit exit clears invite and resumes original actor",
+      "No duplicate entry request"
+    ]
+  },
+  "selectionBadge": {
+    "fixedAt": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+    "code": [
+      "web/src/game/deckLibrary.ts",
+      "web/src/game/DeckLibraryPanel.tsx"
+    ],
+    "comparedFields": [
+      "id",
+      "name",
+      "description",
+      "societyId",
+      "all cardId/count pairs",
+      "rulesVersion",
+      "cardPoolVersion",
+      "engineVersion"
+    ],
+    "ignoredMetadata": [
+      "updatedAt",
+      "card order"
+    ]
+  },
+  "regressionAssertions": [
+    {
+      "file": "DeckBuilderGrid.test.tsx",
+      "name": "card-face deck workspace marks a saved 52-card revision as different from the chosen 51-card snapshot until explicitly reselected",
+      "status": "passed"
+    },
+    {
+      "file": "DeckBuilderGrid.test.tsx",
+      "name": "card-face deck workspace does not label a same-ID, same-total revision with different per-card counts as the selected snapshot",
+      "status": "passed"
+    },
+    {
+      "file": "DeckBuilderGrid.test.tsx",
+      "name": "card-face deck workspace retains the selected label when an unchanged deck is only reordered or saved at a later time",
+      "status": "passed"
+    },
+    {
+      "file": "PlayerSessions.test.tsx",
+      "name": "explicit independent player sessions through normal UI keeps an old unconfirmed action when a different invitation opens and never joins automatically",
+      "status": "passed"
+    }
+  ],
+  "completeQuantityMappings": "isolated-browser.json#deckMappings"
+}

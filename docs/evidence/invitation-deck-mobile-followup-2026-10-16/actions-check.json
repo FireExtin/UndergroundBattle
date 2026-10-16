@@ -1,0 +1,27 @@
+{
+  "checkedAtUtc": "2026-10-16T07:07:39.515725+00:00",
+  "remoteBranch": "codex/deck-collection-page-review-20261016",
+  "remoteShaBeforePush": "9967fabf9155486bef85190d20055fcb69be12d5",
+  "mainSha": "3d642f0c1e6e5ac021cd40560086df35638bfe4c",
+  "remoteBranchHasGithubDirectory": false,
+  "localHasGithubWorkflows": false,
+  "workflowCount": 1,
+  "workflowKinds": [
+    "dynamic/copilot-swe-agent/copilot"
+  ],
+  "latestRun": [
+    {
+      "createdAt": "2026-05-01T08:02:18Z",
+      "event": "dynamic"
+    }
+  ],
+  "openPrsForBranch": 0,
+  "intendedOperation": "normal fast-forward push to existing review branch, commits include [skip ci]",
+  "excludedOperations": [
+    "PR creation",
+    "review request",
+    "workflow dispatch",
+    "permissions changes",
+    "main push"
+  ]
+}

@@ -4,7 +4,7 @@
 
 输出：`web/src/game/` 内邀请进入保护、昵称本地偏好、显式牌组应用和响应式卡图；`tools/cloud-playtest/invitation_ready.py` 仅允许 localhost 的真实 Worker/D1 双浏览器验收脚本。
 
-代码固定于 `3305bd928b6642c39c58c1a0ad92394bfcf234c3`，Web tree 为 `c194becc7fa31f73f3d09826cb28dcaf1365d0b0`。准确验证和跨环境复审材料见 [证据目录](evidence/invitation-deck-mobile-2026-10-16/README.md)。本批没有 Rust、WASM 或 Worker 源码改动。
+首批代码固定于 `3305bd928b6642c39c58c1a0ad92394bfcf234c3`，Web tree 为 `c194becc7fa31f73f3d09826cb28dcaf1365d0b0`。首批验证见 [证据目录](evidence/invitation-deck-mobile-2026-10-16/README.md)；独审追加修复 `79d09ff879425d043344b53613efa19bf7d0a7f6` 及逐卡映射见 [补充材料](evidence/invitation-deck-mobile-followup-2026-10-16/README.md)。两批均没有 Rust、WASM 或 Worker 源码改动。
 
 - 任意含 invite 的 URL 先进入指定桌的只加入界面；原席、待确认行动和其它桌记录不删除。显式加入同桌恢复原身份，不重复占席。
 - 名称/保存列表在组牌主流程可见；入席可直接选择已保存牌组，所选内容保持快照。

@@ -1,0 +1,52 @@
+{
+  "sourceCommit": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+  "comparisonBase": "9967fabf9155486bef85190d20055fcb69be12d5",
+  "webTree": "1bd246d7f5602dd128015ecb2e26bc059c3cdb95",
+  "recordedAtUtc": "2026-10-16T07:08:26.386337+00:00",
+  "fullFrontend": {
+    "files": 124,
+    "passed": 1172,
+    "failed": 0,
+    "pending": 0,
+    "startedAtEpochMs": 1792134118795
+  },
+  "focusedFrontend": {
+    "files": 5,
+    "passed": 80,
+    "failed": 0
+  },
+  "countingNote": "Do not add focused, earlier-batch and full-suite counts. This final full run includes all three new snapshot-label regressions.",
+  "productionBuild": {
+    "exitCode": 0,
+    "typecheck": true,
+    "vite": true,
+    "wranglerDryRun": true,
+    "deployment": false
+  },
+  "isolatedBrowser": {
+    "passed": 36,
+    "failed": 0,
+    "completePerCardMappingStages": 11,
+    "distinctCardsAtEachStage": 12,
+    "comparedFields": [
+      "every cardId and its count",
+      "societyId"
+    ],
+    "pageErrors": 0,
+    "finalVersionBothPlayers": 9,
+    "realUserTableAccessed": false,
+    "onlinePlaytest": false
+  },
+  "commands": {
+    "fullFrontend": "node tools/build-storage.mjs -- npm --prefix web test -- --maxWorkers=1 --reporter=default --reporter=json --outputFile=/workspace/ready-sync-20261016/followup-full-vitest.json",
+    "productionBuild": "node tools/build-storage.mjs -- npm --prefix sites run build",
+    "browser": "python3 tools/cloud-playtest/invitation_ready.py --mode fixed --source 79d09ff879425d043344b53613efa19bf7d0a7f6 --output /workspace/ready-sync-20261016/followup-map-browser"
+  },
+  "nativeFullRerun": false,
+  "unchangedEngineNote": "No Rust, Worker or WASM source changes. Worker and all three WASM files match the preceding batch hashes.",
+  "pending": [
+    "Parent serial independent review closure",
+    "Official Sites publication after closure",
+    "Ordinary live-browser acceptance after exact-identity deployment"
+  ]
+}
