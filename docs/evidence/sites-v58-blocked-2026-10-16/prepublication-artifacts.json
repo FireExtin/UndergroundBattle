@@ -1,0 +1,23 @@
+{
+  "reviewedSource": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "clientFilesMatched": 158,
+  "runtime": [
+    {
+      "path": "dist/server/index.js",
+      "bytes": 47324,
+      "sha256": "e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6"
+    },
+    {
+      "path": "generated/hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "dist/server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "hostingManifestIdentical": true,
+  "workerWasmMigrationsUnchanged": true
+}

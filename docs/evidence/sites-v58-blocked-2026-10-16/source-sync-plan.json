@@ -1,0 +1,69 @@
+{
+  "canonicalCommit": "9b876258012b0995357ab73aede394a2f7bfa3c1",
+  "reviewedSourceCommit": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "providerBefore": "27f0956c075491d0d69cecf25d8e993593949672",
+  "priorBoundFilesVerified": 828,
+  "providerCleanBefore": true,
+  "changes": [
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/AutoPass.tsx",
+      "providerPath": "web/src/game/AutoPass.tsx",
+      "bytes": 6225,
+      "sha256": "798eff13494118ec2131101e4d18940cc8f346635a44d4b4332cef5720a58122"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/ContinuousPass.test.tsx",
+      "providerPath": "web/src/game/ContinuousPass.test.tsx",
+      "bytes": 10903,
+      "sha256": "2301b4601256a161ee68c501d70c7fe0a15a0921c4416dca818f0589dfe63bac"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/ContinuousPassRecovery.test.tsx",
+      "providerPath": "web/src/game/ContinuousPassRecovery.test.tsx",
+      "bytes": 6080,
+      "sha256": "324f1bbb9833d72f18b64736846d9538553447c87c5bbcce1e7eaabcc25b6073"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/GameApp.tsx",
+      "providerPath": "web/src/game/GameApp.tsx",
+      "bytes": 7699,
+      "sha256": "635202d96665613f209829e1f311b6cee08797204b5d92d64a749a482aa07687"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/Table.tsx",
+      "providerPath": "web/src/game/Table.tsx",
+      "bytes": 58457,
+      "sha256": "05180a67a2bc175fdb4c531b399e7376465a9b3df99954b712e29be2c3f7ea06"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/continuous-pass.css",
+      "providerPath": "web/src/game/continuous-pass.css",
+      "bytes": 2675,
+      "sha256": "b64d3365b437564eb692615ef4ef8d45c729ca8a7efd96651bb8d4e5a2c09ed7"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/continuousPass.ts",
+      "providerPath": "web/src/game/continuousPass.ts",
+      "bytes": 2839,
+      "sha256": "46bff095cb6b591faa242618ce13b2aa21a1b4aa5dfabc3f304d331f1aba46db"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/useGame.ts",
+      "providerPath": "web/src/game/useGame.ts",
+      "bytes": 23445,
+      "sha256": "a8139a45f2ef5a2a8efd5d3df4f0266fba2f25a4cec357e94c8a0d90d5f79c07"
+    }
+  ],
+  "metadataChanges": [
+    "source-provenance.json"
+  ],
+  "hostingWorkerWasmMigrationsUnchanged": true
+}

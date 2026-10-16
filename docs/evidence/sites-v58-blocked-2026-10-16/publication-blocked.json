@@ -1,0 +1,34 @@
+{
+  "status": "deployment-rejected-by-automatic-approval",
+  "reviewedSource": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "reviewEvidence": "9b876258012b0995357ab73aede394a2f7bfa3c1",
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_de61c2cbd32c819187d3476b74d9e8f9",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 58,
+    "source": {
+      "commit_sha": "eec9ffb81b66b149bdcc4f045c1be834dae21748"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000e29c81fdb7d1034cd1db1b6d",
+      "content_hash": "sha256:da6748f109cde6e55627ec0b28fde4ee789da5882eaf5225fe823061f282be9b",
+      "size_bytes": 96409600,
+      "file_count": 166
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deploymentAttempt": {
+    "content": [
+      {
+        "type": "text",
+        "text": "This action was rejected due to unacceptable risk.\nReason: This deploys the new version to the public production site, but the available user authorization only permits development/review and requires separate publication approval; no explicit approval for this exact deployment is present.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+      }
+    ],
+    "isError": true
+  },
+  "retryAttempted": false,
+  "workaroundAttempted": false,
+  "sourceCredentialCleared": true
+}
