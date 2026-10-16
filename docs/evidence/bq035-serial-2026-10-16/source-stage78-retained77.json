@@ -1,0 +1,7 @@
+{
+  "sourceCopy": "11927a31de4639b61b2977beca109a5ba4226e64",
+  "retained77LoadedFromVerifiedExternalInputs": true,
+  "catalogCards": 143,
+  "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+}

@@ -250,5 +250,14 @@
       "rawSha256": "db44d05da6e832026a4f4c748dabac322b93d8ad766be68a6b8c6d5836ed2ac1",
       "gzipSha256": "fb08d9bd73ffbb1ae125643d55cd2c5d378e2438d57928ddb73ab36ce3054877"
     }
-  ]
+  ],
+  "candidateSourceCommit": "11927a31de4639b61b2977beca109a5ba4226e64",
+  "boundedCopy": {
+    "mappedFiles": 1145,
+    "compilerInputs": 121,
+    "exactMappedBytes": true,
+    "nativeWasmCorpusReplayed": true,
+    "retained77Verified": true,
+    "published": false
+  }
 }
