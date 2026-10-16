@@ -44,7 +44,7 @@ const report = { passed: false, scope: 'Explicit prepared criminal/funds, then r
   engine: fixture.catalog.engineVersion, wasmSha256: fixture.wasmSha256, workerSha256: sha256(await readFile(join(worker, 'worker.js'))),
   wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
   productionClientIndexSha256: sha256(await readFile(join(clientDirectory, 'index.html'))), clientDirectory,
-  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/wm062Native79.fixture.json.gz'))),
+  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/wm062Native80.fixture.json.gz'))),
   commands: [], clientRequests: [0, 0, 0, 0], clientPosts: [0, 0, 0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], targetHitChecks: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
 const start = async () => {
@@ -92,8 +92,12 @@ try {
     void responsePromise.catch(()=>{});
     if(kind==='pauseRoom'){
       const dialog=page.getByRole('dialog',{name:'待完成的选择'});
-      if(await dialog.count())await dialog.getByRole('button',{name:'暂停并保存此桌',exact:true}).click();
-      else await page.getByRole('button',{name:'暂停并保存',exact:true}).click();
+      // The app shell can appear before the asynchronously fetched choice.
+      // Wait for the expected real control instead of racing dialog.count().
+      if(JSON.parse(abi.view(step.state,step.seat)).pendingChoice){
+        await expect(dialog).toBeVisible();
+        await dialog.getByRole('button',{name:'暂停并保存此桌',exact:true}).click();
+      }else await page.getByRole('button',{name:'暂停并保存',exact:true}).click();
     }else if(kind==='resumeRoom')await page.getByRole('button',{name:'恢复对局',exact:true}).click();
     else if(kind==='passResponse')await page.getByRole('button',{name:'不连锁，让过',exact:true}).click();
     else if(kind==='game'&&gameAction.kind==='choose'){
@@ -123,6 +127,7 @@ try {
       assert(legal,'Native legal action');
       await page.locator(`[data-card-instance="${gameAction.cardId}"], [data-attachment-instance="${gameAction.cardId}"]`).first().click();
       if(gameAction.kind==='play')await expect(page.getByRole('complementary',{name:'选牌行动'})).toContainText('相邻地区');
+      if(gameAction.kind==='play'){await page.screenshot({path:join(output,'wm062-play-preview.png')});report.screenshots.push('wm062-play-preview.png');}
       const grouped=page.locator('button[data-object-action]');
       await expect(grouped).toHaveCount(1);await grouped.first().click();
       if(gameAction.region!==undefined)await page.locator(`button.hg-region-center[data-region-index="${gameAction.region}"]`).click();

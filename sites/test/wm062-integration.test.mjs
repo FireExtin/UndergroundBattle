@@ -87,8 +87,8 @@ async function runScenario(t, scenario, expectedCards = 146) {
     const conflict = await h.api('commands', step.seat, { ...step.command, expectedVersion: step.command.expectedVersion + 1 });
     assert.equal(conflict.status, 409); assert.deepEqual(await h.store().room(h.id), saved);
   }
-  t.diagnostic(JSON.stringify({ nativeScenario: scenario.name, expectedRoomCards: expectedCards, accepted, rejected, projections, reopened,
-    completeHttpCoreViewsAndNativeJournalsEqual: true, opaqueD1StatesEqual: true, originalReceiptsAfterReopen: true }));
+  t.diagnostic(JSON.stringify({ scenarioName: scenario.name, reference: scenario.reference || 'compiler-bound Native', expectedRoomCards: expectedCards, accepted, rejected, projections, reopened,
+    completeHttpCoreViewsAndReferenceJournalsEqual: true, opaqueD1StatesEqual: true, originalReceiptsAfterReopen: true }));
 }
 for (const scenario of fixture.scenarios) test(`WM062 ABI80 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
@@ -127,8 +127,21 @@ test('published v61 ABI79 retains exact JZ46 reducer, opaque state and old recei
  const scenario=load79().scenarios.find(s=>s.name==='play-fresh-normalization');
  assert(scenario);await runScenario(t,scenario,145);
 });
-test('published ABI77 retains its exact WM056 reducer, opaque state and old receipts through candidate80 Worker',async t=>{
- const raw=JSON.parse(readFileSync(root+'web/src/game/wm056Native77.fixture.json','utf8')).cases[0];
- const scenario={name:'retained77-wm056',initial:{state:raw.before,views:raw.beforeViews},steps:[{state:raw.before,seat:raw.seat,command:raw.command,expected:raw.expected,views:raw.afterViews}]};
- await runScenario(t,scenario,143);
+test('published ABI77 kernel-created room retains opaque state and original receipts through candidate80 Worker',async t=>{
+ const {kernel:old77}=await import(pathToFileURL(root+'rust-game-wasm/tests/legacy77-kernel.mjs').href);
+ const created=JSON.parse(old77.newGame('770000000000000000000001','LOCAL77','duel','P0','watchers','18446744073709551615'));
+ const joined=JSON.parse(old77.joinGame(created.state,'P1','hunters'));
+ let state=joined.state;
+ const initial={state,views:[0,1].map(seat=>JSON.parse(old77.view(state,seat)))};
+ const steps=[];
+ // The actual retained reducer generates every state; no room-ID or version
+ // rewrite of a recorded old opaque state is permitted.
+ for(const [seat,kind] of [[0,'ready'],[1,'ready'],[0,'start']]){
+  const command={commandId:'retained77-'+kind+'-'+seat,expectedVersion:JSON.parse(state).revision,action:{kind:'game',action:{kind}}};
+  const expected=JSON.parse(old77.applyRoom(state,seat,JSON.stringify(command),'0'));
+  assert.equal(expected.outcome,'accepted');
+  steps.push({state,seat,command,expected,views:[0,1].map(s=>JSON.parse(old77.view(expected.state,s)))});
+  state=expected.state;
+ }
+ await runScenario(t,{name:'retained77-actual-kernel-created-room',reference:'exact published77 WASM',initial,steps},143);
 });

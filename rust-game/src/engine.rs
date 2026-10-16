@@ -2821,7 +2821,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 145);
+        assert_eq!(c.cards.len(), 146);
         let active = c
             .cards
             .iter()

@@ -15,7 +15,7 @@ const rows=fixture.scenarios.flatMap(s=>s.steps.flatMap((step,index)=>{
   && before[step.seat].pendingChoice?.kind==='wm062-adjacent-move'
   ? [{...step,before,name:`${s.name}/${index}`}]:[];
 }));
-expect(rows.length).toBe(10);
+expect(rows.length).toBe(11);
 beforeEach(()=>sessionStorage.clear());afterEach(()=>sessionStorage.clear());
 it.each(rows)('$name restores the actual successor and submits only the optional second step',row=>{
  const view=row.before[row.seat],submit=vi.fn(),props={catalog,view,busy:false,connection:'online',onAction:submit};

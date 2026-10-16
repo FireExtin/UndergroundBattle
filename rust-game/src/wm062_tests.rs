@@ -895,6 +895,31 @@ fn wm062_duel_uses_existing_adjacency_and_preserves_exhaustion() {
     t.export();
 }
 
+#[test]
+fn wm062_last_other_criminal_defense_loss_settles_before_optional_move() {
+    let (mut g, held, target) = prepared(0, "JC087");
+    let mut robber = g.make_card("JZ48", 0);
+    robber.damage = 1;
+    let robber_id = robber.id.clone();
+    g.regions[2].cards.push(robber);
+    assert_eq!(g.defense(g.board(&robber_id).unwrap().1, 2), 2);
+    let mut t = Trace::new("last-criminal-defense-loss", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    let hidden = successor(&t);
+    assert!(
+        t.room.game.board(&robber_id).is_none(),
+        "潜伏已完成，失去防御加成的致命角色不能留到可选移动后才清理"
+    );
+    assert!(t.room.game.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JZ48"));
+    select(&mut t, 0, Some(1));
+    assert_eq!(t.room.game.board(&hidden.id).unwrap().0, 1);
+    t.export();
+}
+
 fn rejected_input(name: String, value: Value) {
     let state = serde_json::to_string(&value).unwrap();
     let game_state = serde_json::to_string(&value["game"]).unwrap();

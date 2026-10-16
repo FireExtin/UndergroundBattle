@@ -1,0 +1,13 @@
+{
+  "beforeWasmSha256": "ef6877650dfddeed7a88e4ebafa08d7eace96cc179fd200a3424156452049879",
+  "initialStateSha256": "47c4b74088f1a08f54c8827be55127ef23bcbc9b5c8d3b2305393ecaa53405a3",
+  "commandsToDivergence": 5,
+  "oldDamage": 1,
+  "oldDefense": 1,
+  "beforeOptionalChoiceStillOnBoard": true,
+  "fixedNativeRemovedBeforeChoice": true,
+  "hiddenInstanceUnchanged": true,
+  "headersRewritten": false,
+  "fixedWasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+  "fixedWasmOpaqueStateByteIdenticalToNative": true
+}

@@ -9,7 +9,7 @@ const moduleUrl = import.meta.url;
 const root = fileURLToPath(new URL('../', moduleUrl));
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
 export const identity = { rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.73-wm062-conceal-adjacent-move-candidate', engineVersion: 'rust-v0.2.80-wm062-conceal-adjacent-move-candidate' };
-export const positiveNames = ['move-seat0','move-seat1','move-seat2','move-seat3','decline-cleanup','controlled-foreign-successor','target-concealed-response','target-bounced-response','pause-successor-resume','fast-end-window','no-adjacent-destination','invalid-target-and-payload','duel-adjacent-move'].sort();
+export const positiveNames = ['move-seat0','move-seat1','move-seat2','move-seat3','decline-cleanup','controlled-foreign-successor','target-concealed-response','target-bounced-response','pause-successor-resume','fast-end-window','no-adjacent-destination','invalid-target-and-payload','duel-adjacent-move','last-criminal-defense-loss'].sort();
 export const negativeNames = [...Array.from({length:36},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:9},(_,i)=>`response-${String(i).padStart(2,'0')}`)].sort();
 export function assertSources(binding) {
   assert.equal(binding.algorithm, 'sha256');

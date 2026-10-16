@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "scenarios": 14,
+    "commands": 111,
+    "projections": 490,
+    "rejected": 18,
+    "invalid": 45
+  },
+  "negativeRestoreCalls": 540,
+  "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+  "wasmBytes": 3047680,
+  "completeOpaqueStateAndAllViews": true,
+  "fixtureSha256": "850a1622a1416bfa02e72d3c0f62951574c42b5ec1e971fa6958e4b53fc2aca7",
+  "nativeRound": "round4",
+  "previousWasm": "ef6877650dfddeed7a88e4ebafa08d7eace96cc179fd200a3424156452049879"
+}

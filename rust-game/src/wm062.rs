@@ -179,6 +179,10 @@ impl Game {
         let hidden = self
             .hide_in_place_successor(&before.id)
             .ok_or("WM062潜伏未完成")?;
+        // Hide has completed before the optional second step is persisted.
+        // Losing another criminal can make JZ48's existing damage lethal.
+        // Use the shared cleanup; emitted triggers still wait for this effect.
+        self.settle_deaths();
         self.note("跑路：目标已潜伏".into());
         let destinations = self.wm062_destinations(region);
         if destinations.is_empty() {
