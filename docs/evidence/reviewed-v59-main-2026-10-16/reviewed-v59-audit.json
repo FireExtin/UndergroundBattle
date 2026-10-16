@@ -1,0 +1,41 @@
+{
+  "approvedProviderSource": "a2a002fb7cafb9030405853a1c98bd91800b627c",
+  "approvedGameTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "expectedRemoteMain": "3d642f0c1e6e5ac021cd40560086df35638bfe4c",
+  "reviewedBase": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "featureSource": "8a27c1ca9cfc065cc03a543d73f14b140ac93515",
+  "deltaBase": "d3406a5d719d2ce748b7935350ec56c0dc65467a",
+  "all3440ReviewedFilesMatchGitObjects": true,
+  "all1122ProviderFilesMatchApprovedGameTree": true,
+  "frontend": {
+    "files": 128,
+    "passed": 1211,
+    "failed": 0
+  },
+  "worker": {
+    "passed": 189,
+    "failed": 0
+  },
+  "nativeJournalReplay": {
+    "passed": 1,
+    "fullNativeRun": false
+  },
+  "productionBuildPassed": true,
+  "browserLocalOnly": true,
+  "fullNativeRerunForPassPatch": false,
+  "fullMainDeltaFiles": 760,
+  "bq035Included": false,
+  "repositoryWorkflowTrees": {
+    "3d642f0c1e6e5ac021cd40560086df35638bfe4c": [],
+    "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08": [],
+    "ab1ea260a47cb028085dcfede5be9019b6098d87": []
+  },
+  "mutationPerformed": false,
+  "all162PublishedArtifactsMatchReview": true,
+  "artifactManifestSha256": "a7b3f7fec4b67ee5d961e90c22728da470233841317241f159ca4943f7946f09",
+  "publishedWasm77Sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "publishedWorkerSha256": "a94d911f5b2aaa5abbc7ee442d08fbb36a0e9258b4e21b2a8b4fd091af27cb92",
+  "promotionStatus": "skipped after new shared live-GameApp UI failure",
+  "mainMutationPerformed": false,
+  "fixIndependentlyReviewed": false
+}

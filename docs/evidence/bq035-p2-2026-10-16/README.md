@@ -5,3 +5,5 @@
 未修复代码24通过／2失败，两个失败均为WM023接受机动后仍在原地区。窄修复后的针对性组27通过，不能与整仓数字相加。`native-workspace-full.log.gz` 是为了移除resolution.rs无关格式差异而主动中断的历史运行，不是测试失败；最终完整运行使用 `native-workspace-final.log.gz`。
 
 所有测试输入均为显式合成布局。golden在仓库 `rust-game-wasm/tests/bq035Native78.fixture.json.gz`，内含全部原始JSON、121编译输入绑定和有限正负例清单。候选产物身份见 `candidate-artifact-binding.json`。无凭据、运行数据库、编译输出或缓存。未部署，仍待父会话串行独立复审。公开v59本小时的证书检查另在 `../v59-live-after-p2-worker-2026-10-16/`，与本地HTTP验证分开。
+
+后续真实GameApp发现确认按钮出屏与手机选项裁切，修正后20命令、双浏览器、两次重开及原回执再次通过，最终界面前端1229通过；新包装输出整组Worker及新内核旧机制对照仍待完成。首次浏览器额外旧模块门禁失败、随后实际确认出屏失败的日志与几何分别保留，原付费D1未复制到Git。main因共用UI已知失败及新修正未独审而暂缓，单独材料在 `../reviewed-v59-main-2026-10-16/`。

@@ -1,0 +1,41 @@
+{
+  "atUtc": "2026-10-16T15:09:55.587279+00:00",
+  "status": "WIP; clean Worker full rerun, fresh old-mechanism parity and independent review pending",
+  "native": {
+    "lib": 1130,
+    "integration": 67,
+    "failed": 0
+  },
+  "frontendFinal": {
+    "files": 130,
+    "passed": 1229,
+    "failed": 0
+  },
+  "workerFirstFull": {
+    "passed": 204,
+    "failed": 0,
+    "cleanOutputFullRerun": "not started"
+  },
+  "localRealHttpBrowsers": {
+    "commands": 20,
+    "clientPosts": [
+      12,
+      9
+    ],
+    "reopened": 2,
+    "nativeStatesAndCurrentWasmJournalsMatch": true,
+    "actualMovement": {
+      "instanceId": "i126",
+      "from": 0,
+      "to": 1,
+      "owner": "p1",
+      "controller": "p0",
+      "attachedCards": 2
+    },
+    "phoneDraftRefresh": true,
+    "desktopAndPhoneChoiceBounds": true
+  },
+  "mainPromotion": "skipped after newly discovered shared UI failure; new fix unreviewed",
+  "mainMutation": false,
+  "published": false
+}

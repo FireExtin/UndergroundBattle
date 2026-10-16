@@ -472,7 +472,7 @@
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspected-card .hg-card-text { font-size: 14px; line-height: 1.75; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-card-hover { top: auto; left: 24px; bottom: calc(var(--lt-dock-h) + 30px); width: 300px; max-height: calc(100dvh - var(--lt-dock-h) - 150px); overflow-y: auto; transform: none; padding: 15px; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-card-hover .hg-archive-art { height: 90px; }
-  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-table-choice-layer { inset: calc(var(--lt-status-h) + 12px) 9px 9px; padding: 18px; }
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-table-choice-layer { padding: 18px; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-choice { max-height: calc(100dvh - 190px); }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-revealed-hand { inset: calc(var(--lt-status-h) + 16px) 22px auto; }
 }

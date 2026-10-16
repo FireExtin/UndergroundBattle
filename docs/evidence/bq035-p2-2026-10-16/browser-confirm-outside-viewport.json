@@ -1,0 +1,196 @@
+{
+  "passed": false,
+  "scope": "Prepared existing WM023, followed by paid cards and real two-client HTTP mechanism chain; local deterministic server clock, not online gameplay",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+  "workerSha256": "037b33f3550c53cf4d60c318b3fadea18ec73968f8a38c20793e2a95aea763de",
+  "wasmModules": [
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "productionWorkerSha256": "8f1d60744c66cbbdcb09ad4cfaf0f68bd8f0c5010b4b32d6887240929d862e8f",
+  "productionClientIndexSha256": "1f6a16bffb1e262884ee2b7bc4e8c64cd67e67a625b80749726ac897cc30b042",
+  "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "play",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 5,
+      "stateSha256": "0b6a3268705638190418cb4eb35d0e595044dcf1f0b442671c0aa758d10834a5"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 6,
+      "stateSha256": "41da13acc72d613543d3c5650177d8120111c71d87abcd42b28dfebfc916908e"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 7,
+      "stateSha256": "388dc06953a50a2f5d39d9d6b06325fe420fd7bf7b8e98a52635da083853a967"
+    },
+    {
+      "index": 3,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "play",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 8,
+      "stateSha256": "619efd70ac26df7c374a2a94938520a61ae46cc2bd8b8410b1fda62a7ef17fec"
+    },
+    {
+      "index": 4,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 9,
+      "stateSha256": "e8c95f2425e69cb5c6d262bc9ad8736c9d9e89e02179ee7e82a79263e6a08a39"
+    },
+    {
+      "index": 5,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 10,
+      "stateSha256": "81e2e80aeee095f40aed634e91626d1eb78447a977411a25cec4fa8246f094eb"
+    },
+    {
+      "index": 6,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "deploy",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 11,
+      "stateSha256": "618b9f4d052404d0c75147c52efe8ddc1a428d3b33dc0fe6ae53798f61a42eee"
+    },
+    {
+      "index": 7,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 12,
+      "stateSha256": "466ceed37626858874a092546ec12607f4d4e0dc33bd7de63ae35f67cfd8a83f"
+    },
+    {
+      "index": 8,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 13,
+      "stateSha256": "e145b920f945b46da769479fc76989c703c43f58bb69ca951cd9a4bd53a6be49"
+    },
+    {
+      "index": 9,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "pass",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 14,
+      "stateSha256": "f8fb3db76ac5b798b72a8d2c30673b7c125918769e82dbde98147da113f3470b"
+    },
+    {
+      "index": 10,
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "pass",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 15,
+      "stateSha256": "57f96dfb98099254caa9e151b65947b6b493f57a7ec1bc8c7a478fe90d560dcd"
+    },
+    {
+      "index": 11,
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "pass",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 16,
+      "stateSha256": "6adca80334c16699f181f6935f63d4e30d5c38d5f3f9b9720cb5f230a46d5563"
+    },
+    {
+      "index": 12,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "pass",
+      "via": "browser-fetch",
+      "status": 200,
+      "version": 17,
+      "stateSha256": "f4fd4729d945e2d54b91b6ab42c81a10a0d7fe29f6173b91409c8e95fd12c94b"
+    },
+    {
+      "index": 13,
+      "seat": 0,
+      "kind": "pauseRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 18,
+      "stateSha256": "4dbf0cd62da4cb4b3842ae4bc70dbd439cbc6900b2aecebfb9fc39fe66583e59"
+    },
+    {
+      "index": 14,
+      "seat": 1,
+      "kind": "resumeRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 19,
+      "stateSha256": "e10a23d6ab7df40ad1c5c2122451cfe4a314b8eed31bb2df410faf11ae66eefb"
+    }
+  ],
+  "clientRequests": [
+    80,
+    71
+  ],
+  "clientPosts": [
+    9,
+    6
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "paused-1-seat0.png",
+    "paused-1-seat1.png",
+    "wm023-before-choice-seat0.png",
+    "wm023-before-choice-seat1.png",
+    "wm023-selected-after-refresh-seat0.png",
+    "wm023-selected-after-refresh-seat1.png"
+  ],
+  "reopened": 1,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 15,
+    "seat": 0,
+    "kind": "game"
+  },
+  "choiceDraftRestoredAfterHttpReload": true,
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: '待完成的选择' }).getByRole('button', { name: '确认选择', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"hg-button hg-button-primary\">确认选择</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    57 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /workspace/UndergroundBattle/tools/frontend/bq035-http-two-clients-qa.mjs:121:73",
+  "failureScreenshots": [
+    "failure-seat0.png",
+    "failure-seat1.png"
+  ]
+}

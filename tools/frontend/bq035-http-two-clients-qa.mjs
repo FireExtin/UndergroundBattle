@@ -44,7 +44,7 @@ const report = { passed: false, scope: 'Prepared existing WM023, followed by pai
   wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
   productionClientIndexSha256: sha256(await readFile(join(sites, 'dist/client/index.html'))),
   fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/bq035Native78.fixture.json.gz'))),
-  commands: [], clientRequests: [0, 0], clientPosts: [0, 0], pageErrors: [], screenshots: [], reopened: 0 };
+  commands: [], clientRequests: [0, 0], clientPosts: [0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
 const start = async () => {
   mf = new Miniflare(convertV4MiniflareOptions(options));
@@ -85,6 +85,19 @@ try {
   const capture = async label => {
     for (let seat = 0; seat < 2; seat++) { const file = `${label}-seat${seat}.png`; await pages[seat].screenshot({ path: join(output, file) }); report.screenshots.push(file); }
   };
+  const checkChoiceViewport = async label => {
+    const bounds = await pages[0].getByRole('dialog', { name: '待完成的选择' }).evaluate(panel => {
+      const rect = element => { const box = element.getBoundingClientRect(); return { top: box.top, bottom: box.bottom, left: box.left, right: box.right }; };
+      const confirm = [...panel.querySelectorAll('button')].find(button => button.textContent === '确认选择');
+      return { viewport: { width: innerWidth, height: innerHeight }, panel: rect(panel), footer: rect(panel.querySelector('.hg-choice-footer')), confirm: rect(confirm), options: [...panel.querySelectorAll('[data-choice-option]')].map(rect) };
+    });
+    for (const box of [bounds.panel, bounds.footer, bounds.confirm]) {
+      assert(box.top >= 0 && box.bottom <= bounds.viewport.height, `${label}: choice control outside viewport`);
+      assert(box.left >= 0 && box.right <= bounds.viewport.width, `${label}: choice overflows horizontally`);
+    }
+    for (const box of bounds.options) assert(box.left >= bounds.panel.left && box.right <= bounds.panel.right, `${label}: choice option clipped horizontally`);
+    report.choiceLayoutChecks.push({ label, ...bounds });
+  };
   let lastCommand, lastReceipt;
   for (const [index, step] of scenario.steps.entries()) {
     const before = (await store().room(id)).state; assert.equal(before, step.state);
@@ -92,12 +105,17 @@ try {
     // Reload restores the actual saved seat, obtains an authoritative view and
     // resets only the display clock in this deterministic-clock test harness.
     await page.reload(); await expect(page.locator(`[data-card-instance="${host}"]`)).toBeVisible();
+    report.activeStep = { index, seat: step.seat, kind };
+    await writeFile(join(output, 'progress.json'), JSON.stringify({ ...report, commands: report.commands.length }, null, 2) + '\n');
     let response, command, via = 'browser-fetch';
     if (kind === 'pauseRoom' || kind === 'resumeRoom' || kind === 'passResponse' || kind === 'game' && step.command.action.action.kind === 'choose') {
       via = 'production-ui';
       const pending = page.waitForResponse(response => new URL(response.url()).pathname === `/api/rooms/${id}/commands`
         && response.request().method() === 'POST'
         && response.request().postDataJSON().expectedVersion === step.command.expectedVersion);
+      // A locator failure can reject before this awaited response. Keep the
+      // promise handled so the original UI error and screenshots are retained.
+      void pending.catch(() => {});
       if (kind === 'pauseRoom') {
         const dialog = page.getByRole('dialog', { name: '待完成的选择' });
         if (await dialog.count()) await dialog.getByRole('button', { name: '暂停并保存此桌', exact: true }).click();
@@ -107,10 +125,17 @@ try {
       else {
         const dialog = page.getByRole('dialog', { name: '待完成的选择' }); await expect(dialog).toBeVisible();
         await expect(pages[1].getByRole('dialog', { name: '待完成的选择' })).toHaveCount(0);
+        await checkChoiceViewport('desktop');
         await capture('wm023-before-choice');
         await dialog.locator('[data-choice-option="region:1"]').click();
+        await dialog.getByRole('button', { name: '确认选择', exact: true }).click({ trial: true });
+        report.desktopConfirmActionable = true;
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.evaluate(() => new Promise(requestAnimationFrame));
+        await checkChoiceViewport('phone');
         await page.reload();
         await expect(dialog.locator('[data-choice-option="region:1"]')).toHaveAttribute('aria-pressed', 'true');
+        await checkChoiceViewport('phone-after-refresh');
         report.choiceDraftRestoredAfterHttpReload = true;
         await capture('wm023-selected-after-refresh');
         await dialog.getByRole('button', { name: '确认选择', exact: true }).click();
@@ -161,7 +186,18 @@ try {
   assert.equal(report.commands.length, scenario.steps.length); assert(report.clientPosts.every(n => n > 0)); assert.equal(report.reopened, 2); assert.deepEqual(report.pageErrors, []);
   report.actualMovement = { instanceId: host, from: 0, to: 1, owner: 'p1', controller: 'p0', attachedCards: 2 };
   report.exactNativeStatesAndCurrentWasmJournals = true; report.originalReceiptAfterReopen = true; report.passed = true;
-} catch (error) { report.error = String(error.stack || error); throw error; }
+} catch (error) {
+  report.error = String(error.stack || error);
+  report.failureScreenshots = [];
+  for (const [seat, page] of pages.entries()) {
+    try {
+      const name = `failure-seat${seat}.png`; await page.screenshot({ path: join(output, name) });
+      report.failureScreenshots.push(name);
+      await writeFile(join(output, `failure-seat${seat}.txt`), await page.locator('body').innerText());
+    } catch { /* Keep the original failure if a page has already closed. */ }
+  }
+  throw error;
+}
 finally {
   await writeFile(join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
   await browser?.close(); await mf?.dispose();

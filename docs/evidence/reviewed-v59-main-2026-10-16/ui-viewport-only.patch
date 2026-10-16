@@ -1,0 +1,44 @@
+diff --git a/web/src/game/choice-readability.css b/web/src/game/choice-readability.css
+index 177d0aa..a42cea4 100644
+--- a/web/src/game/choice-readability.css
++++ b/web/src/game/choice-readability.css
+@@ -4,6 +4,9 @@
+   flex-direction: column;
+   overflow: hidden;
+ }
++/* The live app has session and recovery panels above the table. Keep choices
++   in the viewport on every screen size, independently of the table's height. */
++.hg-app .hg-desktop-table.hg-table .hg-table-choice-layer { position: fixed; inset: 64px 0 0; padding: 16px; }
+ .hg-choice-heading { flex: 0 0 auto; }
+ .hg-choice-heading > p { color: #d6d7cc; font-size: 14px; line-height: 1.6; margin: 0 0 8px; }
+ .hg-choice-heading > .hg-choice-scroll-hint { color: #decda6; font-size: 13px; margin-bottom: 14px; }
+@@ -40,6 +43,8 @@
+ .hg-order-buttons .hg-order-read { border-color: #a88c55; color: #f1d290; }
+ 
+ @media (max-width: 680px) {
++  .hg-choice .hg-choice-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
++  .hg-choice-options .hg-choice-option-entry { width: auto; }
+   .hg-choice-filters { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+   .hg-choice-filters > .hg-field { grid-column: 1 / -1; }
+   .hg-choice-filter-summary { grid-column: 1 / -1; }
+@@ -47,7 +52,6 @@
+ 
+ @media (min-width: 1060px) {
+   .hg-choice-keyboard-hint { display: block; }
+-  .hg-app .hg-desktop-table.hg-table .hg-table-choice-layer { position: fixed; inset: 64px 0 0; padding: 16px; }
+   .hg-app .hg-desktop-table.hg-table .hg-choice { width: min(1060px, calc(100vw - 64px)); height: min(700px, calc(100dvh - 112px)); max-height: calc(100dvh - 112px); padding: 20px 22px 16px; background: #21392f; }
+   .hg-app .hg-desktop-table.hg-table .hg-choice-heading h2 { font-size: 23px; line-height: 1.4; }
+   .hg-app .hg-desktop-table.hg-table .hg-choice .hg-eyebrow { font-size: 12px; }
+diff --git a/web/src/game/lantern-table.css b/web/src/game/lantern-table.css
+index dab0585..006af7a 100644
+--- a/web/src/game/lantern-table.css
++++ b/web/src/game/lantern-table.css
+@@ -472,7 +472,7 @@
+   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspected-card .hg-card-text { font-size: 14px; line-height: 1.75; }
+   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-card-hover { top: auto; left: 24px; bottom: calc(var(--lt-dock-h) + 30px); width: 300px; max-height: calc(100dvh - var(--lt-dock-h) - 150px); overflow-y: auto; transform: none; padding: 15px; }
+   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-card-hover .hg-archive-art { height: 90px; }
+-  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-table-choice-layer { inset: calc(var(--lt-status-h) + 12px) 9px 9px; padding: 18px; }
++  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-table-choice-layer { padding: 18px; }
+   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-choice { max-height: calc(100dvh - 190px); }
+   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-revealed-hand { inset: calc(var(--lt-status-h) + 16px) 22px auto; }
+ }

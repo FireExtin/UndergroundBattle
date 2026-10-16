@@ -1,0 +1,37 @@
+{
+  "mainPromotionStatus": "blocked by newly discovered shared confirmation outside viewport; no main mutation",
+  "candidateBrowserFailure": "/workspace/bq035-p2-evidence-20261016/http-two-browsers-diagnostics/report.json",
+  "approvedGameTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "sameSourceFiles": [
+    {
+      "file": "web/src/game/GameApp.tsx",
+      "matchesReviewedV59": true,
+      "sha256": "635202d96665613f209829e1f311b6cee08797204b5d92d64a749a482aa07687"
+    },
+    {
+      "file": "web/src/game/RoomManagement.tsx",
+      "matchesReviewedV59": true,
+      "sha256": "cccbd36c5a158ea36a505b63f30dfaf982707b6022877554be1a5da274ca0ad5"
+    },
+    {
+      "file": "web/src/game/ChoicePanel.tsx",
+      "matchesReviewedV59": true,
+      "sha256": "dcde56e15d15710263b771137c760d4ee25dfa055f47d539d475963565f84144"
+    },
+    {
+      "file": "web/src/game/choice-readability.css",
+      "matchesReviewedV59": true,
+      "sha256": "0e61783179fb063ef5308107eba297682d5c12b714490b12a96f54cf8be81901"
+    },
+    {
+      "file": "web/src/game/table-desktop.css",
+      "matchesReviewedV59": true,
+      "sha256": "3a19d34a53b8957fac9681e898b66904e7f1b93596837013186d49e65835d119"
+    },
+    {
+      "file": "web/src/game/lantern-table.css",
+      "matchesReviewedV59": true,
+      "sha256": "60d0e1312bb5d7a415926deee40f31ce080c6cfaabfc46cc2598dec97e3f4810"
+    }
+  ]
+}

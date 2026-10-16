@@ -1,0 +1,38 @@
+{
+  "currentFiles": [
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "README.md",
+      "bytes": 118,
+      "sha256": "2bc66b442ebb45875b59cb72711e747dc755da2b75b4c13c64e9709e8b192127"
+    },
+    {
+      "file": "worker.js",
+      "bytes": 71477,
+      "sha256": "037b33f3550c53cf4d60c318b3fadea18ec73968f8a38c20793e2a95aea763de"
+    },
+    {
+      "file": "worker.js.map",
+      "bytes": 122422,
+      "sha256": "b75e5ad5a463a81b5f4ff3494f297b54349f653dbb41bebd1d23ea23c7a314ff"
+    }
+  ],
+  "differentFiles": [
+    "README.md"
+  ],
+  "oldOutputPreservedAt": "/workspace/undergroundbattle-build/bq035-worker/server-prior-1792161618928-85327",
+  "allRemainingBytesIdentical": false,
+  "allLoadedRuntimeBytesIdentical": true,
+  "readmeOnlyTimestampChanged": true,
+  "unreferencedOldWasmRemoved": true,
+  "entryReferencesOnlyTheTwoExpectedModules": true
+}

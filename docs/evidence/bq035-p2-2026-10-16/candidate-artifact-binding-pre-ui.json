@@ -1,0 +1,23 @@
+{
+  "current78WasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+  "retained77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "workerSha256": "8f1d60744c66cbbdcb09ad4cfaf0f68bd8f0c5010b4b32d6887240929d862e8f",
+  "workerWasm": [
+    {
+      "name": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "name": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+  "productionClientIndexSha256": "1f6a16bffb1e262884ee2b7bc4e8c64cd67e67a625b80749726ac897cc30b042",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "builtLocallyOnly": true,
+  "published": false,
+  "retained77ExactJsGzipWasmVerified": true
+}

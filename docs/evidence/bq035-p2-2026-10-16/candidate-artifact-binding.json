@@ -15,9 +15,12 @@
     }
   ],
   "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
-  "productionClientIndexSha256": "1f6a16bffb1e262884ee2b7bc4e8c64cd67e67a625b80749726ac897cc30b042",
+  "productionClientIndexSha256": "46d4fc5a0be50884c32a3b066fa6c560daae9d94a709938c7bd87405f5452e00",
   "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
   "builtLocallyOnly": true,
   "published": false,
-  "retained77ExactJsGzipWasmVerified": true
+  "retained77ExactJsGzipWasmVerified": true,
+  "localDeterministicWorkerSha256": "037b33f3550c53cf4d60c318b3fadea18ec73968f8a38c20793e2a95aea763de",
+  "currentJsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "viewportAndGridFixIncluded": true
 }

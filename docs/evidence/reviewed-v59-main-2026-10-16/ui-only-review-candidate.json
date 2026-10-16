@@ -1,0 +1,16 @@
+{
+  "status": "unreviewed UI-only tree for parent serial review; not a main commit or publication approval",
+  "baseApprovedV59Tree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "uiOnlyCandidateTree": "821fedb69fb6bac056934c0e098d8a6dd610a7a8",
+  "patchSha256": "053631cf017f89c806100333c77e7c26a83cce2431f9a36b1378869ffd2ba5f0",
+  "changedFiles": [
+    "web/src/game/choice-readability.css",
+    "web/src/game/lantern-table.css"
+  ],
+  "bq035Included": false,
+  "newBranch": false,
+  "newWorktree": false,
+  "newCommit": false,
+  "fullStandalone143OverlayTestRerun": false,
+  "validationScope": "same CSS verified through current candidate live GameApp; historical v59 source/artifact audit remains identity evidence, not acceptance of the new patch"
+}
