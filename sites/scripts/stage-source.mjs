@@ -24,12 +24,13 @@ const copy = (from, relative, directory = false) => copies.push({ from, relative
 for (const file of ['package.json', 'package-lock.json', 'wrangler.jsonc', 'drizzle.config.ts', 'README.md', '.openai/hosting.json']) copy(project + file, file);
 for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(project + directory, directory, true);
 copy(repository + 'tools/build-storage.mjs', 'tools/build-storage.mjs');
-for (const file of ['frozen-kernels.mjs', 'bq035-oracle.mjs', 'jz46-oracle.mjs']) copy(repository + 'tools/' + file, 'tools/' + file);
+for (const file of ['frozen-kernels.mjs', 'bq035-oracle.mjs', 'jz46-oracle.mjs', 'wm062-oracle.mjs']) copy(repository + 'tools/' + file, 'tools/' + file);
 for (const file of ['Cargo.toml', 'Cargo.lock']) copy(repository + file, file);
 copy(repository + 'rust-game-wasm/build.sh', 'rust-game-wasm/build.sh');
 copy(repository + 'rust-game-wasm/frozen/abi77/identity.json', 'rust-game-wasm/frozen/abi77/identity.json');
 for (const file of ['identity.json','native-source-binding.json']) copy(repository + 'rust-game-wasm/frozen/abi78/' + file, 'rust-game-wasm/frozen/abi78/' + file);
-for (const file of ['legacy77-kernel.mjs', 'current78-kernel.mjs', 'bq035-compare.mjs', 'bq035Native78.fixture.json.gz', 'current79-kernel.mjs', 'jz46-compare.mjs', 'jz46Native79.fixture.json.gz']) {
+for (const file of ['identity.json','native-source-binding.json']) copy(repository + 'rust-game-wasm/frozen/abi79/' + file, 'rust-game-wasm/frozen/abi79/' + file);
+for (const file of ['legacy77-kernel.mjs', 'current78-kernel.mjs', 'bq035-compare.mjs', 'bq035Native78.fixture.json.gz', 'current79-kernel.mjs', 'jz46-compare.mjs', 'jz46Native79.fixture.json.gz', 'current80-kernel.mjs', 'wm062-compare.mjs', 'wm062Native80.fixture.json.gz']) {
   copy(repository + 'rust-game-wasm/tests/' + file, 'rust-game-wasm/tests/' + file);
 }
 copy(repository + 'web/src', 'web/src', true);

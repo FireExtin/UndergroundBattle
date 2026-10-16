@@ -205,7 +205,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     </div>
     <div className="hg-choice-footer"><span className="hg-choice-summary">{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}
       {!damage && !ordering && max > 0 && <small id={selectionHintId}>{selectionHint}</small>}</span>
-      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : '跳过此选择'}</button>}
+      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : choice.kind === 'wm062-adjacent-move' ? '不移动并确认' : '跳过此选择'}</button>}
       <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
     </div>
   </section>;

@@ -13,6 +13,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadFixture } = await import(pathToFileURL(root + 'tools/jz46-oracle.mjs').href);
 const fixture = loadFixture();
+const { identity: currentIdentity } = await import(pathToFileURL(root + 'tools/wm062-oracle.mjs').href);
 const worker = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jz46-worker/server');
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'jz46-http-'));
@@ -46,7 +47,7 @@ async function runScenario(t, scenario, expectedCards = 145) {
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
   assert.equal(roomCatalog.body.cards.length, expectedCards);
-  assert.equal((await h.globalCatalog()).engineVersion, fixture.catalog.engineVersion);
+  assert.equal((await h.globalCatalog()).engineVersion, currentIdentity.engineVersion);
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;

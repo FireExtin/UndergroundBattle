@@ -12,10 +12,10 @@ const pool=json('rust-game/data/cards.json'), spec=json('docs/factions/card-spec
 test('JZ46 adds one whole definition while every original 144 card and deck/world metadata stays exact',()=>{
   const {cards,engineVersion,cardPoolVersion,...meta}=pool;
   const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=original;
-  assert.equal(cards.length,145);assert.equal(new Set(cards.map(c=>c.id)).size,145);
-  assert.deepEqual(cards.filter(c=>c.id!=='JZ46'),old);assert.deepEqual(meta,oldMeta);
-  assert.equal(engineVersion,'rust-v0.2.79-jz46-private-criminal-inspection-candidate');
-  assert.equal(cardPoolVersion,'limited-v2.72-jz46-private-criminal-inspection-candidate');
+  assert.equal(cards.length,146);assert.equal(new Set(cards.map(c=>c.id)).size,146);
+  assert.deepEqual(cards.filter(c=>!['JZ46','WM062'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
+  assert.equal(engineVersion,'rust-v0.2.80-wm062-conceal-adjacent-move-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.73-wm062-conceal-adjacent-move-candidate');
 });
 test('the entire JZ46 runtime matches the pinned image specification and preserves source acceptance status',()=>{
   const f=spec.fields,s=spec.sourceVerification;
@@ -27,5 +27,5 @@ test('JZ46 art is byte-exact and all 145 admitted scans remain pinned',()=>{
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),'756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785');
   assert.deepEqual(read('web/public/cards/JZ46.jpg'),original);
-  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,145);assert.equal(checked.manifestEntries,156);
+  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,146);assert.equal(checked.manifestEntries,157);
 });

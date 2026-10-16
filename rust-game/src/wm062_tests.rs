@@ -1,6 +1,6 @@
 //! Prepared layouts followed by real paid Room actions, strict restore and journal replay.
-use crate::{catalog,model::*,room::*,rules::*,unit_support as u};
-use serde_json::{json,Value};
+use crate::{catalog, model::*, room::*, rules::*, unit_support as u};
+use serde_json::{json, Value};
 use std::path::Path;
 fn source_bindings() -> &'static Value {
     static BINDINGS: std::sync::OnceLock<Value> = std::sync::OnceLock::new();
@@ -389,7 +389,10 @@ fn source_bindings() -> &'static Value {
                 include_bytes!("yellow_search_batch_tests.rs"),
             ),
             ("rust-game/src/wm062.rs", include_bytes!("wm062.rs")),
-            ("rust-game/src/wm062_tests.rs", include_bytes!("wm062_tests.rs")),
+            (
+                "rust-game/src/wm062_tests.rs",
+                include_bytes!("wm062_tests.rs"),
+            ),
         ];
         let hashes = files
             .iter()
@@ -408,7 +411,9 @@ struct Trace {
 
 fn prepared(actor: usize, definition: &str) -> (Game, String, String) {
     let mut g = crate::jc029_tests::game(actor);
-    for r in &mut g.regions { r.influence = [0; 2]; }
+    for r in &mut g.regions {
+        r.influence = [0; 2];
+    }
     u::fund(&mut g, actor, "WM062", 4);
     let held = u::held(&mut g, "WM062", actor);
     let mut c = g.make_card(definition, actor);
@@ -423,27 +428,46 @@ fn play(t: &mut Trace, actor: usize, source: &str, target: &str) {
 }
 fn select(t: &mut Trace, actor: usize, destination: Option<usize>) {
     let choice_id = t.room.game.pending.as_ref().unwrap().choice.id.clone();
-    t.action(actor, Action { choice_id: Some(choice_id),
-        selected: Some(destination.map(|r| vec![format!("region:{r}")]).unwrap_or_default()),
-        ..Action::new("choose") });
+    t.action(
+        actor,
+        Action {
+            choice_id: Some(choice_id),
+            selected: Some(
+                destination
+                    .map(|r| vec![format!("region:{r}")])
+                    .unwrap_or_default(),
+            ),
+            ..Action::new("choose")
+        },
+    );
 }
 fn successor(t: &Trace) -> Card {
     match &t.room.game.pending.as_ref().unwrap().resolution {
-        ChoiceResolution::Frame { choice: FrameChoice::WM062AdjacentMove { hidden, .. }, .. } => hidden.clone(),
+        ChoiceResolution::Frame {
+            choice: FrameChoice::WM062AdjacentMove { hidden, .. },
+            ..
+        } => hidden.clone(),
         _ => panic!("WM062 successor choice missing"),
     }
 }
 #[test]
 fn wm062_whole_print_and_closed_fast_definition() {
     let c = catalog::card("WM062");
-    assert_eq!((c.kind.as_str(),c.cost,c.color.as_str()),("spell",2,"黑"));
-    assert_eq!(c.loyalty,["黑色"]); assert_eq!(c.subtypes,["阴谋"]);
-    assert!(!c.unique); assert!(c.magic.is_empty());
-    assert_eq!(c.permanent_icons,Icons::default()); assert_eq!(c.temporary_icons,Icons::default());
+    assert_eq!(
+        (c.kind.as_str(), c.cost, c.color.as_str()),
+        ("spell", 2, "黑")
+    );
+    assert_eq!(c.loyalty, ["黑色"]);
+    assert_eq!(c.subtypes, ["阴谋"]);
+    assert!(!c.unique);
+    assert!(c.magic.is_empty());
+    assert_eq!(c.permanent_icons, Icons::default());
+    assert_eq!(c.temporary_icons, Icons::default());
     let d = crate::wm062::definition();
     assert_eq!(d.abilities[0].timing, Timing::Fast);
     for variant in 0..13 {
-        let mut bad = d.clone(); let a = &mut bad.abilities[0];
+        let mut bad = d.clone();
+        let a = &mut bad.abilities[0];
         match variant {
             0 => a.timing = Timing::Standard,
             1 => a.targets[0].relation = Relation::FriendlyTeam,
@@ -454,165 +478,585 @@ fn wm062_whole_print_and_closed_fast_definition() {
             6 => a.response_policy = ResponsePolicy::Immediate,
             7 => a.costs.push(Cost::ExhaustSource),
             8 => a.ops.clear(),
-            9 => a.ops.push(Op::Draw { player: PlayerRef::Actor,count:1,end:DeckEnd::Top }),
+            9 => a.ops.push(Op::Draw {
+                player: PlayerRef::Actor,
+                count: 1,
+                end: DeckEnd::Top,
+            }),
             10 => a.event = Some(Event::Reveal),
             11 => a.per_turn_limit = Some(1),
             _ => a.targets[0].max = 2,
         }
-        assert!(crate::wm062::validate_definition("WM062",&bad).is_err(),"{variant}");
-        assert!(crate::rules::validate_ability("WM062",&bad.abilities[0]).is_err(),"{variant}");
+        assert!(
+            crate::wm062::validate_definition("WM062", &bad).is_err(),
+            "{variant}"
+        );
+        assert!(
+            crate::rules::validate_ability("WM062", &bad.abilities[0]).is_err(),
+            "{variant}"
+        );
     }
-    for id in ["JC063","JC087","WM056"] {
-        assert!(crate::wm062::validate_definition(id,&d).is_err());
-        assert!(crate::rules::validate_ability(id,&d.abilities[0]).is_err());
+    for id in ["JC063", "JC087", "WM056"] {
+        assert!(crate::wm062::validate_definition(id, &d).is_err());
+        assert!(crate::rules::validate_ability(id, &d.abilities[0]).is_err());
     }
 }
 #[test]
 fn wm062_paid_move_preserves_actual_successor_and_does_not_trigger_hidden_front_all_seats() {
-    for (actor,name) in [(0,"move-seat0"),(1,"move-seat1"),(2,"move-seat2"),(3,"move-seat3")] {
-        let (mut g,held,target) = prepared(actor,"JC087");
+    for (actor, name) in [
+        (0, "move-seat0"),
+        (1, "move-seat1"),
+        (2, "move-seat2"),
+        (3, "move-seat3"),
+    ] {
+        let (mut g, held, target) = prepared(actor, "JC087");
         // A same-print decoy must never be substituted for the chosen identity.
-        let decoy = g.make_card("JC087",actor); let decoy_id = decoy.id.clone();
+        let decoy = g.make_card("JC087", actor);
+        let decoy_id = decoy.id.clone();
         g.regions[2].cards.push(decoy);
-        let mut t = Trace::new(name,g);
-        let assets = t.room.game.players[actor].assets.iter().filter(|c| c.exhausted).count();
-        play(&mut t,actor,&held,&target);
-        assert_eq!(t.room.game.players[actor].assets.iter().filter(|c| c.exhausted).count(),assets+2);
+        let mut t = Trace::new(name, g);
+        let assets = t.room.game.players[actor]
+            .assets
+            .iter()
+            .filter(|c| c.exhausted)
+            .count();
+        play(&mut t, actor, &held, &target);
+        assert_eq!(
+            t.room.game.players[actor]
+                .assets
+                .iter()
+                .filter(|c| c.exhausted)
+                .count(),
+            assets + 2
+        );
         assert!(t.room.game.board(&target).is_some());
         t.finish();
         let h = successor(&t);
-        assert_ne!(h.id,target); assert!(h.face_down); assert_eq!(h.exhausted,actor%2==1);
+        assert_ne!(h.id, target);
+        assert!(h.face_down);
+        assert_eq!(h.exhausted, actor % 2 == 1);
         for seat in 0..4 {
             let view = t.room.game.view(seat);
-            assert_eq!(view.pending_choice.is_some(),seat==actor);
-            let hidden = view.regions[2].characters.iter().find(|c| c.instance_id==h.id).unwrap();
-            assert_eq!(hidden.card_id.is_some(),seat==actor);
+            assert_eq!(view.pending_choice.is_some(), seat == actor);
+            let hidden = view.regions[2]
+                .characters
+                .iter()
+                .find(|c| c.instance_id == h.id)
+                .unwrap();
+            assert_eq!(hidden.card_id.is_some(), seat == actor);
         }
         // Nonadjacent slot and a foreign seat are strict no-op rejections.
         let choice = t.room.game.pending.as_ref().unwrap().choice.id.clone();
-        t.command((actor+2)%4,SessionAction::Game { action:Action { choice_id:Some(choice.clone()),selected:Some(vec!["region:1".into()]),..Action::new("choose") }},true);
-        t.command(actor,SessionAction::Game { action:Action { choice_id:Some(choice.clone()),selected:Some(vec!["region:4".into()]),..Action::new("choose") }},true);
-        select(&mut t,actor,Some(1));
+        t.command(
+            (actor + 2) % 4,
+            SessionAction::Game {
+                action: Action {
+                    choice_id: Some(choice.clone()),
+                    selected: Some(vec!["region:1".into()]),
+                    ..Action::new("choose")
+                },
+            },
+            true,
+        );
+        t.command(
+            actor,
+            SessionAction::Game {
+                action: Action {
+                    choice_id: Some(choice.clone()),
+                    selected: Some(vec!["region:4".into()]),
+                    ..Action::new("choose")
+                },
+            },
+            true,
+        );
+        select(&mut t, actor, Some(1));
         assert!(t.room.game.pending.is_none());
         assert!(t.room.game.stack.is_empty());
-        assert_eq!(t.room.game.board(&h.id).unwrap().0,1);
-        assert_eq!(t.room.game.board(&decoy_id).unwrap().0,2);
+        assert_eq!(t.room.game.board(&h.id).unwrap().0, 1);
+        assert_eq!(t.room.game.board(&decoy_id).unwrap().0, 2);
         assert!(t.room.game.board(&target).is_none());
-        assert_eq!(t.room.game.players[actor].graveyard.iter().filter(|c|c.definition=="WM062").count(),1);
-        t.command(actor,SessionAction::Game { action:Action { choice_id:Some(choice),selected:Some(vec!["region:1".into()]),..Action::new("choose") }},true);
+        assert_eq!(
+            t.room.game.players[actor]
+                .graveyard
+                .iter()
+                .filter(|c| c.definition == "WM062")
+                .count(),
+            1
+        );
+        t.command(
+            actor,
+            SessionAction::Game {
+                action: Action {
+                    choice_id: Some(choice),
+                    selected: Some(vec!["region:1".into()]),
+                    ..Action::new("choose")
+                },
+            },
+            true,
+        );
         t.export();
     }
 }
 #[test]
 fn wm062_decline_keeps_conceal_and_cleans_attachments_seals_markers_without_repaying() {
-    let (mut g,held,target)=prepared(0,"JC094");
-    let c=g.board_mut(&target).unwrap();c.damage=1;c.wounds=1;c.shield=1;c.time_markers=2;c.lock_markers=3;c.exhausted=true;
-    let attached=g.make_card("XQ47",0);
-    g.attachments.push(Attachment { card:attached,host_id:target.clone() });
-    let mut t=Trace::new("decline-cleanup",g);
-    play(&mut t,0,&held,&target);t.finish();let h=successor(&t);
-    assert!(h.exhausted);assert_eq!((h.damage,h.wounds,h.shield,h.time_markers,h.lock_markers),(0,0,0,0,0));
+    let (mut g, held, target) = prepared(0, "JC094");
+    let c = g.board_mut(&target).unwrap();
+    c.damage = 1;
+    c.wounds = 1;
+    c.shield = 1;
+    c.time_markers = 2;
+    c.lock_markers = 3;
+    c.exhausted = true;
+    let attached = g.make_card("XQ47", 0);
+    g.attachments.push(Attachment {
+        card: attached,
+        host_id: target.clone(),
+    });
+    let mut t = Trace::new("decline-cleanup", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    let h = successor(&t);
+    assert!(h.exhausted);
+    assert_eq!(
+        (h.damage, h.wounds, h.shield, h.time_markers, h.lock_markers),
+        (0, 0, 0, 0, 0)
+    );
     assert!(t.room.game.attachments.is_empty());
-    let exhausted=t.room.game.players[0].assets.iter().filter(|c|c.exhausted).count();
-    select(&mut t,0,None);
-    assert_eq!(t.room.game.board(&h.id).unwrap().0,2);
-    assert_eq!(t.room.game.players[0].assets.iter().filter(|c|c.exhausted).count(),exhausted);
-    assert!(t.room.game.players[0].graveyard.iter().any(|c|c.definition=="XQ47"));
+    let exhausted = t.room.game.players[0]
+        .assets
+        .iter()
+        .filter(|c| c.exhausted)
+        .count();
+    select(&mut t, 0, None);
+    assert_eq!(t.room.game.board(&h.id).unwrap().0, 2);
+    assert_eq!(
+        t.room.game.players[0]
+            .assets
+            .iter()
+            .filter(|c| c.exhausted)
+            .count(),
+        exhausted
+    );
+    assert!(t.room.game.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "XQ47"));
     t.export();
 }
 #[test]
 fn wm062_controlled_foreign_criminal_returns_controller_but_actor_keeps_optional_move() {
-    let (mut g,held,original)=prepared(0,"JC087");
-    g.board_mut(&original).unwrap().owner=1;
-    g.board_mut(&original).unwrap().controller=1;
-    let embrace=g.make_card("JC036",0);let attached_id=embrace.id.clone();
-    g.attachments.push(Attachment { card:embrace,host_id:original.clone() });
-    g.add_control(&original,0,ControlLifetime::Attached { source_instance:attached_id },SubtypeChange::HumanToVampire);
+    let (mut g, held, original) = prepared(0, "JC087");
+    g.board_mut(&original).unwrap().owner = 1;
+    g.board_mut(&original).unwrap().controller = 1;
+    let embrace = g.make_card("JC036", 0);
+    let attached_id = embrace.id.clone();
+    g.attachments.push(Attachment {
+        card: embrace,
+        host_id: original.clone(),
+    });
+    g.add_control(
+        &original,
+        0,
+        ControlLifetime::Attached {
+            source_instance: attached_id,
+        },
+        SubtypeChange::HumanToVampire,
+    );
     g.settle_controls();
-    let mut t=Trace::new("controlled-foreign-successor",g);
-    play(&mut t,0,&held,&original);t.finish();let h=successor(&t);
-    assert_eq!((h.owner,h.controller),(1,1));
+    let mut t = Trace::new("controlled-foreign-successor", g);
+    play(&mut t, 0, &held, &original);
+    t.finish();
+    let h = successor(&t);
+    assert_eq!((h.owner, h.controller), (1, 1));
     assert!(t.room.game.view(0).pending_choice.is_some());
     assert!(t.room.game.view(1).pending_choice.is_none());
-    let hidden=t.room.game.view(0).regions[2].characters.iter().find(|c|c.instance_id==h.id).unwrap().clone();
+    let hidden = t.room.game.view(0).regions[2]
+        .characters
+        .iter()
+        .find(|c| c.instance_id == h.id)
+        .unwrap()
+        .clone();
     assert!(hidden.card_id.is_none());
-    select(&mut t,0,Some(3));
-    assert_eq!(t.room.game.board(&h.id).unwrap().0,3);
-    assert!(t.room.game.players[0].graveyard.iter().any(|c|c.definition=="JC036"));
+    select(&mut t, 0, Some(3));
+    assert_eq!(t.room.game.board(&h.id).unwrap().0, 3);
+    assert!(t.room.game.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JC036"));
     t.export();
 }
 #[test]
 fn wm062_real_police_response_retires_target_and_cancels_whole_paid_transaction() {
-    let (mut g,held,target)=prepared(0,"JC087");
-    u::fund(&mut g,1,"JC063",2);let police=u::held(&mut g,"JC063",1);
-    let mut t=Trace::new("target-concealed-response",g);
-    play(&mut t,0,&held,&target);
-    let a=t.room.game.legal_actions(1).into_iter().find(|a|a.action.card_id.as_deref()==Some(&police)&&a.action.option.as_deref()==Some("hide")&&a.action.target_id.as_deref()==Some(&target)).unwrap().action;
-    t.action(1,a);t.finish();
-    assert!(t.room.game.pending.is_none());assert!(t.room.game.board(&target).is_none());
-    assert_eq!(t.room.game.regions[2].cards.iter().filter(|c|c.face_down).count(),1);
-    assert!(t.room.game.players[0].graveyard.iter().any(|c|c.definition=="WM062"));
+    let (mut g, held, target) = prepared(0, "JC087");
+    u::fund(&mut g, 1, "JC063", 2);
+    let police = u::held(&mut g, "JC063", 1);
+    let mut t = Trace::new("target-concealed-response", g);
+    play(&mut t, 0, &held, &target);
+    let a = t
+        .room
+        .game
+        .legal_actions(1)
+        .into_iter()
+        .find(|a| {
+            a.action.card_id.as_deref() == Some(&police)
+                && a.action.option.as_deref() == Some("hide")
+                && a.action.target_id.as_deref() == Some(&target)
+        })
+        .unwrap()
+        .action;
+    t.action(1, a);
+    t.finish();
+    assert!(t.room.game.pending.is_none());
+    assert!(t.room.game.board(&target).is_none());
+    assert_eq!(
+        t.room.game.regions[2]
+            .cards
+            .iter()
+            .filter(|c| c.face_down)
+            .count(),
+        1
+    );
+    assert!(t.room.game.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "WM062"));
     t.export();
 }
 #[test]
 fn wm062_real_bounce_response_cancels_without_concealing_a_substitute() {
-    let (mut g,held,target)=prepared(0,"JC095");
-    u::fund(&mut g,1,"JC006",2);let bounce=u::held(&mut g,"JC006",1);
-    let decoy=g.make_card("JC095",0);let decoy_id=decoy.id.clone();g.regions[1].cards.push(decoy);
-    let mut t=Trace::new("target-bounced-response",g);
-    play(&mut t,0,&held,&target);
-    let a=t.legal(1,"play",&bounce,Some(&target),None);t.action(1,a);t.finish();
-    assert!(t.room.game.pending.is_none());assert!(t.room.game.board(&target).is_none());
+    let (mut g, held, target) = prepared(0, "JZ24");
+    u::fund(&mut g, 1, "JC006", 2);
+    let bounce = u::held(&mut g, "JC006", 1);
+    let decoy = g.make_card("JZ24", 0);
+    let decoy_id = decoy.id.clone();
+    g.regions[1].cards.push(decoy);
+    let mut t = Trace::new("target-bounced-response", g);
+    play(&mut t, 0, &held, &target);
+    let a = t.legal(1, "play", &bounce, Some(&target), None);
+    t.action(1, a);
+    t.finish();
+    assert!(t.room.game.pending.is_none());
+    assert!(t.room.game.board(&target).is_none());
     assert!(!t.room.game.board(&decoy_id).unwrap().1.face_down);
-    assert!(t.room.game.players[0].hand.iter().any(|c|c.definition=="JC095"));
+    assert!(t.room.game.players[0]
+        .hand
+        .iter()
+        .any(|c| c.definition == "JZ24"));
     t.export();
 }
 #[test]
 fn wm062_pause_resume_preserves_paid_pending_successor_and_rejects_moves_while_paused() {
-    let (g,held,target)=prepared(0,"JC087");let mut t=Trace::new("pause-successor-resume",g);
-    play(&mut t,0,&held,&target);t.finish();let h=successor(&t);
-    let choice=t.room.game.pending.as_ref().unwrap().choice.id.clone();
-    t.command(0,SessionAction::PauseRoom,false);
-    t.command(0,SessionAction::Game { action:Action { choice_id:Some(choice.clone()),selected:Some(vec!["region:3".into()]),..Action::new("choose") }},true);
-    t.command(0,SessionAction::ResumeRoom,false);
-    assert_eq!(t.room.game.pending.as_ref().unwrap().choice.id,choice);
-    assert_eq!(successor(&t).id,h.id);select(&mut t,0,Some(3));
-    assert_eq!(t.room.game.board(&h.id).unwrap().0,3);t.export();
+    let (g, held, target) = prepared(0, "JC087");
+    let mut t = Trace::new("pause-successor-resume", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    let h = successor(&t);
+    let choice = t.room.game.pending.as_ref().unwrap().choice.id.clone();
+    t.command(0, SessionAction::PauseRoom, false);
+    t.command(
+        0,
+        SessionAction::Game {
+            action: Action {
+                choice_id: Some(choice.clone()),
+                selected: Some(vec!["region:3".into()]),
+                ..Action::new("choose")
+            },
+        },
+        true,
+    );
+    t.command(0, SessionAction::ResumeRoom, false);
+    assert_eq!(t.room.game.pending.as_ref().unwrap().choice.id, choice);
+    assert_eq!(successor(&t).id, h.id);
+    select(&mut t, 0, Some(3));
+    assert_eq!(t.room.game.board(&h.id).unwrap().0, 3);
+    t.export();
 }
 #[test]
 fn wm062_fast_in_end_window_and_no_destination_still_completes_conceal() {
-    let (mut g,held,target)=prepared(0,"JC087");g.begin_window(Window::End);
-    let mut t=Trace::new("fast-end-window",g);play(&mut t,0,&held,&target);t.finish();select(&mut t,0,None);t.export();
-    let (mut g,held,target)=prepared(0,"JC087");
-    for (r,v) in g.regions.iter_mut().enumerate() { if r!=2 {v.vacant=true;v.influence=[0;2];v.skip=false;} }
-    let mut t=Trace::new("no-adjacent-destination",g);play(&mut t,0,&held,&target);t.finish();
-    assert!(t.room.game.pending.is_none());assert!(t.room.game.board(&target).is_none());
-    assert!(t.room.game.regions[2].cards[0].face_down);t.export();
+    let (mut g, held, target) = prepared(0, "JC087");
+    g.begin_window(Window::End);
+    let mut t = Trace::new("fast-end-window", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    select(&mut t, 0, None);
+    t.export();
+    let (mut g, held, target) = prepared(0, "JC087");
+    g.world.clear();
+    for (r, v) in g.regions.iter_mut().enumerate() {
+        if r != 2 {
+            v.vacant = true;
+            v.influence = [0; 2];
+            v.skip = false;
+        }
+    }
+    let mut t = Trace::new("no-adjacent-destination", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    assert!(t.room.game.pending.is_none());
+    assert!(t.room.game.board(&target).is_none());
+    assert!(t.room.game.regions[2].cards[0].face_down);
+    t.export();
 }
 #[test]
 fn wm062_rejects_teammate_enemy_hidden_noncriminal_and_premature_destination() {
-    let (mut g,held,target)=prepared(0,"JC087");
-    let mut invalid=vec![];
-    for (id,owner,hidden) in [("JC087",1,false),("JC087",2,false),("JC087",0,true),("JC125",0,false)] {
-        let mut c=g.make_card(id,owner);c.face_down=hidden;invalid.push(c.id.clone());g.regions[2].cards.push(c);
+    let (mut g, held, target) = prepared(0, "JC087");
+    let mut invalid = vec![];
+    for (id, owner, hidden) in [
+        ("JC087", 1, false),
+        ("JC087", 2, false),
+        ("JC087", 0, true),
+        ("JC125", 0, false),
+    ] {
+        let mut c = g.make_card(id, owner);
+        c.face_down = hidden;
+        invalid.push(c.id.clone());
+        g.regions[2].cards.push(c);
     }
-    let mut t=Trace::new("invalid-target-and-payload",g);
-    for id in invalid {t.command(0,SessionAction::Game {action:Action {card_id:Some(held.clone()),target_id:Some(id),..Action::new("play")}},true);}
-    t.command(0,SessionAction::Game {action:Action {card_id:Some(held.clone()),target_id:Some(target.clone()),region:Some(1),..Action::new("play")}},true);
-    play(&mut t,0,&held,&target);t.finish();select(&mut t,0,None);t.export();
+    let mut t = Trace::new("invalid-target-and-payload", g);
+    for id in invalid {
+        t.command(
+            0,
+            SessionAction::Game {
+                action: Action {
+                    card_id: Some(held.clone()),
+                    target_id: Some(id),
+                    ..Action::new("play")
+                },
+            },
+            true,
+        );
+    }
+    t.command(
+        0,
+        SessionAction::Game {
+            action: Action {
+                card_id: Some(held.clone()),
+                target_id: Some(target.clone()),
+                region: Some(1),
+                ..Action::new("play")
+            },
+        },
+        true,
+    );
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    select(&mut t, 0, None);
+    t.export();
 }
 #[test]
 fn wm062_duel_uses_existing_adjacency_and_preserves_exhaustion() {
-    let mut g=Game::new("duel".into(),"LOCAL".into(),"duel".into(),"P0".into(),"watchers".into(),9).unwrap();
-    g.join("P1".into(),"watchers".into()).unwrap();for p in &mut g.players {p.ready=true;}
-    g.apply(0,Action::new("start")).unwrap();while let Some(p)=g.pending.clone() {g.apply(p.seat,Action {choice_id:Some(p.choice.id),selected:Some(vec![]),..Action::new("choose")}).unwrap();}
-    for p in &mut g.players {p.hand.clear();p.assets.clear();}for r in &mut g.regions {r.cards.clear();r.influence=[0;2];}
-    g.begin_window(Window::Action(0));u::fund(&mut g,0,"WM062",2);let held=u::held(&mut g,"WM062",0);
-    let mut c=g.make_card("JC087",0);c.exhausted=true;let target=c.id.clone();g.regions[0].cards.push(c);
-    let mut t=Trace::new("duel-adjacent-move",g);play(&mut t,0,&held,&target);t.finish();let h=successor(&t);select(&mut t,0,Some(2));
-    assert_eq!(t.room.game.board(&h.id).unwrap().0,2);assert!(t.room.game.board(&h.id).unwrap().1.exhausted);t.export();
+    let mut g = Game::new(
+        "duel".into(),
+        "LOCAL".into(),
+        "duel".into(),
+        "P0".into(),
+        "watchers".into(),
+        9,
+    )
+    .unwrap();
+    g.join("P1".into(), "watchers".into()).unwrap();
+    for p in &mut g.players {
+        p.ready = true;
+    }
+    g.apply(0, Action::new("start")).unwrap();
+    while let Some(p) = g.pending.clone() {
+        g.apply(
+            p.seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    for p in &mut g.players {
+        p.hand.clear();
+        p.assets.clear();
+    }
+    for r in &mut g.regions {
+        r.cards.clear();
+        r.influence = [0; 2];
+    }
+    g.begin_window(Window::Action(0));
+    u::fund(&mut g, 0, "WM062", 2);
+    let held = u::held(&mut g, "WM062", 0);
+    let mut c = g.make_card("JC087", 0);
+    c.exhausted = true;
+    let target = c.id.clone();
+    g.regions[0].cards.push(c);
+    let mut t = Trace::new("duel-adjacent-move", g);
+    play(&mut t, 0, &held, &target);
+    t.finish();
+    let h = successor(&t);
+    select(&mut t, 0, Some(2));
+    assert_eq!(t.room.game.board(&h.id).unwrap().0, 2);
+    assert!(t.room.game.board(&h.id).unwrap().1.exhausted);
+    t.export();
 }
 
+fn rejected_input(name: String, value: Value) {
+    let state = serde_json::to_string(&value).unwrap();
+    let game_state = serde_json::to_string(&value["game"]).unwrap();
+    let game_error = Game::from_persisted(&game_state)
+        .err()
+        .expect("bad WM062 Game accepted");
+    let room_error = RoomEnvelope::from_persisted(&state)
+        .err()
+        .expect("bad WM062 Room accepted");
+    if let Ok(directory) = std::env::var("WM062_NEGATIVE_DIR") {
+        std::fs::create_dir_all(&directory).unwrap();
+        let bytes = serde_json::to_vec(&json!({"state":state,"gameState":game_state,
+            "gameError":game_error,"roomError":room_error,"sourceBindings":source_bindings()}))
+        .unwrap();
+        use std::io::Write;
+        std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(Path::new(&directory).join(format!("{name}.json")))
+            .unwrap()
+            .write_all(&bytes)
+            .unwrap();
+    }
+}
+#[test]
+fn wm062_bounded_restore_rejects_wrong_successor_region_program_and_paid_container() {
+    let (g, held, target) = prepared(0, "JC087");
+    let mut t = Trace::new("restore-seed-not-exported", g);
+    play(&mut t, 0, &held, &target);
+    let response = serde_json::to_value(&t.room).unwrap();
+    for variant in 0..9 {
+        let mut bad = response.clone();
+        let s = &mut bad["game"]["stack"][0];
+        match variant {
+            0 => s["card"]["exhausted"] = json!(true),
+            1 => s["card"]["owner"] = json!(1),
+            2 => s["frame"]["actor"] = json!(1),
+            3 => s["frame"]["cursor"] = json!(1),
+            4 => s["frame"]["targets"][0]["spec"]["relation"] = json!("FriendlyTeam"),
+            5 => s["frame"]["steps"][0]["context"] = json!(1),
+            6 => s["frame"] = Value::Null,
+            7 => s["target"] = json!("substitute"),
+            _ => s["frame"]["source"]["card"]["definition"] = json!("JC063"),
+        }
+        rejected_input(format!("response-{variant:02}"), bad);
+    }
+    t.finish();
+    let pending = serde_json::to_value(&t.room).unwrap();
+    for variant in 0..36 {
+        let mut bad = pending.clone();
+        let f = &mut bad["game"]["pending"]["resolution"]["Frame"]["frame"];
+        match variant {
+            0 => f["actor"] = json!(1),
+            1 => f["steps"] = json!([]),
+            2 => f["cursor"] = json!(0),
+            3 => f["guard"] = json!("Unchecked"),
+            4 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["hidden"]["controller"] = json!(1)
+            }
+            5 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["hidden"]["exhausted"] = json!(true)
+            }
+            6 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["hidden"]["owner"] = json!(1)
+            }
+            7 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["hidden"]["id"] = json!(target)
+            }
+            8 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["before"]["id"] = json!("other-old-instance")
+            }
+            9 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["before"]["definition"] = json!("JC084")
+            }
+            10 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["before"]["face_down"] = json!(true)
+            }
+            11 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["baseline"] = json!({"target_instance":target,"controller":4})
+            }
+            12 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["region"] = json!(1)
+            }
+            13 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["region_instance"] = json!("replacement-region")
+            }
+            14 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["destinations"]
+                    .as_array_mut()
+                    .unwrap()
+                    .pop();
+            }
+            15 => {
+                bad["game"]["pending"]["resolution"]["Frame"]["choice"]["WM062AdjacentMove"]
+                    ["destinations"][0][1] = json!("replacement-destination")
+            }
+            16 => bad["game"]["pending"]["choice"]["options"][0]["card"] = json!({}),
+            17 => bad["game"]["pending"]["choice"]["min"] = json!(1),
+            18 => bad["game"]["pending"]["choice"]["max"] = json!(2),
+            19 => bad["game"]["pending"]["seat"] = json!(1),
+            20 => bad["game"]["pending"]["choice"]["playerId"] = json!("p1"),
+            21 => bad["game"]["pending"]["choice"]["kind"] = json!("other-choice"),
+            22 => bad["game"]["pending"]["choice"]["amount"] = json!(1),
+            23 => bad["game"]["pending"]["choice"]["allowDecline"] = json!(false),
+            24 => bad["game"]["pending"]["choice"]["previewCards"] = json!([{}]),
+            25 => bad["game"]["effects"][0]["Bury"]["card"]["exhausted"] = json!(true),
+            26 => bad["game"]["effects"][0]["Bury"]["card"]["owner"] = json!(1),
+            27 => {
+                let f = f.clone();
+                bad["game"]["effects"]
+                    .as_array_mut()
+                    .unwrap()
+                    .push(json!({"Frame":{"frame":f}}));
+            }
+            28 => {
+                let mut s = response["game"]["stack"][0].clone();
+                s["frame"] = f.clone();
+                bad["game"]["stack"].as_array_mut().unwrap().push(s);
+            }
+            29 => f["source"]["card"]["definition"] = json!("JC063"),
+            30 => f["steps"]
+                .as_array_mut()
+                .unwrap()
+                .push(json!({"context":0,"op":{"Draw":{"player":"Actor","count":1,"end":"Top"}}})),
+            31 => bad["game"]["regions"][2]["card"]["id"] = json!("replaced-origin"),
+            32 => {
+                let before = bad["game"]["pending"]["resolution"]["Frame"]["choice"]
+                    ["WM062AdjacentMove"]["before"]
+                    .clone();
+                bad["game"]["regions"][2]["cards"]
+                    .as_array_mut()
+                    .unwrap()
+                    .push(before);
+            }
+            33 => {
+                let c = bad["game"]["regions"][2]["cards"]
+                    .as_array_mut()
+                    .unwrap()
+                    .pop()
+                    .unwrap();
+                bad["game"]["regions"][1]["cards"]
+                    .as_array_mut()
+                    .unwrap()
+                    .push(c);
+            }
+            34 => bad["game"]["pending"]["choice"]["description"] = json!("old-description"),
+            _ => bad["game"]["effects"] = json!([]),
+        }
+        rejected_input(format!("pending-{variant:02}"), bad);
+    }
+}
 
 impl Trace {
     fn new(name: &'static str, mut g: Game) -> Self {
@@ -749,4 +1193,3 @@ impl Trace {
         }
     }
 }
-

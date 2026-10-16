@@ -1,4 +1,4 @@
-// Fresh ABI79 Native observations. Never relabel or rewrite opaque states.
+// Historical exact v61 ABI79 Native observations. Never relabel or rewrite opaque states.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -13,11 +13,11 @@ export const positiveNames = ['criminal-seat0','criminal-seat1','criminal-seat2'
 export const negativeNames = [...Array.from({length:22},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:8},(_,i)=>`response-${String(i).padStart(2,'0')}`),'effect-transplant','duplicate-pending-stack','unknown-front','attachment-front','play-stack-exhausted'].sort();
 export function assertSources(binding) {
   assert.equal(binding.algorithm, 'sha256');
-  const files = ['Cargo.lock','Cargo.toml','rust-game-wasm/Cargo.toml','rust-game-wasm/build.sh','rust-game-wasm/src/lib.rs','rust-game/Cargo.toml','rust-game/data/cards.json',
-    ...readdirSync(path.join(root,'rust-game/src'),{recursive:true}).filter(n=>n.endsWith('.rs')).map(n=>'rust-game/src/'+n)].sort();
-  assert.equal(files.length,123,'Review newly added Native compiler inputs explicitly');
-  assert.deepEqual(Object.keys(binding.files).sort(), files, 'Incomplete Native compiler binding');
-  for (const file of files) assert.equal(sha256(readFileSync(path.join(root,file))),binding.files[file],`Stale Native source: ${file}`);
+  const saved = JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi79/native-source-binding.json'),'utf8'));
+  const files = Object.keys(saved.files).sort();
+  assert.equal(files.length,123,'Exact historical Native79 compiler inputs');
+  assert.deepEqual(Object.keys(binding.files).sort(),files,'Incomplete historical Native binding');
+  for(const file of files) assert.equal(binding.files[file],saved.files[file],`Historical Native79 source: ${file}`);
 }
 function decode(rows,names,binding) {
   assert.deepEqual(rows.map(r=>r.file).sort(),names.map(n=>n+'.json'),'Incomplete Native input set');
