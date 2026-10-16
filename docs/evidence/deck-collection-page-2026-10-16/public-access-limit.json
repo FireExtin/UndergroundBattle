@@ -1,0 +1,11 @@
+{
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "browserDirect": "ERR_CERT_AUTHORITY_INVALID",
+  "browserConfiguredHttpsProxy": "ERR_CERT_AUTHORITY_INVALID",
+  "systemCaVerifiedHttpStatus": 403,
+  "systemCaHttpError": "Forbidden",
+  "productionImageRequestsMeasured": false,
+  "authorizationHeadersAdded": false,
+  "authBypassAttempted": false,
+  "next": "Measure approved 6268 local production build; report separately from live Site."
+}

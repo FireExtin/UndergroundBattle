@@ -1,0 +1,45 @@
+{
+  "phase": "WIP",
+  "files": [
+    {
+      "path": "checkpoint-summary.json",
+      "bytes": 1014,
+      "sha256": "a14263462237ef25786841687d215b0cac8f4f020ff88f751a5495afa9840efb"
+    },
+    {
+      "path": "local-baseline.json",
+      "bytes": 60664,
+      "sha256": "06ab5666ff93cc0028a9e492d5c99fd38be1b5f196d6ee36e0a3e8a8c9490730"
+    },
+    {
+      "path": "measure_home.py",
+      "bytes": 5271,
+      "sha256": "8fca56070af1f7128db0e48493edf0e86910e9c18a19dcda8fe21ccd1d227917"
+    },
+    {
+      "path": "measure_home_proxy.py",
+      "bytes": 5441,
+      "sha256": "b20b9e03ff4bd1749c6244da9e0a8355b9f644a1c1c3fa0bb02260ae5866e8c1"
+    },
+    {
+      "path": "measure_local_baseline.py",
+      "bytes": 5229,
+      "sha256": "aac601bc3a24c9c9d7b024d7d4ffa9ab75b3a62a24cde949359bdb7067bf72f6"
+    },
+    {
+      "path": "public-access-limit.json",
+      "bytes": 477,
+      "sha256": "f0be2e47045be8f7007f72ae638ec963ee61f43c8be748ffeecb61d59c8ad941"
+    },
+    {
+      "path": "public-baseline-direct-error.json",
+      "bytes": 788,
+      "sha256": "02a311c7d445f10582186145e0a40e3a509c851612f30546b79f213d13cf1aee"
+    },
+    {
+      "path": "public-baseline-proxy.json",
+      "bytes": 803,
+      "sha256": "ef814740e19e661c97a3fa1dff2c09f46e2597ea423f35023b3dbb8e17c28423"
+    }
+  ]
+}

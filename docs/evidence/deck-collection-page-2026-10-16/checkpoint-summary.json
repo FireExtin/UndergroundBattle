@@ -1,0 +1,28 @@
+{
+  "atUtc": "2026-10-16T01:36:06.336693+00:00",
+  "source": "6268aea7cb99a31943da1f585b9ab06b215177f6",
+  "branch": "codex/deck-collection-page-review-20261016",
+  "phase": "WIP baseline measured; UI implementation not started",
+  "productionSourceEdits": false,
+  "productionUiTestsRun": false,
+  "publicSiteMeasurementBlocked": true,
+  "localMeasurements": "cold no-scroll:133 mounted/0 card requests; directory visible:20 requests/9355534 encoded bytes/5 visible",
+  "gamePosts": 0,
+  "pageErrors": 0,
+  "localServerPort": 8090,
+  "localWranglerSession": 77559,
+  "localScreenshotsNotCommitted": [
+    {
+      "path": "local-baseline/local-home-cold-no-scroll.png",
+      "bytes": 511072,
+      "sha256": "691f9afcc1a8836e283f1af07cb10fc5836f1f50e40b6b9dcab0baf6197f81dc"
+    },
+    {
+      "path": "local-baseline/local-home-library-visible.png",
+      "bytes": 400775,
+      "sha256": "da96d0b239d5cebf97fb0a145e087b812e78d21239aec2817ebf85e4d20eaf2c"
+    }
+  ],
+  "mainPush": false,
+  "deployment": false
+}
