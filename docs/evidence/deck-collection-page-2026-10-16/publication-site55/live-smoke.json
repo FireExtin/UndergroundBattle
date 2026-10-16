@@ -1,0 +1,43 @@
+{
+  "atUtc": "2026-10-16T02:47:54.942759+00:00",
+  "classification": "deployed-public-site-access-blocked",
+  "deploymentSucceeded": true,
+  "versionNumber": 55,
+  "providerCommit": "70fa29f69c1f204f810d7274f44499e4f522ddce",
+  "deploymentId": "appgdep_6ad18f8d0e4c8191a85b5f0590db0c07",
+  "deployedUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "directBrowser": {
+    "passed": false,
+    "executedUiChecks": 0,
+    "failure": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"networkidle\"\n"
+  },
+  "configuredProxyBrowser": {
+    "atUtc": "2026-10-16T02:46:22.520322+00:00",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "normalConfiguredProxy": true,
+    "certificateVerification": true,
+    "ownerBypassUsed": false,
+    "accessPolicyChanged": false,
+    "checks": [],
+    "errorType": "Error",
+    "message": "Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"networkidle\"\n"
+  },
+  "systemCaHttps": {
+    "atUtc": "2026-10-16T02:45:17.359156+00:00",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "certificateVerification": true,
+    "normalConfiguredProxy": true,
+    "ownerBypassUsed": false,
+    "accessPolicyChanged": false,
+    "status": 403,
+    "reason": "Forbidden",
+    "bodyBytes": 17,
+    "bodySha256": "2938e9f1284180959e33ab1718d0793a72ff6e4cdb8108c34dcd14e69446de5c"
+  },
+  "gamePosts": 0,
+  "certificateVerificationDisabled": false,
+  "ownerBypassUsed": false,
+  "accessPolicyChanged": false,
+  "onlineGameplayVerified": false,
+  "notes": "The reused runner reports kind=local-production-only; this invocation used the deployed public URL. Navigation failed before any UI checks. Preserve its raw result and classify this attempt in this envelope."
+}

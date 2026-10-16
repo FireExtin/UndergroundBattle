@@ -1,0 +1,163 @@
+{
+  "canonicalCommit": "1900cdd7e07fe2fc64200000a11312a4df07d16d",
+  "reviewedSourceCommit": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "providerBefore": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89",
+  "priorBoundFilesVerified": 820,
+  "providerCleanBefore": true,
+  "changes": [
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/DeckAdmission.test.tsx",
+      "providerPath": "web/src/game/DeckAdmission.test.tsx",
+      "bytes": 6044,
+      "sha256": "8239c620d8e37a8bb088cd53a12f58dc81fb8f3e7b23495d62cd2d9f983684ff"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckBuilderGrid.test.tsx",
+      "providerPath": "web/src/game/DeckBuilderGrid.test.tsx",
+      "bytes": 30286,
+      "sha256": "f0878f35c656b527398f34d2e117788c0a03c013cad597dc779d10cba73502ef"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckCardFace.tsx",
+      "providerPath": "web/src/game/DeckCardFace.tsx",
+      "bytes": 1224,
+      "sha256": "7b4b4c0472e7509475d6c3a8f8030029848ed2f7d211c4db6490ead21aa3f8b6"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckCardPreview.tsx",
+      "providerPath": "web/src/game/DeckCardPreview.tsx",
+      "bytes": 7197,
+      "sha256": "f0f105f0e4fc882e8220553fffbac4ea5b2a2c4487c7c1007ee2f423c8071a24"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/DeckCardVisibility.test.tsx",
+      "providerPath": "web/src/game/DeckCardVisibility.test.tsx",
+      "bytes": 2110,
+      "sha256": "cb32abc0aa778edb5f49b912bf00677ff921d9a0f0c26815a16e444b63682ca6"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/DeckCollectionPage.test.tsx",
+      "providerPath": "web/src/game/DeckCollectionPage.test.tsx",
+      "bytes": 9069,
+      "sha256": "43589953ae036cdd549d95dbc9fd1fbda232120420cc7a5e60528036439b8d27"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckLibrary.test.tsx",
+      "providerPath": "web/src/game/DeckLibrary.test.tsx",
+      "bytes": 12474,
+      "sha256": "12835d9977068f91f759f0a8387ee51aed9a2dc23629a515119aa8f7972366a8"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckLibraryPanel.tsx",
+      "providerPath": "web/src/game/DeckLibraryPanel.tsx",
+      "bytes": 31857,
+      "sha256": "afe3dea4db00f75da49c5b4100a38c53f19477e463a9bf093ee4fdc675088909"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/GameApp.tsx",
+      "providerPath": "web/src/game/GameApp.tsx",
+      "bytes": 6721,
+      "sha256": "733c90db269897de0c58de262b54569666de512bcd1824ffbe82afaad1eaec4b"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/Lobby.test.tsx",
+      "providerPath": "web/src/game/Lobby.test.tsx",
+      "bytes": 5970,
+      "sha256": "5b9a2adfcaecaba2fd81544d174af16fcecd8ce2a4f69bc3c7f8b2de148faa6d"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/Lobby.tsx",
+      "providerPath": "web/src/game/Lobby.tsx",
+      "bytes": 13041,
+      "sha256": "76385b40d21d9d1515b88543069a848803b8f2a544fa9090eabdb3409edb64d1"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/PlayerSessions.test.tsx",
+      "providerPath": "web/src/game/PlayerSessions.test.tsx",
+      "bytes": 16786,
+      "sha256": "446d785f5ce294a088229b38c4fa3ab7bbfd9729620deda1ec97a3bf64cc30e3"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/V028DeckEntry.test.jsx",
+      "providerPath": "web/src/game/V028DeckEntry.test.jsx",
+      "bytes": 5063,
+      "sha256": "ea78d88a6a89b7448f6af6e608022dd3de0a9257ae5bf2bfed7bd99adea97267"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/WM023Integration.test.jsx",
+      "providerPath": "web/src/game/WM023Integration.test.jsx",
+      "bytes": 5162,
+      "sha256": "f5e1535abc931482e66aa7bd6edfc32cfb949d6370d3f95db9d88ad3b1cb3398"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/WM038Integration.test.jsx",
+      "providerPath": "web/src/game/WM038Integration.test.jsx",
+      "bytes": 6021,
+      "sha256": "3407907ce0a91caadf8bb4c2b409d29206c7067114493831ac5564195743e398"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/WM056Integration.test.jsx",
+      "providerPath": "web/src/game/WM056Integration.test.jsx",
+      "bytes": 4665,
+      "sha256": "9f4fd7b131d1392c08b7e67fe914dfe9e3122c53024cffb84d3856713eea62d1"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/deckLibrary.ts",
+      "providerPath": "web/src/game/deckLibrary.ts",
+      "bytes": 17198,
+      "sha256": "adade0e32f69f7899eaef60a858d57b8d0fe5efd18f845e025476fa00367df61"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/deckWorkspace.ts",
+      "providerPath": "web/src/game/deckWorkspace.ts",
+      "bytes": 3063,
+      "sha256": "a56e676a4ffe1517a30069c265ac5345c98795e3b09ec345f59724c3e31f67c7"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/factions.test.tsx",
+      "providerPath": "web/src/game/factions.test.tsx",
+      "bytes": 7215,
+      "sha256": "ed1979a98ee3189cc04eb7b20a5441dffe893f01958b9956e00dbffd8ad0ab4f"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/lobby-pages.css",
+      "providerPath": "web/src/game/lobby-pages.css",
+      "bytes": 6004,
+      "sha256": "66319b6823a4caaca1f6be38fbfabd5a8596ef89e3f9f1097379a471067bd2ef"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/lobbyNavigation.ts",
+      "providerPath": "web/src/game/lobbyNavigation.ts",
+      "bytes": 1015,
+      "sha256": "33150087b653e787f8a231dde7c2c3d1032a1c02dec643ea263fcfc3e78b803b"
+    },
+    {
+      "status": "A",
+      "canonicalPath": "web/src/game/useCardVisibility.ts",
+      "providerPath": "web/src/game/useCardVisibility.ts",
+      "bytes": 1590,
+      "sha256": "c422e81cc0169bdb21a435d438d1deb52387dc05b653f3ed5c996bd2cf6db34f"
+    }
+  ]
+}

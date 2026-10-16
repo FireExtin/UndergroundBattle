@@ -1,0 +1,70 @@
+{
+  "version": 55,
+  "reviewedSourceCommit": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "canonicalEvidenceCommit": "1900cdd7e07fe2fc64200000a11312a4df07d16d",
+  "providerCommit": "70fa29f69c1f204f810d7274f44499e4f522ddce",
+  "deploymentStatus": "succeeded",
+  "liveBrowserChecksPassed": 0,
+  "evidenceFiles": [
+    {
+      "path": "archive-identity.json",
+      "bytes": 403,
+      "sha256": "cede2c88a4a9dff4cb48dcb911777b37394f1d81f7941770ca27c91281367bb1"
+    },
+    {
+      "path": "live-browser-configured-proxy.json",
+      "bytes": 571,
+      "sha256": "c1d2ec14886cac5e829b1d6a433289e3adf089d275ebfee7d639ad5ccdfd7324"
+    },
+    {
+      "path": "live-browser-direct-result.json",
+      "bytes": 2327,
+      "sha256": "1340f48c8fde026da23ab12512ae4dc0d5a922fd7f28738637d2faabe9674d10"
+    },
+    {
+      "path": "live-https-transport.json",
+      "bytes": 405,
+      "sha256": "3840542e19bca7cc5d22c759d5f79cedd3bb44c9a553a80dbba3966c75e082d5"
+    },
+    {
+      "path": "live-smoke.json",
+      "bytes": 2178,
+      "sha256": "deece45eab0cfad6016b3b12ed40a304ed0ac2e127f8e39ddffbe0d6ae2e0084"
+    },
+    {
+      "path": "official-workflow.log.gz",
+      "bytes": 1272,
+      "sha256": "7bd7b3f4a111801e52c65c90ba30931d00a93bef5aeba74b7ab9d639709e58de"
+    },
+    {
+      "path": "postpublication-site.json",
+      "bytes": 358,
+      "sha256": "6718ccee10f4d2aef9a1476bfbb9bc5b20778fd83be180bc19981de6223cb7c4"
+    },
+    {
+      "path": "prepublication-artifacts.json.gz",
+      "bytes": 8200,
+      "sha256": "366f13a5f3d3e3c6e6962b64955fcddc5abfaabcec0c6cb4d1ca25b38b3553e2"
+    },
+    {
+      "path": "publication-audit.py",
+      "bytes": 7063,
+      "sha256": "13593b9d822cc5418ca61dd94819424cb59cb9e235738e77d513ff966894346b"
+    },
+    {
+      "path": "publication-result.json",
+      "bytes": 2114,
+      "sha256": "66cc9ff2a423784932246c01e55355c7949b1ea9141b2d507a302a37c9dad33c"
+    },
+    {
+      "path": "source-provider-binding.json.gz",
+      "bytes": 49722,
+      "sha256": "42911347b4edd2bb7e381b5077649f1580ecc8b1e7dccc3db1b6bc4e4568e68a"
+    },
+    {
+      "path": "source-sync-plan.json",
+      "bytes": 5924,
+      "sha256": "3241ac5ad82edd8b626959b99c5c3e0e779c16d9204448d1e0a1ca57e8cf9447"
+    }
+  ]
+}

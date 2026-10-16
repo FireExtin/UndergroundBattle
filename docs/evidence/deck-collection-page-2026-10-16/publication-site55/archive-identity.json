@@ -1,0 +1,12 @@
+{
+  "archive": "/workspace/deck-collection-ui-20261016/publication/hidden-world-collection-site.tar.gz",
+  "rawArchiveBytes": 68897849,
+  "rawArchiveSha256": "9ca91442b1d616b18dfe36365f92f606a9b80aaf5026f69043e90bd108c02948",
+  "fileCount": 166,
+  "hostingManifest": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "d1": "DB",
+    "r2": null
+  },
+  "excludedStateScanPassed": true
+}

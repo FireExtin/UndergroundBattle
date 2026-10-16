@@ -1,0 +1,51 @@
+{
+  "atUtc": "2026-10-16T02:45:47.086Z",
+  "reviewedSourceCommit": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "canonicalEvidenceCommit": "1900cdd7e07fe2fc64200000a11312a4df07d16d",
+  "opening": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "cec2bd64b847d47ac971a459dc8ef2d61aec9e89"
+  },
+  "packagedSource": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "70fa29f69c1f204f810d7274f44499e4f522ddce",
+    "archive": "/workspace/deck-collection-ui-20261016/publication/hidden-world-collection-site.tar.gz"
+  },
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_29996bca7b048191b3cc0562288c45c9",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 55,
+    "source": {
+      "commit_sha": "70fa29f69c1f204f810d7274f44499e4f522ddce"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000ad4881f592ce63649a49af02",
+      "content_hash": "sha256:522dd9d78be2349386f0a79d7d07edc43d0ea6bba360ea5b006f7d9b51b310f7",
+      "size_bytes": 96389120,
+      "file_count": 166
+    }
+  },
+  "deployment": {
+    "id": "appgdep_6ad18f8d0e4c8191a85b5f0590db0c07",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_29996bca7b048191b3cc0562288c45c9",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-16T02:44:42.519051+00:00"
+  },
+  "audiencePreserved": "public",
+  "autoPublishOnPush": false,
+  "ownerBypassUsed": false,
+  "sourceCredentialPersisted": false,
+  "deploymentStatusFinal": true
+}
