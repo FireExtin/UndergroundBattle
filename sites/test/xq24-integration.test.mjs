@@ -5,12 +5,12 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import * as abi from '../generated/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module:readFileSync('generated/hegemony_wasm_bg.wasm') });
+abi.initSync({ module:frozen77Bytes });
 const fixtures = JSON.parse(readFileSync(new URL('./fixtures/xq24-native-v077.json', import.meta.url)));
 for (const scenario of fixtures.scenarios) test(`XQ24 ${scenario.name}: Native journals, continuous D1 restore and original receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'xq24-d1-'));

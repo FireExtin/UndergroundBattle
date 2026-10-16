@@ -3,9 +3,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC130', 'be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f', { name: '深入研究', cost: 2, loyalty: ['白色'], color: '中立', kind: 'spell', magic: '', subtypes: ['事务', '研究'] }],

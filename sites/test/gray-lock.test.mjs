@@ -5,12 +5,12 @@ import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import * as abi from '../generated/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 const traces=JSON.parse(readFileSync(new URL('./fixtures/gray-lock-native-v077.json',import.meta.url),'utf8'));
-abi.initSync({module:readFileSync('generated/hegemony_wasm_bg.wasm')});
+abi.initSync({module:frozen77Bytes});
 for(const [caseIndex,trace] of traces.entries()) test(`gray lock52 Native/D1 ${caseIndex}: lock/chase, pause/reopen, real responses and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'gray-lock52-d1-'));
  const options=convertV4MiniflareOptions({name:'gray-lock52-test',resourcePersistencePath:persist,modules:[

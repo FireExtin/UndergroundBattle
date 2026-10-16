@@ -9,7 +9,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
-import * as abi from '../generated/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 
 for (const [label,file] of [['saved paused table','pause-resume-native-v077.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v077.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v077.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });

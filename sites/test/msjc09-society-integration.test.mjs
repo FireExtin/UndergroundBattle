@@ -9,7 +9,7 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
-import * as abi from '../generated/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 
 test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
   abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });

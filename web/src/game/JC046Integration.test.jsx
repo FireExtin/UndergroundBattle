@@ -4,11 +4,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { actionForRoom } from './api';
 import { Table } from './Table';
 
-const bytes = readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));
+const bytes = frozen77Bytes;
 abi.initSync({ module: bytes });
 const catalog = JSON.parse(abi.catalog());
 const fixture = JSON.parse(readFileSync(resolve('src/game/jc046Native77.fixture.json'), 'utf8'));

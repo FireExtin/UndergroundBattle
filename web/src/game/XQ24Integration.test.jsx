@@ -3,14 +3,14 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { actionForRoom } from './api';
 import { ChoicePanel } from './ChoicePanel';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { groupObjectActions } from './objectActions';
 
-abi.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+abi.initSync({module:frozen77Bytes});
 const catalog=JSON.parse(abi.catalog()), definitions=new Map(catalog.cards.map(c=>[c.id,c]));
 const fixtures=JSON.parse(readFileSync(resolve('src/game/xq24Native77.fixture.json')));
 

@@ -1017,7 +1017,9 @@ impl Game {
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
         if event == Event::ConfrontationStart {
             let declaration = Declaration { actor, source, ability: crate::mobility::ability() };
-            if self.validated_mobility_declaration(&declaration).is_ok()
+            if self.validate_mobility_source(actor, &declaration.source).is_ok()
+                && !self.turn_ability_usage.iter().any(|u| u.ability_key == "mobility"
+                    && u.source_instance == declaration.source.card.id && u.turn == self.turn)
                 && !self.effects.iter().any(|e| matches!(e, Effect::Declare { declaration: d }
                     if d.ability.key == "mobility" && d.source.card.id == declaration.source.card.id))
                 && !self.stack.iter().any(|s| s.frame.as_ref().is_some_and(|f|
@@ -1025,6 +1027,10 @@ impl Game {
                 && !self.pending.as_ref().is_some_and(|p| matches!(&p.resolution,
                     ChoiceResolution::Declare { declaration: d, .. }
                     if d.ability.key == "mobility" && d.source.card.id == declaration.source.card.id)) {
+                self.turn_ability_usage.push(TurnAbilityUsage {
+                    source_instance: declaration.source.card.id.clone(), ability_key: "mobility".into(),
+                    turn: self.turn, uses: 1,
+                });
                 self.effects.push_back(Effect::Declare { declaration });
             }
             return;
@@ -1386,6 +1392,7 @@ impl Game {
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
+        self.validate_bq035_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
         self.validate_gray_lock_frame(&frame)?;
         self.validate_jz22_frame(&frame)?;

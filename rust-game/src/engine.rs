@@ -597,6 +597,8 @@ impl Game {
         next.apply_inner(seat, action)?;
         next.settle_deaths();
         next.drive()?;
+        next.validate_mobility_state()?;
+        next.validate_bq035_state()?;
         *self = next;
         Ok(())
     }
@@ -670,6 +672,7 @@ impl Game {
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
+                crate::bq035::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if d.kind != "character" {
                     return Err("只有角色可派遣".into());
@@ -739,6 +742,7 @@ impl Game {
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
+                crate::bq035::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
@@ -1058,6 +1062,7 @@ impl Game {
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
+        self.validate_bq035_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)
@@ -2136,6 +2141,10 @@ impl Game {
             },
             time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
             current_mobility: (!asset && !c.face_down && region.is_some() && self.has_mobility(c)).then_some(true),
+            current_mobility_source: if !asset && !c.face_down && region.is_some()
+                && !crate::mobility::printed(&c.definition) {
+                self.bq035_mobility_witness(&c.id).map(|w| w.knight.id)
+            } else { None },
             current_combat_glory: (!asset && !c.face_down && region.is_some()
                 && self.has_combat_glory(c)).then_some(true),
             current_kill: (!asset
@@ -2835,7 +2844,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 143);
+        assert_eq!(c.cards.len(), 144);
         let active = c
             .cards
             .iter()

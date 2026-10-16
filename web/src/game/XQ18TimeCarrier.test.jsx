@@ -3,13 +3,13 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { actionForRoom } from './api';
 import { ChoicePanel } from './ChoicePanel';
 import { Table } from './Table';
 import native from './xq18Native77Test.fixture.json';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 const definitions = new Map(catalog.cards.map(card => [card.id, card]));
 

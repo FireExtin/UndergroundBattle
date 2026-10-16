@@ -3,12 +3,12 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { CardTile, visibleCard } from './CardTile';
 import { Table } from './Table';
 import { testView } from './testFixtures';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog=JSON.parse(kernel.catalog());
 for(const[id,sha,fields]of[
  ['JZ58','4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95',{name:'噩梦残像',cost:0,loyalty:['紫色'],color:'紫',magic:'星辰',kind:'character',subtypes:['梦魔'],unique:false,defense:1,permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:0,combat:0,influence:1},keywords:['灵体'],ruleTraits:{spirit:true},abilities:[{key:'reveal-repress',costs:[],triggered:true,timing:'fast'}]}],

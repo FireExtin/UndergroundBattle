@@ -86,6 +86,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_mobility: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_mobility_source: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_kill: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_retreat: Option<bool>,
@@ -843,6 +845,7 @@ impl Game {
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
         game.validate_mobility_state()?;
+        game.validate_bq035_state()?;
         game.validate_vacant_regions()?;
         game.validate_win_contexts()?;
         game.validate_sealed_cards()?;

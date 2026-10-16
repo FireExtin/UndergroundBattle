@@ -4,7 +4,7 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import * as wasm from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as wasm, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import native from './jc050Native77Test.fixture.json';
 import quote from './jc050Native77QuoteTest.fixture.json';
 import previous from './jz22Native54Test.fixture.json';
@@ -12,7 +12,7 @@ import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
 import {createDeckDraft,validateDeckDraft} from './deckLibrary';
-wasm.initSync({module:readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
+wasm.initSync({module:frozen77Bytes});
 const catalog=JSON.parse(wasm.catalog()),definition=catalog.cards.find(c=>c.id==='JC050');
 afterEach(cleanup);
 it('pins the complete original red disaster and opens its real scan',()=>{

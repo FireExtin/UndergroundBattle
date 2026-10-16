@@ -3,11 +3,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { CardTile } from './CardTile';
 
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JZ74', '3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085', { name: '意外事故', cost: 1, loyalty: [], subtypes: ['突发状况'], abilities: [{ key: 'repress-draw', timing: 'fast', costs: [], triggered: false }] }],

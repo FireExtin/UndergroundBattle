@@ -7,6 +7,9 @@ coverage/
 /target/
 /review-artifacts/
 /rust-game-wasm/pkg/
+/rust-game-wasm/frozen/abi77/*.js
+/rust-game-wasm/frozen/abi77/*.wasm*
+/rust-game-wasm/frozen/abi77/package.json
 /sites/.wrangler/
 /sites/generated/
 /sites/public/

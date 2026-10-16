@@ -9,10 +9,10 @@ const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest
 const spec=json('docs/factions/card-specifications.json').cards.WM023,pool=json('rust-game/data/cards.json');
 test('WM023 preserves all 134 definitions and metadata from cumulative a967e13',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
-  assert.equal(cards.length,143);assert.equal(new Set(cards.map(c=>c.id)).size,143);
-  assert.equal(digest(cards.filter(c=>!['WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'f96f90e522616cb6c44ac92683567b5725f4389781f03436b82d4079f0603ca6');
+  assert.equal(cards.length,144);assert.equal(new Set(cards.map(c=>c.id)).size,144);
+  assert.equal(digest(cards.filter(bq035 => bq035.id !== "BQ035").filter(c=>!['WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'f96f90e522616cb6c44ac92683567b5725f4389781f03436b82d4079f0603ca6');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');assert.equal(cardPoolVersion,'limited-v2.70-jc046-mandatory-sacrifice-candidate');
+  assert.equal(engineVersion,'rust-v0.2.78-bq035-vampire-mobility-candidate');assert.equal(cardPoolVersion,'limited-v2.71-bq035-vampire-mobility-candidate');
 });
 test('WM023 fields match its complete pinned original with no unresolved source question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'5f5f54a025623911fd500fa6ed44e269e87bbda1e535e6d70aade46315aa7207');
@@ -25,5 +25,5 @@ test('WM023 fields match its complete pinned original with no unresolved source 
 });
 test('WM023 public bytes preserve the original and all admitted scans validate',()=>{
   const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
-  assert.deepEqual(read('web/public/cards/WM023.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,143);assert.ok(r.checkedIds.includes('WM023'));
+  assert.deepEqual(read('web/public/cards/WM023.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,144);assert.ok(r.checkedIds.includes('WM023'));
 });

@@ -3,11 +3,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { testView, testCard } from './testFixtures';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
  ['JC103','8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63',{name:'丧失理智的画家',cost:3,loyalty:['紫色'],color:'紫',kind:'character',subtypes:['人类','艺术家'],magic:'',unique:false,defense:1,permanentIcons:{investigation:1,combat:0,influence:1},temporaryIcons:{investigation:0,combat:1,influence:0}}],

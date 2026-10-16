@@ -3,13 +3,13 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { ChoicePanel } from './ChoicePanel';
 import { groupObjectActions } from './objectActions';
 import { testView, testCard, testCatalog } from './testFixtures';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC114', '2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7', { name: '好奇的黑客', subtitle: '无知而无畏', cost: 2, loyalty: [], color: '中立', kind: 'character', magic: '', unique: false, subtypes: ['人类', '工程师'], defense: 1, temporaryIcons: { investigation: 1, combat: 0, influence: 0 } }],

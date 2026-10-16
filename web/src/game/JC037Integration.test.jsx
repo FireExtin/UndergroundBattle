@@ -4,11 +4,11 @@ import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {act,fireEvent,render,screen,within} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import * as abi from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import {Table} from './Table';
 import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
-const bytes=readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm'));abi.initSync({module:bytes});
+const bytes=frozen77Bytes;abi.initSync({module:bytes});
 const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native77.fixture.json'))),catalog=JSON.parse(abi.catalog());
 it('binds the complete JC037 face and actual source-built ABI77',()=>{
  expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');

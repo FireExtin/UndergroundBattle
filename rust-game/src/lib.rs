@@ -1,5 +1,7 @@
 mod attachment;
 mod bq035;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bq035_tests;
 mod mobility;
 mod bq030_preparation;
 mod bq030;

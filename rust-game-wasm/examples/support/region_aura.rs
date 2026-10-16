@@ -242,6 +242,7 @@ fn boundary(kind: &str) -> Value {
                 actor: 0,
                 source: SourceSnapshot {
                     observed_death: None,
+                    observed_mobility_grant: None,
                     source_region_instance: None,
                     card: board(&pre, &friend).unwrap().clone(),
                     region: Some(0),

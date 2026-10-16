@@ -3,10 +3,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { CardTile, visibleCard } from './CardTile';
 import { ReadModal } from './ReadModal';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC116', '5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16', { cost: 1, loyalty: [], magic: '', subtypes: ['装备', '武器'], ruleTraits: { retreat: true } }],

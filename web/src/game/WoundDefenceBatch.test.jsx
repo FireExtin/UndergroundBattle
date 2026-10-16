@@ -3,12 +3,12 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import * as kernel from '../../../rust-game-wasm/pkg/hegemony_wasm.js';
+import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { CardTile } from './CardTile';
 import { Table } from './Table';
 import { testView, testCard } from './testFixtures';
-kernel.initSync({ module: readFileSync(resolve('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')) });
+kernel.initSync({ module: frozen77Bytes });
 const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
  ['JZ59','b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3',{name:'骇人畸变体',cost:2,loyalty:['紫色'],color:'紫',kind:'character',subtypes:['人类','宿主'],magic:'',unique:false,defense:1,permanentIcons:{investigation:0,combat:1,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0},abilities:[{key:'death-local-wound',timing:'fast',costs:[],triggered:true}]}],
