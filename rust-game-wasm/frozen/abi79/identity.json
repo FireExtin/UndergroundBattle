@@ -1,0 +1,14 @@
+{
+  "purpose": "Exact immutable dependency for published v61 ABI79 rooms; no migration, rebuild or substitute.",
+  "providerSource": "906a1b4c54e43eff5dd722c275d55ad567b8c20c",
+  "reviewedSource": "e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
+    "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate"
+  },
+  "wasmBytes": 3005332,
+  "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "816390c4997a73785c23db506e9a69558aef9c5ecdb34999e0d697b4273f41d1"
+}

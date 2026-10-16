@@ -778,5 +778,10 @@
     "url": "/cards/JZ46.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
     "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
+  },
+  "WM062": {
+    "url": "/cards/WM062.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg",
+    "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
   }
 }

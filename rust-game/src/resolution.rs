@@ -17,13 +17,22 @@ impl Game {
                 let actor = c.controller;
                 let source = self.source_snapshot(&c, Some(region));
                 self.regions[region].cards.push(c);
-                self.emit_event(actor, source, Event::EnterRegion);
+                // A hidden card has no printed character abilities. Moving it
+                // must not announce its front or emit that front's entry trigger.
+                if !source.card.face_down {
+                    self.emit_event(actor, source, Event::EnterRegion);
+                }
             }
         }
     }
     // Shared with XQ24; preserve the existing single-character Hide cleanup,
     // identity reset, orientation and region rather than creating a second rule.
     pub(crate) fn hide_in_place(&mut self, id: &str) -> bool {
+        self.hide_in_place_successor(id).is_some()
+    }
+    // Return the actual newly allocated object for effects that explicitly
+    // continue to refer to the card after it has become a new hidden entity.
+    pub(crate) fn hide_in_place_successor(&mut self, id: &str) -> Option<Card> {
         let controller = self.controller_after_reset(id);
         if let Some((r, c)) = self.leave_board(id) {
             let mut c = self.fresh(c);
@@ -32,10 +41,10 @@ impl Game {
             c.damage = 0;
             c.wounds = 0;
             c.shield = 0;
-            self.regions[r].cards.push(c);
-            return true;
+            self.regions[r].cards.push(c.clone());
+            return Some(c);
         }
-        false
+        None
     }
     fn attachment_host_matches(
         &self,
@@ -1403,6 +1412,7 @@ impl Game {
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
         self.validate_wm056_frame(&frame)?;
+        self.validate_wm062_frame(&frame)?;
         self.validate_wm023_frame(&frame)?;
         self.validate_xq25_frame(&frame)?;
         self.validate_jz46_frame(&frame)?;
@@ -1431,6 +1441,7 @@ impl Game {
                 Op::WM038AddOneTimeToOriginalHost => self.wm038_add_time(&frame),
                 Op::WM023PutUniqueMageOrVampireFromHand => return self.wm023_start(frame),
                 Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),
+                Op::WM062HideCriminalThenOptionalAdjacentMove => return self.wm062_start(frame),
                 Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
                 Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
                 Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
@@ -2234,6 +2245,9 @@ impl Game {
     ) -> RuleResult<()> {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::WM062AdjacentMove { before, hidden, baseline, region, region_instance, destinations } => {
+                self.wm062_complete(&frame, chooser, &a, &selected, &before, &hidden, baseline.as_ref(), region, &region_instance, &destinations)?;
+            }
             FrameChoice::WM023HandEntry => self.wm023_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ18TimeCarrier { target_instance } => {
                 self.xq18_remove_from_carrier(&frame, chooser, &target_instance, &selected)?;

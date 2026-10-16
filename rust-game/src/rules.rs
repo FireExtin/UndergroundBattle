@@ -224,6 +224,7 @@ pub enum Op {
     WM038AddOneTimeToOriginalHost,
     WM023PutUniqueMageOrVampireFromHand,
     WM056MoveOneAdjacentInfluence,
+    WM062HideCriminalThenOptionalAdjacentMove,
     XQ18AddOneTimeToTarget,
     XQ18ChooseTimeCarrier,
     JZ30AddOneTimeToOriginalSource,
@@ -536,6 +537,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
     crate::wm056::validate_ability(card_id, ability)?;
+    crate::wm062::validate_ability(card_id, ability)?;
     crate::wm023::validate_ability(card_id, ability)?;
     crate::xq25::validate_ability(card_id, ability)?;
     crate::jz46::validate_ability(card_id, ability)?;
@@ -1269,6 +1271,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
         crate::wm056::validate_definition(card_id, definition)?;
+        crate::wm062::validate_definition(card_id, definition)?;
         crate::wm023::validate_definition(card_id, definition)?;
         crate::xq25::validate_definition(card_id, definition)?;
         crate::jz46::validate_definition(card_id, definition)?;
@@ -1897,6 +1900,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ46".into(), crate::jz46::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());
+        m.insert("WM062".into(), crate::wm062::definition());
         for id in ["XQ18", "JZ30"] {
             m.insert(id.into(), crate::red_time::definition(id).unwrap());
         }

@@ -609,6 +609,14 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM062AdjacentMove {
+        before: Card,
+        hidden: Card,
+        baseline: Option<ControlBaseline>,
+        region: usize,
+        region_instance: String,
+        destinations: Vec<(usize, String)>,
+    },
     WM023HandEntry,
     WM056InfluenceOrigin { regions: Vec<(usize, String)> },
     XQ18TimeCarrier { target_instance: String },
@@ -863,6 +871,7 @@ impl Game {
         game.validate_blue_expansion_state()?;
         game.validate_black_expansion_state()?;
         game.validate_wm056_state()?;
+        game.validate_wm062_state()?;
         game.validate_wm023_state()?;
         game.validate_xq25_state()?;
         game.validate_jz46_state()?;

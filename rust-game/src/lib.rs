@@ -9,6 +9,9 @@ mod red_time;
 mod blue_expansion;
 mod black_expansion;
 mod wm056;
+mod wm062;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod wm062_tests;
 mod wm023;
 mod xq25;
 mod jz46;

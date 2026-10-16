@@ -199,6 +199,12 @@
       "image": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg",
       "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
       "verified": true
+    },
+    {
+      "id": "WM062",
+      "image": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg",
+      "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335",
+      "verified": true
     }
   ],
   "supplementalRules": [

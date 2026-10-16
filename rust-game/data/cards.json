@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
-  "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate",
+  "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+  "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5649,6 +5649,43 @@
         "record": "JZ46",
         "image": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
         "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
+      }
+    },
+    {
+      "id": "WM062",
+      "name": "跑路",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "快速行动 令目标本方罪犯角色潜伏，然后你可以将其移动到一个相邻地区上。",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM062",
+        "image": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg",
+        "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
       }
     }
   ],

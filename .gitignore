@@ -10,6 +10,9 @@ coverage/
 /rust-game-wasm/frozen/abi77/*.js
 /rust-game-wasm/frozen/abi77/*.wasm*
 /rust-game-wasm/frozen/abi77/package.json
+/rust-game-wasm/frozen/abi79/*.js
+/rust-game-wasm/frozen/abi79/*.wasm*
+/rust-game-wasm/frozen/abi79/package.json
 /sites/.wrangler/
 /sites/generated/
 /sites/public/
