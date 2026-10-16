@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
-  "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
+  "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5614,6 +5614,41 @@
         "record": "BQ035",
         "image": "resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg",
         "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
+      }
+    },
+    {
+      "id": "JZ46",
+      "name": "狴犴铜雕",
+      "kind": "attachment",
+      "subtypes": [
+        "雕像"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "神圣",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标地区\n行动 横置：检视本地区的目标暗藏者，若该暗藏者的正面是罪犯类别，则将其横置，并在其上放置一个锁定标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ46",
+        "image": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg",
+        "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
       }
     }
   ],

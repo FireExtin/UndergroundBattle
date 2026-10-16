@@ -424,10 +424,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095" | "BQ035") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095" | "BQ035" | "JZ46") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -691,7 +691,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087") || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -1405,6 +1405,7 @@ impl Game {
         self.validate_wm056_frame(&frame)?;
         self.validate_wm023_frame(&frame)?;
         self.validate_xq25_frame(&frame)?;
+        self.validate_jz46_frame(&frame)?;
         self.validate_wm038_frame(&frame)?;
         self.validate_jz35_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
@@ -1437,6 +1438,7 @@ impl Game {
                     if self.jz30_forecast_frozen_time(&frame)? { return Ok(()); }
                 }
                 Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
+                Op::JZ46InspectHiddenCriminal => return self.jz46_inspect_start(frame),
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
                 Op::JC087HideTargetThenInfluence => self.jc087_hide_then_influence(&frame)?,
@@ -2235,6 +2237,9 @@ impl Game {
             FrameChoice::WM023HandEntry => self.wm023_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ18TimeCarrier { target_instance } => {
                 self.xq18_remove_from_carrier(&frame, chooser, &target_instance, &selected)?;
+            }
+            FrameChoice::JZ46InspectHidden { inspected } => {
+                self.jz46_inspect_complete(&frame, inspected, chooser, &a, &selected)?;
             }
             FrameChoice::BQ028InspectAttachments { seat, inspected } => {
                 self.bq028_inspect_complete(&frame, seat, inspected, &selected)?;

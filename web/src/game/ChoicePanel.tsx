@@ -82,7 +82,8 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     || (choice.kind === 'xq48_passer_search' && max <= 3));
   const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
     && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
-  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero;
+  const privateInspectionZero = choice.kind === 'jz46-hidden-inspect' && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
+  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
   const complete = (current: ChoiceDraft) => damage ? Object.values(current.allocations).reduce((total, n) => total + n, 0) === amount
     : ordering ? current.top.length + current.bottom.length === choice.options.length
       : current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline || zeroConfirmation);
@@ -165,7 +166,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
       <p className="hg-choice-filter-summary" role="status" aria-label="选项筛选结果" aria-atomic="true">显示 {visibleOptions.length} / {choice.options.length} 项{hiddenSelected > 0 && <strong>另有 {hiddenSelected} 项已选不在当前结果中</strong>}</p>
     </div>}
     <div ref={optionsRegion} className="hg-choice-body" tabIndex={0} role="region" aria-label="选择选项，可滚动查看" aria-describedby={scrollHintId}>
-    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'bq028-hand-inspect' ? '你检视的手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
+    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'jz46-hidden-inspect' ? '你检视的暗藏者' : choice.kind === 'bq028-hand-inspect' ? '你检视的手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
       <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />
       {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${viewerId ? visibleCard(card, viewerId).name : card.name}`}>放大文字与图标 ↗</button>}
     </div>)}</div></div>}

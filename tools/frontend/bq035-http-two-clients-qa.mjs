@@ -29,7 +29,7 @@ const retainedIdentity = JSON.parse(await readFile(join(repo, 'rust-game-wasm/fr
 const wasmModules = await Promise.all((await readdir(worker)).filter(file => file.endsWith('.wasm')).map(async file => {
   const bytes = await readFile(join(worker, file)); return { file, bytes: bytes.length, sha256: sha256(bytes) };
 }));
-assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [fixture.wasmSha256, retainedIdentity.wasmSha256].sort());
+assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [sha256(await readFile(join(repo, 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))), fixture.wasmSha256, retainedIdentity.wasmSha256].sort());
 const persist = await mkdtemp(join(process.env.TMPDIR, 'bq035-p2-real-http-'));
 const options = { name: 'bq035-p2-real-http', rootPath: sites, modulesRoot: worker, host: '127.0.0.1', port: 0,
   cf: false, compatibilityDate: '2026-10-02', resourcePersistencePath: persist,

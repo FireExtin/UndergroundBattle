@@ -11,6 +11,9 @@ mod black_expansion;
 mod wm056;
 mod wm023;
 mod xq25;
+mod jz46;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jz46_tests;
 mod wm038;
 mod jz35;
 mod jc052;

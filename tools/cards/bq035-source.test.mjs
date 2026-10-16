@@ -7,12 +7,12 @@ const root=new URL('../../',import.meta.url),read=p=>readFileSync(new URL(p,root
 const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
 const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
 const pool=json('rust-game/data/cards.json'),specs=json('docs/factions/card-specifications.json').cards,spec=specs.BQ035;
-test('BQ035 adds exactly one definition and preserves every prior 143 card and all deck/world metadata',()=>{
+test('BQ035 and subsequent JZ46 preserve every prior 143 card and all deck/world metadata',()=>{
   const {cards,engineVersion,cardPoolVersion,...metadata}=pool;
-  assert.equal(cards.length,144);assert.equal(new Set(cards.map(c=>c.id)).size,144);
-  assert.equal(digest(cards.filter(c=>c.id!=='BQ035')),'927fff6b3556ca40c0bacadfb9ebc83aa6e4b01f18540f7c6f678d4731ef43e9');
+  assert.equal(cards.length,145);assert.equal(new Set(cards.map(c=>c.id)).size,145);
+  assert.equal(digest(cards.filter(c=>!['BQ035','JZ46'].includes(c.id))),'927fff6b3556ca40c0bacadfb9ebc83aa6e4b01f18540f7c6f678d4731ef43e9');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.78-bq035-vampire-mobility-candidate');assert.equal(cardPoolVersion,'limited-v2.71-bq035-vampire-mobility-candidate');
+  assert.equal(engineVersion,'rust-v0.2.79-jz46-private-criminal-inspection-candidate');assert.equal(cardPoolVersion,'limited-v2.72-jz46-private-criminal-inspection-candidate');
 });
 test('BQ035 corrects only its pinned blue loyalty and keeps source verification distinct from game acceptance',()=>{
   const {BQ035,...others}=specs;
@@ -32,5 +32,5 @@ test('BQ035 original art and all existing public scans remain exact pinned bytes
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
   assert.deepEqual(read('web/public/cards/BQ035.jpg'),original);
-  const r=validateAdmittedScans();assert.equal(r.checkedCards,144);assert.equal(r.manifestEntries,155);
+  const r=validateAdmittedScans();assert.equal(r.checkedCards,145);assert.equal(r.manifestEntries,156);
 });

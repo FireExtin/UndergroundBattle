@@ -1,13 +1,14 @@
-// This loader is exclusively the freshly built ABI78, never a historical oracle.
+// Historical exact v60 ABI78 oracle. Fresh candidate coverage uses current79-kernel.
+// Historical ABI78 observations retain their exact original runtime.
 import { createRequire } from 'node:module';
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-const moduleUrl = import.meta.url;
-export const moduleBytes = readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm', moduleUrl));
-export const kernel = createRequire(import.meta.url)(fileURLToPath(new URL('../pkg/hegemony_wasm.js', moduleUrl)));
+import { frozenAbi78 } from '../../tools/frozen-kernels.mjs';
+const retained = frozenAbi78();
+export const moduleBytes = retained.wasm;
+// Let Node load the verified ESM binding directly. Vitest's module runner must
+// not reinterpret this external file URL as a Vite virtual module.
+export const kernel = createRequire(import.meta.url)(retained.jsPath);
 kernel.initSync({ module: moduleBytes });
 export const catalog = JSON.parse(kernel.catalog());
-if (catalog.engineVersion !== 'rust-v0.2.78-bq035-vampire-mobility-candidate'
-  || catalog.cardPoolVersion !== 'limited-v2.71-bq035-vampire-mobility-candidate' || catalog.cards.length !== 144) {
-  throw Error('Build the current ABI78 before running BQ035 tests; a retained ABI77 cannot stand in for this candidate');
+for (const key of ['rulesVersion', 'cardPoolVersion', 'engineVersion']) {
+  if (catalog[key] !== retained.identity.catalogIdentity[key]) throw Error('Frozen ABI78 catalog identity mismatch');
 }

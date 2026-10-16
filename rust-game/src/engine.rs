@@ -599,6 +599,7 @@ impl Game {
         next.drive()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
+        next.validate_jz46_state()?;
         *self = next;
         Ok(())
     }
@@ -788,6 +789,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::xq25::validate_play_action(&c.definition, &a)?;
+                crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm038::validate_play_action(&c.definition, &a)?;
                 crate::jz35::validate_play_action(&c.definition, &a)?;
                 if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
@@ -826,6 +828,7 @@ impl Game {
                 if c.controller != seat || c.face_down {
                     return Err("只能发动自己操控的正面角色能力".into());
                 }
+                crate::jz46::validate_action(&c.definition, &a)?;
                 let source = self.source_snapshot(c, region);
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
@@ -1063,6 +1066,7 @@ impl Game {
         self.validate_jc046_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
         self.validate_bq035_frame(&frame)?;
+        self.validate_jz46_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)
@@ -1932,6 +1936,7 @@ impl Game {
         self.validate_jc095_state()?;
         self.validate_red_time_state()?;
         self.validate_blue_expansion_state()?;
+        self.validate_jz46_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm023_state()?;
@@ -2497,6 +2502,8 @@ impl Game {
                 .map(|p| {
                     if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
                         self.blue_expansion_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ46InspectHidden { .. }, .. }) {
+                        self.jz46_private_choice(p, seat)
                     } else {
                         self.blue_private_choice(p, seat)
                     }
@@ -2808,7 +2815,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 144);
+        assert_eq!(c.cards.len(), 145);
         let active = c
             .cards
             .iter()
@@ -2823,7 +2830,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 134);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 135);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

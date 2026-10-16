@@ -613,6 +613,7 @@ pub enum FrameChoice {
     WM056InfluenceOrigin { regions: Vec<(usize, String)> },
     XQ18TimeCarrier { target_instance: String },
     BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
+    JZ46InspectHidden { inspected: Card },
     BQ078CorpseReturn,
     XQ44DreamSealSearch,
     JZ02SpaceSealSearch,
@@ -864,6 +865,7 @@ impl Game {
         game.validate_wm056_state()?;
         game.validate_wm023_state()?;
         game.validate_xq25_state()?;
+        game.validate_jz46_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_jc052_state()?;

@@ -1,0 +1,47 @@
+{
+  "recordedAt": "2026-10-16T18:07:40.479890+00:00",
+  "status": "WIP-not-independently-reviewed",
+  "baseCommit": "0c98068f6b1d35ecef6ee512f2a6773ab7b5cdba",
+  "mainUnchanged": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "publishedSiteUnchanged": 60,
+  "sourceClearlyRead": true,
+  "newUserRulingNeeded": false,
+  "activeOtherEditorsObserved": false,
+  "sourceTestsLastComplete": {
+    "passed": 47,
+    "failed": 0,
+    "sourceDataUnchangedAfterRun": true
+  },
+  "priorNativeFocused": {
+    "passed": 4,
+    "failed": 0,
+    "beforeLatestHardeningAndAddedScenarios": true
+  },
+  "fullNativeFirst": {
+    "libPassed": 1130,
+    "libFailed": 8,
+    "integrationRun": false,
+    "beforeLatestHardeningAndScenarioCorrections": true
+  },
+  "candidate79WasmBuilt": false,
+  "wasmWorkerFrontendBrowserFinal": "not run yet",
+  "existingCompiledPkgAtCheckpoint": "published ABI78 (never called candidate79 validation)",
+  "newCardOnly": "JZ46",
+  "runtimeCount": 145,
+  "frozen77": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "frozen78": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+  "actionsNotDispatched": true,
+  "publications": 0,
+  "worktreesCreated": 0,
+  "codeGenerationArtifactsExcluded": true,
+  "evidenceLogSha256": {
+    "source-second.log.gz": {
+      "uncompressedSha256": "8f1ca7a16571f7ca40dac9fea6296df1620257ce279057817eab8a5cc6f742f6",
+      "gzipSha256": "d1bc0c3d3d0648346448bbc12e18b935bc5f70665f12a22fd34f1063fc467fb6"
+    },
+    "native-jz46-fourth.log.gz": {
+      "uncompressedSha256": "6f0214128857d2c19882b25a33b8b03ed9ac1732be5a013c0679ee93f52f18bc",
+      "gzipSha256": "4ee1a09ea169af9d758e37709cd25368278f880c6d60feeee6443d8ebfd9ee5f"
+    }
+  }
+}

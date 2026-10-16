@@ -1,0 +1,14 @@
+{
+  "purpose": "Exact immutable dependency for already-published v60 ABI78 rooms; never rebuild or migrate old rooms.",
+  "providerSource": "6d1a1fed34b5abad208488f09055554269e3df10",
+  "reviewedSource": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
+    "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate"
+  },
+  "wasmBytes": 2976205,
+  "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e"
+}

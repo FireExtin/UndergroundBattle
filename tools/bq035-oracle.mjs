@@ -31,15 +31,12 @@ export const bq035Identity = {
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 export function assertSourceBindings(binding) {
   assert.equal(binding.algorithm, 'sha256');
-  const expected = [
-    'Cargo.lock', 'Cargo.toml', 'rust-game-wasm/Cargo.toml', 'rust-game-wasm/build.sh',
-    'rust-game-wasm/src/lib.rs', 'rust-game/Cargo.toml', 'rust-game/data/cards.json',
-    ...readdirSync(path.join(repository, 'rust-game/src'), { recursive: true })
-      .filter(name => name.endsWith('.rs')).map(name => `rust-game/src/${name}`),
-  ].sort();
-  assert.equal(expected.length, 121, 'Update the explicit Native binding only after reviewing added source files');
+  // These are frozen v60 Native78 observations, not fresh candidate79 tests.
+  const saved = JSON.parse(readFileSync(path.join(repository, 'rust-game-wasm/frozen/abi78/native-source-binding.json'), 'utf8'));
+  const expected = Object.keys(saved.files).sort();
+  assert.equal(expected.length, 121);
   assert.deepEqual(Object.keys(binding.files).sort(), expected, 'Incomplete Native source binding');
-  for (const name of expected) assert.equal(sha256(readFileSync(path.join(repository, name))), binding.files[name], `Stale Native source: ${name}`);
+  for (const name of expected) assert.equal(binding.files[name], saved.files[name], `Stale Native source: ${name}`);
 }
 function decodeInputs(entries, names, kind, binding) {
   assert.deepEqual(entries.map(entry => entry.file).sort(), names.map(name => `${name}.json`), `Incomplete ${kind} input set`);

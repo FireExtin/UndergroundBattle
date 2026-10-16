@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI78 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI79 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -62,19 +62,21 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current78 and retained77 WASM', () => {
-  assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
+test('production Worker contains exactly current79 and retained78/77 WASM', () => {
+  assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'abi78', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
   assert.deepEqual(readdirSync('generated/abi77').sort(), ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
   const files = readdirSync('dist/server').filter(name => name.endsWith('.wasm'));
   const retained = readFileSync('generated/abi77/hegemony_wasm_bg.wasm');
-  assert.equal(files.length, 2);
+  const retained78 = readFileSync('generated/abi78/hegemony_wasm_bg.wasm');
+  assert.equal(files.length, 3);
   const emitted = files.map(name => readFileSync('dist/server/' + name));
   assert.equal(emitted.filter(bytes => bytes.equals(currentBytes)).length, 1);
   assert.equal(emitted.filter(bytes => bytes.equals(retained)).length, 1);
-  assert(readFileSync('dist/server/index.js').length + currentBytes.length + retained.length < 64 * 1024 * 1024);
+  assert.equal(emitted.filter(bytes => bytes.equals(retained78)).length, 1);
+  assert(readFileSync('dist/server/index.js').length + currentBytes.length + retained.length + retained78.length < 64 * 1024 * 1024);
 });
 
-test('engine78 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {
+test('engine79 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {
   const original = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v057.json', import.meta.url), 'utf8')).accept.state;
   const prior59 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v059.json', import.meta.url), 'utf8')).accept.state;
   const prior60 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v060.json', import.meta.url), 'utf8')).accept.state;

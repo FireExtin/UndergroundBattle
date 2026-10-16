@@ -229,6 +229,7 @@ pub enum Op {
     JZ30AddOneTimeToOriginalSource,
     JZ30ForecastFrozenTime,
     BQ028InspectTargetHandAttachments,
+    JZ46InspectHiddenCriminal,
     BQ030AttachmentDraw {
         observation: Option<Box<crate::model::AttachmentEvent>>,
     },
@@ -537,6 +538,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::wm056::validate_ability(card_id, ability)?;
     crate::wm023::validate_ability(card_id, ability)?;
     crate::xq25::validate_ability(card_id, ability)?;
+    crate::jz46::validate_ability(card_id, ability)?;
     crate::wm038::validate_ability(card_id, ability)?;
     crate::jz35::validate_ability(card_id, ability)?;
     crate::jc052::validate_ability(card_id, ability)?;
@@ -1269,6 +1271,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::wm056::validate_definition(card_id, definition)?;
         crate::wm023::validate_definition(card_id, definition)?;
         crate::xq25::validate_definition(card_id, definition)?;
+        crate::jz46::validate_definition(card_id, definition)?;
         crate::wm038::validate_definition(card_id, definition)?;
         crate::jz35::validate_definition(card_id, definition)?;
         crate::jc052::validate_definition(card_id, definition)?;
@@ -1432,7 +1435,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1891,6 +1894,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC037".into(), crate::jc037::definition());
         m.insert("JC060".into(), crate::jc060::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
+        m.insert("JZ46".into(), crate::jz46::definition());
         m.insert("WM023".into(), crate::wm023::definition());
         m.insert("WM056".into(), crate::wm056::definition());
         for id in ["XQ18", "JZ30"] {

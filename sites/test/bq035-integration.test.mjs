@@ -46,7 +46,7 @@ async function runScenario(t, scenario, retained = false) {
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
   assert.equal(roomCatalog.body.cards.length, retained ? 143 : 144);
-  assert.equal((await h.globalCatalog()).engineVersion, fixture.catalog.engineVersion);
+  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.79-jz46-private-criminal-inspection-candidate');
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;
@@ -92,7 +92,7 @@ async function runScenario(t, scenario, retained = false) {
 }
 for (const scenario of fixture.scenarios) test(`BQ035 ABI78 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
-test('retained published77 raw Native scenario keeps its old reducer, catalog, opaque D1 state and receipts through current78 Worker', async t => {
+test('retained published77 raw Native scenario keeps its old reducer, catalog, opaque D1 state and receipts through current79 Worker', async t => {
   const old = JSON.parse(readFileSync(new URL('./fixtures/jc046-native-v077.json', import.meta.url), 'utf8')).scenarios.find(row => row.name === 'paid-seat0');
   assert(old);
   await runScenario(t, old, true);
