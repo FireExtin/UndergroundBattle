@@ -156,6 +156,31 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
   useLayoutEffect(() => {
     if (catalogGrid.current) catalogGrid.current.scrollTop = 0;
   }, [search, faction, kind, cost, feature, implementation, selectedOnly, sort, density]);
+  useLayoutEffect(() => {
+    const grid = catalogGrid.current;
+    if (!pageMode || !active || !grid) return;
+    // Let the page grow instead of squeezing the catalog below one full card.
+    // Actual card height includes badges, controls and wrapped metadata.
+    const resize = () => {
+      if (window.innerWidth <= 820) {
+        grid.style.removeProperty('--hg-library-grid-height');
+        return;
+      }
+      const rowHeight = Math.max(0, ...Array.from(grid.children, card => card.getBoundingClientRect().height));
+      if (!rowHeight) return;
+      const style = getComputedStyle(grid);
+      const gap = Number.parseFloat(style.rowGap) || 0;
+      const padding = (Number.parseFloat(style.paddingTop) || 0) + (Number.parseFloat(style.paddingBottom) || 0);
+      const height = `${Math.ceil(rowHeight * 2.5 + gap * 1.5 + padding)}px`;
+      if (grid.style.getPropertyValue('--hg-library-grid-height') !== height) grid.style.setProperty('--hg-library-grid-height', height);
+    };
+    resize();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(resize);
+    observer?.observe(grid);
+    for (const card of grid.children) observer?.observe(card);
+    window.addEventListener('resize', resize);
+    return () => { observer?.disconnect(); window.removeEventListener('resize', resize); };
+  }, [pageMode, active, choices]);
   const versionsChanged = draft.rulesVersion !== catalog.rulesVersion || draft.cardPoolVersion !== catalog.cardPoolVersion || draft.engineVersion !== catalog.engineVersion;
   const storageTarget = storage === undefined ? localDeckStorage() : storage;
   const edit = (next: DeckDraft | ((current: DeckDraft) => DeckDraft)) => { setDraft(next); setDirty(true); setNotice(''); };
