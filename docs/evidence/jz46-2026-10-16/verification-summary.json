@@ -114,5 +114,9 @@
     "games": 0,
     "bypass": false
   },
-  "reviewSourceClosurePendingNextDocumentationCommit": true
+  "reviewSourceCommit": "b858fd8baa2bb6c55cd45daec658623cf8ccb4f5",
+  "sourceClosureComplete": true,
+  "sourceClosureFile": "source-closure.json",
+  "remoteMainAtClosure": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "githubActionsTotalAtClosure": 8
 }

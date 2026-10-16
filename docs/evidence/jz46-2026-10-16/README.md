@@ -6,4 +6,4 @@
 
 最终生产清单包含三个精确WASM的哈希，没有提交编译JS或WASM。原ABI78/77实际输入仅在 `/workspace/undergroundbattle-build/frozen-kernels/`；缺失或不同时验证须失败，不下载、不重建替代。原云端普通浏览器18:33:55 TLS失败另存JSON，未到达线上版本身份或任何游戏。
 
-源码与最终Git提交的绑定将记录在 `source-closure.json`。完整结论见 `docs/JZ46_SERIAL_REVIEW_HANDOFF_2026-10-16.md`。
+源码 `b858fd8baa2bb6c55cd45daec658623cf8ccb4f5` 与全部输入、最终产物的绑定已记录在 `source-closure.json`；其后的提交仅补文档，不改变生产或测试源码。完整结论见 `docs/JZ46_SERIAL_REVIEW_HANDOFF_2026-10-16.md`。
