@@ -6,7 +6,7 @@ import { createChoiceDraftStore, reconcileChoiceDraft } from './choiceDraftStora
 import { DeckPicker } from './Lobby';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { publicDeckDraft, validateDeckDraft } from './deckLibrary';
-import type { LobbySelection } from './deckWorkspace';
+import { saveLobbySelection, type LobbySelection } from './deckWorkspace';
 import { AutoPass } from './AutoPass';
 import { ReadModal } from './ReadModal';
 import { SealedCards } from './SealedCards';
@@ -78,6 +78,12 @@ function deckContents(deck: { name: string; cards: { cardId: string; count: numb
 export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: View; catalog: Catalog | null; busy: boolean; onAction: (action: Action) => void; selection?: LobbySelection | null }) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const [roomSelection, setRoomSelection] = useState<LobbySelection | null>(null);
+  const [selectionWarning, setSelectionWarning] = useState(false);
+  const selectedDeck = roomSelection || selection;
+  const chooseDeck = (next: LobbySelection, action: Action) => {
+    setRoomSelection(next); setSelectionWarning(!saveLobbySelection(next)); onAction(action);
+  };
   const you = view.players.find(player => player.id === view.you);
   const capacity = view.mode === 'teams' ? 4 : 2;
   const yourDeck = catalog?.decks.find(deck => deck.id === you?.deckId);
@@ -85,18 +91,19 @@ export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: 
   const actualCount = actualDeck?.cards.reduce((total, card) => total + card.count, 0);
   const canChangeDeck = view.status === 'lobby' && view.legalActions.some(action => action.kind === 'deck');
   const canChooseSavedDeck = !!catalog?.deckBuildRules && !!view.yourDeck && canChangeDeck;
-  const chosenDeck = selection?.kind === 'draft' ? selection.draft : catalog?.decks.find(deck => deck.id === selection?.deckId);
+  const chosenDeck = selectedDeck?.kind === 'draft' ? selectedDeck.draft : catalog?.decks.find(deck => deck.id === selectedDeck?.deckId);
   const differs = !!chosenDeck && (!actualDeck || deckContents(chosenDeck) !== deckContents(actualDeck));
-  const chosenAction: Action | undefined = selection?.kind === 'draft'
-    ? canChooseSavedDeck && !!catalog && validateDeckDraft(selection.draft, catalog).valid ? { kind: 'deck', deckDraft: publicDeckDraft(selection.draft) } : undefined
-    : view.legalActions.find(action => action.kind === 'deck' && action.option === selection?.deckId);
+  const chosenAction: Action | undefined = selectedDeck?.kind === 'draft'
+    ? canChooseSavedDeck && !!catalog && validateDeckDraft(selectedDeck.draft, catalog).valid ? { kind: 'deck', deckDraft: publicDeckDraft(selectedDeck.draft) } : undefined
+    : view.legalActions.find(action => action.kind === 'deck' && action.option === selectedDeck?.deckId);
   const starts = view.legalActions.filter(action => action.kind === 'start' || action.kind === 'ready');
   return <main className="hg-room-lobby">
     <div className="hg-room-welcome"><span className="hg-eyebrow">牌桌已经就绪</span><h1>等待秘社集结</h1><p>{view.mode === 'duel' ? '两人对决 · 3 个地区 · 8 分胜利' : '四人协作 · 5 个地区 · 团队 10 分胜利'}</p></div>
     <section className="hg-room-controls" aria-label="准备与开始"><div aria-label="实际上桌牌组"><span className="hg-eyebrow">席位 {(you?.seat ?? 0) + 1} · 实际上桌牌组</span><h2>{you?.deckName || actualDeck?.name || '秘社牌组'}</h2>{actualCount !== undefined && <p>牌组原始组成 {actualCount} 张</p>}</div>
       <div className="hg-room-ready"><span>{view.players.filter(player => player.ready).length} / {capacity} 位玩家已准备</span><ActionButtons actions={starts} busy={busy} onAction={onAction} />{!starts.some(action => action.kind === 'start') && <p>{you?.seat === 0 ? '等所有座位入席并准备后，即可开始。' : '准备后等待房主开始对局。'}</p>}</div>
     </section>
-    {differs && <section className="hg-room-selected-deck" aria-label="待应用的牌组"><p>已选择：<strong>{chosenDeck.name}</strong> · {chosenDeck.cards.reduce((total, card) => total + card.count, 0)} 张 · 尚未应用到此席位</p><p className="hg-muted">恢复原席保留原牌组。在准备阶段应用后会取消准备，请重新准备。</p><button type="button" className="hg-button hg-button-primary" disabled={busy || !canChangeDeck || !chosenAction} onClick={() => { if (!busy && canChangeDeck && chosenAction) onAction(chosenAction); }}>应用所选牌组到此席位</button></section>}
+    {selectionWarning && <p className="hg-library-warning" role="status">浏览器未能记住所选牌组；实际上桌牌组仍以上方同步结果为准。</p>}
+    {differs && <section className="hg-room-selected-deck" aria-label="待应用的牌组"><p>已选择：<strong>{chosenDeck.name}</strong> · {chosenDeck.cards.reduce((total, card) => total + card.count, 0)} 张 · 尚未应用到此席位</p><p className="hg-muted">恢复原席保留原牌组。在准备阶段应用后会取消准备，请重新准备。</p><button type="button" className="hg-button hg-button-primary" disabled={busy || !canChangeDeck || !chosenAction} onClick={() => { if (!busy && canChangeDeck && chosenAction && selectedDeck) chooseDeck(selectedDeck, chosenAction); }}>应用所选牌组到此席位</button></section>}
     <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
       try { await navigator.clipboard.writeText(`${location.origin}/?invite=${encodeURIComponent(view.inviteCode)}`); setCopied(true); setCopyError(false); }
       catch { setCopyError(true); }
@@ -112,10 +119,10 @@ export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: 
     })}</div>
     {catalog && <details className="hg-room-prepare"><summary>更换牌组 <span>当前：{you?.deckName || yourDeck?.name || '秘社牌组'}</span></summary><p className="hg-muted">选择其他牌组后将取消准备，须重新准备。编辑或保存草稿不会改变当前入席牌组。</p>
       <DeckPicker decks={catalog.decks} cards={catalog.cards} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !canChangeDeck} onChange={id => {
-        const action = view.legalActions.find(item => item.kind === 'deck' && item.option === id); if (!busy && action) onAction(action);
+        const action = view.legalActions.find(item => item.kind === 'deck' && item.option === id); if (!busy && action) chooseDeck({ kind: 'preset', deckId: id }, action);
       }} />
       {canChooseSavedDeck && <DeckLibrary catalog={catalog} disabled={busy} selectedDraftId={view.yourDeck?.id} onSelectDraft={deckDraft => {
-        if (!busy && canChooseSavedDeck) onAction({ kind: 'deck', deckDraft });
+        if (!busy && canChooseSavedDeck) chooseDeck({ kind: 'draft', draft: publicDeckDraft(deckDraft) }, { kind: 'deck', deckDraft });
       }} />}
     </details>}
   </main>;

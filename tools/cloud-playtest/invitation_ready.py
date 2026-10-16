@@ -124,6 +124,14 @@ async def main():
                 await expect(friend.locator('.hg-room-ready > span')).to_have_text(re.compile(r'1\s*/\s*2'))
                 await expect(host.locator('.hg-room-ready > span')).to_have_text(re.compile(r'1\s*/\s*2'))
                 check('explicit-deck-B-apply-uses-selected-snapshot-and-cancels-ready',True)
+                # A later explicit choice inside this room supersedes the old snapshot.
+                await friend.locator('.hg-room-prepare > summary').click()
+                await friend.get_by_role('button',name='保存并选择此牌组',exact=True).click()
+                await expect(friend.get_by_label('实际上桌牌组',exact=True)).to_contain_text('原始组成 52 张')
+                await expect(friend.get_by_role('region',name='待应用的牌组',exact=True)).to_have_count(0)
+                current_selection=await friend.evaluate('JSON.parse(sessionStorage.getItem("hegemony.lobbyDeckSelection.v1"))')
+                check('later-explicit-room-selection-replaces-the-stale-lobby-snapshot',current_selection['kind']=='draft' and sum(card['count'] for card in current_selection['draft']['cards'])==52)
+                result['deckProgression']={'restoredOriginalCount':50,'chosenSnapshotCount':51,'savedLaterCount':52,'firstExplicitApplicationCount':51,'laterExplicitRoomApplicationCount':52}
                 await friend.get_by_role('button',name='准备',exact=True).click()
                 await expect(host.locator('.hg-room-ready > span')).to_have_text(re.compile(r'2\s*/\s*2'))
                 await friend.reload(wait_until='networkidle')
@@ -142,7 +150,7 @@ async def main():
                 await expect(host.get_by_role('dialog',name='待完成的选择',exact=True)).to_have_count(0)
                 await expect(friend.get_by_role('dialog',name='待完成的选择',exact=True)).to_have_count(0)
                 check('both-seats-complete-initial-choices-through-real-ui',True)
-                await expect(friend.locator('.hg-player-you .hg-player-strip > small')).to_contain_text('隔离已选牌组B · 原始 51 张')
+                await expect(friend.locator('.hg-player-you .hg-player-strip > small')).to_contain_text('隔离已选牌组B · 原始 52 张')
                 check('started-table-keeps-applied-deck-B-and-no-deck-change-control',await friend.get_by_role('button',name='应用所选牌组到此席位',exact=True).count()==0)
                 await friend.locator('.hg-hand .hg-archive-art img').first.wait_for(state='visible')
                 await friend.wait_for_function("""() => [...document.querySelectorAll('.hg-hand .hg-archive-art img')].some(img => img.complete && img.naturalWidth > 0 && img.getBoundingClientRect().height > 30 && img.parentElement.getBoundingClientRect().height >= 40)""")

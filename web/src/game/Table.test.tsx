@@ -4,6 +4,7 @@ import { RoomLobby, Table } from './Table';
 import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, saveDeckLibrary } from './deckLibrary';
 import { testCatalog, testView, testChoice } from './testFixtures';
 import { testCard } from './testFixtures';
+import { readLobbySelection } from './deckWorkspace';
 import type { Catalog, View } from './types';
 
 it('lets the private chooser pause and releases its modal while paused, then restores the same choice', () => {
@@ -50,6 +51,17 @@ describe('room deck selection', () => {
     expect(screen.queryByRole('button', { name: '应用所选牌组到此席位' })).not.toBeInTheDocument();
     app.rerender(<RoomLobby view={view} selection={{ kind: 'draft', draft: { ...same, societyId: 'unavailable-society' } }} catalog={catalog} busy={false} onAction={vi.fn()} />);
     expect(screen.getByRole('button', { name: '应用所选牌组到此席位' })).toBeDisabled();
+  });
+
+  it('keeps a later explicit room deck choice instead of offering a stale lobby snapshot again', () => {
+    const submit = vi.fn(); const selection = { kind: 'draft' as const, draft: saved };
+    const app = render(<RoomLobby view={view} selection={selection} catalog={catalog} busy={false} onAction={submit} />);
+    fireEvent.click(screen.getByText('更换牌组'));
+    fireEvent.click(screen.getByRole('button', { name: /调查者.*控制与调查/ }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith(view.legalActions[0]);
+    expect(readLobbySelection()).toEqual({ kind: 'preset', deckId: 'watchers' });
+    app.rerender(<RoomLobby view={{ ...view, yourDeck: { ...createDeckDraft(catalog, catalog.decks[0]), name: catalog.decks[0].name }, players: [{ ...view.players[0], deckName: catalog.decks[0].name }] }} selection={selection} catalog={catalog} busy={false} onAction={submit} />);
+    expect(screen.queryByRole('region', { name: '待应用的牌组' })).not.toBeInTheDocument();
   });
 
   it('saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name', () => {
