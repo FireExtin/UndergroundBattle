@@ -1,0 +1,54 @@
+{
+  "verifiedAtUtc": "2026-10-16 12:16:48 UTC",
+  "site": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "latest_version_number": 59,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "access_mode": "public",
+    "access_policy_revision": 2,
+    "status": "active"
+  },
+  "sourceOpening": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "eec9ffb81b66b149bdcc4f045c1be834dae21748"
+  },
+  "sourcePackaging": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "a2a002fb7cafb9030405853a1c98bd91800b627c",
+    "archive": "/workspace/undergroundbattle-build/pass-history-publication-20261016.tar.gz"
+  },
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_bf06ac4bc0cc8191be6dea5da96585d5",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 59,
+    "source": {
+      "commit_sha": "a2a002fb7cafb9030405853a1c98bd91800b627c"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_0000000004b0820c93d145dfac21eb48",
+      "content_hash": "sha256:4cc8ef4306461d28fa8200c40a98d480b8fd9f87f8e89dd146f9f856af6290b8",
+      "size_bytes": 96327680,
+      "file_count": 164
+    },
+    "screenshot_url": null,
+    "deployment_id": "appgdep_6ad2157c32a48191a5ba22a02b63dc28"
+  },
+  "deployment": {
+    "id": "appgdep_6ad2157c32a48191a5ba22a02b63dc28",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_bf06ac4bc0cc8191be6dea5da96585d5",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-16T12:16:09.509155+00:00"
+  }
+}

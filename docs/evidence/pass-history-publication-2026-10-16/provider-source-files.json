@@ -1,0 +1,4490 @@
+[
+  {
+    "path": ".openai/hosting.json",
+    "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+  },
+  {
+    "path": "README.md",
+    "sha256": "66c55f31ccf73f9675d11dae5d9117126df513fade2bc91a8693189cd7dd837c"
+  },
+  {
+    "path": "db/schema.ts",
+    "sha256": "73e99c1f820fc1fbb86216028b5adcca874b5eac3062070c9fabe691fe832e6a"
+  },
+  {
+    "path": "drizzle.config.ts",
+    "sha256": "1b971da8f8eb163e47ae808af9207df95367dbf15c6c8a54d39ac3a095101be6"
+  },
+  {
+    "path": "drizzle/0000_numerous_lucky_pierre.sql",
+    "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43"
+  },
+  {
+    "path": "drizzle/meta/0000_snapshot.json",
+    "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c"
+  },
+  {
+    "path": "drizzle/meta/_journal.json",
+    "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a"
+  },
+  {
+    "path": "rust-game-wasm/Cargo.toml",
+    "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+  },
+  {
+    "path": "rust-game-wasm/src/lib.rs",
+    "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+  },
+  {
+    "path": "rust-game/Cargo.toml",
+    "sha256": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178"
+  },
+  {
+    "path": "rust-game/data/cards.json",
+    "sha256": "694751f8429c433115047dddd5ac01c3b04ef5899ab6317271c73db8bf044ea6"
+  },
+  {
+    "path": "rust-game/src/attachment.rs",
+    "sha256": "b556b68fc0c2156ebd8bc47bb423671f45532572fe3ee15a256be4d15361f8dc"
+  },
+  {
+    "path": "rust-game/src/attributes.rs",
+    "sha256": "7db8e78980bbfc02b7d53511191a5d20cee3ccb747efa3f9b0672a5242200eba"
+  },
+  {
+    "path": "rust-game/src/bin/hegemony-audit.rs",
+    "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+  },
+  {
+    "path": "rust-game/src/black_expansion.rs",
+    "sha256": "1bb5ce5d287bef436cefe0f216a226f1e125245fd2f5b9b39b3016cd7867a0bf"
+  },
+  {
+    "path": "rust-game/src/black_expansion_tests.rs",
+    "sha256": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c"
+  },
+  {
+    "path": "rust-game/src/blue_expansion.rs",
+    "sha256": "733ae2f2ad8451a0c1739337ef6393d6f5feefd295d42c08171704c6b6d2e45b"
+  },
+  {
+    "path": "rust-game/src/blue_expansion_tests.rs",
+    "sha256": "51dff91c0273a64e9e4d7679c3f38b0ae4cce32e961a4cd4de11a15639f27e1c"
+  },
+  {
+    "path": "rust-game/src/blue_minimum.rs",
+    "sha256": "3ba3322bec76dc3b0a90e61ba4575ec15b45ea2a1488c100ce6da7926d622f24"
+  },
+  {
+    "path": "rust-game/src/blue_minimum_tests.rs",
+    "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb"
+  },
+  {
+    "path": "rust-game/src/bounded_entry_fresh_tests.rs",
+    "sha256": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4"
+  },
+  {
+    "path": "rust-game/src/bounded_search.rs",
+    "sha256": "6f6ebedf328d8c5a88f01fd2a5ba76e03c4067f50dae195fc94fb03e14ee098e"
+  },
+  {
+    "path": "rust-game/src/bounded_search_tests.rs",
+    "sha256": "e58a2bdb4be1ca329f77f44d8f932350c12cde56ea42090cff4bf331b30fc741"
+  },
+  {
+    "path": "rust-game/src/bq030.rs",
+    "sha256": "f8d6a6b27ae156331ce300156419f54a27ea4c298b5f1722f773d39939d92937"
+  },
+  {
+    "path": "rust-game/src/bq030_preparation.rs",
+    "sha256": "f01985d7cbc79dfb4767bd2267e806f0bc0a274ed7252c6866ee1dd37b4476ac"
+  },
+  {
+    "path": "rust-game/src/catalog.rs",
+    "sha256": "82a24b7c442e515454e265b3979321c41aebd10d268505dc2b5b79b61b9e7de5"
+  },
+  {
+    "path": "rust-game/src/control.rs",
+    "sha256": "76d854b7222817aed476810596848eb13ce675b537360716a51ea4c36c2ff515"
+  },
+  {
+    "path": "rust-game/src/control_tests.rs",
+    "sha256": "02f2245f8fd784cd61f1283a323221551dd5049c238eb37b8de6c629142e6c17"
+  },
+  {
+    "path": "rust-game/src/death_observer_tests.rs",
+    "sha256": "9614543f24087f7a369f847e17d6f074138866c786f2c77a3e0ef654f17588fa"
+  },
+  {
+    "path": "rust-game/src/death_observers.rs",
+    "sha256": "fefd4800d08c6303c760a3eb66f80ac65d41baa3e18b172d425f0529347f0639"
+  },
+  {
+    "path": "rust-game/src/deck.rs",
+    "sha256": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd"
+  },
+  {
+    "path": "rust-game/src/deck_seal_search.rs",
+    "sha256": "69981f416b13c510da1c4929513bd1cfa7d788f2881773b0381dbe1a59b08851"
+  },
+  {
+    "path": "rust-game/src/deck_seal_search_draft.rs",
+    "sha256": "fe343a543ab96b45ef8fa81d344e825d2935e702b6e7bdfb36975f0666e034e2"
+  },
+  {
+    "path": "rust-game/src/deck_seal_search_tests.rs",
+    "sha256": "f33ae4c15fc396e4e381f0e184df33a165e6d2a20980c1e7c0071166a67b810b"
+  },
+  {
+    "path": "rust-game/src/defence_equipment_tests.rs",
+    "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462"
+  },
+  {
+    "path": "rust-game/src/dream_reveal_tests.rs",
+    "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e"
+  },
+  {
+    "path": "rust-game/src/engine.rs",
+    "sha256": "11b628c731524a2382068bc21c4cbc57ab0c5b48f84cf9f1b583946bac6e7e75"
+  },
+  {
+    "path": "rust-game/src/equipment_abilities_tests.rs",
+    "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c"
+  },
+  {
+    "path": "rust-game/src/gray_expansion.rs",
+    "sha256": "394a97db748310414247101f3c7da0569c2e6bd12e50295d7558bba54fc6f0e4"
+  },
+  {
+    "path": "rust-game/src/gray_expansion_tests.rs",
+    "sha256": "b578d1d3033d9708fd2b0b56fbfbbb2d40ba592eba5f10404b9ff25ee330719a"
+  },
+  {
+    "path": "rust-game/src/gray_lock.rs",
+    "sha256": "790349bf772c88b2821531707f8a7209bcae1ed0e477fae8188b02b9a1cc901c"
+  },
+  {
+    "path": "rust-game/src/gray_lock_tests.rs",
+    "sha256": "59f2b44f0c3af1114305202cc5fad8496ab2095da4bce42c2c6d078189d8f1e6"
+  },
+  {
+    "path": "rust-game/src/green_minimum_tests.rs",
+    "sha256": "4206840dcb97261cc609501aee30e749a16c1a407b26a63d210627281d354bdf"
+  },
+  {
+    "path": "rust-game/src/hand_deck_tests.rs",
+    "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c"
+  },
+  {
+    "path": "rust-game/src/hand_interactions_tests.rs",
+    "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517"
+  },
+  {
+    "path": "rust-game/src/jc004_tests.rs",
+    "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf"
+  },
+  {
+    "path": "rust-game/src/jc005_tests.rs",
+    "sha256": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee"
+  },
+  {
+    "path": "rust-game/src/jc008_tests.rs",
+    "sha256": "b3859f1acccd68140986ec30569973e86d262e6dbb46ed0ca49c22f684297627"
+  },
+  {
+    "path": "rust-game/src/jc029_tests.rs",
+    "sha256": "3412ada0846024cc54341196ca1420d8771c2b7b1d94f9498815c765f7e3cc19"
+  },
+  {
+    "path": "rust-game/src/jc030_tests.rs",
+    "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440"
+  },
+  {
+    "path": "rust-game/src/jc037.rs",
+    "sha256": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b"
+  },
+  {
+    "path": "rust-game/src/jc037_tests.rs",
+    "sha256": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c"
+  },
+  {
+    "path": "rust-game/src/jc046.rs",
+    "sha256": "b767146f5d3942305caa1a34caf40461729bbdd05e84208f3e7af97a578021b2"
+  },
+  {
+    "path": "rust-game/src/jc046_tests.rs",
+    "sha256": "4a08fb9e94b501f929b4d672c311e7bf8bb924e5274dcf78f909aa2ca5729c99"
+  },
+  {
+    "path": "rust-game/src/jc050.rs",
+    "sha256": "dfee8be5544285bc1b05da6b49f0a03cb0ac0896a13ccd83733b713a375a7526"
+  },
+  {
+    "path": "rust-game/src/jc050_tests.rs",
+    "sha256": "10d088b2ce193ecdbb00bb7b969b4bdb151117bb4adccb21218d3a319df0f42e"
+  },
+  {
+    "path": "rust-game/src/jc052.rs",
+    "sha256": "62d7b128601c827662fc9d27842e490724581c8fda6b46e67d56d8d2ca020c3e"
+  },
+  {
+    "path": "rust-game/src/jc052_tests.rs",
+    "sha256": "1dc7aa0e104be1ce2387a7a4ba01fe4af98c34001c2fe578731ac87ac49aac9c"
+  },
+  {
+    "path": "rust-game/src/jc060.rs",
+    "sha256": "0090a80f02c19137634632e45adb03b8073270cd1a1a7e426cf4245f8c2dec41"
+  },
+  {
+    "path": "rust-game/src/jc060_tests.rs",
+    "sha256": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121"
+  },
+  {
+    "path": "rust-game/src/jc061_tests.rs",
+    "sha256": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495"
+  },
+  {
+    "path": "rust-game/src/jc087_tests.rs",
+    "sha256": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6"
+  },
+  {
+    "path": "rust-game/src/jc089_tests.rs",
+    "sha256": "eda53260400eb845eee6cf0eef57dd2cd06c418afee49ba06cdb7c8c7dca8307"
+  },
+  {
+    "path": "rust-game/src/jc094_tests.rs",
+    "sha256": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c"
+  },
+  {
+    "path": "rust-game/src/jc095.rs",
+    "sha256": "37af979f23dfb622c35f53de5c2a2e5f9c2c6b4402f536170aee47d0a7c7944b"
+  },
+  {
+    "path": "rust-game/src/jc095_tests.rs",
+    "sha256": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c"
+  },
+  {
+    "path": "rust-game/src/jz22.rs",
+    "sha256": "8c62cb699bc39bbbd69dd35e359e9a44a3fd2200ff3ab4edfd01e9dac1e2308d"
+  },
+  {
+    "path": "rust-game/src/jz22_tests.rs",
+    "sha256": "9ffcc93d768e49f6468557af937d90434f57abff556502c39ec73dbf0895219d"
+  },
+  {
+    "path": "rust-game/src/jz31_tests.rs",
+    "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a"
+  },
+  {
+    "path": "rust-game/src/jz35.rs",
+    "sha256": "3f49d6caae61d6d07183b3bbfbda5e182c315fea5dd84bbe620e26a03faa173f"
+  },
+  {
+    "path": "rust-game/src/jz35_tests.rs",
+    "sha256": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175"
+  },
+  {
+    "path": "rust-game/src/jz48_tests.rs",
+    "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74"
+  },
+  {
+    "path": "rust-game/src/jz49_tests.rs",
+    "sha256": "d2149e6e5d126cb7f832e6749f891962eb773f5fd6be765ce8b642a254797979"
+  },
+  {
+    "path": "rust-game/src/jz50_search.rs",
+    "sha256": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c"
+  },
+  {
+    "path": "rust-game/src/jz50_search_tests.rs",
+    "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6"
+  },
+  {
+    "path": "rust-game/src/jz55_tests.rs",
+    "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02"
+  },
+  {
+    "path": "rust-game/src/lib.rs",
+    "sha256": "52e08066aca6a65d57eaae62d2defecc51c374a09ce48c8d2053053c7f520957"
+  },
+  {
+    "path": "rust-game/src/main.rs",
+    "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+  },
+  {
+    "path": "rust-game/src/mill_public_tests.rs",
+    "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49"
+  },
+  {
+    "path": "rust-game/src/model.rs",
+    "sha256": "bc9b1c8e1dd110ed211d05e32b2120d2ef55b8d77c449671cae9de629f5c3ea4"
+  },
+  {
+    "path": "rust-game/src/msjc01_tests.rs",
+    "sha256": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86"
+  },
+  {
+    "path": "rust-game/src/msjc06_tests.rs",
+    "sha256": "764613e131756e4a834fcd8613e196e3c13ccbcd4ab4790769b6a8d10dc21fb2"
+  },
+  {
+    "path": "rust-game/src/msjc07_tests.rs",
+    "sha256": "27c034e581a001b2ce0fad566de268d262b8c501ee0e8a1f9004f1cc284d480f"
+  },
+  {
+    "path": "rust-game/src/msjc08_tests.rs",
+    "sha256": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4"
+  },
+  {
+    "path": "rust-game/src/msjc11_tests.rs",
+    "sha256": "e520f3db547944257a6b0c169ef2ca1811d6a5d211bde3b4dfc01c65b4b9905a"
+  },
+  {
+    "path": "rust-game/src/play_sources.rs",
+    "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+  },
+  {
+    "path": "rust-game/src/protection_tests.rs",
+    "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8"
+  },
+  {
+    "path": "rust-game/src/purple_tools_tests.rs",
+    "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d"
+  },
+  {
+    "path": "rust-game/src/red_time.rs",
+    "sha256": "d59716a1c3e79b717cf74d6a3085b5c8739a428fe3e31a478056024b3dc36d3f"
+  },
+  {
+    "path": "rust-game/src/red_time_tests.rs",
+    "sha256": "f1977ef4aca9e30d19d6ecd820e20f2f13e519ecfceeee120bec370128755c27"
+  },
+  {
+    "path": "rust-game/src/region_aura_tests.rs",
+    "sha256": "4c9ecd9bb268cb04467ddf924665731f62f24fa44bac638373354c0f12da4337"
+  },
+  {
+    "path": "rust-game/src/renown.rs",
+    "sha256": "8aea1693418cb872161603aebe77f50c48947ba3d77364e7b27e1268ca9e61d5"
+  },
+  {
+    "path": "rust-game/src/renown_tests.rs",
+    "sha256": "2e659e4b59e55d20db0272d55a8059dc7c27a16bfc524beb186ee49a0d54f366"
+  },
+  {
+    "path": "rust-game/src/repress_assets_tests.rs",
+    "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660"
+  },
+  {
+    "path": "rust-game/src/resolution.rs",
+    "sha256": "f8c88bf7e73cca311fca83284c7a10473b7666feb84a3d1d23862f727d0bcc2a"
+  },
+  {
+    "path": "rust-game/src/room.rs",
+    "sha256": "2423e7e3483e2d00cded662050110bef7e2a433972495407bb31eb4435879079"
+  },
+  {
+    "path": "rust-game/src/rules.rs",
+    "sha256": "ba5f56925e439af69ab9c262d36f21f4a64e65d04d1b06efa8484e44376b6a5b"
+  },
+  {
+    "path": "rust-game/src/sealing.rs",
+    "sha256": "82f19b6d0524cd378cbbf486fe607d2afb470b2ff314b2cbfef89a44f2f37539"
+  },
+  {
+    "path": "rust-game/src/sealing_tests.rs",
+    "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd"
+  },
+  {
+    "path": "rust-game/src/service.rs",
+    "sha256": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33"
+  },
+  {
+    "path": "rust-game/src/society.rs",
+    "sha256": "81500ad9b3db36e7b3238987d4764d675723669e01502736742f7454f5888d04"
+  },
+  {
+    "path": "rust-game/src/society_msjc09_tests.rs",
+    "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086"
+  },
+  {
+    "path": "rust-game/src/unit_support.rs",
+    "sha256": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683"
+  },
+  {
+    "path": "rust-game/src/white_wound_tests.rs",
+    "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a"
+  },
+  {
+    "path": "rust-game/src/win_flow_tests.rs",
+    "sha256": "be64956ca227ea711ac77a15c21c60354d990246e095809ffeec53db423ff84d"
+  },
+  {
+    "path": "rust-game/src/wm023.rs",
+    "sha256": "8b6103188d2306fb5872b5d0a9c849d35ab7efbadcc998214a8618e9fa3ad634"
+  },
+  {
+    "path": "rust-game/src/wm023_tests.rs",
+    "sha256": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363"
+  },
+  {
+    "path": "rust-game/src/wm038.rs",
+    "sha256": "611858f9c741ac6fb870de58989de0845f45bb6469f1643fd1593123a6fb8f19"
+  },
+  {
+    "path": "rust-game/src/wm038_tests.rs",
+    "sha256": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14"
+  },
+  {
+    "path": "rust-game/src/wm056.rs",
+    "sha256": "687c39bccff71763203e68d5f175aeb1104ece9963597b459a60dd25ea55d73e"
+  },
+  {
+    "path": "rust-game/src/wm056_tests.rs",
+    "sha256": "c21a4339be6425714e675176b18475da6a4aa700549475d56ca35ec994c66c77"
+  },
+  {
+    "path": "rust-game/src/world.rs",
+    "sha256": "212ffbec6fca62a6d776f8142a43a2dc8f21d0fdd445fdd122fbc96dc49f329c"
+  },
+  {
+    "path": "rust-game/src/wound_defence_tests.rs",
+    "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5"
+  },
+  {
+    "path": "rust-game/src/xq18_tests.rs",
+    "sha256": "053679c806011f5e5adf51060ddf26cff3932efed454aa34301a0c6c221acbab"
+  },
+  {
+    "path": "rust-game/src/xq24_tests.rs",
+    "sha256": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415"
+  },
+  {
+    "path": "rust-game/src/xq25.rs",
+    "sha256": "819d370684240614866bc9df7890f391f9ff1c2103c61c8afddf1f03622e0fb7"
+  },
+  {
+    "path": "rust-game/src/xq25_tests.rs",
+    "sha256": "76cc7701ef62c43ad57fd7bdb689c15b33e52d96ccda8a2964dd8993bdb9e844"
+  },
+  {
+    "path": "rust-game/src/xq27.rs",
+    "sha256": "f4c34019b61b28fd996b9d2d2ff632adac62ef1b6e84f9668e3d6aef62db4fc2"
+  },
+  {
+    "path": "rust-game/src/xq27_tests.rs",
+    "sha256": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38"
+  },
+  {
+    "path": "rust-game/src/xq37.rs",
+    "sha256": "3697b1e84006c91504441ed847bbc0b328a2316bf4da7078f4045df44bc9b774"
+  },
+  {
+    "path": "rust-game/src/xq37_tests.rs",
+    "sha256": "028d8dac1804a3786cccb637847c46fcd48e2af0ea1f26bd2dbd69c6db00d0c8"
+  },
+  {
+    "path": "rust-game/src/yellow_search_batch_tests.rs",
+    "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+  },
+  {
+    "path": "scripts/build-backend-test.mjs",
+    "sha256": "a1571155968c501e19056a067c550900b67854f75c5870a4bda71acf60db0a77"
+  },
+  {
+    "path": "scripts/build-pass-history-test.mjs",
+    "sha256": "4b2baaa2f11e36bf203f397c81471df2a06765421d44815b2b4c550cd2b65e43"
+  },
+  {
+    "path": "scripts/build.mjs",
+    "sha256": "52129f4d9bd4a5481288f9fc7571acc849ea980aabe93e9e301a635d67393ec4"
+  },
+  {
+    "path": "scripts/qa-preview.mjs",
+    "sha256": "7b5cf20c0dc74e20be63cb45de2e852618163377a979470a503757c6865283d7"
+  },
+  {
+    "path": "scripts/stage-source.mjs",
+    "sha256": "c83f3aa6e4fe658e66fc12bc2fb253128a5829ad9745a63cfb0219d589ab52ab"
+  },
+  {
+    "path": "src/http.mjs",
+    "sha256": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a"
+  },
+  {
+    "path": "src/index.mjs",
+    "sha256": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401"
+  },
+  {
+    "path": "src/kernel-router.mjs",
+    "sha256": "c678d0728dae27449ba1a3d1d2b4beea7b3cca2a5e65c823cd915c712fcfaee7"
+  },
+  {
+    "path": "src/kernel.mjs",
+    "sha256": "94b34290541856fb09915a5612f88ffe035fc70d4291f203022293bce4648ebf"
+  },
+  {
+    "path": "src/lazy-kernel.mjs",
+    "sha256": "c3484b39f681e65ddeb0f3760f2ad13c13083f59f694420b140b43cab3609965"
+  },
+  {
+    "path": "src/pass-history.mjs",
+    "sha256": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8"
+  },
+  {
+    "path": "src/service.mjs",
+    "sha256": "fc2fbf9d01659e652d00a3665e61b9214ac61f4061c7a092306e82cfe13d8be3"
+  },
+  {
+    "path": "src/storage-errors.mjs",
+    "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0"
+  },
+  {
+    "path": "src/store.mjs",
+    "sha256": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811"
+  },
+  {
+    "path": "test/assassin-integration.test.mjs",
+    "sha256": "de98cc15908067520846f41018f8731535b85a929b3fb319c96ce2522e29395c"
+  },
+  {
+    "path": "test/assert-session-journal.mjs",
+    "sha256": "5e081dcb1b2d7f82feff583a8ad9a5eba76844515cdd2d4b1085a70dec8e2d2b"
+  },
+  {
+    "path": "test/bounded-entry-search.test.mjs",
+    "sha256": "0e849d06b1bab147d14a4c019ba5e582dcb2b7944054bc3338886631d04b6b86"
+  },
+  {
+    "path": "test/control-pair-integration.test.mjs",
+    "sha256": "222cf79230e8f96d9f48d5ebc27f029d24f7dc8cd1ea02aa902d52d96ae6a509"
+  },
+  {
+    "path": "test/deck-seal-search.test.mjs",
+    "sha256": "a0e618b2cbb78eb861659ceb252db1b6db93d0bcfaa0071ab61063da826b0a24"
+  },
+  {
+    "path": "test/fire-scholar-integration.test.mjs",
+    "sha256": "1a5fe54e516dd36d0891e61c9e93ba278498c4abebdd4a7a03a3858b9fecf775"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v050.json",
+    "sha256": "0ff7a60fa97c929a00bfc751e91404f8e6436eba1476cf7d2fa74ceefc938113"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v057.json",
+    "sha256": "473cc2c579d9229afeb5ec798875fd359f29f2812e154566bcbd6bf3df8ce095"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v059.json",
+    "sha256": "4fafe7503af17a8d31d2c5970b947b8ffe7d467849ecb97e25076bbd1dfc0400"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v060.json",
+    "sha256": "c601211cffac8d68cf04476b4bf5b8357d1fc771783df4a45c6c1d319f89b269"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v062.json",
+    "sha256": "c5611c7d74ac5b4d8891bda184278432b3e68c220574f98458a2d734da89c256"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v063.json",
+    "sha256": "b5257fb56e85cb50621069ef1b2fb34c7a4effb1e5c77d5360bba36e70a237ae"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v064.json",
+    "sha256": "cab503ff2b7ee7e98723f44052457d7bd6108548e5c812a3f6addbb5bdb4d838"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v073.json",
+    "sha256": "008f0a23353da257a09804450b1101628993ff24aa47b1842fb6c70ca8355e6f"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v074.json",
+    "sha256": "024d1373a7c945aa8818111599cb41de8d2eb2e8362e2c502304c95bdb924754"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v075.json",
+    "sha256": "c8b28617c01d0092b4e3bf98b2131148a633ce65ae8b54016405f8b7e620a864"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v076.json",
+    "sha256": "6486e22c14fd12356fc7eb7eca3c0e42afc68ee2d191040fb7f436d5640254f3"
+  },
+  {
+    "path": "test/fixtures/bounded-entry-native-v077.json",
+    "sha256": "1b72e82a32ed516c68c842b350f25b93daa04c5cb853d56e48e16bbf3837b2f2"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v063.json",
+    "sha256": "b3e0156df756284eb242aca3ba55954cd8ae8584fc9e94c7fe41499f02d79a14"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v064.json",
+    "sha256": "5e862eca4cd7ce5c79e49d1225f0629e952d69a95f401c5a1d8fe95dbcf064c7"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v073.json",
+    "sha256": "df53cabd3b61a95ff958c31b6c0aaa4b36318ea055f7ea1692aa64d0392c9c4d"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v074.json",
+    "sha256": "23e5008b5f0ec8af8ed54dea26d5319b3e578cc5ecdf1a5cc5e61555f0dbdaa8"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v075.json",
+    "sha256": "4be24166be044648f30050f2155a5137f827780d2e2afa173fab6be9c5d67b50"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v076.json",
+    "sha256": "3438e6583800ea1c7732a0116658209dc736987e615f0d9ecfb9e163393cb808"
+  },
+  {
+    "path": "test/fixtures/bq030-native-v077.json",
+    "sha256": "ccce3d5c73df97af1421d05152d1718d48a07d87809c5b01c9bd6deff3b5a9c7"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v051.json",
+    "sha256": "ce3b7411da236081fce6555cb5e0297bf6aac53632ca27eb60d517d0b4f40a55"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v057.json",
+    "sha256": "ea43099b506d165036869a017a96a6249530d1e53d7d404817f746e696c88534"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v059.json",
+    "sha256": "1806a58d112a288a724ffa10775211b95464247542406ca000befdc204505155"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v060.json",
+    "sha256": "d6d635cc6810b8419104aedcf610e0c2499b5645ce20a3f20ef34cdbfee15ee6"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v062.json",
+    "sha256": "b05b17e2095b57169a916aefc1a6d478c646b64e78ec97dca5bd8cffb9feac2d"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v063.json",
+    "sha256": "d13136c673ea0ccc9f32a1f79d9b045833e1717da3c00775b60892eebbd5c05d"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v064.json",
+    "sha256": "b1e277795a7936926bf8b30001f18881984882b879f4f79499f7a8438571bf60"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v073.json",
+    "sha256": "3a9c8800d23fa4ee539a63e7bedebc221060ca6b6e3fb3b1d8e3097ba904beef"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v074.json",
+    "sha256": "8d4ca575a335421cf912f3313c5168e45de24b1a5756e0e7457dd495a55a6f1b"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v075.json",
+    "sha256": "77e3c371bd6c628fbb7165cd9246bece27b703d5a85668d1e08d6f8d2f519cb9"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v076.json",
+    "sha256": "767381ec6781fe1b39c921e5e6c2eb5a2ad5fcc944615106844366ac9c8f2d6a"
+  },
+  {
+    "path": "test/fixtures/deck-seal-native-v077.json",
+    "sha256": "ee7c217fb1a5ce34608743abb04314674a011a1eb126e18d9cb1cce93941347a"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v052.json",
+    "sha256": "042cfd61487a98e0f71b97c525d689a1cac737949568dace1b38875990f13377"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v057.json",
+    "sha256": "bae19120451fad33b6392ce44c9617547dec2368dd81e15f1b8d20468c480013"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v059.json",
+    "sha256": "7ca25ba936faca1fc791567cfea9e33e5d0dd5dd79c79bd4e598fd06c1495cd7"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v060.json",
+    "sha256": "808c4a378b432d81f0c889970762b4444fd65721e5a4f3ed0517e63dfc360abd"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v062.json",
+    "sha256": "05838d9ba42ae12839d58f5dca35d904311cafe3598db93c351714f4b37079be"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v063.json",
+    "sha256": "15b37fea66196b44e5271726794eddc1c403cabc4ce4e6875d70179110e23540"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v064.json",
+    "sha256": "3845cf96041a0dd809d12512e1822ac8c1b69c041ff4d694a952c36e5acce7eb"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v073.json",
+    "sha256": "6cafac1bf221b78b95b5eeb2301928fbbba90c7dd1e4928aaa48640375b027fd"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v074.json",
+    "sha256": "829ab5aab2cea13fb260403b6f64c0ab69a396168c4e91763ce228aa031fde77"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v075.json",
+    "sha256": "34edd55d7423c7bec0501396384446115f52e667d549d68c32e9fb18474296d2"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v076.json",
+    "sha256": "8960b5ba03a20e8c937ba310e85bf5e5f47f4d589462e42e3e143f1605efb91a"
+  },
+  {
+    "path": "test/fixtures/gray-lock-native-v077.json",
+    "sha256": "96d93d5c8c2161dc42a90c227a8ce29b0b76d0fb8d7e3ebe76b89f03bed67a3a"
+  },
+  {
+    "path": "test/fixtures/historical-rooms.json",
+    "sha256": "daa452f4b7fa5bd695f29c02a2291cbddd61b0eaa87d04fde28c2afd6976a124"
+  },
+  {
+    "path": "test/fixtures/historical-rooms.mjs",
+    "sha256": "a5137597ba31541e4b878c5e3ad3bc8bedba97918eede545009f4f0dc7bf2791"
+  },
+  {
+    "path": "test/fixtures/jc037-native-v074.json",
+    "sha256": "4245c34ef0f586b5fc1748f74a16e7ebbb44fd31d921aa2e637df61d6d3036c5"
+  },
+  {
+    "path": "test/fixtures/jc037-native-v075.json",
+    "sha256": "30130346ca99de7b8b152d5903748546ae0ecf14a9041ab0a8cd417cc7ca43b6"
+  },
+  {
+    "path": "test/fixtures/jc037-native-v076.json",
+    "sha256": "7e4600716c60f3e281143d6306a804ed79d8ff24cf0f781930a54d3fe0ad8524"
+  },
+  {
+    "path": "test/fixtures/jc037-native-v077.json",
+    "sha256": "16b0cbb75e0ad209e32b8fe09aa247deb8d160175ea4329121bc2419675036d2"
+  },
+  {
+    "path": "test/fixtures/jc046-native-v077.json",
+    "sha256": "a6e3bc6c1ca236d908912320471b51c231a6bc8067fbf9d05f87ea70ee963601"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v055.json",
+    "sha256": "8798894e4b09c1545d94e1b171bc04792b0f742be8fcb3a8d39a95355b9042ff"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v057.json",
+    "sha256": "0780e048a58532ea7c635af08a04189e2dbb413330273fb7c04277055b680859"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v059.json",
+    "sha256": "31d179431b846b4d0a3b3409de904dda13235e20aef88835795739119c8e1e28"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v060.json",
+    "sha256": "5a5ea799f739bc1cad53b666c727e4af2e49465b5eed1ca2f2700b5e3bab291d"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v062.json",
+    "sha256": "67e66fddf7e04d433e8e72706db71d58e602a08c991e9ffd39abe282472e2d7f"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v063.json",
+    "sha256": "5cb94308a6c78b99cbb8dc8c36232b22afb8304240bbea800827a5b0fbbad76c"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v064.json",
+    "sha256": "eb61ca6e7408ccca318e25cf039fedba78f2f2c21ddce98579f3b66697216394"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v073.json",
+    "sha256": "a241de780a12fe560e29977f30e8236d275e584ec8973f3e97c037c6dd03d4d3"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v074.json",
+    "sha256": "b19affd1c59a01f6f422d66ec0ac405946e500ef3ebcf1c9da9a836346df573b"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v075.json",
+    "sha256": "cf623c7279239aa8261f70d2aed1fcb34383f7dfbbe3ea645f4de6a1e40056ce"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v076.json",
+    "sha256": "3efde02a77895018a9d69d3ff2bbd06e531075b3b223c1baccee19105b0e48b6"
+  },
+  {
+    "path": "test/fixtures/jc050-native-v077.json",
+    "sha256": "5ae0ea5f56b51db18bdc39ce29c9990a4dd5366e957f2fcf620feafa0cfb3ba6"
+  },
+  {
+    "path": "test/fixtures/jc052-native-v073.json",
+    "sha256": "8a7be5ea004ef8ccdf2f98e064b168c3799f7be80cd0961ed31d2fada315ba4d"
+  },
+  {
+    "path": "test/fixtures/jc052-native-v074.json",
+    "sha256": "6e5c967464de69a2b37a3f9fffd26ca7849467bc2453c8b98b75f7b2d041f73e"
+  },
+  {
+    "path": "test/fixtures/jc052-native-v075.json",
+    "sha256": "856053a38742995b4af352f47c4718b8a867c4004b0bf383adcb0773bcb83f4d"
+  },
+  {
+    "path": "test/fixtures/jc052-native-v076.json",
+    "sha256": "612b356f986549feac594acafa323b47e5463b5ee39f8efb425b19c4c0fb0803"
+  },
+  {
+    "path": "test/fixtures/jc052-native-v077.json",
+    "sha256": "5c1039abee5ff1bc1fcbcd47e4bfd8d757757d47428a56c0fb9f1813c5f33370"
+  },
+  {
+    "path": "test/fixtures/jc060-native-v075.json",
+    "sha256": "012fe75913b72b43ceb352d456b31e2d2b6a2aa363e9165b492a2957af9db5a4"
+  },
+  {
+    "path": "test/fixtures/jc060-native-v076.json",
+    "sha256": "81a293077d617a4bf7b01c80550e8e9d1688b97261ebd77f9b61f9dc22b929b6"
+  },
+  {
+    "path": "test/fixtures/jc060-native-v077.json",
+    "sha256": "083be42f4f4e6cc7da0bddfbde8dff2ec8927e30305e52c1473eb51995ef1750"
+  },
+  {
+    "path": "test/fixtures/jc095-native-v076.json",
+    "sha256": "4aa76e328e64a6d4c04f205c3765f961284e413aaea895805c1c38a2b494e84d"
+  },
+  {
+    "path": "test/fixtures/jc095-native-v077.json",
+    "sha256": "f9461f224f9f1f25629ae04d25f7f1edb73ff32c7b1a5f2e0dabc57970d0251d"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v054.json",
+    "sha256": "9ddd860d84f58a6eb427163abb378e7f194be7e370aa28a8fb2f1e5b73fcee6f"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v057.json",
+    "sha256": "b9038f759102d031fc9bded65ba16f3dbc0023d6b6f8041081e3e671d249171f"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v059.json",
+    "sha256": "9f40e0d23277f5368eca34038046d6b4822fb209bdf38e5a48b33134ab29c526"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v060.json",
+    "sha256": "818fa485628ad1a1554c486455934c3d4ec437893c0aeaa9b80908f35564ccf2"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v062.json",
+    "sha256": "0140f7e270e7e6fec0991e54260b8d3074a6479cc03c2d249babdb73af7bd1e0"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v063.json",
+    "sha256": "3ec13bb728767d89aa84106b9b2e69858c1c47271a61eb0f8eec177fc31b5450"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v064.json",
+    "sha256": "f6fbb5474f037df71aefd0e9b26d0d5520c2cd8eb4f610f5931ef23a914503f9"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v073.json",
+    "sha256": "b6074214bbf45124a866513df324e84a63adab19be19d7191bb805b14fdff1d5"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v074.json",
+    "sha256": "306dea04323e5033b224cd0193a98ee87110083dfe4b43940c38e814ebaec130"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v075.json",
+    "sha256": "d18a3dc59727459e30a37c022d6ebfc6b1fa774a15049eabcdf799e5eea91249"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v076.json",
+    "sha256": "56b80ec550d8fd19ee5fb6a0422b3b385670ca353c884765023aae9fe2119f79"
+  },
+  {
+    "path": "test/fixtures/jz22-native-v077.json",
+    "sha256": "9806e4ad0dd4dbc8ee25f5f95ce0e0046eb35098a106f970aa1da1a3c9df8fa1"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v048.json",
+    "sha256": "002121ea1134cf5d10a67e493211d9fb1837a5c52c5ced105248e164257f6fc7"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v049.json",
+    "sha256": "f3dedf23388da8adec88cbe0dff3edf30365db33467c69f97b19e7b1ec311d3b"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v050.json",
+    "sha256": "6b5222ef8d714c4093ae0a12c84e6611900cff397e3e647d610bca6385222993"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v057.json",
+    "sha256": "d7fbcd4c605c994c75035911e300031b12cc8503babd75f1fb07d2e5048a63ad"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v059.json",
+    "sha256": "797a4595312f3f745a52ae0b39c5790152fbc3a1716b26565ae0a359b04acf38"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v060.json",
+    "sha256": "bcae9c0ef184292ef415dd273139e91ebf1ba7af895534a36e411319a705e513"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v062.json",
+    "sha256": "049bd9cfab7ef1bfc4ac748db6e39ea5e6505196be2bf5b8f6f365a39aef0b5a"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v063.json",
+    "sha256": "5c0424359a593bdd5327265df7ce4fb5e57bd179f71f23f4aa3106d23611c9fd"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v064.json",
+    "sha256": "f45a82bbd02e5eb5a3cad74048f6cd3b09407008b49132dba543126ad865fa2c"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v073.json",
+    "sha256": "e9f29d13a689f5c40e8ce88d071602f80f17e0b43f114b51d898b17b8284e47e"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v074.json",
+    "sha256": "d5a820c876e36e724ed7e4ef935238409280d14619b96ef1d0e917e5632fffa4"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v075.json",
+    "sha256": "5f616d3c0a9ca9cb146b8cf78f7c65f5cd9c3219f94db762a6ca3ef9b97a8cb9"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v076.json",
+    "sha256": "415b40f1ac2c588eafed36ca6b2bbc59bc9d65850d3fe0a65cfc2407364330e7"
+  },
+  {
+    "path": "test/fixtures/jz50-room-native-v077.json",
+    "sha256": "5816d37ab27adf55ffc49672639dc2f4512c348b9b29d2923ae8b55596c87d48"
+  },
+  {
+    "path": "test/fixtures/original-engine61-room.json",
+    "sha256": "3c99f9daaaae049c06a644f1afb42cdd5f186348e563f4de9f97aea6c97a268e"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v046.json",
+    "sha256": "cca16a276aa95cb3d39584c90fcb8c21bee1f7838d2b884ef857c30f2c7dea77"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v047.json",
+    "sha256": "39f6fc03a6033315adba8bbfabcd08bf63e2814337b64d1bb3e21657ad2fce53"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v048.json",
+    "sha256": "b361d2dab8f6e9904841cee4be7f34dee85cd4822e568e79c9b9fb3c892f7d17"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v049.json",
+    "sha256": "a6ee9278e75f000721989002fe9a11fff064947063941b5ea32b0080eb654848"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v050.json",
+    "sha256": "bae5008dc1b1b88a2a497e16ecbeeef3fba993dd014472a08f54db836ac318a2"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v057.json",
+    "sha256": "9088704ad4b34d4f8363f269399af69841c13e3c123f16d192f134c61f12e4c9"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v059.json",
+    "sha256": "9110be25bd94334e06c52fcb671780e838304888849e692e8c923e84801ad216"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v060.json",
+    "sha256": "74ecedcaa26240c11a2c797c4a3f75a75b16c41c591fa0e4f46d9f72b92b227f"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v062.json",
+    "sha256": "b2cce66fa297bc13a54579a4095350b4c4a817922ecd3a7e8f90876795ecf932"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v063.json",
+    "sha256": "f4f208d651def6d11249ce2889491effe067e71df53ef07d6febbbc373fd7e0b"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v064.json",
+    "sha256": "1f9fb7cbf79b12ca0c9b799bbceef9a372112b5f391b9b62e8ad8e7c3b409a34"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v073.json",
+    "sha256": "b09b213a8ee70c356c36e1ebe5ba274d2005fe116612494b9669b02e13d6ff93"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v074.json",
+    "sha256": "97c6b80f6aba9318772dd911ac24763654080962b1360c6d97397dd492bc8b36"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v075.json",
+    "sha256": "b44dd570c036f7623bc9f3902da3f26a4acb84c63c83331a6f6cb40d7ad7f531"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v076.json",
+    "sha256": "cfbff4c29a546fbeeaa2e8d5902672bd10674ae5cc767d3ca7fb5f46175bb03e"
+  },
+  {
+    "path": "test/fixtures/pause-resume-native-v077.json",
+    "sha256": "32375e0637005998697361386914d0de9c6a7093cb4d8bfee4824ac57cbab064"
+  },
+  {
+    "path": "test/fixtures/prepared-assassin-v028.json",
+    "sha256": "f59af6b3d309b989a1b32bb90daf2b6da9c57b43defcfba2db2dda750f394b4a"
+  },
+  {
+    "path": "test/fixtures/prepared-control-pair-v028.json",
+    "sha256": "8d7c5a77d89f5a707a7ee96f493f1d02fbd188166e5662be694061f66ebc4069"
+  },
+  {
+    "path": "test/fixtures/prepared-fire-scholar-v028.json",
+    "sha256": "aaaf3878b7ce1098474b4aa5390daa329cee2b7a4d8873f7bdbbf5a5f77f3149"
+  },
+  {
+    "path": "test/fixtures/prepared-rescue-forecast-v028.json",
+    "sha256": "f28650b5d9cd6e095cc137c90748ea09fe4e96e33c4f709af275c572f9667f64"
+  },
+  {
+    "path": "test/fixtures/prepared-response-v025.json",
+    "sha256": "41252046030a23ee55582bfe26815cd7984b9a895dc14c10edf82a4200a5faa7"
+  },
+  {
+    "path": "test/fixtures/prepared-response-v026.json",
+    "sha256": "ea51975720b3d36c32a695620a5093d994ab1fbbc0bd256f377eccb5275a9be7"
+  },
+  {
+    "path": "test/fixtures/prepared-response-v027.json",
+    "sha256": "6bd803f9aa4d71168e83271c226408922bb1b774da65947e1e4334b5e7c5ba8b"
+  },
+  {
+    "path": "test/fixtures/prepared-response-v028.json",
+    "sha256": "cbdad025e0695d2a97f613c7e6c759b3b4b6915a4210ec4716e6ee72f5725f2c"
+  },
+  {
+    "path": "test/fixtures/prepared-two-cards-v028.json",
+    "sha256": "00c0ebfffd78d29ef1311d6711d160de441618246ae71b0fde6b55a789ef6c16"
+  },
+  {
+    "path": "test/fixtures/reject-historical-room.mjs",
+    "sha256": "7cdd854606f04dfc3c5bbcd120fdf325afbbb5a89c0916ffe1684011ddfa8274"
+  },
+  {
+    "path": "test/fixtures/reviewed-catalog-v044.json",
+    "sha256": "49386a177863cf15ba82a38811ba938e17e9c7c8600e5d568524ca2670b72901"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v049.json",
+    "sha256": "32da519b3afc50c6603b21c7e2ee3e84290bb58e19a5ddc98a8d2f57a6a6a24c"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v050.json",
+    "sha256": "c4319b08f514cef9c0320574af1c5f92163f3306b062571bf65a22ed849ffba1"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v057.json",
+    "sha256": "39b3ac11679959599577b8b2985a6af8b55da543f5fe74310948be547617d0cc"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v059.json",
+    "sha256": "c35e2b7b5291bcf92be7237b65230561b908721f8dde01a217f747047a891d8f"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v060.json",
+    "sha256": "e7aae1295bc8e9a80048aee24c0cbacd697baa86eff24d436878177e2b2c8f3a"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v062.json",
+    "sha256": "abee067c46ce756b344dd755f036b07571c9aba48973ef813c62a44ef1535bd3"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v063.json",
+    "sha256": "be34243ce6e85a218bf484128655c2a9abe94ca349ed98d4a64f6fa74110e57b"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v064.json",
+    "sha256": "166dc15bda8815b8cac95caa947c7f03145a8fae970dc706be50cfedc37f0168"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v073.json",
+    "sha256": "60e8527a9d252f9a0298881b2d69d53a56812e99e6f65c8d5868462539e08f6b"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v074.json",
+    "sha256": "307de5b4e3cc6ac65b7d0c26985f47f644ccb7fb6cbab58ab9c476e8232a89b1"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v075.json",
+    "sha256": "48440967d487084ae60dcdd4a34c491e67eaaa3792f52efc67788572bf290644"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v076.json",
+    "sha256": "f810b600b1a94f0e0905886de18d0cce4811bdb6f4e3e83793a7907acd1b3207"
+  },
+  {
+    "path": "test/fixtures/sealed-restart-native-v077.json",
+    "sha256": "b52ee188d8816bcf3edbcc4cd35a09fcc6058a28e948fd2768f588081e6b571a"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v047.json",
+    "sha256": "3e7a3bcf612fdcf23d3580470a7e8042263b3c37a4587447825addb042c254db"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v048.json",
+    "sha256": "c994397c2b83a01e1561d1e56d377aee2f899693a6a14a60889d0293f6b25d6d"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v049.json",
+    "sha256": "8a9dc59a04192f1c84c092a19b26e8f73e6af94f6b4e00f8637a9afba2a74931"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v050.json",
+    "sha256": "d6b3e80c907c2fc8f5febae9e2b5c60f53a321061e99fd4208dcc4ba7edd3395"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v057.json",
+    "sha256": "493060bdf1190426ca1a6a1ff7d8dec398862f603e5ab022fbf2a9c7f66ed5d2"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v059.json",
+    "sha256": "9893c693f90470ead0f03d3cd158620d4fed66a259be4ab1b01bb3eab4f72306"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v060.json",
+    "sha256": "9c803c55b9370faf187228e92e07eb320a95df477f6ec73ba7dac6b60721373b"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v062.json",
+    "sha256": "00436509963e47260c4eef8d44559420df3ce5320087ac7973151202eb70ac9b"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v063.json",
+    "sha256": "dde941cdcd45ce21cd30367140bb021be2a08dc2db7ab40f3ece08cb86ffdf03"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v064.json",
+    "sha256": "477a36432611e10405de2cf76b5159510edb92b92e58043665547282c9a99f52"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v073.json",
+    "sha256": "f89e3ee493f33ed25d026ff5358b92b556e72c4c547b5c2b9fe5676bcc58eb59"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v074.json",
+    "sha256": "d6568e2206e7194d7e3a4e47f82402ad9eddfdc434bdeb335901c300a168faa1"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v075.json",
+    "sha256": "f219cdbb13ca96b0964429cd8f0a1d6c805cb39b258d32f355fd0ce3c61f49ae"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v076.json",
+    "sha256": "6891984574706d58ac86fc6d2f2ff53dc33ee5056fd7b2c53bbfddb0516e4227"
+  },
+  {
+    "path": "test/fixtures/sealing-room-native-v077.json",
+    "sha256": "a6454a72d3ebb4529fe049b375b0d0deab0892b316f0436f1827d2122fc438c8"
+  },
+  {
+    "path": "test/fixtures/source-built-native72-lobby.json",
+    "sha256": "4fe3ecbcb7774da3ef68a62e594889d277ea58694c9aa885cfef257d66db1d73"
+  },
+  {
+    "path": "test/fixtures/source-built-native73-lobby.json",
+    "sha256": "a0153a021a71fa424a4c024cca999d658120b1d631a0f3820d8686a1c55fcadd"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v053.json",
+    "sha256": "b37785865dff265512482516b462ed37f6a2a42b406ca22511cddc815fa4fe04"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v057.json",
+    "sha256": "26d3434d7f762f1a5ead160cc77c853bdc13c296bec9c109a324d74ffccfd702"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v059.json",
+    "sha256": "5a4023164dc56d7e0df913645bd34ff877aad290e3079f9442621984e33fdaab"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v060.json",
+    "sha256": "7eec1c998e3f4de8be4a0f10a6205cd880639dbd47e65bdbf0e05199efe9a4dc"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v062.json",
+    "sha256": "5b802a93aa6c651d7ae5204851ce11a4b9a9ede5218de910e9ddfca9e4383360"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v063.json",
+    "sha256": "8530345651fbd2326ec5c8e00e9930d8ade2a3a146504c29807c3970806b3a40"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v064.json",
+    "sha256": "be97060b82f552688deae9617f10d3ec91ade8be528b12ab3c94732ce5357485"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v073.json",
+    "sha256": "e86637c17edd71fd1d79e2d0c52c47459d506919ec53045fb7423dc064e7760e"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v074.json",
+    "sha256": "6fbc0b8a29c7eb16e027982f8ac367584183c24f4ad96ab3851f47943b998635"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v075.json",
+    "sha256": "8bde16d1d3d0dd44494dd6b81803d445d15676b5590ffee8add14b30ead1eca5"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v076.json",
+    "sha256": "5fa0d6779fa030313b95b54347f36cbad3709a230590488ead9f752cc54b44b5"
+  },
+  {
+    "path": "test/fixtures/three-color-death-native-v077.json",
+    "sha256": "254c997e2c0bdb9a7e9de4fec62534dd208d70486999050d5d7196a3e71d297d"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v062.json",
+    "sha256": "7f9d26acad019a8881f413bd89c529074c74c6cd801de090cf73b676a1e26616"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v063.json",
+    "sha256": "e962f222b9afa8e67dcb50422212d34b69444a1e69c19b15fd6e19da9a10dcf3"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v064.json",
+    "sha256": "3dcb8b79ad96c6220dcc066f3410ae37e9e4601aec91c04b25188a32156056cd"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v073.json",
+    "sha256": "438db3a6abc5a6a528eacec52a0b26bc02c05678f37adaa29e24fc0ff2564867"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v074.json",
+    "sha256": "93fe13621c6eced4b5ce41bf05be160ffd0dfa1c3cacbe66de749e0ce0faa8c0"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v075.json",
+    "sha256": "d4ae56e2b20fc8fd3998dfa94a59480ae064e5882035a0ffa1cb4c65d86fe748"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v076.json",
+    "sha256": "b70ab6527fc1515ca4c8093e6b4371fc77437af8695c2f924f79843498d11a95"
+  },
+  {
+    "path": "test/fixtures/win-flow-native-v077.json",
+    "sha256": "bbde15f2c50830f628ae0e6eed7742dcbdf9bbf9288bbcf85ede646adf15b719"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v064.json",
+    "sha256": "480c35560b6542273c5c668264dda15307a30a5d9b2672b7717b27d5cc389695"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v073.json",
+    "sha256": "7bc856c042c7f36caf23c14f35f885bc67382aeb563829114ba8d87d9b2a4524"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v074.json",
+    "sha256": "d31ce92297b8e935762e04aeb216e250d574d27a2f0532ec0e60c9d4501aec44"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v075.json",
+    "sha256": "bb1c7e1b80cf19a2afd893fe93f9c1f6938e33209212bd12f1d06f5cfbb613c9"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v076.json",
+    "sha256": "6081c08eda00c9b7f31cbff570548d3d3115d6209d22b47e70b8f86895c7cec2"
+  },
+  {
+    "path": "test/fixtures/xq24-container-invalid-v077.json",
+    "sha256": "670972d6f4d09440d5334bf35c85e8556b93f07ecc3252ef4a79293bed276904"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v064.json",
+    "sha256": "3d44c3429810e5f3e42762e1d5f3a997478db7252ec31f67b43236483229805e"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v073.json",
+    "sha256": "897a066650d104ded5b1098a14f4b3df73a7c98d1df5fb3b3b11e56193721b6e"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v074.json",
+    "sha256": "eaf3cc62f8f65c718e920d8e228ef14134a4e34e053a39fc39a9b3244c7e27a1"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v075.json",
+    "sha256": "5c79befe7bbc73ad33f2b59d594df3d86eca37411df075f7fe1814d649eeb385"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v076.json",
+    "sha256": "1981513c3b295db0711360d34c6046f48a293220947724e2d4728a2f3d7b0c21"
+  },
+  {
+    "path": "test/fixtures/xq24-native-v077.json",
+    "sha256": "7999c9557cfac636452aa066506c7273dc5db2a33fedab1e7705a2c514730957"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v056.json",
+    "sha256": "84a4cd0f72c51f0d23650541e141d78ed7021405b27707668c07361ce3f99941"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v057.json",
+    "sha256": "fa6df6a0daa4c774a7270dfb13d8cbf4b62f587b3af68faa19e99a46f7c4c950"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v059.json",
+    "sha256": "0f2fcf9de248c84bb2fe3def2b2a943f9536ea570fe49fc2df8aa15f9b2915ce"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v060.json",
+    "sha256": "63cd3d6be5c443920b81bd8320f1fd44f7a477fbf8a8c2dd5bc09a3116ef79de"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v062.json",
+    "sha256": "2d439225ad7dbec53db609447547606ff2d6921829cb89c33b5f324be41fb2b1"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v063.json",
+    "sha256": "74033a1e74258a8b351121ffb34b52872c0a9ed19c8e89ad3579422df10c890b"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v064.json",
+    "sha256": "5e0a42b06a0ba4386a31d71c94c902988a924c7a357b1abe9dd9b06cb185d903"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v073.json",
+    "sha256": "b6475080f1785ab5306c66d69bfe22b2e50d4827b50f5efcd7ee5f7d72e7a7ed"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v074.json",
+    "sha256": "36e7cebe36407474215fdfd324c6bd7f9dd3de53eff064da2b3c47aaa75606a8"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v075.json",
+    "sha256": "53d53b6c184abd5201682dd2ef18afb458e56514b8d13408a7b936e12875b9cb"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v076.json",
+    "sha256": "bcd13d5def244e0507110975add9be1bdbc79ea9646dfe7323b78d45710d59cd"
+  },
+  {
+    "path": "test/fixtures/xq27-invalid-rootface-v077.json",
+    "sha256": "00eb814fdb48f662fde79e962870d54fa148e08d9f2b1fce2822a18f9d8a2af6"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v056.json",
+    "sha256": "cae0d8a722d56be92cedab748e24041ecef9266a9be1f3f830bf762be248c10b"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v057.json",
+    "sha256": "42cfc185b62f790be97cd3443377c24c5ad803eb3f821d7ad715990194736b3e"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v059.json",
+    "sha256": "ecf5cab9b30badc5ee5a09b2f5b34f1fff418f45c3e7e9eecbb85f6c7e13c714"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v060.json",
+    "sha256": "f2802a5f05d5421e6e0a187f1dc5324d0c4c066a1d0dbe233ad592b76ce45208"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v062.json",
+    "sha256": "8950922d59402adca3663c52cb26e70823761a34123e4bbf39e7020b8000f60b"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v063.json",
+    "sha256": "0e14ee74776e6b4f966263b39281617650eedee95c6d378e53f0f457c606eb1b"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v064.json",
+    "sha256": "521ec9fececc79293b696370c444cbba17cfa6a2035f075e1a13f89d001d3295"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v073.json",
+    "sha256": "43258307f6bc7be5b8e325f15d3b3911193cf2d4ed3870b35004a25e24038447"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v074.json",
+    "sha256": "83ce8a2d318f058de9e5d13b0577fb841c8c0508ae7c3ebb029dfb735cf88249"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v075.json",
+    "sha256": "7f53b2f75018bb7e6283345874d219839487b9727cb10c4a9170a29241bbb8ba"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v076.json",
+    "sha256": "fc997051c0016ec4a7d22ada28e09d1b19b9f27354c672c072e1a6058c955e0a"
+  },
+  {
+    "path": "test/fixtures/xq27-native-v077.json",
+    "sha256": "75f85ee899fa27d09bc016487c627364593b6e11e2570ee4ab8cca4290c62c28"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v057.json",
+    "sha256": "3e0b6e801c624c577d2b994b3c8984ce99b57e2f40a114e558712e591e2b6abd"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v059.json",
+    "sha256": "d6664924cb60924c436f3f47d22fa94075bbbb34b04856180439be5469e71417"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v060.json",
+    "sha256": "3c156e36382593a708f2933fed8178f099e874c348931211ee44f85f23756f64"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v062.json",
+    "sha256": "40cda5653afba1b8ddef832447aa24d78d500953feebf42d98574d4e66a0e7b9"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v063.json",
+    "sha256": "36da052f3ddfd82c9c6e15a84d5a066be30b552f3c75d1061d97c5b79b2077b1"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v064.json",
+    "sha256": "e58dc7f68d22efdd5612af24fe7ba629b7426262b1931cdadfcc4524a9f7845f"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v073.json",
+    "sha256": "01b2f83f6ef570c9946a701e51c4f4e5220f031144e8ca277573f44a9fcfe2bd"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v074.json",
+    "sha256": "e07a4407a60f60f701d2eb97d65db755344d16fafa631a299f46c77ee8581699"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v075.json",
+    "sha256": "8724824742c5d715a3875cf7ecd650c3ed0a2e42bcc0c3f85afa43a63f6ffaf8"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v076.json",
+    "sha256": "3184691283398db174ee648a5b2f4afe070f807d8810a2a2e7bcb124b564846d"
+  },
+  {
+    "path": "test/fixtures/xq37-invalid-rootface-v077.json",
+    "sha256": "ec5a7f8e2b65967a8f51cf82d46d196d8aba9b285fa5879b23f505d1f21b9533"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v057.json",
+    "sha256": "b465dbda46994cc39d575f9a7a1d85577ab67d758205ff0e837796a6b4775222"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v059.json",
+    "sha256": "1b1024f61716bafa57aeaadb848f5587ce3d5cd5d334fa7658c38a3f2a15a13e"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v060.json",
+    "sha256": "dc3630827b3fc32df23d541747deeabca945442f5b13bf875c718e69dbea093c"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v062.json",
+    "sha256": "2bc35e622c1c784c0eec7af4da4f41ecc7afb0c0cfbb5cf3bfcd73ea19cd2612"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v063.json",
+    "sha256": "46abf0942f97576a3292479174b279d1bb8effc74cf859b9d30c9035aa5ae567"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v064.json",
+    "sha256": "b15cd97a79b0bb02b6efd71f5f686bfd81b802501296079d3e35a08a3eccd6df"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v073.json",
+    "sha256": "e92533be38f382c87a243911e0a2fe0b7b561944aaad768d278fdcc27fc80833"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v074.json",
+    "sha256": "9ffcad6f27deebb935f968d4cc5c5553a47eb161548c18fb80c9b8a29f048663"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v075.json",
+    "sha256": "307306d8899a27ceb64a0f86bc6e3ef26a884a93d156f991c2cc41030500b4bc"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v076.json",
+    "sha256": "295598fcaea06a2cca3dbdbca2af7377f88ce6f11ce6acafef5de7ff0f984e9a"
+  },
+  {
+    "path": "test/fixtures/xq37-native-v077.json",
+    "sha256": "9d9b93104e493c971249a4514ce391b80d8c3a0dd895202364ef8aed5160d97e"
+  },
+  {
+    "path": "test/gray-lock.test.mjs",
+    "sha256": "3135c3b0d823d5b444622af7c97d550094bbeb60f4ba2f7961f42430f5bdfa76"
+  },
+  {
+    "path": "test/integration.test.mjs",
+    "sha256": "a5b82d6f16d3fe85edb0c893fd29392b12ab7d7d51b579cbe50465ffa4b46978"
+  },
+  {
+    "path": "test/jc037-integration.test.mjs",
+    "sha256": "28d51fdc685373a16e592d79d88113f6fd5f636896e7632da0baf4ea361421a3"
+  },
+  {
+    "path": "test/jc046-integration.test.mjs",
+    "sha256": "14cdd34eaca12d5281a7d984529ebb8e40f055f1034bde2ecad7936f63e8c1ae"
+  },
+  {
+    "path": "test/jc050.test.mjs",
+    "sha256": "4b26605636eef4f761bad55a978028c27d16fa2767f551781113e685d307b68c"
+  },
+  {
+    "path": "test/jc052-integration.test.mjs",
+    "sha256": "cc27f6fc100113876a853ee2ab2e82a0c0d33a63233039b648e42a2e334f7801"
+  },
+  {
+    "path": "test/jc060-integration.test.mjs",
+    "sha256": "5b508317b192a941ecd0672077a494a365c84fc5fa77b27d9c9ebedaa45bb245"
+  },
+  {
+    "path": "test/jc095-integration.test.mjs",
+    "sha256": "6cd1a4dc901f9ab34fdefbf4c16ced8d9e5b90fa986d5f43ee4785bd2a4fce39"
+  },
+  {
+    "path": "test/jz22.test.mjs",
+    "sha256": "e85e6e54ae9abe4a6305fc2c3e4861bc5ea4bf0be8d33d262343438151fa7672"
+  },
+  {
+    "path": "test/kernel-binding.test.mjs",
+    "sha256": "a955d56d974da5139590418bde16707d4153378fb67a2a4d1fe8b9a1f8e20218"
+  },
+  {
+    "path": "test/kernel-routing.test.mjs",
+    "sha256": "96e5e4202bac1125237e654aaec2946eed96dd9775d94edaa31c497fc33f8ae5"
+  },
+  {
+    "path": "test/msjc09-society-integration.test.mjs",
+    "sha256": "c0d01216977eb1b9c317df0c36ac69b83942130f448f82176cc7b1fdc8e21542"
+  },
+  {
+    "path": "test/pass-history-integration.test.mjs",
+    "sha256": "ead7847dff4d1ac9577c58c56e27cc357420b60b6fd54f908764981f8f8c197a"
+  },
+  {
+    "path": "test/pass-history.test.mjs",
+    "sha256": "7ca57b6a09276144cfc432c1e68f3b4da1d0ca30271a504f0e8e5b7e528edc20"
+  },
+  {
+    "path": "test/pause-resume-integration.test.mjs",
+    "sha256": "a4cc994064a7b9826731c5d4fb5e75e50cc01c629d186025a8b5890644cb5fba"
+  },
+  {
+    "path": "test/previous-native72-rejection.test.mjs",
+    "sha256": "ae60e5d599ffdd3cd3fe899c357b0052517a454c9f58e1bfc2f80bb669bad18a"
+  },
+  {
+    "path": "test/previous-native73-rejection.test.mjs",
+    "sha256": "2e811398094dcf233262ec122ce7a988c744f416f18eb1216b2b4d74c907a6f3"
+  },
+  {
+    "path": "test/published77.mjs",
+    "sha256": "e597ac19e66fa972d4865ae62d8393356259d7abf6a4a643042bf69b09a0e99f"
+  },
+  {
+    "path": "test/rescue-forecast-integration.test.mjs",
+    "sha256": "2fce8b04b1dbaecf8bf7fe9925f6d7b887776d236fa4be128506971acb6356df"
+  },
+  {
+    "path": "test/sealed-restart-integration.test.mjs",
+    "sha256": "38e9c78aa8547fdbac1a55b2158c8940f1dabd0b484adc7053aa2482206e6d98"
+  },
+  {
+    "path": "test/session-host.test.mjs",
+    "sha256": "ba128ff7f3f1fcddedba0a977c36c66b1ab58d0c9b01673cab24996fa02010cd"
+  },
+  {
+    "path": "test/session-integration.test.mjs",
+    "sha256": "383f9019a08b3c96890f61cb289d39c13cfb61eea413bc15a9949a14ad7ae46f"
+  },
+  {
+    "path": "test/seven-card-integration.test.mjs",
+    "sha256": "9b2d104e6dfb69c6b7633b1712ec7b6a837bd51055dee0ec7310a0889281eb6b"
+  },
+  {
+    "path": "test/society-foundation.fixture.mjs",
+    "sha256": "6993f979c0283a9d2b608d005d5d5263320f3e9ad67f3b1053fefbdefae03bcb"
+  },
+  {
+    "path": "test/storage-retry.test.mjs",
+    "sha256": "f2bba390111e4174f6cf558219f0f1d816743d30475184d67b8f66119c229f44"
+  },
+  {
+    "path": "test/three-color-death.test.mjs",
+    "sha256": "97f947396732c85044746a4e70b87cccc9336406f1b05d2a8ba050a81444b71b"
+  },
+  {
+    "path": "test/two-card-integration.test.mjs",
+    "sha256": "336ab46a3fb885668e2719858702869e01aae10196b2e05377a02b4c392e6fc3"
+  },
+  {
+    "path": "test/win-flow-integration.test.mjs",
+    "sha256": "48a16bcedf0464b8e6c2dd6ff245ad74ce51e913efc47d508eedef9f39fce5a2"
+  },
+  {
+    "path": "test/xq18-carrier.test.mjs",
+    "sha256": "67570b774e7bf13aeb9f1ec7cbde6c4bc30dbb11e65e6ef2f43ede3d7a2413cc"
+  },
+  {
+    "path": "test/xq24-container-restore.test.mjs",
+    "sha256": "4ae1035aec32650df7254c3df82ca5d862b828bccb438ecbac34a4adc497bd0c"
+  },
+  {
+    "path": "test/xq24-integration.test.mjs",
+    "sha256": "50613c960f8194f311329f127b5d03416ec2e8def3fcb696d9d762bb1ac1db20"
+  },
+  {
+    "path": "test/xq27.test.mjs",
+    "sha256": "78866c8727c54e821ac32eac6f0f294b4b9a96da5392b603713bab6e73a3b779"
+  },
+  {
+    "path": "test/xq37.test.mjs",
+    "sha256": "d7ed17823d2f68164f3038812a779e8d0973a3873e1257ebce221cb0736992e1"
+  },
+  {
+    "path": "tools/build-storage.mjs",
+    "sha256": "f450bc9ac4f16d1ec4410284ef4bb57a4f6599dbdbe48af3d54a0f66f5701ca3"
+  },
+  {
+    "path": "web/index.html",
+    "sha256": "bda13861efc90cc0628d795a13b24a630943740158df5be7b0e550608f770a4d"
+  },
+  {
+    "path": "web/package-lock.json",
+    "sha256": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d"
+  },
+  {
+    "path": "web/public/card-scans.json",
+    "sha256": "b016b8a229952fb44e6ee52d304e79aa15c87483b3a18a56757ad86f5fb4240b"
+  },
+  {
+    "path": "web/public/cards/BQ022.jpg",
+    "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+  },
+  {
+    "path": "web/public/cards/BQ028.jpg",
+    "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6"
+  },
+  {
+    "path": "web/public/cards/BQ030.jpg",
+    "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+  },
+  {
+    "path": "web/public/cards/BQ040.jpg",
+    "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+  },
+  {
+    "path": "web/public/cards/BQ078.jpg",
+    "sha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea"
+  },
+  {
+    "path": "web/public/cards/BQ083.jpg",
+    "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+  },
+  {
+    "path": "web/public/cards/BQ104.jpg",
+    "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+  },
+  {
+    "path": "web/public/cards/DQJC107.jpg",
+    "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+  },
+  {
+    "path": "web/public/cards/DQJC108.jpg",
+    "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+  },
+  {
+    "path": "web/public/cards/DQJC109.jpg",
+    "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+  },
+  {
+    "path": "web/public/cards/DQJC110.jpg",
+    "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+  },
+  {
+    "path": "web/public/cards/DQJC111.jpg",
+    "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+  },
+  {
+    "path": "web/public/cards/DQJC112.jpg",
+    "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+  },
+  {
+    "path": "web/public/cards/DQJC113.jpg",
+    "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+  },
+  {
+    "path": "web/public/cards/DQJC114.jpg",
+    "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+  },
+  {
+    "path": "web/public/cards/DQJC115.jpg",
+    "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+  },
+  {
+    "path": "web/public/cards/DQJC116.jpg",
+    "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+  },
+  {
+    "path": "web/public/cards/JC001.jpg",
+    "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+  },
+  {
+    "path": "web/public/cards/JC002.jpg",
+    "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+  },
+  {
+    "path": "web/public/cards/JC003.jpg",
+    "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+  },
+  {
+    "path": "web/public/cards/JC004.jpg",
+    "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+  },
+  {
+    "path": "web/public/cards/JC005.jpg",
+    "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+  },
+  {
+    "path": "web/public/cards/JC006.jpg",
+    "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+  },
+  {
+    "path": "web/public/cards/JC007.jpg",
+    "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+  },
+  {
+    "path": "web/public/cards/JC008.jpg",
+    "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+  },
+  {
+    "path": "web/public/cards/JC014.jpg",
+    "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+  },
+  {
+    "path": "web/public/cards/JC015.jpg",
+    "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e"
+  },
+  {
+    "path": "web/public/cards/JC016.jpg",
+    "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+  },
+  {
+    "path": "web/public/cards/JC018.jpg",
+    "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+  },
+  {
+    "path": "web/public/cards/JC020.jpg",
+    "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+  },
+  {
+    "path": "web/public/cards/JC029.jpg",
+    "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
+  },
+  {
+    "path": "web/public/cards/JC030.jpg",
+    "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+  },
+  {
+    "path": "web/public/cards/JC031.jpg",
+    "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+  },
+  {
+    "path": "web/public/cards/JC032.jpg",
+    "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b"
+  },
+  {
+    "path": "web/public/cards/JC036.jpg",
+    "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+  },
+  {
+    "path": "web/public/cards/JC037.jpg",
+    "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece"
+  },
+  {
+    "path": "web/public/cards/JC042.jpg",
+    "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+  },
+  {
+    "path": "web/public/cards/JC045.jpg",
+    "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+  },
+  {
+    "path": "web/public/cards/JC046.jpg",
+    "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
+  },
+  {
+    "path": "web/public/cards/JC047.jpg",
+    "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+  },
+  {
+    "path": "web/public/cards/JC049.jpg",
+    "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+  },
+  {
+    "path": "web/public/cards/JC050.jpg",
+    "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e"
+  },
+  {
+    "path": "web/public/cards/JC052.jpg",
+    "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
+  },
+  {
+    "path": "web/public/cards/JC056.jpg",
+    "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+  },
+  {
+    "path": "web/public/cards/JC058.jpg",
+    "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+  },
+  {
+    "path": "web/public/cards/JC059.jpg",
+    "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+  },
+  {
+    "path": "web/public/cards/JC060.jpg",
+    "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
+  },
+  {
+    "path": "web/public/cards/JC061.jpg",
+    "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
+  },
+  {
+    "path": "web/public/cards/JC063.jpg",
+    "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+  },
+  {
+    "path": "web/public/cards/JC069.jpg",
+    "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+  },
+  {
+    "path": "web/public/cards/JC070.jpg",
+    "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+  },
+  {
+    "path": "web/public/cards/JC071.jpg",
+    "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+  },
+  {
+    "path": "web/public/cards/JC073.jpg",
+    "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+  },
+  {
+    "path": "web/public/cards/JC074.jpg",
+    "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+  },
+  {
+    "path": "web/public/cards/JC075.jpg",
+    "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+  },
+  {
+    "path": "web/public/cards/JC076.jpg",
+    "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+  },
+  {
+    "path": "web/public/cards/JC078.jpg",
+    "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+  },
+  {
+    "path": "web/public/cards/JC084.jpg",
+    "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+  },
+  {
+    "path": "web/public/cards/JC085.jpg",
+    "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+  },
+  {
+    "path": "web/public/cards/JC086.jpg",
+    "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+  },
+  {
+    "path": "web/public/cards/JC087.jpg",
+    "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
+  },
+  {
+    "path": "web/public/cards/JC088.jpg",
+    "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+  },
+  {
+    "path": "web/public/cards/JC089.jpg",
+    "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+  },
+  {
+    "path": "web/public/cards/JC090.jpg",
+    "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+  },
+  {
+    "path": "web/public/cards/JC091.jpg",
+    "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+  },
+  {
+    "path": "web/public/cards/JC092.jpg",
+    "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+  },
+  {
+    "path": "web/public/cards/JC093.jpg",
+    "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+  },
+  {
+    "path": "web/public/cards/JC094.jpg",
+    "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
+  },
+  {
+    "path": "web/public/cards/JC095.jpg",
+    "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
+  },
+  {
+    "path": "web/public/cards/JC096.jpg",
+    "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+  },
+  {
+    "path": "web/public/cards/JC102.jpg",
+    "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+  },
+  {
+    "path": "web/public/cards/JC103.jpg",
+    "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+  },
+  {
+    "path": "web/public/cards/JC104.jpg",
+    "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+  },
+  {
+    "path": "web/public/cards/JC107.jpg",
+    "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+  },
+  {
+    "path": "web/public/cards/JC112.jpg",
+    "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+  },
+  {
+    "path": "web/public/cards/JC114.jpg",
+    "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+  },
+  {
+    "path": "web/public/cards/JC116.jpg",
+    "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+  },
+  {
+    "path": "web/public/cards/JC118.jpg",
+    "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+  },
+  {
+    "path": "web/public/cards/JC125.jpg",
+    "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+  },
+  {
+    "path": "web/public/cards/JC126.jpg",
+    "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+  },
+  {
+    "path": "web/public/cards/JC129.jpg",
+    "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+  },
+  {
+    "path": "web/public/cards/JC130.jpg",
+    "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+  },
+  {
+    "path": "web/public/cards/JC131.jpg",
+    "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+  },
+  {
+    "path": "web/public/cards/JC132.jpg",
+    "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+  },
+  {
+    "path": "web/public/cards/JZ02.jpg",
+    "sha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+  },
+  {
+    "path": "web/public/cards/JZ08.jpg",
+    "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+  },
+  {
+    "path": "web/public/cards/JZ22.jpg",
+    "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
+  },
+  {
+    "path": "web/public/cards/JZ24.jpg",
+    "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+  },
+  {
+    "path": "web/public/cards/JZ27.jpg",
+    "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+  },
+  {
+    "path": "web/public/cards/JZ30.jpg",
+    "sha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264"
+  },
+  {
+    "path": "web/public/cards/JZ31.jpg",
+    "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
+  },
+  {
+    "path": "web/public/cards/JZ35.jpg",
+    "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
+  },
+  {
+    "path": "web/public/cards/JZ43.jpg",
+    "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+  },
+  {
+    "path": "web/public/cards/JZ44.jpg",
+    "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
+  },
+  {
+    "path": "web/public/cards/JZ45.jpg",
+    "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
+  },
+  {
+    "path": "web/public/cards/JZ48.jpg",
+    "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+  },
+  {
+    "path": "web/public/cards/JZ49.jpg",
+    "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
+  },
+  {
+    "path": "web/public/cards/JZ50.jpg",
+    "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+  },
+  {
+    "path": "web/public/cards/JZ51.jpg",
+    "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+  },
+  {
+    "path": "web/public/cards/JZ52.jpg",
+    "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+  },
+  {
+    "path": "web/public/cards/JZ53.jpg",
+    "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+  },
+  {
+    "path": "web/public/cards/JZ54.jpg",
+    "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+  },
+  {
+    "path": "web/public/cards/JZ55.jpg",
+    "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+  },
+  {
+    "path": "web/public/cards/JZ58.jpg",
+    "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+  },
+  {
+    "path": "web/public/cards/JZ59.jpg",
+    "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+  },
+  {
+    "path": "web/public/cards/JZ61.jpg",
+    "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+  },
+  {
+    "path": "web/public/cards/JZ67.jpg",
+    "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+  },
+  {
+    "path": "web/public/cards/JZ74.jpg",
+    "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+  },
+  {
+    "path": "web/public/cards/LC01.jpg",
+    "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+  },
+  {
+    "path": "web/public/cards/LC06.jpg",
+    "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
+  },
+  {
+    "path": "web/public/cards/LC12.jpg",
+    "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+  },
+  {
+    "path": "web/public/cards/LC19.jpg",
+    "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+  },
+  {
+    "path": "web/public/cards/LC20.jpg",
+    "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+  },
+  {
+    "path": "web/public/cards/LC21.jpg",
+    "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+  },
+  {
+    "path": "web/public/cards/LC22.jpg",
+    "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+  },
+  {
+    "path": "web/public/cards/LC23.jpg",
+    "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+  },
+  {
+    "path": "web/public/cards/LC24.jpg",
+    "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+  },
+  {
+    "path": "web/public/cards/LC30.jpg",
+    "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
+  },
+  {
+    "path": "web/public/cards/MSJC01.jpg",
+    "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+  },
+  {
+    "path": "web/public/cards/MSJC02.jpg",
+    "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
+  },
+  {
+    "path": "web/public/cards/MSJC03.jpg",
+    "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
+  },
+  {
+    "path": "web/public/cards/MSJC06.jpg",
+    "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"
+  },
+  {
+    "path": "web/public/cards/MSJC07.jpg",
+    "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+  },
+  {
+    "path": "web/public/cards/MSJC08.jpg",
+    "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1"
+  },
+  {
+    "path": "web/public/cards/MSJC09.jpg",
+    "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+  },
+  {
+    "path": "web/public/cards/MSJC11.jpg",
+    "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"
+  },
+  {
+    "path": "web/public/cards/WM003.jpg",
+    "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+  },
+  {
+    "path": "web/public/cards/WM023.jpg",
+    "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+  },
+  {
+    "path": "web/public/cards/WM038.jpg",
+    "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+  },
+  {
+    "path": "web/public/cards/WM056.jpg",
+    "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
+  },
+  {
+    "path": "web/public/cards/WM059.jpg",
+    "sha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f"
+  },
+  {
+    "path": "web/public/cards/XQ03.jpg",
+    "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+  },
+  {
+    "path": "web/public/cards/XQ07.jpg",
+    "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+  },
+  {
+    "path": "web/public/cards/XQ12.jpg",
+    "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+  },
+  {
+    "path": "web/public/cards/XQ14.jpg",
+    "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+  },
+  {
+    "path": "web/public/cards/XQ16.jpg",
+    "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+  },
+  {
+    "path": "web/public/cards/XQ17.jpg",
+    "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+  },
+  {
+    "path": "web/public/cards/XQ18.jpg",
+    "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
+  },
+  {
+    "path": "web/public/cards/XQ24.jpg",
+    "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
+  },
+  {
+    "path": "web/public/cards/XQ25.jpg",
+    "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
+  },
+  {
+    "path": "web/public/cards/XQ27.jpg",
+    "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
+  },
+  {
+    "path": "web/public/cards/XQ34.jpg",
+    "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+  },
+  {
+    "path": "web/public/cards/XQ36.jpg",
+    "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+  },
+  {
+    "path": "web/public/cards/XQ37.jpg",
+    "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
+  },
+  {
+    "path": "web/public/cards/XQ38.jpg",
+    "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+  },
+  {
+    "path": "web/public/cards/XQ40.jpg",
+    "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+  },
+  {
+    "path": "web/public/cards/XQ41.jpg",
+    "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+  },
+  {
+    "path": "web/public/cards/XQ43.jpg",
+    "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93"
+  },
+  {
+    "path": "web/public/cards/XQ44.jpg",
+    "sha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+  },
+  {
+    "path": "web/public/cards/XQ45.jpg",
+    "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+  },
+  {
+    "path": "web/public/cards/XQ46.jpg",
+    "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+  },
+  {
+    "path": "web/public/cards/XQ47.jpg",
+    "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+  },
+  {
+    "path": "web/public/cards/XQ48.jpg",
+    "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+  },
+  {
+    "path": "web/public/cards/XQ49.jpg",
+    "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+  },
+  {
+    "path": "web/src/App.tsx",
+    "sha256": "61dffa5b8c8cfc67e5bc66ec91a17d9e20ca696e3a410fbcb8128429d9449c54"
+  },
+  {
+    "path": "web/src/game/ArchivePresentation.test.tsx",
+    "sha256": "e7204f2f96686decd9c27243e924b54871c2298a23bb95ba1f1173a97d1d338a"
+  },
+  {
+    "path": "web/src/game/ArchivePresentation.tsx",
+    "sha256": "0d6b10f448a1863fbdd38c5e7508dedf8af1c5867430c351125c91f43bb9f578"
+  },
+  {
+    "path": "web/src/game/Attachments.test.tsx",
+    "sha256": "5e6e1bfb342ce11be2ca7218f8648ce69b0a39e8e2ba2c2a311a77243521a165"
+  },
+  {
+    "path": "web/src/game/AutoPass.test.tsx",
+    "sha256": "c46d1b8e18c30ae9bb2a6d48c22db72af3dd72305e222846c827af9f045be90b"
+  },
+  {
+    "path": "web/src/game/AutoPass.tsx",
+    "sha256": "798eff13494118ec2131101e4d18940cc8f346635a44d4b4332cef5720a58122"
+  },
+  {
+    "path": "web/src/game/AutoPassPolling.fixture.jsx",
+    "sha256": "518daba5f93da8b8f6246430e39ee06867a7ea1b92c49aabb0f2d749275db75c"
+  },
+  {
+    "path": "web/src/game/AutoPassPolling.test.jsx",
+    "sha256": "f95bb1785f4ae04706a8ce11b282d7823cdc64c9bab65ee90fee7e25eab52afb"
+  },
+  {
+    "path": "web/src/game/BQ030Combined.test.jsx",
+    "sha256": "b695888bd890f3bc8360e7d811e60b3670ddbb08f6c019bb5ee2e813a8cafcd3"
+  },
+  {
+    "path": "web/src/game/BlueMinimumScan.test.jsx",
+    "sha256": "a2fcb65727cb908fe8112ac084125d00f5c4a3269010099585385fe1a46a80e5"
+  },
+  {
+    "path": "web/src/game/BoundedEntrySearch.test.jsx",
+    "sha256": "4acbf4e8eeccbd3012bc0b0d8b12f3436b662bc117b78b373445500f19762481"
+  },
+  {
+    "path": "web/src/game/BrowserPersistenceFeedback.test.tsx",
+    "sha256": "11af5c059b6a54f012a4e2892e7fd01d30fee06a71b7530607d6ee2f89f17bc7"
+  },
+  {
+    "path": "web/src/game/CardTile.test.tsx",
+    "sha256": "a50f2652b0d52ebaee0484a8b68ff61a20450dafc812a5c72ebb4fb5054fc12f"
+  },
+  {
+    "path": "web/src/game/CardTile.tsx",
+    "sha256": "77505e805f14973f628b53864558f1e58e6a40561b57f542e69bc6505eb02520"
+  },
+  {
+    "path": "web/src/game/ChoiceActionFocus.test.tsx",
+    "sha256": "d569b443215e46359a24c5dc0febbf232e77e1f76f0b39e0281e2092dcf9f546"
+  },
+  {
+    "path": "web/src/game/ChoiceCandidateIdentity.test.tsx",
+    "sha256": "e8b3e335d26706221cbe6ac6835dbb527c82aa5ce2c9b5b779ba1b13ff3e9769"
+  },
+  {
+    "path": "web/src/game/ChoiceDamageIdentity.test.tsx",
+    "sha256": "8f8c64159fbc52256198544d252205dfac7efd4583fa544a0489db679e92a05b"
+  },
+  {
+    "path": "web/src/game/ChoiceOrderReading.test.tsx",
+    "sha256": "6f4fc7ad31ceed23352e413a00086e59b4c58a2e1b90d19f2bda41e7ff5c32e4"
+  },
+  {
+    "path": "web/src/game/ChoicePanel.test.tsx",
+    "sha256": "bd2b889bae1668cb696ba551539d9af885ef343d48672ab57ad11baa7f74f311"
+  },
+  {
+    "path": "web/src/game/ChoicePanel.tsx",
+    "sha256": "dcde56e15d15710263b771137c760d4ee25dfa055f47d539d475963565f84144"
+  },
+  {
+    "path": "web/src/game/ChoiceRecovery.test.tsx",
+    "sha256": "51277574f2ff13349244309cc195fadec24a38be4246d4a8e823714972b5cff6"
+  },
+  {
+    "path": "web/src/game/CommandAcknowledgement.test.tsx",
+    "sha256": "278b83e619b27b75b8dc49fbd9f7f170f8dc7feb740f7798d34de32f958f860f"
+  },
+  {
+    "path": "web/src/game/CommandConflictInteraction.test.tsx",
+    "sha256": "ad707ba5e6ca3237e76556df540364a9d0aa0d63090ae370c6a99dfd47a79510"
+  },
+  {
+    "path": "web/src/game/ContinuousPass.test.tsx",
+    "sha256": "2301b4601256a161ee68c501d70c7fe0a15a0921c4416dca818f0589dfe63bac"
+  },
+  {
+    "path": "web/src/game/ContinuousPassRecovery.test.tsx",
+    "sha256": "324f1bbb9833d72f18b64736846d9538553447c87c5bbcce1e7eaabcc25b6073"
+  },
+  {
+    "path": "web/src/game/ControlTypeBatch.test.jsx",
+    "sha256": "aa99d680b502ec1a0c3c50fbde6dfacbf0c1bb04ce025225fd64759ff7bde4f1"
+  },
+  {
+    "path": "web/src/game/CurrentDomainReading.test.tsx",
+    "sha256": "aa3b503f78c82b4f354ef6496c4698291b431becfb5f3fc90bbe9eb5c1b7c4d6"
+  },
+  {
+    "path": "web/src/game/CurrentLifecycleChoices.test.jsx",
+    "sha256": "968055758fe6aeb3532062a3d43d1ba60de0a6c62cc8bfc8ae993e1b44a97b58"
+  },
+  {
+    "path": "web/src/game/DeckAdmission.test.tsx",
+    "sha256": "8239c620d8e37a8bb088cd53a12f58dc81fb8f3e7b23495d62cd2d9f983684ff"
+  },
+  {
+    "path": "web/src/game/DeckBuilderGrid.test.tsx",
+    "sha256": "f6ef911df6b82237fc7133852c95562390021c2a1e8bccb2458eb7547ea11e0a"
+  },
+  {
+    "path": "web/src/game/DeckCardFace.tsx",
+    "sha256": "7b4b4c0472e7509475d6c3a8f8030029848ed2f7d211c4db6490ead21aa3f8b6"
+  },
+  {
+    "path": "web/src/game/DeckCardPreview.tsx",
+    "sha256": "f0f105f0e4fc882e8220553fffbac4ea5b2a2c4487c7c1007ee2f423c8071a24"
+  },
+  {
+    "path": "web/src/game/DeckCardVisibility.test.tsx",
+    "sha256": "cb32abc0aa778edb5f49b912bf00677ff921d9a0f0c26815a16e444b63682ca6"
+  },
+  {
+    "path": "web/src/game/DeckCollectionPage.test.tsx",
+    "sha256": "43589953ae036cdd549d95dbc9fd1fbda232120420cc7a5e60528036439b8d27"
+  },
+  {
+    "path": "web/src/game/DeckLibrary.test.tsx",
+    "sha256": "12835d9977068f91f759f0a8387ee51aed9a2dc23629a515119aa8f7972366a8"
+  },
+  {
+    "path": "web/src/game/DeckLibraryPanel.tsx",
+    "sha256": "346f649cec97d29db365f69db1f9a232ea57998049df43ecb5fbc38067af35c7"
+  },
+  {
+    "path": "web/src/game/DeckSealSearch.test.jsx",
+    "sha256": "c73148483d8431248f3e948114790e502d8b02ebcd0c6be107f1d841e461a155"
+  },
+  {
+    "path": "web/src/game/DefenceEquipmentBatch.test.jsx",
+    "sha256": "8d1a38c3065f1fc45d6c825cafccd5cf88a500950e27223e5bee5c0a8a183890"
+  },
+  {
+    "path": "web/src/game/DialogIsolation.test.tsx",
+    "sha256": "707b5135484dc3583fba6bd1bddbe28048797962af1365339cdb5d5a1b9a2a70"
+  },
+  {
+    "path": "web/src/game/DreamRevealBatch.test.jsx",
+    "sha256": "1d6afa078e70a0911c587a7db9cb25998ffb3afccf930d4654b14e544b6edaec"
+  },
+  {
+    "path": "web/src/game/EmptyRegionSlots.test.tsx",
+    "sha256": "afbe114a6cde282882bb5b030bfeba52515cd30814d2ff079902aba223f29012"
+  },
+  {
+    "path": "web/src/game/EntryReceiptRecovery.test.ts",
+    "sha256": "8869d5b52829cd6fd2f51a0ac4361769a2a7b5f07cc8df5195f0bbcdcdcd2e8c"
+  },
+  {
+    "path": "web/src/game/EquipmentAbilitiesBatch.test.jsx",
+    "sha256": "2e62b2b99efb61fb70baa547050750ad05f1b2271296088d05cdec69796c963a"
+  },
+  {
+    "path": "web/src/game/FactionCoverage.tsx",
+    "sha256": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3"
+  },
+  {
+    "path": "web/src/game/FinishedSummary.test.tsx",
+    "sha256": "2913b0b4b8a942ec2fb930998a86f7b84d85c6fa0debe189ce8a10c364825544"
+  },
+  {
+    "path": "web/src/game/GameApp.tsx",
+    "sha256": "635202d96665613f209829e1f311b6cee08797204b5d92d64a749a482aa07687"
+  },
+  {
+    "path": "web/src/game/GreenMinimumScan.test.jsx",
+    "sha256": "b32931f3cf7112cf6410e3d96c34dfdc349c4a913d5a8770a918e1f30a1b72f8"
+  },
+  {
+    "path": "web/src/game/HandDeckBatch.test.jsx",
+    "sha256": "0b9b798628a9bae66a75b0e0a58ac597b2da82c419562853683f600db64e6f5f"
+  },
+  {
+    "path": "web/src/game/HandInteractionsBatch.test.jsx",
+    "sha256": "19823a7cdbf8d87cce6caae36d22d26ee54d0bd8bef4e5f9953803d8add21574"
+  },
+  {
+    "path": "web/src/game/Help.test.tsx",
+    "sha256": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3"
+  },
+  {
+    "path": "web/src/game/Help.tsx",
+    "sha256": "72561b99e010f503ccb7f910846a0b20ddd1c7eeeadf0c52c6ebd59d6a3a95d6"
+  },
+  {
+    "path": "web/src/game/IdentityOverlap.test.jsx",
+    "sha256": "fd3e2b764ba83fbfee49ff452a6f6a0d67c89cf84dee727efeb8b9e1de661329"
+  },
+  {
+    "path": "web/src/game/JC005Scan.test.jsx",
+    "sha256": "ad098dee09f5896bb4ea72617b24ab67174d898458f58178aaee498609da6eef"
+  },
+  {
+    "path": "web/src/game/JC008Scan.test.jsx",
+    "sha256": "2e98f377ac7319c3699fc3bdbd56881ca7a9b92f4232364baf86fe8a4d079ba9"
+  },
+  {
+    "path": "web/src/game/JC029Scan.test.jsx",
+    "sha256": "8a2bd0e18d8a4ec6e8568141d2ef588569c542d04eabd6d10f6b10bb773f91f3"
+  },
+  {
+    "path": "web/src/game/JC030Scan.test.jsx",
+    "sha256": "ca4082cf55aeb10a350f4e7ccabe62ba816233d6e706506b8e0c10aa31c8254d"
+  },
+  {
+    "path": "web/src/game/JC037Face.test.jsx",
+    "sha256": "cbb6617bc4cbf0e43dd875a28055470ef5c5f8ba6164bbef8004c85ec1b4d7d9"
+  },
+  {
+    "path": "web/src/game/JC037Integration.test.jsx",
+    "sha256": "5c85c80cb4573f1821036d41558264d58b02385348ef373d63199a33b7e19d53"
+  },
+  {
+    "path": "web/src/game/JC046Face.test.jsx",
+    "sha256": "3b98b4e99d18a365c053c4357fea525573698d4f8b56c793011f029742b42799"
+  },
+  {
+    "path": "web/src/game/JC046Integration.test.jsx",
+    "sha256": "925906a97b779061ebaa0c219fff0d274e8121637ca3dd871a99c3c76acd78a8"
+  },
+  {
+    "path": "web/src/game/JC050RegionDestruction.test.jsx",
+    "sha256": "ff1d2c06832e9d0594433a7a7cbd6996e0f52cae6ec6dffa3e0e63bb5167bc31"
+  },
+  {
+    "path": "web/src/game/JC052Face.test.jsx",
+    "sha256": "bcd966bfd680cec5d9c53ca3163672cce4ca35d24bad54695392d576768f2278"
+  },
+  {
+    "path": "web/src/game/JC052Integration.test.jsx",
+    "sha256": "0c6605968b8b7576beb5c805b0a10194c8735c4a66956b3dabf1e806d3cac537"
+  },
+  {
+    "path": "web/src/game/JC060Face.test.jsx",
+    "sha256": "1470b08d467030a1db4eaaac21a512d582ba2b65f7af86237764cd4b35eca67d"
+  },
+  {
+    "path": "web/src/game/JC061Integration.test.jsx",
+    "sha256": "ba8a8f39997ec905081c9c9a06574b3ed8f75222274474641418daee60591bfc"
+  },
+  {
+    "path": "web/src/game/JC087Integration.test.jsx",
+    "sha256": "0844fa6947e22e3ea959a94188c23ec2c534a984b1721e5c8ca7ae690dde1a66"
+  },
+  {
+    "path": "web/src/game/JC089Curse.test.jsx",
+    "sha256": "8cb3dbc5028a214913a0fd92ca48140c437887fb59a951c0205192b61ccb192b"
+  },
+  {
+    "path": "web/src/game/JC089JZ51JZ53CardFaces.test.jsx",
+    "sha256": "e46d48a69a0844083093c6ff9ca67e1aeacf523b05b771f5a6043131bc0d428f"
+  },
+  {
+    "path": "web/src/game/JC094Integration.test.jsx",
+    "sha256": "368d055b7e8fded519f4d1c2bf6a6ea2341f3c68f1f3f9bec63712dfea454319"
+  },
+  {
+    "path": "web/src/game/JC095Face.test.jsx",
+    "sha256": "6f90045a5e1ddbfeaf4fd58f6bc9973b8eb00e38e2518b57808018e66c976d70"
+  },
+  {
+    "path": "web/src/game/JZ22LowHandInfluence.test.jsx",
+    "sha256": "21a4c6db018b3a385e173adb9eb5584c6bbb46215fca86f2b3c230a2e9a8e684"
+  },
+  {
+    "path": "web/src/game/JZ31DeathInfluence.test.jsx",
+    "sha256": "1bd6d9c07c05d6ae9dc12f063aea92b654332df4ec35eb17bf7f25104f8dac88"
+  },
+  {
+    "path": "web/src/game/JZ35Face.test.jsx",
+    "sha256": "d0d623f4da104f5c62d4912f36dfcb348bdd8f76c6060db4a1cf322e379bdcee"
+  },
+  {
+    "path": "web/src/game/JZ35Integration.test.jsx",
+    "sha256": "882339642e802feaa2f2155f0be29b92216e4476a8cc06e4fb54dbb4685d5328"
+  },
+  {
+    "path": "web/src/game/JZ48Criminal.test.jsx",
+    "sha256": "af33e6edfe67e4765f71a8926159f07aab28f25dd312d40d40a80e5d473de021"
+  },
+  {
+    "path": "web/src/game/JZ48JZ50CardFaces.test.jsx",
+    "sha256": "0b92fc66daa3a0a3b2fe478141a00220f85e68fe456f284bf4620f3fbd34a8e1"
+  },
+  {
+    "path": "web/src/game/JZ49CardFace.test.jsx",
+    "sha256": "8ed9c4e6f94f40ab88f1670df23000aaa7d8d498e721d1bfad178b62cfa3dbde"
+  },
+  {
+    "path": "web/src/game/JZ49Slow.test.jsx",
+    "sha256": "aa40b41fee978177f495e3a68eb660a18d9d559b8ba7144b24abac5a8fcd965c"
+  },
+  {
+    "path": "web/src/game/JZ50Search.test.tsx",
+    "sha256": "f09993267ad54e8a5a23a56b2c0f53df26339feae58ddb2fc9f29cda584430d6"
+  },
+  {
+    "path": "web/src/game/JZ55UniqueDestroy.test.jsx",
+    "sha256": "eedff6d755b615b565b60b2849c56a76badb82e69f3d04ecd9e751801faf6865"
+  },
+  {
+    "path": "web/src/game/Lobby.test.tsx",
+    "sha256": "696683925afe79a5424d840ca2af1ccc037808eac30b7f9de476bd62d976c6f0"
+  },
+  {
+    "path": "web/src/game/Lobby.tsx",
+    "sha256": "074f10f9dc8833355958e2c4394eb6446d7986631707d6b308febd54d7fb6297"
+  },
+  {
+    "path": "web/src/game/MSJC01Scan.test.jsx",
+    "sha256": "e72aaffffa28734eed92de27a9030f3b032fe9c51ccf149803d0558782fd7ba6"
+  },
+  {
+    "path": "web/src/game/MSJC06Scan.test.jsx",
+    "sha256": "ab6d2c97ea49518e52c669231ea36cf5f818a8713205c2b05e2b0f4028387bad"
+  },
+  {
+    "path": "web/src/game/MSJC07Scan.test.jsx",
+    "sha256": "607cbbcbbde81a176b9bc6192ed1d040a088d5e38b9bbf8db3885614d2b41161"
+  },
+  {
+    "path": "web/src/game/MSJC08Scan.test.jsx",
+    "sha256": "2c060be285d48faf61eddb742576cc247fdc242a780e38a7ae259511836ce3c7"
+  },
+  {
+    "path": "web/src/game/MSJC11Scan.test.jsx",
+    "sha256": "fb52661112ca9a6d8d93c1b34d66d573f3a852d6d381d876992614fdf749a80f"
+  },
+  {
+    "path": "web/src/game/MillPublicBatch.test.jsx",
+    "sha256": "f4328464a253163225635d15cbe5abef0b46858f5f3b26a7e50b7ae018b9df8f"
+  },
+  {
+    "path": "web/src/game/MixedDeckConstruction.test.jsx",
+    "sha256": "634094a01f9b5fa03b140adeb652ea66e9f0b794745cbc4d68308864a3ea13b8"
+  },
+  {
+    "path": "web/src/game/NativeFixedSlots.test.jsx",
+    "sha256": "0997f37d21abbb669f612fa369374ef191cd50f4c660978042fd8f27277bdb88"
+  },
+  {
+    "path": "web/src/game/ObjectActions.test.tsx",
+    "sha256": "0923526346811e0cc00427101e04e8b5c5c19381184aadcf70cb04341dec1b5f"
+  },
+  {
+    "path": "web/src/game/OptionalNumeric.test.tsx",
+    "sha256": "51b5fe1a33b1e20f9e130498cb53ba64efa36b9ea5ecdcfce0a02e3597af57e1"
+  },
+  {
+    "path": "web/src/game/OrdinaryTargetRetention.test.tsx",
+    "sha256": "54be88998b654e68c97c0adc60bd5de22a0f80f9b1f8f184a709f951492dbb27"
+  },
+  {
+    "path": "web/src/game/PassHistory.test.tsx",
+    "sha256": "259d380d93fb985028cbbd2730b9ff89e38c386180b894f606c95c81e17ae321"
+  },
+  {
+    "path": "web/src/game/PassHistory.tsx",
+    "sha256": "7aa6500f933fdd3787b5df0613101cc17f4d6c2e91c7be927fffce83f6f2e262"
+  },
+  {
+    "path": "web/src/game/PassHistorySync.test.tsx",
+    "sha256": "c55536e4efd56f93e596680bac17f4b4423e86d40e3a4bd50a2b3d6dc6b2bb06"
+  },
+  {
+    "path": "web/src/game/PendingPauseRecovery.test.tsx",
+    "sha256": "f654d764b90a3dc784538c3af43547a1c6eff832807a384720f89c965234f4de"
+  },
+  {
+    "path": "web/src/game/PendingStorage.test.ts",
+    "sha256": "085d8f0cbd5fde12256c63823fd9778802e8a77e9649cc9851e684bc56d34202"
+  },
+  {
+    "path": "web/src/game/PlayerSessions.test.tsx",
+    "sha256": "9d63226f62a3d75843e35607dde0dcdf72802dcd13f805d59f388c68faa10b72"
+  },
+  {
+    "path": "web/src/game/PriorityFactionSelection.test.tsx",
+    "sha256": "3f9572cb96d58d681375f9dd75b9019deed0944604382666a9ed0b941ba93b14"
+  },
+  {
+    "path": "web/src/game/PrivateDeckTop.test.tsx",
+    "sha256": "1480087c155af062c38b9b422e89db7f12049e4b429eb3328dd5836fcf74c481"
+  },
+  {
+    "path": "web/src/game/ProtectionBatch.test.jsx",
+    "sha256": "83b068e209ecbc931f83cc6bd89779b3d4bc55b79178fbb5b426bf335f0ad922"
+  },
+  {
+    "path": "web/src/game/PurpleToolsBatch.test.jsx",
+    "sha256": "f8b02ff3fb811e3f72b96ceeb309b8d8a05d89c9a24b9c64dd8dd463ff583499"
+  },
+  {
+    "path": "web/src/game/QuotaRetirementReload.test.tsx",
+    "sha256": "2657cd6ee00f2c8d88ceaea4d97ea82fa8a8dbaa40745b208caceb5e700b913e"
+  },
+  {
+    "path": "web/src/game/README.md",
+    "sha256": "e516d60cdab27d0a0d91f1b932e54c3fc07a1901002f58717db6faabfa5c9372"
+  },
+  {
+    "path": "web/src/game/ReadModal.test.tsx",
+    "sha256": "c0990e425851b01dc20752a4cf9463b7383e62c75f2e61dc4b45e9dd5853c1be"
+  },
+  {
+    "path": "web/src/game/ReadModal.tsx",
+    "sha256": "a91d08484768a2683f192277aac0c8be809af9fef3018b43ed8544f89258b7ef"
+  },
+  {
+    "path": "web/src/game/ReadyConflictFeedback.test.tsx",
+    "sha256": "9dc893467023967c1c75bd44a8ab09f8bfa74ff892c5cad760b4fee0aee9602f"
+  },
+  {
+    "path": "web/src/game/ReadyReceiptRecovery.test.tsx",
+    "sha256": "7e9accf09bae3a9b90d375790a7c05508418132b45d2c590df9ffc00e730927d"
+  },
+  {
+    "path": "web/src/game/RecoveryReviewRegression.test.tsx",
+    "sha256": "0ce0165b0ff2f0650b2066259d3b7fd872e2af0ab8f215889fe31a26ee76c564"
+  },
+  {
+    "path": "web/src/game/RegionAura.test.jsx",
+    "sha256": "902a3c8f7f67ec009ff3dd3537a6e931f780d2b27d7efe6218915d13cf0d82f9"
+  },
+  {
+    "path": "web/src/game/RenownBatch.test.jsx",
+    "sha256": "4890fb5d895389e78a1e7b1fdb9ce180e5e6ab43ec80656cfee6a2a6cd171cac"
+  },
+  {
+    "path": "web/src/game/RepressAssetsBatch.test.jsx",
+    "sha256": "a99a5e8b0269184feb066e2c6686a8279739702e088b20f70da3aab6c51cd885"
+  },
+  {
+    "path": "web/src/game/ResponseWindow.test.tsx",
+    "sha256": "ada70f16e15ad681da76ffdcb4359918614b9475510fbe0e456a825873136bfc"
+  },
+  {
+    "path": "web/src/game/ResponseWindow.tsx",
+    "sha256": "b20b88930128d70103eb0baeb1cccd3e6c03c4bdec39eeb62825a62ecb8d13a9"
+  },
+  {
+    "path": "web/src/game/RoomManagement.test.tsx",
+    "sha256": "a43b7ba5c92daf0af04768e1a3e3f6d55092149152c25187eb7e3c1079210b04"
+  },
+  {
+    "path": "web/src/game/RoomManagement.tsx",
+    "sha256": "cccbd36c5a158ea36a505b63f30dfaf982707b6022877554be1a5da274ca0ad5"
+  },
+  {
+    "path": "web/src/game/SameNameInstances.test.tsx",
+    "sha256": "18e1a4dfcb944776d62bc940898464d77bd66cece610c96a6cbe95b14a4a17d1"
+  },
+  {
+    "path": "web/src/game/SealedCards.test.tsx",
+    "sha256": "23fbf10519184167bbd79401b662181de2991ab503fcf3c7838657a2d1c9551d"
+  },
+  {
+    "path": "web/src/game/SealedCards.tsx",
+    "sha256": "97a66702abef7082091dd0c73558faa5960c9a4546fbb60ffa9fcf12eac1cb8e"
+  },
+  {
+    "path": "web/src/game/SevenCardIntegration.test.jsx",
+    "sha256": "7d819fc39c60215cdd8fa2c0864569880bc042d044b0078e3e396675ff02c837"
+  },
+  {
+    "path": "web/src/game/SharedStorageRegression.test.tsx",
+    "sha256": "5a3d7af49f5c2aecd9b9e8146eb06a37711949dff80d153e8eff2a048a041ebc"
+  },
+  {
+    "path": "web/src/game/SocietyDeck.test.tsx",
+    "sha256": "2b580382c9df36afe5d5a0ef9efa22ca51ae4d9712c805462770fd0136c94083"
+  },
+  {
+    "path": "web/src/game/SocietyScan.test.jsx",
+    "sha256": "4bd8dc49433ead016c6a1a13def0c34ab99134f1848fffb4ed5af6779d6ebb7d"
+  },
+  {
+    "path": "web/src/game/SocietyTable.test.tsx",
+    "sha256": "91ff6a039007b768e8eba324c3662b6219226a9318f3c6fae4b4ed1f80914649"
+  },
+  {
+    "path": "web/src/game/Table.test.tsx",
+    "sha256": "df26079b5410243e9d43f12cd07af8c80457fe16aaecf15425fd432dacd9b455"
+  },
+  {
+    "path": "web/src/game/Table.tsx",
+    "sha256": "bc2084a3392df4e0f4ce3f83a03574be81e153d2e25f0d585d61f9905835271d"
+  },
+  {
+    "path": "web/src/game/TargetRetention.test.tsx",
+    "sha256": "79e685a931ab191821087372a80de22955b41bcc7d491c96fddac29fd63cd622"
+  },
+  {
+    "path": "web/src/game/ThreeColorDeath.test.jsx",
+    "sha256": "cc11cec8ea3322bcea3f0635140a19adba6492ad6bff3acc4c9d30938ca0f28e"
+  },
+  {
+    "path": "web/src/game/V028DeckEntry.test.jsx",
+    "sha256": "ea78d88a6a89b7448f6af6e608022dd3de0a9257ae5bf2bfed7bd99adea97267"
+  },
+  {
+    "path": "web/src/game/WM023Integration.test.jsx",
+    "sha256": "f5e1535abc931482e66aa7bd6edfc32cfb949d6370d3f95db9d88ad3b1cb3398"
+  },
+  {
+    "path": "web/src/game/WM038Integration.test.jsx",
+    "sha256": "3407907ce0a91caadf8bb4c2b409d29206c7067114493831ac5564195743e398"
+  },
+  {
+    "path": "web/src/game/WM056Integration.test.jsx",
+    "sha256": "9f4fd7b131d1392c08b7e67fe914dfe9e3122c53024cffb84d3856713eea62d1"
+  },
+  {
+    "path": "web/src/game/WhiteWoundBatch.test.jsx",
+    "sha256": "0f005ffb3febf2115e0daaf12fbff9d2c2af9d665cfeb6c544f68892c81a4992"
+  },
+  {
+    "path": "web/src/game/WoundDefenceBatch.test.jsx",
+    "sha256": "87f651fcdff48983aedeae7b9e227863951c1f2af3117b854fb42c17f0400988"
+  },
+  {
+    "path": "web/src/game/XQ18TimeCarrier.test.jsx",
+    "sha256": "36ab24238dbc77031783cd47340543e5fb474edda0e300f713836093a63b4752"
+  },
+  {
+    "path": "web/src/game/XQ24Integration.test.jsx",
+    "sha256": "1ec20d7f956df24e543e913204f7badda578a3641a6a4f423e98e2db1f729d94"
+  },
+  {
+    "path": "web/src/game/XQ25Integration.test.jsx",
+    "sha256": "3d12c0e2a9c4a0956ae93e5ecca3965860d8418b1a9ef9791ff3da23711d46af"
+  },
+  {
+    "path": "web/src/game/XQ27HiddenSweep.test.jsx",
+    "sha256": "a6341a75aa1f3431dea3eaec5ffc79d15f732b4a89323942885841023fdd8a83"
+  },
+  {
+    "path": "web/src/game/XQ37EntryInfluence.test.jsx",
+    "sha256": "9519e6615af9b634c9dfb5fac73bb1b86c77ee8d053bc0b26b418a5ebd0ff5c6"
+  },
+  {
+    "path": "web/src/game/YellowSearchBatchScan.test.jsx",
+    "sha256": "9a23f3e8c012e07d3e1603120444636fffef323ea3e66f0084a852a15f9d41da"
+  },
+  {
+    "path": "web/src/game/api.test.ts",
+    "sha256": "a74e2cd01076414caf17ffce381fb4b68261026bb8c50796ecbf24c39ecfcf46"
+  },
+  {
+    "path": "web/src/game/api.ts",
+    "sha256": "e37b2f120d4e56e05038a3ba233936e596c4f92647d53a819d953dc7f639c140"
+  },
+  {
+    "path": "web/src/game/archive-desktop.css",
+    "sha256": "e7a1194b661f1524bf770fce2636706551e985f7fdd020adc3a0c9ed10b0857e"
+  },
+  {
+    "path": "web/src/game/attachments.css",
+    "sha256": "a50e53bdd46b8175e6d9dfb0645c707b2974100d0d9f6e171d360d72d12b45fb"
+  },
+  {
+    "path": "web/src/game/blueMinimumTest.fixture.json",
+    "sha256": "0326dae2291af890e43822b0e8ed0b98ebf331615495948f46d5af04a742332a"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative50Test.fixture.json",
+    "sha256": "884d03e1603814b2d5114dd86b0600c7499315854b0a17fe2a4c75606ed48728"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative51Test.fixture.json",
+    "sha256": "4fec1bc6ecdc92c7c7aa3f9e256e28d800ab1619be523f2d92867e6b0cabd559"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative57Test.fixture.json",
+    "sha256": "a31abe4a82891f0b9822c8225c716cf5c9e56f522df0e683f0fa7a4e6b508edd"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative59Test.fixture.json",
+    "sha256": "00cf54f5122a6a58ea0322574e49a4cd998c8ee0e806949514dc360c5db10da0"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative60Test.fixture.json",
+    "sha256": "1bfdf7fe83db129067af078a4323ed2c3d7ab335cb6fab319eaf823f7604db10"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative62Test.fixture.json",
+    "sha256": "4177fb9174a04d5a93594b4af35ef67fe4b233f78f39d6e6d57ae8194fa93388"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative63Test.fixture.json",
+    "sha256": "58166763ea0ab7ebd5474e1789d80f4c36133fa5665888f6293e1bab6b972397"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative64Test.fixture.json",
+    "sha256": "bf381ee551480890416c6824c314eea791442c442c23839667da1a3732e5e0d5"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative65Test.fixture.json",
+    "sha256": "101bb1b1ae02f5dc27a6c31499a2dbed12b5cf3222cede4474bb0c2e9de11ecb"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative66Test.fixture.json",
+    "sha256": "ed087b78a2a9e1537d51382cfbb9d2b3b0616db8cf0d2673301e7ff4392881d9"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative67Test.fixture.json",
+    "sha256": "40c12d31a54cf0eef82216345c636e9be2877a3adba39ca52de7528538516004"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative68Test.fixture.json",
+    "sha256": "513435946b6262d00b5098debf00b50f0f53ec52e331c2722d4d88bd9b35a695"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative69Test.fixture.json",
+    "sha256": "4d08c41236ab3db3394f80464e153ecf3a4e008730b4a39036a2bb94110bc848"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative70Test.fixture.json",
+    "sha256": "25482438f9a12c16b057b172f4c1d8f8b39fcd922f4f9424d21daf139f37cd4f"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative71Test.fixture.json",
+    "sha256": "64b62b46552cb42e1c1416b33cb9656486285b8e1afca523c9ea6f7aa912e474"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative72Test.fixture.json",
+    "sha256": "f84a9434914a2074c43405bc3bcc03073b840f515f4e008b0bb22d9980449f2d"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative73Test.fixture.json",
+    "sha256": "01989d8ffc7daa7ea37f7c1f6b40c04d833c46082ad3a9ef71063473a624045f"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative74Test.fixture.json",
+    "sha256": "0cde81f86681c4b924e99e52d317978bb6d286128b7d3199c31fdb6796ac9c2e"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative75Test.fixture.json",
+    "sha256": "d4743ed1105860a5bd6fdfee055a86d5e9c887fb352a1862d5b1c1dd9d0f7d8e"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative76Test.fixture.json",
+    "sha256": "36eb768a0b148908cb1144f58e7c3cc3b03845d7afdb530629e16ccf15b6eb56"
+  },
+  {
+    "path": "web/src/game/boundedEntryNative77Test.fixture.json",
+    "sha256": "075b705feb360578c8d8687628eee3c7ff0fc3a38c0ed944496ada4256814088"
+  },
+  {
+    "path": "web/src/game/bq030Native63.fixture.json",
+    "sha256": "58bfd19be5dc1a853f7423da656dacc7f4b10667a5235d5f76861054a650238f"
+  },
+  {
+    "path": "web/src/game/bq030Native64.fixture.json",
+    "sha256": "8afd4bf711779ea0ecb6665b13039655353de977c7655e63b4a47b9773db92de"
+  },
+  {
+    "path": "web/src/game/bq030Native65.fixture.json",
+    "sha256": "c117b701c60471f82c059cc542d855e73fbcf59ff726c7c0773df2bf0be02ba7"
+  },
+  {
+    "path": "web/src/game/bq030Native66.fixture.json",
+    "sha256": "96ca22ba6acca43ad7628f0547ac5025e01891ad497cabcc514006e1d10080d8"
+  },
+  {
+    "path": "web/src/game/bq030Native67.fixture.json",
+    "sha256": "18a170b86064659f08c27397e52c4ae90afbe92be333450c0d264a3438cb7d48"
+  },
+  {
+    "path": "web/src/game/bq030Native68.fixture.json",
+    "sha256": "7ee6ba18c2bf4a3d3f494144962fc49c591cd0554a46bb77960b880bbc0b56a2"
+  },
+  {
+    "path": "web/src/game/bq030Native69.fixture.json",
+    "sha256": "20dc757d5b41f229223b635f76da848b7742affb9ab9882c120b3ce4714f9e43"
+  },
+  {
+    "path": "web/src/game/bq030Native70.fixture.json",
+    "sha256": "a509d68ac7101fd597429cbd4a2d896a8a8a595272866e2b5ad7a03622502b6f"
+  },
+  {
+    "path": "web/src/game/bq030Native71.fixture.json",
+    "sha256": "b1627b0e91b22207c6c71e45cb37c39e713d7a90269ea7e80d1167a4d02aefa6"
+  },
+  {
+    "path": "web/src/game/bq030Native72.fixture.json",
+    "sha256": "54e2386a9be9d7d7367618bef5dd0069c65ccde29eef5a566642951462b100ac"
+  },
+  {
+    "path": "web/src/game/bq030Native73.fixture.json",
+    "sha256": "a6c6d05ac2e5dfea616c432979e4bfa3a2b213e3451257ced77574c6a9e5169f"
+  },
+  {
+    "path": "web/src/game/bq030Native74.fixture.json",
+    "sha256": "3ba822cc381c398190155ebfbecf52ab073dbdb2d40dc1189433e5a9466c37b3"
+  },
+  {
+    "path": "web/src/game/bq030Native75.fixture.json",
+    "sha256": "c616da10fde024aba90a1cf8629e034d6c3d3d8e0a823ff34235458189a60b9d"
+  },
+  {
+    "path": "web/src/game/bq030Native76.fixture.json",
+    "sha256": "13404dde874f4af22ce2f0ca2bb9efdd13a0e7064dcbe3824f38dc1bb80bc495"
+  },
+  {
+    "path": "web/src/game/bq030Native77.fixture.json",
+    "sha256": "a24be64ad1abab3524ace7e09edf82747dc823524f44367e3f6055e72049f45d"
+  },
+  {
+    "path": "web/src/game/cardGridNavigation.ts",
+    "sha256": "28441995f086b22510c583ea7d66805cfebc4869536e6d3d8e8e3b2fdca378ce"
+  },
+  {
+    "path": "web/src/game/cardScans.ts",
+    "sha256": "82c53ae0b0d5a83e68a30f7917a584273af8f5db12198da6703120f423931a6c"
+  },
+  {
+    "path": "web/src/game/cardScansV032.fixture.json",
+    "sha256": "9a46bf09c8cf4d6b6b1c13d928739e171b036c2762fd0b0f0788975faa5f20a6"
+  },
+  {
+    "path": "web/src/game/cardScansV034.fixture.json",
+    "sha256": "2a38e937782e7ca0c80f4b0fdc79bd3c382e8eb57952b535644721084d99a9ce"
+  },
+  {
+    "path": "web/src/game/cardScansV035.fixture.json",
+    "sha256": "8c06e08c8d0abbb81026e92c3af4a65305498d529129731bb6b37c97568f5f8f"
+  },
+  {
+    "path": "web/src/game/choice-readability.css",
+    "sha256": "0e61783179fb063ef5308107eba297682d5c12b714490b12a96f54cf8be81901"
+  },
+  {
+    "path": "web/src/game/choiceDraftStorage.test.ts",
+    "sha256": "b8565734f2f6876c3d1f15509375a11eaf7571098650d269c2f6c544a73c4894"
+  },
+  {
+    "path": "web/src/game/choiceDraftStorage.ts",
+    "sha256": "7ee170ad77f696e87598da16915fb433e4ebb697984e40f5a70abbdcd69f6612"
+  },
+  {
+    "path": "web/src/game/continuous-pass.css",
+    "sha256": "b64d3365b437564eb692615ef4ef8d45c729ca8a7efd96651bb8d4e5a2c09ed7"
+  },
+  {
+    "path": "web/src/game/continuousPass.ts",
+    "sha256": "46bff095cb6b591faa242618ce13b2aa21a1b4aa5dfabc3f304d331f1aba46db"
+  },
+  {
+    "path": "web/src/game/currentDomainsSelection.fixture.json",
+    "sha256": "5ac83278bfd70590ac9c3e6914aa1e88daf54f95b89112b720d0087ea0c6da2b"
+  },
+  {
+    "path": "web/src/game/currentLifecycle64.fixture.json",
+    "sha256": "16a3840fa86de3c143aaa68fd9b981725d0b3d3c0d732b82e08fbe5f5a7c9406"
+  },
+  {
+    "path": "web/src/game/currentLifecycle65.fixture.json",
+    "sha256": "d9e03924a283a53652c2b2eda27aa386820b26dceadf0434e8c8fb0f8cce7b84"
+  },
+  {
+    "path": "web/src/game/currentLifecycle66.fixture.json",
+    "sha256": "dfe8afc0b8f0690f68927d8ba0ad0910a91ed456f24ff894bbada7cac8d7321f"
+  },
+  {
+    "path": "web/src/game/currentLifecycle67.fixture.json",
+    "sha256": "f16ca27326f678fe3164ff1862577089c66d20714b8385193b2f530238e3448f"
+  },
+  {
+    "path": "web/src/game/currentLifecycle68.fixture.json",
+    "sha256": "e028694c8f7880262c3f9f509975b75102371f0883173b81637020cccfe8c5ca"
+  },
+  {
+    "path": "web/src/game/currentLifecycle69.fixture.json",
+    "sha256": "51e54a5325d3f549c09f9cda8de176c7fc41c9a617f7616868e71ce1fd86f363"
+  },
+  {
+    "path": "web/src/game/currentLifecycle70.fixture.json",
+    "sha256": "a5f074c32d33f80a5cecd45247b2bcc21a69dc73c1882039259c1063713361e6"
+  },
+  {
+    "path": "web/src/game/currentLifecycle71.fixture.json",
+    "sha256": "38b5bca80c1714bb85a53318e301b23b48eadbd2df064314c13774d84c824bf1"
+  },
+  {
+    "path": "web/src/game/currentLifecycle72.fixture.json",
+    "sha256": "957d7ab37aee982c25540d2f9cdb7fcf4e1b0b6105aaf414067ca86ba4d59f47"
+  },
+  {
+    "path": "web/src/game/currentLifecycle73.fixture.json",
+    "sha256": "579405dd4aa7ba017125a672b9858da641a84ad26d0b97b6c17a1441eb57b289"
+  },
+  {
+    "path": "web/src/game/currentLifecycle74.fixture.json",
+    "sha256": "e9484c37b580b5dc2803009ea60c3a096b1aab52b05bbf42ea2b91281fc501b2"
+  },
+  {
+    "path": "web/src/game/currentLifecycle75.fixture.json",
+    "sha256": "c76cbd54caa0f5b734ff8bc1b067ac7e02ae7ba8b900121d0927520d64480dc3"
+  },
+  {
+    "path": "web/src/game/currentLifecycle76.fixture.json",
+    "sha256": "f4ed62f8e392a5482cb98654ac888c5bcf74384d1f6211964fafc31eaa6d37cf"
+  },
+  {
+    "path": "web/src/game/currentLifecycle77.fixture.json",
+    "sha256": "0d12fae1104f0076c18b6b692455d5a944d8837355cd43ddda45c6d7b06c8fe6"
+  },
+  {
+    "path": "web/src/game/deck-library.css",
+    "sha256": "113383c3db38ad2cdb55d7e6b38cde2645a1564eafbc4919f36302455ffd1836"
+  },
+  {
+    "path": "web/src/game/deckLibrary.test.ts",
+    "sha256": "9d32fe6196f9524965c42ace69952a5c21973ca3fe1ae2b1ca0c3f2fc4b5348f"
+  },
+  {
+    "path": "web/src/game/deckLibrary.ts",
+    "sha256": "8e9fafcfa914e7aa17c2fa317633996e6a4222b614284f42b341a1b91bc92c60"
+  },
+  {
+    "path": "web/src/game/deckSealNative51Test.fixture.json",
+    "sha256": "34bd9a42f5d4eebf10dd78425ca699d19d43914561e822121f266f13920fdb3f"
+  },
+  {
+    "path": "web/src/game/deckSealNative57Test.fixture.json",
+    "sha256": "b963801467f9dd8e31eb860c2f10b1ed7b17c9d0ce6a7989172a26681c1aee52"
+  },
+  {
+    "path": "web/src/game/deckSealNative59Test.fixture.json",
+    "sha256": "e3914436040cbb9e562107ca330b788dac69c770f05461470bb5070e83057ee7"
+  },
+  {
+    "path": "web/src/game/deckSealNative60Test.fixture.json",
+    "sha256": "7276a6486597c46f67748bb7a1252f12129ebabd1632f12e1bd5452d0882dc2e"
+  },
+  {
+    "path": "web/src/game/deckSealNative62Test.fixture.json",
+    "sha256": "da8d178e304d480d098a9222bce77763f1708a92b7265462ef85913b9702bfdd"
+  },
+  {
+    "path": "web/src/game/deckSealNative63Test.fixture.json",
+    "sha256": "8143799e6e588735e6c89f603b1f46673ab2e830a2f1934b88f499ce7105589d"
+  },
+  {
+    "path": "web/src/game/deckSealNative64Test.fixture.json",
+    "sha256": "76d8ad03c476824916e1d1610fe50833303585846e464108ef18aecb41d1cfc9"
+  },
+  {
+    "path": "web/src/game/deckSealNative65Test.fixture.json",
+    "sha256": "1470bcdca294448ec1878338165c16d0dcf83d40749507a21eb08af2b7ed4af0"
+  },
+  {
+    "path": "web/src/game/deckSealNative66Test.fixture.json",
+    "sha256": "f9e2d3291327ed015c7e3b99e0c43fe7f3245fbe293c64fc1da3ec0f805a00af"
+  },
+  {
+    "path": "web/src/game/deckSealNative67Test.fixture.json",
+    "sha256": "c044fbed00991ce6f72d9cec0cb5400b3a5dae5d2c99ac0393fd6c4177f61d26"
+  },
+  {
+    "path": "web/src/game/deckSealNative68Test.fixture.json",
+    "sha256": "def0ffed237c0fef54b7aa17fc5a7504e7011dd4a1ed3a86a76c429a1241ef10"
+  },
+  {
+    "path": "web/src/game/deckSealNative69Test.fixture.json",
+    "sha256": "53616e496c01ba82525ed6fb373b38ea154f87c9a78a4a7c0e10c420a52e1383"
+  },
+  {
+    "path": "web/src/game/deckSealNative70Test.fixture.json",
+    "sha256": "47343614a74f6a3219d3a5ef3abc0fae915dff89da4a09e026fd5f9ef44649ca"
+  },
+  {
+    "path": "web/src/game/deckSealNative71Test.fixture.json",
+    "sha256": "f7bf2090edc7b04a6e3e4f77ecadf5532b43a48d6a5d9751e2240aaa7d469f2a"
+  },
+  {
+    "path": "web/src/game/deckSealNative72Test.fixture.json",
+    "sha256": "65e353bee8e5725bca7fd5244b7af9b00bbb2abf8748f976e3bf777501f1f86b"
+  },
+  {
+    "path": "web/src/game/deckSealNative73Test.fixture.json",
+    "sha256": "456c3928227b544b80bd6dd049cf100f0066674b0d524afec141996ab7b31815"
+  },
+  {
+    "path": "web/src/game/deckSealNative74Test.fixture.json",
+    "sha256": "9cffb9fa28eb6934b940b7672ab3346efdbe4347c139e6305b7f776fd59389ff"
+  },
+  {
+    "path": "web/src/game/deckSealNative75Test.fixture.json",
+    "sha256": "781660f32cbe1dbf19aed212acd0eebc9d64acd8e0d0836cb1f5f5554a38def9"
+  },
+  {
+    "path": "web/src/game/deckSealNative76Test.fixture.json",
+    "sha256": "72281bb23d35f3e7da91cd4a6c24b6fafcbe3d438318637e7689c399f2a5ffa4"
+  },
+  {
+    "path": "web/src/game/deckSealNative77Test.fixture.json",
+    "sha256": "59a281c5c36b1bd010b79f4de76c40f05dcd6395373574310b4e754b0b77ef38"
+  },
+  {
+    "path": "web/src/game/deckWorkspace.ts",
+    "sha256": "a56e676a4ffe1517a30069c265ac5345c98795e3b09ec345f59724c3e31f67c7"
+  },
+  {
+    "path": "web/src/game/factions.test.tsx",
+    "sha256": "ed1979a98ee3189cc04eb7b20a5441dffe893f01958b9956e00dbffd8ad0ab4f"
+  },
+  {
+    "path": "web/src/game/factions.ts",
+    "sha256": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative62.fixture.json",
+    "sha256": "54921d97c00cb1d15ee4126fc28a57b32ed85aa0e01ace947de0f199938eb827"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative63.fixture.json",
+    "sha256": "b6e0ae1c51af64949ea153fc2dda31446ee2cabf11dad25f128160203870c0e0"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative64.fixture.json",
+    "sha256": "b031b20b82b405a5bb180e4a815f29a14235853bc2cd4dde0bb8758336c89002"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative65.fixture.json",
+    "sha256": "9dadaa08119544f76a446d5a76e3e86f3690f97198f975ac8c22c6552a7fcbb0"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative66.fixture.json",
+    "sha256": "3fc7181e15bbda8c6904503f12dc8ab188394fd1c9fff9406bf0ecc14c2514cb"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative67.fixture.json",
+    "sha256": "6c3abf113227269681899aa8808f228f997cb3d0db877f3e6d4253483f0d1ed1"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative68.fixture.json",
+    "sha256": "f4b656b75a698e5d4acfa08c3169f8ccf512c876de8a8a14649a3373f8ddee4d"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative69.fixture.json",
+    "sha256": "fcb307f61a61a58758ba4a12e855c703109fdfb5de626244997526342be627b4"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative70.fixture.json",
+    "sha256": "1435cee887470a685e2f0ae1d3375724ada3b2e86f370a8afcf60ec39682bdb8"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative71.fixture.json",
+    "sha256": "4e4c9a66d26d01f3ae47fa1217979dcda43e6540ce5c578fed1680445f49a5ef"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative72.fixture.json",
+    "sha256": "69dc3c102570e948f51ada5fcfffb033abda9889e11f4126ab1b94aaad05a9b6"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative73.fixture.json",
+    "sha256": "7389708a103b83d47b5947aa4091768f815377852bd3fd85504c383b3b63d020"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative74.fixture.json",
+    "sha256": "2eca75d66dcdba2fcd01f308d460e35ad0ebdf7b7d466289cd7a6bb52f7bafaa"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative75.fixture.json",
+    "sha256": "3e7239592988e676571097b53fa20c4ffcc488f630c3e607f0243046acfe0cd3"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative76.fixture.json",
+    "sha256": "1da2c4b1a137f2a7894156cea22f8232cc2d90e814b7ad6652cdc90c845b5311"
+  },
+  {
+    "path": "web/src/game/fixedSlotsNative77.fixture.json",
+    "sha256": "ebe49f65ab8c2d1e8b0a059742812ae92cdef2e043121a0ce464ec954251893a"
+  },
+  {
+    "path": "web/src/game/game.css",
+    "sha256": "7350836ecff17cb3cf3db059ebb8cdebecf9c67c20ce6e445fec74ab7567702e"
+  },
+  {
+    "path": "web/src/game/greenMinimumTest.fixture.json",
+    "sha256": "bd8ec80e4365802325e444b286c385424d5506e5793a4bfe4344282513f8a125"
+  },
+  {
+    "path": "web/src/game/jc030Test.fixture.json",
+    "sha256": "c76b25a0ccb8a01378046fd5a829b6b323c70bb43cc434faec54ea2942d23a39"
+  },
+  {
+    "path": "web/src/game/jc037Native74.fixture.json",
+    "sha256": "4245c34ef0f586b5fc1748f74a16e7ebbb44fd31d921aa2e637df61d6d3036c5"
+  },
+  {
+    "path": "web/src/game/jc037Native75.fixture.json",
+    "sha256": "30130346ca99de7b8b152d5903748546ae0ecf14a9041ab0a8cd417cc7ca43b6"
+  },
+  {
+    "path": "web/src/game/jc037Native76.fixture.json",
+    "sha256": "7e4600716c60f3e281143d6306a804ed79d8ff24cf0f781930a54d3fe0ad8524"
+  },
+  {
+    "path": "web/src/game/jc037Native77.fixture.json",
+    "sha256": "16b0cbb75e0ad209e32b8fe09aa247deb8d160175ea4329121bc2419675036d2"
+  },
+  {
+    "path": "web/src/game/jc046Native77.fixture.json",
+    "sha256": "a6e3bc6c1ca236d908912320471b51c231a6bc8067fbf9d05f87ea70ee963601"
+  },
+  {
+    "path": "web/src/game/jc050Native55QuoteTest.fixture.json",
+    "sha256": "f6e90c42bb4e63fe2e13273101cf2d369c9a72a1ae3401020f0e2b1027be023e"
+  },
+  {
+    "path": "web/src/game/jc050Native55Test.fixture.json",
+    "sha256": "5e01d9484a08453c132b3fb99066be191b90a4195198731909aa3e649f888e8a"
+  },
+  {
+    "path": "web/src/game/jc050Native57QuoteTest.fixture.json",
+    "sha256": "ec5b5f04887c11de28d276c73a43c5365d373ea354788fe1190b4c293092f3fe"
+  },
+  {
+    "path": "web/src/game/jc050Native57Test.fixture.json",
+    "sha256": "f0336f38a7325df8d4937a6a27c6475d00d897c3f863b6a1a6fda16b8e350b1e"
+  },
+  {
+    "path": "web/src/game/jc050Native59QuoteTest.fixture.json",
+    "sha256": "47e5b88aba78ffc38787db8a98f4707cf2063d7f97081c6fb645be866dee9d3d"
+  },
+  {
+    "path": "web/src/game/jc050Native59Test.fixture.json",
+    "sha256": "99f2f3570e2cb97aba5e5d5f26b3302cc1ed3332ba0f5548109f8628d9dd32ae"
+  },
+  {
+    "path": "web/src/game/jc050Native60QuoteTest.fixture.json",
+    "sha256": "c9f3d6be56c3d823c1857298c15deb35c9e1a18e1a8e4fc704caa5961fbc691d"
+  },
+  {
+    "path": "web/src/game/jc050Native60Test.fixture.json",
+    "sha256": "fc8a2836245a866c12c3696b529f6fc379c3dcf0ded9891c30a20e90f2e5f5a6"
+  },
+  {
+    "path": "web/src/game/jc050Native62QuoteTest.fixture.json",
+    "sha256": "7e5bec54df11655b2bad12d5acefbfdc583fc7cc283bb696ece9c68cb89abac5"
+  },
+  {
+    "path": "web/src/game/jc050Native62Test.fixture.json",
+    "sha256": "509b5b75c4e7e34348f7117892a82879a2926f7d8ceb129137163d960653a983"
+  },
+  {
+    "path": "web/src/game/jc050Native63QuoteTest.fixture.json",
+    "sha256": "8eed8c98a24e7998f89c2aef1636a43026a62766079d60ccde6cb81f163b8c9d"
+  },
+  {
+    "path": "web/src/game/jc050Native63Test.fixture.json",
+    "sha256": "e470717cd0900d3b0eb504a4d4e69229fdb7507aeb35bb39edf39970b88e6d65"
+  },
+  {
+    "path": "web/src/game/jc050Native64QuoteTest.fixture.json",
+    "sha256": "d0679907aa42dd0941385cf5ca8cf8ae60b95b0c7c5a88b8e982843872364f1a"
+  },
+  {
+    "path": "web/src/game/jc050Native64Test.fixture.json",
+    "sha256": "1e2eadaa2ad06d4be76fffb49d3ae08ed764f5e0608e301a7a395c7284842a06"
+  },
+  {
+    "path": "web/src/game/jc050Native65QuoteTest.fixture.json",
+    "sha256": "90c3eff8c4aad8678cd9298b257b2b0449d432785a6245c5eb8c9fadc27222e2"
+  },
+  {
+    "path": "web/src/game/jc050Native65Test.fixture.json",
+    "sha256": "1a2460ba3584522e716bf49a6bef573b33727cdcf343e240ec179b7232861cd2"
+  },
+  {
+    "path": "web/src/game/jc050Native66QuoteTest.fixture.json",
+    "sha256": "3757dc17b352dd71b35512e7e0930efe7e351b52faea07d4452bbdc72227d59c"
+  },
+  {
+    "path": "web/src/game/jc050Native66Test.fixture.json",
+    "sha256": "0f3d73562a70821cec1ddbf1e94d9505e9a4b7414092a0514aaf91085ae124d5"
+  },
+  {
+    "path": "web/src/game/jc050Native67QuoteTest.fixture.json",
+    "sha256": "348d92796a710db2bc5f9452efad801bd492dec35385bf9d39e650cfb213bb92"
+  },
+  {
+    "path": "web/src/game/jc050Native67Test.fixture.json",
+    "sha256": "994d865738826c1e0e892f28f2933b3a548c17b3522891f53ec491e7b97fcebc"
+  },
+  {
+    "path": "web/src/game/jc050Native68QuoteTest.fixture.json",
+    "sha256": "68660d20399fc86fdee25eac61d8aab44906764040af1ffa1aa3e3777e8c31b7"
+  },
+  {
+    "path": "web/src/game/jc050Native68Test.fixture.json",
+    "sha256": "152bbce817b42343416fb445cac375c2934cc96da5103088dc1fd84e147c5bb8"
+  },
+  {
+    "path": "web/src/game/jc050Native69QuoteTest.fixture.json",
+    "sha256": "cc5413d449e845d8f4b335a66654ef0d648a302c80e04d1ba8d1dc4b7499bd0c"
+  },
+  {
+    "path": "web/src/game/jc050Native69Test.fixture.json",
+    "sha256": "63f1f98f8dfd8225009eead4287787e7f91142b33fd4083324d31ff2aa2f5a20"
+  },
+  {
+    "path": "web/src/game/jc050Native70QuoteTest.fixture.json",
+    "sha256": "736b0d680b21e3095ca46c825658e022b69919faddf33a8df6105228ea12d698"
+  },
+  {
+    "path": "web/src/game/jc050Native70Test.fixture.json",
+    "sha256": "4a0af22cfe154664e0e7dc6d4c08438f2d3272443d6c102fb31cbd066f3c9a97"
+  },
+  {
+    "path": "web/src/game/jc050Native71QuoteTest.fixture.json",
+    "sha256": "7eeeebd980c84452238fec94091b3bf1cc806e9a844ed055a05821913eb74409"
+  },
+  {
+    "path": "web/src/game/jc050Native71Test.fixture.json",
+    "sha256": "00c6f769e8e87716e9de448d678b180656665e47ef84ee95cb1d3b97c296de43"
+  },
+  {
+    "path": "web/src/game/jc050Native72QuoteTest.fixture.json",
+    "sha256": "2846f49a08a3ceb7d9cd160bf1f3b859af1ab45023516e78ffbc1d138f9b1fd7"
+  },
+  {
+    "path": "web/src/game/jc050Native72Test.fixture.json",
+    "sha256": "f4ddc6b5747b3d03552c6175f34bf14cb8d932765195aa9bbe2203dccb56c57e"
+  },
+  {
+    "path": "web/src/game/jc050Native73QuoteTest.fixture.json",
+    "sha256": "35a1db895e0cc8a26ed7ab8da67ee7f56745d68dd90ea1cc294d363f395788e0"
+  },
+  {
+    "path": "web/src/game/jc050Native73Test.fixture.json",
+    "sha256": "2a576c44d6627d982003e3aebfc42492d1297ba21ff56559d4333f3dd8b5519a"
+  },
+  {
+    "path": "web/src/game/jc050Native74QuoteTest.fixture.json",
+    "sha256": "af23e1aabf7d19fb109cc3f859b886b3ffaa68309389bdbf7e73a22d8f8d4c44"
+  },
+  {
+    "path": "web/src/game/jc050Native74Test.fixture.json",
+    "sha256": "346ea3335bd620b3b5862ee7e915e98c92139ecee15622802c96e1240b6dbf1b"
+  },
+  {
+    "path": "web/src/game/jc050Native75QuoteTest.fixture.json",
+    "sha256": "d1533d9a86c596021ab0d269b652591f5b2096003f1d2fa2782184935549f3a9"
+  },
+  {
+    "path": "web/src/game/jc050Native75Test.fixture.json",
+    "sha256": "5ee5deb6547a9206f25dbb77619e8bff819d0adf1231c348267b08b73770dfa9"
+  },
+  {
+    "path": "web/src/game/jc050Native76QuoteTest.fixture.json",
+    "sha256": "2dcf50f6b236a2237a8489f8a22419230befcb570ea43ed3be2b5d48c61ebb7e"
+  },
+  {
+    "path": "web/src/game/jc050Native76Test.fixture.json",
+    "sha256": "992edb920265b88d2ecfc360b76c4051319a9ed8cc7c7e5982a33b364996e831"
+  },
+  {
+    "path": "web/src/game/jc050Native77QuoteTest.fixture.json",
+    "sha256": "dd9968acedcb0ebbe6b62faf2b883757de8559ef3b326d9618e3cfb3206c3d46"
+  },
+  {
+    "path": "web/src/game/jc050Native77Test.fixture.json",
+    "sha256": "1e925e480cc43ddc2e971ff8e437f0d4652c30d0cf8a48d2e96b15bbff6da0cb"
+  },
+  {
+    "path": "web/src/game/jc052Native73.fixture.json",
+    "sha256": "2ec129c5af1770516c41a153c546404ee36e9403822784ff2d44c6070a0d4a6c"
+  },
+  {
+    "path": "web/src/game/jc052Native73Current.fixture.json",
+    "sha256": "5867c908d67c71afbf86a6e3e9ee56157bb8529df509d54417ee7bf5abb1ab13"
+  },
+  {
+    "path": "web/src/game/jc052Native74Current.fixture.json",
+    "sha256": "a0eb57e189c26fbd9d7254e2c9ae2724d4cf58f360da6f752b5bd1c602820311"
+  },
+  {
+    "path": "web/src/game/jc052Native75Current.fixture.json",
+    "sha256": "21ca8deacd8aa1474a6a13600c5d5518925b8dde9f0ac1613263ac2c28eabfde"
+  },
+  {
+    "path": "web/src/game/jc052Native76Current.fixture.json",
+    "sha256": "3552811b757172382844a4bdd48c9c76ec74dd37de7903808e7eaec277b46c1c"
+  },
+  {
+    "path": "web/src/game/jc052Native77Current.fixture.json",
+    "sha256": "62f81947e6f57d4c0add0dabd5b0069690c1a449c454ec0e8c02c630f78b9480"
+  },
+  {
+    "path": "web/src/game/jc060Native75.fixture.json",
+    "sha256": "012fe75913b72b43ceb352d456b31e2d2b6a2aa363e9165b492a2957af9db5a4"
+  },
+  {
+    "path": "web/src/game/jc060Native76.fixture.json",
+    "sha256": "81a293077d617a4bf7b01c80550e8e9d1688b97261ebd77f9b61f9dc22b929b6"
+  },
+  {
+    "path": "web/src/game/jc060Native77.fixture.json",
+    "sha256": "083be42f4f4e6cc7da0bddfbde8dff2ec8927e30305e52c1473eb51995ef1750"
+  },
+  {
+    "path": "web/src/game/jc061Native65.fixture.json",
+    "sha256": "6f7708994aadb43d103ba51989d0a033eebd628f12310bc6fa6ba341a1ea8b67"
+  },
+  {
+    "path": "web/src/game/jc061Native66.fixture.json",
+    "sha256": "6367a7a92a9d804c350aac6cfd797f95af0312309b0ef9060907f4f8abd0f416"
+  },
+  {
+    "path": "web/src/game/jc061Native67.fixture.json",
+    "sha256": "b76f883d811709fc98a9b9137d67f8c4d6e1d7a304a16b251ac4084f2f63d911"
+  },
+  {
+    "path": "web/src/game/jc061Native68.fixture.json",
+    "sha256": "a461f2221a4593b2e8e1ec044a348659151ac3a86689e9387d2c05d3dac6b87e"
+  },
+  {
+    "path": "web/src/game/jc061Native69.fixture.json",
+    "sha256": "ea47f2c19e30c14584005a587ceef8499a598066a396e6669803fbe9941f91b6"
+  },
+  {
+    "path": "web/src/game/jc061Native70.fixture.json",
+    "sha256": "95c1e844a9c658a9f0212d81199a582ff971c2620e46925da8f3b1f38ce63e97"
+  },
+  {
+    "path": "web/src/game/jc061Native71.fixture.json",
+    "sha256": "cad2875b5e801dbb5d61714e416d0154cbc9372513bd0339b0e2ca0cf070b7d6"
+  },
+  {
+    "path": "web/src/game/jc061Native72.fixture.json",
+    "sha256": "d60d14dd0ef2ce94eb2809b49183ac63c689b4b5c255e21ec4b12620f8953d19"
+  },
+  {
+    "path": "web/src/game/jc061Native73.fixture.json",
+    "sha256": "d29970322efc1cc640be9248e56ad80cb2466f0cb6d8b2060dafff2d95111488"
+  },
+  {
+    "path": "web/src/game/jc061Native74.fixture.json",
+    "sha256": "dcc3149d9cba383217daedf346615e9bcdb9ecf542e1972dd06d0654fcfdebc5"
+  },
+  {
+    "path": "web/src/game/jc061Native75.fixture.json",
+    "sha256": "0ce257b92b74b80c88e0a35065076abcbf7a56b395d35315554a84b7ef0d5243"
+  },
+  {
+    "path": "web/src/game/jc061Native76.fixture.json",
+    "sha256": "adf13c801f59f3aec17ec77d3ab02fc8dd85d729622c834656c5280142fa417d"
+  },
+  {
+    "path": "web/src/game/jc061Native77.fixture.json",
+    "sha256": "d17599cdcf127a2404822d71b23786bbeb3ee41f7f8d1e306b9acef9b995ff49"
+  },
+  {
+    "path": "web/src/game/jc087Native66.fixture.json",
+    "sha256": "639a52cfe0387ffb5d34454535955eb25edc6845f6f91d387d3ae3d3dbb5c67d"
+  },
+  {
+    "path": "web/src/game/jc087Native67.fixture.json",
+    "sha256": "5076dd369a0bf18b46473140c3192c088a37efc5523a36f2d9ff0d0c468a070c"
+  },
+  {
+    "path": "web/src/game/jc087Native68.fixture.json",
+    "sha256": "55121da47ea9dad7e6cccb19d0c87d641b31d8e7f4b5da60655a4dc113ec7205"
+  },
+  {
+    "path": "web/src/game/jc087Native69.fixture.json",
+    "sha256": "6e456542782b15d2d9b2596e2523f85ef276288721d95e78a92719e3f20bf148"
+  },
+  {
+    "path": "web/src/game/jc087Native70.fixture.json",
+    "sha256": "1736d073839fbf5066d4b231251a8ac70e60bd86cb9a3cc7979f09092ed49c0c"
+  },
+  {
+    "path": "web/src/game/jc087Native71.fixture.json",
+    "sha256": "0a5b5730945d8172c03c93d3790fc841c2118f904f724c5b1641fa6543618c34"
+  },
+  {
+    "path": "web/src/game/jc087Native72.fixture.json",
+    "sha256": "11523e4721653b9865786f0ebc9d3bdb7b0191670a8e5a469edbd3b03b34719d"
+  },
+  {
+    "path": "web/src/game/jc087Native73.fixture.json",
+    "sha256": "814bddea1e629bc89bf5c2516525f97fe133be0489dafdf82546d8ad6afb807d"
+  },
+  {
+    "path": "web/src/game/jc087Native74.fixture.json",
+    "sha256": "c7e23ab4808e6a05bce506cb8791ac527e91c28ad98532d0509f4917e26b1cec"
+  },
+  {
+    "path": "web/src/game/jc087Native75.fixture.json",
+    "sha256": "4ad5bee2abcd630888a20195d036c60148d875b170ed19b4fc1de55541b94380"
+  },
+  {
+    "path": "web/src/game/jc087Native76.fixture.json",
+    "sha256": "4ab9dbfbec1e05467833bc04e21643b1b1e377f0d613223d8a70cc65768248f0"
+  },
+  {
+    "path": "web/src/game/jc087Native77.fixture.json",
+    "sha256": "05a7cce91c6689aaefa480c34d5b943896842994d274a050f5d8c116be7728b4"
+  },
+  {
+    "path": "web/src/game/jc089Test.fixture.json",
+    "sha256": "e15db10257cd4e16591bd46ee2df97e0441a153860efeed54aae4d6ec97119ef"
+  },
+  {
+    "path": "web/src/game/jc094Native67.fixture.json",
+    "sha256": "fd254633aba52e3aecb0d2488c28e09d473a6afcf7af3d6da1867c25e9986e4c"
+  },
+  {
+    "path": "web/src/game/jc094Native68.fixture.json",
+    "sha256": "f229e25461f8eb033cc4e037e904b46df56f3cc16f77c352f029cb5a159a39d6"
+  },
+  {
+    "path": "web/src/game/jc094Native69.fixture.json",
+    "sha256": "7ae3ef352398cafb644c96cfb298e0f31237ba25d7dc88160dcc651edc1f6d05"
+  },
+  {
+    "path": "web/src/game/jc094Native70.fixture.json",
+    "sha256": "509f19be3047d9b08ff125f4705811ee84c7de6431d688fa72ff9cbfce921f75"
+  },
+  {
+    "path": "web/src/game/jc094Native71.fixture.json",
+    "sha256": "542d60d21ce093b486851434c326cb426d5eb385a865e98eab1ffcd7d3bd5edb"
+  },
+  {
+    "path": "web/src/game/jc094Native72.fixture.json",
+    "sha256": "eddfba7c8bf35d822f39d044ea1d6bd1f2344c60396c49efa198806377eabff6"
+  },
+  {
+    "path": "web/src/game/jc094Native73.fixture.json",
+    "sha256": "f472fd672089df22628140ee64a15509d3792e3f2d5bc8b456b358b0c7edf9e2"
+  },
+  {
+    "path": "web/src/game/jc094Native74.fixture.json",
+    "sha256": "c64472c4416dc425d85c5e2826aad2b2b16ebab8de336ec5e0f72d0467feb0f7"
+  },
+  {
+    "path": "web/src/game/jc094Native75.fixture.json",
+    "sha256": "a1731174bfe0101067804703aa024e71046617221020be0090bd4f174d1fbf3c"
+  },
+  {
+    "path": "web/src/game/jc094Native76.fixture.json",
+    "sha256": "9a20da0f60d68356c3a13c2302ceb758b6507605b93232b109a111334070e132"
+  },
+  {
+    "path": "web/src/game/jc094Native77.fixture.json",
+    "sha256": "fac87b4fde4806bc512aeb65d3171f149484010f8770e360b4a91108956dd5ba"
+  },
+  {
+    "path": "web/src/game/jc095Native76.fixture.json",
+    "sha256": "4aa76e328e64a6d4c04f205c3765f961284e413aaea895805c1c38a2b494e84d"
+  },
+  {
+    "path": "web/src/game/jc095Native77.fixture.json",
+    "sha256": "f9461f224f9f1f25629ae04d25f7f1edb73ff32c7b1a5f2e0dabc57970d0251d"
+  },
+  {
+    "path": "web/src/game/jz22Native54Test.fixture.json",
+    "sha256": "40686ab75f7f2a1461f3ce6e1131e229c6ce95df26cb512f4b9d9203776bef83"
+  },
+  {
+    "path": "web/src/game/jz22Native57Test.fixture.json",
+    "sha256": "c81138a26f58a27a276a987d931bffb20a30f7915cf6c0a9a63d0e8848873916"
+  },
+  {
+    "path": "web/src/game/jz22Native59Test.fixture.json",
+    "sha256": "b24e762c82c9f5e2cc9a974399072afff64ec954bf24f582d94574788f8760c7"
+  },
+  {
+    "path": "web/src/game/jz22Native60Test.fixture.json",
+    "sha256": "9210df534562d7f9dd6123752a1261cadffb8c6fb40baaf22571110959b35633"
+  },
+  {
+    "path": "web/src/game/jz22Native62Test.fixture.json",
+    "sha256": "c3591895c90a5c44485aa93e024079496454de96b232cdd5f44bf509c80ff2bf"
+  },
+  {
+    "path": "web/src/game/jz22Native63Test.fixture.json",
+    "sha256": "56dccc7f05b87078945549464ed7a3c7968d1d046a1cc84d2f397ff2a973179c"
+  },
+  {
+    "path": "web/src/game/jz22Native64Test.fixture.json",
+    "sha256": "111c6f6ca50571ed98e2774e30a0b0951bef30ad6c1cc110eda08ffea019f69a"
+  },
+  {
+    "path": "web/src/game/jz22Native65Test.fixture.json",
+    "sha256": "306310220b357b7a925c830c18d5dc7753e54e84793e3f620aa7a4dd7cdc4943"
+  },
+  {
+    "path": "web/src/game/jz22Native66Test.fixture.json",
+    "sha256": "00fde0667080fa0c4b7c2469e019139c7bb65a198024342a5863e3e7db53d57e"
+  },
+  {
+    "path": "web/src/game/jz22Native67Test.fixture.json",
+    "sha256": "7c2e11cbe65c754b86a47d0fd443ad71ca3b5e51b741ecdf559de18f9120166d"
+  },
+  {
+    "path": "web/src/game/jz22Native68Test.fixture.json",
+    "sha256": "5b1211797e9cb01883b3dfe33379bfee8b03bfc84c41e4d25949e5fe0a971ddc"
+  },
+  {
+    "path": "web/src/game/jz22Native69Test.fixture.json",
+    "sha256": "9ec6c7bbf8dea73b2ccd4e7786f5c9b939a2e1e1ddefe3a106f7e51b65615a3b"
+  },
+  {
+    "path": "web/src/game/jz22Native70Test.fixture.json",
+    "sha256": "8ad8d39b4801d434192317ee83a709937101ec703653806f50842f93712eb607"
+  },
+  {
+    "path": "web/src/game/jz22Native71Test.fixture.json",
+    "sha256": "95315d8562a3a67c3d757cf46b2ba11ba7e292796a449c88b6ff009806d81a1e"
+  },
+  {
+    "path": "web/src/game/jz22Native72Test.fixture.json",
+    "sha256": "c27b939c3da4f978bc458b557284ba51d1200657030603f9bf5c9942c8e95666"
+  },
+  {
+    "path": "web/src/game/jz22Native73Test.fixture.json",
+    "sha256": "b00f883c9dc1ca5edcce40d0f5245071884d747f9b71b1646bf552969bf2086e"
+  },
+  {
+    "path": "web/src/game/jz22Native74Test.fixture.json",
+    "sha256": "73cc29be7698e2656f11762109986c42002442bf0f2e7b2690109972081ce4f5"
+  },
+  {
+    "path": "web/src/game/jz22Native75Test.fixture.json",
+    "sha256": "ff2fbfe7f806303cf6e8d72b03fb90294873a540b7caae17426ceb50f99fa63f"
+  },
+  {
+    "path": "web/src/game/jz22Native76Test.fixture.json",
+    "sha256": "1c766c16d31136646572caab34d5fe20915a5179d9bba4f2ef3de7e8a4740395"
+  },
+  {
+    "path": "web/src/game/jz22Native77Test.fixture.json",
+    "sha256": "b1daccac7bb0778f5d2a1e23713df4f15ba68f779ccadb1599fdb6210e46b016"
+  },
+  {
+    "path": "web/src/game/jz31Test.fixture.json",
+    "sha256": "cab6c8ef5a52d9b8340914be6f33f73b51b997b0c5167fc75eb29a5310f2a6cd"
+  },
+  {
+    "path": "web/src/game/jz35Native72.fixture.json",
+    "sha256": "78d36b666e8f99a8fb0d2ff8d92c7620601c78ae7ee4952c4ee6074de2da6ff2"
+  },
+  {
+    "path": "web/src/game/jz35Native73.fixture.json",
+    "sha256": "42d2dfac8634b1e752c07b3ff28ddd90efea33cb3a5e08a789c3ef72c903a785"
+  },
+  {
+    "path": "web/src/game/jz35Native74.fixture.json",
+    "sha256": "d01de0172a67e22fa02d23663e3ad5bc210546a5b5a55e9bc2b3a1d3c23bc23a"
+  },
+  {
+    "path": "web/src/game/jz35Native75.fixture.json",
+    "sha256": "94fe8bef2d455755b934e4736f434f7042af4e998f6f017963904ed53b4e8dc6"
+  },
+  {
+    "path": "web/src/game/jz35Native76.fixture.json",
+    "sha256": "5e0cd11a49260f6474267db1ef57906b23e3ad3025d41963a4f2e05ffa445636"
+  },
+  {
+    "path": "web/src/game/jz35Native77.fixture.json",
+    "sha256": "5d1c67f5c5ed160ff6cb82efcd096d5f593675acbb8fbd20c544b6a31bb8b212"
+  },
+  {
+    "path": "web/src/game/jz48Test.fixture.json",
+    "sha256": "99182896ad5fe416cbe3fa327e19a22eee165dbf27a85330364cd24ff8542f43"
+  },
+  {
+    "path": "web/src/game/jz49Test.fixture.json",
+    "sha256": "16be9fe8dcb6572de75a1f1bc53e9fad750f3b22b04ba612f72caef1c3dd5fa9"
+  },
+  {
+    "path": "web/src/game/jz50Native48Test.fixture.json",
+    "sha256": "b3602c1562d64b305049f8925d68f7237bf8580c880cab8a1bbb152b1acf883d"
+  },
+  {
+    "path": "web/src/game/jz55Test.fixture.json",
+    "sha256": "866216f19b83147576fc64aefe3a7cc443a02b5f49fd85d78f6b639f2faa2886"
+  },
+  {
+    "path": "web/src/game/lantern-table.css",
+    "sha256": "60d0e1312bb5d7a415926deee40f31ce080c6cfaabfc46cc2598dec97e3f4810"
+  },
+  {
+    "path": "web/src/game/lobby-pages.css",
+    "sha256": "3ebfa90731d3e322b00858210ca0dd7133036118d8ca18fa84955e0eeb20fa03"
+  },
+  {
+    "path": "web/src/game/lobbyNavigation.ts",
+    "sha256": "33150087b653e787f8a231dde7c2c3d1032a1c02dec643ea263fcfc3e78b803b"
+  },
+  {
+    "path": "web/src/game/millPublicV035Test.fixture.json",
+    "sha256": "bb4189306f393e99634235777b7136fedb07d035a35c1e03256030c0ae470176"
+  },
+  {
+    "path": "web/src/game/object-actions.css",
+    "sha256": "cd4c9dfe2e76634d4b4184fb184bdbbfaeb9f6be44755782ebd1b6117d156c91"
+  },
+  {
+    "path": "web/src/game/objectActions.test.ts",
+    "sha256": "8fa66d720b22dd58479aa814d865cf5d0a0e8b66e6f76136d89eab1780cc7cc5"
+  },
+  {
+    "path": "web/src/game/objectActions.ts",
+    "sha256": "8b0b9e31ed68a7f282c4edf51582af458d833caf91bd41784ac9c9e6f622117f"
+  },
+  {
+    "path": "web/src/game/pass-history.css",
+    "sha256": "5b8cb791fb5fac49ecc619df15bb1c7d90fa1e5958d23631bae3b24e81267e4f"
+  },
+  {
+    "path": "web/src/game/phaseLabel.ts",
+    "sha256": "5a2e333b2f0a4d1a071802b169da426f5624acf49c1ed65fa93cfa1e1ddf661d"
+  },
+  {
+    "path": "web/src/game/playerNameStorage.ts",
+    "sha256": "9d5b925807809aacc2e9a6d8a759c6e97abed725103404492f335820b492c8eb"
+  },
+  {
+    "path": "web/src/game/playerStorage.ts",
+    "sha256": "778455977f1b30d48127683de783f66b320f3246563824a4cb41c3aa2e9a1bfb"
+  },
+  {
+    "path": "web/src/game/response-intent.css",
+    "sha256": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe"
+  },
+  {
+    "path": "web/src/game/room-management.css",
+    "sha256": "8b1459a9139f393dd8c57bb0abd404027a4ecc339c52da66d8ff17e3311c938b"
+  },
+  {
+    "path": "web/src/game/sealed-cards.css",
+    "sha256": "ad510f869a729d58c83c3c44d2da616dd689b7f85e2a50b4e29f05e630cbfd72"
+  },
+  {
+    "path": "web/src/game/sealedNative47Test.fixture.json",
+    "sha256": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV059.fixture.json",
+    "sha256": "2fb065d484f639cdc822fdd9b959bca694eea3615ee903ac021a04349e87aa5d"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV060.fixture.json",
+    "sha256": "942094b135153ce8540c67436d084000dd898bdcbeaad7abfb714ef4f0bcf516"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV062.fixture.json",
+    "sha256": "dfdd9591666db01496d214586d237b91e68414050d4b5f058dd98224d2d8a7b9"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV063.fixture.json",
+    "sha256": "55d197f0d0db12a3648af035d0efdec1e5c40f2c35561a1e21ffc77ddb88c3ba"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV064.fixture.json",
+    "sha256": "250a398c59d67da07ab630f3fc40427bebb82ca04b1824d37be4f419e65005b8"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV065.fixture.json",
+    "sha256": "cc9653311836c91b29e0ecd820235a615d95b5b36fa92e3d7875ae549a0c5460"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV066.fixture.json",
+    "sha256": "2e2b20bb8ce8974dd6459e5f37ec66e95ad855c0c3692498637a6d51580665d2"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV067.fixture.json",
+    "sha256": "3f8dda8cb9ab9d343e5395221b18b06497da95b94abd7b5def038e39e4906fd5"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV068.fixture.json",
+    "sha256": "12eaa39157deb34a0dd81a515df8e5af48b11442acbe853419c31e74e2f131d6"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV069.fixture.json",
+    "sha256": "7c30b364b67d1b6ad5471e5a5f08eee1c86e28cbd866c70bc36a59986ee54b29"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV070.fixture.json",
+    "sha256": "401a46639b67f3fa6d425dea528bfc2863abac0f80b3201bf165777e7d52f9de"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV071.fixture.json",
+    "sha256": "ca38dba6b1e6648c1ec1691d412908b62ef2bede6b636484c3fcbe9519ac2b9d"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV072.fixture.json",
+    "sha256": "076ad476b29098355d69109d1ab0e0c1da356dd43784c571a5e040d2f795b5ac"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV073.fixture.json",
+    "sha256": "5431cf579953082e2fb462a718a062d2f8a6ce1a0a33ad593c034cc0f7fe21ae"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV074.fixture.json",
+    "sha256": "a6e2db0319aa112f526fb809e8e71447a8b67da6e7b8e565363ad5bbb1d14bbb"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV075.fixture.json",
+    "sha256": "2b26b9ea1d6110a226ec8ab37aa8b79ccbe08b734128890669e034f16e1a1b87"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV076.fixture.json",
+    "sha256": "4d803f9258918403027e098a761ec8e3b787f1ed834b69039ec215aa8ef7ab50"
+  },
+  {
+    "path": "web/src/game/sevenCardUIV077.fixture.json",
+    "sha256": "acebbac90cae5bdd4fbd63e945b7a829042e720a14ccd1681a97f2e2fa02ebca"
+  },
+  {
+    "path": "web/src/game/society.css",
+    "sha256": "a4735d0725c91ba925606999536158a3b5156932fb67f956ba0ca8c3ff1a5c12"
+  },
+  {
+    "path": "web/src/game/societyTest.fixture.ts",
+    "sha256": "98baca279d61cca368e6b70e406741473c98e43d7941787de773f871e3357e67"
+  },
+  {
+    "path": "web/src/game/table-desktop.css",
+    "sha256": "3a19d34a53b8957fac9681e898b66904e7f1b93596837013186d49e65835d119"
+  },
+  {
+    "path": "web/src/game/testFixtures.ts",
+    "sha256": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757"
+  },
+  {
+    "path": "web/src/game/testKernel.js",
+    "sha256": "0609af651d375f59dddce67ed2c57571488d49e63d94939076bb68d470758bce"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative53Test.fixture.json",
+    "sha256": "a9402571b71302a3e81f6bd98f3ef070415a3331740b9ee18b280bd9778e717c"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative57Test.fixture.json",
+    "sha256": "cc9a42a2dd3f70afc51d88a22611087da153abdc17e8b43d92e5a3eec559925f"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative59Test.fixture.json",
+    "sha256": "5026f72c964590900be2ac038b9245ffdbe4e00ca20e5dd0c84f9a12ce47b3be"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative60Test.fixture.json",
+    "sha256": "32e2e7d1a120e15676797c15c881fd689debae2dc1b8d16896a459bc7dfa13c8"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative62Test.fixture.json",
+    "sha256": "37972addb2182fc5a29b68a25d6066674241f4ae7ddf05dfca8d167072d92b4b"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative63Test.fixture.json",
+    "sha256": "a673971ea9e3a8f3e3d77662a59633bfaa671f2cb4dd1c66c7f16523c0d7eda8"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative64Test.fixture.json",
+    "sha256": "503f0fc27a215fa38b7a99de926d44697ac0b03e24f769720d654e489118b763"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative65Test.fixture.json",
+    "sha256": "95c546b6d143ad39acc4428015f8337c23b744095c7c02d3caba786384e5d22b"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative66Test.fixture.json",
+    "sha256": "1cff014d6bdb9ed89248d61c528c4644c7ef7e3c4a6983b865fe88982d3afed8"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative67Test.fixture.json",
+    "sha256": "0a39baf0d1f90703baccb495e85da40d911a3ac205df7adda37d287feec0af5a"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative68Test.fixture.json",
+    "sha256": "0e6b78aefda7539c057e293567ecba5e2bdc4d151969f9ee1e9a52dd5c237b9e"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative69Test.fixture.json",
+    "sha256": "287c9b40f238330cae1683d643cc89646dfa9c11039674d4b4a7f54cd6ad32f0"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative70Test.fixture.json",
+    "sha256": "587aa8ba4fa0c92e888e8011a9aab47a42dd316046602d964558856e6e1a5330"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative71Test.fixture.json",
+    "sha256": "935968b56bf0f0589a8204cc7cac7decbf90fd1617f3bfa61e739e6eeae01ccf"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative72Test.fixture.json",
+    "sha256": "91e3bd69aff1acd45ef642cdcb711db8204ae4e4949964c84ef103191d310416"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative73Test.fixture.json",
+    "sha256": "1c53b590d6b732d590dd05ebb05c41f1ef30b6616c8e0fa055fc306c2841a048"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative74Test.fixture.json",
+    "sha256": "1d4773bfb1d7e916d3cd8f2f8182442b1c0449a65d28c7d7b5984345f7e3084e"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative75Test.fixture.json",
+    "sha256": "3e266bc6c2ad010a3ff5df71ac87a3eae67b58ea392ff8c9942220a4ce4f8f11"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative76Test.fixture.json",
+    "sha256": "3278a152b17b0bdb1e98beed91b7add04b0a7e220fa680af249ee8a10a473519"
+  },
+  {
+    "path": "web/src/game/threeColorDeathNative77Test.fixture.json",
+    "sha256": "a3437322fead181fbbe1c1c54e2325a3eb38d04092719ee8e9116d214ddfc3d8"
+  },
+  {
+    "path": "web/src/game/types.ts",
+    "sha256": "5d7389a6c2b6947768b70ab000eafab2f8222383971529c3ffe262244a7ce791"
+  },
+  {
+    "path": "web/src/game/useCardVisibility.ts",
+    "sha256": "c422e81cc0169bdb21a435d438d1deb52387dc05b653f3ed5c996bd2cf6db34f"
+  },
+  {
+    "path": "web/src/game/useChoiceActionFocus.ts",
+    "sha256": "e539b34f15c629ed6ef56b2c1c6b8ac994c3d8157ad31a396c6054debba126ff"
+  },
+  {
+    "path": "web/src/game/useDialogFocus.ts",
+    "sha256": "9cebc3f5641da9ca95432a4b0bbf08a5e1fbf8ee2ee94d7b0a0907f038930847"
+  },
+  {
+    "path": "web/src/game/useGame.test.tsx",
+    "sha256": "4c55a2582fb7b096ce201669e898e0f92d05a9a677d38d9b4304844ae08f6ba8"
+  },
+  {
+    "path": "web/src/game/useGame.ts",
+    "sha256": "a8139a45f2ef5a2a8efd5d3df4f0266fba2f25a4cec357e94c8a0d90d5f79c07"
+  },
+  {
+    "path": "web/src/game/useSeatConflict.test.tsx",
+    "sha256": "acc2cb14ef276413e16bc1695b016f8cc9dec1a03b5096f689d3142d557d608f"
+  },
+  {
+    "path": "web/src/game/useSeatConflict.ts",
+    "sha256": "bc8f8d3aa773edfa13abd0a211b79d56a749f96d3507a885a161587c01cf0266"
+  },
+  {
+    "path": "web/src/game/wm023Native69.fixture.json",
+    "sha256": "53555d63479bcf9001a5f19a5ddb847c28ed062faa1f56ac7a292b5e2dd95618"
+  },
+  {
+    "path": "web/src/game/wm023Native70.fixture.json",
+    "sha256": "983b0018da19815ffccc87622152179ddbcad206d25b9c189204230fa0d1db13"
+  },
+  {
+    "path": "web/src/game/wm023Native71.fixture.json",
+    "sha256": "01d9816e4e6374e6ee11f987fafb6f07cb4c841ad167bdcd4d5c7b819560a87f"
+  },
+  {
+    "path": "web/src/game/wm023Native72.fixture.json",
+    "sha256": "2201a2e312229b0347da15d4a2abcbbc3171eb5dc8ccc6d593a4279e31f95a1f"
+  },
+  {
+    "path": "web/src/game/wm023Native73.fixture.json",
+    "sha256": "e1309482dfce4df5868ea3cc82b7be21a734fbe1a19b44e2b6c4ef1a23a7d788"
+  },
+  {
+    "path": "web/src/game/wm023Native74.fixture.json",
+    "sha256": "569b5ec140731e59023339ebc845d43299fd30c6589f3bae2eb914091a23a2ca"
+  },
+  {
+    "path": "web/src/game/wm023Native75.fixture.json",
+    "sha256": "ff25688f06221cdcbeceb23792a6b9091e8abc5bb86ea4de4a8218dfce0a0878"
+  },
+  {
+    "path": "web/src/game/wm023Native76.fixture.json",
+    "sha256": "1903a203e19e505ddec1f36bcffd0f65594c216327bcc3d4cbcbc6551030ba83"
+  },
+  {
+    "path": "web/src/game/wm023Native77.fixture.json",
+    "sha256": "ac3b5b7d3819453c8e58af09d3715ef30b1509ca18847310dbb1a28fdce62848"
+  },
+  {
+    "path": "web/src/game/wm038Native71.fixture.json",
+    "sha256": "412ac48717b38c08f4afa5ee79e1f5716d63a553756c44deb855e07490aceb4f"
+  },
+  {
+    "path": "web/src/game/wm038Native72.fixture.json",
+    "sha256": "9e6a9211dc94567cde43dd7c5f0c53a29aaf448f6f6fe53d0036edc4e7c1bb21"
+  },
+  {
+    "path": "web/src/game/wm038Native73.fixture.json",
+    "sha256": "4e6866e1ccca861e2a6b3a8254a71d15cfb8c1947f50d1a40f089f10f57a6d9d"
+  },
+  {
+    "path": "web/src/game/wm038Native74.fixture.json",
+    "sha256": "7696348aeb8870a6422e9134ed39612d582b804d74ecf7c39196d7d2da9b921c"
+  },
+  {
+    "path": "web/src/game/wm038Native75.fixture.json",
+    "sha256": "6a165f153c9d1adad3b834053592d2d23841bfd0ef3d9f1babed9f8412600159"
+  },
+  {
+    "path": "web/src/game/wm038Native76.fixture.json",
+    "sha256": "bb70d9b18cd8b81bacbb6fffb06ae4e6d114909594a7317373141b4a91ee31a1"
+  },
+  {
+    "path": "web/src/game/wm038Native77.fixture.json",
+    "sha256": "1fe11af32f8c29c1c4373e797da65dff2ff831bd7ec790ea6a80272e147758fa"
+  },
+  {
+    "path": "web/src/game/wm056Native68.fixture.json",
+    "sha256": "25adcca536ed1b8afc076f640affc8156f7545ddf894d6fdfb4fccc84709559a"
+  },
+  {
+    "path": "web/src/game/wm056Native69.fixture.json",
+    "sha256": "9e510539186cd85c9d66849af58344234879bf66b057675c4bfcc87d371886c0"
+  },
+  {
+    "path": "web/src/game/wm056Native70.fixture.json",
+    "sha256": "5fdabe5761de2949fc48de6bc60b6d3d27316aeea69b90a04bceaf2a08960b29"
+  },
+  {
+    "path": "web/src/game/wm056Native71.fixture.json",
+    "sha256": "1e57f51efe1c6b6f6efae38d9ac3ccb63c5705ca2d21445cb87f8aff9cd58512"
+  },
+  {
+    "path": "web/src/game/wm056Native72.fixture.json",
+    "sha256": "f96735591c81bf35c5b2e8e86523326c0f617cccd63b5cd46987d4642c5ea586"
+  },
+  {
+    "path": "web/src/game/wm056Native73.fixture.json",
+    "sha256": "421039de724e800dbab2e235b4d324de97d06d2374f69f00106450dc4b217e69"
+  },
+  {
+    "path": "web/src/game/wm056Native74.fixture.json",
+    "sha256": "053e9ca711745e173794d25eda44f25a8998407c8aec527ef15d6798020989c8"
+  },
+  {
+    "path": "web/src/game/wm056Native75.fixture.json",
+    "sha256": "70df1f1abbf6ceff7ee5719cb69d0c8403b33bbbc508adc4fd9cea9023e40d88"
+  },
+  {
+    "path": "web/src/game/wm056Native76.fixture.json",
+    "sha256": "46299f9c1237b51721e902f8b2be42c9cf6ea1c486750417ea536047f22a9bfd"
+  },
+  {
+    "path": "web/src/game/wm056Native77.fixture.json",
+    "sha256": "f39d4e6dee22b42f340e9a6887154e9326be97c80b00238daa1e0af2c3d8e132"
+  },
+  {
+    "path": "web/src/game/xq18Native60Test.fixture.json",
+    "sha256": "7fe57d866c726abef14e544d6ab7af554a4e696c70a7ea1cf222b31db56f12fe"
+  },
+  {
+    "path": "web/src/game/xq18Native62Test.fixture.json",
+    "sha256": "f2c58788a5296d9f4f7061bb92e875fdbd97c9194c5318f2e04464ae514d1898"
+  },
+  {
+    "path": "web/src/game/xq18Native63Test.fixture.json",
+    "sha256": "f22b4d16dadf958b9bba00e6184b0f294645826c886b25e7e5cd10bb9af44973"
+  },
+  {
+    "path": "web/src/game/xq18Native64Test.fixture.json",
+    "sha256": "65a34ec333c86de354a074fc8e44aa5228c97a79148c05f57bc87632cfb0e2de"
+  },
+  {
+    "path": "web/src/game/xq18Native65Test.fixture.json",
+    "sha256": "1e9057cda2facd884abbdc191072439503dbb9c359ef424e0de14420d2658f07"
+  },
+  {
+    "path": "web/src/game/xq18Native66Test.fixture.json",
+    "sha256": "b0feb9276480429d432940e81dc7ba3796465a11b7b7794128d5fda190483737"
+  },
+  {
+    "path": "web/src/game/xq18Native67Test.fixture.json",
+    "sha256": "119fbac31c370ad955d670ac9954b8314daafba80c57b0b0a39855dc9f84984e"
+  },
+  {
+    "path": "web/src/game/xq18Native68Test.fixture.json",
+    "sha256": "6396b67440f151472212ccaef0f826fafab7149e73c2567dd925be7a07f6a21b"
+  },
+  {
+    "path": "web/src/game/xq18Native69Test.fixture.json",
+    "sha256": "7ab3aa33f4be02f1594c4e4b2a50ee94f737bb391aa24d4955a73a58337be53d"
+  },
+  {
+    "path": "web/src/game/xq18Native70Test.fixture.json",
+    "sha256": "42c926b9443a628afa3147be6176a5c748b59fe6cb7b2b4ef137f3bb5dcb9efc"
+  },
+  {
+    "path": "web/src/game/xq18Native71Test.fixture.json",
+    "sha256": "ec72cdea97dcaf72a0cf9f57d28166edfed540e6c15c40a2b08ef5ceda43ab90"
+  },
+  {
+    "path": "web/src/game/xq18Native72Test.fixture.json",
+    "sha256": "4b07662e1d49b77cf40989c1ef092f22c27a96607fdfe459eb38d1863cf5dedb"
+  },
+  {
+    "path": "web/src/game/xq18Native73Test.fixture.json",
+    "sha256": "1c367602454024a06b22caa1b8932caaa1160584aaa1a31d46f3f0a91df2b4b8"
+  },
+  {
+    "path": "web/src/game/xq18Native74Test.fixture.json",
+    "sha256": "9e28e6a42317b564da374b9f7abceaa4121a510c2fbe5d3b895671fbe004a132"
+  },
+  {
+    "path": "web/src/game/xq18Native75Test.fixture.json",
+    "sha256": "1b8c7e6a3744ce50481bacbf52a09471fdbb9493d3d0a2f05bd679edb2be20d5"
+  },
+  {
+    "path": "web/src/game/xq18Native76Test.fixture.json",
+    "sha256": "9474e2177e0bd41b37646d5e7a9953e9fc706d36cd82d0f80d675ae1bcdf5777"
+  },
+  {
+    "path": "web/src/game/xq18Native77Test.fixture.json",
+    "sha256": "a6e81aad97fe0b2960b2cda8dec198ed10c3f0393d012978ba61a5001fbbda76"
+  },
+  {
+    "path": "web/src/game/xq24Native65.fixture.json",
+    "sha256": "49c33271a6305b75a921eebcb5d920752c11de7139e367d6229c538f0a2d619e"
+  },
+  {
+    "path": "web/src/game/xq24Native66.fixture.json",
+    "sha256": "07a16c542b8848e7bcddc0cdb78632e2feca053d49422a859f85d7c808c7b348"
+  },
+  {
+    "path": "web/src/game/xq24Native67.fixture.json",
+    "sha256": "406de924a4760e40a94367b07e9261b77467901a486d4783bbc875ed4201f998"
+  },
+  {
+    "path": "web/src/game/xq24Native68.fixture.json",
+    "sha256": "eb19850a53a1b373286d834ed393dc66648afe63a44e7906f8c4e6988fc497fc"
+  },
+  {
+    "path": "web/src/game/xq24Native69.fixture.json",
+    "sha256": "89f33544eab9a7e69bff4399430e73584a6dc98644d071a09a9676acad8320ed"
+  },
+  {
+    "path": "web/src/game/xq24Native70.fixture.json",
+    "sha256": "9ca7c27c2a7f2293d69bbec8fb6af924d801181b8e94bd843ef5151cac66d93b"
+  },
+  {
+    "path": "web/src/game/xq24Native71.fixture.json",
+    "sha256": "abab394ba44bb14d1a8ddd74c18d116f8ca9968f0523e583dd2b5696467c26eb"
+  },
+  {
+    "path": "web/src/game/xq24Native72.fixture.json",
+    "sha256": "7a1add9bc0ed2af31c9e68c2c275f09c50211be4aea250cf5368dcba917bce45"
+  },
+  {
+    "path": "web/src/game/xq24Native73.fixture.json",
+    "sha256": "897a066650d104ded5b1098a14f4b3df73a7c98d1df5fb3b3b11e56193721b6e"
+  },
+  {
+    "path": "web/src/game/xq24Native74.fixture.json",
+    "sha256": "eaf3cc62f8f65c718e920d8e228ef14134a4e34e053a39fc39a9b3244c7e27a1"
+  },
+  {
+    "path": "web/src/game/xq24Native75.fixture.json",
+    "sha256": "5c79befe7bbc73ad33f2b59d594df3d86eca37411df075f7fe1814d649eeb385"
+  },
+  {
+    "path": "web/src/game/xq24Native76.fixture.json",
+    "sha256": "1981513c3b295db0711360d34c6046f48a293220947724e2d4728a2f3d7b0c21"
+  },
+  {
+    "path": "web/src/game/xq24Native77.fixture.json",
+    "sha256": "7999c9557cfac636452aa066506c7273dc5db2a33fedab1e7705a2c514730957"
+  },
+  {
+    "path": "web/src/game/xq25Native70.fixture.json",
+    "sha256": "8bae1fdb9e2b654b48761a3da7ba8776d3423f64e114a5396b7b6217eaf7f7af"
+  },
+  {
+    "path": "web/src/game/xq25Native71.fixture.json",
+    "sha256": "b4da620d6e0ea76de60957aa10427601027c1a9c3115d7766426a8e36b1fd3d7"
+  },
+  {
+    "path": "web/src/game/xq25Native72.fixture.json",
+    "sha256": "a2588278446db72f83d49d0376c1209ef2d2294f7497aabbb02ee426cfc96f1f"
+  },
+  {
+    "path": "web/src/game/xq25Native73.fixture.json",
+    "sha256": "73834330cccf8ee9914e1adb9957d9b66cb8a57a4f70f70a46f481d75da38009"
+  },
+  {
+    "path": "web/src/game/xq25Native74.fixture.json",
+    "sha256": "7c1e56d1b563c8e93b88db1c34fb110009e43efd8a108cfb6e1dd5dc0728cb92"
+  },
+  {
+    "path": "web/src/game/xq25Native75.fixture.json",
+    "sha256": "3ee51bef634875b36859876d38fd89271993b21e3fd0d0fccf1f1ccd683521f7"
+  },
+  {
+    "path": "web/src/game/xq25Native76.fixture.json",
+    "sha256": "5bdf9d1934b69f1bd47dccebca21ed208fb9009b484ead8b661591e9bd5d828b"
+  },
+  {
+    "path": "web/src/game/xq25Native77.fixture.json",
+    "sha256": "e5af53e8e7bd860f69913b73f787c4d7299ebc29534add982f026957a04300ad"
+  },
+  {
+    "path": "web/src/game/xq27Native56Test.fixture.json",
+    "sha256": "cae0d8a722d56be92cedab748e24041ecef9266a9be1f3f830bf762be248c10b"
+  },
+  {
+    "path": "web/src/game/xq27Native57Test.fixture.json",
+    "sha256": "42cfc185b62f790be97cd3443377c24c5ad803eb3f821d7ad715990194736b3e"
+  },
+  {
+    "path": "web/src/game/xq27Native59Test.fixture.json",
+    "sha256": "ecf5cab9b30badc5ee5a09b2f5b34f1fff418f45c3e7e9eecbb85f6c7e13c714"
+  },
+  {
+    "path": "web/src/game/xq27Native60Test.fixture.json",
+    "sha256": "f2802a5f05d5421e6e0a187f1dc5324d0c4c066a1d0dbe233ad592b76ce45208"
+  },
+  {
+    "path": "web/src/game/xq27Native62Test.fixture.json",
+    "sha256": "8950922d59402adca3663c52cb26e70823761a34123e4bbf39e7020b8000f60b"
+  },
+  {
+    "path": "web/src/game/xq27Native63Test.fixture.json",
+    "sha256": "0e14ee74776e6b4f966263b39281617650eedee95c6d378e53f0f457c606eb1b"
+  },
+  {
+    "path": "web/src/game/xq27Native64Test.fixture.json",
+    "sha256": "521ec9fececc79293b696370c444cbba17cfa6a2035f075e1a13f89d001d3295"
+  },
+  {
+    "path": "web/src/game/xq27Native65Test.fixture.json",
+    "sha256": "5fdece0d22db6181d4db2c6b879607abdc189e51b58934228422a186e4f8c02b"
+  },
+  {
+    "path": "web/src/game/xq27Native66Test.fixture.json",
+    "sha256": "7c6cbbd9125f721ea93646d84ce78ee7527072994d44b5e37c078d7598eb2bb6"
+  },
+  {
+    "path": "web/src/game/xq27Native67Test.fixture.json",
+    "sha256": "3703667cc50953dfa257f4e2ec81f1286bc1fb27e680edc035ffd54f93bfb74b"
+  },
+  {
+    "path": "web/src/game/xq27Native68Test.fixture.json",
+    "sha256": "b587fc550b0353bb11147d0dc809e13e97d2d848567f8a59dd3a050ddabf7855"
+  },
+  {
+    "path": "web/src/game/xq27Native69Test.fixture.json",
+    "sha256": "fa99b14f160243a209d3b9de11dd9a8de72c3b6c874c7e406c92c67dc2d603ed"
+  },
+  {
+    "path": "web/src/game/xq27Native70Test.fixture.json",
+    "sha256": "38844b47c7cfc141e60dd58d4683ef14a669fc21c224ed81906b3e7b8f79b18c"
+  },
+  {
+    "path": "web/src/game/xq27Native71Test.fixture.json",
+    "sha256": "eea7ecd61743e0d31b8822f4664a4bdc357cf4b18c08a021699a54385f569d9c"
+  },
+  {
+    "path": "web/src/game/xq27Native72Test.fixture.json",
+    "sha256": "c55cdc2f3dc915a750ddd3dbf91fef43f1bb1d4fcfcae04aac764d9b49b91b39"
+  },
+  {
+    "path": "web/src/game/xq27Native73Test.fixture.json",
+    "sha256": "43258307f6bc7be5b8e325f15d3b3911193cf2d4ed3870b35004a25e24038447"
+  },
+  {
+    "path": "web/src/game/xq27Native74Test.fixture.json",
+    "sha256": "83ce8a2d318f058de9e5d13b0577fb841c8c0508ae7c3ebb029dfb735cf88249"
+  },
+  {
+    "path": "web/src/game/xq27Native75Test.fixture.json",
+    "sha256": "7f53b2f75018bb7e6283345874d219839487b9727cb10c4a9170a29241bbb8ba"
+  },
+  {
+    "path": "web/src/game/xq27Native76Test.fixture.json",
+    "sha256": "fc997051c0016ec4a7d22ada28e09d1b19b9f27354c672c072e1a6058c955e0a"
+  },
+  {
+    "path": "web/src/game/xq27Native77Test.fixture.json",
+    "sha256": "75f85ee899fa27d09bc016487c627364593b6e11e2570ee4ab8cca4290c62c28"
+  },
+  {
+    "path": "web/src/game/xq37Native57Test.fixture.json",
+    "sha256": "b465dbda46994cc39d575f9a7a1d85577ab67d758205ff0e837796a6b4775222"
+  },
+  {
+    "path": "web/src/game/xq37Native59Test.fixture.json",
+    "sha256": "1b1024f61716bafa57aeaadb848f5587ce3d5cd5d334fa7658c38a3f2a15a13e"
+  },
+  {
+    "path": "web/src/game/xq37Native60Test.fixture.json",
+    "sha256": "dc3630827b3fc32df23d541747deeabca945442f5b13bf875c718e69dbea093c"
+  },
+  {
+    "path": "web/src/game/xq37Native62Test.fixture.json",
+    "sha256": "2bc35e622c1c784c0eec7af4da4f41ecc7afb0c0cfbb5cf3bfcd73ea19cd2612"
+  },
+  {
+    "path": "web/src/game/xq37Native63Test.fixture.json",
+    "sha256": "46abf0942f97576a3292479174b279d1bb8effc74cf859b9d30c9035aa5ae567"
+  },
+  {
+    "path": "web/src/game/xq37Native64Test.fixture.json",
+    "sha256": "b15cd97a79b0bb02b6efd71f5f686bfd81b802501296079d3e35a08a3eccd6df"
+  },
+  {
+    "path": "web/src/game/xq37Native65Test.fixture.json",
+    "sha256": "1b0a60f8f1cbe647698da81683f97c280179d3ed80fad99b6c84f08507000d66"
+  },
+  {
+    "path": "web/src/game/xq37Native66Test.fixture.json",
+    "sha256": "eba7263a408e1ec12f32e2c2aa1b4eec537ea31e7617c5af6eb254677a0cdf05"
+  },
+  {
+    "path": "web/src/game/xq37Native67Test.fixture.json",
+    "sha256": "999c0b787a83ffeb5c937326c06a784233b1050aa02e1f845997410fbda37a30"
+  },
+  {
+    "path": "web/src/game/xq37Native68Test.fixture.json",
+    "sha256": "aa38f8b89cb5e55d8753dce7923c165a7b85272b8821a31e8e40ba268d823756"
+  },
+  {
+    "path": "web/src/game/xq37Native69Test.fixture.json",
+    "sha256": "8cf4fb4c7df976a117c995ce9aa51b5d43cb847c129b4ad33b1510edfdd5f980"
+  },
+  {
+    "path": "web/src/game/xq37Native70Test.fixture.json",
+    "sha256": "b7ba0b9020a414532b2c43e23ac212dfae7a60f9c1f5da533b9584af8846bf2d"
+  },
+  {
+    "path": "web/src/game/xq37Native71Test.fixture.json",
+    "sha256": "1f7136e1726a4aa1bbae4c570165abe1183f6bc52432ca002ba1e0502cd5cd82"
+  },
+  {
+    "path": "web/src/game/xq37Native72Test.fixture.json",
+    "sha256": "a1c175f23cec62b82b036eaf1b48042faa623ff4949124047f675ef3529cbe3c"
+  },
+  {
+    "path": "web/src/game/xq37Native73Test.fixture.json",
+    "sha256": "e92533be38f382c87a243911e0a2fe0b7b561944aaad768d278fdcc27fc80833"
+  },
+  {
+    "path": "web/src/game/xq37Native74Test.fixture.json",
+    "sha256": "9ffcad6f27deebb935f968d4cc5c5553a47eb161548c18fb80c9b8a29f048663"
+  },
+  {
+    "path": "web/src/game/xq37Native75Test.fixture.json",
+    "sha256": "307306d8899a27ceb64a0f86bc6e3ef26a884a93d156f991c2cc41030500b4bc"
+  },
+  {
+    "path": "web/src/game/xq37Native76Test.fixture.json",
+    "sha256": "295598fcaea06a2cca3dbdbca2af7377f88ce6f11ce6acafef5de7ff0f984e9a"
+  },
+  {
+    "path": "web/src/game/xq37Native77Test.fixture.json",
+    "sha256": "9d9b93104e493c971249a4514ce391b80d8c3a0dd895202364ef8aed5160d97e"
+  },
+  {
+    "path": "web/src/main.tsx",
+    "sha256": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1"
+  },
+  {
+    "path": "web/src/styles/global.css",
+    "sha256": "78a41570aa3d21dd9ca640823fa1ef5e9291f4d9022ab57378af2dcaf25cb5b4"
+  },
+  {
+    "path": "web/src/test/setup.ts",
+    "sha256": "1fddbba247599203eb5da3748e13f89caaeea93898987642bfa732f86e2e66a3"
+  },
+  {
+    "path": "web/src/vite-env.d.ts",
+    "sha256": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a"
+  },
+  {
+    "path": "web/tsconfig.app.json",
+    "sha256": "f2a7feb1daf24deb9112b478c714eed1d2d61f8f59610f44751ef70318c5bed1"
+  },
+  {
+    "path": "web/tsconfig.json",
+    "sha256": "c14bc73bac07443677f61403be4d35b8c5cb376686cfdd85f7240ab6ddfc593f"
+  },
+  {
+    "path": "web/tsconfig.node.json",
+    "sha256": "dfe6bec888fe2fba5b2c4d7985a9492334832b42c6a6dc212eab493ad94a51f7"
+  },
+  {
+    "path": "web/vite.config.ts",
+    "sha256": "3324507e978ca003cc0780d40695ddff717867dd957834ed2fa7a292dd777b05"
+  },
+  {
+    "path": "wrangler.jsonc",
+    "sha256": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6"
+  }
+]

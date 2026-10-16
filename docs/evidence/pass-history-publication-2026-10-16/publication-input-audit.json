@@ -1,0 +1,67 @@
+{
+  "artifactFilesMatched": 162,
+  "boundedSourceFilesMatched": 1122,
+  "exactDistInventory": true,
+  "changedFiles": [
+    "rust-game/src/service.rs",
+    "scripts/build-pass-history-test.mjs",
+    "source-provenance.json",
+    "src/http.mjs",
+    "src/index.mjs",
+    "src/pass-history.mjs",
+    "src/service.mjs",
+    "src/store.mjs",
+    "test/assert-session-journal.mjs",
+    "test/jc037-integration.test.mjs",
+    "test/jc046-integration.test.mjs",
+    "test/jc052-integration.test.mjs",
+    "test/jc060-integration.test.mjs",
+    "test/jc095-integration.test.mjs",
+    "test/msjc09-society-integration.test.mjs",
+    "test/pass-history-integration.test.mjs",
+    "test/pass-history.test.mjs",
+    "test/published77.mjs",
+    "test/session-host.test.mjs",
+    "test/seven-card-integration.test.mjs",
+    "test/storage-retry.test.mjs",
+    "test/win-flow-integration.test.mjs",
+    "test/xq24-integration.test.mjs",
+    "web/src/game/PassHistory.test.tsx",
+    "web/src/game/PassHistory.tsx",
+    "web/src/game/PassHistorySync.test.tsx",
+    "web/src/game/Table.tsx",
+    "web/src/game/pass-history.css",
+    "web/src/game/phaseLabel.ts",
+    "web/src/game/types.ts"
+  ],
+  "sourceProvenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "8a27c1ca9cfc065cc03a543d73f14b140ac93515",
+    "originalCommitScope": "reviewed base plus declared delta only; not the entire development branch",
+    "reviewedBaseCommit": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+    "progressDeltaBase": "d3406a5d719d2ce748b7935350ec56c0dc65467a",
+    "reviewedOverlayTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+    "featurePatchSha256": "d5bb0797e3b86c67cb8df5f983f130b2cf1b4c316592132022b791c62b063a06",
+    "reviewEvidenceCommit": "0dc88c4ae48f67a3b14c6a0928d94c5a4e9fef38",
+    "reviewApproval": "Parent independent serial review approved this exact overlay; official existing-public-Site publication explicitly authorized.",
+    "artifactManifestSha256": "a7b3f7fec4b67ee5d961e90c22728da470233841317241f159ca4943f7946f09",
+    "reviewedArtifactsPromotedUnchanged": 162,
+    "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "workerSha256": "a94d911f5b2aaa5abbc7ee442d08fbb36a0e9258b4e21b2a8b4fd091af27cb92",
+    "boundedSourceFilesVerified": 1122,
+    "unchangedStandaloneSupport": [
+      {
+        "path": "package.json",
+        "sha256": "ad69c066bc4a0d607da1b086417e886f4f72e25984b94df2044000b5c3df5e03",
+        "reason": "unchanged published standalone fixture-restoration hooks"
+      },
+      {
+        "path": "web/package.json",
+        "sha256": "8fc2710e2cc12d5ef73ad3faab75a7c8bcb1cb5e909db078a48b4cafacb4173f",
+        "reason": "unchanged published standalone fixture-restoration hooks"
+      }
+    ],
+    "sourceMapping": "sites/ -> provider root; web/, tools/ and Rust paths retained; exact reviewed artifacts promoted with unchanged app inputs"
+  },
+  "noDatabaseOrMigrationChanges": true
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "qa": "rust-game/src/service.rs",
+    "provider": "rust-game/src/service.rs"
+  },
+  {
+    "qa": "sites/scripts/build-pass-history-test.mjs",
+    "provider": "scripts/build-pass-history-test.mjs"
+  },
+  {
+    "qa": "sites/src/http.mjs",
+    "provider": "src/http.mjs"
+  },
+  {
+    "qa": "sites/src/index.mjs",
+    "provider": "src/index.mjs"
+  },
+  {
+    "qa": "sites/src/pass-history.mjs",
+    "provider": "src/pass-history.mjs"
+  },
+  {
+    "qa": "sites/src/service.mjs",
+    "provider": "src/service.mjs"
+  },
+  {
+    "qa": "sites/src/store.mjs",
+    "provider": "src/store.mjs"
+  },
+  {
+    "qa": "sites/test/assert-session-journal.mjs",
+    "provider": "test/assert-session-journal.mjs"
+  },
+  {
+    "qa": "sites/test/jc037-integration.test.mjs",
+    "provider": "test/jc037-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/jc046-integration.test.mjs",
+    "provider": "test/jc046-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/jc052-integration.test.mjs",
+    "provider": "test/jc052-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/jc060-integration.test.mjs",
+    "provider": "test/jc060-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/jc095-integration.test.mjs",
+    "provider": "test/jc095-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/msjc09-society-integration.test.mjs",
+    "provider": "test/msjc09-society-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/pass-history-integration.test.mjs",
+    "provider": "test/pass-history-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/pass-history.test.mjs",
+    "provider": "test/pass-history.test.mjs"
+  },
+  {
+    "qa": "sites/test/published77.mjs",
+    "provider": "test/published77.mjs"
+  },
+  {
+    "qa": "sites/test/session-host.test.mjs",
+    "provider": "test/session-host.test.mjs"
+  },
+  {
+    "qa": "sites/test/seven-card-integration.test.mjs",
+    "provider": "test/seven-card-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/storage-retry.test.mjs",
+    "provider": "test/storage-retry.test.mjs"
+  },
+  {
+    "qa": "sites/test/win-flow-integration.test.mjs",
+    "provider": "test/win-flow-integration.test.mjs"
+  },
+  {
+    "qa": "sites/test/xq24-integration.test.mjs",
+    "provider": "test/xq24-integration.test.mjs"
+  },
+  {
+    "qa": "web/src/game/PassHistory.test.tsx",
+    "provider": "web/src/game/PassHistory.test.tsx"
+  },
+  {
+    "qa": "web/src/game/PassHistory.tsx",
+    "provider": "web/src/game/PassHistory.tsx"
+  },
+  {
+    "qa": "web/src/game/PassHistorySync.test.tsx",
+    "provider": "web/src/game/PassHistorySync.test.tsx"
+  },
+  {
+    "qa": "web/src/game/Table.tsx",
+    "provider": "web/src/game/Table.tsx"
+  },
+  {
+    "qa": "web/src/game/pass-history.css",
+    "provider": "web/src/game/pass-history.css"
+  },
+  {
+    "qa": "web/src/game/phaseLabel.ts",
+    "provider": "web/src/game/phaseLabel.ts"
+  },
+  {
+    "qa": "web/src/game/types.ts",
+    "provider": "web/src/game/types.ts"
+  }
+]
