@@ -112,9 +112,21 @@ async def main():
             attacker_label='host' if host_team==acting_team else 'guest'
             responder_label='guest' if attacker_label=='host' else 'host'
             attacker=pages[attacker_label];responder=pages[responder_label]
+            # Exercise actual mobile action hit targets regardless of initiative.
+            await attacker.set_viewport_size({'width':390,'height':844})
             # Manual, zero-cost deployment creates a genuine response-intent window.
             await attacker.locator('.hg-hand .hg-card').first.click()
-            await attacker.locator('.hg-inspector').get_by_role('button',name=re.compile('派遣')).first.click()
+            deploy=attacker.locator('.hg-inspector').get_by_role('button',name=re.compile('派遣')).first
+            await deploy.scroll_into_view_if_needed()
+            result['mobileActionLayout']=await deploy.evaluate('''button => {
+                const inspector=button.closest('.hg-inspector'),dock=document.querySelector('.hg-hand-dock');
+                const b=button.getBoundingClientRect(),i=inspector.getBoundingClientRect(),d=dock.getBoundingClientRect();
+                const hit=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);
+                return {buttonCenterReachable:button===hit||button.contains(hit),inspectorBottom:i.bottom,dockTop:d.top,
+                    viewportWidth:innerWidth,position:getComputedStyle(inspector).position,dockHeight:getComputedStyle(document.querySelector('.hg-table')).getPropertyValue('--hg-dock-height')};
+            }''')
+            check('mobile-manual-card-action-is-not-covered-by-dock',result['mobileActionLayout']['buttonCenterReachable'] and result['mobileActionLayout']['inspectorBottom']<=result['mobileActionLayout']['dockTop'])
+            await deploy.click()
             await attacker.locator('[data-region-available="true"] .hg-region-center').first.click()
             await attacker.locator('[aria-label="确认目标行动"] [data-action-kind="deploy"]').click()
             await responder.get_by_role('button',name='不连锁，让过',exact=True).wait_for()
@@ -127,8 +139,11 @@ async def main():
             await contexts[responder_label].set_offline(False)
             await expect(responder.get_by_role('button',name='一键连续让过',exact=True)).to_be_enabled(timeout=12000)
             check('read-disconnection-stops-run-after-own-pass',await responder.locator('[data-continuous-pass]').get_attribute('data-continuous-pass')=='off')
-            if await attacker.get_by_role('button',name='不连锁，让过',exact=True).count():await attacker.get_by_role('button',name='不连锁，让过',exact=True).click()
+            decline=attacker.get_by_role('button',name='不连锁，让过',exact=True)
+            if await decline.count() and await decline.is_enabled():await decline.click()
             await until(lambda:not latest('host').get('responseWindow'),drive_guest=False,timeout=15)
+            await host.set_viewport_size({'width':1366,'height':900})
+            await guest.set_viewport_size({'width':390,'height':844})
             await begin(host,'confrontation')
             await until(lambda:latest('host')['phase']=='confrontation')
             await expect(host.get_by_label('连续让过状态',exact=True)).to_contain_text('已到达对抗阶段')
