@@ -87,5 +87,21 @@
     "cause": "actual screenshot showed low contrast and crowded one-line status",
     "fix": "inherit history text color and reserve a complete pass-status row",
     "finalContrast": 13.747284662638762
-  }
+  },
+  "archiveFormatting": [
+    {
+      "file": "native-journal-replay.log",
+      "normalization": "archive copy only: trim trailing spaces/tabs and surplus blank lines at EOF",
+      "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/native-journal-replay.log",
+      "rawLogSha256": "2423702b2d287956dac4f1f803f83d5f6c23acce7e43306ad7fbd4a1d0165997",
+      "archivedSha256": "fccdebac381cf89d08ac39eca420b2643a26a8c4e04183be6b485d22e3bcbcf5"
+    },
+    {
+      "file": "release-production-build-visual-final.log",
+      "normalization": "archive copy only: trim trailing spaces/tabs and surplus blank lines at EOF",
+      "rawLogLocalPath": "/workspace/pass-context-evidence-20261016/release-production-build-visual-final.log",
+      "rawLogSha256": "042b0c11ec9bb3f716c6dce86cd41cdfa11b8f1d1c3153044cd641b48a1540b5",
+      "archivedSha256": "77bacb56f0f8bb592f3d800e2774d424dead58f5a1ecea4d85fc60d787dc5657"
+    }
+  ]
 }

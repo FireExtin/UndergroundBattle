@@ -2,8 +2,8 @@
   "files": [
     {
       "file": "README.md",
-      "bytes": 1542,
-      "sha256": "601f2931994d7bc492dcbaee23dbb049f63e720f9417b3809954643f94fde8e9"
+      "bytes": 1795,
+      "sha256": "bbfbc6557ee8ebf3a0d21af4973a525b394e9c4b06f32854598b8500a8acd3be"
     },
     {
       "file": "artifact-manifest.json",
@@ -52,8 +52,8 @@
     },
     {
       "file": "native-journal-replay.log",
-      "bytes": 2664,
-      "sha256": "2423702b2d287956dac4f1f803f83d5f6c23acce7e43306ad7fbd4a1d0165997"
+      "bytes": 2663,
+      "sha256": "fccdebac381cf89d08ac39eca420b2643a26a8c4e04183be6b485d22e3bcbcf5"
     },
     {
       "file": "release-frontend-final.log",
@@ -62,8 +62,8 @@
     },
     {
       "file": "release-production-build-visual-final.log",
-      "bytes": 1722,
-      "sha256": "042b0c11ec9bb3f716c6dce86cd41cdfa11b8f1d1c3153044cd641b48a1540b5"
+      "bytes": 1696,
+      "sha256": "77bacb56f0f8bb592f3d800e2774d424dead58f5a1ecea4d85fc60d787dc5657"
     },
     {
       "file": "release-worker-full-final.log",
@@ -72,8 +72,8 @@
     },
     {
       "file": "run-history.json",
-      "bytes": 4134,
-      "sha256": "8badf1fc2f71365fc82fb7a29b81f76419ef9a59063325ec650fe5416f6d7780"
+      "bytes": 5065,
+      "sha256": "6c1c99c13992384c0aa62acdd8353c057ee70639f56471088c33e4f83381bc44"
     },
     {
       "file": "source-overlay-manifest.json",

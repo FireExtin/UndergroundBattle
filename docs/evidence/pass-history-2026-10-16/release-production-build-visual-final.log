@@ -7,7 +7,8 @@
 > tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
 
 vite v8.0.3 building client environment for production...
-[2Ktransforming...✓ 66 modules transformed.
+[2K
+transforming...✓ 66 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.47 kB │ gzip:   0.33 kB
@@ -29,9 +30,9 @@ npm notice
 ✨ Read 160 files from the assets directory /workspace/pass-context-abi77-review-20261016/sites/public
 Total Upload: 2892.98 KiB / gzip: 775.04 KiB
 Your Worker has access to the following bindings:
-Binding                    Resource         
-env.DB (hegemony)          D1 Database      
-env.ASSETS                 Assets           
+Binding                    Resource
+env.DB (hegemony)          D1 Database
+env.ASSETS                 Assets
 
 --dry-run: exiting now.
 npm notice

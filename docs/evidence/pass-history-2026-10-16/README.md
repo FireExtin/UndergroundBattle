@@ -13,3 +13,5 @@
 - `evidence-file-hashes.json`：上述文件的字节数和 SHA-256，自身不递归计入。
 
 真实在线 v58 的正常 TLS 阻断在独立 `sites-v58-live-check-2026-10-16-1126z` 目录，不与本地成功混记。无真实用户房间、凭据、数据库或构建缓存。
+
+两份命令日志的归档副本仅去掉行尾空白和多余 EOF 空行，便于 Git 检查；原始日志仍逐字节保留在本地，原始／归档哈希对应见 `run-history.json` 的 `archiveFormatting`。没有修改命令结果或计数。
