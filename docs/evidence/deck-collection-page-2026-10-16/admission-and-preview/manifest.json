@@ -22,6 +22,11 @@
       "sha256": "69bdc8d8ba4e13f842b610592b19480de21f3521afcdaf0d089b388838ba0d52"
     },
     {
+      "path": "admission-four-tests.log.gz",
+      "bytes": 354,
+      "sha256": "d4502bdd4d87961de369f6c5ba80208ce88994c4097ee84cd23405301ebd4bfd"
+    },
+    {
       "path": "preview-diagnostic.json",
       "bytes": 457,
       "sha256": "b5e0acc8d3c760976a57dd08c0c60394dc46001c6f4aa76c6153ac5456b6173a"

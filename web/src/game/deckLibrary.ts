@@ -54,7 +54,8 @@ export function selectableSocieties(catalog: DeckCatalog): SocietyDefinition[] {
 
 export function societyColorCount(draft: DeckDraft, catalog: DeckCatalog, color: string): number {
   const normalized = (value: string) => value.trim().replace(/色$/, '');
-  const ids = new Set(catalog.cards.filter(card => isEditableDeckCard(card) && normalized(card.color || '') === normalized(color)).map(card => card.id));
+  // Count printed colors independently; card admission and construction issues are reported separately.
+  const ids = new Set(catalog.cards.filter(card => card.supported === true && playerKinds.has(card.kind) && normalized(card.color || '') === normalized(color)).map(card => card.id));
   return draft.cards.reduce((sum, entry) => sum + (ids.has(entry.cardId) && Number.isSafeInteger(entry.count) && entry.count > 0 ? entry.count : 0), 0);
 }
 

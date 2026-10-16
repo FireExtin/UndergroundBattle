@@ -66,4 +66,19 @@ describe('per-card construction admission across red, black, blue and gray', () 
     expect(screen.getByText('地区由世界牌库提供，不加入玩家牌组。')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '添加 测试秘社（society）' })).toBeDisabled();
   });
+
+  it('keeps a buildable black card admitted while the chosen society still requires more red cards', () => {
+    const ui = render(<DeckLibrary catalog={{ ...catalog,
+      deckBuildRules: { ...catalog.deckBuildRules!, societySupported: true },
+      societies: [{ id: 'red-society', name: '红色构筑要求', kind: 'society', cost: 0, text: '', supported: true,
+        startingHand: 6, deckConstraints: [{ kind: 'minimumColor', color: '红色', count: 2 }], unresolvedAbilities: {} }],
+    }} onSelectDraft={vi.fn()} />);
+    fireEvent.change(screen.getByRole('combobox', { name: '秘社（可选）' }), { target: { value: 'red-society' } });
+    fireEvent.click(screen.getByRole('button', { name: '添加 黑已准入（ready-1）' }));
+    expect(ui.container.querySelector('[data-catalog-card="ready-1"]')).toHaveAttribute('data-card-admission', 'buildable');
+    expect(screen.getByRole('button', { name: '保存并选择此牌组' })).toBeDisabled();
+    for (let count = 0; count < 2; count++) fireEvent.click(screen.getByRole('button', { name: '添加 红已准入（ready-0）' }));
+    expect(screen.getByRole('button', { name: '保存并选择此牌组' })).toBeEnabled();
+    expect(ui.container.querySelector('[data-catalog-card="ready-1"]')).toHaveAttribute('data-card-admission', 'buildable');
+  });
 });

@@ -1,4 +1,4 @@
-import argparse, asyncio, datetime, json, re, time
+import argparse, asyncio, base64, datetime, json, re, time
 from pathlib import Path
 from urllib.parse import urlsplit
 from playwright.async_api import async_playwright
@@ -61,10 +61,18 @@ async def main():
             add_visible=await page.locator('.hg-library-card-options .hg-library-grid-counter button').nth(1).evaluate('(el)=>{const r=el.getBoundingClientRect(),g=el.closest("ul").getBoundingClientRect();return r.bottom<=Math.min(innerHeight,g.bottom)&&r.top>=Math.max(0,g.top)}')
             await check('initial-row-add-control-visible',add_visible)
             await session.send('Network.setCacheDisabled',{'cacheDisabled':False})
+            catalog_id=next(key for key,row in requests.items() if row.get('url','').endswith('/api/catalog') and row.get('status')==200)
+            catalog_body=await session.send('Network.getResponseBody',{'requestId':catalog_id})
+            catalog_data=json.loads(base64.b64decode(catalog_body['body']) if catalog_body.get('base64Encoded') else catalog_body['body'])
+            eligible=[c for c in catalog_data['cards'] if c.get('supported') is True and c['kind'] in ['character','spell','event','attachment'] and 'deckCopyLimit' in c and (c['deckCopyLimit'] is None or type(c['deckCopyLimit']) is int and c['deckCopyLimit']>=1)]
+            result['fourFactionAdmission']={}
             await check('defaults-to-real-buildable-cards',await page.get_by_role('combobox',name='组牌准入',exact=True).input_value()=='implemented' and await page.locator('[data-catalog-card]:not([data-card-admission="buildable"])').count()==0)
-            for faction in ['red','black','blue','gray']:
+            for faction,color in [('red','红'),('black','黑'),('blue','蓝'),('gray','灰')]:
                 await page.get_by_role('combobox',name='派系',exact=True).select_option(faction)
-                await check('buildable-markers-'+faction,await page.locator('[data-catalog-card]').count()>0 and await page.locator('[data-catalog-card]:not([data-card-admission="buildable"])').count()==0)
+                actual=await page.locator('[data-catalog-card]').evaluate_all('(rows)=>rows.map(row=>row.dataset.catalogCard).sort()')
+                expected=sorted(c['id'] for c in eligible if c.get('color','').replace('色','')==color)
+                result['fourFactionAdmission'][faction]={'expectedIds':expected,'actualIds':actual,'allMarkedBuildable':await page.locator('[data-catalog-card]:not([data-card-admission="buildable"])').count()==0}
+                await check('buildable-markers-'+faction,bool(expected) and actual==expected and result['fourFactionAdmission'][faction]['allMarkedBuildable'])
             await page.get_by_role('combobox',name='派系',exact=True).select_option('all')
             await page.get_by_role('combobox',name='组牌准入',exact=True).select_option('all')
             view_only=page.locator('[data-catalog-card][data-card-admission="view-only"]')
