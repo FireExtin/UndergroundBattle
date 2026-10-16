@@ -5,6 +5,8 @@ import { ChoicePanel } from './ChoicePanel';
 import { createChoiceDraftStore, reconcileChoiceDraft } from './choiceDraftStorage';
 import { DeckPicker } from './Lobby';
 import { DeckLibrary } from './DeckLibraryPanel';
+import { publicDeckDraft, validateDeckDraft } from './deckLibrary';
+import type { LobbySelection } from './deckWorkspace';
 import { AutoPass } from './AutoPass';
 import { ReadModal } from './ReadModal';
 import { SealedCards } from './SealedCards';
@@ -69,20 +71,32 @@ function ObjectActionButtons({ groups, busy, onSelect, onAction, regions, unavai
   })}</div>;
 }
 
-export function RoomLobby({ view, catalog, busy, onAction }: { view: View; catalog: Catalog | null; busy: boolean; onAction: (action: Action) => void }) {
+function deckContents(deck: { name: string; cards: { cardId: string; count: number }[]; societyId?: string | null }) {
+  return JSON.stringify([deck.name.trim(), deck.societyId || null, [...deck.cards].sort((a, b) => a.cardId.localeCompare(b.cardId)).map(card => [card.cardId, card.count])]);
+}
+
+export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: View; catalog: Catalog | null; busy: boolean; onAction: (action: Action) => void; selection?: LobbySelection | null }) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const you = view.players.find(player => player.id === view.you);
   const capacity = view.mode === 'teams' ? 4 : 2;
   const yourDeck = catalog?.decks.find(deck => deck.id === you?.deckId);
-  const canChangeDeck = view.legalActions.some(action => action.kind === 'deck');
+  const actualDeck = view.yourDeck || yourDeck;
+  const actualCount = actualDeck?.cards.reduce((total, card) => total + card.count, 0);
+  const canChangeDeck = view.status === 'lobby' && view.legalActions.some(action => action.kind === 'deck');
   const canChooseSavedDeck = !!catalog?.deckBuildRules && !!view.yourDeck && canChangeDeck;
+  const chosenDeck = selection?.kind === 'draft' ? selection.draft : catalog?.decks.find(deck => deck.id === selection?.deckId);
+  const differs = !!chosenDeck && (!actualDeck || deckContents(chosenDeck) !== deckContents(actualDeck));
+  const chosenAction: Action | undefined = selection?.kind === 'draft'
+    ? canChooseSavedDeck && !!catalog && validateDeckDraft(selection.draft, catalog).valid ? { kind: 'deck', deckDraft: publicDeckDraft(selection.draft) } : undefined
+    : view.legalActions.find(action => action.kind === 'deck' && action.option === selection?.deckId);
   const starts = view.legalActions.filter(action => action.kind === 'start' || action.kind === 'ready');
   return <main className="hg-room-lobby">
     <div className="hg-room-welcome"><span className="hg-eyebrow">牌桌已经就绪</span><h1>等待秘社集结</h1><p>{view.mode === 'duel' ? '两人对决 · 3 个地区 · 8 分胜利' : '四人协作 · 5 个地区 · 团队 10 分胜利'}</p></div>
-    <section className="hg-room-controls" aria-label="准备与开始"><div><span className="hg-eyebrow">席位 {(you?.seat ?? 0) + 1} · 你的牌组</span><h2>{you?.deckName || yourDeck?.name || '秘社牌组'}</h2></div>
+    <section className="hg-room-controls" aria-label="准备与开始"><div aria-label="实际上桌牌组"><span className="hg-eyebrow">席位 {(you?.seat ?? 0) + 1} · 实际上桌牌组</span><h2>{you?.deckName || actualDeck?.name || '秘社牌组'}</h2>{actualCount !== undefined && <p>牌组原始组成 {actualCount} 张</p>}</div>
       <div className="hg-room-ready"><span>{view.players.filter(player => player.ready).length} / {capacity} 位玩家已准备</span><ActionButtons actions={starts} busy={busy} onAction={onAction} />{!starts.some(action => action.kind === 'start') && <p>{you?.seat === 0 ? '等所有座位入席并准备后，即可开始。' : '准备后等待房主开始对局。'}</p>}</div>
     </section>
+    {differs && <section className="hg-room-selected-deck" aria-label="待应用的牌组"><p>已选择：<strong>{chosenDeck.name}</strong> · {chosenDeck.cards.reduce((total, card) => total + card.count, 0)} 张 · 尚未应用到此席位</p><p className="hg-muted">恢复原席保留原牌组。在准备阶段应用后会取消准备，请重新准备。</p><button type="button" className="hg-button hg-button-primary" disabled={busy || !canChangeDeck || !chosenAction} onClick={() => { if (!busy && canChangeDeck && chosenAction) onAction(chosenAction); }}>应用所选牌组到此席位</button></section>}
     <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
       try { await navigator.clipboard.writeText(`${location.origin}/?invite=${encodeURIComponent(view.inviteCode)}`); setCopied(true); setCopyError(false); }
       catch { setCopyError(true); }
@@ -125,7 +139,7 @@ function PlayerMat({ player, view, catalog, definitions, selectedCard, selectedT
     </details>;
   };
   return <section className={`hg-player-mat hg-team-${player.team}${mine ? ' hg-player-you' : ''}`} data-player-zone={player.id} data-team={player.team} data-side={player.team === ownTeam ? 'mine' : 'opponent'} aria-label={`${player.name}的玩家区`}>
-    <div className="hg-player-strip"><span className="hg-piece-avatar" aria-hidden="true">{player.seat + 1}</span>{targetIds.has(player.id) ? <button type="button" className="hg-player-target" data-player-target={player.id} aria-pressed={selectedTarget === player.id} onClick={() => onCard(player.id)}>选择玩家{player.name}</button> : <strong>{player.name}{mine ? ' · 你' : player.team === ownTeam ? ' · 队友' : ' · 对方'}</strong>}<small>席位 {player.seat + 1} · {player.deckName || catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社'}{player.eliminated ? ' · 已出局' : ''}</small><span className="hg-mat-resource">费用 <b>{assets.filter(card => !card.exhausted).length}</b> / {assets.length}</span></div>
+    <div className="hg-player-strip"><span className="hg-piece-avatar" aria-hidden="true">{player.seat + 1}</span>{targetIds.has(player.id) ? <button type="button" className="hg-player-target" data-player-target={player.id} aria-pressed={selectedTarget === player.id} onClick={() => onCard(player.id)}>选择玩家{player.name}</button> : <strong>{player.name}{mine ? ' · 你' : player.team === ownTeam ? ' · 队友' : ' · 对方'}</strong>}<small>席位 {player.seat + 1} · {player.deckName || catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社'}{mine && view.yourDeck ? ` · 原始 ${view.yourDeck.cards.reduce((total, card) => total + card.count, 0)} 张` : ''}{player.eliminated ? ' · 已出局' : ''}</small><span className="hg-mat-resource">费用 <b>{assets.filter(card => !card.exhausted).length}</b> / {assets.length}</span></div>
     <div className="hg-seat-zones">
       <div className="hg-personal-piles"><div className="hg-table-pile hg-deck-pile" aria-label={`${player.name}的牌库，${player.deckCount}张`}><span className="hg-pile-card hg-card-back" aria-hidden="true"><span>◈</span><b>{player.deckCount}</b></span><span>牌库</span>{mine && view.privateDeckTop && <button type="button" className="hg-small-read" onClick={onReadDeckTop}>检视顶牌</button>}</div>{renderPile('graveyard', '墓地')}{renderPile('scoreCards', '计分')}</div>
       <div className="hg-mat-assets" aria-label={`${player.name}的资产`}><span className="hg-mat-zone-label">资产 · 费用与忠诚</span><div className="hg-assets" style={{ '--hg-card-count': Math.max(1, assets.length) } as CSSProperties}>{assets.map(renderCard)}{!assets.length && <span className="hg-table-empty">尚无资产</span>}</div></div>

@@ -244,6 +244,13 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           </div>
           {notice && <p className="hg-library-notice" role="status">{notice}</p>}
         </div>
+        <h3>我的已保存牌组</h3>
+        {saved.length > 0 && <ul className="hg-library-saved" aria-label="已保存牌组">{saved.map(item => <li key={item.id}>
+          <button type="button" aria-pressed={draft.id === item.id} disabled={disabled} onClick={() => { if (draft.id !== item.id) replace(publicDeckDraft(item)); }}><strong>{item.name || '未命名牌组'}</strong><span>{item.cards.reduce((sum, entry) => sum + entry.count, 0)} 张 · {validateDeckDraft(item, catalog).valid ? '构筑校验通过' : '待修正'}{selectedDraftId === item.id ? ' · 已选择入席' : ''}{draft.id === item.id && dirty ? ' · 正在编辑未保存修改' : ''}</span></button>
+          <button type="button" className="hg-button hg-button-quiet" aria-label={`删除牌组 ${item.name}`} disabled={disabled} onClick={() => remove(item.id)}>删除</button>
+        </li>)}</ul>}
+        <label className="hg-field">牌组名称<input value={draft.name} onChange={event => edit({ ...draft, name: event.target.value })} maxLength={80} disabled={disabled} /></label>
+        {!saved.length && <p className="hg-muted">保存牌组后会列在这里，入席时也可直接选择。</p>}
         {(expanded || pageMode) && <button type="button" className="hg-button hg-button-quiet hg-library-settings-toggle" aria-expanded={showDeckSettings} aria-controls={settingsId} onClick={() => setShowDeckSettings(value => !value)}>{showDeckSettings ? '收起牌组设置' : '牌组设置与模板'}{versionsChanged ? ' · 版本待确认' : ''}</button>}
         <div id={settingsId} hidden={(expanded || pageMode) && !showDeckSettings}>
         <div className="hg-library-toolbar">
@@ -251,11 +258,6 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           <label className="hg-field">预组模板<select value={presetId} onChange={event => setPresetId(event.target.value)} disabled={disabled || !catalog.decks.length}><option value="">选择预组模板</option>{presetId && !catalog.decks.some(deck => deck.id === presetId) && <option value={presetId}>原模板已不在当前目录</option>}{catalog.decks.map(deck => <option key={deck.id} value={deck.id}>{deck.name}</option>)}</select></label>
           <button type="button" className="hg-button hg-button-quiet" disabled={disabled || !catalog.decks.some(deck => deck.id === presetId)} onClick={() => replace(createDeckDraft(catalog, catalog.decks.find(deck => deck.id === presetId)), true)}>复制为草稿</button>
         </div>
-        {saved.length > 0 && <ul className="hg-library-saved" aria-label="已保存牌组">{saved.map(item => <li key={item.id}>
-          <button type="button" aria-pressed={draft.id === item.id} disabled={disabled} onClick={() => { if (draft.id !== item.id) replace(publicDeckDraft(item)); }}><strong>{item.name || '未命名牌组'}</strong><span>{item.cards.reduce((sum, entry) => sum + entry.count, 0)} 张 · {validateDeckDraft(item, catalog).valid ? '构筑校验通过' : '待修正'}{selectedDraftId === item.id ? ' · 已选择入席' : ''}{draft.id === item.id && dirty ? ' · 正在编辑未保存修改' : ''}</span></button>
-          <button type="button" className="hg-button hg-button-quiet" aria-label={`删除牌组 ${item.name}`} disabled={disabled} onClick={() => remove(item.id)}>删除</button>
-        </li>)}</ul>}
-        <label className="hg-field">牌组名称<input value={draft.name} onChange={event => edit({ ...draft, name: event.target.value })} maxLength={80} disabled={disabled} /></label>
         <label className="hg-field">牌组说明<textarea value={draft.description} onChange={event => edit({ ...draft, description: event.target.value })} maxLength={500} rows={2} disabled={disabled} /></label>
         <section className="hg-library-society" aria-label="可选秘社">
           <label className="hg-field">秘社（可选）<select value={draft.societyId || ''} disabled={disabled || !societies.length} onChange={event => edit({ ...draft, societyId: event.target.value || null })}>

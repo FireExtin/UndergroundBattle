@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { FactionCoverage } from './FactionCoverage';
 import { DeckLibrary } from './DeckLibraryPanel';
-import { publicDeckDraft, validateDeckDraft } from './deckLibrary';
+import { publicDeckDraft, readDeckLibrary, validateDeckDraft } from './deckLibrary';
 import type { DeckDraft } from './deckLibrary';
 import { deckColors } from './factions';
 import type { CardDefinition, Catalog, Deck } from './types';
 import { navigateLobby, useLobbyPage } from './lobbyNavigation';
 import { readLobbySelection, saveLobbySelection } from './deckWorkspace';
+import { readSavedSeats } from './api';
+import { readPlayerName, rememberPlayerName } from './playerNameStorage';
 import './lobby-pages.css';
 
 export const deckThemes: Record<string, { mark: string; role: string }> = {
@@ -38,13 +40,17 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   onCreateDraft?: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => void;
   onJoinDraft?: (invite: string, name: string, draft: DeckDraft) => void;
 }) {
-  const initialInvite = new URL(location.href).searchParams.get('invite') || '';
-  const page = useLobbyPage();
+  const invitation = new URL(location.href).searchParams;
+  const invitationOnly = invitation.has('invite');
+  const initialInvite = invitation.get('invite') || '';
+  const requestedPage = useLobbyPage();
+  const page = invitationOnly && requestedPage !== 'collection' ? 'play' : requestedPage;
   const [openedCollection, setOpenedCollection] = useState(page === 'collection');
   const heading = useRef<HTMLHeadingElement>(null);
   const previousPage = useRef(page);
   const [initialSelection] = useState(readLobbySelection);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(readPlayerName);
+  const submittedName = useRef<string | null>(null);
   const [mode, setMode] = useState<'duel' | 'teams'>('duel');
   const [invite, setInvite] = useState(initialInvite);
   const [tab, setTab] = useState<'create' | 'join'>(initialInvite ? 'join' : 'create');
@@ -65,12 +71,17 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   }, [page]);
   const selected = deckId || catalog?.decks[0]?.id || '';
   const deck = catalog?.decks.find(item => item.id === selected);
+  const joining = invitationOnly || tab === 'join';
+  const targetInvite = invitationOnly ? initialInvite : invite;
+  const restoringSeat = joining && readSavedSeats().some(seat => seat.inviteCode.trim().toUpperCase() === targetInvite.trim().toUpperCase());
+  const savedDecks = readDeckLibrary().drafts;
   const draftValid = !!selectedDraft && !!catalog && validateDeckDraft(selectedDraft, catalog).valid;
-  const draftEntryAvailable = tab === 'create' ? !!onCreateDraft : !!onJoinDraft;
-  const entryAvailable = selectedDraft ? draftValid && draftEntryAvailable : !!deck;
+  const draftEntryAvailable = joining ? !!onJoinDraft : !!onCreateDraft;
+  const entryAvailable = restoringSeat || (selectedDraft ? draftValid && draftEntryAvailable : !!deck);
+  const selectedCount = selectedDraft?.cards.reduce((total, item) => total + item.count, 0) ?? deck?.cardCount;
   return <main className={`hg-lobby hg-lobby-${page}`}>
     <nav className="hg-lobby-navigation" aria-label="大厅导航">
-      <button type="button" onClick={() => navigateLobby('home')} aria-current={page === 'home' ? 'page' : undefined}>首页</button>
+      {!invitationOnly && <button type="button" onClick={() => navigateLobby('home')} aria-current={page === 'home' ? 'page' : undefined}>首页</button>}
       <button type="button" onClick={() => navigateLobby('play')} aria-current={page === 'play' ? 'page' : undefined}>入席</button>
       <button type="button" onClick={() => navigateLobby('collection')} aria-current={page === 'collection' ? 'page' : undefined}>卡牌收藏</button>
       {selectedDraft && <span className="hg-lobby-current-deck">已选择：{selectedDraft.name}</span>}
@@ -90,24 +101,32 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
     {page === 'play' && <section className="hg-onboarding hg-play-page">
       <div className="hg-eyebrow">INVITATION · 云端牌桌</div><h1 ref={heading} tabIndex={-1}>准备入席</h1>
       <form className="hg-entry-form" onSubmit={event => {
-        event.preventDefault(); if (!catalog || !name.trim() || !entryAvailable || busy) return;
-        if (selectedDraft) {
-          if (tab === 'create') onCreateDraft?.(name.trim(), mode, publicDeckDraft(selectedDraft));
-          else if (invite.trim()) onJoinDraft?.(invite.trim(), name.trim(), publicDeckDraft(selectedDraft));
-        } else if (tab === 'create') onCreate(name.trim(), mode, selected); else if (invite.trim()) onJoin(invite.trim(), name.trim(), selected);
+        event.preventDefault(); if (!catalog || !entryAvailable || busy || joining && !targetInvite.trim()) return;
+        const entryName = submittedName.current ?? rememberPlayerName(name);
+        submittedName.current = entryName; setName(entryName);
+        if (restoringSeat) onJoin(targetInvite.trim(), entryName, selected);
+        else if (selectedDraft) {
+          if (!joining) onCreateDraft?.(entryName, mode, publicDeckDraft(selectedDraft));
+          else onJoinDraft?.(targetInvite.trim(), entryName, publicDeckDraft(selectedDraft));
+        } else if (!joining) onCreate(entryName, mode, selected); else onJoin(targetInvite.trim(), entryName, selected);
       }}>
-        <div className="hg-section-title"><span className="hg-eyebrow">01 / 入席</span><div className="hg-tabs"><button type="button" className={tab === 'create' ? 'hg-tab-active' : ''} onClick={() => setTab('create')}>创建牌桌</button><button type="button" className={tab === 'join' ? 'hg-tab-active' : ''} onClick={() => setTab('join')}>邀请码加入</button></div></div>
-        <p className="hg-muted">当前牌组：{selectedDraft?.name || deck?.name || '加载中'} · <button type="button" className="hg-text-link" onClick={() => navigateLobby('collection')}>收藏与组牌 →</button></p>
+        <div className="hg-section-title"><span className="hg-eyebrow">01 / {invitationOnly ? '受邀加入' : '入席'}</span>{!invitationOnly && <div className="hg-tabs"><button type="button" className={tab === 'create' ? 'hg-tab-active' : ''} onClick={() => setTab('create')}>创建牌桌</button><button type="button" className={tab === 'join' ? 'hg-tab-active' : ''} onClick={() => setTab('join')}>邀请码加入</button></div>}</div>
+        {invitationOnly && <p className="hg-muted">此邀请只加入下方牌桌。</p>}
+        <p className="hg-muted" aria-label="所选牌组">已选择：{selectedDraft?.name || deck?.name || '加载中'}{selectedCount !== undefined ? ` · ${selectedCount} 张` : ''} · <button type="button" className="hg-text-link" onClick={() => navigateLobby('collection')}>收藏与组牌 →</button></p>
+        <label className="hg-field">已保存牌组<select value={selectedDraft ? 'selected' : ''} disabled={busy} onChange={event => {
+          const saved = savedDecks.find(item => `saved:${item.id}` === event.target.value);
+          if (saved) { setSelectedDraft(publicDeckDraft(saved)); onSelectDraft?.(publicDeckDraft(saved)); }
+        }}><option value="">从已保存牌组中选择</option>{selectedDraft && <option value="selected">当前所选快照：{selectedDraft.name} · {selectedCount} 张</option>}{savedDecks.map(item => <option key={item.id} value={`saved:${item.id}`}>{item.name} · {item.cards.reduce((total, card) => total + card.count, 0)} 张</option>)}</select></label>
         {selectedDraft && <p className="hg-muted">入席使用上次选择的牌组内容；编辑后请重新保存并选择。</p>}
-        {selectedDraft && !draftEntryAvailable && <p className="hg-library-warning" role="alert">草稿已保存，当前入口尚未支持自定义牌组{tab === 'join' ? '加入' : '创建'}；可以改选原预组。</p>}
-        {selectedDraft && !draftValid && <p className="hg-library-warning" role="alert">已选择草稿需要按当前卡池重新校验，暂不可入席。</p>}
+        {selectedDraft && !restoringSeat && !draftEntryAvailable && <p className="hg-library-warning" role="alert">草稿已保存，当前入口尚未支持自定义牌组{joining ? '加入' : '创建'}；可以改选原预组。</p>}
+        {selectedDraft && !restoringSeat && !draftValid && <p className="hg-library-warning" role="alert">已选择草稿需要按当前卡池重新校验，暂不可入席。</p>}
         {!selectedDraft && !!deckId && !!catalog && !deck && <p className="hg-library-warning" role="alert">上次选择的预组已不在当前目录，请重新选择。</p>}
-        <label className="hg-field">你的称呼<input value={name} onChange={event => setName(event.target.value)} maxLength={24} placeholder="让牌桌上的伙伴认出你" required autoComplete="nickname" disabled={busy} /></label>
-        {tab === 'create' ? <div className="hg-mode-select" role="group" aria-label="对战模式">
+        <label className="hg-field">你的称呼<input value={name} onChange={event => { setName(event.target.value); submittedName.current = null; }} maxLength={24} placeholder="留空自动生成称呼" autoComplete="nickname" disabled={busy} /></label>
+        {!joining ? <div className="hg-mode-select" role="group" aria-label="对战模式">
           <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
           <button type="button" className={mode === 'teams' ? 'hg-selected' : ''} onClick={() => setMode('teams')} disabled={busy}><strong>四人协作 <span>2 VS 2</span></strong><small>5 个地区 · 团队先获 10 分胜利</small></button>
-        </div> : <label className="hg-field">邀请码<input value={invite} onChange={event => setInvite(event.target.value)} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
-        <div className="hg-entry-bottom"><p>创建后分享邀请，所有玩家准备后由房主开始。<br />{independent ? '座位保存在当前标签，刷新即可继续。' : '座位保存在此浏览器，刷新即可继续。'}{tab === 'join' && <><br />当前玩家会话已有此房座位时会恢复原席，保留原称呼、牌组与准备状态。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || !name.trim() || (tab === 'join' && !invite.trim())}>{busy ? '正在入席…' : tab === 'create' ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
+        </div> : <label className="hg-field">邀请码<input value={targetInvite} onChange={event => setInvite(event.target.value)} readOnly={invitationOnly} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
+        <div className="hg-entry-bottom"><p>{joining ? '加入同一牌桌，所有玩家准备后由房主开始。' : '创建后分享邀请，所有玩家准备后由房主开始。'}<br />{independent ? '座位保存在当前标签，刷新即可继续。' : '座位保存在此浏览器，刷新即可继续。'}{joining && <><br />已有此房座位时恢复原席，保留原称呼、实际上桌牌组与准备状态。新选择的牌组须入席后显式应用。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || (joining && !targetInvite.trim())}>{busy ? '正在入席…' : !joining ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
       </form>
       <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择自组预组</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
       <h2>{catalog ? `${catalog.decks.length} 套自组预组` : '自组预组'}</h2>

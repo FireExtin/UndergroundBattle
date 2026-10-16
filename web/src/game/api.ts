@@ -137,6 +137,9 @@ export function returnToLobby() {
   try { playerStorage().setItem(SCREEN_KEY, 'lobby'); } catch { /* This tab can still return. */ }
 }
 export function readActiveSession(): SavedSession | null {
+  // Invitation links always start at the specified room's join screen. Do not
+  // discard any saved identity or pending command; explicit join can resume it.
+  if (new URL(location.href).searchParams.has('invite')) return null;
   try { if (playerStorage().getItem(SCREEN_KEY) === 'lobby') return null; } catch { /* Restore a saved seat when possible. */ }
   return readSession();
 }

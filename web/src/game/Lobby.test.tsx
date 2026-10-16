@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Lobby } from './Lobby';
-import { DECK_LIBRARY_STORAGE_KEY } from './deckLibrary';
+import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, saveDeckLibrary } from './deckLibrary';
 import type { DeckCatalog } from './deckLibrary';
 import { testCatalog } from './testFixtures';
 
@@ -15,6 +15,59 @@ const draftCatalog: DeckCatalog = {
 const openPage = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name }));
 const openEditor = () => { openPage('卡牌收藏'); fireEvent.click(screen.getByRole('button', { name: /牌组设置与模板/ })); };
 describe('Chinese invitation lobby', () => {
+  it('keeps every invitation URL join-only even with a home hash or an empty code', () => {
+    history.replaceState({}, '', '/?invite=TARGET#home');
+    const create = vi.fn(); const join = vi.fn();
+    const app = render(<Lobby catalog={testCatalog} busy={false} onCreate={create} onJoin={join} retry={vi.fn()} />);
+    expect(screen.queryByRole('button', { name: /创建牌桌/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('group', { name: '对战模式' })).not.toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: '邀请码' })).toHaveAttribute('readonly');
+    openPage('卡牌收藏'); openPage('入席');
+    expect(screen.getByRole('textbox', { name: '邀请码' })).toHaveValue('TARGET');
+    expect(screen.queryByRole('button', { name: /创建牌桌/ })).not.toBeInTheDocument();
+    app.unmount(); history.replaceState({}, '', '/?invite=#home');
+    render(<Lobby catalog={testCatalog} busy={false} onCreate={create} onJoin={join} retry={vi.fn()} />);
+    expect(screen.getByRole('button', { name: '加入牌桌 →' })).toBeDisabled();
+    expect(screen.queryByRole('button', { name: /创建牌桌/ })).not.toBeInTheDocument();
+    expect(create).not.toHaveBeenCalled(); expect(join).not.toHaveBeenCalled();
+  });
+  it('generates and remembers a readable blank nickname and reuses it for repeated submission', () => {
+    const create = vi.fn();
+    const app = render(<Lobby catalog={testCatalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);
+    openPage('入席');
+    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '   ' } });
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    const name = create.mock.calls[0][0]; expect(name).toMatch(/^旅人·[A-F0-9]{6}$/);
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    expect(create.mock.calls[1][0]).toBe(name);
+    app.unmount();
+    render(<Lobby catalog={testCatalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);
+    expect(screen.getByLabelText('你的称呼')).toHaveValue(name);
+    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '  新称呼  ' } });
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    expect(create.mock.calls[2][0]).toBe('新称呼');
+  });
+  it('offers saved decks directly at entry and submits the selected full snapshot', () => {
+    const a = { ...createDeckDraft(draftCatalog, draftCatalog.decks[0]), name: '甲牌组' };
+    const b = { ...a, id: 'saved-b', name: '乙牌组', cards: [{ cardId: 'JC125', count: 51 }] };
+    saveDeckLibrary([a, b]); const create = vi.fn();
+    render(<Lobby catalog={draftCatalog} busy={false} onCreate={vi.fn()} onJoin={vi.fn()} onCreateDraft={create} retry={vi.fn()} />);
+    openPage('入席');
+    fireEvent.change(screen.getByRole('combobox', { name: '已保存牌组' }), { target: { value: 'saved:saved-b' } });
+    expect(screen.getByLabelText('所选牌组')).toHaveTextContent('乙牌组 · 51 张');
+    saveDeckLibrary([{ ...b, cards: [{ cardId: 'JC125', count: 52 }] }]);
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    expect(create).toHaveBeenCalledWith(expect.any(String), 'duel', expect.objectContaining({ name: '乙牌组', cards: [{ cardId: 'JC125', count: 51 }] }));
+  });
+  it('shows deck naming and saved decks before opening settings', () => {
+    const saved = { ...createDeckDraft(draftCatalog, draftCatalog.decks[0]), name: '看得见的牌组' };
+    saveDeckLibrary([saved]);
+    render(<Lobby catalog={draftCatalog} busy={false} onCreate={vi.fn()} onJoin={vi.fn()} retry={vi.fn()} />);
+    openPage('卡牌收藏');
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toBeVisible();
+    expect(screen.getByRole('list', { name: '已保存牌组' })).toBeVisible();
+    expect(screen.getByRole('button', { name: /牌组设置与模板/ })).toHaveAttribute('aria-expanded', 'false');
+  });
   it('lets a player choose a 50-card deck and create a four-seat team room', () => {
     const create = vi.fn(); const catalog = { ...testCatalog, decks: [...testCatalog.decks, { ...testCatalog.decks[0], id: 'hunters', name: '公路猎手' }] };
     render(<Lobby catalog={catalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);

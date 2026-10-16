@@ -27,6 +27,31 @@ describe('room deck selection', () => {
   beforeEach(() => { localStorage.clear(); saveDeckLibrary([saved]); });
   afterEach(() => localStorage.clear());
 
+  it('shows the actual restored deck and applies the selected snapshot only on an explicit legal click', () => {
+    const submit = vi.fn(); const selection = { kind: 'draft' as const, draft: saved };
+    const app = render(<RoomLobby view={view} selection={selection} catalog={catalog} busy={false} onAction={submit} />);
+    expect(screen.getByLabelText('实际上桌牌组')).toHaveTextContent('冻结牌组');
+    expect(screen.getByLabelText('实际上桌牌组')).toHaveTextContent('原始组成 50 张');
+    expect(screen.getByRole('region', { name: '待应用的牌组' })).toHaveTextContent('已保存的牌组');
+    expect(submit).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole('button', { name: '应用所选牌组到此席位' }));
+    expect(submit).toHaveBeenCalledExactlyOnceWith({ kind: 'deck', deckDraft: saved });
+    app.rerender(<RoomLobby view={{ ...view, status: 'playing' }} selection={selection} catalog={catalog} busy={false} onAction={submit} />);
+    expect(screen.getByRole('button', { name: '应用所选牌组到此席位' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: '应用所选牌组到此席位' }));
+    expect(submit).toHaveBeenCalledTimes(1);
+    app.rerender(<RoomLobby view={{ ...view, yourDeck: saved, players: [{ ...view.players[0], deckName: saved.name }] }} selection={selection} catalog={catalog} busy={false} onAction={submit} />);
+    expect(screen.queryByRole('region', { name: '待应用的牌组' })).not.toBeInTheDocument();
+  });
+
+  it('compares saved contents and society rather than only deck ID, name or count', () => {
+    const same = { ...saved, id: frozen.id, name: frozen.name };
+    const app = render(<RoomLobby view={view} selection={{ kind: 'draft', draft: same }} catalog={catalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.queryByRole('button', { name: '应用所选牌组到此席位' })).not.toBeInTheDocument();
+    app.rerender(<RoomLobby view={view} selection={{ kind: 'draft', draft: { ...same, societyId: 'unavailable-society' } }} catalog={catalog} busy={false} onAction={vi.fn()} />);
+    expect(screen.getByRole('button', { name: '应用所选牌组到此席位' })).toBeDisabled();
+  });
+
   it('saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name', () => {
     const submit = vi.fn();
     render(<RoomLobby view={view} catalog={catalog} busy={false} onAction={submit} />);

@@ -64,6 +64,56 @@ async function join(code = 'INVITE') {
 const entries = () => posts.filter(p => !p.url.endsWith('/commands'));
 
 describe('explicit independent player sessions through normal UI', () => {
+  it('honours a different invitation instead of silently restoring the old table, and preserves the old seat', async () => {
+    let app = render(<GameApp />); await create();
+    const original = localStorage.getItem('hegemony.session.v1');
+    const oldSeat = seats[0];
+    seats.push({ roomId: 'room-TARGET', inviteCode: 'TARGET', token: 'test-target-host', seat: 0 });
+    app.unmount(); reads = [];
+    history.replaceState({}, '', '/?invite=target');
+    app = render(<GameApp />);
+    expect(await screen.findByLabelText('邀请码')).toHaveValue('target');
+    expect(screen.queryByText('等待秘社集结')).not.toBeInTheDocument();
+    expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
+    expect(reads.some(read => read.url.includes(`/api/rooms/${oldSeat.roomId}/`))).toBe(false);
+    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '受邀朋友' } });
+    fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
+    await screen.findByText('等待秘社集结');
+    expect(entries()).toHaveLength(2);
+    expect(entries()[1].url).toBe('/api/rooms/join');
+    expect(entries()[1].body.inviteCode).toBe('target');
+    expect(JSON.parse(localStorage.getItem('hegemony.session.v1') || '{}')).toMatchObject({ roomId: 'room-TARGET', seat: 1 });
+    expect(JSON.parse(localStorage.getItem('hegemony.seats.v1') || '[]')).toContainEqual(oldSeat);
+    expect(posts.filter(post => post.url.endsWith('/commands'))).toHaveLength(0);
+  });
+  it('asks to join even the same invitation, then explicitly restores the original seat without a duplicate', async () => {
+    let app = render(<GameApp />); await create();
+    const original = localStorage.getItem('hegemony.session.v1');
+    app.unmount(); history.replaceState({}, '', '/?invite=%20invite%20');
+    app = render(<GameApp />); await screen.findByLabelText('邀请码');
+    expect(screen.queryByText('等待秘社集结')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /创建牌桌/ })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
+    await screen.findByText('等待秘社集结');
+    expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
+    expect(entries()).toHaveLength(1);
+  });
+  it('keeps an old unconfirmed action when a different invitation opens and never joins automatically', async () => {
+    let app = render(<GameApp />); await create(); rejectCommand = true;
+    fireEvent.click(screen.getByRole('button', { name: '准备' }));
+    await screen.findByRole('button', { name: '确认上一行动' });
+    await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
+    const original = localStorage.getItem('hegemony.session.v1');
+    const pending = ordinaryPendingJson(); expect(pending).not.toBeNull();
+    app.unmount(); history.replaceState({}, '', '/?invite=TARGET');
+    app = render(<GameApp />); await screen.findByLabelText('邀请码');
+    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '受邀朋友' } });
+    fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
+    await screen.findByText('旧牌桌还有待确认行动，请先回到该牌桌确认，再新建或加入另一桌。');
+    expect(ordinaryPendingJson()).toBe(pending);
+    expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
+    expect(entries()).toHaveLength(1);
+  });
   it('starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen', async () => {
     playing = true;
     let app = render(<GameApp />); await create();
