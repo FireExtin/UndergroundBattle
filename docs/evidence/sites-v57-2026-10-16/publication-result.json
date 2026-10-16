@@ -1,0 +1,62 @@
+{
+  "siteBefore": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "status": "active",
+    "access_mode": "public",
+    "current_user_role": "owner",
+    "latest_version_number": 56,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "accessRevision": 2,
+    "updated_at": "2026-10-16T04:15:34.314445+00:00"
+  },
+  "deploymentBefore": {
+    "id": "appgdep_6ad1a4d963788191a38b50e9b176f385",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_0542c88f409c8191acf756762cd66bd5",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "updated_at": "2026-10-16T04:15:34.383385+00:00",
+    "failure_message": null
+  },
+  "source": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "27f0956c075491d0d69cecf25d8e993593949672",
+    "archive": "/workspace/invitation-release-20261016/publication/hidden-world-invitation-deck-mobile-site.tar.gz"
+  },
+  "reviewedSourceCommit": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+  "reviewEvidenceCommit": "3e9bef02785afa4955d470f7cde6e04eb13150e1",
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_f3a7ab0b16908191b5198aa84455690f",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 57,
+    "source": {
+      "commit_sha": "27f0956c075491d0d69cecf25d8e993593949672"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000005a0081f5bc45279f83db4f0f",
+      "content_hash": "sha256:076e902e3fbbfbec0d10b735dddd77e05b5b622fde828159d7305d47560722c4",
+      "size_bytes": 96399360,
+      "file_count": 166
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6ad1d374ecd481919deffc8ea851c0b7",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_f3a7ab0b16908191b5198aa84455690f",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-16T07:34:26.724768+00:00"
+  },
+  "invitationRoomAccessed": false
+}

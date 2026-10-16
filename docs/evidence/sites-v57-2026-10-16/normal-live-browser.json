@@ -1,0 +1,13 @@
+{
+  "atUtc": "2026-10-16T07:35:57.385544+00:00",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "deployedVersion": 57,
+  "deploymentId": "appgdep_6ad1d374ecd481919deffc8ea851c0b7",
+  "normalTls": true,
+  "bypassUsed": false,
+  "realUserTableAccessed": false,
+  "gameplayCount": 0,
+  "posts": 0,
+  "uiReached": false,
+  "error": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"domcontentloaded\"\n"
+}

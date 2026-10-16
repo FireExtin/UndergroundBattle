@@ -1,0 +1,12 @@
+{
+  "checkedAtUtc": "2026-10-16T07:40:11.372882+00:00",
+  "remoteBefore": "3e9bef02785afa4955d470f7cde6e04eb13150e1",
+  "noWorkflowFiles": true,
+  "noOpenPr": true,
+  "latestRun": [
+    {
+      "created_at": "2026-05-01T08:02:18Z",
+      "event": "dynamic"
+    }
+  ]
+}

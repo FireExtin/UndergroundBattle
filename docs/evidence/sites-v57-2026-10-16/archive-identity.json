@@ -1,0 +1,37 @@
+{
+  "reviewedSourceCommit": "79d09ff879425d043344b53613efa19bf7d0a7f6",
+  "providerCommit": "27f0956c075491d0d69cecf25d8e993593949672",
+  "archive": "/workspace/invitation-release-20261016/publication/hidden-world-invitation-deck-mobile-site.tar.gz",
+  "bytes": 68901649,
+  "sha256": "63d0cea2e12a11c4cf40ae4035cbc18a9266a52295ab04b553bd1dd8b4de951b",
+  "fileCount": 166,
+  "reviewedDistFilesMatched": 162,
+  "generatedMetadataAdaptations": [
+    {
+      "path": "dist/server/README.md",
+      "difference": "official build timestamp only",
+      "reviewedSha256": "2bf853b56db0777544e9a00daed9ee8f350980b5c298fcd10d9caa0b837e962d",
+      "packagedSha256": "f2b25466fb0ad2ad09d6cf7d6467e458f7e12a8db7af952c64e0e8bfd3cbbe89"
+    }
+  ],
+  "officialPackagingExtraFiles": [
+    "dist/.openai/drizzle/0000_numerous_lucky_pierre.sql",
+    "dist/.openai/drizzle/meta/0000_snapshot.json",
+    "dist/.openai/drizzle/meta/_journal.json"
+  ],
+  "allReviewedRuntimeArtifactBytesMatch": true,
+  "hostingManifestPreserved": true,
+  "migrationBytesIdenticalToV56": true,
+  "nativeStoredArchive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_000000005a0081f5bc45279f83db4f0f",
+    "content_hash": "sha256:076e902e3fbbfbec0d10b735dddd77e05b5b622fde828159d7305d47560722c4",
+    "size_bytes": 96399360,
+    "file_count": 166
+  },
+  "uploadedUncompressedTar": {
+    "sha256": "8d8c7b76a1140d4f26c7131490a25eecfc8d8e67e7d3f483cc9092a9e4e5e719",
+    "bytes": 96399360
+  },
+  "nativeEnvelopeByteIdentityClaimed": false
+}
