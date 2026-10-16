@@ -1,4 +1,4 @@
-import { assertSessionJournal } from './assert-session-journal.mjs';
+import { assertSessionJournal, assertPublicView } from './assert-session-journal.mjs';
 // JC046 continuous prepared Native77 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
@@ -94,7 +94,7 @@ for (const scenario of fixtures.scenarios) test(`JC046 ABI77 ${scenario.name}: c
   let duplicateOriginalReceipt=false;
   if (firstAccepted) {
     const duplicate=await mf.dispatchFetch(`http://localhost/api/rooms/${id}/commands`,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tokens[firstAccepted.seat]},body:JSON.stringify(firstAccepted.command)});
-    assert.equal(duplicate.status,200);assert.deepEqual(await duplicate.json(),firstAccepted.expected.view);
+    assert.equal(duplicate.status,200);assertPublicView(await duplicate.json(),firstAccepted.expected.view);
     assert.deepEqual(await store.room(id),saved);
     duplicateOriginalReceipt=true;
   }

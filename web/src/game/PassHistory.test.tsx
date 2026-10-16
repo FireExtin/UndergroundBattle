@@ -14,7 +14,7 @@ describe('public pass history uses event-time context', () => {
       players: [{ ...testView.players[0], name: '甲' }, { ...testView.players[0], id: 'p1', seat: 1, name: '乙的新昵称', team: 1 }],
       regions: [], hand: [], legalActions: [], passHistory: [record] };
     const app = render(<Table view={view} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
-    const expected = '乙 · 第 2 回合 · 对抗阶段 · 战斗 · 奖励前快速窗口 · 地区 1 · 旧港 · 响应让过';
+    const expected = '乙（席位 2） · 第 2 回合 · 对抗阶段 · 战斗 · 奖励前快速窗口 · 地区 1 · 旧港 · 响应让过';
     expect(screen.getByLabelText('最近让过')).toHaveTextContent(expected);
     expect(screen.getByLabelText('最近让过')).not.toHaveTextContent('乙的新昵称');
     fireEvent.click(screen.getByText('记录 · 1'));
@@ -23,7 +23,7 @@ describe('public pass history uses event-time context', () => {
     expect(screen.getByLabelText('最近让过')).toHaveTextContent(expected);
   });
   it.each([['start','prepare','开始阶段 · 重置与准备'], ['start','draw','开始阶段 · 抓牌'], ['action','team:1','行动阶段 · 团队 2 行动'], ['confrontation','mobility','对抗阶段 · 机动窗口'], ['end','end','结束阶段']])('marks %s/%s as global', (phase, step, label) => {
-    expect(passRecordText({ ...record, phase, step, region: null, reason: 'pass' })).toBe(`乙 · 第 2 回合 · ${label} · 全局 · 让过`);
+    expect(passRecordText({ ...record, phase, step, region: null, reason: 'pass' })).toBe(`乙（席位 2） · 第 2 回合 · ${label} · 全局 · 让过`);
   });
   it('preserves response cancel/timeout reasons, escapes names, and does not guess unrecorded passes', () => {
     const app = render(<LatestPass history={undefined} />);
@@ -41,5 +41,12 @@ describe('public pass history uses event-time context', () => {
     const entries = within(screen.getByLabelText('牌桌行动记录')).getAllByRole('listitem', { hidden: true });
     expect(entries).toHaveLength(50); expect(entries[0]).toHaveTextContent('新动作');
     expect(entries[1]).toHaveTextContent('玩家49'); expect(entries.at(-1)).toHaveTextContent('玩家1');
+  });
+  it('distinguishes players who used the same public name by their immutable seat', () => {
+    const first = passRecordText({ ...record, playerId: 'p0', playerName: '玩家' });
+    const second = passRecordText({ ...record, playerId: 'p3', playerName: '玩家' });
+    expect(first).toContain('玩家（席位 1）');
+    expect(second).toContain('玩家（席位 4）');
+    expect(first).not.toBe(second);
   });
 });

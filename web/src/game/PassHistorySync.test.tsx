@@ -39,7 +39,7 @@ describe('pass history follows the authenticated acknowledgement and refresh pip
     await advance(600);
     expect(commands).toHaveLength(1);
     expect(commands[0].action).toEqual(mode === 'auto-response' ? { kind: 'passResponse', windowId: 'response:1' } : { kind: 'game', action: { kind: 'pass' } });
-    const expected = `甲 · 第 1 回合 · 行动阶段 · 团队 1 行动 · 全局 · ${mode === 'auto-response' ? '响应让过' : '让过'}`;
+    const expected = `甲（席位 1） · 第 1 回合 · 行动阶段 · 团队 1 行动 · 全局 · ${mode === 'auto-response' ? '响应让过' : '让过'}`;
     expect(screen.getByLabelText('最近让过')).toHaveTextContent(expected);
     expect(screen.getByLabelText('最近让过')).not.toHaveTextContent('结束阶段');
     for (const session of [sessions[1], sessions[0]]) {

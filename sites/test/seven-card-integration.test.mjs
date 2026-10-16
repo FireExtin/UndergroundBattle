@@ -1,3 +1,4 @@
+import { assertPublicView } from './assert-session-journal.mjs';
 // Prepared Native layouts; actual compiled Worker HTTP, workerd/D1 and current WASM.
 // The injected service clock provides exact Native parity; HTTP uses its real clock.
 import { test } from 'node:test';
@@ -54,7 +55,7 @@ for (const fixture of fixtures) test(`seven60 BQ028 attachment=${fixture.attachm
   assert.equal((await store.room(id)).state, fixture.after);
   const duplicate = await mf.dispatchFetch(`http://localhost/api/rooms/${id}/commands`, { method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + tokens[0] }, body: JSON.stringify(fixture.command) });
-  assert.equal(duplicate.status, 200); assert.deepEqual(await duplicate.json(), view);
+  assert.equal(duplicate.status, 200); assertPublicView(await duplicate.json(), view);
   await assert.rejects(service.command(id, 'Bearer ' + tokens[0], { ...fixture.command, expectedVersion: fixture.command.expectedVersion + 1 }), e => e.status === 409);
   assert.equal((await store.room(id)).state, fixture.after);
   assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM commands WHERE room_id=?').bind(id).first()).n, 1);
