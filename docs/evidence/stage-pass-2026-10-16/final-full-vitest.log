@@ -1,0 +1,559 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1 --reporter=default --reporter=json --outputFile=/workspace/stage-pass-20261016/final-full-vitest.json
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ src/game/DeckBuilderGrid.test.tsx (25 tests) 8117ms
+     ✓ marks a saved 52-card revision as different from the chosen 51-card snapshot until explicitly reselected  578ms
+     ✓ links repeated grid, preview and deck-list clicks without losing batched additions  514ms
+     ✓ combines zero-cost, type, faction, text and selected filters and resets an empty result  386ms
+     ✓ reuses same-name limits and updates invalid/valid feedback across grid and preview  621ms
+     ✓ preserves unsaved edits and filters through nested preview and workspace close/reopen  351ms
+     ✓ saves and restores grid edits and delivers an immutable selected public snapshot  357ms
+     ✓ keeps naming and composition visible while optional settings retain their edits  446ms
+     ✓ shows same-name violations inside the reader and clears them immediately after correction  398ms
+     ✓ browses the filtered card sequence without adding cards or leaving the active reader  419ms
+     ✓ keeps the selected-only preview sequence stable while its last copies are removed  468ms
+     ✓ keeps keyboard focus inside the reader after a counter or boundary navigation disables itself  387ms
+     ✓ dismisses a removed catalog card and restores the workspace without discarding the draft  312ms
+     ✓ combines priority faction shortcuts with sorting and keeps every unavailable cost searchable  456ms
+     ✓ keeps collapsed filter conditions visible and starts new results at the top  404ms
+     ✓ preserves keyboard focus when removing a retained card that no longer has a catalog preview  306ms
+ ✓ src/game/TargetRetention.test.tsx (30 tests) 7771ms
+     ✓ preserves the observed Funeral entry mode before any target click when the teammate deadline passes  718ms
+     ✓ clears only an invalid destination when same printed card replaces target, allowing an explicit new choice  311ms
+     ✓ clears only an invalid destination when legal list removes target, allowing an explicit new choice  303ms
+ ✓ src/game/PlayerSessions.test.tsx (16 tests) 6808ms
+     ✓ keeps a generated nickname and the exact entry request through a failed reply and page reload  604ms
+     ✓ keeps an old unconfirmed action when a different invitation opens and never joins automatically  323ms
+     ✓ starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen  463ms
+     ✓ locks the direct ordinary-table switch while a command is pending and keeps that lock after lobby return  339ms
+     ✓ warns before replacing an independent session or switching back that this seat may become unrecoverable  388ms
+     ✓ keeps automatic pass opt-in separate from the ordinary seat and restores the ordinary preference  556ms
+     ✓ isolates same-invite seats, refreshes the current identity and returns to the ordinary saved seat  747ms
+     ✓ allocates no identity on refresh or lobby return; only an explicit new session can join another seat  624ms
+     ✓ uses a fresh entry receipt in a new scope and keeps identical retries inside that scope  331ms
+     ✓ blocks switching scopes while an original paid/action command remains unconfirmed, including in the lobby  328ms
+     ✓ refreshes an independent unconfirmed command with the original actor and command ID  305ms
+     ✓ ignores other-tab storage events and joins a different invitation only with its own credentials  573ms
+     ✓ makes closing the independent page session lose its recovery while ordinary seats survive  474ms
+ ✓ src/game/OrdinaryTargetRetention.test.tsx (23 tests) 4596ms
+     ✓ keeps the entry mode before a target click and uses the latest authoritative action exactly once  481ms
+     ✓ retains a legal target through several teammate updates and busy or uncertain refreshes without submitting  349ms
+ ✓ src/game/JC046Integration.test.jsx (6 tests) 5107ms
+   ✓ paid-seat0 preserves each mandatory draft and exact command across a fresh table mount  1581ms
+   ✓ self-sacrifice-continues preserves each mandatory draft and exact command across a fresh table mount  661ms
+   ✓ prepared-leader-paused-continuation preserves each mandatory draft and exact command across a fresh table mount  755ms
+   ✓ two-real-reveals-independent-frames preserves each mandatory draft and exact command across a fresh table mount  815ms
+   ✓ requires all four real choosers to act while other seats and automatic pass leave the choice untouched  1282ms
+ ✓ src/game/CurrentLifecycleChoices.test.jsx (20 tests) 4593ms
+   ✓ 'blue:jc032-positive' restores the current private chooser and sends the exact Native selection  946ms
+   ✓ 'blue:jc032-zero-hit' restores the current private chooser and sends the exact Native selection  350ms
+ ✓ src/game/ObjectActions.test.tsx (19 tests) 4545ms
+     ✓ keeps a chosen object after a mistaken region click and directs the player back to highlighted objects  679ms
+     ✓ blocks a selected target removed from the projection even if revision and legal action stay unchanged  307ms
+     ✓ cancels locally by button or Escape, while Escape in the reader closes only the reader  401ms
+     ✓ rejects non-target clicks, switches legal targets, and blocks busy or uncertain confirmation  376ms
+ ✓ src/game/MixedDeckConstruction.test.jsx (5 tests) 4646ms
+   ✓ validates, saves, reloads and joins the real red/黑 50-card deck  1400ms
+   ✓ validates, saves, reloads and joins the real red/蓝 50-card deck  1006ms
+   ✓ rejects four copies of the shared red character in red/黑  867ms
+   ✓ rejects four copies of the shared red character in red/蓝  1367ms
+ ✓ src/game/JC087Integration.test.jsx (9 tests) 3897ms
+   ✓ exposes the original JC087 card face and complete conditional self-hide/influence/retreat definition  1712ms
+   ✓ 'decline' restores the choice and submits the exact current Native command  524ms
+   ✓ 'move-entry' restores the choice and submits the exact current Native command  346ms
+   ✓ 'other' restores the choice and submits the exact current Native command  310ms
+ ✓ src/game/Table.test.tsx (23 tests) 2926ms
+   ✓ lets the private chooser pause and releases its modal while paused, then restores the same choice  372ms
+     ✓ saves edits locally and sends a full draft only after explicit selection, retaining the frozen public name  309ms
+     ✓ keeps the viewing team below the world in every seat, identifies pieces and opens an owner-only readable card  425ms
+ ✓ src/game/JC061Integration.test.jsx (9 tests) 3104ms
+   ✓ exposes the original JC061 card face and complete paid-entry/mobility definition  1252ms
+   ✓ 'entry-accept' restores the choice and submits the exact current Native command  406ms
+ ✓ src/game/EmptyRegionSlots.test.tsx (20 tests) 3231ms
+     ✓ clears a selected ordinary region when that slot becomes empty and never submits its old confirmation  400ms
+     ✓ clears a selected response region when that slot becomes empty and never submits its old confirmation  383ms
+ ✓ src/game/JC094Integration.test.jsx (9 tests) 3173ms
+   ✓ reads the complete original JC094 face and standard local-other-sacrifice ability  1212ms
+   ✓ 'public-target' submits the exact paid activation after projection restore and matches Native  482ms
+   ✓ 'hidden-target' submits the exact paid activation after projection restore and matches Native  411ms
+   ✓ 'self-target' submits the exact paid activation after projection restore and matches Native  334ms
+ ✓ src/game/DeckCollectionPage.test.tsx (7 tests) 2750ms
+     ✓ keeps all card content off the homepage and preserves the editor across page navigation  481ms
+     ✓ combines real zero-cost, faction, type and feature fields without clearing selected cards  600ms
+     ✓ recovers unsaved edits and filters on reload without silently saving the library  487ms
+     ✓ restores the explicitly chosen snapshot separately from later unsaved editing  403ms
+     ✓ does not resurrect a draft deleted in another tab when restoring the workspace  407ms
+ ✓ src/game/JC037Integration.test.jsx (13 tests) 2603ms
+   ✓ 'paid deployment' sends the exact complete Native action after restoring the table  585ms
+   ✓ 'mandatory different Leader sacrifice' sends the exact complete Native action after restoring the table  351ms
+ ✓ src/game/ChoicePanel.test.tsx (41 tests) 3066ms
+ ✓ src/game/ChoiceRecovery.test.tsx (20 tests) 2707ms
+     ✓ accumulates target clicks and persists the latest edit synchronously in StrictMode  392ms
+     ✓ restores the latest single-card replacement after filtering without changing candidate identities  401ms
+ ✓ src/game/DeckLibrary.test.tsx (10 tests) 2460ms
+     ✓ copies a preset, names and saves it, reloads it, and selects a full public draft  549ms
+     ✓ saves an incomplete draft while blocking selection, then filters and adjusts cards  341ms
+     ✓ copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck  393ms
+ ✓ src/game/V028DeckEntry.test.jsx (1 test) 3346ms
+   ✓ edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft  3345ms
+ ✓ src/game/XQ25Integration.test.jsx (9 tests) 2340ms
+   ✓ 'attach' chooses the current priced region action and submits the exact Native Room command  444ms
+   ✓ 'conceal-stacked' chooses the current priced region action and submits the exact Native Room command  583ms
+   ✓ 'conceal-surcharge' chooses the current priced region action and submits the exact Native Room command  315ms
+ ✓ src/game/Lobby.test.tsx (9 tests) 2008ms
+     ✓ keeps every invitation URL join-only even with a home hash or an empty code  489ms
+     ✓ routes a selected custom draft as a full object to the create callback  312ms
+ ✓ src/game/WM023Integration.test.jsx (9 tests) 2037ms
+   ✓ 'activation' submits the exact Native command after projection restore  506ms
+ ✓ src/game/JC052Integration.test.jsx (10 tests) 2729ms
+   ✓ 'deploy' restores the real choice or paid command and sends its complete Native payload  709ms
+   ✓ 'entry-accept' restores the real choice or paid command and sends its complete Native payload  318ms
+   ✓ 'deploy' keeps forced sacrifices and optional triggers with their controller after restore  576ms
+ ✓ src/game/WM038Integration.test.jsx (9 tests) 1960ms
+   ✓ 'attach' submits the exact paid or optional Native Room command after projection restore  432ms
+ ✓ src/game/DeckSealSearch.test.jsx (9 tests) 2203ms
+   ✓ xq44Choice requires one and submits the selected actual instance into candidate WASM  841ms
+   ✓ jz02Choice requires one and submits the selected actual instance into candidate WASM  461ms
+ ✓ src/game/JC089Curse.test.jsx (10 tests) 1631ms
+   ✓ offers JC089 through the actual deck library controls  1230ms
+ ✓ src/game/PurpleToolsBatch.test.jsx (9 tests) 1813ms
+   ✓ selects public assets in each holder mat and forwards the exact server action while keeping identities hidden  413ms
+ ✓ src/game/JZ35Face.test.jsx (1 test) 1745ms
+   ✓ shows the complete JZ35 source face, Mind identity and unchanged original image  1744ms
+ ✓ src/game/SocietyTable.test.tsx (11 tests) 1779ms
+     ✓ shows subtitle and starting hand without presenting the internal zero cost or character stats  439ms
+     ✓ reuses direct targets, keyboard cancel and duplicate confirmation protection  396ms
+ ✓ src/game/BoundedEntrySearch.test.jsx (13 tests) 1637ms
+     ✓ BQ104 requires exactly one employee and replaces the first selection when another is chosen  339ms
+     ✓ XQ48 actual UI submits 0 real selected instances into current WASM  382ms
+ ✓ src/game/BQ030Combined.test.jsx (5 tests) 2158ms
+   ✓ 'lethal-offboard-accept': sends the unchanged Native choice and matches all real seat views  785ms
+   ✓ 'lethal-offboard-decline': sends the unchanged Native choice and matches all real seat views  341ms
+   ✓ 'multiple-observer-order': sends the unchanged Native choice and matches all real seat views  476ms
+   ✓ 'granted-combat-glory': sends the unchanged Native choice and matches all real seat views  304ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx (8 tests) 1573ms
+   ✓ selects only native face-up unique instances, including an owned hidden unique counterexample, for seat0  570ms
+   ✓ selects only native face-up unique instances, including an owned hidden unique counterexample, for seat2  371ms
+   ✓ keeps actual composing selection readable and immediately shows only the old underlying stack after submission  339ms
+ ✓ src/game/WM056Integration.test.jsx (9 tests) 2914ms
+   ✓ 'activation' restores the projection and submits the exact Native command  512ms
+   ✓ 'origin-left' restores the projection and submits the exact Native command  481ms
+   ✓ 'origin-single' restores the projection and submits the exact Native command  394ms
+   ✓ 'activation' keeps chooser privacy and never submits automatically  418ms
+ ✓ src/game/DeckAdmission.test.tsx (4 tests) 1436ms
+     ✓ defaults to genuinely buildable cards and never admits a whole faction at once  730ms
+     ✓ keeps a buildable black card admitted while the chosen society still requires more red cards  361ms
+ ✓ src/game/useGame.test.tsx (21 tests) 1390ms
+ ✓ src/game/Attachments.test.tsx (8 tests) 1853ms
+     ✓ uses only server-authored hosts, including an opponent in another region, and forwards the original play action  445ms
+     ✓ closes an open public reader when the attachment returns to another owner’s hidden hand  604ms
+ ✓ src/game/JC060Face.test.jsx (1 test) 1250ms
+   ✓ reads the complete JC060 printed face and its exact original image  1249ms
+ ✓ src/game/JC052Face.test.jsx (1 test) 1650ms
+   ✓ shows the entire Leader/entry face, four Red loyalty and the exact original  1648ms
+ ✓ src/game/SevenCardIntegration.test.jsx (19 tests) 1385ms
+ ✓ src/game/ThreeColorDeath.test.jsx (12 tests) 1836ms
+   ✓ JC045 has the exact pinned original and readable face  439ms
+   ✓ requires exactly one ordinary discard and submits the real private card instance  320ms
+   ✓ optional player declaration declines without consuming the original instance limit  376ms
+ ✓ src/game/JC046Face.test.jsx (1 test) 1568ms
+   ✓ reads the complete nonunique JC046 face, permanent and temporary icons, mandatory reveal and original image  1566ms
+ ✓ src/game/JZ48Criminal.test.jsx (8 tests) 1273ms
+   ✓ offers the new gameplay definition in the real deck builder  965ms
+ ✓ src/game/JC095Face.test.jsx (1 test) 1204ms
+   ✓ reads the complete unique JC095 face, subtitle, Leader, Renown and original image  1203ms
+ ✓ src/game/JZ35Integration.test.jsx (9 tests) 1359ms
+   ✓ 'enemy-owned-host-play' submits the exact untargeted paid Native Room command after restore  341ms
+ ✓ src/game/JC037Face.test.jsx (1 test) 1297ms
+   ✓ shows the entire continuous Leader face, three Blue loyalty and the exact original  1296ms
+ ✓ src/game/WoundDefenceBatch.test.jsx (12 tests) 1259ms
+   ✓ selects the current controller target from the server list and forwards exact exhaust-only activation  315ms
+ ✓ src/game/MSJC08Scan.test.jsx (4 tests) 1037ms
+   ✓ uses normal paid real purple unique search and displays stable server usage from restored views and next-turn reset  1004ms
+ ✓ src/game/SharedStorageRegression.test.tsx (10 tests) 1012ms
+     ✓ retains separately added drafts when both editors mounted before either save  343ms
+ ✓ src/game/MSJC06Scan.test.jsx (4 tests) 906ms
+   ✓ uses normal paid real white unique search and displays stable server usage from restored views and next-turn reset  857ms
+ ✓ src/game/XQ24Integration.test.jsx (9 tests) 1156ms
+   ✓ submits the real duel paid entry through the existing table controls  397ms
+   ✓ submits the real teams paid entry through the existing table controls  310ms
+ ✓ src/game/MSJC07Scan.test.jsx (4 tests) 983ms
+   ✓ uses normal paid real black unique search and displays stable server usage from restored views and next-turn reset  952ms
+ ✓ src/game/ChoiceCandidateIdentity.test.tsx (5 tests) 924ms
+     ✓ distinguishes the five same-name Native74 search instances without exposing their internal IDs  476ms
+     ✓ preserves original candidate numbers through name filtering, selected-only browsing and reading  326ms
+ ✓ src/game/SocietyDeck.test.tsx (6 tests) 1026ms
+     ✓ selects, saves, reloads and clears a society without changing ordinary entries  601ms
+     ✓ retains obsolete choices while allowing explicit removal under an old catalog  300ms
+ ✓ src/game/RegionAura.test.jsx (5 tests) 1022ms
+   ✓ mounts on the exact region instance, reads ownership separately, and exposes region inspector objects  304ms
+   ✓ forwards the exact server-authored region play and attachment destruction target  417ms
+ ✓ src/game/SealedCards.test.tsx (5 tests) 1362ms
+   ✓ reads every public sealed card as blank and outside play without catalog fallback or action  441ms
+   ✓ shows actual Native XQ41 sealed projection publicly and closes its reader on owner return  419ms
+ ✓ src/game/NativeFixedSlots.test.jsx (3 tests) 1214ms
+   ✓ 'world-empty-duel': actual capture keeps every slot, closes the retired inspector and reads the fresh scored instance  601ms
+   ✓ JC050 renders the exact sparse original indices and sends the real current choice  312ms
+ ✓ src/game/HandInteractionsBatch.test.jsx (11 tests) 1147ms
+   ✓ reads the unchanged original JC114 and printed fields  312ms
+ ✓ src/game/MSJC01Scan.test.jsx (4 tests) 988ms
+   ✓ uses normal paid empty search and shows the server usage fact after a normal next-turn reset  959ms
+ ✓ src/game/JC089JZ51JZ53CardFaces.test.jsx (40 tests) 1178ms
+     ✓ binds the exact canonical original without populating a supplied gameplay catalog  365ms
+ ✓ src/game/JZ22LowHandInfluence.test.jsx (9 tests) 1141ms
+   ✓ submits the optional entry through real React controls and matches Native exactly  309ms
+ ✓ src/game/ChoiceActionFocus.test.tsx (8 tests) 866ms
+ ✓ src/game/JZ50Search.test.tsx (6 tests) 908ms
+ ✓ src/game/IdentityOverlap.test.jsx (4 tests) 815ms
+   ✓ keeps four same-definition red tiles separate and submits only the exact controller-eligible target  460ms
+ ✓ src/game/DialogIsolation.test.tsx (5 tests) 1077ms
+     ✓ removes background AutoPass and navigation from the accessible tree and confines Tab in both directions  480ms
+ ✓ src/game/BlueMinimumScan.test.jsx (7 tests) 928ms
+   ✓ JC032 privately previews all six including Bat and human, reads without choosing, and requires one printed Vampire  606ms
+ ✓ src/game/JC008Scan.test.jsx (3 tests) 721ms
+   ✓ reads the current WASM own-hand spell view and opens its original without inventing defense  361ms
+   ✓ renders current versus printed stats from paid, resolved JC008 using normal Room commands and expires them normally  351ms
+ ✓ src/game/DreamRevealBatch.test.jsx (15 tests) 938ms
+   ✓ reads JZ58 unchanged original and actual compiled fields  320ms
+ ✓ src/game/factions.test.tsx (4 tests) 625ms
+     ✓ keeps eight faction descriptions separate from five selectable curated decks and does not unlock societies or construction  522ms
+ ✓ src/game/XQ37EntryInfluence.test.jsx (9 tests) 793ms
+ ✓ src/game/ChoiceDamageIdentity.test.tsx (3 tests) 466ms
+     ✓ distinguishes every control for same-name targets and submits their original option IDs  388ms
+ ✓ src/game/PriorityFactionSelection.test.tsx (4 tests) 750ms
+     ✓ 'red' reads the visible projection and directly replaces a single target without changing its ID  380ms
+ ✓ src/game/ChoiceOrderReading.test.tsx (4 tests) 720ms
+     ✓ 'red:0021-jz30-private-forecast' reads duplicate-name cards without changing the draft and retains candidate identities across piles  457ms
+ ✓ src/game/JC050RegionDestruction.test.jsx (8 tests) 665ms
+ ✓ src/game/BrowserPersistenceFeedback.test.tsx (7 tests) 651ms
+     ✓ offers a visible retry when the original command only exists in memory and persists the same identity before refresh  320ms
+ ✓ src/game/ContinuousPass.test.tsx (20 tests) 746ms
+ ✓ src/game/AutoPassPolling.test.jsx (38 tests) 703ms
+ ✓ src/game/JZ48JZ50CardFaces.test.jsx (20 tests) 714ms
+     ✓ binds the exact canonical original without populating a supplied gameplay catalog  320ms
+ ✓ src/game/JZ49Slow.test.jsx (9 tests) 711ms
+ ✓ src/game/SameNameInstances.test.tsx (3 tests) 723ms
+     ✓ distinguishes same-name table pieces through target confirmation and never tags by concealed print  445ms
+ ✓ src/game/XQ18TimeCarrier.test.jsx (5 tests) 646ms
+   ✓ distinguishes equal-name equal-owner carriers and submits Native selected='i240'  311ms
+ ✓ src/game/ResponseWindow.test.tsx (16 tests) 533ms
+ ✓ src/game/ProtectionBatch.test.jsx (6 tests) 419ms
+ ✓ src/game/GreenMinimumScan.test.jsx (4 tests) 491ms
+   ✓ checks recorded four-seat views and current-controller privacy for all three borrowed backs  457ms
+ ✓ src/game/FinishedSummary.test.tsx (8 tests) 492ms
+ ✓ src/game/WhiteWoundBatch.test.jsx (9 tests) 630ms
+   ✓ reads the actual full LC06 fields including its printed holy domain and exact original bytes  317ms
+ ✓ src/game/ContinuousPassRecovery.test.tsx (3 tests) 665ms
+     ✓ submits distinct acknowledged passes with the original actor, stops at action, and remains off on refresh  385ms
+ ✓ src/game/JZ49CardFace.test.jsx (10 tests) 688ms
+     ✓ makes the original readable while catalog selection still follows supplied gameplay definitions  353ms
+ ✓ src/game/PrivateDeckTop.test.tsx (3 tests) 1035ms
+   ✓ opens only the current private projection in the existing reader and drops it when permission is lost  389ms
+   ✓ invalidates a reader on a changed top, even when the previous instance is now in the authorized hand  458ms
+ ✓ src/game/JC030Scan.test.jsx (3 tests) 1023ms
+   ✓ renders the recorded JC030 effective subtype alongside its immutable original face  540ms
+   ✓ JC030 authorizes hidden borrowed originals only for the current controller across four independent views  467ms
+ ✓ src/game/ReadModal.test.tsx (11 tests) 1326ms
+     ✓ opens the original rescue/forecast card for JC075  600ms
+ ✓ src/game/SocietyScan.test.jsx (3 tests) 862ms
+   ✓ reads the actual four-seat public society projection and opens its original without character costs or stats  778ms
+ ✓ src/game/ControlTypeBatch.test.jsx (6 tests) 467ms
+ ✓ src/game/CommandConflictInteraction.test.tsx (8 tests) 505ms
+     ✓ offers a latest-table read after a rejected action and failed sync without claiming success or repeating the command  461ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx (6 tests) 578ms
+ ✓ src/game/CurrentDomainReading.test.tsx (9 tests) 664ms
+     ✓ reads each server count directly, including exhaustion, decreases and removal  491ms
+ ✓ src/game/HandDeckBatch.test.jsx (5 tests) 539ms
+   ✓ reads the unchanged original JC130 with reviewed printed fields  401ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx (6 tests) 470ms
+ ✓ src/game/MillPublicBatch.test.jsx (4 tests) 447ms
+ ✓ src/game/RecoveryReviewRegression.test.tsx (9 tests) 410ms
+ ✓ src/game/ArchivePresentation.test.tsx (10 tests) 418ms
+ ✓ src/game/RenownBatch.test.jsx (5 tests) 348ms
+ ✓ src/game/RepressAssetsBatch.test.jsx (6 tests) 459ms
+   ✓ reads JZ74 original and compiled whole-card fields  317ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx (5 tests) 419ms
+   ✓ offers both skip and one acceptance to the death controller using the existing choice UI  329ms
+ ✓ src/game/XQ27HiddenSweep.test.jsx (5 tests) 454ms
+   ✓ pins complete gray original and opens the actual scan  358ms
+ ✓ src/game/CardTile.test.tsx (9 tests) 292ms
+ ✓ src/game/YellowSearchBatchScan.test.jsx (3 tests) 353ms
+   ✓ reads the actual unmodified WM003 artwork through the existing reader  306ms
+ ✓ src/game/MSJC11Scan.test.jsx (3 tests) 307ms
+ ✓ src/game/AutoPass.test.tsx (7 tests) 337ms
+ ✓ src/game/JC005Scan.test.jsx (2 tests) 325ms
+   ✓ reads the current WASM own-hand spell view with no invented defense and opens its original  313ms
+ ✓ src/game/OptionalNumeric.test.tsx (13 tests) 425ms
+ ✓ src/game/JC029Scan.test.jsx (2 tests) 316ms
+   ✓ renders the current WASM own-hand view and opens the original card without replacing the damage rule  307ms
+ ✓ src/game/RoomManagement.test.tsx (3 tests) 298ms
+ ✓ src/game/CommandAcknowledgement.test.tsx (35 tests) 260ms
+ ✓ src/game/Help.test.tsx (1 test) 206ms
+ ✓ src/game/DeckCardVisibility.test.tsx (2 tests) 199ms
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after invalid_seat_token (401) on read cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'invalid_seat_token',
+  rejectionPath: 'read',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after room_not_found (404) on read cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'room_not_found',
+  rejectionPath: 'read',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after unsupported_room_version (410) on read cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'unsupported_room_version',
+  rejectionPath: 'read',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after invalid_seat_token (401) on command cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'invalid_seat_token',
+  rejectionPath: 'command',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 394,
+      rejected: true
+    },
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after room_not_found (404) on command cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'room_not_found',
+  rejectionPath: 'command',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 394,
+      rejected: true
+    },
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+stdout | src/game/QuotaRetirementReload.test.tsx > byte quota, actor invalidation and a fresh hook > retains a persistent recovery seat after unsupported_room_version (410) on command cannot retire a legacy record, then completes recovery after space is available
+{
+  code: 'unsupported_room_version',
+  rejectionPath: 'command',
+  limit: 2844,
+  bytesAfterInvalidation: 2844,
+  savedSeatsAfterReload: [
+    {
+      roomId: 'room-test',
+      inviteCode: 'INVITE',
+      token: 'quota-original-token',
+      seat: 0
+    }
+  ],
+  pendingAfterReload: {
+    roomId: 'room-test',
+    commandId: 'quota-legacy-original',
+    expectedVersion: 7,
+    action: { kind: 'game', action: [Object] },
+    seat: 0
+  },
+  attempts: [
+    {
+      key: 'hegemony.pending.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 394,
+      rejected: true
+    },
+    {
+      key: 'hegemony.pending.legacyConfirmed.v2.["room-test",0,"quota-legacy-original"]',
+      previousBytes: 0,
+      nextBytes: 426,
+      rejected: true
+    },
+    {
+      key: 'hegemony.screen.v1',
+      previousBytes: 46,
+      nextBytes: 46,
+      rejected: false
+    }
+  ]
+}
+
+ ✓ src/game/QuotaRetirementReload.test.tsx (6 tests) 150ms
+ ✓ src/game/useSeatConflict.test.tsx (17 tests) 123ms
+ ✓ src/game/ReadyConflictFeedback.test.tsx (7 tests) 71ms
+ ✓ src/game/ReadyReceiptRecovery.test.tsx (3 tests) 59ms
+ ✓ src/game/EntryReceiptRecovery.test.ts (16 tests) 68ms
+ ✓ src/game/PendingPauseRecovery.test.tsx (2 tests) 56ms
+ ✓ src/game/api.test.ts (16 tests) 46ms
+ ✓ src/game/deckLibrary.test.ts (13 tests) 16ms
+ ✓ src/game/PendingStorage.test.ts (11 tests) 25ms
+ ✓ src/game/objectActions.test.ts (10 tests) 17ms
+ ✓ src/game/choiceDraftStorage.test.ts (28 tests) 20ms
+
+ Test Files  126 passed (126)
+      Tests  1195 passed (1195)
+   Start at  08:08:40
+   Duration  307.44s (transform 8.92s, setup 14.90s, import 21.44s, tests 175.31s, environment 72.33s)
+
+JSON report written to /workspace/stage-pass-20261016/final-full-vitest.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,51 @@
+{
+  "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "webTree": "84d9e77f3f592e015dd0bfec807d82f4917e36f4",
+  "branch": "codex/stage-pass-progress-20261016",
+  "published": false,
+  "independentReview": "Pending parent serial review",
+  "validation": [
+    {
+      "kind": "full-frontend",
+      "runtimeJsTsSource": "19b07116f1f080a9ebd18469538809d1a27defe8",
+      "testFiles": 126,
+      "passed": 1195,
+      "failed": 0,
+      "raw": "final-full-vitest.json.gz",
+      "scope": "Before final manualEpoch selection handlers, four added timing tests and final mobile CSS; not a full run at final source."
+    },
+    {
+      "kind": "post-manual-selection-focused",
+      "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+      "testFiles": 5,
+      "passed": 95,
+      "failed": 0,
+      "raw": "manual-p2-vitest.json.gz",
+      "scope": "Table23, ContinuousPass24, ContinuousPassRecovery3, AutoPass7, AutoPassPolling38; no sum with prior full run."
+    },
+    {
+      "kind": "production-build",
+      "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+      "passed": true,
+      "raw": "manual-p2-build.log.gz",
+      "scope": "TypeScript, Vite, Sites Worker dry-run build; no deploy."
+    },
+    {
+      "kind": "isolated-compiled-worker-d1-two-browser",
+      "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+      "passed": true,
+      "checks": 16,
+      "commandRequests": 103,
+      "http200Acknowledgements": 103,
+      "pageErrors": 0,
+      "raw": "browser-result.json",
+      "scope": "Localhost only; desktop1366x900 and mobile390x844, turn1 to turn2 forced hand-limit choice. Not a full completed game or live-site play."
+    }
+  ],
+  "limits": [
+    "New feature has not been independently approved or published.",
+    "No Rust, Worker, database schema or WASM implementation change; no new full Native/WASM/Worker test claim.",
+    "v57 official deployment was previously confirmed successful; ordinary live browser remains certificate-blocked, as archived separately.",
+    "No real user room or seat was visited or modified."
+  ]
+}

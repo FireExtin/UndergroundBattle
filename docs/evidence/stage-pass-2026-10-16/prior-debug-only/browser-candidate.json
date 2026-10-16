@@ -1,0 +1,83 @@
+{
+  "source": "686ca29370c79ec26fddd66701dcc9de2ba7a0de",
+  "atUtc": "2026-10-16T07:58:49.072596+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "57f774d7-defa-4634-9bc0-1d7126384e93",
+      "expectedVersion": 0,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "926aa62b-d878-4605-9e6b-de5372ebac1b",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "passed": false,
+  "failure": "AssertionError: Locator expected to have text 're.compile('2\\\\s*/\\\\s*2')'\nActual value: 1 / 2 位玩家已准备 \nCall log:\n  - Expect \"to_have_text\" with timeout 5000ms\n  - waiting for locator(\".hg-room-ready > span\")\n    5 × locator resolved to <span>0 / 2 位玩家已准备</span>\n      - unexpected value \"0 / 2 位玩家已准备\"\n    9 × locator resolved to <span>1 / 2 位玩家已准备</span>\n      - unexpected value \"1 / 2 位玩家已准备\"\n\nAria snapshot:\n- text: 1 / 2 位玩家已准备",
+  "finalViews": {
+    "host": [
+      {
+        "version": 0,
+        "you": "p0",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      },
+      {
+        "version": 1,
+        "you": "p0",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      },
+      {
+        "version": 2,
+        "you": "p0",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      }
+    ],
+    "guest": [
+      {
+        "version": 1,
+        "you": "p1",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      },
+      {
+        "version": 1,
+        "you": "p1",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      },
+      {
+        "version": 2,
+        "you": "p1",
+        "turn": 0,
+        "phase": "lobby",
+        "step": "lobby",
+        "status": "lobby"
+      }
+    ]
+  }
+}

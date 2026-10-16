@@ -1,0 +1,160 @@
+{
+  "source": "19b07116f1f080a9ebd18469538809d1a27defe8",
+  "atUtc": "2026-10-16T08:09:31.896106+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [
+    {
+      "name": "cannot-arm-during-mandatory-initial-choice",
+      "passed": true
+    },
+    {
+      "name": "double-click-cancels-without-extra-command",
+      "passed": true
+    },
+    {
+      "name": "stops-before-action-phase-command",
+      "passed": true
+    },
+    {
+      "name": "host-run-never-arms-guest",
+      "passed": true
+    },
+    {
+      "name": "refresh-does-not-resume-or-submit-a-new-pass",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "68dc27e8-c5f3-4e60-9ce4-a52ef9180410",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "703af331-a2af-4550-8de7-38bca886e75a",
+      "expectedVersion": 2,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "5d7b4365-3181-4f6c-9cfe-6e5c32b57f6d",
+      "expectedVersion": 3,
+      "kind": "game",
+      "nestedKind": "start",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "d37cc8ec-99fa-44cc-b2a4-19f24ee0b52f",
+      "expectedVersion": 4,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "55bd1318-59a6-4580-9931-1c61967496a7",
+      "expectedVersion": 5,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "0e29faeb-4925-4e8b-a704-ba3c0828e284",
+      "expectedVersion": 6,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "dba7d4a0-d3d8-4cf7-b088-c748eac7fd85",
+      "expectedVersion": 7,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "ec04c54e-03cd-4bb1-b52f-c9483e27aea2",
+      "expectedVersion": 8,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "ba26811d-3724-4a26-b456-b8f1ac1a49a0",
+      "expectedVersion": 9,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "passed": false,
+  "failure": "TimeoutError: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\".hg-inspector\").get_by_role(\"button\", name=re.compile(r\"派遣\")).first\n    - locator resolved to <button type=\"button\" aria-label=\"派遣 无知路人\" class=\"hg-button hg-button-action\" data-object-action=\"[{\"cardId\":\"i117\",\"kind\":\"deploy\"},false,true,\"派遣 无知路人\",null]\">…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"hg-auto-pass \">…</div> from <section class=\"hg-hand-dock\" aria-label=\"固定手牌与下一步行动\">…</section> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"hg-auto-pass \">…</div> from <section class=\"hg-hand-dock\" aria-label=\"固定手牌与下一步行动\">…</section> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    57 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <div class=\"hg-auto-pass \">…</div> from <section class=\"hg-hand-dock\" aria-label=\"固定手牌与下一步行动\">…</section> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n",
+  "finalViews": {
+    "host": [
+      {
+        "version": 9,
+        "you": "p0",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ],
+    "guest": [
+      {
+        "version": 8,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 9,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ]
+  }
+}

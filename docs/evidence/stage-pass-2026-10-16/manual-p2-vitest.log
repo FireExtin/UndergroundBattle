@@ -1,0 +1,28 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/ContinuousPass.test.tsx src/game/ContinuousPassRecovery.test.tsx src/game/AutoPass.test.tsx src/game/Table.test.tsx src/game/AutoPassPolling.test.jsx --maxWorkers=1 --reporter=default --reporter=json --outputFile=/workspace/stage-pass-20261016/manual-p2-vitest.json
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ src/game/Table.test.tsx (23 tests) 3410ms
+   ✓ lets the private chooser pause and releases its modal while paused, then restores the same choice  425ms
+     ✓ keeps the viewing team below the world in every seat, identifies pieces and opens an owner-only readable card  440ms
+ ✓ src/game/ContinuousPass.test.tsx (24 tests) 1815ms
+     ✓ passes optional opportunities but stops before the selected action phase  357ms
+ ✓ src/game/AutoPassPolling.test.jsx (38 tests) 688ms
+ ✓ src/game/ContinuousPassRecovery.test.tsx (3 tests) 602ms
+     ✓ submits distinct acknowledged passes with the original actor, stops at action, and remains off on refresh  374ms
+ ✓ src/game/AutoPass.test.tsx (7 tests) 332ms
+
+ Test Files  5 passed (5)
+      Tests  95 passed (95)
+   Start at  08:25:13
+   Duration  13.08s (transform 842ms, setup 628ms, import 1.11s, tests 6.85s, environment 3.47s)
+
+JSON report written to /workspace/stage-pass-20261016/manual-p2-vitest.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

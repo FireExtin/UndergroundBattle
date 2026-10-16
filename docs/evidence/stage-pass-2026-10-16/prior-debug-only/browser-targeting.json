@@ -1,0 +1,200 @@
+{
+  "source": "a9a4ada2f139907ee52a9a84126fea967b06fe94",
+  "atUtc": "2026-10-16T08:23:33.835698+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [
+    {
+      "name": "cannot-arm-during-mandatory-initial-choice",
+      "passed": true
+    },
+    {
+      "name": "double-click-cancels-without-extra-command",
+      "passed": true
+    },
+    {
+      "name": "stops-before-action-phase-command",
+      "passed": true
+    },
+    {
+      "name": "host-run-never-arms-guest",
+      "passed": true
+    },
+    {
+      "name": "refresh-does-not-resume-or-submit-a-new-pass",
+      "passed": true
+    },
+    {
+      "name": "mobile-manual-card-action-is-not-covered-by-dock",
+      "passed": true
+    },
+    {
+      "name": "mobile-board-target-remains-reachable-while-choosing",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "746655b8-b1e2-4ca5-86bd-9ae6d908b60b",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a3768715-cf17-4644-9268-df7947b11109",
+      "expectedVersion": 2,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "b2487d7c-f88d-4f98-83fe-9ffc066d4c4b",
+      "expectedVersion": 3,
+      "kind": "game",
+      "nestedKind": "start",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3ffbceff-6b69-4b0e-9439-f59a56f0e98c",
+      "expectedVersion": 4,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "843c0a0f-fd44-4fbb-83e4-74c52cedc4c6",
+      "expectedVersion": 5,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "312853c1-fb78-4502-9831-f919e337db2d",
+      "expectedVersion": 6,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "74c25604-52ce-4bd1-bb5f-499fb7c6faf1",
+      "expectedVersion": 7,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "d725f9d7-6ed4-4f26-bc93-970aba27e5d4",
+      "expectedVersion": 8,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "48579581-9b93-419b-a0c4-4b0979e78c03",
+      "expectedVersion": 9,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "c61c1c74-06e8-4a69-885d-25abadd3ea3b",
+      "expectedVersion": 10,
+      "kind": "game",
+      "nestedKind": "deploy",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "665656d3-20c6-4a75-8e83-c64dbc680e04",
+      "expectedVersion": 12,
+      "kind": "passResponse",
+      "nestedKind": null,
+      "windowId": "response:2"
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "mobileActionLayout": {
+    "buttonCenterReachable": true,
+    "inspectorBottom": 511,
+    "dockTop": 519.609375,
+    "viewportWidth": 390,
+    "position": "fixed",
+    "dockHeight": "325px"
+  },
+  "mobileTargetLayout": {
+    "targetCenterReachable": true,
+    "targetTop": 296.5625,
+    "targetBottom": 361.5625,
+    "inspectorTop": 343,
+    "inspectorBottom": 583,
+    "dockTop": 591.609375
+  },
+  "passed": false,
+  "failure": "AssertionError: Locator expected to have attribute 'passed'\nActual value: None\nError: element(s) not found \nCall log:\n  - Expect \"to_have_attribute\" with timeout 5000ms\n  - waiting for locator(\".hg-response-window\")\n\nAria snapshot:\n- banner:\n  - link \"◈ 隐秘世界 霸权 SECRET WORLD · HEGEMONY\":\n    - /url: /\n  - navigation:\n    - status \"进行中的牌桌轮询同步；暂停的牌桌可手动查看最新状态。\": 牌桌已同步 · 轮询\n    - button \"返回大厅 / 新建牌桌\"\n    - button \"上手指南 ?\"\n- region \"玩家会话\":\n  - strong: 普通玩家会话\n  - paragraph: 在此浏览器恢复原席。需要在另一个标签作为另一位玩家入席时，请显式开始新的独立玩家会话。\n  - paragraph: 只切换当前标签；普通玩家的座位和牌桌恢复方式保留。\n  - button \"开始新的独立玩家会话\"\n- region \"保存与继续牌桌\":\n  - strong: 保存此桌，约好时间继续打\n  - paragraph: 任一已入席玩家都可暂停或恢复此桌。返回大厅、关闭页面不会自动暂停；要改天继续，请先暂停并保存。\n  - paragraph: 未提交的本地编辑不属于存档。伙伴用原浏览器的“我的牌桌”恢复原席，也可通过同一邀请链接找到此桌；邀请码不能找回丢失的座位凭证。\n  - button \"暂停并保存\"\n  - button \"查看最新状态\"\n  - button \"复制此桌邀请链接\"\n- main:\n  - text: 第 1 回合 行动阶段 · 团队 2 行动 我方 0 / 8 对方 0 / 8 先手 阶段测试伙伴 行动团队 阶段测试伙伴 优先权 阶段测试伙伴\n  - strong: 等待 阶段测试伙伴 行动\n  - group: 记录 · 6\n  - region \"对方玩家区\":\n    - region \"阶段测试伙伴的玩家区\":\n      - strong: 阶段测试伙伴 · 对方\n      - text: 席位 2 · 阶段让过隔离测试 费用 0 / 0 牌库\n      - group: 墓地\n      - group: 计分\n      - text: 资产 · 费用与忠诚 尚无资产\n      - region \"阶段测试伙伴的秘社区\":\n        - strong: 秘社区\n        - text: 未选择\n      - text: 手牌 6\n  - region \"中央世界与争夺区，可上下滚动查看双方角色\":\n    - text: ⌖ 7 世界牌库 ↕ 滚动查看\n    - article \"地区 1 · 京都\":\n      - text: 对方 · 1 张\n      - img \"当前对抗图标：对方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0\n      - button \"查看无知路人\":\n        - text: \"阶段测试伙伴 #i129 0\"\n        - strong: 无知路人\n        - text: ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看地区1 京都\":\n        - text: 1 隐秘地区\n        - strong: 京都\n        - text: 3 分 控制阈值 3\n      - text: 我方 · 0 张\n      - img \"当前对抗图标：我方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0 争夺区\n    - article \"地区 2 · 莫斯科\":\n      - text: 对方 · 0 张\n      - img \"当前对抗图标：对方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0 争夺区\n      - button \"查看地区2 莫斯科\":\n        - text: 2 隐秘地区\n        - strong: 莫斯科\n        - text: 3 分 控制阈值 4\n      - text: 我方 · 0 张\n      - img \"当前对抗图标：我方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0 争夺区\n    - article \"地区 3 · 纽约\":\n      - text: 对方 · 0 张\n      - img \"当前对抗图标：对方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0 争夺区\n      - button \"查看地区3 纽约\":\n        - text: 3 隐秘地区\n        - strong: 纽约\n        - text: 4 分 控制阈值 4\n      - text: 我方 · 0 张\n      - img \"当前对抗图标：我方，调查0，战斗0，势力0\": ◈ 0 · ⚔ 0 · ⚑ 0\n      - text: 势力标志 0 争夺区\n  - region \"我方玩家区\":\n    - region \"阶段测试房主的玩家区\":\n      - strong: 阶段测试房主 · 你\n      - text: 席位 1 · 阶段让过隔离测试 · 原始 50 张 费用 0 / 0 牌库\n      - group: 墓地\n      - group: 计分\n      - text: 资产 · 费用与忠诚 尚无资产\n      - region \"阶段测试房主的秘社区\":\n        - strong: 秘社区\n        - text: 未选择\n  - region \"固定手牌与下一步行动\":\n    - strong: 等待 阶段测试伙伴 行动，可浏览牌桌\n    - text: 悬停阅读 · 点选行动 · 横置角色旋转 90°\n    - switch \"无可用行动时自动让过\"\n    - text: 无可用行动时自动让过\n    - status: 连续模式已开启\n    - region \"让过到指定阶段\":\n      - text: 让过到\n      - combobox \"连续让过的目标阶段\" [disabled]:\n        - option \"行动阶段\"\n        - option \"对抗阶段\"\n        - option \"结束（本回合结束）\" [selected]\n      - button \"取消连续让过\"\n      - status \"连续让过状态\": 连续让过已开启 · 至结束（本回合结束） · 等待你的合法窗口\n      - text: 仅让过你的合法窗口；遇到选择、暂停或断线停止，刷新后关闭。“结束”处理本回合结束窗口，不自动让过下一回合。\n    - button \"等待玩家 · 可浏览\" [disabled]\n    - region \"你的手牌\":\n      - text: 你的手牌 7\n      - button \"查看无知路人\":\n        - text: \"#i111 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i112 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i113 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i114 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i115 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i116 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1\n      - button \"查看无知路人\":\n        - text: \"#i125 人类 0\"\n        - strong: 无知路人\n        - text: 无忠诚要求 ◈ 0 ⚔ 0 ⚑ 0 防御 1",
+  "finalViews": {
+    "host": [
+      {
+        "version": 11,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 12,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 13,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ],
+    "guest": [
+      {
+        "version": 11,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 12,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 13,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ]
+  }
+}

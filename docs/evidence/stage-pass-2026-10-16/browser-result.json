@@ -1,0 +1,1591 @@
+{
+  "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "atUtc": "2026-10-16T08:29:56.081579+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [
+    {
+      "name": "cannot-arm-during-mandatory-initial-choice",
+      "passed": true
+    },
+    {
+      "name": "explicit-card-activation-cancels-before-queued-pass",
+      "passed": true
+    },
+    {
+      "name": "double-click-cancels-without-extra-command",
+      "passed": true
+    },
+    {
+      "name": "stops-before-action-phase-command",
+      "passed": true
+    },
+    {
+      "name": "host-run-never-arms-guest",
+      "passed": true
+    },
+    {
+      "name": "refresh-does-not-resume-or-submit-a-new-pass",
+      "passed": true
+    },
+    {
+      "name": "mobile-manual-card-action-is-not-covered-by-dock",
+      "passed": true
+    },
+    {
+      "name": "mobile-board-target-remains-reachable-while-choosing",
+      "passed": true
+    },
+    {
+      "name": "continuous-run-declines-own-real-response-window",
+      "passed": true
+    },
+    {
+      "name": "read-disconnection-stops-run-after-own-pass",
+      "passed": true
+    },
+    {
+      "name": "stops-at-confrontation-mobility",
+      "passed": true
+    },
+    {
+      "name": "end-target-does-not-pass-in-next-turn",
+      "passed": true
+    },
+    {
+      "name": "real-hand-limit-choice-stops-both-independent-runs",
+      "passed": true
+    },
+    {
+      "name": "automation-never-pays-selects-or-composes",
+      "passed": true
+    },
+    {
+      "name": "duplicate-identities-never-change-actor-or-payload",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "ed5d812a-f3a7-4812-9692-6620415dee55",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "1a82f12a-f972-432c-b3e2-8418124133a0",
+      "expectedVersion": 2,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3f2345e5-cd0f-4863-8431-3642b72c1208",
+      "expectedVersion": 3,
+      "kind": "game",
+      "nestedKind": "start",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "05e2e127-0d3d-41c9-ad7b-67ede1a9f21d",
+      "expectedVersion": 4,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "63c183f5-4077-41ae-af7d-2f7d8a09a36c",
+      "expectedVersion": 5,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "8d2e9e87-9fd6-4bb4-b287-f2283c2215d0",
+      "expectedVersion": 6,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "045753c8-d51a-4cb7-9e55-1c4ad92f8d82",
+      "expectedVersion": 7,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "cf1ace2f-96ac-49f5-ad97-9fb3ca7aacb1",
+      "expectedVersion": 8,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "e19b3a63-7523-4fec-aeac-2b62a8d44b87",
+      "expectedVersion": 9,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "99357f6c-9e87-46e3-8534-622c49f62e7f",
+      "expectedVersion": 10,
+      "kind": "game",
+      "nestedKind": "deploy",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "4b90607f-9c13-4025-8ccb-8a5f360726de",
+      "expectedVersion": 12,
+      "kind": "passResponse",
+      "nestedKind": null,
+      "windowId": "response:2"
+    },
+    {
+      "player": "host",
+      "commandId": "21d5dba8-3b76-4a16-8687-ea8b4ce969b7",
+      "expectedVersion": 13,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "8854b2e7-8b40-460a-bdfb-335f5a1b572f",
+      "expectedVersion": 14,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "aff378e2-22c0-41a4-9b08-57108cfc743e",
+      "expectedVersion": 15,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "db895b49-1b6d-4352-9e75-eb18024ef3c2",
+      "expectedVersion": 16,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "f16721db-c66c-4671-a344-7e8f70214ec6",
+      "expectedVersion": 17,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "3621377f-6772-4bdf-a591-1f102d2e92a6",
+      "expectedVersion": 18,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "393bec23-a2e9-44f0-992e-b0969107e159",
+      "expectedVersion": 19,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "2e66fd46-4136-4067-b1a9-4587d7c7b50b",
+      "expectedVersion": 20,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "d83cf87a-adf4-43b6-a3cd-3f67f27ee6ed",
+      "expectedVersion": 21,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "0345ba9d-2eee-49e0-9a17-4e7ce350fe27",
+      "expectedVersion": 22,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "942f434f-3eaf-468c-bc2f-2af4192ed520",
+      "expectedVersion": 23,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "1d5e7244-26ec-4bc3-9517-abfde35a457c",
+      "expectedVersion": 24,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "c29fe3cf-c6d9-422c-a026-ce68cac3a17b",
+      "expectedVersion": 25,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "03277fd6-ccbe-4429-aca1-83035fe6fc03",
+      "expectedVersion": 26,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "00fed115-b81e-415c-afa7-83bc53929dfe",
+      "expectedVersion": 27,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "715483cb-4f95-42b2-a37b-93b6de7db780",
+      "expectedVersion": 28,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "d53debf1-bc76-44cd-9c85-b3280add43d0",
+      "expectedVersion": 29,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "6f36bd35-c40b-4429-bc49-b241042ada13",
+      "expectedVersion": 30,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "07b8871c-495f-45bf-b13d-8538393b32f9",
+      "expectedVersion": 31,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "64b26190-af7e-41b8-90df-5c98db17f5cb",
+      "expectedVersion": 32,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "4251c9e8-0cae-45be-8f6c-711e3fd9e193",
+      "expectedVersion": 33,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "d43ef8ae-6671-4437-81d1-ae850af5c293",
+      "expectedVersion": 34,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3ccd8f0b-52ac-453d-9fdd-bade339a8a20",
+      "expectedVersion": 35,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "41735623-20c6-4282-95a3-abb6f6857bc1",
+      "expectedVersion": 36,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "21488bba-afc5-4115-9535-efa4a59f2b35",
+      "expectedVersion": 37,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "954cef9c-bcfe-40b8-8650-e0cb84a7e012",
+      "expectedVersion": 38,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "49b5cb24-6782-471c-aa3a-44a4d87da9a6",
+      "expectedVersion": 39,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "59d139c3-476a-45b0-b7f3-8d2af7db1e5a",
+      "expectedVersion": 40,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "9a951687-e332-4c76-9a27-2eb81b11beff",
+      "expectedVersion": 41,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "3dfd7b1f-2e69-4ba4-935c-9100dff02b31",
+      "expectedVersion": 42,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "6f868b46-ef52-49c7-9666-237da93d6d01",
+      "expectedVersion": 43,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "c72c9045-b793-4d5f-8193-f99707d8ed1d",
+      "expectedVersion": 44,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "34e9beaa-284b-454b-b014-27cb9efe0251",
+      "expectedVersion": 45,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "68ef146a-d8a0-41c7-97aa-e7773ce4d109",
+      "expectedVersion": 46,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "64a11072-e2f4-41ef-aa74-14bd1b4e9c8b",
+      "expectedVersion": 47,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "197c3394-28f9-4c07-8012-7ce9fcb0a192",
+      "expectedVersion": 48,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "9f480190-420b-46e2-92e0-3f03b2d63f9c",
+      "expectedVersion": 49,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "9156b0cc-c51d-4775-854f-2e0d864562aa",
+      "expectedVersion": 50,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "328035ea-f69a-4685-ba08-7b3fb4e9f3fd",
+      "expectedVersion": 51,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "d94afc6a-b3fb-4f0b-bbe3-aa24ce9be00d",
+      "expectedVersion": 52,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "a8d47ab0-c362-44fc-86ab-3ba0d42dd1b3",
+      "expectedVersion": 53,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "01d15865-5b56-4192-bcbf-78eb2624306b",
+      "expectedVersion": 54,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "b006bb68-f328-4222-80cc-69c3d201cd52",
+      "expectedVersion": 55,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "e6ff63a1-1667-4c5e-9c33-92706576b870",
+      "expectedVersion": 56,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "d5992f55-b36c-47aa-a451-f25ace8dc9f7",
+      "expectedVersion": 57,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "31478c40-2638-48e5-9e04-5580f357bb6b",
+      "expectedVersion": 58,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "fa4c9136-574a-46b2-8680-9baf506567e7",
+      "expectedVersion": 59,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "b4af386d-0629-42f1-b5db-86424fbc8d32",
+      "expectedVersion": 60,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "bdec4e50-cf93-4dae-898b-79fdb11a2707",
+      "expectedVersion": 61,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "b0dae8b0-e077-4ad2-88a7-de58969da028",
+      "expectedVersion": 62,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "e7132e4a-7c6d-47ba-95d4-912b8e1769e8",
+      "expectedVersion": 63,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a28df4c0-2d91-4702-9ba9-7cefec8e3099",
+      "expectedVersion": 64,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "c8cfbe9e-6007-4db1-9aed-98203e23b46a",
+      "expectedVersion": 65,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "41c5dd92-8d32-4d73-b9b5-b8003cfe3a0b",
+      "expectedVersion": 66,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "fc852154-291c-4f57-b407-6958e4e828b8",
+      "expectedVersion": 67,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "7222d56c-7f4d-445c-b244-b3dd186d8259",
+      "expectedVersion": 68,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "467b2529-5f0a-4a7b-9aa0-7864354a12ab",
+      "expectedVersion": 69,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3fb06119-98f8-45a6-a1f4-df48de24ea52",
+      "expectedVersion": 70,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "fddbd486-548a-4de8-80a8-d7bb6fa1cbc9",
+      "expectedVersion": 71,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "292e792e-827e-4b9e-96e8-97ee9c368cf2",
+      "expectedVersion": 72,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "25d74dad-90e5-4fc9-a160-f4cefc59b4bc",
+      "expectedVersion": 73,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "73b52c25-3f81-4ee2-8261-c5ace2f94212",
+      "expectedVersion": 74,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a1533c9a-1a66-48cd-93fa-d6e0da29ac95",
+      "expectedVersion": 75,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3b1b5ce8-39b2-4c58-a774-b773c3323b7f",
+      "expectedVersion": 76,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "cd60c014-0ce7-4fbb-a371-10762648f6e4",
+      "expectedVersion": 77,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "ce193033-3aaf-4879-be8b-d6d497c31b26",
+      "expectedVersion": 78,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "b69b3fa1-9606-4bad-b651-a6b783e957f3",
+      "expectedVersion": 79,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "c1a3cb80-2d96-4f76-97f3-53d5298d60d8",
+      "expectedVersion": 80,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "7e731745-d7e9-4f4d-aa7d-6afe28d87c65",
+      "expectedVersion": 81,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "946db823-0d15-4c80-926a-d303e6d15d30",
+      "expectedVersion": 82,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "374b5a4d-8e31-4860-95f1-237accd454a2",
+      "expectedVersion": 83,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "dba68867-a446-4fa6-9965-af37be98b647",
+      "expectedVersion": 84,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "783c03e3-62e2-4a5a-b17a-e9d201e5e175",
+      "expectedVersion": 85,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "d348291f-6984-49f3-8057-be5b96845077",
+      "expectedVersion": 86,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a555e9af-8ef0-4679-a18a-0db1161504da",
+      "expectedVersion": 87,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "e44d848c-0fa7-4a69-a53a-8d2032b3604f",
+      "expectedVersion": 88,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "6eea561c-a9fc-4934-8b64-461ef067e0a5",
+      "expectedVersion": 89,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "256b3351-3cac-465d-bb20-e06d502ab6bf",
+      "expectedVersion": 90,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "671f5e26-00d0-47e0-9f8a-ca1ac1c849a7",
+      "expectedVersion": 91,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "6c44db2a-2e8d-42fe-96b9-a1c5668dabef",
+      "expectedVersion": 92,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a1ba0183-42dc-45d1-a49c-916f5242f7e2",
+      "expectedVersion": 93,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "9f26dd9c-1091-436e-b829-3dc8c0a4a201",
+      "expectedVersion": 94,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "7ee8edd6-b2f9-4cde-abfd-6176ca2435f0",
+      "expectedVersion": 95,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "2a9a7c77-5360-4b9f-a05b-c0f3cf29f477",
+      "expectedVersion": 96,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "914d3f55-09e0-4ff3-876b-c18bdacb72cd",
+      "expectedVersion": 97,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "85ee5c70-a9d1-4e84-8afb-0c6fff865dcc",
+      "expectedVersion": 98,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "4d9ad563-1b62-4c19-b21d-7c9d1c5b858e",
+      "expectedVersion": 99,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "90bafc46-f870-475c-b102-e0d6b88abd9d",
+      "expectedVersion": 100,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "b41da9da-0d7e-4aad-ae6d-70cace1b1793",
+      "expectedVersion": 101,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3dd8fb5c-f5c3-4c5c-80bb-425daf2d6681",
+      "expectedVersion": 102,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "c45c74d8-45b7-4ef7-8833-5c9c0e84c805",
+      "expectedVersion": 103,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "cdb5ad8d-018c-4c9b-aea6-dea0af7d6732",
+      "expectedVersion": 104,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    }
+  ],
+  "acknowledgements": [
+    {
+      "player": "host",
+      "commandId": "ed5d812a-f3a7-4812-9692-6620415dee55",
+      "status": 200,
+      "version": 2
+    },
+    {
+      "player": "guest",
+      "commandId": "1a82f12a-f972-432c-b3e2-8418124133a0",
+      "status": 200,
+      "version": 3
+    },
+    {
+      "player": "host",
+      "commandId": "3f2345e5-cd0f-4863-8431-3642b72c1208",
+      "status": 200,
+      "version": 4
+    },
+    {
+      "player": "host",
+      "commandId": "05e2e127-0d3d-41c9-ad7b-67ede1a9f21d",
+      "status": 200,
+      "version": 5
+    },
+    {
+      "player": "guest",
+      "commandId": "63c183f5-4077-41ae-af7d-2f7d8a09a36c",
+      "status": 200,
+      "version": 6
+    },
+    {
+      "player": "host",
+      "commandId": "8d2e9e87-9fd6-4bb4-b287-f2283c2215d0",
+      "status": 200,
+      "version": 7
+    },
+    {
+      "player": "guest",
+      "commandId": "045753c8-d51a-4cb7-9e55-1c4ad92f8d82",
+      "status": 200,
+      "version": 8
+    },
+    {
+      "player": "host",
+      "commandId": "cf1ace2f-96ac-49f5-ad97-9fb3ca7aacb1",
+      "status": 200,
+      "version": 9
+    },
+    {
+      "player": "guest",
+      "commandId": "e19b3a63-7523-4fec-aeac-2b62a8d44b87",
+      "status": 200,
+      "version": 10
+    },
+    {
+      "player": "host",
+      "commandId": "99357f6c-9e87-46e3-8534-622c49f62e7f",
+      "status": 200,
+      "version": 11
+    },
+    {
+      "player": "guest",
+      "commandId": "4b90607f-9c13-4025-8ccb-8a5f360726de",
+      "status": 200,
+      "version": 13
+    },
+    {
+      "player": "host",
+      "commandId": "21d5dba8-3b76-4a16-8687-ea8b4ce969b7",
+      "status": 200,
+      "version": 14
+    },
+    {
+      "player": "guest",
+      "commandId": "8854b2e7-8b40-460a-bdfb-335f5a1b572f",
+      "status": 200,
+      "version": 15
+    },
+    {
+      "player": "guest",
+      "commandId": "aff378e2-22c0-41a4-9b08-57108cfc743e",
+      "status": 200,
+      "version": 16
+    },
+    {
+      "player": "host",
+      "commandId": "db895b49-1b6d-4352-9e75-eb18024ef3c2",
+      "status": 200,
+      "version": 17
+    },
+    {
+      "player": "host",
+      "commandId": "f16721db-c66c-4671-a344-7e8f70214ec6",
+      "status": 200,
+      "version": 18
+    },
+    {
+      "player": "guest",
+      "commandId": "3621377f-6772-4bdf-a591-1f102d2e92a6",
+      "status": 200,
+      "version": 19
+    },
+    {
+      "player": "host",
+      "commandId": "393bec23-a2e9-44f0-992e-b0969107e159",
+      "status": 200,
+      "version": 20
+    },
+    {
+      "player": "guest",
+      "commandId": "2e66fd46-4136-4067-b1a9-4587d7c7b50b",
+      "status": 200,
+      "version": 21
+    },
+    {
+      "player": "host",
+      "commandId": "d83cf87a-adf4-43b6-a3cd-3f67f27ee6ed",
+      "status": 200,
+      "version": 22
+    },
+    {
+      "player": "guest",
+      "commandId": "0345ba9d-2eee-49e0-9a17-4e7ce350fe27",
+      "status": 200,
+      "version": 23
+    },
+    {
+      "player": "host",
+      "commandId": "942f434f-3eaf-468c-bc2f-2af4192ed520",
+      "status": 200,
+      "version": 24
+    },
+    {
+      "player": "guest",
+      "commandId": "1d5e7244-26ec-4bc3-9517-abfde35a457c",
+      "status": 200,
+      "version": 25
+    },
+    {
+      "player": "host",
+      "commandId": "c29fe3cf-c6d9-422c-a026-ce68cac3a17b",
+      "status": 200,
+      "version": 26
+    },
+    {
+      "player": "guest",
+      "commandId": "03277fd6-ccbe-4429-aca1-83035fe6fc03",
+      "status": 200,
+      "version": 27
+    },
+    {
+      "player": "host",
+      "commandId": "00fed115-b81e-415c-afa7-83bc53929dfe",
+      "status": 200,
+      "version": 28
+    },
+    {
+      "player": "guest",
+      "commandId": "715483cb-4f95-42b2-a37b-93b6de7db780",
+      "status": 200,
+      "version": 29
+    },
+    {
+      "player": "host",
+      "commandId": "d53debf1-bc76-44cd-9c85-b3280add43d0",
+      "status": 200,
+      "version": 30
+    },
+    {
+      "player": "guest",
+      "commandId": "6f36bd35-c40b-4429-bc49-b241042ada13",
+      "status": 200,
+      "version": 31
+    },
+    {
+      "player": "host",
+      "commandId": "07b8871c-495f-45bf-b13d-8538393b32f9",
+      "status": 200,
+      "version": 32
+    },
+    {
+      "player": "guest",
+      "commandId": "64b26190-af7e-41b8-90df-5c98db17f5cb",
+      "status": 200,
+      "version": 33
+    },
+    {
+      "player": "host",
+      "commandId": "4251c9e8-0cae-45be-8f6c-711e3fd9e193",
+      "status": 200,
+      "version": 34
+    },
+    {
+      "player": "guest",
+      "commandId": "d43ef8ae-6671-4437-81d1-ae850af5c293",
+      "status": 200,
+      "version": 35
+    },
+    {
+      "player": "host",
+      "commandId": "3ccd8f0b-52ac-453d-9fdd-bade339a8a20",
+      "status": 200,
+      "version": 36
+    },
+    {
+      "player": "guest",
+      "commandId": "41735623-20c6-4282-95a3-abb6f6857bc1",
+      "status": 200,
+      "version": 37
+    },
+    {
+      "player": "host",
+      "commandId": "21488bba-afc5-4115-9535-efa4a59f2b35",
+      "status": 200,
+      "version": 38
+    },
+    {
+      "player": "guest",
+      "commandId": "954cef9c-bcfe-40b8-8650-e0cb84a7e012",
+      "status": 200,
+      "version": 39
+    },
+    {
+      "player": "host",
+      "commandId": "49b5cb24-6782-471c-aa3a-44a4d87da9a6",
+      "status": 200,
+      "version": 40
+    },
+    {
+      "player": "guest",
+      "commandId": "59d139c3-476a-45b0-b7f3-8d2af7db1e5a",
+      "status": 200,
+      "version": 41
+    },
+    {
+      "player": "host",
+      "commandId": "9a951687-e332-4c76-9a27-2eb81b11beff",
+      "status": 200,
+      "version": 42
+    },
+    {
+      "player": "guest",
+      "commandId": "3dfd7b1f-2e69-4ba4-935c-9100dff02b31",
+      "status": 200,
+      "version": 43
+    },
+    {
+      "player": "host",
+      "commandId": "6f868b46-ef52-49c7-9666-237da93d6d01",
+      "status": 200,
+      "version": 44
+    },
+    {
+      "player": "guest",
+      "commandId": "c72c9045-b793-4d5f-8193-f99707d8ed1d",
+      "status": 200,
+      "version": 45
+    },
+    {
+      "player": "host",
+      "commandId": "34e9beaa-284b-454b-b014-27cb9efe0251",
+      "status": 200,
+      "version": 46
+    },
+    {
+      "player": "guest",
+      "commandId": "68ef146a-d8a0-41c7-97aa-e7773ce4d109",
+      "status": 200,
+      "version": 47
+    },
+    {
+      "player": "host",
+      "commandId": "64a11072-e2f4-41ef-aa74-14bd1b4e9c8b",
+      "status": 200,
+      "version": 48
+    },
+    {
+      "player": "guest",
+      "commandId": "197c3394-28f9-4c07-8012-7ce9fcb0a192",
+      "status": 200,
+      "version": 49
+    },
+    {
+      "player": "host",
+      "commandId": "9f480190-420b-46e2-92e0-3f03b2d63f9c",
+      "status": 200,
+      "version": 50
+    },
+    {
+      "player": "guest",
+      "commandId": "9156b0cc-c51d-4775-854f-2e0d864562aa",
+      "status": 200,
+      "version": 51
+    },
+    {
+      "player": "host",
+      "commandId": "328035ea-f69a-4685-ba08-7b3fb4e9f3fd",
+      "status": 200,
+      "version": 52
+    },
+    {
+      "player": "guest",
+      "commandId": "d94afc6a-b3fb-4f0b-bbe3-aa24ce9be00d",
+      "status": 200,
+      "version": 53
+    },
+    {
+      "player": "host",
+      "commandId": "a8d47ab0-c362-44fc-86ab-3ba0d42dd1b3",
+      "status": 200,
+      "version": 54
+    },
+    {
+      "player": "guest",
+      "commandId": "01d15865-5b56-4192-bcbf-78eb2624306b",
+      "status": 200,
+      "version": 55
+    },
+    {
+      "player": "host",
+      "commandId": "b006bb68-f328-4222-80cc-69c3d201cd52",
+      "status": 200,
+      "version": 56
+    },
+    {
+      "player": "guest",
+      "commandId": "e6ff63a1-1667-4c5e-9c33-92706576b870",
+      "status": 200,
+      "version": 57
+    },
+    {
+      "player": "guest",
+      "commandId": "d5992f55-b36c-47aa-a451-f25ace8dc9f7",
+      "status": 200,
+      "version": 58
+    },
+    {
+      "player": "host",
+      "commandId": "31478c40-2638-48e5-9e04-5580f357bb6b",
+      "status": 200,
+      "version": 59
+    },
+    {
+      "player": "guest",
+      "commandId": "fa4c9136-574a-46b2-8680-9baf506567e7",
+      "status": 200,
+      "version": 60
+    },
+    {
+      "player": "host",
+      "commandId": "b4af386d-0629-42f1-b5db-86424fbc8d32",
+      "status": 200,
+      "version": 61
+    },
+    {
+      "player": "guest",
+      "commandId": "bdec4e50-cf93-4dae-898b-79fdb11a2707",
+      "status": 200,
+      "version": 62
+    },
+    {
+      "player": "host",
+      "commandId": "b0dae8b0-e077-4ad2-88a7-de58969da028",
+      "status": 200,
+      "version": 63
+    },
+    {
+      "player": "host",
+      "commandId": "e7132e4a-7c6d-47ba-95d4-912b8e1769e8",
+      "status": 200,
+      "version": 64
+    },
+    {
+      "player": "guest",
+      "commandId": "a28df4c0-2d91-4702-9ba9-7cefec8e3099",
+      "status": 200,
+      "version": 65
+    },
+    {
+      "player": "guest",
+      "commandId": "c8cfbe9e-6007-4db1-9aed-98203e23b46a",
+      "status": 200,
+      "version": 66
+    },
+    {
+      "player": "host",
+      "commandId": "41c5dd92-8d32-4d73-b9b5-b8003cfe3a0b",
+      "status": 200,
+      "version": 67
+    },
+    {
+      "player": "guest",
+      "commandId": "fc852154-291c-4f57-b407-6958e4e828b8",
+      "status": 200,
+      "version": 68
+    },
+    {
+      "player": "host",
+      "commandId": "7222d56c-7f4d-445c-b244-b3dd186d8259",
+      "status": 200,
+      "version": 69
+    },
+    {
+      "player": "guest",
+      "commandId": "467b2529-5f0a-4a7b-9aa0-7864354a12ab",
+      "status": 200,
+      "version": 70
+    },
+    {
+      "player": "host",
+      "commandId": "3fb06119-98f8-45a6-a1f4-df48de24ea52",
+      "status": 200,
+      "version": 71
+    },
+    {
+      "player": "guest",
+      "commandId": "fddbd486-548a-4de8-80a8-d7bb6fa1cbc9",
+      "status": 200,
+      "version": 72
+    },
+    {
+      "player": "host",
+      "commandId": "292e792e-827e-4b9e-96e8-97ee9c368cf2",
+      "status": 200,
+      "version": 73
+    },
+    {
+      "player": "guest",
+      "commandId": "25d74dad-90e5-4fc9-a160-f4cefc59b4bc",
+      "status": 200,
+      "version": 74
+    },
+    {
+      "player": "host",
+      "commandId": "73b52c25-3f81-4ee2-8261-c5ace2f94212",
+      "status": 200,
+      "version": 75
+    },
+    {
+      "player": "guest",
+      "commandId": "a1533c9a-1a66-48cd-93fa-d6e0da29ac95",
+      "status": 200,
+      "version": 76
+    },
+    {
+      "player": "host",
+      "commandId": "3b1b5ce8-39b2-4c58-a774-b773c3323b7f",
+      "status": 200,
+      "version": 77
+    },
+    {
+      "player": "guest",
+      "commandId": "cd60c014-0ce7-4fbb-a371-10762648f6e4",
+      "status": 200,
+      "version": 78
+    },
+    {
+      "player": "host",
+      "commandId": "ce193033-3aaf-4879-be8b-d6d497c31b26",
+      "status": 200,
+      "version": 79
+    },
+    {
+      "player": "guest",
+      "commandId": "b69b3fa1-9606-4bad-b651-a6b783e957f3",
+      "status": 200,
+      "version": 80
+    },
+    {
+      "player": "host",
+      "commandId": "c1a3cb80-2d96-4f76-97f3-53d5298d60d8",
+      "status": 200,
+      "version": 81
+    },
+    {
+      "player": "guest",
+      "commandId": "7e731745-d7e9-4f4d-aa7d-6afe28d87c65",
+      "status": 200,
+      "version": 82
+    },
+    {
+      "player": "host",
+      "commandId": "946db823-0d15-4c80-926a-d303e6d15d30",
+      "status": 200,
+      "version": 83
+    },
+    {
+      "player": "guest",
+      "commandId": "374b5a4d-8e31-4860-95f1-237accd454a2",
+      "status": 200,
+      "version": 84
+    },
+    {
+      "player": "host",
+      "commandId": "dba68867-a446-4fa6-9965-af37be98b647",
+      "status": 200,
+      "version": 85
+    },
+    {
+      "player": "guest",
+      "commandId": "783c03e3-62e2-4a5a-b17a-e9d201e5e175",
+      "status": 200,
+      "version": 86
+    },
+    {
+      "player": "host",
+      "commandId": "d348291f-6984-49f3-8057-be5b96845077",
+      "status": 200,
+      "version": 87
+    },
+    {
+      "player": "guest",
+      "commandId": "a555e9af-8ef0-4679-a18a-0db1161504da",
+      "status": 200,
+      "version": 88
+    },
+    {
+      "player": "host",
+      "commandId": "e44d848c-0fa7-4a69-a53a-8d2032b3604f",
+      "status": 200,
+      "version": 89
+    },
+    {
+      "player": "guest",
+      "commandId": "6eea561c-a9fc-4934-8b64-461ef067e0a5",
+      "status": 200,
+      "version": 90
+    },
+    {
+      "player": "host",
+      "commandId": "256b3351-3cac-465d-bb20-e06d502ab6bf",
+      "status": 200,
+      "version": 91
+    },
+    {
+      "player": "guest",
+      "commandId": "671f5e26-00d0-47e0-9f8a-ca1ac1c849a7",
+      "status": 200,
+      "version": 92
+    },
+    {
+      "player": "host",
+      "commandId": "6c44db2a-2e8d-42fe-96b9-a1c5668dabef",
+      "status": 200,
+      "version": 93
+    },
+    {
+      "player": "guest",
+      "commandId": "a1ba0183-42dc-45d1-a49c-916f5242f7e2",
+      "status": 200,
+      "version": 94
+    },
+    {
+      "player": "host",
+      "commandId": "9f26dd9c-1091-436e-b829-3dc8c0a4a201",
+      "status": 200,
+      "version": 95
+    },
+    {
+      "player": "guest",
+      "commandId": "7ee8edd6-b2f9-4cde-abfd-6176ca2435f0",
+      "status": 200,
+      "version": 96
+    },
+    {
+      "player": "host",
+      "commandId": "2a9a7c77-5360-4b9f-a05b-c0f3cf29f477",
+      "status": 200,
+      "version": 97
+    },
+    {
+      "player": "guest",
+      "commandId": "914d3f55-09e0-4ff3-876b-c18bdacb72cd",
+      "status": 200,
+      "version": 98
+    },
+    {
+      "player": "host",
+      "commandId": "85ee5c70-a9d1-4e84-8afb-0c6fff865dcc",
+      "status": 200,
+      "version": 99
+    },
+    {
+      "player": "guest",
+      "commandId": "4d9ad563-1b62-4c19-b21d-7c9d1c5b858e",
+      "status": 200,
+      "version": 100
+    },
+    {
+      "player": "host",
+      "commandId": "90bafc46-f870-475c-b102-e0d6b88abd9d",
+      "status": 200,
+      "version": 101
+    },
+    {
+      "player": "guest",
+      "commandId": "b41da9da-0d7e-4aad-ae6d-70cace1b1793",
+      "status": 200,
+      "version": 102
+    },
+    {
+      "player": "host",
+      "commandId": "3dd8fb5c-f5c3-4c5c-80bb-425daf2d6681",
+      "status": 200,
+      "version": 103
+    },
+    {
+      "player": "guest",
+      "commandId": "c45c74d8-45b7-4ef7-8833-5c9c0e84c805",
+      "status": 200,
+      "version": 104
+    },
+    {
+      "player": "host",
+      "commandId": "cdb5ad8d-018c-4c9b-aea6-dea0af7d6732",
+      "status": 200,
+      "version": 105
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "mobileActionLayout": {
+    "buttonCenterReachable": true,
+    "inspectorBottom": 511,
+    "dockTop": 519.609375,
+    "viewportWidth": 390,
+    "position": "fixed",
+    "dockHeight": "325px"
+  },
+  "mobileTargetLayout": {
+    "targetCenterReachable": true,
+    "targetTop": 232.5625,
+    "targetBottom": 297.5625,
+    "inspectorTop": 343,
+    "inspectorBottom": 583,
+    "dockTop": 591.609375
+  },
+  "passed": true,
+  "finalViews": {
+    "host": [
+      {
+        "version": 103,
+        "you": "p0",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      },
+      {
+        "version": 104,
+        "you": "p0",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      },
+      {
+        "version": 105,
+        "you": "p0",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      }
+    ],
+    "guest": [
+      {
+        "version": 103,
+        "you": "p1",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      },
+      {
+        "version": 104,
+        "you": "p1",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      },
+      {
+        "version": 105,
+        "you": "p1",
+        "turn": 2,
+        "phase": "end",
+        "step": "end",
+        "status": "playing"
+      }
+    ]
+  }
+}

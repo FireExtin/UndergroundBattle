@@ -1,0 +1,160 @@
+{
+  "source": "686ca29370c79ec26fddd66701dcc9de2ba7a0de",
+  "atUtc": "2026-10-16T08:00:39.833122+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [
+    {
+      "name": "cannot-arm-during-mandatory-initial-choice",
+      "passed": true
+    },
+    {
+      "name": "double-click-cancels-without-extra-command",
+      "passed": true
+    },
+    {
+      "name": "stops-before-action-phase-command",
+      "passed": true
+    },
+    {
+      "name": "host-run-never-arms-guest",
+      "passed": true
+    },
+    {
+      "name": "refresh-does-not-resume-or-submit-a-new-pass",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "1ccd68be-b5b5-438a-ba15-1d10cc3d3946",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "5c175e63-aacf-4d75-917c-6f0e78630c3f",
+      "expectedVersion": 2,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "fe17994a-903d-460b-9cb9-cde1598490c7",
+      "expectedVersion": 3,
+      "kind": "game",
+      "nestedKind": "start",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "3970884c-4d53-4180-aa42-abef08f61d09",
+      "expectedVersion": 4,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "3e4b4580-803b-4300-bd6e-62751d22b5bd",
+      "expectedVersion": 5,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "04bbd1bc-8049-48cb-8df4-f2b2e980647f",
+      "expectedVersion": 6,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "938d78b0-c19b-478c-85e2-300f596a4317",
+      "expectedVersion": 7,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "2ce35285-212a-4b1c-ad6d-ca950cdfa489",
+      "expectedVersion": 8,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "a24b9ceb-9394-48cd-959e-4e5fe828d09b",
+      "expectedVersion": 9,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "passed": false,
+  "failure": "TimeoutError: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\".hg-inspector\").get_by_role(\"button\", name=re.compile(r\"派遣\")).first\n",
+  "finalViews": {
+    "host": [
+      {
+        "version": 9,
+        "you": "p0",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ],
+    "guest": [
+      {
+        "version": 8,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 9,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:1",
+        "status": "playing"
+      }
+    ]
+  }
+}

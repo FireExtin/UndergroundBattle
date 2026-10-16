@@ -1,0 +1,33 @@
+{
+  "source": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "webTree": "84d9e77f3f592e015dd0bfec807d82f4917e36f4",
+  "buildLog": "manual-p2-build.log.gz",
+  "files": [
+    {
+      "path": "sites/dist/server/index.js",
+      "bytes": 47324,
+      "sha256": "e9a2282ea515402467c0f6dacdd695f9494e4141332e9764c950a1aa589a64e6"
+    },
+    {
+      "path": "sites/dist/server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "sites/dist/client/index.html",
+      "bytes": 475,
+      "sha256": "ca2fa100913357967d5b397bc6ba2b3c01477345a0f7b86bb99363e7047dba5a"
+    },
+    {
+      "path": "sites/dist/client/assets/index-CQT7mDUA.js",
+      "bytes": 372075,
+      "sha256": "9d56392c9a48b1cc5940ebd6cad7aa7e3892700f9646e5a145c4ea1355daf390"
+    },
+    {
+      "path": "sites/dist/client/assets/index-CsgAJC53.css",
+      "bytes": 197266,
+      "sha256": "3d821d4d01c05a9f1245689fded2f4ed65e0d51428506b9d0462feb2fa4c3b68"
+    }
+  ],
+  "scope": "Local QA compiled assets only; no deployment or live-player room access."
+}

@@ -1,0 +1,172 @@
+{
+  "source": "78e4a3f3836a026ffa0beb44aa9d5e0ba762f7df",
+  "atUtc": "2026-10-16T08:15:00.310155+00:00",
+  "kind": "isolated-production-worker-d1-browser",
+  "checks": [
+    {
+      "name": "cannot-arm-during-mandatory-initial-choice",
+      "passed": true
+    },
+    {
+      "name": "double-click-cancels-without-extra-command",
+      "passed": true
+    },
+    {
+      "name": "stops-before-action-phase-command",
+      "passed": true
+    },
+    {
+      "name": "host-run-never-arms-guest",
+      "passed": true
+    },
+    {
+      "name": "refresh-does-not-resume-or-submit-a-new-pass",
+      "passed": true
+    },
+    {
+      "name": "mobile-manual-card-action-is-not-covered-by-dock",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "player": "host",
+      "commandId": "138b059f-d0ce-4e3d-a326-993d05833e8d",
+      "expectedVersion": 1,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "8dab83a1-cc2b-4504-8a65-fb8f97444983",
+      "expectedVersion": 2,
+      "kind": "game",
+      "nestedKind": "ready",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "a8a2484a-0637-4323-bfae-2b507d6df96a",
+      "expectedVersion": 3,
+      "kind": "game",
+      "nestedKind": "start",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "d233c22d-7e7e-435b-b0a3-33821757531d",
+      "expectedVersion": 4,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "a72cfbbb-1c82-4773-8895-bdb20c8d98ba",
+      "expectedVersion": 5,
+      "kind": "game",
+      "nestedKind": "choose",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "98c8ce5e-9b0a-46c7-9f4e-a52336d96440",
+      "expectedVersion": 6,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "fbb7b24d-5aa2-4708-ae7e-9ab4f4068b5b",
+      "expectedVersion": 7,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "host",
+      "commandId": "f6b7ba97-bb32-4979-9c57-9821581ed0cf",
+      "expectedVersion": 8,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    },
+    {
+      "player": "guest",
+      "commandId": "f685b4bd-84fc-41df-ab4e-21e1ffa8be16",
+      "expectedVersion": 9,
+      "kind": "game",
+      "nestedKind": "pass",
+      "windowId": null
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "mobileActionLayout": {
+    "buttonCenterReachable": true,
+    "inspectorBottom": 511,
+    "dockTop": 519.609375,
+    "viewportWidth": 390,
+    "position": "fixed",
+    "dockHeight": "325px"
+  },
+  "passed": false,
+  "failure": "TimeoutError: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-region-available=\\\"true\\\"] .hg-region-center\").first\n    - locator resolved to <button type=\"button\" aria-pressed=\"false\" data-region-index=\"0\" aria-label=\"查看地区1 死者之城\" class=\"hg-region-center\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <p class=\"hg-object-context\">阶段测试房主 拥有 · 你的手牌 · 同名对象 #i111</p> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <img alt=\"\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"/cards/JC125.jpg\"/> from <section class=\"hg-hand-dock\" aria-label=\"固定手牌与下一步行动\">…</section> subtree intercepts pointer events\n  - retrying click action\n    - waiting 20ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <button type=\"button\" class=\"hg-button hg-button-quiet\">取消选目标</button> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n  2 × retrying click action\n      - waiting 100ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <p class=\"hg-object-context\">阶段测试房主 拥有 · 你的手牌 · 同名对象 #i111</p> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n  14 × retrying click action\n       - waiting 500ms\n       - waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <img alt=\"\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"/cards/JC125.jpg\"/> from <section class=\"hg-hand-dock\" aria-label=\"固定手牌与下一步行动\">…</section> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n       - waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <button type=\"button\" class=\"hg-button hg-button-quiet\">取消选目标</button> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n       - waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <p class=\"hg-object-context\">阶段测试房主 拥有 · 你的手牌 · 同名对象 #i111</p> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n       - waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <p class=\"hg-object-context\">阶段测试房主 拥有 · 你的手牌 · 同名对象 #i111</p> from <aside aria-label=\"选牌行动\" class=\"hg-inspector hg-inspector-active\">…</aside> subtree intercepts pointer events\n  - retrying click action\n    - waiting 500ms\n",
+  "finalViews": {
+    "host": [
+      {
+        "version": 9,
+        "you": "p0",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:0",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p0",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:0",
+        "status": "playing"
+      }
+    ],
+    "guest": [
+      {
+        "version": 8,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 9,
+        "you": "p1",
+        "turn": 1,
+        "phase": "start",
+        "step": "draw",
+        "status": "playing"
+      },
+      {
+        "version": 10,
+        "you": "p1",
+        "turn": 1,
+        "phase": "action",
+        "step": "team:0",
+        "status": "playing"
+      }
+    ]
+  }
+}
