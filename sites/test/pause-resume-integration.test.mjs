@@ -12,7 +12,7 @@ import { routeKernels } from '../src/kernel-router.mjs';
 import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 
 for (const [label,file] of [['saved paused table','pause-resume-native-v077.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v077.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v077.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
-  abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+  abi.initSync({ module: frozen77Bytes });
   const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
   const kernel = routeKernels(abi);
   const savedIndex=trace.steps.findIndex(step=>step.command?.action.kind==='pauseRoom' && step.transition.outcome!=='rejected');
@@ -79,7 +79,7 @@ for (const [label,file] of [['saved paused table','pause-resume-native-v077.json
 });
 
 for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate'],['pause-resume-native-v049.json','rust-v0.2.49-sealed-restart-candidate']]) test('engine50 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
-  abi.initSync({module:readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')});
+  abi.initSync({module:frozen77Bytes});
   const old=JSON.parse(readFileSync(new URL('./fixtures/'+file,import.meta.url),'utf8'));
   const identity=JSON.parse(abi.stateIdentity(old.initialState));
   assert.equal(identity.versions.engine,engine);

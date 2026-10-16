@@ -40,7 +40,11 @@ it.each(choices)('$name restores the real optional region choice and submits its
   expect(next).toEqual(row.expected);
   row.views.forEach((expected, seat) => expect(JSON.parse(abi.view(next.state, seat))).toEqual(expected));
   fresh.rerender(<Table {...props} view={row.views[row.seat]} />);
-  expect(screen.queryByRole('dialog', { name: '待完成的选择' })).not.toBeInTheDocument();
+  const nextChoice = row.views[row.seat].pendingChoice;
+  if (nextChoice) {
+    expect(nextChoice.id).not.toBe(view.pendingChoice.id);
+    expect(screen.getByRole('dialog', { name: '待完成的选择' })).toBeInTheDocument();
+  } else expect(screen.queryByRole('dialog', { name: '待完成的选择' })).not.toBeInTheDocument();
 });
 it('only the frozen actor sees the real chooser; current granted mobility is public on the recipient', () => {
   const row = choices.find(row => row.beforeViews[row.seat].regions.some(region => region.characters.some(card => card.currentMobilitySource)));

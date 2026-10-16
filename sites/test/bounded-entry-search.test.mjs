@@ -11,7 +11,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 const fixtures=JSON.parse(readFileSync(new URL('./fixtures/bounded-entry-native-v077.json',import.meta.url),'utf8'));
-abi.initSync({module:readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm')});
+abi.initSync({module:frozen77Bytes});
 for(const [label,count] of [['employee',1],['employeeEmpty',0],['passers',0],['passers',3],['passersEmpty',0]]) test(`bounded ${label}/${count}: private candidates, pause/reopen, exact result and one receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'entry-search50-d1-'));
  const options=convertV4MiniflareOptions({name:'entry-search50',resourcePersistencePath:persist,modules:[

@@ -10,10 +10,11 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import * as abi from '../generated/hegemony_wasm.js';
 
 test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
-  abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+  abi.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
+  assert.equal(JSON.parse(abi.catalog()).engineVersion, 'rust-v0.2.78-bq035-vampire-mobility-candidate');
   const kernel = routeKernels(abi);
   const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,

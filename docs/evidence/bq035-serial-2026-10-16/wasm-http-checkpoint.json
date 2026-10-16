@@ -1,0 +1,42 @@
+{
+  "status": "WIP: Native/WASM and 11 BQ035 plus one retained77 HTTP scenario passed; full Worker and corrected full frontend still running; old-mechanism release generation running",
+  "rawLogArchives": [
+    {
+      "file": "wasm78-build.log.gz",
+      "rawBytes": 220,
+      "rawSha256": "631f5d5cffb76a004fe69cd58e7ff64e9db3a45955bc000258480b9be9bee9a4",
+      "gzipSha256": "c724c2e9a3542627faa3695a5bde1bcd9d75c26e661a8d3307f7c73eea134ae7"
+    },
+    {
+      "file": "sites78-build.log.gz",
+      "rawBytes": 1706,
+      "rawSha256": "45c445cdbfbd0c65dbb27b48de5249ac49383ac207eb795b60bd9f0be004784c",
+      "gzipSha256": "9f341af8e44081076976761a5e3d65f552de8e07781a88ee0993cd778b9613e0"
+    },
+    {
+      "file": "bq035-worker-build.log.gz",
+      "rawBytes": 928,
+      "rawSha256": "a6a7718293d8416e832eb6f7207a41ab583c242cd0eb95ef30b7f866615b86f9",
+      "gzipSha256": "5c9b9e21b3d09e217cfb338c60c5431f9472c3cfc718a7b2bd6efb6f2a913b07"
+    },
+    {
+      "file": "oracle-and-frozen-inputs.log.gz",
+      "rawBytes": 1047,
+      "rawSha256": "e14e792a9728a1c90a8b183e74d631d4034f26148293a856eff2ec6c001afa24",
+      "gzipSha256": "b537479ccf13cb339be027b38c2376afd663b2f5a490acd088cbf030ddc40f54"
+    },
+    {
+      "file": "web78-full.log.gz",
+      "rawBytes": 2632,
+      "rawSha256": "509d06b37dbf798216a9d5d8c108ffc6ce34060c5500c96473ec7385f99b51d6",
+      "gzipSha256": "b7e3c65c0ba7e12c8dddc96e87b57a00c8655d8c9d222199205f0add2ac429e6"
+    }
+  ],
+  "httpCompletedScenarios": 12,
+  "frontendFirstRun": {
+    "passed": 1225,
+    "failed": 2,
+    "finalRerun": "running"
+  },
+  "notPublished": true
+}

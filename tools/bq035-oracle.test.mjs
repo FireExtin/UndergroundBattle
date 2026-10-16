@@ -1,0 +1,37 @@
+// Oracle completeness is part of the security boundary, not an optional test path.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { loadBq035Fixture, validateBq035Bundle, sha256 } from './bq035-oracle.mjs';
+const fixture = loadBq035Fixture();
+const editRaw = (entries, edit) => entries.map((entry, index) => {
+  if (index) return entry;
+  const value = JSON.parse(entry.json); edit(value);
+  const json = JSON.stringify(value);
+  return { ...entry, json, bytes: Buffer.byteLength(json), sha256: sha256(json) };
+});
+test('Native78 oracle contains all 11/326/1336 positive observations and all 54 exact-error negatives', () => {
+  assert.deepEqual(fixture.counts, { scenarios: 11, commands: 326, projections: 1336, rejected: 3, invalid: 54 });
+  assert.equal(Object.keys(fixture.sourceBindings.files).length, 121);
+});
+test('missing or duplicate positive and negative files fail before comparison', () => {
+  for (const key of ['positive', 'negative']) {
+    assert.throws(() => validateBq035Bundle({ ...fixture, [key]: fixture[key].slice(1) }), /Incomplete/);
+    assert.throws(() => validateBq035Bundle({ ...fixture, [key]: [fixture[key][1], ...fixture[key].slice(1)] }), /Incomplete/);
+  }
+});
+test('changed raw bytes, altered source hashes and unlisted source paths fail closed', () => {
+  assert.throws(() => validateBq035Bundle({ ...fixture, positive: [{ ...fixture.positive[0], json: fixture.positive[0].json + ' ' }, ...fixture.positive.slice(1)] }));
+  assert.throws(() => validateBq035Bundle({ ...fixture, negative: [{ ...fixture.negative[0], sha256: '0'.repeat(64) }, ...fixture.negative.slice(1)] }), /hash mismatch/);
+  assert.throws(() => validateBq035Bundle({ ...fixture, sourceBindings: { algorithm: 'sha256', files: { ...fixture.sourceBindings.files, 'rust-game/src/engine.rs': '0'.repeat(64) } } }), /Stale Native source/);
+  assert.throws(() => validateBq035Bundle({ ...fixture, sourceBindings: { algorithm: 'sha256', files: { ...fixture.sourceBindings.files, '../unlisted': '0'.repeat(64) } } }), /Incomplete Native source/);
+});
+test('a different compiler binding inside a correctly hashed raw input still rejects', () => {
+  const negative = editRaw(fixture.negative, row => { row.sourceBindings.files['rust-game/src/engine.rs'] = '0'.repeat(64); });
+  assert.throws(() => validateBq035Bundle({ ...fixture, negative }), /Mixed compiler inputs/);
+});
+test('correctly hashed discontinuous or truncated command traces cannot become a passing subset', () => {
+  const discontinuous = editRaw(fixture.positive, row => { row.steps[0].state += ' '; });
+  assert.throws(() => validateBq035Bundle({ ...fixture, positive: discontinuous }), /discontinuous opaque state/);
+  const truncated = editRaw(fixture.positive, row => { row.steps.pop(); });
+  assert.throws(() => validateBq035Bundle({ ...fixture, positive: truncated }), /Incomplete continuous Native command set/);
+});

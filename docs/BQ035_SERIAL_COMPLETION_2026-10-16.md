@@ -10,4 +10,10 @@
 
 新写入的 HTTP/workerd/D1 与组件测试以及 ABI78/77 构建／接线仍待执行。通用旧机制 oracle 的 JZ58 虚构移动帧改为明确披露的导出前重定位边界，只验证重定位后的 aura／附属投影及随后真实命令；不再伪称该梦魔具有机动。真实移动底层已有 Native 用例，本批实际机动则由连续 Room 记录验证。
 
-完整 workspace Native 正在执行；ABI78 WASM、旧机制在当前 ABI 的对照、D1／前端／production build 尚未完成。本文件在形成最终证据时补充精确结果。已有局部日志保存在 `docs/evidence/bq035-serial-2026-10-16/`。本批仍是 WIP，需要父会话另行串行复审；没有发布、数据库迁移或线上试玩。公开 v59 和本小时证书结果不重复操作。
+完整 workspace Native 已完成：**lib 1128/1128、七组 integration 67/67**，无失败；日志与编译输入清单已保存。ABI78 release WASM SHA-256 为 `94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745`。打包前逐条 WASM 比较通过：11 情景、326 命令、1336 投影、3 预期拒绝；54 负例在四席的 view/applyRoom 共432入口检查精确恢复错误。压缩文件 `rust-game-wasm/tests/bq035Native78.fixture.json.gz` 是可还原原文的 **Native 测试输入**，不是编译输出或真实牌桌数据，SHA-256 为 `4b021a037f21da55aa157cb1bbc12de55e24ba8bc9ad08da52cb7ea2e9ea048b`。完整性及保留内核工具 10/10 通过。
+
+本地 production build 已通过，Worker SHA-256 为 `a85f09fd9f94cd311bfa5ba5f61d76a39b76327f7744ed6d751877eb3e1a80f5`，包含且仅包含上述78及原始77 (`b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c`) 两份 WASM。BQ035 全部11条真实 HTTP/workerd/D1 情景已通过（323接受、3拒绝）；保留77原始 Native 情景13命令也经当前 Worker 验证原目录、opaque 状态和回执。整个 Worker 组与前端组尚未结束，不能据此说整轮通过。
+
+前端首轮出现新卡1.35MB图片逐元素比较耗时、旧 JZ55 仍固定154扫描的两项失败。组件改为核验公版图的固定SHA，原始档案与公版的逐字节核验仍由已通过来源组执行；旧扫描断言显式排除新增 BQ035，保留原154条约束。原首轮日志不改写，后续结果待整轮复跑记录。旧机制当前78 oracle 生成仍待完成。
+
+已有日志保存在 `docs/evidence/bq035-serial-2026-10-16/`。本批仍是 WIP，需要父会话另行串行复审；没有生产发布、线上数据库操作或线上试玩。公开 v59 和本小时证书结果不重复操作。

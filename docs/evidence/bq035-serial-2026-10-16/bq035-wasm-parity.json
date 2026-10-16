@@ -1,0 +1,13 @@
+{
+  "scenarios": 11,
+  "commands": 326,
+  "projections": 1336,
+  "rejected": 3,
+  "invalid": 54,
+  "negativeRestoreCalls": 432,
+  "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+  "completeOpaqueStateAndTransitionMatch": true,
+  "fixtureBytes": 3374350,
+  "fixtureSha256": "4b021a037f21da55aa157cb1bbc12de55e24ba8bc9ad08da52cb7ea2e9ea048b",
+  "sourceFiles": 121
+}

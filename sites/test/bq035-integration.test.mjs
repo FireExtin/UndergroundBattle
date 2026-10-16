@@ -1,14 +1,17 @@
 // Prepared Native layouts through real HTTP/workerd/WASM/D1; never live user data.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, rmSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { loadBq035Fixture } from '../../tools/bq035-oracle.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 import { assertPublicView, assertSessionJournal } from './assert-session-journal.mjs';
+const project = fileURLToPath(new URL('../', import.meta.url));
+const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
+const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
 const fixture = loadBq035Fixture();
 const worker = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'bq035-worker/server');
 async function harness(t, scenario) {

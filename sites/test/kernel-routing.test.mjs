@@ -54,6 +54,14 @@ test('every historical tuple and altered identity rejects before any current sta
   t.diagnostic(JSON.stringify({ historicalTuplesRejected: historicalIdentities.length, alteredIdentityCases: 5, currentStateOperationsOnRejectedStates: interpreted }));
 });
 
+test('duplicate exact kernel identities reject instead of choosing an arbitrary reducer', () => {
+  const room = JSON.parse(current.newGame('ambiguous', 'LOCAL', 'duel', 'P0', 'watchers', '1'));
+  const ambiguous = routeKernels(current, [current]);
+  for (const operation of ['assertSupported', 'catalog', 'supportsPacing', 'view', 'applyRoom']) {
+    assert.throws(() => ambiguous[operation](room.state, 0, '{}', '0'), /Ambiguous frozen kernel identity/);
+  }
+});
+
 test('production Worker contains exactly current78 and retained77 WASM', () => {
   assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
   assert.deepEqual(readdirSync('generated/abi77').sort(), ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);

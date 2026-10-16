@@ -1,0 +1,20 @@
+{
+  "firstRun": {
+    "testFiles": 130,
+    "passedTests": 1225,
+    "failedTests": 2
+  },
+  "note": "The two files were corrected after their first-run execution; Vitest final decorative source snippets re-read the working copy. First-run outcomes remain failures. All final sources will be frozen and fully rerun.",
+  "entries": [
+    {
+      "file": "web/src/game/BQ035Face.test.jsx",
+      "executedAtFirstFileLoadSha256": "b5a0e7f78a1c2eb9f4d695fa433f4b89c988e130f53eab641e18d32d6b6a67e8",
+      "correctedWorkingCopySha256": "bcecbfbcd866d89f7c50efd6d156504a2717f222db4d3f87fef6c68aa0339d02"
+    },
+    {
+      "file": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "executedAtFirstFileLoadSha256": "eedff6d755b615b565b60b2849c56a76badb82e69f3d04ecd9e751801faf6865",
+      "correctedWorkingCopySha256": "a51853718e9d3a62e99e6c794a737f237a0aad37f90d3f55511fbb319371e777"
+    }
+  ]
+}

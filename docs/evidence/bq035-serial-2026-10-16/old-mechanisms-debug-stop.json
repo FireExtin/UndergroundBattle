@@ -1,0 +1,6 @@
+{
+  "status": "stopped-preserving-partial-raw-inputs",
+  "reason": "Debug-mode full oracle generation dominated by repeated strict restore/replay; rerun identical source in native release profile, preserving and comparing completed prefix hashes.",
+  "completedCases": 121,
+  "lastCompletedIndex": "120"
+}

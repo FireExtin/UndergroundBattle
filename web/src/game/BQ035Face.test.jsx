@@ -12,9 +12,11 @@ const record = JSON.parse(readFileSync(resolve('../rust-game/data/cards.json'),'
 const definition = {...record, permanentIcons:record.icons.permanent, temporaryIcons:record.icons.temporary, abilities:[]};
 it('reads the whole pinned BQ035 print, including corrected blue loyalty and both continuous clauses',()=>{
   expect(record).toMatchObject({name:'幽冥骑士',cost:5,loyalty:['蓝色'],color:'蓝',magic:'鲜血',defense:3,subtypes:['吸血鬼','猎手'],keywords:['机动','威名']});
-  const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg'));
+  // The source suite compares the private archive with these public bytes.
+  // Here the pinned public scan also works in the bounded Site source copy.
+  const original=readFileSync(resolve('public/cards/BQ035.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5');
-  expect(readFileSync(resolve('public/cards/BQ035.jpg'))).toEqual(original);expect(cardScanUrl('BQ035')).toBe('/cards/BQ035.jpg');
+  expect(cardScanUrl('BQ035')).toBe('/cards/BQ035.jpg');
   render(<ReadModal card={{...definition,cardId:'BQ035',instanceId:'knight',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   expect(screen.getByRole('dialog')).toHaveTextContent(record.text.replace(/\s+/g,' '));
   expect(screen.getByLabelText('图标：调查0，战斗2，势力1')).toBeInTheDocument();

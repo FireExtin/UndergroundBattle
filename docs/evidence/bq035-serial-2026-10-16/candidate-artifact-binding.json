@@ -1,0 +1,18 @@
+{
+  "current78WasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+  "retained77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "workerSha256": "a85f09fd9f94cd311bfa5ba5f61d76a39b76327f7744ed6d751877eb3e1a80f5",
+  "workerWasm": [
+    {
+      "name": "7f1763f042db4fc83d9a284e947bebd36a254508-hegemony_wasm_bg.wasm",
+      "sha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745"
+    },
+    {
+      "name": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "fixtureSha256": "4b021a037f21da55aa157cb1bbc12de55e24ba8bc9ad08da52cb7ea2e9ea048b",
+  "builtLocallyOnly": true,
+  "published": false
+}

@@ -12,7 +12,7 @@ import { routeKernels } from '../src/kernel-router.mjs';
 import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
 
 test('fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt', async t => {
-  abi.initSync({ module: readFileSync('../rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+  abi.initSync({ module: frozen77Bytes });
   const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v077.json', import.meta.url), 'utf8'));
   assert.equal(trace.scope, 'natural-fresh-match-terminal-state-then-real-restart-persist-next-choice');
   const kernel = routeKernels(abi);

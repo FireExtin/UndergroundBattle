@@ -1,15 +1,15 @@
 // Exact production modules, with a deterministic clock in this local test entry.
 // This entry is outside the source tree and has no publishing path.
-import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
-import { buildEnvironment } from '../../tools/build-storage.mjs';
-import { sha256, bq035Identity } from '../../tools/bq035-oracle.mjs';
-import { catalog } from '../../rust-game-wasm/tests/current78-kernel.mjs';
-import { frozenAbi77 } from '../../tools/frozen-kernels.mjs';
 const project = fileURLToPath(new URL('../', import.meta.url));
-const root = fileURLToPath(new URL('../../', import.meta.url));
+const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
+const { buildEnvironment } = await import(pathToFileURL(root + 'tools/build-storage.mjs').href);
+const { sha256, bq035Identity } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
+const { catalog } = await import(pathToFileURL(root + 'rust-game-wasm/tests/current78-kernel.mjs').href);
+const { frozenAbi77 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
 const output = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'bq035-worker');
 const env = buildEnvironment(root, [output]);
 for (const key of Object.keys(bq035Identity)) if (catalog[key] !== bq035Identity[key]) throw Error('Wrong current candidate');

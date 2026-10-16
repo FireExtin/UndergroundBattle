@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "command": "BQ035_NATIVE_DIR=.../native-resume-final BQ035_INVALID_DIR=.../invalid-resume-final node tools/build-storage.mjs -- cargo test --locked --workspace -- --test-threads=1",
+  "sourceCommit": "3321899017701d03dc0fd145194a916b76f666d7",
+  "libPassed": 1128,
+  "integrationPassed": [
+    3,
+    27,
+    5,
+    2,
+    12,
+    10,
+    8
+  ],
+  "integrationTotal": 67,
+  "failed": 0,
+  "rawFixtureFiles": 65,
+  "sourceBindings": 121,
+  "logSha256": "86b571ee642f032f866969e88e6bea9593a8320820124db663d42d41bf3b3857"
+}

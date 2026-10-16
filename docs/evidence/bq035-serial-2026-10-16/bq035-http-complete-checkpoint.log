@@ -1,0 +1,24 @@
+✔ BQ035 ABI78 HTTP accepted-blood-real-destroy (8263.619615ms)
+ℹ {"nativeScenario":"accepted-blood-real-destroy","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP accepted-knight-real-bounce (6482.871034ms)
+ℹ {"nativeScenario":"accepted-knight-real-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP converted-jc095-keeps-mobility-separate-from-entry (5101.780686ms)
+ℹ {"nativeScenario":"converted-jc095-keeps-mobility-separate-from-entry","retained77":false,"accepted":9,"rejected":0,"projections":36,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP duel-grant-can-use-nonadjacent-slot (4994.064722ms)
+ℹ {"nativeScenario":"duel-grant-can-use-nonadjacent-slot","retained77":false,"accepted":5,"rejected":0,"projections":10,"reopened":3,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP granted-glory-real-source-bounce (6680.673908ms)
+ℹ {"nativeScenario":"granted-glory-real-source-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP paid-attachments-mobility-glory-next-turn (43389.147704ms)
+ℹ {"nativeScenario":"paid-attachments-mobility-glory-next-turn","retained77":false,"accepted":183,"rejected":1,"projections":736,"reopened":5,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP paid-loyalty-and-extra-payload-rejected (2800.291793ms)
+ℹ {"nativeScenario":"paid-loyalty-and-extra-payload-rejected","retained77":false,"accepted":0,"rejected":2,"projections":8,"reopened":1,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP printed-glory-real-source-bounce (6108.168592ms)
+ℹ {"nativeScenario":"printed-glory-real-source-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP printed-jc061-mobility-then-paid-entry (5982.919296ms)
+ℹ {"nativeScenario":"printed-jc061-mobility-then-paid-entry","retained77":false,"accepted":14,"rejected":0,"projections":56,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP queued-blood-real-destroy (7922.73981ms)
+ℹ {"nativeScenario":"queued-blood-real-destroy","retained77":false,"accepted":22,"rejected":0,"projections":88,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP queued-knight-real-bounce (7427.025038ms)
+ℹ {"nativeScenario":"queued-knight-real-bounce","retained77":false,"accepted":22,"rejected":0,"projections":88,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ retained published77 raw Native scenario keeps its old reducer, catalog, opaque D1 state and receipts through current78 Worker (6225.117807ms)
+ℹ {"nativeScenario":"paid-seat0","retained77":true,"accepted":13,"rejected":0,"projections":52,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
