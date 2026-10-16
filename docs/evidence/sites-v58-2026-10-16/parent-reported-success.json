@@ -1,0 +1,21 @@
+{
+  "record_kind": "parent_thread_report_of_official_sites_success",
+  "source_thread_id": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+  "source_description": "Parent reports that the user separately approved publication and the same official Sites deploy_site_version tool successfully deployed the existing saved v58. This is the transferred result summary, not a new native tool call or a reconstructed full native response.",
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "version_number": 58,
+  "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_de61c2cbd32c819187d3476b74d9e8f9",
+  "provider_commit_sha": "eec9ffb81b66b149bdcc4f045c1be834dae21748",
+  "reviewed_source_commit": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "review_evidence_commit": "9b876258012b0995357ab73aede394a2f7bfa3c1",
+  "deployment_id": "appgdep_6ad1e61a0de881918e24c273e78f3eee",
+  "status": "succeeded",
+  "succeeded_at_utc": "2026-10-16T08:53:55Z",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "parent_reported_rebuild": false,
+  "parent_reported_settings_changes": false,
+  "parent_reported_user_notified": true,
+  "this_archival_turn_sites_api_calls": 0,
+  "this_archival_turn_deployment_attempts": 0,
+  "this_archival_turn_browser_or_room_access": false
+}
