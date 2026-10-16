@@ -52,6 +52,7 @@ export function useGame() {
   const [catalogRetry, setCatalogRetry] = useState(0);
   const [autoPassEnabled, setAutoPassState] = useState(readAutoPassPreference);
   const autoPassPreference = useRef(autoPassEnabled);
+  const autoPassActivity = useRef(false);
   const acceptedView = useRef<View | null>(null);
   const rearmPolling = useRef<(() => void) | null>(null);
   const refreshPolling = useRef<(() => void) | null>(null);
@@ -105,6 +106,9 @@ export function useGame() {
     try { playerStorage().setItem(AUTO_PASS_KEY, String(enabled)); } catch { /* Keep this player's in-memory preference. */ }
     rearmPolling.current?.();
   }, []);
+  const setAutoPassActivity = useCallback((active: boolean) => {
+    autoPassActivity.current = active; rearmPolling.current?.();
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -128,7 +132,7 @@ export function useGame() {
     // A state read can show a committed pause even though its receipt is still lost.
     const pausedAndSettled = () => acceptedView.current?.pause && !commandFor(pending.current, session);
     const delay = () => document.visibilityState === 'hidden'
-      ? autoPassPreference.current && acceptedView.current?.status === 'playing' ? 3000 : 12000
+      ? (autoPassPreference.current || autoPassActivity.current) && acceptedView.current?.status === 'playing' ? 3000 : 12000
       : 1500;
     const schedule = (ms: number, healthy: boolean) => {
       if (timer !== undefined) clearTimeout(timer);
@@ -329,7 +333,7 @@ export function useGame() {
   };
 
   return {
-    catalog, session, view, error, busy, uncertain, connection, act, playerMode, autoPassEnabled, setAutoPassEnabled,
+    catalog, session, view, error, busy, uncertain, connection, act, playerMode, autoPassEnabled, setAutoPassEnabled, setAutoPassActivity,
     legacyRecoveryBlocked: unbound(pending.current),
     pendingRecoverySeat: !session ? savedSeats.find(seat => commandFor(pending.current, seat)) : undefined,
     persistenceWarning: [

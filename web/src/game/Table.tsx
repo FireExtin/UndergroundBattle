@@ -197,14 +197,16 @@ function RegionTile({ region, view, definitions, selected, targeted, available, 
   </article>;
 }
 
-type TableProps = { recoveryNotices?: ReactNode; view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; modalPaused?: boolean; onAction: (action: Action) => void; autoPassEnabled?: boolean; onAutoPassEnabledChange?: (enabled: boolean) => void };
+type TableProps = { recoveryNotices?: ReactNode; view: View; catalog: Catalog | null; busy: boolean; uncertain?: boolean; connection?: 'connecting' | 'online' | 'offline'; modalPaused?: boolean; onAction: (action: Action) => void; autoPassEnabled?: boolean; onAutoPassEnabledChange?: (enabled: boolean) => void; onAutoPassActivityChange?: (active: boolean) => void };
 
 export function Table(props: TableProps) {
   // Even equal versions/instance IDs in another room or seat start a new local interaction.
   return <ArchivePresentation.Provider value><TableSurface key={JSON.stringify([props.view.roomId, props.view.you])} {...props} /></ArchivePresentation.Provider>;
 }
 
-function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction, autoPassEnabled = false, onAutoPassEnabledChange = () => {} }: TableProps) {
+function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false, connection = 'connecting', modalPaused = false, onAction: submitAction, autoPassEnabled = false, onAutoPassEnabledChange = () => {}, onAutoPassActivityChange }: TableProps) {
+  const [manualEpoch, setManualEpoch] = useState(0);
+  const onAction = (action: Action) => { setManualEpoch(value => value + 1); submitAction(action); };
   const choiceDraftStore = useMemo(() => createChoiceDraftStore(view.roomId, view.you), [view.roomId, view.you]);
   useEffect(() => { reconcileChoiceDraft(choiceDraftStore, view.pendingChoice); }, [choiceDraftStore, view.pendingChoice]);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -409,7 +411,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     <section className="hg-team-edge hg-mine-edge" aria-label="我方玩家区" data-side="mine">{teammates.map(renderMat)}</section>
     <section className="hg-hand-dock" aria-label="固定手牌与下一步行动">
       <div className={`hg-response-layer ${view.stack.length ? 'hg-response-layer-active' : ''}`}><ResponseWindow view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={onAction} onSelectCard={id => { clearSelection(); setSelectedCard(id); }} />{view.stack.length > 1 && <details className="hg-stack"><summary>其余待结算效果 · {view.stack.length - 1}</summary><ol>{[...view.stack].reverse().slice(1).map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small><StackTargets effect={effect} view={view} /></li>)}</ol></details>}</div>
-      <div className="hg-dock-action" data-targeting={!!activeGroup} data-next-step={view.status === 'finished' ? 'finished' : view.pendingChoice ? 'choose' : browsingOnly ? 'wait' : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? 'pass' : 'act'}><div><strong>{nextStep}</strong><small>{busy ? '正在确认上一行动…' : '悬停阅读 · 点选行动 · 横置角色旋转 90°'}</small></div><AutoPass view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={onAction} enabled={autoPassEnabled} onEnabledChange={onAutoPassEnabledChange} />
+      <div className="hg-dock-action" data-targeting={!!activeGroup} data-next-step={view.status === 'finished' ? 'finished' : view.pendingChoice ? 'choose' : browsingOnly ? 'wait' : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? 'pass' : 'act'}><div><strong>{nextStep}</strong><small>{busy ? '正在确认上一行动…' : '悬停阅读 · 点选行动 · 横置角色旋转 90°'}</small></div><AutoPass view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={submitAction} enabled={autoPassEnabled} onEnabledChange={onAutoPassEnabledChange} interacting={modalPaused || !!activeGroup || !!readingCard} manualEpoch={manualEpoch} onActivityChange={onAutoPassActivityChange} />
         {view.pendingChoice ? <button className="hg-button hg-button-primary" onClick={() => document.querySelector<HTMLElement>('.hg-choice')?.focus()}>前往完成选择 ↑</button> : globalActions.length ? <ActionButtons actions={globalActions} busy={actionBusy} onAction={onAction} unavailable={unavailable} /> : <button className="hg-button hg-button-primary" disabled={browsingOnly || busy} onClick={() => document.querySelector<HTMLButtonElement>('.hg-card[data-card-actionable="true"]')?.focus()}>{browsingOnly ? '等待玩家 · 可浏览' : '选择卡牌行动'}</button>}
       </div>
       <section className="hg-hand-section" aria-label="你的手牌"><span className="hg-hand-label">你的手牌 <b>{view.hand.length}</b></span><div className="hg-hand" style={{ '--hg-card-count': Math.max(1, view.hand.length) } as CSSProperties}>{view.hand.map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} compact sameNameTag={tagFor(item)} actionable={view.legalActions.some(action => actionSource(action) === item.instanceId)} selected={selectedCard === item.instanceId} targeted={targetIds.has(item.instanceId)} onSelect={() => selectCard(item.instanceId)} onPreview={() => setHoveredCard(item.instanceId)} onPreviewEnd={() => setHoveredCard(null)} />)}{!view.hand.length && <p className="hg-empty">目前没有手牌。</p>}</div></section>
