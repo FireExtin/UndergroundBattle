@@ -19,7 +19,7 @@ out=Path(args.output);out.mkdir(exist_ok=False)
 
 async def main():
     result={'source':args.source,'atUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'kind':'isolated-production-worker-d1-browser','checks':[],'commands':[],'pageErrors':[],
+            'kind':'isolated-production-worker-d1-browser','checks':[],'commands':[],'acknowledgements':[],'pageErrors':[],
             'realUserTableAccessed':False,'remoteDeployment':False}
     views={'host':[],'guest':[]}
     def check(name,value):
@@ -38,6 +38,9 @@ async def main():
                 try:
                     d=await r.json();v=d.get('view',d)
                     if isinstance(v,dict) and 'players' in v and 'you' in v:views[label].append(v)
+                    if r.request.method=='POST' and urlsplit(r.url).path.endswith('/commands'):
+                        sent=r.request.post_data_json
+                        result['acknowledgements'].append({'player':label,'commandId':sent['commandId'],'status':r.status,'version':v.get('version')})
                 except Exception:pass
             def request(r,label=label):
                 if r.method!='POST' or not urlsplit(r.url).path.endswith('/commands'):return
@@ -91,6 +94,16 @@ async def main():
             for page in [host,guest]:await page.get_by_role('dialog',name='待完成的选择',exact=True).get_by_role('button',name='保留全部手牌',exact=True).click()
             for page in [host,guest]:await expect(page.get_by_role('dialog',name='待完成的选择',exact=True)).to_have_count(0)
             await expect(host.locator('.hg-phase-line')).not_to_contain_text('再调度')
+            # A real keyboard card activation must cancel before the queued 550ms pass.
+            priority=latest('host')['priorityTeam']
+            mine=next(player['team'] for player in latest('host')['players'] if player['id']==latest('host')['you'])
+            probe_label='host' if mine==priority else 'guest';probe=pages[probe_label]
+            before_probe=len(commands(probe_label));await begin(probe,'end');await probe.wait_for_timeout(200)
+            await probe.locator('.hg-hand .hg-card').first.press('Enter')
+            await expect(probe.get_by_label('连续让过状态',exact=True)).to_contain_text('手动操作')
+            await probe.wait_for_timeout(700)
+            check('explicit-card-activation-cancels-before-queued-pass',len(commands(probe_label))==before_probe)
+            await probe.get_by_role('button',name='关闭卡牌详情',exact=True).click()
             before=len(commands('host'))
             await host.get_by_role('button',name='一键连续让过',exact=True).dblclick()
             await expect(host.locator('[data-continuous-pass]')).to_have_attribute('data-continuous-pass','off')
@@ -128,7 +141,7 @@ async def main():
             check('mobile-manual-card-action-is-not-covered-by-dock',result['mobileActionLayout']['buttonCenterReachable'] and result['mobileActionLayout']['inspectorBottom']<=result['mobileActionLayout']['dockTop'])
             await deploy.click()
             target_region=attacker.locator('[data-region-available="true"] .hg-region-center').first
-            await target_region.evaluate("element => { element.scrollIntoView({block:'start',inline:'nearest'}); window.scrollBy(0,-96); }")
+            await target_region.evaluate("element => { element.scrollIntoView({block:'start',inline:'nearest'}); window.scrollBy(0,-32); }")
             result['mobileTargetLayout']=await target_region.evaluate('''button => {
                 const b=button.getBoundingClientRect(),hit=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);
                 const i=document.querySelector('.hg-inspector').getBoundingClientRect(),d=document.querySelector('.hg-hand-dock').getBoundingClientRect();
@@ -141,8 +154,9 @@ async def main():
             await responder.get_by_role('button',name='不连锁，让过',exact=True).wait_for()
             before=len(commands(responder_label));await begin(responder,'end')
             await until(lambda:any(c['kind']=='passResponse' for c in commands(responder_label)[before:]),drive_guest=False,timeout=15)
-            await expect(responder.locator('.hg-response-window')).to_have_attribute('data-response-state','passed')
-            check('continuous-run-declines-own-real-response-window',commands(responder_label)[before]['kind']=='passResponse')
+            response_command=commands(responder_label)[before]
+            await until(lambda:any(ack['commandId']==response_command['commandId'] and ack['status']==200 for ack in result['acknowledgements']),drive_guest=False,timeout=15)
+            check('continuous-run-declines-own-real-response-window',response_command['kind']=='passResponse')
             await contexts[responder_label].set_offline(True)
             await expect(responder.get_by_label('连续让过状态',exact=True)).to_contain_text('连接中断',timeout=12000)
             await contexts[responder_label].set_offline(False)

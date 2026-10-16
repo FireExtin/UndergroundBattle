@@ -2,7 +2,7 @@ import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AutoPass } from './AutoPass';
 import { Table } from './Table';
-import { testChoice, testView } from './testFixtures';
+import { testCard, testChoice, testView } from './testFixtures';
 import type { View } from './types';
 
 const pass = { id: 'pass', kind: 'pass', label: '让过' };
@@ -106,6 +106,26 @@ describe('pass until the selected phase, only in this turn', () => {
     app.unmount(); expect(p.onActivityChange).toHaveBeenLastCalledWith(false);
     render(<AutoPass {...p} view={base} />); advance(2000);
     expect(p.onAction).not.toHaveBeenCalled(); expect(status()).toHaveTextContent('已关闭');
+  });
+
+  it.each(['hand', 'board', 'region'])('an explicit %s click in the real Table cancels the queued pass before 550ms', location => {
+    const submit = vi.fn();
+    const view: View = { ...base, regions: [{ id: 'world', index: 0, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0],
+      characters: [{ ...testCard, instanceId: 'board-card', name: '场上角色' }] }] };
+    const app = render(<Table view={view} catalog={null} busy={false} connection="online" onAction={submit} />);
+    start(); advance(300);
+    if (location === 'hand') fireEvent.click(app.container.querySelector('.hg-hand .hg-card')!);
+    else fireEvent.click(screen.getByRole('button', { name: location === 'board' ? '查看场上角色' : '查看地区1 纽约' }));
+    advance(1000); expect(submit).not.toHaveBeenCalled();
+    expect(status()).toHaveTextContent('手动操作');
+    expect(screen.queryByRole('button', { name: '取消连续让过' })).not.toBeInTheDocument();
+  });
+
+  it('hovering a hand card in the real Table keeps the explicitly armed run active', () => {
+    const submit = vi.fn(); const app = render(<Table view={base} catalog={null} busy={false} connection="online" onAction={submit} />);
+    start(); advance(300); fireEvent.mouseEnter(app.container.querySelector('.hg-hand .hg-card')!);
+    advance(250); expect(submit).toHaveBeenCalledExactlyOnceWith(pass);
+    expect(screen.getByRole('button', { name: '取消连续让过' })).toBeInTheDocument();
   });
 });
 

@@ -344,6 +344,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   };
   const cancelTargeting = () => { nextFocus.current = 'actions'; setDraft(null); setSelectedTarget(null); setSelectedRegion(null); setTargetNotice('已取消选目标，可选择其他动作。'); };
   const selectCard = (id: string) => {
+    setManualEpoch(value => value + 1);
     if (selectedCard && targetIds.has(id) && presentedIds.has(id)) {
       const matching = activeGroup || (groups.length === 1 ? groups[0] : undefined);
       if (matching && !actionBusy) {
@@ -357,6 +358,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   };
   const selectRegion = (index: number) => {
     if (!activeRegions.some(item => item.index === index)) return;
+    setManualEpoch(value => value + 1);
     if (activeGroup) {
       if (!actionBusy && regionIds.has(index)) {
         nextFocus.current = 'confirm';
@@ -423,7 +425,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     <section className="hg-battlefield" aria-label="中央世界与争夺区，可上下滚动查看双方角色" tabIndex={0} title="中央地区可上下滚动；手牌与行动栏保持在下方。"><div className="hg-world-deck" aria-label="世界牌库"><span className="hg-card-back">⌖{view.worldDeckCount !== undefined && <b>{view.worldDeckCount}</b>}</span><small>世界牌库</small><small className="hg-battlefield-scroll-hint">↕ 滚动查看</small></div><div className={`hg-board hg-board-${view.mode}`}>{view.regions.map(item => <RegionTile key={item.id} region={item} view={view} definitions={definitions} selected={selectedRegion === item.index} targeted={previewRegion === item.index || (!!activeGroup && regionIds.has(item.index))} selectedCard={selectedCard} targetIds={targetIds} selectedTarget={selectedTarget} available={activeGroup ? regionIds.has(item.index) : view.legalActions.some(action => action.region === item.index && (!selectedCard || action.cardId === selectedCard))} onRegion={() => selectRegion(item.index)} onCard={selectCard} onPreview={setHoveredCard} tagFor={tagFor} />)}</div></section>
     <section className="hg-team-edge hg-mine-edge" aria-label="我方玩家区" data-side="mine">{teammates.map(renderMat)}</section>
     <section className="hg-hand-dock" aria-label="固定手牌与下一步行动">
-      <div className={`hg-response-layer ${view.stack.length ? 'hg-response-layer-active' : ''}`}><ResponseWindow view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={onAction} onSelectCard={id => { clearSelection(); setSelectedCard(id); }} />{view.stack.length > 1 && <details className="hg-stack"><summary>其余待结算效果 · {view.stack.length - 1}</summary><ol>{[...view.stack].reverse().slice(1).map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small><StackTargets effect={effect} view={view} /></li>)}</ol></details>}</div>
+      <div className={`hg-response-layer ${view.stack.length ? 'hg-response-layer-active' : ''}`}><ResponseWindow view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={onAction} onSelectCard={id => { setManualEpoch(value => value + 1); clearSelection(); setSelectedCard(id); }} />{view.stack.length > 1 && <details className="hg-stack"><summary>其余待结算效果 · {view.stack.length - 1}</summary><ol>{[...view.stack].reverse().slice(1).map(effect => <li key={effect.id}><strong>{effect.label}</strong><small>{view.players.find(player => player.id === effect.controller)?.name}</small><StackTargets effect={effect} view={view} /></li>)}</ol></details>}</div>
       <div className="hg-dock-action" data-targeting={!!activeGroup} data-next-step={view.status === 'finished' ? 'finished' : view.pendingChoice ? 'choose' : browsingOnly ? 'wait' : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? 'pass' : 'act'}><div><strong>{nextStep}</strong><small>{busy ? '正在确认上一行动…' : '悬停阅读 · 点选行动 · 横置角色旋转 90°'}</small></div><AutoPass view={view} busy={busy} uncertain={uncertain} connection={connection} onAction={submitAction} enabled={autoPassEnabled} onEnabledChange={onAutoPassEnabledChange} interacting={modalPaused || !!activeGroup || !!readingCard} manualEpoch={manualEpoch} onActivityChange={onAutoPassActivityChange} />
         {view.pendingChoice ? <button className="hg-button hg-button-primary" onClick={() => document.querySelector<HTMLElement>('.hg-choice')?.focus()}>前往完成选择 ↑</button> : globalActions.length ? <ActionButtons actions={globalActions} busy={actionBusy} onAction={onAction} unavailable={unavailable} /> : <button className="hg-button hg-button-primary" disabled={browsingOnly || busy} onClick={() => document.querySelector<HTMLButtonElement>('.hg-card[data-card-actionable="true"]')?.focus()}>{browsingOnly ? '等待玩家 · 可浏览' : '选择卡牌行动'}</button>}
       </div>
