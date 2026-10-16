@@ -9,8 +9,8 @@ const editRaw = (entries, edit) => entries.map((entry, index) => {
   const json = JSON.stringify(value);
   return { ...entry, json, bytes: Buffer.byteLength(json), sha256: sha256(json) };
 });
-test('Native78 oracle contains all 11/326/1336 positive observations and all 54 exact-error negatives', () => {
-  assert.deepEqual(fixture.counts, { scenarios: 11, commands: 326, projections: 1336, rejected: 3, invalid: 54 });
+test('Native78 oracle contains all 13/378/1510 positive observations and all 56 exact-error negatives', () => {
+  assert.deepEqual(fixture.counts, { scenarios: 13, commands: 378, projections: 1510, rejected: 3, invalid: 56 });
   assert.equal(Object.keys(fixture.sourceBindings.files).length, 121);
 });
 test('missing or duplicate positive and negative files fail before comparison', () => {

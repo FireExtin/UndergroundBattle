@@ -1,0 +1,5 @@
+{
+  "status": "interrupted; not a test failure",
+  "reason": "Remove unrelated rustfmt changes from resolution.rs before final source freeze; preserve partial run and restart with fresh export directories.",
+  "partialLog": "native-workspace-full.log"
+}

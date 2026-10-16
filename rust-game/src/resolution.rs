@@ -787,7 +787,12 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (matches!(source.card.definition.as_str(), "MSJC11" | "WM023")
+            && (source.card.definition == "MSJC11"
+                // WM023's own hand-entry action freezes a region UID. A fully
+                // canonical granted mobility destination retains the shared
+                // slot contract, independently of the recipient's print.
+                || (source.card.definition == "WM023"
+                    && !crate::mobility::canonical_target(slot))
                 || rules::definition(&source.card.definition)
                     .attachment
                     .as_ref()

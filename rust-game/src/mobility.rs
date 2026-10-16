@@ -53,6 +53,9 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 pub(crate) fn canonical(a: &AbilitySpec) -> bool {
     same(a, &ability())
 }
+pub(crate) fn canonical_target(slot: &TargetSlotSpec) -> bool {
+    slot.range == Range::Mobility && same(slot, &ability().targets[0])
+}
 pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
     f.ability_key == "mobility"
         || f.source.observed_mobility_grant.is_some()

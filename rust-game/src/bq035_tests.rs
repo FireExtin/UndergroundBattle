@@ -401,6 +401,46 @@ fn field(g: &mut Game, def: &str, seat: usize, r: usize) -> String {
     g.regions[r].cards.push(c);
     id
 }
+fn duel_layout() -> Game {
+    let mut g = Game::new(
+        "bq035-p2-duel".into(),
+        "LOCAL".into(),
+        "duel".into(),
+        "P0".into(),
+        "watchers".into(),
+        8,
+    )
+    .unwrap();
+    g.join("P1".into(), "watchers".into()).unwrap();
+    for p in &mut g.players {
+        p.ready = true;
+    }
+    g.apply(0, Action::new("start")).unwrap();
+    while let Some(p) = g.pending.clone() {
+        g.apply(
+            p.seat,
+            Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![]),
+                ..Action::new("choose")
+            },
+        )
+        .unwrap();
+    }
+    for p in &mut g.players {
+        p.hand.clear();
+        p.assets.clear();
+        p.graveyard.clear();
+    }
+    for r in &mut g.regions {
+        r.cards.clear();
+        r.influence = [0, 0];
+    }
+    g.regions[0].card = g.make_card("DQJC115", 0);
+    g.first_team = 0;
+    g.begin_window(Window::Action(0));
+    g
+}
 fn attach(g: &mut Game, def: &str, seat: usize, host: &str) -> String {
     let card = g.make_card(def, seat);
     let id = card.id.clone();
@@ -793,7 +833,8 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
         .cards
         .iter()
         .filter(|c| {
-            c.kind == "character" && c.subtypes.iter().any(|s| s == "人类" || s == "吸血鬼")
+            c.kind == "character"
+                && (c.id == "JC030" || c.subtypes.iter().any(|s| s == "人类" || s == "吸血鬼"))
         })
         .map(|c| c.id.clone())
         .collect::<Vec<_>>();
@@ -809,6 +850,9 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
             attach(&mut g, "JC036", 0, &host);
         } else {
             g.board_mut(&host).unwrap().controller = 0;
+            if id == "JC030" {
+                u::fund(&mut g, 0, "JC029", 2);
+            }
         }
         attach(&mut g, "XQ14", 0, &host);
         assert!(
@@ -836,6 +880,15 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
                 .definition,
             id
         );
+        // Admission alone cannot prove that the shared target guard lets this
+        // recipient resolve its granted program. Preserve the same instance.
+        u::top(&mut g);
+        assert_eq!(g.board(&host).unwrap().0, 1, "resolved recipient {id}");
+        assert!(g
+            .attachments
+            .iter()
+            .any(|a| a.host_id == host && a.card.definition == "XQ14"));
+        u::restore(&mut g);
     }
 }
 
@@ -1752,4 +1805,126 @@ impl Trace {
         }
         panic!("{} did not reach bounded state", self.name);
     }
+}
+
+#[test]
+fn bq035_wm023_paid_conversion_blood_knight_mobility_resolves_after_pause_restore() {
+    // An existing ready public WM023 is the only prepared board entity. Every
+    // conversion, blood attachment, knight deployment and later move is paid
+    // and resolved through ordinary Room commands, not injected aura flags.
+    for (mut g, name) in [
+        (u::game(), "wm023-paid-conversion-blood-knight-move"),
+        (
+            duel_layout(),
+            "wm023-duel-paid-conversion-blood-knight-move",
+        ),
+    ] {
+        let host = field(&mut g, "WM023", 1, 0);
+        let conversion = u::held(&mut g, "JC036", 0);
+        let blood = u::held(&mut g, "XQ14", 0);
+        let knight = u::held(&mut g, "BQ035", 0);
+        u::fund(&mut g, 0, "JC029", 11);
+        let mut t = Trace::new(name, g);
+        t.action(0, t.legal(0, "play", &conversion, Some(&host), None));
+        t.finish();
+        assert_eq!(t.room.game.board(&host).unwrap().1.controller, 0);
+        t.action(0, t.legal(0, "play", &blood, Some(&host), None));
+        t.finish();
+        t.action(0, t.legal(0, "deploy", &knight, None, Some(2)));
+        t.finish();
+        t.until(|g| {
+            matches!(&g.pending, Some(p) if matches!(&p.resolution,
+        ChoiceResolution::Declare { declaration, .. } if declaration.ability.key == "mobility"
+            && declaration.source.card.id == host))
+        });
+        t.command(0, SessionAction::PauseRoom, false);
+        t.command(1, SessionAction::ResumeRoom, false);
+        t.choose(vec!["region:1".into()]);
+        let f = t.room.game.stack.last().unwrap().frame.as_ref().unwrap();
+        assert_eq!(f.source.card.definition, "WM023");
+        assert_eq!(f.ability_key, "mobility");
+        assert!(f.targets[0].region_instance.is_none());
+        t.command(1, SessionAction::PauseRoom, false);
+        t.command(0, SessionAction::ResumeRoom, false);
+        t.finish();
+        let (region, current) = t.room.game.board(&host).unwrap();
+        assert_eq!(
+            region, 1,
+            "paid and accepted WM023 mobility must actually move"
+        );
+        assert_eq!((current.owner, current.controller), (1, 0));
+        assert!(t
+            .room
+            .game
+            .attachments
+            .iter()
+            .any(|a| a.card.definition == "JC036" && a.host_id == host));
+        assert!(t
+            .room
+            .game
+            .attachments
+            .iter()
+            .any(|a| a.card.definition == "XQ14" && a.host_id == host));
+        t.export();
+    }
+}
+
+#[test]
+fn bq035_converted_wm023_own_action_keeps_exact_region_uid_and_rejects_mobility_spec_transplant() {
+    let mut g = u::game();
+    let host = field(&mut g, "WM023", 1, 0);
+    attach(&mut g, "JC036", 0, &host);
+    attach(&mut g, "XQ14", 0, &host);
+    field(&mut g, "BQ035", 0, 4);
+    let held = u::held(&mut g, "JC094", 0);
+    u::fund(&mut g, 0, "JC029", 1);
+    assert!(g.has_mobility(g.board(&host).unwrap().1));
+    let original_region = g.regions[2].card.id.clone();
+    u::act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(host.clone()),
+            ability_id: Some("wm023-unique-hand-entry".into()),
+            region: Some(2),
+            ..Action::new("activate")
+        },
+    );
+    let frame = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(
+        frame.targets[0].region_instance.as_deref(),
+        Some(original_region.as_str())
+    );
+    let mut missing_uid = g.clone();
+    missing_uid
+        .stack
+        .last_mut()
+        .unwrap()
+        .frame
+        .as_mut()
+        .unwrap()
+        .targets[0]
+        .region_instance = None;
+    invalid(&missing_uid, "wm023-own-action-missing-region-uid");
+    let mut transplanted = missing_uid;
+    transplanted
+        .stack
+        .last_mut()
+        .unwrap()
+        .frame
+        .as_mut()
+        .unwrap()
+        .targets[0]
+        .spec = crate::mobility::ability().targets[0].clone();
+    invalid(&transplanted, "wm023-own-action-mobility-target-transplant");
+    // A disclosed response-time replacement boundary. The original printed
+    // action must still fizzle at the new incarnation in the same region slot.
+    g.regions[2].card.id = "wm023-p2-replacement-region".into();
+    u::restore(&mut g);
+    u::top(&mut g);
+    assert!(g.pending.is_none());
+    assert!(g.players[0].hand.iter().any(|c| c.id == held));
+    assert!(g.board(&host).unwrap().1.exhausted);
+    assert_eq!(g.resources(0), 0);
+    u::restore(&mut g);
 }

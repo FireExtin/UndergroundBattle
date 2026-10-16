@@ -1,0 +1,30 @@
+[
+  {
+    "file": "native-before-fix.log.gz",
+    "rawFile": "native-before-fix.log",
+    "rawBytes": 4008,
+    "rawSha256": "51a994c6690acd89003ba275a6b9ebf170fbe550f620ee85ecb5b94857ec84bf",
+    "status": "retained original output"
+  },
+  {
+    "file": "native-targeted-after-fix.log.gz",
+    "rawFile": "native-targeted-after-fix.log",
+    "rawBytes": 3045,
+    "rawSha256": "fc6ea2a326e06178c34f3455ab3892ce7e66dd0fd6ef54be128fe575800f5bd0",
+    "status": "retained original output"
+  },
+  {
+    "file": "native-workspace-full.log.gz",
+    "rawFile": "native-workspace-full.log",
+    "rawBytes": 11038,
+    "rawSha256": "0e5b5364284b349a8742e560778cfe10a91c46306140874b24501e01a66647a0",
+    "status": "interrupted; not a test failure"
+  },
+  {
+    "file": "native-format-scope-interruption.json",
+    "rawFile": "native-format-scope-interruption.json",
+    "rawBytes": 254,
+    "rawSha256": "3f6efd240051b29d094d2f879134a43ee1e469e98c3d32ad14fd2bce7bb870e2",
+    "status": "retained original output"
+  }
+]

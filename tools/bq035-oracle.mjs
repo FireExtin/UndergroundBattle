@@ -14,6 +14,7 @@ export const bq035PositiveNames = [
   'granted-glory-real-source-bounce', 'paid-attachments-mobility-glory-next-turn',
   'paid-loyalty-and-extra-payload-rejected', 'printed-glory-real-source-bounce',
   'printed-jc061-mobility-then-paid-entry', 'queued-blood-real-destroy', 'queued-knight-real-bounce',
+  'wm023-paid-conversion-blood-knight-move', 'wm023-duel-paid-conversion-blood-knight-move',
 ].sort();
 const numbered = (prefix, count) => Array.from({ length: count }, (_, i) => `${prefix}-${String(i).padStart(2, '0')}`);
 export const bq035NegativeNames = [
@@ -21,6 +22,7 @@ export const bq035NegativeNames = [
   ...numbered('response-frame', 15), ...numbered('capture-record', 5),
   'direct-frame-and-stack', 'duplicate-stack-and-declaration',
   'impossible-demon-vampire-history', 'duplicate-live-recipient-uid',
+  'wm023-own-action-missing-region-uid', 'wm023-own-action-mobility-target-transplant',
 ].sort();
 export const bq035Identity = {
   rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.71-bq035-vampire-mobility-candidate',
@@ -83,8 +85,8 @@ export function validateBq035Bundle(bundle) {
     assert(row.gameError.length > 0 && row.roomError.length > 0, row.inputName);
   }
   assert.equal(rejected, 3);
-  assert.equal(commands, 326, 'Incomplete continuous Native command set');
-  assert.equal(projections, 1336, 'Incomplete every-seat Native projections');
+  assert.equal(commands, 378, 'Incomplete continuous Native command set');
+  assert.equal(projections, 1510, 'Incomplete every-seat Native projections');
   assert.deepEqual(bundle.counts, { scenarios: scenarios.length, commands, projections, rejected, invalid: invalid.length });
   for (const key of Object.keys(bq035Identity)) assert.equal(bundle.catalog[key], bq035Identity[key]);
   assert.equal(bundle.catalog.cards.length, 144);
