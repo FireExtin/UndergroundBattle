@@ -1,0 +1,4 @@
+.hg-latest-pass { display: flex; flex: 1 1 100%; gap: .6rem; align-items: baseline; padding: .5rem .7rem; border: 1px solid var(--hg-line, #bcac8b); border-radius: .4rem; background: rgba(205, 177, 123, .1); font-size: .84rem; overflow-wrap: anywhere; }
+.hg-latest-pass b { flex: 0 0 auto; }
+.hg-table-records li[data-pass-record] { color: var(--hg-ink, #3a3025); }
+@media (max-width: 640px) { .hg-latest-pass { flex-direction: column; gap: .2rem; } }

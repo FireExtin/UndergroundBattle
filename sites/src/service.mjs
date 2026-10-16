@@ -1,5 +1,6 @@
 import { RoomStore } from './store.mjs';
 import { retryOriginalCommand } from './storage-errors.mjs';
+import { capturePasses, passRecord, publicPassRecord } from './pass-history.mjs';
 
 export class HttpError extends Error {
   constructor(status, message, view, code) { super(message); this.status = status; this.view = view; this.code = code; }
@@ -71,6 +72,15 @@ function call(operation) {
 export class RoomService {
   constructor(db, kernel, now = Date.now) { this.store = new RoomStore(db); this.kernel = kernel; this.now = now; }
   view(state, seat) { return JSON.parse(this.kernel.view(state, seat)); }
+  async publicView(view) {
+    const records = await this.store.publicPasses(view.roomId, view.version);
+    const passHistory = records.map(({ record, version }) => publicPassRecord(record, version)).filter(Boolean);
+    return passHistory.length ? { ...view, passHistory } : view;
+  }
+  sessionEntry(state, next) {
+    const publicPasses = capturePasses(this.kernel, state, next);
+    return JSON.stringify({ SessionEvents: { events: next.journal, ...(publicPasses.length ? { publicPasses } : {}) } });
+  }
   async refreshedRoom(id, seat) {
     for (let attempt = 0; attempt < 5; attempt++) {
       const room = await this.store.room(id);
@@ -80,7 +90,7 @@ export class RoomService {
       if (!next.changed) return { room, view: next.view };
       if (next.version !== room.version + 1) throw new Error('Unexpected clock revision');
       const committed = await this.store.system({ id, expectedVersion: room.version, state: next.state,
-        version: next.version, nonce: secure(16), entry: JSON.stringify({ SessionEvents: { events: next.journal } }) });
+        version: next.version, nonce: secure(16), entry: this.sessionEntry(room.state, next) });
       if (committed) return { room: { ...room, state: next.state, version: next.version }, view: next.view };
     }
     throw new HttpError(409, '牌桌正在变化，请重新同步');
@@ -200,9 +210,11 @@ export class RoomService {
     const next = call(() => transition(this.kernel.apply(room.state, seat, JSON.stringify(action))));
     if (next.version !== room.version + 1) throw new Error('Unexpected command version');
     const command = { commandId: body.commandId, expectedVersion: body.expectedVersion, action };
+    const publicPasses = action.kind === 'pass'
+      ? [passRecord(this.view(room.state, seat), seat, next.version, 0, 'pass')] : [];
     const committed = await this.store.command({ id, seat, commandId: body.commandId, intentHash: hash,
       expectedVersion: body.expectedVersion, state: next.state, version: next.version, nonce: secure(16),
-      response: JSON.stringify(next.view), entry: JSON.stringify({ Command: { seat, command } }) });
+      response: JSON.stringify(next.view), entry: JSON.stringify({ Command: { seat, command, ...(publicPasses.length ? { publicPasses } : {}) } }) });
     if (committed) return next.view;
     const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
     if (concurrent) return concurrent;
@@ -226,7 +238,7 @@ export class RoomService {
       }
       if (next.version !== room.version + 1) throw new Error('Unexpected session revision');
       const values = { id, expectedVersion: room.version, state: next.state, version: next.version, nonce: secure(16),
-        entry: JSON.stringify({ SessionEvents: { events: next.journal } }) };
+        entry: this.sessionEntry(room.state, next) };
       const accepted = next.outcome === 'accepted';
       const committed = accepted
         ? await this.store.command({ ...values, seat, commandId: body.commandId, intentHash: hash, response: JSON.stringify(next.view) })

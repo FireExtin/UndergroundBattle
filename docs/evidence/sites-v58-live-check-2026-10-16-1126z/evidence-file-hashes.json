@@ -1,0 +1,22 @@
+[
+  {
+    "file": "normal-browser.json",
+    "bytes": 1778,
+    "sha256": "ff32ac916637767d186e2e63be8269d9c12c791063e9a7c289fbb896e118061e"
+  },
+  {
+    "file": "normal-browser.png",
+    "bytes": 38818,
+    "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+  },
+  {
+    "file": "normal_browser.py",
+    "bytes": 4483,
+    "sha256": "2f6a07714141d14eeb834911e1f8a94b9e1ff5a99a30b952ddc0ac5c8002a591"
+  },
+  {
+    "file": "official-identity.json",
+    "bytes": 1650,
+    "sha256": "f86e44eddb800f24b2d63e13544935b19430eef82ced2823861853d970f1b087"
+  }
+]

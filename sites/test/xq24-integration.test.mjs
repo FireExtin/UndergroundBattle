@@ -1,3 +1,4 @@
+import { assertSessionJournal } from './assert-session-journal.mjs';
 // Synthetic Native layouts; actual production WASM/RoomService/workerd/D1.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -43,7 +44,7 @@ for (const scenario of fixtures.scenarios) test(`XQ24 ${scenario.name}: Native j
     assert.deepEqual(view,step.expected.view);
     assert.equal((await store.room(id)).state,step.expected.state);
     const row=await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(id,step.expected.version).first();
-    assert.deepEqual(JSON.parse(row.entry),{SessionEvents:{events:step.expected.journal}});
+    assertSessionJournal(row.entry, step.expected.journal);
     for(let s=0;s<tokens.length;s++) assert.deepEqual(await service.state(id,'Bearer '+tokens[s],null),step.views[s]);
     // Every pause and resume crosses a fresh workerd + SQLite instance.
     if(['pauseRoom','resumeRoom'].includes(step.command.action.kind)) {await reopen(step.expected.state);reopened++;}

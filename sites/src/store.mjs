@@ -9,6 +9,12 @@ export class RoomStore {
   receipt(id, commandId) {
     return this.stmt('SELECT intent_hash,response FROM commands WHERE room_id=? AND command_id=?', id, commandId).first();
   }
+  async publicPasses(id, version) {
+    // Metadata is committed in the existing journal CAS transaction. Older rows
+    // remain unchanged; no schema migration or opaque-state rewrite is needed.
+    const rows = await this.stmt("SELECT version,coalesce(json_extract(entry,'$.SessionEvents.publicPasses'),json_extract(entry,'$.Command.publicPasses')) AS events FROM journal WHERE room_id=? AND version<=? AND (json_type(entry,'$.SessionEvents.publicPasses')='array' OR json_type(entry,'$.Command.publicPasses')='array') ORDER BY version DESC LIMIT 50", id, version).all();
+    return rows.results.reverse().flatMap(row => JSON.parse(row.events).map(record => ({ record, version: row.version }))).slice(-50);
+  }
   entryReceipt(requestHash) { return this.stmt('SELECT intent_hash,response FROM entry_receipts WHERE request_hash=?', requestHash).first(); }
   async create({ id, invite, state, nonce, tokenHash, requestHash, intentHash, response }) {
     await this.db.batch([

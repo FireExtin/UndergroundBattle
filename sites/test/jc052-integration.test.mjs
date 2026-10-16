@@ -1,3 +1,4 @@
+import { assertSessionJournal } from './assert-session-journal.mjs';
 // Prepared actual Native77 cases; local workerd/D1, not browser or online play.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -50,7 +51,7 @@ for(const row of fixture.cases) test(`JC052 ${row.name}: complete Native command
   for(let seat=0;seat<tokens.length;seat++)
     assert.deepEqual(await service.state(id,'Bearer '+tokens[seat],null),row.afterViews[seat]);
   const journal=await db.prepare('SELECT entry FROM journal WHERE room_id=?').bind(id).first();
-  assert.deepEqual(JSON.parse(journal.entry),{SessionEvents:{events:row.expected.journal}});
+  assertSessionJournal(journal.entry, row.expected.journal);
   await mf.dispose();mf=new Miniflare(options);db=await mf.getD1Database('DB');store=new RoomStore(db);
   assert.equal((await store.room(id)).state,row.expected.state);
   const duplicate=await mf.dispatchFetch(`http://localhost/api/rooms/${id}/commands`,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tokens[row.seat]},body:JSON.stringify(row.command)});

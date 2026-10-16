@@ -1,3 +1,4 @@
+import { assertSessionJournal } from './assert-session-journal.mjs';
 // JC060 continuous prepared Native77 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
@@ -47,7 +48,7 @@ for (const scenario of fixtures.scenarios) test(`JC060 ABI77 ${scenario.name}: c
       const view = await service.command(id, 'Bearer ' + tokens[step.seat], step.command);
       assert.deepEqual(view, step.expected.view, step.inputName);
       const journal = await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(id, step.expected.version).first();
-      assert.deepEqual(JSON.parse(journal.entry), { SessionEvents: { events: step.expected.journal } });
+      assertSessionJournal(journal.entry, step.expected.journal);
       firstAccepted ||= step; accepted++; lastAccepted = step; lastView = view;
     }
     assert.equal((await store.room(id)).state, step.expected.state, step.inputName);

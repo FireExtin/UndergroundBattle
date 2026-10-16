@@ -80,6 +80,11 @@ export type ResponseIntentWindow = {
   members: { playerId: string; status: 'undecided' | 'composing' | 'passed'; deadlineMs?: number }[];
   canBegin: boolean; myIntentId?: string;
 };
+export type PassRecord = {
+  id: string; version: number; playerId: string; playerName: string; turn: number;
+  phase: string; step: string; region: { index: number; instanceId: string; name: string } | null;
+  responseWindowId?: string; reason: 'pass' | 'response' | 'cancelResponse' | 'timeout';
+};
 export type View = {
   revealedHands?: { playerId: string; cards: Card[] }[];
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
@@ -95,6 +100,7 @@ export type View = {
   pendingChoice: Choice | null;
   waitingChoice?: { playerId: string; title: string; kind: string } | null;
   legalActions: LegalAction[]; log: { version: number; text: string }[];
+  passHistory?: PassRecord[];
   versions: { rules: string; cardPool: string; engine: string };
   worldDeckCount?: number;
   yourDeck?: import('./deckLibrary').DeckDraft | null;

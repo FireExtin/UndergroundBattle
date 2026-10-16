@@ -2,12 +2,13 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { RoomService, digest } from '../src/service.mjs';
 import { storageFailure, retryOriginalCommand } from '../src/storage-errors.mjs';
+const publicBeforePass = () => JSON.stringify({ players: [{ seat: 0, id: 'p0', name: '甲' }], turn: 1, phase: 'action', step: 'team:0', regions: [] });
 
 test('an ambiguous D1 commit retries the identical command and returns its receipt without applying twice', async () => {
   const response = { roomId: 'room', version: 2, you: 'p0' };
   const token = 'a'.repeat(64), command = { commandId: 'original-id', expectedVersion: 1, action: { kind: 'pass' } };
   let receipt = null, applies = 0, writes = 0;
-  const service = new RoomService({}, { apply: () => {
+  const service = new RoomService({}, { view: publicBeforePass, apply: () => {
     applies++; return JSON.stringify({ state: 'new-opaque-state', version: 2, seat: 0, view: response });
   } });
   service.store = {
@@ -34,7 +35,7 @@ test('storage diagnostics expose fixed labels and do not retry quota, constraint
 test('a failure before commit retries the original identity, while an exhausted failure never returns success', async () => {
   const token = 'c'.repeat(64), command = { commandId: 'unchanged-id', expectedVersion: 1, action: { kind: 'pass' } };
   const view = { version: 2, you: 'p0' }; let receipt = null, calls = 0, commits = 0;
-  const service = new RoomService({}, { apply: () => JSON.stringify({ state: 'new', version: 2, seat: 0, view }) });
+  const service = new RoomService({}, { view: publicBeforePass, apply: () => JSON.stringify({ state: 'new', version: 2, seat: 0, view }) });
   service.store = {
     seat: async () => ({ seat: 0 }), receipt: async () => receipt,
     room: async () => ({ version: 1, state: 'old' }),

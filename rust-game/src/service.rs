@@ -767,3 +767,41 @@ pub fn router(store: Store) -> Router {
         )
         .with_state(store)
 }
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod public_pass_metadata_tests {
+    use super::*;
+
+    #[test]
+    fn public_pass_metadata_preserves_native_journal_replay() {
+        let before = RoomEnvelope::from_game(crate::jc029_tests::game(0));
+        let command = RoomCommand {
+            command_id: "public-pass-replay-test".into(),
+            expected_version: before.revision,
+            action: SessionAction::Game {
+                action: crate::model::Action::new("pass"),
+            },
+        };
+        let accepted = before.transition(0, Some(command), 0).unwrap();
+        assert_eq!(accepted.outcome, "accepted");
+        let row = serde_json::json!({"SessionEvents": {
+            "events": accepted.journal,
+            "publicPasses": [{"id": format!("{}:0", accepted.version),
+                "version": accepted.version, "playerId": "p0", "playerName": "P0",
+                "turn": before.turn, "phase": "action", "step": "team:0",
+                "region": null, "reason": "pass"}]
+        }});
+        let journal: Journal = serde_json::from_value(row).unwrap();
+        let Journal::SessionEvents { events } = journal else {
+            panic!("public metadata changed the journal kind");
+        };
+        let replayed = before.replay_events(&events).unwrap();
+        assert_eq!(serde_json::to_string(&replayed).unwrap(), accepted.state);
+        for seat in 0..before.players.len() {
+            assert_eq!(
+                serde_json::to_value(replayed.view(seat, 0)).unwrap(),
+                serde_json::to_value(RoomEnvelope::from_persisted(&accepted.state).unwrap().view(seat, 0)).unwrap()
+            );
+        }
+    }
+}

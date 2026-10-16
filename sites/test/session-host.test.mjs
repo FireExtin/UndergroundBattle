@@ -19,6 +19,9 @@ const expired = version => JSON.stringify({ state: `opaque-${version}`, version,
   errorMessage: '原响应窗口已结束', journal: [{ Tick: { server_now_ms: 6000 } }] });
 function harness(kernel, now = () => 6000) {
   const service = new RoomService({}, { supportsPacing: () => true, ...kernel }, now);
+  service.kernel.view ??= () => JSON.stringify({ ...actorView(4), turn: 1, phase: 'action', step: 'team:0', regions: [],
+    players: [{ id: 'p0', seat: 0, name: '甲' }], serverNowMs: 1000,
+    responseWindow: { id: 'response:1', members: [{ playerId: 'p0', status: 'undecided', deadlineMs: 5000 }] } });
   const current = { id: 'clock-room', state: 'opaque-4', version: 4 };
   const receipts = new Map(), writes = [], ticks = [];
   service.store = {
@@ -59,7 +62,9 @@ test('a matching-version GET persists an expired window before deciding to retur
   assert.equal(await h.service.state('clock-room', authorization, '5'), null);
   assert.equal(h.ticks.length, 1); assert.equal(h.writes.length, 0); assert.equal(h.receipts.size, 0);
   assert.equal(h.ticks[0].expectedVersion, 4);
-  assert.deepEqual(JSON.parse(h.ticks[0].entry), { SessionEvents: { events: [{ Tick: { server_now_ms: 6000 } }] } });
+  const recorded = JSON.parse(h.ticks[0].entry).SessionEvents;
+  assert.deepEqual(recorded.events, [{ Tick: { server_now_ms: 6000 } }]);
+  assert.deepEqual(recorded.publicPasses.map(record => [record.playerId, record.phase, record.region, record.reason]), [['p0','action',null,'timeout']]);
 });
 
 test('an expired response commits only the system tick and never an accepted user receipt', async () => {

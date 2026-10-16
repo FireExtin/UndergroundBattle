@@ -1,3 +1,4 @@
+import { assertSessionJournal } from './assert-session-journal.mjs';
 // Local real MSJC09 + normal HTTP commands. No initial layout/DB state injection,
 // no browser or remote natural-play claim. Persistence reopen is actual workerd/D1.
 import { test } from 'node:test';
@@ -111,7 +112,7 @@ test('current real MSJC09 permits first/rear paid activation and restores four-s
         assert.deepEqual(await new RoomService(db,kernel,()=>deadline).state(sessions[0].roomId,'Bearer '+sessions[seat].token,null),atExpiry.view);
         assert.equal((await new RoomStore(db).room(sessions[0].roomId)).state,atExpiry.state);
         const journal=await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(sessions[0].roomId,atExpiry.version).first();
-        assert.deepEqual(JSON.parse(journal.entry),{SessionEvents:{events:atExpiry.journal}});
+        assertSessionJournal(journal.entry, atExpiry.journal);
         expiredHolderTransitions++;
         all=await views();checkPrivacy(all);
         if (all[seat].responseWindow) {

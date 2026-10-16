@@ -1,3 +1,4 @@
+import { assertSessionJournal } from './assert-session-journal.mjs';
 // JC046 continuous prepared Native77 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
@@ -59,7 +60,7 @@ for (const scenario of fixtures.scenarios) test(`JC046 ABI77 ${scenario.name}: c
       const view = await service.command(id, 'Bearer ' + tokens[step.seat], step.command);
       assert.deepEqual(view, step.expected.view, step.inputName);
       const journal = await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(id, step.expected.version).first();
-      assert.deepEqual(JSON.parse(journal.entry), { SessionEvents: { events: step.expected.journal } });
+      assertSessionJournal(journal.entry, step.expected.journal);
       firstAccepted ||= step; accepted++; lastAccepted = step; lastView = view;
     }
     assert.equal((await store.room(id)).state, step.expected.state, step.inputName);
@@ -133,7 +134,7 @@ test('JC046 mandatory sacrifice: pauseRoom, paused D1 reopen, resumeRoom and all
     assert.deepEqual(view,expected.view);
     assert.equal((await store.room(id)).state,expected.state);
     const journal=await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(id,expected.version).first();
-    assert.deepEqual(JSON.parse(journal.entry),{SessionEvents:{events:expected.journal}});
+    assertSessionJournal(journal.entry, expected.journal);
     for(let viewer=0;viewer<tokens.length;viewer++)assert.deepEqual(await service.state(id,'Bearer '+tokens[viewer],null),JSON.parse(abi.view(expected.state,viewer)));
     accepted++;return expected;
   };
