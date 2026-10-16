@@ -7,6 +7,12 @@
 .hg-app .hg-table .hg-continuous-pass[data-continuous-pass='active'] > span { color: #f4d48b; font-weight: 600; }
 @media (max-width: 1059px) {
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector.hg-inspector-active { position: fixed; top: auto; left: 12px; right: 12px; bottom: calc(var(--hg-dock-height, 202px) + 8px); width: auto; margin: 0; max-height: calc(100dvh - var(--hg-dock-height, 202px) - 85px); overflow-y: auto; z-index: 45; }
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector.hg-inspector-active:has(.hg-object-targeting) { max-height: min(240px, calc(100dvh - var(--hg-dock-height, 202px) - 85px)); padding: 8px 10px; }
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector:has(.hg-object-targeting) > :is(.hg-inspected-card, .hg-small-read, .hg-attached-cards, .hg-strategy-note, .hg-wait-note, .hg-object-actions) { display: none; }
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector:has(.hg-object-targeting) > .hg-object-context { margin: 2px 0; font-size: 10px; }
+  .hg-app .hg-table .hg-object-targeting { margin-top: 4px; padding: 6px; }
+  .hg-app .hg-table .hg-object-targeting > p:not([role='status']) { display: none; }
+  .hg-app .hg-table .hg-dock-action[data-targeting='true'] .hg-continuous-pass > :is(label, button, small) { display: none; }
   .hg-app .hg-table .hg-dock-action { flex-wrap: wrap; }
   .hg-app .hg-table .hg-dock-action > .hg-auto-pass { order: 2; flex: 1 1 100%; width: 100%; min-width: 0; max-width: 100%; margin: 0; padding: 5px; }
   .hg-app .hg-table .hg-dock-action > .hg-actions, .hg-app .hg-table .hg-dock-action > .hg-button { order: 1; }

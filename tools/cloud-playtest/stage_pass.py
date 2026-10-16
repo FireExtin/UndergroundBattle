@@ -127,7 +127,16 @@ async def main():
             }''')
             check('mobile-manual-card-action-is-not-covered-by-dock',result['mobileActionLayout']['buttonCenterReachable'] and result['mobileActionLayout']['inspectorBottom']<=result['mobileActionLayout']['dockTop'])
             await deploy.click()
-            await attacker.locator('[data-region-available="true"] .hg-region-center').first.click()
+            target_region=attacker.locator('[data-region-available="true"] .hg-region-center').first
+            await target_region.evaluate("element => { element.scrollIntoView({block:'start',inline:'nearest'}); window.scrollBy(0,-96); }")
+            result['mobileTargetLayout']=await target_region.evaluate('''button => {
+                const b=button.getBoundingClientRect(),hit=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);
+                const i=document.querySelector('.hg-inspector').getBoundingClientRect(),d=document.querySelector('.hg-hand-dock').getBoundingClientRect();
+                return {targetCenterReachable:button===hit||button.contains(hit),targetTop:b.top,targetBottom:b.bottom,
+                    inspectorTop:i.top,inspectorBottom:i.bottom,dockTop:d.top};
+            }''')
+            check('mobile-board-target-remains-reachable-while-choosing',result['mobileTargetLayout']['targetCenterReachable'])
+            await target_region.click()
             await attacker.locator('[aria-label="确认目标行动"] [data-action-kind="deploy"]').click()
             await responder.get_by_role('button',name='不连锁，让过',exact=True).wait_for()
             before=len(commands(responder_label));await begin(responder,'end')
