@@ -36,6 +36,7 @@ describe('official factions and curated deck boundaries', () => {
   it('keeps eight faction descriptions separate from five selectable curated decks and does not unlock societies or construction', () => {
     const create = vi.fn();
     const { container } = render(<Lobby catalog={catalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: '入席', exact: true }));
     expect(container.querySelectorAll('[data-deck-id]')).toHaveLength(5);
     expect(screen.getByRole('heading', { name: '5 套自组预组' })).toBeInTheDocument();
     expect(screen.getByText('7 种玩家牌 · 白、紫未实现 · 查看覆盖')).toBeInTheDocument();

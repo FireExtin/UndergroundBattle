@@ -1,0 +1,122 @@
+{
+  "kind": "local-production-only",
+  "atUtc": "2026-10-16T01:48:59.290680+00:00",
+  "viewport": {
+    "width": 1366,
+    "height": 900
+  },
+  "checks": [
+    {
+      "name": "homepage-has-no-card-images",
+      "passed": true
+    },
+    {
+      "name": "homepage-has-no-card-requests",
+      "passed": true
+    },
+    {
+      "name": "collection-keeps-full-keyboard-grid",
+      "passed": true
+    },
+    {
+      "name": "collection-defers-most-images",
+      "passed": true
+    },
+    {
+      "name": "collection-bounded-initial-images",
+      "passed": false
+    }
+  ],
+  "snapshots": [
+    {
+      "name": "home-cold",
+      "dom": {
+        "hash": "",
+        "cardRows": 0,
+        "cardImageElements": 0,
+        "loadedCardImages": 0,
+        "deferredFaces": 0,
+        "libraryMounted": false,
+        "overflow": false,
+        "images": []
+      },
+      "requestsSoFar": 5,
+      "encodedBytesSoFar": 162883,
+      "cardRequestsSoFar": 0,
+      "cardEncodedBytesSoFar": 0,
+      "cardRequests": []
+    },
+    {
+      "name": "collection-first-visible",
+      "dom": {
+        "hash": "#collection",
+        "cardRows": 133,
+        "cardImageElements": 0,
+        "loadedCardImages": 0,
+        "deferredFaces": 133,
+        "libraryMounted": true,
+        "overflow": false,
+        "images": []
+      },
+      "requestsSoFar": 6,
+      "encodedBytesSoFar": 163465,
+      "cardRequestsSoFar": 0,
+      "cardEncodedBytesSoFar": 0,
+      "cardRequests": []
+    }
+  ],
+  "errors": [],
+  "posts": [],
+  "passed": false,
+  "failure": "AssertionError: collection-bounded-initial-images",
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8090/",
+      "method": "GET",
+      "type": "Document",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 582
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-DffRJvK2.js",
+      "method": "GET",
+      "type": "Script",
+      "status": 200,
+      "mimeType": "text/javascript",
+      "encodedBytes": 111632
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-CTQbSEUe.css",
+      "method": "GET",
+      "type": "Stylesheet",
+      "status": 200,
+      "mimeType": "text/css",
+      "encodedBytes": 33768
+    },
+    {
+      "url": "http://127.0.0.1:8090/api/catalog",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mimeType": "application/json",
+      "encodedBytes": 16319
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 582
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 582
+    }
+  ]
+}

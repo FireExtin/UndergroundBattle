@@ -40,7 +40,10 @@ function viewFor(authorization?: string) {
     roomId: saved?.roomId || 'room-INVITE', inviteCode: saved?.inviteCode || 'INVITE',
     you: `p${saved?.seat || 0}`, players: seats.filter(s => s.roomId === saved?.roomId).map(s => ({ ...testView.players[0], id: `p${s.seat}`, seat: s.seat })) };
 }
-async function lobbyReady() { await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeInTheDocument()); }
+async function lobbyReady() {
+  fireEvent.click(await screen.findByRole('button', { name: '入席', exact: true }));
+  await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeInTheDocument());
+}
 async function create() {
   await lobbyReady(); fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '测试玩家' } });
   fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));

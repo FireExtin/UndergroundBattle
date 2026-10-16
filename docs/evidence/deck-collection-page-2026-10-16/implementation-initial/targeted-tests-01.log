@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run src/game/DeckCollectionPage.test.tsx src/game/DeckCardVisibility.test.tsx src/game/DeckLibrary.test.tsx src/game/DeckBuilderGrid.test.tsx src/game/Lobby.test.tsx src/game/factions.test.tsx src/game/PlayerSessions.test.tsx src/game/RecoveryReviewRegression.test.tsx src/game/BrowserPersistenceFeedback.test.tsx src/game/CommandConflictInteraction.test.tsx src/game/SocietyDeck.test.tsx --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+
+ Test Files  11 passed (11)
+      Tests  92 passed (92)
+   Start at  01:58:34
+   Duration  40.53s (transform 811ms, setup 1.82s, import 1.93s, tests 26.87s, environment 7.68s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

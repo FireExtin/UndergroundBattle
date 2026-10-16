@@ -1,0 +1,953 @@
+{
+  "kind": "local-production-only",
+  "atUtc": "2026-10-16T01:51:29.435114+00:00",
+  "viewport": {
+    "width": 1366,
+    "height": 900
+  },
+  "checks": [
+    {
+      "name": "homepage-has-no-card-images",
+      "passed": true
+    },
+    {
+      "name": "homepage-has-no-card-requests",
+      "passed": true
+    },
+    {
+      "name": "collection-keeps-full-keyboard-grid",
+      "passed": true
+    },
+    {
+      "name": "collection-defers-most-images",
+      "passed": true
+    },
+    {
+      "name": "collection-bounded-initial-images",
+      "passed": true
+    },
+    {
+      "name": "collection-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "grid-right-arrow-focus",
+      "passed": true
+    },
+    {
+      "name": "grid-end-focus",
+      "passed": true
+    },
+    {
+      "name": "grid-home-focus",
+      "passed": true
+    },
+    {
+      "name": "detail-original-image",
+      "passed": true
+    },
+    {
+      "name": "detail-closes-and-restores-focus",
+      "passed": true
+    },
+    {
+      "name": "real-field-filter-intersection",
+      "passed": true
+    },
+    {
+      "name": "copy-limit-shown",
+      "passed": true
+    },
+    {
+      "name": "invalid-copy-count-cannot-select",
+      "passed": true
+    },
+    {
+      "name": "valid-deck-can-select",
+      "passed": true
+    },
+    {
+      "name": "filter-keeps-selected-count",
+      "passed": true
+    },
+    {
+      "name": "reload-returns-to-collection",
+      "passed": true
+    },
+    {
+      "name": "saved-deck-and-count-restore",
+      "passed": true
+    },
+    {
+      "name": "filters-restore",
+      "passed": true
+    },
+    {
+      "name": "selected-draft-enters-play-page",
+      "passed": true
+    },
+    {
+      "name": "hidden-collection-has-no-images-or-rows",
+      "passed": true
+    },
+    {
+      "name": "navigation-keeps-unsaved-work",
+      "passed": true
+    },
+    {
+      "name": "reload-keeps-unsaved-work",
+      "passed": true
+    },
+    {
+      "name": "reload-keeps-explicit-selected-snapshot",
+      "passed": true
+    },
+    {
+      "name": "editing-does-not-mutate-selected-snapshot",
+      "passed": true
+    },
+    {
+      "name": "browser-back-navigation",
+      "passed": true
+    },
+    {
+      "name": "no-browser-errors",
+      "passed": true
+    },
+    {
+      "name": "no-gameplay-posts",
+      "passed": true
+    }
+  ],
+  "snapshots": [
+    {
+      "name": "home-cold",
+      "dom": {
+        "hash": "",
+        "cardRows": 0,
+        "cardImageElements": 0,
+        "loadedCardImages": 0,
+        "deferredFaces": 0,
+        "libraryMounted": false,
+        "overflow": false,
+        "images": []
+      },
+      "requestsSoFar": 5,
+      "encodedBytesSoFar": 162925,
+      "cardRequestsSoFar": 0,
+      "cardEncodedBytesSoFar": 0,
+      "cardRequests": []
+    },
+    {
+      "name": "collection-first-visible",
+      "dom": {
+        "hash": "#collection",
+        "cardRows": 133,
+        "cardImageElements": 5,
+        "loadedCardImages": 5,
+        "deferredFaces": 128,
+        "libraryMounted": true,
+        "overflow": false,
+        "images": [
+          {
+            "path": "/cards/JC125.jpg",
+            "top": 656,
+            "bottom": 869
+          },
+          {
+            "path": "/cards/LC19.jpg",
+            "top": 656,
+            "bottom": 869
+          },
+          {
+            "path": "/cards/LC20.jpg",
+            "top": 656,
+            "bottom": 869
+          },
+          {
+            "path": "/cards/LC21.jpg",
+            "top": 656,
+            "bottom": 869
+          },
+          {
+            "path": "/cards/LC22.jpg",
+            "top": 656,
+            "bottom": 869
+          }
+        ]
+      },
+      "requestsSoFar": 11,
+      "encodedBytesSoFar": 2270256,
+      "cardRequestsSoFar": 5,
+      "cardEncodedBytesSoFar": 2106751,
+      "cardRequests": [
+        {
+          "url": "http://127.0.0.1:8090/cards/JC125.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 285337
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC19.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 469605
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC20.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 472152
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC21.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 437533
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC22.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 442124
+        }
+      ]
+    },
+    {
+      "name": "home-after-collection",
+      "dom": {
+        "hash": "#home",
+        "cardRows": 0,
+        "cardImageElements": 0,
+        "loadedCardImages": 0,
+        "deferredFaces": 0,
+        "libraryMounted": false,
+        "overflow": false,
+        "images": []
+      },
+      "requestsSoFar": 32,
+      "encodedBytesSoFar": 8749281,
+      "cardRequestsSoFar": 18,
+      "cardEncodedBytesSoFar": 8568003,
+      "cardRequests": [
+        {
+          "url": "http://127.0.0.1:8090/cards/JC125.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 285337
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC19.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 469605
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC20.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 472152
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC21.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 437533
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC22.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 442124
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC086.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 321792
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC084.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 316765
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ36.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1471789
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JZ49.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 499275
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JZ48.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 499205
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1302606
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 293799
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 325088
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1430253
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        }
+      ]
+    },
+    {
+      "name": "collection-restored",
+      "dom": {
+        "hash": "#collection",
+        "cardRows": 1,
+        "cardImageElements": 1,
+        "loadedCardImages": 1,
+        "deferredFaces": 13,
+        "libraryMounted": true,
+        "overflow": false,
+        "images": [
+          {
+            "path": "/cards/WM056.jpg",
+            "top": 656,
+            "bottom": 869
+          }
+        ]
+      },
+      "requestsSoFar": 39,
+      "encodedBytesSoFar": 8766815,
+      "cardRequestsSoFar": 19,
+      "cardEncodedBytesSoFar": 8568173,
+      "cardRequests": [
+        {
+          "url": "http://127.0.0.1:8090/cards/JC125.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 285337
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC19.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 469605
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC20.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 472152
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC21.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 437533
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/LC22.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 442124
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC086.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 321792
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC084.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 316765
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ36.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1471789
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JZ49.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 499275
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JZ48.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 499205
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1302606
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 293799
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 325088
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 1430253
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        },
+        {
+          "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+          "method": "GET",
+          "type": "Image",
+          "status": 304,
+          "mimeType": "image/jpeg",
+          "encodedBytes": 170
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "posts": [],
+  "passed": true,
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8090/",
+      "method": "GET",
+      "type": "Document",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 580
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-emDyqnsi.js",
+      "method": "GET",
+      "type": "Script",
+      "status": 200,
+      "mimeType": "text/javascript",
+      "encodedBytes": 111667
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-CfX5jboP.css",
+      "method": "GET",
+      "type": "Stylesheet",
+      "status": 200,
+      "mimeType": "text/css",
+      "encodedBytes": 33779
+    },
+    {
+      "url": "http://127.0.0.1:8090/api/catalog",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mimeType": "application/json",
+      "encodedBytes": 16319
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 580
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 580
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC125.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 285337
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/LC19.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 469605
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/LC20.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 472152
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/LC21.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 437533
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/LC22.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 442124
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC086.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 321792
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC084.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 316765
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/XQ36.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 1471789
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JZ49.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 499275
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JZ48.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 499205
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 1302606
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 293799
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 325088
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 200,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 1430253
+    },
+    {
+      "url": "http://127.0.0.1:8090/",
+      "method": "GET",
+      "type": "Document",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-emDyqnsi.js",
+      "method": "GET",
+      "type": "Script",
+      "status": 304,
+      "mimeType": "text/javascript",
+      "encodedBytes": 214
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-CfX5jboP.css",
+      "method": "GET",
+      "type": "Stylesheet",
+      "status": 304,
+      "mimeType": "text/css",
+      "encodedBytes": 207
+    },
+    {
+      "url": "http://127.0.0.1:8090/api/catalog",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mimeType": "application/json",
+      "encodedBytes": 16312
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC002.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/JC003.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/XQ03.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/",
+      "method": "GET",
+      "type": "Document",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-emDyqnsi.js",
+      "method": "GET",
+      "type": "Script",
+      "status": 304,
+      "mimeType": "text/javascript",
+      "encodedBytes": 214
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-CfX5jboP.css",
+      "method": "GET",
+      "type": "Stylesheet",
+      "status": 304,
+      "mimeType": "text/css",
+      "encodedBytes": 207
+    },
+    {
+      "url": "http://127.0.0.1:8090/api/catalog",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mimeType": "application/json",
+      "encodedBytes": 16319
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/",
+      "method": "GET",
+      "type": "Document",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-emDyqnsi.js",
+      "method": "GET",
+      "type": "Script",
+      "status": 304,
+      "mimeType": "text/javascript",
+      "encodedBytes": 214
+    },
+    {
+      "url": "http://127.0.0.1:8090/assets/index-CfX5jboP.css",
+      "method": "GET",
+      "type": "Stylesheet",
+      "status": 304,
+      "mimeType": "text/css",
+      "encodedBytes": 207
+    },
+    {
+      "url": "http://127.0.0.1:8090/api/catalog",
+      "method": "GET",
+      "type": "Fetch",
+      "status": 200,
+      "mimeType": "application/json",
+      "encodedBytes": 16319
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other",
+      "status": 200,
+      "mimeType": "text/html",
+      "encodedBytes": 208
+    },
+    {
+      "url": "http://127.0.0.1:8090/cards/WM056.jpg",
+      "method": "GET",
+      "type": "Image",
+      "status": 304,
+      "mimeType": "image/jpeg",
+      "encodedBytes": 170
+    },
+    {
+      "url": "http://127.0.0.1:8090/favicon.ico",
+      "method": "GET",
+      "type": "Other"
+    }
+  ]
+}

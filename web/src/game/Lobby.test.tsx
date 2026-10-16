@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Lobby } from './Lobby';
 import { DECK_LIBRARY_STORAGE_KEY } from './deckLibrary';
@@ -12,10 +12,13 @@ const draftCatalog: DeckCatalog = {
   deckBuildRules: { minimumCards: 50, serviceCardCapacity: 2048, societySupported: false },
   cards: testCatalog.cards.map(card => ({ ...card, supported: true, deckCopyLimit: null })),
 };
+const openPage = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name, exact: true }));
+const openEditor = () => { openPage('卡牌收藏'); fireEvent.click(screen.getByRole('button', { name: /牌组设置与模板/ })); };
 describe('Chinese invitation lobby', () => {
   it('lets a player choose a 50-card deck and create a four-seat team room', () => {
     const create = vi.fn(); const catalog = { ...testCatalog, decks: [...testCatalog.decks, { ...testCatalog.decks[0], id: 'hunters', name: '公路猎手' }] };
     render(<Lobby catalog={catalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);
+    openPage('入席');
     fireEvent.change(screen.getByRole('textbox', { name: '你的称呼' }), { target: { value: '队长' } });
     fireEvent.click(screen.getByRole('button', { name: /公路猎手/ }));
     fireEvent.click(screen.getByRole('button', { name: /四人协作/ }));
@@ -35,7 +38,9 @@ describe('Chinese invitation lobby', () => {
   it('does not send a custom draft ID through the preset entry callbacks', () => {
     const create = vi.fn(); const join = vi.fn();
     render(<Lobby catalog={draftCatalog} busy={false} onCreate={create} onJoin={join} retry={vi.fn()} />);
+    openPage('入席');
     fireEvent.change(screen.getByRole('textbox', { name: '你的称呼' }), { target: { value: '队长' } });
+    openEditor();
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
     fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
     expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeDisabled();
@@ -48,7 +53,9 @@ describe('Chinese invitation lobby', () => {
   it('routes a selected custom draft as a full object to the create callback', () => {
     const presetCreate = vi.fn(); const customCreate = vi.fn(); const select = vi.fn();
     render(<Lobby catalog={draftCatalog} busy={false} onCreate={presetCreate} onJoin={vi.fn()} retry={vi.fn()} onSelectDraft={select} onCreateDraft={customCreate} />);
+    openPage('入席');
     fireEvent.change(screen.getByRole('textbox', { name: '你的称呼' }), { target: { value: '队长' } });
+    openEditor();
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
     fireEvent.change(screen.getByRole('textbox', { name: '牌组名称' }), { target: { value: '我的构筑' } });
     fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
@@ -62,9 +69,12 @@ describe('Chinese invitation lobby', () => {
     history.replaceState({}, '', '/?invite=CUSTOM-ROOM'); const join = vi.fn(); const presetJoin = vi.fn();
     render(<Lobby catalog={draftCatalog} busy={false} onCreate={vi.fn()} onJoin={presetJoin} retry={vi.fn()} onJoinDraft={join} />);
     fireEvent.change(screen.getByRole('textbox', { name: '你的称呼' }), { target: { value: '伙伴' } });
+    openEditor();
     fireEvent.click(screen.getByRole('button', { name: '复制为草稿' }));
     fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
+    openPage('卡牌收藏');
     fireEvent.change(screen.getByRole('spinbutton', { name: '无知路人（JC125）张数' }), { target: { value: '1' } });
+    openPage('入席');
     fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
     expect(join).toHaveBeenCalledWith('CUSTOM-ROOM', '伙伴', expect.objectContaining({ cards: [{ cardId: 'JC125', count: 50 }] }));
     expect(presetJoin).not.toHaveBeenCalled();

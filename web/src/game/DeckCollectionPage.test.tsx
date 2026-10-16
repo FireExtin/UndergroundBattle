@@ -113,7 +113,7 @@ describe('separate collection and invitation pages', () => {
     });
     mount(); nav('卡牌收藏');
     fireEvent.click(screen.getByRole('button', { name: '添加 无知路人（JC125）' }));
-    expect(screen.getByRole('status')).toHaveTextContent('当前编辑进度无法自动恢复');
+    expect(screen.getByText(/当前编辑进度无法自动恢复/)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
     expect(readDeckLibrary().drafts[0].cards).toEqual([{ cardId: 'JC125', count: 1 }]);
   });
