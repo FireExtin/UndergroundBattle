@@ -149,6 +149,8 @@ async def main():
                     await page.get_by_role('dialog',name='待完成的选择',exact=True).get_by_role('button',name='保留全部手牌',exact=True).click()
                 await expect(host.get_by_role('dialog',name='待完成的选择',exact=True)).to_have_count(0)
                 await expect(friend.get_by_role('dialog',name='待完成的选择',exact=True)).to_have_count(0)
+                await expect(host.locator('.hg-phase-line')).not_to_contain_text('再调度')
+                await expect(friend.locator('.hg-phase-line')).not_to_contain_text('再调度')
                 check('both-seats-complete-initial-choices-through-real-ui',True)
                 await expect(friend.locator('.hg-player-you .hg-player-strip > small')).to_contain_text('隔离已选牌组B · 原始 52 张')
                 check('started-table-keeps-applied-deck-B-and-no-deck-change-control',await friend.get_by_role('button',name='应用所选牌组到此席位',exact=True).count()==0)

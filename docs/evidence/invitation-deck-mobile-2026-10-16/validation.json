@@ -1,0 +1,82 @@
+{
+  "sourceCommit": "3305bd928b6642c39c58c1a0ad92394bfcf234c3",
+  "webTree": "c194becc7fa31f73f3d09826cb28dcaf1365d0b0",
+  "recordedAtUtc": "2026-10-16T06:55:03.606644+00:00",
+  "finalFullFrontend": {
+    "label": "final full run",
+    "source": "3305bd928b6642c39c58c1a0ad92394bfcf234c3",
+    "files": 124,
+    "passed": 1169,
+    "failed": 0,
+    "pending": 0,
+    "success": true,
+    "startedAtEpochMs": 1792133371454
+  },
+  "fullRunHistory": [
+    {
+      "label": "initial full run before visibility assertion update",
+      "files": 124,
+      "passed": 1166,
+      "failed": 1,
+      "pending": 0,
+      "success": false,
+      "startedAtEpochMs": 1792132690119,
+      "checkpointForContext": "7d009aab1ec0bb7369a599e34a0313506e1ca75a",
+      "approvalEvidence": false
+    },
+    {
+      "label": "intermediate full run before final room-selection follow-up",
+      "files": 124,
+      "passed": 1168,
+      "failed": 0,
+      "pending": 0,
+      "success": true,
+      "startedAtEpochMs": 1792133022873,
+      "checkpointForContext": "bbe7612772e6a3578db1ab3c2d9377b13ae80fca",
+      "approvalEvidence": false
+    },
+    {
+      "label": "final full run",
+      "source": "3305bd928b6642c39c58c1a0ad92394bfcf234c3",
+      "files": 124,
+      "passed": 1169,
+      "failed": 0,
+      "pending": 0,
+      "success": true,
+      "startedAtEpochMs": 1792133371454
+    }
+  ],
+  "historyNote": "Do not sum runs. The initial failure asserted that deck naming should be hidden; this expectation was updated to the requested visible naming flow. The final run includes the extra in-room deck-selection regression.",
+  "commands": {
+    "fullFrontend": "node tools/build-storage.mjs -- npm --prefix web test -- --maxWorkers=1 --reporter=default --reporter=json --outputFile=/workspace/ready-sync-20261016/review-full-vitest.json",
+    "productionBuild": "node tools/build-storage.mjs -- npm --prefix sites run build",
+    "browser": "python3 tools/cloud-playtest/invitation_ready.py --mode fixed --source 3305bd928b6642c39c58c1a0ad92394bfcf234c3 --output /workspace/ready-sync-20261016/review-final-aligned-browser"
+  },
+  "productionBuild": {
+    "exitCode": 0,
+    "typecheck": true,
+    "viteBuild": true,
+    "wranglerDryRun": true,
+    "deployment": false
+  },
+  "isolatedBrowser": {
+    "passed": 24,
+    "failed": 0,
+    "pageErrors": 0,
+    "contexts": 2,
+    "finalRoomVersionBothSeats": 9,
+    "worker": "real compiled local workerd",
+    "database": "owned isolated local D1 SQLite",
+    "realUserRoomAccessed": false,
+    "isOnlinePlaytest": false
+  },
+  "unchangedInputs": {
+    "nativeFullRerun": false,
+    "reason": "No Rust/engine/Worker source changes in this frontend batch. Exact inherited Worker and all three WASM bytes verified; no new claim is made about historical mechanism suites."
+  },
+  "pending": [
+    "Independent serial parent review",
+    "Official Sites publication after review",
+    "Ordinary live-browser acceptance after successful exact-identity deployment; prior v56 access was certificate-blocked"
+  ]
+}

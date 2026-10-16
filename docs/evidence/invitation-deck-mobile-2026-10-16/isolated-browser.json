@@ -1,0 +1,381 @@
+{
+  "source": "3305bd928b6642c39c58c1a0ad92394bfcf234c3",
+  "mode": "fixed",
+  "kind": "isolated-production-worker-d1-browser",
+  "atUtc": "2026-10-16T06:51:54.458032+00:00",
+  "checks": [
+    {
+      "name": "two-isolated-tables-have-different-invitations",
+      "passed": true
+    },
+    {
+      "name": "different-invitation-opens-join-screen",
+      "passed": true
+    },
+    {
+      "name": "invitation-has-no-create-or-mode-controls",
+      "passed": true
+    },
+    {
+      "name": "invitation-target-is-readonly",
+      "passed": true
+    },
+    {
+      "name": "old-seat-is-preserved-before-join",
+      "passed": true
+    },
+    {
+      "name": "blank-player-name-is-readable-and-persisted",
+      "passed": true
+    },
+    {
+      "name": "host-and-friend-share-target-invitation",
+      "passed": true
+    },
+    {
+      "name": "both-players-synchronize-to-two-ready",
+      "passed": true
+    },
+    {
+      "name": "browser-remembers-generated-player-name",
+      "passed": true
+    },
+    {
+      "name": "deck-name-is-visible-before-settings",
+      "passed": true
+    },
+    {
+      "name": "saved-deck-list-and-name-remain-visible-with-settings-closed",
+      "passed": true
+    },
+    {
+      "name": "same-invitation-requires-explicit-join",
+      "passed": true
+    },
+    {
+      "name": "restored-seat-keeps-deck-A-until-explicit-apply",
+      "passed": true
+    },
+    {
+      "name": "explicit-deck-B-apply-uses-selected-snapshot-and-cancels-ready",
+      "passed": true
+    },
+    {
+      "name": "later-explicit-room-selection-replaces-the-stale-lobby-snapshot",
+      "passed": true
+    },
+    {
+      "name": "refresh-keeps-second-seat-and-readiness",
+      "passed": true
+    },
+    {
+      "name": "only-one-target-join-request",
+      "passed": true
+    },
+    {
+      "name": "both-original-and-joined-seat-remain-saved",
+      "passed": true
+    },
+    {
+      "name": "host-start-reaches-playing-for-both-seats",
+      "passed": true
+    },
+    {
+      "name": "both-seats-complete-initial-choices-through-real-ui",
+      "passed": true
+    },
+    {
+      "name": "started-table-keeps-applied-deck-B-and-no-deck-change-control",
+      "passed": true
+    },
+    {
+      "name": "phone-hand-artwork-is-loaded-and-visible",
+      "passed": true
+    },
+    {
+      "name": "concealed-cards-and-assets-have-no-print-image",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true
+    }
+  ],
+  "posts": [
+    {
+      "player": "host",
+      "operation": "create",
+      "action": null,
+      "nestedAction": null
+    },
+    {
+      "player": "host",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    },
+    {
+      "player": "friend",
+      "operation": "create",
+      "action": null,
+      "nestedAction": null
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    },
+    {
+      "player": "friend",
+      "operation": "join",
+      "action": null,
+      "nestedAction": null
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "deck"
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "deck"
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    },
+    {
+      "player": "host",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "start"
+    },
+    {
+      "player": "host",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "choose"
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "choose"
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "deckProgression": {
+    "restoredOriginalCount": 50,
+    "chosenSnapshotCount": 51,
+    "savedLaterCount": 52,
+    "firstExplicitApplicationCount": 51,
+    "laterExplicitRoomApplicationCount": 52
+  },
+  "mobileArtwork": [
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    },
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    },
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    },
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    },
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    },
+    {
+      "loaded": true,
+      "artHeight": 48,
+      "visible": true
+    }
+  ],
+  "targetReadySummary": {
+    "host": [
+      {
+        "you": "p0",
+        "version": 0,
+        "status": "lobby",
+        "ready": 0,
+        "players": 1
+      },
+      {
+        "you": "p0",
+        "version": 0,
+        "status": "lobby",
+        "ready": 0,
+        "players": 1
+      },
+      {
+        "you": "p0",
+        "version": 1,
+        "status": "lobby",
+        "ready": 1,
+        "players": 1
+      },
+      {
+        "you": "p0",
+        "version": 2,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 3,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 4,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 6,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 7,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 8,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p0",
+        "version": 9,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      }
+    ],
+    "friend": [
+      {
+        "you": "p1",
+        "version": 2,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 2,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 3,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 3,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 4,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 5,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 5,
+        "status": "lobby",
+        "ready": 1,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 6,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 6,
+        "status": "lobby",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 7,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 8,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      },
+      {
+        "you": "p1",
+        "version": 9,
+        "status": "playing",
+        "ready": 2,
+        "players": 2
+      }
+    ]
+  },
+  "passed": true
+}

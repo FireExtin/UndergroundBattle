@@ -1,0 +1,63 @@
+{
+  "source": "published-v56-3492f777",
+  "mode": "baseline",
+  "kind": "isolated-production-worker-d1-browser",
+  "atUtc": "2026-10-16T06:24:47.578971+00:00",
+  "checks": [
+    {
+      "name": "two-isolated-tables-have-different-invitations",
+      "passed": true
+    },
+    {
+      "name": "v56-restores-old-table-despite-different-invitation",
+      "passed": true
+    },
+    {
+      "name": "address-still-contains-target-invitation",
+      "passed": true
+    },
+    {
+      "name": "no-join-request-was-made",
+      "passed": true
+    },
+    {
+      "name": "both-own-tables-show-cancel-ready",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true
+    }
+  ],
+  "posts": [
+    {
+      "player": "host",
+      "operation": "create",
+      "action": null,
+      "nestedAction": null
+    },
+    {
+      "player": "host",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    },
+    {
+      "player": "friend",
+      "operation": "create",
+      "action": null,
+      "nestedAction": null
+    },
+    {
+      "player": "friend",
+      "operation": "command",
+      "action": "game",
+      "nestedAction": "ready"
+    }
+  ],
+  "pageErrors": [],
+  "realUserTableAccessed": false,
+  "remoteDeployment": false,
+  "reproducedReportedSymptom": true,
+  "passed": true
+}
