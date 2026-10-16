@@ -1,0 +1,84 @@
+{
+  "reviewBase": "6268aea7cb99a31943da1f585b9ab06b215177f6",
+  "testedSource": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "web": {
+    "files": 124,
+    "passed": 1158,
+    "failed": 0
+  },
+  "productionBrowserChecks": 37,
+  "publicationAttempted": false,
+  "independentReviewPending": true,
+  "files": [
+    {
+      "path": "browser-result.json",
+      "bytes": 46144,
+      "sha256": "1b73b74a6a926ecd6dfe70c285d792303e718a014ebfc75cdccb2548a1919525"
+    },
+    {
+      "path": "frontend-artifact-identity.json",
+      "bytes": 25265,
+      "sha256": "817c8dd655f27ffce410b59ce679a466c0936b410efabe72c5562a1f4c1e126b"
+    },
+    {
+      "path": "local-preview.log.gz",
+      "bytes": 1494,
+      "sha256": "02fa3b61d00e91874255d0df824d86f98abd97a5c9284cd1c51d63a207e03510"
+    },
+    {
+      "path": "preview-readiness.json",
+      "bytes": 584,
+      "sha256": "d26508fedd0fa263456bd9cf1c6a6565bb0d143e7f658f1c73922f77c09cfb98"
+    },
+    {
+      "path": "production-browser.log.gz",
+      "bytes": 766,
+      "sha256": "c1dcba4a35b669819b50aaf7deb8082db3b10cf821bfe5692649963ec5053467"
+    },
+    {
+      "path": "production-build.log.gz",
+      "bytes": 753,
+      "sha256": "4448fd73921c3b21c62a95a244d3dd71ba9b86195219385224d76622a805aa99"
+    },
+    {
+      "path": "remote-review-audit.json",
+      "bytes": 460,
+      "sha256": "f8592c18e3172fcc937f92699a76640b2a9236c9df6db56d5aad5cd67135b3f4"
+    },
+    {
+      "path": "results.json",
+      "bytes": 1537,
+      "sha256": "7df7e5ad84df351612191977f64ed37d378cb4d73a7b8858f2e907b0be7abbb3"
+    },
+    {
+      "path": "runtime-artifact-identity.json",
+      "bytes": 937,
+      "sha256": "3e227fbfb3fdb2adff4870f723cb767195eb3107515911016d5878434d0d6c09"
+    },
+    {
+      "path": "screenshots-local.json",
+      "bytes": 972,
+      "sha256": "1e0cff6ae6f22ef4fdc7c83d2b95c1a9954e09384812c53def25110dd7593576"
+    },
+    {
+      "path": "source-scope.json",
+      "bytes": 1967,
+      "sha256": "eda31f678c7d114809914cac1300345287a1e87e6c7069f88d6cb1fb979470a3"
+    },
+    {
+      "path": "verification-controller.py",
+      "bytes": 4643,
+      "sha256": "3627891101f9c8251512dba08ce12d3a000c78d105f66e5a15dbedbbb4050644"
+    },
+    {
+      "path": "web-full-vitest.json.gz",
+      "bytes": 50459,
+      "sha256": "b308b3d2b21fb501f310ced5f5389c163543e083e3801c8faff0ee9a030013a0"
+    },
+    {
+      "path": "web-full.log.gz",
+      "bytes": 6860,
+      "sha256": "265e44749914265874f1549a8ac8829e808ab1e5df95536f4936fb45dee5b7b5"
+    }
+  ]
+}

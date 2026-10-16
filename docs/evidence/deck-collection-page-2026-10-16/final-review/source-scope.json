@@ -1,0 +1,57 @@
+{
+  "sourceCandidate": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "reviewBase": "6268aea7cb99a31943da1f585b9ab06b215177f6",
+  "atUtc": "2026-10-16T02:23:44.328400+00:00",
+  "nonDocumentationChanges": [
+    "tools/cloud-playtest/deck_collection_page.py",
+    "web/src/game/DeckAdmission.test.tsx",
+    "web/src/game/DeckBuilderGrid.test.tsx",
+    "web/src/game/DeckCardFace.tsx",
+    "web/src/game/DeckCardPreview.tsx",
+    "web/src/game/DeckCardVisibility.test.tsx",
+    "web/src/game/DeckCollectionPage.test.tsx",
+    "web/src/game/DeckLibrary.test.tsx",
+    "web/src/game/DeckLibraryPanel.tsx",
+    "web/src/game/GameApp.tsx",
+    "web/src/game/Lobby.test.tsx",
+    "web/src/game/Lobby.tsx",
+    "web/src/game/PlayerSessions.test.tsx",
+    "web/src/game/deckLibrary.ts",
+    "web/src/game/deckWorkspace.ts",
+    "web/src/game/factions.test.tsx",
+    "web/src/game/lobby-pages.css",
+    "web/src/game/lobbyNavigation.ts",
+    "web/src/game/useCardVisibility.ts"
+  ],
+  "unchangedTrees": [
+    {
+      "path": "sites",
+      "baselineTree": "e32b317018460a9388197d44de794528f7a2c9a8",
+      "candidateTree": "e32b317018460a9388197d44de794528f7a2c9a8",
+      "identical": true
+    },
+    {
+      "path": "rust-game",
+      "baselineTree": "e5e0ababf3e9fc4497143526f0636f2eed84d0ef",
+      "candidateTree": "e5e0ababf3e9fc4497143526f0636f2eed84d0ef",
+      "identical": true
+    },
+    {
+      "path": "rust-game-wasm",
+      "baselineTree": "7d6a9bbf1e6ef4bf7e68cdf859fb2c721df522d7",
+      "candidateTree": "7d6a9bbf1e6ef4bf7e68cdf859fb2c721df522d7",
+      "identical": true
+    },
+    {
+      "path": "tools/cards",
+      "baselineTree": "76abdffce9a71428f44ddb86396b67dddbe779bf",
+      "candidateTree": "76abdffce9a71428f44ddb86396b67dddbe779bf",
+      "identical": true
+    }
+  ],
+  "nativeFixtureInputsChanged": false,
+  "serverOrMechanismsChanged": false,
+  "webTree": "23652f1225ad35c1a8102a82c59cf835cd304ef8",
+  "mainPush": false,
+  "deployment": false
+}

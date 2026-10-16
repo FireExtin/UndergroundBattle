@@ -1,0 +1,20 @@
+{
+  "source": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "rootStatus": 200,
+  "catalogStatus": 200,
+  "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "catalogCards": 143,
+  "assetsExactlyMatchLocalBuild": [
+    {
+      "path": "/assets/index-b429ndmi.js",
+      "bytes": 362574,
+      "sha256": "79cc5ba862840a24ca80be2d694ca7da99529d2e2a929d73749e7921b6e79aa5"
+    },
+    {
+      "path": "/assets/index-Cq_2S5aD.css",
+      "bytes": 192959,
+      "sha256": "0c8e1395eba39ead3383edfff2431514d5e83633e424eeaf285d46807536935a"
+    }
+  ],
+  "localOnly": true
+}

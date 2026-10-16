@@ -1,0 +1,61 @@
+{
+  "source": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "serialSinglePass": true,
+  "checks": [
+    {
+      "name": "production-build",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "sites",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 19.042,
+      "bytes": 1705,
+      "sha256": "aca49152ca0d0661a794ed2c73f61dd7a45eea12141cf08810c177cc138e3621"
+    },
+    {
+      "name": "production-browser",
+      "command": [
+        "python3",
+        "tools/cloud-playtest/deck_collection_page.py",
+        "--source",
+        "45bc54994569bb22dbd8a61a114b5878253cb88b",
+        "--output",
+        "/workspace/deck-collection-ui-20261016/verified-45bc549/browser"
+      ],
+      "exitCode": 0,
+      "seconds": 10.696,
+      "bytes": 2961,
+      "sha256": "ed008337801ca56d890081481faf9f626f44200bd86211cf63271f61e49ae9ea"
+    },
+    {
+      "name": "web-full",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/workspace/deck-collection-ui-20261016/verified-45bc549/web-full-vitest.json"
+      ],
+      "exitCode": 0,
+      "seconds": 241.605,
+      "bytes": 25825,
+      "sha256": "79a3f395cca1473a096deff738c4a0c5f0341bb732faecfe2f8b0212bd2c36ed"
+    }
+  ],
+  "mainPush": false,
+  "deployment": false
+}

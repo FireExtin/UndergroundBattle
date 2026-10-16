@@ -1,0 +1,11 @@
+{
+  "atUtc": "2026-10-16T02:28:59.756454+00:00",
+  "remoteRefs": {
+    "refs/heads/codex/deck-collection-page-review-20261016": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+    "refs/heads/codex/web-timeout-diagnosis-review-20261015": "6268aea7cb99a31943da1f585b9ab06b215177f6",
+    "refs/heads/main": "3d642f0c1e6e5ac021cd40560086df35638bfe4c"
+  },
+  "source": "45bc54994569bb22dbd8a61a114b5878253cb88b",
+  "mainPush": false,
+  "publicationAttempted": false
+}

@@ -1,0 +1,26 @@
+{
+  "localOnly": true,
+  "noGameplayOrRealPlayerData": true,
+  "files": [
+    {
+      "path": "/workspace/deck-collection-ui-20261016/verified-45bc549/browser/collection-first-visible.png",
+      "bytes": 463611,
+      "sha256": "d6092272bda26ef992d011a9d198ce75d4ac2ec75c9db7d347aa9269348566d6"
+    },
+    {
+      "path": "/workspace/deck-collection-ui-20261016/verified-45bc549/browser/collection-restored.png",
+      "bytes": 321577,
+      "sha256": "e6cc7722be0df2601fe8ec450f7391018c952f0d286a4680acf0fdb5f69cd099"
+    },
+    {
+      "path": "/workspace/deck-collection-ui-20261016/verified-45bc549/browser/home-after-collection.png",
+      "bytes": 388498,
+      "sha256": "af1c2504a777f95d0587b57a8203df60ac4415f0817d7d9d7a8f1f7627d43151"
+    },
+    {
+      "path": "/workspace/deck-collection-ui-20261016/verified-45bc549/browser/home-cold.png",
+      "bytes": 393894,
+      "sha256": "8be0563cd4aec50d4342e976a16f41d3ba588fa3c3d4d1205dea8dbf6e80b8d6"
+    }
+  ]
+}
