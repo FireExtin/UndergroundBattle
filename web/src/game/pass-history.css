@@ -1,4 +1,10 @@
-.hg-latest-pass { display: flex; flex: 1 1 100%; gap: .6rem; align-items: baseline; padding: .5rem .7rem; border: 1px solid var(--hg-line, #bcac8b); border-radius: .4rem; background: rgba(205, 177, 123, .1); font-size: .84rem; overflow-wrap: anywhere; }
+.hg-latest-pass { display: flex; flex: 1 1 100%; min-width: 0; box-sizing: border-box; gap: .6rem; align-items: baseline; padding: .35rem .7rem; border: 1px solid var(--hg-line, #bcac8b); border-radius: .4rem; background: rgba(205, 177, 123, .1); font-size: .84rem; overflow-wrap: anywhere; }
 .hg-latest-pass b { flex: 0 0 auto; }
-.hg-table-records li[data-pass-record] { color: var(--hg-ink, #3a3025); }
+.hg-table-records li[data-pass-record] { color: inherit; }
+/* Reserve a full readable row inside the existing status grid track. */
+.hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-table-status:has(.hg-latest-pass) { flex-wrap: wrap; align-content: center; row-gap: 5px; }
+.hg-table-status > .hg-latest-pass { order: 5; }
+@media (min-width: 1060px) {
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table:has(.hg-latest-pass) { --lt-status-h: auto; }
+}
 @media (max-width: 640px) { .hg-latest-pass { flex-direction: column; gap: .2rem; } }
