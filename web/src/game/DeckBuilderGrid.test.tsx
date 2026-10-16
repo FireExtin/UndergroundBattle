@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { DeckLibrary } from './DeckLibraryPanel';
-import { DECK_LIBRARY_STORAGE_KEY, readDeckLibrary } from './deckLibrary';
+import { createDeckDraft, DECK_LIBRARY_STORAGE_KEY, readDeckLibrary, saveDeckLibrary } from './deckLibrary';
 import type { DeckCatalog } from './deckLibrary';
 
 const catalog: DeckCatalog = {
@@ -21,6 +21,39 @@ const count = (name: string) => screen.getByRole('spinbutton', { name: `${name}�
 const options = () => screen.getByRole('list', { name: '卡面目录' });
 
 describe('card-face deck workspace', () => {
+  it('marks a saved 52-card revision as different from the chosen 51-card snapshot until explicitly reselected', () => {
+    const selected = { ...createDeckDraft(catalog, catalog.decks[0]), cards: [{ cardId: 'JC125', count: 50 }, { cardId: 'JC002', count: 1 }] };
+    saveDeckLibrary([selected]); const select = vi.fn();
+    const app = render(<DeckLibrary catalog={catalog} selectedDraft={selected} onSelectDraft={select} />);
+    const saved = () => screen.getByRole('list', { name: '已保存牌组' });
+    expect(saved()).toHaveTextContent('51 张 · 构筑校验通过 · 已选择入席');
+    fireEvent.change(count('无知路人（JC125）'), { target: { value: '51' } });
+    fireEvent.click(screen.getByRole('button', { name: '保存牌组' }));
+    expect(saved()).toHaveTextContent('52 张 · 构筑校验通过 · 所选为旧快照，需重新选择入席');
+    expect(saved()).not.toHaveTextContent('已选择入席');
+    expect(select).not.toHaveBeenCalled();
+    expect(selected.cards).toEqual([{ cardId: 'JC125', count: 50 }, { cardId: 'JC002', count: 1 }]);
+    fireEvent.click(screen.getByRole('button', { name: '保存并选择此牌组' }));
+    app.rerender(<DeckLibrary catalog={catalog} selectedDraft={select.mock.calls[0][0]} onSelectDraft={select} />);
+    expect(saved()).toHaveTextContent('52 张 · 构筑校验通过 · 已选择入席');
+    expect(saved()).not.toHaveTextContent('所选为旧快照');
+  });
+
+  it('does not label a same-ID, same-total revision with different per-card counts as the selected snapshot', () => {
+    const selected = { ...createDeckDraft(catalog, catalog.decks[0]), cards: [{ cardId: 'JC125', count: 50 }, { cardId: 'JC002', count: 1 }] };
+    saveDeckLibrary([{ ...selected, cards: [{ cardId: 'JC125', count: 49 }, { cardId: 'JC002', count: 2 }] }]);
+    render(<DeckLibrary catalog={catalog} selectedDraft={selected} />);
+    expect(screen.getByRole('list', { name: '已保存牌组' })).toHaveTextContent('51 张 · 构筑校验通过 · 所选为旧快照，需重新选择入席');
+    expect(screen.getByRole('list', { name: '已保存牌组' })).not.toHaveTextContent('已选择入席');
+  });
+
+  it('retains the selected label when an unchanged deck is only reordered or saved at a later time', () => {
+    const selected = { ...createDeckDraft(catalog, catalog.decks[0]), cards: [{ cardId: 'JC125', count: 50 }, { cardId: 'JC002', count: 1 }] };
+    saveDeckLibrary([{ ...selected, updatedAt: '2026-10-17T00:00:00Z', cards: [...selected.cards].reverse() }]);
+    render(<DeckLibrary catalog={catalog} selectedDraft={selected} />);
+    expect(screen.getByRole('list', { name: '已保存牌组' })).toHaveTextContent('51 张 · 构筑校验通过 · 已选择入席');
+  });
+
   it('uses registered originals and replaces a failed image with an explicit placeholder', () => {
     render(<DeckLibrary catalog={catalog} />);
     const original = within(options()).getByRole('img', { name: '无知路人原始牌面' });

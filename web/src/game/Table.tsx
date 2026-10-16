@@ -121,7 +121,7 @@ export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: 
       <DeckPicker decks={catalog.decks} cards={catalog.cards} value={you?.deckId || ''} allowedIds={view.legalActions.filter(action => action.kind === 'deck').map(action => action.option || '')} disabled={busy || !canChangeDeck} onChange={id => {
         const action = view.legalActions.find(item => item.kind === 'deck' && item.option === id); if (!busy && action) chooseDeck({ kind: 'preset', deckId: id }, action);
       }} />
-      {canChooseSavedDeck && <DeckLibrary catalog={catalog} disabled={busy} selectedDraftId={view.yourDeck?.id} onSelectDraft={deckDraft => {
+      {canChooseSavedDeck && <DeckLibrary catalog={catalog} disabled={busy} selectedDraft={view.yourDeck} selectedDraftLabel="实际上桌" onSelectDraft={deckDraft => {
         if (!busy && canChooseSavedDeck) chooseDeck({ kind: 'draft', draft: publicDeckDraft(deckDraft) }, { kind: 'deck', deckDraft });
       }} />}
     </details>}

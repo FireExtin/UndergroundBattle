@@ -139,6 +139,12 @@ export function publicDeckDraft(draft: DeckDraft): DeckDraft {
   };
 }
 
+/** Saving an unchanged deck only changes its timestamp; card order is immaterial. */
+export function sameDeckSnapshot(left: DeckDraft, right: DeckDraft): boolean {
+  const contents = (draft: DeckDraft) => ({ ...publicDeckDraft(draft), updatedAt: '', cards: [...draft.cards].sort((a, b) => a.cardId.localeCompare(b.cardId)) });
+  return JSON.stringify(contents(left)) === JSON.stringify(contents(right));
+}
+
 export function createDeckDraft(catalog: DeckCatalog, preset?: Deck): DeckDraft {
   return {
     id: `draft-${crypto.randomUUID()}`, name: preset ? `${preset.name}（副本）` : '我的牌组', description: preset?.description || '', societyId: null,

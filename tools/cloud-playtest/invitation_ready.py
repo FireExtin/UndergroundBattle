@@ -21,10 +21,25 @@ OUT=Path(args.output);OUT.mkdir(exist_ok=False)
 async def main():
     result={'source':args.source,'mode':args.mode,'kind':'isolated-production-worker-d1-browser',
             'atUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'checks':[],
-            'posts':[],'pageErrors':[],'realUserTableAccessed':False,'remoteDeployment':False}
+            'posts':[],'deckMappings':[],'pageErrors':[],'realUserTableAccessed':False,'remoteDeployment':False}
     views={'host':[],'friend':[]}
     def check(name,value):
         result['checks'].append({'name':name,'passed':bool(value)});assert value,name
+    def card_counts(deck):
+        cards=deck['cards']; counts={card['cardId']:card['count'] for card in cards}
+        assert len(counts)==len(cards) and all(type(count) is int and count>0 for count in counts.values())
+        return dict(sorted(counts.items()))
+    def assert_deck(stage,expected,actual,version=None):
+        expected_counts=card_counts(expected); actual_counts=card_counts(actual)
+        equal=expected_counts==actual_counts and expected.get('societyId')==actual.get('societyId')
+        result['deckMappings'].append({'stage':stage,'expectedCardCounts':expected_counts,'actualCardCounts':actual_counts,
+            'expectedSocietyId':expected.get('societyId'),'actualSocietyId':actual.get('societyId'),
+            'actualName':actual['name'],'version':version,'equal':equal})
+        check('full-card-count-map:'+stage,equal)
+    def latest_view(label='friend'):
+        return next(view for view in reversed(views[label]) if view['inviteCode']==target)
+    async def selected_snapshot():
+        return await friend.evaluate('JSON.parse(sessionStorage.getItem("hegemony.lobbyDeckSelection.v1")).draft')
     async with async_playwright() as p:
         browser=await p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
         host_context=await browser.new_context(viewport={'width':1366,'height':900},locale='zh-CN')
@@ -89,6 +104,10 @@ async def main():
                 # Keep the original joined deck A, then select custom B through the real editor.
                 actual=friend.get_by_label('实际上桌牌组',exact=True)
                 original_deck=await actual.locator('h2').inner_text()
+                original_snapshot=latest_view()['yourDeck']
+                assert_deck('invitation-entered-original',latest_view('host')['yourDeck'],original_snapshot,latest_view()['version'])
+                expected51={**original_snapshot,'name':'隔离已选牌组B','cards':[{**card,'count':card['count']+(1 if card['cardId']=='JC125' else 0)} for card in original_snapshot['cards']]}
+                expected52={**expected51,'cards':[{**card,'count':card['count']+(1 if card['cardId']=='JC125' else 0)} for card in expected51['cards']]}
                 await friend.get_by_role('button',name='返回大厅 / 新建牌桌',exact=True).click()
                 await friend.get_by_role('navigation',name='大厅导航').get_by_role('button',name='入席',exact=True).click()
                 check('browser-remembers-generated-player-name',await friend.get_by_role('textbox',name='你的称呼',exact=True).input_value()==generated_name)
@@ -102,14 +121,24 @@ async def main():
                 await copies.fill(str(old_copies+1))
                 await friend.get_by_role('button',name='保存并选择此牌组',exact=True).click()
                 await expect(friend.get_by_label('所选牌组',exact=True)).to_contain_text('隔离已选牌组B · 51 张')
+                assert_deck('selected-snapshot-B-51',expected51,await selected_snapshot())
                 await expect(friend.get_by_role('combobox',name='已保存牌组',exact=True)).to_contain_text('隔离已选牌组B')
                 await friend.get_by_role('navigation',name='大厅导航').get_by_role('button',name='卡牌收藏',exact=True).click()
                 await friend.get_by_role('button',name='收起牌组设置',exact=True).click()
                 check('saved-deck-list-and-name-remain-visible-with-settings-closed',await friend.get_by_role('list',name='已保存牌组',exact=True).is_visible() and await friend.get_by_role('textbox',name='牌组名称',exact=True).is_visible())
+                await expect(friend.get_by_role('list',name='已保存牌组',exact=True)).to_contain_text('已选择入席')
                 # Saving later edits does not silently replace the chosen 51-card snapshot.
                 await friend.get_by_role('spinbutton',name='无知路人（JC125）张数',exact=True).fill(str(old_copies+2))
                 await friend.get_by_role('button',name='保存牌组',exact=True).click()
                 await expect(friend.get_by_role('list',name='已保存牌组',exact=True)).to_contain_text('52 张')
+                await expect(friend.get_by_role('list',name='已保存牌组',exact=True)).to_contain_text('所选为旧快照，需重新选择入席')
+                await expect(friend.get_by_role('list',name='已保存牌组',exact=True)).not_to_contain_text('已选择入席')
+                check('saved-revision-does-not-inherit-selected-snapshot-label',True)
+                selected51=await selected_snapshot()
+                saved52=await friend.evaluate('id => JSON.parse(localStorage.getItem("hegemony.deckDraft.v2."+encodeURIComponent(id)))',selected51['id'])
+                assert_deck('saved-revision-B-52',expected52,saved52)
+                assert_deck('selected-remains-B-51-after-saving-B-52',expected51,selected51)
+                await friend.screenshot(path=str(OUT/'phone-saved-vs-selected-snapshot.png'),full_page=True)
                 await friend.goto(args.url+'/?invite='+target+'#home',wait_until='networkidle')
                 await expect(friend.get_by_label('所选牌组',exact=True)).to_contain_text('隔离已选牌组B · 51 张')
                 check('same-invitation-requires-explicit-join',await friend.get_by_text('等待秘社集结',exact=True).count()==0)
@@ -117,6 +146,7 @@ async def main():
                 await expect(friend.get_by_label('实际上桌牌组',exact=True).locator('h2')).to_have_text(original_deck)
                 await expect(friend.get_by_role('region',name='待应用的牌组',exact=True)).to_contain_text('隔离已选牌组B')
                 check('restored-seat-keeps-deck-A-until-explicit-apply',await friend.get_by_role('button',name='取消准备',exact=True).count()==1)
+                assert_deck('restored-seat-original-A',original_snapshot,latest_view()['yourDeck'],latest_view()['version'])
                 await friend.screenshot(path=str(OUT/'phone-restored-before-apply.png'),full_page=True)
                 await friend.get_by_role('button',name='应用所选牌组到此席位',exact=True).click()
                 await expect(friend.get_by_label('实际上桌牌组',exact=True)).to_contain_text('隔离已选牌组B')
@@ -124,6 +154,7 @@ async def main():
                 await expect(friend.locator('.hg-room-ready > span')).to_have_text(re.compile(r'1\s*/\s*2'))
                 await expect(host.locator('.hg-room-ready > span')).to_have_text(re.compile(r'1\s*/\s*2'))
                 check('explicit-deck-B-apply-uses-selected-snapshot-and-cancels-ready',True)
+                assert_deck('first-explicit-application-B-51',expected51,latest_view()['yourDeck'],latest_view()['version'])
                 # A later explicit choice inside this room supersedes the old snapshot.
                 await friend.locator('.hg-room-prepare > summary').click()
                 await friend.get_by_role('button',name='保存并选择此牌组',exact=True).click()
@@ -132,11 +163,14 @@ async def main():
                 current_selection=await friend.evaluate('JSON.parse(sessionStorage.getItem("hegemony.lobbyDeckSelection.v1"))')
                 check('later-explicit-room-selection-replaces-the-stale-lobby-snapshot',current_selection['kind']=='draft' and sum(card['count'] for card in current_selection['draft']['cards'])==52)
                 result['deckProgression']={'restoredOriginalCount':50,'chosenSnapshotCount':51,'savedLaterCount':52,'firstExplicitApplicationCount':51,'laterExplicitRoomApplicationCount':52}
+                assert_deck('later-explicit-room-application-B-52',expected52,latest_view()['yourDeck'],latest_view()['version'])
                 await friend.get_by_role('button',name='准备',exact=True).click()
                 await expect(host.locator('.hg-room-ready > span')).to_have_text(re.compile(r'2\s*/\s*2'))
+                assert_deck('ready-B-52',expected52,latest_view()['yourDeck'],latest_view()['version'])
                 await friend.reload(wait_until='networkidle')
                 await expect(friend.locator('.hg-room-ready > span')).to_have_text(re.compile(r'2\s*/\s*2'))
                 check('refresh-keeps-second-seat-and-readiness',any(v['inviteCode']==target and v['you']=='p1' for v in views['friend']))
+                assert_deck('ready-reload-B-52',expected52,latest_view()['yourDeck'],latest_view()['version'])
                 check('only-one-target-join-request',sum(x['operation']=='join' for x in result['posts'])==1)
                 saved=await friend.evaluate('JSON.parse(localStorage.getItem("hegemony.seats.v1")||"[]").map(s=>({inviteCode:s.inviteCode,seat:s.seat}))')
                 check('both-original-and-joined-seat-remain-saved',any(s['inviteCode']==old and s['seat']==0 for s in saved) and any(s['inviteCode']==target and s['seat']==1 for s in saved))
@@ -144,6 +178,7 @@ async def main():
                 await expect(host.get_by_text('等待秘社集结',exact=True)).to_have_count(0)
                 await expect(friend.get_by_text('等待秘社集结',exact=True)).to_have_count(0)
                 check('host-start-reaches-playing-for-both-seats',all(any(v['inviteCode']==target and v['status']=='playing' for v in views[label]) for label in ['host','friend']))
+                assert_deck('started-B-52',expected52,latest_view()['yourDeck'],latest_view()['version'])
                 # Complete the two initial mulligans with ordinary UI controls.
                 for page in [host,friend]:
                     await page.get_by_role('dialog',name='待完成的选择',exact=True).get_by_role('button',name='保留全部手牌',exact=True).click()
@@ -152,6 +187,7 @@ async def main():
                 await expect(host.locator('.hg-phase-line')).not_to_contain_text('再调度')
                 await expect(friend.locator('.hg-phase-line')).not_to_contain_text('再调度')
                 check('both-seats-complete-initial-choices-through-real-ui',True)
+                assert_deck('after-initial-choices-B-52',expected52,latest_view()['yourDeck'],latest_view()['version'])
                 await expect(friend.locator('.hg-player-you .hg-player-strip > small')).to_contain_text('隔离已选牌组B · 原始 52 张')
                 check('started-table-keeps-applied-deck-B-and-no-deck-change-control',await friend.get_by_role('button',name='应用所选牌组到此席位',exact=True).count()==0)
                 await friend.locator('.hg-hand .hg-archive-art img').first.wait_for(state='visible')

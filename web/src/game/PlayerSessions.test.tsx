@@ -123,7 +123,8 @@ describe('explicit independent player sessions through normal UI', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: '返回大厅 / 新建牌桌' })).toBeEnabled());
     const original = localStorage.getItem('hegemony.session.v1');
     const pending = ordinaryPendingJson(); expect(pending).not.toBeNull();
-    app.unmount(); history.replaceState({}, '', '/?invite=TARGET');
+    const previousCommands = posts.filter(post => post.url.endsWith('/commands'));
+    app.unmount(); reads = []; history.replaceState({}, '', '/?invite=TARGET');
     app = render(<GameApp />); await screen.findByLabelText('邀请码');
     fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '受邀朋友' } });
     fireEvent.click(screen.getByRole('button', { name: '加入牌桌 →' }));
@@ -131,7 +132,9 @@ describe('explicit independent player sessions through normal UI', () => {
     expect(ordinaryPendingJson()).toBe(pending);
     expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
     expect(entries()).toHaveLength(1);
-    fireEvent.click(screen.getByRole('button', { name: '回原牌桌确认上一行动' }));
+    expect(posts.filter(post => post.url.endsWith('/commands'))).toEqual(previousCommands);
+    expect(reads.some(read => read.url.includes(`/api/rooms/${seats[0].roomId}/`))).toBe(false);
+    fireEvent.click(screen.getByRole('button', { name: '退出邀请，恢复原桌待确认行动' }));
     await screen.findByText('等待秘社集结');
     expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
     expect(ordinaryPendingJson()).toBe(pending);
