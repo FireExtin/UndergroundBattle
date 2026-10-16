@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "scope": "Local exact Native78 projections and UI; not a published Site or online gameplay",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+  "apiCalls": 0,
+  "pageErrors": [],
+  "checks": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "bounds": {
+        "top": 110.5,
+        "bottom": 688.5,
+        "confirmTop": 623,
+        "confirmBottom": 669,
+        "height": 768
+      },
+      "optionalChoice": true,
+      "draftAfterReload": true,
+      "exactNativeAction": true,
+      "departedSourceBadgeRemoved": true,
+      "originalCardLoaded": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bounds": {
+        "top": 146.453125,
+        "bottom": 618.78125,
+        "confirmTop": 559.59375,
+        "confirmBottom": 600.78125,
+        "height": 844
+      },
+      "optionalChoice": true,
+      "draftAfterReload": true,
+      "exactNativeAction": true,
+      "departedSourceBadgeRemoved": true,
+      "originalCardLoaded": true
+    }
+  ],
+  "browser": "151.0.7922.173"
+}

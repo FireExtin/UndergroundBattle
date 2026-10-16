@@ -23,7 +23,7 @@ it('exposes the original JC061 card face and complete paid-entry/mobility defini
     {key:'mobility',triggered:true}]);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6');
-  expect(readFileSync(resolve('public/cards/JC061.jpg'))).toEqual(original);
+  expect(readFileSync(resolve('public/cards/JC061.jpg')).equals(original)).toBe(true);
   expect(cardScanUrl('JC061')).toBe('/cards/JC061.jpg');
   render(<ReadModal card={{...definition,cardId:'JC061',instanceId:'read-jc061',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));

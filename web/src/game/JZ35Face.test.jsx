@@ -12,7 +12,7 @@ it('shows the complete JZ35 source face, Mind identity and unchanged original im
   expect(record).toMatchObject({name:'思维湮灭',kind:'spell',color:'红',cost:2,magic:'心灵',loyalty:['红色'],subtypes:['法术','心灵'],unique:false,keywords:[]});
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc');
-  expect(readFileSync(resolve('public/cards/JZ35.jpg'))).toEqual(original);expect(cardScanUrl('JZ35')).toBe('/cards/JZ35.jpg');
+  expect(readFileSync(resolve('public/cards/JZ35.jpg')).equals(original)).toBe(true);expect(cardScanUrl('JZ35')).toBe('/cards/JZ35.jpg');
   render(<ReadModal card={{...definition,cardId:'JZ35',instanceId:'source-face',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   expect(screen.getByRole('dialog')).toHaveTextContent(record.text);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));

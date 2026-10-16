@@ -1,5 +1,5 @@
 import { assertPublicView } from './assert-session-journal.mjs';
-// Prepared Native layouts; actual compiled Worker HTTP, workerd/D1 and current WASM.
+// Preserved Native77 layouts through current78 Worker HTTP and retained77 WASM.
 // The injected service clock provides exact Native parity; HTTP uses its real clock.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -33,7 +33,11 @@ for (const fixture of fixtures) test(`seven60 BQ028 attachment=${fixture.attachm
   await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(fixture.views[0].version, id).run();
   for (let seat = 1; seat < 4; seat++) await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id, seat, await digest(tokens[seat])).run();
   const health = await (await mf.dispatchFetch('http://localhost/api/health')).json();
-  assert.equal(health.engineVersion, 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
+  assert.equal(health.engineVersion, 'rust-v0.2.78-bq035-vampire-mobility-candidate');
+  const roomCatalog = await (await mf.dispatchFetch(`http://localhost/api/rooms/${id}/catalog`, { headers: { Authorization: 'Bearer ' + tokens[0] } })).json();
+  assert.equal(roomCatalog.engineVersion, 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
+  assert.equal(roomCatalog.cards.length, 143);
+  assert(!roomCatalog.cards.some(card => card.id === 'BQ035'));
   const httpViews = async expected => {
     for (let seat = 0; seat < 4; seat++) {
       const response = await mf.dispatchFetch(`http://localhost/api/rooms/${id}/state`, { headers: { Authorization: 'Bearer ' + tokens[seat] } });

@@ -1,0 +1,130 @@
+{
+  "scope": "Fresh Native current78 layouts and real subsequent commands, not relabelled JS oracles or saved-room migrations",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "caseCount": 433,
+  "transitions": 24403,
+  "projections": 96975,
+  "manifestSha256": "0681dcc270e64356de54d82158e7f68e0740047729bd33935924a549ad136457",
+  "manifestFile": "current78-old-mechanisms-release.json",
+  "sourceInputs": [
+    {
+      "file": "rust-game-wasm/examples/native_fixtures.rs",
+      "sha256": "65441155599eae95b634ad615831e91bb9c135ca9fa1fe1bc1a6c17c0b2fd92b"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/control.rs",
+      "sha256": "1618ccac6c656dcf2543b6a21af56c33238f3a61355e05bc61dfd9cc3ba7328c"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/defence_equipment.rs",
+      "sha256": "085237fdcbd268ec6f1e4a2268029163c5a389adc7a1178faeb7f5834602816a"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/dream_reveal.rs",
+      "sha256": "c959a2f38defa321b6c36fe16f9accba13af4d596e320047d8e0e5be86fbf0e8"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/equipment_abilities.rs",
+      "sha256": "f3fc79ea993c5c3004a42663cabd9d983d36593d32d5e4a212c3e0b0e4404c5c"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/hand_deck.rs",
+      "sha256": "a4d034538019fe1fee159225da3e35ea7df38d2266c8bcb6597d65c75b4a6bd2"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/hand_interactions.rs",
+      "sha256": "bd1e40f031567a8a5c7bd9fda8343ee89fb883992ad396bed21038c5ac01625e"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/identity_overlap.rs",
+      "sha256": "1391b5c1fd88c220e3762778365e137cb8756c44c0e569a5bb3a7f58988d27f3"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/jc004.rs",
+      "sha256": "634717ba75955c5cb81709653baf169af9f8dba879a819a0f74966047f944195"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/jc005.rs",
+      "sha256": "80a709822ea9c1789131a90085f16e09afc9bf4775d3502fc1ca09714d8df9e5"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/jc008.rs",
+      "sha256": "876b6b9b1b09a9f1f62f7dd5d696cb0466ac9107c89032a833a73f135b57ea7d"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/mixed_decks.rs",
+      "sha256": "73076b806a934ce05b7821746a4dc0f7c0ce5d181211b4c999165ccd2697cab8"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc01.rs",
+      "sha256": "2e329f0fe67cbaa47c2b44617c9dcb6b9f46915d4a4ea191b7212f629f115ded"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc06.rs",
+      "sha256": "b92e1deadd07607f61fe9000afc6f419b5887b2cc47300fee45de7dab501e604"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc07.rs",
+      "sha256": "08655fcc1b107d2de814a0231eea1ce3a098554fa11562bfc42137c9729bea22"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc08.rs",
+      "sha256": "adeb445615d0212b05b9c921db271c1978acde518ba5a42ce40159fd69a04867"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc09.rs",
+      "sha256": "6799e96443d34cf1409cd18a51fb7d406ddb12be22e29f07162e805f38bbd731"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/msjc11.rs",
+      "sha256": "ea52ac5120af22b4725f5fbf5ad500c9811f4a95762f321faf7667c8f61d96ac"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/protection.rs",
+      "sha256": "1272d3010d72f1a58f9f45e691dccf19524f5aa5ba1b59ed84959e8e949d75a1"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/purple_tools.rs",
+      "sha256": "c757e16892c55416f13494a6e1e1d03d89a8223442f43f7a63de57e41c23fb56"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/region_aura.rs",
+      "sha256": "e2237116208fa3b95b5846965e66ae7710c2c4a3a2f58672a72542c26dc824b3"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/renown.rs",
+      "sha256": "8940f9f534c12d3c6b8a0dd8eed6f67a4d3a94271e4f67b56d303a0f23392970"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/repress_assets.rs",
+      "sha256": "4d6d082c56ad9a840c6785154c5cc49a4724b4dd72e99fa668e7d6951fae55eb"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/society_fixture.rs",
+      "sha256": "531b8909c33ac20bba4757a68c5217f6b27efc2d246f9031e5d6d5e08bf1224c"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/white_wound.rs",
+      "sha256": "2fbe71526baa5a04928f6a8380ad1a51a2e9c13b3be2ecca243b93d4fe716e0e"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/wound_defence.rs",
+      "sha256": "f0d3eebcf26928f736cc84cc8d0aac2d942992b0fbf4b59b131cce5ceac5e042"
+    },
+    {
+      "file": "rust-game-wasm/examples/support/yellow_search.rs",
+      "sha256": "ea184291253d3faf4bc7a6722da25261e8bffe0e6a9b4990913aa1cc5e40b57b"
+    }
+  ],
+  "disclosedPreparedRelocation": [
+    {
+      "bytes": 153854,
+      "fixtureFile": "current78-old-mechanisms-release.json.cases/391.json",
+      "name": "XQ43-prepared-relocated-host",
+      "projections": 8,
+      "seed": "9007199254740993",
+      "sha256": "ea92d4f573f6b8d2666ad8d215cd237fea443a92a410831b609aa2540667af97",
+      "transitions": 2
+    }
+  ]
+}

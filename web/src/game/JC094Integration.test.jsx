@@ -25,7 +25,7 @@ it('reads the complete original JC094 face and standard local-other-sacrifice ab
   expect(definition.abilities).toMatchObject([{key:'jc094-local-sacrifice-destroy',timing:'standard',triggered:false}]);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd');
-  expect(readFileSync(resolve('public/cards/JC094.jpg'))).toEqual(original);
+  expect(readFileSync(resolve('public/cards/JC094.jpg')).equals(original)).toBe(true);
   expect(cardScanUrl('JC094')).toBe('/cards/JC094.jpg');
   render(<ReadModal card={{...definition,cardId:'JC094',instanceId:'read-jc094',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));

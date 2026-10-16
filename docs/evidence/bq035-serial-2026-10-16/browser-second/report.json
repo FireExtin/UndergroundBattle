@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "scope": "Local exact Native78 projections and UI; not a published Site or online gameplay",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+  "apiCalls": 0,
+  "pageErrors": [],
+  "checks": [],
+  "browser": "151.0.7922.173",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    {\n      action: {\n+       abilityId: undefined,\n+       allocations: undefined,\n+       bottom: undefined,\n+       cardId: undefined,\n        choiceId: 'i261',\n+       costSelected: undefined,\n+       deckDraft: undefined,\n+       intentId: undefined,\n        kind: 'choose',\n+       option: undefined,\n+       region: undefined,\n        selected: [\n          'region:1'\n        ],\n+       targetId: undefined,\n+       top: undefined,\n+       windowId: undefined\n      },\n      kind: 'game'\n    }\n  ]\n\n    at file:///workspace/UndergroundBattle/tools/frontend/bq035-native78-qa.mjs:66:12"
+}

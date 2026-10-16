@@ -1,0 +1,254 @@
+{
+  "status": "Complete offline BQ035 candidate evidence; independent review and publication pending",
+  "sourceBranch": "codex/stage-pass-progress-20261016",
+  "coreCompilerSourceCommit": "3321899017701d03dc0fd145194a916b76f666d7",
+  "native": {
+    "lib": 1128,
+    "integration": 67,
+    "failed": 0
+  },
+  "sourceTests": 44,
+  "inputAndFrozenTools": 10,
+  "bq035Wasm": {
+    "scenarios": 11,
+    "commands": 326,
+    "projections": 1336,
+    "rejected": 3,
+    "invalid": 54,
+    "negativeRestoreCalls": 432,
+    "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+    "completeOpaqueStateAndTransitionMatch": true,
+    "fixtureBytes": 3374350,
+    "fixtureSha256": "4b021a037f21da55aa157cb1bbc12de55e24ba8bc9ad08da52cb7ea2e9ea048b",
+    "sourceFiles": 121
+  },
+  "current78OldMechanisms": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 2975917,
+    "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 238.79,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "frontend": {
+    "files": 130,
+    "passed": 1227,
+    "failed": 0,
+    "frozenInputs": 584,
+    "earlierFullRuns": [
+      {
+        "passed": 1225,
+        "failed": 2
+      },
+      {
+        "passed": 1226,
+        "failed": 1
+      }
+    ]
+  },
+  "worker": {
+    "fullAttempt": {
+      "passed": 198,
+      "failed": 4,
+      "total": 202
+    },
+    "failureScope": "seven-card test global health expected77 while current global identity is78",
+    "correctedFileCompleteRerun": {
+      "passed": 4,
+      "failed": 0
+    },
+    "full202Rerun": false,
+    "other198Repeated": false,
+    "runtimeArtifactUnchanged": true,
+    "bq035HttpScenarios": 11,
+    "bq035Accepted": 323,
+    "bq035ExpectedRejected": 3,
+    "retained77ScenarioCommands": 13,
+    "freshCurrent78MSJC09Commands": 457
+  },
+  "browser": {
+    "passed": true,
+    "scope": "Local exact Native78 projections and UI; not a published Site or online gameplay",
+    "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+    "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+    "apiCalls": 0,
+    "pageErrors": [],
+    "checks": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "bounds": {
+          "top": 110.5,
+          "bottom": 688.5,
+          "confirmTop": 623,
+          "confirmBottom": 669,
+          "height": 768
+        },
+        "optionalChoice": true,
+        "draftAfterReload": true,
+        "exactNativeAction": true,
+        "departedSourceBadgeRemoved": true,
+        "originalCardLoaded": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "bounds": {
+          "top": 146.453125,
+          "bottom": 618.78125,
+          "confirmTop": 559.59375,
+          "confirmBottom": 600.78125,
+          "height": 844
+        },
+        "optionalChoice": true,
+        "draftAfterReload": true,
+        "exactNativeAction": true,
+        "departedSourceBadgeRemoved": true,
+        "originalCardLoaded": true
+      }
+    ],
+    "browser": "151.0.7922.173"
+  },
+  "productionBuild": "passed; local dry-run only; exactly78+77",
+  "published": false,
+  "rawLogArchives": [
+    {
+      "file": "native-full-first.log.gz",
+      "rawBytes": 1233,
+      "rawSha256": "462b4ce043adfdd7d939243ed410e4baed17e715709e02bbbc12cbbc04e4822c",
+      "gzipSha256": "68765f1f312259203e6b38397dd41e6f6a068d0b7d1c3d5d487d14bed43da134"
+    },
+    {
+      "file": "native-full-second.log.gz",
+      "rawBytes": 115914,
+      "rawSha256": "b273499374e736c2988c607e26cf9a2506f06517454c4bdf1d98eb91edd08d20",
+      "gzipSha256": "ba2770cbe8c5792624c6ab6230743491c2ac97aca4ab969a3f9c66c67ea3becc"
+    },
+    {
+      "file": "native-first.log.gz",
+      "rawBytes": 924,
+      "rawSha256": "4406cff72e1a36c82937f4826493dcf555f87a3b5b0ddc671a45617d29cb3e31",
+      "gzipSha256": "97a5298f1ff9185dda794e83c894275ebd7c472c6cf6d4383c771425988e4268"
+    },
+    {
+      "file": "native-first-behavior.log.gz",
+      "rawBytes": 3181,
+      "rawSha256": "8d67fced21a5f4aa5b348c9bb2eb2cbd088c79d94419f4b8ff45ba4a768067e0",
+      "gzipSha256": "bd4280b7fd0afe8d6bc8dbb4fc5cb2608373be93a456d09ebad3dd8709f1e1f1"
+    },
+    {
+      "file": "native-room-first.log.gz",
+      "rawBytes": 1419,
+      "rawSha256": "8fd82f292361a79aad19114ec0c6022a14a3a41e66690db8654f63c056bcb910",
+      "gzipSha256": "ecb58875a05327f9ac412ced0f155763c3a1ae451faaad99161a20f412371899"
+    },
+    {
+      "file": "native-room-rerun.log.gz",
+      "rawBytes": 469,
+      "rawSha256": "700107260fa44ffecdd04482219e8b39a2c89180dcbb042f1df9971b4a2984c0",
+      "gzipSha256": "8b4665ad1e11a64c6219e35307f307e6fb37fceb546edc3c752ad120c03f9198"
+    },
+    {
+      "file": "legacy-loader-vitest.log.gz",
+      "rawBytes": 1286,
+      "rawSha256": "34e0d09130ed388e01563ac1c0fbec7d727e34bdc39d2dfce10aefe139593420",
+      "gzipSha256": "0b7bf29d55dfc6e4ccd31988d3c340c43e65c332527e6e0ba5b6c6fec625e385"
+    },
+    {
+      "file": "legacy-loader-rerun.log.gz",
+      "rawBytes": 1439,
+      "rawSha256": "b1bee9c908744e49552bf23e1d956cfd1dfcd0e85c2e4bec9975ff55f1b7f4c2",
+      "gzipSha256": "a4ebf9b96c6382f4a70591f3ba5cb93f0b2ca74e82426dca4fee44fba5fbd072"
+    },
+    {
+      "file": "source-tests.log.gz",
+      "rawBytes": 5282,
+      "rawSha256": "597cb92a50912b775fcca8c43f5c02372af549a9bbf3f30807852154c040a4ef",
+      "gzipSha256": "cfab27085d7368204ea09696c1f94ea34097e990d37b0c8555816a90a9829097"
+    },
+    {
+      "file": "web78-final.log.gz",
+      "rawBytes": 194069,
+      "rawSha256": "bfa198f79f1decc771abc8cc8038c4f7d432324fe95ee7c353e6c00f68b7c330",
+      "gzipSha256": "d0ac00f97ada792b5931ebbd4d6ee1119618319c1f378f86688e3fa43a8d480e"
+    },
+    {
+      "file": "web78-final2.log.gz",
+      "rawBytes": 192944,
+      "rawSha256": "658836d54923b17dd8b4613cbc919875a190b919f101a48e55aae1ced7be3888",
+      "gzipSha256": "a2867d877664e8fe6b9f3869b112e0198245f9c4fa79aa28c5a0c682179ebd0b"
+    },
+    {
+      "file": "sites78-full.log.gz",
+      "rawBytes": 56017,
+      "rawSha256": "b800b70eed962e80ba37e1ddb5af43bd743ad34546008e612b669d372ba0d57e",
+      "gzipSha256": "feda6969c820900d7c33b76604bfec893f1478e5a1f55f6f5af64e6354822525"
+    },
+    {
+      "file": "sites78-seven-card-rerun.log.gz",
+      "rawBytes": 1172,
+      "rawSha256": "1e04b48c5665758a9e5d8b6b9ee682e2b47c27c1fda1629f1b64dc6de9383c64",
+      "gzipSha256": "4e09547e27e7e396d2662d691ed31e19ca062b9b64c41d071bf5b13674017cd8"
+    },
+    {
+      "file": "current78-old-mechanisms-native.log.gz",
+      "rawBytes": 12444,
+      "rawSha256": "3e555e9eabfb14742d7e20730d47ce0e24fb3bebbe1102f88e31268ab094de51",
+      "gzipSha256": "c356a4431743c656339982a06f12a00d69bcd42348c0f116aae12ee8c9800488"
+    },
+    {
+      "file": "current78-old-mechanisms-release-native.log.gz",
+      "rawBytes": 48126,
+      "rawSha256": "f7db8d1054ef48745b5df660f1bd91246277b859691342cc34ee34b1fece5a2e",
+      "gzipSha256": "f8bbdb70180a5fa118557ab976387eba4b3ca25e791c53cf47043a8d6b35594f"
+    },
+    {
+      "file": "current78-old-mechanisms-wasm.log.gz",
+      "rawBytes": 77275,
+      "rawSha256": "aaf369098dd9994ab555573df7289d7ce38f50b77d229ae8eaac684b23d8f28b",
+      "gzipSha256": "5ef7c15b0c7c901a6a4288e9f899b815bef1802e0bd8daf90faebaa42b4620c2"
+    },
+    {
+      "file": "browser78-first.log.gz",
+      "rawBytes": 10298,
+      "rawSha256": "c82ddd70ede851d1344c63e18e326e0392659b2ac5bc067b49bcecda580b9e6f",
+      "gzipSha256": "2a3cc9062a74357b6b6f728bfd1a01eb755111fd098aba692b48774748bb0709"
+    },
+    {
+      "file": "browser78-second.log.gz",
+      "rawBytes": 1513,
+      "rawSha256": "23181022d1dcb7b933e8b1959789207660547b5a0ea6c7f6d48a33d357d677da",
+      "gzipSha256": "4b83822a2b181a4dbd4daa50aad070f3f9df51964ba02bbf944db61a68c9035f"
+    },
+    {
+      "file": "browser78-third.log.gz",
+      "rawBytes": 851,
+      "rawSha256": "db44d05da6e832026a4f4c748dabac322b93d8ad766be68a6b8c6d5836ed2ac1",
+      "gzipSha256": "fb08d9bd73ffbb1ae125643d55cd2c5d378e2438d57928ddb73ab36ce3054877"
+    }
+  ]
+}

@@ -23,7 +23,7 @@ it('reads the complete nonunique JC046 face, permanent and temporary icons, mand
   expect(record.unique ?? false).toBe(false);
   const original = readFileSync(resolve('../resource/ymsj-fun.github.io/cards/JC046 无面屠戮者.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab');
-  expect(readFileSync(resolve('public/cards/JC046.jpg'))).toEqual(original);
+  expect(readFileSync(resolve('public/cards/JC046.jpg')).equals(original)).toBe(true);
   expect(cardScanUrl('JC046')).toBe('/cards/JC046.jpg');
 
   render(<ReadModal card={{...definition, cardId: 'JC046', instanceId: 'source-jc046', owner: 'p0', controller: 'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);

@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "scope": "Local exact Native78 projections and UI; not a published Site or online gameplay",
+  "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+  "wasmSha256": "94e5b59743c5836a1b422c38cde553bacda21d1b57c45bbdb83762dc5daea745",
+  "apiCalls": 0,
+  "pageErrors": [],
+  "checks": [],
+  "browser": "151.0.7922.173",
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: '待完成的选择' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByRole('dialog', { name: '待完成的选择' })\n\n    at captureRawStack (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/lib/coreBundle.js:9681:17)\n    at callMatcherAsStep (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toBeVisible (/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/lib/matchers/expect.js:13300:23)\n    at /workspace/UndergroundBattle/tools/frontend/bq035-native78-qa.mjs:51:26"
+}

@@ -22,7 +22,7 @@ it('exposes the original JC087 card face and complete conditional self-hide/infl
   expect(definition.abilities).toMatchObject([{key:'jc087-enter-region-hide-influence',costs:[],triggered:true}]);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/JC087 格鲁尼的走私客.jpg'));
   expect(createHash('sha256').update(original).digest('hex')).toBe('cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00');
-  expect(readFileSync(resolve('public/cards/JC087.jpg'))).toEqual(original);
+  expect(readFileSync(resolve('public/cards/JC087.jpg')).equals(original)).toBe(true);
   expect(cardScanUrl('JC087')).toBe('/cards/JC087.jpg');
   render(<ReadModal card={{...definition,cardId:'JC087',instanceId:'read-jc087',owner:'p0',controller:'p0'}} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));

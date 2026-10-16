@@ -1,0 +1,26 @@
+{
+  "allFourScreenshotsViewed": true,
+  "checks": "Desktop and phone choices keep confirmation within viewport; optional decline and selected state readable; full original card visible. No online-gameplay claim.",
+  "screenshots": [
+    {
+      "file": "browser-final/1366x768-mobility-choice.png",
+      "bytes": 253206,
+      "sha256": "be791ba3086e9da5b2ca1bb978ffcc8e60bc678a030b2d644c01603e5b30d8af"
+    },
+    {
+      "file": "browser-final/1366x768-original-card.png",
+      "bytes": 328541,
+      "sha256": "071c3520800decdee7f89e4f430ee3e4b9d8fbda5e8895f24bf0088d322d9934"
+    },
+    {
+      "file": "browser-final/390x844-mobility-choice.png",
+      "bytes": 125063,
+      "sha256": "d546a6382650d082c6479596fbe7adaf69df95968b7f6549a1269d1432f6c671"
+    },
+    {
+      "file": "browser-final/390x844-original-card.png",
+      "bytes": 279670,
+      "sha256": "24d564e0eed174e184e79c8d8f20f537775eabb6e8fac07a007f883a32a33637"
+    }
+  ]
+}

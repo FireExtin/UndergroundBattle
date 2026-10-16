@@ -14,9 +14,10 @@ assert(process.argv[2], 'Provide a new evidence directory');
 const output = resolve(process.argv[2]); await mkdir(output);
 const fixture = loadBq035Fixture(); assert.equal(sha256(moduleBytes), fixture.wasmSha256);
 const scenario = fixture.scenarios.find(row => row.name === 'paid-attachments-mobility-glory-next-turn');
-const index = scenario.steps.findIndex(step => step.command.action.action?.kind === 'choose' && step.command.action.action.selected?.[0] === 'region:1');
+const index = scenario.steps.findIndex(step => !step.expected.errorCode && step.command.action.action?.kind === 'choose' && step.command.action.action.selected?.[0] === 'region:1');
 const step = scenario.steps[index], view = index ? scenario.steps[index - 1].views[step.seat] : scenario.initial.views[step.seat];
 assert.deepEqual(JSON.parse(abi.view(step.state, step.seat)), view);
+assert(view.pendingChoice && view.pendingChoice.playerId === view.you, 'The browser fixture must use the actual frozen chooser');
 const removed = fixture.scenarios.find(row => row.name === 'accepted-knight-real-bounce').steps.at(-1).views[0];
 const knight = view.regions.flatMap(region => region.characters).find(card => card.cardId === 'BQ035'); assert(knight);
 const temporary = await mkdtemp(join(web, '.bq035-browser-'));
@@ -34,7 +35,7 @@ window.__bqActions=[];
 function App(){ const [mode,setMode]=useState('choice'); window.__bqMode=setMode;
 return <div className="hg-app"><header className="hg-header">BQ035 本地投影检查 · 非线上试玩</header>
 {mode==='card'?<ReadModal card={knight} definition={catalog.cards.find(c=>c.id==='BQ035')} viewerId="p0" onClose={()=>setMode('choice')}/>
-:<Table key={mode} view={mode==='removed'?removed:view} catalog={catalog} busy={false} connection="online" onAction={action=>window.__bqActions.push(actionForRoom(view,action))}/>}</div>; }
+:<Table key={mode} view={mode==='removed'?removed:view} catalog={catalog} busy={false} connection="online" onAction={action=>window.__bqActions.push(JSON.parse(JSON.stringify(actionForRoom(view,action))))}/>}</div>; }
 createRoot(document.getElementById('root')!).render(<App/>);
 `);
   server = await createServer({ root: web, logLevel: 'error', server: { host: '127.0.0.1', port: 0 } }); await server.listen();
@@ -68,7 +69,9 @@ createRoot(document.getElementById('root')!).render(<App/>);
     await expect(page.getByRole('dialog')).toContainText('所有有名为鲜血');
     await page.getByRole('button', { name: '原始牌面' }).click();
     const image = page.getByRole('img', { name: '幽冥骑士原始牌面' }); await expect(image).toBeVisible();
-    assert(await image.evaluate(image => image.complete && image.naturalWidth > 0));
+    await image.evaluate(image => image.complete && image.naturalWidth > 0 ? undefined : new Promise((resolve, reject) => {
+      image.onload = () => resolve(undefined); image.onerror = () => reject(Error('Pinned BQ035 image failed to load'));
+    }));
     await page.screenshot({ path: join(output, `${size}-original-card.png`) });
     report.checks.push({ viewport, bounds, optionalChoice: true, draftAfterReload: true, exactNativeAction: true, departedSourceBadgeRemoved: true, originalCardLoaded: true });
     await context.close();
