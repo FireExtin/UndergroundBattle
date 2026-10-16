@@ -41,7 +41,7 @@ function viewFor(authorization?: string) {
     you: `p${saved?.seat || 0}`, players: seats.filter(s => s.roomId === saved?.roomId).map(s => ({ ...testView.players[0], id: `p${s.seat}`, seat: s.seat })) };
 }
 async function lobbyReady() {
-  fireEvent.click(await screen.findByRole('button', { name: '入席', exact: true }));
+  fireEvent.click(await screen.findByRole('button', { name: '入席' }));
   await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeInTheDocument());
 }
 async function create() {

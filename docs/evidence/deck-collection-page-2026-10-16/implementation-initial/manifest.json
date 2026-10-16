@@ -1,6 +1,16 @@
 {
-  "phase": "latest production layout validation and complete Web pending",
+  "phase": "05d672b TypeScript failed; invalid test options corrected, new fixed verification pending",
   "files": [
+    {
+      "path": "build-05d672b-result.json",
+      "bytes": 478,
+      "sha256": "ee3bb220855bf71e5f3855f71953b63459c7ae15ff9d6c625b8bf1d400c76d95"
+    },
+    {
+      "path": "build-05d672b.log.gz",
+      "bytes": 788,
+      "sha256": "e36f56698f5d34842bc216af9e33ff3feaaf834d96fafb30d87f44d7b1aab919"
+    },
     {
       "path": "production-browser-01.json",
       "bytes": 2785,

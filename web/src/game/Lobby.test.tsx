@@ -12,7 +12,7 @@ const draftCatalog: DeckCatalog = {
   deckBuildRules: { minimumCards: 50, serviceCardCapacity: 2048, societySupported: false },
   cards: testCatalog.cards.map(card => ({ ...card, supported: true, deckCopyLimit: null })),
 };
-const openPage = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name, exact: true }));
+const openPage = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name }));
 const openEditor = () => { openPage('卡牌收藏'); fireEvent.click(screen.getByRole('button', { name: /牌组设置与模板/ })); };
 describe('Chinese invitation lobby', () => {
   it('lets a player choose a 50-card deck and create a four-seat team room', () => {

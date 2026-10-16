@@ -15,7 +15,7 @@ const catalog: DeckCatalog = {
     { id: 'red', name: '红方人物', kind: 'character', color: '红', cost: 0, text: '目录原文', subtypes: ['人类'], keywords: ['公开'], magic: '鲜血', supported: true, deckCopyLimit: 3 },
   ],
 };
-const nav = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name, exact: true }));
+const nav = (name: string) => fireEvent.click(within(screen.getByRole('navigation', { name: '大厅导航' })).getByRole('button', { name }));
 const settings = () => fireEvent.click(screen.getByRole('button', { name: /牌组设置与模板/ }));
 const mount = (create = vi.fn()) => render(<Lobby catalog={catalog} busy={false} onCreate={vi.fn()} onJoin={vi.fn()} onCreateDraft={create} retry={vi.fn()} />);
 beforeEach(() => { localStorage.clear(); sessionStorage.clear(); history.replaceState({}, '', '/'); });
