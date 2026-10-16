@@ -52,7 +52,7 @@ impl Game {
                         card: c.clone(),
                         region: Some(r),
                         observed_death: None,
-                        source_region_instance: None,
+                                        observed_mobility_grant: None,                        source_region_instance: None,
                         attachment_host_instance: None,
                         play_source: None,
                     })

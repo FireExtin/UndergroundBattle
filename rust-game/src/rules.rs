@@ -464,6 +464,9 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    BQ035PrintedGlory,
+    BQ035OwnBloodVampireMobility,
+    BQ035OwnEquippedVampireGlory,
     WM038HostCultistSubtype,
     XQ25UntappedRegionConcealSurcharge,
     JC045TimeInfluence,
@@ -522,6 +525,12 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    // The registry separately forbids static transplantation. At runtime the
+    // shared mobility validator also requires the exact event-time source receipt.
+    if crate::mobility::related_ability(ability) {
+        return if crate::mobility::canonical(ability) { Ok(()) }
+            else { Err("只准入完整的机动事件与自身移动程序".into()) };
+    }
     crate::red_time::validate_ability(card_id, ability)?;
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
@@ -1252,6 +1261,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::bq035::validate_definition(card_id, definition)?;
+        crate::mobility::validate_definition(card_id, definition)?;
         crate::red_time::validate_definition(card_id, definition)?;
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
@@ -3182,6 +3193,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
                 None,
             )]),
         );
+        m.insert("BQ035".into(), crate::bq035::definition());
         let mut mobility = ability(
             "mobility",
             "机动",

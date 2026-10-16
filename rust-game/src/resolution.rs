@@ -403,7 +403,7 @@ impl Game {
     pub(crate) fn source_snapshot(&self, c: &Card, region: Option<usize>) -> SourceSnapshot {
         SourceSnapshot {
             observed_death: None,
-            card: {
+                                        observed_mobility_grant: None,            card: {
                 let mut snapshot = c.clone();
                 if c.definition == "JZ30" && !c.face_down && self.board(&c.id).is_some() {
                     snapshot.time_markers = self.effective_time_markers(c);
@@ -411,7 +411,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095" | "BQ035") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038") || rules::definition(&c.definition)
@@ -1015,6 +1015,20 @@ impl Game {
         }
     }
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
+        if event == Event::ConfrontationStart {
+            let declaration = Declaration { actor, source, ability: crate::mobility::ability() };
+            if self.validated_mobility_declaration(&declaration).is_ok()
+                && !self.effects.iter().any(|e| matches!(e, Effect::Declare { declaration: d }
+                    if d.ability.key == "mobility" && d.source.card.id == declaration.source.card.id))
+                && !self.stack.iter().any(|s| s.frame.as_ref().is_some_and(|f|
+                    f.ability_key == "mobility" && f.source.card.id == declaration.source.card.id))
+                && !self.pending.as_ref().is_some_and(|p| matches!(&p.resolution,
+                    ChoiceResolution::Declare { declaration: d, .. }
+                    if d.ability.key == "mobility" && d.source.card.id == declaration.source.card.id)) {
+                self.effects.push_back(Effect::Declare { declaration });
+            }
+            return;
+        }
         // User ruling: freeze successful attachment facts before death cleanup.
         // enter_triggers runs after the attachment's continuous control change.
         if event == Event::Enter
@@ -1048,6 +1062,7 @@ impl Game {
         }
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
+        self.validated_mobility_declaration(&declaration)?;
         if self.jc046_declare(declaration.clone())? {
             return Ok(());
         }
@@ -1125,6 +1140,7 @@ impl Game {
         stage: DeclareChoice,
         selected: Vec<String>,
     ) -> RuleResult<()> {
+        self.validated_mobility_declaration(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {
@@ -1358,6 +1374,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validated_mobility_frame(&frame)?;
         self.validate_red_time_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;

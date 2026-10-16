@@ -277,6 +277,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_gray_expansion_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !relevant_frame(f) {
             return Ok(());
         }
@@ -354,6 +355,7 @@ impl Game {
             Ok(())
         };
         let declaration = |d: &Declaration| -> RuleResult<()> {
+            if self.validated_mobility_declaration(d)? { return Ok(()); }
             let relevant = relevant_ability(&d.source.card.definition, &d.ability);
             if relevant {
                 validate_ability(&d.source.card.definition, &d.ability)?;
@@ -388,6 +390,7 @@ impl Game {
                 return Err("灰色扩充派遣或现身堆栈必须携带完整冻结帧".into());
             }
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 frame(f, false)?;
                 if relevant_frame(f) {
                     if s.controller != f.actor
@@ -417,6 +420,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame: f } => {
                     frame(f, false)?;
                     // This respondable, single-step entry frame finishes in
@@ -440,6 +444,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame: f, .. } => frame(f, true)?,
                 ChoiceResolution::Declare {
                     declaration: d,

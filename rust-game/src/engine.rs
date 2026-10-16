@@ -590,6 +590,7 @@ impl Game {
         if seat >= self.players.len() {
             return Err("无此座位".into());
         }
+        self.validate_mobility_state()?;
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
         let mut next = self.clone();
         next.version = revision;
@@ -1150,36 +1151,15 @@ impl Game {
             }
             Window::Action(_) => {
                 self.begin_window(Window::Mobility);
-                let mut sources = self
-                    .regions
-                    .iter()
-                    .enumerate()
-                    .flat_map(|(r, reg)| {
-                        reg.cards
-                            .iter()
-                            .filter(|c| {
-                                !c.face_down
-                                    && !c.exhausted
-                                    && rules::definition(&c.definition)
-                                        .abilities
-                                        .iter()
-                                        .any(|a| a.event == Some(Event::ConfrontationStart))
-                            })
-                            .map(move |c| {
-                                (
-                                    c.controller,
-                                    SourceSnapshot {
-                                        observed_death: None,
-                                        card: c.clone(),
-                                        region: Some(r),
-                                        source_region_instance: None,
-                                        attachment_host_instance: None,
-                                        play_source: None,
-                                    },
-                                )
-                            })
-                    })
-                    .collect::<Vec<_>>();
+                // Capture every grant before processing the first declaration.
+                let mut sources = Vec::new();
+                for (r, region) in self.regions.iter().enumerate() {
+                    for c in &region.cards {
+                        if !region.vacant && !c.exhausted && self.has_mobility(c) {
+                            sources.push((c.controller, self.mobility_source(c, r)));
+                        }
+                    }
+                }
                 sources.sort_by_key(|(seat, _)| (self.team(*seat) != self.first_team, *seat));
                 for (seat, source) in sources {
                     self.emit_event(seat, source, Event::ConfrontationStart);
@@ -2155,6 +2135,7 @@ impl Game {
                 self.jc060_current_domains(c)
             },
             time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
+            current_mobility: (!asset && !c.face_down && region.is_some() && self.has_mobility(c)).then_some(true),
             current_combat_glory: (!asset && !c.face_down && region.is_some()
                 && self.has_combat_glory(c)).then_some(true),
             current_kill: (!asset

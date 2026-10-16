@@ -6392,7 +6392,23 @@
         "imageSha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5",
         "evidenceId": "card-BQ035",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-16",
+            "field": "loyalty",
+            "previous": [],
+            "corrected": [
+              {
+                "kind": "color",
+                "value": "蓝",
+                "count": 1
+              }
+            ],
+            "basis": "原图费用5下方一枚蓝忠诚符号；BLUE_NEXT_BATCH_DESIGN_2026-10-15.md及本轮原图人工复核",
+            "imageSha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "24/98",
@@ -6414,7 +6430,13 @@
         "printedCollectorCode": "24/98",
         "seriesSymbol": "霸权三角环符号",
         "printedCost": 5,
-        "loyalty": [],
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 1
+          }
+        ],
         "domains": [
           {
             "id": "blood",

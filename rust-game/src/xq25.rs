@@ -98,6 +98,7 @@ impl Game {
             .fold(1u32, |cost, _| cost.saturating_add(1))
     }
     pub(crate) fn validate_xq25_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !related(f) {
             return Ok(());
         }
@@ -165,6 +166,7 @@ impl Game {
         }
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_xq25_frame(f)?;
                 if related(f) || s.card.as_ref().is_some_and(|c| c.definition == "XQ25") {
                     if f.source.card.definition != "XQ25"
@@ -190,6 +192,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame: f } => {
                     self.validate_xq25_frame(f)?;
                     if related(f) {
@@ -206,6 +209,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Declare { declaration: d, .. }
                     if d.source.card.definition == "XQ25" || d.ability.key == KEY =>
                 {

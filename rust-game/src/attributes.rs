@@ -24,11 +24,13 @@ impl Game {
         self.jc089_host_curses(c) > 0
     }
     pub(crate) fn has_combat_glory(&self, c: &Card) -> bool {
+        let Some((_, c)) = self.board(&c.id) else { return false; };
         !c.face_down && card(&c.definition).kind == "character"
             && ((c.definition == "JC018"
                 && self.board(&c.id).is_some_and(|(_,live)| !live.face_down && live.definition == "JC018")
                 && crate::rules::definition("JC018").modifiers.iter().any(|m|
                     matches!(m, StaticModifier::JC018MindAssetsCombat)))
+                || c.definition == "BQ035" || self.bq035_grants_glory(&c.id)
                 || self.has_jc089_glory(c))
     }
     // One closed printed condition. "本方" means the current controller alone,

@@ -25,6 +25,7 @@ fn relevant(f: &ResolutionFrame) -> bool {
 }
 impl Game {
     pub(crate) fn validate_jc050_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !relevant(f) {
             return Ok(());
         }
@@ -73,6 +74,7 @@ impl Game {
     pub(crate) fn validate_jc050_state(&self) -> RuleResult<()> {
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_jc050_frame(f)?;
                 if relevant(f)
                     && (f.cursor != 0
@@ -100,6 +102,7 @@ impl Game {
             }
         }
         let declaration = |d: &Declaration| -> RuleResult<()> {
+            if self.validated_mobility_declaration(d)? { return Ok(()); }
             if d.source.card.definition == "JC050"
                 || d.ability.key == "region-destruction"
                 || contains_jc050_op(&d.ability.ops)
@@ -111,6 +114,7 @@ impl Game {
         };
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame } => {
                     self.validate_jc050_frame(frame)?;
                     if relevant(frame) && frame.cursor != 0 {
@@ -123,6 +127,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame, choice } => {
                     self.validate_jc050_frame(frame)?;
                     if relevant(frame)

@@ -1,0 +1,13 @@
+{
+  "purpose": "Intentional immutable runtime dependency preserving already-published v58 rooms; not a compiler cache.",
+  "providerSource": "eec9ffb81b66b149bdcc4f045c1be834dae21748",
+  "reviewedSource": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+    "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+  },
+  "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "2b041aa5daa089e00f3157cfdb4a54c10a6f531bc3527998a43e835c580438ff"
+}

@@ -22,6 +22,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_gray_lock_frame(&self, frame: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(frame)? { return Ok(()); }
         let printed = matches!(frame.source.card.definition.as_str(), "JC069" | "JZ43")
             .then(|| rules::definition(&frame.source.card.definition).abilities.iter()
                 .find(|a| a.key == frame.ability_key)).flatten();
@@ -51,6 +52,7 @@ impl Game {
     }
     pub(crate) fn validate_gray_lock_state(&self) -> RuleResult<()> {
         let declaration = |d: &Declaration| -> RuleResult<()> {
+            if self.validated_mobility_declaration(d)? { return Ok(()); }
             let relevant = matches!(d.source.card.definition.as_str(), "JC069" | "JZ43")
                 || d.ability.ops.iter().any(contains_lock_op)
                 || d.ability.modes.iter().any(|m| m.ops.iter().any(contains_lock_op))
@@ -67,10 +69,12 @@ impl Game {
             Ok(())
         };
         for item in &self.stack {
-            if let Some(frame) = &item.frame { self.validate_persisted_gray_lock_frame(frame, false)?; }
+            if let Some(frame) = &item.frame {
+                if self.validated_mobility_frame(frame)? { continue; } self.validate_persisted_gray_lock_frame(frame, false)?; }
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame } => self.validate_persisted_gray_lock_frame(frame, false)?,
                 Effect::Declare { declaration: d } => declaration(d)?,
                 _ => {},
@@ -78,6 +82,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame, .. } => self.validate_persisted_gray_lock_frame(frame, true)?,
                 ChoiceResolution::Declare { declaration: d, .. } => declaration(d)?,
                 _ => {},

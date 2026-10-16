@@ -768,5 +768,10 @@
     "url": "/cards/JC046.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC046 无面屠戮者.jpg",
     "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
+  },
+  "BQ035": {
+    "url": "/cards/BQ035.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg",
+    "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
   }
 }

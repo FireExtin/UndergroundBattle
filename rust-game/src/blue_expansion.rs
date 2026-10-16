@@ -177,6 +177,7 @@ impl Game {
     }
 
     pub(crate) fn validate_blue_expansion_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         self.validate_bq030_frame(f)?;
         if !relevant_frame(f) {
             return Ok(());
@@ -349,6 +350,7 @@ impl Game {
     }
 
     fn validate_bq028_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if self.validated_mobility_declaration(d)? { return Ok(()); }
         let relevant = d.source.card.definition == "BQ028"
             || d.ability.key == "reveal-inspect-attachment"
             || contains_bq028_op(&d.ability.ops)
@@ -392,6 +394,7 @@ impl Game {
         self.validate_bq030_state()?;
         for item in &self.stack {
             if let Some(f) = &item.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_blue_expansion_frame(f)?;
                 if relevant_frame(f) {
                     let play = matches!(f.ability_key.as_str(), "deploy" | "reveal");
@@ -421,6 +424,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame: f } => {
                     self.validate_blue_expansion_frame(f)?;
                     if relevant_frame(f)
@@ -435,6 +439,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Declare {
                     declaration: d,
                     stage,

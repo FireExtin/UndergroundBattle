@@ -162,6 +162,7 @@ impl Game {
         // Declaration processing waits until the entire effect completes.
     }
     pub(crate) fn validate_jz35_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !related(f) {
             return Ok(());
         }
@@ -200,6 +201,7 @@ impl Game {
     pub(crate) fn validate_jz35_state(&self) -> RuleResult<()> {
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_jz35_frame(f)?;
                 if related(f) || s.card.as_ref().is_some_and(|c| c.definition == "JZ35") {
                     if !related(f)
@@ -225,6 +227,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame } => {
                     self.validate_jz35_frame(frame)?;
                     if related(frame) {
@@ -239,6 +242,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame, .. } if related(frame) => {
                     return Err("JZ35无可持久化的牺牲返回续体".into())
                 }

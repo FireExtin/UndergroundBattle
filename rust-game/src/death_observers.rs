@@ -103,6 +103,7 @@ impl Game {
         Ok(())
     }
     fn validate_observer_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if self.validated_mobility_declaration(d)? { return Ok(()); }
         if !relevant_source(&d.source) && d.ability.event != Some(Event::CharacterDeathObserved)
             && !d.ability.key.starts_with("death-observer-") && !rules::death_observer_ops(&d.ability.ops)
             && !d.ability.modes.iter().any(|m| rules::death_observer_ops(&m.ops)) { return Ok(()); }

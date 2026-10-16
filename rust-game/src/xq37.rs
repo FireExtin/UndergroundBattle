@@ -41,6 +41,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_xq37_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !relevant(f) {
             return Ok(());
         }
@@ -100,6 +101,7 @@ impl Game {
     }
     pub(crate) fn validate_xq37_state(&self) -> RuleResult<()> {
         let declaration = |d: &Declaration| -> RuleResult<()> {
+            if self.validated_mobility_declaration(d)? { return Ok(()); }
             if d.source.card.definition != "XQ37"
                 && d.ability.key != "entry-existing-influence"
                 && !contains_xq37_op(&d.ability.ops)
@@ -138,6 +140,7 @@ impl Game {
         };
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_xq37_frame(f)?;
                 if relevant(f) {
                     if s.controller != f.actor || s.id != f.frame_id || s.target.is_some() {
@@ -164,6 +167,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame } => self.validate_xq37_frame(frame)?,
                 Effect::Declare { declaration: d } => declaration(d)?,
                 _ => {}
@@ -171,6 +175,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame, .. } if relevant(frame) => {
                     return Err("XQ37原子程序不能暂停为帧选择".into())
                 }

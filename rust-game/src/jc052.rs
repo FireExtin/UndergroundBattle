@@ -217,6 +217,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_jc052_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !related(f) {
             return Ok(());
         }
@@ -261,6 +262,7 @@ impl Game {
         Ok(())
     }
     fn validate_jc052_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if self.validated_mobility_declaration(d)? { return Ok(()); }
         if d.source.card.definition != "JC052" && !own_ability(&d.ability) {
             return Ok(());
         }
@@ -291,6 +293,7 @@ impl Game {
         }
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_jc052_frame(f)?;
                 if related(f) || s.card.as_ref().is_some_and(|c| c.definition == "JC052") {
                     if !related(f)
@@ -322,6 +325,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame: f } => {
                     self.validate_jc052_frame(f)?;
                     if (f.source.card.definition == "JC052"
@@ -338,6 +342,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Frame { frame: f, .. } if related(f) => {
                     return Err("JC052没有可保存的结算续体待选".into())
                 }

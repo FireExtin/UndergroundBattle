@@ -232,6 +232,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_wm038_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if self.validated_mobility_frame(f)? { return Ok(()); }
         if !related(f) {
             return Ok(());
         }
@@ -286,6 +287,7 @@ impl Game {
         Ok(())
     }
     fn validate_wm038_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if self.validated_mobility_declaration(d)? { return Ok(()); }
         if d.source.card.definition == "WM038" || key(&d.ability.key) || has_op(&d.ability.ops) {
             self.validate_wm038_source(&d.source, d.actor, true)?;
             if !same(&d.ability, &definition().abilities[1]) {
@@ -324,6 +326,7 @@ impl Game {
         }
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if self.validated_mobility_frame(f)? { continue; }
                 self.validate_wm038_frame(f)?;
                 if related(f) || s.card.as_ref().is_some_and(|c| c.definition == "WM038") {
                     if !related(f)
@@ -353,6 +356,7 @@ impl Game {
         }
         for e in &self.effects {
             match e {
+                Effect::Frame { frame } if crate::mobility::related_frame(frame) => return Err("机动不能绕过响应队列".into()),
                 Effect::Frame { frame: f } => {
                     self.validate_wm038_frame(f)?;
                     if related(f) {
@@ -365,6 +369,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                    self.validate_mobility_state()?;
+                }
+                ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),
                 ChoiceResolution::Declare {
                     declaration: d,
                     stage,

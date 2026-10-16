@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
-  "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+  "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
+  "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5574,6 +5574,46 @@
         "record": "JC046",
         "image": "resource/ymsj-fun.github.io/cards/JC046 无面屠戮者.jpg",
         "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
+      }
+    },
+    {
+      "id": "BQ035",
+      "name": "幽冥骑士",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "猎手"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "机动；威名\n持续 所有有名为鲜血的附属结附于其上的本方吸血鬼角色获得机动。\n持续 所有有装备或武器附属结附于其上的本方吸血鬼角色获得威名。",
+      "keywords": [
+        "机动",
+        "威名"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ035",
+        "image": "resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg",
+        "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
       }
     }
   ],

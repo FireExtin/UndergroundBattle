@@ -84,6 +84,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_combat_glory: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_mobility: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_kill: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_retreat: Option<bool>,
@@ -506,6 +508,8 @@ pub struct StackItem {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SourceSnapshot {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub observed_mobility_grant: Option<ObservedMobilityGrant>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub observed_death: Option<ObservedCharacterDeath>,
     pub card: Card,
     pub region: Option<usize>,
@@ -523,6 +527,16 @@ pub struct SourceSnapshot {
 pub struct ObservedCharacterDeath {
     pub card: Card,
     pub vampire: bool,
+}
+/// Captured once at confrontation start; retained after either grant witness leaves.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ObservedMobilityGrant {
+    pub turn: u32,
+    pub vampire: bool,
+    pub knight: Card,
+    pub knight_region: usize,
+    pub blood: Attachment,
 }
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
@@ -828,6 +842,7 @@ impl Game {
             ));
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_mobility_state()?;
         game.validate_vacant_regions()?;
         game.validate_win_contexts()?;
         game.validate_sealed_cards()?;
