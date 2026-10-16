@@ -1,0 +1,17 @@
+{
+  "kind": "post-deployment-public-browser-attempt",
+  "deployedVersion": 56,
+  "deployedSource": "37d5d090c54c05d78dbdad06eafad6a880a60096",
+  "deployedUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "deploymentSucceeded": true,
+  "browserPassed": false,
+  "executedUiChecks": 0,
+  "failure": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"networkidle\"\n",
+  "systemCaHttpsStatus": 403,
+  "certificateChecksDisabled": false,
+  "ownerBypassUsed": false,
+  "accessPolicyChanged": false,
+  "gamePosts": 0,
+  "onlineGameplayVerified": false,
+  "note": "The unchanged runner uses kind=local-production-browser-layout; this invocation explicitly targeted the deployed public URL and failed at navigation before UI checks."
+}

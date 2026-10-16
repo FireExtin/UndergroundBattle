@@ -1,0 +1,24 @@
+{
+  "source": "37d5d090c54c05d78dbdad06eafad6a880a60096",
+  "kind": "local-production-browser-layout",
+  "atUtc": "2026-10-16T04:16:21.910997+00:00",
+  "results": [
+    {
+      "viewport": {
+        "width": 2048,
+        "height": 1122,
+        "deviceScaleFactor": 1
+      },
+      "checks": [],
+      "metrics": {},
+      "screenshots": [
+        "2048x1122-dpr1-failure.png"
+      ],
+      "pageErrors": [],
+      "posts": [],
+      "passed": false,
+      "failure": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "passed": false
+}

@@ -1,0 +1,63 @@
+{
+  "versionNumber": 56,
+  "reviewedCanonical": "7146467ef1994debd9613e2f3a0f1d2a45b37632",
+  "testedProductSource": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "providerSource": "37d5d090c54c05d78dbdad06eafad6a880a60096",
+  "deploymentId": "appgdep_6ad1a4d963788191a38b50e9b176f385",
+  "deploymentStatus": "succeeded",
+  "sourceInputFilesMatched": 827,
+  "frontendFilesMatched": 158,
+  "liveUiChecksPassed": 0,
+  "files": [
+    {
+      "path": "archive-identity.json",
+      "bytes": 403,
+      "sha256": "77cf9a714023b0a43867e93a9c897e7aeece1bdf7c9cdc52d357dc775d4e3c6b"
+    },
+    {
+      "path": "live-access-summary.json",
+      "bytes": 955,
+      "sha256": "0ae36d6b9df3120f3365329a5e0350421c46dce6ad567fb714228f36c8183eba"
+    },
+    {
+      "path": "live-browser-result.json",
+      "bytes": 766,
+      "sha256": "c61b66e5f5d7189119aca97704989256897787d1a65aaa7de6dd1ca1968e5add"
+    },
+    {
+      "path": "normal-https.json",
+      "bytes": 318,
+      "sha256": "78a39c1973dc65a25651a44c5582d9f13377e836e36e9effc7995025f2253425"
+    },
+    {
+      "path": "official-workflow.log.gz",
+      "bytes": 1274,
+      "sha256": "1d0041a25de735179526ab8ef0a4ac01e63709c486aeeef2a8bc11901cf1eb84"
+    },
+    {
+      "path": "prepublication-artifacts.json.gz",
+      "bytes": 8210,
+      "sha256": "2a07ce71f0c81e6fb7e9a0be1315280a9fb41291ce11b60546584b126ce66c32"
+    },
+    {
+      "path": "publication-audit.py",
+      "bytes": 7803,
+      "sha256": "16c23d9177fdec915ebd4f58b766ae8b591bd1481ee409f6be3df11c0129a592"
+    },
+    {
+      "path": "publication-result.json",
+      "bytes": 2840,
+      "sha256": "96c46dc9c8329e9be0305e9f19f012b3ae1552a352ab99d873507ee65591aac5"
+    },
+    {
+      "path": "source-provider-binding.json.gz",
+      "bytes": 49724,
+      "sha256": "9e37f25bd68fe3389a6b4691e7f2928dcba1ff18d55056658fc578fd7360f89c"
+    },
+    {
+      "path": "source-sync-plan.json",
+      "bytes": 791,
+      "sha256": "f7ff4e46552ea8697b67175037ffd57120e39f2c71476e23922311e9d28f18d3"
+    }
+  ]
+}

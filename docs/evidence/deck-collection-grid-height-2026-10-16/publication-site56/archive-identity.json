@@ -1,0 +1,12 @@
+{
+  "archive": "/workspace/collection-layout-20261016/publication/hidden-world-grid-layout-site.tar.gz",
+  "rawArchiveBytes": 68898961,
+  "rawArchiveSha256": "928e6701ba9c08eb591f8ad1d5b8f158d5845925d92690c0cd9c8b4f922f2d8a",
+  "fileCount": 166,
+  "hostingManifest": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "d1": "DB",
+    "r2": null
+  },
+  "excludedStateScanPassed": true
+}

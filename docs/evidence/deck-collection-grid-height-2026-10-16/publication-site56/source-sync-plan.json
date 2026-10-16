@@ -1,0 +1,23 @@
+{
+  "canonicalCommit": "7146467ef1994debd9613e2f3a0f1d2a45b37632",
+  "reviewedSourceCommit": "3492f7775cfd470f18164c9dfe847b3c2e3cb7ec",
+  "providerBefore": "70fa29f69c1f204f810d7274f44499e4f522ddce",
+  "priorBoundFilesVerified": 827,
+  "providerCleanBefore": true,
+  "changes": [
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/DeckLibraryPanel.tsx",
+      "providerPath": "web/src/game/DeckLibraryPanel.tsx",
+      "bytes": 33228,
+      "sha256": "0c0905557c31bfc2c830f6a690c519cdeb6fa21e9c2214a61df10d6449f04202"
+    },
+    {
+      "status": "M",
+      "canonicalPath": "web/src/game/lobby-pages.css",
+      "providerPath": "web/src/game/lobby-pages.css",
+      "bytes": 6631,
+      "sha256": "3ebfa90731d3e322b00858210ca0dd7133036118d8ca18fa84955e0eeb20fa03"
+    }
+  ]
+}

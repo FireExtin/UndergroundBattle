@@ -1,5 +1,7 @@
 # 收藏区网格至少 2.5 行及卡底无遮挡：独审材料
 
+> 父会话随后确认固定7146467独审无阻断，已于04:15 UTC官方发布v56；见[发布回执](DECK_COLLECTION_GRID_HEIGHT_SITES56_PUBLICATION_2026-10-16.md)。下文保留提交独审时的状态与执行范围。
+
 固定已测源码：`3492f7775cfd470f18164c9dfe847b3c2e3cb7ec`。审查基线：`736fbc3fb5afe0f34da6e467f1718e221249de4f`。沿用 `codex/deck-collection-page-review-20261016`，本修复尚未发布、未推 main，待父会话独立源码及截图复审。
 
 ## 输入、复现与改动
