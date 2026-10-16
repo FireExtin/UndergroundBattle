@@ -1,0 +1,49 @@
+{
+  "atUtc": "2026-10-16T14:38:09.134926+00:00",
+  "status": "WIP; local HTTP two-browser, fresh old-mechanism parity and independent review pending",
+  "compilerSourceCheckpoint": "fc810d3fa4fdf2c1a10eb7b451405a46503db954",
+  "native": {
+    "lib": 1130,
+    "integration": 67,
+    "failed": 0
+  },
+  "bq035Wasm": {
+    "scenarios": 13,
+    "commands": 378,
+    "projections": 1510,
+    "rejected": 3,
+    "invalid": 56,
+    "negativeRestoreCalls": 448,
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "completeOpaqueStateAndTransitionMatch": true,
+    "fixtureBytes": 3838553,
+    "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+    "sourceFiles": 121
+  },
+  "sourceTests": 44,
+  "inputFrozenTools": 10,
+  "worker": {
+    "passed": 204,
+    "failed": 0,
+    "fullGroupRerun": true
+  },
+  "frontend": {
+    "files": 130,
+    "passed": 1229,
+    "failed": 0,
+    "rawLogSha256": "e979b56bd953af3c9aa8fc90bb49df3c820dea78e2668693267c49348000525f"
+  },
+  "validationInputsUnchanged": 852,
+  "localHttpTwoBrowser": "not run",
+  "freshOldMechanismParity": "not run",
+  "independentReview": "pending parent serial review",
+  "mainPromotion": "read-only audited; not performed",
+  "publicV59Check": {
+    "atUtc": "2026-10-16T14:32:51.401788+00:00",
+    "outcome": "ERR_CERT_AUTHORITY_INVALID",
+    "bypass": false,
+    "posts": 0,
+    "onlineGames": 0
+  },
+  "published": false
+}

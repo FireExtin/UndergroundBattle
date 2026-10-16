@@ -1,0 +1,12 @@
+{
+  "passed": 204,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "entireGroupRerun": true,
+  "durationMs": 1049350.854587,
+  "nativeBq035Scenarios": 13,
+  "rawLogSha256": "c042eb54885da87156b8346c719f29608137576c31172e5b6c095b825d81addd",
+  "newWasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+  "published": false
+}

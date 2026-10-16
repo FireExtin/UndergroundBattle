@@ -1,0 +1,37 @@
+[
+  {
+    "file": "native-workspace-final.log.gz",
+    "rawBytes": 122209,
+    "rawSha256": "e695cd53c06e995fb80e31f35b5a70c84a3064577bed371529ce61071a97c073"
+  },
+  {
+    "file": "wasm-build.log.gz",
+    "rawBytes": 220,
+    "rawSha256": "52fff46c830a20eefffc2ca2518e8f0c45d76c7ee8408dbc540d5895932c5005"
+  },
+  {
+    "file": "bq035-pack.log.gz",
+    "rawBytes": 353,
+    "rawSha256": "1342435289b6dd3e3ccedb91ffb44b0bf4299914d817a057c7c2d01078f006ed"
+  },
+  {
+    "file": "input-frozen-tools.log.gz",
+    "rawBytes": 1040,
+    "rawSha256": "87d7ab806ea9eb626413efea9cb3c911fa5665e0a420496ed011105c9e74674f"
+  },
+  {
+    "file": "source-tests.log.gz",
+    "rawBytes": 4362,
+    "rawSha256": "57ee31111cb8c1190dd94a559f4f9dfba7f63d734c386deeeaa50dea0071b640"
+  },
+  {
+    "file": "sites-production-build.log.gz",
+    "rawBytes": 1706,
+    "rawSha256": "18950b2a00c0dfeb2c3b6a0f46b7de4499b05c7ed399455af3da799f6ebc6453"
+  },
+  {
+    "file": "bq035-worker-build.log.gz",
+    "rawBytes": 928,
+    "rawSha256": "8aae3d76086eac494daf2dfd60c6ef6b3363300adb3364be36516b6a389403db"
+  }
+]

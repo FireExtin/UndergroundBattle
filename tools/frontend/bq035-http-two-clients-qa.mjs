@@ -25,6 +25,11 @@ assert.equal(initial.players.length, 2);
 const host = initial.regions.flatMap(region => region.characters).find(card => card.cardId === 'WM023').instanceId;
 const tokens = ['1'.repeat(64), '2'.repeat(64)]; // Local fixture seats, never real credentials.
 const worker = join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'bq035-worker/server');
+const retainedIdentity = JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi77/identity.json'), 'utf8'));
+const wasmModules = await Promise.all((await readdir(worker)).filter(file => file.endsWith('.wasm')).map(async file => {
+  const bytes = await readFile(join(worker, file)); return { file, bytes: bytes.length, sha256: sha256(bytes) };
+}));
+assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [fixture.wasmSha256, retainedIdentity.wasmSha256].sort());
 const persist = await mkdtemp(join(process.env.TMPDIR, 'bq035-p2-real-http-'));
 const options = { name: 'bq035-p2-real-http', rootPath: sites, modulesRoot: worker, host: '127.0.0.1', port: 0,
   cf: false, compatibilityDate: '2026-10-02', resourcePersistencePath: persist,
@@ -36,6 +41,8 @@ const options = { name: 'bq035-p2-real-http', rootPath: sites, modulesRoot: work
 };
 const report = { passed: false, scope: 'Prepared existing WM023, followed by paid cards and real two-client HTTP mechanism chain; local deterministic server clock, not online gameplay',
   engine: fixture.catalog.engineVersion, wasmSha256: fixture.wasmSha256, workerSha256: sha256(await readFile(join(worker, 'worker.js'))),
+  wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
+  productionClientIndexSha256: sha256(await readFile(join(sites, 'dist/client/index.html'))),
   fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/bq035Native78.fixture.json.gz'))),
   commands: [], clientRequests: [0, 0], clientPosts: [0, 0], pageErrors: [], screenshots: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
@@ -88,7 +95,9 @@ try {
     let response, command, via = 'browser-fetch';
     if (kind === 'pauseRoom' || kind === 'resumeRoom' || kind === 'passResponse' || kind === 'game' && step.command.action.action.kind === 'choose') {
       via = 'production-ui';
-      const pending = page.waitForResponse(response => new URL(response.url()).pathname === `/api/rooms/${id}/commands` && response.request().method() === 'POST');
+      const pending = page.waitForResponse(response => new URL(response.url()).pathname === `/api/rooms/${id}/commands`
+        && response.request().method() === 'POST'
+        && response.request().postDataJSON().expectedVersion === step.command.expectedVersion);
       if (kind === 'pauseRoom') {
         const dialog = page.getByRole('dialog', { name: '待完成的选择' });
         if (await dialog.count()) await dialog.getByRole('button', { name: '暂停并保存此桌', exact: true }).click();
@@ -100,6 +109,10 @@ try {
         await expect(pages[1].getByRole('dialog', { name: '待完成的选择' })).toHaveCount(0);
         await capture('wm023-before-choice');
         await dialog.locator('[data-choice-option="region:1"]').click();
+        await page.reload();
+        await expect(dialog.locator('[data-choice-option="region:1"]')).toHaveAttribute('aria-pressed', 'true');
+        report.choiceDraftRestoredAfterHttpReload = true;
+        await capture('wm023-selected-after-refresh');
         await dialog.getByRole('button', { name: '确认选择', exact: true }).click();
       }
       const http = await pending; assert.equal(http.status(), 200); command = http.request().postDataJSON(); response = await http.json();
@@ -121,7 +134,10 @@ try {
     lastCommand = { seat: step.seat, command }; lastReceipt = response;
     if (kind === 'pauseRoom') {
       const saved = await snapshot(); await mf.dispose(); await start(); assert.deepEqual(await snapshot(), saved); report.reopened++;
-      for (let seat = 0; seat < 2; seat++) { await pages[seat].reload(); assertPublicView(await apiView(seat), step.views[seat]); }
+      for (let seat = 0; seat < 2; seat++) {
+        await pages[seat].reload(); assertPublicView(await apiView(seat), step.views[seat]);
+        await expect(pages[seat].getByRole('button', { name: '恢复对局', exact: true })).toBeVisible();
+      }
       await capture('paused-' + report.reopened);
     }
   }
@@ -130,7 +146,9 @@ try {
     assert(view.regions[1].characters.some(card => card.instanceId === host && card.owner === 'p1' && card.controller === 'p0'));
     assert(!view.regions[0].characters.some(card => card.instanceId === host));
     const attached = view.attachments.filter(item => item.hostId === host); assert.equal(attached.length, 2); assert(attached.every(item => item.region === 1));
-    await expect(pages[seat].locator(`#hg-region-1 [data-card-instance="${host}"]`)).toBeVisible();
+    const movedCard = pages[seat].locator(`#hg-region-1 [data-card-instance="${host}"]`);
+    if (seat === 1) await movedCard.scrollIntoViewIfNeeded();
+    await expect(movedCard).toBeVisible();
   }
   await capture('wm023-moved-with-attachments');
   const frozen = await snapshot();

@@ -1,7 +1,7 @@
 # BQ035 P2 验证证据
 
-当前为WIP检查点。未修复代码24通过／2失败，两个失败均为WM023接受机动后仍在原地区。窄修复后的针对性组27通过。最终整仓Native仍在运行，新WASM／完整Worker／前端／真实HTTP双浏览器尚待验证。旧golden与候选编译产物已失效，不应使用。
+当前进展：最终Native1130库＋67集成全部通过；新WASM完整13/378/1510及56负例／448恢复调用匹配；来源44、输入及保留内核工具10通过；Worker整组204/204从头通过。前端130文件／1229也全部通过，852个验证输入未变。本地真实HTTP双浏览器及新内核旧机制完整对照仍待收尾。
 
-`native-workspace-full.log.gz` 是为了移除resolution.rs无关格式差异而主动中断的历史运行，不是测试失败；最终运行另用新目录与日志，完成后追加。原日志字节摘要见 `checkpoint-files.json`。
+未修复代码24通过／2失败，两个失败均为WM023接受机动后仍在原地区。窄修复后的针对性组27通过，不能与整仓数字相加。`native-workspace-full.log.gz` 是为了移除resolution.rs无关格式差异而主动中断的历史运行，不是测试失败；最终完整运行使用 `native-workspace-final.log.gz`。
 
-测试输入为显式合成布局。无凭据、运行数据库、编译输出或缓存。未部署。
+所有测试输入均为显式合成布局。golden在仓库 `rust-game-wasm/tests/bq035Native78.fixture.json.gz`，内含全部原始JSON、121编译输入绑定和有限正负例清单。候选产物身份见 `candidate-artifact-binding.json`。无凭据、运行数据库、编译输出或缓存。未部署，仍待父会话串行独立复审。公开v59本小时的证书检查另在 `../v59-live-after-p2-worker-2026-10-16/`，与本地HTTP验证分开。

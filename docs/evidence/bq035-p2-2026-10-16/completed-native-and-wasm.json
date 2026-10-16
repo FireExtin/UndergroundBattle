@@ -1,0 +1,30 @@
+{
+  "sourceCheckpoint": "fc810d3fa4fdf2c1a10eb7b451405a46503db954",
+  "nativeFull": {
+    "lib": 1130,
+    "integration": 67,
+    "failed": 0,
+    "harnessResults": 13,
+    "rawLog": "native-workspace-final.log.gz"
+  },
+  "sourceTests": 44,
+  "inputFrozenTools": 10,
+  "bq035": {
+    "scenarios": 13,
+    "commands": 378,
+    "projections": 1510,
+    "rejected": 3,
+    "invalid": 56,
+    "negativeRestoreCalls": 448,
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "completeOpaqueStateAndTransitionMatch": true,
+    "fixtureBytes": 3838553,
+    "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+    "sourceFiles": 121
+  },
+  "workerFull": "running; not yet passed",
+  "frontendFull": "pending",
+  "realHttpTwoBrowsers": "pending",
+  "freshOldMechanismParity": "pending",
+  "published": false
+}
