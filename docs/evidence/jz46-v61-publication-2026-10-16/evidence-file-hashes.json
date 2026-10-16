@@ -1,0 +1,8 @@
+{
+  "approved-runtime-manifest.json": "0df830e1e4e5885782bebab0061c3dee92fa9bda08e7cca69120b8ae447f3472",
+  "archive-identities.json": "8bbe338c67f9491ce918a144cc2da1106bd9e935707cae49ce49b842119643c8",
+  "archive-verification.json": "9b221ff64a4d3da6d1ee54f9b9c2ed7cf5a584ce7192193c5b8f022ad52e7e42",
+  "official-receipts.json": "7f855e9a7ca99ff559676a3a29172a6c9e114574dd105234c17ae610f81a5cc3",
+  "preflight.json": "ad8cace431b5ef124a6529e6c005ace7c49cb3b21208fcee10e9006718326ef9",
+  "source-mapping.json": "70ae45c921ae08e10db68815c424dfecda9fe4aac53565b305180113e7fb0b21"
+}

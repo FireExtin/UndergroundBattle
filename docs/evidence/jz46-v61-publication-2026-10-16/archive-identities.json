@@ -1,0 +1,17 @@
+{
+  "gzipSha256": "6c91b9b95726743fd18411a1d21578f1825fc68d9c8536185051077d96378da8",
+  "gzipBytes": 71441493,
+  "localTarSha256": "bbc320b01ebb5aad34764a88316a9a198171eb231d37c99102f664487dcf3b74",
+  "localTarBytes": 104212480,
+  "nativeArchiveStorage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_0000000063f881f592ab749df0e131d4",
+    "content_hash": "sha256:3c92fd9d3345da6f0a662ee0884014d9a2c13cbd75e52e0f287ea2fc3b98f890",
+    "size_bytes": 104212480,
+    "file_count": 168
+  },
+  "nativeGzipWrapperEqualityClaimed": false,
+  "nativeTarMatchesLocalTar": false,
+  "all168LocalPayloadFilesVerified": true,
+  "nativeArchiveInternalsDownloadedAndRecompared": false
+}

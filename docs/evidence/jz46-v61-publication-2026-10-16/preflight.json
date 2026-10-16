@@ -1,0 +1,17 @@
+{
+  "reviewSource": "e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c",
+  "approvedSave": "819a5d41ee0f9add2793859d82ff9385cabfd17a",
+  "providerBefore": "6d1a1fed34b5abad208488f09055554269e3df10",
+  "compilerInputsMatched": 123,
+  "reviewedWasm": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+  "unchangedDbAndMigrationFiles": [
+    "drizzle/0000_numerous_lucky_pierre.sql",
+    "drizzle/meta/0000_snapshot.json",
+    "drizzle/meta/_journal.json",
+    "db/schema.ts"
+  ],
+  "hostingIdentityBindingIdentical": true,
+  "currentAudience": "public",
+  "accessRevision": 2,
+  "noGameMainChange": true
+}
