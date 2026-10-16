@@ -1,0 +1,57 @@
+{
+  "recordedAtUtc": "2026-10-16T18:59:28.510362+00:00",
+  "status": "WIP; final current79 old-mechanism generation and Worker suite running; no independent review or publication",
+  "rustCompilerCheckpoint": "ccc0b5b0e79a126bf0c095ba311955210a23e664",
+  "currentWasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+  "nativeWorkspace": {
+    "libPassed": 1139,
+    "integrationPassed": 67,
+    "exitCode": 0
+  },
+  "nativeJz46Tests": 9,
+  "nativeWasm79": {
+    "scenarios": 10,
+    "commands": 363,
+    "projections": 1492,
+    "rejected": 16,
+    "invalid": 34,
+    "negativeRestoreCalls": 408,
+    "wasmSha256": "445e1449d241bc7ddf8d5c3366730ab093d2c4eb1c8bd3dde820a646f0231e53",
+    "completeOpaqueStateAndAllViews": true
+  },
+  "browser": {
+    "acceptedViaProductionUi": 13,
+    "rejectedViaBrowserFetch": 1,
+    "duplicateOriginalReceiptFetch": 1,
+    "reopened": 2,
+    "doubleClickProducedOneSubmission": true,
+    "privateOriginalFrontReadableWithoutCommand": true,
+    "onlineGameplay": false
+  },
+  "frontend": {
+    "firstFull": {
+      "files": 131,
+      "passed": 1238,
+      "failed": 2
+    },
+    "failedFilesRecheck": {
+      "files": 2,
+      "passed": 19
+    },
+    "privateFaceScope": {
+      "files": 4,
+      "passed": 76
+    },
+    "readerGuardsScope": {
+      "files": 5,
+      "passed": 90
+    },
+    "completeFaceVisibilityScope": {
+      "files": 2,
+      "passed": 16
+    },
+    "fullSuiteRerun": false,
+    "roundCountsAreNotAdditive": true
+  },
+  "finalWorkerAndOldMechanismChecksPending": true
+}

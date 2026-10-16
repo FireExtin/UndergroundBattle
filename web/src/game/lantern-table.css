@@ -390,6 +390,9 @@
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-world-deck > span { width: 38px; height: 52px; border-radius: 4px; font-size: 17px; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-board { gap: 10px; min-height: calc(2 * max(var(--hg-piece-width), var(--hg-piece-height)) + 76px + var(--lt-center-h)); }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-region { grid-template-rows: minmax(0, 1fr) var(--lt-center-h) minmax(0, 1fr); min-width: 0; }
+  /* A region attachment is a fourth row. Keep both sides' card hit areas
+     outside the region bar when that extra row occupies vertical space. */
+  .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-region:has(> .hg-region-attachments) { grid-template-rows: minmax(min-content, 1fr) var(--lt-center-h) max-content minmax(min-content, 1fr); }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-region-side { padding: 4px 6px; min-height: 0; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-region-side-label { height: 16px; margin: 0 0 2px; font-size: 10px; gap: 4px; }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-region-side-label b,

@@ -95,7 +95,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
       {effectiveStats && !!card.currentDomains?.length && <span className="hg-card-stat-row" role="group" aria-label="领域对照"><small>当前领域</small>{card.currentDomains.map(domain => <span key={domain.magic}>{domain.magic} ×{domain.count}</span>)}<small>印刷领域：{(card.magic ?? definition?.magic) || '无'}</small></span>}
-      {!asset && !region && !attachment && !society && (effectiveStats && card.icons ? <>
+      {!asset && !region && (!attachment || definition?.id === 'JZ46') && !society && (effectiveStats && card.icons ? <>
         <span className="hg-card-stat-row"><small>当前有效</small><IconStrip icons={card.icons} label="当前有效图标" /></span>
         {printedIcons && <span className="hg-card-stat-row"><small>印刷图标</small><IconStrip icons={printedIcons} label="印刷图标" /></span>}
       </> : <IconStrip icons={concealedCompact ? hiddenIcons : compact ? card.icons || permanent : permanent} />)}

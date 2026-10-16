@@ -4,7 +4,6 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { loadFixture, sha256 } from '../../../tools/jz46-oracle.mjs';
 import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current79-kernel.mjs';
 import { Table } from './Table';
-import { CardContent } from './CardTile';
 import { ReadModal } from './ReadModal';
 import { actionForRoom } from './api';
 const fixture=loadFixture();
@@ -43,10 +42,27 @@ it.each(rows)('$name privately restores the front and confirms the exact whole N
 });
 it('a teammate receives neither the private preview nor the inspection controls',()=>{
   const row=rows.find(r=>r.seat===0);const view=row.before[1];
-  expect(view.pendingChoice).toBeUndefined();expect(view.waitingChoice.kind).toBe('jz46-hidden-inspect');
+  expect(view.pendingChoice).toBeNull();expect(view.waitingChoice.kind).toBe('jz46-hidden-inspect');
   render(<Table catalog={catalog} view={view} busy={false} connection="online" onAction={vi.fn()}/>);
   expect(screen.queryByRole('heading',{name:'你检视的暗藏者'})).not.toBeInTheDocument();
   expect(screen.queryByRole('button',{name:'确认选择'})).not.toBeInTheDocument();
+});
+it.each(['confirmed','viewer-changed','choice-replaced'])('private original reader uses the authorized front and closes when %s',boundary=>{
+  const row=rows.find(r=>r.seat===0),view=row.before[0],front=view.pendingChoice.previewCards[0];
+  const props={catalog,view,busy:false,connection:'online',onAction:vi.fn()};
+  const mounted=render(<Table {...props}/>);
+  const dialog=screen.getByRole('dialog',{name:'待完成的选择'});
+  fireEvent.click(within(dialog).getByRole('button',{name:`放大阅读${front.name}`,exact:true}));
+  const reader=screen.getByRole('dialog',{name:`放大阅读${front.name}`,exact:true});
+  expect(reader).toHaveTextContent('罪犯');
+  expect(reader).toHaveTextContent('检视的暗藏者 · 仅你可见');
+  fireEvent.click(within(reader).getByRole('button',{name:'原始牌面',exact:true}));
+  expect(within(reader).getByRole('img',{name:`${front.name}原始牌面`,exact:true})).toHaveAttribute('src',`/cards/${front.cardId}.jpg`);
+  const next=boundary==='confirmed'?row.views[0]:boundary==='viewer-changed'?row.before[1]
+    :{...view,pendingChoice:{...view.pendingChoice,id:'replacement-choice'}};
+  mounted.rerender(<Table {...props} view={next}/>);
+  expect(screen.queryByRole('dialog',{name:`放大阅读${front.name}`,exact:true})).not.toBeInTheDocument();
+  expect(props.onAction).not.toHaveBeenCalled();
 });
 it('the complete JZ46 face retains its region host, loyalty, domain, permanent influence and pinned original',()=>{
   const definition=catalog.cards.find(c=>c.id==='JZ46');
@@ -54,6 +70,7 @@ it('the complete JZ46 face retains its region host, loyalty, domain, permanent i
   const card={instanceId:'art-only',cardId:'JZ46',name:definition.name,kind:'attachment',owner:'p0',controller:'p0',exhausted:false,faceDown:false};
   render(<ReadModal card={card} definition={definition} viewerId="p0" onClose={vi.fn()}/>);
   expect(screen.getByRole('dialog')).toHaveTextContent('检视');
+  expect(screen.getByLabelText('图标：调查0，战斗0，势力1')).toBeVisible();
   fireEvent.click(screen.getByRole('button',{name:'原始牌面'}));
   expect(screen.getByRole('img',{name:'狴犴铜雕原始牌面'})).toHaveAttribute('src','/cards/JZ46.jpg');
 });

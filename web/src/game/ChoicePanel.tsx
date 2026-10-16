@@ -167,7 +167,8 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     </div>}
     <div ref={optionsRegion} className="hg-choice-body" tabIndex={0} role="region" aria-label="选择选项，可滚动查看" aria-describedby={scrollHintId}>
     {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'jz46-hidden-inspect' ? '你检视的暗藏者' : choice.kind === 'bq028-hand-inspect' ? '你检视的手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
-      <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />
+      {choice.kind === 'jz46-hidden-inspect' ? <div className="hg-choice-option"><CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} /></div>
+        : <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />}
       {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${viewerId ? visibleCard(card, viewerId).name : card.name}`}>放大文字与图标 ↗</button>}
     </div>)}</div></div>}
     {ordering ? <div className="hg-order-columns"><div><h3>牌库顶 · 最上面先抓</h3>{reorderList(top, 'top')}</div><div><h3>牌库底 · 自上而下</h3>{reorderList(bottom, 'bottom')}</div></div>

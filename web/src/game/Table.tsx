@@ -208,7 +208,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
   const [previewRegion, setPreviewRegion] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [reading, setReading] = useState<{ instanceId: string; roomId: string; viewerId: string; privateDeckTop?: boolean } | null>(null);
+  const [reading, setReading] = useState<{ instanceId: string; roomId: string; viewerId: string; privateDeckTop?: boolean; privateJz46Choice?: string } | null>(null);
   const [draft, setDraft] = useState<{ key: string; actionFrame: string | null; responseFrame: string | null; regionId?: string } | null>(null);
   const [targetNotice, setTargetNotice] = useState('');
   const submittedDraft = useRef(false);
@@ -258,12 +258,18 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     || action.region !== undefined && !activeRegions.some(region => region.index === action.region);
   const card = allCards.find(item => item.instanceId === selectedCard);
   const hover = allCards.find(item => item.instanceId === hoveredCard);
-  const readCard = (item: Card) => setReading({ instanceId: item.instanceId, roomId: view.roomId, viewerId: view.you });
+  const readCard = (item: Card) => setReading({ instanceId: item.instanceId, roomId: view.roomId, viewerId: view.you,
+    privateJz46Choice: view.pendingChoice?.kind === 'jz46-hidden-inspect' && !item.faceDown
+      && view.pendingChoice.previewCards?.some(front => front.instanceId === item.instanceId && front.cardId === item.cardId)
+      ? view.pendingChoice.id : undefined });
   const readingRegion = activeRegions.find(item => item.id === reading?.instanceId);
   const regionCard: Card | undefined = readingRegion ? { instanceId: readingRegion.id, cardId: readingRegion.cardId, name: readingRegion.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false } : undefined;
   // An open reader resolves only against the latest authorized projection, never an old face payload.
   const readingCard = reading?.roomId === view.roomId && reading.viewerId === view.you
-    ? reading.privateDeckTop
+    ? reading.privateJz46Choice
+      ? view.pendingChoice?.kind === 'jz46-hidden-inspect' && view.pendingChoice.id === reading.privateJz46Choice
+        ? view.pendingChoice.previewCards?.map(item => visibleCard(item, view.you)).find(item => item.instanceId === reading.instanceId) : undefined
+      : reading.privateDeckTop
       ? view.privateDeckTop?.instanceId === reading.instanceId ? visibleCard(view.privateDeckTop, view.you) : undefined
       : allCards.find(item => item.instanceId === reading.instanceId)
       || view.pendingChoice?.options.map(option => option.card && visibleCard(option.card, view.you)).find(item => item?.instanceId === reading.instanceId)
@@ -440,6 +446,6 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     {hover && !reading && !activeGroup && <aside className="hg-card-hover" aria-label={`悬停阅读${hover.name}`} data-hover-card={hover.instanceId}><CardContent card={hover} definition={definitions.get(hover.cardId || '')} viewerId={view.you} /></aside>}
     {view.pendingChoice && !view.pause && <div className="hg-table-choice-layer"><ChoicePanel recoveryNotices={recoveryNotices} modal modalActive={!readingCard && !modalPaused} draftStore={choiceDraftStore} choice={view.pendingChoice} action={choiceAction} definitions={definitions} busy={busy} onSubmit={onAction} onPauseRoom={view.canPause ? () => onAction({ kind: 'pauseRoom' }) : undefined} onReadCard={readCard} viewerId={view.you} playerLabels={Object.fromEntries(view.players.map(player => [player.id, player.name]))} /></div>}
     {view.status === 'finished' && <section className="hg-victory" role="status"><span aria-hidden="true">✧</span><div><small>对局结束</small><h1>{view.winnerTeam === you?.team ? '你的秘社取得了霸权' : `${view.winnerTeam === undefined ? '本局' : teamName(view.winnerTeam, view)}赢得了霸权`}</h1><p>胜利目标 {view.winScore} 分 · 可以回顾牌桌，或由房主发起新一局。</p></div><ActionButtons actions={view.legalActions.filter(action => action.kind === 'restart')} busy={busy} onAction={onAction} /></section>}
-    {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={reading?.privateDeckTop ? "你的牌库顶牌 · 仅你可见" : readingSealed ? sealedContext(readingSealed) : readingAttachment ? attachmentContext(readingAttachment) : societyContext(readingCard) ?? objectContext(readingCard)} onClose={() => setReading(null)} />}
+    {readingCard && <ReadModal card={readingCard} definition={definitions.get(readingCard.cardId || '')} viewerId={view.you} context={reading?.privateJz46Choice ? "检视的暗藏者 · 仅你可见" : reading?.privateDeckTop ? "你的牌库顶牌 · 仅你可见" : readingSealed ? sealedContext(readingSealed) : readingAttachment ? attachmentContext(readingAttachment) : societyContext(readingCard) ?? objectContext(readingCard)} onClose={() => setReading(null)} />}
   </main>;
 }

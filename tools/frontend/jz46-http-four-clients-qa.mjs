@@ -13,6 +13,7 @@ import { digest } from '../../sites/src/service.mjs';
 import { assertPublicView, assertSessionJournal } from '../../sites/test/assert-session-journal.mjs';
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const sites = join(repo, 'sites'), requireWeb = createRequire(join(repo, 'web/package.json'));
+const clientDirectory = resolve(process.env.JZ46_CLIENT_DIRECTORY || join(sites, 'dist/client'));
 const requireSite = createRequire(join(sites, 'package.json'));
 const { Miniflare, convertV4MiniflareOptions } = await import(pathToFileURL(requireSite.resolve('miniflare')).href);
 const { chromium } = requireWeb('playwright'), { expect } = requireWeb('playwright/test');
@@ -36,15 +37,15 @@ const options = { name: 'jz46-real-http', rootPath: sites, modulesRoot: worker, 
   modules: [{ type: 'ESModule', path: join(worker, 'worker.js') },
     ...(await readdir(worker)).filter(file => file.endsWith('.wasm')).map(file => ({ type: 'CompiledWasm', path: join(worker, file) }))],
   d1Databases: { DB: 'jz46-real-http' },
-  assets: { directory: join(sites, 'dist/client'), binding: 'ASSETS', run_worker_first: ['/api/*'],
+  assets: { directory: clientDirectory, binding: 'ASSETS', run_worker_first: ['/api/*'],
     routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
 };
 const report = { passed: false, scope: 'Explicit prepared hidden target and funds, followed by real paid JZ46 play, action, four-client privacy, pause/restart and duplicate confirmation; local deterministic server clock, not online gameplay',
   engine: fixture.catalog.engineVersion, wasmSha256: fixture.wasmSha256, workerSha256: sha256(await readFile(join(worker, 'worker.js'))),
   wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
-  productionClientIndexSha256: sha256(await readFile(join(sites, 'dist/client/index.html'))),
+  productionClientIndexSha256: sha256(await readFile(join(clientDirectory, 'index.html'))), clientDirectory,
   fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/jz46Native79.fixture.json.gz'))),
-  commands: [], clientRequests: [0, 0, 0, 0], clientPosts: [0, 0, 0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], reopened: 0 };
+  commands: [], clientRequests: [0, 0, 0, 0], clientPosts: [0, 0, 0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], targetHitChecks: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
 const start = async () => {
   mf = new Miniflare(convertV4MiniflareOptions(options));
@@ -98,7 +99,20 @@ try {
     else if(kind==='game'&&gameAction.kind==='choose'){
       let dialog=page.getByRole('dialog',{name:'待完成的选择'});await expect(dialog).toBeVisible();
       await expect(dialog.getByRole('heading',{name:'你检视的暗藏者'})).toBeVisible();
-      for(let s=1;s<4;s++)await expect(pages[s].getByRole('heading',{name:'你检视的暗藏者'})).toHaveCount(0);
+      for(let s=0;s<4;s++)if(s!==step.seat){
+        await pages[s].reload();await expect(pages[s].locator('.hg-app')).toBeVisible();
+        await expect(pages[s].getByRole('heading',{name:'你检视的暗藏者'})).toHaveCount(0);
+      }
+      const front=JSON.parse(abi.view(step.state,step.seat)).pendingChoice.previewCards[0];
+      const postsBeforeReading=report.clientPosts[step.seat];
+      await dialog.getByRole('button',{name:`放大阅读${front.name}`,exact:true}).click();
+      const reading=page.getByRole('dialog',{name:`放大阅读${front.name}`,exact:true});await expect(reading).toBeVisible();
+      await reading.getByRole('button',{name:'原始牌面',exact:true}).click();
+      await expect(reading.getByRole('img',{name:`${front.name}原始牌面`,exact:true})).toHaveAttribute('src',`/cards/${front.cardId}.jpg`);
+      await page.screenshot({path:join(output,'private-original-front.png')});report.screenshots.push('private-original-front.png');
+      await reading.getByRole('button',{name:'关闭放大阅读',exact:true}).click();
+      assert.equal(report.clientPosts[step.seat],postsBeforeReading,'Private reading cannot submit or reveal the target');
+      report.privateOriginalFrontReadableWithoutCommand=true;
       await capture('private-before-confirm');
       const before=await snapshot();await mf.dispose();await start();report.reopened++;
       assert.deepEqual(await snapshot(),before);await page.reload();
@@ -112,10 +126,22 @@ try {
         a.kind===gameAction.kind&&a.cardId===gameAction.cardId&&a.abilityId===gameAction.abilityId&&a.targetId===gameAction.targetId&&a.region===gameAction.region);
       assert(legal,'Native legal action');
       await page.locator(`[data-card-instance="${gameAction.cardId}"], [data-attachment-instance="${gameAction.cardId}"]`).first().click();
+      if(gameAction.kind==='play')await expect(page.getByRole('complementary',{name:'选牌行动'}).getByLabel('图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
       const grouped=page.locator('button[data-object-action]');
       await expect(grouped).toHaveCount(1);await grouped.first().click();
       if(gameAction.region!==undefined)await page.locator(`button.hg-region-center[data-region-index="${gameAction.region}"]`).click();
-      if(gameAction.targetId)await page.locator(`[data-card-instance="${gameAction.targetId}"]`).first().click();
+      if(gameAction.targetId){
+        const target=page.locator(`[data-card-instance="${gameAction.targetId}"]`).first();
+        await target.scrollIntoViewIfNeeded();
+        const hit=await target.evaluate(el=>{
+          const r=el.getBoundingClientRect(),top=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+          return {x:r.x,y:r.y,width:r.width,height:r.height,hitInstance:top?.closest('[data-card-instance]')?.getAttribute('data-card-instance'),
+            regionRows:getComputedStyle(el.closest('.hg-region')).gridTemplateRows};
+        });
+        report.targetHitChecks.push({targetId:gameAction.targetId,...hit});
+        assert.equal(hit.hitInstance,gameAction.targetId,'The visible target center must receive an ordinary click');
+        await target.click();
+      }
       const buttons=page.locator('button[data-action-id]');
       const ids=await buttons.evaluateAll(nodes=>nodes.map(n=>n.getAttribute('data-action-id')));
       const match=ids.indexOf(legal.id);assert(match>=0,`No real UI control for ${gameAction.kind}`);
