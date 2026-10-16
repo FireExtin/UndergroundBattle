@@ -1,0 +1,263 @@
+{
+  "status": "complete local candidate validation; parent serial independent review pending",
+  "codeCheckpoint": "bf8b02136cebadfbc2f9965c0df5cac08a6538bf",
+  "generatorSourceCommit": "6f84b1503a2b3eab4014231220e22030722f1ca6",
+  "nativeCompilerSourceCheckpoint": "fc810d3fa4fdf2c1a10eb7b451405a46503db954",
+  "native": {
+    "lib": 1130,
+    "integration": 67,
+    "failed": 0
+  },
+  "sourceTests": 44,
+  "inputAndFrozenTools": 10,
+  "bq035CompleteWasm": {
+    "scenarios": 13,
+    "commands": 378,
+    "projections": 1510,
+    "rejected": 3,
+    "invalid": 56,
+    "negativeRestoreCalls": 448,
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "completeOpaqueStateAndTransitionMatch": true,
+    "fixtureBytes": 3838553,
+    "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+    "sourceFiles": 121
+  },
+  "freshCurrent78OldMechanisms": {
+    "ok": true,
+    "cases": 433,
+    "wasmBytes": 2976205,
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "transitions": 24403,
+    "projections": 96975,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 393.82,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "frontendFinal": {
+    "files": 130,
+    "passed": 1229,
+    "failed": 0
+  },
+  "workerCompleteAfterCoreFix": {
+    "passed": 204,
+    "failed": 0,
+    "entireGroupRun": true,
+    "rerunAfterOutputIsolation": false,
+    "reason": "Parent requested no duplicate testing; loaded worker.js and both referenced WASMs remain byte-identical; final real HTTP two-client chain uses isolated two-module output",
+    "referencedExecutionBytesIndependentlyRechecked": true
+  },
+  "browser": {
+    "scope": "Prepared existing WM023, followed by paid cards and real two-client HTTP mechanism chain; local deterministic server clock, not online gameplay",
+    "commands": 20,
+    "via": {
+      "browser-fetch": 7,
+      "production-ui": 13
+    },
+    "clientRequests": [
+      74,
+      62
+    ],
+    "clientPosts": [
+      12,
+      9
+    ],
+    "reopened": 2,
+    "actualMovement": {
+      "instanceId": "i126",
+      "from": 0,
+      "to": 1,
+      "owner": "p1",
+      "controller": "p0",
+      "attachedCards": 2
+    },
+    "choiceLayoutChecks": [
+      {
+        "label": "desktop",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "panel": {
+          "top": 132,
+          "bottom": 832,
+          "left": 153,
+          "right": 1213
+        },
+        "footer": {
+          "top": 749,
+          "bottom": 815,
+          "left": 179,
+          "right": 1190
+        },
+        "confirm": {
+          "top": 766.5,
+          "bottom": 812.5,
+          "left": 1093.984375,
+          "right": 1190
+        },
+        "options": [
+          {
+            "top": 356.765625,
+            "bottom": 472.765625,
+            "left": 182,
+            "right": 504
+          },
+          {
+            "top": 356.765625,
+            "bottom": 472.765625,
+            "left": 519,
+            "right": 841
+          }
+        ]
+      },
+      {
+        "label": "phone",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "panel": {
+          "top": 211.828125,
+          "bottom": 696.15625,
+          "left": 26.734375,
+          "right": 363.25
+        },
+        "footer": {
+          "top": 565.390625,
+          "bottom": 678.15625,
+          "left": 44.734375,
+          "right": 348.25
+        },
+        "confirm": {
+          "top": 636.96875,
+          "bottom": 678.15625,
+          "left": 201.484375,
+          "right": 348.25
+        },
+        "options": [
+          {
+            "top": 433.390625,
+            "bottom": 553.390625,
+            "left": 47.734375,
+            "right": 186.984375
+          },
+          {
+            "top": 433.390625,
+            "bottom": 553.390625,
+            "left": 196.984375,
+            "right": 336.25
+          }
+        ]
+      },
+      {
+        "label": "phone-after-refresh",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "panel": {
+          "top": 211.828125,
+          "bottom": 696.15625,
+          "left": 26.734375,
+          "right": 363.25
+        },
+        "footer": {
+          "top": 565.390625,
+          "bottom": 678.15625,
+          "left": 44.734375,
+          "right": 348.25
+        },
+        "confirm": {
+          "top": 636.96875,
+          "bottom": 678.15625,
+          "left": 201.484375,
+          "right": 348.25
+        },
+        "options": [
+          {
+            "top": 433.390625,
+            "bottom": 553.390625,
+            "left": 47.734375,
+            "right": 186.984375
+          },
+          {
+            "top": 433.390625,
+            "bottom": 553.390625,
+            "left": 196.984375,
+            "right": 336.25
+          }
+        ]
+      }
+    ],
+    "draftAfterHttpRefresh": true,
+    "originalReceiptAfterReopen": true,
+    "pageErrors": []
+  },
+  "compilerInputsUnchanged": 121,
+  "finalValidationInputsUnchanged": 852,
+  "artifact": {
+    "current78WasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "retained77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "workerSha256": "8f1d60744c66cbbdcb09ad4cfaf0f68bd8f0c5010b4b32d6887240929d862e8f",
+    "workerWasm": [
+      {
+        "name": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+        "bytes": 2976205,
+        "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+      },
+      {
+        "name": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+        "bytes": 2909006,
+        "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+      }
+    ],
+    "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+    "productionClientIndexSha256": "46d4fc5a0be50884c32a3b066fa6c560daae9d94a709938c7bd87405f5452e00",
+    "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+    "builtLocallyOnly": true,
+    "published": false,
+    "retained77ExactJsGzipWasmVerified": true,
+    "localDeterministicWorkerSha256": "037b33f3550c53cf4d60c318b3fadea18ec73968f8a38c20793e2a95aea763de",
+    "currentJsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "viewportAndGridFixIncluded": true
+  },
+  "mainPromotion": "skipped; newly found shared v59 UI issue and new fix not independently reviewed",
+  "mainMutationByThisTask": false,
+  "publicBrowser": {
+    "atUtc": "2026-10-16T15:29:13.098445+00:00",
+    "expectedVersion": 59,
+    "outcome": "ERR_CERT_AUTHORITY_INVALID",
+    "versionIdentityReached": false,
+    "posts": 0,
+    "onlineGames": 0,
+    "bypass": false
+  },
+  "published": false,
+  "publicBrowserPrevious": {
+    "atUtc": "2026-10-16T14:32:51.401788+00:00",
+    "expectedVersion": 59,
+    "outcome": "ERR_CERT_AUTHORITY_INVALID",
+    "versionIdentityReached": false,
+    "posts": 0,
+    "onlineGames": 0,
+    "bypass": false
+  }
+}

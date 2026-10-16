@@ -1,0 +1,47 @@
+{
+  "startedAtUtc": "2026-10-16T15:29:10.749901+00:00",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "expectedDeployedVersion": 59,
+  "expectedProviderSource": "a2a002fb7cafb9030405853a1c98bd91800b627c",
+  "expectedDeploymentId": "appgdep_6ad2157c32a48191a5ba22a02b63dc28",
+  "normalTls": true,
+  "ignoreHttpsErrors": false,
+  "bypassUsed": false,
+  "freshBrowserContext": true,
+  "oldInviteUsed": false,
+  "realUserTableAccessed": false,
+  "roomCreated": false,
+  "roomJoined": false,
+  "posts": 0,
+  "navigationAttempts": 1,
+  "uiReached": false,
+  "versionIdentityReached": false,
+  "fullGameCount": 0,
+  "browserErrors": [],
+  "requestsFailed": [
+    {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "method": "GET",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "assetIdentityChecks": [],
+  "consoleErrors": [],
+  "gameplayChecks": {
+    "red-black-blue-gray-decks": "not-executed",
+    "card-selection": "not-executed",
+    "repeat-clicks": "not-executed",
+    "refresh-recovery": "not-executed",
+    "continuous-pass-phase-turn-boundaries": "not-executed",
+    "mandatory-choice": "not-executed",
+    "complete-game": "not-executed"
+  },
+  "browserVersion": "151.0.7922.173",
+  "navigationAtUtc": "2026-10-16T15:29:13.098445+00:00",
+  "errorAtUtc": "2026-10-16T15:29:13.273044+00:00",
+  "error": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"domcontentloaded\"\n",
+  "outcome": "blocked-before-gameplay",
+  "pageUrlAfterFailure": "about:blank",
+  "titleAfterFailure": "Privacy error",
+  "finishedAtUtc": "2026-10-16T15:29:13.958461+00:00"
+}
