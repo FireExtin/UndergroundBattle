@@ -331,6 +331,7 @@ export function useGame() {
   return {
     catalog, session, view, error, busy, uncertain, connection, act, playerMode, autoPassEnabled, setAutoPassEnabled,
     legacyRecoveryBlocked: unbound(pending.current),
+    pendingRecoverySeat: !session ? savedSeats.find(seat => commandFor(pending.current, seat)) : undefined,
     persistenceWarning: [
       seatPersistenceFailed ? '此席位的恢复信息尚未完整写入浏览器。请保持页面打开，回到此席位后重试保存；刷新或关闭页面可能无法恢复原席。' : '',
       pendingPersistenceFailed ? '上一行动的确认记录尚未写入浏览器。请保持页面打开并重试保存，避免刷新后丢失原行动的确认方式。' : '',

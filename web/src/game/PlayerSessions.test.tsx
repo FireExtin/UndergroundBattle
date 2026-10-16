@@ -64,6 +64,24 @@ async function join(code = 'INVITE') {
 const entries = () => posts.filter(p => !p.url.endsWith('/commands'));
 
 describe('explicit independent player sessions through normal UI', () => {
+  it('keeps a generated nickname and the exact entry request through a failed reply and page reload', async () => {
+    rejectEntry = true;
+    let app = render(<GameApp />); await lobbyReady();
+    fireEvent.change(screen.getByLabelText('你的称呼'), { target: { value: '   ' } });
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    await screen.findByRole('alert');
+    await waitFor(() => expect(screen.getByRole('button', { name: '创建牌桌 →' })).toBeEnabled());
+    const first = entries()[0].body;
+    expect(first.name).toMatch(/^旅人·[A-F0-9]{6}$/);
+    expect(first.requestId).toEqual(expect.any(String));
+    app.unmount(); rejectEntry = false;
+    app = render(<GameApp />); await lobbyReady();
+    expect(screen.getByLabelText('你的称呼')).toHaveValue(first.name as string);
+    fireEvent.click(screen.getByRole('button', { name: '创建牌桌 →' }));
+    await screen.findByText('等待秘社集结');
+    expect(entries().length).toBeGreaterThan(1);
+    for (const entry of entries()) expect(entry.body).toEqual(first);
+  });
   it('honours a different invitation instead of silently restoring the old table, and preserves the old seat', async () => {
     let app = render(<GameApp />); await create();
     const original = localStorage.getItem('hegemony.session.v1');
@@ -112,6 +130,12 @@ describe('explicit independent player sessions through normal UI', () => {
     await screen.findByText('旧牌桌还有待确认行动，请先回到该牌桌确认，再新建或加入另一桌。');
     expect(ordinaryPendingJson()).toBe(pending);
     expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
+    expect(entries()).toHaveLength(1);
+    fireEvent.click(screen.getByRole('button', { name: '回原牌桌确认上一行动' }));
+    await screen.findByText('等待秘社集结');
+    expect(localStorage.getItem('hegemony.session.v1')).toBe(original);
+    expect(ordinaryPendingJson()).toBe(pending);
+    expect(location.search).toBe('');
     expect(entries()).toHaveLength(1);
   });
   it('starts a new tab’s independent seat directly from the ordinary table and preserves the ordinary reload screen', async () => {

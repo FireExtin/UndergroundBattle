@@ -85,6 +85,9 @@
 .hg-tabs button.hg-tab-active { background: #353d45; color: #eee5d4; }
 .hg-field { display: flex; flex-direction: column; gap: 9px; color: #b8bdc4; font-size: 12px; }
 .hg-field input { border: 1px solid #454e58; background: #1c232c; color: var(--hg-text); width: 100%; border-radius: 5px; padding: 11px 13px; min-height: 45px; }
+.hg-entry-form .hg-field select { border: 1px solid #454e58; background: #1c232c; color: var(--hg-text); width: 100%; min-width: 0; border-radius: 5px; padding: 11px 13px; min-height: 45px; font: inherit; }
+.hg-room-selected-deck { padding: 14px 18px; border: 1px solid #a98c51; border-radius: 5px; margin-bottom: 20px; background: #332b1b66; }
+.hg-room-selected-deck p { margin: 0 0 10px; line-height: 1.6; }
 .hg-field input::placeholder { color: #7d8791; }
 .hg-mode-select { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
 .hg-mode-select button { text-align: left; color: #dddcd6; background: #1b222b; border: 1px solid #3a424d; border-radius: 5px; padding: 13px 15px; }

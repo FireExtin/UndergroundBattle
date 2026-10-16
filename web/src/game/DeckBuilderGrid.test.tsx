@@ -161,10 +161,10 @@ describe('card-face deck workspace', () => {
     expect(readDeckLibrary().drafts[0].cards).toContainEqual({ cardId: 'JC002', count: 1 });
   });
 
-  it('keeps the expanded composition in view while settings retain edits behind their disclosure', () => {
+  it('keeps naming and composition visible while optional settings retain their edits', () => {
     render(<DeckLibrary catalog={catalog} />);
     fireEvent.click(screen.getByRole('button', { name: '展开组卡工作台' }));
-    expect(screen.queryByRole('textbox', { name: '牌组名称' })).not.toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: '牌组名称' })).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: '添加 巨石阵看护人（JC002）' }));
     expect(count('巨石阵看护人（JC002）')).toHaveValue(1);
     expect(screen.getByRole('list', { name: '牌组校验问题' })).toBeInTheDocument();
