@@ -5,6 +5,7 @@ import { RoomLobby, Table } from './Table';
 import { useGame } from './useGame';
 import { RoomManagement } from './RoomManagement';
 import { useSeatConflict } from './useSeatConflict';
+import { navigateLobby } from './lobbyNavigation';
 import './game.css';
 
 export function GameApp() {
@@ -19,7 +20,7 @@ export function GameApp() {
     {game.uncertain && <div className="hg-unconfirmed" role="status"><span>{game.legacyRecoveryBlocked ? '旧行动缺少原座位记录，不能安全自动恢复；原记录已保留。' : '上一行动等待确认；牌桌将在恢复连接后继续。'}</span><button className="hg-button hg-button-primary" disabled={game.busy || game.legacyRecoveryBlocked && !game.session} onClick={game.legacyRecoveryBlocked ? game.refresh : game.retryPending}>{game.legacyRecoveryBlocked ? '查看最新牌桌' : '确认上一行动'}</button></div>}
   </>;
   return <div className="hg-app">
-    <header className="hg-header"><a href="/" className="hg-brand" onClick={event => { event.preventDefault(); if (!game.busy) game.leave(); }}><span className="hg-brand-mark">◈</span><span>隐秘世界 <b>霸权</b><small>SECRET WORLD · HEGEMONY</small></span></a><nav>
+    <header className="hg-header"><a href="/" className="hg-brand" onClick={event => { event.preventDefault(); if (!game.busy) { if (game.session) game.leave(); else navigateLobby('home'); } }}><span className="hg-brand-mark">◈</span><span>隐秘世界 <b>霸权</b><small>SECRET WORLD · HEGEMONY</small></span></a><nav>
       {game.session && <span className={`hg-connection hg-connection-${game.connection}`} role="status" title="进行中的牌桌轮询同步；暂停的牌桌可手动查看最新状态。"><i />{game.connection === 'online' ? game.view?.pause ? '牌桌已暂停 · 已保存' : '牌桌已同步 · 轮询' : game.connection === 'connecting' ? '正在同步牌桌' : '连接中断 · 自动重连'}</span>}
       {game.session && <button className="hg-nav-button" disabled={game.busy} onClick={game.leave} title="保留当前座位，回到大厅选择两人或四人新牌桌">返回大厅 / 新建牌桌</button>}
       <button className="hg-nav-button" onClick={() => setHelp(true)}>上手指南 <span>?</span></button>

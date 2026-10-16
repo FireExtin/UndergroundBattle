@@ -151,7 +151,7 @@ function record(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function decodeDraft(value: unknown): DeckDraft | null {
+export function decodeDraft(value: unknown): DeckDraft | null {
   if (!record(value) || typeof value.id !== 'string' || !value.id.trim() || typeof value.name !== 'string' || typeof value.description !== 'string' || !Array.isArray(value.cards)) return null;
   if (value.societyId !== null && (typeof value.societyId !== 'string' || !value.societyId.trim())) return null;
   if (typeof value.rulesVersion !== 'string' || typeof value.cardPoolVersion !== 'string' || typeof value.engineVersion !== 'string' || typeof value.updatedAt !== 'string' || !Number.isFinite(Date.parse(value.updatedAt))) return null;

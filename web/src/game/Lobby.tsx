@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FactionCoverage } from './FactionCoverage';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { publicDeckDraft, validateDeckDraft } from './deckLibrary';
 import type { DeckDraft } from './deckLibrary';
 import { deckColors } from './factions';
 import type { CardDefinition, Catalog, Deck } from './types';
+import { navigateLobby, useLobbyPage } from './lobbyNavigation';
+import { readLobbySelection, saveLobbySelection } from './deckWorkspace';
+import './lobby-pages.css';
 
 export const deckThemes: Record<string, { mark: string; role: string }> = {
   watchers: { mark: '◈', role: '调查 · 控制' },
@@ -36,26 +39,56 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   onJoinDraft?: (invite: string, name: string, draft: DeckDraft) => void;
 }) {
   const initialInvite = new URL(location.href).searchParams.get('invite') || '';
+  const page = useLobbyPage();
+  const [openedCollection, setOpenedCollection] = useState(page === 'collection');
+  const heading = useRef<HTMLHeadingElement>(null);
+  const previousPage = useRef(page);
+  const [initialSelection] = useState(readLobbySelection);
   const [name, setName] = useState('');
   const [mode, setMode] = useState<'duel' | 'teams'>('duel');
   const [invite, setInvite] = useState(initialInvite);
   const [tab, setTab] = useState<'create' | 'join'>(initialInvite ? 'join' : 'create');
-  const [deckId, setDeckId] = useState('');
-  const [selectedDraft, setSelectedDraft] = useState<DeckDraft | null>(null);
+  const [deckId, setDeckId] = useState(initialSelection?.kind === 'preset' ? initialSelection.deckId : '');
+  const [selectedDraft, setSelectedDraft] = useState<DeckDraft | null>(initialSelection?.kind === 'draft' ? initialSelection.draft : null);
+  const [selectionWarning, setSelectionWarning] = useState(false);
+  useEffect(() => {
+    if (!selectedDraft && !deckId) return;
+    setSelectionWarning(!saveLobbySelection(selectedDraft ? { kind: 'draft', draft: selectedDraft } : { kind: 'preset', deckId }));
+  }, [selectedDraft, deckId]);
+  useEffect(() => {
+    if (page === 'collection') setOpenedCollection(true);
+    if (previousPage.current !== page) {
+      heading.current?.focus({ preventScroll: true });
+      heading.current?.closest('main')?.scrollIntoView?.({ block: 'start' });
+      previousPage.current = page;
+    }
+  }, [page]);
   const selected = deckId || catalog?.decks[0]?.id || '';
   const deck = catalog?.decks.find(item => item.id === selected);
   const draftValid = !!selectedDraft && !!catalog && validateDeckDraft(selectedDraft, catalog).valid;
   const draftEntryAvailable = tab === 'create' ? !!onCreateDraft : !!onJoinDraft;
-  const entryAvailable = selectedDraft ? draftValid && draftEntryAvailable : !!selected;
-  return <main className="hg-lobby">
-    <section className="hg-hero">
+  const entryAvailable = selectedDraft ? draftValid && draftEntryAvailable : !!deck;
+  return <main className={`hg-lobby hg-lobby-${page}`}>
+    <nav className="hg-lobby-navigation" aria-label="大厅导航">
+      <button type="button" onClick={() => navigateLobby('home')} aria-current={page === 'home' ? 'page' : undefined}>首页</button>
+      <button type="button" onClick={() => navigateLobby('play')} aria-current={page === 'play' ? 'page' : undefined}>入席</button>
+      <button type="button" onClick={() => navigateLobby('collection')} aria-current={page === 'collection' ? 'page' : undefined}>卡牌收藏</button>
+      {selectedDraft && <span className="hg-lobby-current-deck">已选择：{selectedDraft.name}</span>}
+    </nav>
+    {selectionWarning && <p className="hg-library-warning" role="status">浏览器无法保留本次牌组选择，刷新后请重新选择。</p>}
+    {page === 'home' && <><section className="hg-hero">
       <div className="hg-hero-orbit" aria-hidden="true"><span>◈</span><i /><i /></div>
       <div className="hg-eyebrow">THE SECRET WORLD · 霸权</div>
-      <h1>世界的背面，<br /><em>等你落子。</em></h1>
+      <h1 ref={heading} tabIndex={-1}>世界的背面，<br /><em>等你落子。</em></h1>
       <p>派遣角色，争夺城市的隐秘权柄。<br />与一位对手交锋，或和伙伴并肩加入四人牌桌。</p>
       <div className="hg-hero-features"><span>◈ 调查</span><span>⚔ 战斗</span><span>⚑ 势力</span></div>
-    </section>
-    <section className="hg-onboarding">
+    </section><section className="hg-lobby-portals" aria-label="开始探索">
+      <button type="button" className="hg-lobby-portal" onClick={() => { setTab('create'); navigateLobby('play'); }}><span aria-hidden="true">Ⅰ · ◈</span><strong>创建牌桌</strong><p>选择两人对决或四人协作，邀伙伴入席。</p><small>建立新的邀请牌桌 →</small></button>
+      <button type="button" className="hg-lobby-portal" onClick={() => { setTab('join'); navigateLobby('play'); }}><span aria-hidden="true">Ⅱ · ⌖</span><strong>邀请码加入</strong><p>带着伙伴分享的邀请码，前往同一张牌桌。</p><small>前往入席 →</small></button>
+      <button type="button" className="hg-lobby-portal hg-lobby-portal-collection" onClick={() => navigateLobby('collection')}><span aria-hidden="true">Ⅲ · ✧</span><strong>卡牌收藏与组牌</strong><p>检索真实卡牌，按派系与特性筛选，构筑你的牌组。</p><small>打开卡牌档案 →</small></button>
+    </section></>}
+    {page === 'play' && <section className="hg-onboarding hg-play-page">
+      <div className="hg-eyebrow">INVITATION · 云端牌桌</div><h1 ref={heading} tabIndex={-1}>准备入席</h1>
       <form className="hg-entry-form" onSubmit={event => {
         event.preventDefault(); if (!catalog || !name.trim() || !entryAvailable || busy) return;
         if (selectedDraft) {
@@ -64,10 +97,11 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
         } else if (tab === 'create') onCreate(name.trim(), mode, selected); else if (invite.trim()) onJoin(invite.trim(), name.trim(), selected);
       }}>
         <div className="hg-section-title"><span className="hg-eyebrow">01 / 入席</span><div className="hg-tabs"><button type="button" className={tab === 'create' ? 'hg-tab-active' : ''} onClick={() => setTab('create')}>创建牌桌</button><button type="button" className={tab === 'join' ? 'hg-tab-active' : ''} onClick={() => setTab('join')}>邀请码加入</button></div></div>
-        <p className="hg-muted">当前牌组：{selectedDraft?.name || deck?.name || '加载中'} · <a href="#hegemony-decks">更换牌组 ↓</a></p>
+        <p className="hg-muted">当前牌组：{selectedDraft?.name || deck?.name || '加载中'} · <button type="button" className="hg-text-link" onClick={() => navigateLobby('collection')}>收藏与组牌 →</button></p>
         {selectedDraft && <p className="hg-muted">入席使用上次选择的牌组内容；编辑后请重新保存并选择。</p>}
         {selectedDraft && !draftEntryAvailable && <p className="hg-library-warning" role="alert">草稿已保存，当前入口尚未支持自定义牌组{tab === 'join' ? '加入' : '创建'}；可以改选原预组。</p>}
         {selectedDraft && !draftValid && <p className="hg-library-warning" role="alert">已选择草稿需要按当前卡池重新校验，暂不可入席。</p>}
+        {!selectedDraft && !!deckId && !!catalog && !deck && <p className="hg-library-warning" role="alert">上次选择的预组已不在当前目录，请重新选择。</p>}
         <label className="hg-field">你的称呼<input value={name} onChange={event => setName(event.target.value)} maxLength={24} placeholder="让牌桌上的伙伴认出你" required autoComplete="nickname" disabled={busy} /></label>
         {tab === 'create' ? <div className="hg-mode-select" role="group" aria-label="对战模式">
           <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
@@ -82,7 +116,9 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
         {!selectedDraft && deck && <details className="hg-deck-list"><summary>查看「{deck.name}」的 {deck.cardCount} 张组成</summary><ul>{deck.cards.map(item => <li key={item.cardId}><span>{catalog.cards.find(card => card.id === item.cardId)?.name || item.cardId}</span><b>× {item.count}</b></li>)}</ul></details>}
       </> : <div className="hg-loading"><span>正在连接牌组档案…</span><button className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
       <FactionCoverage catalog={catalog} />
-    </section>
-    {catalog && <DeckLibrary catalog={catalog} disabled={busy} selectedDraftId={selectedDraft?.id} onSelectDraft={draft => { setSelectedDraft(publicDeckDraft(draft)); onSelectDraft?.(publicDeckDraft(draft)); }} />}
+    </section>}
+    {page === 'collection' && <div className="hg-collection-heading"><div><span className="hg-eyebrow">CARD ARCHIVE · 我的构筑</span><h1 ref={heading} tabIndex={-1}>卡牌收藏与组牌</h1></div><p>先检索，再落子。所选卡牌始终留在当前牌组中。</p></div>}
+    {catalog && (openedCollection || page === 'collection') && <DeckLibrary catalog={catalog} disabled={busy} active={page === 'collection'} pageMode selectedDraftId={selectedDraft?.id} onSelectDraft={draft => { setSelectedDraft(publicDeckDraft(draft)); onSelectDraft?.(publicDeckDraft(draft)); navigateLobby('play'); }} />}
+    {page === 'collection' && !catalog && <div className="hg-loading"><span>正在连接卡牌档案…</span><button type="button" className="hg-button hg-button-quiet" onClick={retry}>重新连接</button></div>}
   </main>;
 }
