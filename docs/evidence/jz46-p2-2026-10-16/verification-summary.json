@@ -190,5 +190,7 @@
   },
   "independentReviewPerformed": false,
   "published": false,
-  "onlineCheckRetried": false
+  "onlineCheckRetried": false,
+  "reviewSourceCommit": "e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c",
+  "sourceClosureComplete": true
 }

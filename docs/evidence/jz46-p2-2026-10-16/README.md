@@ -4,4 +4,4 @@
 
 `wasm-parity.json`、`http-jz46.log.gz`、`frontend-jz46.log.gz` 和 `four-clients.json` 对应修后8fd制品。新Native capsule保存在仓库既有fixture路径，包含11正向及35固定坏档；只新增本P2坏档，不做无界扫描。所有日志压缩保存原字节。截图在Git外原始证据目录，客户端源码及160个产物均未改。
 
-`backend-runtime-manifest.json` 只保存元数据，不包含编译JS/WASM；原78和77字节不变。`verification-summary.json` 明确限定本次验证范围；旧整组结果不能重标为新制品结果。最终Git源码及123个编译输入的绑定见随后 `source-closure.json`。未发布、未合main、未触发Actions、未线上试玩。
+`backend-runtime-manifest.json` 只保存元数据，不包含编译JS/WASM；原78和77字节不变。`verification-summary.json` 明确限定本次验证范围；旧整组结果不能重标为新制品结果。最终Git源码 `e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c` 及123个编译输入的绑定已记录在 `source-closure.json`，随后的提交仅补文档。未发布、未合main、未触发Actions、未线上试玩。
