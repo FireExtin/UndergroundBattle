@@ -259,5 +259,14 @@
     "posts": 0,
     "onlineGames": 0,
     "bypass": false
+  },
+  "candidateSourceCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+  "boundedCopy": {
+    "mappedFiles": 1145,
+    "compilerInputs": 121,
+    "exactMappedBytes": true,
+    "bq035CompleteReplay": true,
+    "retained77Identity": true,
+    "gitWorktreeCreated": false
   }
 }

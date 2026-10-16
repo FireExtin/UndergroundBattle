@@ -9,3 +9,5 @@
 BQ035全量原始JSON在仓库golden gzip，121个编译输入绑定。旧机制原生索引保存在本目录同名json.gz；完整433 case原文位于 `/workspace/bq035-p2-evidence-20261016/current78-old-mechanisms-p2-release.json.cases/`，约2.49GB。原始索引在同一Git外目录；比较器必须读取每个case并核对字节与哈希，缺原文即失败，不能只用索引证明通过。151个源码绑定见 `old-mechanism-native-source-binding.json`。
 
 压缩日志保留原始输出字节，最终文件摘要另见evidence-file-hashes.json。没有凭据、运行数据库、缓存或编译产物。main提升因共享UI已知新增失败及新修复未独审而跳过，单独材料在 `../reviewed-v59-main-2026-10-16/`。公开证书检查在另外两个目录。当前候选仍待父会话串行独立复审，未发布。
+
+最终源码提交为 `53b2114a220ca001ca8c40ff3b2a6f2b6276ef45`；有界普通目录副本1145文件及121编译输入逐字节相同，完整BQ035重放与原77身份检查通过。闭合记录见 `source-closure.json`，后续提交仅补文档和证据。副本不是Git worktree，不含原始档案PDF、数据库或凭据，未在副本上声称跑完整档案／前端来源测试。

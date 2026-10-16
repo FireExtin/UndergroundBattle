@@ -1,0 +1,70 @@
+{
+  "status": "closed",
+  "candidateSourceCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+  "nativeCompilerSourceCommit": "fc810d3fa4fdf2c1a10eb7b451405a46503db954",
+  "all121CompilerInputsMatchCandidateAndCopy": true,
+  "publishedV59GameSourceBaselineTree": "ab1ea260a47cb028085dcfede5be9019b6098d87",
+  "plainSourceCopy": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+  "gitWorktreeCreated": false,
+  "mappedFiles": 1145,
+  "extraOwnedFiles": [
+    ".gitignore",
+    "source-provenance.json"
+  ],
+  "exactMappedFiles": true,
+  "sourceProvenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+  },
+  "artifactBinding": {
+    "current78WasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "retained77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "workerSha256": "8f1d60744c66cbbdcb09ad4cfaf0f68bd8f0c5010b4b32d6887240929d862e8f",
+    "workerWasm": [
+      {
+        "name": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+        "bytes": 2976205,
+        "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+      },
+      {
+        "name": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+        "bytes": 2909006,
+        "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+      }
+    ],
+    "fixtureSha256": "0f1f7073aa2b8b1a67f230438fd9028078860410adfa785088a30b351920316e",
+    "productionClientIndexSha256": "46d4fc5a0be50884c32a3b066fa6c560daae9d94a709938c7bd87405f5452e00",
+    "engine": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+    "builtLocallyOnly": true,
+    "published": false,
+    "retained77ExactJsGzipWasmVerified": true,
+    "localDeterministicWorkerSha256": "037b33f3550c53cf4d60c318b3fadea18ec73968f8a38c20793e2a95aea763de",
+    "currentJsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "viewportAndGridFixIncluded": true
+  },
+  "publishedProviderCheckoutUnchanged": "a2a002fb7cafb9030405853a1c98bd91800b627c",
+  "published": false,
+  "workerComplete204AfterCoreFix": true,
+  "workerRerunAfterOutputIsolation": false,
+  "boundedCopyBq035CompleteReplay": {
+    "scenarios": 13,
+    "commands": 378,
+    "projections": 1510,
+    "rejected": 3,
+    "invalid": 56,
+    "negativeRestoreCalls": 448,
+    "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "completeOpaqueStateAndTransitionMatch": true
+  },
+  "boundedCopyRetained77": {
+    "sourceCopy": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+    "catalogCards": 143,
+    "engine": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+    "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "verifiedExternalOriginal77": true,
+    "published": false
+  },
+  "mainPromoted": false,
+  "independentReview": "pending parent serial review"
+}
