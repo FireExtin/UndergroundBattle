@@ -9,7 +9,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.74-jc054-complete-conceal-candidate',engineVersion:'rust-v0.2.81-jc054-complete-conceal-candidate'};
 export const scenarioNames=['paid-deploy','natural-end','mandatory-end','mandatory-order','controlled-conceal','source-replaced','paid-response-reveal','pause-mandatory-order'].sort();
-export const invalidNames=[...Array.from({length:12},(_,i)=>`frame-${String(i).padStart(2,'0')}`),'frame-duplicate','optional-declare','grant-hidden','grant-play-source','instance-owner','instance-controller','instance-empty','instance-duplicate','instance-collision',...Array.from({length:4},(_,i)=>`order-${String(i).padStart(2,'0')}`)].sort();
+export const invalidNames=[...Array.from({length:12},(_,i)=>`frame-${String(i).padStart(2,'0')}`),'frame-duplicate','optional-declare','grant-hidden','grant-play-source','instance-owner','instance-controller','instance-empty','instance-duplicate','instance-collision','marker-early','marker-window','marker-nested-missing',...Array.from({length:4},(_,i)=>`order-${String(i).padStart(2,'0')}`)].sort();
 export function assertSources(binding) {
   const files=['Cargo.lock','Cargo.toml','rust-game-wasm/Cargo.toml','rust-game-wasm/build.sh','rust-game-wasm/src/lib.rs','rust-game/Cargo.toml','rust-game/data/cards.json',
     ...readdirSync(path.join(root,'rust-game/src'),{recursive:true}).filter(p=>p.endsWith('.rs')).map(p=>'rust-game/src/'+p)].sort();

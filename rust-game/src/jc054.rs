@@ -339,6 +339,19 @@ impl Game {
         let frames = self.stack.iter().filter_map(|s| s.frame.as_ref()).chain(self.effects.iter().filter_map(|e|
             if let Effect::Frame { frame } = e { Some(frame.as_ref()) } else { None }))
             .chain(self.pending.as_ref().and_then(|p| if let ChoiceResolution::Frame { frame, .. } = &p.resolution { Some(frame.as_ref()) } else { None })).collect::<Vec<_>>();
+        let relevant = !instances.is_empty() || frames.iter().any(|f| related(f))
+            || self.effects.iter().any(|e| matches!(e,Effect::Declare { declaration: d }
+                if d.source.card.definition == "JC054" || own_ability(&d.ability)))
+            || self.pending.as_ref().is_some_and(|p| match &p.resolution {
+                ChoiceResolution::JC054TriggerOrder { .. } => true,
+                ChoiceResolution::Declare { declaration: d, .. } => d.source.card.definition == "JC054" || own_ability(&d.ability),
+                _ => false,
+            });
+        let end_context = self.window == Some(Window::End)
+            || self.win_contexts.iter().any(|c| c.resume_window == Window::End);
+        if relevant && self.status != "finished" && self.jc054_end_step_turn.is_some() != end_context {
+            return Err("JC054结束观察标记与当前步骤或嵌套赢区恢复链不符".into());
+        }
         for s in &self.stack {
             if let Some(f) = &s.frame {
                 self.validate_jc054_frame(f)?;

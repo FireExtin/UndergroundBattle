@@ -393,6 +393,25 @@ fn jc054_untriggered_entity_seats_and_ids_are_checked_before_end_step_observatio
     assert_eq!(corrupt_instances().len(),5);
 }
 
+fn corrupt_markers() -> Vec<Value> {
+    let mut g=u::game();let worm=u::field(&mut g,"JC054",0);let mut cases=vec![];
+    let mut early=serde_json::to_value(&g).unwrap();early["jc054_end_step_turn"]=json!(g.turn);
+    cases.push(invalid_case("marker-early".into(),&g,&early));
+    g.begin_window(Window::End);g.drive().unwrap();let mut wrong=serde_json::to_value(&g).unwrap();wrong["window"]=json!({"Action":0});
+    cases.push(invalid_case("marker-window".into(),&g,&wrong));
+    // A win can interrupt End even after all End frames have finished. The
+    // observed marker survives in the real resume chain, independently of frames.
+    let mut h=u::game();let hidden=u::field(&mut h,"JC054",0);h.board_mut(&hidden).unwrap().face_down=true;
+    h.begin_window(Window::End);h.begin_window(Window::Win(0,0));restore_both(&h);
+    let mut missing=serde_json::to_value(&h).unwrap();missing["jc054_end_step_turn"]=Value::Null;
+    cases.push(invalid_case("marker-nested-missing".into(),&h,&missing));
+    assert!(g.board(&worm).is_some());cases
+}
+#[test]
+fn jc054_end_marker_matches_phase_and_survives_a_nested_end_win_context() {
+    assert_eq!(corrupt_markers().len(),3);
+}
+
 #[test]
 fn jc054_native81_room_oracles() {
     let mut scenarios=vec![];
@@ -437,8 +456,8 @@ fn jc054_native81_room_oracles() {
     t.command(0,SessionAction::Game { action:Action { choice_id:Some(choice.clone()),selected:Some(vec![]),..Action::new("choose") } },true);
     t.command(0,SessionAction::ResumeRoom,false);assert_eq!(t.room.game.pending.as_ref().unwrap().choice.id,choice);
     t.finish();scenarios.push(t.export());
-    let (g,_)=burst();invalid.extend(corrupt_frames(&g));invalid.extend(corrupt_grants());invalid.extend(corrupt_instances());
-    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),25);
+    let (g,_)=burst();invalid.extend(corrupt_frames(&g));invalid.extend(corrupt_grants());invalid.extend(corrupt_instances());invalid.extend(corrupt_markers());
+    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),28);
     if let Ok(directory)=std::env::var("JC054_NATIVE_DIR") {
         std::fs::create_dir_all(&directory).unwrap();
         let output=json!({"format":"jc054-native81-v1","scope":"Explicit Native layouts followed by real Room commands, exact restore and journal replay; not online play or migration",
