@@ -1,0 +1,41 @@
+{
+  "recordedAtUtc": "2026-10-17T17:29:20.726828+00:00",
+  "files": [
+    {
+      "path": "official-identity.json",
+      "bytes": 1951,
+      "sha256": "61aae072bf1a6f7c9f4c9814e13c99b15d2ec236fefc4bbb5f240e60b46624a9",
+      "rawPath": "/workspace/v65-real-browser-20261017T1726Z/official-identity.json"
+    },
+    {
+      "path": "normal-browser.json",
+      "bytes": 3796,
+      "sha256": "fdc1602424a92fd3be414cd74fbc0318f5a8b218671f8c8f7b3719aa028b7f3b",
+      "rawPath": "/workspace/v65-real-browser-20261017T1726Z/normal-browser.json"
+    },
+    {
+      "path": "normal-browser.log",
+      "bytes": 561,
+      "sha256": "1dc1b14eef48de5ea5ca3687af8804ace312f6e074a892c5ac116ed4735a6b28",
+      "rawPath": "/workspace/v65-real-browser-20261017T1726Z/normal-browser.log"
+    },
+    {
+      "rawPath": "/workspace/v65-real-browser-20261017T1726Z/v65-normal_browser.py",
+      "bytes": 9594,
+      "sha256": "f4e484cf3e698ec14f6dafcb076cbc4e6e1d03ddcf33451450216e990c0e574d",
+      "gitReference": "docs/evidence/v65-connection-2026-10-17-1626/v65-normal_browser.py",
+      "storedAgainInThisEvidenceDirectory": false,
+      "derivation": "Replace the single prior-probe timestamp as recorded in reproduction.json"
+    },
+    {
+      "rawPath": "/workspace/v65-real-browser-20261017T1726Z/normal-browser.png",
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1",
+      "gitReference": "docs/evidence/v65-connection-2026-10-17-1426/normal-browser.png",
+      "storedAgainInThisEvidenceDirectory": false,
+      "derivation": "Byte-identical to prior visually inspected certificate-warning screenshot"
+    }
+  ],
+  "screenshotByteIdenticalToPriorVisuallyInspectedV65Warning": true,
+  "duplicateScreenshotAndHarnessNotAddedToGit": true
+}
