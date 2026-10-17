@@ -12,7 +12,7 @@ test('BQ035 and subsequent JZ46 preserve every prior 143 card and all deck/world
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(c=>!['BQ035','JZ46','WM062','JC054'].includes(c.id))),'927fff6b3556ca40c0bacadfb9ebc83aa6e4b01f18540f7c6f678d4731ef43e9');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
 });
 test('BQ035 corrects only its pinned blue loyalty and keeps source verification distinct from game acceptance',()=>{
   const {BQ035,...others}=specs;

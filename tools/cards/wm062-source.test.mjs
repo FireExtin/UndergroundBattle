@@ -14,7 +14,7 @@ test('WM062 adds one complete black card and preserves every former 145 definiti
  const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=baseline;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.deepEqual(cards.filter(c=>!['WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
- assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');
+ assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');
  assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
 });
 test('WM062 full runtime fields agree with its exact original without promoting archival acceptance',()=>{

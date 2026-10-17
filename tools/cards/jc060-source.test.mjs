@@ -12,7 +12,7 @@ test('JC060 preserves the complete accepted 140-card baseline, decks and metadat
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['JC060','JC095','JC046'].includes(c.id))),'fb7b098df40bf6db04df91ef6480e037af535acf37c44c25daa50bcd33345a75');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
+ assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
 });
 test('JC060 complete printed fields and continuous text match pinned060/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'fbe71295b4a88c02f5b08db8076ca72c4a737fd0a51005e44e03e59a20f4daed');

@@ -8,12 +8,15 @@ import * as published79 from '../generated/abi79/hegemony_wasm.js';
 import published79Module from '../generated/abi79/hegemony_wasm_bg.wasm';
 import * as published80 from '../generated/abi80/hegemony_wasm.js';
 import published80Module from '../generated/abi80/hegemony_wasm_bg.wasm';
+import * as published81 from '../generated/abi81/hegemony_wasm.js';
+import published81Module from '../generated/abi81/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 import { lazyKernel } from './lazy-kernel.mjs';
-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.74-jc054-complete-conceal-candidate","engineVersion":"rust-v0.2.81-jc054-complete-conceal-candidate"});
+const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.74-jc054-complete-conceal-candidate","engineVersion":"rust-v0.2.82-response-source-preview-candidate"});
+const kernel81 = lazyKernel(published81, published81Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.74-jc054-complete-conceal-candidate","engineVersion":"rust-v0.2.81-jc054-complete-conceal-candidate"});
 const kernel80 = lazyKernel(published80, published80Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.73-wm062-conceal-adjacent-move-candidate","engineVersion":"rust-v0.2.80-wm062-conceal-adjacent-move-candidate"});
 const kernel79 = lazyKernel(published79, published79Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.72-jz46-private-criminal-inspection-candidate","engineVersion":"rust-v0.2.79-jz46-private-criminal-inspection-candidate"});
 const kernel78 = lazyKernel(published78, published78Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.71-bq035-vampire-mobility-candidate","engineVersion":"rust-v0.2.78-bq035-vampire-mobility-candidate"});
 const kernel77 = lazyKernel(published77, published77Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.70-jc046-mandatory-sacrifice-candidate","engineVersion":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate"});
-// Published v62/v61/v60/ABI77 rooms retain exact reducers, opaque state and receipts.
-export const kernel = routeKernels(kernel0, [kernel80, kernel79, kernel78, kernel77]);
+// Published v63/v62/v61/v60/ABI77 rooms retain exact reducers, opaque state and receipts.
+export const kernel = routeKernels(kernel0, [kernel81, kernel80, kernel79, kernel78, kernel77]);

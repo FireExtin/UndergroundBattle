@@ -15,7 +15,7 @@ test('JC054 adds only one complete red card while preserving all 146 earlier car
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.deepEqual(cards.filter(c=>c.id!=='JC054'),old);assert.deepEqual(metadata,oldMetadata);
   assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
-  assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');
 });
 test('JC054 complete printed fields stay pinned without promoting source-only acceptance or admitting neutral/dual cards',()=>{
   const f=spec.fields,s=spec.sourceVerification;

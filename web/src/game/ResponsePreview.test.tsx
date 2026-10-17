@@ -28,15 +28,15 @@ it('shows hand and own-hidden response sources before beginning, without creatin
   expect(dock).toHaveTextContent('响应候选：快速行动；先选择“连锁”再提交');
   fireEvent.click(tile(app.container,hidden.instanceId));
   expect(submit).not.toHaveBeenCalled();
-  expect(screen.queryByRole('button',{name:'现身',exact:true})).not.toBeInTheDocument();
-  fireEvent.click(screen.getByRole('button',{name:'连锁',exact:true}));
+  expect(screen.queryByRole('button',{name:'现身'})).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button',{name:'连锁'}));
   expect(submit).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({kind:'beginResponse',windowId:'preview-window'}));
   expect(view.responseWindow!.myIntentId).toBeUndefined();
 });
 
 it('allows a direct pass while preview sources exist and preserves its original payload',()=>{
   const submit=vi.fn();render(<Table {...props} view={view} onAction={submit}/>);
-  fireEvent.click(screen.getByRole('button',{name:'不连锁，让过',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'不连锁，让过'}));
   expect(submit).toHaveBeenCalledExactlyOnceWith({kind:'passResponse',windowId:'preview-window'});
 });
 

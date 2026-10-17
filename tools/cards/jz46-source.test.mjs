@@ -14,7 +14,7 @@ test('JZ46 adds one whole definition while every original 144 card and deck/worl
   const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=original;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.deepEqual(cards.filter(c=>!['JZ46','WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
-  assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');
   assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
 });
 test('the entire JZ46 runtime matches the pinned image specification and preserves source acceptance status',()=>{

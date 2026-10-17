@@ -14,7 +14,7 @@ import * as abi from '../generated/hegemony_wasm.js';
 
 test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
   abi.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
-  assert.equal(JSON.parse(abi.catalog()).engineVersion, 'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(JSON.parse(abi.catalog()).engineVersion, 'rust-v0.2.82-response-source-preview-candidate');
   const kernel = routeKernels(abi);
   const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,

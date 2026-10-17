@@ -10,8 +10,8 @@ const catalog=JSON.parse(abi.catalog());
 const source=readFileSync(new URL('../src/kernel.mjs',import.meta.url),'utf8');
 const identity=JSON.parse(source.match(/^const kernel0 = lazyKernel\(current, currentModule, (\{[^\n]+\})\);$/m)[1]);
 
-test('fixed production Site identity agrees with the candidate source-built ABI81',()=>{
-  assert.deepEqual(identity,{rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.74-jc054-complete-conceal-candidate',engineVersion:'rust-v0.2.81-jc054-complete-conceal-candidate'});
+test('fixed production Site identity agrees with the candidate source-built ABI82',()=>{
+  assert.deepEqual(identity,{rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.74-jc054-complete-conceal-candidate',engineVersion:'rust-v0.2.82-response-source-preview-candidate'});
   for(const key of ['rulesVersion','cardPoolVersion','engineVersion']) assert.equal(identity[key],catalog[key]);
   assert.equal(lazyKernel(abi,bytes,identity).catalog(),abi.catalog());
 });

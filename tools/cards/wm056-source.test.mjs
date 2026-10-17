@@ -12,7 +12,7 @@ test('WM056 preserves the cumulative 133 definitions and metadata from 3bbd8b5',
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['WM056','WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'dc9c67b1bfe71e241ace7c9e59f8dadfdfe46e888ad31387421ab51ada963074');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');assert.equal(engineVersion,'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');
 });
 test('WM056 complete fields and exact printed source have no unresolved question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'a385a5674cd8f00b935e4e78a487aee46ce6a1d2d94a0bcf0a3a79511be8dafc');

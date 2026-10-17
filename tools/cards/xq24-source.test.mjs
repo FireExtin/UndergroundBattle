@@ -27,7 +27,7 @@ test('XQ24 matches its reviewed original and preserves the entire 7809971 baseli
   assert.equal(digest(metadata), '5a331fc2c9cacb7f40248ca854ccc7245819162d675d3424130c060b22e48f58');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
   assert.equal(cardPoolVersion, 'limited-v2.74-jc054-complete-conceal-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.82-response-source-preview-candidate');
   const f = spec.fields, source = spec.sourceVerification;
   assert.deepEqual(cards.find(c => c.id === 'XQ24'), {
     id: 'XQ24', name: f.name, kind: 'character', subtypes: f.subtypes,
