@@ -1,0 +1,102 @@
+[
+  {
+    "id": "hint-hidden",
+    "text": "◇候选·快速",
+    "badgeVisible": true,
+    "overlap": [],
+    "geometry": [
+      {
+        "className": "hg-card-name",
+        "rect": {
+          "x": 111,
+          "y": 425,
+          "width": 48,
+          "height": 12,
+          "top": 425,
+          "right": 159,
+          "bottom": 437,
+          "left": 111
+        },
+        "position": "static"
+      },
+      {
+        "className": "hg-archive-art hg-archive-back",
+        "rect": {
+          "x": 110,
+          "y": 438,
+          "width": 50,
+          "height": 18,
+          "top": 438,
+          "right": 160,
+          "bottom": 456,
+          "left": 110
+        },
+        "position": "relative"
+      },
+      {
+        "className": "hg-card-action-hint",
+        "rect": {
+          "x": 112,
+          "y": 440,
+          "width": 46,
+          "height": 14,
+          "top": 440,
+          "right": 158,
+          "bottom": 454,
+          "left": 112
+        },
+        "position": "absolute"
+      }
+    ]
+  },
+  {
+    "id": "hint-hand",
+    "text": "◇候选·标准",
+    "badgeVisible": true,
+    "overlap": [],
+    "geometry": [
+      {
+        "className": "hg-card-name",
+        "rect": {
+          "x": 102,
+          "y": 659.390625,
+          "width": 68,
+          "height": 13.1875,
+          "top": 659.390625,
+          "right": 170,
+          "bottom": 672.578125,
+          "left": 102
+        },
+        "position": "static"
+      },
+      {
+        "className": "hg-archive-art",
+        "rect": {
+          "x": 101,
+          "y": 674.578125,
+          "width": 70,
+          "height": 20,
+          "top": 674.578125,
+          "right": 171,
+          "bottom": 694.578125,
+          "left": 101
+        },
+        "position": "relative"
+      },
+      {
+        "className": "hg-card-action-hint",
+        "rect": {
+          "x": 117,
+          "y": 678.578125,
+          "width": 52,
+          "height": 14,
+          "top": 678.578125,
+          "right": 169,
+          "bottom": 692.578125,
+          "left": 117
+        },
+        "position": "absolute"
+      }
+    ]
+  }
+]

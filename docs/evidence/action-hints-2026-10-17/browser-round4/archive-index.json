@@ -1,0 +1,42 @@
+{
+  "reviewTarget": "f842af3a76d5e482b91a20f0cba7ec62ec3940da",
+  "sourceCommit": "41effefd40d73b7245d6369ba6890cdbfef8189f",
+  "validationCommit": "fb375b5e5ed9000b12657750857d145827944c36",
+  "scope": "Local UI fixture, not gameplay or publication",
+  "files": {
+    "1366x768-action.png": {
+      "bytes": 935627,
+      "sha256": "9ea87f3da661361f5517730134c7884d0591392f179c64b2779326cccbbf033a"
+    },
+    "1366x768-geometry.json": {
+      "bytes": 2132,
+      "sha256": "4c5beb5269a0c4a087fbd0d8f91e45d13592bcaa7c984c0ae38bf79becbe60c5"
+    },
+    "1366x768-waiting.png": {
+      "bytes": 921006,
+      "sha256": "546eff0d549d144c6936b866f975feb6221fbaeee4b1f0e1e04fdf6b0cf8038a"
+    },
+    "1440x1000-action.png": {
+      "bytes": 1327499,
+      "sha256": "bb1a4ded5ac1daca054227772e3f397b588291434d857074e4e81cb4266e9e18"
+    },
+    "1440x1000-geometry.json": {
+      "bytes": 2171,
+      "sha256": "ddf667912ad8f6eb54e127535fc667f6bfcf54338bffd71425057218651d985f"
+    },
+    "1440x1000-waiting.png": {
+      "bytes": 1311596,
+      "sha256": "07fd2220aad05f87ab8669a3d1bfe4cda42906eeb60013fdf3fa620969be61b3"
+    },
+    "result.json": {
+      "bytes": 6029,
+      "sha256": "92cff23e53384f6a4254c7d6e2c5579f7a64030b6f2d60a4a3f179ebc4e30082"
+    }
+  },
+  "originalUnmodifiedBytes": true,
+  "syntheticLocalUiOnly": true,
+  "apiCalls": 0,
+  "pageErrors": [],
+  "onlineGameplay": false,
+  "productionOrTestCodeChanged": false
+}

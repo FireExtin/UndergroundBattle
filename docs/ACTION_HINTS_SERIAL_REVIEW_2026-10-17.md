@@ -21,6 +21,8 @@
 
 外部原始证据：`/workspace/action-hints-evidence-20261017/`。可复现浏览器脚本：`tools/frontend/action-hints-qa.mjs`。运行后仅清理它本次创建的临时 UI fixture，不清理历史构建缓存或保护材料。
 
+供跨环境独审读取的 [第四轮原始证据归档](evidence/action-hints-2026-10-17/browser-round4/README.md) 包含两尺寸完整result、四张原始截图及两份几何JSON；均原字节保存，SHA256见归档索引。该证据补充不改变 `f842af3a76d5e482b91a20f0cba7ec62ec3940da` 的生产或测试源码。
+
 ## 发布与剩余边界
 
 本批未独立复审、未发布、未合 main。Rust Native／WASM／Worker 未因这批纯前端变化重跑。父会话串行复审结果仍须补齐；JC054 的新内核路由和完整机制属于后续独立批次。
