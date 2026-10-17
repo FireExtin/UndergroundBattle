@@ -1,0 +1,183 @@
+{
+  "sourceCommit": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+  "published82": {
+    "ordinaryCards": 147,
+    "societies": 8
+  },
+  "candidate83": {
+    "ordinaryCards": 147,
+    "societies": 10,
+    "ordinaryByKind": {
+      "character": 90,
+      "spell": 31,
+      "region": 10,
+      "attachment": 16
+    }
+  },
+  "ordinaryCardsPresetsAndEightSocietiesUnchanged": true,
+  "newSocieties": [
+    {
+      "abilities": [
+        {
+          "costs": [
+            {
+              "Assets": 3
+            },
+            "ExhaustSource"
+          ],
+          "key": "drawWithInitiative",
+          "label": "先手抓牌",
+          "timing": "standard",
+          "triggered": false
+        },
+        {
+          "costs": [
+            {
+              "Assets": 4
+            },
+            "ExhaustSource"
+          ],
+          "key": "search-red-unique",
+          "label": "红色独有检索（每局一次）",
+          "timing": "standard",
+          "triggered": false
+        }
+      ],
+      "color": "红",
+      "cost": 0,
+      "deckConstraints": [
+        {
+          "color": "红",
+          "count": 25,
+          "kind": "minimumColor"
+        }
+      ],
+      "deckCopyLimit": null,
+      "defense": null,
+      "id": "MSJC04",
+      "keywords": [],
+      "kind": "society",
+      "loyalty": [],
+      "magic": "",
+      "magicIcon": "None",
+      "name": "鸣钟教派",
+      "permanentIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "points": null,
+      "printedCost": null,
+      "ruleTraits": {
+        "barrier": false,
+        "cannot_be_equipped": false,
+        "guard": 0,
+        "kill": 0,
+        "public": false,
+        "retreat": false,
+        "unlimited_copies": false
+      },
+      "society": "鸣钟教派",
+      "startingHand": 6,
+      "subtitle": "末日钟的侍奉者",
+      "subtypes": [
+        "秘密教派"
+      ],
+      "supported": true,
+      "temporaryIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "text": "持续：构筑时你的牌组中需包含25张或更多红色派系的牌。行动3，横置：若你具有先手标志，则抓一张牌。行动4，横置：从你的牌库中寻找一张红色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+      "threshold": null,
+      "type": "秘社/秘密教派",
+      "unique": true,
+      "unresolvedAbilities": {}
+    },
+    {
+      "abilities": [
+        {
+          "costs": [
+            {
+              "Assets": 3
+            },
+            "ExhaustSource"
+          ],
+          "key": "drawWithInitiative",
+          "label": "先手抓牌",
+          "timing": "standard",
+          "triggered": false
+        },
+        {
+          "costs": [
+            {
+              "Assets": 4
+            },
+            "ExhaustSource"
+          ],
+          "key": "search-gray-unique",
+          "label": "灰色独有检索（每局一次）",
+          "timing": "standard",
+          "triggered": false
+        }
+      ],
+      "color": "灰",
+      "cost": 0,
+      "deckConstraints": [
+        {
+          "color": "灰",
+          "count": 25,
+          "kind": "minimumColor"
+        }
+      ],
+      "deckCopyLimit": null,
+      "defense": null,
+      "id": "MSJC05",
+      "keywords": [],
+      "kind": "society",
+      "loyalty": [],
+      "magic": "",
+      "magicIcon": "None",
+      "name": "国家机构",
+      "permanentIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "points": null,
+      "printedCost": null,
+      "ruleTraits": {
+        "barrier": false,
+        "cannot_be_equipped": false,
+        "guard": 0,
+        "kill": 0,
+        "public": false,
+        "retreat": false,
+        "unlimited_copies": false
+      },
+      "society": "国家机构",
+      "startingHand": 6,
+      "subtitle": "政府权力",
+      "subtypes": [
+        "机构"
+      ],
+      "supported": true,
+      "temporaryIcons": {
+        "combat": 0,
+        "influence": 0,
+        "investigation": 0
+      },
+      "text": "持续：构筑时你的牌组中需包含25张或更多灰色派系的牌。行动3，横置：若你具有先手标志，则抓一张牌。行动4，横置：从你的牌库中寻找一张灰色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。",
+      "threshold": null,
+      "type": "秘社/机构",
+      "unique": true,
+      "unresolvedAbilities": {}
+    }
+  ],
+  "realRedUniqueIds": [
+    "JC052"
+  ],
+  "realGrayUniqueIds": [],
+  "productionStill82V64": true
+}

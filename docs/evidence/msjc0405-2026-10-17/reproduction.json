@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+  "workingDirectory": "/workspace/UndergroundBattle",
+  "commands": {
+    "nativeFull": "node tools/build-storage.mjs -- env PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup cargo test --locked --workspace --lib -- --test-threads=1",
+    "freshNativeExport": "node tools/build-storage.mjs -- env PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup MSJC0405_NATIVE_DIR=NEW_DIRECTORY cargo test --locked -p hegemony-server --lib msjc0405_tests::msjc0405_native83_oracles -- --exact --test-threads=1",
+    "freshWasm": "node tools/build-storage.mjs --output-dir rust-game-wasm/pkg -- env PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup WASM_BINDGEN=/workspace/tooling/wasm-bindgen-0.2.104-x86_64-unknown-linux-musl/wasm-bindgen bash rust-game-wasm/build.sh",
+    "nativeWasm": "node tools/build-storage.mjs -- node rust-game-wasm/tests/msjc0405-compare.mjs",
+    "frontendFull": "node tools/build-storage.mjs -- npm --prefix web test -- --maxWorkers=1 --reporter=json --outputFile=NEW_REPORT.json",
+    "productionBuild": "node tools/build-storage.mjs --output-dir sites/dist --output-dir web/dist -- node sites/scripts/build.mjs",
+    "fixedClockWorker": "node tools/build-storage.mjs --output-dir NEW_WORKER_ROOT -- env HEGEMONY_FIXED_CLOCK_TEST_ROOT=NEW_WORKER_ROOT node sites/scripts/build-fixed-clock-test.mjs",
+    "sitesFull": "node tools/build-storage.mjs -- env HEGEMONY_CURRENT_WORKER_DIR=NEW_WORKER_ROOT/server bash -c 'cd sites && exec node --test --test-concurrency=1 test/*.test.mjs'",
+    "productionBrowser": "node tools/build-storage.mjs --output-dir NEW_BROWSER_DIRECTORY -- env HEGEMONY_CURRENT_WORKER_DIR=NEW_WORKER_ROOT/server node tools/frontend/msjc0405-http-qa.mjs NEW_BROWSER_DIRECTORY"
+  },
+  "notes": [
+    "Use fresh witness/report/browser directories; original published Native82 and the WIP Native83 witness remain immutable.",
+    "Preserve existing build output directories before normal builds; retain caches and all local D1 evidence.",
+    "Historical ABI77–82 require exact hash-verified external frozen inputs. No rebuild, fallback or old-room migration.",
+    "All builds and tests use the1GiB disk/cgroup launch guard; no permission or TLS bypass.",
+    "The browser report separates ordinary UI entry from explicitly disclosed Native ability starting layouts.",
+    "No Sites save/deploy, main merge, Actions or new branch is part of this batch."
+  ]
+}

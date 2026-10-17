@@ -1,0 +1,84 @@
+{
+  "scope": "Failure records are separate runs, never added to final passing totals. Historical published82 input bytes remain unchanged.",
+  "runs": [
+    {
+      "name": "first source checks",
+      "passed": 54,
+      "failed": 1,
+      "reason": "New test incorrectly required no archival question. conditionalActivation is preserved and the finite project interpretation is explicitly authorized separately."
+    },
+    {
+      "name": "first frozen82/routing",
+      "passed": 9,
+      "failed": 1,
+      "reason": "New frozen test used incorrect fixture filename; original Native82 unchanged."
+    },
+    {
+      "name": "first frontend focused",
+      "testFilesPassed": 2,
+      "testFilesFailed": 1,
+      "testsPassed": 16,
+      "reason": "Vite transformed a literal Node URL. Runtime URL variable fixed test loader."
+    },
+    {
+      "name": "first Native full",
+      "passed": 1199,
+      "failed": 2,
+      "reason": "Two existing eight-society registry assertions needed the actual ten-society list. Final full run1201 passed; separate129-input witness generation retained all original observations."
+    },
+    {
+      "name": "first frontend full",
+      "passed": 1290,
+      "failed": 2,
+      "reason": "Historical scan-list count needed new society exclusions; new multi-step editor workflow hit default5-second test timeout. Only that test got20seconds. Final full run1292 passed."
+    },
+    {
+      "name": "first new HTTP focused",
+      "passed": 6,
+      "failed": 2,
+      "reason": "Test expected409 for invalid_action; established HTTP contract is400. Corrected full focused run8 passed."
+    },
+    {
+      "name": "browser prerequisite",
+      "reason": "Wrong installed Playwright package name was corrected without installing anything."
+    },
+    {
+      "name": "browser launch guard",
+      "reason": "Cgroup headroom1054957568 was below1073741824bytes. Browser did not start; no cleanup or guard bypass; launch resumed after frontend finished."
+    },
+    {
+      "name": "first actual browser harness",
+      "passed": false,
+      "reason": "Harness function name was shadowed by local start action variable; fixed to startServer."
+    },
+    {
+      "name": "second actual browser harness",
+      "passed": false,
+      "reason": "Saved-deck load regex also matched delete button; strict locator stopped before mutation. Anchored actual deck button name."
+    },
+    {
+      "name": "final actual browser run",
+      "passed": true,
+      "naturalEntryRuns": 2,
+      "explicitNativeAbilityRuns": 4,
+      "verifiedAbilityCommands": 22,
+      "pageErrors": 0,
+      "physicalDoubleClickClaimed": false
+    },
+    {
+      "name": "first full Worker",
+      "passed": 293,
+      "failed": 2,
+      "reason": "Old generic router test still expected exactly eight prior societies and six kernels. Prior eight definitions remain compared; only MSJC04/MSJC05 and exact retained82 module were added. Corrected file5 passed; full295 running again.",
+      "durationMs": 1175628.494213
+    }
+  ],
+  "fullWorker": {
+    "finalPassed": 295,
+    "finalFailed": 0,
+    "finalSkipped": 0,
+    "naturalExitCode": 0,
+    "milliseconds": 1170222.16404,
+    "sourceCommit": "9767e293c9a3e43ea25d6620afc97ab9f32bc171"
+  }
+}

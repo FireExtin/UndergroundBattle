@@ -1,0 +1,12 @@
+{
+  "identityReadAt": "2026-10-17T13:28:04.207Z",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "latestVersion": 64,
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_44987b0161748191a2462614f9ec4f86",
+  "providerSource": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+  "deploymentId": "appgdep_6ad3681cb2d081919d9064678d727cfb",
+  "deploymentStatus": "succeeded in unchanged exact prior terminal receipt",
+  "priorPublicationEvidence": "docs/SITES_V64_RESPONSE_PREVIEW_PUBLICATION_2026-10-17.md",
+  "scope": "Current read-only v64 identity check; no republish, token, user data or ABI83 access."
+}

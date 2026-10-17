@@ -1,0 +1,12 @@
+{
+  "rawDirectory": "/workspace/v64-real-browser-20261017T1328Z",
+  "scriptSha256": "facdfb64e4add719f212a935c80257f08be1a2b8e846a3acc98f8e555daa3fba",
+  "trackedScript": "docs/evidence/response-preview-publication-2026-10-17/v64-normal_browser.py",
+  "scriptUnchangedFromPreviousV64Probe": true,
+  "previousProbe": "2026-10-17T12:25:11.023183+00:00",
+  "thisProbe": "2026-10-17T13:29:12.099903+00:00",
+  "abi83Excluded": true,
+  "noTlsBypass": true,
+  "noRoomWrites": true,
+  "legacyFieldNote": "The unchanged raw probe script retains an older sameCertificateBlockerAsPreviousV61 field name. Current expected identity is explicitly64; the latest previous comparison is the12:25 v64 probe. Both v64 attempts ended in ERR_CERT_AUTHORITY_INVALID."
+}

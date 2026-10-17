@@ -1,0 +1,160 @@
+{
+  "status": "implementation-and-applicable-default-local-validation-complete-awaiting-parent-serial-independent-review",
+  "sourceCommit": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+  "branch": "codex/stage-pass-progress-20261016",
+  "sourceCompilerInputsAllMatchGit": true,
+  "runtimeOriginalBuildSource": "f037a51b281001822aaef995b40ed4f7547d76c6",
+  "runtimeRebuiltAndByteIdenticalAfterTwoRustTestMetadataFixes": true,
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.75-msjc04-msjc05-societies-candidate",
+    "engineVersion": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+    "stateSchema": 3,
+    "ordinaryCards": 147,
+    "playerCards": 137,
+    "regions": 10,
+    "societies": 10,
+    "totalDefinitions": 157,
+    "wasmBytes": 3174213,
+    "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+    "jsBytes": 18203,
+    "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "nativeCompilerInputs": 129,
+    "nativeRawBytes": 3438035,
+    "nativeRawSha256": "3c1a4bc008bb0f274a8aec6394c0f3336615c98e2f38ed9ffc3146718ed0a584",
+    "fixtureBytes": 184020,
+    "fixtureSha256": "ee2bc666717e6951dd2c658bfb171c0e00be773f68fbb1a3a2a3d642d0c1a80c"
+  },
+  "checks": {
+    "nativeFull": {
+      "passed": 1201,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 991.73,
+      "workspaceLibOnly": true,
+      "wasmCrateNativeUnitCount": 0,
+      "naturalExitCode": 0
+    },
+    "frontendFull": {
+      "files": 136,
+      "passed": 1292,
+      "failed": 0,
+      "pending": 0,
+      "naturalExitCode": 0
+    },
+    "workerFull": {
+      "tests": 295,
+      "passed": 295,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "milliseconds": 1170222.16404,
+      "naturalExitCode": 0
+    },
+    "sourceFrozenAndRouting": {
+      "passed": 65,
+      "failed": 0
+    },
+    "correctedGenericRouterFile": {
+      "passed": 5,
+      "failed": 0
+    },
+    "nativeWasm": {
+      "scenarios": 6,
+      "commands": 39,
+      "rejected": 6,
+      "projections": 180
+    },
+    "productionBuild": {
+      "typeScriptConfigurations": 2,
+      "vite": true,
+      "wranglerDryRun": true,
+      "clientFiles": 164,
+      "serverEntryFiles": 1,
+      "wasmModules": 7,
+      "runtimeFiles": 172,
+      "physicalDistFiles": 175,
+      "wranglerReadDirectoryEntries": 166,
+      "directoryEntriesNotFiles": 2,
+      "published": false
+    },
+    "browser": {
+      "browser": "151.0.7922.173",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "width": 1366,
+          "height": 768
+        }
+      ],
+      "naturalUiEntryRuns": 2,
+      "explicitNativeAbilityLayoutRuns": 4,
+      "verifiedAbilityCommands": 22,
+      "pageErrors": 0,
+      "screenshotsRetained": 12,
+      "screenshotsInGit": 5,
+      "localClockWrapper": 0,
+      "productionClockUnchanged": true,
+      "onlineGameplay": false,
+      "physicalDoubleClickClaimed": false
+    }
+  },
+  "interpretation": {
+    "finiteSamePrintedBodyAuthorizedByParent": true,
+    "scope": [
+      "MSJC04",
+      "MSJC05"
+    ],
+    "conditionCheckedAtResolution": true,
+    "rearPaysAndExhaustsWithoutDrawOrRefund": true,
+    "archivalConditionalActivationQuestionPreserved": true,
+    "officialFaqClaimed": false,
+    "wholeBatchIndependentReviewPassed": false
+  },
+  "preservation": {
+    "publishedAbi77Through82Retained": true,
+    "published82WasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+    "published82NativeFixtureSha256": "0242797053882360449e6d6922c6eb8652229b4086bdefc7da4ce961deba4da8",
+    "prior137PlayerCards10Regions8SocietiesAndFivePresetsUnchanged": true,
+    "hostingWranglerAndDrizzleSourceFilesUnchanged": 6,
+    "oldRoomMigrationPerformed": false,
+    "mainMerged": false,
+    "newBranchCreated": false,
+    "worktreeCreated": false,
+    "subagentsSpawned": false,
+    "actionsStarted": false,
+    "credentialDbBuildOrCacheCommitted": false,
+    "officialApplicationD1ReadOrWrittenInThisBatch": false
+  },
+  "online": {
+    "latestPublishedVersion": 64,
+    "publishedEngine": "rust-v0.2.82-response-source-preview-candidate",
+    "providerSource": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+    "normalProbeAtUtc": "2026-10-17T13:29:12.099903+00:00",
+    "outcome": "blocked-tls-before-gameplay",
+    "errorClass": "ERR_CERT_AUTHORITY_INVALID",
+    "navigationAttempts": 1,
+    "gets": 1,
+    "posts": 0,
+    "fullGames": 0,
+    "uiReached": false,
+    "tlsBypass": false,
+    "abi83TestedOnline": false
+  },
+  "notClaimed": [
+    "Independent whole-batch approval or readiness to publish",
+    "New ABI83 saved/deployed version",
+    "Online gameplay",
+    "Account cloud deck library or cross-device synchronization",
+    "Historical ABI74 rebuilt identity repair",
+    "Historical JC016 plus BQ022 return/priority adjudication",
+    "Whole original card-pool/rules/product acceptance"
+  ],
+  "evidenceDirectory": "docs/evidence/msjc0405-2026-10-17",
+  "rawDirectory": "/workspace/msjc0405-evidence-20261017",
+  "completedAtUtc": "2026-10-17T13:53:35.378771+00:00"
+}
