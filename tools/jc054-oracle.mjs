@@ -5,7 +5,9 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-const root=fileURLToPath(new URL('../',import.meta.url));
+// Keep the Node directory URL out of Vite's static web-asset rewriting.
+const moduleUrl=import.meta.url;
+const root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.74-jc054-complete-conceal-candidate',engineVersion:'rust-v0.2.81-jc054-complete-conceal-candidate'};
 export const scenarioNames=['paid-deploy','natural-end','mandatory-end','mandatory-order','controlled-conceal','source-replaced','paid-response-reveal','pause-mandatory-order'].sort();

@@ -112,7 +112,8 @@ try {
       }
       assert.equal(currentView.pendingChoice.min,1);assert.equal(currentView.pendingChoice.max,1);assert.equal(currentView.pendingChoice.allowDecline,false);
       await expect(dialog.getByRole('button',{name:'确认选择',exact:true})).toBeDisabled();
-      await expect(page.getByRole('region',{name:'当前窗口与候选行动'})).toContainText('先完成当前选择');
+      // The table background is aria-hidden while the choice modal owns focus.
+      await expect(page.locator('.hg-action-availability')).toContainText('先完成当前选择');
       await expect(page.locator('[data-card-actionable="true"]')).toHaveCount(0);
       if(!report.originalScanRead){
         await dialog.getByRole('button',{name:'放大阅读蒙古死亡蠕虫',exact:true}).first().click();
@@ -127,6 +128,7 @@ try {
       }
       const selected=gameAction.selected;assert.equal(selected.length,1);
       if(selected.length)await dialog.locator(`[data-choice-option="${selected[0]}"]`).click();
+      await expect(dialog.locator('.hg-trigger-order-selection')).toContainText(currentView.pendingChoice.options.find(o=>o.id===selected[0]).label);
       await capture('mandatory-order-before-confirm');
       const before=await snapshot();await mf.dispose();await start();report.reopened++;
       assert.deepEqual(await snapshot(),before);await page.reload();

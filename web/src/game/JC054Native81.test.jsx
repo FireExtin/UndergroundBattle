@@ -1,6 +1,7 @@
 // Compiler-bound Native81 -> fresh WASM81 -> real Table. Local component QA only.
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
+import { useState } from 'react';
 import { loadFixture, sha256 } from '../../../tools/jc054-oracle.mjs';
 import { kernel as abi, catalog, moduleBytes } from '../../../rust-game-wasm/tests/current81-kernel.mjs';
 import { Table } from './Table';
@@ -20,12 +21,18 @@ it.each(choices)('$name restores a mandatory ordering choice with no decline and
   expect(JSON.parse(abi.view(row.state,row.seat))).toEqual(view);
   expect(view.pendingChoice).toMatchObject({min:1,max:1,allowDecline:false});
   const app=render(<Table {...props}/>);app.unmount();
-  const restored=JSON.parse(abi.view(row.state,row.seat));render(<Table {...props} view={restored}/>);
+  const restored=JSON.parse(abi.view(row.state,row.seat));
+  // Table is controlled by its host's submission state, as in GameApp. The
+  // real four-client browser check also verifies a double-click makes one POST.
+  function Host(){const [busy,setBusy]=useState(false);return <Table {...props} view={restored} busy={busy} onAction={a=>{setBusy(true);submit(a);}}/>;}
+  render(<Host/>);
   const dialog=screen.getByRole('dialog',{name:'待完成的选择'});
   expect(dialog).toHaveTextContent('必须将全部触发入栈');
   expect(within(dialog).queryByRole('button',{name:/跳过|不发动|放弃本次/})).not.toBeInTheDocument();
   const confirm=within(dialog).getByRole('button',{name:'确认选择'});expect(confirm).toBeDisabled();
   const id=row.command.action.action.selected[0];fireEvent.click(dialog.querySelector(`[data-choice-option="${id}"]`));
+  const sourceLabel=view.pendingChoice.options.find(o=>o.id===id).label;
+  expect(within(dialog).getByText(`下一项入栈：${sourceLabel}`)).toBeInTheDocument();
   fireEvent.click(confirm);fireEvent.click(confirm);expect(submit).toHaveBeenCalledOnce();
   const action=JSON.parse(JSON.stringify(actionForRoom(view,submit.mock.calls[0][0])));expect(action).toEqual(row.command.action);
   expect(JSON.parse(abi.applyRoom(row.state,row.seat,JSON.stringify({...row.command,action}),'0'))).toEqual(row.expected);
