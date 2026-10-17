@@ -1,0 +1,18 @@
+{
+  "purpose": "Exact immutable published v63 ABI81 dependency. Raw WASM/JS are the published bytes; gzip is its once-created immutable local storage carrier. Never rebuild or migrate old rooms.",
+  "providerSource": "90bfb25faa4c142f13140e141b6c8dfe2ec9355a",
+  "reviewedSource": "b73f94f94dbbf5a3261f57b9913d237dc8b1c378",
+  "reviewedEvidence": "671f035ff14dc407f99db928920134d38aa64095",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+    "engineVersion": "rust-v0.2.81-jc054-complete-conceal-candidate"
+  },
+  "wasmBytes": 3154323,
+  "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "b882f9e672ca63ed5577eef74aa896360ee0c533d52cbc1be4945130d2f2bcb0",
+  "nativeFixtureSha256": "13c5728ff7342130ad95201134b84cd011d340f86e9a56cd909e90c0ea787c82",
+  "nativeRawSha256": "ec28c25693e2d74db2bd6ec766fc7b6f8d94d938ca21abd5a8d51ebf1afc425e",
+  "nativeRawBytes": 24014440
+}

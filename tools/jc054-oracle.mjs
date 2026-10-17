@@ -1,7 +1,8 @@
-// Fresh Native81 bytes and observations; historical Native80 is never rewritten.
+// Exact published v63 Native81 bytes. Never bind these historical observations
+// to the newer candidate's source, or relabel/rewrite their opaque states.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -15,11 +16,9 @@ export const invalidNames=[...Array.from({length:12},(_,i)=>`frame-${String(i).p
   ...['deploy','reveal'].flatMap(kind=>['exhausted','damage','wounds','shield','time_markers','lock_markers','wrong-source'].map(field=>`paid-stack-${kind}-${field}`)),
   'successor-face-up','successor-off-board'].sort();
 export function assertSources(binding) {
-  const files=['Cargo.lock','Cargo.toml','rust-game-wasm/Cargo.toml','rust-game-wasm/build.sh','rust-game-wasm/src/lib.rs','rust-game/Cargo.toml','rust-game/data/cards.json',
-    ...readdirSync(path.join(root,'rust-game/src'),{recursive:true}).filter(p=>p.endsWith('.rs')).map(p=>'rust-game/src/'+p)].sort();
-  assert.equal(binding.algorithm,'sha256');assert.equal(files.length,127,'Review all new Native compiler inputs explicitly');
-  assert.deepEqual(Object.keys(binding.files).sort(),files,'Incomplete Native81 input set');
-  for(const file of files)assert.equal(sha256(readFileSync(path.join(root,file))),binding.files[file],`Stale Native81 source: ${file}`);
+  const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi81/native-source-binding.json'),'utf8'));
+  assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(saved.files).length,127,'Exact published Native81 input count');
+  assert.deepEqual(binding,saved,'Historical Native81 compiler binding must remain unchanged');
 }
 export function validateNative(raw) {
   assert.equal(raw.format,'jc054-native81-v1');assertSources(raw.sourceBindings);
@@ -44,13 +43,19 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,projections,rejected,invalid:raw.invalid.length};
 }
 export function loadFixture() {
-  const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jc054Native81.fixture.json.gz'))));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc054Native81.fixture.json.gz'));
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi81/identity.json'),'utf8'));
+  assert.equal(sha256(bytes),pinned.nativeFixtureSha256,'Published Native81 fixture bytes must not change');
+  const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc054-native81-raw-v1');
+  assert.equal(bundle.raw.sha256,pinned.nativeRawSha256);assert.equal(bundle.raw.bytes,pinned.nativeRawBytes);
   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
   const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);
   return {...bundle,...raw};
 }
 export function compare(fixture,abi,bytes) {
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi81/identity.json'),'utf8'));
+  assert.equal(sha256(bytes),pinned.wasmSha256,'Only exact published v63 WASM may check Native81');
   assert.equal(sha256(bytes),fixture.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
   for(const scenario of fixture.scenarios) {
     scenario.initial.views.forEach((v,s)=>assert.deepEqual(JSON.parse(abi.view(scenario.initial.state,s)),v,scenario.name));
@@ -71,9 +76,12 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
   const [nativeFile,wasmFile,destination]=process.argv.slice(2);
   if(!destination)throw Error('Usage: jc054-oracle.mjs Native81.json fresh81.wasm destination.fixture.json.gz');
   const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi81/identity.json'),'utf8'));
+  assert.equal(sha256(json),pinned.nativeRawSha256,'Only the original published Native81 bytes may be restored');
+  assert.equal(sha256(bytes),pinned.wasmSha256,'A newer build cannot re-sign Native81');
   const bundle={format:'jc054-native81-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
   const {kernel}=await import('../rust-game-wasm/tests/current81-kernel.mjs');
   const result=compare({...bundle,...raw},kernel,bytes);
-  writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9,mtime:0}));
+  writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9,mtime:0}),{flag:'wx'});
   console.log(JSON.stringify({destination,...result,nativeInputs:Object.keys(raw.sourceBindings.files).length}));
 }
