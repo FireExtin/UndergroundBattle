@@ -27,6 +27,8 @@
 
 身份与全过程证据见 [official-receipts.json](evidence/msjc0405-publication-2026-10-17/official-receipts.json)、[provider-input-audit.json](evidence/msjc0405-publication-2026-10-17/provider-input-audit.json)、[publication-archive-audit.json](evidence/msjc0405-publication-2026-10-17/publication-archive-audit.json)。首次额外诊断尝试 `git ls-remote origin` 因官方工作副本不设置持久origin而退出128，在读取归档前即停止；没有权限拒绝或备用凭据操作。按官方脚本实际使用连接器URL正常push再ls-remote的成功回执核对后完成审计，此边界也保留在证据中。
 
-本次没有导航或抓取部署URL，**没有v65线上试玩结论**。上一轮13:29 UTC的普通Chromium证书阻塞仅属于当时v64，不能推断新v65连接结果；本地ABI83组件/HTTP/D1/浏览器验证也不计作线上试玩。完整本地结果、失败修正和来源裁定边界仍见[原审查交接](MSJC04_MSJC05_REVIEW_HANDOFF_2026-10-17.md)。
+14:22 UTC官方发布回执保存时尚未导航部署URL；该时点回执及发布summary保留原值。随后父会话明确追加新v65的一次普通云浏览器检查，已并入本次收尾，未额外发布或推进main。14:25:58 UTC原生回读确认最新v65/source6efc627/deployment6ad384/归档均一致；14:26:22.816291 UTC正常Chromium151.0.7922.173进行唯一一次导航，14:26:23.007224 UTC返回 `net::ERR_CERT_AUTHORITY_INVALID`。仅1 GET/0 POST/0其他写方法，未到界面或资产/目录身份检查，未建桌/入桌，完整对局0；新秘社机制、初始选择、连点和刷新恢复均未执行。截图已实际查看，确为该域名的证书隐私警告；没有点击Advanced、配置自定义信任、忽略TLS或再次尝试。见[本轮浏览器结果](evidence/v65-connection-2026-10-17-1426/normal-browser.json)、[身份回读](evidence/v65-connection-2026-10-17-1426/official-identity.json)及[复现边界](evidence/v65-connection-2026-10-17-1426/reproduction.json)。
+
+**没有v65线上游戏试玩通过结论**。本次证书错误属于14:26 UTC的v65检查；前一轮13:29 UTC属于v64，两个版本的记录分别保留。本地ABI83组件/HTTP/D1/浏览器验证不计作线上试玩。完整本地结果、失败修正和来源裁定边界仍见[原审查交接](MSJC04_MSJC05_REVIEW_HANDOFF_2026-10-17.md)。
 
 游戏远端main此前已按单独授权正常快进固定ABI82代码 `398e220721f9e14c4f523530183c6288b7749096`；此次v65发布不把ABI83推入main。main晋升见[独立记录](REVIEWED_V64_MAIN_PROMOTION_2026-10-17.md)，ABI83未来main推进需独立处理。历史ABI74重建身份、JC016＋BQ022返回/优先权及全原作验收仍不在本批解决声明内。

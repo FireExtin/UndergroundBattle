@@ -1,0 +1,23 @@
+{
+  "parentRequest": "Fold one ordinary cloud-browser check of successfully deployed and freshly read-back v65 into publication wrap-up. Stop after same TLS blocker; record time/version/error/zero writes. No extra deployment or main change.",
+  "rawRoot": "/workspace/v65-real-browser-20261017",
+  "command": "node tools/build-storage.mjs -- python3 /workspace/v65-real-browser-20261017/v65-normal_browser.py > /workspace/v65-real-browser-20261017/normal-browser.log 2>&1",
+  "naturalExitCode": 0,
+  "nodeGuardUsed": true,
+  "identityReadbackAtUtc": "2026-10-17T14:25:58.164Z",
+  "expectedVersion": 65,
+  "expectedSource": "6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0",
+  "expectedDeployment": "appgdep_6ad38470da2881919f6587ae007634b9",
+  "navigationAtUtc": "2026-10-17T14:26:22.816291+00:00",
+  "errorAtUtc": "2026-10-17T14:26:23.007224+00:00",
+  "normalTls": true,
+  "bypass": false,
+  "newSiteVersionOrDeploymentCreatedForCheck": false,
+  "mainChangedForCheck": false,
+  "gameWriteCount": 0,
+  "uiAndBrowserAssetIdentityNotReached": true,
+  "onlineMechanismsSelectionRepeatClickRefreshAndCompleteGameNotExecuted": true,
+  "previousV64ProbeTime": "2026-10-17T13:29:12.099903+00:00",
+  "newVersionExplainsOneCurrentCheckBeforeOneHourElapsed": true,
+  "noFurtherAttemptsThisRound": true
+}
