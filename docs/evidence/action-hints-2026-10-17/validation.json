@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "41effefd40d73b7245d6369ba6890cdbfef8189f",
+  "status": "Applicable local UI validation passed; independent serial review pending; not published",
+  "fullFrontend": {
+    "files": 133,
+    "passed": 1268,
+    "total": 1268,
+    "failed": 0,
+    "timeoutMs": 15000,
+    "reportSha256": "1accceb9e7bd14b004f0e9a4cc01e4ff51af676bce94836092958b1e21f0a1fe"
+  },
+  "productionBuild": {
+    "passed": true,
+    "includesTypeScript": true,
+    "logSha256": "88be221ddd82a7df1b6f52d718b8a85c76f3cc115c99fcbb381a63240fd0fcb3"
+  },
+  "browser": {
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 1366,
+        "height": 768
+      }
+    ],
+    "apiCalls": 0,
+    "pageErrors": [],
+    "localUiFixtureOnly": true,
+    "onlineGameplay": false,
+    "resultSha256": "92cff23e53384f6a4254c7d6e2c5579f7a64030b6f2d60a4a3f179ebc4e30082",
+    "failedEarlierRounds": [
+      1,
+      2,
+      3
+    ]
+  },
+  "sourceSha256": {
+    "web/src/game/ArchivePresentation.tsx": "6f19ba8b1bca6738491b5111ec369800669e89229a59fbf0a05737235d8ec0e8",
+    "web/src/game/CardTile.tsx": "4d3458c660d71aad0f7c31eb2dfbf7a927b32375050b96ddce74ab7d161532d4",
+    "web/src/game/Table.tsx": "cf0785a4f0d06a0809bad9199ef63be79058af2a41a7cac15a40ac11c502f976",
+    "web/src/game/ActionHints.test.tsx": "e2422871ff5847148967eccefa214a15bf75bf24f9e2b25b900cdf1d97b98eaf",
+    "web/src/game/actionHints.ts": "2c2b7c6d17d900f348db19bda8a8abd0af436148ccc9d05514eed1130bbd2f20",
+    "web/src/game/action-hints.css": "abcdb473a28de3042574a426bb33b4e25b720efad672add72128efae1ab8e541",
+    "tools/frontend/action-hints-qa.mjs": "9c109c7f74a297b9fd1f66a7eb620f89976bc51bba096f4a9303d574edc44348"
+  },
+  "externalEvidence": "/workspace/action-hints-evidence-20261017"
+}
