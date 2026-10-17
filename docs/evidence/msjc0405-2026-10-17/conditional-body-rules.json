@@ -1,0 +1,23 @@
+{
+  "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+  "sourceSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+  "pages": [
+    {
+      "printedPage": "printed-P4-physical-P6",
+      "pdfPageIndex": 5,
+      "image": "/workspace/msjc0405-evidence-20261017/manual-printed-P4-physical-P6.png",
+      "sha256": "a40eed98e92e6e4b12fece301aac1a22ac457b7ea841ccfd8934054f6c27e98b",
+      "reviewCopy": "docs/evidence/msjc0405-2026-10-17/manual-printed-P4-physical-P6.png"
+    },
+    {
+      "printedPage": "printed-P9-physical-P11",
+      "pdfPageIndex": 10,
+      "image": "/workspace/msjc0405-evidence-20261017/manual-printed-P9-physical-P11.png",
+      "sha256": "8aa99242993f2803487c686173100a88e3fc083361ba722e72e0033e745f4d46",
+      "reviewCopy": "docs/evidence/msjc0405-2026-10-17/manual-printed-P9-physical-P11.png"
+    }
+  ],
+  "interpretationAuthorization": "Parent instruction2026-10-17: use the same finite interpretation as identical admitted society bodies, restricted to MSJC04/MSJC05. No separate user ruling required; not an official FAQ or whole-batch review approval.",
+  "finiteProgram": "Standard legal activation pays3 and exhausts source; resolution checks actor team initiative, draws1 if first, otherwise draws0 without refund.",
+  "archiveQuestionPreserved": "conditionalActivation"
+}

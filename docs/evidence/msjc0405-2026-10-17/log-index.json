@@ -64,5 +64,95 @@
     "rawBytes": 5547,
     "rawSha256": "cf056bfac68f4b5eff6a694adb8a0819df4dc9377ba0ba71365ebc237638844c",
     "gzipSha256": "55b917d562b8a4dc4c3bee38f8b992da65797cf81300dee2dcf925df758b8227"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/native-final-export.log.gz",
+    "rawBytes": 430,
+    "rawSha256": "b12c4c03a1743e14af59cff8141598e204831767da28b380c0b7a22ce89e03c2",
+    "gzipSha256": "818eafc870ee385c67400c985f3de5ec535eb84070499143b8dd38c1ca20bd82"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/wasm-build-final.log.gz",
+    "rawBytes": 220,
+    "rawSha256": "f2d546d7d9478c70a6a84de55871c48d9ca9ad2bc938a43e1db9a43e8b12d9c9",
+    "gzipSha256": "7dabdb6bc6bbe72f88b41e35fe0e6582d59acdfe876cb12cf369abf67eb4fec9"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/native-wasm-final.log.gz",
+    "rawBytes": 385,
+    "rawSha256": "fcf5463067001fbc7747f68b8d1579d35f3fd00d5f342634b2ff64f183791961",
+    "gzipSha256": "e79bb8dab63697b4b15e1945988246e4ce23752d96f3cea4698ccd8eb648b0d4"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/production-build-first.log.gz",
+    "rawBytes": 1464,
+    "rawSha256": "ac624fd8a9742608ad10ce3dad3d54fbff052cf54dca62f5c3e4000af67f934a",
+    "gzipSha256": "840d0f40afd389f8df6186cdaddff97301bb75d0a70c462d8a22a68b8c6cac5d"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/fixed-clock-worker.log.gz",
+    "rawBytes": 586,
+    "rawSha256": "4ec9832b7723e872c6c715fa31c980c9cc2783ae29940669ac8417976c3186bc",
+    "gzipSha256": "decf1ae3aadcfec7475d0d7c75cd76cfc722dfbd538580c39992229071fa05bc"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/http-focused-first.log.gz",
+    "rawBytes": 3449,
+    "rawSha256": "796f7bce4e718c7b97a31dbf4363b3970c0bbd84cea2eaa58f22d011db2590fa",
+    "gzipSha256": "39842d234060497210f5b89b09d4f3a78a954352e7ff4dc18a9133d988719fcd"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/http-focused-corrected.log.gz",
+    "rawBytes": 2481,
+    "rawSha256": "5d5f20b214c0039a294c04d4473db7f2435ac3fd65284503ea8676c9aac4cbbc",
+    "gzipSha256": "2a69f4a2849a88758407ec534df869093d7d33149132c1cfcd653b4e9594031f"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/browser-first.log.gz",
+    "rawBytes": 944,
+    "rawSha256": "e89f121b3b84029a691a8b32a70d8f4344cfebe45f2e9f7a6164c084ab5a228f",
+    "gzipSha256": "de485f5b988dec4c4e8cab813c2a257c5d054a591601dcf526acd8f421a77951"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/browser-run1.log.gz",
+    "rawBytes": 183,
+    "rawSha256": "e8db3fe85dfe2677d78e83722ec35ce6eb30a9d818b4018b6a75005104a1a721",
+    "gzipSha256": "bd9ec4fcd89fda98cc2007ae8a49a4166acc487ca27d94e489c0a70f5f5302be"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/browser-run2.log.gz",
+    "rawBytes": 367,
+    "rawSha256": "7f211f136244523a5497c5dd4e586a63f81637a23a9735e3a8da407b9c41f705",
+    "gzipSha256": "80fe369f674ae4fc03fba6bf173fb9823578ade5108c06f422e41c9b4c55ecce"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/browser-run3.log.gz",
+    "rawBytes": 1088,
+    "rawSha256": "40fe3ea3e02fbe9307b51d4cfdeb2a8175233589038897ae58740ffbb0a4815e",
+    "gzipSha256": "4fa06a0f6732c4ae731473316ed213ed0dc5331adf439addc9a060d839a3691e"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/browser-run4.log.gz",
+    "rawBytes": 111,
+    "rawSha256": "5f17d54da1a81b7233edb350a22c0037ec8e1d5d3580479a299f57ddb5970f6c",
+    "gzipSha256": "5aefdb86c0dde72c0d9a77ec7adeb625898cdcdfef1220eb15ba0c9c2c8488ae"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frontend-full.log.gz",
+    "rawBytes": 441,
+    "rawSha256": "6e2d18415c51967ef2ebafe8257c6f5a33448fa11c50367230aa476771e1e893",
+    "gzipSha256": "bb87734d2de19a72cfaee88e1a6769af79209d0f1c3e467eb7f0326611c8a1c2"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frontend-full-corrected.log.gz",
+    "rawBytes": 461,
+    "rawSha256": "ccc080d511d67955dd3d66c9760c887575396d089415d6c8e1449a400ed49e0f",
+    "gzipSha256": "ccca05d508582d0c06bd4871712a03a0de385d9bec1fb1c2c2008300f535d34b"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/native-full.log.gz",
+    "rawBytes": 121805,
+    "rawSha256": "c7ff0d79571aaf9cf7f47772fc4ecf484d10c79f88312e0d020ff7d74cf347e8",
+    "gzipSha256": "d49f302a9412d289ad6fe73821bbbb433ed5b6eda8e430bde43beb5398785774"
   }
 ]

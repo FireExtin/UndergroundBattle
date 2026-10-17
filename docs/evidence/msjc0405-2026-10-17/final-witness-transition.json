@@ -1,0 +1,18 @@
+{
+  "purpose": "Independently regenerate the final Native83 compiler witness after updating two old eight-society assertions. The first WIP witness is retained in f037a51 and intact outside Git; no historical82 input is rewritten.",
+  "firstSource": "f037a51b281001822aaef995b40ed4f7547d76c6",
+  "changedCompilerInputs": [
+    "rust-game/src/jc008_tests.rs",
+    "rust-game/src/society.rs"
+  ],
+  "compilerInputs": 129,
+  "observedCatalogAllOpaqueStatesJournalsCommandsAndViewsUnchanged": true,
+  "productionWasmRebuiltAndByteIdentical": true,
+  "wasmBytes": 3174213,
+  "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+  "firstFixtureSha256": "5d6f78aa1877f0e6d64fbef14e655ff6036c8615448c31d46782e05d8ab29380",
+  "finalFixtureSha256": "ee2bc666717e6951dd2c658bfb171c0e00be773f68fbb1a3a2a3d642d0c1a80c",
+  "firstNativeRawSha256": "c398fc12ab8dc8866fae9ba46cfbeadb6e484791785f4c60f641872f5e2ca16f",
+  "finalNativeRawSha256": "3c1a4bc008bb0f274a8aec6394c0f3336615c98e2f38ed9ffc3146718ed0a584",
+  "nativeRawBytes": 3438035
+}

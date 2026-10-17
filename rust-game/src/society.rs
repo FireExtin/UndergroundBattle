@@ -473,7 +473,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05"]
             );
         }
         assert_eq!(

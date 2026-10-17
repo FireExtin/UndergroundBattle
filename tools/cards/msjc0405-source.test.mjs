@@ -20,8 +20,8 @@ test('MSJC04/MSJC05 use their complete pinned originals and two additional immut
     const spec=specs[id],source=spec.sourceVerification,society=catalog.societies.find(c=>c.id===id);
     assert.equal(source.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(source.blockingFields,[]);
     // Keep the archival rules question intact. This candidate proposes the
-    // same project interpretation already used by the admitted color societies;
-    // independent review must explicitly approve its scope for MSJC04/MSJC05.
+    // same finite project interpretation as admitted color societies, explicitly
+    // authorized for these two identical bodies; whole-batch review is separate.
     assert.deepEqual(spec.openQuestionIds,['conditionalActivation']);
     assert.equal(hash(read(source.imagePath)),sha256);assert.deepEqual(read(source.imagePath),read(`web/public/cards/${id}.jpg`));
     assert.deepEqual(scans[id],{url:`/cards/${id}.jpg`,source:source.imagePath,sha256});

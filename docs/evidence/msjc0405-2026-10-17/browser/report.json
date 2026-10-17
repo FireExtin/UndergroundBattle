@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "engine": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+  "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+  "modules": [
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    }
+  ],
+  "workerSha256": "ed1ac12b0a3e59883d89c5cf98a8683c5f235c051c286c9df6881f82e0864e62",
+  "productionWorkerSha256": "4a23e098b1abf6561edd0b1115eea54d58db976b9926058479817b22e6a6f481",
+  "clientIndexSha256": "a2d8920f2aea9ad1cf295ac75cc9b12acd99f7c548c635f566779f3f3e10d6d2",
+  "scope": "Local production client. Natural UI deck construction/entry/start; separately disclosed Native83 ability layouts. No online gameplay.",
+  "natural": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "checks": [
+        "initial selection and real25-color validation",
+        "no API POST before entry",
+        "name/save/rename/reload/load through UI",
+        "complete named snapshots create/join without injected room state",
+        "two real six-card starts, visible societies, refresh and mandatory choices"
+      ],
+      "decks": [
+        {
+          "societyId": "MSJC04",
+          "namedSavedRenamedReloadedLoaded": true,
+          "cardCount": 50,
+          "printedColorCount": 25,
+          "postsBeforeEntry": 0
+        },
+        {
+          "societyId": "MSJC05",
+          "namedSavedRenamedReloadedLoaded": true,
+          "cardCount": 50,
+          "printedColorCount": 25,
+          "postsBeforeEntry": 0
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "checks": [
+        "initial selection and real25-color validation",
+        "no API POST before entry",
+        "name/save/rename/reload/load through UI",
+        "complete named snapshots create/join without injected room state",
+        "two real six-card starts, visible societies, refresh and mandatory choices"
+      ],
+      "decks": [
+        {
+          "societyId": "MSJC04",
+          "namedSavedRenamedReloadedLoaded": true,
+          "cardCount": 50,
+          "printedColorCount": 25,
+          "postsBeforeEntry": 0
+        },
+        {
+          "societyId": "MSJC05",
+          "namedSavedRenamedReloadedLoaded": true,
+          "cardCount": 50,
+          "printedColorCount": 25,
+          "postsBeforeEntry": 0
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "societyId": "MSJC04",
+      "scope": "explicit Native83 starting layout",
+      "posts": [
+        3,
+        1,
+        1,
+        1
+      ],
+      "commands": [
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "activate",
+          "version": 13,
+          "stateSha256": "5fe6755f3996b2d93ef52344fa8397d6313de934b19d60d67cc906c6432ecccf"
+        },
+        {
+          "seat": 0,
+          "kind": "passResponse",
+          "version": 14,
+          "stateSha256": "11024a37bd92683fc3353cc488e5d225732a339db4d05272fe590c3ced2ae7a7"
+        },
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "version": 15,
+          "stateSha256": "debfa3edbdccdae5dad97d5c19b6449c36ef4ab557962c7fd50189d3261917eb"
+        },
+        {
+          "seat": 2,
+          "kind": "passResponse",
+          "version": 16,
+          "stateSha256": "bd0491d59cc5a507d877f071c0b726a29185b089eca81cf86707048af6122bc2"
+        },
+        {
+          "seat": 3,
+          "kind": "passResponse",
+          "version": 17,
+          "stateSha256": "59e71dab0932fb433dd6c29117821432356f633e80794bca41ff516c92fb581a"
+        },
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "choose",
+          "version": 18,
+          "stateSha256": "1fbd9033ea65d3a52aefdf59e3ee9546fe8d43031674b22025133f3d4a590fa7"
+        }
+      ],
+      "checks": [
+        "only red gold JC052 selectable, own private choice, public reveal and real new hand instance",
+        "four real clients, payment4/exhaustion/quota survive refresh without extra POST, actual journals and same-command WASM equality"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "societyId": "MSJC05",
+      "scope": "explicit Native83 starting layout",
+      "posts": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "commands": [
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "activate",
+          "version": 13,
+          "stateSha256": "beef9b986ad1987878cc944bb693fecfbd820e83dde020d7d19f94086a4aa70d"
+        },
+        {
+          "seat": 0,
+          "kind": "passResponse",
+          "version": 14,
+          "stateSha256": "2431a81c6acc18bc10d59179835865b867ac49ef3f7205dd2f030462679a6a51"
+        },
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "version": 15,
+          "stateSha256": "32f8bf57e64ba3383461465c2872039809b75ea4ea7e510fc7acb5409f1f6b47"
+        },
+        {
+          "seat": 2,
+          "kind": "passResponse",
+          "version": 16,
+          "stateSha256": "fc7fb0c2135646f180245bbb0dc7dac07182856445e8ae5ab4c1449c33043f2a"
+        },
+        {
+          "seat": 3,
+          "kind": "passResponse",
+          "version": 17,
+          "stateSha256": "a457f993b18cdd0d0e8224cda9a39cbf50cb15bac74e57008503eab4efd40060"
+        }
+      ],
+      "checks": [
+        "no fake gray unique or private choice; real empty search resolves and shuffles",
+        "four real clients, payment4/exhaustion/quota survive refresh without extra POST, actual journals and same-command WASM equality"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "societyId": "MSJC04",
+      "scope": "explicit Native83 starting layout",
+      "posts": [
+        3,
+        1,
+        1,
+        1
+      ],
+      "commands": [
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "activate",
+          "version": 13,
+          "stateSha256": "5fe6755f3996b2d93ef52344fa8397d6313de934b19d60d67cc906c6432ecccf"
+        },
+        {
+          "seat": 0,
+          "kind": "passResponse",
+          "version": 14,
+          "stateSha256": "11024a37bd92683fc3353cc488e5d225732a339db4d05272fe590c3ced2ae7a7"
+        },
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "version": 15,
+          "stateSha256": "debfa3edbdccdae5dad97d5c19b6449c36ef4ab557962c7fd50189d3261917eb"
+        },
+        {
+          "seat": 2,
+          "kind": "passResponse",
+          "version": 16,
+          "stateSha256": "bd0491d59cc5a507d877f071c0b726a29185b089eca81cf86707048af6122bc2"
+        },
+        {
+          "seat": 3,
+          "kind": "passResponse",
+          "version": 17,
+          "stateSha256": "59e71dab0932fb433dd6c29117821432356f633e80794bca41ff516c92fb581a"
+        },
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "choose",
+          "version": 18,
+          "stateSha256": "1fbd9033ea65d3a52aefdf59e3ee9546fe8d43031674b22025133f3d4a590fa7"
+        }
+      ],
+      "checks": [
+        "only red gold JC052 selectable, own private choice, public reveal and real new hand instance",
+        "four real clients, payment4/exhaustion/quota survive refresh without extra POST, actual journals and same-command WASM equality"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "societyId": "MSJC05",
+      "scope": "explicit Native83 starting layout",
+      "posts": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "commands": [
+        {
+          "seat": 0,
+          "kind": "game",
+          "gameKind": "activate",
+          "version": 13,
+          "stateSha256": "beef9b986ad1987878cc944bb693fecfbd820e83dde020d7d19f94086a4aa70d"
+        },
+        {
+          "seat": 0,
+          "kind": "passResponse",
+          "version": 14,
+          "stateSha256": "2431a81c6acc18bc10d59179835865b867ac49ef3f7205dd2f030462679a6a51"
+        },
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "version": 15,
+          "stateSha256": "32f8bf57e64ba3383461465c2872039809b75ea4ea7e510fc7acb5409f1f6b47"
+        },
+        {
+          "seat": 2,
+          "kind": "passResponse",
+          "version": 16,
+          "stateSha256": "fc7fb0c2135646f180245bbb0dc7dac07182856445e8ae5ab4c1449c33043f2a"
+        },
+        {
+          "seat": 3,
+          "kind": "passResponse",
+          "version": 17,
+          "stateSha256": "a457f993b18cdd0d0e8224cda9a39cbf50cb15bac74e57008503eab4efd40060"
+        }
+      ],
+      "checks": [
+        "no fake gray unique or private choice; real empty search resolves and shuffles",
+        "four real clients, payment4/exhaustion/quota survive refresh without extra POST, actual journals and same-command WASM equality"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "1000-MSJC04-named-saved-reloaded.png",
+    "1000-MSJC05-named-saved-reloaded.png",
+    "1000-natural-start-red-gray.png",
+    "1000-MSJC04-private-choice.png",
+    "1000-MSJC04-resolved-used.png",
+    "1000-MSJC05-resolved-used.png",
+    "768-MSJC04-named-saved-reloaded.png",
+    "768-MSJC05-named-saved-reloaded.png",
+    "768-natural-start-red-gray.png",
+    "768-MSJC04-private-choice.png",
+    "768-MSJC04-resolved-used.png",
+    "768-MSJC05-resolved-used.png"
+  ],
+  "browser": "151.0.7922.173"
+}

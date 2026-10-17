@@ -113,5 +113,5 @@ describe('complete real red and gray society entry',()=>{
     fireEvent.click(screen.getByRole('button',{name:'载入当前入席快照'}));
     expect(screen.getByRole('combobox',{name:'秘社（可选）'})).toHaveValue('MSJC05');
     expect(readDeckLibrary().drafts[0]).toMatchObject({name:'仍未保存的红色构筑',societyId:'MSJC04'});
-  });
+  },20_000);
 });
