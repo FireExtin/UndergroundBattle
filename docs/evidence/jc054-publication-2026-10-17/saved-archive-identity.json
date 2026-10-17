@@ -1,0 +1,8 @@
+{
+  "sha256": "ddd6ea0625d567cbb726cbea1f0d211278ff840973df1ce5a2e822de3ce0cb06",
+  "bytes": 112220160,
+  "filePayloads": 174,
+  "encoding": "sorted PAX regular files, mode0644, uid/gid/mtime0, same original paths",
+  "nativeContentHash": "sha256:ddd6ea0625d567cbb726cbea1f0d211278ff840973df1ce5a2e822de3ce0cb06",
+  "nativeBytes": 112220160
+}

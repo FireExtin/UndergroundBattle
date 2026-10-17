@@ -1,4 +1,6 @@
-# JC054 独审P2修复跟进（待串行复审，未发布）
+# JC054 独审P2修复跟进（已复审，随官方v63发布）
+
+父会话已完成本修复的独立复审并授权发布；2026-10-17 10:14:28 UTC官方v63已succeeded，官方source `90bfb25faa4c142f13140e141b6c8dfe2ec9355a`。下文保留发布前审查和分阶段边界，后续结果以 [v63发布记录](SITES_V63_JC054_ACTION_HINTS_PUBLICATION_2026-10-17.md) 为准。原7f81从未发布，发布的是修后6694内核；普通浏览器仍被证书阻断，未完成线上试玩。
 
 原送审点 `f842af3a76d5e482b91a20f0cba7ec62ec3940da` 固定保留，独审发现两类恢复缺口后暂缓发布。原81 WASM `7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca`、其JS、固定时钟Worker、原压缩Native输入及127项绑定均保留在Git外 `/workspace/jc054-evidence-20261017/p2-stack-card/original81-kernel/`；不覆盖为修后产物，不重建旧77–80。
 
