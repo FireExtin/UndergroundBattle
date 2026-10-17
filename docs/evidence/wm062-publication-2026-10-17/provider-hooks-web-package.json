@@ -1,0 +1,4 @@
+{
+  "prebuild": "node ../scripts/restore-test-fixtures.mjs",
+  "pretest": "node ../scripts/restore-test-fixtures.mjs"
+}

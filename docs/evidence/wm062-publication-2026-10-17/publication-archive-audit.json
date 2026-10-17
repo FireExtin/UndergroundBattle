@@ -1,0 +1,39 @@
+{
+  "checkedAtUtc": "2026-10-17T02:18:00.262735+00:00",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "officialSourceCommit": "1f1b785df84738e6f85c1462482236b3ddabb8be",
+  "reviewedCodeCommit": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+  "evidenceCommit": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "archivePath": "/workspace/wm062-publication-20261017/wm062-reviewed-80.tar.gz",
+  "archiveSha256": "6a29c1bf144a170b2368ca79e971c5360af7e17707bbb46d0ae26e468f196c0c",
+  "archiveBytes": 73061508,
+  "verifiedRuntimeFiles": 166,
+  "extraBuildAndHostingFiles": {
+    "dist/.openai/hosting.json": {
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2",
+      "bytes": 91
+    },
+    "dist/.openai/drizzle/0000_numerous_lucky_pierre.sql": {
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "bytes": 1523
+    },
+    "dist/.openai/drizzle/meta/_journal.json": {
+      "sha256": "568a9e1bf452c42d07a8f4067732cc82fe6fbb1e0951efb750e3028d02b8f561",
+      "bytes": 211
+    },
+    "dist/.openai/drizzle/meta/0000_snapshot.json": {
+      "sha256": "a4e0d437f9b6d1c5f9cf2de0fbb7082f7a2dadf33f64e91cb0d7fc67780d254c",
+      "bytes": 7714
+    },
+    "dist/server/index.js.map": {
+      "sha256": "cd52c578429816b57cffc3740a1215c53c48cc4382c747da58dfa7b50769fdc6",
+      "bytes": 185055
+    },
+    "dist/server/README.md": {
+      "sha256": "3355ab33d0dc3148c8b97f276132f98606291207dc80d104a25b6f8d7ebc9f15",
+      "bytes": 122
+    }
+  },
+  "providerSourceClean": true,
+  "hostingAndD1AndMigrationsPreserved": true
+}

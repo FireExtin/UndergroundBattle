@@ -1,0 +1,85 @@
+{
+  "scope": "Top-level small verification records only; excludes this manifest and all runtime archives, rollback builds, retained fixture backups and credentials.",
+  "files": {
+    "CLEANUP_CANDIDATES.md": {
+      "sha256": "05a773f9ec526b62d0cd1e3db35b8ec65f7ba10e005aff59bff71d43f7a01753",
+      "bytes": 7181
+    },
+    "README.md": {
+      "sha256": "3363bac7c1ccbeb86dc906e48a65473cc246f9fc0de8f6a6c80ce2a2528b2a3e",
+      "bytes": 5845
+    },
+    "archive-encoding-audit.json": {
+      "sha256": "45f5bbbe0b79b387675017f27990bea348e881c81753e29e51afda7d90583d6b",
+      "bytes": 2422
+    },
+    "archive-storage-comparison.json": {
+      "sha256": "04fedb8369030c8626f4318d8131587ee0d0adc9b69fa8cd89fc728312a5ea35",
+      "bytes": 665
+    },
+    "cleanup-artifacts.json": {
+      "sha256": "31deaa6245ede836365b2b6f4e79f33e6593986e5e04bf10b90a0305b0439616",
+      "bytes": 4780
+    },
+    "cleanup-branches.json": {
+      "sha256": "a71654f93cd75bbcc0aa9fd9f5942f37341e8b8dd508e0bcc7d1645f19df84bb",
+      "bytes": 16590
+    },
+    "cleanup-p2-source-identity.json": {
+      "sha256": "3b3a4df5a0d418cb167d3dd053c728d22cf79c9aae76e115324f7d3655b19f0b",
+      "bytes": 644
+    },
+    "main-preflight.json": {
+      "sha256": "3ab9492a7f71186492367c13705cab07ca816dd4d669916c95571471a96a40f5",
+      "bytes": 5744
+    },
+    "main-result.json": {
+      "sha256": "46e988eadee48efbc19b7ea3b8b6cbe5dd3047db180c0d32ec167193a0f6035b",
+      "bytes": 1451
+    },
+    "official-receipts.json": {
+      "sha256": "32bdf8054ae559769711b6610b28a90a76488a1e3844e353bfb1b600d306159d",
+      "bytes": 3951
+    },
+    "preflight-audit.json": {
+      "sha256": "0e903a53fbda46b7c0d1e19056c7ad3b8bcb50018f3361aac5013584e3dd067f",
+      "bytes": 26296
+    },
+    "provider-copy-plan.json": {
+      "sha256": "3071cc261c99126e9c31552c89ced1ff0b5ec05cad993bb1489d4bee160721d7",
+      "bytes": 97233
+    },
+    "provider-hooks-package.json": {
+      "sha256": "4457f01db2096f3cfb101b81b665a95c5c0d1b74d5a77f71b6d004b38a200696",
+      "bytes": 114
+    },
+    "provider-hooks-web-package.json": {
+      "sha256": "6478d1c921eb8ff570e1f40f3c31a866f9c88e4542de9ed56b17cafb9a833c4d",
+      "bytes": 120
+    },
+    "provider-input-audit.json": {
+      "sha256": "0e806998dca42480961ea56d199edda2ca24e866579b912804333fba71484e2a",
+      "bytes": 27210
+    },
+    "provider-source-files.json": {
+      "sha256": "a62136122b2c49e20d06b888170b4979c2b29fdcfa3fe96e4492372f952e6e83",
+      "bytes": 240437
+    },
+    "publication-archive-audit.json": {
+      "sha256": "ae7c11bea5a7c01174bdbe650b55b79b385deb523dd8e5ca1f87a11ad5fa9f99",
+      "bytes": 1589
+    },
+    "saved-archive-identity.json": {
+      "sha256": "ef308abdc8e76b406223d9cbff23e9c69aaa9bd0897edf0cd87c45a83f0de44b",
+      "bytes": 587
+    },
+    "summary.json": {
+      "sha256": "d7c11d9fed9d503c8f5d917fcd1f170e31bf84bab8e8d6e58934c840be2a00f7",
+      "bytes": 985
+    },
+    "verify_provider.py": {
+      "sha256": "d398eb17450e0a3614e8e4eb24adf5c762d702e59c54f0ad144eb6e7e47132d0",
+      "bytes": 6883
+    }
+  }
+}

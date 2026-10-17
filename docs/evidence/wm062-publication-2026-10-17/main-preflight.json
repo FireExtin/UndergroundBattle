@@ -1,0 +1,179 @@
+{
+  "checkedAtUtc": "2026-10-17T02:23:29.381362+00:00",
+  "remoteMainBefore": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "fixedTarget": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "reviewedCodeCommit": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+  "mainIsAncestorOfFixedTarget": true,
+  "upstreamOnlyCommits": [],
+  "nonDocumentationChangesSinceReviewedCode": [],
+  "workflowFiles": {
+    "currentMain": [],
+    "fixedTarget": []
+  },
+  "fixedTargetMessage": "WIP: hand off complete WM062 batch for serial review [skip ci]",
+  "skipCiMarkerPresent": true,
+  "commitsToFastForward": [
+    {
+      "sha": "0c98068f6b1d35ecef6ee512f2a6773ab7b5cdba",
+      "subject": "Record v60 publication and approved main fast-forward receipts [skip ci]"
+    },
+    {
+      "sha": "12b9092d6038d7c6431d243b13b8c60bcd7ee383",
+      "subject": "WIP: implement JZ46 private criminal inspection and preserve v60 kernel [skip ci]"
+    },
+    {
+      "sha": "ccc0b5b0e79a126bf0c095ba311955210a23e664",
+      "subject": "WIP: close JZ46 printed influence and fresh Native79 parity [skip ci]"
+    },
+    {
+      "sha": "8788af17a4f7d77e2957d7d9efb640079ddcf7b8",
+      "subject": "WIP: close JZ46 private reader and verify real four-client recovery [skip ci]"
+    },
+    {
+      "sha": "b858fd8baa2bb6c55cd45daec658623cf8ccb4f5",
+      "subject": "WIP: complete JZ46 serial validation and exact HTTP restore guards [skip ci]"
+    },
+    {
+      "sha": "ef483d19b90a66692c7e41bd1020ed55993821bf",
+      "subject": "docs: bind JZ46 review source and verified runtime artifacts [skip ci]"
+    },
+    {
+      "sha": "e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c",
+      "subject": "WIP: reject inconsistent JZ46 paid play containers after fresh normalization [skip ci]"
+    },
+    {
+      "sha": "819a5d41ee0f9add2793859d82ff9385cabfd17a",
+      "subject": "docs: bind JZ46 P2 reproduction and rebuilt ABI79 review source [skip ci]"
+    },
+    {
+      "sha": "27026fd864b96da5950c07ca1f58a8315c27a70e",
+      "subject": "docs: record official JZ46 v61 publication and preserved old kernels [skip ci]"
+    },
+    {
+      "sha": "2dee3176fed6861db98c7a7f89a6bbaac6e5147a",
+      "subject": "WIP: implement WM062 conceal successor and optional adjacent move [skip ci]"
+    },
+    {
+      "sha": "95b32536f393c7ec50f5315c3bc60137c8f09978",
+      "subject": "WIP: bind WM062 native80 evidence and preserve published79 rooms [skip ci]"
+    },
+    {
+      "sha": "346e49eef7f7c5674204f43213abf3d35df17636",
+      "subject": "WIP: settle lethal defense loss before WM062 optional movement [skip ci]"
+    },
+    {
+      "sha": "7b49f94f06fb34a6730584d017bc677b78c8dccf",
+      "subject": "WIP: close WM062 final compiler binding and native integration checks [skip ci]"
+    },
+    {
+      "sha": "9b3ece6cd0ce433c8bd086000b346e2a7e44d4ef",
+      "subject": "WIP: align candidate80 Worker regression expectations [skip ci]"
+    },
+    {
+      "sha": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+      "subject": "WIP: align remaining current80 Worker health assertions [skip ci]"
+    },
+    {
+      "sha": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+      "subject": "WIP: hand off complete WM062 batch for serial review [skip ci]"
+    }
+  ],
+  "applicableTestEvidence": {
+    "nativeFeature": {
+      "round": 5,
+      "passed": 12,
+      "total": 12
+    },
+    "nativeWorkspaceHistory": [
+      {
+        "passed": 1145,
+        "total": 1152,
+        "failed": 7,
+        "reason": "stale catalog/color totals; integration did not run"
+      },
+      {
+        "passed": 1152,
+        "total": 1153,
+        "failed": 1,
+        "reason": "stale nonregion player count135vs136; integration did not run"
+      }
+    ],
+    "nativePostCountFix": {
+      "catalogTargetedPassed": 1,
+      "integrationTargets": 7,
+      "integrationPassed": 67,
+      "wasmCrateNativeLibTests": 0,
+      "full1153SingleGreenRun": false
+    },
+    "wasm": {
+      "scenarios": 14,
+      "commands": 111,
+      "seatProjections": 490,
+      "expectedCommandRejections": 18,
+      "fixedNegativeRecords": 45,
+      "roomRestoreCalls": 540,
+      "opaqueStateAllViewsJournalsAndReceiptsCompared": true
+    },
+    "http": {
+      "tests": 20,
+      "pass": 20,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 124699.261987
+    },
+    "workerFirstRun": {
+      "tests": 219,
+      "pass": 213,
+      "fail": 6,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 949848.072838
+    },
+    "workerTargetedFollowups": {
+      "worker-current-integration-fixed": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "durationMs": 8329.526081
+      },
+      "worker-msjc09-current-fixed": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "durationMs": 38727.890086
+      },
+      "worker-seven-card-current-fixed": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "durationMs": 9311.053268
+      }
+    },
+    "frontend": {
+      "oldEf68FullPassed": 1255,
+      "oldEf68Files": 132,
+      "final0229DefaultBudgetPassed": 1255,
+      "final0229DefaultBudgetTotal": 1256,
+      "defaultBudgetFailure": "DeckBuilderGrid.test.tsx: selected-only last-copy preview test exceeded5000ms; no assertion failure",
+      "final0229ExtendedBudgetPassed": 1256,
+      "final0229ExtendedBudgetFiles": 132,
+      "extendedBudgetMs": 15000,
+      "finalDurationSeconds": 347.52,
+      "productAndAssertionsUnchangedForExtendedBudget": true
+    },
+    "browserScenarios": 3
+  },
+  "worktreeClean": true
+}

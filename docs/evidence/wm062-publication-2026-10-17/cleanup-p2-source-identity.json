@@ -1,0 +1,22 @@
+{
+  "stagedSourceCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+  "sourceFilesMatchingGit": 1143,
+  "sourceFilesCompared": 1143,
+  "unknownPaths": [],
+  "mismatches": [],
+  "generatedPackage": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    }
+  ],
+  "metadataOnlyExceptions": [
+    "source-provenance.json",
+    ".gitignore"
+  ],
+  "allSourceFilesRecoverableFromMergedCommit": true
+}

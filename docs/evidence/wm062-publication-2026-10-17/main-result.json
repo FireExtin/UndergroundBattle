@@ -1,0 +1,39 @@
+{
+  "verifiedAtUtc": "2026-10-17T02:31:36.300040+00:00",
+  "mainBefore": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+  "mainAfter": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "normalFastForward": true,
+  "forcePushUsed": false,
+  "commitsFastForwarded": 16,
+  "allCommitSubjectsContainSkipCi": true,
+  "unknownUpstreamCommits": [],
+  "remoteReviewHead": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "gameCheckoutBranch": "codex/stage-pass-progress-20261016",
+  "gameCheckoutClean": true,
+  "officialSourceCheckoutClean": true,
+  "actionsTotalBefore": 8,
+  "actionsTotalAfter": 8,
+  "workflowNames": [
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent",
+    "Running Copilot cloud agent"
+  ],
+  "officialDeploymentId": "appgdep_6ad2db9aecb08191885336dfa84796a1",
+  "officialVersion": 62,
+  "officialSource": "1f1b785df84738e6f85c1462482236b3ddabb8be",
+  "officialDeploymentStatus": "succeeded",
+  "officialUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "publicAudienceRevision": 2,
+  "d1BindingAndTableOverviewBeforeAfterEqual": true,
+  "liveD1RowsNotReadOrModifiedByVerification": true,
+  "githubMainPushResult": "bd36b70..d1a1709 normal push succeeded",
+  "otherRepositoriesExcluded": [
+    "exchange",
+    "Lab"
+  ]
+}

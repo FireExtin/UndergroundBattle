@@ -1,0 +1,15 @@
+{
+  "same172FilePayloadsCanonicalTarExactlyMatchesNativeStorageHash": true,
+  "runtime166ByteIdentityPreviouslyVerified": true,
+  "canonicalEncoding": {
+    "encoding": "PAX",
+    "normalizedIdentityModeTime": true,
+    "sortedPaths": true,
+    "sha256": "3afe8f43897a947d351d7add83e1138d7229b82f18c5c4f60a14673103e8ad21",
+    "bytes": 108646400
+  },
+  "localInputArchiveUnchanged": true,
+  "savedVersion": 62,
+  "savedVersionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_34afa8141f088191846be0b8cacc405c",
+  "officialSourceCommit": "1f1b785df84738e6f85c1462482236b3ddabb8be"
+}

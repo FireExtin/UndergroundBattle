@@ -1,0 +1,76 @@
+{
+  "nativeContentHash": "sha256:3afe8f43897a947d351d7add83e1138d7229b82f18c5c4f60a14673103e8ad21",
+  "nativeBytes": 108646400,
+  "filePayloadsUsed": 172,
+  "sourceArchiveContentsPreviouslyByteVerifiedRuntimeFiles": 166,
+  "matchedEncoding": {
+    "encoding": "PAX",
+    "normalizedIdentityModeTime": true,
+    "sortedPaths": true,
+    "sha256": "3afe8f43897a947d351d7add83e1138d7229b82f18c5c4f60a14673103e8ad21",
+    "bytes": 108646400
+  },
+  "trials": [
+    {
+      "encoding": "original regular-file headers only; directory entries removed; end padded to10240",
+      "sha256": "1d699b649faf97efe758ce4c9b7d7d227cbf23e64594e121b2fd375217cf2a59",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "GNU",
+      "normalizedIdentityModeTime": false,
+      "sortedPaths": false,
+      "sha256": "1d699b649faf97efe758ce4c9b7d7d227cbf23e64594e121b2fd375217cf2a59",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "GNU",
+      "normalizedIdentityModeTime": false,
+      "sortedPaths": true,
+      "sha256": "109250089d7e9d3ab8fbf9318f7cf5e07dfb31025bfc3fe12c5409f79baf1b01",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "GNU",
+      "normalizedIdentityModeTime": true,
+      "sortedPaths": false,
+      "sha256": "65592f9dfc0f55383df15f6012fdca17a725eadf651405e92f1c95479570ef7a",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "GNU",
+      "normalizedIdentityModeTime": true,
+      "sortedPaths": true,
+      "sha256": "9e1a9fb21d9ba81632e9b70f83d3024b8f2eb9ef03e29e5f0613baa5c0df0916",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "PAX",
+      "normalizedIdentityModeTime": false,
+      "sortedPaths": false,
+      "sha256": "a31f0c97ce48b1bd50b830232a6453fdfcc3ad4e5323610769cfe25387f289cf",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "PAX",
+      "normalizedIdentityModeTime": false,
+      "sortedPaths": true,
+      "sha256": "894f0f9adda056cbf586781c17a027236113ea635c7f482992ee675c39b34df1",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "PAX",
+      "normalizedIdentityModeTime": true,
+      "sortedPaths": false,
+      "sha256": "220b723757917d8b11e85c092bfd5ba0f2ae88d0d6141816877c55a100408654",
+      "bytes": 108646400
+    },
+    {
+      "encoding": "PAX",
+      "normalizedIdentityModeTime": true,
+      "sortedPaths": true,
+      "sha256": "3afe8f43897a947d351d7add83e1138d7229b82f18c5c4f60a14673103e8ad21",
+      "bytes": 108646400
+    }
+  ]
+}

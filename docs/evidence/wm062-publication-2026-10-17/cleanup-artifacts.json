@@ -1,0 +1,108 @@
+{
+  "checkedAtUtc": "2026-10-17T02:28:05.757047+00:00",
+  "scope": "Current selected cloud environment only, not Mac Air. Read-only candidate inventory; no files deleted.",
+  "main": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "visibleLiveProcessesScanned": 10,
+  "processFdDirectoriesUnreadable": 2,
+  "candidates": [
+    {
+      "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+      "allocatedBytes": 1092812800,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Merged-source staging duplicate; all contained WASM hashes are already retained canonically.",
+      "sourceCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+      "sourceCommitMergedInto": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+      "containedWasm": [
+        {
+          "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+          "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+          "bytes": 2976205
+        }
+      ]
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/target/debug",
+      "allocatedBytes": 1214009344,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Rebuildable Rust debug cache; immutable kernels and published runtime are outside this path."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache",
+      "allocatedBytes": 162914304,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Regenerable npm download cache for completed published batches."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-CgmvGF",
+      "allocatedBytes": 2174976,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-YpLDZw",
+      "allocatedBytes": 2793472,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-i4LRPn",
+      "allocatedBytes": 2424832,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-lFWkKa",
+      "allocatedBytes": 2686976,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-wsKq1L",
+      "allocatedBytes": 2203648,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/wm062-real-http-xmImrQ",
+      "allocatedBytes": 4096,
+      "visibleActiveCwdOrFd": [],
+      "reason": "Closed local WM062 synthetic HTTP/browser QA persistence; original fixtures, reports and production Cloudflare D1 remain elsewhere."
+    }
+  ],
+  "candidateAllocatedBytes": 2482024448,
+  "excludedBusyPaths": [],
+  "protectedRecoveryAndCurrentPaths": [
+    {
+      "path": "/workspace/undergroundbattle-build/frozen-kernels",
+      "reason": "Exact77/78/79 runtime dependencies; retain."
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg",
+      "reason": "Current published80 source/runtime; retain."
+    },
+    {
+      "path": "/workspace/wm062-publication-20261017",
+      "reason": "Current publication archive, receipts and previousv61 rollback build; retain."
+    },
+    {
+      "path": "/workspace/wm062-evidence-20261016",
+      "reason": "Current evidence and unique unpublished ef68 before-fix witness; retain."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/source-stage-bq035-20261016-11927a3",
+      "reason": "Contains unpublished94e5 before-fix witness; not an unconditional whole-directory candidate."
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/source-stage-bq035-20261016",
+      "reason": "Contains unpublished94e5 before-fix witness; retain pending explicit archive review."
+    },
+    {
+      "path": "/workspace/hidden-world-sites-abi77-20261015",
+      "reason": "Current official Site source checkout; retain."
+    }
+  ],
+  "p2StageAllWasmCanonical": true,
+  "p2StageSourceMerged": true,
+  "filesDeleted": 0,
+  "scheduledDeletionCreated": false
+}

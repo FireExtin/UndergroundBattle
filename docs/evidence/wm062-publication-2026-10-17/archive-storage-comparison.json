@@ -1,0 +1,17 @@
+{
+  "localCompressedSha256": "6a29c1bf144a170b2368ca79e971c5360af7e17707bbb46d0ae26e468f196c0c",
+  "localCompressedBytes": 73061508,
+  "localUncompressedTarSha256": "8552543d57ad86fb4ddcbd7f82c225cbc7d0ed16e7be8cc722e71071b64654d9",
+  "localUncompressedTarBytes": 108656640,
+  "localFileCount": 172,
+  "localDirectoryCount": 8,
+  "localFilePayloadBytes": 108516953,
+  "nativeStorage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000c97c81fd893973db31feca27",
+    "content_hash": "sha256:3afe8f43897a947d351d7add83e1138d7229b82f18c5c4f60a14673103e8ad21",
+    "size_bytes": 108646400,
+    "file_count": 172
+  },
+  "deploymentAttempted": false
+}
