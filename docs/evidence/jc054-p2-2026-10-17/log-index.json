@@ -1,0 +1,83 @@
+{
+  "externalRoot": "/workspace/jc054-evidence-20261017/p2-stack-card",
+  "files": {
+    "backend-fixed-build.log": {
+      "bytes": 596,
+      "sha256": "7df9b5b23a8f02d2e7d95c06a9ee23b5d52d006b854a05ea20faeede597236ed",
+      "archive": "backend-fixed-build.log.gz",
+      "archiveSha256": "7d5b5bc180de470f16e78ec048dae4d897d59e1c1b57b0f5e670068abf76d0d1"
+    },
+    "fixed-clock-fixed-build.log": {
+      "bytes": 587,
+      "sha256": "624a3e865ef3a997faec753af24236376141c49e9b582c63aedef53f92ab715a",
+      "archive": "fixed-clock-fixed-build.log.gz",
+      "archiveSha256": "80637d688cd2ae64dcff8f08e21bc1e7181945210fbbf95e3c65c6d89e98d5db"
+    },
+    "frontend-production-fixed.log": {
+      "bytes": 689,
+      "sha256": "532954272df3a5d71f9c1322712acf6fb8d488e20404d6633e9a3e4d1af1f721",
+      "archive": "frontend-production-fixed.log.gz",
+      "archiveSha256": "be0c361587b353a974aa4d6bd1aa6c0234eda80318ce35fec4a9ab3a7a378374"
+    },
+    "frontend-targeted-fixed.json": {
+      "bytes": 2298,
+      "sha256": "4b072fe76baa4a133fa0238b041977523f42fafc65c4bf5885657a0db0d81c8f",
+      "archive": "frontend-targeted-fixed.json.gz",
+      "archiveSha256": "0c450287304a82e75f0874c77330242e6c74c1d2123e9d81d57417ee5996b8e1"
+    },
+    "frontend-targeted-fixed.log": {
+      "bytes": 520,
+      "sha256": "a9d21a471da86fe56970f7a8a73744e6a7e103210baa22cfef184608a3236a9d",
+      "archive": "frontend-targeted-fixed.log.gz",
+      "archiveSha256": "7cb23985c65d8c181ef386535a5eabf6817192d6c18d1ed1e990754d9d913615"
+    },
+    "http-after.log": {
+      "bytes": 1389,
+      "sha256": "6309a7699a2312733799d29b300f6346b1e72245047a1b2cbfa0a7a5bd3c41d1",
+      "archive": "http-after.log.gz",
+      "archiveSha256": "eeef80dad1494d7f125bb28ef8d433a015bc9d1ea4c8cab7f991c984927dbdda"
+    },
+    "http-before.log": {
+      "bytes": 1106,
+      "sha256": "39188de188a150409a1b28b2a1a35be65ab18ed3447c729e0dc292dc2f6f7c21",
+      "archive": "http-before.log.gz",
+      "archiveSha256": "6fff6c8e58ae3e89e2415c2d934c502159bce2d58272b4ca3afc5b282d50df1f"
+    },
+    "native-before-fix.log": {
+      "bytes": 2486,
+      "sha256": "5c2eb9e79bb627e463a90d171fe43590db7f6dbeb83afc22a0ad8156b238f719",
+      "archive": "native-before-fix.log.gz",
+      "archiveSha256": "5352c2a77dc4e68bd5e13cf8016959679c7efe76f1fc597961fd35c38ad5bb3c"
+    },
+    "native-full-fixed.log": {
+      "bytes": 119226,
+      "sha256": "18c7dfa6631e594f3c1f7dcc101e3ed1b4b32520eef553519a8a67fedf196f99",
+      "archive": "native-full-fixed.log.gz",
+      "archiveSha256": "d3d5b90913ee00963e0774003f739bd14bd5c330634a62f7e9f947fccc7a9993"
+    },
+    "native-targeted-fixed.log": {
+      "bytes": 2899,
+      "sha256": "6a7a3729730c8e8d3a3a00d5c32abaf1a92d1b15a74d35674ac7bfb700661022",
+      "archive": "native-targeted-fixed.log.gz",
+      "archiveSha256": "85f8e5148014eff5dfa0735d7b2983ac7f14d1bf5111b9d9941a3663d9acc61a"
+    },
+    "wasm-fixed-build.log": {
+      "bytes": 220,
+      "sha256": "a201aa8fc1ebdf6f99cc649d3b8a2062f1e3472d907f2dfb7764abf90819ff54",
+      "archive": "wasm-fixed-build.log.gz",
+      "archiveSha256": "0116d385aec89702ef8229c49bdd63d94878a3d50cff9ab1129867b168214973"
+    },
+    "wasm-fixed-parity.log": {
+      "bytes": 306,
+      "sha256": "eed8296f74a12ca4916f383119d5d9820047057698299c07b33409b9f25a8e15",
+      "archive": "wasm-fixed-parity.log.gz",
+      "archiveSha256": "aa774e19a25beeb3a20d9b6acd67285c1e3d74e52681976aa4180f29291c5b8b"
+    },
+    "worker-full-fixed.log": {
+      "bytes": 69061,
+      "sha256": "3c188e867c830dfd5069b235206b3ffc578bf7c10896a5208d6398840f4e581b",
+      "archive": "worker-full-fixed.log.gz",
+      "archiveSha256": "6eeb42ced85b28c2b79cf4657fc7de28b9f423df6c6c9bcfea291175b9c1b16f"
+    }
+  }
+}

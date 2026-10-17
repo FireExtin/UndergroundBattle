@@ -1,5 +1,7 @@
 # JC054 完整批次审查证据
 
+本目录固定原送审7f81的验证，独审已发现两类P2，不能作为修后6694内核的身份或全轮结果。修复证据见 [P2归档](../jc054-p2-2026-10-17/README.md)；原黄金输入可从Git提交 `f842af3a76d5e482b91a20f0cba7ec62ec3940da` 的 `rust-game-wasm/tests/jc054Native81.fixture.json.gz` 原样读取，当前同路径已按修后源码重新绑定。
+
 源码点 `29efe87644120505dee15f1287db206e8307962c`，Rust编译输入点 `bc9d5bd652a592036002ca5caf74031942b668b0`，分支 `codex/stage-pass-progress-20261016`。完整范围、逐轮失败和线上边界见 [串行独审交接](../../JC054_SERIAL_REVIEW_HANDOFF_2026-10-17.md)。实现者的本地验证不替代父会话安排的独立复审。
 
 - [validation.json](validation.json)：最终适用范围及各轮独立计数；专项／整轮／功能开关／历史检查不相加。

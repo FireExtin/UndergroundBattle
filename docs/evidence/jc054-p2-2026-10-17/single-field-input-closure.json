@@ -1,0 +1,46 @@
+{
+  "numericValuesParsedWithoutU64Loss": true,
+  "allFiveCorruptionsChangeExactlyOneLeaf": true,
+  "cases": [
+    {
+      "input": "deploy-shield-room.json",
+      "singleChangedLeaf": {
+        "path": "/game/stack/0/card/shield",
+        "before": 0,
+        "after": 1
+      }
+    },
+    {
+      "input": "deploy-wrong-source-room.json",
+      "singleChangedLeaf": {
+        "path": "/game/stack/0/frame/source/card/definition",
+        "before": "JC054",
+        "after": "JC125"
+      }
+    },
+    {
+      "input": "reveal-shield-room.json",
+      "singleChangedLeaf": {
+        "path": "/game/stack/1/card/shield",
+        "before": 0,
+        "after": 1
+      }
+    },
+    {
+      "input": "reveal-wrong-source-room.json",
+      "singleChangedLeaf": {
+        "path": "/game/stack/1/frame/source/card/definition",
+        "before": "JC054",
+        "after": "JC125"
+      }
+    },
+    {
+      "input": "successor-face-up-room.json",
+      "singleChangedLeaf": {
+        "path": "/game/regions/0/cards/0/face_down",
+        "before": true,
+        "after": false
+      }
+    }
+  ]
+}

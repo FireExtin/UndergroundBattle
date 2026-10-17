@@ -1,0 +1,116 @@
+{
+  "sourceCommit": "b73f94f94dbbf5a3261f57b9913d237dc8b1c378",
+  "coreInputCommit": "db15514a1400cfec1319a20c821bcd779766aff5",
+  "status": "Applicable fixed-source checks completed; independent serial re-review pending; not published",
+  "nativeBeforeFix": {
+    "passed": 0,
+    "total": 4,
+    "realAcceptanceGaps": 2,
+    "invalidPositiveTimeMarkerLayouts": 2
+  },
+  "nativeTargetedFixed": {
+    "passed": 26,
+    "total": 26,
+    "seconds": 11.03
+  },
+  "nativeFullFixed": {
+    "passed": 1179,
+    "total": 1179,
+    "seconds": 803.24
+  },
+  "nativeWasmFixed": {
+    "scenarios": 8,
+    "commands": 214,
+    "projections": 888,
+    "rejected": 2,
+    "invalid": 44,
+    "negativeRestoreCalls": 528,
+    "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+    "compilerInputs": 127,
+    "completeOpaqueStateJournalAndViewsEqual": true
+  },
+  "originalInputsHttp": {
+    "invalidBeforeAccepted200": 5,
+    "sameInvalidAfterRejected400": 5,
+    "unchangedValidInputsAccepted200": 3,
+    "noStateCommandsOrJournalWrite": true,
+    "localD1Only": true
+  },
+  "workerFullFixed": {
+    "tests": 269,
+    "suites": 0,
+    "pass": 269,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 1097722.361735
+  },
+  "jc054HttpD1": {
+    "passed": 26,
+    "total": 26,
+    "includedInWorkerFull": true,
+    "newCorruptStateCases": 16
+  },
+  "priorKernelRouting": {
+    "passed": 4,
+    "total": 4,
+    "abis": [
+      77,
+      78,
+      79,
+      80
+    ],
+    "includedInWorkerFull": true
+  },
+  "frontendTargetedFixed": {
+    "files": 1,
+    "passed": 5,
+    "total": 5,
+    "reportSha256": "4b072fe76baa4a133fa0238b041977523f42fafc65c4bf5885657a0db0d81c8f"
+  },
+  "frontendProductionBuildFixed": {
+    "passed": true,
+    "typeScriptConfigurations": 2,
+    "all162ClientFilesEqualReviewF842": true
+  },
+  "fullFrontendRerunAfterP2": false,
+  "societyFixturesFeatureRerunAfterP2": false,
+  "browserRerunAfterP2": false,
+  "productionAndFixedClockBackendDryRun": {
+    "passed": true,
+    "deployed": false,
+    "wasmModules": 5,
+    "productionRealClock": true,
+    "localTestClock": 0
+  },
+  "runtime": {
+    "files": 168,
+    "clientFiles": 162,
+    "serverRuntimeFiles": 6,
+    "bytes": 111862641,
+    "manifest": "runtime-fixed-manifest.json"
+  },
+  "ordinaryTlsProbe": {
+    "navigationAtUtc": "2026-10-17T09:34:17.597743+00:00",
+    "publishedVersion": 62,
+    "officialSource": "1f1b785df84738e6f85c1462482236b3ddabb8be",
+    "attempts": 1,
+    "get": 1,
+    "post": 0,
+    "uiReached": false,
+    "browserVersionIdentityReached": false,
+    "error": "ERR_CERT_AUTHORITY_INVALID",
+    "bypassed": false,
+    "externalEvidence": "/workspace/v62-real-browser-20261017T093402Z"
+  },
+  "notAggregated": "Targeted/full, old/new, prior-browser and feature results remain separate.",
+  "deployed": false,
+  "mainMerged": false,
+  "onlineGameplay": false,
+  "responsePreviewImplemented": false,
+  "remaining": [
+    "Parent independent serial re-review",
+    "Published-identity normal TLS online acceptance"
+  ]
+}

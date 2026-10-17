@@ -1,0 +1,68 @@
+{
+  "mode": "after",
+  "localSyntheticD1Only": true,
+  "workerSha256": "df446e6a0ea1aa1efd954d35fa3d98fef0cbe32085b619ad8e25322bb0effcea",
+  "cases": [
+    {
+      "file": "deploy-good-room.json",
+      "invalid": false,
+      "status": 200,
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "reveal-good-room.json",
+      "invalid": false,
+      "status": 200,
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "successor-face-up-good-room.json",
+      "invalid": false,
+      "status": 200,
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "deploy-shield-room.json",
+      "invalid": true,
+      "status": 400,
+      "error": "JC054派遣／现身事务卡不符",
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "reveal-shield-room.json",
+      "invalid": true,
+      "status": 400,
+      "error": "JC054派遣／现身事务卡不符",
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "deploy-wrong-source-room.json",
+      "invalid": true,
+      "status": 400,
+      "error": "JC054堆栈实体与冻结来源归属不符",
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "reveal-wrong-source-room.json",
+      "invalid": true,
+      "status": 400,
+      "error": "JC054堆栈实体与冻结来源归属不符",
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    },
+    {
+      "file": "successor-face-up-room.json",
+      "invalid": true,
+      "status": 400,
+      "error": "JC054潜伏必须保留朝向、清理旧实体并生成真实暗藏者",
+      "opaqueStateUnchanged": true,
+      "noCommandsOrJournal": true
+    }
+  ]
+}
