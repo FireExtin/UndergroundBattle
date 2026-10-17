@@ -1,0 +1,50 @@
+{
+  "officialSkill": "/workspace/sites-official-abi77-20261015/skills/sites-hosting/SKILL.md",
+  "officialWorkflow": "/workspace/sites-official-abi77-20261015/scripts/site-workflow.mjs",
+  "workflowSha256": "34c3408f93a12684c993adf0256d7fe138f2baa43ead46a63921c87e36935acd",
+  "helperIntegrityFilesVerified": 167,
+  "workflowInputProtocol": "TTY hidden stdin only; credential never written to disk or argv; full opening result retained as source.",
+  "openProjectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "openingResult": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "74b1e8f2e6a0c4feb403520554a9275f52be82fd"
+  },
+  "publishInputWithoutCredential": {
+    "source": {
+      "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+      "commit_sha": "74b1e8f2e6a0c4feb403520554a9275f52be82fd"
+    },
+    "commands": [],
+    "archivePath": "/workspace/msjc0405-publication-20261017/abi83-reviewed.tar.gz"
+  },
+  "preparationRecord": "/workspace/msjc0405-publication-20261017/prepare-reviewed-source.py",
+  "approvedFileMapping": "provider-copy-plan.json",
+  "sourcePerFileSizesAndHashes": "provider-source-files.json",
+  "sourceExceptions": "Two retained package prebuild/pretest hooks plus two validated pkg JS/WASM blobs; all other mapped bytes exact reviewed Git9767.",
+  "runtimeManifestFromReviewedEvidence": "../msjc0405-2026-10-17/runtime-manifest.json",
+  "canonicalArchiveAlgorithm": {
+    "bytes": 119152640,
+    "sha256": "6fa42e6ff139e78936129d556061f88309a090016e08af197524d22fecf46225",
+    "fileCount": 178,
+    "regularFilesOnly": true,
+    "sortPaths": true,
+    "headerPolicy": "Python tarfile.PAX_FORMAT, fresh TarInfo(name), size from validated payload, default mode0644 uid/gid/mtime0 uname/gname empty"
+  },
+  "archiveUnchangedUntilSave": true,
+  "nativeOperationsInOrder": [
+    "get_site",
+    "create_source_repository_write_credential (ordinary; no publish_on_push)",
+    "official site-workflow open",
+    "bounded approved source copy and production-dist reuse; audit",
+    "official site-workflow saveSource normal push and package with commands:[]",
+    "runtime/payload/gzip audit",
+    "save_site_version",
+    "canonical saved hash/bytes/count comparison",
+    "deploy_site_version (existing public audience; omit tunnel bindings)",
+    "get_site + get_site_version readback"
+  ],
+  "fullTestSuitesNotRepeated": true,
+  "noBrowserRequestAfterDeployment": true
+}

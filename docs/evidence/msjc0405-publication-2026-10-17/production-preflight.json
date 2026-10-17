@@ -1,0 +1,137 @@
+{
+  "checkedAtUtc": "2026-10-17T14:12:51.215Z",
+  "reviewedCode": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+  "reviewedEvidence": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+  "parentWholeBatchReviewPassed": true,
+  "runtimeFiles": 172,
+  "clientFiles": 164,
+  "serverEntries": 1,
+  "wasmModules": 7,
+  "allRuntimeSizeAndSha256Match": true,
+  "physicalDistFiles": 175,
+  "allowedOtherFiles": [
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    {
+      "path": "server/README.md",
+      "bytes": 122,
+      "sha256": "a0aaaf4ac7a272f61c94374d4efdd289fa10d158b02e05c93f488704c8f24bae"
+    },
+    {
+      "path": "server/index.js.map",
+      "bytes": 279574,
+      "sha256": "9d7f76090c4c8a2ffc7520f16c8c17acc5a9a929d6dbda9cfa8a81cb89986cd0"
+    }
+  ],
+  "missing": [],
+  "unexpected": [],
+  "symlinks": [],
+  "manifestSha256": "2b18b8c6872c321854247f4daaf228d7185f3bf773c8141f913fa204fe98bcf7",
+  "productionWorkerSha256": "4a23e098b1abf6561edd0b1115eea54d58db976b9926058479817b22e6a6f481",
+  "testWorkerSha256": "ed1ac12b0a3e59883d89c5cf98a8683c5f235c051c286c9df6881f82e0864e62",
+  "testClockWorkerExcluded": true,
+  "kernels": [
+    {
+      "abi": 77,
+      "file": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+        "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+      },
+      "cards": 143,
+      "societies": 8
+    },
+    {
+      "abi": 78,
+      "file": "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
+        "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate"
+      },
+      "cards": 144,
+      "societies": 8
+    },
+    {
+      "abi": 79,
+      "file": "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
+        "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate"
+      },
+      "cards": 145,
+      "societies": 8
+    },
+    {
+      "abi": 80,
+      "file": "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+        "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate"
+      },
+      "cards": 146,
+      "societies": 8
+    },
+    {
+      "abi": 81,
+      "file": "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+        "engineVersion": "rust-v0.2.81-jc054-complete-conceal-candidate"
+      },
+      "cards": 147,
+      "societies": 8
+    },
+    {
+      "abi": 82,
+      "file": "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+        "engineVersion": "rust-v0.2.82-response-source-preview-candidate"
+      },
+      "cards": 147,
+      "societies": 8
+    },
+    {
+      "abi": 83,
+      "file": "server/bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+      "identity": {
+        "rulesVersion": "hegemony-pdf-v1",
+        "cardPoolVersion": "limited-v2.75-msjc04-msjc05-societies-candidate",
+        "engineVersion": "rust-v0.2.83-msjc04-msjc05-societies-candidate"
+      },
+      "cards": 147,
+      "societies": 10
+    }
+  ],
+  "nativeCompilerInputs": 129,
+  "sourceClosureFiles": 150,
+  "officialHelperVersion": "0.1.75",
+  "officialHelperIntegrityFiles": 167,
+  "siteWorkflowSha256": "34c3408f93a12684c993adf0256d7fe138f2baa43ead46a63921c87e36935acd",
+  "testsNotRepeated": true,
+  "siteSourceEdited": false,
+  "siteSavedOrDeployed": false
+}

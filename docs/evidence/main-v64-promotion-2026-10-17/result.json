@@ -1,0 +1,36 @@
+{
+  "checkedAtUtc": "2026-10-17T14:09:11.721614+00:00",
+  "remoteMainAfter": "398e220721f9e14c4f523530183c6288b7749096",
+  "oldMain": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "operation": "normal fast-forward push of fixed398 only",
+  "mainPushSucceeded": true,
+  "actionsRunsTotalAfter": 8,
+  "actionsRunIdsAfter": [
+    25207410663,
+    25206861048,
+    25206609281,
+    25183812363,
+    24315049017,
+    24314968384,
+    24314494657,
+    24314248667
+  ],
+  "targetWorkflowRuns": 0,
+  "targetCheckRuns": 0,
+  "targetStatuses": {
+    "state": "pending",
+    "total_count": 0,
+    "meaning": "No statuses; aggregate pending is not an executing/passing CI job"
+  },
+  "branchProtected": false,
+  "workingHeadAfter": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+  "workingBranchAfter": "codex/stage-pass-progress-20261016",
+  "workingStatusAfter": "",
+  "progressBranchRemote": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+  "abi83PushedToMain": false,
+  "localMainRewritten": false,
+  "forceUsed": false,
+  "worktreeCreated": false,
+  "ciOrPermissionsChanged": false,
+  "deploymentPerformedByMainOperation": false
+}

@@ -1,0 +1,517 @@
+{
+  "checkedAtUtc": "2026-10-17T14:08:07.687137+00:00",
+  "repository": "FireExtin/UndergroundBattle",
+  "remoteMainBefore": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "fixedReviewedTarget": "398e220721f9e14c4f523530183c6288b7749096",
+  "workspaceHeadPreserved": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+  "workspaceBranch": "codex/stage-pass-progress-20261016",
+  "workingTreeClean": true,
+  "normalFastForwardOnly": true,
+  "parentExplicitFinalSnapshotApproval": true,
+  "reviewEvidence": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+  "artifactAudit": "c30400116f2b0a29800ae83a088630151735039a",
+  "applicableLocalTests": {
+    "nativeLib": 1183,
+    "frontend": 1283,
+    "worker": 279,
+    "sourceRouting": 65,
+    "scope": "Recorded final passing rounds bound to398; no83 results substituted, no new full test run."
+  },
+  "reviewCoverage": [
+    {
+      "sha": "401b1294cb680729baf36700c8609408a1627cbc",
+      "parent": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+      "title": "docs: record v62 publication, main fast-forward and cleanup inventory [skip ci]",
+      "reviewCoverage": "reviewed release documentation only",
+      "files": [
+        "docs/SITES_V62_WM062_JZ48_PUBLICATION_2026-10-17.md",
+        "docs/evidence/wm062-publication-2026-10-17/CLEANUP_CANDIDATES.md",
+        "docs/evidence/wm062-publication-2026-10-17/README.md",
+        "docs/evidence/wm062-publication-2026-10-17/archive-encoding-audit.json",
+        "docs/evidence/wm062-publication-2026-10-17/archive-storage-comparison.json",
+        "docs/evidence/wm062-publication-2026-10-17/cleanup-artifacts.json",
+        "docs/evidence/wm062-publication-2026-10-17/cleanup-branches.json",
+        "docs/evidence/wm062-publication-2026-10-17/cleanup-p2-source-identity.json",
+        "docs/evidence/wm062-publication-2026-10-17/evidence-file-hashes.json",
+        "docs/evidence/wm062-publication-2026-10-17/main-preflight.json",
+        "docs/evidence/wm062-publication-2026-10-17/main-result.json",
+        "docs/evidence/wm062-publication-2026-10-17/official-receipts.json",
+        "docs/evidence/wm062-publication-2026-10-17/preflight-audit.json",
+        "docs/evidence/wm062-publication-2026-10-17/provider-copy-plan.json",
+        "docs/evidence/wm062-publication-2026-10-17/provider-hooks-package.json",
+        "docs/evidence/wm062-publication-2026-10-17/provider-hooks-web-package.json",
+        "docs/evidence/wm062-publication-2026-10-17/provider-input-audit.json",
+        "docs/evidence/wm062-publication-2026-10-17/provider-source-files.json",
+        "docs/evidence/wm062-publication-2026-10-17/publication-archive-audit.json",
+        "docs/evidence/wm062-publication-2026-10-17/saved-archive-identity.json",
+        "docs/evidence/wm062-publication-2026-10-17/summary.json",
+        "docs/evidence/wm062-publication-2026-10-17/verify_provider.py"
+      ]
+    },
+    {
+      "sha": "41effefd40d73b7245d6369ba6890cdbfef8189f",
+      "parent": "401b1294cb680729baf36700c8609408a1627cbc",
+      "title": "WIP: show server candidate action hints in the table [skip ci]",
+      "reviewCoverage": "reviewed v63 action-hint UI final batch",
+      "files": [
+        "docs/ACTION_HINTS_SERIAL_REVIEW_2026-10-17.md",
+        "tools/frontend/action-hints-qa.mjs",
+        "web/src/game/ActionHints.test.tsx",
+        "web/src/game/ArchivePresentation.tsx",
+        "web/src/game/CardTile.tsx",
+        "web/src/game/Table.tsx",
+        "web/src/game/action-hints.css",
+        "web/src/game/actionHints.ts"
+      ]
+    },
+    {
+      "sha": "fb375b5e5ed9000b12657750857d145827944c36",
+      "parent": "41effefd40d73b7245d6369ba6890cdbfef8189f",
+      "title": "test: record complete candidate hint frontend validation [skip ci]",
+      "reviewCoverage": "reviewed v63 action-hint UI final batch",
+      "files": [
+        "docs/ACTION_HINTS_SERIAL_REVIEW_2026-10-17.md",
+        "docs/evidence/action-hints-2026-10-17/validation.json"
+      ]
+    },
+    {
+      "sha": "f89b4371c8f1a2139c7a89edc275c169fd098b10",
+      "parent": "fb375b5e5ed9000b12657750857d145827944c36",
+      "title": "WIP: freeze published ABI80 before the complete JC054 batch [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "rust-game-wasm/frozen/abi80/identity.json",
+        "rust-game-wasm/frozen/abi80/native-source-binding.json"
+      ]
+    },
+    {
+      "sha": "228af71f789e37f6c9383bc09440ef5de3da9c02",
+      "parent": "f89b4371c8f1a2139c7a89edc275c169fd098b10",
+      "title": "WIP: implement complete JC054 and preserve published ABI80 routing [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "rust-game-wasm/tests/current80-kernel.mjs",
+        "rust-game-wasm/tests/current81-kernel.mjs",
+        "rust-game-wasm/tests/jc054-compare.mjs",
+        "rust-game/data/cards.json",
+        "rust-game/src/bounded_search_tests.rs",
+        "rust-game/src/catalog.rs",
+        "rust-game/src/deck_seal_search_tests.rs",
+        "rust-game/src/engine.rs",
+        "rust-game/src/gray_lock_tests.rs",
+        "rust-game/src/jc054.rs",
+        "rust-game/src/jc054_tests.rs",
+        "rust-game/src/jc089_tests.rs",
+        "rust-game/src/lib.rs",
+        "rust-game/src/model.rs",
+        "rust-game/src/renown_tests.rs",
+        "rust-game/src/resolution.rs",
+        "rust-game/src/room.rs",
+        "rust-game/src/rules.rs",
+        "rust-game/src/world.rs",
+        "sites/scripts/build-backend-test.mjs",
+        "sites/scripts/build.mjs",
+        "sites/src/kernel.mjs",
+        "sites/test/bq035-integration.test.mjs",
+        "sites/test/integration.test.mjs",
+        "sites/test/jc054-integration.test.mjs",
+        "sites/test/jc054-kernel-routing.test.mjs",
+        "sites/test/jz46-integration.test.mjs",
+        "sites/test/kernel-binding.test.mjs",
+        "sites/test/kernel-routing.test.mjs",
+        "sites/test/msjc09-society-integration.test.mjs",
+        "sites/test/seven-card-integration.test.mjs",
+        "sites/test/wm062-integration.test.mjs",
+        "tools/cards/bq030-source.test.mjs",
+        "tools/cards/bq035-source.test.mjs",
+        "tools/cards/jc037-source.test.mjs",
+        "tools/cards/jc046-source.test.mjs",
+        "tools/cards/jc052-source.test.mjs",
+        "tools/cards/jc054-source.test.mjs",
+        "tools/cards/jc060-source.test.mjs",
+        "tools/cards/jc094-source.test.mjs",
+        "tools/cards/jc095-source.test.mjs",
+        "tools/cards/jz35-source.test.mjs",
+        "tools/cards/jz46-source.test.mjs",
+        "tools/cards/wm023-source.test.mjs",
+        "tools/cards/wm038-source.test.mjs",
+        "tools/cards/wm056-source.test.mjs",
+        "tools/cards/wm062-source.test.mjs",
+        "tools/cards/xq24-source.test.mjs",
+        "tools/cards/xq25-source.test.mjs",
+        "tools/frozen-abi80.test.mjs",
+        "tools/frozen-kernels.mjs",
+        "tools/jc054-oracle.mjs",
+        "tools/wm062-oracle.mjs",
+        "web/public/card-scans.json",
+        "web/public/cards/JC054.jpg",
+        "web/src/game/JC054Native81.test.jsx",
+        "web/src/game/cardScans.ts"
+      ]
+    },
+    {
+      "sha": "7222e0f2b1be671792d9c38d22429fecb536d3df",
+      "parent": "228af71f789e37f6c9383bc09440ef5de3da9c02",
+      "title": "WIP: harden JC054 restored sources and untriggered instances [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "rust-game/src/jc054.rs",
+        "rust-game/src/jc054_tests.rs",
+        "sites/scripts/build-fixed-clock-test.mjs",
+        "tools/jc054-oracle.mjs"
+      ]
+    },
+    {
+      "sha": "bc9d5bd652a592036002ca5caf74031942b668b0",
+      "parent": "7222e0f2b1be671792d9c38d22429fecb536d3df",
+      "title": "WIP: close JC054 end-marker context and prepare four-client review [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "rust-game/src/jc054.rs",
+        "rust-game/src/jc054_tests.rs",
+        "tools/frontend/jc054-http-four-clients-qa.mjs",
+        "tools/jc054-oracle.mjs"
+      ]
+    },
+    {
+      "sha": "29efe87644120505dee15f1287db206e8307962c",
+      "parent": "bc9d5bd652a592036002ca5caf74031942b668b0",
+      "title": "WIP: bind Native81 oracle and clarify mandatory trigger sources [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "rust-game-wasm/tests/jc054Native81.fixture.json.gz",
+        "tools/frontend/jc054-http-four-clients-qa.mjs",
+        "tools/jc054-oracle.mjs",
+        "web/src/game/ChoicePanel.tsx",
+        "web/src/game/JC054Native81.test.jsx",
+        "web/src/game/JZ55UniqueDestroy.test.jsx"
+      ]
+    },
+    {
+      "sha": "f842af3a76d5e482b91a20f0cba7ec62ec3940da",
+      "parent": "29efe87644120505dee15f1287db206e8307962c",
+      "title": "WIP: archive JC054 validation for independent serial review [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_SERIAL_REVIEW_HANDOFF_2026-10-17.md",
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "docs/evidence/jc054-2026-10-17/README.md",
+        "docs/evidence/jc054-2026-10-17/browser-order-final.json",
+        "docs/evidence/jc054-2026-10-17/browser-pause-final.json",
+        "docs/evidence/jc054-2026-10-17/jc054-original-scan.png",
+        "docs/evidence/jc054-2026-10-17/log-index.json",
+        "docs/evidence/jc054-2026-10-17/logs/backend-build.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/fixed-clock-worker-build.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/frontend-full-final.json.gz",
+        "docs/evidence/jc054-2026-10-17/logs/frontend-full-final.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/frontend-production-final.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/native-fixture-feature.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/native-full-final.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/native-targeted-round6.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/retained80-parity.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/source-and-frozen-round1.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/source-count-fixes.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/wasm81-build.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/wasm81-parity-round1.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/worker-full-round1.log.gz",
+        "docs/evidence/jc054-2026-10-17/logs/worker-full-round2.log.gz",
+        "docs/evidence/jc054-2026-10-17/mandatory-order-final.png",
+        "docs/evidence/jc054-2026-10-17/pause-order-final.png",
+        "docs/evidence/jc054-2026-10-17/runtime-manifest.json",
+        "docs/evidence/jc054-2026-10-17/source-closure.json",
+        "docs/evidence/jc054-2026-10-17/validation.json"
+      ]
+    },
+    {
+      "sha": "bef24dd9215699750b0f2bfe38cfcfe72de19dfa",
+      "parent": "f842af3a76d5e482b91a20f0cba7ec62ec3940da",
+      "title": "docs: archive original action-hint browser evidence [skip ci]",
+      "reviewCoverage": "reviewed v63 action-hint UI final batch",
+      "files": [
+        "docs/ACTION_HINTS_SERIAL_REVIEW_2026-10-17.md",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1366x768-action.png",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1366x768-geometry.json",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1366x768-waiting.png",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1440x1000-action.png",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1440x1000-geometry.json",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/1440x1000-waiting.png",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/README.md",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/archive-index.json",
+        "docs/evidence/action-hints-2026-10-17/browser-round4/result.json"
+      ]
+    },
+    {
+      "sha": "db15514a1400cfec1319a20c821bcd779766aff5",
+      "parent": "bef24dd9215699750b0f2bfe38cfcfe72de19dfa",
+      "title": "WIP: close JC054 paid-card and surviving-successor restore gaps [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_P2_REVIEW_FOLLOWUP_2026-10-17.md",
+        "docs/JC054_SERIAL_REVIEW_HANDOFF_2026-10-17.md",
+        "rust-game/src/jc054.rs",
+        "rust-game/src/jc054_tests.rs",
+        "sites/test/jc054-integration.test.mjs",
+        "tools/jc054-oracle.mjs"
+      ]
+    },
+    {
+      "sha": "b73f94f94dbbf5a3261f57b9913d237dc8b1c378",
+      "parent": "db15514a1400cfec1319a20c821bcd779766aff5",
+      "title": "WIP: bind fixed JC054 Native81 and archive original P2 witnesses [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_P2_REVIEW_FOLLOWUP_2026-10-17.md",
+        "docs/evidence/jc054-p2-2026-10-17/README.md",
+        "docs/evidence/jc054-p2-2026-10-17/backend-fixed-build.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/before-http-reproduction.json",
+        "docs/evidence/jc054-p2-2026-10-17/fixed-clock-fixed-build.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/frontend-targeted-fixed.json.gz",
+        "docs/evidence/jc054-p2-2026-10-17/http-before.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/native-before-fix.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/native-targeted-fixed.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/original81-inputs-index.json",
+        "docs/evidence/jc054-p2-2026-10-17/original81-inputs.fixture.json.gz",
+        "docs/evidence/jc054-p2-2026-10-17/original81-reproduction.json",
+        "docs/evidence/jc054-p2-2026-10-17/original81-reverse-source-reproduction.json",
+        "docs/evidence/jc054-p2-2026-10-17/original81-successor-reproduction.json",
+        "docs/evidence/jc054-p2-2026-10-17/source-and-normal-flow-closure.json",
+        "docs/evidence/jc054-p2-2026-10-17/wasm-fixed-build.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/wasm-fixed-parity.log.gz",
+        "rust-game-wasm/tests/jc054Native81.fixture.json.gz"
+      ]
+    },
+    {
+      "sha": "671f035ff14dc407f99db928920134d38aa64095",
+      "parent": "b73f94f94dbbf5a3261f57b9913d237dc8b1c378",
+      "title": "WIP: hand off JC054 P2 validation for serial re-review [skip ci]",
+      "reviewCoverage": "reviewed v63 JC054 including P2 corrections and frozen ABI80",
+      "files": [
+        "docs/JC054_P2_REVIEW_FOLLOWUP_2026-10-17.md",
+        "docs/JC054_SERIAL_WIP_2026-10-17.md",
+        "docs/evidence/jc054-2026-10-17/README.md",
+        "docs/evidence/jc054-p2-2026-10-17/README.md",
+        "docs/evidence/jc054-p2-2026-10-17/after-http-reproduction.json",
+        "docs/evidence/jc054-p2-2026-10-17/frontend-production-fixed.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/frontend-targeted-fixed.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/http-after.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/log-index.json",
+        "docs/evidence/jc054-p2-2026-10-17/native-full-fixed.log.gz",
+        "docs/evidence/jc054-p2-2026-10-17/runtime-fixed-manifest.json",
+        "docs/evidence/jc054-p2-2026-10-17/single-field-input-closure.json",
+        "docs/evidence/jc054-p2-2026-10-17/source-closure.json",
+        "docs/evidence/jc054-p2-2026-10-17/validation.json",
+        "docs/evidence/jc054-p2-2026-10-17/worker-full-fixed.log.gz"
+      ]
+    },
+    {
+      "sha": "dc5da40b79cd5f0693a4931896962708f6214cdf",
+      "parent": "671f035ff14dc407f99db928920134d38aa64095",
+      "title": "docs: record official v63 JC054 and action-hint publication [skip ci]",
+      "reviewCoverage": "reviewed release documentation only",
+      "files": [
+        "docs/ACTION_HINTS_SERIAL_REVIEW_2026-10-17.md",
+        "docs/JC054_P2_REVIEW_FOLLOWUP_2026-10-17.md",
+        "docs/SITES_V63_JC054_ACTION_HINTS_PUBLICATION_2026-10-17.md",
+        "docs/evidence/jc054-publication-2026-10-17/README.md",
+        "docs/evidence/jc054-publication-2026-10-17/evidence-file-hashes.json",
+        "docs/evidence/jc054-publication-2026-10-17/normal-browser.json",
+        "docs/evidence/jc054-publication-2026-10-17/normal_browser.py",
+        "docs/evidence/jc054-publication-2026-10-17/official-identity.json",
+        "docs/evidence/jc054-publication-2026-10-17/official-receipts.json",
+        "docs/evidence/jc054-publication-2026-10-17/prepare_provider.py",
+        "docs/evidence/jc054-publication-2026-10-17/provider-copy-plan.json",
+        "docs/evidence/jc054-publication-2026-10-17/provider-input-audit.json",
+        "docs/evidence/jc054-publication-2026-10-17/provider-source-files.json",
+        "docs/evidence/jc054-publication-2026-10-17/publication-archive-audit.json",
+        "docs/evidence/jc054-publication-2026-10-17/saved-archive-identity.json",
+        "docs/evidence/jc054-publication-2026-10-17/saved-version.json",
+        "docs/evidence/jc054-publication-2026-10-17/summary.json"
+      ]
+    },
+    {
+      "sha": "8a1a96108fa3cd6c7e4e83787e98921e5a455a57",
+      "parent": "dc5da40b79cd5f0693a4931896962708f6214cdf",
+      "title": "WIP: preserve published ABI81 before read-only response preview [skip ci]",
+      "reviewCoverage": "reviewed v64 response-preview final batch",
+      "files": [
+        "docs/RESPONSE_PREVIEW_SERIAL_WIP_2026-10-17.md",
+        "rust-game-wasm/frozen/abi81/identity.json",
+        "rust-game-wasm/frozen/abi81/native-source-binding.json",
+        "rust-game-wasm/tests/current81-kernel.mjs",
+        "tools/frozen-abi81.test.mjs",
+        "tools/frozen-kernels.mjs",
+        "tools/jc054-oracle.mjs"
+      ]
+    },
+    {
+      "sha": "18b1806ac6defe5d7f2a465af573ed75908f6d59",
+      "parent": "8a1a96108fa3cd6c7e4e83787e98921e5a455a57",
+      "title": "WIP: checkpoint read-only response-source preview prototype [skip ci]",
+      "reviewCoverage": "reviewed v64 response-preview final batch",
+      "files": [
+        "docs/RESPONSE_PREVIEW_SERIAL_WIP_2026-10-17.md",
+        "docs/evidence/response-preview-2026-10-17/frontend-round1.json.gz",
+        "docs/evidence/response-preview-2026-10-17/frontend-round2.json.gz",
+        "docs/evidence/response-preview-2026-10-17/frozen81-parity.log.gz",
+        "docs/evidence/response-preview-2026-10-17/frozen81-source-tests.log.gz",
+        "docs/evidence/response-preview-2026-10-17/native-round1.log.gz",
+        "docs/evidence/response-preview-2026-10-17/wip-status.json",
+        "rust-game/data/cards.json",
+        "rust-game/src/catalog.rs",
+        "rust-game/src/lib.rs",
+        "rust-game/src/response_preview_tests.rs",
+        "rust-game/src/room.rs",
+        "web/src/game/ResponsePreview.test.tsx",
+        "web/src/game/Table.tsx",
+        "web/src/game/actionHints.ts",
+        "web/src/game/api.ts",
+        "web/src/game/types.ts"
+      ]
+    },
+    {
+      "sha": "9e549277e98396d7e7ade38a8fa3825d37fa7950",
+      "parent": "18b1806ac6defe5d7f2a465af573ed75908f6d59",
+      "title": "WIP: route ABI82 response preview beside five frozen kernels [skip ci]",
+      "reviewCoverage": "reviewed v64 response-preview final batch",
+      "files": [
+        "docs/RESPONSE_PREVIEW_SERIAL_WIP_2026-10-17.md",
+        "rust-game-wasm/tests/current82-kernel.mjs",
+        "rust-game-wasm/tests/response-preview-compare.mjs",
+        "rust-game-wasm/tests/responsePreviewNative82.fixture.json.gz",
+        "sites/scripts/build-backend-test.mjs",
+        "sites/scripts/build-fixed-clock-test.mjs",
+        "sites/scripts/build.mjs",
+        "sites/src/kernel.mjs",
+        "sites/test/bq035-integration.test.mjs",
+        "sites/test/integration.test.mjs",
+        "sites/test/jc054-integration.test.mjs",
+        "sites/test/kernel-binding.test.mjs",
+        "sites/test/kernel-routing.test.mjs",
+        "sites/test/msjc09-society-integration.test.mjs",
+        "sites/test/response-preview-integration.test.mjs",
+        "sites/test/response-preview-kernel-routing.test.mjs",
+        "sites/test/seven-card-integration.test.mjs",
+        "sites/test/wm062-integration.test.mjs",
+        "tools/cards/bq030-source.test.mjs",
+        "tools/cards/bq035-source.test.mjs",
+        "tools/cards/jc037-source.test.mjs",
+        "tools/cards/jc046-source.test.mjs",
+        "tools/cards/jc052-source.test.mjs",
+        "tools/cards/jc054-source.test.mjs",
+        "tools/cards/jc060-source.test.mjs",
+        "tools/cards/jc094-source.test.mjs",
+        "tools/cards/jc095-source.test.mjs",
+        "tools/cards/jz35-source.test.mjs",
+        "tools/cards/jz46-source.test.mjs",
+        "tools/cards/wm023-source.test.mjs",
+        "tools/cards/wm038-source.test.mjs",
+        "tools/cards/wm056-source.test.mjs",
+        "tools/cards/wm062-source.test.mjs",
+        "tools/cards/xq24-source.test.mjs",
+        "tools/cards/xq25-source.test.mjs",
+        "tools/frontend/response-preview-http-qa.mjs",
+        "tools/response-preview-oracle.mjs",
+        "web/src/game/ResponsePreview.test.tsx"
+      ]
+    },
+    {
+      "sha": "398e220721f9e14c4f523530183c6288b7749096",
+      "parent": "9e549277e98396d7e7ade38a8fa3825d37fa7950",
+      "title": "test: separate ABI82 global catalog from historical JC054 identity [skip ci]",
+      "reviewCoverage": "reviewed v64 response-preview final batch",
+      "files": [
+        "docs/RESPONSE_PREVIEW_SERIAL_WIP_2026-10-17.md",
+        "sites/test/jz46-integration.test.mjs"
+      ]
+    }
+  ],
+  "intermediateWipNotIndividuallyClaimedGreen": true,
+  "repoWorkflowFilesAtBothEnds": [],
+  "workflows": [
+    {
+      "id": 259796635,
+      "name": "Copilot cloud agent",
+      "path": "dynamic/copilot-swe-agent/copilot",
+      "state": "active"
+    }
+  ],
+  "actionsRunsBefore": [
+    {
+      "id": 25207410663,
+      "event": "dynamic",
+      "head_sha": "77a39102cb3f6f7eb45bee7e45304404bd6bd4cc",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 25206861048,
+      "event": "dynamic",
+      "head_sha": "e30e72a0fc12cee1f60bb60e1f4eb5d00e68a0d0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 25206609281,
+      "event": "dynamic",
+      "head_sha": "11f391b6202b96835429daf3af6a783c6e785ac8",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 25183812363,
+      "event": "dynamic",
+      "head_sha": "169a6988931315fd763d67cf604f7442d47510f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 24315049017,
+      "event": "dynamic",
+      "head_sha": "2922725169a8954c335c15aa8c414dcc66c89d25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 24314968384,
+      "event": "dynamic",
+      "head_sha": "2922725169a8954c335c15aa8c414dcc66c89d25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 24314494657,
+      "event": "dynamic",
+      "head_sha": "10fa13b8bf74cd8c28ce30a896e691c2719d2d16",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 24314248667,
+      "event": "dynamic",
+      "head_sha": "b58b8fcb4d7168fdf09322b641867f9a20bfc2f6",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "candidateWorkflowRuns": 0,
+  "candidateCheckRuns": 0,
+  "candidateStatuses": {
+    "state": "pending",
+    "total_count": 0,
+    "note": "pending is the aggregate default with zero statuses, not a running or passing check"
+  },
+  "branchProtected": false,
+  "branchRules": [],
+  "skipCiAllRangeCommits": true,
+  "skipCiDocumentation": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs",
+  "skipCiNotClaimedForOtherEvents": true,
+  "abi83ExcludedFromMain": true,
+  "permissionsOrCiChanged": false,
+  "newWorktree": false,
+  "deployRequested": false
+}

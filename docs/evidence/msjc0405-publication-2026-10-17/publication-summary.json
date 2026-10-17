@@ -1,0 +1,68 @@
+{
+  "recordedAtUtc": "2026-10-17T14:24:14.767830+00:00",
+  "parentExplicitWholeBatchReview": {
+    "sourceThread": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+    "reviewedCode": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+    "reviewedEvidence": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+    "newP0P1P2": 0,
+    "independentlyCheckedGitFiles": 203,
+    "nativeInputs": 129,
+    "additionalClosureFiles": 21,
+    "compressedLogs": 31,
+    "representativeScreenshots": 5,
+    "publicationExplicitlyAuthorized": true
+  },
+  "siteVersion": 65,
+  "abi": 83,
+  "pool": "limited-v2.75-msjc04-msjc05-societies-candidate",
+  "engine": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+  "gameMain": "398e220721f9e14c4f523530183c6288b7749096",
+  "abi83OnGameMain": false,
+  "providerSource": "6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0",
+  "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_09c1b8bf209881919e038913e2c3ddff",
+  "deploymentId": "appgdep_6ad38470da2881919f6587ae007634b9",
+  "deploymentStatus": "succeeded",
+  "publishedUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "runtimeFiles": 172,
+  "archiveRegularFiles": 178,
+  "productionWorkerSha256": "4a23e098b1abf6561edd0b1115eea54d58db976b9926058479817b22e6a6f481",
+  "wasm83Sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+  "gzipArchive": {
+    "path": "/workspace/msjc0405-publication-20261017/abi83-reviewed.tar.gz",
+    "bytes": 76288844,
+    "sha256": "a71b42653c7fed7a8fbb04cd9913122bc0d9fb27d5f0056cdc1fa62b17241a08"
+  },
+  "savedCanonicalArchive": {
+    "bytes": 119152640,
+    "sha256": "6fa42e6ff139e78936129d556061f88309a090016e08af197524d22fecf46225",
+    "fileCount": 178,
+    "regularFilesOnly": true,
+    "sortPaths": true,
+    "headerPolicy": "Python tarfile.PAX_FORMAT, fresh TarInfo(name), size from validated payload, default mode0644 uid/gid/mtime0 uname/gname empty"
+  },
+  "applicableTestsReused": {
+    "native": 1201,
+    "frontend": 1292,
+    "frontendFiles": 136,
+    "worker": 295,
+    "productionBuildPassed": true,
+    "fullSuitesRepeatedForPublication": false
+  },
+  "audience": "public",
+  "accessRevision": 2,
+  "envRevision": 0,
+  "officialHelperVersion": "0.1.75",
+  "oldKernels77Through82Exact": true,
+  "onlineGameplayVerified": false,
+  "deployedUrlFetched": false,
+  "databaseReadOrWrittenByPublicationWork": false,
+  "migrationsAndStorageHooksPreserved": true,
+  "credentialsPersisted": false,
+  "rawEvidenceRoot": "/workspace/msjc0405-publication-20261017",
+  "previousV64DistRetained": "/workspace/msjc0405-publication-20261017/prepublish-v64-dist",
+  "remainingBoundaries": [
+    "No v65 live-browser/gameplay check; prior v64 TLS failure does not determine v65 result.",
+    "ABI83 has not been promoted to game main.",
+    "Historical ABI74 rebuilt identity, JC016+BQ022 and full original-rule acceptance are outside this batch."
+  ]
+}
