@@ -1,0 +1,66 @@
+{
+  "allOriginalScreenshots": [
+    {
+      "file": "1440x1000-pre-intent-seat0.png",
+      "bytes": 1259304,
+      "sha256": "a64cf93dd9d487b966579d0a46caa13f5cd8b29d52a9021209d6eba2663dd31c",
+      "includedInGit": false
+    },
+    {
+      "file": "1440x1000-pre-intent-hand-visible-seat0.png",
+      "bytes": 1363162,
+      "sha256": "0e41c3601e0e5cb99dd27727e3bcc29d6514be4f94bcc9f6c411b468933cc166",
+      "includedInGit": true
+    },
+    {
+      "file": "1440x1000-client-deadline-seat0.png",
+      "bytes": 1264812,
+      "sha256": "6cb9d7603009a6be82e376b75bd7143345503503532c3654cd2c5b8d8d14d1a0",
+      "includedInGit": false
+    },
+    {
+      "file": "1440x1000-composing-seat0.png",
+      "bytes": 1265462,
+      "sha256": "ce01ae53ebef1711e1d5737f12d91096f99c33f6bc4e5a8be72f2b645fa20254",
+      "includedInGit": true
+    },
+    {
+      "file": "1440x1000-submitted-seat0.png",
+      "bytes": 1214747,
+      "sha256": "eeb0deacfc07259fc7ef266177fae9d331fd92801a71def95dc5b687430bc777",
+      "includedInGit": false
+    },
+    {
+      "file": "1366x768-pre-intent-seat0.png",
+      "bytes": 857615,
+      "sha256": "02958825d82e5c7693211fd680cd5b1a9da07869596cb6c72413220c81448868",
+      "includedInGit": false
+    },
+    {
+      "file": "1366x768-pre-intent-hand-visible-seat0.png",
+      "bytes": 959833,
+      "sha256": "2747f7612e5a671caf7822d24489395173ccc5dcde4b00781290be3bba9fb809",
+      "includedInGit": true
+    },
+    {
+      "file": "1366x768-client-deadline-seat0.png",
+      "bytes": 863616,
+      "sha256": "f8a6f79fd9d07861de33d3b452b12be1b9535692e83c8f72b1b309f975788389",
+      "includedInGit": false
+    },
+    {
+      "file": "1366x768-composing-seat0.png",
+      "bytes": 863713,
+      "sha256": "2e8e8c53737ff96d83f132583b8f88285f7ad95bc4452051cfb6cf9a1c2e66b9",
+      "includedInGit": true
+    },
+    {
+      "file": "1366x768-submitted-seat0.png",
+      "bytes": 815774,
+      "sha256": "49cf78824be0407181d06adf75b01ce693c0caee3051b107497a9d3de04b27fc",
+      "includedInGit": false
+    }
+  ],
+  "originalDirectory": "/workspace/response-preview-evidence-20261017/browser-round4",
+  "selectedReason": "Both viewport pre-intent hand/source summaries and real composing controls; complete flow, geometry and hit checks in raw report"
+}

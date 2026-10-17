@@ -1,0 +1,46 @@
+{
+  "checkedBeforeBrowser": true,
+  "officialDeployment": {
+    "id": "appgdep_6ad34a79d1808191b2c31056c5e9652b",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_4b2f85ec2d448191afb925189c292648",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "updated_at": "2026-10-17T10:14:28.131548+00:00",
+    "env_set_revision": 0,
+    "failure_message": null
+  },
+  "officialVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_4b2f85ec2d448191afb925189c292648",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 63,
+    "source": {
+      "commit_sha": "90bfb25faa4c142f13140e141b6c8dfe2ec9355a"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_0000000090a882308ffbb2e281c51285",
+      "content_hash": "sha256:ddd6ea0625d567cbb726cbea1f0d211278ff840973df1ce5a2e822de3ce0cb06",
+      "size_bytes": 112220160,
+      "file_count": 174
+    },
+    "deployment_id": "appgdep_6ad34a79d1808191b2c31056c5e9652b"
+  },
+  "officialSite": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "latest_version_number": 63,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "current_user_role": "owner",
+    "access_mode": "public",
+    "status": "active",
+    "access_revision": 2
+  },
+  "expectedEvidenceCommit": "671f035ff14dc407f99db928920134d38aa64095",
+  "workspaceHead": "398e220721f9e14c4f523530183c6288b7749096",
+  "workspaceBranch": "codex/stage-pass-progress-20261016",
+  "gameMain": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "selectedEnvironment": "existing cloud; ordinary TLS, no Air switch",
+  "scope": "Once-hourly ordinary TLS recheck of exact published v63; independent ABI82 batch is local only and not published",
+  "officialLookupAtUtc": "2026-10-17T11:15:28Z"
+}

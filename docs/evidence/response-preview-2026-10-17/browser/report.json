@@ -1,0 +1,588 @@
+{
+  "passed": true,
+  "scope": "Native82 initial layout; four real production clients at each viewport; local trusted server clock 0 and controlled browser timers; not online play",
+  "engine": "rust-v0.2.82-response-source-preview-candidate",
+  "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+  "fixtureSha256": "0242797053882360449e6d6922c6eb8652229b4086bdefc7da4ce961deba4da8",
+  "workerSha256": "cf68b7541553aa1922d5102e6fc938193dd00092966a176f2b9709ee6f126a9f",
+  "productionWorkerSha256": "1abb8076b9a0da87da6e9157747badd6b3267ff95e937e41b58c07fe374b45e0",
+  "clientIndexSha256": "d3c43d546d3f42ea6ba1a25829bebe6260a56be43112d189eec9e7be660e9ae9",
+  "modules": [
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "viewports": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "posts": [
+        2,
+        1,
+        0,
+        0
+      ],
+      "requests": [
+        14,
+        3,
+        2,
+        2
+      ],
+      "commands": [
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "action": {
+            "kind": "passResponse",
+            "windowId": "response:1"
+          },
+          "version": 9,
+          "stateSha256": "31b1831616ec1069652205be62080b7f0f6fc9b660565349707e87c1e7fbdb75",
+          "posts": 1,
+          "reference": "exact Native82 plus same-body WASM"
+        },
+        {
+          "seat": 0,
+          "kind": "beginResponse",
+          "action": {
+            "kind": "beginResponse",
+            "windowId": "response:1",
+            "intentId": "630b2105-bd10-4ba5-9232-a1a0864a31a5"
+          },
+          "version": 10,
+          "stateSha256": "0584125f79dd37ffc4139fa0c0eedd3bedcf21bfcdcbdce16e054b8826e0b761",
+          "posts": 1,
+          "reference": "same-body fresh82 WASM"
+        },
+        {
+          "seat": 0,
+          "kind": "submitResponse",
+          "action": {
+            "kind": "submitResponse",
+            "windowId": "response:1",
+            "intentId": "630b2105-bd10-4ba5-9232-a1a0864a31a5",
+            "action": {
+              "kind": "reveal",
+              "cardId": "i244"
+            }
+          },
+          "version": 11,
+          "stateSha256": "632a9453c1798535da880c457178600f388f1550bf5895f9d80dbff7c230ef03",
+          "posts": 1,
+          "reference": "same-body fresh82 WASM"
+        }
+      ],
+      "checks": [
+        "own hand/hidden highlighted; opponent source private; preview click produces no action or write",
+        "reload restores pre-intent preview with unchanged state, deadline, assets, receipts and journal",
+        "client deadline hides hints/disables Begin with zero POST and no state or server deadline changes",
+        "manual Pass submits original payload exactly once, matching Native82 and D1 journal",
+        "manual Begin creates one real intent; source hints now use legalActions, original composing controls remain",
+        "reload preserves the real composing intent without reposting Begin",
+        "real reveal pays four assets only after explicit Begin and Submit; repeated click submits once",
+        "duplicate original command returns exact receipt with no extra state/journal/command write"
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "dock": {
+            "x": 1079,
+            "y": 944.375,
+            "width": 314,
+            "height": 81.875
+          },
+          "hintBadges": [
+            {
+              "text": "◇候选·快速",
+              "rect": {
+                "x": 119,
+                "y": 734.5625,
+                "width": 52,
+                "height": 14,
+                "top": 734.5625,
+                "right": 171,
+                "bottom": 748.5625,
+                "left": 119
+              }
+            },
+            {
+              "text": "◇候选·行动阶段快速",
+              "rect": {
+                "x": 116,
+                "y": 1033.40625,
+                "width": 74,
+                "height": 14,
+                "top": 1033.40625,
+                "right": 190,
+                "bottom": 1047.40625,
+                "left": 116
+              }
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "dock": {
+            "x": 1079,
+            "y": 841.375,
+            "width": 314,
+            "height": 81.875
+          },
+          "hintBadges": [
+            {
+              "text": "◇候选·快速",
+              "rect": {
+                "x": 119,
+                "y": 631.5625,
+                "width": 52,
+                "height": 14,
+                "top": 631.5625,
+                "right": 171,
+                "bottom": 645.5625,
+                "left": 119
+              }
+            },
+            {
+              "text": "◇候选·行动阶段快速",
+              "rect": {
+                "x": 116,
+                "y": 930.40625,
+                "width": 74,
+                "height": 14,
+                "top": 930.40625,
+                "right": 190,
+                "bottom": 944.40625,
+                "left": 116
+              }
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "dock": {
+            "x": 1079,
+            "y": 944.375,
+            "width": 314,
+            "height": 65.078125
+          },
+          "hintBadges": []
+        }
+      ],
+      "hitChecks": [
+        {
+          "label": "own hand preview",
+          "rect": {
+            "x": 108,
+            "y": 877.375,
+            "width": 90,
+            "height": 124,
+            "top": 877.375,
+            "right": 198,
+            "bottom": 1001.375,
+            "left": 108
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "own hidden preview",
+          "rect": {
+            "x": 112,
+            "y": 595.375,
+            "width": 66,
+            "height": 88,
+            "top": 595.375,
+            "right": 178,
+            "bottom": 683.375,
+            "left": 112
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "passResponse control",
+          "rect": {
+            "x": 930.984375,
+            "y": 851.375,
+            "width": 104.015625,
+            "height": 32,
+            "top": 851.375,
+            "right": 1035,
+            "bottom": 883.375,
+            "left": 930.984375
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "beginResponse control",
+          "rect": {
+            "x": 872.96875,
+            "y": 851.375,
+            "width": 52.015625,
+            "height": 32,
+            "top": 851.375,
+            "right": 924.984375,
+            "bottom": 883.375,
+            "left": 872.96875
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "submitResponse control",
+          "rect": {
+            "x": 1084,
+            "y": 878.578125,
+            "width": 308,
+            "height": 34.796875,
+            "top": 878.578125,
+            "right": 1392,
+            "bottom": 913.375,
+            "left": 1084
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "centerVisible": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "posts": [
+        2,
+        1,
+        0,
+        0
+      ],
+      "requests": [
+        15,
+        3,
+        2,
+        2
+      ],
+      "commands": [
+        {
+          "seat": 1,
+          "kind": "passResponse",
+          "action": {
+            "kind": "passResponse",
+            "windowId": "response:1"
+          },
+          "version": 9,
+          "stateSha256": "31b1831616ec1069652205be62080b7f0f6fc9b660565349707e87c1e7fbdb75",
+          "posts": 1,
+          "reference": "exact Native82 plus same-body WASM"
+        },
+        {
+          "seat": 0,
+          "kind": "beginResponse",
+          "action": {
+            "kind": "beginResponse",
+            "windowId": "response:1",
+            "intentId": "e2a78a89-37bf-44d6-a0a9-f3bde1658a1d"
+          },
+          "version": 10,
+          "stateSha256": "a8be6ec8dca808bd19ec911a494b2ea5ceb06f04632e70fd6375f7012bdc9feb",
+          "posts": 1,
+          "reference": "same-body fresh82 WASM"
+        },
+        {
+          "seat": 0,
+          "kind": "submitResponse",
+          "action": {
+            "kind": "submitResponse",
+            "windowId": "response:1",
+            "intentId": "e2a78a89-37bf-44d6-a0a9-f3bde1658a1d",
+            "action": {
+              "kind": "reveal",
+              "cardId": "i244"
+            }
+          },
+          "version": 11,
+          "stateSha256": "632a9453c1798535da880c457178600f388f1550bf5895f9d80dbff7c230ef03",
+          "posts": 1,
+          "reference": "same-body fresh82 WASM"
+        }
+      ],
+      "checks": [
+        "own hand/hidden highlighted; opponent source private; preview click produces no action or write",
+        "reload restores pre-intent preview with unchanged state, deadline, assets, receipts and journal",
+        "client deadline hides hints/disables Begin with zero POST and no state or server deadline changes",
+        "manual Pass submits original payload exactly once, matching Native82 and D1 journal",
+        "manual Begin creates one real intent; source hints now use legalActions, original composing controls remain",
+        "reload preserves the real composing intent without reposting Begin",
+        "real reveal pays four assets only after explicit Begin and Submit; repeated click submits once",
+        "duplicate original command returns exact receipt with no extra state/journal/command write"
+      ],
+      "geometry": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "documentWidth": 1366,
+          "dock": {
+            "x": 1029,
+            "y": 741.375,
+            "width": 296,
+            "height": 79.140625
+          },
+          "hintBadges": [
+            {
+              "text": "◇候选·快速",
+              "rect": {
+                "x": 112,
+                "y": 633.375,
+                "width": 46,
+                "height": 14,
+                "top": 633.375,
+                "right": 158,
+                "bottom": 647.375,
+                "left": 112
+              }
+            },
+            {
+              "text": "◇候选·行动阶段快速",
+              "rect": {
+                "x": 103,
+                "y": 810.953125,
+                "width": 66,
+                "height": 14,
+                "top": 810.953125,
+                "right": 169,
+                "bottom": 824.953125,
+                "left": 103
+              }
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "documentWidth": 1366,
+          "dock": {
+            "x": 1029,
+            "y": 609.375,
+            "width": 296,
+            "height": 79.140625
+          },
+          "hintBadges": [
+            {
+              "text": "◇候选·快速",
+              "rect": {
+                "x": 112,
+                "y": 501.375,
+                "width": 46,
+                "height": 14,
+                "top": 501.375,
+                "right": 158,
+                "bottom": 515.375,
+                "left": 112
+              }
+            },
+            {
+              "text": "◇候选·行动阶段快速",
+              "rect": {
+                "x": 103,
+                "y": 678.953125,
+                "width": 66,
+                "height": 14,
+                "top": 678.953125,
+                "right": 169,
+                "bottom": 692.953125,
+                "left": 103
+              }
+            }
+          ]
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "documentWidth": 1366,
+          "dock": {
+            "x": 1029,
+            "y": 741.375,
+            "width": 296,
+            "height": 62.34375
+          },
+          "hintBadges": []
+        }
+      ],
+      "hitChecks": [
+        {
+          "label": "own hand preview",
+          "rect": {
+            "x": 96,
+            "y": 635.375,
+            "width": 80,
+            "height": 110,
+            "top": 635.375,
+            "right": 176,
+            "bottom": 745.375,
+            "left": 96
+          },
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "own hidden preview",
+          "rect": {
+            "x": 106,
+            "y": 424.375,
+            "width": 58,
+            "height": 78,
+            "top": 424.375,
+            "right": 164,
+            "bottom": 502.375,
+            "left": 106
+          },
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "passResponse control",
+          "rect": {
+            "x": 874.984375,
+            "y": 652.375,
+            "width": 104.015625,
+            "height": 32,
+            "top": 652.375,
+            "right": 979,
+            "bottom": 684.375,
+            "left": 874.984375
+          },
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "beginResponse control",
+          "rect": {
+            "x": 816.96875,
+            "y": 652.375,
+            "width": 52.015625,
+            "height": 32,
+            "top": 652.375,
+            "right": 868.984375,
+            "bottom": 684.375,
+            "left": 816.96875
+          },
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "centerVisible": true,
+          "hit": true
+        },
+        {
+          "label": "submitResponse control",
+          "rect": {
+            "x": 1026,
+            "y": 678.1875,
+            "width": 294,
+            "height": 33.1875,
+            "top": 678.1875,
+            "right": 1320,
+            "bottom": 711.375,
+            "left": 1026
+          },
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "centerVisible": true,
+          "hit": true
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "1440x1000-pre-intent-seat0.png",
+    "1440x1000-pre-intent-hand-visible-seat0.png",
+    "1440x1000-client-deadline-seat0.png",
+    "1440x1000-composing-seat0.png",
+    "1440x1000-submitted-seat0.png",
+    "1366x768-pre-intent-seat0.png",
+    "1366x768-pre-intent-hand-visible-seat0.png",
+    "1366x768-client-deadline-seat0.png",
+    "1366x768-composing-seat0.png",
+    "1366x768-submitted-seat0.png"
+  ],
+  "browser": "151.0.7922.173",
+  "onlineGameplay": false,
+  "siteOrMainChanged": false
+}

@@ -1,0 +1,22 @@
+{
+  "purpose": "Unchanged historical ABI77 pass-history-only wrapper used by the existing sites suite; not a new82 runtime",
+  "directory": "/workspace/undergroundbattle-build/pass-history-worker/server",
+  "workerSha256": "de4caa99beae0ddc3b150ea38fcea2b4641e93a8008f401785e45ddfe49a42ce",
+  "modules": [
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "httpServiceSourcesUnchangedSinceV63Record": [
+    "http.mjs",
+    "service.mjs",
+    "store.mjs",
+    "storage-errors.mjs",
+    "pass-history.mjs",
+    "kernel-router.mjs",
+    "lazy-kernel.mjs"
+  ],
+  "productionAndCurrentTestWrapperRemainSeparate": true
+}

@@ -1,0 +1,239 @@
+{
+  "status": "implementation-and-current-default-local-validation-complete-awaiting-parent-serial-independent-review",
+  "sourceCommit": "398e220721f9e14c4f523530183c6288b7749096",
+  "originalRuntimeValidationSourceCommit": "9e549277e98396d7e7ade38a8fa3825d37fa7950",
+  "branch": "codex/stage-pass-progress-20261016",
+  "runtimeUnchangedByLaterTestIdentityFix": true,
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+    "engineVersion": "rust-v0.2.82-response-source-preview-candidate",
+    "cards": 147,
+    "stateSchema": 3,
+    "wasmBytes": 3165174,
+    "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+    "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "nativeInputs": 128,
+    "nativeRawSha256": "e1b08ea112e7f81d369c13f21743700470474800eb54d4c3d7de11d9249543b2",
+    "nativeRawBytes": 2405888,
+    "fixtureSha256": "0242797053882360449e6d6922c6eb8652229b4086bdefc7da4ce961deba4da8",
+    "fixtureBytes": 175690
+  },
+  "checks": {
+    "nativeFull": {
+      "passed": 1183,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 924.44,
+      "scope": "cargo test --locked --workspace --lib -- --test-threads=1; native default features; wasm crate native unit list has 0 tests",
+      "nativeTarget4OverlapsFull": true
+    },
+    "frontendFull": {
+      "passed": 1283,
+      "failed": 0,
+      "pending": 0,
+      "files": 135,
+      "durationMs": 378993.5090332031,
+      "prototypeTarget61OverlapsFull": true
+    },
+    "sitesFullFinal": {
+      "tests": 279,
+      "pass": 279,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 992807.027207,
+      "naturalExitCode": 0,
+      "currentWorker": "clean-worker82/server",
+      "scope": "complete sites/*.test.mjs suite; current production/fixed-clock wrappers have six kernels, historical ABI77 pass-history-only wrapper remains separate",
+      "source": "398e220721f9e14c4f523530183c6288b7749096"
+    },
+    "sourceAndRoutingFinal": {
+      "passed": 65,
+      "failed": 0,
+      "guarded": true,
+      "overlapWithFullSitesRouting": true
+    },
+    "frozen81": {
+      "passed": 2,
+      "failed": 0,
+      "originalGoldenUnchanged": true
+    },
+    "newNativeWasm": {
+      "scenarios": 3,
+      "commands": 8,
+      "polls": 2,
+      "pureViews": 12,
+      "projections": 100,
+      "rejected": 1,
+      "quotes": 2,
+      "rejectedQuotes": 1,
+      "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+      "nativeRawSha256": "e1b08ea112e7f81d369c13f21743700470474800eb54d4c3d7de11d9249543b2",
+      "completeOpaqueStateAndAllViews": true
+    },
+    "frozen81NativeWasm": {
+      "scenarios": 8,
+      "commands": 214,
+      "projections": 888,
+      "rejected": 2,
+      "invalid": 44,
+      "negativeRestoreCalls": 528,
+      "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "completeOpaqueStateAndAllViews": true
+    },
+    "newHttpScenariosWithinFullSites": [
+      {
+        "scenario": "preview-then-real-reveal",
+        "reference": "compiler-bound Native82",
+        "accepted": 2,
+        "rejected": 1,
+        "quotes": 2,
+        "projections": 40,
+        "pureQueries": 24,
+        "reopens": 2,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true
+      },
+      {
+        "scenario": "preview-pause-expiry",
+        "reference": "compiler-bound Native82",
+        "accepted": 2,
+        "rejected": 0,
+        "quotes": 0,
+        "projections": 36,
+        "pureQueries": 24,
+        "reopens": 5,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true
+      },
+      {
+        "scenario": "preview-peer-pass-cancel",
+        "reference": "compiler-bound Native82",
+        "accepted": 3,
+        "rejected": 0,
+        "quotes": 0,
+        "projections": 40,
+        "pureQueries": 24,
+        "reopens": 2,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true
+      }
+    ],
+    "productionBuild": {
+      "typeScriptApp": true,
+      "typeScriptNode": true,
+      "vite": true,
+      "productionWorkerDryRun": true,
+      "runtimeFiles": 169,
+      "clientFiles": 162,
+      "serverRuntimeFiles": 7,
+      "wasmModules": 6,
+      "deployed": false
+    },
+    "browser": {
+      "passed": true,
+      "browser": "151.0.7922.173",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "width": 1366,
+          "height": 768
+        }
+      ],
+      "clientsPerViewport": 4,
+      "flowAssertions": 16,
+      "pointerHitChecks": 10,
+      "pageErrors": 0,
+      "uiPostsPerViewport": [
+        [
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0
+        ]
+      ],
+      "repeatMethod": "two synchronous DOM click() events plus exact original receipt retry; not physical double-click",
+      "nativeReferenceScope": "initial four-seat views and direct Pass state/view; dynamic intent command bodies checked against fresh82 WASM, D1 state and full journal",
+      "localSyntheticD1": true,
+      "serverTestClockMs": 0,
+      "browserClockControlled": true,
+      "apiMocking": false,
+      "opaqueStateRewrite": false,
+      "onlineGameplay": false
+    }
+  },
+  "earlierRounds": {
+    "prototypeFrontend": {
+      "firstPassed": 58,
+      "firstFailed": 3,
+      "afterTestFixtureFixPassed": 61,
+      "oneShellRedirectFailureStartedZeroTests": true
+    },
+    "targetHttp": {
+      "firstPassed": 9,
+      "firstFailed": 1,
+      "reason": "test read last_server_now_ms instead of persisted camelCase lastServerNowMs",
+      "afterFixExpiryPassed": 1,
+      "finallyAllThreeCoveredByFullSites": true,
+      "oneWrongCwdStartedZeroTests": true
+    },
+    "productionBuild": {
+      "firstFailed": "three TypeScript errors from exact option in Testing Library getByRole in new test",
+      "testOnlyFix": true,
+      "finalPassed": true
+    },
+    "browser": {
+      "first": "stale unreferenced seventh test WASM rejected before browser startup",
+      "second": "incorrect test expectation for display-only actionable flag; zero POST",
+      "thirdPassed": true,
+      "fourthPassedWithHitAndScrollEvidence": true
+    },
+    "workerAbortedStaleInventory": {
+      "completedFullRun": false,
+      "notCountedAsPassingFullRun": true,
+      "oldDirectoryPreserved": true
+    },
+    "sitesFirstCompleteClean": {
+      "passed": 267,
+      "failed": 12,
+      "tests": 279,
+      "durationMs": 1039538.524068,
+      "reason": "JZ46 global catalog expectation imported frozen JC05481 identity; same assertion before scene command loops",
+      "fix": "one test import now points to new82 identity; historical room/catalog/goldens untouched",
+      "finalWholeSuiteRerun": true
+    }
+  },
+  "publishedV63": {
+    "unchanged": true,
+    "source": "90bfb25faa4c142f13140e141b6c8dfe2ec9355a",
+    "version": 63,
+    "deployment": "appgdep_6ad34a79d1808191b2c31056c5e9652b",
+    "deploymentStatus": "succeeded",
+    "ordinaryBrowserAtUtc": "2026-10-17T11:17:01.387815+00:00",
+    "outcome": "ERR_CERT_AUTHORITY_INVALID",
+    "getAttempts": 1,
+    "posts": 0,
+    "uiReached": false,
+    "onlineGames": 0,
+    "bypass": false
+  },
+  "boundaries": [
+    "No ABI82 publication, main merge, Actions, remote D1 changes, new cards or rules",
+    "society-fixtures feature configuration not rerun",
+    "No remote D1 acceptance or online gameplay",
+    "Historical ABI74 rebuilt-WASM identity mismatch remains outside this batch",
+    "Do not add overlapping targeted and full-suite counts",
+    "Parent serial independent review remains required before any ABI82 publication"
+  ]
+}

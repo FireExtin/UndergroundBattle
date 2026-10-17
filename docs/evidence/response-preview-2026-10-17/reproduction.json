@@ -1,0 +1,33 @@
+{
+  "workingDirectory": "/workspace/UndergroundBattle",
+  "sourceCommit": "398e220721f9e14c4f523530183c6288b7749096",
+  "commands": {
+    "fullNative": "env PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup node tools/build-storage.mjs -- cargo test --locked --workspace --lib -- --test-threads=1",
+    "freshWasm": "env PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup WASM_BINDGEN=/workspace/tooling/wasm-bindgen-0.2.104-x86_64-unknown-linux-musl/wasm-bindgen node tools/build-storage.mjs --output-dir rust-game-wasm/pkg -- bash rust-game-wasm/build.sh",
+    "newNativeWasmCompare": "node tools/build-storage.mjs -- node rust-game-wasm/tests/response-preview-compare.mjs",
+    "frozen81Compare": "node tools/build-storage.mjs -- node rust-game-wasm/tests/jc054-compare.mjs",
+    "fullFrontend": "node tools/build-storage.mjs -- npm --prefix web test -- --maxWorkers=1 --reporter=json --outputFile=/workspace/response-preview-evidence-20261017/build82-round1/frontend-full.json",
+    "productionBuild": "node tools/build-storage.mjs --output-dir sites/dist --output-dir web/dist -- node sites/scripts/build.mjs",
+    "cleanTestWorker": "env HEGEMONY_FIXED_CLOCK_TEST_ROOT=/workspace/response-preview-evidence-20261017/clean-worker82 node tools/build-storage.mjs --output-dir /workspace/response-preview-evidence-20261017/clean-worker82 -- node sites/scripts/build-fixed-clock-test.mjs",
+    "fullSites": "env HEGEMONY_CURRENT_WORKER_DIR=/workspace/response-preview-evidence-20261017/clean-worker82/server node tools/build-storage.mjs -- bash -c 'cd sites && exec node --test --test-concurrency=1 test/*.test.mjs'",
+    "productionBrowser": "node tools/build-storage.mjs --output-dir /workspace/response-preview-evidence-20261017/browser-round4 -- env HEGEMONY_CURRENT_WORKER_DIR=/workspace/response-preview-evidence-20261017/clean-worker82/server node tools/frontend/response-preview-http-qa.mjs /workspace/response-preview-evidence-20261017/browser-round4",
+    "sourceAndRouting": "node tools/build-storage.mjs -- node --test tools/frozen-kernels.test.mjs tools/cards/*source.test.mjs sites/test/response-preview-kernel-routing.test.mjs",
+    "frozen81": "node tools/build-storage.mjs -- node --test tools/frozen-abi81.test.mjs"
+  },
+  "toolchain": {
+    "node": "v24.19.0",
+    "rustc": "1.90.0 (1159e78c4 2025-09-14)",
+    "rustcCommit": "1159e78c4747b02ef996e55082b704c09b970588",
+    "llvm": "20.1.8",
+    "wasmBindgen": "0.2.104",
+    "chromium": "151.0.7922.173"
+  },
+  "notes": [
+    "Fresh Native export uses RESPONSE_PREVIEW_NATIVE_DIR pointing to a new directory; old Native81 is never regenerated.",
+    "The guards run from the repository root and keep caches on disk; no storage fallback or cache removal.",
+    "All rows are local commands. Deploy calls in build scripts are wrangler --dry-run only.",
+    "Existing pass-history-only tests use the preserved ABI77 wrapper; see historical-pass-history-wrapper.json.",
+    "A fresh fixture exporter destination must not exist; do not overwrite the tracked golden input."
+  ],
+  "originalRuntimeValidationSourceCommit": "9e549277e98396d7e7ade38a8fa3825d37fa7950"
+}
