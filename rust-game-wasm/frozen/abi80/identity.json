@@ -1,0 +1,14 @@
+{
+  "purpose": "Exact immutable dependency preserving published v62 ABI80 rooms; never rebuild, replace or migrate their opaque state.",
+  "providerSource": "1f1b785df84738e6f85c1462482236b3ddabb8be",
+  "reviewedSource": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+    "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate"
+  },
+  "wasmBytes": 3047680,
+  "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "66a867ec60b0df1946b9637ee7d581689aed68faabd079710f0371b6019705ff"
+}
