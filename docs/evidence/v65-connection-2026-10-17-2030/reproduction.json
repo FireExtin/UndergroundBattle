@@ -1,0 +1,41 @@
+{
+  "parentRequest": "One ordinary cloud-browser check after progress/activity/published-identity verification; stop on TLS error. No bypass, component substitution, main promotion or deployment. Neutral and dual paused.",
+  "rawRoot": "/workspace/v65-real-browser-20261017T2030Z",
+  "command": "node tools/build-storage.mjs -- python3 /workspace/v65-real-browser-20261017T2030Z/v65-normal_browser.py > /workspace/v65-real-browser-20261017T2030Z/normal-browser.log 2>&1",
+  "naturalExitCode": 0,
+  "harnessDerivation": {
+    "trackedSeed": "docs/evidence/v65-connection-2026-10-17-1626/v65-normal_browser.py",
+    "replaceOnce": {
+      "from": "2026-10-17T15:26:24.323582+00:00",
+      "to": "2026-10-17T19:26:30.770118+00:00"
+    },
+    "expectedSha256": "7895bdfa2cf2f63cd90c4b3d826eeb46cd2e35458791a0dac979f7e88710668b"
+  },
+  "unchangedScreenshotGitReference": "docs/evidence/v65-connection-2026-10-17-1426/normal-browser.png",
+  "identityReadbackAtUtc": "2026-10-17T20:29:59.965Z",
+  "previousProbeAtUtc": "2026-10-17T19:26:30.770118+00:00",
+  "navigationAtUtc": "2026-10-17T20:30:03.436613+00:00",
+  "errorAtUtc": "2026-10-17T20:30:03.651624+00:00",
+  "intervalSincePriorProbeSeconds": 3812.666495,
+  "navigationAttempts": 1,
+  "getRequests": 1,
+  "gameWriteCount": 0,
+  "fullGameCount": 0,
+  "onlineGameplayValidationStatus": "WIP_BLOCKED_TLS",
+  "uiAssetsAndCatalogIdentityNotReached": true,
+  "redBlackBlueGrayMechanismsSelectionRepeatClickRefreshCompleteGameNotExecuted": true,
+  "normalTls": true,
+  "bypass": false,
+  "noComponentTestSubstitution": true,
+  "neutralAndDualPaused": true,
+  "noFurtherAttemptsThisRound": true,
+  "newVersionOrDeployment": false,
+  "mainChanged": false,
+  "preProbeGit": {
+    "branch": "codex/stage-pass-progress-20261016",
+    "headAndRemote": "71f8c31a3484375d85ae4b1c9db31f2a89346437",
+    "remoteMain": "398e220721f9e14c4f523530183c6288b7749096",
+    "workingTreeClean": true,
+    "activeDevelopmentProcesses": []
+  }
+}

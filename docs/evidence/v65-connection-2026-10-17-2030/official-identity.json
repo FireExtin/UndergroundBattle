@@ -1,0 +1,47 @@
+{
+  "checkedAtUtc": "2026-10-17T20:29:59.965Z",
+  "officialProject": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "status": "active",
+    "access_mode": "public",
+    "accessRevision": 2,
+    "latest_version_number": 65,
+    "current_live_url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site"
+  },
+  "officialVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_09c1b8bf209881919e038913e2c3ddff",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 65,
+    "source": {
+      "commit_sha": "6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_0000000045f081fd8042c7524cdc92c5",
+      "content_hash": "sha256:6fa42e6ff139e78936129d556061f88309a090016e08af197524d22fecf46225",
+      "size_bytes": 119152640,
+      "file_count": 178
+    },
+    "screenshot_url": null,
+    "deployment_id": "appgdep_6ad38470da2881919f6587ae007634b9"
+  },
+  "officialDeployment": {
+    "id": "appgdep_6ad38470da2881919f6587ae007634b9",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_09c1b8bf209881919e038913e2c3ddff",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-17T14:21:49.065975+00:00"
+  },
+  "expectedCodeCommit": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+  "expectedEvidenceCommit": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+  "gameMain": "398e220721f9e14c4f523530183c6288b7749096",
+  "previousBrowserEvidenceCommit": "71f8c31a3484375d85ae4b1c9db31f2a89346437"
+}
