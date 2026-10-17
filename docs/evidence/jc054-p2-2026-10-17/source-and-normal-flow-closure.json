@@ -1,0 +1,15 @@
+{
+  "beforeSource": "f842af3a76d5e482b91a20f0cba7ec62ec3940da",
+  "afterCoreSource": "db15514a1400cfec1319a20c821bcd779766aff5",
+  "compilerInputs": 127,
+  "allCurrentInputsMatchNewGitAndNative": true,
+  "allOriginalInputsMatchReviewGitAndOriginalNative": true,
+  "allEightNormalScenariosByteIdentical": true,
+  "counts": {
+    "scenarios": 8,
+    "commands": 214,
+    "projections": 888,
+    "rejected": 2,
+    "invalid": 44
+  }
+}

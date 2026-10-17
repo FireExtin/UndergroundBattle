@@ -1,0 +1,15 @@
+{
+  "wasmSha256": "7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca",
+  "cases": [
+    {
+      "kind": "deploy",
+      "onlySourceDefinitionChanged": true,
+      "restoreAccepted": true
+    },
+    {
+      "kind": "reveal",
+      "onlySourceDefinitionChanged": true,
+      "restoreAccepted": true
+    }
+  ]
+}

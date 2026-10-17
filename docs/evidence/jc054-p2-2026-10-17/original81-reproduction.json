@@ -1,0 +1,28 @@
+{
+  "testedOriginalWasmSha256": "7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca",
+  "reviewSource": "f842af3a76d5e482b91a20f0cba7ec62ec3940da",
+  "cases": [
+    {
+      "kind": "deploy",
+      "scenario": "paid-deploy",
+      "nativeStep": 0,
+      "onlyStackCardShieldChanged": true,
+      "restoreAccepted": true,
+      "commandsUntilEntry": 4,
+      "fieldShield": 1,
+      "goodSha256": "5c3956125c093cb1a346db98178986a65aa7097d9ff6919be9624200fec85487",
+      "badSha256": "15ab11463fba54c8af0c96db68c5ce026be2cad1c802bd8bcc4e8be344ab3cbc"
+    },
+    {
+      "kind": "reveal",
+      "scenario": "paid-response-reveal",
+      "nativeStep": 1,
+      "onlyStackCardShieldChanged": true,
+      "restoreAccepted": true,
+      "commandsUntilEntry": 4,
+      "fieldShield": 1,
+      "goodSha256": "a5d18924bdb7115d2ef5e94e9c30248198554a26c5db2318293ed2dcf3278563",
+      "badSha256": "b03947b511e2dd28a67e8d9a7b8c87c6867d7a12fbed5b8755019cfb8852f7e0"
+    }
+  ]
+}

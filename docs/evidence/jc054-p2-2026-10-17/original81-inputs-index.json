@@ -1,0 +1,38 @@
+{
+  "fixtureSha256": "08114796bce0cb866d90f44edef49046cdb7576e763339c1f429f41771228a54",
+  "rawBytes": 290577,
+  "files": {
+    "deploy-good-room.json": {
+      "bytes": 30631,
+      "sha256": "5c3956125c093cb1a346db98178986a65aa7097d9ff6919be9624200fec85487"
+    },
+    "reveal-good-room.json": {
+      "bytes": 31434,
+      "sha256": "a5d18924bdb7115d2ef5e94e9c30248198554a26c5db2318293ed2dcf3278563"
+    },
+    "successor-face-up-good-room.json": {
+      "bytes": 30876,
+      "sha256": "695b5d6be150b834d12ef9ff24a7a3261acc16aca4e1aad12eab58502182a830"
+    },
+    "deploy-shield-room.json": {
+      "bytes": 30631,
+      "sha256": "15ab11463fba54c8af0c96db68c5ce026be2cad1c802bd8bcc4e8be344ab3cbc"
+    },
+    "reveal-shield-room.json": {
+      "bytes": 31434,
+      "sha256": "b03947b511e2dd28a67e8d9a7b8c87c6867d7a12fbed5b8755019cfb8852f7e0"
+    },
+    "deploy-wrong-source-room.json": {
+      "bytes": 30631,
+      "sha256": "47f7276c6f61eb1c835c393528cf7f108cf0f19b7a393259201716bc8b26f624"
+    },
+    "reveal-wrong-source-room.json": {
+      "bytes": 31434,
+      "sha256": "624926151987ecd266cc7a129cba0d6aff1d0da9eda05d4cd63ba93fb6841be4"
+    },
+    "successor-face-up-room.json": {
+      "bytes": 30877,
+      "sha256": "b0cf5d6b37304770bc1d9b2c973a4b8b1d7fa82e5b72f3df399ab0458c9ff86b"
+    }
+  }
+}
