@@ -1,0 +1,223 @@
+{
+  "passed": true,
+  "scope": "Explicit Native81 pending layout, four production browser clients, mandatory trigger order, original JC054 scan, pause/resume, draft/restart and duplicate confirmation; fixed local clock, not online gameplay",
+  "scenario": "pause-mandatory-order",
+  "engine": "rust-v0.2.81-jc054-complete-conceal-candidate",
+  "wasmSha256": "7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca",
+  "workerSha256": "da966b154556b0532515016da5c7c308734b95d3e545e057cd4798574555cef0",
+  "wasmModules": [
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "98cce20754fa3862e8a55e48d9993152757fe24e-hegemony_wasm_bg.wasm",
+      "bytes": 3154451,
+      "sha256": "7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    }
+  ],
+  "productionWorkerSha256": "356938915af0c395ef93bee205826118e4b7a31e01da563eedf176b0bcab9318",
+  "productionClientIndexSha256": "b05d473d0dc4cda4185bb771e9ff2f5135a9c1bc1bae09f997e0ba2d57614fa0",
+  "clientDirectory": "/workspace/jc054-evidence-20261017/runtime-final/client",
+  "fixtureSha256": "101280b4140675e3557fab3ac829621c959e2eb5255326f9f43cc1ec465f51f7",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "kind": "pauseRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 9,
+      "stateSha256": "81d5462f0e936e75943118ecc4061a8e9bf5c43a5ee42c8b76c702cd0f1b11ff"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "browser-fetch-expected-rejection",
+      "status": 409
+    },
+    {
+      "index": 2,
+      "seat": 0,
+      "kind": "resumeRoom",
+      "via": "production-ui",
+      "status": 200,
+      "version": 10,
+      "stateSha256": "4743362d70936c8abc0084b9584c90ec162a83b34cf0413c7d59453fe8001fc5"
+    },
+    {
+      "index": 3,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "choose",
+      "via": "production-ui",
+      "status": 200,
+      "version": 11,
+      "stateSha256": "260599b52ad2964e51c83dd7da4df6008ba1c76f3adff7cb48fe92ff981f5c07"
+    },
+    {
+      "index": 4,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 12,
+      "stateSha256": "2a37e8b2f4ab360ae1f71af3eae584d8261ab0f130d6ad4e35db15ba3b8b559a"
+    },
+    {
+      "index": 5,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 13,
+      "stateSha256": "70fa223d2bce0d232dbdea2e283bb42e6a31b3e2c90873b0c3b698dd4028539e"
+    },
+    {
+      "index": 6,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 14,
+      "stateSha256": "07012445de897cead75665d4abb196f1b8343a2a520d2888f3c9bd15d30be4ff"
+    },
+    {
+      "index": 7,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 15,
+      "stateSha256": "08646f425d0d06ca70456c9b684cc8e0ed96b740db63c7472343ff9ba3dcf242"
+    },
+    {
+      "index": 8,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 16,
+      "stateSha256": "faaa83eef38f4407e7c1e9268c6fe73067b59b726b09d7f1c89000d2a79009aa"
+    },
+    {
+      "index": 9,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 17,
+      "stateSha256": "2116658f47ea255be0339aecf9f1df88e44c1e2bbca70e54ab72afa26aeb0e5f"
+    },
+    {
+      "index": 10,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 18,
+      "stateSha256": "dd912f6900638fa54bd46a6f06654c7e86e660ce3cbefa1f914d54a4435b8573"
+    },
+    {
+      "index": 11,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 19,
+      "stateSha256": "8d196f44254b007314901d297b66b429bd1cf4d64b8908e00525a0adddcb0f8a"
+    },
+    {
+      "index": 12,
+      "seat": 0,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 20,
+      "stateSha256": "27b44f7800a94d75c11e6eebbcdb45f051a21acd00b5fd7907ff7886e38df69b"
+    },
+    {
+      "index": 13,
+      "seat": 1,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 21,
+      "stateSha256": "03c977de151d8c5e03ba508b47d09298b07b388c00110ed418128498887b7af4"
+    },
+    {
+      "index": 14,
+      "seat": 2,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 22,
+      "stateSha256": "acd9021be4b7675c516bb6d77d11d69025899750d7e121ac55df881205519ed7"
+    },
+    {
+      "index": 15,
+      "seat": 3,
+      "kind": "passResponse",
+      "via": "production-ui",
+      "status": 200,
+      "version": 23,
+      "stateSha256": "146e3de6e778bcab962ecb896bc1cc682695c4d307bc9c967883814c4780735c"
+    }
+  ],
+  "clientRequests": [
+    59,
+    48,
+    47,
+    47
+  ],
+  "clientPosts": [
+    7,
+    3,
+    3,
+    4
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "jc054-original-scan.png",
+    "mandatory-order-before-confirm-seat0.png",
+    "mandatory-order-before-confirm-seat1.png",
+    "mandatory-order-before-confirm-seat2.png",
+    "mandatory-order-before-confirm-seat3.png",
+    "confirmed-once-seat0.png",
+    "confirmed-once-seat1.png",
+    "confirmed-once-seat2.png",
+    "confirmed-once-seat3.png"
+  ],
+  "choiceLayoutChecks": [],
+  "targetHitChecks": [],
+  "reopened": 2,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 15,
+    "seat": 3,
+    "kind": "passResponse"
+  },
+  "originalScanRead": true,
+  "mandatoryOrderAndSelectionDraftRestoredAfterWorkerAndBrowserRestart": true,
+  "confirmPostsBefore": 3,
+  "doubleClickProducedOneSubmission": true,
+  "originalConfirmationReceiptAfterRestart": true,
+  "onlineGameplay": false,
+  "mainOrSiteChanged": false
+}

@@ -1,0 +1,178 @@
+{
+  "sourceCommit": "29efe87644120505dee15f1287db206e8307962c",
+  "coreInputCommit": "bc9d5bd652a592036002ca5caf74031942b668b0",
+  "status": "Applicable local checks completed; independent serial review pending; not published",
+  "nativeTargeted": {
+    "passed": 22,
+    "total": 22,
+    "seconds": 9.05
+  },
+  "nativeFull": {
+    "passed": 1175,
+    "total": 1175,
+    "seconds": 863.06
+  },
+  "nativeSocietyFixtureFeatureFull": {
+    "passed": 324,
+    "total": 324,
+    "seconds": 130.67,
+    "isolatedFeatureWasmRebuilt": false
+  },
+  "native81Wasm81": {
+    "scenarios": 8,
+    "commands": 214,
+    "projections": 888,
+    "rejected": 2,
+    "invalid": 28,
+    "negativeRestoreCalls": 336,
+    "compilerInputs": 127,
+    "completeOpaqueStateJournalReceiptsAndViewsEqual": true,
+    "wasmSha256": "7f701ec922a874931e382228b738fa1dce8f2485d6ce1cf361ec8735e40bb7ca"
+  },
+  "retained80": {
+    "scenarios": 14,
+    "commands": 111,
+    "projections": 490,
+    "rejected": 18,
+    "invalid": 45,
+    "negativeRestoreCalls": 540,
+    "originalOpaqueAndBindingsPreserved": true
+  },
+  "sourceAndFrozenFirstRound": {
+    "passed": 64,
+    "total": 66
+  },
+  "sourceCountCorrectionsTargeted": {
+    "passed": 7,
+    "total": 7,
+    "overlapsFirstRound": true,
+    "full66Rerun": false
+  },
+  "frontendFullFinal": {
+    "files": 134,
+    "jsonSuiteCount": 212,
+    "passed": 1273,
+    "total": 1273,
+    "failed": 0,
+    "timeoutMs": 15000,
+    "durationMs": 200133.72338867188,
+    "reportSha256": "de476fe19ec4c358c4d1caa230165d6bda055505258003bf34e6d2d27c51fffa"
+  },
+  "frontendFirstRound": {
+    "passed": 1269,
+    "total": 1273
+  },
+  "frontendCorrectedTargeted": {
+    "files": 2,
+    "passed": 13,
+    "total": 13,
+    "overlapsFull": true
+  },
+  "frontendSourceCaptionTargeted": {
+    "files": 3,
+    "passed": 54,
+    "total": 54,
+    "overlapsFull": true
+  },
+  "productionFrontendAndBackendDryRuns": {
+    "passed": true,
+    "deployed": false,
+    "wasmModules": 5
+  },
+  "workerFull": {
+    "tests": 253,
+    "suites": 0,
+    "pass": 253,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 1133328.51027
+  },
+  "jc054HttpD1": {
+    "passed": 10,
+    "total": 10,
+    "includedInWorkerFull": true,
+    "localD1Only": true
+  },
+  "retainedKernelRouting": {
+    "passed": 4,
+    "total": 4,
+    "includedInWorkerFull": true,
+    "abis": [
+      77,
+      78,
+      79,
+      80
+    ]
+  },
+  "workerPreflightFirstAttempt": {
+    "testsExecuted": 0,
+    "headroomBytes": 990711808,
+    "minimumBytes": 1073741824,
+    "bypassed": false
+  },
+  "browser": [
+    {
+      "scenario": "pause-mandatory-order",
+      "report": "browser-pause-final.json",
+      "reportSha256": "23b3e876224e3daea045d784db296e7a2216717b82e96fecd4fdadfc487acc60",
+      "commands": 16,
+      "reopened": 2,
+      "clientPosts": [
+        7,
+        3,
+        3,
+        4
+      ],
+      "localSyntheticLayout": true,
+      "onlineGameplay": false,
+      "pageErrors": []
+    },
+    {
+      "scenario": "mandatory-order",
+      "report": "browser-order-final.json",
+      "reportSha256": "6b7d2f7dbeb6327b02c30e729cafe94bcd624f075588c52bd19696570196a193",
+      "commands": 23,
+      "reopened": 2,
+      "clientPosts": [
+        6,
+        6,
+        7,
+        5
+      ],
+      "localSyntheticLayout": true,
+      "onlineGameplay": false,
+      "pageErrors": []
+    }
+  ],
+  "selectedScreenshots": {
+    "jc054-original-scan.png": {
+      "original": "browser-order-final/jc054-original-scan.png",
+      "visuallyInspected": true,
+      "bytes": 626336,
+      "sha256": "b33675636db9232efcdba14805b0f2d102a0de17ad60046609607efe5cee75fc"
+    },
+    "mandatory-order-final.png": {
+      "original": "browser-order-final/mandatory-order-before-confirm-seat0.png",
+      "visuallyInspected": true,
+      "bytes": 414314,
+      "sha256": "f05277a28f648ac4d05f84a28315dca32ed42f2aca2305c6ee6577c57eaaffa4"
+    },
+    "pause-order-final.png": {
+      "original": "browser-pause-final/mandatory-order-before-confirm-seat0.png",
+      "visuallyInspected": true,
+      "bytes": 429530,
+      "sha256": "9486aa95f124867e42907d3f42f574c896441b92bf3835086d36f9ec730d37f4"
+    }
+  },
+  "externalEvidence": "/workspace/jc054-evidence-20261017",
+  "deployed": false,
+  "mainMerged": false,
+  "onlineGameplay": false,
+  "remaining": [
+    "Independent serial review by parent",
+    "Normal TLS accessibility and published-identity online acceptance"
+  ],
+  "notAggregated": "Overlapping targeted, full, feature and historical results remain separate."
+}
