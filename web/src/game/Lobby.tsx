@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FactionCoverage } from './FactionCoverage';
 import { DeckLibrary } from './DeckLibraryPanel';
-import { publicDeckDraft, readDeckLibrary, validateDeckDraft } from './deckLibrary';
+import { createDeckDraft, publicDeckDraft, readDeckLibrary, selectableSocieties, validateDeckDraft } from './deckLibrary';
 import type { DeckDraft } from './deckLibrary';
 import { deckColors } from './factions';
 import type { CardDefinition, Catalog, Deck } from './types';
@@ -75,7 +75,11 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   const targetInvite = invitationOnly ? initialInvite : invite;
   const restoringSeat = joining && readSavedSeats().some(seat => seat.inviteCode.trim().toUpperCase() === targetInvite.trim().toUpperCase());
   const savedDecks = readDeckLibrary().drafts;
-  const draftValid = !!selectedDraft && !!catalog && validateDeckDraft(selectedDraft, catalog).valid;
+  const draftValidation = selectedDraft && catalog ? validateDeckDraft(selectedDraft, catalog) : null;
+  const draftValid = draftValidation?.valid === true;
+  const societies = catalog ? selectableSocieties(catalog) : [];
+  const societyId = selectedDraft?.societyId || '';
+  const selectedSociety = societies.find(society => society.id === societyId);
   const draftEntryAvailable = joining ? !!onJoinDraft : !!onCreateDraft;
   const entryAvailable = restoringSeat || (selectedDraft ? draftValid && draftEntryAvailable : !!deck);
   const selectedCount = selectedDraft?.cards.reduce((total, item) => total + item.count, 0) ?? deck?.cardCount;
@@ -117,9 +121,17 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
           const saved = savedDecks.find(item => `saved:${item.id}` === event.target.value);
           if (saved) { setSelectedDraft(publicDeckDraft(saved)); onSelectDraft?.(publicDeckDraft(saved)); }
         }}><option value="">从已保存牌组中选择</option>{selectedDraft && <option value="selected">当前所选快照：{selectedDraft.name} · {selectedCount} 张</option>}{savedDecks.map(item => <option key={item.id} value={`saved:${item.id}`}>{item.name} · {item.cards.reduce((total, card) => total + card.count, 0)} 张</option>)}</select></label>
-        {selectedDraft && <p className="hg-muted">入席使用上次选择的牌组内容；编辑后请重新保存并选择。</p>}
+        {selectedDraft && <p className="hg-muted">入席使用当前所选快照；收藏中编辑后请重新保存并选择。</p>}
+        {catalog && <label className="hg-field">入席秘社（可选）<select value={societyId} disabled={busy || restoringSeat || !societies.length} onChange={event => {
+          const base = selectedDraft || (deck ? createDeckDraft(catalog, deck) : null);
+          if (!base) return;
+          const next = { ...publicDeckDraft(base), societyId: event.target.value || null };
+          setSelectedDraft(next); onSelectDraft?.(publicDeckDraft(next));
+        }}><option value="">不选择秘社 · 起手 6 张</option>{societyId && !selectedSociety && <option value={societyId}>原选秘社当前未开放</option>}{societies.map(society => <option key={society.id} value={society.id}>{society.name} · {society.color} · 起手 {society.startingHand} 张</option>)}</select></label>}
+        {selectedSociety && <p className="hg-muted">{selectedSociety.name}：{selectedSociety.deckConstraints.length ? selectedSociety.deckConstraints.map(constraint => constraint.kind === 'minimumColor' ? `至少 ${constraint.count} 张${constraint.color}色牌` : '绿、中立牌或印刷人类且具有永久战斗图标的角色').join('；') : '无额外构筑限制'}。更改秘社仅用于当前入席选择；需要保留时，请在收藏与组牌中保存。</p>}
+        {restoringSeat && <p className="hg-muted">恢复原席会保留桌内秘社；入席后可在准备前显式更换牌组。</p>}
         {selectedDraft && !restoringSeat && !draftEntryAvailable && <p className="hg-library-warning" role="alert">草稿已保存，当前入口尚未支持自定义牌组{joining ? '加入' : '创建'}；可以改选原预组。</p>}
-        {selectedDraft && !restoringSeat && !draftValid && <p className="hg-library-warning" role="alert">已选择草稿需要按当前卡池重新校验，暂不可入席。</p>}
+        {selectedDraft && !restoringSeat && !draftValid && <div className="hg-library-warning" role="alert"><p>已选择草稿需要按当前卡池重新校验，暂不可入席。</p><ul>{draftValidation?.issues.map((issue, index) => <li key={`${issue.code}:${issue.cardId || index}`}>{issue.message}</li>)}</ul></div>}
         {!selectedDraft && !!deckId && !!catalog && !deck && <p className="hg-library-warning" role="alert">上次选择的预组已不在当前目录，请重新选择。</p>}
         <label className="hg-field">你的称呼<input value={name} onChange={event => { setName(event.target.value); submittedName.current = null; }} maxLength={24} placeholder="留空自动生成称呼" autoComplete="nickname" disabled={busy} /></label>
         {!joining ? <div className="hg-mode-select" role="group" aria-label="对战模式">

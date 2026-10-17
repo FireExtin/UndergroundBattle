@@ -1,0 +1,42 @@
+{
+  "status": "WIP — incomplete full validation; not reviewed or published",
+  "baseline": "000c0846bd90dc23310813b953551550e850124e",
+  "engine": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+  "pool": "limited-v2.75-msjc04-msjc05-societies-candidate",
+  "wasm": {
+    "bytes": 3174213,
+    "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+  },
+  "fixture": {
+    "bytes": 184016,
+    "sha256": "5d6f78aa1877f0e6d64fbef14e655ff6036c8615448c31d46782e05d8ab29380"
+  },
+  "completed": {
+    "nativeFocused": 18,
+    "nativeWasm": {
+      "scenarios": 6,
+      "commands": 39,
+      "rejected": 6,
+      "projections": 180,
+      "compilerInputs": 129
+    },
+    "frozen82AndRouting": 10,
+    "frontendFocused": 35,
+    "source": 55,
+    "typescript": "passed"
+  },
+  "running": [
+    "full Native workspace lib regression"
+  ],
+  "pending": [
+    "full frontend regression",
+    "seven-kernel production build and HTTP/D1 regression",
+    "production-browser deck naming/save/reload/select/start and ability flows",
+    "parent serial independent review including explicit identical conditional-body scope approval"
+  ],
+  "sourceQuestion": {
+    "preservedArchivalQuestion": "conditionalActivation",
+    "interpretation": "Propose the same finite paid-frame, resolution-time initiative condition already used by admitted colored societies, for these two identical printed bodies only. Not an official FAQ ruling. Parent review must explicitly approve this scope."
+  },
+  "production": "No new version saved/deployed; latest remains ABI82/v64. Ordinary-browser TLS blocked at12:25UTC."
+}

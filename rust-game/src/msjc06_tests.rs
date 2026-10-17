@@ -53,7 +53,7 @@ fn draft(spec: &Spec, colored: usize, total: usize) -> deck::DeckDraft {
     }
     d
 }
-fn initial(spec: &Spec) -> Game {
+pub(super) fn initial(spec: &Spec) -> Game {
     let mut g = Game::new_with_deck(
         format!("{}-unit", spec.id.to_lowercase()),
         "LOCAL".into(),
@@ -101,7 +101,7 @@ fn initial(spec: &Spec) -> Game {
 fn source(g: &Game, s: usize) -> String {
     g.players[s].society_zone.card.as_ref().unwrap().id.clone()
 }
-fn activate(g: &Game, s: usize, key: &str) -> Action {
+pub(super) fn activate(g: &Game, s: usize, key: &str) -> Action {
     Action {
         card_id: Some(source(g, s)),
         ability_id: Some(key.into()),
@@ -365,7 +365,7 @@ pub(super) fn empty_search(spec: &Spec) {
 pub(super) fn cancelled_frame(spec: &Spec) {
     let mut g = initial(spec);
     fund(&mut g, 0, 4);
-    let c = g.make_card(spec.uniques[0], 0);
+    let c = g.make_card(spec.uniques.first().copied().unwrap_or(spec.cards[0]), 0);
     g.players[0].deck.push(c);
     let a = activate(&g, 0, spec.search);
     g.apply(0, a).unwrap();
@@ -384,6 +384,42 @@ pub(super) fn cancelled_frame(spec: &Spec) {
         g.players[0].assets.iter().filter(|c| c.exhausted).count(),
         4
     );
+}
+pub(super) fn no_unique_in_admitted_pool(spec: &Spec) {
+    assert!(!catalog::catalog().cards.iter().any(|c| c.color == spec.color && c.unique));
+    let mut g = initial(spec);
+    for s in 0..4 {
+        g.begin_window(Window::Action(g.team(s)));
+        fund(&mut g, s, 4);
+        // Real gray ordinary cards plus real red/neutral gold cards. Gold name
+        // and printed color are both required; neither alone is sufficient.
+        for id in spec.cards.iter().copied().chain(["JC052", "LC23"]) {
+            let c = g.make_card(id, s);
+            g.players[s].deck.push(c);
+        }
+        let n = g.players[s].deck.len();
+        let rng = g.random;
+        let a = activate(&g, s, spec.search);
+        g.apply(s, a).unwrap();
+        restore(&mut g);
+        pass_top(&mut g);
+        assert!(g.pending.is_none() && g.players[s].hand.is_empty());
+        assert_eq!(g.players[s].deck.len(), n);
+        assert_ne!(g.random, rng);
+        assert_eq!(g.players[s].assets.iter().filter(|c| c.exhausted).count(), 4);
+        assert!(g.players[s].society_zone.card.as_ref().unwrap().exhausted);
+        assert!(g.players[s].society_zone.used_once_per_game.contains(spec.search));
+        for later in s + 1..4 {
+            assert!(g.players[later].society_zone.used_once_per_game.is_empty());
+        }
+        for viewer in 0..4 {
+            let view = g.view(viewer);
+            assert!(view.pending_choice.is_none());
+            assert_eq!(view.society_zones[s].card.as_ref().unwrap().used_once_per_game,
+                Some(vec![spec.search.into()]));
+        }
+        restore(&mut g);
+    }
 }
 pub(super) fn quota_lifecycle(spec: &Spec) {
     let mut g = initial(spec);

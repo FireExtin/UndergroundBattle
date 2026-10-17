@@ -1,0 +1,18 @@
+{
+  "purpose": "Exact immutable published v64 ABI82 dependency. Preserve the published raw WASM/JS and original Native witness before red/gray society development. Never rebuild or migrate old rooms.",
+  "providerSource": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+  "reviewedSource": "398e220721f9e14c4f523530183c6288b7749096",
+  "reviewedEvidence": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+    "engineVersion": "rust-v0.2.82-response-source-preview-candidate"
+  },
+  "wasmBytes": 3165174,
+  "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "gzipSha256": "b9e853c63ae5ed6ab54e5938428fae4c47bead1c37adedec0eb7b364c849e29c",
+  "nativeFixtureSha256": "0242797053882360449e6d6922c6eb8652229b4086bdefc7da4ce961deba4da8",
+  "nativeRawSha256": "e1b08ea112e7f81d369c13f21743700470474800eb54d4c3d7de11d9249543b2",
+  "nativeRawBytes": 2405888
+}

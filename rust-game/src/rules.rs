@@ -1378,10 +1378,12 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             "JZ24" => Some(jz24_definition()),
             "JZ22" => Some(jz22_definition()),
             "MSJC03" => Some(msjc03_definition()),
+            "MSJC04" => Some(red_gray_society_definition("红", "search-red-unique")),
+            "MSJC05" => Some(red_gray_society_definition("灰", "search-gray-unique")),
             _ => None,
         };
         if expected.is_some_and(|d| serde_json::to_value(definition).unwrap() != serde_json::to_value(d).unwrap()) {
-            return Err(format!("{card_id}: only the complete admitted blue definition is supported"));
+            return Err(format!("{card_id}: only the complete admitted definition is supported"));
         }
         if definition.modifiers.iter().any(|m| matches!(m, StaticModifier::JC030BloodAssetsVampireAndInvestigation)) && card_id != "JC030" {
             return Err(format!("cardId={card_id}: JC030 modifier is not admitted here"));
@@ -1838,6 +1840,18 @@ fn msjc03_definition() -> Definition {
     d.abilities[1].label = "蓝色独有检索（每局一次）".into();
     if let Op::Search { filter, .. } = &mut d.abilities[1].ops[0] {
         *filter = CardFilter::PrintedColorAndUnique { color: "蓝".into() };
+    }
+    d
+}
+fn red_gray_society_definition(color: &str, search_key: &str) -> Definition {
+    // The printed bodies share the established colored-society program. The
+    // initiative condition belongs to resolution, and the search quota is paid
+    // on activation even when no matching card exists in the admitted pool.
+    let mut d = msjc02_definition();
+    d.abilities[1].key = search_key.into();
+    d.abilities[1].label = format!("{color}色独有检索（每局一次）");
+    if let Op::Search { filter, .. } = &mut d.abilities[1].ops[0] {
+        *filter = CardFilter::PrintedColorAndUnique { color: color.into() };
     }
     d
 }
@@ -3717,6 +3731,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         {
             m.insert("MSJC02".into(), msjc02_definition());
             m.insert("MSJC03".into(), msjc03_definition());
+            m.insert("MSJC04".into(), red_gray_society_definition("红", "search-red-unique"));
+            m.insert("MSJC05".into(), red_gray_society_definition("灰", "search-gray-unique"));
             let mut search = ability(
                 "search-purple-unique",
                 "紫色独有检索（每局一次）",

@@ -12,7 +12,7 @@ test('BQ035 and subsequent JZ46 preserve every prior 143 card and all deck/world
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(c=>!['BQ035','JZ46','WM062','JC054'].includes(c.id))),'927fff6b3556ca40c0bacadfb9ebc83aa6e4b01f18540f7c6f678d4731ef43e9');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
 });
 test('BQ035 corrects only its pinned blue loyalty and keeps source verification distinct from game acceptance',()=>{
   const {BQ035,...others}=specs;
@@ -32,5 +32,5 @@ test('BQ035 original art and all existing public scans remain exact pinned bytes
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
   assert.deepEqual(read('web/public/cards/BQ035.jpg'),original);
-  const r=validateAdmittedScans();assert.equal(r.checkedCards,147);assert.equal(r.manifestEntries,158);
+  const r=validateAdmittedScans();assert.equal(r.checkedCards,147);assert.equal(r.manifestEntries,160);
 });

@@ -245,6 +245,10 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
           </div>
           {notice && <p className="hg-library-notice" role="status">{notice}</p>}
         </div>
+        {selectedDraft && !sameDeckSnapshot(draft, selectedDraft) && <div className="hg-library-selection-load">
+          <button type="button" className="hg-button hg-button-quiet" disabled={disabled || dirty} onClick={() => replace(publicDeckDraft(selectedDraft), true)}>载入当前入席快照</button>
+          <p className="hg-muted">{dirty ? '请先保存当前未保存的编辑，再载入入席快照。' : `将「${selectedDraft.name}」及其秘社载入编辑区；载入后可命名、调整组成并保存。`}</p>
+        </div>}
         <h3>我的已保存牌组</h3>
         {saved.length > 0 && <ul className="hg-library-saved" aria-label="已保存牌组">{saved.map(item => <li key={item.id}>
           <button type="button" aria-pressed={draft.id === item.id} disabled={disabled} onClick={() => { if (draft.id !== item.id) replace(publicDeckDraft(item)); }}><strong>{item.name || '未命名牌组'}</strong><span>{item.cards.reduce((sum, entry) => sum + entry.count, 0)} 张 · {validateDeckDraft(item, catalog).valid ? '构筑校验通过' : '待修正'}{selectedDraft?.id === item.id ? sameDeckSnapshot(selectedDraft, item) ? ` · ${selectedDraftLabel}` : selectedDraftLabel === '实际上桌' ? ' · 与上桌快照不同' : ' · 所选为旧快照，需重新选择入席' : ''}{draft.id === item.id && dirty ? ' · 正在编辑未保存修改' : ''}</span></button>

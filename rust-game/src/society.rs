@@ -175,6 +175,24 @@ impl Game {
     }
 }
 
+#[cfg(not(feature = "society-fixtures"))]
+fn red_gray_society(id: &str, name: &str, subtitle: &str, color: &str, subtype: &str) -> SocietyDefinition {
+    let mut card: CardDefinition = serde_json::from_value(serde_json::json!({
+        "id":id,"name":name,"kind":"society","type":format!("秘社/{subtype}"),
+        "subtypes":[subtype],"color":color,"society":name,"unique":true,"supported":true,
+        "text":format!("持续：构筑时你的牌组中需包含25张或更多{color}色派系的牌。行动3，横置：若你具有先手标志，则抓一张牌。行动4，横置：从你的牌库中寻找一张{color}色独有牌，展示该牌后置于你的手中，然后将你的牌库洗牌。该能力每局游戏只能发动一次。")
+    })).expect("verified whole original MSJC04/MSJC05");
+    card.abilities = crate::rules::definition(id).abilities.iter().map(|a| crate::catalog::AbilitySummary {
+        key: a.key.clone(), label: a.label.clone(), timing: "standard".into(),
+        costs: a.costs.clone(), triggered: false,
+    }).collect();
+    SocietyDefinition {
+        card, subtitle: subtitle.into(), printed_cost: None, starting_hand: 6,
+        deck_constraints: vec![SocietyDeckConstraint::MinimumColor { color: color.into(), count: 25 }],
+        unresolved_abilities: BTreeMap::new(),
+    }
+}
+
 pub(crate) fn definitions() -> Vec<SocietyDefinition> {
     #[cfg(not(feature = "society-fixtures"))]
     {
@@ -316,7 +334,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         throne_card.abilities = crate::rules::definition("MSJC03").abilities.iter().map(|a| crate::catalog::AbilitySummary {
             key:a.key.clone(),label:a.label.clone(),timing:"standard".into(),costs:a.costs.clone(),triggered:false,
         }).collect();
-        vec![
+        let mut societies = vec![
             msjc09,
             msjc01,
             SocietyDefinition {
@@ -379,7 +397,12 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
                 deck_constraints: vec![SocietyDeckConstraint::MinimumColor { color: "蓝".into(), count: 25 }],
                 unresolved_abilities: BTreeMap::new(),
             },
-        ]
+        ];
+        societies.extend([
+            red_gray_society("MSJC04", "鸣钟教派", "末日钟的侍奉者", "红", "秘密教派"),
+            red_gray_society("MSJC05", "国家机构", "政府权力", "灰", "机构"),
+        ]);
+        societies
     }
     #[cfg(feature = "society-fixtures")]
     {

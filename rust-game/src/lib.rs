@@ -177,6 +177,9 @@ mod msjc08_tests;
 mod msjc11_tests;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]
+mod msjc0405_tests;
+
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc029_tests;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]

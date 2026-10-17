@@ -1,0 +1,68 @@
+[
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/native-first.log.gz",
+    "rawBytes": 1912,
+    "rawSha256": "76c67bcb6fc400c2aee6ab71344eee865cc933936efca4a302d2448feaabc69b",
+    "gzipSha256": "31e72900fa7881dc742700cf2e1113a63f7e04ce9bf9c1e97ba2c6b9ea12bcc8"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/wasm-build-first.log.gz",
+    "rawBytes": 220,
+    "rawSha256": "df60bd27b019ba996585dcacec4c01be16ff0954e856d0509992d3f1f53b9a3c",
+    "gzipSha256": "321a9d9fc4b279fe2f422f77549bb68ea47081c40b10026f087a0b5d15225b89"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/native-wasm-first.log.gz",
+    "rawBytes": 362,
+    "rawSha256": "7e593ca98274982af356d918e7e7e0c9b379c7cb19fd71316e31e6ce10d79c43",
+    "gzipSha256": "9be8b5ef74913eb6e65be63d1cf0c1296729613226dfb2df9d20bb43a33bc471"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frozen-routing-first.log.gz",
+    "rawBytes": 2050,
+    "rawSha256": "238a081d791d541250c0847a35e32e13acb1c9e3c913910201fddc8ff5d143d4",
+    "gzipSha256": "2ef98dac66e2ec1a536779da525e06cc40b458c64a46dfca98a4451c384daf7e"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frozen-routing-corrected.log.gz",
+    "rawBytes": 1154,
+    "rawSha256": "9fa202d565d1a251e988633ef1efb5846e16e95c7a91b5fff59195e686beb85b",
+    "gzipSha256": "bcd7bc04be9ed92eeea4330d37f3c87fe4efe4a0f4ac6f6ab92660ecb31f8196"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/typecheck-first.log.gz",
+    "rawBytes": 324,
+    "rawSha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5",
+    "gzipSha256": "bd2a61a4380b08ae8e78d294046d07c92f6c82efe600108321b53eb0a1f473f4"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frontend-first.log.gz",
+    "rawBytes": 1299,
+    "rawSha256": "6e10f5253fe3bba70ada028d4efa0117653528876ad7141bdfa1a49dcea5d206",
+    "gzipSha256": "091b9e245ed4a368e4568fd6e6b271473e0fcd96ec0d01ebde9df4ecae4992fd"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frontend-corrected.log.gz",
+    "rawBytes": 601,
+    "rawSha256": "8dc2384fceb7d14524b9bf2b13e27eea0ce7bce3fd53fc6076cda0f6f41f743b",
+    "gzipSha256": "f35e1659e1d79caddc7cbe6c8dd5785cfc488ed9ad06b8917e220bda9b378752"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/frontend-second.log.gz",
+    "rawBytes": 601,
+    "rawSha256": "0ac3956e396a8efbceaf56e57ba078647a0982a11c8281c1ad63aee4f6211b0a",
+    "gzipSha256": "202d4d37bb15b62eee8294c4ddcb3243e6d0374a94a80fd16e4a12b0ce9a2fc9"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/source-first.log.gz",
+    "rawBytes": 6410,
+    "rawSha256": "fd5873ac630960ea20f3accbe7a33772104c5c023cbbf5cce550f51b0dbcd829",
+    "gzipSha256": "a33edf48f58834ecabc956689768fed42294c680b278c9dd3f3f615bf23b6869"
+  },
+  {
+    "path": "docs/evidence/msjc0405-2026-10-17/source-corrected.log.gz",
+    "rawBytes": 5547,
+    "rawSha256": "cf056bfac68f4b5eff6a694adb8a0819df4dc9377ba0ba71365ebc237638844c",
+    "gzipSha256": "55b917d562b8a4dc4c3bee38f8b992da65797cf81300dee2dcf925df758b8227"
+  }
+]

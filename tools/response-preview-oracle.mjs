@@ -1,4 +1,4 @@
-// Compiler-bound Native82 observations, with complete opaque states and views.
+// Exact published v64 Native82 observations; never rebind or re-sign with newer source.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -11,15 +11,9 @@ export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.74-jc054-complete-conceal-candidate',engineVersion:'rust-v0.2.82-response-source-preview-candidate'};
 export const scenarioNames=['preview-then-real-reveal','preview-pause-expiry','preview-peer-pass-cancel'].sort();
 export function assertSources(binding) {
-  assert.equal(binding.algorithm,'sha256');
-  const files=Object.entries(binding.files);
-  assert.equal(files.length,128,'Complete Native82 compiler input count');
-  for(const [file,hash]of files) {
-    assert(!path.isAbsolute(file)&&!file.split('/').includes('..'),'Relative repository input only');
-    assert.match(hash,/^[0-9a-f]{64}$/);
-    assert.equal(sha256(readFileSync(path.join(root,file))),hash,'Native82 source drift: '+file);
-  }
-  assert.ok(binding.files['rust-game/src/response_preview_tests.rs']);
+  const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi82/native-source-binding.json'),'utf8'));
+  assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(saved.files).length,128,'Exact published Native82 input count');
+  assert.deepEqual(binding,saved,'Historical Native82 compiler binding must remain unchanged');
 }
 function assertViews(views) {
   assert.equal(views.length,4);
@@ -57,13 +51,18 @@ export function validateNative(raw) {
 }
 export function loadFixture() {
   const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/responsePreviewNative82.fixture.json.gz'));
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi82/identity.json'),'utf8'));
+  assert.equal(sha256(bytes),pinned.nativeFixtureSha256,'Published Native82 fixture bytes must not change');
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'response-preview-native82-raw-v1');
+  assert.equal(bundle.raw.sha256,pinned.nativeRawSha256);assert.equal(bundle.raw.bytes,pinned.nativeRawBytes);
   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
   const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);
   return {...bundle,...raw};
 }
 export function compare(fixture,abi,bytes) {
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi82/identity.json'),'utf8'));
+  assert.equal(sha256(bytes),pinned.wasmSha256,'Only exact published v64 WASM may check Native82');
   assert.equal(sha256(bytes),fixture.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
   for(const scenario of fixture.scenarios) {
     scenario.initial.views.forEach((v,s)=>assert.deepEqual(JSON.parse(abi.view(scenario.initial.state,s)),v,scenario.name+' initial'));
@@ -86,6 +85,9 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
   const [nativeFile,wasmFile,destination]=process.argv.slice(2);
   if(!destination)throw Error('Usage: response-preview-oracle.mjs Native82.json fresh82.wasm NEW.fixture.json.gz');
   const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
+  const pinned=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi82/identity.json'),'utf8'));
+  assert.equal(sha256(json),pinned.nativeRawSha256,'Only the original published Native82 bytes may be restored');
+  assert.equal(sha256(bytes),pinned.wasmSha256,'A newer build cannot re-sign Native82');
   const bundle={format:'response-preview-native82-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
   const {kernel,moduleBytes}=await import('../rust-game-wasm/tests/current82-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
   const result=compare({...bundle,...raw},kernel,bytes);

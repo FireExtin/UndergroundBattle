@@ -788,5 +788,15 @@
     "url": "/cards/JC054.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC054 蒙古死亡蠕虫.jpg",
     "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
+  },
+  "MSJC04": {
+    "url": "/cards/MSJC04.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg",
+    "sha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3"
+  },
+  "MSJC05": {
+    "url": "/cards/MSJC05.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg",
+    "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3"
   }
 }

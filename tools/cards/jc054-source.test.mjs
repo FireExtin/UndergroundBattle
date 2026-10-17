@@ -14,8 +14,8 @@ test('JC054 adds only one complete red card while preserving all 146 earlier car
   const {cards:old,cardPoolVersion:oldPool,engineVersion:oldEngine,...oldMetadata}=previous;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.deepEqual(cards.filter(c=>c.id!=='JC054'),old);assert.deepEqual(metadata,oldMetadata);
-  assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
-  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
+  assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
 });
 test('JC054 complete printed fields stay pinned without promoting source-only acceptance or admitting neutral/dual cards',()=>{
   const f=spec.fields,s=spec.sourceVerification;
@@ -30,5 +30,5 @@ test('JC054 scan is exactly its reviewed original and all 147 ordinary scans ret
   const bytes=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(bytes).digest('hex'),'3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2');
   assert.deepEqual(bytes,read('web/public/cards/JC054.jpg'));
-  const result=validateAdmittedScans();assert.equal(result.checkedCards,147);assert.equal(result.manifestEntries,158);
+  const result=validateAdmittedScans();assert.equal(result.checkedCards,147);assert.equal(result.manifestEntries,160);
 });

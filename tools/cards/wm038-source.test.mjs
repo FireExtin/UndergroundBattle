@@ -12,7 +12,7 @@ test('WM038 preserves all 136 definitions and metadata from cumulative 912f230',
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'9d71a64108f1850060337fda12466c5e588c0f8b3e7d762f898ea678a0bc7b37');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.82-response-source-preview-candidate');assert.equal(cardPoolVersion,'limited-v2.74-jc054-complete-conceal-candidate');
+  assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
 });
 test('WM038 complete fields match the pinned original and have no unresolved source question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'d7ac78da2029dee8ce26aaa645df0261c1ba21dba9db34f276cab404bf0f7143');
