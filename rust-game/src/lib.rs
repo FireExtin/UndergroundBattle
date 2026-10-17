@@ -135,6 +135,8 @@ mod bounded_entry_fresh_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz50_search_tests;
 pub mod room;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod response_preview_tests;
 pub mod rules;
 #[cfg(feature = "native")]
 pub mod service;

@@ -222,7 +222,12 @@ export function isRoomView(value: unknown, session: SavedSession): value is View
     && (view.pendingChoice === null || !!view.pendingChoice && typeof view.pendingChoice === 'object'
       && records(view.pendingChoice.options))
     && (view.responseWindow === undefined || view.responseWindow === null
-      || typeof view.responseWindow === 'object' && records(view.responseWindow.members))
+      || typeof view.responseWindow === 'object' && records(view.responseWindow.members)
+        && (view.responseWindow.previewSources === undefined || records(view.responseWindow.previewSources)
+          && view.responseWindow.previewSources.every(hint => typeof hint.kind === 'string' && hint.kind.length > 0
+            && (hint.cardId === undefined || typeof hint.cardId === 'string' && hint.cardId.length > 0)
+            && (hint.abilityId === undefined || typeof hint.abilityId === 'string' && hint.abilityId.length > 0)
+            && Object.keys(hint).every(key => ['kind', 'cardId', 'abilityId'].includes(key)))))
     && !!view.versions && typeof view.versions.rules === 'string'
     && typeof view.versions.cardPool === 'string' && typeof view.versions.engine === 'string';
 }

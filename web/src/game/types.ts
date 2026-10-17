@@ -79,6 +79,8 @@ export type ResponseIntentWindow = {
   id: string; stackTopId: string; holderTeam: number;
   members: { playerId: string; status: 'undecided' | 'composing' | 'passed'; deadlineMs?: number }[];
   canBegin: boolean; myIntentId?: string;
+  /** Display-only source summaries; absent on retained kernels. */
+  previewSources?: Pick<LegalAction, 'kind' | 'cardId' | 'abilityId'>[];
 };
 export type PassRecord = {
   id: string; version: number; playerId: string; playerName: string; turn: number;

@@ -307,6 +307,22 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const groups = groupObjectActions(sourceActions);
   const responseWindow = view.responseWindow;
   const stackTop = view.stack.at(-1);
+  const responseDecision = responseWindow?.members.find(member => member.playerId === view.you);
+  const previewDeadlineKey = responseWindow && responseDecision?.status === 'undecided'
+    && typeof responseDecision.deadlineMs === 'number' && typeof view.serverNowMs === 'number'
+    && Number.isFinite(responseDecision.deadlineMs) && Number.isFinite(view.serverNowMs)
+    ? JSON.stringify([responseWindow.id, responseWindow.stackTopId, responseDecision.deadlineMs]) : null;
+  const [expiredPreviewDeadline, setExpiredPreviewDeadline] = useState<string | null>(null);
+  useEffect(() => {
+    if (!previewDeadlineKey || view.pause) return;
+    // Same trusted server deadline used by the response controls. This only
+    // removes a display hint; it never posts a command or starts an intent.
+    const timer = window.setTimeout(() => setExpiredPreviewDeadline(previewDeadlineKey),
+      Math.max(0, responseDecision!.deadlineMs! - view.serverNowMs!));
+    return () => window.clearTimeout(timer);
+  }, [previewDeadlineKey, responseDecision?.deadlineMs, view.serverNowMs, !!view.pause]);
+  const previewDeadlineExpired = !!previewDeadlineKey && (expiredPreviewDeadline === previewDeadlineKey
+    || responseDecision!.deadlineMs! <= view.serverNowMs!);
   // Peer decisions advance the revision without ending this player's composing intent.
   const responseFrame = view.status === 'playing' && responseWindow?.myIntentId
     && responseWindow.stackTopId === stackTop?.id && stackTop?.resolutionState !== 'resolving'
@@ -325,7 +341,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const targetIds = new Set(destinations.filter(action => action.cardId === selectedCard && action.targetId && (selectedRegion === null || action.region === selectedRegion)).map(action => action.targetId!));
   const regionIds = new Set(destinations.filter(action => action.cardId === selectedCard && action.region !== undefined && (!selectedTarget || action.targetId === selectedTarget)).map(action => action.region!));
   const actionBusy = busy || uncertain || !!view.pendingChoice || !!view.waitingChoice;
-  const hints = actionHints(view, allCards, definitions, actionBusy || connection !== 'online' || !!activeGroup);
+  const hints = actionHints(view, allCards, definitions, actionBusy || connection !== 'online' || !!activeGroup || previewDeadlineExpired);
   const validSelection = (!selectedTarget && selectedRegion === null) || !!activeGroup?.actions.some(action => !unavailable(action)
     && (!selectedTarget || action.targetId === selectedTarget)
     && (selectedRegion === null || action.region === selectedRegion && draft?.regionId === region?.id));
@@ -419,12 +435,13 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const choiceName = view.players.find(player => player.id === choicePlayer)?.name;
   const status = view.status === 'finished' ? '对局已结束' : view.pendingChoice ? '请你完成下方选择' : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'}：${view.waitingChoice.title}` : view.legalActions.length ? '轮到你参与行动' : `等待 ${teamName(view.priorityTeam, view)} 行动`;
   const browsingOnly = view.status !== 'playing' || !view.legalActions.some(action => action.kind !== 'choose') || !!view.waitingChoice;
-  const nextStep = view.status === 'finished' ? '本局已结束，可回顾牌桌' : view.pendingChoice ? `下一步：${view.pendingChoice.title}` : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'} 完成选择，可浏览牌桌` : activeGroup ? matchingActions.length ? '下一步：确认所选目标，或取消' : `下一步：点选高亮${needsTarget && !selectedTarget ? '目标' : '地区'}，或取消` : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌` : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口' : societyCards.length ? '下一步：点选手牌、角色、附属、秘社或地区查看动作' : '下一步：点选手牌、角色、附属或地区查看动作';
+  const nextStep = view.status === 'finished' ? '本局已结束，可回顾牌桌' : view.pendingChoice ? `下一步：${view.pendingChoice.title}` : view.waitingChoice ? `等待 ${choiceName || '另一位玩家'} 完成选择，可浏览牌桌` : activeGroup ? matchingActions.length ? '下一步：确认所选目标，或取消' : `下一步：点选高亮${needsTarget && !selectedTarget ? '目标' : '地区'}，或取消` : previewDeadlineExpired ? '等待服务器确认响应窗口' : responseWindow?.canBegin ? '下一步：选择连锁以查看并确认响应，或让过' : !view.legalActions.length ? `等待 ${teamName(view.priorityTeam, view)} 行动，可浏览牌桌` : view.legalActions.length === 1 && globalActions[0]?.kind === 'pass' ? '下一步：让过，推进当前窗口' : societyCards.length ? '下一步：点选手牌、角色、附属、秘社或地区查看动作' : '下一步：点选手牌、角色、附属或地区查看动作';
   const candidateStatus = view.pause ? '牌桌已暂停'
     : busy || uncertain || connection !== 'online' ? '正在同步，候选提示暂时收起'
     : view.pendingChoice || view.waitingChoice ? '先完成当前选择，暂不提示卡牌行动'
     : activeGroup ? '正在选目标；虚线框标出当前动作的合法目标'
-    : hints.types.length ? `当前候选：${hints.types.join('、')}`
+    : previewDeadlineExpired ? '响应决定时间已到，等待服务器确认'
+    : hints.types.length ? `${hints.preview ? '响应候选' : '当前候选'}：${hints.types.join('、')}${hints.preview ? '；先选择“连锁”再提交' : ''}`
     : responseWindow?.canBegin ? '先选择“连锁”，再查看响应候选'
     : '当前没有卡牌候选行动，可查看下方窗口操作';
   const renderMat = (player: Player) => <PlayerMat key={player.id} player={player} view={view} catalog={catalog} definitions={definitions} candidateHints={hints.cards} selectedCard={selectedCard} selectedTarget={selectedTarget} targetIds={targetIds} picking={!!activeGroup} tagFor={tagFor} onCard={selectCard} onPreview={setHoveredCard} onReadDeckTop={() => { if (view.privateDeckTop) setReading({ instanceId: view.privateDeckTop.instanceId, roomId: view.roomId, viewerId: view.you, privateDeckTop: true }); }} />;

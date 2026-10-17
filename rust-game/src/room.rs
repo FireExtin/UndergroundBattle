@@ -2,7 +2,7 @@
 //! Hosts authenticate seats and check original receipts before calling this reducer.
 use crate::{catalog, engine::RuleResult, model::*};
 use serde::{Deserialize, Serialize};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 pub const INTENT_DURATION_MS: u64 = 5_000;
 
@@ -112,6 +112,18 @@ pub struct ResponseWindowView {
     pub can_begin: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub my_intent_id: Option<String>,
+    /// Display-only sources before BeginResponse. Never submit these summaries.
+    #[serde(default)]
+    pub preview_sources: Vec<ResponseSourceHint>,
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ResponseSourceHint {
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub card_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ability_id: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -385,6 +397,17 @@ impl RoomEnvelope {
                     .legal_actions
                     .iter()
                     .any(|a| response_action(&a.action));
+            // Reuse the caller's already-computed engine candidates. No trial,
+            // intent, ID allocation, target disclosure or mutable session call.
+            let mut seen = BTreeSet::new();
+            let preview_sources = if can_begin && matches!(mine, Some(Decision::Undecided { deadline_ms })
+                if *deadline_ms > server_now_ms.max(self.pacing.last_server_now_ms)) {
+                view.legal_actions.iter().filter(|a| response_action(&a.action))
+                    .filter_map(|a| {
+                        let key=(a.action.kind.clone(),a.action.card_id.clone(),a.action.ability_id.clone());
+                        seen.insert(key.clone()).then_some(ResponseSourceHint {kind:key.0,card_id:key.1,ability_id:key.2})
+                    }).collect()
+            } else { vec![] };
             if !matches!(mine, Some(Decision::Composing { .. })) {
                 view.legal_actions.retain(|a| a.action.kind == "pass");
             }
@@ -411,6 +434,7 @@ impl RoomEnvelope {
                     })
                     .collect(),
                 can_begin,
+                preview_sources,
                 my_intent_id: if let Some(Decision::Composing { intent_id }) = mine {
                     Some(intent_id.clone())
                 } else {
