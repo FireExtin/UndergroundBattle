@@ -93,7 +93,7 @@ async function runScenario(t, scenario, expectedCards = 147) {
 for (const scenario of fixture.scenarios) test(`JC054 ABI81 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
 
-for (const name of ['frame-00','order-00']) test(`JC054 corrupted ${name} fails before local D1 writes`, async t=>{
+for (const name of ['frame-00','order-00',...fixture.invalid.map(row=>row.name).filter(name=>name.startsWith('paid-stack-')||name.startsWith('successor-'))]) test(`JC054 corrupted ${name} fails before local D1 writes`, async t=>{
   const invalid=fixture.invalid.find(row=>row.name===name);assert(invalid);
   const reference=fixture.scenarios.find(s=>s.name==='paid-deploy'),outer=JSON.parse(invalid.state);
   const scenario={name:'invalid-'+name,initial:{state:invalid.state,views:reference.initial.views.map(v=>({...v,roomId:reference.initial.views[0].roomId,inviteCode:outer.game.invite_code,version:outer.revision}))}};

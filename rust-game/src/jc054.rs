@@ -134,9 +134,11 @@ impl Game {
                 expected.time_markers = 0; expected.lock_markers = 0;
                 expected.damage = 0; expected.wounds = 0; expected.shield = 0;
                 expected.controller = if o.baseline_eliminated { source.card.owner } else { baseline };
+                let successor_still_hidden = self.regions.iter().any(|r| !r.vacant
+                    && r.cards.iter().any(|c| c.id == o.successor.id && c.face_down));
                 if expected.id.is_empty() || expected.id == source.card.id || !same(&expected, &o.successor)
                     || self.jc054_physical_cards().any(|c| c.id == source.card.id
-                        || c.id == o.successor.id && (c.owner != o.successor.owner || c.definition != "JC054")) {
+                        || c.id == o.successor.id && (c.owner != o.successor.owner || c.definition != "JC054" || !successor_still_hidden)) {
                     return Err("JC054潜伏必须保留朝向、清理旧实体并生成真实暗藏者".into());
                 }
             }
@@ -354,6 +356,9 @@ impl Game {
         }
         for s in &self.stack {
             if let Some(f) = &s.frame {
+                if s.card.as_ref().is_some_and(|c| c.definition == "JC054") && f.source.card.definition != "JC054" {
+                    return Err("JC054堆栈实体与冻结来源归属不符".into());
+                }
                 self.validate_jc054_frame(f)?;
                 if related(f) && !crate::mobility::related_frame(f) {
                     if s.id != f.frame_id || s.controller != f.actor || s.target.is_some() || f.cursor != 0
@@ -362,8 +367,11 @@ impl Game {
                         return Err("JC054未结算堆栈外壳或重复帧无效".into());
                     }
                     if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
-                        if s.card.as_ref().is_none_or(|c| c.definition != "JC054" || c.face_down || c.owner != f.source.card.owner
-                            || c.controller != f.actor || c.id == f.source.card.id)
+                        if s.card.as_ref().is_none_or(|c| {
+                            let mut expected=f.source.card.clone();
+                            expected.id=c.id.clone();expected.time_markers=0;expected.lock_markers=0;expected.face_down=false;
+                            c.id == f.source.card.id || !same(c,&expected)
+                        })
                             || s.deploy_region != f.source.region || s.reveal != (f.ability_key == "reveal") {
                             return Err("JC054派遣／现身事务卡不符".into());
                         }

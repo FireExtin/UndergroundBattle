@@ -124,6 +124,75 @@ fn jc054_real_paid_deploy_secret_deploy_and_reveal_do_not_emit_conceal() {
     restore_both(&h);
 }
 
+fn paid_stack(reveal: bool, marked: bool) -> Game {
+    let mut g=u::game();u::fund(&mut g,0,"JC125",4);
+    let id=if reveal {u::field(&mut g,"JC054",0)} else {u::held(&mut g,"JC054",0)};
+    let c=if reveal {g.board_mut(&id).unwrap()} else {g.players[0].hand.iter_mut().find(|c|c.id==id).unwrap()};
+    c.face_down=reveal;
+    // Explicit primitive attributes exercise fresh's actual normalization; they
+    // do not invent a rule for obtaining these marks during natural gameplay.
+    if marked {c.exhausted=true;c.damage=1;c.wounds=2;c.shield=3;}
+    u::act(&mut g,0,Action {card_id:Some(id),region:if reveal {None} else {Some(0)},..Action::new(if reveal {"reveal"} else {"deploy"})});
+    g
+}
+
+fn corrupt_paid_stacks() -> Vec<Value> {
+    let mut cases=vec![];
+    for reveal in [false,true] {
+        let g=paid_stack(reveal,false);let base=serde_json::to_value(&g).unwrap();
+        let kind=if reveal {"reveal"} else {"deploy"};
+        for (field,value) in [("exhausted",json!(true)),("damage",json!(1)),("wounds",json!(1)),("shield",json!(1)),("time_markers",json!(1)),("lock_markers",json!(1))] {
+            let mut bad=base.clone();bad["stack"][0]["card"][field]=value;
+            cases.push(invalid_case(format!("paid-stack-{kind}-{field}"),&g,&bad));
+        }
+        let mut wrong=base.clone();wrong["stack"][0]["frame"]["source"]["card"]["definition"]=json!("JC125");
+        cases.push(invalid_case(format!("paid-stack-{kind}-wrong-source"),&g,&wrong));
+    }
+    cases
+}
+
+#[test]
+fn jc054_p2_paid_stack_cards_reject_mutation_in_both_restore_paths() {
+    assert_eq!(corrupt_paid_stacks().len(),14);
+}
+
+#[test]
+fn jc054_p2_paid_deploy_and_reveal_preserve_all_actual_fresh_fields() {
+    for reveal in [false,true] {for marked in [false,true] {
+        let g=paid_stack(reveal,marked);let item=g.stack.last().unwrap();let source=&item.frame.as_ref().unwrap().source.card;
+        let mut expected=source.clone();expected.id=item.card.as_ref().unwrap().id.clone();
+        expected.time_markers=0;expected.lock_markers=0;expected.face_down=false;
+        assert_eq!(serde_json::to_value(item.card.as_ref().unwrap()).unwrap(),serde_json::to_value(expected).unwrap());
+        restore_both(&g);
+    }}
+}
+
+fn corrupt_surviving_successor() -> Vec<Value> {
+    let (g,hidden)=burst();let base=serde_json::to_value(&g).unwrap();let mut cases=vec![];
+    let mut face_up=base.clone();face_up["regions"][0]["cards"][0]["face_down"]=json!(false);
+    cases.push(invalid_case("successor-face-up".into(),&g,&face_up));
+    let mut off_board=base.clone();let card=off_board["regions"][0]["cards"].as_array_mut().unwrap().remove(0);
+    assert_eq!(card["id"],hidden);off_board["players"][0]["hand"].as_array_mut().unwrap().push(card);
+    cases.push(invalid_case("successor-off-board".into(),&g,&off_board));cases
+}
+
+#[test]
+fn jc054_p2_surviving_successor_must_be_a_hidden_board_entity_in_both_restore_paths() {
+    assert_eq!(corrupt_surviving_successor().len(),2);
+}
+
+#[test]
+fn jc054_p2_successor_can_move_change_mutable_fields_and_legally_leave() {
+    let (mut g,hidden)=burst();g.move_on_board_instance(&hidden,1);
+    g.add_control(&hidden,2,ControlLifetime::TurnEnd {turn:g.turn},SubtypeChange::None);
+    let c=g.board_mut(&hidden).unwrap();c.exhausted=true;c.damage=2;c.wounds=3;c.shield=4;
+    restore_both(&g);
+    let (mut g,hidden)=burst();u::fund(&mut g,0,"JC125",4);
+    let mut trace=Trace::new("paid-response-reveal",g);
+    trace.action(0,Action {card_id:Some(hidden.clone()),..Action::new("reveal")});
+    assert!(trace.room.game.board(&hidden).is_none());restore_both(&trace.room.game);
+}
+
 #[test]
 fn jc054_end_and_burst_are_mandatory_separate_responsive_frames_with_simultaneous_damage() {
     let mut g = u::game();
@@ -457,7 +526,8 @@ fn jc054_native81_room_oracles() {
     t.command(0,SessionAction::ResumeRoom,false);assert_eq!(t.room.game.pending.as_ref().unwrap().choice.id,choice);
     t.finish();scenarios.push(t.export());
     let (g,_)=burst();invalid.extend(corrupt_frames(&g));invalid.extend(corrupt_grants());invalid.extend(corrupt_instances());invalid.extend(corrupt_markers());
-    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),28);
+    invalid.extend(corrupt_paid_stacks());invalid.extend(corrupt_surviving_successor());
+    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),44);
     if let Ok(directory)=std::env::var("JC054_NATIVE_DIR") {
         std::fs::create_dir_all(&directory).unwrap();
         let output=json!({"format":"jc054-native81-v1","scope":"Explicit Native layouts followed by real Room commands, exact restore and journal replay; not online play or migration",
