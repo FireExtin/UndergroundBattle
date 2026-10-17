@@ -1,0 +1,25 @@
+{
+  "deployedVersion": 64,
+  "deploymentId": "appgdep_6ad3681cb2d081919d9064678d727cfb",
+  "source": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+  "gameReviewedSource": "398e220721f9e14c4f523530183c6288b7749096",
+  "archiveContentHash": "sha256:5d8a6858dbd15b03cea813bfb0f7f3fd16c5f215c37da01939da3a2f00c40c8a",
+  "runtimeFileCount": 169,
+  "runtimeArchivePayloads": 175,
+  "kernelVersions": [
+    77,
+    78,
+    79,
+    80,
+    81,
+    82
+  ],
+  "engineVersion": "rust-v0.2.82-response-source-preview-candidate",
+  "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+  "oldRoomKernelsExact": true,
+  "D1MigrationsUnchanged": true,
+  "publicAccessRevision": 2,
+  "envRevision": 0,
+  "gameMain": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "publishedAtUtc": "2026-10-17T12:20:56.268817+00:00"
+}

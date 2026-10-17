@@ -1,0 +1,236 @@
+{
+  "reviewedSource": "398e220721f9e14c4f523530183c6288b7749096",
+  "publishedV64ProviderSource": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+  "pool": "limited-v2.74-jc054-complete-conceal-candidate",
+  "engine": "rust-v0.2.82-response-source-preview-candidate",
+  "catalogOrdinaryDefinitions": 147,
+  "ordinaryPlayerCards": 137,
+  "world": 10,
+  "societies": 8,
+  "totalPlayableDefinitions": 155,
+  "supportedAll": true,
+  "ordinaryKinds": {
+    "character": 90,
+    "spell": 31,
+    "attachment": 16
+  },
+  "colors": [
+    {
+      "color": "红",
+      "ordinaryPlayerIds": [
+        "JC042",
+        "JC049",
+        "JC047",
+        "XQ17",
+        "JZ31",
+        "JC045",
+        "JC050",
+        "XQ18",
+        "JZ30",
+        "WM038",
+        "JZ35",
+        "JC052",
+        "JC046",
+        "JC054"
+      ],
+      "societyIds": []
+    },
+    {
+      "color": "黑",
+      "ordinaryPlayerIds": [
+        "JC086",
+        "JC092",
+        "JC091",
+        "JZ54",
+        "JC084",
+        "JC085",
+        "JC088",
+        "BQ083",
+        "JC093",
+        "JC096",
+        "XQ38",
+        "XQ36",
+        "JZ55",
+        "JZ49",
+        "JZ48",
+        "JC089",
+        "JZ50",
+        "JC090",
+        "XQ37",
+        "WM059",
+        "BQ078",
+        "JC087",
+        "JC094",
+        "WM056",
+        "JC095",
+        "WM062"
+      ],
+      "societyIds": [
+        "MSJC07"
+      ]
+    },
+    {
+      "color": "蓝",
+      "ordinaryPlayerIds": [
+        "XQ12",
+        "XQ16",
+        "JC036",
+        "JZ27",
+        "XQ14",
+        "JC029",
+        "JC030",
+        "JC032",
+        "JZ24",
+        "JC031",
+        "JZ22",
+        "BQ028",
+        "BQ040",
+        "BQ030",
+        "WM023",
+        "JC037",
+        "BQ035"
+      ],
+      "societyIds": [
+        "MSJC03"
+      ]
+    },
+    {
+      "color": "灰",
+      "ordinaryPlayerIds": [
+        "JC056",
+        "JC058",
+        "JC059",
+        "JC063",
+        "JC069",
+        "JZ43",
+        "XQ27",
+        "JZ44",
+        "JZ45",
+        "XQ24",
+        "JC061",
+        "XQ25",
+        "JC060",
+        "JZ46"
+      ],
+      "societyIds": []
+    },
+    {
+      "color": "黄",
+      "ordinaryPlayerIds": [
+        "JC002",
+        "JC003",
+        "JC004",
+        "JC005",
+        "JC008",
+        "XQ03",
+        "JC001",
+        "JC006",
+        "JC007",
+        "WM003",
+        "LC01",
+        "JZ02"
+      ],
+      "societyIds": [
+        "MSJC01"
+      ]
+    },
+    {
+      "color": "绿",
+      "ordinaryPlayerIds": [
+        "JC014",
+        "JC016",
+        "JZ08",
+        "BQ022",
+        "JC020",
+        "XQ07",
+        "LC30",
+        "JC018",
+        "JC015"
+      ],
+      "societyIds": [
+        "MSJC11",
+        "MSJC02"
+      ]
+    },
+    {
+      "color": "白",
+      "ordinaryPlayerIds": [
+        "JC075",
+        "JC070",
+        "JC076",
+        "JC074",
+        "JC071",
+        "JC073",
+        "JC078",
+        "XQ34",
+        "LC12",
+        "LC06"
+      ],
+      "societyIds": [
+        "MSJC06"
+      ]
+    },
+    {
+      "color": "紫",
+      "ordinaryPlayerIds": [
+        "JC104",
+        "JC102",
+        "JZ67",
+        "JC103",
+        "JC107",
+        "JZ59",
+        "JZ58",
+        "JZ61",
+        "XQ43",
+        "XQ40",
+        "XQ41",
+        "XQ45",
+        "XQ44"
+      ],
+      "societyIds": [
+        "MSJC08"
+      ]
+    },
+    {
+      "color": "中立",
+      "ordinaryPlayerIds": [
+        "JC125",
+        "LC19",
+        "LC20",
+        "LC21",
+        "LC22",
+        "LC23",
+        "LC24",
+        "XQ49",
+        "JC118",
+        "JC129",
+        "JC132",
+        "XQ47",
+        "JC112",
+        "JC116",
+        "JC130",
+        "JC131",
+        "JC114",
+        "JZ74",
+        "JC126",
+        "XQ46",
+        "BQ104",
+        "XQ48"
+      ],
+      "societyIds": [
+        "MSJC09"
+      ]
+    }
+  ],
+  "archive": {
+    "records": 685,
+    "faceAndComponentIds": 684,
+    "notAdmittedFaceAndComponentIds": 529
+  },
+  "cardsAddedByAbi82": 0,
+  "previousV63SameCardDefinitions": true,
+  "knownUnclosedInteraction": [
+    "JC016+BQ022 win return/recycle priority retained as unresolved in historical handoff; not re-adjudicated by ABI82"
+  ],
+  "implementationScope": "Supported/admitted finite production definitions, not full-original-product or independent natural UI acceptance"
+}

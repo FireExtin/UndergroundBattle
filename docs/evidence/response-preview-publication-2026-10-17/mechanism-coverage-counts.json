@@ -1,0 +1,880 @@
+{
+  "source": "398e220721f9e14c4f523530183c6288b7749096",
+  "countPolicy": "52 existing stable mechanism-family IDs counted once each; finite scope is not whole-family completion; test entries and card count do not count as mechanism families",
+  "priorSnapshot": "docs/evidence/identity-audit-2026-10-05/mechanism-coverage.json @ 3f058eac361f2db31bd2118f0c264fbc4e67b611",
+  "priorCounts": {
+    "implementedBounded": 24,
+    "partial": 6,
+    "unimplemented": 20,
+    "needsRuling": 2
+  },
+  "currentCodePresenceCounts": {
+    "implementedBounded": 29,
+    "partial": 5,
+    "unimplemented": 16,
+    "needsRuling": 2
+  },
+  "families": 52,
+  "upgradedRows": [
+    "seal",
+    "lock",
+    "timeDestroy",
+    "slow",
+    "leader"
+  ],
+  "notClaimed": "No fresh 52-family original-text re-adjudication, natural UI/online complete acceptance or entire original rules completion. timeDestroy composite family still has broader gaps; partial families remain partial. Source anchors are code-presence review, final default1183/1283/279 testing recorded separately.",
+  "rows": [
+    {
+      "id": "loyalty",
+      "name": "派系/领域忠诚与资产支付",
+      "status": "implementedBounded",
+      "scope": "本人资产颜色/单领域忠诚与未横置币支付；横置不损忠诚",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC042",
+        "XQ17",
+        "JC004"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 230,
+          "anchor": "fn loyalty",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "hidden",
+      "name": "秘密派遣、暗藏者、付费现身和潜伏",
+      "status": "implementedBounded",
+      "scope": "秘密派遣/付费现身/潜伏新实例、清理及controller隐私",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC002",
+        "JC063",
+        "LC23",
+        "XQ16"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 745,
+          "anchor": "\"reveal\" =>",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "priority",
+      "name": "响应堆叠、付费与可恢复选择",
+      "status": "implementedBounded",
+      "scope": "有限零/单目标LIFO、原子费用、持久帧与五秒响应意图；非通用强制/多目标",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC075",
+        "JC102",
+        "JC129"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/room.rs",
+          "line": 692,
+          "anchor": "pub fn transition",
+          "sha256": "6c9d988614d5c66c06866f54ffef07aec75b6d54145d5e52bb2a12c12639c611"
+        }
+      ]
+    },
+    {
+      "id": "confrontation",
+      "name": "调查、战斗、势力与赢区",
+      "status": "implementedBounded",
+      "scope": "霸权调查/同时战斗伤害/势力/赢区及有限世界触发；不含遭遇任务",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "DQJC107",
+        "DQJC116",
+        "LC21",
+        "LC22"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 532,
+          "anchor": "Window::Win",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "public",
+      "name": "公开",
+      "status": "implementedBounded",
+      "scope": "当前准入公开trait禁止普通秘密派遣，效果潜伏另算",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC014",
+        "JC056",
+        "JC070",
+        "JC075"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 691,
+          "anchor": "traits.public",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "exhaust",
+      "name": "横置与重置",
+      "status": "implementedBounded",
+      "scope": "费用/效果横置、回合重置，精确实例；包括准入秘社与附属",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC003",
+        "JC020",
+        "LC12",
+        "MSJC01"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/resolution.rs",
+          "line": 1812,
+          "anchor": "Op::Exhaust",
+          "sha256": "a57c980b1af0e1d4d27b3088c7210536a040270c4530daa7cff4d47f8f7e445b"
+        }
+      ]
+    },
+    {
+      "id": "mobility",
+      "name": "机动与场上移动",
+      "status": "implementedBounded",
+      "scope": "JC014自身移动保留实例，2V2相邻目标和先手次序",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC014"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 3213,
+          "anchor": "\"mobility\"",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ]
+    },
+    {
+      "id": "combatTraits",
+      "name": "杀伤、护卫、撤回",
+      "status": "implementedBounded",
+      "scope": "已准入杀伤1、护卫1、撤回及地区批次；不含任意动态赋予",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC016",
+        "JC116",
+        "LC21",
+        "LC22"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 453,
+          "anchor": "pub struct Traits",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ]
+    },
+    {
+      "id": "barrier",
+      "name": "屏障",
+      "status": "implementedBounded",
+      "scope": "公开有效屏障/结附授予，对敌方目标守卫；非目标群体效果照常",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC073",
+        "JZ08"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 299,
+          "anchor": "fn targetable",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "shield",
+      "name": "护盾",
+      "status": "partial",
+      "scope": "shield字段及敌方单目标扣盾/挡效果，夹具可核",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC078"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 316,
+          "anchor": "c.shield > 0",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ],
+      "remaining": "尚无准入获盾来源或将成为目标的独立强制触发"
+    },
+    {
+      "id": "graveRecovery",
+      "name": "墓地回手/牌库底/暗藏者进场",
+      "status": "implementedBounded",
+      "scope": "已准入墓地回手/回拥有者库底/暗藏者进场，归属与新实例",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC086",
+        "JC092",
+        "XQ38",
+        "XQ49",
+        "DQJC115"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/resolution.rs",
+          "line": 1838,
+          "anchor": "Destination::OwnerDeckBottom",
+          "sha256": "a57c980b1af0e1d4d27b3088c7210536a040270c4530daa7cff4d47f8f7e445b"
+        }
+      ]
+    },
+    {
+      "id": "gravePlay",
+      "name": "墓地/其他区域直接打出",
+      "status": "implementedBounded",
+      "scope": "仅JC085墓地正面出牌许可，正常币/忠诚/时机/栈，禁止暗藏资产",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC085"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/play_sources.rs",
+          "line": 10,
+          "anchor": "fn character_play_source",
+          "sha256": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd"
+        }
+      ]
+    },
+    {
+      "id": "sacrifice",
+      "name": "牺牲费用与牺牲效果",
+      "status": "implementedBounded",
+      "scope": "已准入费用牺牲与效果牺牲、控制筛选、实际死亡触发及原子回滚",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC042",
+        "JC049",
+        "JC020",
+        "JC093"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/resolution.rs",
+          "line": 2132,
+          "anchor": "Op::SacrificeChosen",
+          "sha256": "a57c980b1af0e1d4d27b3088c7210536a040270c4530daa7cff4d47f8f7e445b"
+        }
+      ]
+    },
+    {
+      "id": "costReduction",
+      "name": "降费",
+      "status": "implementedBounded",
+      "scope": "当前牌的下一张指定类别/颜色降费、紫正面/付费现身降费及器械折扣；忠诚仍需满足",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC042",
+        "JC103",
+        "JC112"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 980,
+          "anchor": "Op::CostReductionOnFaceUpOrPaidReveal",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ]
+    },
+    {
+      "id": "deckChoice",
+      "name": "抓牌、弃牌、预测、检索及排序",
+      "status": "implementedBounded",
+      "scope": "准入抓/弃/预测/私密搜索/展示搜索/排序、香港同时搜索、随机手牌置顶与可选洗牌；非通用X",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC007",
+        "JC104",
+        "JZ61",
+        "JZ67",
+        "DQJC114"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/resolution.rs",
+          "line": 2089,
+          "anchor": "Op::Search",
+          "sha256": "a57c980b1af0e1d4d27b3088c7210536a040270c4530daa7cff4d47f8f7e445b"
+        }
+      ]
+    },
+    {
+      "id": "continuous",
+      "name": "持续数值修正与类型/能力赋予",
+      "status": "implementedBounded",
+      "scope": "当前队伍/个人/领域条件数值、宿主数值、限时属性与实例寿命；无通用依赖环",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC059",
+        "JC073",
+        "JC084",
+        "JC085",
+        "LC12"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/attributes.rs",
+          "line": 189,
+          "anchor": "fn turn_attribute_bonus",
+          "sha256": "d09e78fb05d45c52378efb526327fc9075ad537a1dc771707f7527da284316a0"
+        }
+      ]
+    },
+    {
+      "id": "healWounds",
+      "name": "移除创伤",
+      "status": "implementedBounded",
+      "scope": "LC19/LC20移除创伤，现有创伤扣防御和防御0死亡稳定点",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "LC19",
+        "LC20"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 3044,
+          "anchor": "Op::HealWounds",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ]
+    },
+    {
+      "id": "society",
+      "name": "秘社牌与秘社区",
+      "status": "implementedBounded",
+      "scope": "MSJC09/MSJC01个人可空秘社区、合法构筑/起手/费用/重置/每局次数/检索；无双色或秘社附属",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "MSJC09",
+        "MSJC01"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/society.rs",
+          "line": 7,
+          "anchor": "pub struct SocietyZone",
+          "sha256": "81500ad9b3db36e7b3238987d4764d675723669e01502736742f7454f5888d04"
+        }
+      ]
+    },
+    {
+      "id": "attachment",
+      "name": "附属/结附、回收与双类型牌",
+      "status": "partial",
+      "scope": "准入角色宿主、独立实例/controller、静态宿主修正/控制/清理及正常回收",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "BQ022",
+        "JC036",
+        "JC073",
+        "JC093"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/attachment.rs",
+          "line": 41,
+          "anchor": "RegionReturnBatch",
+          "sha256": "000f8a94d158a9cc059dd1397bbd47b030bd8562e092b4e28f21c346cabd15be"
+        }
+      ],
+      "remaining": "JC016+BQ022赢区撤回/回收优先仍待裁定；秘社/地区/双类型宿主未齐"
+    },
+    {
+      "id": "seal",
+      "name": "封印与载体生命周期",
+      "status": "implementedBounded",
+      "scope": "载体上空白封印牌、释放回手、手牌封印及已准入牌库检索封印；不代表所有卡的封印许可",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "XQ40",
+        "XQ41",
+        "XQ45",
+        "XQ44",
+        "JZ02"
+      ],
+      "previousStatus": "unimplemented",
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/sealing.rs",
+          "line": 46,
+          "anchor": "fn seal_hand_card",
+          "sha256": "82f19b6d0524cd378cbbf486fe607d2afb470b2ff314b2cbfef89a44f2f37539"
+        }
+      ]
+    },
+    {
+      "id": "renown",
+      "name": "声望",
+      "status": "implementedBounded",
+      "scope": "JC070/JC076与JC074准入授予，已审2V2团队比较/一次可选奖励及地区实例锚定",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC070",
+        "JC074",
+        "JC076"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/renown.rs",
+          "line": 72,
+          "anchor": "fn declare_region_renown",
+          "sha256": "8aea1693418cb872161603aebe77f50c48947ba3d77364e7b27e1268ca9e61d5"
+        }
+      ]
+    },
+    {
+      "id": "spirit",
+      "name": "灵体",
+      "status": "implementedBounded",
+      "scope": "仅实际JZ58，伤害时同区当前团队正面领域严格优势防伤；平局不防；非战斗禁令",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JZ58"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/attributes.rs",
+          "line": 152,
+          "anchor": "pub fn spirit_protected",
+          "sha256": "d09e78fb05d45c52378efb526327fc9075ad537a1dc771707f7527da284316a0"
+        }
+      ]
+    },
+    {
+      "id": "lock",
+      "name": "锁定与检视暗藏者",
+      "status": "implementedBounded",
+      "scope": "锁定标志、当前目标资格、私密检视／原实例绑定及追击的已准入范围",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC069",
+        "JZ43",
+        "JZ45",
+        "JZ46"
+      ],
+      "previousStatus": "unimplemented",
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/gray_lock.rs",
+          "line": 53,
+          "anchor": "fn validate_gray_lock_state",
+          "sha256": "6d9c66d37edc74e07e5b8cd4f1948ff7535205bd8ce3d22d6befcb36808e90b1"
+        }
+      ]
+    },
+    {
+      "id": "timeDestroy",
+      "name": "时间标志与毁灭地区",
+      "status": "implementedBounded",
+      "scope": "已准入时间标志、冻结数值／预测、结束阶段清理；该复合目录行中的通用毁灭地区仍不声称全覆盖",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC045",
+        "XQ18",
+        "JZ30",
+        "WM038"
+      ],
+      "previousStatus": "unimplemented",
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/red_time.rs",
+          "line": 145,
+          "anchor": "fn effective_time_markers",
+          "sha256": "bb5f66c08d035d7828b8e8e550395c113b5ba5e4fe0712450800f24ab6ab2d47"
+        }
+      ]
+    },
+    {
+      "id": "damagePrevention",
+      "name": "通用防止/伤害替代",
+      "status": "partial",
+      "scope": "JC078本回合防伤及JZ58灵体连续防伤",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC078",
+        "JZ58"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 1871,
+          "anchor": "pub(crate) fn damage",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ],
+      "remaining": "通用将发生伤害、JC077重定向/替代事件协议未实现"
+    },
+    {
+      "id": "control",
+      "name": "操控权变化",
+      "status": "implementedBounded",
+      "scope": "JC129限时、JC036附属在场及JZ27控制/类型层，失效重算并保留owner",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC129",
+        "JC036",
+        "JZ27"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/control.rs",
+          "line": 139,
+          "anchor": "fn settle_controls",
+          "sha256": "76d854b7222817aed476810596848eb13ce675b537360716a51ea4c36c2ff515"
+        }
+      ]
+    },
+    {
+      "id": "transform",
+      "name": "转变与多形态",
+      "status": "unimplemented",
+      "scope": "无FormId及转变操作；控制/翻暗不等于转变",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无FormId及转变操作；控制/翻暗不等于转变",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "blink",
+      "name": "闪烁",
+      "status": "unimplemented",
+      "scope": "现有潜伏/现身分别可用，没有一个效果内闪烁的完整事件协议",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "现有潜伏/现身分别可用，没有一个效果内闪烁的完整事件协议",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "nonAsset",
+      "name": "非资产",
+      "status": "unimplemented",
+      "scope": "无非资产trait及建立/转入资产区排除规则",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无非资产trait及建立/转入资产区排除规则",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "slow",
+      "name": "迟缓",
+      "status": "implementedBounded",
+      "scope": "迟缓横置进场，普通派遣／付费与免费现身、墓地正面进入及下回合重置的已准入范围",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JZ49",
+        "WM023"
+      ],
+      "previousStatus": "unimplemented",
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 455,
+          "anchor": "pub slow: bool",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ]
+    },
+    {
+      "id": "leader",
+      "name": "领袖与唯一构筑",
+      "status": "implementedBounded",
+      "scope": "已准入领袖在场限制与选择牺牲、进场原子触发、持久恢复；沿用已有唯一构筑限制",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC052",
+        "JC037",
+        "JC095"
+      ],
+      "previousStatus": "partial",
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/jc052.rs",
+          "line": 75,
+          "anchor": "fn printed_leader",
+          "sha256": "22b1fdb769be5adbf41d314c22c788efa3ed2713fb86a85f56813cb390a3e34d"
+        }
+      ]
+    },
+    {
+      "id": "token",
+      "name": "生成指示物角色/附属",
+      "status": "unimplemented",
+      "scope": "无生成模板/衍生物实例和离场策略",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无生成模板/衍生物实例和离场策略",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "mysticContest",
+      "name": "隐秘对抗、隐秘/暴露与隐秘等级",
+      "status": "unimplemented",
+      "scope": "无隐秘对抗/隐秘暴露标志/双方同时选手牌完整流程",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无隐秘对抗/隐秘暴露标志/双方同时选手牌完整流程",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "plan",
+      "name": "秘密计划与推进",
+      "status": "unimplemented",
+      "scope": "无计划类型/进度/秘社区秘密投影",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无计划类型/进度/秘社区秘密投影",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "rumor",
+      "name": "传闻",
+      "status": "unimplemented",
+      "scope": "无传闻的弃牌/入墓观察与替代事件",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无传闻的弃牌/入墓观察与替代事件",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "blood",
+      "name": "鲜血附属与饮血",
+      "status": "partial",
+      "scope": "实际XQ14鲜血附属的吸血鬼宿主和防御/永久战斗加值",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "XQ14"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 2481,
+          "anchor": "\"XQ14\"",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ],
+      "remaining": "JC028生成/自身转移、饮血、封印来源许可未实现"
+    },
+    {
+      "id": "task",
+      "name": "任务地区",
+      "status": "unimplemented",
+      "scope": "世界槽不是玩家任务地区；无任务追加与胜利协议",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "世界槽不是玩家任务地区；无任务追加与胜利协议",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "core",
+      "name": "核心角色、核心区与命令",
+      "status": "unimplemented",
+      "scope": "无核心区/命令/休整/名誉付款及失控协议",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无核心区/命令/休整/名誉付款及失控协议",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "encounter",
+      "name": "遭遇角色、利用与恐怖",
+      "status": "unimplemented",
+      "scope": "无中立遭遇实体/利用/恐怖/回世界协议",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无中立遭遇实体/利用/恐怖/回世界协议",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "starlightInfluence",
+      "name": "附属上的地区势力",
+      "status": "unimplemented",
+      "scope": "只有地区势力数组，没有附属承载的地区势力",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "只有地区势力数组，没有附属承载的地区势力",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "combatKeywords",
+      "name": "袭击、创伤、遏制、威名等战斗关键词",
+      "status": "partial",
+      "scope": "JZ59创伤1与JZ58遏制1已准入；repress研究子标签归并到本目录行",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JZ59",
+        "JZ58"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/rules.rs",
+          "line": 855,
+          "anchor": "Op::RepressOpponentOne",
+          "sha256": "c54cdeece8e4e38595a0021697996b06ff21653dd5ccaa577e1b8e7a35a26b15"
+        }
+      ],
+      "remaining": "袭击、威名、任意X和其他关键词仍未齐；不重复计算combatTraits"
+    },
+    {
+      "id": "hiddenOnly",
+      "name": "隐匿",
+      "status": "unimplemented",
+      "scope": "隐藏目标筛选不是隐匿；无禁止普通正面打出的隐匿trait",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "隐藏目标筛选不是隐匿；无禁止普通正面打出的隐匿trait",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "cancel",
+      "name": "终止/取消与替代效果",
+      "status": "unimplemented",
+      "scope": "响应意图取消不是规则终止；无栈项目目标或Terminate操作",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "响应意图取消不是规则终止；无栈项目目标或Terminate操作",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "handAbility",
+      "name": "手牌能力、神秘学博弈等",
+      "status": "implementedBounded",
+      "scope": "仅XQ34弃手事件来源与可选付1检索；非普通play，source holder和owner分离",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "XQ34"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/resolution.rs",
+          "line": 1283,
+          "anchor": "fn discard_hand_card",
+          "sha256": "a57c980b1af0e1d4d27b3088c7210536a040270c4530daa7cff4d47f8f7e445b"
+        }
+      ]
+    },
+    {
+      "id": "crisis",
+      "name": "洛城危机/支线剧情/威胁与支援",
+      "status": "needsRuling",
+      "scope": "洛城模式/威胁/支援完整规则边界尚未核准，未执行",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "洛城模式/威胁/支援完整规则边界尚未核准，未执行",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "chaos",
+      "name": "混乱",
+      "status": "unimplemented",
+      "scope": "有确定性RNG不等于混乱；无随机合法地区入场流程",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "有确定性RNG不等于混乱；无随机合法地区入场流程",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "herald",
+      "name": "先兆手牌行动",
+      "status": "unimplemented",
+      "scope": "无准备阶段先兆手牌行动及每回合额度",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无准备阶段先兆手牌行动及每回合额度",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "reincarnation",
+      "name": "转生",
+      "status": "unimplemented",
+      "scope": "无进入墓地/封印触发的转生洗回协议",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "无进入墓地/封印触发的转生洗回协议",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "eternal",
+      "name": "永恒",
+      "status": "needsRuling",
+      "scope": "完整关键词语义未核准；不推导为不死或不可离场",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "remaining": "完整关键词语义未核准；不推导为不死或不可离场",
+      "currentSourceEvidence": []
+    },
+    {
+      "id": "temporaryIcons",
+      "name": "临时能力图标",
+      "status": "implementedBounded",
+      "scope": "当前印刷临时图标按先手查询，已准入临时/限时授予按各自寿命和实例；无通用图标标志系统",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "JC001",
+        "JC005",
+        "JC016",
+        "JC073",
+        "JZ58",
+        "LC12"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 324,
+          "anchor": "pub fn icons",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "uniqueInPlay",
+      "name": "独有（金色名称）",
+      "status": "implementedBounded",
+      "scope": "准入独有正面角色按同controller同印刷名选择牺牲，敌方/队友不混；秘社个人槽独立",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "LC23",
+        "LC01",
+        "WM003"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 1159,
+          "anchor": "Effect::Unique { seat }",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    },
+    {
+      "id": "privatePeek",
+      "name": "私密检视与持续检视权限",
+      "status": "implementedBounded",
+      "scope": "仅LC01自己的牌库顶持续私密投影，controller与在场条件失效立即撤销",
+      "countMeaning": "one stable family ID; implementedBounded means production finite subset, never complete original family/UI acceptance",
+      "productionCardIds": [
+        "LC01"
+      ],
+      "currentSourceEvidence": [
+        {
+          "file": "rust-game/src/engine.rs",
+          "line": 2427,
+          "anchor": "private_deck_top",
+          "sha256": "ff0ae546feab37cc2d5dcfe4ab44dc8d3276fd2a0dc1fa167825eafb86628047"
+        }
+      ]
+    }
+  ]
+}
