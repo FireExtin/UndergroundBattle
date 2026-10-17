@@ -1,5 +1,5 @@
 //! Finite typed rule declarations. Card identifiers occur only in this binding table.
-use crate::model::{Icons, SubtypeChange};
+use crate::model::{ConcealObservation, EndStepObservation, Icons, SubtypeChange};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, sync::OnceLock};
 
@@ -36,6 +36,8 @@ pub enum Event {
     CombatWon,
     // XQ41's explicit self trigger is captured before sealing blanks its face.
     Sealed,
+    Hide,
+    EndStep,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -225,6 +227,8 @@ pub enum Op {
     WM023PutUniqueMageOrVampireFromHand,
     WM056MoveOneAdjacentInfluence,
     WM062HideCriminalThenOptionalAdjacentMove,
+    JC054ConcealBurst { observation: Option<ConcealObservation> },
+    JC054EndHide { observation: Option<EndStepObservation> },
     XQ18AddOneTimeToTarget,
     XQ18ChooseTimeCarrier,
     JZ30AddOneTimeToOriginalSource,
@@ -545,6 +549,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::jz35::validate_ability(card_id, ability)?;
     crate::jc052::validate_ability(card_id, ability)?;
     crate::jc046::validate_ability(card_id, ability)?;
+    crate::jc054::validate_ability(card_id, ability)?;
     crate::jc095::validate_ability(card_id, ability)?;
     crate::gray_expansion::validate_ability(card_id, ability)?;
     if card_id == "XQ27" || ability.key == "hidden-sweep"
@@ -1279,6 +1284,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::jz35::validate_definition(card_id, definition)?;
         crate::jc052::validate_definition(card_id, definition)?;
         crate::jc046::validate_definition(card_id, definition)?;
+        crate::jc054::validate_definition(card_id, definition)?;
         crate::jc095::validate_definition(card_id, definition)?;
         crate::jc037::validate_definition(card_id, definition)?;
         crate::jc060::validate_definition(card_id, definition)?;
@@ -1893,6 +1899,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ35".into(), crate::jz35::definition());
         m.insert("JC052".into(), crate::jc052::definition());
         m.insert("JC046".into(), crate::jc046::definition());
+        m.insert("JC054".into(), crate::jc054::definition());
         m.insert("JC095".into(), crate::jc095::definition());
         m.insert("JC037".into(), crate::jc037::definition());
         m.insert("JC060".into(), crate::jc060::definition());

@@ -13,8 +13,8 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadFixture } = await import(pathToFileURL(root + 'tools/jz46-oracle.mjs').href);
 const fixture = loadFixture();
-const { identity: currentIdentity } = await import(pathToFileURL(root + 'tools/wm062-oracle.mjs').href);
-const worker = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jz46-worker/server');
+const { identity: currentIdentity } = await import(pathToFileURL(root + 'tools/jc054-oracle.mjs').href);
+const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'jz46-http-'));
   const options = convertV4MiniflareOptions({ name: 'jz46-http', resourcePersistencePath: persist, modulesRoot: worker, modules: [

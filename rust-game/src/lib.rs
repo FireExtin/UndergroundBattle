@@ -10,6 +10,9 @@ mod blue_expansion;
 mod black_expansion;
 mod wm056;
 mod wm062;
+mod jc054;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc054_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod wm062_tests;
 mod wm023;

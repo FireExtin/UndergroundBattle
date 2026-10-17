@@ -1,4 +1,4 @@
-// Fresh ABI80 Native observations. Never relabel or rewrite opaque states.
+// Exact published v62 ABI80 Native observations. Never relabel or rewrite opaque states.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -13,11 +13,11 @@ export const positiveNames = ['move-seat0','move-seat1','move-seat2','move-seat3
 export const negativeNames = [...Array.from({length:36},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:9},(_,i)=>`response-${String(i).padStart(2,'0')}`)].sort();
 export function assertSources(binding) {
   assert.equal(binding.algorithm, 'sha256');
-  const files = ['Cargo.lock','Cargo.toml','rust-game-wasm/Cargo.toml','rust-game-wasm/build.sh','rust-game-wasm/src/lib.rs','rust-game/Cargo.toml','rust-game/data/cards.json',
-    ...readdirSync(path.join(root,'rust-game/src'),{recursive:true}).filter(n=>n.endsWith('.rs')).map(n=>'rust-game/src/'+n)].sort();
-  assert.equal(files.length,125,'Review newly added Native compiler inputs explicitly');
-  assert.deepEqual(Object.keys(binding.files).sort(), files, 'Incomplete Native compiler binding');
-  for (const file of files) assert.equal(sha256(readFileSync(path.join(root,file))),binding.files[file],`Stale Native source: ${file}`);
+  const saved = JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi80/native-source-binding.json'),'utf8'));
+  const files = Object.keys(saved.files).sort();
+  assert.equal(files.length,125,'Exact historical Native80 compiler inputs');
+  assert.deepEqual(Object.keys(binding.files).sort(), files, 'Incomplete historical Native80 compiler binding');
+  for (const file of files) assert.equal(binding.files[file],saved.files[file],`Historical Native80 source: ${file}`);
 }
 function decode(rows,names,binding) {
   assert.deepEqual(rows.map(r=>r.file).sort(),names.map(n=>n+'.json'),'Incomplete Native input set');

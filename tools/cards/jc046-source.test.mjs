@@ -17,13 +17,13 @@ const pool = json('rust-game/data/cards.json');
 
 test('JC046 preserves all 142 accepted ABI76 definitions, decks and metadata', () => {
   const {cards, engineVersion, cardPoolVersion, ...metadata} = pool;
-  assert.equal(cards.length, 146);
-  assert.equal(new Set(cards.map(card => card.id)).size,146);
+  assert.equal(cards.length, 147);
+  assert.equal(new Set(cards.map(card => card.id)).size,147);
   // Pinned while the pool still had ABI76 and before JC046 was appended.
-  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062"].includes(bq035.id)).filter(card => card.id !== 'JC046')), '31ad961e23fe0e7a32aeff70a45bfa98019b3f24e3491c7f67f72a414a9a8e6c');
+  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(card => card.id !== 'JC046')), '31ad961e23fe0e7a32aeff70a45bfa98019b3f24e3491c7f67f72a414a9a8e6c');
   assert.equal(digest(metadata), 'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion, 'rust-v0.2.80-wm062-conceal-adjacent-move-candidate');
-  assert.equal(cardPoolVersion, 'limited-v2.73-wm062-conceal-adjacent-move-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.81-jc054-complete-conceal-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.74-jc054-complete-conceal-candidate');
 });
 
 test('JC046 complete nonunique face, kill 2 and mandatory reveal match pinned046/135 original', () => {
@@ -54,6 +54,6 @@ test('JC046 public scan is the byte-identical original and all admitted scans re
   assert.equal(spec.sourceVerification.imageSha256, '5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab');
   assert.deepEqual(read('web/public/cards/JC046.jpg'), original);
   const result = validateAdmittedScans();
-  assert.equal(result.checkedCards, 146);
-  assert.equal(result.manifestEntries, 157);
+  assert.equal(result.checkedCards, 147);
+  assert.equal(result.manifestEntries, 158);
 });

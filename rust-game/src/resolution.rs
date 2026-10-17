@@ -33,6 +33,14 @@ impl Game {
     // Return the actual newly allocated object for effects that explicitly
     // continue to refer to the card after it has become a new hidden entity.
     pub(crate) fn hide_in_place_successor(&mut self, id: &str) -> Option<Card> {
+        self.hide_in_place_successor_in_batch(id, None)
+    }
+    pub(crate) fn hide_in_place_successor_in_batch(&mut self, id: &str, event: Option<&str>) -> Option<Card> {
+        let observation = self.board(id).filter(|(_, c)| c.definition == "JC054" && !c.face_down).map(|(r, c)| {
+            let baseline = self.control_baselines.iter().find(|b| b.target_instance == id).cloned();
+            let base_seat = baseline.as_ref().map_or(c.controller, |b| b.controller);
+            (self.source_snapshot(c, Some(r)), baseline, self.players[base_seat].eliminated)
+        });
         let controller = self.controller_after_reset(id);
         if let Some((r, c)) = self.leave_board(id) {
             let mut c = self.fresh(c);
@@ -42,6 +50,9 @@ impl Game {
             c.wounds = 0;
             c.shield = 0;
             self.regions[r].cards.push(c.clone());
+            if let Some((source, baseline, eliminated)) = observation {
+                self.jc054_observe_hide(source, c.clone(), baseline, eliminated, event);
+            }
             return Some(c);
         }
         None
@@ -433,7 +444,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC095" | "BQ035" | "JZ46") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
@@ -1096,6 +1107,7 @@ impl Game {
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
+        if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc046_declare(declaration.clone())? {
             return Ok(());
         }
@@ -1175,6 +1187,7 @@ impl Game {
     ) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
+        self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {
             return self.bq030_choose(declaration, stage, selected);
@@ -1420,6 +1433,7 @@ impl Game {
         self.validate_jz35_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
+        self.validate_jc054_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
         self.validate_bq035_frame(&frame)?;
         self.validate_gray_expansion_frame(&frame)?;
@@ -1442,6 +1456,7 @@ impl Game {
                 Op::WM023PutUniqueMageOrVampireFromHand => return self.wm023_start(frame),
                 Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),
                 Op::WM062HideCriminalThenOptionalAdjacentMove => return self.wm062_start(frame),
+                ref op @ (Op::JC054ConcealBurst { .. } | Op::JC054EndHide { .. }) => self.jc054_resolve(&frame, op)?,
                 Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
                 Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
                 Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),

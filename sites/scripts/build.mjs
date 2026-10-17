@@ -5,7 +5,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 // The private Site source is a bounded standalone checkout with web/core sources.
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { buildEnvironment } = await import(pathToFileURL(root + 'tools/build-storage.mjs').href);
-const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
+const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79, stageFrozenAbi80 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
 const buildEnv = buildEnvironment(root, [root + 'web/dist', project + 'public', project + 'generated', project + 'dist', project + '.wrangler', project + '.wrangler/config']);
 execFileSync('npm', ['run', 'build'], { cwd: root + 'web', stdio: 'inherit', env: buildEnv });
 rmSync(project + 'public', { recursive: true, force: true });
@@ -17,6 +17,7 @@ for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(root + 
 stageFrozenAbi77(project + 'generated/abi77');
 stageFrozenAbi78(project + 'generated/abi78');
 stageFrozenAbi79(project + 'generated/abi79');
+stageFrozenAbi80(project + 'generated/abi80');
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });

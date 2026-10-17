@@ -75,3 +75,24 @@ export function stageFrozenAbi79(destination, options = {}) {
   writeFileSync(path.join(destination, 'hegemony_wasm_bg.wasm'), saved.wasm);
   return saved.identity;
 }
+
+// v62's ABI80 is immutable while JC054 builds a distinct ABI81.
+export function frozenAbi80(options = {}) {
+  const identity = JSON.parse(readFileSync(path.join(repository, 'rust-game-wasm/frozen/abi80/identity.json'), 'utf8'));
+  const directory = path.resolve(options.directory || process.env.HEGEMONY_FROZEN_ABI80_DIR
+    || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'frozen-kernels/abi80'));
+  let js, compressed;
+  try { js = readFileSync(path.join(directory, 'hegemony_wasm.js')); compressed = readFileSync(path.join(directory, 'hegemony_wasm_bg.wasm.gz')); }
+  catch { throw Error('Missing published ABI80 inputs; set HEGEMONY_FROZEN_ABI80_DIR to the exact v62 runtime. No old-room migration or substitute build is allowed.'); }
+  if (digest(js) !== identity.jsSha256 || digest(compressed) !== identity.gzipSha256) throw Error('Published ABI80 runtime hash mismatch; preserve the inputs and stop.');
+  const wasm = gunzipSync(compressed, { maxOutputLength: identity.wasmBytes });
+  if (wasm.length !== identity.wasmBytes || digest(wasm) !== identity.wasmSha256) throw Error('Published ABI80 runtime hash mismatch; preserve the inputs and stop.');
+  return { identity, directory, jsPath: path.join(directory, 'hegemony_wasm.js'), js, wasm };
+}
+export function stageFrozenAbi80(destination, options = {}) {
+  const saved = frozenAbi80(options);
+  mkdirSync(destination, { recursive: true });
+  writeFileSync(path.join(destination, 'hegemony_wasm.js'), saved.js);
+  writeFileSync(path.join(destination, 'hegemony_wasm_bg.wasm'), saved.wasm);
+  return saved.identity;
+}

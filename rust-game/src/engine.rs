@@ -56,6 +56,7 @@ impl Game {
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
             turn_ability_usage: vec![],
+            jc054_end_step_turn: None,
             control_effects: vec![],
             control_baselines: vec![],
             room_id,
@@ -552,7 +553,9 @@ impl Game {
         if let Window::Action(team) = window {
             self.active_team = team;
         }
+        let end_step = window == Window::End;
         self.window = Some(window);
+        if end_step { self.jc054_begin_end_step(); }
         self.priority_team = self.priority_default();
         self.reset_passes();
     }
@@ -592,6 +595,7 @@ impl Game {
         }
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
+        self.validate_jc054_state()?;
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
         let mut next = self.clone();
         next.version = revision;
@@ -602,6 +606,7 @@ impl Game {
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
         next.validate_wm062_state()?;
+        next.validate_jc054_state()?;
         *self = next;
         Ok(())
     }
@@ -674,6 +679,7 @@ impl Game {
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
+                crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
@@ -744,6 +750,7 @@ impl Game {
                 }
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
+                crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
                 let d = card(&c.definition);
@@ -860,6 +867,7 @@ impl Game {
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
         self.turn_ability_usage.clear();
+                self.jc054_end_step_turn = None;
         self.regions.clear();
         self.attachments.clear();
         self.sealed_cards.clear();
@@ -1067,6 +1075,7 @@ impl Game {
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
+        self.validate_jc054_frame(&frame)?;
         self.validate_jc095_frame(&frame)?;
         self.validate_bq035_frame(&frame)?;
         self.validate_jz46_frame(&frame)?;
@@ -1798,6 +1807,7 @@ impl Game {
             Effect::NextTurn => {
                 self.turn += 1;
                 self.turn_ability_usage.clear();
+                self.jc054_end_step_turn = None;
                 self.modifiers.clear();
                 self.first_team = 1 - self.first_team;
                 self.privilege_used = false;
@@ -1945,6 +1955,7 @@ impl Game {
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;
+        self.validate_jc054_state()?;
         self.validate_wm023_state()?;
         self.validate_gray_expansion_state()?;
         self.validate_death_observers()?;
@@ -1981,6 +1992,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JC054TriggerOrder { declarations } => self.jc054_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::Declare { declaration, stage } => {
                 self.choose_declaration(declaration, stage, selected)?
             }
@@ -2821,7 +2833,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 146);
+        assert_eq!(c.cards.len(), 147);
         let active = c
             .cards
             .iter()
@@ -2836,7 +2848,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 136);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 137);
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

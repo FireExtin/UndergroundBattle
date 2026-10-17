@@ -1,4 +1,5 @@
 pub use crate::bq030::AttachmentEvent;
+pub use crate::jc054::{ConcealObservation, EndStepObservation};
 use crate::society::{SocietyZone, SocietyZoneView};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
@@ -753,6 +754,9 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JC054TriggerOrder {
+        declarations: Vec<Declaration>,
+    },
     Declare {
         declaration: Declaration,
         stage: DeclareChoice,
@@ -803,6 +807,8 @@ pub struct Game {
     pub active_team: usize,
     pub priority_team: usize,
     pub turn: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub jc054_end_step_turn: Option<u32>,
     pub winner_team: Option<usize>,
     pub regions: Vec<Region>,
     #[serde(default)]
@@ -872,6 +878,7 @@ impl Game {
         game.validate_black_expansion_state()?;
         game.validate_wm056_state()?;
         game.validate_wm062_state()?;
+        game.validate_jc054_state()?;
         game.validate_wm023_state()?;
         game.validate_xq25_state()?;
         game.validate_jz46_state()?;

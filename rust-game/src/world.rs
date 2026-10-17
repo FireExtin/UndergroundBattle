@@ -201,20 +201,12 @@ impl Game {
             })
             .map(|c| c.id.clone())
             .collect::<Vec<_>>();
+        let conceal_event = selected.iter().any(|id| self.board(id).is_some_and(|(_, c)| c.definition == "JC054"))
+            .then(|| self.id());
         for id in selected {
-            let controller = self.controller_after_reset(&id);
-            if let Some((r, c)) = self.leave_board(&id) {
-                let mut c = self.fresh(c);
-                if let Some(controller) = controller {
-                    c.controller = controller;
-                }
-                c.face_down = true;
-                c.damage = 0;
-                c.wounds = 0;
-                c.shield = 0;
-                self.regions[r].cards.push(c);
-            }
+            self.hide_in_place_successor_in_batch(&id, conceal_event.as_deref());
         }
+        if let Some(event) = conceal_event { self.jc054_sort_batch(&event); }
         if mix_hidden {
             for r in 0..self.regions.len() {
                 let mut groups = BTreeMap::<usize, Vec<Card>>::new();

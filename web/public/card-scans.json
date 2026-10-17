@@ -783,5 +783,10 @@
     "url": "/cards/WM062.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg",
     "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
+  },
+  "JC054": {
+    "url": "/cards/JC054.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC054 蒙古死亡蠕虫.jpg",
+    "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
   }
 }

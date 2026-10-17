@@ -13,7 +13,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
 const fixture = loadBq035Fixture();
-const worker = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'bq035-worker/server');
+const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'bq035-http-'));
   const options = convertV4MiniflareOptions({ name: 'bq035-http', resourcePersistencePath: persist, modulesRoot: worker, modules: [
@@ -46,7 +46,7 @@ async function runScenario(t, scenario, retained = false) {
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
   assert.equal(roomCatalog.body.cards.length, retained ? 143 : 144);
-  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.80-wm062-conceal-adjacent-move-candidate');
+  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.81-jc054-complete-conceal-candidate');
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;

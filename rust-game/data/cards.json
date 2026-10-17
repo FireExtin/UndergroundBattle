@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
-  "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate",
+  "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+  "engineVersion": "rust-v0.2.81-jc054-complete-conceal-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5686,6 +5686,42 @@
         "record": "WM062",
         "image": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg",
         "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
+      }
+    },
+    {
+      "id": "JC054",
+      "name": "蒙古死亡蠕虫",
+      "kind": "character",
+      "subtypes": [
+        "蠕虫"
+      ],
+      "cost": 4,
+      "loyalty": [],
+      "loyaltyText": "无",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【潜伏强制触发】蒙古死亡蠕虫对所有位于本地区的其他角色造成1点伤害。\n【结束步骤强制触发】潜伏。（将该角色翻面为暗藏者）",
+      "keywords": [],
+      "unique": false,
+      "supported": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC054",
+        "image": "resource/ymsj-fun.github.io/cards/JC054 蒙古死亡蠕虫.jpg",
+        "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
       }
     }
   ],
