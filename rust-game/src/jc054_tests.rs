@@ -288,6 +288,31 @@ fn jc054_end_is_independent_of_later_control_changes_but_conceal_observes_the_cu
     restore_both(&g);top(&mut g);
 }
 
+#[test]
+fn jc054_granted_renown_keeps_its_frozen_public_source_after_the_grant_expires() {
+    let mut g=u::game();let worm=u::field(&mut g,"JC054",0);
+    g.turn_attribute_modifiers.push(TurnAttributeModifier { target_instance:worm,defense_bonus:0,kill_bonus:0,
+        grants_retreat:false,printed_defense_override:None,ordinary_icons:Icons::default(),grants_renown:true,prevents_damage:false,expires_turn:g.turn });
+    g.begin_window(Window::After(0,2));let region=g.regions[0].card.id.clone();g.declare_region_renown(0,&region);
+    g.turn_attribute_modifiers.clear();g.drive().unwrap();
+    let option=g.pending.as_ref().unwrap().choice.options[0].id.clone();u::choose(&mut g,vec![option]);
+    top(&mut g);assert_eq!(g.regions[0].influence[0],1);restore_both(&g);
+}
+
+#[test]
+fn jc054_observes_the_next_end_after_real_cleanup_and_turn_advance() {
+    let (mut g,_)=burst();g.begin_window(Window::End);top(&mut g);
+    let turn=g.turn;
+    for _ in 0..16 {if g.turn>turn {break;}u::pass(&mut g);}
+    assert_eq!(g.turn,turn+1);assert_eq!(g.jc054_end_step_turn,None);
+    u::fund(&mut g,0,"JC125",4);
+    for _ in 0..4 {if g.can_fast(0) {break;}u::pass(&mut g);}
+    let hidden=g.regions[0].cards.iter().find(|c|c.definition=="JC054").unwrap().id.clone();
+    u::act(&mut g,0,Action {card_id:Some(hidden),..Action::new("reveal")});top(&mut g);
+    g.begin_window(Window::End);g.drive().unwrap();assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().ability_key,jc054::END);
+    restore_both(&g);
+}
+
 fn invalid_case(name: String, g: &Game, bad: &Value) -> Value {
     let game_state=bad.to_string();
     let game_error=Game::from_persisted(&game_state).err().expect("corrupt Game rejected");
@@ -336,6 +361,38 @@ fn jc054_end_marker_and_mandatory_order_cannot_be_removed_or_made_optional() {
     assert_eq!(corrupt_order().1.len(),4);
 }
 
+fn corrupt_grants() -> Vec<Value> {
+    let mut g=u::game();let worm=u::field(&mut g,"JC054",0);
+    let d=Declaration {actor:0,source:g.source_snapshot(g.board(&worm).unwrap().1,Some(0)),ability:crate::renown::renown_ability(&g.regions[0].card.id)};
+    let mut base=serde_json::to_value(&g).unwrap();base["effects"]=json!([{"Declare":{"declaration":d}}]);
+    [("grant-hidden","/effects/0/Declare/declaration/source/card/face_down",json!(true)),
+        ("grant-play-source","/effects/0/Declare/declaration/source/play_source",json!("Hand"))]
+        .into_iter().map(|(name,path,value)| {let mut bad=base.clone();
+            if let Some(slot)=bad.pointer_mut(path) {*slot=value;} else {bad["effects"][0]["Declare"]["declaration"]["source"]["play_source"]=value;}
+            invalid_case(name.into(),&g,&bad)}).collect()
+}
+#[test]
+fn jc054_granted_reward_rejects_hidden_or_play_transaction_snapshots() {
+    assert_eq!(corrupt_grants().len(),2);
+}
+
+fn corrupt_instances() -> Vec<Value> {
+    let mut g=u::game();u::field(&mut g,"JC054",0);let base=serde_json::to_value(&g).unwrap();
+    let mut cases=vec![];
+    for (name,field,value) in [("instance-owner","owner",json!(99)),("instance-controller","controller",json!(99)),("instance-empty","id",json!(""))] {
+        let mut bad=base.clone();bad["regions"][0]["cards"][0][field]=value;cases.push(invalid_case(name.into(),&g,&bad));
+    }
+    for (name,definition) in [("instance-duplicate","JC054"),("instance-collision","JC125")] {
+        let mut bad=base.clone();let mut copy=bad["regions"][0]["cards"][0].clone();copy["definition"]=json!(definition);
+        bad["regions"][0]["cards"].as_array_mut().unwrap().push(copy);cases.push(invalid_case(name.into(),&g,&bad));
+    }
+    cases
+}
+#[test]
+fn jc054_untriggered_entity_seats_and_ids_are_checked_before_end_step_observation() {
+    assert_eq!(corrupt_instances().len(),5);
+}
+
 #[test]
 fn jc054_native81_room_oracles() {
     let mut scenarios=vec![];
@@ -380,8 +437,8 @@ fn jc054_native81_room_oracles() {
     t.command(0,SessionAction::Game { action:Action { choice_id:Some(choice.clone()),selected:Some(vec![]),..Action::new("choose") } },true);
     t.command(0,SessionAction::ResumeRoom,false);assert_eq!(t.room.game.pending.as_ref().unwrap().choice.id,choice);
     t.finish();scenarios.push(t.export());
-    let (g,_)=burst();invalid.extend(corrupt_frames(&g));
-    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),18);
+    let (g,_)=burst();invalid.extend(corrupt_frames(&g));invalid.extend(corrupt_grants());invalid.extend(corrupt_instances());
+    assert_eq!(scenarios.len(),SCENARIOS.len());assert_eq!(invalid.len(),25);
     if let Ok(directory)=std::env::var("JC054_NATIVE_DIR") {
         std::fs::create_dir_all(&directory).unwrap();
         let output=json!({"format":"jc054-native81-v1","scope":"Explicit Native layouts followed by real Room commands, exact restore and journal replay; not online play or migration",

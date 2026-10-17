@@ -150,6 +150,9 @@ impl Game {
         if !own_ability(&d.ability) && d.source.card.definition != "JC054" { return Ok(()); }
         if !own_ability(&d.ability) {
             self.jc054_source(&d.source, d.actor)?;
+            if d.source.card.face_down || d.source.play_source.is_some() {
+                return Err("JC054获授奖励必须来自当时明置的在场角色".into());
+            }
             let expected = self.jc054_granted(&d.ability.key, &d.source)?;
             if !same(&expected, &d.ability) { return Err("JC054获授触发被改写".into()); }
             return Ok(());
@@ -305,6 +308,22 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jc054_state(&self) -> RuleResult<()> {
+        // Validate untriggered entities too: end-step observation indexes their
+        // controllers before a declaration/frame exists to carry a witness.
+        let mut instances = BTreeSet::new();
+        let mut occurrences = BTreeMap::<&str, usize>::new();
+        for c in self.jc054_physical_cards() {
+            *occurrences.entry(&c.id).or_default() += 1;
+            if c.definition == "JC054" {
+                if c.id.is_empty() || c.owner >= self.players.len() || c.controller >= self.players.len() {
+                    return Err("JC054实体身份、拥有者或操控席位无效".into());
+                }
+                instances.insert(c.id.as_str());
+            }
+        }
+        if instances.iter().any(|id| occurrences.get(id).copied().unwrap_or(0) != 1) {
+            return Err("JC054实体UID不能跨实体或区域重复".into());
+        }
         if self.jc054_end_step_turn.is_some_and(|t| t != self.turn)
             || self.window == Some(Window::End) && self.jc054_end_step_turn != Some(self.turn) {
             return Err("JC054结束步骤观察回合标记无效".into());
