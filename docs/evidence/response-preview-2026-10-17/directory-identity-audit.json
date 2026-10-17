@@ -1,0 +1,1506 @@
+{
+  "checkedAtUtc": "2026-10-17T11:41:25.606793+00:00",
+  "mode": "read-only file/installed-source/Git identity audit; no build, test rerun, Site save, publish, credential, or database operations",
+  "referenceEvidenceCommit": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+  "referenceSourceCommit": "398e220721f9e14c4f523530183c6288b7749096",
+  "referenceManifest": "docs/evidence/response-preview-2026-10-17/runtime-manifest.json",
+  "referenceManifestSha256": "3f3abcc5d559232afb472de9bc5c0bce34b1566ddf4fae4c4f3e6c21888286cf",
+  "workspaceStartHead": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+  "workspaceStartStatus": "clean",
+  "remoteStartBranchHead": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+  "mainStartAndEndHead": "d1a170939ac680c74dc7b73e2c1da9647d0bf32e",
+  "activeBuildTestProcessesAtStart": [],
+  "candidateDirectory": "/workspace/UndergroundBattle/sites/dist",
+  "comparison": {
+    "expectedRuntimeFiles": 169,
+    "matched": 169,
+    "missing": [],
+    "changed": [],
+    "clientFiles": 162,
+    "serverRuntimeFiles": 7,
+    "actualDistRegularFiles": 172,
+    "runtimeExtras": [],
+    "knownNonRuntimeFiles": [
+      {
+        "path": ".openai/hosting.json",
+        "bytes": 91,
+        "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2",
+        "classification": "deployment metadata"
+      },
+      {
+        "path": "server/README.md",
+        "bytes": 122,
+        "sha256": "eb21fe36bbaeced3a10c3c9690453c07eb38fb3a53ee42ed9bdf2d7811a48a09",
+        "classification": "generated build readme"
+      },
+      {
+        "path": "server/index.js.map",
+        "bytes": 248067,
+        "sha256": "1c1a3d6031b61dc2e21b344e8913912c5dab159cb0a5aa5d7dac6a709a21f6b2",
+        "classification": "generated source map"
+      }
+    ],
+    "symlinks": [],
+    "perFile": [
+      {
+        "path": "client/assets/index-Bq88UaZO.css",
+        "expectedBytes": 199473,
+        "actualBytes": 199473,
+        "expectedSha256": "44288824544152ad29b6ca2fd9740e1effd59bcf2d76c6190b28ef1150f133b0",
+        "actualSha256": "44288824544152ad29b6ca2fd9740e1effd59bcf2d76c6190b28ef1150f133b0",
+        "match": true
+      },
+      {
+        "path": "client/assets/index-DlFjdYyT.js",
+        "expectedBytes": 379347,
+        "actualBytes": 379347,
+        "expectedSha256": "31f6bd6329863629b7608b495189a97543f5e53143d7ba2440045b55e2e43eea",
+        "actualSha256": "31f6bd6329863629b7608b495189a97543f5e53143d7ba2440045b55e2e43eea",
+        "match": true
+      },
+      {
+        "path": "client/card-scans.json",
+        "expectedBytes": 32321,
+        "actualBytes": 32321,
+        "expectedSha256": "11f37a4a8bfbff7e31db13ae940d9ddfd697596323146c99423efa02bb1b5956",
+        "actualSha256": "11f37a4a8bfbff7e31db13ae940d9ddfd697596323146c99423efa02bb1b5956",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ022.jpg",
+        "expectedBytes": 938512,
+        "actualBytes": 938512,
+        "expectedSha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+        "actualSha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ028.jpg",
+        "expectedBytes": 336814,
+        "actualBytes": 336814,
+        "expectedSha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6",
+        "actualSha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ030.jpg",
+        "expectedBytes": 1333870,
+        "actualBytes": 1333870,
+        "expectedSha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86",
+        "actualSha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ035.jpg",
+        "expectedBytes": 1355796,
+        "actualBytes": 1355796,
+        "expectedSha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5",
+        "actualSha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ040.jpg",
+        "expectedBytes": 1316410,
+        "actualBytes": 1316410,
+        "expectedSha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6",
+        "actualSha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ078.jpg",
+        "expectedBytes": 1324460,
+        "actualBytes": 1324460,
+        "expectedSha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea",
+        "actualSha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ083.jpg",
+        "expectedBytes": 1318007,
+        "actualBytes": 1318007,
+        "expectedSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+        "actualSha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+        "match": true
+      },
+      {
+        "path": "client/cards/BQ104.jpg",
+        "expectedBytes": 1343044,
+        "actualBytes": 1343044,
+        "expectedSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+        "actualSha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC107.jpg",
+        "expectedBytes": 44451,
+        "actualBytes": 44451,
+        "expectedSha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+        "actualSha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC108.jpg",
+        "expectedBytes": 48006,
+        "actualBytes": 48006,
+        "expectedSha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+        "actualSha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC109.jpg",
+        "expectedBytes": 46185,
+        "actualBytes": 46185,
+        "expectedSha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+        "actualSha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC110.jpg",
+        "expectedBytes": 41958,
+        "actualBytes": 41958,
+        "expectedSha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+        "actualSha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC111.jpg",
+        "expectedBytes": 54744,
+        "actualBytes": 54744,
+        "expectedSha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+        "actualSha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC112.jpg",
+        "expectedBytes": 45356,
+        "actualBytes": 45356,
+        "expectedSha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+        "actualSha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC113.jpg",
+        "expectedBytes": 46632,
+        "actualBytes": 46632,
+        "expectedSha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+        "actualSha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC114.jpg",
+        "expectedBytes": 53746,
+        "actualBytes": 53746,
+        "expectedSha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+        "actualSha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC115.jpg",
+        "expectedBytes": 53304,
+        "actualBytes": 53304,
+        "expectedSha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+        "actualSha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+        "match": true
+      },
+      {
+        "path": "client/cards/DQJC116.jpg",
+        "expectedBytes": 57210,
+        "actualBytes": 57210,
+        "expectedSha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+        "actualSha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC001.jpg",
+        "expectedBytes": 304832,
+        "actualBytes": 304832,
+        "expectedSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+        "actualSha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC002.jpg",
+        "expectedBytes": 293615,
+        "actualBytes": 293615,
+        "expectedSha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+        "actualSha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC003.jpg",
+        "expectedBytes": 324904,
+        "actualBytes": 324904,
+        "expectedSha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+        "actualSha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC004.jpg",
+        "expectedBytes": 322602,
+        "actualBytes": 322602,
+        "expectedSha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4",
+        "actualSha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC005.jpg",
+        "expectedBytes": 327083,
+        "actualBytes": 327083,
+        "expectedSha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1",
+        "actualSha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC006.jpg",
+        "expectedBytes": 303268,
+        "actualBytes": 303268,
+        "expectedSha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+        "actualSha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC007.jpg",
+        "expectedBytes": 310229,
+        "actualBytes": 310229,
+        "expectedSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+        "actualSha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC008.jpg",
+        "expectedBytes": 294187,
+        "actualBytes": 294187,
+        "expectedSha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45",
+        "actualSha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC014.jpg",
+        "expectedBytes": 304089,
+        "actualBytes": 304089,
+        "expectedSha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+        "actualSha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC015.jpg",
+        "expectedBytes": 322933,
+        "actualBytes": 322933,
+        "expectedSha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e",
+        "actualSha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC016.jpg",
+        "expectedBytes": 305023,
+        "actualBytes": 305023,
+        "expectedSha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+        "actualSha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC018.jpg",
+        "expectedBytes": 341242,
+        "actualBytes": 341242,
+        "expectedSha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8",
+        "actualSha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC020.jpg",
+        "expectedBytes": 283808,
+        "actualBytes": 283808,
+        "expectedSha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223",
+        "actualSha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC029.jpg",
+        "expectedBytes": 338285,
+        "actualBytes": 338285,
+        "expectedSha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
+        "actualSha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC030.jpg",
+        "expectedBytes": 314592,
+        "actualBytes": 314592,
+        "expectedSha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542",
+        "actualSha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC031.jpg",
+        "expectedBytes": 357471,
+        "actualBytes": 357471,
+        "expectedSha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436",
+        "actualSha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC032.jpg",
+        "expectedBytes": 342051,
+        "actualBytes": 342051,
+        "expectedSha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+        "actualSha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC036.jpg",
+        "expectedBytes": 340194,
+        "actualBytes": 340194,
+        "expectedSha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+        "actualSha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC037.jpg",
+        "expectedBytes": 342598,
+        "actualBytes": 342598,
+        "expectedSha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece",
+        "actualSha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC042.jpg",
+        "expectedBytes": 342837,
+        "actualBytes": 342837,
+        "expectedSha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+        "actualSha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC045.jpg",
+        "expectedBytes": 336061,
+        "actualBytes": 336061,
+        "expectedSha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60",
+        "actualSha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC046.jpg",
+        "expectedBytes": 359316,
+        "actualBytes": 359316,
+        "expectedSha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab",
+        "actualSha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC047.jpg",
+        "expectedBytes": 315262,
+        "actualBytes": 315262,
+        "expectedSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+        "actualSha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC049.jpg",
+        "expectedBytes": 331035,
+        "actualBytes": 331035,
+        "expectedSha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+        "actualSha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC050.jpg",
+        "expectedBytes": 313605,
+        "actualBytes": 313605,
+        "expectedSha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
+        "actualSha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC052.jpg",
+        "expectedBytes": 339386,
+        "actualBytes": 339386,
+        "expectedSha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33",
+        "actualSha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC054.jpg",
+        "expectedBytes": 364015,
+        "actualBytes": 364015,
+        "expectedSha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2",
+        "actualSha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC056.jpg",
+        "expectedBytes": 285784,
+        "actualBytes": 285784,
+        "expectedSha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+        "actualSha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC058.jpg",
+        "expectedBytes": 289748,
+        "actualBytes": 289748,
+        "expectedSha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+        "actualSha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC059.jpg",
+        "expectedBytes": 299356,
+        "actualBytes": 299356,
+        "expectedSha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+        "actualSha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC060.jpg",
+        "expectedBytes": 319369,
+        "actualBytes": 319369,
+        "expectedSha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae",
+        "actualSha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC061.jpg",
+        "expectedBytes": 306855,
+        "actualBytes": 306855,
+        "expectedSha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+        "actualSha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC063.jpg",
+        "expectedBytes": 292803,
+        "actualBytes": 292803,
+        "expectedSha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+        "actualSha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC069.jpg",
+        "expectedBytes": 304925,
+        "actualBytes": 304925,
+        "expectedSha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4",
+        "actualSha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC070.jpg",
+        "expectedBytes": 328410,
+        "actualBytes": 328410,
+        "expectedSha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+        "actualSha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC071.jpg",
+        "expectedBytes": 325476,
+        "actualBytes": 325476,
+        "expectedSha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67",
+        "actualSha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC073.jpg",
+        "expectedBytes": 328192,
+        "actualBytes": 328192,
+        "expectedSha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+        "actualSha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC074.jpg",
+        "expectedBytes": 4706143,
+        "actualBytes": 4706143,
+        "expectedSha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+        "actualSha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC075.jpg",
+        "expectedBytes": 331174,
+        "actualBytes": 331174,
+        "expectedSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+        "actualSha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC076.jpg",
+        "expectedBytes": 326205,
+        "actualBytes": 326205,
+        "expectedSha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+        "actualSha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC078.jpg",
+        "expectedBytes": 335412,
+        "actualBytes": 335412,
+        "expectedSha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+        "actualSha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC084.jpg",
+        "expectedBytes": 316581,
+        "actualBytes": 316581,
+        "expectedSha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872",
+        "actualSha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC085.jpg",
+        "expectedBytes": 337881,
+        "actualBytes": 337881,
+        "expectedSha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+        "actualSha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC086.jpg",
+        "expectedBytes": 321608,
+        "actualBytes": 321608,
+        "expectedSha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+        "actualSha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC087.jpg",
+        "expectedBytes": 339745,
+        "actualBytes": 339745,
+        "expectedSha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00",
+        "actualSha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC088.jpg",
+        "expectedBytes": 314244,
+        "actualBytes": 314244,
+        "expectedSha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+        "actualSha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC089.jpg",
+        "expectedBytes": 312412,
+        "actualBytes": 312412,
+        "expectedSha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7",
+        "actualSha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC090.jpg",
+        "expectedBytes": 319864,
+        "actualBytes": 319864,
+        "expectedSha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c",
+        "actualSha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC091.jpg",
+        "expectedBytes": 314574,
+        "actualBytes": 314574,
+        "expectedSha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+        "actualSha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC092.jpg",
+        "expectedBytes": 327819,
+        "actualBytes": 327819,
+        "expectedSha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+        "actualSha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC093.jpg",
+        "expectedBytes": 327300,
+        "actualBytes": 327300,
+        "expectedSha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+        "actualSha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC094.jpg",
+        "expectedBytes": 322070,
+        "actualBytes": 322070,
+        "expectedSha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd",
+        "actualSha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC095.jpg",
+        "expectedBytes": 320210,
+        "actualBytes": 320210,
+        "expectedSha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020",
+        "actualSha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC096.jpg",
+        "expectedBytes": 311787,
+        "actualBytes": 311787,
+        "expectedSha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c",
+        "actualSha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC102.jpg",
+        "expectedBytes": 346254,
+        "actualBytes": 346254,
+        "expectedSha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+        "actualSha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC103.jpg",
+        "expectedBytes": 336324,
+        "actualBytes": 336324,
+        "expectedSha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+        "actualSha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC104.jpg",
+        "expectedBytes": 375404,
+        "actualBytes": 375404,
+        "expectedSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+        "actualSha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC107.jpg",
+        "expectedBytes": 343826,
+        "actualBytes": 343826,
+        "expectedSha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2",
+        "actualSha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC112.jpg",
+        "expectedBytes": 295767,
+        "actualBytes": 295767,
+        "expectedSha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71",
+        "actualSha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC114.jpg",
+        "expectedBytes": 325963,
+        "actualBytes": 325963,
+        "expectedSha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7",
+        "actualSha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC116.jpg",
+        "expectedBytes": 319810,
+        "actualBytes": 319810,
+        "expectedSha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16",
+        "actualSha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC118.jpg",
+        "expectedBytes": 283116,
+        "actualBytes": 283116,
+        "expectedSha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+        "actualSha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC125.jpg",
+        "expectedBytes": 285153,
+        "actualBytes": 285153,
+        "expectedSha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+        "actualSha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC126.jpg",
+        "expectedBytes": 302436,
+        "actualBytes": 302436,
+        "expectedSha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+        "actualSha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC129.jpg",
+        "expectedBytes": 294504,
+        "actualBytes": 294504,
+        "expectedSha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59",
+        "actualSha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC130.jpg",
+        "expectedBytes": 289306,
+        "actualBytes": 289306,
+        "expectedSha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f",
+        "actualSha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC131.jpg",
+        "expectedBytes": 270928,
+        "actualBytes": 270928,
+        "expectedSha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f",
+        "actualSha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JC132.jpg",
+        "expectedBytes": 295955,
+        "actualBytes": 295955,
+        "expectedSha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1",
+        "actualSha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ02.jpg",
+        "expectedBytes": 518818,
+        "actualBytes": 518818,
+        "expectedSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8",
+        "actualSha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ08.jpg",
+        "expectedBytes": 497242,
+        "actualBytes": 497242,
+        "expectedSha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+        "actualSha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ22.jpg",
+        "expectedBytes": 519522,
+        "actualBytes": 519522,
+        "expectedSha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160",
+        "actualSha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ24.jpg",
+        "expectedBytes": 515008,
+        "actualBytes": 515008,
+        "expectedSha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d",
+        "actualSha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ27.jpg",
+        "expectedBytes": 528092,
+        "actualBytes": 528092,
+        "expectedSha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e",
+        "actualSha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ30.jpg",
+        "expectedBytes": 517039,
+        "actualBytes": 517039,
+        "expectedSha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264",
+        "actualSha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ31.jpg",
+        "expectedBytes": 507421,
+        "actualBytes": 507421,
+        "expectedSha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+        "actualSha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ35.jpg",
+        "expectedBytes": 524713,
+        "actualBytes": 524713,
+        "expectedSha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc",
+        "actualSha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ43.jpg",
+        "expectedBytes": 495991,
+        "actualBytes": 495991,
+        "expectedSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826",
+        "actualSha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ44.jpg",
+        "expectedBytes": 475293,
+        "actualBytes": 475293,
+        "expectedSha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb",
+        "actualSha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ45.jpg",
+        "expectedBytes": 470410,
+        "actualBytes": 470410,
+        "expectedSha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f",
+        "actualSha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ46.jpg",
+        "expectedBytes": 499668,
+        "actualBytes": 499668,
+        "expectedSha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785",
+        "actualSha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ48.jpg",
+        "expectedBytes": 499021,
+        "actualBytes": 499021,
+        "expectedSha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f",
+        "actualSha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ49.jpg",
+        "expectedBytes": 499091,
+        "actualBytes": 499091,
+        "expectedSha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
+        "actualSha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ50.jpg",
+        "expectedBytes": 533019,
+        "actualBytes": 533019,
+        "expectedSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+        "actualSha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ51.jpg",
+        "expectedBytes": 521395,
+        "actualBytes": 521395,
+        "expectedSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+        "actualSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ52.jpg",
+        "expectedBytes": 521413,
+        "actualBytes": 521413,
+        "expectedSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+        "actualSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ53.jpg",
+        "expectedBytes": 509401,
+        "actualBytes": 509401,
+        "expectedSha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+        "actualSha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ54.jpg",
+        "expectedBytes": 543412,
+        "actualBytes": 543412,
+        "expectedSha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+        "actualSha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ55.jpg",
+        "expectedBytes": 493536,
+        "actualBytes": 493536,
+        "expectedSha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a",
+        "actualSha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ58.jpg",
+        "expectedBytes": 548446,
+        "actualBytes": 548446,
+        "expectedSha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+        "actualSha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ59.jpg",
+        "expectedBytes": 518313,
+        "actualBytes": 518313,
+        "expectedSha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+        "actualSha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ61.jpg",
+        "expectedBytes": 493374,
+        "actualBytes": 493374,
+        "expectedSha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+        "actualSha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ67.jpg",
+        "expectedBytes": 526684,
+        "actualBytes": 526684,
+        "expectedSha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477",
+        "actualSha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477",
+        "match": true
+      },
+      {
+        "path": "client/cards/JZ74.jpg",
+        "expectedBytes": 500480,
+        "actualBytes": 500480,
+        "expectedSha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+        "actualSha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC01.jpg",
+        "expectedBytes": 467391,
+        "actualBytes": 467391,
+        "expectedSha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6",
+        "actualSha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC06.jpg",
+        "expectedBytes": 463742,
+        "actualBytes": 463742,
+        "expectedSha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
+        "actualSha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC12.jpg",
+        "expectedBytes": 484188,
+        "actualBytes": 484188,
+        "expectedSha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+        "actualSha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC19.jpg",
+        "expectedBytes": 469421,
+        "actualBytes": 469421,
+        "expectedSha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+        "actualSha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC20.jpg",
+        "expectedBytes": 471968,
+        "actualBytes": 471968,
+        "expectedSha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+        "actualSha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC21.jpg",
+        "expectedBytes": 437349,
+        "actualBytes": 437349,
+        "expectedSha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+        "actualSha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC22.jpg",
+        "expectedBytes": 441940,
+        "actualBytes": 441940,
+        "expectedSha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+        "actualSha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC23.jpg",
+        "expectedBytes": 487166,
+        "actualBytes": 487166,
+        "expectedSha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+        "actualSha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC24.jpg",
+        "expectedBytes": 464715,
+        "actualBytes": 464715,
+        "expectedSha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+        "actualSha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+        "match": true
+      },
+      {
+        "path": "client/cards/LC30.jpg",
+        "expectedBytes": 1156537,
+        "actualBytes": 1156537,
+        "expectedSha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d",
+        "actualSha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC01.jpg",
+        "expectedBytes": 263474,
+        "actualBytes": 263474,
+        "expectedSha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+        "actualSha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC02.jpg",
+        "expectedBytes": 249225,
+        "actualBytes": 249225,
+        "expectedSha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+        "actualSha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC03.jpg",
+        "expectedBytes": 238826,
+        "actualBytes": 238826,
+        "expectedSha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+        "actualSha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC06.jpg",
+        "expectedBytes": 229736,
+        "actualBytes": 229736,
+        "expectedSha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+        "actualSha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC07.jpg",
+        "expectedBytes": 229888,
+        "actualBytes": 229888,
+        "expectedSha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+        "actualSha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC08.jpg",
+        "expectedBytes": 266822,
+        "actualBytes": 266822,
+        "expectedSha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+        "actualSha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC09.jpg",
+        "expectedBytes": 210792,
+        "actualBytes": 210792,
+        "expectedSha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+        "actualSha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+        "match": true
+      },
+      {
+        "path": "client/cards/MSJC11.jpg",
+        "expectedBytes": 239506,
+        "actualBytes": 239506,
+        "expectedSha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+        "actualSha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM003.jpg",
+        "expectedBytes": 1306943,
+        "actualBytes": 1306943,
+        "expectedSha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff",
+        "actualSha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM023.jpg",
+        "expectedBytes": 1317198,
+        "actualBytes": 1317198,
+        "expectedSha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85",
+        "actualSha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM038.jpg",
+        "expectedBytes": 1240666,
+        "actualBytes": 1240666,
+        "expectedSha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd",
+        "actualSha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM056.jpg",
+        "expectedBytes": 1302421,
+        "actualBytes": 1302421,
+        "expectedSha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497",
+        "actualSha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM059.jpg",
+        "expectedBytes": 1282461,
+        "actualBytes": 1282461,
+        "expectedSha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f",
+        "actualSha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f",
+        "match": true
+      },
+      {
+        "path": "client/cards/WM062.jpg",
+        "expectedBytes": 1188701,
+        "actualBytes": 1188701,
+        "expectedSha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335",
+        "actualSha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ03.jpg",
+        "expectedBytes": 1430068,
+        "actualBytes": 1430068,
+        "expectedSha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+        "actualSha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ07.jpg",
+        "expectedBytes": 1401415,
+        "actualBytes": 1401415,
+        "expectedSha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9",
+        "actualSha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ12.jpg",
+        "expectedBytes": 1381983,
+        "actualBytes": 1381983,
+        "expectedSha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+        "actualSha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ14.jpg",
+        "expectedBytes": 1373623,
+        "actualBytes": 1373623,
+        "expectedSha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2",
+        "actualSha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ16.jpg",
+        "expectedBytes": 1503073,
+        "actualBytes": 1503073,
+        "expectedSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+        "actualSha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ17.jpg",
+        "expectedBytes": 1375211,
+        "actualBytes": 1375211,
+        "expectedSha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb",
+        "actualSha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ18.jpg",
+        "expectedBytes": 1431760,
+        "actualBytes": 1431760,
+        "expectedSha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e",
+        "actualSha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ24.jpg",
+        "expectedBytes": 1451251,
+        "actualBytes": 1451251,
+        "expectedSha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8",
+        "actualSha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ25.jpg",
+        "expectedBytes": 1406441,
+        "actualBytes": 1406441,
+        "expectedSha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0",
+        "actualSha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ27.jpg",
+        "expectedBytes": 1342504,
+        "actualBytes": 1342504,
+        "expectedSha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+        "actualSha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ34.jpg",
+        "expectedBytes": 1292584,
+        "actualBytes": 1292584,
+        "expectedSha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04",
+        "actualSha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ36.jpg",
+        "expectedBytes": 1471604,
+        "actualBytes": 1471604,
+        "expectedSha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9",
+        "actualSha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ37.jpg",
+        "expectedBytes": 1458533,
+        "actualBytes": 1458533,
+        "expectedSha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9",
+        "actualSha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ38.jpg",
+        "expectedBytes": 1487343,
+        "actualBytes": 1487343,
+        "expectedSha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e",
+        "actualSha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ40.jpg",
+        "expectedBytes": 1505785,
+        "actualBytes": 1505785,
+        "expectedSha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c",
+        "actualSha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ41.jpg",
+        "expectedBytes": 1463646,
+        "actualBytes": 1463646,
+        "expectedSha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179",
+        "actualSha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ43.jpg",
+        "expectedBytes": 1456234,
+        "actualBytes": 1456234,
+        "expectedSha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+        "actualSha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ44.jpg",
+        "expectedBytes": 1474456,
+        "actualBytes": 1474456,
+        "expectedSha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047",
+        "actualSha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ45.jpg",
+        "expectedBytes": 1476070,
+        "actualBytes": 1476070,
+        "expectedSha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+        "actualSha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ46.jpg",
+        "expectedBytes": 1254286,
+        "actualBytes": 1254286,
+        "expectedSha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89",
+        "actualSha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ47.jpg",
+        "expectedBytes": 1347172,
+        "actualBytes": 1347172,
+        "expectedSha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03",
+        "actualSha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ48.jpg",
+        "expectedBytes": 1363262,
+        "actualBytes": 1363262,
+        "expectedSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+        "actualSha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+        "match": true
+      },
+      {
+        "path": "client/cards/XQ49.jpg",
+        "expectedBytes": 1336679,
+        "actualBytes": 1336679,
+        "expectedSha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+        "actualSha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+        "match": true
+      },
+      {
+        "path": "client/index.html",
+        "expectedBytes": 475,
+        "actualBytes": 475,
+        "expectedSha256": "d3c43d546d3f42ea6ba1a25829bebe6260a56be43112d189eec9e7be660e9ae9",
+        "actualSha256": "d3c43d546d3f42ea6ba1a25829bebe6260a56be43112d189eec9e7be660e9ae9",
+        "match": true
+      },
+      {
+        "path": "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+        "expectedBytes": 3047680,
+        "actualBytes": 3047680,
+        "expectedSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+        "actualSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+        "match": true
+      },
+      {
+        "path": "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+        "expectedBytes": 3165174,
+        "actualBytes": 3165174,
+        "expectedSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+        "actualSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+        "match": true
+      },
+      {
+        "path": "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+        "expectedBytes": 2976205,
+        "actualBytes": 2976205,
+        "expectedSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+        "actualSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+        "match": true
+      },
+      {
+        "path": "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+        "expectedBytes": 3154323,
+        "actualBytes": 3154323,
+        "expectedSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+        "actualSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+        "match": true
+      },
+      {
+        "path": "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+        "expectedBytes": 3005332,
+        "actualBytes": 3005332,
+        "expectedSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+        "actualSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+        "match": true
+      },
+      {
+        "path": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+        "expectedBytes": 2909006,
+        "actualBytes": 2909006,
+        "expectedSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+        "actualSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+        "match": true
+      },
+      {
+        "path": "server/index.js",
+        "expectedBytes": 140907,
+        "actualBytes": 140907,
+        "expectedSha256": "1abb8076b9a0da87da6e9157747badd6b3267ff95e937e41b58c07fe374b45e0",
+        "actualSha256": "1abb8076b9a0da87da6e9157747badd6b3267ff95e937e41b58c07fe374b45e0",
+        "match": true
+      }
+    ]
+  },
+  "assetCountReconciliation": {
+    "log": "/workspace/response-preview-evidence-20261017/build82-round1/production-build-round2.log",
+    "reportedReadCount": 164,
+    "actualPublicRegularFiles": 162,
+    "recursiveEntries": 164,
+    "directoryEntries": [
+      "assets",
+      "cards"
+    ],
+    "nodeReaddirExactReproduction": {
+      "entries": 164,
+      "directories": [
+        "assets",
+        "cards"
+      ],
+      "files": 162
+    },
+    "breakdown": {
+      "jpg": 158,
+      "html": 1,
+      "json": 1,
+      "css": 1,
+      "js": 1
+    },
+    "publicAndWebDistBothMatchAll162ClientManifestRows": true,
+    "wranglerVersion": "4.146.0",
+    "installedPrimarySource": "/workspace/UndergroundBattle/sites/node_modules/wrangler/wrangler-dist/cli.js",
+    "installedSourceSha256": "c7b877d822ee750090ae4cf59ead57a61b8928ffe17563ad25cf9a491b2af86e",
+    "buildAssetManifestLine": 163075,
+    "logReadFilesFunctionLine": 162754,
+    "skipDirectoryLine": 163088,
+    "mechanism": "fs.readdir(recursive:true) includes directories; logReadFilesFromDirectory reports array length before per-entry stat() and isDirectory() exclusion; therefore 164 entries means 162 files plus assets/ and cards/",
+    "noAssetOmitted": true
+  },
+  "oldKernels": [
+    {
+      "abi": 77,
+      "path": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "frozenCarrierJsAndGeneratedRawExact": true
+    },
+    {
+      "abi": 78,
+      "path": "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "frozenCarrierJsAndGeneratedRawExact": true
+    },
+    {
+      "abi": 79,
+      "path": "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "frozenCarrierJsAndGeneratedRawExact": true
+    },
+    {
+      "abi": 80,
+      "path": "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+      "frozenCarrierJsAndGeneratedRawExact": true
+    },
+    {
+      "abi": 81,
+      "path": "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "frozenCarrierJsAndGeneratedRawExact": true
+    }
+  ],
+  "current82": {
+    "bytes": 3165174,
+    "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+  },
+  "wasmFiles": 6,
+  "officialV63Checkout": {
+    "directory": "/workspace/hidden-world-sites-abi77-20261015",
+    "head": "90bfb25faa4c142f13140e141b6c8dfe2ec9355a",
+    "status": "clean",
+    "matchedOriginalV63Runtime": 168,
+    "missingOrChanged": [],
+    "isCandidate82": false,
+    "comparisonToCandidate169": {
+      "same": 165,
+      "changed": [
+        "client/index.html",
+        "server/index.js"
+      ],
+      "missingCandidateFiles": [
+        "client/assets/index-DlFjdYyT.js",
+        "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm"
+      ],
+      "oldClientJs": "client/assets/index-BiKBhwOc.js"
+    },
+    "note": "Official source remains original v63; compare it to its own reviewed 168-row manifest, not to candidate82 as if already promoted."
+  },
+  "permissionBoundary": {
+    "parentPublicationPermissionCheckRejected": true,
+    "publicationApprovalPending": true,
+    "noRetryOrBypass": true,
+    "siteVersionSaved": false,
+    "sitePublished": false,
+    "siteSourcePushed": false,
+    "productionD1Touched": false,
+    "onlyGameProgressBranchDocumentationMayBeCommitted": true
+  }
+}
