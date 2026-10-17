@@ -32,3 +32,5 @@
 **没有v65线上游戏试玩通过结论**。本次证书错误属于14:26 UTC的v65检查；前一轮13:29 UTC属于v64，两个版本的记录分别保留。本地ABI83组件/HTTP/D1/浏览器验证不计作线上试玩。完整本地结果、失败修正和来源裁定边界仍见[原审查交接](MSJC04_MSJC05_REVIEW_HANDOFF_2026-10-17.md)。
 
 游戏远端main此前已按单独授权正常快进固定ABI82代码 `398e220721f9e14c4f523530183c6288b7749096`；此次v65发布不把ABI83推入main。main晋升见[独立记录](REVIEWED_V64_MAIN_PROMOTION_2026-10-17.md)，ABI83未来main推进需独立处理。历史ABI74重建身份、JC016＋BQ022返回/优先权及全原作验收仍不在本批解决声明内。
+
+2026-10-17本轮例行真实浏览器检查：先确认无活动编辑、进度分支本地/远端均为 `a9fc9514982c7a85b41781f1b73ae2afb830e0f5` 且干净、远端main仍398。15:25:39.672 UTC官方回读仍为已审v65/source6efc627/deployment6ad384及同一归档。与上次导航间隔3601.507291秒后，仅在15:26:24.323582 UTC普通Chromium151.0.7922.173导航一次，15:26:24.532575 UTC再次 `ERR_CERT_AUTHORITY_INVALID`，1 GET/0 POST/0其他游戏写入、未到界面/目录、未建桌或入桌、完整对局0。红黑蓝灰机制、开局选择、重复点击、刷新恢复均未执行；中立双色继续暂停，无组件测试替代、证书绕过、额外发布或main推进。已结束本轮访问，[结果](evidence/v65-connection-2026-10-17-1526/normal-browser.json)、[身份](evidence/v65-connection-2026-10-17-1526/official-identity.json)、[脚本/间隔/边界](evidence/v65-connection-2026-10-17-1526/reproduction.json)与日志截图均独立保留。

@@ -1,0 +1,32 @@
+{
+  "parentRequest": "One routine ordinary cloud-browser check after progress/activity/published identity verification; stop after certificate blocker, with zero writes. No publishing/main changes; neutral and dual paused.",
+  "rawRoot": "/workspace/v65-real-browser-20261017T1526Z",
+  "command": "node tools/build-storage.mjs -- python3 /workspace/v65-real-browser-20261017T1526Z/v65-normal_browser.py > /workspace/v65-real-browser-20261017T1526Z/normal-browser.log 2>&1",
+  "naturalExitCode": 0,
+  "officialSitesSkill": "skill://plugin_connector_1p_689987207de08191979cf68eca2941c6/sites/SKILL.md",
+  "identityReadbackAtUtc": "2026-10-17T15:25:39.672Z",
+  "previousProbeAtUtc": "2026-10-17T14:26:22.816291+00:00",
+  "navigationAtUtc": "2026-10-17T15:26:24.323582+00:00",
+  "errorAtUtc": "2026-10-17T15:26:24.532575+00:00",
+  "intervalSincePriorProbeSeconds": 3601.507291,
+  "navigationAttempts": 1,
+  "getRequests": 1,
+  "gameWriteCount": 0,
+  "newVersionOrDeployment": false,
+  "mainChanged": false,
+  "normalTls": true,
+  "bypass": false,
+  "noFurtherAttemptsThisRound": true,
+  "uiAssetsAndCatalogIdentityNotReached": true,
+  "redBlackBlueGrayMechanismsSelectionRepeatClickRefreshCompleteGameNotExecuted": true,
+  "noComponentTestSubstitution": true,
+  "neutralAndDualPaused": true,
+  "preProbeGit": {
+    "branch": "codex/stage-pass-progress-20261016",
+    "headAndRemote": "a9fc9514982c7a85b41781f1b73ae2afb830e0f5",
+    "remoteMain": "398e220721f9e14c4f523530183c6288b7749096",
+    "workingTreeClean": true,
+    "activeDevelopmentProcesses": []
+  },
+  "initialDiagnosticNote": "Session memory did not retain earlier-turn receipts, so initial lookup stopped before native calls. Exact opaque IDs were then read from the committed official receipt; no credentials requested or source changes."
+}
