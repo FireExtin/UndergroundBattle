@@ -53,7 +53,7 @@ export function IconStrip({ icons, temporary = false, label }: { icons?: Icons; 
   </span>;
 }
 
-export function CardContent({ card: source, definition: sourceDefinition, compact = false, viewerId, attachmentCount = 0 }: { card: Card; definition?: CardDefinition; compact?: boolean; viewerId?: string; attachmentCount?: number }) {
+export function CardContent({ card: source, definition: sourceDefinition, compact = false, viewerId, attachmentCount = 0, actionHint }: { card: Card; definition?: CardDefinition; compact?: boolean; viewerId?: string; attachmentCount?: number; actionHint?: string }) {
   const archive = useArchivePresentation();
   const projected = viewerId ? visibleCard(source, viewerId) : source;
   // Explicit reading still uses controller authorization; compact backs stay public.
@@ -90,7 +90,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {!compact && subtitle && <span className="hg-card-subtitle">{subtitle}</span>}
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
-    {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
+    {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} actionHint={actionHint} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
     {card.region !== undefined && !!card.lockMarkers && <span className="hg-lock-marker" aria-label={`锁定标志 ${card.lockMarkers}`}>锁定 {card.lockMarkers}</span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
@@ -128,10 +128,10 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   </>;
 }
 
-export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, controller, sameNameTag, actionable = false, targeted = false, onPreview, onPreviewEnd, attachmentCount = 0 }: {
+export function CardTile({ card: source, definition: sourceDefinition, selected, onSelect, compact = false, viewerId, owner, controller, sameNameTag, actionable = false, actionHint, targeted = false, onPreview, onPreviewEnd, attachmentCount = 0 }: {
   card: Card; definition?: CardDefinition; selected?: boolean; onSelect?: () => void; compact?: boolean;
   viewerId?: string; owner?: Player; controller?: Player; sameNameTag?: string; actionable?: boolean; targeted?: boolean; onPreview?: () => void; onPreviewEnd?: () => void;
-  attachmentCount?: number;
+  attachmentCount?: number; actionHint?: string;
 }) {
   const archive = useArchivePresentation();
   const card = viewerId ? visibleCard(source, viewerId) : source;
@@ -145,11 +145,12 @@ export function CardTile({ card: source, definition: sourceDefinition, selected,
     owner && `${owner.name}${you(owner)} 拥有${otherController ? `，${otherController.name}${you(otherController)} 操控` : ''}`,
     sameNameTag && `同名对象 #${sameNameTag}`,
     targeted && '合法目标，可点击选择，然后确认行动。',
+    actionHint && `${actionHint}；仍需确认目标、费用与后续选择。`,
   ].filter(Boolean).join('；');
   return <button type="button" data-card-instance={card.instanceId} data-card-owner={card.owner} data-card-controller={card.controller} data-control-differs={otherController ? true : undefined} data-card-actionable={actionable} data-card-targeted={targeted} data-card-exhausted={card.exhausted} data-card-color={archive && !card.faceDown ? color.replace(/色$/, '') : undefined} data-card-face-down={archive ? card.faceDown : undefined} data-attachment-count={attachmentCount || undefined} className={`hg-card hg-card-${palette}${compact ? ' hg-card-compact' : ''}${selected ? ' hg-selected' : ''}${card.exhausted ? ' hg-exhausted' : ''}${actionable ? ' hg-card-actionable' : ''}${targeted ? ' hg-card-targeted' : ''}`} onClick={onSelect} onMouseEnter={onPreview} onMouseLeave={onPreviewEnd} onFocus={onPreview} onBlur={onPreviewEnd} aria-pressed={selected} aria-description={description || undefined} aria-label={`查看${card.name}${card.exhausted ? '，已横置' : ''}${attachmentCount ? `，附属 ${attachmentCount} 张` : ''}`}>
     {owner && <span className={`hg-card-owner hg-team-${owner.team}`}><span className="hg-piece-avatar" aria-hidden="true">{owner.seat + 1}</span><span>{owner.name}{owner.id === viewerId ? ' · 你' : ''}</span>{sameNameTag && <span className="hg-instance-tag">#{sameNameTag}</span>}<em>{actionable ? '可行动' : card.faceDown && card.controller === viewerId ? '查看自牌' : '浏览'}</em>
       {otherController && <span className={`hg-card-controller hg-team-${otherController.team}`}>操控 · {otherController.name}{otherController.id === viewerId ? ' · 你' : ''}</span>}</span>}
     {!owner && sameNameTag && <span className="hg-instance-tag">#{sameNameTag}</span>}
-    <CardContent card={card} definition={definition} compact={compact} attachmentCount={attachmentCount} />
+    <CardContent card={card} definition={definition} compact={compact} attachmentCount={attachmentCount} actionHint={actionHint} />
   </button>;
 }
