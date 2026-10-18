@@ -1,0 +1,7 @@
+{
+  "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+  "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+  "physicalPage": 3,
+  "observedHeading": "监控员（基础050）",
+  "render": "pdftoppm scale-to3200, crop x1180 y420 width1100 height430; original PDF unchanged"
+}

@@ -1,0 +1,9 @@
+{
+  "candidateCode": "2261d773da66d5862e6af8bdf5cd1ce28ac405ff",
+  "fixtureSha256": "0832c3999408e52ac19c8d3da6f0710394b874ff49bd848c0a6151f7558298d8",
+  "sourceCheckpoint": "reveal-p1.steps[5].expected.state == steps[6].state",
+  "revision": 13,
+  "choiceId": "i249",
+  "numberHandling": "Python arbitrary-precision JSON integers; opaque state passed losslessly to WASM",
+  "scope": "Prepared persisted-state corruption only; not an HTTP endpoint accepting arbitrary remote opaque state"
+}
