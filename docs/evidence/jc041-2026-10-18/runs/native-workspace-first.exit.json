@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "CARGO_HOME=/workspace/tooling/cargo",
+    "RUSTUP_HOME=/workspace/tooling/rustup",
+    "JC041_NATIVE_DIR=/workspace/jc041-evidence-20261018/native87-workspace-first",
+    "cargo",
+    "test",
+    "--workspace",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1"
+  ],
+  "startedUtc": "2026-10-18T12:43:55.920881+00:00",
+  "endedUtc": "2026-10-18T13:08:38.404979+00:00",
+  "exitCode": 101
+}

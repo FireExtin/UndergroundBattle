@@ -1,0 +1,1391 @@
+{
+  "checkedUtc": "2026-10-18T13:28:16.023401+00:00",
+  "gitHeadAtAudit": "022ba97e210822f07bfe859a4d72ab85bfd89f34",
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.79-jc041-water-hidden-candidate",
+    "engineVersion": "rust-v0.2.87-jc041-water-hidden-candidate"
+  },
+  "cards": 151,
+  "societies": 10,
+  "native": {
+    "rawSha256": "f00c02d928b17a0a304d1dda3d74d112e22240bd2c590cf2ed6047845498fe27",
+    "rawBytes": 18803078,
+    "fixture": {
+      "bytes": 1338489,
+      "sha256": "3325dfc4e1135953784be1bece24ea4dba8592587587da378873faec181e5019"
+    },
+    "counts": {
+      "scenarios": 10,
+      "commands": 155,
+      "rejected": 9,
+      "projections": 660,
+      "invalidRestores": 35
+    },
+    "sourceBindings": {
+      "algorithm": "sha256",
+      "files": {
+        "Cargo.lock": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54",
+        "Cargo.toml": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257",
+        "rust-game-wasm/Cargo.toml": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0",
+        "rust-game-wasm/build.sh": "3c86700cd2004cd0bb5aec81fa76d1f81949076173dd147d86d5fd7ac1d6d61b",
+        "rust-game-wasm/src/lib.rs": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3",
+        "rust-game/Cargo.toml": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178",
+        "rust-game/data/cards.json": "c8e3e3280f99b5847cae7c2f7eda696167b9450694c6fb4bfdb7950614b50e08",
+        "rust-game/src/attachment.rs": "000f8a94d158a9cc059dd1397bbd47b030bd8562e092b4e28f21c346cabd15be",
+        "rust-game/src/attributes.rs": "d09e78fb05d45c52378efb526327fc9075ad537a1dc771707f7527da284316a0",
+        "rust-game/src/bin/hegemony-audit.rs": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+        "rust-game/src/black_expansion.rs": "c78289a80eafe17c72394a389c26d83044bfc2df2530d239bed10e517b6ec312",
+        "rust-game/src/black_expansion_tests.rs": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c",
+        "rust-game/src/blue_expansion.rs": "1356458c4de4dbc19ce223da25ec614f50c4c471c8b92c2daacdbf8440c94607",
+        "rust-game/src/blue_expansion_tests.rs": "51dff91c0273a64e9e4d7679c3f38b0ae4cce32e961a4cd4de11a15639f27e1c",
+        "rust-game/src/blue_minimum.rs": "3ba3322bec76dc3b0a90e61ba4575ec15b45ea2a1488c100ce6da7926d622f24",
+        "rust-game/src/blue_minimum_tests.rs": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb",
+        "rust-game/src/bounded_entry_fresh_tests.rs": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4",
+        "rust-game/src/bounded_search.rs": "6f6ebedf328d8c5a88f01fd2a5ba76e03c4067f50dae195fc94fb03e14ee098e",
+        "rust-game/src/bounded_search_tests.rs": "e61512f04e440a90db3ea5d4a2cc69120fb92c85a87c08de28fc8fa7e8e81976",
+        "rust-game/src/bq030.rs": "4c9613d972f66713ee1abbd370788fb9d27a3c6ec1c0ccd38fb9754db48e2fb8",
+        "rust-game/src/bq030_preparation.rs": "5105c9d3b84c149675de378e22830ebf54dca371d034ec743bfc5eb86a590561",
+        "rust-game/src/bq035.rs": "991c1f1cb5a30e8a41828020e433255ea8eb5bf9119c0baa88eb4ac15df97515",
+        "rust-game/src/bq035_tests.rs": "fef539871a26fb58ca1a230e7d8300d414dd06f3331b87f7c7050d3aa7b37d1f",
+        "rust-game/src/catalog.rs": "66f78b08d400ae1fc6b70cc32356968d5310f3cfac7802419906565add66ad83",
+        "rust-game/src/control.rs": "76d854b7222817aed476810596848eb13ce675b537360716a51ea4c36c2ff515",
+        "rust-game/src/control_tests.rs": "02f2245f8fd784cd61f1283a323221551dd5049c238eb37b8de6c629142e6c17",
+        "rust-game/src/death_observer_tests.rs": "9614543f24087f7a369f847e17d6f074138866c786f2c77a3e0ef654f17588fa",
+        "rust-game/src/death_observers.rs": "baa8456365384fa422bed01c0e7b1a5ff85bb88e9ebc02f6bddac36bb21f2b58",
+        "rust-game/src/deck.rs": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd",
+        "rust-game/src/deck_seal_search.rs": "69981f416b13c510da1c4929513bd1cfa7d788f2881773b0381dbe1a59b08851",
+        "rust-game/src/deck_seal_search_draft.rs": "fe343a543ab96b45ef8fa81d344e825d2935e702b6e7bdfb36975f0666e034e2",
+        "rust-game/src/deck_seal_search_tests.rs": "a37e5255e9e2474b62bfb6d19365cfcd50d5ad15b25a2e511f599d7630613a80",
+        "rust-game/src/defence_equipment_tests.rs": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462",
+        "rust-game/src/dream_reveal_tests.rs": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e",
+        "rust-game/src/engine.rs": "88b6a473c88a27a656e33332e27d719ee30930a09227efcb9481bcab3650ae42",
+        "rust-game/src/equipment_abilities_tests.rs": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c",
+        "rust-game/src/gray_expansion.rs": "d4ad0606934e90e076d6c23f705eac5c615e29ad67313a1ffb182340cccd5924",
+        "rust-game/src/gray_expansion_tests.rs": "b578d1d3033d9708fd2b0b56fbfbbb2d40ba592eba5f10404b9ff25ee330719a",
+        "rust-game/src/gray_lock.rs": "6d9c66d37edc74e07e5b8cd4f1948ff7535205bd8ce3d22d6befcb36808e90b1",
+        "rust-game/src/gray_lock_tests.rs": "c1a66c5c85f413d00755d8660420119acb7297fcb2c583b3047482f06f1efae5",
+        "rust-game/src/green_minimum_tests.rs": "4206840dcb97261cc609501aee30e749a16c1a407b26a63d210627281d354bdf",
+        "rust-game/src/hand_deck_tests.rs": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c",
+        "rust-game/src/hand_interactions_tests.rs": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517",
+        "rust-game/src/jc004_tests.rs": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf",
+        "rust-game/src/jc005_tests.rs": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee",
+        "rust-game/src/jc008_tests.rs": "a6fe105a7f23709f659746dabf323ecee34fbc75688983f36cb2078c8406748f",
+        "rust-game/src/jc029_tests.rs": "3412ada0846024cc54341196ca1420d8771c2b7b1d94f9498815c765f7e3cc19",
+        "rust-game/src/jc030_tests.rs": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440",
+        "rust-game/src/jc037.rs": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b",
+        "rust-game/src/jc037_tests.rs": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c",
+        "rust-game/src/jc041.rs": "3acab5f9ed23d030a78b64394b798d107b47fa5b503f097ebe1d23160161910a",
+        "rust-game/src/jc041_tests.rs": "f50fc0e0687aee6f9541ad8d66b93d2b0039e880b5403a9fb9639c05e402339f",
+        "rust-game/src/jc044.rs": "7b1fae79de20fce8ddfa4e8b5d275c0d9f9be622590159a9a90031f1642d9540",
+        "rust-game/src/jc044_tests.rs": "13d69c9613fd90a200e38880047d1219872a76f5ca00ae2fb25d7a3dc7af44bb",
+        "rust-game/src/jc046.rs": "00c90336372f18ca59cbb8b3ac68010a5edd8a7ed56437fc5b826c187327263a",
+        "rust-game/src/jc046_tests.rs": "4a08fb9e94b501f929b4d672c311e7bf8bb924e5274dcf78f909aa2ca5729c99",
+        "rust-game/src/jc050.rs": "03057cf59ddeed89275079447d5b4799bd36d38e09a5f8218fb7e53771c5a38e",
+        "rust-game/src/jc050_tests.rs": "10d088b2ce193ecdbb00bb7b969b4bdb151117bb4adccb21218d3a319df0f42e",
+        "rust-game/src/jc052.rs": "22b1fdb769be5adbf41d314c22c788efa3ed2713fb86a85f56813cb390a3e34d",
+        "rust-game/src/jc052_tests.rs": "1dc7aa0e104be1ce2387a7a4ba01fe4af98c34001c2fe578731ac87ac49aac9c",
+        "rust-game/src/jc054.rs": "b3c993d4e50db0c4a099691b3ca852f717d6ed740990367d5aaabe59e5328bf8",
+        "rust-game/src/jc054_tests.rs": "c78a3a1d03fbd1a119e950835de63fa9e7999e660c486ac640f6a21d6f8cb026",
+        "rust-game/src/jc057.rs": "27d97b4829b6690a2f0a1d4840bde898e51e4e1d3d2bc4de05a08b6529bf289f",
+        "rust-game/src/jc057_tests.rs": "78d448440a0a262bda327670d4087612e556e3a5449a054e93ed0e6222bc99c8",
+        "rust-game/src/jc060.rs": "0090a80f02c19137634632e45adb03b8073270cd1a1a7e426cf4245f8c2dec41",
+        "rust-game/src/jc060_tests.rs": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121",
+        "rust-game/src/jc061_tests.rs": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495",
+        "rust-game/src/jc066.rs": "c9cf2b06888eda7cf56b8552e09443be4bd4c3fb4226ba5ee9adb69debb929c4",
+        "rust-game/src/jc066_tests.rs": "1652f4c486dec5f4cda655b168254df625ce1e9ad2533a69313c0cd56442acff",
+        "rust-game/src/jc087_tests.rs": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6",
+        "rust-game/src/jc089_tests.rs": "feabd03296b40e8398c455bb1c6a1bf40850dc9e49cc936b071ef6be9635f34e",
+        "rust-game/src/jc094_tests.rs": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c",
+        "rust-game/src/jc095.rs": "0b3ac86724854fd99ce6cf7d33cf63b411e2e38a47c81ae4e195a6cb8b575c82",
+        "rust-game/src/jc095_tests.rs": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c",
+        "rust-game/src/jz22.rs": "9fdc5f9e11a5c3df74c687fd25683451391549da9682190983e20cbc6f31710d",
+        "rust-game/src/jz22_tests.rs": "9ffcc93d768e49f6468557af937d90434f57abff556502c39ec73dbf0895219d",
+        "rust-game/src/jz31_tests.rs": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a",
+        "rust-game/src/jz35.rs": "08b7c46e6b7ad541f74c47102af6e4a09e7665c49a7514c934a12860c24c480b",
+        "rust-game/src/jz35_tests.rs": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175",
+        "rust-game/src/jz46.rs": "d77d3d68bcd502d3e75f8e1112647d940c51c298af6d4abb97a78815e8886e4e",
+        "rust-game/src/jz46_tests.rs": "544096dda66f112672ac9abfc36235d963072766d468567134fc511e27b15c33",
+        "rust-game/src/jz48_tests.rs": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74",
+        "rust-game/src/jz49_tests.rs": "d2149e6e5d126cb7f832e6749f891962eb773f5fd6be765ce8b642a254797979",
+        "rust-game/src/jz50_search.rs": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c",
+        "rust-game/src/jz50_search_tests.rs": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6",
+        "rust-game/src/jz55_tests.rs": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02",
+        "rust-game/src/lib.rs": "aedc91cfdaad4b1f9f4292b7fca8bc5a85aae0b084380d261adbfeb420d0bf0a",
+        "rust-game/src/main.rs": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+        "rust-game/src/mill_public_tests.rs": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49",
+        "rust-game/src/mobility.rs": "f5aff29c49419473631bdb5e7f334ee0d1a11a1f4865e8f4549cb868837384e5",
+        "rust-game/src/model.rs": "707eb45d9c6ea9a450a594ac06d579f7cf64bd0ff477d51037c8d07aa1fb871d",
+        "rust-game/src/msjc01_tests.rs": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86",
+        "rust-game/src/msjc0405_tests.rs": "6a014baac124c7afeac045986233984327ae92fc4b52e6930d88375a66eca7b4",
+        "rust-game/src/msjc06_tests.rs": "fa452e36edceccaa5d689a65de17cccbacf6f0c78b47122fdb8e74fa84c096de",
+        "rust-game/src/msjc07_tests.rs": "fc2fa07d52c484acc8b46411db413684aee36e11bd8dfcd1dc4876b29eb9c119",
+        "rust-game/src/msjc08_tests.rs": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4",
+        "rust-game/src/msjc11_tests.rs": "0cdbab76133b7f97ff6795698da19c07ff899ab1922f8a2e58d579c85871f9d0",
+        "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+        "rust-game/src/protection_tests.rs": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8",
+        "rust-game/src/purple_tools_tests.rs": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d",
+        "rust-game/src/red_time.rs": "bb5f66c08d035d7828b8e8e550395c113b5ba5e4fe0712450800f24ab6ab2d47",
+        "rust-game/src/red_time_tests.rs": "f1977ef4aca9e30d19d6ecd820e20f2f13e519ecfceeee120bec370128755c27",
+        "rust-game/src/region_aura_tests.rs": "c1356afe03f26921930fbd00b4a553859e249dd2102d9c447a60e7333e69485b",
+        "rust-game/src/renown.rs": "8aea1693418cb872161603aebe77f50c48947ba3d77364e7b27e1268ca9e61d5",
+        "rust-game/src/renown_tests.rs": "4ba728cc549f72f7c31da047fd19ac5f2e7b323234ab30e82133fc198225c0ce",
+        "rust-game/src/repress_assets_tests.rs": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660",
+        "rust-game/src/resolution.rs": "53af488af1b4db33477cddb8de8c57cccc49b92467c58e8493f4e912973b6439",
+        "rust-game/src/response_preview_tests.rs": "9c030200d1610acab654712826680c444abfcfad7d5d0bc7720e75226addbcb2",
+        "rust-game/src/room.rs": "f7f9a55a718696d036c21b55d89f22884a8478ac05296649aa1c538feef5883c",
+        "rust-game/src/rules.rs": "6a90d3ecb2bfef73a5c5bb77a0d0dbb1874e5e2d9648541f26861b390c6de8d9",
+        "rust-game/src/sealing.rs": "82f19b6d0524cd378cbbf486fe607d2afb470b2ff314b2cbfef89a44f2f37539",
+        "rust-game/src/sealing_tests.rs": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd",
+        "rust-game/src/service.rs": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33",
+        "rust-game/src/society.rs": "4f6bffff994ba5b0ffd1f3f7b6a78f7c78e6fb59a5d286f836ece4f6cbe4a6a7",
+        "rust-game/src/society_msjc09_tests.rs": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086",
+        "rust-game/src/unit_support.rs": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683",
+        "rust-game/src/white_wound_tests.rs": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a",
+        "rust-game/src/win_flow_tests.rs": "be64956ca227ea711ac77a15c21c60354d990246e095809ffeec53db423ff84d",
+        "rust-game/src/wm023.rs": "bf768eabbe6e1bb444f13da98703fd33e317d51cd0cfc4a9f778810a8e419d15",
+        "rust-game/src/wm023_tests.rs": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363",
+        "rust-game/src/wm038.rs": "c29fb57dfd0273d3349f9015a18d66706134e0141e3c3345dbd12c1653db1aea",
+        "rust-game/src/wm038_tests.rs": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14",
+        "rust-game/src/wm056.rs": "38e8820bbe07a5d95786fe313aee1ca38cf787ac341bd1d7d563fd80994f367a",
+        "rust-game/src/wm056_tests.rs": "c21a4339be6425714e675176b18475da6a4aa700549475d56ca35ec994c66c77",
+        "rust-game/src/wm062.rs": "b8dbc472ef022d2ce15ed95b4eda68d42d7389a5886f0b6411f49b9e87353e2a",
+        "rust-game/src/wm062_tests.rs": "a1be65839d66764d8476b06c70d7f238f5530a47d111aabd4b955dc510a991d6",
+        "rust-game/src/world.rs": "38ceac94c8b9c407e6056cc3581a51d8664622fa8d4b2e06438cf5ff89eb3162",
+        "rust-game/src/wound_defence_tests.rs": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5",
+        "rust-game/src/xq18_tests.rs": "053679c806011f5e5adf51060ddf26cff3932efed454aa34301a0c6c221acbab",
+        "rust-game/src/xq24_tests.rs": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415",
+        "rust-game/src/xq25.rs": "dfb1de923ee4095bb4532da0acc7855c50fc08914b0de16cb81a1a5638d2870c",
+        "rust-game/src/xq25_tests.rs": "76cc7701ef62c43ad57fd7bdb689c15b33e52d96ccda8a2964dd8993bdb9e844",
+        "rust-game/src/xq27.rs": "fabdecf347cedf87ded372272618fca3ad0781d3d51e669fc79b29fbf7e82ffc",
+        "rust-game/src/xq27_tests.rs": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38",
+        "rust-game/src/xq37.rs": "5e1e662e6defd8d1e14e7a210857e4eea290da1b7340477f12515551ff210416",
+        "rust-game/src/xq37_tests.rs": "028d8dac1804a3786cccb637847c46fcd48e2af0ea1f26bd2dbd69c6db00d0c8",
+        "rust-game/src/yellow_search_batch_tests.rs": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+      }
+    }
+  },
+  "currentWasm": {
+    "bytes": 3327677,
+    "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+  },
+  "currentGlue": {
+    "bytes": 18203,
+    "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+  },
+  "retained": {
+    "77": {
+      "identity": {
+        "purpose": "Intentional immutable runtime dependency preserving already-published v58 rooms; not a compiler cache.",
+        "providerSource": "eec9ffb81b66b149bdcc4f045c1be834dae21748",
+        "reviewedSource": "7ce4cb4d3b1af7bcd5502dc4f96e522d70cabc08",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+          "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate"
+        },
+        "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "2b041aa5daa089e00f3157cfdb4a54c10a6f531bc3527998a43e835c580438ff"
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 2909006,
+          "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+        }
+      }
+    },
+    "78": {
+      "identity": {
+        "purpose": "Exact immutable dependency for already-published v60 ABI78 rooms; never rebuild or migrate old rooms.",
+        "providerSource": "6d1a1fed34b5abad208488f09055554269e3df10",
+        "reviewedSource": "bd36b70b32890f539fde019613f5ae6d60c2903d",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
+          "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate"
+        },
+        "wasmBytes": 2976205,
+        "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e"
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 2976205,
+          "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+        }
+      }
+    },
+    "79": {
+      "identity": {
+        "purpose": "Exact immutable dependency for published v61 ABI79 rooms; no migration, rebuild or substitute.",
+        "providerSource": "906a1b4c54e43eff5dd722c275d55ad567b8c20c",
+        "reviewedSource": "e7d7b4dd9be2875a5879e0fa833f20cb241ebe6c",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
+          "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate"
+        },
+        "wasmBytes": 3005332,
+        "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "816390c4997a73785c23db506e9a69558aef9c5ecdb34999e0d697b4273f41d1"
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3005332,
+          "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+        }
+      }
+    },
+    "80": {
+      "identity": {
+        "purpose": "Exact immutable dependency preserving published v62 ABI80 rooms; never rebuild, replace or migrate their opaque state.",
+        "providerSource": "1f1b785df84738e6f85c1462482236b3ddabb8be",
+        "reviewedSource": "a9161c958dedceb95b70310d897dd5eeb8550e52",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+          "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate"
+        },
+        "wasmBytes": 3047680,
+        "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "66a867ec60b0df1946b9637ee7d581689aed68faabd079710f0371b6019705ff"
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3047680,
+          "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+        }
+      }
+    },
+    "81": {
+      "identity": {
+        "purpose": "Exact immutable published v63 ABI81 dependency. Raw WASM/JS are the published bytes; gzip is its once-created immutable local storage carrier. Never rebuild or migrate old rooms.",
+        "providerSource": "90bfb25faa4c142f13140e141b6c8dfe2ec9355a",
+        "reviewedSource": "b73f94f94dbbf5a3261f57b9913d237dc8b1c378",
+        "reviewedEvidence": "671f035ff14dc407f99db928920134d38aa64095",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+          "engineVersion": "rust-v0.2.81-jc054-complete-conceal-candidate"
+        },
+        "wasmBytes": 3154323,
+        "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "b882f9e672ca63ed5577eef74aa896360ee0c533d52cbc1be4945130d2f2bcb0",
+        "nativeFixtureSha256": "13c5728ff7342130ad95201134b84cd011d340f86e9a56cd909e90c0ea787c82",
+        "nativeRawSha256": "ec28c25693e2d74db2bd6ec766fc7b6f8d94d938ca21abd5a8d51ebf1afc425e",
+        "nativeRawBytes": 24014440
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3154323,
+          "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+        }
+      }
+    },
+    "82": {
+      "identity": {
+        "purpose": "Exact immutable published v64 ABI82 dependency. Preserve the published raw WASM/JS and original Native witness before red/gray society development. Never rebuild or migrate old rooms.",
+        "providerSource": "74b1e8f2e6a0c4feb403520554a9275f52be82fd",
+        "reviewedSource": "398e220721f9e14c4f523530183c6288b7749096",
+        "reviewedEvidence": "95d89d664f12fcd6e9958a475263ca00d9983bfc",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+          "engineVersion": "rust-v0.2.82-response-source-preview-candidate"
+        },
+        "wasmBytes": 3165174,
+        "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "b9e853c63ae5ed6ab54e5938428fae4c47bead1c37adedec0eb7b364c849e29c",
+        "nativeFixtureSha256": "0242797053882360449e6d6922c6eb8652229b4086bdefc7da4ce961deba4da8",
+        "nativeRawSha256": "e1b08ea112e7f81d369c13f21743700470474800eb54d4c3d7de11d9249543b2",
+        "nativeRawBytes": 2405888
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3165174,
+          "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+        }
+      }
+    },
+    "83": {
+      "identity": {
+        "purpose": "Exact immutable published v65 ABI83 dependency, retained before JC057 development. Never rebuild, migrate old rooms or re-sign its original Native witness.",
+        "providerSource": "6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0",
+        "reviewedSource": "9767e293c9a3e43ea25d6620afc97ab9f32bc171",
+        "reviewedEvidence": "0f4d2d95019706aa15a2e7102503cba8993916e0",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.75-msjc04-msjc05-societies-candidate",
+          "engineVersion": "rust-v0.2.83-msjc04-msjc05-societies-candidate"
+        },
+        "wasmBytes": 3174213,
+        "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "gzipSha256": "b8929ef2e811a4741b268a3b95eb2dc40316eb010d42d77d9f7c96af576c9fdb",
+        "nativeFixtureSha256": "ee2bc666717e6951dd2c658bfb171c0e00be773f68fbb1a3a2a3d642d0c1a80c",
+        "nativeRawSha256": "3c1a4bc008bb0f274a8aec6394c0f3336615c98e2f38ed9ffc3146718ed0a584",
+        "nativeRawBytes": 3438035
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3174213,
+          "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+        }
+      }
+    },
+    "84": {
+      "identity": {
+        "purpose": "Exact immutable published v66 ABI84 dependency, retained before JC044 development. Never rebuild, migrate rooms, or re-sign original Native84 witness.",
+        "providerSource": "7ab9768bd86a5a7e66dd988a42324624c1a23943",
+        "reviewedSource": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+        "reviewedEvidence": "c674946d010559fa991ef78842d01d42de07d2f3",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.76-jc057-live-inspection-candidate",
+          "engineVersion": "rust-v0.2.84-jc057-live-inspection-candidate"
+        },
+        "cardCount": 148,
+        "societyCount": 10,
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+        "wasmBytes": 3217477,
+        "gzipSha256": "7ae756b248e92105a7e77c7e722302be0eedd412eff1670eacfc3d3146aca884",
+        "nativeFixtureSha256": "bf6ab32c67db7017b202544ccf5e0d3d5b30b9fdfae64583b407ed436b36e77b",
+        "nativeRawSha256": "f9e51f9e56f62b23b9feff1aedd32626150da425a707ee4b7fbf4367f0c52069",
+        "nativeRawBytes": 14103141,
+        "nativeInputs": 131,
+        "nativeCounts": {
+          "scenarios": 13,
+          "commands": 124,
+          "rejected": 20,
+          "projections": 548,
+          "invalidRestores": 24
+        }
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3217477,
+          "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+        }
+      }
+    },
+    "85": {
+      "identity": {
+        "purpose": "Exact immutable published v67 ABI85 before JC066 development; never rebuild/migrate/re-sign old rooms or Native85 witness.",
+        "providerSource": "db204017bf378fe068447a069acfb928854527bf",
+        "reviewedSource": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+        "reviewedEvidence": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
+          "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate"
+        },
+        "cardCount": 149,
+        "societyCount": 10,
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+        "wasmBytes": 3263215,
+        "gzipSha256": "0c1a3ce80966e1c61dbe7d3f9899f70ac81da5c73136bc89e956f8e85678c872",
+        "nativeFixtureSha256": "4ad888e66386e390662f19cac5582d16dd36047b2111b90ec89590a84f8ccd63",
+        "nativeRawSha256": "f43a7e8a93b3ad77f29ce63d7fe861aa325248f8f4630a6798405327262df027",
+        "nativeRawBytes": 13759678,
+        "nativeInputs": 133,
+        "nativeCounts": {
+          "scenarios": 13,
+          "commands": 118,
+          "rejected": 17,
+          "projections": 524,
+          "invalidRestores": 37
+        }
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3263215,
+          "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+        }
+      }
+    },
+    "86": {
+      "identity": {
+        "scope": "Exact published v68 ABI86 runtime; never rebuild/migrate/re-sign old rooms or Native86 witness.",
+        "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+        "reviewedSource": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+        "reviewedEvidence": "224a619459d64eaead06810b679ff57b1de94fd6",
+        "catalogIdentity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.78-jc066-sealed-icons-candidate",
+          "engineVersion": "rust-v0.2.86-jc066-sealed-icons-candidate"
+        },
+        "cardCount": 150,
+        "societyCount": 10,
+        "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+        "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+        "wasmBytes": 3291234,
+        "gzipSha256": "4742102e877bfa4cbb74f39d0de8157b320dbe26205ac73be29e7c13725c518f",
+        "nativeFixtureSha256": "d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6",
+        "nativeRawSha256": "ce6f0329fd30daca4b2d5a960ad4310eec3e4b4a82394ca941b5f642531ffb50",
+        "nativeRawBytes": 30934684,
+        "nativeInputs": 135,
+        "nativeCounts": {
+          "scenarios": 19,
+          "commands": 252,
+          "rejected": 16,
+          "projections": 1084,
+          "invalidRestores": 87
+        }
+      },
+      "generated": {
+        "hegemony_wasm.js": {
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        "hegemony_wasm_bg.wasm": {
+          "bytes": 3291234,
+          "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+        }
+      }
+    }
+  },
+  "production": {
+    ".openai/hosting.json": {
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    "client/assets/index-Dz8ElhbZ.js": {
+      "bytes": 383022,
+      "sha256": "07261861863e59b76a049b7e4754353bd2962ffc37cc0d93ab8ad0002b077b34"
+    },
+    "client/assets/index-jNIaCara.css": {
+      "bytes": 200104,
+      "sha256": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917"
+    },
+    "client/card-scans.json": {
+      "bytes": 33548,
+      "sha256": "7b8e4a734bcb3360acf719d0d05b4170c069aadfbc565e26cedf115af4e09536"
+    },
+    "client/cards/BQ022.jpg": {
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    "client/cards/BQ028.jpg": {
+      "bytes": 336814,
+      "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6"
+    },
+    "client/cards/BQ030.jpg": {
+      "bytes": 1333870,
+      "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+    },
+    "client/cards/BQ035.jpg": {
+      "bytes": 1355796,
+      "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
+    },
+    "client/cards/BQ040.jpg": {
+      "bytes": 1316410,
+      "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+    },
+    "client/cards/BQ078.jpg": {
+      "bytes": 1324460,
+      "sha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea"
+    },
+    "client/cards/BQ083.jpg": {
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    "client/cards/BQ104.jpg": {
+      "bytes": 1343044,
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+    },
+    "client/cards/DQJC107.jpg": {
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    "client/cards/DQJC108.jpg": {
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    "client/cards/DQJC109.jpg": {
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    "client/cards/DQJC110.jpg": {
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    "client/cards/DQJC111.jpg": {
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    "client/cards/DQJC112.jpg": {
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    "client/cards/DQJC113.jpg": {
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    "client/cards/DQJC114.jpg": {
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    "client/cards/DQJC115.jpg": {
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    "client/cards/DQJC116.jpg": {
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    "client/cards/JC001.jpg": {
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    "client/cards/JC002.jpg": {
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    "client/cards/JC003.jpg": {
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    "client/cards/JC004.jpg": {
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    "client/cards/JC005.jpg": {
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    "client/cards/JC006.jpg": {
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    "client/cards/JC007.jpg": {
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    "client/cards/JC008.jpg": {
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    "client/cards/JC014.jpg": {
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    "client/cards/JC015.jpg": {
+      "bytes": 322933,
+      "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e"
+    },
+    "client/cards/JC016.jpg": {
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    "client/cards/JC018.jpg": {
+      "bytes": 341242,
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+    },
+    "client/cards/JC020.jpg": {
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    "client/cards/JC029.jpg": {
+      "bytes": 338285,
+      "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
+    },
+    "client/cards/JC030.jpg": {
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+    },
+    "client/cards/JC031.jpg": {
+      "bytes": 357471,
+      "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+    },
+    "client/cards/JC032.jpg": {
+      "bytes": 342051,
+      "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b"
+    },
+    "client/cards/JC036.jpg": {
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    "client/cards/JC037.jpg": {
+      "bytes": 342598,
+      "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece"
+    },
+    "client/cards/JC041.jpg": {
+      "bytes": 326531,
+      "sha256": "6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89"
+    },
+    "client/cards/JC042.jpg": {
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    "client/cards/JC044.jpg": {
+      "bytes": 361527,
+      "sha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800"
+    },
+    "client/cards/JC045.jpg": {
+      "bytes": 336061,
+      "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+    },
+    "client/cards/JC046.jpg": {
+      "bytes": 359316,
+      "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
+    },
+    "client/cards/JC047.jpg": {
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    "client/cards/JC049.jpg": {
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    "client/cards/JC050.jpg": {
+      "bytes": 313605,
+      "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e"
+    },
+    "client/cards/JC052.jpg": {
+      "bytes": 339386,
+      "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
+    },
+    "client/cards/JC054.jpg": {
+      "bytes": 364015,
+      "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
+    },
+    "client/cards/JC056.jpg": {
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    "client/cards/JC057.jpg": {
+      "bytes": 324751,
+      "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678"
+    },
+    "client/cards/JC058.jpg": {
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    "client/cards/JC059.jpg": {
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    "client/cards/JC060.jpg": {
+      "bytes": 319369,
+      "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
+    },
+    "client/cards/JC061.jpg": {
+      "bytes": 306855,
+      "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
+    },
+    "client/cards/JC063.jpg": {
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    "client/cards/JC066.jpg": {
+      "bytes": 306491,
+      "sha256": "c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2"
+    },
+    "client/cards/JC069.jpg": {
+      "bytes": 304925,
+      "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+    },
+    "client/cards/JC070.jpg": {
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    "client/cards/JC071.jpg": {
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    "client/cards/JC073.jpg": {
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    "client/cards/JC074.jpg": {
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    "client/cards/JC075.jpg": {
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    "client/cards/JC076.jpg": {
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    "client/cards/JC078.jpg": {
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    "client/cards/JC084.jpg": {
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    "client/cards/JC085.jpg": {
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    "client/cards/JC086.jpg": {
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    "client/cards/JC087.jpg": {
+      "bytes": 339745,
+      "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
+    },
+    "client/cards/JC088.jpg": {
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    "client/cards/JC089.jpg": {
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+    },
+    "client/cards/JC090.jpg": {
+      "bytes": 319864,
+      "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+    },
+    "client/cards/JC091.jpg": {
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    "client/cards/JC092.jpg": {
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    "client/cards/JC093.jpg": {
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    "client/cards/JC094.jpg": {
+      "bytes": 322070,
+      "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
+    },
+    "client/cards/JC095.jpg": {
+      "bytes": 320210,
+      "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
+    },
+    "client/cards/JC096.jpg": {
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    "client/cards/JC102.jpg": {
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    "client/cards/JC103.jpg": {
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    "client/cards/JC104.jpg": {
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    "client/cards/JC107.jpg": {
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    "client/cards/JC112.jpg": {
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    "client/cards/JC114.jpg": {
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    "client/cards/JC116.jpg": {
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    "client/cards/JC118.jpg": {
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    "client/cards/JC125.jpg": {
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    "client/cards/JC126.jpg": {
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    "client/cards/JC129.jpg": {
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    "client/cards/JC130.jpg": {
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    "client/cards/JC131.jpg": {
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    "client/cards/JC132.jpg": {
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    "client/cards/JZ02.jpg": {
+      "bytes": 518818,
+      "sha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+    },
+    "client/cards/JZ08.jpg": {
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    "client/cards/JZ22.jpg": {
+      "bytes": 519522,
+      "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
+    },
+    "client/cards/JZ24.jpg": {
+      "bytes": 515008,
+      "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+    },
+    "client/cards/JZ27.jpg": {
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    "client/cards/JZ30.jpg": {
+      "bytes": 517039,
+      "sha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264"
+    },
+    "client/cards/JZ31.jpg": {
+      "bytes": 507421,
+      "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
+    },
+    "client/cards/JZ35.jpg": {
+      "bytes": 524713,
+      "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
+    },
+    "client/cards/JZ43.jpg": {
+      "bytes": 495991,
+      "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+    },
+    "client/cards/JZ44.jpg": {
+      "bytes": 475293,
+      "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
+    },
+    "client/cards/JZ45.jpg": {
+      "bytes": 470410,
+      "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
+    },
+    "client/cards/JZ46.jpg": {
+      "bytes": 499668,
+      "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
+    },
+    "client/cards/JZ48.jpg": {
+      "bytes": 499021,
+      "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+    },
+    "client/cards/JZ49.jpg": {
+      "bytes": 499091,
+      "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
+    },
+    "client/cards/JZ50.jpg": {
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+    },
+    "client/cards/JZ51.jpg": {
+      "bytes": 521395,
+      "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+    },
+    "client/cards/JZ52.jpg": {
+      "bytes": 521413,
+      "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+    },
+    "client/cards/JZ53.jpg": {
+      "bytes": 509401,
+      "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+    },
+    "client/cards/JZ54.jpg": {
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    "client/cards/JZ55.jpg": {
+      "bytes": 493536,
+      "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+    },
+    "client/cards/JZ58.jpg": {
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    "client/cards/JZ59.jpg": {
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    "client/cards/JZ61.jpg": {
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    "client/cards/JZ67.jpg": {
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    "client/cards/JZ74.jpg": {
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    "client/cards/LC01.jpg": {
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    "client/cards/LC06.jpg": {
+      "bytes": 463742,
+      "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
+    },
+    "client/cards/LC12.jpg": {
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    "client/cards/LC19.jpg": {
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    "client/cards/LC20.jpg": {
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    "client/cards/LC21.jpg": {
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    "client/cards/LC22.jpg": {
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    "client/cards/LC23.jpg": {
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    "client/cards/LC24.jpg": {
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    "client/cards/LC30.jpg": {
+      "bytes": 1156537,
+      "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
+    },
+    "client/cards/MSJC01.jpg": {
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    },
+    "client/cards/MSJC02.jpg": {
+      "bytes": 249225,
+      "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
+    },
+    "client/cards/MSJC03.jpg": {
+      "bytes": 238826,
+      "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
+    },
+    "client/cards/MSJC04.jpg": {
+      "bytes": 250371,
+      "sha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3"
+    },
+    "client/cards/MSJC05.jpg": {
+      "bytes": 232319,
+      "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3"
+    },
+    "client/cards/MSJC06.jpg": {
+      "bytes": 229736,
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"
+    },
+    "client/cards/MSJC07.jpg": {
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+    },
+    "client/cards/MSJC08.jpg": {
+      "bytes": 266822,
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1"
+    },
+    "client/cards/MSJC09.jpg": {
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    "client/cards/MSJC11.jpg": {
+      "bytes": 239506,
+      "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"
+    },
+    "client/cards/WM003.jpg": {
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    "client/cards/WM023.jpg": {
+      "bytes": 1317198,
+      "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+    },
+    "client/cards/WM038.jpg": {
+      "bytes": 1240666,
+      "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+    },
+    "client/cards/WM056.jpg": {
+      "bytes": 1302421,
+      "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
+    },
+    "client/cards/WM059.jpg": {
+      "bytes": 1282461,
+      "sha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f"
+    },
+    "client/cards/WM062.jpg": {
+      "bytes": 1188701,
+      "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
+    },
+    "client/cards/XQ03.jpg": {
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    "client/cards/XQ07.jpg": {
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    "client/cards/XQ12.jpg": {
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    "client/cards/XQ14.jpg": {
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    "client/cards/XQ16.jpg": {
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    "client/cards/XQ17.jpg": {
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    "client/cards/XQ18.jpg": {
+      "bytes": 1431760,
+      "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
+    },
+    "client/cards/XQ24.jpg": {
+      "bytes": 1451251,
+      "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
+    },
+    "client/cards/XQ25.jpg": {
+      "bytes": 1406441,
+      "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
+    },
+    "client/cards/XQ27.jpg": {
+      "bytes": 1342504,
+      "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
+    },
+    "client/cards/XQ34.jpg": {
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    "client/cards/XQ36.jpg": {
+      "bytes": 1471604,
+      "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+    },
+    "client/cards/XQ37.jpg": {
+      "bytes": 1458533,
+      "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
+    },
+    "client/cards/XQ38.jpg": {
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    "client/cards/XQ40.jpg": {
+      "bytes": 1505785,
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    "client/cards/XQ41.jpg": {
+      "bytes": 1463646,
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    "client/cards/XQ43.jpg": {
+      "bytes": 1456234,
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93"
+    },
+    "client/cards/XQ44.jpg": {
+      "bytes": 1474456,
+      "sha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+    },
+    "client/cards/XQ45.jpg": {
+      "bytes": 1476070,
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+    },
+    "client/cards/XQ46.jpg": {
+      "bytes": 1254286,
+      "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+    },
+    "client/cards/XQ47.jpg": {
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    "client/cards/XQ48.jpg": {
+      "bytes": 1363262,
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+    },
+    "client/cards/XQ49.jpg": {
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    "client/index.html": {
+      "bytes": 475,
+      "sha256": "df8e2c8d747af15d500451ad9de562617afbc4504811e6d20cc3f9c7effddcdb"
+    },
+    "server/047aca29bd4442bd40f935721e3a67524058ff1a-hegemony_wasm_bg.wasm": {
+      "bytes": 3327677,
+      "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+    },
+    "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm": {
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm": {
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm": {
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm": {
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm": {
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm": {
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm": {
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "server/README.md": {
+      "bytes": 122,
+      "sha256": "85e3fd2c246cc3fdc08c567dec75100365244981c9c93dd5214d3af24633ff7a"
+    },
+    "server/a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm": {
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    "server/bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm": {
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    "server/daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm": {
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    "server/index.js": {
+      "bytes": 228744,
+      "sha256": "d350750162f180e14b01b833bed520085d8d5c61d0b058c149fd3676f30b04ab"
+    },
+    "server/index.js.map": {
+      "bytes": 405576,
+      "sha256": "6a6264c6e357357840e5c1fa58ccad056547082b5b79fcb5c750ca7430f654f8"
+    }
+  },
+  "generated": {
+    "abi77/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi77/hegemony_wasm_bg.wasm": {
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "abi78/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi78/hegemony_wasm_bg.wasm": {
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    "abi79/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi79/hegemony_wasm_bg.wasm": {
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    "abi80/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi80/hegemony_wasm_bg.wasm": {
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    "abi81/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi81/hegemony_wasm_bg.wasm": {
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    "abi82/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi82/hegemony_wasm_bg.wasm": {
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    "abi83/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi83/hegemony_wasm_bg.wasm": {
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    "abi84/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi84/hegemony_wasm_bg.wasm": {
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    "abi85/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi85/hegemony_wasm_bg.wasm": {
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    "abi86/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "abi86/hegemony_wasm_bg.wasm": {
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    "hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "hegemony_wasm_bg.wasm": {
+      "bytes": 3327677,
+      "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+    }
+  },
+  "fixedClockTestWrapper": {
+    "047aca29bd4442bd40f935721e3a67524058ff1a-hegemony_wasm_bg.wasm": {
+      "bytes": 3327677,
+      "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+    },
+    "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm": {
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm": {
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm": {
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm": {
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm": {
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm": {
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm": {
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    "README.md": {
+      "bytes": 123,
+      "sha256": "e4b8536c8f1952a317b5f3bdc51639c7a05dc54b90ad656dad0767ec33ec8ec5"
+    },
+    "a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm": {
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm": {
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm": {
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    "worker.js": {
+      "bytes": 229853,
+      "sha256": "d047eb4e6e0e03522bca0e189cd08feaa93bbe3d8671c44f2c35e057bcb421f4"
+    },
+    "worker.js.map": {
+      "bytes": 406570,
+      "sha256": "bb6312d3d43ca0c2b0fbb43f9d62153bc18fdf54d05381a49abc0dc3028e7df4"
+    }
+  },
+  "productionWorkerModuleBytes": 34760280,
+  "productionClockIsRealServerTime": true,
+  "fixedClockWrapperExcludedFromProduction": true,
+  "elevenExactWasmInProductionAndWrapper": true,
+  "publishedV68": {
+    "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+    "runtimeManifest": {
+      "bytes": 61945,
+      "sha256": "8561e4daa1bb8624f7b491b56a87ca36a3da45962686516366a21ee16efcbbcc"
+    },
+    "fixture86": {
+      "bytes": 2236969,
+      "sha256": "d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6"
+    },
+    "production181FilesUnchanged": true,
+    "siteChanged": false
+  },
+  "scope": "Local source/artifact identity audit only; no publication, browser bypass, online gameplay or main merge."
+}

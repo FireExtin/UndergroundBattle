@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "src/game/JC041Native87.test.jsx",
+    "src/game/JC066Native86.test.jsx",
+    "src/game/JZ55CardFaces.test.jsx",
+    "--maxWorkers=1"
+  ],
+  "startedUtc": "2026-10-18T12:58:04.952701+00:00",
+  "endedUtc": "2026-10-18T12:58:55.465632+00:00",
+  "exitCode": 0
+}

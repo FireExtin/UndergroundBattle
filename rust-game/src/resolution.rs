@@ -2088,7 +2088,8 @@ impl Game {
                             if redraw {
                                 "弃任意手牌并抓等量".into()
                             } else {
-                                format!("弃 {n} 张手牌")
+                                if frame.ability_key == crate::jc041::REVEAL { crate::jc041::DISCARD_TITLE.into() }
+                                else { format!("弃 {n} 张手牌") }
                             },
                             options,
                             if optional { 0 } else { n },

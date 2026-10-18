@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python",
+    "/workspace/jc041-evidence-20261018/runtime-audit.py",
+    "runtime-manifest-paid-final.json"
+  ],
+  "startedUtc": "2026-10-18T13:28:04.904246+00:00",
+  "endedUtc": "2026-10-18T13:28:16.608563+00:00",
+  "exitCode": 0
+}

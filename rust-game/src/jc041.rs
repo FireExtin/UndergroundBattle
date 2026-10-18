@@ -5,6 +5,7 @@ use std::collections::BTreeSet;
 
 pub(crate) const HIDDEN: &str = "jc041-water-hidden-reveal";
 pub(crate) const REVEAL: &str = "jc041-reveal-each-discard";
+pub(crate) const DISCARD_TITLE: &str = "禁婆：弃 1 张手牌";
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
@@ -137,7 +138,7 @@ impl Game {
                 || f.steps.len() != 1 || f.steps[0].context != f.actor || !matches!(f.steps[0].op, Op::JC041RevealOriginalHidden)
                 || f.cursor > 1 || (f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked))
                 || (f.cursor == 1 && !matches!(f.guard, GuardState::Accepted))
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 2 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC041水域暗藏者付费帧或游标不符".into());
             }
             let r = &self.regions[f.source.region.unwrap()];
@@ -223,7 +224,8 @@ impl Game {
                 } else if item.card.as_ref().is_some_and(|c| c.definition == "JC041") {
                     return Err("JC041进场卡不能借用其他来源程序".into());
                 }
-            } else if item.card.as_ref().is_some_and(|c| c.definition == "JC041") {
+            } else if item.card.as_ref().is_some_and(|c| c.definition == "JC041")
+                || definition().abilities.iter().any(|a| item.label == format!("{}：{}", catalog::card("JC041").name, a.label)) {
                 return Err("JC041进场堆栈缺少冻结帧".into());
             }
         }
@@ -244,7 +246,7 @@ impl Game {
                 ChoiceResolution::Frame { frame: f, choice } if related(f) => {
                     self.jc041_continuation(f, choice, p.seat)?;
                     let options = self.players[p.seat].hand.iter().map(|c| self.option(c, p.seat, None, None)).collect::<Vec<_>>();
-                    let expected = Choice { id:p.choice.id.clone(), kind:"discard".into(), title:"弃 1 张手牌".into(), description:"选择符合数量限制的选项，然后确认。".into(), player_id:player_id(p.seat), options,
+                    let expected = Choice { id:p.choice.id.clone(), kind:"discard".into(), title:DISCARD_TITLE.into(), description:"选择符合数量限制的选项，然后确认。".into(), player_id:player_id(p.seat), options,
                         preview_cards:vec![], min:Some(1), max:Some(1), amount:None, allow_decline:Some(false) };
                     if !ids.insert(f.frame_id.clone()) || p.choice.id.is_empty() || expected.options.is_empty() || !same(&expected, &p.choice) {
                         return Err("JC041私有强制弃牌选项或元数据不符".into());
@@ -259,6 +261,7 @@ impl Game {
                         return Err("JC041获授奖励待选不符".into());
                     }
                 }
+                _ if p.choice.title == DISCARD_TITLE => return Err("JC041强制弃牌不能脱离其冻结帧续体".into()),
                 _ => {}
             }
         }

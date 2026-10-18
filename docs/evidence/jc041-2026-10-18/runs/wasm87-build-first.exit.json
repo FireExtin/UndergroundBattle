@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/UndergroundBattle/rust-game-wasm/pkg",
+    "--",
+    "env",
+    "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "CARGO_HOME=/workspace/tooling/cargo",
+    "RUSTUP_HOME=/workspace/tooling/rustup",
+    "WASM_BINDGEN=/workspace/tooling/wasm-bindgen-0.2.104-x86_64-unknown-linux-musl/wasm-bindgen",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "startedUtc": "2026-10-18T12:49:58.053035+00:00",
+  "endedUtc": "2026-10-18T12:52:47.764885+00:00",
+  "exitCode": 0
+}

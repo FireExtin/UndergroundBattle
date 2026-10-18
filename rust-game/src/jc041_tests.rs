@@ -1,5 +1,7 @@
 //! JC041 complete-card behavior and exact persisted-state validation.
 use crate::{catalog, jc041, model::*, rules::*, unit_support as u};
+use serde_json::{json, Value};
+thread_local! { static BAD_EXPORT: std::cell::RefCell<Option<Vec<Value>>> = const { std::cell::RefCell::new(None) }; }
 fn water(g: &mut Game, r: usize) {
     let id = catalog::catalog().cards.iter().find(|c| c.kind=="region" && c.subtypes.iter().any(|s| s=="水域")).unwrap().id.clone();
     g.regions[r].card = g.make_card(&id, 0);
@@ -26,10 +28,17 @@ fn started() -> (Game,String) {
     let id=hidden(&mut g,0);u::act(&mut g,0,action(&id));(g,id)
 }
 fn bad(g: &Game, label: &str) {
-    assert!(Game::from_persisted(&serde_json::to_string(g).unwrap()).is_err(),"Game accepted {label}");
+    let mut input=g.clone();
+    BAD_EXPORT.with(|saved| {if let Some(rows)=saved.borrow().as_ref(){input.room_id=format!("{:024x}",879000+rows.len());}});
+    let g=&input;
+    let game_error=Game::from_persisted(&serde_json::to_string(g).unwrap()).err().unwrap_or_else(||panic!("Game accepted {label}"));
     let mut clean=g.clone();clean.stack.clear();clean.effects.clear();clean.pending=None;
     let mut r=crate::jc029_tests::envelope(&clean);r.game=g.clone();
-    assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&r).unwrap()).is_err(),"Room accepted {label}");
+    let state=serde_json::to_string(&r).unwrap();
+    let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().unwrap_or_else(||panic!("Room accepted {label}"));
+    BAD_EXPORT.with(|saved| { if let Some(rows)=saved.borrow_mut().as_mut() {
+        rows.push(json!({"name":label,"state":state,"gameError":game_error,"roomError":room_error,"roomId":r.game.room_id,"inviteCode":r.game.invite_code,"revision":r.revision}));
+    }});
 }
 #[test]
 fn jc041_complete_print_is_closed_and_existing_cards_are_unchanged() {
@@ -132,7 +141,7 @@ fn jc041_owner_controller_readiness_and_lock_reset_are_preserved_by_effect_revea
 #[test]
 fn jc041_forged_paid_stack_effect_bypass_and_duplicate_ids_fail_both_restore_entries() {
     let (g,_)=started();
-    for n in 0..14 {
+    for n in 0..16 {
         let mut b=g.clone();let s=&mut b.stack[0];let f=s.frame.as_mut().unwrap();
         match n {
             0=>f.actor=1,1=>f.source.card.owner=1,2=>f.source.card.definition="JC029".into(),
@@ -140,7 +149,9 @@ fn jc041_forged_paid_stack_effect_bypass_and_duplicate_ids_fail_both_restore_ent
             5=>f.steps[0].op=Op::Draw{player:PlayerRef::Actor,count:5,end:DeckEnd::Top},6=>f.already_paid.clear(),
             7=>f.already_paid=vec![PaidCost::Assets(vec!["same".into(),"same".into()])],8=>f.guard=GuardState::Accepted,
             9=>s.card=Some(f.source.card.clone()),10=>s.deploy_region=Some(0),11=>s.reveal=true,
-            12=>s.id="forged".into(),_=>f.source.card.face_down=false,
+            12=>s.id="forged".into(),13=>f.source.card.face_down=false,
+            14=>f.already_paid=vec![PaidCost::Assets(vec![])],
+            _=>{let PaidCost::Assets(ids)=&mut f.already_paid[0] else{panic!()};ids.truncate(1);},
         };bad(&b,&format!("paid-{n}"));
     }
     let mut b=g.clone();let f=b.stack.pop().unwrap().frame.unwrap();b.effects.push_back(Effect::Frame{frame:Box::new(f)});bad(&b,"direct-effect");
@@ -159,4 +170,162 @@ fn jc041_forged_compulsory_discard_continuations_cannot_change_player_count_or_p
             12=>f.chosen_region=Some(0),_=>f.source.card.definition="JC046".into(),
         };bad(&b,&format!("discard-{n}"));
     }
+}
+#[test]
+fn jc041_missing_program_cannot_turn_its_stack_or_private_continuation_into_legacy_work() {
+    let (mut g,_)=started();let mut b=g.clone();b.stack[0].frame=None;bad(&b,"missing-hidden-frame");
+    resolve_top(&mut g);let mut b=g.clone();b.stack[0].frame=None;bad(&b,"missing-forced-frame");
+    resolve_top(&mut g);let mut b=g.clone();b.pending.as_mut().unwrap().resolution=ChoiceResolution::Discard{redraw:false};bad(&b,"missing-discard-frame");
+}
+#[test]
+fn jc041_forced_discard_survives_real_response_returning_its_revealed_source() {
+    let (mut g,_)=started();resolve_top(&mut g);
+    let id=g.regions[0].cards.iter().find(|c|c.definition=="JC041").unwrap().id.clone();
+    u::fund(&mut g,1,"JC006",3);let spell=u::held(&mut g,"JC006",1);
+    let a=g.legal_actions(1).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_deref()==Some(spell.as_str())&&a.action.target_id.as_deref()==Some(id.as_str())).unwrap().action;
+    u::act(&mut g,1,a);resolve_top(&mut g);assert!(g.board(&id).is_none());
+    u::drain(&mut g);assert_eq!(g.players[0].hand.len(),2);assert!(g.players[1..].iter().all(|p|p.hand.len()==1));
+    assert!(g.players.iter().all(|p|p.graveyard.iter().filter(|c|c.definition=="JC084"||c.definition=="JC041").count()==1));
+}
+
+struct Trace { name:String, room:crate::room::RoomEnvelope, initial:serde_json::Value, steps:Vec<serde_json::Value> }
+impl Trace {
+    fn top(&mut self) {
+        let id=self.room.game.stack.last().unwrap().id.clone();
+        for _ in 0..32 {
+            if !self.room.game.stack.iter().any(|s|s.id==id) {return;}
+            let w=self.room.pacing.window.clone().expect("response window");
+            let seat=*w.members.iter().find(|(_,d)|matches!(d,crate::room::Decision::Undecided{..})).unwrap().0;
+            self.command(seat,crate::room::SessionAction::PassResponse{window_id:w.id},true);
+        }
+        panic!("bounded original response frame");
+    }
+    fn drain(&mut self) {
+        for _ in 0..80 {
+            if let Some(p)=&self.room.game.pending {
+                assert_eq!(p.choice.kind,"discard");
+                let ids=p.choice.options.iter().take(p.choice.min.unwrap_or(0)).map(|o|o.id.clone()).collect();
+                self.choose(ids);
+            } else if self.room.game.stack.is_empty() {return;} else {self.responses();}
+        }
+        panic!("bounded JC041 Room continuation");
+    }
+    fn new(name:&str,g:&Game)->Self {
+        let room=crate::jc029_tests::envelope(g);
+        let initial=serde_json::json!({"state":serde_json::to_string(&room).unwrap(),"views":(0..4).map(|s|room.view(s,0)).collect::<Vec<_>>()});
+        Self{name:name.into(),room,initial,steps:vec![]}
+    }
+    fn command(&mut self,seat:usize,action:crate::room::SessionAction,accepted:bool) {
+        use crate::room::*;
+        let state=serde_json::to_string(&self.room).unwrap();
+        let command=RoomCommand{command_id:format!("{}-{}",self.name,self.steps.len()),expected_version:self.room.revision,action};
+        let expected=self.room.transition(seat,Some(command.clone()),0).unwrap();
+        assert_eq!(expected.error_code.is_none(),accepted,"{} {:?}",self.name,expected.error_message);
+        if expected.changed {assert_eq!(serde_json::to_string(&self.room.replay_events(&expected.journal).unwrap()).unwrap(),expected.state);}
+        else {assert_eq!(expected.state,state);assert!(expected.journal.is_empty());}
+        self.room=RoomEnvelope::from_persisted(&expected.state).unwrap();
+        let views=(0..4).map(|s|self.room.view(s,0)).collect::<Vec<_>>();
+        self.steps.push(serde_json::json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0","expected":expected,"views":views}));
+    }
+    fn game(&mut self,seat:usize,a:Action,accepted:bool){self.command(seat,crate::room::SessionAction::Game{action:a},accepted);}
+    fn respond(&mut self,seat:usize,action:Action){
+        use crate::room::*;
+        let window=loop {
+            let w=self.room.pacing.window.clone().expect("response window");
+            if matches!(w.members.get(&seat),Some(Decision::Undecided{..})){break w;}
+            let s=*w.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
+            self.command(s,SessionAction::PassResponse{window_id:w.id},true);
+        };
+        let intent=format!("{}-response",self.name);
+        self.command(seat,SessionAction::BeginResponse{window_id:window.id.clone(),intent_id:intent.clone()},true);
+        self.command(seat,SessionAction::SubmitResponse{window_id:window.id,intent_id:intent,action},true);
+    }
+    fn responses(&mut self) {
+        use crate::room::*;
+        for _ in 0..32 {let Some(w)=self.room.pacing.window.clone()else{return};
+            let seat=*w.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
+            self.command(seat,SessionAction::PassResponse{window_id:w.id},true);
+        }
+        panic!("bounded Room responses");
+    }
+    fn choose(&mut self,selected:Vec<String>){let p=self.room.game.pending.as_ref().unwrap();let seat=p.seat;
+        let a=Action{choice_id:Some(p.choice.id.clone()),selected:Some(selected),..Action::new("choose")};self.game(seat,a,true);}
+    fn finish(self)->serde_json::Value{serde_json::json!({"name":self.name,"initial":self.initial,"steps":self.steps})}
+}
+
+fn native_game(index:usize, actor:usize, hand_count:usize) -> Game {
+    let mut g=u::game();g.room_id=format!("{:024x}",870000+index);water(&mut g,0);hands(&mut g,hand_count);
+    g.first_team=g.team(actor);g.begin_window(Window::Action(g.team(actor)));g
+}
+#[test]
+fn jc041_native87_oracles() {
+    use crate::room::SessionAction;
+    let mut scenarios=vec![];
+    for actor in 0..4 {
+        let mut g=native_game(actor,actor,2);u::fund(&mut g,actor,"JC125",2);let id=hidden(&mut g,actor);
+        let c=g.board_mut(&id).unwrap();c.owner=(actor+1)%4;c.exhausted=actor%2==1;c.lock_markers=2;
+        let mut t=Trace::new(&format!("water-actor-{actor}"),&g);
+        t.game(actor,action(&id),true);assert!(t.room.game.board(&id).unwrap().1.face_down);
+        t.command(0,SessionAction::PauseRoom,true);t.game(actor,action(&id),false);t.command(0,SessionAction::ResumeRoom,true);
+        t.responses();assert_eq!(t.room.game.pending.as_ref().unwrap().choice.kind,"discard");
+        let p=t.room.game.pending.as_ref().unwrap();let stale=Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![]),..Action::new("choose")};
+        let seat=p.seat;t.game(seat,stale,false);
+        t.command(0,SessionAction::PauseRoom,true);t.command(0,SessionAction::ResumeRoom,true);t.drain();
+        assert!(t.room.game.players.iter().all(|p|p.hand.len()==1&&p.graveyard.len()==1));scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(10,0,2);u::fund(&mut g,0,"JC125",4);let id=u::held(&mut g,"JC041",0);
+        let mut t=Trace::new("ordinary-deploy",&g);t.game(0,Action{card_id:Some(id),region:Some(0),..Action::new("deploy")},true);t.responses();
+        assert!(t.room.game.stack.is_empty()&&t.room.game.pending.is_none());assert!(t.room.game.players.iter().all(|p|p.hand.len()==2));scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(11,0,2);g.regions[0].card=g.make_card("DQJC115",0);u::fund(&mut g,0,"JC125",4);let id=hidden(&mut g,0);
+        let mut t=Trace::new("ordinary-reveal-land",&g);t.game(0,action(&id),false);t.game(0,Action{card_id:Some(id),..Action::new("reveal")},true);t.responses();t.drain();
+        assert!(t.room.game.players.iter().all(|p|p.hand.len()==1));scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(12,0,0);u::held(&mut g,"JC084",1);u::held(&mut g,"JC084",3);u::fund(&mut g,0,"JC125",2);let id=hidden(&mut g,0);
+        let mut t=Trace::new("empty-hands",&g);t.game(0,action(&id),true);t.responses();assert_eq!(t.room.game.pending.as_ref().unwrap().seat,1);t.drain();
+        assert!(t.room.game.players.iter().all(|p|p.hand.is_empty()));assert_eq!(t.room.game.players[1].graveyard.len(),1);assert_eq!(t.room.game.players[3].graveyard.len(),1);scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(13,0,2);u::fund(&mut g,0,"JC125",2);let id=hidden(&mut g,0);u::fund(&mut g,1,"JC063",3);let spell=u::held(&mut g,"JC063",1);
+        let mut t=Trace::new("hidden-return-response",&g);t.game(0,action(&id),true);
+        let a=t.room.game.legal_actions(1).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_deref()==Some(&spell)&&a.action.target_id.as_deref()==Some(&id)).unwrap().action;
+        t.respond(1,a);t.responses();assert!(t.room.game.stack.is_empty()&&t.room.game.pending.is_none());
+        assert!(t.room.game.players[0].hand.iter().any(|c|c.definition=="JC041"&&c.id!=id));assert!(t.room.game.players.iter().all(|p|!p.graveyard.iter().any(|c|c.definition=="JC084")));scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(14,0,2);u::fund(&mut g,0,"JC125",2);let id=hidden(&mut g,0);u::fund(&mut g,1,"JC006",3);let spell=u::held(&mut g,"JC006",1);
+        let mut t=Trace::new("revealed-source-return-response",&g);t.game(0,action(&id),true);t.top();
+        let source=t.room.game.regions[0].cards.iter().find(|c|c.definition=="JC041"&&!c.face_down).unwrap().id.clone();
+        let a=t.room.game.legal_actions(1).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_deref()==Some(&spell)&&a.action.target_id.as_deref()==Some(&source)).unwrap().action;
+        t.respond(1,a);t.responses();assert!(t.room.game.board(&source).is_none());t.drain();
+        assert_eq!(t.room.game.players[0].hand.len(),2);assert!(t.room.game.players[1..].iter().all(|p|p.hand.len()==1));scenarios.push(t.finish());
+    }
+    {
+        let mut g=native_game(15,0,2);u::fund(&mut g,0,"JC125",4);let id=hidden(&mut g,0);let mut t=Trace::new("repeated-hidden-actions",&g);
+        t.game(0,action(&id),true);t.respond(0,action(&id));t.responses();t.drain();
+        assert!(t.room.game.players.iter().all(|p|p.hand.len()==1));assert_eq!(u::resources(&t.room.game,0),0);scenarios.push(t.finish());
+    }
+    BAD_EXPORT.with(|saved| *saved.borrow_mut()=Some(vec![]));
+    jc041_forged_paid_stack_effect_bypass_and_duplicate_ids_fail_both_restore_entries();
+    jc041_forged_compulsory_discard_continuations_cannot_change_player_count_or_privacy();
+    jc041_missing_program_cannot_turn_its_stack_or_private_continuation_into_legacy_work();
+    let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),35);
+    let mut source=crate::jc066_tests::source_bindings();
+    use sha2::{Digest,Sha256};
+    for (name,bytes) in [("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice())] {
+        source["files"].as_object_mut().unwrap().insert(name.into(),json!(format!("{:x}",Sha256::digest(bytes))));
+    }
+    assert_eq!(source["files"].as_object().unwrap().len(),137);
+    let commands=scenarios.iter().map(|s|s["steps"].as_array().unwrap().len()).sum::<usize>();
+    let rejected=scenarios.iter().flat_map(|s|s["steps"].as_array().unwrap()).filter(|r|!r["expected"]["errorCode"].is_null()).count();
+    let counts=json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":4*(commands+scenarios.len()),"invalidRestores":invalid.len()});
+    let result=json!({"format":"jc041-native87-v1","sourceBindings":source,"catalog":catalog::catalog(),"scenarios":scenarios,"invalid":invalid,"counts":counts});
+    if let Ok(dir)=std::env::var("JC041_NATIVE_DIR") {
+        use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("Native87.json")).unwrap().write_all(&serde_json::to_vec(&result).unwrap()).unwrap();
+    }
+    println!("JC041_NATIVE87_COUNTS {}",counts);
 }

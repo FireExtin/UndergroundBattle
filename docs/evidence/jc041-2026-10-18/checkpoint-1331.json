@@ -1,0 +1,73 @@
+{
+  "checkedUtc": "2026-10-18T13:32:00.706734+00:00",
+  "wip": true,
+  "nativeFocusedFinal": {
+    "tests": 13,
+    "passed": 13,
+    "invalidGameAndRoom": 35
+  },
+  "nativeWasmFinal": {
+    "inputs": 137,
+    "scenarios": 10,
+    "commands": 155,
+    "expectedRejected": 9,
+    "fourSeatViews": 660,
+    "badStates": 35,
+    "opaqueStatesJournalsViewsAndAllInvalidWasmEntriesEqual": true,
+    "rawSha256": "f00c02d928b17a0a304d1dda3d74d112e22240bd2c590cf2ed6047845498fe27"
+  },
+  "wasm": {
+    "bytes": 3327677,
+    "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+  },
+  "fixture": {
+    "bytes": 1338489,
+    "sha256": "3325dfc4e1135953784be1bece24ea4dba8592587587da378873faec181e5019"
+  },
+  "buildAndIdentityAudit": {
+    "passed": true,
+    "productionFiles": 183,
+    "generatedFiles": 22,
+    "testWorkerFiles": 14,
+    "exactKernels": [
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "publishedV68Original181FilesPreserved": true
+  },
+  "pending": [
+    "complete current-source Native workspace natural finish",
+    "full frontend natural finish",
+    "concentrated173 Worker/HTTP/D1 natural finish",
+    "new-runtime browser series natural finish",
+    "parent independent review"
+  ],
+  "spaceAtLastGuard": {
+    "availableBytes": 878698496,
+    "requiredBytes": 1073741824,
+    "noCleanupOrStorageFallback": true
+  },
+  "publicSite": {
+    "version": 68,
+    "ABI": 86,
+    "source": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+    "deployment": "appgdep_6ad4ab44dd108191bc0b154e89699224",
+    "status": "succeeded",
+    "accessRevision": 2,
+    "hour13BrowserLaunchBlockedBeforeNavigation": true,
+    "lastActualBrowserHour": 12,
+    "onlineGames": 0
+  },
+  "published": false,
+  "mainMerged": false,
+  "neutralAndDualPaused": true
+}

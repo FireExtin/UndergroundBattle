@@ -1,0 +1,47 @@
+{
+  "checkedUtc": "2026-10-18T13:18:15.882887+00:00",
+  "wip": true,
+  "nativeFirst": {
+    "libraryPassed": 1259,
+    "libraryFailed": 1,
+    "integrationNotRun": true,
+    "reason": "Obsolete nonregion count140; actual141. Only cfg(test) count fixed."
+  },
+  "workerFirst": {
+    "tests": 171,
+    "passed": 64,
+    "failed": 107,
+    "failures": {
+      "retainedAllElevenTest": {
+        "tests": 1,
+        "cause": "Synthetic test reused same invite across rooms; real D1 uniqueness correctly rejected. Test now assigns unique invite."
+      },
+      "retained86Integration": {
+        "tests": 106,
+        "cause": "Command omitted existing HEGEMONY_CURRENT_WORKER_DIR override; fallback path absent, all106failed before HTTP execution."
+      }
+    },
+    "nextCommandMustSetWorker": "/workspace/undergroundbattle-build/jc041-worker/server",
+    "noCrossRoundAllGreenClaim": true
+  },
+  "browserFinalScenesAllPassed": {
+    "water-actor-0": {
+      "ui": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5
+    },
+    "water-actor-2": {
+      "ui": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5
+    },
+    "ordinary-reveal-land": {
+      "ui": 13,
+      "expectedRejectedFetch": 1,
+      "D1Reopened": 5
+    }
+  },
+  "sourceStatus": "Only count assertion changed since137input first export; fullNative final/rebuild active, fresh compiler witness pending. Existing candidate fixture not yet finalsource-bound.",
+  "published": false,
+  "parentReviewComplete": false
+}

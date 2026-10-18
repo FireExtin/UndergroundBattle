@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "sites/scripts/build.mjs"
+  ],
+  "startedUtc": "2026-10-18T12:58:06.686712+00:00",
+  "endedUtc": "2026-10-18T12:58:41.456451+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,26 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "CARGO_HOME=/workspace/tooling/cargo",
+    "RUSTUP_HOME=/workspace/tooling/rustup",
+    "JC041_NATIVE_DIR=/workspace/jc041-evidence-20261018/native87-first",
+    "cargo",
+    "test",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc041",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T12:41:27.768407+00:00",
+  "endedUtc": "2026-10-18T12:42:36.459970+00:00",
+  "exitCode": 0
+}

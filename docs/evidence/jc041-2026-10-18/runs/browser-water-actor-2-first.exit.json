@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/undergroundbattle-build/jc041-worker/server",
+    "JC041_BROWSER_SCENARIO=water-actor-2",
+    "node",
+    "tools/frontend/jc041-http-four-clients-qa.mjs",
+    "/workspace/jc041-evidence-20261018/browser-water-actor-2-first"
+  ],
+  "startedUtc": "2026-10-18T13:10:48.926644+00:00",
+  "endedUtc": "2026-10-18T13:11:49.404022+00:00",
+  "exitCode": 0
+}

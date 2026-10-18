@@ -417,7 +417,7 @@ fn jc066_native86_oracles() {
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("native86.json")).unwrap().write_all(&serde_json::to_vec(&result).unwrap()).unwrap();
     }
 }
-fn source_bindings() -> serde_json::Value {
+pub(crate) fn source_bindings() -> serde_json::Value {
     use sha2::{Digest, Sha256};
     let files: &[(&str, &[u8])] = &[
         ("Cargo.lock", include_bytes!("../../Cargo.lock")),

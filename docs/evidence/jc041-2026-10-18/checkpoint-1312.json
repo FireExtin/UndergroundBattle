@@ -1,0 +1,49 @@
+{
+  "checkedUtc": "2026-10-18T13:12:09.840492+00:00",
+  "stage": "WIP; fullNative first1259passed/1obsoleteCountAssertion; HTTP171 batch active, fullfrontend and finalcurrent binding pending",
+  "initialWipCommit": "022ba97e210822f07bfe859a4d72ab85bfd89f34",
+  "nativeFocused": {
+    "passed": 13,
+    "tests": 13,
+    "badStates": 33
+  },
+  "native87FirstParity": {
+    "inputs": 137,
+    "scenarios": 10,
+    "commands": 155,
+    "expectedRejected": 9,
+    "fourSeatViews": 660,
+    "badStates": 33,
+    "wasmSha256": "b7c92734be8cc403930476537cf699cb1058a2fcd32a0a0f0df30f139e417d20"
+  },
+  "frontendFocusedActual": {
+    "files": 2,
+    "tests": 77,
+    "passed": 77,
+    "nonexistentExtraNameRanNoTests": true
+  },
+  "productionBuild": {
+    "passed": true,
+    "files": 183,
+    "elevenExactKernels": true,
+    "deployment": false
+  },
+  "localBrowser": {
+    "water-actor-0": {
+      "passed": true,
+      "uiCommands": 17,
+      "expectedRejectedBrowserFetch": 2,
+      "D1Reopened": 5
+    },
+    "water-actor-2": {
+      "passed": true,
+      "uiCommands": 17,
+      "expectedRejectedBrowserFetch": 2,
+      "D1Reopened": 5
+    },
+    "scope": "Local synthetic layout + production UI + listening HTTP/workerd/WASM/D1 only; never online gameplay."
+  },
+  "published": false,
+  "parentReviewComplete": false,
+  "publicVersion": "v68 / ABI86"
+}

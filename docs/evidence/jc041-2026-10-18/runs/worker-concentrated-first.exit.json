@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 test/jc041-*.test.mjs test/jc066-integration.test.mjs test/kernel-binding.test.mjs ../tools/cards/jc041-source.test.mjs ../tools/cards/jc066-source.test.mjs ../tools/frozen-abi86.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T13:03:24.146337+00:00",
+  "endedUtc": "2026-10-18T13:13:49.914228+00:00",
+  "exitCode": 1
+}

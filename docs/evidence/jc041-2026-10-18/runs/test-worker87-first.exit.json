@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "WRANGLER_SEND_METRICS=false",
+    "XDG_CONFIG_HOME=/workspace/undergroundbattle-build/jc041-worker/config",
+    "bash",
+    "-c",
+    "cd /workspace/undergroundbattle-build/jc041-worker && exec /workspace/UndergroundBattle/sites/node_modules/.bin/wrangler deploy --dry-run --outdir server --config wrangler.json"
+  ],
+  "startedUtc": "2026-10-18T13:01:46.247148+00:00",
+  "endedUtc": "2026-10-18T13:01:54.634601+00:00",
+  "exitCode": 0
+}
