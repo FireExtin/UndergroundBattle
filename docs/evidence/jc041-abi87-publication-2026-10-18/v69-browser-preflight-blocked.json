@@ -1,0 +1,21 @@
+{
+  "checkedUtc": "2026-10-18T15:30:50.291570+00:00",
+  "deployedVersion": 69,
+  "providerSource": "0bf3a2793b0e4d28d4324b8251cebde685c8c085",
+  "check": "ordinary public browser launch preflight",
+  "command": [
+    "node",
+    "tools/build-storage.mjs"
+  ],
+  "availableBytes": 995160064,
+  "requirementBytes": 1073741824,
+  "exitCode": 78,
+  "stdout": "",
+  "stderr": "Build preflight failed:\n/workspace/undergroundbattle-build/target: 995160064 bytes available; require at least 1073741824 bytes on disk.\n/workspace/undergroundbattle-build/tmp: 995160064 bytes available; require at least 1073741824 bytes on disk.\nNo build started; no storage fallback or cleanup was performed.\n",
+  "browserLaunched": false,
+  "publicBrowserGets": 0,
+  "publicBrowserPosts": 0,
+  "tlsObservedThisVersion": false,
+  "onlineGameplayTests": 0,
+  "noBypassOrCleanup": true
+}
