@@ -1,0 +1,49 @@
+{
+  "scope": "Read-only inventory/recovery proof. Deletion unexecuted and requires parent confirmation.",
+  "files": {
+    "directory-sizes.json": {
+      "bytes": 16628,
+      "sha256": "cdeca203f50bdb06e245fce0075b736712c7740a1436a705e389de5f49cf2f14"
+    },
+    "process-and-recovery.json": {
+      "bytes": 2080,
+      "sha256": "8e18502e624e8a0050ac40747afd5e2c5335adc0e063b77ea850f20ec4f13da8"
+    },
+    "npm-cache-recovery-candidates.json": {
+      "bytes": 10426,
+      "sha256": "d5ebb73add31b26e07045108ca1b25a39a564a4c5c8bdc4351a7aa56110b6541"
+    },
+    "merged-stage-recovery.json": {
+      "bytes": 1411,
+      "sha256": "5ed2b5c90cc8952bf25bbe37892772a9b7c6c2365a4262dafb604c010bfdc163"
+    },
+    "inventory-summary.json": {
+      "bytes": 837,
+      "sha256": "0c403f32811898cb58a6554e3b468f32e7e4de556c56d9204e20351f6cb3915e"
+    },
+    "stage-extra-owned-files.json": {
+      "bytes": 1017,
+      "sha256": "c3488347c03836daa59a2d1469510c6d38e3b1f7f5d8deab76db9beaa0e7058e"
+    },
+    "stage-retained-manifest-proof.json": {
+      "bytes": 262,
+      "sha256": "8f9cb3e023e09a38d499c39948dbfb7300337949768cd2887e78c764d85a5ad0"
+    },
+    "installed-package-retention.json": {
+      "bytes": 3508,
+      "sha256": "19bf54fef45f1de5fbd4384efa7e82297512003520a1b5fd6396a3bf4fbea1ae"
+    },
+    "first-pass-status.json": {
+      "bytes": 430,
+      "sha256": "0ed9c5dca62f244aecb16df84024d5dc6ca1059e15ab400aafc3ad1c2dccb5de"
+    },
+    "inventory-readonly.py": {
+      "bytes": 9875,
+      "sha256": "398b8135151647871a801a89213863e4202a9ed07b9f6c9fd9245fc1599d1042"
+    },
+    "finish-merged-stage-readonly.py": {
+      "bytes": 4352,
+      "sha256": "6099e8be62e064f38f9cb326574a10b49bdec3d7c7c72dd0c05aa04148fdae22"
+    }
+  }
+}

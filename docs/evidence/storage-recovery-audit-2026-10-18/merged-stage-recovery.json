@@ -1,0 +1,38 @@
+{
+  "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+  "sourceCommit": "53b2114a220ca001ca8c40ff3b2a6f2b6276ef45",
+  "mergedInto": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "filesMappedAndExact": 1145,
+  "filesMatchingRetainedGitBlobs": 1143,
+  "generatedExactRetainedCanonical": [
+    {
+      "source": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "canonical": "/workspace/undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm.js",
+      "exact": true,
+      "restoredFromGzip": false
+    },
+    {
+      "source": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "canonical": "/workspace/undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm_bg.wasm.gz",
+      "exact": true,
+      "restoredFromGzip": true
+    }
+  ],
+  "extraOwnedFiles": {
+    ".gitignore": {
+      "bytes": 124,
+      "sha256": "b144507f057e1f5d7abb74db3b00a91919427ed24cbc1726be341119eec9be21"
+    },
+    "source-provenance.json": {
+      "bytes": 229,
+      "sha256": "35c64ad22ac1af83034d175ef3a8ae0941b6e2ac81529c3fd8a724161157095a"
+    }
+  },
+  "notGitWorktree": true,
+  "databaseOrCredentials": false,
+  "noTrashRecoveryExists": true,
+  "deletionPerformed": false,
+  "reconstructionNotEquivalentToTrashUndo": true
+}

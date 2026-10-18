@@ -1,0 +1,25 @@
+{
+  "before": {
+    "checkedUtc": "2026-10-18T15:35:00.903626+00:00",
+    "availableBytes": 994414592,
+    "guardBytes": 1073741824,
+    "deficitBytes": 79327232
+  },
+  "afterReadOnlyAudit": {
+    "checkedUtc": "2026-10-18T15:41:17.776097+00:00",
+    "availableBytes": 994344960,
+    "totalFreeBytes": 2729107456,
+    "guardBytes": 1073741824,
+    "deficitBytes": 79396864
+  },
+  "fixedMain": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "head": "d0a52c8d8c7b9589952b7dadbb0ab7283dd6a8e9",
+  "deletedFiles": 0,
+  "freedBytesByCleanup": 0,
+  "buildsOrBrowserLaunches": 0,
+  "guardLowered": false,
+  "readonlyNetworkDownloadsNeverPersisted": true,
+  "personalContextResult": "Unavailable for this conversation; no additional cleanup authorization inferred.",
+  "restorationToolAvailable": false,
+  "noGuaranteedGlobalFdOccupancy": true
+}

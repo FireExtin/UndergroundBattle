@@ -1,0 +1,9 @@
+{
+  "exitCode": 1,
+  "stage": "retained generated ABI78 WASM lookup",
+  "reason": "Canonical retained WASM is losslessly gzip-compressed, not an uncompressed .wasm path.",
+  "productFailure": false,
+  "cleanupPerformed": false,
+  "priorFourAuditFilesPreserved": true,
+  "correction": "Read retained .wasm.gz with gzip.decompress and compare exact original bytes; resume stage verification only without repeating network reads."
+}

@@ -1,0 +1,220 @@
+{
+  "fixedMain": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "lockProof": {
+    "sites/package-lock.json": {
+      "matchesFixedMain": true,
+      "sha256": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a"
+    },
+    "web/package-lock.json": {
+      "matchesFixedMain": true,
+      "sha256": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d"
+    }
+  },
+  "selected": [
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/91/96/d36491ab86c30e76a676048c9b8da0512d98d8b112d68fb99c370ffa63786874e869e4cacdcdccf88961b03555b0c8857eecf97efcb5f955c82746a7473a",
+      "bytes": 39830481,
+      "allocatedBytes": 39833600,
+      "links": 1,
+      "inode": 1063054,
+      "integrity": "sha512-kZbTZJGrhsMOdqZ2BIybjaBRLZjYsRLWj7mcNw/6Y3hodOhp5MrNzcz4iWGwNVWwyIV+7Pl+/LX5VcgnRqdHOg==",
+      "matchingMainLock": [
+        {
+          "lock": "sites/package-lock.json",
+          "package": "node_modules/@cloudflare/workerd-linux-64",
+          "version": "1.20261001.1",
+          "resolved": "https://registry.npmjs.org/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20261001.1.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20261001.1.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "171f870969832119032d0c3c00e6582e60a23313ee58745912dc09b56da6d82c"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/44/da/da7f3e5b730472f8ef5ee8ff19fce080256fc0faab4173322a558c13b35e297f8895d7ff9e2848dd394b5af77ab64ec4ff148d176033f74c2932dfc2cc02",
+      "bytes": 9373010,
+      "allocatedBytes": 9375744,
+      "links": 1,
+      "inode": 1051378,
+      "integrity": "sha512-RNrafz5bcwRy+O9e6P8Z/OCAJW/A+qtBczIqVYwTs14pf4iV1/+eKEjdOUta93q2TsT/FI0XYDP3TCky38LMAg==",
+      "matchingMainLock": [
+        {
+          "lock": "web/package-lock.json",
+          "package": "node_modules/@rolldown/binding-linux-x64-gnu",
+          "version": "1.0.0-rc.12",
+          "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.0-rc.12.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.0-rc.12.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "25c311140ea0e82c3099291271807ac6a8f029fef3a6edae074d2c4c05299a94"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/26/9c/3fd22c28296c772c9dab735ca316b8fe4fb887667d890e0d589f2d666b496ebe2152e2684021c7752c53712b7118bb70c7582a6cd327574398bfaeb2768a",
+      "bytes": 9324483,
+      "allocatedBytes": 9326592,
+      "links": 1,
+      "inode": 1051381,
+      "integrity": "sha512-Jpw/0iwoKWx3LJ2rc1yjFrj+T7iHZn2JDg1Yny1ma0luviFS4mhAIcd1LFNxK3EYu3DHWCps0ydXQ5i/rrJ2ig==",
+      "matchingMainLock": [
+        {
+          "lock": "web/package-lock.json",
+          "package": "node_modules/@rolldown/binding-linux-x64-musl",
+          "version": "1.0.0-rc.12",
+          "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.0.0-rc.12.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.0.0-rc.12.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "91ea72cd989b96e1198e957b50b783418e1af519f98f238fd45c9d244d39dc55"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/7e/3f/0cbf41c77c3d51afee08ebcfb76a02729f10d6b4116089c4db48e6fd0647baa48c3319c27e457ff21e39a210614c09abd8fddc6f7a6eccc8d68917ec038b",
+      "bytes": 8235549,
+      "allocatedBytes": 8237056,
+      "links": 1,
+      "inode": 1064764,
+      "integrity": "sha512-fj8Mv0HHfD1Rr+4I68+3agJynxDWtBFgicTbSOb9Bke6pIwzGcJ+RX/yHjmiEGFMCavY/dxvem7MyNaJF+wDiw==",
+      "matchingMainLock": [
+        {
+          "lock": "sites/package-lock.json",
+          "package": "node_modules/@img/sharp-libvips-linuxmusl-x64",
+          "version": "1.3.3",
+          "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.3.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.3.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "4261dcae140dbb569ff4b96a09dbfb1c75fec728b8ff1f58b00b60e828947333"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/e2/f2/a6bc0b2df67ae8c1caaab8a140c992540e8954688a7cb9188dd2658582e275229942f7fa62b57b659e7954e1a6bf789c3727b8baed5fa9c142fec1919db0",
+      "bytes": 8176720,
+      "allocatedBytes": 8179712,
+      "links": 1,
+      "inode": 1063120,
+      "integrity": "sha512-4vKmvAst9nrowcqquKFAyZJUDolUaIp8uRiN0mWFguJ1IplC9/pitXtlnnlU4aa/eJw3J7i67V+pwUL+wZGdsA==",
+      "matchingMainLock": [
+        {
+          "lock": "sites/package-lock.json",
+          "package": "node_modules/@img/sharp-libvips-linux-x64",
+          "version": "1.3.3",
+          "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.3.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.3.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "74b6fa0abb2e41a163853a00e2f247188df5ec1e25bf62c4c5a041f2042a1f6a"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/19/a8/a64b999220e332bddd7a81af9ed7f42423c726a77cf7e503c715ec740e4b6a3507f6455650c0c3d05ddca852b7948853ffd06a5ed8ca102274f23000f9c4",
+      "bytes": 5312220,
+      "allocatedBytes": 5312512,
+      "links": 1,
+      "inode": 1063633,
+      "integrity": "sha512-GaimS5mSIOMyvd16ga+e1/QkI8cmp3z35QPHFex0DktqNQf2RVZQwMPQXdyoUreUiFP/0Gpe2MoQInTyMAD5xA==",
+      "matchingMainLock": [
+        {
+          "lock": "sites/package-lock.json",
+          "package": "node_modules/miniflare",
+          "version": "5.20261001.0-alpha",
+          "resolved": "https://registry.npmjs.org/miniflare/-/miniflare-5.20261001.0-alpha.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/miniflare/-/miniflare-5.20261001.0-alpha.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "c0f0ec71bed4456e648ffccecf96efa0a1359d021fa5fa96b54f6005279d0532"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/e3/14/d9af5154992a105b85c85a68addedcd0ad44d933e3773f45d5f3144e298179d177c8ef178ef74fb56d9bcdc3122e7d0f610d0551247e588603d517c03f1d",
+      "bytes": 4741809,
+      "allocatedBytes": 4743168,
+      "links": 1,
+      "inode": 1062735,
+      "integrity": "sha512-4xTZr1FUmSoQW4XIWmit3tzQrUTZM+N3P0XV8xROKYF50XfI7xeO90+1bZvNwxIufQ9hDQVRJH5YhgPVF8A/HQ==",
+      "matchingMainLock": [
+        {
+          "lock": "sites/package-lock.json",
+          "package": "node_modules/tsx/node_modules/@esbuild/linux-x64",
+          "version": "0.28.2",
+          "resolved": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.2.tgz"
+        }
+      ],
+      "url": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.2.tgz",
+      "localBytesAndIntegrityVerified": true,
+      "sha256": "9573bb2233aab0f9ea7647d5cca9726113cc1768de61d66b17267f4db84488f6"
+    }
+  ],
+  "firstSixAllocatedBytes": 80265216,
+  "allSevenAllocatedBytes": 85008384,
+  "allCurrentUrlsByteVerified": true,
+  "remoteReadOnlyProof": [
+    {
+      "url": "https://registry.npmjs.org/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20261001.1.tgz",
+      "status": 200,
+      "bytes": 39830481,
+      "integrity": "sha512-kZbTZJGrhsMOdqZ2BIybjaBRLZjYsRLWj7mcNw/6Y3hodOhp5MrNzcz4iWGwNVWwyIV+7Pl+/LX5VcgnRqdHOg==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.0-rc.12.tgz",
+      "status": 200,
+      "bytes": 9373010,
+      "integrity": "sha512-RNrafz5bcwRy+O9e6P8Z/OCAJW/A+qtBczIqVYwTs14pf4iV1/+eKEjdOUta93q2TsT/FI0XYDP3TCky38LMAg==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.0.0-rc.12.tgz",
+      "status": 200,
+      "bytes": 9324483,
+      "integrity": "sha512-Jpw/0iwoKWx3LJ2rc1yjFrj+T7iHZn2JDg1Yny1ma0luviFS4mhAIcd1LFNxK3EYu3DHWCps0ydXQ5i/rrJ2ig==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.3.tgz",
+      "status": 200,
+      "bytes": 8235549,
+      "integrity": "sha512-fj8Mv0HHfD1Rr+4I68+3agJynxDWtBFgicTbSOb9Bke6pIwzGcJ+RX/yHjmiEGFMCavY/dxvem7MyNaJF+wDiw==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.3.tgz",
+      "status": 200,
+      "bytes": 8176720,
+      "integrity": "sha512-4vKmvAst9nrowcqquKFAyZJUDolUaIp8uRiN0mWFguJ1IplC9/pitXtlnnlU4aa/eJw3J7i67V+pwUL+wZGdsA==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/miniflare/-/miniflare-5.20261001.0-alpha.tgz",
+      "status": 200,
+      "bytes": 5312220,
+      "integrity": "sha512-GaimS5mSIOMyvd16ga+e1/QkI8cmp3z35QPHFex0DktqNQf2RVZQwMPQXdyoUreUiFP/0Gpe2MoQInTyMAD5xA==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    },
+    {
+      "url": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.2.tgz",
+      "status": 200,
+      "bytes": 4741809,
+      "integrity": "sha512-4xTZr1FUmSoQW4XIWmit3tzQrUTZM+N3P0XV8xROKYF50XfI7xeO90+1bZvNwxIufQ9hDQVRJH5YhgPVF8A/HQ==",
+      "sameAsLocalAndFixedMain": true,
+      "payloadPersisted": false,
+      "payloadExecuted": false
+    }
+  ],
+  "permanentRemovalNotAuthorizedByRebuildabilityAlone": true,
+  "deletionPerformed": false,
+  "cacheIndexUntouched": true,
+  "restorationRequiresDownloadAndAdditionalSpace": true
+}

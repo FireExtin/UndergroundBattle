@@ -1,0 +1,79 @@
+[
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/91/96/d36491ab86c30e76a676048c9b8da0512d98d8b112d68fb99c370ffa63786874e869e4cacdcdccf88961b03555b0c8857eecf97efcb5f955c82746a7473a",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/sites/node_modules/@cloudflare/workerd-linux-64/package.json",
+        "exists": true,
+        "installedVersion": "1.20261001.1",
+        "lockedVersion": "1.20261001.1"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/44/da/da7f3e5b730472f8ef5ee8ff19fce080256fc0faab4173322a558c13b35e297f8895d7ff9e2848dd394b5af77ab64ec4ff148d176033f74c2932dfc2cc02",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/web/node_modules/@rolldown/binding-linux-x64-gnu/package.json",
+        "exists": true,
+        "installedVersion": "1.0.0-rc.12",
+        "lockedVersion": "1.0.0-rc.12"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/26/9c/3fd22c28296c772c9dab735ca316b8fe4fb887667d890e0d589f2d666b496ebe2152e2684021c7752c53712b7118bb70c7582a6cd327574398bfaeb2768a",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/web/node_modules/@rolldown/binding-linux-x64-musl/package.json",
+        "exists": true,
+        "installedVersion": "1.0.0-rc.12",
+        "lockedVersion": "1.0.0-rc.12"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/7e/3f/0cbf41c77c3d51afee08ebcfb76a02729f10d6b4116089c4db48e6fd0647baa48c3319c27e457ff21e39a210614c09abd8fddc6f7a6eccc8d68917ec038b",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/sites/node_modules/@img/sharp-libvips-linuxmusl-x64/package.json",
+        "exists": true,
+        "installedVersion": "1.3.3",
+        "lockedVersion": "1.3.3"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/e2/f2/a6bc0b2df67ae8c1caaab8a140c992540e8954688a7cb9188dd2658582e275229942f7fa62b57b659e7954e1a6bf789c3727b8baed5fa9c142fec1919db0",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/sites/node_modules/@img/sharp-libvips-linux-x64/package.json",
+        "exists": true,
+        "installedVersion": "1.3.3",
+        "lockedVersion": "1.3.3"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/19/a8/a64b999220e332bddd7a81af9ed7f42423c726a77cf7e503c715ec740e4b6a3507f6455650c0c3d05ddca852b7948853ffd06a5ed8ca102274f23000f9c4",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/sites/node_modules/miniflare/package.json",
+        "exists": true,
+        "installedVersion": "5.20261001.0-alpha",
+        "lockedVersion": "5.20261001.0-alpha"
+      }
+    ]
+  },
+  {
+    "cachePath": "/workspace/undergroundbattle-build/npm-cache/_cacache/content-v2/sha512/e3/14/d9af5154992a105b85c85a68addedcd0ad44d933e3773f45d5f3144e298179d177c8ef178ef74fb56d9bcdc3122e7d0f610d0551247e588603d517c03f1d",
+    "installedPackageStates": [
+      {
+        "package": "/workspace/UndergroundBattle/sites/node_modules/tsx/node_modules/@esbuild/linux-x64/package.json",
+        "exists": true,
+        "installedVersion": "0.28.2",
+        "lockedVersion": "0.28.2"
+      }
+    ]
+  }
+]

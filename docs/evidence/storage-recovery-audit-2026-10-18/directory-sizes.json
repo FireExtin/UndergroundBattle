@@ -1,0 +1,578 @@
+{
+  "checkedUtc": "2026-10-18T15:39:53.032416+00:00",
+  "rows": {
+    "/workspace": [
+      {
+        "path": "/workspace",
+        "allocatedBytes": 33002094592
+      },
+      {
+        "path": "/workspace/undergroundbattle-build",
+        "allocatedBytes": 7079849984
+      },
+      {
+        "path": "/workspace/UndergroundBattle",
+        "allocatedBytes": 3614646272
+      },
+      {
+        "path": "/workspace/bq035-evidence-20261016",
+        "allocatedBytes": 3204079616
+      },
+      {
+        "path": "/workspace/jz46-evidence-20261016",
+        "allocatedBytes": 2688983040
+      },
+      {
+        "path": "/workspace/bq035-p2-evidence-20261016",
+        "allocatedBytes": 2619555840
+      },
+      {
+        "path": "/workspace/pass-context-abi77-review-20261016",
+        "allocatedBytes": 2144403456
+      },
+      {
+        "path": "/workspace/hidden-world-sites-abi77-20261015",
+        "allocatedBytes": 1507848192
+      },
+      {
+        "path": "/workspace/serial-native77-inputs-20261015",
+        "allocatedBytes": 1074204672
+      },
+      {
+        "path": "/workspace/tooling",
+        "allocatedBytes": 908652544
+      },
+      {
+        "path": "/workspace/jc057-evidence-20261018",
+        "allocatedBytes": 757989376
+      },
+      {
+        "path": "/workspace/jc054-evidence-20261017",
+        "allocatedBytes": 639922176
+      },
+      {
+        "path": "/workspace/jc066-evidence-20261018",
+        "allocatedBytes": 555905024
+      },
+      {
+        "path": "/workspace/jc066-p2-evidence-20261018",
+        "allocatedBytes": 525152256
+      },
+      {
+        "path": "/workspace/jc044-stack-source-review-20261018",
+        "allocatedBytes": 483270656
+      },
+      {
+        "path": "/workspace/.cloud-setup",
+        "allocatedBytes": 466640896
+      },
+      {
+        "path": "/workspace/jc044-evidence-20261018",
+        "allocatedBytes": 419409920
+      },
+      {
+        "path": "/workspace/msjc0405-evidence-20261017",
+        "allocatedBytes": 398135296
+      },
+      {
+        "path": "/workspace/jc066-publication-20261018",
+        "allocatedBytes": 337051648
+      },
+      {
+        "path": "/workspace/jc044-publication-20261018",
+        "allocatedBytes": 328814592
+      },
+      {
+        "path": "/workspace/jc057-publication-20261018",
+        "allocatedBytes": 320163840
+      },
+      {
+        "path": "/workspace/response-preview-publication-20261017",
+        "allocatedBytes": 303443968
+      },
+      {
+        "path": "/workspace/jz46-publication-20261016",
+        "allocatedBytes": 247189504
+      },
+      {
+        "path": "/workspace/jc041-evidence-20261018",
+        "allocatedBytes": 221265920
+      },
+      {
+        "path": "/workspace/jc041-publication-20261018",
+        "allocatedBytes": 211804160
+      },
+      {
+        "path": "/workspace/msjc0405-publication-20261017",
+        "allocatedBytes": 192475136
+      },
+      {
+        "path": "/workspace/jc054-publication-20261017",
+        "allocatedBytes": 183537664
+      },
+      {
+        "path": "/workspace/wm062-publication-20261017",
+        "allocatedBytes": 181108736
+      },
+      {
+        "path": "/workspace/bq035-publication-20261016",
+        "allocatedBytes": 167350272
+      },
+      {
+        "path": "/workspace/jc057-p2-20261018",
+        "allocatedBytes": 145293312
+      },
+      {
+        "path": "/workspace/wm062-evidence-20261016",
+        "allocatedBytes": 132190208
+      },
+      {
+        "path": "/workspace/jc041-p2-region-evidence-20261018",
+        "allocatedBytes": 109654016
+      },
+      {
+        "path": "/workspace/response-preview-evidence-20261017",
+        "allocatedBytes": 102174720
+      },
+      {
+        "path": "/workspace/jz46-p2-evidence-20261016",
+        "allocatedBytes": 101769216
+      },
+      {
+        "path": "/workspace/collection-layout-20261016",
+        "allocatedBytes": 97128448
+      },
+      {
+        "path": "/workspace/abi77-publication-20261015",
+        "allocatedBytes": 88780800
+      },
+      {
+        "path": "/workspace/stage-pass-20261016",
+        "allocatedBytes": 82096128
+      },
+      {
+        "path": "/workspace/deck-collection-ui-20261016",
+        "allocatedBytes": 75993088
+      },
+      {
+        "path": "/workspace/invitation-release-20261016",
+        "allocatedBytes": 69275648
+      },
+      {
+        "path": "/workspace/abi77-teams54-20261015",
+        "allocatedBytes": 67309568
+      },
+      {
+        "path": "/workspace/serial-evidence-20261015",
+        "allocatedBytes": 59703296
+      },
+      {
+        "path": "/workspace/pass-context-evidence-20261016",
+        "allocatedBytes": 22466560
+      },
+      {
+        "path": "/workspace/web-timeout-diagnosis-20261015",
+        "allocatedBytes": 19398656
+      },
+      {
+        "path": "/workspace/jc095-nonzero54-20261015",
+        "allocatedBytes": 17387520
+      },
+      {
+        "path": "/workspace/ready-sync-20261016",
+        "allocatedBytes": 15175680
+      },
+      {
+        "path": "/workspace/action-hints-evidence-20261017",
+        "allocatedBytes": 7729152
+      },
+      {
+        "path": "/workspace/sites-official-abi77-20261015",
+        "allocatedBytes": 2052096
+      },
+      {
+        "path": "/workspace/main-reviewed-v59-evidence-20261016",
+        "allocatedBytes": 311296
+      },
+      {
+        "path": "/workspace/main-fixed4918-verification-20261015",
+        "allocatedBytes": 270336
+      },
+      {
+        "path": "/workspace/v61-normal-browser-and-next-audit-20261016T201358Z",
+        "allocatedBytes": 225280
+      },
+      {
+        "path": "/workspace/main-abi86-promotion-20261018",
+        "allocatedBytes": 163840
+      },
+      {
+        "path": "/workspace/jc057-worker-full-final-20261018-0234",
+        "allocatedBytes": 131072
+      },
+      {
+        "path": "/workspace/main-readiness-v55-20261016",
+        "allocatedBytes": 122880
+      },
+      {
+        "path": "/workspace/jc066-publication-retry-20261018",
+        "allocatedBytes": 94208
+      },
+      {
+        "path": "/workspace/v60-live-followup-20261016T172813Z",
+        "allocatedBytes": 81920
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T053034Z",
+        "allocatedBytes": 77824
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T042123Z",
+        "allocatedBytes": 77824
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T062131Z",
+        "allocatedBytes": 77824
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T033153Z",
+        "allocatedBytes": 77824
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261018T0030Z",
+        "allocatedBytes": 73728
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017",
+        "allocatedBytes": 73728
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T2030Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T1626Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T2130Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v64-real-browser-20261017T1225Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v63-real-browser-20261017T101525Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T1926Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v63-real-browser-20261017T1117Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v64-real-browser-20261017T1328Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T2230Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T1726Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T2330Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T1526Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T093402Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/v65-real-browser-20261017T1826Z",
+        "allocatedBytes": 69632
+      },
+      {
+        "path": "/workspace/pass-history-publication-20261016",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/live-v58-20261016T103041Z",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/live-v58-20261016",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/live-v58-20261016T1127Z",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T073555Z",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/v62-real-browser-20261017T082956Z",
+        "allocatedBytes": 65536
+      },
+      {
+        "path": "/workspace/v61-hourly-normal-browser-20261016T212834Z",
+        "allocatedBytes": 61440
+      },
+      {
+        "path": "/workspace/v59-live-after-p2-compare-20261016",
+        "allocatedBytes": 61440
+      },
+      {
+        "path": "/workspace/v59-live-after-p2-worker-20261016",
+        "allocatedBytes": 61440
+      },
+      {
+        "path": "/workspace/v60-live-authorized-followup-20261016T183341Z",
+        "allocatedBytes": 57344
+      },
+      {
+        "path": "/workspace/jc046-p2-evidence-20261015",
+        "allocatedBytes": 49152
+      },
+      {
+        "path": "/workspace/jc066-p2-probe-evidence-20261018",
+        "allocatedBytes": 45056
+      },
+      {
+        "path": "/workspace/main-v64-promotion-20261017",
+        "allocatedBytes": 32768
+      },
+      {
+        "path": "/workspace/storage-recovery-audit-20261018",
+        "allocatedBytes": 16384
+      },
+      {
+        "path": "/workspace/shared",
+        "allocatedBytes": 8192
+      },
+      {
+        "path": "/workspace/library-files",
+        "allocatedBytes": 4096
+      },
+      {
+        "path": "/workspace/scratch",
+        "allocatedBytes": 4096
+      }
+    ],
+    "/workspace/undergroundbattle-build": [
+      {
+        "path": "/workspace/undergroundbattle-build",
+        "allocatedBytes": 7114399744
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/tmp",
+        "allocatedBytes": 1798029312
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target",
+        "allocatedBytes": 1464537088
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+        "allocatedBytes": 1092812800
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-20261016-11927a3",
+        "allocatedBytes": 1092337664
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-20261016",
+        "allocatedBytes": 1092337664
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/npm-cache",
+        "allocatedBytes": 162914304
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/pass-history-v58-provider-dist-20261016",
+        "allocatedBytes": 96632832
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/bq035-worker",
+        "allocatedBytes": 48914432
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/jz46-worker",
+        "allocatedBytes": 42881024
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/jc041-worker",
+        "allocatedBytes": 35262464
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/jc041-p2-worker",
+        "allocatedBytes": 35201024
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/wm062-worker",
+        "allocatedBytes": 24563712
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/jc054-worker",
+        "allocatedBytes": 21897216
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/jz46-p2-backend",
+        "allocatedBytes": 18231296
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/frozen-kernels",
+        "allocatedBytes": 11784192
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/pass-history-worker",
+        "allocatedBytes": 6049792
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/pass-history-browser-20261016",
+        "allocatedBytes": 1118208
+      }
+    ],
+    "/workspace/UndergroundBattle": [
+      {
+        "path": "/workspace/UndergroundBattle",
+        "allocatedBytes": 3614646272
+      },
+      {
+        "path": "/workspace/UndergroundBattle/sites",
+        "allocatedBytes": 1093029888
+      },
+      {
+        "path": "/workspace/UndergroundBattle/web",
+        "allocatedBytes": 817475584
+      },
+      {
+        "path": "/workspace/UndergroundBattle/resource",
+        "allocatedBytes": 611975168
+      },
+      {
+        "path": "/workspace/UndergroundBattle/.git",
+        "allocatedBytes": 610287616
+      },
+      {
+        "path": "/workspace/UndergroundBattle/docs",
+        "allocatedBytes": 243159040
+      },
+      {
+        "path": "/workspace/UndergroundBattle/tools",
+        "allocatedBytes": 210903040
+      },
+      {
+        "path": "/workspace/UndergroundBattle/rust-game-wasm",
+        "allocatedBytes": 21037056
+      },
+      {
+        "path": "/workspace/UndergroundBattle/rust-game",
+        "allocatedBytes": 6422528
+      },
+      {
+        "path": "/workspace/UndergroundBattle/organized_content",
+        "allocatedBytes": 237568
+      }
+    ],
+    "/workspace/undergroundbattle-build/target/debug": [
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug",
+        "allocatedBytes": 1305505792
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug/deps",
+        "allocatedBytes": 1129213952
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug/examples",
+        "allocatedBytes": 120049664
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug/build",
+        "allocatedBytes": 23089152
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug/.fingerprint",
+        "allocatedBytes": 6414336
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/target/debug/incremental",
+        "allocatedBytes": 4096
+      }
+    ],
+    "/workspace/undergroundbattle-build/npm-cache": [
+      {
+        "path": "/workspace/undergroundbattle-build/npm-cache",
+        "allocatedBytes": 162914304
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/npm-cache/_cacache",
+        "allocatedBytes": 162824192
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/npm-cache/_logs",
+        "allocatedBytes": 86016
+      }
+    ],
+    "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114": [
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+        "allocatedBytes": 1092812800
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/web",
+        "allocatedBytes": 570871808
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/test",
+        "allocatedBytes": 511533056
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/rust-game-wasm",
+        "allocatedBytes": 6897664
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/rust-game",
+        "allocatedBytes": 3178496
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/src",
+        "allocatedBytes": 61440
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/scripts",
+        "allocatedBytes": 32768
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/tools",
+        "allocatedBytes": 28672
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/drizzle",
+        "allocatedBytes": 24576
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/db",
+        "allocatedBytes": 8192
+      },
+      {
+        "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114/.openai",
+        "allocatedBytes": 8192
+      }
+    ]
+  },
+  "notAdditiveAcrossSeparateDuInvocations": true
+}

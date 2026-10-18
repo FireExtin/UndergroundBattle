@@ -1,0 +1,18 @@
+{
+  "path": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+  "files": {
+    ".gitignore": {
+      "bytes": 124,
+      "sha256": "b144507f057e1f5d7abb74db3b00a91919427ed24cbc1726be341119eec9be21",
+      "contentBase64": "bm9kZV9tb2R1bGVzLwpkaXN0Lwoud3JhbmdsZXIvCmdlbmVyYXRlZC8KL3B1YmxpYy8Kd2ViL2Rpc3QvCnJ1c3QtZ2FtZS90YXJnZXQvCnJ1c3QtZ2FtZS13YXNtL3RhcmdldC8KLmVudioKLnNpdGVzLXJ1bnRpbWUvCg==",
+      "mode": "0o600"
+    },
+    "source-provenance.json": {
+      "bytes": 229,
+      "sha256": "35c64ad22ac1af83034d175ef3a8ae0941b6e2ac81529c3fd8a724161157095a",
+      "contentBase64": "ewogICJvcmlnaW5hbFJlcG9zaXRvcnkiOiAiaHR0cHM6Ly9naXRodWIuY29tL0ZpcmVFeHRpbi9VbmRlcmdyb3VuZEJhdHRsZS5naXQiLAogICJvcmlnaW5hbENvbW1pdCI6ICI1M2IyMTE0YTIyMGNhMDAxY2E4YzQwZmYzYjJhNmYyYjYyNzZlZjQ1IiwKICAid2FzbVNoYTI1NiI6ICI5NTExYTcyYzk2MGNmM2UwZmEyNDlkNjI2Njk3MjQ4NzVkNDc1YWIyNDVkZTRmOTYxNjYxNWYzOGRmNDNmZDVmIgp9Cg==",
+      "mode": "0o600"
+    }
+  },
+  "preparesExactReconstructionOnly": "No cleanup performed."
+}

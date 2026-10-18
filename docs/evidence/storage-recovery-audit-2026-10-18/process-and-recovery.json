@@ -1,0 +1,124 @@
+{
+  "live": [
+    {
+      "pid": 1,
+      "comm": "tail",
+      "state": "S"
+    },
+    {
+      "pid": 2,
+      "comm": "caas-prefix-tra",
+      "state": "S"
+    },
+    {
+      "pid": 117,
+      "comm": "dockerd",
+      "state": "S"
+    },
+    {
+      "pid": 184,
+      "comm": "containerd",
+      "state": "S"
+    },
+    {
+      "pid": 451,
+      "comm": "codex",
+      "state": "S"
+    },
+    {
+      "pid": 122887,
+      "comm": "codex-linux-san",
+      "state": "S"
+    },
+    {
+      "pid": 122889,
+      "comm": "bwrap",
+      "state": "S"
+    },
+    {
+      "pid": 122890,
+      "comm": "codex",
+      "state": "S"
+    },
+    {
+      "pid": 122891,
+      "comm": "python3",
+      "state": "R"
+    }
+  ],
+  "zombies": 154,
+  "candidateReferences": [],
+  "unreadable": [
+    {
+      "pid": 1,
+      "comm": "tail",
+      "part": "maps"
+    },
+    {
+      "pid": 2,
+      "comm": "caas-prefix-tra",
+      "part": "maps"
+    },
+    {
+      "pid": 117,
+      "comm": "dockerd",
+      "part": "fd"
+    },
+    {
+      "pid": 117,
+      "comm": "dockerd",
+      "part": "maps"
+    },
+    {
+      "pid": 184,
+      "comm": "containerd",
+      "part": "fd"
+    },
+    {
+      "pid": 184,
+      "comm": "containerd",
+      "part": "maps"
+    },
+    {
+      "pid": 451,
+      "comm": "codex",
+      "part": "maps"
+    },
+    {
+      "pid": 122887,
+      "comm": "codex-linux-san",
+      "part": "maps"
+    },
+    {
+      "pid": 122889,
+      "comm": "bwrap",
+      "part": "maps"
+    }
+  ],
+  "fullOccupancyNotAttested": true,
+  "trashPaths": [
+    {
+      "path": "/workspace/.local/share/Trash",
+      "exists": false,
+      "sameDeviceAsWorkspace": null
+    },
+    {
+      "path": "/root/.local/share/Trash",
+      "unreadable": "PermissionError"
+    },
+    {
+      "path": "/workspace/.Trash",
+      "exists": false,
+      "sameDeviceAsWorkspace": null
+    },
+    {
+      "path": "/.Trash-0",
+      "exists": false,
+      "sameDeviceAsWorkspace": null
+    }
+  ],
+  "gio": null,
+  "trashPut": null,
+  "sameFilesystemTrashCannotReleaseBlocks": true,
+  "noNewEnvironmentUsed": true
+}
