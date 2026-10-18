@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python",
+    "/workspace/main-abi86-promotion-20261018/postflight.py"
+  ],
+  "startedUtc": "2026-10-18T14:09:07.702499+00:00",
+  "endedUtc": "2026-10-18T14:09:11.057192+00:00",
+  "exitCode": 0
+}

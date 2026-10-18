@@ -1,0 +1,1 @@
+{"name":"jc041-local-clock-test","main":"worker.mjs","compatibility_date":"2026-10-02","d1_databases":[{"binding":"DB","database_name":"jc041-http"}]}

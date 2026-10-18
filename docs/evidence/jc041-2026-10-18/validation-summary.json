@@ -1,0 +1,276 @@
+{
+  "checkedUtc": "2026-10-18T14:08:17.671095+00:00",
+  "wipPendingParentReview": true,
+  "published": false,
+  "JC041MergedToMain": false,
+  "separateReviewedMainTarget": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "neutralAndDualPaused": true,
+  "baseCommit": "2f141abaf7b2b728a4d5398f17a06acb7ffb021a",
+  "candidateSourceCommit": "a84cc55a8c40359a297ca2c4e47fa33d0e957385",
+  "branch": "codex/jc041-blue-hidden-water-review-20261018",
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.79-jc041-water-hidden-candidate",
+    "engineVersion": "rust-v0.2.87-jc041-water-hidden-candidate"
+  },
+  "cards": 151,
+  "societies": 10,
+  "native": {
+    "naturalCommand": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "JC041_NATIVE_DIR=/workspace/jc041-evidence-20261018/native87-workspace-paid-final",
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "startedUtc": "2026-10-18T13:24:28.698185+00:00",
+      "endedUtc": "2026-10-18T13:55:25.884137+00:00",
+      "exitCode": 0
+    },
+    "library": 1260,
+    "integration": 67,
+    "total": 1327,
+    "focused13IncludedNotAdded": true,
+    "compilerInputs": 137,
+    "fullAndFocusedRawByteEqual": true,
+    "rawSha256": "f00c02d928b17a0a304d1dda3d74d112e22240bd2c590cf2ed6047845498fe27",
+    "counts": {
+      "scenarios": 10,
+      "commands": 155,
+      "rejected": 9,
+      "projections": 660,
+      "invalidRestores": 35
+    }
+  },
+  "frontend": {
+    "naturalCommand": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "startedUtc": "2026-10-18T13:55:46.165998+00:00",
+      "endedUtc": "2026-10-18T14:05:47.212419+00:00",
+      "exitCode": 0
+    },
+    "files": 140,
+    "tests": 1391,
+    "passed": 1391,
+    "sameOriginal5000msThreshold": true,
+    "sourceAndTestsUnchangedDuringRepeat": true,
+    "firstRun": {
+      "files": 140,
+      "passedTests": 1389,
+      "failedTests": 2,
+      "failureKind": "Existing JC046Integration test5000ms timeouts; natural full run retained."
+    }
+  },
+  "worker": {
+    "naturalCommand": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/undergroundbattle-build/jc041-worker/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc041-*.test.mjs test/jc066-integration.test.mjs test/kernel-binding.test.mjs ../tools/cards/jc041-source.test.mjs ../tools/cards/jc066-source.test.mjs ../tools/frozen-abi86.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T13:28:01.141696+00:00",
+      "endedUtc": "2026-10-18T14:03:25.445115+00:00",
+      "exitCode": 0
+    },
+    "tests": 173,
+    "passed": 173,
+    "failed": 0,
+    "normalHttp": {
+      "compiler-bound Native87": {
+        "scenarios": 10,
+        "accepted": 146,
+        "expectedRejected": 9,
+        "httpViews": 1284
+      },
+      "compiler-bound Native86": {
+        "scenarios": 19,
+        "accepted": 236,
+        "expectedRejected": 16,
+        "httpViews": 2104
+      }
+    },
+    "invalid87": {
+      "cases": 35,
+      "http400": 350
+    },
+    "invalid86": {
+      "cases": 87,
+      "http400": 870
+    },
+    "allBadCasesD1ReopenedWithNoRoomCommandJournalWrites": true,
+    "all59DefaultWorkerFilesRun": false,
+    "retainedActualHttp": {
+      "actualHttpKernelVersions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "sameIsolate": true,
+      "rooms": 11,
+      "accepted": 11,
+      "originalReceipts": 11,
+      "opaqueStatesExact": true,
+      "seedU64Exact": true,
+      "syntheticDatabaseRetained": true
+    },
+    "firstRun": {
+      "tests": 171,
+      "passed": 64,
+      "failed": 107,
+      "failures": "106 omitted Worker override/missing fallback;1 duplicate synthetic invite. Fixed harness/config only; full173 rerun, no cross-round sum."
+    }
+  },
+  "wasm": {
+    "bytes": 3327677,
+    "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+  },
+  "fixture": {
+    "bytes": 1338489,
+    "sha256": "3325dfc4e1135953784be1bece24ea4dba8592587587da378873faec181e5019"
+  },
+  "productionFiles": 183,
+  "generatedFiles": 22,
+  "testWorkerFiles": 14,
+  "elevenExactKernels": [
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87
+  ],
+  "publishedV68Original181FilesPreserved": true,
+  "browser": [
+    {
+      "directory": "browser-water-actor-0-paid-final",
+      "scenario": "water-actor-0",
+      "uiCommands": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 17,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-water-actor-2-paid-final",
+      "scenario": "water-actor-2",
+      "uiCommands": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 17,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-ordinary-reveal-land-paid-final",
+      "scenario": "ordinary-reveal-land",
+      "uiCommands": 13,
+      "expectedRejectedFetch": 1,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 13,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    }
+  ],
+  "onlineGameplay": false,
+  "latestActualPublicNormalBrowser": "13:35:13 UTC ERR_CERT_AUTHORITY_INVALID;1GET0POST0games; only Git-outside hour13 receipts, no bypass/repeat.",
+  "failureAndHistoryBoundary": "See JC041_SERIAL_WIP and original natural runs. Pre-payment Native1327 is preserved but not counted as final. Published86/77-85 originals never re-signed; old306Worker/JZ46 split boundary not changed.",
+  "remaining": [
+    "parent independent review",
+    "normal public browser TLS block"
+  ],
+  "freeBytesAtSummary": 1196949504,
+  "finalOfficialReadback": {
+    "checkedUtc": "2026-10-18 14:13:02 UTC",
+    "version": 68,
+    "status": "active",
+    "accessMode": "public",
+    "accessRevision": 2,
+    "source": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+    "browserNotRerunInThisReadback": true
+  }
+}

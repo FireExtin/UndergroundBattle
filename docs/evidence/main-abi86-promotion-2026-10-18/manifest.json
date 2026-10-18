@@ -1,0 +1,37 @@
+{
+  "wipPendingReview": false,
+  "files": {
+    "normal-push.log": {
+      "bytes": 124,
+      "sha256": "57347756908a197b762a788c0d485a132e9bd5c2982bba39ac78cde94f0a4c26"
+    },
+    "postcheck-first-note.json": {
+      "bytes": 519,
+      "sha256": "2ea64e43d7196362c8d56969ea8f3aacd58035e8190d6fdaa16575a269b62cc5"
+    },
+    "postflight-retry.exit.json": {
+      "bytes": 217,
+      "sha256": "2527f09d226acc00ab146ec67ff5ba1b49251be6bc989e845b2c3e8e32228266"
+    },
+    "postflight-retry.log": {
+      "bytes": 1036,
+      "sha256": "28e0f4bba5edbc7134b705361081c7465825fba7bbb2e7b6b607b6d3ad5d78b5"
+    },
+    "postflight.py": {
+      "bytes": 2382,
+      "sha256": "4171fed5fb5d4063de25bdef63fd9ffb21f979f9c30d0ed2b12d1441d0775e2e"
+    },
+    "preflight.json": {
+      "bytes": 139588,
+      "sha256": "d5a1a764ebe4bdfebd1bcaf2f0263fc8f46b987d4f8e613784d7c098ff288ef0"
+    },
+    "push.exit.json": {
+      "bytes": 419,
+      "sha256": "007f793cf7fd2c0fcfa555a7015f06e36c16984da086d4465a3081eccb5a4cc5"
+    },
+    "result.json": {
+      "bytes": 1158,
+      "sha256": "cefbea39b09210b6b29a290214c40225355ae93bf1d85fa3f97746362b26c563"
+    }
+  }
+}

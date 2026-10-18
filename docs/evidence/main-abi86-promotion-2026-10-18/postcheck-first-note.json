@@ -1,0 +1,12 @@
+{
+  "scope": "Only original tool output existed for the first read-only postcheck; no natural log reconstructed.",
+  "exitCode": 1,
+  "nestedGitExit": 128,
+  "failingDiagnostic": [
+    "git",
+    "rev-parse",
+    "refs/heads/main"
+  ],
+  "reason": "No localmain branch exists in this checkout. Remote224 and zero targetCI assertions had passed before the final diagnostic.",
+  "resolution": "Record localMainExists=false via show-ref, repeat only readonly API/Git checks; no second mainpush or localbranch creation."
+}

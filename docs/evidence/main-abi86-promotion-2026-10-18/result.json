@@ -1,0 +1,34 @@
+{
+  "checkedUtc": "2026-10-18T14:09:11.044557+00:00",
+  "remoteMain": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "normalFastForwardSucceeded": true,
+  "candidateOnly": true,
+  "JC041Merged": false,
+  "JC041WorkingHead": "4e50b2dcc1511ebccc789c575e20c0ce1f73caf9",
+  "CI": {
+    "workflowRunIdsUnchanged": [
+      24314248667,
+      24314494657,
+      24314968384,
+      24315049017,
+      25183812363,
+      25206609281,
+      25206861048,
+      25207410663
+    ],
+    "totalRepoRuns": 8,
+    "allExistingEventsDynamic": true,
+    "targetWorkflowRuns": 0,
+    "targetCheckRuns": 0,
+    "targetStatuses": 0,
+    "emptyAggregateState": "pending",
+    "emptyPendingIsNotAPassedOrRunningCI": true,
+    "configuredWorkflowsUnchanged": true
+  },
+  "noActionsManuallyTriggered": true,
+  "noPermissionsOrConfigurationChanged": true,
+  "noDeployment": true,
+  "localMainExists": false,
+  "localMainNotCreatedOrRewritten": true,
+  "priorPostcheckBoundary": "First read-only postcheck passed remote and CI assertions, then failed only because diagnostic rev-parse assumed a localmain ref. No second push; this read-only rerun records absentlocal main explicitly."
+}

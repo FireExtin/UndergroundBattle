@@ -1,10 +1,9 @@
 {
-  "baseCommit": "2f141abaf7b2b728a4d5398f17a06acb7ffb021a",
-  "wip": true,
+  "wipPendingReview": true,
   "files": {
     "README.md": {
-      "bytes": 1274,
-      "sha256": "aca70d69ae58cfe4c5b804ca157f845fce3b04388fe71cfd855e91b9a2cff010"
+      "bytes": 5371,
+      "sha256": "fbe107dad2aeb47fae825264b24a63840a910250b53211ce67c2969fd043c29f"
     },
     "browser/browser-ordinary-reveal-land-paid-final/jc041-original-print.png": {
       "bytes": 780777,
@@ -29,6 +28,18 @@
     "browser/browser-water-actor-2-paid-final/restored-choice-15.png": {
       "bytes": 568996,
       "sha256": "de75060544d4e1542c639bfe63d3c197845d4ff0457261305cfefafa8d26ff40"
+    },
+    "build-inputs/clock-worker/package.json": {
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    "build-inputs/clock-worker/worker.mjs": {
+      "bytes": 439,
+      "sha256": "29bd56426b48c8ae13cf26b6988ddddb0e1a42fcf2c535d054ba3c0243483ab8"
+    },
+    "build-inputs/clock-worker/wrangler.json": {
+      "bytes": 150,
+      "sha256": "24830c7f716bc5c6c8d14de0033db24c78b3597e6f73eb8fdc91ced50d604db3"
     },
     "checkpoint-1312.json": {
       "bytes": 1351,
@@ -130,6 +141,14 @@
       "bytes": 941,
       "sha256": "f4b1f75c010238c6065cf86032afd54bb20f3f4e7fbcd582b4fa40ca40c00336"
     },
+    "runs/frontend-full-paid-repeat.exit.json": {
+      "bytes": 276,
+      "sha256": "a8311394425b4dd1bc054a7656c8f155daa1fa8e36bb50eff8e33ad13fb2739d"
+    },
+    "runs/frontend-full-paid-repeat.log.gz": {
+      "bytes": 342,
+      "sha256": "03e0ff9d24ce2ff464343b6817fea1f00fe5886d1fa38d9849836e49f7270625"
+    },
     "runs/frozen86-final.exit.json": {
       "bytes": 255,
       "sha256": "f46f38962e7a61cbce942e7fbb71195adb8dd319cbd429a2cd48a8e58ebda818"
@@ -209,6 +228,14 @@
     "runs/native-workspace-first.log.gz": {
       "bytes": 28643,
       "sha256": "d875ecf3bcb687433840b61cc9c685ea7a082a5ec4a82bca26787816cd3c0290"
+    },
+    "runs/native-workspace-paid-final.exit.json": {
+      "bytes": 595,
+      "sha256": "92e9d01885788cca80c07dbaf2861d3f1a8460df0285154702c583436cf1c1b0"
+    },
+    "runs/native-workspace-paid-final.log.gz": {
+      "bytes": 30488,
+      "sha256": "85437877515a74523e7ffdda5e68355e28b3edc14c055a5e7d3d1e28132b8cc5"
     },
     "runs/native87-export-first.exit.json": {
       "bytes": 639,
@@ -330,6 +357,14 @@
       "bytes": 5327,
       "sha256": "fecf04d7699fd342f1651827a48318384bda6772678cd2d257f0405f1b868e07"
     },
+    "runs/worker-concentrated-paid-final.exit.json": {
+      "bytes": 562,
+      "sha256": "af2c272618c2993682b5b1bf1b16c290b1029d956026c1ed72386b83731c33ec"
+    },
+    "runs/worker-concentrated-paid-final.log.gz": {
+      "bytes": 3935,
+      "sha256": "58e98e1fc9cb75302ca4f37983fb0060b009f6a625c61c3e31e3a266687ec185"
+    },
     "runtime-manifest-paid-final.json": {
       "bytes": 64212,
       "sha256": "9d27c9a068fe8c12b3ba54ce5954dd31938d2117e06b0b0963f592ca06f3a648"
@@ -337,6 +372,10 @@
     "source-binding-git.json": {
       "bytes": 29493,
       "sha256": "945b110d7bb96f7117191b5eb968010b2effc903331b815ca5566eca88cf39aa"
+    },
+    "validation-summary.json": {
+      "bytes": 7762,
+      "sha256": "b375b232f385c5b0df182010d59639925db01bfc1f1d95edb288662c56a29ded"
     },
     "wip-status.json": {
       "bytes": 4917,

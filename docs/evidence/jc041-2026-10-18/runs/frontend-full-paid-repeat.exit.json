@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1"
+  ],
+  "startedUtc": "2026-10-18T13:55:46.165998+00:00",
+  "endedUtc": "2026-10-18T14:05:47.212419+00:00",
+  "exitCode": 0
+}

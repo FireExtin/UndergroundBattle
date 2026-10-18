@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/undergroundbattle-build/jc041-worker/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 test/jc041-*.test.mjs test/jc066-integration.test.mjs test/kernel-binding.test.mjs ../tools/cards/jc041-source.test.mjs ../tools/cards/jc066-source.test.mjs ../tools/frozen-abi86.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T13:28:01.141696+00:00",
+  "endedUtc": "2026-10-18T14:03:25.445115+00:00",
+  "exitCode": 0
+}
