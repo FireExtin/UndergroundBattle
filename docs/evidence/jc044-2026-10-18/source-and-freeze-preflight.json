@@ -1,0 +1,41 @@
+{
+  "preparedAtUtc": "2026-10-18T03:48:42.765609+00:00",
+  "base": "edc93a884136fa0982f36ab778b1f4c608da07da",
+  "branch": "codex/jc044-time-repress-review-20261018",
+  "cardImageSha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800",
+  "sourceImage": "resource/ymsj-fun.github.io/cards/JC044 灾难使者.jpg",
+  "rulesPdfSha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+  "faqPdfSha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+  "published84Identity": {
+    "purpose": "Exact immutable published v66 ABI84 dependency, retained before JC044 development. Never rebuild, migrate rooms, or re-sign original Native84 witness.",
+    "providerSource": "7ab9768bd86a5a7e66dd988a42324624c1a23943",
+    "reviewedSource": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+    "reviewedEvidence": "c674946d010559fa991ef78842d01d42de07d2f3",
+    "catalogIdentity": {
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.76-jc057-live-inspection-candidate",
+      "engineVersion": "rust-v0.2.84-jc057-live-inspection-candidate"
+    },
+    "cardCount": 148,
+    "societyCount": 10,
+    "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+    "wasmBytes": 3217477,
+    "gzipSha256": "7ae756b248e92105a7e77c7e722302be0eedd412eff1670eacfc3d3146aca884",
+    "nativeFixtureSha256": "bf6ab32c67db7017b202544ccf5e0d3d5b30b9fdfae64583b407ed436b36e77b",
+    "nativeRawSha256": "f9e51f9e56f62b23b9feff1aedd32626150da425a707ee4b7fbf4367f0c52069",
+    "nativeRawBytes": 14103141,
+    "nativeInputs": 131,
+    "nativeCounts": {
+      "scenarios": 13,
+      "commands": 124,
+      "rejected": 20,
+      "projections": 548,
+      "invalidRestores": 24
+    }
+  },
+  "frozen84Storage": "/workspace/undergroundbattle-build/frozen-kernels/abi84",
+  "preservedCurrentOutputs": "/workspace/jc044-evidence-20261018/pre-abi85-outputs",
+  "original84WitnessUnchanged": true,
+  "noPublication": true
+}

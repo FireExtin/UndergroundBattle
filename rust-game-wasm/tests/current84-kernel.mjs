@@ -1,9 +1,11 @@
-// Current candidate only. Identity checked before any fixture or route use.
-import {readFileSync} from 'node:fs';
-import * as abi from '../pkg/hegemony_wasm.js';
-const moduleUrl=import.meta.url;
-export const moduleBytes=readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm',moduleUrl));
-abi.initSync({module:moduleBytes});
-export const kernel=abi,catalog=JSON.parse(abi.catalog());
-export const identity=Object.fromEntries(['rulesVersion','cardPoolVersion','engineVersion'].map(k=>[k,catalog[k]]));
-if(catalog.engineVersion!=='rust-v0.2.84-jc057-live-inspection-candidate'||catalog.cardPoolVersion!=='limited-v2.76-jc057-live-inspection-candidate'||catalog.cards.length!==148||catalog.societies.length!==10)throw Error('Current ABI84 identity mismatch');
+// Exact published v66 ABI84, independent of the newer candidate package.
+import {createRequire} from 'node:module';
+import {frozenAbi84} from '../../tools/frozen-kernels.mjs';
+const saved=frozenAbi84();
+export const moduleBytes=saved.wasm;
+export const kernel=createRequire(import.meta.url)(saved.jsPath);
+kernel.initSync({module:moduleBytes});
+export const catalog=JSON.parse(kernel.catalog());
+export const identity=saved.identity.catalogIdentity;
+for(const [key,value]of Object.entries(identity))if(catalog[key]!==value)throw Error('Frozen ABI84 identity mismatch');
+if(catalog.cards.length!==148||catalog.societies.length!==10)throw Error('Frozen ABI84 count mismatch');

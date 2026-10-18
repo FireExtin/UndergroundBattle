@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtempSync,readFileSync,writeFileSync,readdirSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {frozenAbi84,stageFrozenAbi84} from './frozen-kernels.mjs';
+import {loadFixture,assertSources,compare,sha256} from './jc057-oracle.mjs';
+import {kernel,moduleBytes} from '../rust-game-wasm/tests/current84-kernel.mjs';
+test('v66 ABI84 preserves original131 inputs, complete Native84 witness and P2 rejections',()=>{
+  const saved=frozenAbi84(),f=loadFixture();
+  assert.equal(saved.identity.providerSource,'7ab9768bd86a5a7e66dd988a42324624c1a23943');
+  assert.equal(sha256(saved.wasm),'31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31');
+  assert.equal(saved.wasm.length,3217477);assert.equal(Object.keys(f.sourceBindings.files).length,131);
+  assert.equal(sha256(readFileSync(new URL('../rust-game-wasm/tests/jc057Native84.fixture.json.gz',import.meta.url))),saved.identity.nativeFixtureSha256);
+  const result=compare(f,kernel,moduleBytes);
+  assert.deepEqual(f.counts,{scenarios:13,commands:124,rejected:20,projections:548,invalidRestores:24});
+  assert.equal(result.completeOpaqueStatesJournalsAndAllViews,true);
+  const changed=structuredClone(f.sourceBindings);changed.files['rust-game/src/room.rs']='0'.repeat(64);
+  assert.throws(()=>assertSources(changed),/Historical Native84 compiler binding/);
+  const dest=mkdtempSync(path.join(tmpdir(),'frozen84-stage-'));stageFrozenAbi84(dest);
+  assert.deepEqual(readdirSync(dest).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
+  assert.deepEqual(readFileSync(path.join(dest,'hegemony_wasm_bg.wasm')),saved.wasm);
+});
+test('missing or tampered v66 inputs fail without replacement or rebuilding',()=>{
+  const saved=frozenAbi84(),empty=mkdtempSync(path.join(tmpdir(),'frozen84-missing-'));
+  assert.throws(()=>frozenAbi84({directory:empty}),/Missing published ABI84/);
+  writeFileSync(path.join(empty,'hegemony_wasm.js'),saved.js);writeFileSync(path.join(empty,'hegemony_wasm_bg.wasm.gz'),'tampered');
+  assert.throws(()=>frozenAbi84({directory:empty}),/ABI84 runtime hash mismatch/);
+  assert.equal(readFileSync(path.join(empty,'hegemony_wasm_bg.wasm.gz'),'utf8'),'tampered');
+});
