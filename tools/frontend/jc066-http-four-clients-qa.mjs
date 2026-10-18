@@ -30,7 +30,7 @@ const options={name:'jc066-real-http',rootPath:sites,modulesRoot:worker,host:'12
  assets:{directory:client,binding:'ASSETS',run_worker_first:['/api/*'],routerConfig:{has_user_worker:true},assetConfig:{not_found_handling:'single-page-application'}}};
 const report={passed:false,onlineGameplay:false,siteChanged:false,mainMerged:false,syntheticInitialLayout:true,
  scope:'Native86 initial layout; actual production GameApp, listening local HTTP/workerd/ten-WASM/D1 and four independent browser contexts.',
- scenario:scenario.name,engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,wasmModules,persist,
+ driverSha256:sha256(await readFile(fileURLToPath(import.meta.url))),scenario:scenario.name,engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,wasmModules,persist,
  productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),workerSha256:sha256(await readFile(join(worker,'worker.js'))),
  clientIndexSha256:sha256(await readFile(join(client,'index.html'))),commands:[],clientPosts:[0,0,0,0],pageErrors:[],screenshots:[],reopened:0};
 let mf,db,browser,origin;const pages=[],receipts=[];const store=()=>new RoomStore(db);
@@ -117,6 +117,21 @@ try{
    assert.equal(report.clientPosts[seat],posts);assert.deepEqual(await snapshot(),before);
    report.sealedReads.push({seat,cardId:card.cardId,hostId:card.hostId,noCommandOrMutation:true});
   }
+ }
+ const hostView=scenario.steps.at(-1).views[0],host=hostView.regions.flatMap(r=>r.characters).find(c=>c.cardId==='JC066'&&!c.faceDown);
+ if(host){
+  const page=pages[0],before=await snapshot(),posts=report.clientPosts[0];
+  await page.locator(`[data-card-instance="${host.instanceId}"]`).first().click();
+  const enlarge=page.getByRole('button',{name:'放大阅读封魔瓶瑟琳娜',exact:true});await hit(enlarge);await enlarge.click();
+  const reading=page.locator('.hg-reading');await expect(reading).toContainText('样本B7021');
+  await expect(reading.getByLabel(`当前有效图标：调查${host.icons.investigation}，战斗${host.icons.combat}，势力${host.icons.influence}`,{exact:true})).toBeVisible();
+  await expect(reading.getByLabel('印刷图标：调查0，战斗0，势力2',{exact:true})).toBeVisible();
+  await reading.getByRole('button',{name:'原始牌面',exact:true}).click();
+  const scan=reading.getByRole('img',{name:'封魔瓶瑟琳娜原始牌面',exact:true});await expect(scan).toHaveAttribute('src','/cards/JC066.jpg');
+  await expect(scan).toBeVisible();await expect.poll(()=>scan.evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  await capture(page,'jc066-original-print');await page.getByRole('button',{name:'关闭放大阅读',exact:true}).click();
+  assert.equal(report.clientPosts[0],posts);assert.deepEqual(await snapshot(),before);
+  report.hostRead={cardId:host.cardId,currentIcons:host.icons,printedIcons:{investigation:0,combat:0,influence:2},scanLoaded:true,noCommandOrMutation:true};
  }
  await capture(pages[0],'final');assert.deepEqual(report.pageErrors,[]);report.passed=true;
 }catch(error){report.failure={name:error.name,message:error.message,stack:error.stack};process.exitCode=1;if(browser)for(const[seat,page]of pages.entries())try{await capture(page,'failure-'+seat);}catch{}}

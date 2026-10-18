@@ -33,7 +33,7 @@ it('checks recorded immediate composition and subsequent death-trigger views',()
 it('opens the exact original and displays cannot respond without inventing a magic requirement',()=>{
  const hash='9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a';
  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'),'utf8'));
- expect(Object.keys(scans).filter(id=>!['BQ035','JZ46','WM062','JC054','MSJC04','MSJC05','JC057','JC044'].includes(id))).toHaveLength(154);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
+ expect(Object.keys(scans).filter(id=>!['BQ035','JZ46','WM062','JC054','MSJC04','MSJC05','JC057','JC044','JC066'].includes(id))).toHaveLength(154);expect(scans.JZ55.sha256).toBe(hash);expect(cardScanUrl('JZ55')).toBe('/cards/JZ55.jpg');
  expect(createHash('sha256').update(readFileSync(resolve('public/cards/JZ55.jpg'))).digest('hex')).toBe(hash);
  const card=view('targets-seat0').hand.find(c=>c.cardId==='JZ55');
  render(<ReadModal card={card} definition={definitions.get('JZ55')} viewerId="p0" onClose={vi.fn()}/>);
