@@ -1,0 +1,13 @@
+{
+  "previousFixtureSha256": "2271d5f2eb5d6e6980aa52b83172b12bbdb4032515afd9f9c0512d1e3c96bf53",
+  "previousNativeRawSha256": "74b193cba0aa93ee3a8e154223d4cda17b17f71b8f825effe002f6af57874f86",
+  "finalNativeRawSha256": "8bf2850d8d1bbbc7132b5fa4a7449e665b82890097c54b489db1805c7324d224",
+  "changedSourceInputs": [
+    "rust-game/src/jc057_tests.rs"
+  ],
+  "catalogUnchanged": true,
+  "completeOpaqueScenariosAndAllViewsUnchanged": true,
+  "productionFilesUnchanged": 177,
+  "wasmUnchanged": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+  "scope": "Only the Native test assertion now uses the actual printed JC094 name. Fresh Native export; no historical witness rewrite or runtime change."
+}

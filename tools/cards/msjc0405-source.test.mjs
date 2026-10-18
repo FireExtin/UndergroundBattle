@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {catalog} from '../../rust-game-wasm/tests/current83-kernel.mjs';
+import {catalog as before83} from '../../rust-game-wasm/tests/current82-kernel.mjs';
 import {validateAdmittedScans} from './validate-admitted-scans.mjs';
 const moduleUrl=import.meta.url;
 const root=fileURLToPath(new URL('../../',moduleUrl));
@@ -30,13 +30,17 @@ test('MSJC04/MSJC05 use their complete pinned originals and two additional immut
     assert.deepEqual(society.deckConstraints,[{kind:'minimumColor',color,count:25}]);assert.deepEqual(society.unresolvedAbilities,{});
     assert.equal(society.abilities.length,2);
   }
-  const result=validateAdmittedScans();assert.equal(result.checkedCards,147);assert.equal(result.manifestEntries,160);
+  const result=validateAdmittedScans();
+  assert.equal(result.checkedCards,json('rust-game/data/cards.json').cards.length);
+  for(const c of catalog.cards)assert(result.checkedIds.includes(c.id));
+  assert.equal(result.manifestEntries,Object.keys(scans).length);
 });
-test('the new batch changes no ordinary card, preset, world or other source metadata',()=>{
-  const previous=JSON.parse(execFileSync('git',['show','398e220721f9e14c4f523530183c6288b7749096:rust-game/data/cards.json'],{cwd:root}));
-  const current=json('rust-game/data/cards.json');
-  const {engineVersion,cardPoolVersion,...body}=current;
-  assert.deepEqual({...body,engineVersion:previous.engineVersion,cardPoolVersion:previous.cardPoolVersion},previous);
+test('published ABI83 changes no ordinary definition, preset or world from exact published ABI82',()=>{
+  // This historical publication is immutable. New candidate cards are checked
+  // separately against fixed baseline hashes, without requiring old Git history.
+  const {engineVersion,cardPoolVersion,...body}=catalog;
+  assert.deepEqual({...body,engineVersion:before83.engineVersion,cardPoolVersion:before83.cardPoolVersion,
+    societies:catalog.societies.filter(c=>!['MSJC04','MSJC05'].includes(c.id))},before83);
   assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
   assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
   assert.deepEqual(catalog.cards.filter(c=>c.color==='红'&&c.unique).map(c=>c.id),['JC052']);

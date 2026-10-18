@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Explicit Native84 initial layout; then real production GameApp/HTTP/workerd/eight-WASM/D1 commands and four browser contexts. Not online gameplay.",
+  "scenario": "reveal-p1",
+  "engine": "rust-v0.2.84-jc057-live-inspection-candidate",
+  "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+  "wasmModules": [
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "93ff6a3e93ad491c53039bdbed6b93f3545b7357-hegemony_wasm_bg.wasm",
+      "sha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/jc057-real-http-n2hG9d",
+  "productionWorkerSha256": "2faf2a0fa7004416fee4f73d27def7ced0958aa99ff85616724e70759933e7eb",
+  "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+  "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+  "commands": [
+    {
+      "index": 0,
+      "via": "browser-fetch-expected-rejection",
+      "status": 400
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "reveal",
+      "version": 9,
+      "stateSha256": "382bf948f21274c9fde4e16c1527693239583ab2d244a81429ef310eea76fb60"
+    },
+    {
+      "index": 2,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 10,
+      "stateSha256": "40ec3f12c0f9543b429acd584c0ea094f755642385f3756aa75446a53e7a8b01"
+    },
+    {
+      "index": 3,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 11,
+      "stateSha256": "f60e56a72f51c08dff23849da4fcbb0c9f6a735a4ce25d795489d778bd1359fe"
+    },
+    {
+      "index": 4,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 12,
+      "stateSha256": "b181822fb1fe721a0b5d4ca231eee533d3cb99deafbaa8ca3ff90901934f60ec"
+    },
+    {
+      "index": 5,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 13,
+      "stateSha256": "c8ae0c5a3bb8fc2e7635848f3387c13118cc62369ae5faf627a6422e1ae760e2"
+    },
+    {
+      "index": 6,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "choose",
+      "version": 14,
+      "stateSha256": "514517b76e9c69980f786334f94ac64ea45ec16185525a1c66114b35a5ba6ef2"
+    },
+    {
+      "index": 7,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 15,
+      "stateSha256": "6110e18afa7f916ffc9725b2bfe8326cb0066e285777fc9a61e68cb6e47db014"
+    },
+    {
+      "index": 8,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 16,
+      "stateSha256": "6485327f9fa2fbed7f2dff67ccb100add223edd7e18d67e7416113a341759ad8"
+    },
+    {
+      "index": 9,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 17,
+      "stateSha256": "95e3e55de321bf9f2f4b87828eb092dc997b7d3f3fee1ceb1786457c9035c78b"
+    },
+    {
+      "index": 10,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 18,
+      "stateSha256": "399251088bf07bd5590c62dfd9c4c9bef8339a41113f68fd57cbfe7ca17a7cad"
+    },
+    {
+      "index": 11,
+      "via": "browser-fetch-expected-rejection",
+      "status": 400
+    },
+    {
+      "index": 12,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "pauseRoom",
+      "version": 19,
+      "stateSha256": "79983c5705d7bfb6d989c4236818a4a8aa3b8f36b326bd239a156d696f9cbd16"
+    },
+    {
+      "index": 13,
+      "via": "browser-fetch-expected-rejection",
+      "status": 409
+    },
+    {
+      "index": 14,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "resumeRoom",
+      "version": 20,
+      "stateSha256": "065d0642a76e1d8a7abaf7343f84b9157852459bffc77763e843f2a6d2349791"
+    },
+    {
+      "index": 15,
+      "via": "browser-fetch-expected-rejection",
+      "status": 400
+    },
+    {
+      "index": 16,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "choose",
+      "version": 21,
+      "stateSha256": "d639e88edfb105aff851d1f15e32048d77bd1c5c0b2ff0a0af291d7a93461427"
+    },
+    {
+      "index": 17,
+      "via": "browser-fetch-expected-rejection",
+      "status": 400
+    }
+  ],
+  "privateReads": [
+    {
+      "seat": 0,
+      "noCommandOrMutation": true,
+      "whilePendingChoice": true
+    },
+    {
+      "seat": 0,
+      "noCommandOrMutation": true,
+      "whilePendingChoice": true
+    },
+    {
+      "seat": 0,
+      "noCommandOrMutation": true,
+      "whilePendingChoice": true
+    }
+  ],
+  "clientPosts": [
+    11,
+    4,
+    2,
+    2
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "private-reveal-p1-0.png",
+    "private-reveal-p1-1.png",
+    "reveal-p1-restored-hand-choice.png",
+    "private-reveal-p1-2.png",
+    "reveal-p1-restored-hand-choice.png",
+    "reveal-p1-final.png"
+  ],
+  "reopened": 3,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 17,
+    "seat": 0,
+    "kind": "game",
+    "gameKind": "choose"
+  },
+  "originalReceiptAfterReopen": true
+}

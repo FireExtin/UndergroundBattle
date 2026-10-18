@@ -647,3 +647,17 @@
   color: #a99a7d;
   font-size: 13px;
 }
+
+/* JC057 is a read-only control in normal flow, inside the existing action dock
+   or current choice body. It must never reuse the public-hand floating panel. */
+.hg-app .hg-lantern-table .hg-private-inspection {
+  position: static; flex: none; min-width: 0; margin: 4px 0; padding: 8px;
+  border: 1px solid var(--lt-brass); border-radius: 8px; background: #1b140ef0;
+}
+.hg-app .hg-lantern-table .hg-private-inspection p { margin: 3px 0 6px; font-size: 11px; color: #cdbd9a; }
+.hg-app .hg-lantern-table .hg-private-inspection-buttons { display: flex; flex-wrap: wrap; gap: 6px; max-height: 144px; overflow: auto; }
+.hg-app .hg-lantern-table .hg-private-inspection .hg-small-read {
+  flex: 1 1 150px; min-height: 34px; padding: 6px 9px; text-align: left;
+  border: 1px solid var(--lt-ivory-edge); border-radius: 5px;
+  background: var(--lt-ivory); color: var(--lt-ink);
+}

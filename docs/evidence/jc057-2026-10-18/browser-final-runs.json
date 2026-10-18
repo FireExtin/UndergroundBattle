@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "localOnly": true,
+  "onlineGameplay": false,
+  "runs": [
+    {
+      "directory": "browser-reveal-second",
+      "scenario": "reveal-p1",
+      "commands": 18,
+      "privateReads": 3,
+      "reopened": 3,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": null,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-empty-first",
+      "scenario": "empty",
+      "commands": 11,
+      "privateReads": 0,
+      "reopened": 2,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": null,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-skip-first",
+      "scenario": "skip",
+      "commands": 6,
+      "privateReads": 0,
+      "reopened": 1,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": null,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-deploy-first",
+      "scenario": "deploy",
+      "commands": 5,
+      "privateReads": 0,
+      "reopened": 1,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": null,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-live-exhaust-second",
+      "scenario": "live-exhaust",
+      "commands": 5,
+      "privateReads": 1,
+      "reopened": 1,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": true,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-live-hide-first",
+      "scenario": "live-hide",
+      "commands": 5,
+      "privateReads": 1,
+      "reopened": 1,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": true,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    },
+    {
+      "directory": "browser-live-control-first",
+      "scenario": "live-control",
+      "commands": 5,
+      "privateReads": 3,
+      "reopened": 1,
+      "originalReceiptAfterReopen": true,
+      "readerRevokedOnFreshView": true,
+      "clientIndexSha256": "b38659209b56f24fe223d2f12ca1eacf84096f5e26e5072a0e7322ff4a58c319",
+      "workerSha256": "ccb85de0b43440cef888c73657c9849b0f3d34f6d18bba7a3e1caa1c778b813f",
+      "wasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+      "pageErrors": []
+    }
+  ],
+  "commands": 55,
+  "privateReads": 8
+}

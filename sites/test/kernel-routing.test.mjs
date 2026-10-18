@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI83 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI84 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -64,8 +64,8 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current83 and retained82/81/80/79/78/77 WASM', () => {
-  assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'abi78', 'abi79', 'abi80', 'abi81', 'abi82', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
+test('production Worker contains exactly current84 and retained83/82/81/80/79/78/77 WASM', () => {
+  assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'abi78', 'abi79', 'abi80', 'abi81', 'abi82', 'abi83', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
   assert.deepEqual(readdirSync('generated/abi77').sort(), ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
   const files = readdirSync('dist/server').filter(name => name.endsWith('.wasm'));
   const retained = readFileSync('generated/abi77/hegemony_wasm_bg.wasm');
@@ -74,7 +74,8 @@ test('production Worker contains exactly current83 and retained82/81/80/79/78/77
   const retained80 = readFileSync('generated/abi80/hegemony_wasm_bg.wasm');
   const retained81 = readFileSync('generated/abi81/hegemony_wasm_bg.wasm');
   const retained82 = readFileSync('generated/abi82/hegemony_wasm_bg.wasm');
-  assert.equal(files.length, 7);
+  const retained83 = readFileSync('generated/abi83/hegemony_wasm_bg.wasm');
+  assert.equal(files.length, 8);
   const emitted = files.map(name => readFileSync('dist/server/' + name));
   assert.equal(emitted.filter(bytes => bytes.equals(currentBytes)).length, 1);
   assert.equal(emitted.filter(bytes => bytes.equals(retained)).length, 1);
@@ -83,7 +84,8 @@ test('production Worker contains exactly current83 and retained82/81/80/79/78/77
   assert.equal(emitted.filter(bytes => bytes.equals(retained80)).length, 1);
   assert.equal(emitted.filter(bytes => bytes.equals(retained81)).length, 1);
   assert.equal(emitted.filter(bytes => bytes.equals(retained82)).length, 1);
-  assert(readFileSync('dist/server/index.js').length + currentBytes.length + retained.length + retained78.length + retained79.length + retained80.length + retained81.length + retained82.length < 64 * 1024 * 1024);
+  assert.equal(emitted.filter(bytes => bytes.equals(retained83)).length, 1);
+  assert(readFileSync('dist/server/index.js').length + currentBytes.length + retained.length + retained78.length + retained79.length + retained80.length + retained81.length + retained82.length + retained83.length < 64 * 1024 * 1024);
 });
 
 test('engine83 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {

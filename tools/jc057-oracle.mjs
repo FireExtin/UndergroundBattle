@@ -24,13 +24,15 @@ export function validateNative(raw) {
   for(const [key,value]of Object.entries(identity))assert.equal(raw.catalog[key],value);
   assert.equal(raw.catalog.cards.length,148);assert.equal(raw.catalog.societies.length,10);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
+  const secretName=raw.catalog.cards.find(c=>c.id==='JC094').name;
+  const assertPrivateLogs=(scenario,views)=>{if(scenario.name.startsWith('reveal-p'))for(const view of views)assert(!view.log.some(e=>e.text.includes(secretName)),'Inspection must not publish the actual inspected JC094 name');};
   let commands=0,rejected=0,projections=0;
   for(const scenario of raw.scenarios) {
-    assert.equal(scenario.initial.views.length,4);projections+=4;
+    assert.equal(scenario.initial.views.length,4);projections+=4;assertPrivateLogs(scenario,scenario.initial.views);
     let state=scenario.initial.state;assert.equal(typeof state,'string');
     for(const row of scenario.steps) {
       assert.equal(row.state,state,'Discontinuous opaque Room state: '+scenario.name);assert.equal(row.serverNowMs,'0');
-      assert.equal(row.views.length,4);assert.deepEqual(row.expected.view,row.views[row.seat]);projections+=4;
+      assert.equal(row.views.length,4);assertPrivateLogs(scenario,row.views);assert.deepEqual(row.expected.view,row.views[row.seat]);projections+=4;
       assert.equal(typeof row.expected.state,'string');
       if(row.expected.errorCode) {
         assert.equal(row.expected.outcome,'rejected');assert.equal(row.expected.state,state);

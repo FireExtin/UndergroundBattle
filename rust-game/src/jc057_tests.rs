@@ -107,7 +107,7 @@ fn jc057_paid_reveal_can_inspect_each_player_and_empty_hands_privately() {
         for seat in 1..4{assert!(g.view(seat).pending_choice.is_none());}
         for seat in 0..4{assert!(g.view(seat).revealed_hands.is_empty());}
         for seat in 2..4 {if seat!=target{assert!(!serde_json::to_string(&g.view(seat)).unwrap().contains("JC094"));}}
-        assert!(!g.log.iter().any(|l|l.text.contains("革命家阿黛拉")));
+        assert!(!g.log.iter().any(|l|l.text.contains(catalog::card("JC094").name.as_str())));
         let hands=serde_json::to_value(g.players.iter().map(|p|&p.hand).collect::<Vec<_>>()).unwrap();
         u::choose(&mut g,vec![]);
         assert_eq!(serde_json::to_value(g.players.iter().map(|p|&p.hand).collect::<Vec<_>>()).unwrap(),hands);
@@ -235,7 +235,7 @@ fn jc057_native84_oracles() {
     for (mode_index,(name,spell,fund,source_seat,option)) in [
         ("live-exhaust","XQ03",2,0,None),
         ("live-hide","JC063",2,0,Some("hide")),
-        ("live-control","JC129",3,1,None),
+        ("live-control","JC129",3,2,None),
     ].into_iter().enumerate() {
         let mut g=u::game();g.room_id=format!("{:024x}",840200+mode_index);
         let source=u::field(&mut g,"JC057",source_seat);let hidden=u::field(&mut g,"JC052",2);g.board_mut(&hidden).unwrap().face_down=true;
