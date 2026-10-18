@@ -1,0 +1,28 @@
+{
+  "purpose": "Exact immutable published v67 ABI85 before JC066 development; never rebuild/migrate/re-sign old rooms or Native85 witness.",
+  "providerSource": "db204017bf378fe068447a069acfb928854527bf",
+  "reviewedSource": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "reviewedEvidence": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
+    "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate"
+  },
+  "cardCount": 149,
+  "societyCount": 10,
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+  "wasmBytes": 3263215,
+  "gzipSha256": "0c1a3ce80966e1c61dbe7d3f9899f70ac81da5c73136bc89e956f8e85678c872",
+  "nativeFixtureSha256": "4ad888e66386e390662f19cac5582d16dd36047b2111b90ec89590a84f8ccd63",
+  "nativeRawSha256": "f43a7e8a93b3ad77f29ce63d7fe861aa325248f8f4630a6798405327262df027",
+  "nativeRawBytes": 13759678,
+  "nativeInputs": 133,
+  "nativeCounts": {
+    "scenarios": 13,
+    "commands": 118,
+    "rejected": 17,
+    "projections": 524,
+    "invalidRestores": 37
+  }
+}
