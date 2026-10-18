@@ -1,0 +1,35 @@
+{
+  "scope": "Sanitized official v66 identity plus one normal browser visit; no credentials or game state",
+  "files": [
+    {
+      "path": "official-identity.json",
+      "bytes": 1278,
+      "sha256": "69d889f283a39cc671419d1c519808d8a1f1c3e63e6dd50199845047080db9b5"
+    },
+    {
+      "path": "normal-browser.json",
+      "bytes": 3642,
+      "sha256": "1429ce71b898f7473cf2c228eb01467826a8d107a302ed5c9df2d3de6c6e4a1e"
+    },
+    {
+      "path": "normal-browser.log",
+      "bytes": 189,
+      "sha256": "627598936e5328dc64c823bfb96d2afc75d3354e93307285999b8dc3f3b62ad5"
+    },
+    {
+      "path": "normal-browser.png",
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+    },
+    {
+      "path": "process-exit.json",
+      "bytes": 68,
+      "sha256": "af3f98c8d3a0cb66c04cdb19c919e813a4d4672136ecb9185653439fc5f3243f"
+    },
+    {
+      "path": "v66-normal_browser.py",
+      "bytes": 9042,
+      "sha256": "4dc7b7aa4961c4156f21a4c68131e46e742f8017be39e0237c8892561ad1d296"
+    }
+  ]
+}

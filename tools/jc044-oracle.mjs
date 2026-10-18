@@ -32,7 +32,9 @@ export function validateNative(raw){
  }
  assert.deepEqual(raw.invalid.map(r=>r.name).sort(),['declare','repression'].flatMap(k=>Array.from({length:16},(_,i)=>`${k}-${String(i).padStart(2,'0')}`)).sort());
  for(const r of raw.invalid){assert.equal(typeof r.state,'string');assert(r.gameError.length>0&&r.roomError.length>0);assert.equal(typeof r.roomId,'string');assert(Number.isSafeInteger(r.revision));}
- return {scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
+ const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
+ assert.deepEqual(counts,{scenarios:13,commands:118,rejected:17,projections:524,invalidRestores:32},'Complete JC044 Native acceptance contract');
+ return counts;
 }
 export function loadFixture(){
  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc044Native85.fixture.json.gz')),bundle=JSON.parse(gunzipSync(bytes));

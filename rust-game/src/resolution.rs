@@ -245,9 +245,8 @@ impl Game {
                                     .unwrap_or_default(),
                                 cost.as_ref()
                                     .and_then(|ids| ids.first())
-                                    .and_then(|id| self.jc044_time_payments(actor).iter()
-                                        .find(|p| p.carrier.id == *id)
-                                        .filter(|_| ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard)))
+                                    .and_then(|id| ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard))
+                                        .then(|| self.jc044_time_payments(actor).into_iter().find(|p| p.carrier.id == *id)).flatten()
                                         .map(|p| format!("（费用：从{} [{}]移除1个时间标志）", card(&p.carrier.definition).name, p.carrier.id))
                                         .or_else(|| self.players[actor]
                                         .hand

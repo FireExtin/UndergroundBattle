@@ -1,0 +1,14 @@
+{
+  "scope": "Full-second1228/1 then15/15 focused; no claim of a repeated green full suite",
+  "changedInputs": [
+    "rust-game/src/engine.rs"
+  ],
+  "nativeInputs": 133,
+  "testOnlyChange": "cfg(test) non-region catalog count138->139",
+  "productionRustChangedAfterFullSecond": false,
+  "completeCatalogScenariosOpaqueStatesJournalsFourViewsAndInvalidArchivesEqual": true,
+  "fullSecondNativeSha256": "9828978a2ca8c32fa6818222218cf8475bebbce89a591149fa0200c06a516ce6",
+  "finalNativeSha256": "07e919d76415072afee01a4877e6a7af8b9ab88b584bfde77fc561ec9fc82a7b",
+  "beforeEngineSha256": "efb597000cf184871faaa9fc171305969e0d2945d75ceba939ed7d9211a007e8",
+  "afterEngineSha256": "403aeff6ff116d61f0819ef7c460042b4d9fb8846b61a839d3bae940242850bb"
+}

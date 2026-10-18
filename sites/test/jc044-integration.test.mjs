@@ -1,4 +1,4 @@
-// Actual local HTTP/workerd/eight-WASM/D1; explicit Native84 layouts, not live rooms.
+// Actual local HTTP/workerd/nine-WASM/D1; explicit Native85 layouts, not live rooms.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, readdirSync } from 'node:fs';
@@ -68,7 +68,7 @@ for(const scenario of fixture.scenarios)test(`JC044 ABI85 HTTP ${scenario.name}`
     const retry=await h.api('commands',row.seat,row.command);assert.equal(retry.status,200);assert.deepEqual(retry.body,body);
     assert.deepEqual(await h.snapshot(),final);
   }
-  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native84',accepted,rejected,projections,
+  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native85',accepted,rejected,projections,
     originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true,localSyntheticDatabaseRetained:true}));
 });
 

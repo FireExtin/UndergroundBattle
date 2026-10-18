@@ -55,6 +55,14 @@ fn jc044_time_is_paid_before_response_and_empty_influence_does_not_refund() {
     assert_eq!(g.board(&source).unwrap().1.time_markers,0);u::reject(&mut g,0,activate(&source,&source,1));
 }
 #[test]
+fn jc044_already_exhausted_source_can_pay_without_an_unprinted_exhaust_cost() {
+    let (mut g,source)=layout(0);g.board_mut(&source).unwrap().exhausted=true;
+    u::act(&mut g,0,activate(&source,&source,2));
+    assert!(g.board(&source).unwrap().1.exhausted);
+    assert_eq!(g.board(&source).unwrap().1.time_markers,1);
+    response_until_pending(&mut g);u::restore(&mut g);
+}
+#[test]
 fn jc044_fee_carriers_are_physical_and_personally_controlled_not_team_totals() {
     let (mut g,source)=layout(0);g.board_mut(&source).unwrap().time_markers=0;
     let host=u::field(&mut g,"JC029",0);let ally=u::field(&mut g,"JZ30",1);let enemy=u::field(&mut g,"JZ30",2);
@@ -173,7 +181,14 @@ impl Trace {
         let views=(0..4).map(|s|self.room.view(s,0)).collect::<Vec<_>>();
         self.steps.push(serde_json::json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0","expected":expected,"views":views}));
     }
-    fn game(&mut self,seat:usize,a:Action,accepted:bool){self.command(seat,crate::room::SessionAction::Game{action:a},accepted);}
+    fn game(&mut self,seat:usize,mut a:Action,accepted:bool){
+        // Legal UI actions carry the explicit key; unit helpers also cover the default key.
+        if a.kind=="activate" && a.ability_id.is_none()
+            && a.card_id.as_ref().and_then(|id|self.room.game.board(id)).is_some_and(|(_,c)|c.definition=="JC044") {
+            a.ability_id=Some(crate::jc044::ACTIVATE.into());
+        }
+        self.command(seat,crate::room::SessionAction::Game{action:a},accepted);
+    }
     fn responses(&mut self) {
         use crate::room::*;
         for _ in 0..32 {let Some(w)=self.room.pacing.window.clone()else{return};

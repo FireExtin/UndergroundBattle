@@ -195,7 +195,7 @@ fn renown_original_fields_and_bounded_program_are_complete() {
             ..
         }
     ));
-    assert_eq!(catalog::catalog().cards.len(), 148);
+    assert_eq!(catalog::catalog().cards.len(), 149);
 }
 
 #[test]

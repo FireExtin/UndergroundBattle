@@ -6,8 +6,8 @@ const RED: Spec = Spec {
     id: "MSJC04", search: "search-red-unique", color: "红",
     name: ("鸣钟教派", "末日钟的侍奉者"), subtypes: &["秘密教派"],
     cards: &["JC042", "JC049", "JC047", "XQ17", "JZ31", "JC045", "JC050", "XQ18",
-        "JZ30", "WM038", "JZ35", "JC052", "JC046", "JC054"],
-    full: 42, color_count: 14, uniques: &["JC052"],
+        "JZ30", "WM038", "JZ35", "JC052", "JC046", "JC054", "JC044"],
+    full: 45, color_count: 15, uniques: &["JC052"],
     hits: ["JC052", "JC052", "JC042", "LC23"],
 };
 const GRAY: Spec = Spec {
@@ -20,7 +20,7 @@ const GRAY: Spec = Spec {
 };
 #[test] fn msjc04_whole_original_and_real_red_unique_program() { original(&RED); }
 #[test] fn msjc05_whole_original_and_gray_unique_program() { original(&GRAY); }
-#[test] fn msjc04_construction_24_25_42_and_society_outside_50() { construction(&RED); }
+#[test] fn msjc04_construction_24_25_45_and_society_outside_50() { construction(&RED); }
 #[test] fn msjc05_construction_24_25_45_and_society_outside_50() { construction(&GRAY); }
 #[test] fn msjc04_four_personal_searches_private_choice_public_reveal_and_restore() { four_searches(&RED); }
 #[test] fn msjc05_real_pool_no_gray_unique_still_pays_consumes_quota_and_shuffles_all_seats() { no_unique_in_admitted_pool(&GRAY); }
