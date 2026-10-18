@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "src/game/JC066Native86.test.jsx",
+    "src/game/SealedCards.test.tsx",
+    "src/game/ReadModal.test.tsx"
+  ],
+  "startedUtc": "2026-10-18T10:29:41.122624+00:00",
+  "endedUtc": "2026-10-18T10:30:10.854173+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_FIXED_CLOCK_TEST_ROOT=/workspace/jc066-p2-evidence-20261018/worker-after",
+    "node",
+    "sites/scripts/build-fixed-clock-test.mjs"
+  ],
+  "startedUtc": "2026-10-18T10:29:39.823330+00:00",
+  "endedUtc": "2026-10-18T10:29:46.848429+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC066_P2_EXACT_INPUT=/workspace/jc066-p2-evidence-20261018",
+    "JC066_P2_EXPECT=reject",
+    "JC066_P2_REPRO_DIR=/workspace/jc066-p2-evidence-20261018/native-after-first",
+    "JC066_NATIVE_DIR=/workspace/jc066-p2-evidence-20261018/native-after-first",
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc066",
+    "--",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T10:20:39.571224+00:00",
+  "endedUtc": "2026-10-18T10:21:42.881309+00:00",
+  "exitCode": 0
+}

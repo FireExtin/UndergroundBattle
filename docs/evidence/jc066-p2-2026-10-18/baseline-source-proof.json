@@ -1,0 +1,9 @@
+{
+  "baseCommit": "8607a94298ed323b0375106fac7db01ffbc77ccd",
+  "compilerInputs": 135,
+  "allProductionInputsMatchBase": true,
+  "onlyDifference": "rust-game/src/jc066_tests.rs adds exact-input regression test",
+  "regressionSourceReconstructedAndHashMatchesCompiler": true,
+  "regressionSourceSha256": "20cd0a58a81195cf3d678aa96f3f364ffe68f1f1bc14972637c101e386b74273",
+  "baselineWasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e"
+}

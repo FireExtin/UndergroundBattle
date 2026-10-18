@@ -1,0 +1,8 @@
+{
+  "choice": "B",
+  "authority": "explicit user project ruling relayed by parent",
+  "userReplyUtc": "2026-10-18 10:33 UTC",
+  "behavior": "JC066 can select itself; resolution immediately returns it to its owner hand",
+  "officialFaqClaim": false,
+  "scope": "JC066 only; independent review still required before publication; no other project authorization"
+}

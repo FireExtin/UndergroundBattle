@@ -1,0 +1,1096 @@
+{
+  "checkedUtc": "2026-10-18T10:48:43.395943+00:00",
+  "candidateSourceCommit": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "baseCommit": "8607a94298ed323b0375106fac7db01ffbc77ccd",
+  "productDiff": "one additional live same-UID face_down/public.kind consistency condition in jc066_target",
+  "p2ExactBeforeAfter": [
+    {
+      "name": "entry-deploy-accept",
+      "revision": 16,
+      "frameId": "i251",
+      "targetId": "i240",
+      "badStateSha256": "4ab38744047f2e17f14945a29067351bb33dcbd8cbda1d0495196bb56022d3af",
+      "sameExactStateBytes": true,
+      "before": {
+        "nativeAccepted": true,
+        "wasmEntrypointsAccepted": 6,
+        "http200": 10,
+        "pauseCreatedCommands": 1,
+        "pauseCreatedJournal": 1,
+        "originalReceiptAfterReopen": true
+      },
+      "after": {
+        "nativeGameAndRoomRejected": true,
+        "wasmEntrypointsRejected": 6,
+        "http400": 10,
+        "zeroExtraD1Writes": true,
+        "roomCommandsJournalUnchangedBeforeAndAfterReopen": true
+      }
+    },
+    {
+      "name": "actor-1",
+      "revision": 14,
+      "frameId": "i251",
+      "targetId": "i246",
+      "badStateSha256": "1b961a1e5403fe0d6899fdcd1a5daa7a676fb7e02d1d58b568b4eb8bcdc5679e",
+      "sameExactStateBytes": true,
+      "before": {
+        "nativeAccepted": true,
+        "wasmEntrypointsAccepted": 6,
+        "http200": 10,
+        "pauseCreatedCommands": 1,
+        "pauseCreatedJournal": 1,
+        "originalReceiptAfterReopen": true
+      },
+      "after": {
+        "nativeGameAndRoomRejected": true,
+        "wasmEntrypointsRejected": 6,
+        "http400": 10,
+        "zeroExtraD1Writes": true,
+        "roomCommandsJournalUnchangedBeforeAndAfterReopen": true
+      }
+    }
+  ],
+  "nativeWasm": {
+    "compilerInputs": 135,
+    "counts": {
+      "scenarios": 19,
+      "commands": 252,
+      "rejected": 16,
+      "projections": 1084,
+      "invalidRestores": 87
+    },
+    "rawSha256": "ce6f0329fd30daca4b2d5a960ad4310eec3e4b4a82394ca941b5f642531ffb50",
+    "fixture": {
+      "bytes": 2236969,
+      "sha256": "d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6"
+    },
+    "wasm": {
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    "fullNativeAndFocusedExportByteIdentical": true
+  },
+  "nativeWorkspace": {
+    "tests": 1314,
+    "library": 1247,
+    "integration": 67,
+    "singleNaturalRun": true
+  },
+  "frontend": {
+    "files": 3,
+    "tests": 51,
+    "full1342NotRerun": true,
+    "productionTypeScriptAndVitePassed": true,
+    "all167ClientFilesUnchanged": true,
+    "noNewComponentBrowserQaRequiredForGuardOnlyChange": true
+  },
+  "worker": {
+    "focusedSingleRun": 130,
+    "jc066HttpTests": 106,
+    "kernelRoutingTests": 18,
+    "sourceGuards": 6,
+    "jc066": {
+      "scenarios": 19,
+      "accepted": 236,
+      "rejected": 16,
+      "views": 2104,
+      "badRooms": 87,
+      "http400": 870
+    },
+    "normal": [
+      {
+        "scenario": "entry-deploy-accept",
+        "reference": "compiler-bound Native86",
+        "accepted": 12,
+        "rejected": 3,
+        "projections": 116,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-deploy-skip",
+        "reference": "compiler-bound Native86",
+        "accepted": 8,
+        "rejected": 3,
+        "projections": 84,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-reveal-accept",
+        "reference": "compiler-bound Native86",
+        "accepted": 12,
+        "rejected": 3,
+        "projections": 116,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-reveal-skip",
+        "reference": "compiler-bound Native86",
+        "accepted": 8,
+        "rejected": 3,
+        "projections": 84,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-0",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-1",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-2",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-3",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "self-seal",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "shared-hand-seal-character",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 0,
+        "projections": 56,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "shared-hand-seal-attachment",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 0,
+        "projections": 56,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "host-hide",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-hide",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "host-return",
+        "reference": "compiler-bound Native86",
+        "accepted": 16,
+        "rejected": 0,
+        "projections": 136,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "society-search-gray-unique",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 4,
+        "projections": 72,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-departure",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-move",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-control",
+        "reference": "compiler-bound Native86",
+        "accepted": 21,
+        "rejected": 0,
+        "projections": 176,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-reveal",
+        "reference": "compiler-bound Native86",
+        "accepted": 19,
+        "rejected": 0,
+        "projections": 160,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      }
+    ],
+    "badRooms": [
+      {
+        "invalid": "stack-deploy-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-16",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-17",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-18",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-19",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-20",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-21",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-22",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-23",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-24",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-16",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-17",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-18",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-19",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-20",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-21",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-22",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-23",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-24",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-25",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-26",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-27",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "target-face-up-as-hidden",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "target-hidden-as-face-up",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      }
+    ],
+    "dedicatedP2Before": 4,
+    "dedicatedP2After": 4,
+    "prior306And55FileSuiteNotRerun": true,
+    "prior306Boundary": "Prior306 first294pass/12JZ46testreferencefail, correctedJZ46fullfile15pass; coverage16files plus5files6checks; no all55files-green claim"
+  },
+  "selfSeal": {
+    "choice": "B",
+    "authority": "explicit user project ruling relayed by parent",
+    "userReplyUtc": "2026-10-18 10:33 UTC",
+    "behavior": "JC066 can select itself; resolution immediately returns it to its owner hand",
+    "officialFaqClaim": false,
+    "scope": "JC066 only; independent review still required before publication; no other project authorization"
+  },
+  "siteThisHour": {
+    "official": {
+      "checkedUtc": "2026-10-18 10:29:25 UTC",
+      "site": {
+        "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+        "latest_version_number": 67,
+        "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+        "status": "active",
+        "access_mode": "public",
+        "access_revision": 2
+      },
+      "version": {
+        "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+        "version_number": 67,
+        "source": {
+          "commit_sha": "db204017bf378fe068447a069acfb928854527bf"
+        },
+        "deployment_id": "appgdep_6ad46eaf94348191ba64eaa9364028cf"
+      },
+      "deployment": {
+        "id": "appgdep_6ad46eaf94348191ba64eaa9364028cf",
+        "status": "succeeded",
+        "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+        "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+        "env_set_revision": 0,
+        "failure_message": null
+      }
+    },
+    "ordinaryBrowser": {
+      "checkedUtc": "2026-10-18T10:29:27.000Z",
+      "certificateBlocked": true,
+      "navigations": 1,
+      "writes": 0,
+      "onlineGames": 0,
+      "bypass": false
+    }
+  },
+  "published": false,
+  "independentReview": "pending-parent-review",
+  "runs": {
+    "native-before": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_P2_EXACT_INPUT=/workspace/jc066-p2-evidence-20261018",
+        "JC066_P2_EXPECT=accept",
+        "JC066_P2_REPRO_DIR=/workspace/jc066-p2-evidence-20261018/native-before",
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc066_p2_same_uid_target_face_snapshot_restore",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T10:17:37.246499+00:00",
+      "endedUtc": "2026-10-18T10:18:48.283144+00:00",
+      "exitCode": 0
+    },
+    "wasm-http-before": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_P2_EXPECT=accept",
+        "JC066_P2_CASES_FILE=/workspace/jc066-p2-evidence-20261018/native-before/repro.json",
+        "JC066_P2_PKG=/workspace/jc066-p2-evidence-20261018/baseline-pkg",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/baseline-worker",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-p2-restore.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:19:14.067700+00:00",
+      "endedUtc": "2026-10-18T10:19:27.948335+00:00",
+      "exitCode": 0
+    },
+    "native-after-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_P2_EXACT_INPUT=/workspace/jc066-p2-evidence-20261018",
+        "JC066_P2_EXPECT=reject",
+        "JC066_P2_REPRO_DIR=/workspace/jc066-p2-evidence-20261018/native-after-first",
+        "JC066_NATIVE_DIR=/workspace/jc066-p2-evidence-20261018/native-after-first",
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc066",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T10:20:39.571224+00:00",
+      "endedUtc": "2026-10-18T10:21:42.881309+00:00",
+      "exitCode": 0
+    },
+    "native-after-final": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_P2_EXACT_INPUT=/workspace/jc066-p2-evidence-20261018",
+        "JC066_P2_EXPECT=reject",
+        "JC066_P2_REPRO_DIR=/workspace/jc066-p2-evidence-20261018/native-after-final",
+        "JC066_NATIVE_DIR=/workspace/jc066-p2-evidence-20261018/native-after-final",
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc066",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T10:22:26.684660+00:00",
+      "endedUtc": "2026-10-18T10:23:27.701431+00:00",
+      "exitCode": 0
+    },
+    "wasm-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--output-dir",
+        "rust-game-wasm/pkg",
+        "--",
+        "bash",
+        "rust-game-wasm/build.sh"
+      ],
+      "startedUtc": "2026-10-18T10:24:44.811417+00:00",
+      "endedUtc": "2026-10-18T10:26:13.460017+00:00",
+      "exitCode": 0
+    },
+    "native-wasm-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "tools/jc066-oracle.mjs",
+        "/workspace/jc066-p2-evidence-20261018/native-after-final/native86.json",
+        "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+        "/workspace/jc066-p2-evidence-20261018/jc066Native86.after.fixture.json.gz"
+      ],
+      "startedUtc": "2026-10-18T10:27:27.241275+00:00",
+      "endedUtc": "2026-10-18T10:27:32.718282+00:00",
+      "exitCode": 0
+    },
+    "production-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "sites/scripts/build.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:28:21.904870+00:00",
+      "endedUtc": "2026-10-18T10:28:47.517961+00:00",
+      "exitCode": 0
+    },
+    "fixed-clock-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_FIXED_CLOCK_TEST_ROOT=/workspace/jc066-p2-evidence-20261018/worker-after",
+        "node",
+        "sites/scripts/build-fixed-clock-test.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:29:39.823330+00:00",
+      "endedUtc": "2026-10-18T10:29:46.848429+00:00",
+      "exitCode": 0
+    },
+    "frontend-targeted": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/JC066Native86.test.jsx",
+        "src/game/SealedCards.test.tsx",
+        "src/game/ReadModal.test.tsx"
+      ],
+      "startedUtc": "2026-10-18T10:29:41.122624+00:00",
+      "endedUtc": "2026-10-18T10:30:10.854173+00:00",
+      "exitCode": 0
+    },
+    "wasm-http-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_P2_EXPECT=reject",
+        "JC066_P2_CASES_FILE=/workspace/jc066-p2-evidence-20261018/native-after-final/repro.json",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/worker-after/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-p2-restore.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:31:08.924999+00:00",
+      "endedUtc": "2026-10-18T10:31:20.043748+00:00",
+      "exitCode": 0
+    },
+    "native-full": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_NATIVE_DIR=/workspace/jc066-p2-evidence-20261018/native-full",
+        "cargo",
+        "test",
+        "--locked",
+        "--workspace",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T10:27:25.996002+00:00",
+      "endedUtc": "2026-10-18T10:46:13.984635+00:00",
+      "exitCode": 0
+    },
+    "worker-focused-after": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/worker-after/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-integration.test.mjs test/jc066-kernel-routing.test.mjs test/kernel-routing.test.mjs test/kernel-binding.test.mjs ../tools/cards/jc066-source.test.mjs ../tools/cards/jc044-source.test.mjs ../tools/cards/jc057-source.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:32:17.210845+00:00",
+      "endedUtc": "2026-10-18T10:47:59.413006+00:00",
+      "exitCode": 0
+    },
+    "v67-browser10": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "/workspace/jc066-p2-evidence-20261018/v67-browser10.mjs"
+      ],
+      "startedUtc": "2026-10-18T10:29:26.131719+00:00",
+      "endedUtc": "2026-10-18T10:29:29.897319+00:00",
+      "exitCode": 0
+    }
+  }
+}

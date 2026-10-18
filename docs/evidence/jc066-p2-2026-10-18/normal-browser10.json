@@ -1,0 +1,31 @@
+{
+  "checkedUtc": "2026-10-18T10:29:27.000Z",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "versionFromOfficialRead": 67,
+  "ignoreHTTPSErrors": false,
+  "tlsBypass": false,
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/"
+    }
+  ],
+  "requestFailures": [
+    {
+      "method": "GET",
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "failure": {
+        "errorText": "net::ERR_CERT_AUTHORITY_INVALID"
+      }
+    }
+  ],
+  "responseStatus": null,
+  "loaded": false,
+  "onlineGames": 0,
+  "siteWrites": 0,
+  "scope": "One ordinary fresh Chromium navigation; no bypass, retry, room creation/join or gameplay.",
+  "browser": "151.0.7922.173",
+  "error": "Error: page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n\u001b[2m  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "finalUrl": "about:blank",
+  "certificateBlocked": true
+}
