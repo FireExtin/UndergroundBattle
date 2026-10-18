@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 test/jz46-integration.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T09:57:35.710192+00:00",
+  "endedUtc": "2026-10-18T09:59:43.671039+00:00",
+  "exitCode": 0
+}

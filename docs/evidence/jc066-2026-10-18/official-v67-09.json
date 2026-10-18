@@ -1,0 +1,27 @@
+{
+  "checkedUtc": "2026-10-18 09:22:00 UTC",
+  "site": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "latest_version_number": 67,
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "status": "active",
+    "access_mode": "public",
+    "access_revision": 2
+  },
+  "version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+    "version_number": 67,
+    "source": {
+      "commit_sha": "db204017bf378fe068447a069acfb928854527bf"
+    },
+    "deployment_id": "appgdep_6ad46eaf94348191ba64eaa9364028cf"
+  },
+  "deployment": {
+    "id": "appgdep_6ad46eaf94348191ba64eaa9364028cf",
+    "status": "succeeded",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "env_set_revision": 0,
+    "failure_message": null
+  }
+}

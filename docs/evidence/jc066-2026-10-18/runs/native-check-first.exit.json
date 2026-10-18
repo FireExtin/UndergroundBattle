@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "check",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib"
+  ],
+  "startedUtc": "2026-10-18T08:16:59.470039+00:00",
+  "endedUtc": "2026-10-18T08:17:07.687064+00:00",
+  "exitCode": 0
+}

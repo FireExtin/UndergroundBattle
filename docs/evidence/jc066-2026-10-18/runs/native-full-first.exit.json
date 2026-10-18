@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC066_NATIVE_DIR=/workspace/jc066-evidence-20261018/native-full-first",
+    "cargo",
+    "test",
+    "--locked",
+    "--workspace",
+    "--",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T08:52:20.269542+00:00",
+  "endedUtc": "2026-10-18T09:10:03.123875+00:00",
+  "exitCode": 101
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC066_NATIVE_DIR=/workspace/jc066-evidence-20261018/native-society-first",
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc066",
+    "--",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T09:11:25.341878+00:00",
+  "endedUtc": "2026-10-18T09:12:22.885182+00:00",
+  "exitCode": 101
+}

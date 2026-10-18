@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--test",
+    "tools/frozen-abi85.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T08:33:05.753301+00:00",
+  "endedUtc": "2026-10-18T08:33:07.614105+00:00",
+  "exitCode": 0
+}

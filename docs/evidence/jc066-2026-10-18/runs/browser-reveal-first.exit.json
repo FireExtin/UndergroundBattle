@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+    "JC066_BROWSER_SCENARIO=entry-reveal-accept",
+    "node",
+    "tools/frontend/jc066-http-four-clients-qa.mjs",
+    "/workspace/jc066-evidence-20261018/browser-reveal-first"
+  ],
+  "startedUtc": "2026-10-18T09:33:40.428368+00:00",
+  "endedUtc": "2026-10-18T09:34:37.728127+00:00",
+  "exitCode": 0
+}

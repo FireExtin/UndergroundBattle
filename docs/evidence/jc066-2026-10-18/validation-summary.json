@@ -1,0 +1,1138 @@
+{
+  "checkedUtc": "2026-10-18T10:00:56.399418+00:00",
+  "candidateSourceCommit": "804f00fce94c2cc7e182119c9bc2f1049cb27105",
+  "independentReview": "pending-parent-serial-review",
+  "published": false,
+  "mainMerged": false,
+  "nativeWorkspace": {
+    "passed": 1313,
+    "library": 1246,
+    "integration": 67,
+    "sameSingleCommand": true,
+    "receipt": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_NATIVE_DIR=/workspace/jc066-evidence-20261018/native-full-second",
+        "cargo",
+        "test",
+        "--locked",
+        "--workspace",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T09:18:30.903463+00:00",
+      "endedUtc": "2026-10-18T09:39:33.957143+00:00",
+      "exitCode": 0
+    }
+  },
+  "frontend": {
+    "files": 139,
+    "passed": 1342,
+    "receipt": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "startedUtc": "2026-10-18T09:31:22.388506+00:00",
+      "endedUtc": "2026-10-18T09:41:07.355167+00:00",
+      "exitCode": 0
+    }
+  },
+  "worker": {
+    "boundary": {
+      "firstBatch": {
+        "tests": 306,
+        "passed": 294,
+        "failed": 12,
+        "failureFile": "sites/test/jz46-integration.test.mjs",
+        "failuresAllGlobalCatalog85Vs86": true,
+        "failedNames": [
+          "JZ46 ABI79 HTTP all-hidden-no-identity-leak",
+          "JZ46 ABI79 HTTP attachment-alone-influence-reward",
+          "JZ46 ABI79 HTTP criminal-seat0",
+          "JZ46 ABI79 HTTP criminal-seat1",
+          "JZ46 ABI79 HTTP criminal-seat2",
+          "JZ46 ABI79 HTTP criminal-seat3",
+          "JZ46 ABI79 HTTP noncriminal-unchanged",
+          "JZ46 ABI79 HTTP pause-inspection-resume",
+          "JZ46 ABI79 HTTP play-fresh-normalization",
+          "JZ46 ABI79 HTTP repeat-lock-next-turn",
+          "JZ46 ABI79 HTTP target-paid-reveal-cancels",
+          "published v60 ABI78 keeps its exact reducer, private view, D1 state and original receipts through candidate79 Worker"
+        ]
+      },
+      "jz46FullFileRetest": {
+        "tests": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "full306NotRerunAfterTestOnlyFix": true,
+      "noCrossRoundPassTotalClaim": true,
+      "productionBytesUnchanged": true
+    },
+    "receipt": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-integration.test.mjs test/jc066-kernel-routing.test.mjs test/kernel-routing.test.mjs test/kernel-binding.test.mjs test/bq035-integration.test.mjs test/jz46-integration.test.mjs test/wm062-integration.test.mjs test/jc054-integration.test.mjs test/msjc09-society-integration.test.mjs test/seven-card-integration.test.mjs test/jc044-integration.test.mjs test/jc057-integration.test.mjs test/msjc0405-integration.test.mjs test/response-preview-integration.test.mjs test/storage-retry.test.mjs test/session-host.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:19:38.505914+00:00",
+      "endedUtc": "2026-10-18T09:57:27.083047+00:00",
+      "exitCode": 1
+    },
+    "retestReceipt": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jz46-integration.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:57:35.710192+00:00",
+      "endedUtc": "2026-10-18T09:59:43.671039+00:00",
+      "exitCode": 0
+    },
+    "jc066": {
+      "scenarios": 15,
+      "accepted": 160,
+      "rejected": 16,
+      "projections": 1464,
+      "corruptRooms": 85,
+      "corruptHttp400": 850
+    },
+    "normal": [
+      {
+        "scenario": "entry-deploy-accept",
+        "reference": "compiler-bound Native86",
+        "accepted": 12,
+        "rejected": 3,
+        "projections": 116,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-deploy-skip",
+        "reference": "compiler-bound Native86",
+        "accepted": 8,
+        "rejected": 3,
+        "projections": 84,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-reveal-accept",
+        "reference": "compiler-bound Native86",
+        "accepted": 12,
+        "rejected": 3,
+        "projections": 116,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "entry-reveal-skip",
+        "reference": "compiler-bound Native86",
+        "accepted": 8,
+        "rejected": 3,
+        "projections": 84,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-0",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-1",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-2",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "actor-3",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "self-seal",
+        "reference": "compiler-bound Native86",
+        "accepted": 10,
+        "rejected": 0,
+        "projections": 88,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "shared-hand-seal-character",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 0,
+        "projections": 56,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "shared-hand-seal-attachment",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 0,
+        "projections": 56,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "host-hide",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "target-hide",
+        "reference": "compiler-bound Native86",
+        "accepted": 18,
+        "rejected": 0,
+        "projections": 152,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "host-return",
+        "reference": "compiler-bound Native86",
+        "accepted": 16,
+        "rejected": 0,
+        "projections": 136,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      },
+      {
+        "scenario": "society-search-gray-unique",
+        "reference": "compiler-bound Native86",
+        "accepted": 6,
+        "rejected": 4,
+        "projections": 72,
+        "originalReceiptsAfterReopen": true,
+        "opaqueStatesAndJournalsEqual": true,
+        "localSyntheticDatabaseRetained": true
+      }
+    ],
+    "badRooms": [
+      {
+        "invalid": "stack-deploy-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-deploy-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-16",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-17",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-18",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-19",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-20",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-21",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-22",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-23",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "declare-24",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-16",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-17",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-18",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-19",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-20",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-21",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-22",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-23",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-24",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-25",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-26",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "frame-27",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-00",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-01",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-02",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-03",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-04",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-05",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-06",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-07",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-08",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-09",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-10",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-11",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-12",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-13",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-14",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      },
+      {
+        "invalid": "stack-reveal-15",
+        "http400": 10,
+        "realD1Reopen": true,
+        "roomCommandsJournalUnchanged": true
+      }
+    ]
+  },
+  "nativeWasm": {
+    "counts": {
+      "scenarios": 15,
+      "commands": 176,
+      "rejected": 16,
+      "projections": 764,
+      "invalidRestores": 85
+    },
+    "compilerInputs": 135,
+    "rawSha256": "d7b730e69cc270bff4ec81fc892ecdf8e726d9216cb9eb903b518f413335fe09",
+    "fixture": {
+      "bytes": 1588580,
+      "sha256": "b392be4dab489d376f8f5c6ab81c6ec343a3a3d6d30b0ab1bd8361bd75549146"
+    },
+    "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+    "fullRunExportEqualsSpecializedExport": true
+  },
+  "browsers": [
+    {
+      "directory": "browser-actor1-first",
+      "scenario": "actor-1",
+      "browserContexts": 4,
+      "uiCommands": 10,
+      "expectedRejectedBrowserFetches": 0,
+      "reopened": 2,
+      "originalReceiptsAfterReopen": 10,
+      "sealedReadSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "hostRead": null,
+      "driverSourceCommit": "26972b286740d47f4cc42bdd94a377b788656561",
+      "driverSha256": "98d23a9c791bb752d6b0a3080efd5415fd948ac2138a83dc02be7945b52353bf",
+      "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+      "clientIndexSha256": "24237dd6f5106ca93ba31e5d40d5bff7003ca3f9cfc44193a0fb7aa05bb71931",
+      "workerSha256": "fcdd1734ae388dca42b1106998bdfcc03bd0b9d3e20c4df7963a798c5eddf6f2",
+      "pageErrors": [],
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-reveal-first",
+      "scenario": "entry-reveal-accept",
+      "browserContexts": 4,
+      "uiCommands": 12,
+      "expectedRejectedBrowserFetches": 3,
+      "reopened": 2,
+      "originalReceiptsAfterReopen": 12,
+      "sealedReadSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "hostRead": {
+        "cardId": "JC066",
+        "currentIcons": {
+          "combat": 1,
+          "influence": 3,
+          "investigation": 1
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "driverSourceCommit": "804f00fce94c2cc7e182119c9bc2f1049cb27105",
+      "driverSha256": "a1b05315203205e40d46404ce94bfef1c02e913f2dc2a971fb8f5a877d9d2141",
+      "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+      "clientIndexSha256": "24237dd6f5106ca93ba31e5d40d5bff7003ca3f9cfc44193a0fb7aa05bb71931",
+      "workerSha256": "fcdd1734ae388dca42b1106998bdfcc03bd0b9d3e20c4df7963a798c5eddf6f2",
+      "pageErrors": [],
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-shared-first",
+      "scenario": "shared-hand-seal-character",
+      "browserContexts": 4,
+      "uiCommands": 6,
+      "expectedRejectedBrowserFetches": 0,
+      "reopened": 2,
+      "originalReceiptsAfterReopen": 6,
+      "sealedReadSeats": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "hostRead": {
+        "cardId": "JC066",
+        "currentIcons": {
+          "combat": 3,
+          "influence": 3,
+          "investigation": 4
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "driverSourceCommit": "804f00fce94c2cc7e182119c9bc2f1049cb27105",
+      "driverSha256": "a1b05315203205e40d46404ce94bfef1c02e913f2dc2a971fb8f5a877d9d2141",
+      "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+      "clientIndexSha256": "24237dd6f5106ca93ba31e5d40d5bff7003ca3f9cfc44193a0fb7aa05bb71931",
+      "workerSha256": "fcdd1734ae388dca42b1106998bdfcc03bd0b9d3e20c4df7963a798c5eddf6f2",
+      "pageErrors": [],
+      "onlineGameplay": false
+    }
+  ],
+  "siteThisHour": {
+    "official": {
+      "checkedUtc": "2026-10-18 09:22:00 UTC",
+      "site": {
+        "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+        "latest_version_number": 67,
+        "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+        "status": "active",
+        "access_mode": "public",
+        "access_revision": 2
+      },
+      "version": {
+        "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+        "version_number": 67,
+        "source": {
+          "commit_sha": "db204017bf378fe068447a069acfb928854527bf"
+        },
+        "deployment_id": "appgdep_6ad46eaf94348191ba64eaa9364028cf"
+      },
+      "deployment": {
+        "id": "appgdep_6ad46eaf94348191ba64eaa9364028cf",
+        "status": "succeeded",
+        "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_50183acdb5ec819187512206a7b0de9c",
+        "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+        "env_set_revision": 0,
+        "failure_message": null
+      }
+    },
+    "normalBrowser": {
+      "checkedUtc": "2026-10-18T09:22:29.557Z",
+      "certificateBlocked": true,
+      "navigationRequests": 1,
+      "siteWrites": 0,
+      "onlineGames": 0,
+      "bypass": false
+    }
+  },
+  "latestRequiredRunReceipts": {
+    "native-full-second": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "JC066_NATIVE_DIR=/workspace/jc066-evidence-20261018/native-full-second",
+        "cargo",
+        "test",
+        "--locked",
+        "--workspace",
+        "--",
+        "--nocapture"
+      ],
+      "startedUtc": "2026-10-18T09:18:30.903463+00:00",
+      "endedUtc": "2026-10-18T09:39:33.957143+00:00",
+      "exitCode": 0
+    },
+    "frontend-full-second": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1"
+      ],
+      "startedUtc": "2026-10-18T09:31:22.388506+00:00",
+      "endedUtc": "2026-10-18T09:41:07.355167+00:00",
+      "exitCode": 0
+    },
+    "worker-batch-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-integration.test.mjs test/jc066-kernel-routing.test.mjs test/kernel-routing.test.mjs test/kernel-binding.test.mjs test/bq035-integration.test.mjs test/jz46-integration.test.mjs test/wm062-integration.test.mjs test/jc054-integration.test.mjs test/msjc09-society-integration.test.mjs test/seven-card-integration.test.mjs test/jc044-integration.test.mjs test/jc057-integration.test.mjs test/msjc0405-integration.test.mjs test/response-preview-integration.test.mjs test/storage-retry.test.mjs test/session-host.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:19:38.505914+00:00",
+      "endedUtc": "2026-10-18T09:57:27.083047+00:00",
+      "exitCode": 1
+    },
+    "jz46-target-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jz46-integration.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:57:35.710192+00:00",
+      "endedUtc": "2026-10-18T09:59:43.671039+00:00",
+      "exitCode": 0
+    },
+    "production-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "sites/scripts/build.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:06:48.669177+00:00",
+      "endedUtc": "2026-10-18T09:07:35.118462+00:00",
+      "exitCode": 0
+    },
+    "fixed-clock-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_FIXED_CLOCK_TEST_ROOT=/workspace/jc066-evidence-20261018/worker86",
+        "node",
+        "sites/scripts/build-fixed-clock-test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:07:47.178860+00:00",
+      "endedUtc": "2026-10-18T09:07:54.526658+00:00",
+      "exitCode": 0
+    },
+    "source-guards-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "--test",
+        "tools/cards/jc066-source.test.mjs",
+        "tools/cards/jc044-source.test.mjs",
+        "tools/cards/jc057-source.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:01:22.108796+00:00",
+      "endedUtc": "2026-10-18T09:01:23.652164+00:00",
+      "exitCode": 0
+    },
+    "current-entry-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "bash",
+        "-c",
+        "cd sites && exec node --test --test-concurrency=1 test/jc066-entry.test.mjs test/jc044-entry.test.mjs test/jc057-entry.test.mjs test/msjc0405-entry.test.mjs test/integration.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T09:08:25.536741+00:00",
+      "endedUtc": "2026-10-18T09:09:01.919852+00:00",
+      "exitCode": 0
+    },
+    "frozen85-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "--test",
+        "tools/frozen-abi85.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T08:33:05.753301+00:00",
+      "endedUtc": "2026-10-18T08:33:07.614105+00:00",
+      "exitCode": 0
+    },
+    "native-wasm-final": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "tools/jc066-oracle.mjs",
+        "/workspace/jc066-evidence-20261018/native-society-third/native86.json",
+        "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+        "/workspace/jc066-evidence-20261018/jc066Native86.final.fixture.json.gz"
+      ],
+      "startedUtc": "2026-10-18T09:18:37.154731+00:00",
+      "endedUtc": "2026-10-18T09:18:41.880038+00:00",
+      "exitCode": 0
+    },
+    "browser-actor1-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "JC066_BROWSER_SCENARIO=actor-1",
+        "node",
+        "tools/frontend/jc066-http-four-clients-qa.mjs",
+        "/workspace/jc066-evidence-20261018/browser-actor1-first"
+      ],
+      "startedUtc": "2026-10-18T09:31:47.876446+00:00",
+      "endedUtc": "2026-10-18T09:33:00.258132+00:00",
+      "exitCode": 0
+    },
+    "browser-reveal-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "JC066_BROWSER_SCENARIO=entry-reveal-accept",
+        "node",
+        "tools/frontend/jc066-http-four-clients-qa.mjs",
+        "/workspace/jc066-evidence-20261018/browser-reveal-first"
+      ],
+      "startedUtc": "2026-10-18T09:33:40.428368+00:00",
+      "endedUtc": "2026-10-18T09:34:37.728127+00:00",
+      "exitCode": 0
+    },
+    "browser-shared-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+        "JC066_BROWSER_SCENARIO=shared-hand-seal-character",
+        "node",
+        "tools/frontend/jc066-http-four-clients-qa.mjs",
+        "/workspace/jc066-evidence-20261018/browser-shared-first"
+      ],
+      "startedUtc": "2026-10-18T09:36:10.457339+00:00",
+      "endedUtc": "2026-10-18T09:37:13.293139+00:00",
+      "exitCode": 0
+    }
+  },
+  "historicalRebuildIdentityIssue": "not claimed resolved; retained ABI77–85 use exact original frozen bytes"
+}

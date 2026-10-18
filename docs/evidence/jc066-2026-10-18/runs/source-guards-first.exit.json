@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--test",
+    "tools/cards/jc066-source.test.mjs",
+    "tools/cards/jc044-source.test.mjs",
+    "tools/cards/jc057-source.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T09:01:22.108796+00:00",
+  "endedUtc": "2026-10-18T09:01:23.652164+00:00",
+  "exitCode": 0
+}

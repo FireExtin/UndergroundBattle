@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "rust-game-wasm/pkg",
+    "--",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "startedUtc": "2026-10-18T09:16:15.615763+00:00",
+  "endedUtc": "2026-10-18T09:17:34.749580+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 test/jc066-kernel-routing.test.mjs test/kernel-routing.test.mjs test/kernel-binding.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T09:08:03.790271+00:00",
+  "endedUtc": "2026-10-18T09:08:27.403872+00:00",
+  "exitCode": 1
+}

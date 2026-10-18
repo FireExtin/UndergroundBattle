@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/jc066-oracle.mjs",
+    "/workspace/jc066-evidence-20261018/native-oracle-second/native86.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "/workspace/jc066-evidence-20261018/jc066Native86.first.fixture.json.gz"
+  ],
+  "startedUtc": "2026-10-18T08:48:18.037066+00:00",
+  "endedUtc": "2026-10-18T08:48:22.889913+00:00",
+  "exitCode": 0
+}

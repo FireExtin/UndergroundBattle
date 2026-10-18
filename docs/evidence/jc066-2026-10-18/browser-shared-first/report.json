@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Native86 initial layout; actual production GameApp, listening local HTTP/workerd/ten-WASM/D1 and four independent browser contexts.",
+  "driverSha256": "a1b05315203205e40d46404ce94bfef1c02e913f2dc2a971fb8f5a877d9d2141",
+  "scenario": "shared-hand-seal-character",
+  "engine": "rust-v0.2.86-jc066-sealed-icons-candidate",
+  "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "ae9729630ead2ddbeae6020f76fa9625cd8255cd-hegemony_wasm_bg.wasm",
+      "sha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "file": "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/jc066-real-http-weZLeM",
+  "productionWorkerSha256": "88d364190df0a0d825e42f997b1cb58a7994b360be7453384c48a029db488bbe",
+  "workerSha256": "fcdd1734ae388dca42b1106998bdfcc03bd0b9d3e20c4df7963a798c5eddf6f2",
+  "clientIndexSha256": "24237dd6f5106ca93ba31e5d40d5bff7003ca3f9cfc44193a0fb7aa05bb71931",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "activate",
+      "version": 9,
+      "stateSha256": "ba54e76631d6104d75cb7ae3fa1e8e0385be3cb12eea7eb1c7800cfd07d489db"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 10,
+      "stateSha256": "139dbe32de2f5eec31abb6fe6443f9375e4484ad81d17db57455e146c45819c3"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 11,
+      "stateSha256": "4039c0a5ae9d61c942198b03347916813302187058be2870688a7c0e8d96ac6a"
+    },
+    {
+      "index": 3,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 12,
+      "stateSha256": "751e0c0437bc60ef3c680088db91aeadbfddd44cff5563a58caa3fb1c322cac5"
+    },
+    {
+      "index": 4,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 13,
+      "stateSha256": "92c03b6162fe74119989cceb24fc7f01fd32f150f605f582cf404f498e9e21da"
+    },
+    {
+      "index": 5,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "choose",
+      "version": 14,
+      "stateSha256": "ad9d9d3c9b18b0a0b7e8f02f01f7b95c7252bc9c5ab1b047f0be0c7e41fa978d"
+    }
+  ],
+  "clientPosts": [
+    6,
+    2,
+    2,
+    2
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "restored-choice-5.png",
+    "sealed-read-seat-0.png",
+    "sealed-read-seat-1.png",
+    "sealed-read-seat-2.png",
+    "sealed-read-seat-3.png",
+    "jc066-original-print.png",
+    "final.png"
+  ],
+  "reopened": 2,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 5,
+    "seat": 0,
+    "kind": "game",
+    "gameKind": "choose"
+  },
+  "originalReceiptsAfterReopen": 6,
+  "sealedReads": [
+    {
+      "seat": 0,
+      "cardId": "JC095",
+      "hostId": "i240",
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 1,
+      "cardId": "JC095",
+      "hostId": "i240",
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 2,
+      "cardId": "JC095",
+      "hostId": "i240",
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 3,
+      "cardId": "JC095",
+      "hostId": "i240",
+      "noCommandOrMutation": true
+    }
+  ],
+  "hostRead": {
+    "cardId": "JC066",
+    "currentIcons": {
+      "combat": 3,
+      "influence": 3,
+      "investigation": 4
+    },
+    "printedIcons": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 2
+    },
+    "scanLoaded": true,
+    "noCommandOrMutation": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-evidence-20261018/worker86/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 test/jc066-integration.test.mjs test/jc066-kernel-routing.test.mjs test/kernel-routing.test.mjs test/kernel-binding.test.mjs test/bq035-integration.test.mjs test/jz46-integration.test.mjs test/wm062-integration.test.mjs test/jc054-integration.test.mjs test/msjc09-society-integration.test.mjs test/seven-card-integration.test.mjs test/jc044-integration.test.mjs test/jc057-integration.test.mjs test/msjc0405-integration.test.mjs test/response-preview-integration.test.mjs test/storage-retry.test.mjs test/session-host.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T09:19:38.505914+00:00",
+  "endedUtc": "2026-10-18T09:57:27.083047+00:00",
+  "exitCode": 1
+}

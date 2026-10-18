@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "/workspace/jc066-evidence-20261018/v67-browser09.mjs"
+  ],
+  "startedUtc": "2026-10-18T09:22:28.604466+00:00",
+  "endedUtc": "2026-10-18T09:22:33.164154+00:00",
+  "exitCode": 0
+}

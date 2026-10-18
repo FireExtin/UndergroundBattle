@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC066_NATIVE_DIR=/workspace/jc066-evidence-20261018/native-oracle-first",
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc066_",
+    "--",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T08:35:33.774822+00:00",
+  "endedUtc": "2026-10-18T08:36:30.441471+00:00",
+  "exitCode": 101
+}
