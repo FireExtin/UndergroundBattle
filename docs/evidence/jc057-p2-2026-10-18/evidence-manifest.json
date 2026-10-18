@@ -1,0 +1,197 @@
+{
+  "format": "jc057-p2-evidence-manifest-v1",
+  "code": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+  "scope": "Original pre-fix failure, corrected-source Native/WASM/HTTP/D1 results and exact local output identity; pending serial independent review.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4731,
+      "sha256": "1392bf3957580e7048928636e2b30fc69f6d73404bce66e86a3da2d2edf73442"
+    },
+    {
+      "path": "affected-before.json",
+      "bytes": 47374,
+      "sha256": "f2f438b6c9bb4e9e51976a51d0406fe6484f1ad3eeef516399db1eb4342a7fda"
+    },
+    {
+      "path": "affected-result.json",
+      "bytes": 1364,
+      "sha256": "fd89d8fe46921028d1401a57d3a657aa08ac315c520f18ae1933a0dd55e8455a"
+    },
+    {
+      "path": "affected-worker-run.json",
+      "bytes": 601,
+      "sha256": "dd115642caaf33c3b3e5eb977b45eaf9a5b2c1433271c34b02abcc6812bab1fa"
+    },
+    {
+      "path": "affected-worker.log.gz",
+      "bytes": 1785,
+      "sha256": "abc15aff6cb6e29a1d83090cc1f944758f866770fbd3b3884deaca9a38804c16"
+    },
+    {
+      "path": "backend-production-run.json",
+      "bytes": 447,
+      "sha256": "d915c410904464f769ad3cb82e5c4bd1f636d2ca27cfbf8a2914b8919237a8af"
+    },
+    {
+      "path": "backend-production.log.gz",
+      "bytes": 404,
+      "sha256": "9f6ed7a32c972a06bee12e6dbdb4111e23988c622f8d16c7f9996c5645b2156c"
+    },
+    {
+      "path": "before-inputs.json",
+      "bytes": 491,
+      "sha256": "5b96bbf541f01c9f05f5ed0fc7c9374d38cbe5a7676e09abe069d23c2a4999fc"
+    },
+    {
+      "path": "build-identity.json",
+      "bytes": 14898,
+      "sha256": "67c715c366b212705233cfaa4dd9eae55cda97d7e4fc9945f6f8504af48a72ad"
+    },
+    {
+      "path": "faq-monitor-header.png",
+      "bytes": 70742,
+      "sha256": "3475a0373cccb9031df7a1bf5417261a1a9663e8345e3c30616807f24ff807cc"
+    },
+    {
+      "path": "faq-source.json",
+      "bytes": 338,
+      "sha256": "bdde8a1fc40292fcf1b362cbf804e6d8d54a2504adcbcb2cf54867a22f1b26d5"
+    },
+    {
+      "path": "fixed-clock-run.json",
+      "bytes": 445,
+      "sha256": "c77b78e7315ed0f843718c377453ba81e98d9d3e127460686e8df1ebd8ad44d1"
+    },
+    {
+      "path": "fixed-clock.log.gz",
+      "bytes": 413,
+      "sha256": "6acb650c024b8e75835af295a75be6ad42a17328f668003af348d8272fbfce67"
+    },
+    {
+      "path": "mobility-compat-run.json",
+      "bytes": 481,
+      "sha256": "bae20ae5f778198297b06a68a27d51e5f85df6bdad689a7ac28a3232e0d3c560"
+    },
+    {
+      "path": "mobility-compat.log.gz",
+      "bytes": 610,
+      "sha256": "04459266eb4da64759f8efa85beaef7a77036a4c299e91ac02759f64b048e25f"
+    },
+    {
+      "path": "native-after-first-exit.json",
+      "bytes": 70,
+      "sha256": "0bf68980f6f957c45c6fa5ea9855adec67740c9147e557baddabc2a44928bc35"
+    },
+    {
+      "path": "native-after-first.log.gz",
+      "bytes": 449,
+      "sha256": "e03b76fd2e981c6b685332913ab22025d447e0339c455a6719d43d2fbfb1ba9e"
+    },
+    {
+      "path": "native-after-second-exit.json",
+      "bytes": 68,
+      "sha256": "cb6bb1900a876e5c5e175ac997666ebd3189764aa56117a77b5444dcd64a3bfa"
+    },
+    {
+      "path": "native-after-second.log.gz",
+      "bytes": 1038,
+      "sha256": "1ae5d2d28aba5b27c41d0666927d78a9dd4949638c3287321d8ff95f9d26c137"
+    },
+    {
+      "path": "native-commands.json",
+      "bytes": 1118,
+      "sha256": "a92bacc8f6b4cd930c225bc01438ccafa295cea3660148b02831c51f537bc8d2"
+    },
+    {
+      "path": "native-legitimate-delta.json",
+      "bytes": 1128,
+      "sha256": "631228195c1e3ff89d71f5637fb4d078ad8b6ca461380f2ea408aa36dbc05433"
+    },
+    {
+      "path": "probe-after.mjs",
+      "bytes": 2160,
+      "sha256": "d23a59d5dd2ca3815d5c20345f8186feb1a79323f384b170c467b46a851f67bc"
+    },
+    {
+      "path": "repro-after-run.json",
+      "bytes": 359,
+      "sha256": "c4a9cd15e42839871a56f98424ef3e1f223b0f489c8ed100da2cda10594e1f3d"
+    },
+    {
+      "path": "repro-after.json.gz",
+      "bytes": 7010,
+      "sha256": "0570e091004459d7f6a905f8598685000d6b451faef2012964347de3b349197c"
+    },
+    {
+      "path": "repro-after.log.gz",
+      "bytes": 431,
+      "sha256": "7042f3aeb2a71be001ad034e2922696b744747285e4faff61c0040823c6d1cb6"
+    },
+    {
+      "path": "repro-before.json.gz",
+      "bytes": 8554,
+      "sha256": "a4fd6c043a0f7dede9a479db87282850acf5abbb6915c1d6e0f1f7c5bc9ec4f5"
+    },
+    {
+      "path": "repro-delta.json",
+      "bytes": 2452,
+      "sha256": "6c5dc566914db846595398c3d87903fddbdc1e747de32d85b7574720d270b52a"
+    },
+    {
+      "path": "repro-inputs.json.gz",
+      "bytes": 7248,
+      "sha256": "eabb8e0206e66340438fac5bc68ee18f25e49dc928371186afd89b9be433b85e"
+    },
+    {
+      "path": "review-delta.json",
+      "bytes": 2725,
+      "sha256": "4cbc8ca4f5ee7e2ae7ccb33425dde198456d40727657ab109a301efaf89d5f94"
+    },
+    {
+      "path": "run_guarded.py",
+      "bytes": 1077,
+      "sha256": "e215f9c2e74409433db652f0586236031ff9ce9a621121119a58950a9f78e33a"
+    },
+    {
+      "path": "runtime-identities.json",
+      "bytes": 3429,
+      "sha256": "2d63e0fdde874e6118a7e623701fe42ce62e2b948324b76d2e442e45efe24887"
+    },
+    {
+      "path": "runtime-manifest.json",
+      "bytes": 34437,
+      "sha256": "2ef50ce139cf410c7beb4727b01efe5c719a357a21d410f04bf74c0580dc5518"
+    },
+    {
+      "path": "toolchain.json",
+      "bytes": 332,
+      "sha256": "bcfb77d1cd09013f9df0ef9b5fe7ed9fb22ada5de23793f17810652c75e0e5e3"
+    },
+    {
+      "path": "verify_affected_after.py",
+      "bytes": 2313,
+      "sha256": "1cba8a15c8b1e1bc459e741de05febe326c933ed34b621b85d8d5304281abacd"
+    },
+    {
+      "path": "wasm-oracle-run.json",
+      "bytes": 514,
+      "sha256": "ddab6c500ee24888c13299c387ff8614e1922dd9d17719955eb5be259d2ea2da"
+    },
+    {
+      "path": "wasm-oracle.log.gz",
+      "bytes": 303,
+      "sha256": "131dc66d6166e053b7dc962ee5e31cda9d10d089195c7bbfc0d4334599386383"
+    },
+    {
+      "path": "wasm-release-run.json",
+      "bytes": 386,
+      "sha256": "9e79dab7ff2cc75be33431dfa7ef5d89554f6a601cd3d3d5489fbb5863fe3878"
+    },
+    {
+      "path": "wasm-release.log.gz",
+      "bytes": 152,
+      "sha256": "91d0e29d34f29a0b8fea1040d38d041bb1d13d003ee1403646e1fa646b0b0f51"
+    }
+  ]
+}

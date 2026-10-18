@@ -79,5 +79,7 @@
   "noFrontendRerun": true,
   "noFullNativeOrWorkerRerunAfterP2": true,
   "noWebsiteAccess": true,
-  "noDeployment": true
+  "noDeployment": true,
+  "afterCode": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+  "committedSourceAndFixtureBound": true
 }

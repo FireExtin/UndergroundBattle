@@ -1,5 +1,7 @@
 # JC057 P2：修前实际复现与修后精确见证（待父串行独审）
 
+修复代码保存点`5a1a40dee9506b073f3ddd6dc4c796c3f7c72647`已正常推送至`codex/stage-pass-progress-20261016`。审查增量2261d773→5a1a40d，唯一生产源码是jc057.rs；后续仅补证据。runtime-manifest.json绑定该代码与177构建输出/174运行文件，133个源码/测试脚本及新fixture与提交内容吻合。
+
 复现基线是2261d773，旧ABI84 WASM191c05fc、fixture0832c399。原revision13、choiceId i249、actor0检查点仅把pending.seat改1，就允许席位1代为跳过；再改playerId也允许其代选p1。修后同一输入字符串在恢复时被拒绝，原行动者跳过/指定目标仍接受至14，其他席位仍拒绝且保持13。原始输出见repro-before.json.gz、repro-after.json.gz，原输入和哈希见repro-inputs.json.gz；范围仅是持久化坏档，不是正常HTTP可上传任意状态的断言。
 
 修后生产改动仅jc057.rs的Declare待选守卫。131编译输入中，仅jc057.rs及既有jc057_tests.rs变化。原10场景完整命令、状态、日志、四视图完全相同，原检查点逐字节一致，见native-legitimate-delta.json。新增声望、威名和通过JC036/XQ14/BQ035真实授予的机动3场景，保留规范Accept/Target流程。
