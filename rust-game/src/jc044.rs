@@ -208,6 +208,8 @@ impl Game {
                         }
                     } else if item.card.is_some() || item.deploy_region.is_some() || item.reveal
                         || item.target != f.targets.first().map(|t| t.id.clone()) { return Err("JC044能力容器不能夹带牌或改写目标".into()); }
+                } else if item.card.as_ref().is_some_and(|c| c.definition == "JC044") {
+                    return Err("JC044不能挂接其他牌的堆栈程序".into());
                 }
             } else if item.card.as_ref().is_some_and(|c| c.definition == "JC044") { return Err("JC044堆栈缺少冻结帧".into()); }
         }

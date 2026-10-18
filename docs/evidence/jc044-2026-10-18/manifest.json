@@ -6,8 +6,8 @@
   "evidenceFiles": [
     {
       "path": "README.md",
-      "bytes": 3912,
-      "sha256": "92062f7a7252d57f533186f694d3fa3bb80b43e843ecdb62808dccd00e75bd4a"
+      "bytes": 4159,
+      "sha256": "66c43e4f143b1fc10c24e4ffb35e79f7740694c5063c74d258b3a198f038b107"
     },
     {
       "path": "baseline-runtime-manifest.json",
@@ -553,13 +553,13 @@
   "documents": [
     {
       "path": "docs/JC044_SERIAL_HANDOFF_2026-10-18.md",
-      "bytes": 2736,
-      "sha256": "42d0ca1206d2f83e6aac37e18ce6bdd0a59125ec5fab6e058969a326a08506c2"
+      "bytes": 2977,
+      "sha256": "5a14bd6c45373689b902ace62dbfcd89deae4262b9cf93685d165777bf99c18c"
     },
     {
       "path": "docs/JC044_SERIAL_REVIEW_2026-10-18.md",
-      "bytes": 5751,
-      "sha256": "db0c980088b47702246e6cc184fc912527227d55b0e5030f4bea4ffc8ffa8e19"
+      "bytes": 5992,
+      "sha256": "b5475e0fb7532d2eeeb9f8910b927c53fa73275326f0a42e9ec709c00c2e9c93"
     },
     {
       "path": "docs/JC044_PENDING_LIVE_PLAYER_FIX_2026-10-18.md",
@@ -590,5 +590,9 @@
   "runtimeManifestSha256": "2d2203a29ae79eaedae3ee655e0d559798e191741f9221a7c066cb5d897ff4eb",
   "independentReview": "Pending parent serial review",
   "published": false,
-  "mainMerged": false
+  "mainMerged": false,
+  "historicalStatus": "1979 not cleared: independent review found inverse stack-source identity gap",
+  "supersededBy": "docs/JC044_STACK_SOURCE_IDENTITY_FIX_2026-10-18.md",
+  "updatedAtUtc": "2026-10-18T06:34:01.594106+00:00",
+  "originalManifestCommit": "4f5ba75c33142e0a9d34c54b8e1d983766b83fa2"
 }

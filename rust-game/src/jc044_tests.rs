@@ -244,6 +244,34 @@ fn invalid_pending(room:&crate::room::RoomEnvelope,phase:&str)->Vec<serde_json::
     }
     rows
 }
+fn invalid_entry_stack(room:&crate::room::RoomEnvelope,kind:&str)->serde_json::Value{
+    let mut bad=room.clone();
+    let item=bad.game.stack.first_mut().expect("entry on stack");
+    assert_eq!(item.card.as_ref().unwrap().definition,"JC044");
+    let frame=item.frame.as_mut().unwrap();assert_eq!(frame.source.card.definition,"JC044");
+    assert_eq!(frame.ability_key,kind);frame.source.card.definition="LC19".into();
+    let mut expected=serde_json::to_value(room).unwrap();
+    *expected.pointer_mut("/game/stack/0/frame/source/card/definition").unwrap()=serde_json::json!("LC19");
+    assert_eq!(serde_json::to_value(&bad).unwrap(),expected,"only frozen source definition changes");
+    let state=serde_json::to_string(&bad).unwrap();
+    let game_error=Game::from_persisted(&serde_json::to_string(&bad.game).unwrap()).err().expect("foreign frame must reject JC044 Game restore");
+    let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().expect("foreign frame must reject JC044 Room restore");
+    assert_eq!(game_error,"JC044不能挂接其他牌的堆栈程序");assert_eq!(room_error,game_error);
+    serde_json::json!({"name":format!("stack-{kind}-source-identity"),"state":state,"gameError":game_error,"roomError":room_error,
+        "roomId":room.game.room_id,"inviteCode":room.game.invite_code,"revision":room.revision})
+}
+#[test]
+fn jc044_entry_stack_identity_is_symmetric_and_legal_entries_resume(){
+    for reveal in [false,true]{for accept in [false,true]{
+        let mut g=u::game();u::fund(&mut g,0,"JC044",3);
+        let id=if reveal{let id=u::field(&mut g,"JC044",0);g.board_mut(&id).unwrap().face_down=true;id}else{u::held(&mut g,"JC044",0)};
+        let kind=if reveal{"reveal"}else{"deploy"};let mut t=Trace::new(&format!("stack-{kind}-{accept}"),&g);
+        t.game(0,Action{card_id:Some(id),region:(!reveal).then_some(0),..Action::new(kind)},true);
+        invalid_entry_stack(&t.room,kind);
+        t.responses();t.choose(if accept{vec!["accept".into()]}else{vec![]});t.responses();
+        assert_eq!(t.room.game.regions[0].cards.iter().find(|c|c.definition=="JC044").unwrap().time_markers,u32::from(accept));
+    }}
+}
 #[test]
 fn jc044_native85_oracles(){
     use crate::room::SessionAction;
@@ -252,7 +280,9 @@ fn jc044_native85_oracles(){
         let mut g=u::game();g.room_id=format!("{:024x}",850000+usize::from(reveal)*2+usize::from(accept));u::fund(&mut g,0,"JC044",3);
         let id=if reveal{let id=u::field(&mut g,"JC044",0);g.board_mut(&id).unwrap().face_down=true;id}else{u::held(&mut g,"JC044",0)};
         let name=format!("entry-{}-{}",if reveal{"reveal"}else{"deploy"},if accept{"accept"}else{"skip"});let mut t=Trace::new(&name,&g);
-        t.game(0,Action{card_id:Some(id),region:(!reveal).then_some(0),..Action::new(if reveal{"reveal"}else{"deploy"})},true);t.responses();
+        t.game(0,Action{card_id:Some(id),region:(!reveal).then_some(0),..Action::new(if reveal{"reveal"}else{"deploy"})},true);
+        if !accept{invalid.push(invalid_entry_stack(&t.room,if reveal{"reveal"}else{"deploy"}));}
+        t.responses();
         if !reveal&&accept{invalid.extend(invalid_pending(&t.room,"declare"));}
         t.choose(if accept{vec!["accept".into()]}else{vec![]});t.responses();
         assert_eq!(t.room.game.regions[0].cards.iter().find(|c|c.definition=="JC044").unwrap().time_markers,u32::from(accept));
@@ -300,7 +330,7 @@ fn jc044_native85_oracles(){
         t.responses();assert_eq!(t.room.game.pending.as_ref().unwrap().seat,2);t.choose(vec!["region:2".into()]);
         assert!(t.room.game.board(&source).unwrap().1.exhausted);assert_eq!(t.room.game.board(&source).unwrap().1.time_markers,1);scenarios.push(t.finish());
     }
-    assert_eq!(scenarios.len(),13);assert_eq!(invalid.len(),35);
+    assert_eq!(scenarios.len(),13);assert_eq!(invalid.len(),37);
     if let Ok(dir)=std::env::var("JC044_NATIVE_DIR"){
         std::fs::create_dir_all(&dir).unwrap();let output=serde_json::json!({"format":"jc044-native85-v1","scope":"Explicit offline layouts with real Room commands, payments, responses, pause/reopen and complete private views; no online gameplay claim","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid});
         use std::io::Write;std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("native85.json")).unwrap().write_all(&serde_json::to_vec(&output).unwrap()).unwrap();

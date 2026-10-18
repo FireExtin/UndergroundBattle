@@ -1,0 +1,36 @@
+{
+  "format": "sites-v66-normal-browser-hourly-v1",
+  "files": [
+    {
+      "path": "hourly-v66-normal-browser.exit.json",
+      "bytes": 300,
+      "sha256": "e785c72ab3e891e37f7036a380a51b097fa990c846bc8180b1b09a2c5b2ce000"
+    },
+    {
+      "path": "hourly-v66-normal-browser.log.gz",
+      "bytes": 164,
+      "sha256": "ba1a944e7ac3a00c7e8df2c5719f532e2bbf439e550c12780fcb2cb0f9048570"
+    },
+    {
+      "path": "normal-browser.json",
+      "bytes": 3658,
+      "sha256": "a0f81905daf745f1e3c656623cfdd75be5592c4cd6900996bad5974614f94b88"
+    },
+    {
+      "path": "normal-browser.png",
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+    },
+    {
+      "path": "official-identity.json",
+      "bytes": 1278,
+      "sha256": "ddd6d63db80a2d327a936baf2faa9c2a00a2034b59fa3c7a96cb2add55338a24"
+    },
+    {
+      "path": "v66-normal_browser.py",
+      "bytes": 9058,
+      "sha256": "fbcb6e7523336a4d01a2c3184ac0b198f5c93b68ee349a9aafdd70d7a816efbb"
+    }
+  ],
+  "noSecretsOrDatabaseFiles": true
+}

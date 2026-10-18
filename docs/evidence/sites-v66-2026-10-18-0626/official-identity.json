@@ -1,0 +1,30 @@
+{
+  "checkedAtUtc": "2026-10-18T06:26:18.174Z",
+  "expectedEvidenceCommit": "c674946d010559fa991ef78842d01d42de07d2f3",
+  "expectedReviewedCodeCommit": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+  "officialSite": {
+    "checkedAtUtc": "2026-10-18T06:26:03.144Z",
+    "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "latestVersionNumber": 66,
+    "status": "active",
+    "currentLiveUrl": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site"
+  },
+  "officialVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_3f65e3056e348191a98d60d6bade492f",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 66,
+    "source": {
+      "commit_sha": "7ab9768bd86a5a7e66dd988a42324624c1a23943"
+    },
+    "deployment_id": "appgdep_6ad43cd94bd48191b45e73872b0f13cd"
+  },
+  "officialDeployment": {
+    "id": "appgdep_6ad43cd94bd48191b45e73872b0f13cd",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_3f65e3056e348191a98d60d6bade492f",
+    "status": "succeeded",
+    "type": "publish",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "updated_at": "2026-10-18T03:29:19.188111+00:00"
+  }
+}

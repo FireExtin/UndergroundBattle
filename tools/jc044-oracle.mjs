@@ -31,10 +31,10 @@ export function validateNative(raw){
    state=row.expected.state;commands++;
   }
  }
- assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[['declare',17],['repression',18]].flatMap(([k,length])=>Array.from({length},(_,i)=>`${k}-${String(i).padStart(2,'0')}`)).sort());
+ assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[['declare',17],['repression',18]].flatMap(([k,length])=>Array.from({length},(_,i)=>`${k}-${String(i).padStart(2,'0')}`)).concat(['stack-deploy-source-identity','stack-reveal-source-identity']).sort());
  for(const r of raw.invalid){assert.equal(typeof r.state,'string');assert(r.gameError.length>0&&r.roomError.length>0);assert.equal(typeof r.roomId,'string');assert(Number.isSafeInteger(r.revision));}
  const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
- assert.deepEqual(counts,{scenarios:13,commands:118,rejected:17,projections:524,invalidRestores:35},'Complete JC044 Native acceptance contract');
+ assert.deepEqual(counts,{scenarios:13,commands:118,rejected:17,projections:524,invalidRestores:37},'Complete JC044 Native acceptance contract');
  return counts;
 }
 export function loadFixture(){
