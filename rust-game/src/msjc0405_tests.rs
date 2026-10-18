@@ -14,14 +14,14 @@ const GRAY: Spec = Spec {
     id: "MSJC05", search: "search-gray-unique", color: "灰",
     name: ("国家机构", "政府权力"), subtypes: &["机构"],
     cards: &["JC056", "JC058", "JC059", "JC063", "JC069", "JZ43", "XQ27", "JZ44",
-        "JZ45", "XQ24", "JC061", "XQ25", "JC060", "JZ46"],
-    full: 42, color_count: 14, uniques: &[],
+        "JZ45", "XQ24", "JC061", "XQ25", "JC060", "JZ46", "JC057"],
+    full: 45, color_count: 15, uniques: &[],
     hits: ["JC060", "JZ46", "JC056", "LC23"],
 };
 #[test] fn msjc04_whole_original_and_real_red_unique_program() { original(&RED); }
 #[test] fn msjc05_whole_original_and_gray_unique_program() { original(&GRAY); }
 #[test] fn msjc04_construction_24_25_42_and_society_outside_50() { construction(&RED); }
-#[test] fn msjc05_construction_24_25_42_and_society_outside_50() { construction(&GRAY); }
+#[test] fn msjc05_construction_24_25_45_and_society_outside_50() { construction(&GRAY); }
 #[test] fn msjc04_four_personal_searches_private_choice_public_reveal_and_restore() { four_searches(&RED); }
 #[test] fn msjc05_real_pool_no_gray_unique_still_pays_consumes_quota_and_shuffles_all_seats() { no_unique_in_admitted_pool(&GRAY); }
 #[test] fn msjc04_atomic_rejections_wrong_source_cost_ability_and_exhaustion() { rejections(&RED); }

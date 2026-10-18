@@ -221,8 +221,8 @@ fn jc057_native84_oracles() {
         t.game(0,confirm.clone(),true);t.game(0,confirm,false);
         assert!(t.room.game.pending.is_none());scenarios.push(t.finish());
     }
-    for mode in ["empty","skip","deploy"] {
-        let mut g=u::game();g.room_id=format!("84000000000000000000{mode}");u::fund(&mut g,0,"JC057",2);
+    for (mode_index,mode) in ["empty","skip","deploy"].into_iter().enumerate() {
+        let mut g=u::game();g.room_id=format!("{:024x}",840100+mode_index);u::fund(&mut g,0,"JC057",2);
         let mut action=Action::new(if mode=="deploy"{"deploy"}else{"reveal"});
         if mode=="deploy"{action.card_id=Some(u::held(&mut g,"JC057",0));action.region=Some(0);}
         else {let id=u::field(&mut g,"JC057",0);g.board_mut(&id).unwrap().face_down=true;action.card_id=Some(id);}
@@ -232,12 +232,12 @@ fn jc057_native84_oracles() {
         assert!(t.room.game.pending.is_none());assert_eq!(t.room.game.players[0].assets.iter().filter(|c|c.exhausted).count(),2);
         scenarios.push(t.finish());
     }
-    for (name,spell,fund,source_seat,option) in [
+    for (mode_index,(name,spell,fund,source_seat,option)) in [
         ("live-exhaust","XQ03",2,0,None),
         ("live-hide","JC063",2,0,Some("hide")),
         ("live-control","JC129",3,1,None),
-    ] {
-        let mut g=u::game();g.room_id=format!("84000000000000000000{name}");
+    ].into_iter().enumerate() {
+        let mut g=u::game();g.room_id=format!("{:024x}",840200+mode_index);
         let source=u::field(&mut g,"JC057",source_seat);let hidden=u::field(&mut g,"JC052",2);g.board_mut(&hidden).unwrap().face_down=true;
         let held=u::held(&mut g,spell,0);u::fund(&mut g,0,if name=="live-control"{"JC104"}else{spell},fund);
         assert_eq!(g.view(source_seat).private_inspections.len(),1);
