@@ -1,0 +1,103 @@
+error[E0277]: the trait bound `hegemony_server::model::Game: serde::Serialize` is not satisfied
+    --> /workspace/jc044-evidence-20261018/pending-target-repro/probe.rs:10:38
+     |
+  10 |  let game_json=serde_json::to_string(&room.game).unwrap();let room_json=serde_json::to_string(&room).unwrap();
+     |                --------------------- ^^^^^^^^^^ the trait `serde_core::ser::Serialize` is not implemented for `hegemony_server::model::Game`
+     |                |
+     |                required by a bound introduced by this call
+     |
+     = note: for local types consider adding `#[derive(serde::Serialize)]` to your `hegemony_server::model::Game` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+help: trait impl with same name found
+    --> /workspace/UndergroundBattle/rust-game/src/model.rs:813:24
+     |
+ 813 | #[derive(Clone, Debug, Serialize, Deserialize)]
+     |                        ^^^^^^^^^
+     = note: perhaps two different versions of crate `serde_core` are being used?
+note: there are multiple different versions of crate `serde_core` in the dependency graph
+    --> /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/ser/mod.rs:234:1
+     |
+ 234 | pub trait Serialize {
+     | ^^^^^^^^^^^^^^^^^^^ this is the required trait
+     |
+    ::: /workspace/jc044-evidence-20261018/pending-target-repro/probe.rs:1:5
+     |
+   1 | use hegemony_server::{model::Game,room::RoomEnvelope};
+     |     --------------- one version of crate `serde_core` used here, as a dependency of crate `serde`
+...
+  14 |  let result=serde_json::json!({"scope":"Native typed Room clone; only pending target eliminated flag changed, no JavaScript opaque-state ...
+     |             ---------- one version of crate `serde_core` used here, as a dependency of crate `serde_json`
+     |
+    ::: /workspace/UndergroundBattle/rust-game/src/model.rs:814:1
+     |
+ 814 | pub struct Game {
+     | --------------- this type doesn't implement the required trait
+     |
+    ::: /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/value.rs:1879:5
+     |
+1879 |     pub trait Pair {
+     |     -------------- this is the found trait
+     = help: you can use `cargo tree` to explore your dependency tree
+note: required by a bound in `serde_json::to_string`
+    --> /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/ser.rs:2247:17
+     |
+2245 | pub fn to_string<T>(value: &T) -> Result<String>
+     |        --------- required by a bound in this function
+2246 | where
+2247 |     T: ?Sized + Serialize,
+     |                 ^^^^^^^^^ required by this bound in `to_string`
+     = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `RoomEnvelope: serde::Serialize` is not satisfied
+    --> /workspace/jc044-evidence-20261018/pending-target-repro/probe.rs:10:95
+     |
+  10 |  let game_json=serde_json::to_string(&room.game).unwrap();let room_json=serde_json::to_string(&room).unwrap();
+     |                                                                         --------------------- ^^^^^ the trait `serde_core::ser::Serialize` is not implemented for `RoomEnvelope`
+     |                                                                         |
+     |                                                                         required by a bound introduced by this call
+     |
+     = note: for local types consider adding `#[derive(serde::Serialize)]` to your `RoomEnvelope` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+help: trait impl with same name found
+    --> /workspace/UndergroundBattle/rust-game/src/room.rs:89:24
+     |
+  89 | #[derive(Clone, Debug, Serialize, Deserialize)]
+     |                        ^^^^^^^^^
+     = note: perhaps two different versions of crate `serde_core` are being used?
+note: there are multiple different versions of crate `serde_core` in the dependency graph
+    --> /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/ser/mod.rs:234:1
+     |
+ 234 | pub trait Serialize {
+     | ^^^^^^^^^^^^^^^^^^^ this is the required trait
+     |
+    ::: /workspace/jc044-evidence-20261018/pending-target-repro/probe.rs:1:5
+     |
+   1 | use hegemony_server::{model::Game,room::RoomEnvelope};
+     |     --------------- one version of crate `serde_core` used here, as a dependency of crate `serde`
+...
+  14 |  let result=serde_json::json!({"scope":"Native typed Room clone; only pending target eliminated flag changed, no JavaScript opaque-state ...
+     |             ---------- one version of crate `serde_core` used here, as a dependency of crate `serde_json`
+     |
+    ::: /workspace/UndergroundBattle/rust-game/src/room.rs:90:1
+     |
+  90 | pub struct RoomEnvelope {
+     | ----------------------- this type doesn't implement the required trait
+     |
+    ::: /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/value.rs:1879:5
+     |
+1879 |     pub trait Pair {
+     |     -------------- this is the found trait
+     = help: you can use `cargo tree` to explore your dependency tree
+note: required by a bound in `serde_json::to_string`
+    --> /workspace/tooling/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/ser.rs:2247:17
+     |
+2245 | pub fn to_string<T>(value: &T) -> Result<String>
+     |        --------- required by a bound in this function
+2246 | where
+2247 |     T: ?Sized + Serialize,
+     |                 ^^^^^^^^^ required by this bound in `to_string`
+     = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

@@ -1,0 +1,11 @@
+# JC044待选玩家存活恢复缺口：修前原生复现（WIP）
+
+已推送候选5acbce8b270a1412d28505fb94e909165985de4b仍不可放行。复核时发现遏制Frame待选只检查完整目标/地区/费用元数据，漏查行动者和目标是否已出局。当前完整旧机制Worker回归继续使用原产物，未中断、未修改其源码或输出。
+
+输入来自真实Native85 actor-0场景：暂停/恢复后、目标p2确认之前的合法Room。独立Rust程序先通过Room::from_persisted加载，克隆强类型Room，只改目标p2或原行动者p0的eliminated标志，再由Rust序列化。两种坏档的Game::from_persisted和Room::from_persisted均接受。使用准确SHA为14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e的ABI85，输入原生生成的不透明Room字符串，view也成功向p2返回pendingChoice。只解析公开视图，未在JavaScript中解析/重写不透明状态；未访问线上房间或写入生产数据库。
+
+证据位于evidence/jc044-2026-10-18/pending-live-player-repro：Rust源、原生生成坏档、Native/WASM回执和SHA清单。原生探针链接当前候选缓存库，其SHA为4e9a4694de54cb02aa5e03f35034ab021fdfd8652a9bf6920d2e163727e108ab。首次独立编译误选不兼容serde_json缓存，未执行；换成匹配依赖后复现。行动者探针首版字段名误称目标已出局，第二版明确actor=true/target=false，恢复接受结论未变；保留的是正确源和正确回执。
+
+拟最小修复限定在RepressOne待选容器：要求frame.actor和目标玩家均仍存活。不把该约束加到原冻结目标或全部帧上，保留目标在响应期间合法出局后失效、已付时间不返还的路径。新增原生单测覆盖真实eliminate后的坏待选与响应失效边界；原32坏档保留，另外增加Declare选择者出局、Repress目标出局和Repress行动者出局三档，共35。之后重新编译133输入见证与新WASM并比较原13场景/原32坏档不变，再做适用前端、HTTP/D1及本地浏览器验证。
+
+当前907源码/179输出清单保留为baseline-runtime-manifest.json，明确标注已知缺口；不是最终可审候选清单。77–84冻结原核不改，ABI85仍是未发布候选。当前旧机制回归自然结束后才应用修复和重建，完整保存修前与修后边界，不拼称一次全套全绿。不发布、不合main、不启动复审子任务。

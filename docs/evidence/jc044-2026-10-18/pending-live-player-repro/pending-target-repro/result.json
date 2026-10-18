@@ -1,0 +1,10 @@
+{
+  "engine": "rust-v0.2.85-jc044-time-repress-candidate",
+  "gameError": null,
+  "gameRestoreAccepted": true,
+  "privateChoiceForEliminatedTarget": true,
+  "roomError": null,
+  "roomRestoreAccepted": true,
+  "scope": "Native typed Room clone; only pending target eliminated flag changed, no JavaScript opaque-state parsing",
+  "target": 2
+}

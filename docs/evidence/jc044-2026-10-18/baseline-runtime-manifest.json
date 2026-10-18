@@ -1,0 +1,1902 @@
+{
+  "format": "jc044-abi85-runtime-v1",
+  "source": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "boundAtUtc": "2026-10-18T05:11:38.848187+00:00",
+  "scope": "Local production build and local trusted-clock wrapper; no deployment or online gameplay",
+  "nativeInputs": 133,
+  "gitCommittedSourceAndCurrentSourceHashesVerified": 907,
+  "sourceSha256": {
+    "Cargo.lock": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54",
+    "Cargo.toml": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257",
+    "rust-game-wasm/Cargo.toml": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0",
+    "rust-game-wasm/build.sh": "3c86700cd2004cd0bb5aec81fa76d1f81949076173dd147d86d5fd7ac1d6d61b",
+    "rust-game-wasm/frozen/abi77/identity.json": "5d1413a6bfa494bf4e52dd20821949ab293dd70e7e0a606fa1af2e9a67dce2c6",
+    "rust-game-wasm/frozen/abi78/identity.json": "5678541badf621e2f3a1892c4b8e654a1798ce87d23d06ecbc5d63e6d318c670",
+    "rust-game-wasm/frozen/abi78/native-source-binding.json": "c1d3acfa1278eab1d61c12cecd7e1dbc57826b2fb03965658857075ad4eb9b23",
+    "rust-game-wasm/frozen/abi79/identity.json": "e5886eefaad7822e694c92bc72c74ab5b69ebf80fd309e9d9199f1e6f078962f",
+    "rust-game-wasm/frozen/abi79/native-source-binding.json": "7798a036b71b9fa7da95af7fd10f72a501173e7db7a1c71512a33be1c5026549",
+    "rust-game-wasm/frozen/abi80/identity.json": "ea4ab4721f0b1e1dec75dc48da4fa618546900d93cf05866ed5d6d76631a03e0",
+    "rust-game-wasm/frozen/abi80/native-source-binding.json": "1bac9d6ea0db5165b2d44080e14a2c308c540af04b1361c5c77deefd8bb6c6c3",
+    "rust-game-wasm/frozen/abi81/identity.json": "be45e90ba311ec0407251e3923b8ff8bd0bb3bb6cff88baa2c72db42ecd31fec",
+    "rust-game-wasm/frozen/abi81/native-source-binding.json": "3b260dabd52fad9cbf1a72586d346e35cf0c38e844f80a00c3864837189e7110",
+    "rust-game-wasm/frozen/abi82/identity.json": "38486d0cafec6b8f9685fa75aa3f7eecf69edce65e314f6349e381f16d671a0e",
+    "rust-game-wasm/frozen/abi82/native-source-binding.json": "167283f5ff633ffa6a4eea78c923d83bfa7828b3e11d1950106c5f0ccd70a475",
+    "rust-game-wasm/frozen/abi83/identity.json": "83011ed77e336dc985f0038f0f87fa33122fc6c48e7755d8f33263ffb8f45065",
+    "rust-game-wasm/frozen/abi83/native-source-binding.json": "ec5a9f37ad5198a0f2af181ee542d83c0569999ed07947dbb012f43522af8daf",
+    "rust-game-wasm/frozen/abi84/identity.json": "eec5357757f95538ff65adeb1b03181d07b2213d968ae08ba9f2b06b10711bbb",
+    "rust-game-wasm/frozen/abi84/native-source-binding.json": "fea2b3c5184bfe8eb98a11b7c0dc372b7d154f877c5866808eea38e1c97e1322",
+    "rust-game-wasm/src/lib.rs": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3",
+    "rust-game-wasm/tests/current85-kernel.mjs": "38752d6fffea40b17331fa8b2f40809e12c03a05ef1f8046482310e36ce32ffe",
+    "rust-game-wasm/tests/jc044Native85.fixture.json.gz": "5a5fdf76b537219063838d82e133d45e68e2eec172a95d47f943435ec304e0f2",
+    "rust-game/Cargo.toml": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178",
+    "rust-game/data/cards.json": "5f531ca1417ddce95bfae351f046d3108dc344a70d138aa400d51b0b8ac414f9",
+    "rust-game/src/attachment.rs": "000f8a94d158a9cc059dd1397bbd47b030bd8562e092b4e28f21c346cabd15be",
+    "rust-game/src/attributes.rs": "d09e78fb05d45c52378efb526327fc9075ad537a1dc771707f7527da284316a0",
+    "rust-game/src/bin/hegemony-audit.rs": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e",
+    "rust-game/src/black_expansion.rs": "c78289a80eafe17c72394a389c26d83044bfc2df2530d239bed10e517b6ec312",
+    "rust-game/src/black_expansion_tests.rs": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c",
+    "rust-game/src/blue_expansion.rs": "1356458c4de4dbc19ce223da25ec614f50c4c471c8b92c2daacdbf8440c94607",
+    "rust-game/src/blue_expansion_tests.rs": "51dff91c0273a64e9e4d7679c3f38b0ae4cce32e961a4cd4de11a15639f27e1c",
+    "rust-game/src/blue_minimum.rs": "3ba3322bec76dc3b0a90e61ba4575ec15b45ea2a1488c100ce6da7926d622f24",
+    "rust-game/src/blue_minimum_tests.rs": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb",
+    "rust-game/src/bounded_entry_fresh_tests.rs": "90cfb2f3efca7dcfccacd78489b180d86363f4caf7bc07e4e08c77470ee799f4",
+    "rust-game/src/bounded_search.rs": "6f6ebedf328d8c5a88f01fd2a5ba76e03c4067f50dae195fc94fb03e14ee098e",
+    "rust-game/src/bounded_search_tests.rs": "d5bd935059107f4fc1b31f5dcdeb84285f512c978fef033161fb62c45fc2d743",
+    "rust-game/src/bq030.rs": "4c9613d972f66713ee1abbd370788fb9d27a3c6ec1c0ccd38fb9754db48e2fb8",
+    "rust-game/src/bq030_preparation.rs": "5105c9d3b84c149675de378e22830ebf54dca371d034ec743bfc5eb86a590561",
+    "rust-game/src/bq035.rs": "991c1f1cb5a30e8a41828020e433255ea8eb5bf9119c0baa88eb4ac15df97515",
+    "rust-game/src/bq035_tests.rs": "fef539871a26fb58ca1a230e7d8300d414dd06f3331b87f7c7050d3aa7b37d1f",
+    "rust-game/src/catalog.rs": "5dd07545399a9d6496e066d862cd82c22fc2bd5ea01ddab2999f1149625ed2f1",
+    "rust-game/src/control.rs": "76d854b7222817aed476810596848eb13ce675b537360716a51ea4c36c2ff515",
+    "rust-game/src/control_tests.rs": "02f2245f8fd784cd61f1283a323221551dd5049c238eb37b8de6c629142e6c17",
+    "rust-game/src/death_observer_tests.rs": "9614543f24087f7a369f847e17d6f074138866c786f2c77a3e0ef654f17588fa",
+    "rust-game/src/death_observers.rs": "baa8456365384fa422bed01c0e7b1a5ff85bb88e9ebc02f6bddac36bb21f2b58",
+    "rust-game/src/deck.rs": "20b2a14c0de1ff8ca921fba06aa322daf625f87716963c4ed434c3e8f18494bd",
+    "rust-game/src/deck_seal_search.rs": "69981f416b13c510da1c4929513bd1cfa7d788f2881773b0381dbe1a59b08851",
+    "rust-game/src/deck_seal_search_draft.rs": "fe343a543ab96b45ef8fa81d344e825d2935e702b6e7bdfb36975f0666e034e2",
+    "rust-game/src/deck_seal_search_tests.rs": "5c2711ab73aca39d0ce9d3c296124bb4a961b8739eefced47ed1fc66401718c6",
+    "rust-game/src/defence_equipment_tests.rs": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462",
+    "rust-game/src/dream_reveal_tests.rs": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e",
+    "rust-game/src/engine.rs": "403aeff6ff116d61f0819ef7c460042b4d9fb8846b61a839d3bae940242850bb",
+    "rust-game/src/equipment_abilities_tests.rs": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c",
+    "rust-game/src/gray_expansion.rs": "d4ad0606934e90e076d6c23f705eac5c615e29ad67313a1ffb182340cccd5924",
+    "rust-game/src/gray_expansion_tests.rs": "b578d1d3033d9708fd2b0b56fbfbbb2d40ba592eba5f10404b9ff25ee330719a",
+    "rust-game/src/gray_lock.rs": "6d9c66d37edc74e07e5b8cd4f1948ff7535205bd8ce3d22d6befcb36808e90b1",
+    "rust-game/src/gray_lock_tests.rs": "fede3e16e1db5742589d99ef3f19b39f2b846b8a725cdd975697436b579e4ecd",
+    "rust-game/src/green_minimum_tests.rs": "4206840dcb97261cc609501aee30e749a16c1a407b26a63d210627281d354bdf",
+    "rust-game/src/hand_deck_tests.rs": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c",
+    "rust-game/src/hand_interactions_tests.rs": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517",
+    "rust-game/src/jc004_tests.rs": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf",
+    "rust-game/src/jc005_tests.rs": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee",
+    "rust-game/src/jc008_tests.rs": "a6fe105a7f23709f659746dabf323ecee34fbc75688983f36cb2078c8406748f",
+    "rust-game/src/jc029_tests.rs": "3412ada0846024cc54341196ca1420d8771c2b7b1d94f9498815c765f7e3cc19",
+    "rust-game/src/jc030_tests.rs": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440",
+    "rust-game/src/jc037.rs": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b",
+    "rust-game/src/jc037_tests.rs": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c",
+    "rust-game/src/jc044.rs": "9ff8a43978fbaf3835ac6a9b7e729ed8a980bb0f840aaa126c9aa528f1d11fbb",
+    "rust-game/src/jc044_tests.rs": "74b806009d71491eb12b7d5f82f94e22972e17af2ee9d1001efda070a1e9efc2",
+    "rust-game/src/jc046.rs": "00c90336372f18ca59cbb8b3ac68010a5edd8a7ed56437fc5b826c187327263a",
+    "rust-game/src/jc046_tests.rs": "4a08fb9e94b501f929b4d672c311e7bf8bb924e5274dcf78f909aa2ca5729c99",
+    "rust-game/src/jc050.rs": "03057cf59ddeed89275079447d5b4799bd36d38e09a5f8218fb7e53771c5a38e",
+    "rust-game/src/jc050_tests.rs": "10d088b2ce193ecdbb00bb7b969b4bdb151117bb4adccb21218d3a319df0f42e",
+    "rust-game/src/jc052.rs": "22b1fdb769be5adbf41d314c22c788efa3ed2713fb86a85f56813cb390a3e34d",
+    "rust-game/src/jc052_tests.rs": "1dc7aa0e104be1ce2387a7a4ba01fe4af98c34001c2fe578731ac87ac49aac9c",
+    "rust-game/src/jc054.rs": "b3c993d4e50db0c4a099691b3ca852f717d6ed740990367d5aaabe59e5328bf8",
+    "rust-game/src/jc054_tests.rs": "c78a3a1d03fbd1a119e950835de63fa9e7999e660c486ac640f6a21d6f8cb026",
+    "rust-game/src/jc057.rs": "27d97b4829b6690a2f0a1d4840bde898e51e4e1d3d2bc4de05a08b6529bf289f",
+    "rust-game/src/jc057_tests.rs": "78d448440a0a262bda327670d4087612e556e3a5449a054e93ed0e6222bc99c8",
+    "rust-game/src/jc060.rs": "0090a80f02c19137634632e45adb03b8073270cd1a1a7e426cf4245f8c2dec41",
+    "rust-game/src/jc060_tests.rs": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121",
+    "rust-game/src/jc061_tests.rs": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495",
+    "rust-game/src/jc087_tests.rs": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6",
+    "rust-game/src/jc089_tests.rs": "b417a9def723b0f6ae91813ef9b23506430661613440023338d8ea23f7b18bcd",
+    "rust-game/src/jc094_tests.rs": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c",
+    "rust-game/src/jc095.rs": "0b3ac86724854fd99ce6cf7d33cf63b411e2e38a47c81ae4e195a6cb8b575c82",
+    "rust-game/src/jc095_tests.rs": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c",
+    "rust-game/src/jz22.rs": "9fdc5f9e11a5c3df74c687fd25683451391549da9682190983e20cbc6f31710d",
+    "rust-game/src/jz22_tests.rs": "9ffcc93d768e49f6468557af937d90434f57abff556502c39ec73dbf0895219d",
+    "rust-game/src/jz31_tests.rs": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a",
+    "rust-game/src/jz35.rs": "08b7c46e6b7ad541f74c47102af6e4a09e7665c49a7514c934a12860c24c480b",
+    "rust-game/src/jz35_tests.rs": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175",
+    "rust-game/src/jz46.rs": "d77d3d68bcd502d3e75f8e1112647d940c51c298af6d4abb97a78815e8886e4e",
+    "rust-game/src/jz46_tests.rs": "544096dda66f112672ac9abfc36235d963072766d468567134fc511e27b15c33",
+    "rust-game/src/jz48_tests.rs": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74",
+    "rust-game/src/jz49_tests.rs": "d2149e6e5d126cb7f832e6749f891962eb773f5fd6be765ce8b642a254797979",
+    "rust-game/src/jz50_search.rs": "ddef90d3972d760897ab16cadf264908cb1e65fd9643d92194a169d1f3b3269c",
+    "rust-game/src/jz50_search_tests.rs": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6",
+    "rust-game/src/jz55_tests.rs": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02",
+    "rust-game/src/lib.rs": "30bf1d7928600213412f90cbafba542f0761c685fbb7c3f2728f315c1ec71600",
+    "rust-game/src/main.rs": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e",
+    "rust-game/src/mill_public_tests.rs": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49",
+    "rust-game/src/mobility.rs": "f5aff29c49419473631bdb5e7f334ee0d1a11a1f4865e8f4549cb868837384e5",
+    "rust-game/src/model.rs": "95f4b1417245abb54a39f5f38ddb5582b7bfe532f0f4e04b34eef4367e39a366",
+    "rust-game/src/msjc01_tests.rs": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86",
+    "rust-game/src/msjc0405_tests.rs": "a7cbe74ebacd126245dd6a964a418d19f28608b31fcb32626817ae0ec87caf0d",
+    "rust-game/src/msjc06_tests.rs": "967ccdc812054b7492143243724be2d22cc8ad42b05e55093667fed866ac8cf4",
+    "rust-game/src/msjc07_tests.rs": "fc2fa07d52c484acc8b46411db413684aee36e11bd8dfcd1dc4876b29eb9c119",
+    "rust-game/src/msjc08_tests.rs": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4",
+    "rust-game/src/msjc11_tests.rs": "0cdbab76133b7f97ff6795698da19c07ff899ab1922f8a2e58d579c85871f9d0",
+    "rust-game/src/play_sources.rs": "f1a80f2f4d34e2b4c61336b176e180dbca7551fbd82e752d3c80757418638dfd",
+    "rust-game/src/protection_tests.rs": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8",
+    "rust-game/src/purple_tools_tests.rs": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d",
+    "rust-game/src/red_time.rs": "bb5f66c08d035d7828b8e8e550395c113b5ba5e4fe0712450800f24ab6ab2d47",
+    "rust-game/src/red_time_tests.rs": "f1977ef4aca9e30d19d6ecd820e20f2f13e519ecfceeee120bec370128755c27",
+    "rust-game/src/region_aura_tests.rs": "c1356afe03f26921930fbd00b4a553859e249dd2102d9c447a60e7333e69485b",
+    "rust-game/src/renown.rs": "8aea1693418cb872161603aebe77f50c48947ba3d77364e7b27e1268ca9e61d5",
+    "rust-game/src/renown_tests.rs": "d78f6bbc81e5d63a3e6d7d5209e08ded0d78bfd6e3e9ecc803430d2de9ed3690",
+    "rust-game/src/repress_assets_tests.rs": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660",
+    "rust-game/src/resolution.rs": "4989c8159ce02e093425675b2a95baf9f145068108c70c708d85cc7762ef6ce6",
+    "rust-game/src/response_preview_tests.rs": "9c030200d1610acab654712826680c444abfcfad7d5d0bc7720e75226addbcb2",
+    "rust-game/src/room.rs": "9452b42073c396b1204d1b2921fabdd59a873738fe9df85842ce3edc174406e6",
+    "rust-game/src/rules.rs": "8af570378ddbe5240ba450c6a977ce8e056396ab71761c44a8dfec2bfa7d19cd",
+    "rust-game/src/sealing.rs": "82f19b6d0524cd378cbbf486fe607d2afb470b2ff314b2cbfef89a44f2f37539",
+    "rust-game/src/sealing_tests.rs": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd",
+    "rust-game/src/service.rs": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33",
+    "rust-game/src/society.rs": "4f6bffff994ba5b0ffd1f3f7b6a78f7c78e6fb59a5d286f836ece4f6cbe4a6a7",
+    "rust-game/src/society_msjc09_tests.rs": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086",
+    "rust-game/src/unit_support.rs": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683",
+    "rust-game/src/white_wound_tests.rs": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a",
+    "rust-game/src/win_flow_tests.rs": "be64956ca227ea711ac77a15c21c60354d990246e095809ffeec53db423ff84d",
+    "rust-game/src/wm023.rs": "bf768eabbe6e1bb444f13da98703fd33e317d51cd0cfc4a9f778810a8e419d15",
+    "rust-game/src/wm023_tests.rs": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363",
+    "rust-game/src/wm038.rs": "c29fb57dfd0273d3349f9015a18d66706134e0141e3c3345dbd12c1653db1aea",
+    "rust-game/src/wm038_tests.rs": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14",
+    "rust-game/src/wm056.rs": "38e8820bbe07a5d95786fe313aee1ca38cf787ac341bd1d7d563fd80994f367a",
+    "rust-game/src/wm056_tests.rs": "c21a4339be6425714e675176b18475da6a4aa700549475d56ca35ec994c66c77",
+    "rust-game/src/wm062.rs": "b8dbc472ef022d2ce15ed95b4eda68d42d7389a5886f0b6411f49b9e87353e2a",
+    "rust-game/src/wm062_tests.rs": "a1be65839d66764d8476b06c70d7f238f5530a47d111aabd4b955dc510a991d6",
+    "rust-game/src/world.rs": "38ceac94c8b9c407e6056cc3581a51d8664622fa8d4b2e06438cf5ff89eb3162",
+    "rust-game/src/wound_defence_tests.rs": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5",
+    "rust-game/src/xq18_tests.rs": "053679c806011f5e5adf51060ddf26cff3932efed454aa34301a0c6c221acbab",
+    "rust-game/src/xq24_tests.rs": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415",
+    "rust-game/src/xq25.rs": "dfb1de923ee4095bb4532da0acc7855c50fc08914b0de16cb81a1a5638d2870c",
+    "rust-game/src/xq25_tests.rs": "76cc7701ef62c43ad57fd7bdb689c15b33e52d96ccda8a2964dd8993bdb9e844",
+    "rust-game/src/xq27.rs": "fabdecf347cedf87ded372272618fca3ad0781d3d51e669fc79b29fbf7e82ffc",
+    "rust-game/src/xq27_tests.rs": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38",
+    "rust-game/src/xq37.rs": "5e1e662e6defd8d1e14e7a210857e4eea290da1b7340477f12515551ff210416",
+    "rust-game/src/xq37_tests.rs": "028d8dac1804a3786cccb637847c46fcd48e2af0ea1f26bd2dbd69c6db00d0c8",
+    "rust-game/src/yellow_search_batch_tests.rs": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6",
+    "sites/.openai/hosting.json": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2",
+    "sites/package-lock.json": "aa5349f37a028150bc3a6496cec9c9a95fa21becace91f698e911940323d270a",
+    "sites/package.json": "0d8c6a457e318dd148e4864201b4ae4b518371ad6184f0a006c6312dcdc110cb",
+    "sites/scripts/build-backend-test.mjs": "22c1e8e3c3e6d63baa769d4e1b7080284bc157b823a3b24aa080dbcd875c324c",
+    "sites/scripts/build-bq035-test.mjs": "f7a90dcc1475971df5b8dedbdea0b5b8a39b0d79862b7d620f51dafc3329104e",
+    "sites/scripts/build-fixed-clock-test.mjs": "67339bb38eafbb6449ae805dd4e86c8e287b65a3fe58f131dbdc75ac8b4dde8a",
+    "sites/scripts/build-jz46-test.mjs": "59d135f572e247d5f09b011eef44395f6c9022e0aee2305fb12d7dd0a01cb60c",
+    "sites/scripts/build-pass-history-test.mjs": "4b2baaa2f11e36bf203f397c81471df2a06765421d44815b2b4c550cd2b65e43",
+    "sites/scripts/build-wm062-test.mjs": "05300c1607d6da07555b31743b4cd55bea32839cef0e698955760413ca509244",
+    "sites/scripts/build.mjs": "1da6d0eb04a8a1fd2943f4b94c668b7f16916db658b4a714f89915e93e1b5f24",
+    "sites/scripts/qa-preview.mjs": "311c60c167c85f71cf672d39e5ff73695ad4b42d5bd11e921b4924e53df82ff5",
+    "sites/scripts/stage-source.mjs": "097d5eaa85329510c57fce3e8a66c945110ccb0fd9541c7b92cfeb334715bd03",
+    "sites/src/http.mjs": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+    "sites/src/index.mjs": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401",
+    "sites/src/kernel-router.mjs": "d1de5b00702eab5c32318caf89509c640491c5a4f88d1f84afc6c7d0b67f605a",
+    "sites/src/kernel.mjs": "46177b1532642713eb1bff24ef3f9c9e7b1bc97fb12c32711d384c20391e1ae0",
+    "sites/src/lazy-kernel.mjs": "c3484b39f681e65ddeb0f3760f2ad13c13083f59f694420b140b43cab3609965",
+    "sites/src/pass-history.mjs": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8",
+    "sites/src/service.mjs": "fc2fbf9d01659e652d00a3665e61b9214ac61f4061c7a092306e82cfe13d8be3",
+    "sites/src/storage-errors.mjs": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+    "sites/src/store.mjs": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811",
+    "sites/wrangler.jsonc": "7cd60bc5e5e9f377f6816c7eab154df58224d851548db8234c2b2d08e051f4f6",
+    "tools/frontend/jc044-http-four-clients-qa.mjs": "6dfdd0de1775e48f340f55410e7e0ea4586cd9b502258c934e0eb15e5e7e45b8",
+    "tools/frozen-kernels.mjs": "efe56b20e33afc4a352c2f8312ce975983729fc576444ba8b09385fec1fc7076",
+    "tools/jc044-oracle.mjs": "8b36df2d137edcab6a489701d016e9f0a956e2cfb0d789d541fbb6f2f4ad0890",
+    "web/.npmrc": "2d0d3c1e09b4c9a4308507ea701b8852c689057f8636a907d9ecdee5e9e9f919",
+    "web/index.html": "bda13861efc90cc0628d795a13b24a630943740158df5be7b0e550608f770a4d",
+    "web/package-lock.json": "bdc310d32e869dacf31b2bcf1f6b83ffbe7235a72b372820069e9cfd0911e12d",
+    "web/package.json": "6a15d4542603ada58f671bd3a575c26159e56ae303c0bb1d42f9cc3d3c2dcf74",
+    "web/public/card-scans.json": "4d12cf2d9a7089b2f1221c3a218db072277c67554efe6e27664efac6ab893065",
+    "web/public/cards/BQ022.jpg": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb",
+    "web/public/cards/BQ028.jpg": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6",
+    "web/public/cards/BQ030.jpg": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86",
+    "web/public/cards/BQ035.jpg": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5",
+    "web/public/cards/BQ040.jpg": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6",
+    "web/public/cards/BQ078.jpg": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea",
+    "web/public/cards/BQ083.jpg": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675",
+    "web/public/cards/BQ104.jpg": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb",
+    "web/public/cards/DQJC107.jpg": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8",
+    "web/public/cards/DQJC108.jpg": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e",
+    "web/public/cards/DQJC109.jpg": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a",
+    "web/public/cards/DQJC110.jpg": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026",
+    "web/public/cards/DQJC111.jpg": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41",
+    "web/public/cards/DQJC112.jpg": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad",
+    "web/public/cards/DQJC113.jpg": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e",
+    "web/public/cards/DQJC114.jpg": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2",
+    "web/public/cards/DQJC115.jpg": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94",
+    "web/public/cards/DQJC116.jpg": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d",
+    "web/public/cards/JC001.jpg": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312",
+    "web/public/cards/JC002.jpg": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680",
+    "web/public/cards/JC003.jpg": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a",
+    "web/public/cards/JC004.jpg": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4",
+    "web/public/cards/JC005.jpg": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1",
+    "web/public/cards/JC006.jpg": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4",
+    "web/public/cards/JC007.jpg": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce",
+    "web/public/cards/JC008.jpg": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45",
+    "web/public/cards/JC014.jpg": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6",
+    "web/public/cards/JC015.jpg": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e",
+    "web/public/cards/JC016.jpg": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35",
+    "web/public/cards/JC018.jpg": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8",
+    "web/public/cards/JC020.jpg": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223",
+    "web/public/cards/JC029.jpg": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
+    "web/public/cards/JC030.jpg": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542",
+    "web/public/cards/JC031.jpg": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436",
+    "web/public/cards/JC032.jpg": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b",
+    "web/public/cards/JC036.jpg": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83",
+    "web/public/cards/JC037.jpg": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece",
+    "web/public/cards/JC042.jpg": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef",
+    "web/public/cards/JC044.jpg": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800",
+    "web/public/cards/JC045.jpg": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60",
+    "web/public/cards/JC046.jpg": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab",
+    "web/public/cards/JC047.jpg": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6",
+    "web/public/cards/JC049.jpg": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58",
+    "web/public/cards/JC050.jpg": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e",
+    "web/public/cards/JC052.jpg": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33",
+    "web/public/cards/JC054.jpg": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2",
+    "web/public/cards/JC056.jpg": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d",
+    "web/public/cards/JC057.jpg": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678",
+    "web/public/cards/JC058.jpg": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a",
+    "web/public/cards/JC059.jpg": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad",
+    "web/public/cards/JC060.jpg": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae",
+    "web/public/cards/JC061.jpg": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6",
+    "web/public/cards/JC063.jpg": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165",
+    "web/public/cards/JC069.jpg": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4",
+    "web/public/cards/JC070.jpg": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b",
+    "web/public/cards/JC071.jpg": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67",
+    "web/public/cards/JC073.jpg": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42",
+    "web/public/cards/JC074.jpg": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914",
+    "web/public/cards/JC075.jpg": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434",
+    "web/public/cards/JC076.jpg": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac",
+    "web/public/cards/JC078.jpg": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9",
+    "web/public/cards/JC084.jpg": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872",
+    "web/public/cards/JC085.jpg": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2",
+    "web/public/cards/JC086.jpg": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743",
+    "web/public/cards/JC087.jpg": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00",
+    "web/public/cards/JC088.jpg": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f",
+    "web/public/cards/JC089.jpg": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7",
+    "web/public/cards/JC090.jpg": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c",
+    "web/public/cards/JC091.jpg": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb",
+    "web/public/cards/JC092.jpg": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947",
+    "web/public/cards/JC093.jpg": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2",
+    "web/public/cards/JC094.jpg": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd",
+    "web/public/cards/JC095.jpg": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020",
+    "web/public/cards/JC096.jpg": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c",
+    "web/public/cards/JC102.jpg": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d",
+    "web/public/cards/JC103.jpg": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63",
+    "web/public/cards/JC104.jpg": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da",
+    "web/public/cards/JC107.jpg": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2",
+    "web/public/cards/JC112.jpg": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71",
+    "web/public/cards/JC114.jpg": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7",
+    "web/public/cards/JC116.jpg": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16",
+    "web/public/cards/JC118.jpg": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a",
+    "web/public/cards/JC125.jpg": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a",
+    "web/public/cards/JC126.jpg": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0",
+    "web/public/cards/JC129.jpg": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59",
+    "web/public/cards/JC130.jpg": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f",
+    "web/public/cards/JC131.jpg": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f",
+    "web/public/cards/JC132.jpg": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1",
+    "web/public/cards/JZ02.jpg": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8",
+    "web/public/cards/JZ08.jpg": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12",
+    "web/public/cards/JZ22.jpg": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160",
+    "web/public/cards/JZ24.jpg": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d",
+    "web/public/cards/JZ27.jpg": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e",
+    "web/public/cards/JZ30.jpg": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264",
+    "web/public/cards/JZ31.jpg": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf",
+    "web/public/cards/JZ35.jpg": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc",
+    "web/public/cards/JZ43.jpg": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826",
+    "web/public/cards/JZ44.jpg": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb",
+    "web/public/cards/JZ45.jpg": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f",
+    "web/public/cards/JZ46.jpg": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785",
+    "web/public/cards/JZ48.jpg": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f",
+    "web/public/cards/JZ49.jpg": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
+    "web/public/cards/JZ50.jpg": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7",
+    "web/public/cards/JZ51.jpg": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+    "web/public/cards/JZ52.jpg": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+    "web/public/cards/JZ53.jpg": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+    "web/public/cards/JZ54.jpg": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4",
+    "web/public/cards/JZ55.jpg": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a",
+    "web/public/cards/JZ58.jpg": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95",
+    "web/public/cards/JZ59.jpg": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3",
+    "web/public/cards/JZ61.jpg": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f",
+    "web/public/cards/JZ67.jpg": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477",
+    "web/public/cards/JZ74.jpg": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085",
+    "web/public/cards/LC01.jpg": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6",
+    "web/public/cards/LC06.jpg": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6",
+    "web/public/cards/LC12.jpg": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf",
+    "web/public/cards/LC19.jpg": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71",
+    "web/public/cards/LC20.jpg": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248",
+    "web/public/cards/LC21.jpg": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9",
+    "web/public/cards/LC22.jpg": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35",
+    "web/public/cards/LC23.jpg": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8",
+    "web/public/cards/LC24.jpg": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb",
+    "web/public/cards/LC30.jpg": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d",
+    "web/public/cards/MSJC01.jpg": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2",
+    "web/public/cards/MSJC02.jpg": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807",
+    "web/public/cards/MSJC03.jpg": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29",
+    "web/public/cards/MSJC04.jpg": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3",
+    "web/public/cards/MSJC05.jpg": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3",
+    "web/public/cards/MSJC06.jpg": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7",
+    "web/public/cards/MSJC07.jpg": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7",
+    "web/public/cards/MSJC08.jpg": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1",
+    "web/public/cards/MSJC09.jpg": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302",
+    "web/public/cards/MSJC11.jpg": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853",
+    "web/public/cards/WM003.jpg": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff",
+    "web/public/cards/WM023.jpg": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85",
+    "web/public/cards/WM038.jpg": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd",
+    "web/public/cards/WM056.jpg": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497",
+    "web/public/cards/WM059.jpg": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f",
+    "web/public/cards/WM062.jpg": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335",
+    "web/public/cards/XQ03.jpg": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0",
+    "web/public/cards/XQ07.jpg": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9",
+    "web/public/cards/XQ12.jpg": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8",
+    "web/public/cards/XQ14.jpg": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2",
+    "web/public/cards/XQ16.jpg": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80",
+    "web/public/cards/XQ17.jpg": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb",
+    "web/public/cards/XQ18.jpg": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e",
+    "web/public/cards/XQ24.jpg": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8",
+    "web/public/cards/XQ25.jpg": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0",
+    "web/public/cards/XQ27.jpg": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5",
+    "web/public/cards/XQ34.jpg": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04",
+    "web/public/cards/XQ36.jpg": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9",
+    "web/public/cards/XQ37.jpg": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9",
+    "web/public/cards/XQ38.jpg": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e",
+    "web/public/cards/XQ40.jpg": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c",
+    "web/public/cards/XQ41.jpg": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179",
+    "web/public/cards/XQ43.jpg": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93",
+    "web/public/cards/XQ44.jpg": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047",
+    "web/public/cards/XQ45.jpg": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf",
+    "web/public/cards/XQ46.jpg": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89",
+    "web/public/cards/XQ47.jpg": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03",
+    "web/public/cards/XQ48.jpg": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746",
+    "web/public/cards/XQ49.jpg": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca",
+    "web/src/App.tsx": "61dffa5b8c8cfc67e5bc66ec91a17d9e20ca696e3a410fbcb8128429d9449c54",
+    "web/src/game/ActionHints.test.tsx": "e2422871ff5847148967eccefa214a15bf75bf24f9e2b25b900cdf1d97b98eaf",
+    "web/src/game/ArchivePresentation.test.tsx": "e7204f2f96686decd9c27243e924b54871c2298a23bb95ba1f1173a97d1d338a",
+    "web/src/game/ArchivePresentation.tsx": "6f19ba8b1bca6738491b5111ec369800669e89229a59fbf0a05737235d8ec0e8",
+    "web/src/game/Attachments.test.tsx": "5e6e1bfb342ce11be2ca7218f8648ce69b0a39e8e2ba2c2a311a77243521a165",
+    "web/src/game/AutoPass.test.tsx": "c46d1b8e18c30ae9bb2a6d48c22db72af3dd72305e222846c827af9f045be90b",
+    "web/src/game/AutoPass.tsx": "798eff13494118ec2131101e4d18940cc8f346635a44d4b4332cef5720a58122",
+    "web/src/game/AutoPassPolling.fixture.jsx": "518daba5f93da8b8f6246430e39ee06867a7ea1b92c49aabb0f2d749275db75c",
+    "web/src/game/AutoPassPolling.test.jsx": "f95bb1785f4ae04706a8ce11b282d7823cdc64c9bab65ee90fee7e25eab52afb",
+    "web/src/game/BQ030Combined.test.jsx": "5e10ad5be488f6e1de6e708f2965654ee753e70ce24e004fa1913deef67775c6",
+    "web/src/game/BQ035Face.test.jsx": "bcecbfbcd866d89f7c50efd6d156504a2717f222db4d3f87fef6c68aa0339d02",
+    "web/src/game/BQ035Native78.test.jsx": "8dd98931b42dc57f4f8bde8eb8a2674f1912f99fea95905e54f196c1ffc85325",
+    "web/src/game/BlueMinimumScan.test.jsx": "a2fcb65727cb908fe8112ac084125d00f5c4a3269010099585385fe1a46a80e5",
+    "web/src/game/BoundedEntrySearch.test.jsx": "b2934095e51812946c3300295ed2326e962cf0f7e9f4cc367c2b29cd47f2b8eb",
+    "web/src/game/BrowserPersistenceFeedback.test.tsx": "11af5c059b6a54f012a4e2892e7fd01d30fee06a71b7530607d6ee2f89f17bc7",
+    "web/src/game/CardTile.test.tsx": "a50f2652b0d52ebaee0484a8b68ff61a20450dafc812a5c72ebb4fb5054fc12f",
+    "web/src/game/CardTile.tsx": "4d3458c660d71aad0f7c31eb2dfbf7a927b32375050b96ddce74ab7d161532d4",
+    "web/src/game/ChoiceActionFocus.test.tsx": "d569b443215e46359a24c5dc0febbf232e77e1f76f0b39e0281e2092dcf9f546",
+    "web/src/game/ChoiceCandidateIdentity.test.tsx": "e8b3e335d26706221cbe6ac6835dbb527c82aa5ce2c9b5b779ba1b13ff3e9769",
+    "web/src/game/ChoiceDamageIdentity.test.tsx": "8f8c64159fbc52256198544d252205dfac7efd4583fa544a0489db679e92a05b",
+    "web/src/game/ChoiceOrderReading.test.tsx": "6f4fc7ad31ceed23352e413a00086e59b4c58a2e1b90d19f2bda41e7ff5c32e4",
+    "web/src/game/ChoicePanel.test.tsx": "bd2b889bae1668cb696ba551539d9af885ef343d48672ab57ad11baa7f74f311",
+    "web/src/game/ChoicePanel.tsx": "392193c152ea36f89760e160d8e9b676e266468c020757fd0d97de2224333690",
+    "web/src/game/ChoiceRecovery.test.tsx": "51277574f2ff13349244309cc195fadec24a38be4246d4a8e823714972b5cff6",
+    "web/src/game/CommandAcknowledgement.test.tsx": "278b83e619b27b75b8dc49fbd9f7f170f8dc7feb740f7798d34de32f958f860f",
+    "web/src/game/CommandConflictInteraction.test.tsx": "ad707ba5e6ca3237e76556df540364a9d0aa0d63090ae370c6a99dfd47a79510",
+    "web/src/game/ContinuousPass.test.tsx": "2301b4601256a161ee68c501d70c7fe0a15a0921c4416dca818f0589dfe63bac",
+    "web/src/game/ContinuousPassRecovery.test.tsx": "324f1bbb9833d72f18b64736846d9538553447c87c5bbcce1e7eaabcc25b6073",
+    "web/src/game/ControlTypeBatch.test.jsx": "a5e47aeccf7327d575d9d6d99589d20cdcd9e89eaa39e09dcacb18b3a3958f8e",
+    "web/src/game/CurrentDomainReading.test.tsx": "aa3b503f78c82b4f354ef6496c4698291b431becfb5f3fc90bbe9eb5c1b7c4d6",
+    "web/src/game/CurrentLifecycleChoices.test.jsx": "2921f275ba00f3db130d8bdba8923a0817d3a633a9a6e3c7a3af736b9f300fb2",
+    "web/src/game/DeckAdmission.test.tsx": "8239c620d8e37a8bb088cd53a12f58dc81fb8f3e7b23495d62cd2d9f983684ff",
+    "web/src/game/DeckBuilderGrid.test.tsx": "f6ef911df6b82237fc7133852c95562390021c2a1e8bccb2458eb7547ea11e0a",
+    "web/src/game/DeckCardFace.tsx": "7b4b4c0472e7509475d6c3a8f8030029848ed2f7d211c4db6490ead21aa3f8b6",
+    "web/src/game/DeckCardPreview.tsx": "f0f105f0e4fc882e8220553fffbac4ea5b2a2c4487c7c1007ee2f423c8071a24",
+    "web/src/game/DeckCardVisibility.test.tsx": "cb32abc0aa778edb5f49b912bf00677ff921d9a0f0c26815a16e444b63682ca6",
+    "web/src/game/DeckCollectionPage.test.tsx": "43589953ae036cdd549d95dbc9fd1fbda232120420cc7a5e60528036439b8d27",
+    "web/src/game/DeckLibrary.test.tsx": "12835d9977068f91f759f0a8387ee51aed9a2dc23629a515119aa8f7972366a8",
+    "web/src/game/DeckLibraryPanel.tsx": "e98606194a7c1b65110aa7123a961e21fb55816958f03834890cc125ea3dc225",
+    "web/src/game/DeckSealSearch.test.jsx": "f5a1469234feade095e9df01daaf22466ea228399c73f03bd8d64f8f78e2d675",
+    "web/src/game/DefenceEquipmentBatch.test.jsx": "5321877eed92d2dce25f747a6bb3fd896c9884dde4cea5998c400e96004aff82",
+    "web/src/game/DialogIsolation.test.tsx": "707b5135484dc3583fba6bd1bddbe28048797962af1365339cdb5d5a1b9a2a70",
+    "web/src/game/DreamRevealBatch.test.jsx": "a31bba83ecc527f4f874fc7d0daa2685b57145e45447ced80fc0a741561339ef",
+    "web/src/game/EmptyRegionSlots.test.tsx": "afbe114a6cde282882bb5b030bfeba52515cd30814d2ff079902aba223f29012",
+    "web/src/game/EntryReceiptRecovery.test.ts": "8869d5b52829cd6fd2f51a0ac4361769a2a7b5f07cc8df5195f0bbcdcdcd2e8c",
+    "web/src/game/EquipmentAbilitiesBatch.test.jsx": "bfa6e4220c664a086e277157b05287dbc7eb0baa33610f2526e02f3ae77212ea",
+    "web/src/game/FactionCoverage.tsx": "39b936acadf9800e5b6e86c24f0cca7524a8b71c6cf3c24caff0cd99d1dd34c3",
+    "web/src/game/FinishedSummary.test.tsx": "2913b0b4b8a942ec2fb930998a86f7b84d85c6fa0debe189ce8a10c364825544",
+    "web/src/game/GameApp.tsx": "635202d96665613f209829e1f311b6cee08797204b5d92d64a749a482aa07687",
+    "web/src/game/GreenMinimumScan.test.jsx": "b32931f3cf7112cf6410e3d96c34dfdc349c4a913d5a8770a918e1f30a1b72f8",
+    "web/src/game/HandDeckBatch.test.jsx": "b2d9f862bfc05f7fdd0c94a3c1b81d1263be29b37c65f126cb1f0f4dd29e5f4e",
+    "web/src/game/HandInteractionsBatch.test.jsx": "e35420e47f17cb6e7df2a8f1181544cfebe8396c977b154400ebb6d72070dfcf",
+    "web/src/game/Help.test.tsx": "fd26815d3e9fe2a7062ac3d2adb401098db3411056a339b4ecf579f9783398b3",
+    "web/src/game/Help.tsx": "72561b99e010f503ccb7f910846a0b20ddd1c7eeeadf0c52c6ebd59d6a3a95d6",
+    "web/src/game/IdentityOverlap.test.jsx": "0044abcd968db13ab98b666ffee47cdb5ad8dba4fdf88bc00aa95655116b841f",
+    "web/src/game/JC005Scan.test.jsx": "ad098dee09f5896bb4ea72617b24ab67174d898458f58178aaee498609da6eef",
+    "web/src/game/JC008Scan.test.jsx": "2e98f377ac7319c3699fc3bdbd56881ca7a9b92f4232364baf86fe8a4d079ba9",
+    "web/src/game/JC029Scan.test.jsx": "8a2bd0e18d8a4ec6e8568141d2ef588569c542d04eabd6d10f6b10bb773f91f3",
+    "web/src/game/JC030Scan.test.jsx": "ca4082cf55aeb10a350f4e7ccabe62ba816233d6e706506b8e0c10aa31c8254d",
+    "web/src/game/JC037Face.test.jsx": "a9530b92ea2462f6e7ac9c5b2910f494480b401acc3aa471f6ee6d213ce11313",
+    "web/src/game/JC037Integration.test.jsx": "6128c32d1fbab5594e23cd4d1e3b30db631ab1ba98e84ce50e673f8b118988b6",
+    "web/src/game/JC044Native85.test.jsx": "7b42f8aa435a7f0bd6321a1989e10d15b48376bceaf0b5955ee87122b0569197",
+    "web/src/game/JC046Face.test.jsx": "7eec52fa69c0bcd806d2df3504642ba5ac3a4fc1838131f1e7f1732fa2424002",
+    "web/src/game/JC046Integration.test.jsx": "f129fa67e216fddc113b9c7a349b1ec7a66ec187433d4c9119252591fe5a5643",
+    "web/src/game/JC050RegionDestruction.test.jsx": "79f3deca3e458a06f07fa964d1b5080de57f233f97288c613fe74b5615c63551",
+    "web/src/game/JC052Face.test.jsx": "f3408ddd6afd6d53ee5268cd82e32cf5708bf5be91b89af191e2fec4b2b36ac9",
+    "web/src/game/JC052Integration.test.jsx": "de2cbae7425a66ad8cb8dc0a82dda4e958c8cf89c80d49ea53a7ea4b317aa050",
+    "web/src/game/JC054Native81.test.jsx": "15249fd0ea6ee37461bec7f029af5fc065265aa8ac4ec832257eab0324526abf",
+    "web/src/game/JC057Inspection.test.tsx": "e7b12c94b7135b38101997efd4cc845fc9f1c557f0b99fc9aafcf9c919c5381f",
+    "web/src/game/JC060Face.test.jsx": "73b1ea4b5b4b332a908e1422867bb8aded87c8b2c9f878c38b4366f14ddf3652",
+    "web/src/game/JC061Integration.test.jsx": "7b9e0a74afa619f3e4de8912f113f073afb713723e8398d557135359960db053",
+    "web/src/game/JC087Integration.test.jsx": "bdee8d61eca2223dfc7c7f95c821fe6132c64a2a75057e5faa9066760ad18e38",
+    "web/src/game/JC089Curse.test.jsx": "8cb3dbc5028a214913a0fd92ca48140c437887fb59a951c0205192b61ccb192b",
+    "web/src/game/JC089JZ51JZ53CardFaces.test.jsx": "e46d48a69a0844083093c6ff9ca67e1aeacf523b05b771f5a6043131bc0d428f",
+    "web/src/game/JC094Integration.test.jsx": "ed5d3195dc7730431853619fc88f4deac12fc3b9e4ea892b642b9f3fe91b50ce",
+    "web/src/game/JC095Face.test.jsx": "134a190211764edd73909ae6acdf77afc044731558a234581860bb0a1983459d",
+    "web/src/game/JZ22LowHandInfluence.test.jsx": "e22dfd08bcaf2cb6b87f9549c0e458a0e84cb249a831fd2fae4c0244ca53f5fe",
+    "web/src/game/JZ31DeathInfluence.test.jsx": "1bd6d9c07c05d6ae9dc12f063aea92b654332df4ec35eb17bf7f25104f8dac88",
+    "web/src/game/JZ35Face.test.jsx": "e7a8d73d086823afa1817a38bfd93b8837f7deb9e92aca8b8ef5ac80c65d8878",
+    "web/src/game/JZ35Integration.test.jsx": "44f706dc46b56e3f0bae9ab04a4217aeb21120d8e91fa7ae7564a8ad6255c05c",
+    "web/src/game/JZ46Native79.test.jsx": "5f9044524f2e74fb54cabe43c8291c2d0a258b4e6c472e0079ebf9edbbea57b6",
+    "web/src/game/JZ48Criminal.test.jsx": "af33e6edfe67e4765f71a8926159f07aab28f25dd312d40d40a80e5d473de021",
+    "web/src/game/JZ48JZ50CardFaces.test.jsx": "0b92fc66daa3a0a3b2fe478141a00220f85e68fe456f284bf4620f3fbd34a8e1",
+    "web/src/game/JZ49CardFace.test.jsx": "8ed9c4e6f94f40ab88f1670df23000aaa7d8d498e721d1bfad178b62cfa3dbde",
+    "web/src/game/JZ49Slow.test.jsx": "aa40b41fee978177f495e3a68eb660a18d9d559b8ba7144b24abac5a8fcd965c",
+    "web/src/game/JZ50Search.test.tsx": "f09993267ad54e8a5a23a56b2c0f53df26339feae58ddb2fc9f29cda584430d6",
+    "web/src/game/JZ55UniqueDestroy.test.jsx": "ead8ca4720a1ef96194138994f12db5245df5c9db8b87046f40f4b5b81b110ce",
+    "web/src/game/Lobby.test.tsx": "696683925afe79a5424d840ca2af1ccc037808eac30b7f9de476bd62d976c6f0",
+    "web/src/game/Lobby.tsx": "942420d9b6ded8f54b0dc34ae1f78e36863a113403a612d5864cfb22d7fc4771",
+    "web/src/game/MSJC01Scan.test.jsx": "e72aaffffa28734eed92de27a9030f3b032fe9c51ccf149803d0558782fd7ba6",
+    "web/src/game/MSJC0405.test.jsx": "4d09e47d3ec9f381ffd21c5f07c798bce9a9ba01559f520987bcf309b74d14e8",
+    "web/src/game/MSJC06Scan.test.jsx": "ab6d2c97ea49518e52c669231ea36cf5f818a8713205c2b05e2b0f4028387bad",
+    "web/src/game/MSJC07Scan.test.jsx": "607cbbcbbde81a176b9bc6192ed1d040a088d5e38b9bbf8db3885614d2b41161",
+    "web/src/game/MSJC08Scan.test.jsx": "2c060be285d48faf61eddb742576cc247fdc242a780e38a7ae259511836ce3c7",
+    "web/src/game/MSJC11Scan.test.jsx": "fb52661112ca9a6d8d93c1b34d66d573f3a852d6d381d876992614fdf749a80f",
+    "web/src/game/MillPublicBatch.test.jsx": "f4328464a253163225635d15cbe5abef0b46858f5f3b26a7e50b7ae018b9df8f",
+    "web/src/game/MixedDeckConstruction.test.jsx": "629569f099708ed67e0430909e10066806e5dee522daea311980d310ec87c143",
+    "web/src/game/NativeFixedSlots.test.jsx": "16b1cec94a257d008c4494ee502a13e559658892e7a767feb3c1710a9c2f0e8e",
+    "web/src/game/ObjectActions.test.tsx": "0923526346811e0cc00427101e04e8b5c5c19381184aadcf70cb04341dec1b5f",
+    "web/src/game/OptionalNumeric.test.tsx": "51b5fe1a33b1e20f9e130498cb53ba64efa36b9ea5ecdcfce0a02e3597af57e1",
+    "web/src/game/OrdinaryTargetRetention.test.tsx": "54be88998b654e68c97c0adc60bd5de22a0f80f9b1f8f184a709f951492dbb27",
+    "web/src/game/PassHistory.test.tsx": "259d380d93fb985028cbbd2730b9ff89e38c386180b894f606c95c81e17ae321",
+    "web/src/game/PassHistory.tsx": "7aa6500f933fdd3787b5df0613101cc17f4d6c2e91c7be927fffce83f6f2e262",
+    "web/src/game/PassHistorySync.test.tsx": "c55536e4efd56f93e596680bac17f4b4423e86d40e3a4bd50a2b3d6dc6b2bb06",
+    "web/src/game/PendingPauseRecovery.test.tsx": "f654d764b90a3dc784538c3af43547a1c6eff832807a384720f89c965234f4de",
+    "web/src/game/PendingStorage.test.ts": "085d8f0cbd5fde12256c63823fd9778802e8a77e9649cc9851e684bc56d34202",
+    "web/src/game/PlayerSessions.test.tsx": "9d63226f62a3d75843e35607dde0dcdf72802dcd13f805d59f388c68faa10b72",
+    "web/src/game/PriorityFactionSelection.test.tsx": "3f9572cb96d58d681375f9dd75b9019deed0944604382666a9ed0b941ba93b14",
+    "web/src/game/PrivateDeckTop.test.tsx": "1480087c155af062c38b9b422e89db7f12049e4b429eb3328dd5836fcf74c481",
+    "web/src/game/ProtectionBatch.test.jsx": "006efb513916ff50ca74a6ac0862848f27196489026ce829ca2036edac75a3a2",
+    "web/src/game/PurpleToolsBatch.test.jsx": "f8b24e8f34a875cde1d7a85c5abaf3dc54acb237dda6ecc9a00b538b6742269b",
+    "web/src/game/QuotaRetirementReload.test.tsx": "2657cd6ee00f2c8d88ceaea4d97ea82fa8a8dbaa40745b208caceb5e700b913e",
+    "web/src/game/README.md": "e516d60cdab27d0a0d91f1b932e54c3fc07a1901002f58717db6faabfa5c9372",
+    "web/src/game/ReadModal.test.tsx": "c0990e425851b01dc20752a4cf9463b7383e62c75f2e61dc4b45e9dd5853c1be",
+    "web/src/game/ReadModal.tsx": "a91d08484768a2683f192277aac0c8be809af9fef3018b43ed8544f89258b7ef",
+    "web/src/game/ReadyConflictFeedback.test.tsx": "9dc893467023967c1c75bd44a8ab09f8bfa74ff892c5cad760b4fee0aee9602f",
+    "web/src/game/ReadyReceiptRecovery.test.tsx": "7e9accf09bae3a9b90d375790a7c05508418132b45d2c590df9ffc00e730927d",
+    "web/src/game/RecoveryReviewRegression.test.tsx": "0ce0165b0ff2f0650b2066259d3b7fd872e2af0ab8f215889fe31a26ee76c564",
+    "web/src/game/RegionAura.test.jsx": "d55bcc0b50bee5d1c4ac0c2466602e667764ea08fc1ad4a500351b8b479ba7bc",
+    "web/src/game/RenownBatch.test.jsx": "7cf78098251974bfe667ca9032e47d51906cfa88129ab266289a6d2bde7094e8",
+    "web/src/game/RepressAssetsBatch.test.jsx": "3a951da8afe21a05d067176d53fa89af73462fe42c57bc9ddb7dab98608d860e",
+    "web/src/game/ResponsePreview.test.tsx": "ad68b19bb445579a27d65877efa1f48b142fd444b5321e62980485b3775fca30",
+    "web/src/game/ResponseWindow.test.tsx": "ada70f16e15ad681da76ffdcb4359918614b9475510fbe0e456a825873136bfc",
+    "web/src/game/ResponseWindow.tsx": "b20b88930128d70103eb0baeb1cccd3e6c03c4bdec39eeb62825a62ecb8d13a9",
+    "web/src/game/RoomManagement.test.tsx": "a43b7ba5c92daf0af04768e1a3e3f6d55092149152c25187eb7e3c1079210b04",
+    "web/src/game/RoomManagement.tsx": "cccbd36c5a158ea36a505b63f30dfaf982707b6022877554be1a5da274ca0ad5",
+    "web/src/game/SameNameInstances.test.tsx": "18e1a4dfcb944776d62bc940898464d77bd66cece610c96a6cbe95b14a4a17d1",
+    "web/src/game/SealedCards.test.tsx": "23fbf10519184167bbd79401b662181de2991ab503fcf3c7838657a2d1c9551d",
+    "web/src/game/SealedCards.tsx": "97a66702abef7082091dd0c73558faa5960c9a4546fbb60ffa9fcf12eac1cb8e",
+    "web/src/game/SevenCardIntegration.test.jsx": "c7b539717b3d16eb7c413457c3d06bac7d4be05127dc26a38bba5c0a7c820300",
+    "web/src/game/SharedStorageRegression.test.tsx": "5a3d7af49f5c2aecd9b9e8146eb06a37711949dff80d153e8eff2a048a041ebc",
+    "web/src/game/SocietyDeck.test.tsx": "2b580382c9df36afe5d5a0ef9efa22ca51ae4d9712c805462770fd0136c94083",
+    "web/src/game/SocietyScan.test.jsx": "4bd8dc49433ead016c6a1a13def0c34ab99134f1848fffb4ed5af6779d6ebb7d",
+    "web/src/game/SocietyTable.test.tsx": "91ff6a039007b768e8eba324c3662b6219226a9318f3c6fae4b4ed1f80914649",
+    "web/src/game/Table.test.tsx": "df26079b5410243e9d43f12cd07af8c80457fe16aaecf15425fd432dacd9b455",
+    "web/src/game/Table.tsx": "623cb1b0363726f7acba3b91712b0373783542f52e0674c3e6fa09429692acd3",
+    "web/src/game/TargetRetention.test.tsx": "79e685a931ab191821087372a80de22955b41bcc7d491c96fddac29fd63cd622",
+    "web/src/game/ThreeColorDeath.test.jsx": "895b8b3f8b2248f804c3b98e50a2d51f19e7f5eb5249f7e0beb95ad8a4d6f211",
+    "web/src/game/V028DeckEntry.test.jsx": "ea78d88a6a89b7448f6af6e608022dd3de0a9257ae5bf2bfed7bd99adea97267",
+    "web/src/game/WM023Integration.test.jsx": "483e7786f1eb7fb661d306203639c0fc6f754fa792677dbbd84b5b9824ce2ecb",
+    "web/src/game/WM038Integration.test.jsx": "4dfb0b6e3fb51736292d4b1824a21a2521ddce9e27689da837c7bbc7ed07a54a",
+    "web/src/game/WM056Integration.test.jsx": "3735399775e0570ac65ff5e8c08c4bc4b70f6d9311a6747c035e799e616d6c1c",
+    "web/src/game/WM062Native80.test.jsx": "9bf0709ef79e5aa572feff2c2270ac5c10fcbba0add970389d9cf267431a2017",
+    "web/src/game/WhiteWoundBatch.test.jsx": "aeea01abbe0afd64d121d910ad505e69fe188eb0ee1b54e06288416d9152ec19",
+    "web/src/game/WoundDefenceBatch.test.jsx": "47c27fc81eddf8c2b79b271da1ca43d603f807b1c3e32a406dbe35c84bcdae3f",
+    "web/src/game/XQ18TimeCarrier.test.jsx": "6d07bc8a89e22e65beb21d0237bbb658e85e8e3a524b23995e1491ccb879b3bd",
+    "web/src/game/XQ24Integration.test.jsx": "323681dbbf536100e2be10e1f6df24a04b9c03ed3e153aa384e0e0aef2416bc3",
+    "web/src/game/XQ25Integration.test.jsx": "b2cd0f6877000b5ef5011867db52b4eb420aa5a8e461845f022d3750d1f40546",
+    "web/src/game/XQ27HiddenSweep.test.jsx": "02407f9fb85329eebcca6104605ec1d2840a10e1d74627d00b41a581be4d3371",
+    "web/src/game/XQ37EntryInfluence.test.jsx": "04203db76f703d1d593bca37d77885315a01e6f7605cefe7526e3b895b6e98dd",
+    "web/src/game/YellowSearchBatchScan.test.jsx": "9a23f3e8c012e07d3e1603120444636fffef323ea3e66f0084a852a15f9d41da",
+    "web/src/game/action-hints.css": "abcdb473a28de3042574a426bb33b4e25b720efad672add72128efae1ab8e541",
+    "web/src/game/actionHints.ts": "7dfae54840a0e12bf6fcd3e50a04bd61ae91116f20e0b62cf15224bfe85706f0",
+    "web/src/game/api.test.ts": "a74e2cd01076414caf17ffce381fb4b68261026bb8c50796ecbf24c39ecfcf46",
+    "web/src/game/api.ts": "71625064f0b49ed6018aa1bea1dc61298fe43dfcfcbb738b01eaeb626bc92fc2",
+    "web/src/game/archive-desktop.css": "e7a1194b661f1524bf770fce2636706551e985f7fdd020adc3a0c9ed10b0857e",
+    "web/src/game/attachments.css": "a50e53bdd46b8175e6d9dfb0645c707b2974100d0d9f6e171d360d72d12b45fb",
+    "web/src/game/blueMinimumTest.fixture.json": "0326dae2291af890e43822b0e8ed0b98ebf331615495948f46d5af04a742332a",
+    "web/src/game/boundedEntryNative50Test.fixture.json": "884d03e1603814b2d5114dd86b0600c7499315854b0a17fe2a4c75606ed48728",
+    "web/src/game/boundedEntryNative51Test.fixture.json": "4fec1bc6ecdc92c7c7aa3f9e256e28d800ab1619be523f2d92867e6b0cabd559",
+    "web/src/game/boundedEntryNative57Test.fixture.json": "a31abe4a82891f0b9822c8225c716cf5c9e56f522df0e683f0fa7a4e6b508edd",
+    "web/src/game/boundedEntryNative59Test.fixture.json": "00cf54f5122a6a58ea0322574e49a4cd998c8ee0e806949514dc360c5db10da0",
+    "web/src/game/boundedEntryNative60Test.fixture.json": "1bfdf7fe83db129067af078a4323ed2c3d7ab335cb6fab319eaf823f7604db10",
+    "web/src/game/boundedEntryNative62Test.fixture.json": "4177fb9174a04d5a93594b4af35ef67fe4b233f78f39d6e6d57ae8194fa93388",
+    "web/src/game/boundedEntryNative63Test.fixture.json": "58166763ea0ab7ebd5474e1789d80f4c36133fa5665888f6293e1bab6b972397",
+    "web/src/game/boundedEntryNative64Test.fixture.json": "bf381ee551480890416c6824c314eea791442c442c23839667da1a3732e5e0d5",
+    "web/src/game/boundedEntryNative65Test.fixture.json": "101bb1b1ae02f5dc27a6c31499a2dbed12b5cf3222cede4474bb0c2e9de11ecb",
+    "web/src/game/boundedEntryNative66Test.fixture.json": "ed087b78a2a9e1537d51382cfbb9d2b3b0616db8cf0d2673301e7ff4392881d9",
+    "web/src/game/boundedEntryNative67Test.fixture.json": "40c12d31a54cf0eef82216345c636e9be2877a3adba39ca52de7528538516004",
+    "web/src/game/boundedEntryNative68Test.fixture.json": "513435946b6262d00b5098debf00b50f0f53ec52e331c2722d4d88bd9b35a695",
+    "web/src/game/boundedEntryNative69Test.fixture.json": "4d08c41236ab3db3394f80464e153ecf3a4e008730b4a39036a2bb94110bc848",
+    "web/src/game/boundedEntryNative70Test.fixture.json": "25482438f9a12c16b057b172f4c1d8f8b39fcd922f4f9424d21daf139f37cd4f",
+    "web/src/game/boundedEntryNative71Test.fixture.json": "64b62b46552cb42e1c1416b33cb9656486285b8e1afca523c9ea6f7aa912e474",
+    "web/src/game/boundedEntryNative72Test.fixture.json": "f84a9434914a2074c43405bc3bcc03073b840f515f4e008b0bb22d9980449f2d",
+    "web/src/game/boundedEntryNative73Test.fixture.json": "01989d8ffc7daa7ea37f7c1f6b40c04d833c46082ad3a9ef71063473a624045f",
+    "web/src/game/boundedEntryNative74Test.fixture.json": "0cde81f86681c4b924e99e52d317978bb6d286128b7d3199c31fdb6796ac9c2e",
+    "web/src/game/boundedEntryNative75Test.fixture.json": "d4743ed1105860a5bd6fdfee055a86d5e9c887fb352a1862d5b1c1dd9d0f7d8e",
+    "web/src/game/boundedEntryNative76Test.fixture.json": "36eb768a0b148908cb1144f58e7c3cc3b03845d7afdb530629e16ccf15b6eb56",
+    "web/src/game/boundedEntryNative77Test.fixture.json": "075b705feb360578c8d8687628eee3c7ff0fc3a38c0ed944496ada4256814088",
+    "web/src/game/bq030Native63.fixture.json": "58bfd19be5dc1a853f7423da656dacc7f4b10667a5235d5f76861054a650238f",
+    "web/src/game/bq030Native64.fixture.json": "8afd4bf711779ea0ecb6665b13039655353de977c7655e63b4a47b9773db92de",
+    "web/src/game/bq030Native65.fixture.json": "c117b701c60471f82c059cc542d855e73fbcf59ff726c7c0773df2bf0be02ba7",
+    "web/src/game/bq030Native66.fixture.json": "96ca22ba6acca43ad7628f0547ac5025e01891ad497cabcc514006e1d10080d8",
+    "web/src/game/bq030Native67.fixture.json": "18a170b86064659f08c27397e52c4ae90afbe92be333450c0d264a3438cb7d48",
+    "web/src/game/bq030Native68.fixture.json": "7ee6ba18c2bf4a3d3f494144962fc49c591cd0554a46bb77960b880bbc0b56a2",
+    "web/src/game/bq030Native69.fixture.json": "20dc757d5b41f229223b635f76da848b7742affb9ab9882c120b3ce4714f9e43",
+    "web/src/game/bq030Native70.fixture.json": "a509d68ac7101fd597429cbd4a2d896a8a8a595272866e2b5ad7a03622502b6f",
+    "web/src/game/bq030Native71.fixture.json": "b1627b0e91b22207c6c71e45cb37c39e713d7a90269ea7e80d1167a4d02aefa6",
+    "web/src/game/bq030Native72.fixture.json": "54e2386a9be9d7d7367618bef5dd0069c65ccde29eef5a566642951462b100ac",
+    "web/src/game/bq030Native73.fixture.json": "a6c6d05ac2e5dfea616c432979e4bfa3a2b213e3451257ced77574c6a9e5169f",
+    "web/src/game/bq030Native74.fixture.json": "3ba822cc381c398190155ebfbecf52ab073dbdb2d40dc1189433e5a9466c37b3",
+    "web/src/game/bq030Native75.fixture.json": "c616da10fde024aba90a1cf8629e034d6c3d3d8e0a823ff34235458189a60b9d",
+    "web/src/game/bq030Native76.fixture.json": "13404dde874f4af22ce2f0ca2bb9efdd13a0e7064dcbe3824f38dc1bb80bc495",
+    "web/src/game/bq030Native77.fixture.json": "a24be64ad1abab3524ace7e09edf82747dc823524f44367e3f6055e72049f45d",
+    "web/src/game/cardGridNavigation.ts": "28441995f086b22510c583ea7d66805cfebc4869536e6d3d8e8e3b2fdca378ce",
+    "web/src/game/cardScans.ts": "97c5ecc9ba32be0a3c819021a54256116c7f634f3d1f18cd0d7f320a88dbf425",
+    "web/src/game/cardScansV032.fixture.json": "9a46bf09c8cf4d6b6b1c13d928739e171b036c2762fd0b0f0788975faa5f20a6",
+    "web/src/game/cardScansV034.fixture.json": "2a38e937782e7ca0c80f4b0fdc79bd3c382e8eb57952b535644721084d99a9ce",
+    "web/src/game/cardScansV035.fixture.json": "8c06e08c8d0abbb81026e92c3af4a65305498d529129731bb6b37c97568f5f8f",
+    "web/src/game/choice-readability.css": "45ce3a9d60b1edfd15d33e9098ad634c504b91a1b14669d34941a0ce97a33d25",
+    "web/src/game/choiceDraftStorage.test.ts": "b8565734f2f6876c3d1f15509375a11eaf7571098650d269c2f6c544a73c4894",
+    "web/src/game/choiceDraftStorage.ts": "7ee170ad77f696e87598da16915fb433e4ebb697984e40f5a70abbdcd69f6612",
+    "web/src/game/continuous-pass.css": "b64d3365b437564eb692615ef4ef8d45c729ca8a7efd96651bb8d4e5a2c09ed7",
+    "web/src/game/continuousPass.ts": "46bff095cb6b591faa242618ce13b2aa21a1b4aa5dfabc3f304d331f1aba46db",
+    "web/src/game/currentDomainsSelection.fixture.json": "5ac83278bfd70590ac9c3e6914aa1e88daf54f95b89112b720d0087ea0c6da2b",
+    "web/src/game/currentLifecycle64.fixture.json": "16a3840fa86de3c143aaa68fd9b981725d0b3d3c0d732b82e08fbe5f5a7c9406",
+    "web/src/game/currentLifecycle65.fixture.json": "d9e03924a283a53652c2b2eda27aa386820b26dceadf0434e8c8fb0f8cce7b84",
+    "web/src/game/currentLifecycle66.fixture.json": "dfe8afc0b8f0690f68927d8ba0ad0910a91ed456f24ff894bbada7cac8d7321f",
+    "web/src/game/currentLifecycle67.fixture.json": "f16ca27326f678fe3164ff1862577089c66d20714b8385193b2f530238e3448f",
+    "web/src/game/currentLifecycle68.fixture.json": "e028694c8f7880262c3f9f509975b75102371f0883173b81637020cccfe8c5ca",
+    "web/src/game/currentLifecycle69.fixture.json": "51e54a5325d3f549c09f9cda8de176c7fc41c9a617f7616868e71ce1fd86f363",
+    "web/src/game/currentLifecycle70.fixture.json": "a5f074c32d33f80a5cecd45247b2bcc21a69dc73c1882039259c1063713361e6",
+    "web/src/game/currentLifecycle71.fixture.json": "38b5bca80c1714bb85a53318e301b23b48eadbd2df064314c13774d84c824bf1",
+    "web/src/game/currentLifecycle72.fixture.json": "957d7ab37aee982c25540d2f9cdb7fcf4e1b0b6105aaf414067ca86ba4d59f47",
+    "web/src/game/currentLifecycle73.fixture.json": "579405dd4aa7ba017125a672b9858da641a84ad26d0b97b6c17a1441eb57b289",
+    "web/src/game/currentLifecycle74.fixture.json": "e9484c37b580b5dc2803009ea60c3a096b1aab52b05bbf42ea2b91281fc501b2",
+    "web/src/game/currentLifecycle75.fixture.json": "c76cbd54caa0f5b734ff8bc1b067ac7e02ae7ba8b900121d0927520d64480dc3",
+    "web/src/game/currentLifecycle76.fixture.json": "f4ed62f8e392a5482cb98654ac888c5bcf74384d1f6211964fafc31eaa6d37cf",
+    "web/src/game/currentLifecycle77.fixture.json": "0d12fae1104f0076c18b6b692455d5a944d8837355cd43ddda45c6d7b06c8fe6",
+    "web/src/game/deck-library.css": "113383c3db38ad2cdb55d7e6b38cde2645a1564eafbc4919f36302455ffd1836",
+    "web/src/game/deckLibrary.test.ts": "9d32fe6196f9524965c42ace69952a5c21973ca3fe1ae2b1ca0c3f2fc4b5348f",
+    "web/src/game/deckLibrary.ts": "8e9fafcfa914e7aa17c2fa317633996e6a4222b614284f42b341a1b91bc92c60",
+    "web/src/game/deckSealNative51Test.fixture.json": "34bd9a42f5d4eebf10dd78425ca699d19d43914561e822121f266f13920fdb3f",
+    "web/src/game/deckSealNative57Test.fixture.json": "b963801467f9dd8e31eb860c2f10b1ed7b17c9d0ce6a7989172a26681c1aee52",
+    "web/src/game/deckSealNative59Test.fixture.json": "e3914436040cbb9e562107ca330b788dac69c770f05461470bb5070e83057ee7",
+    "web/src/game/deckSealNative60Test.fixture.json": "7276a6486597c46f67748bb7a1252f12129ebabd1632f12e1bd5452d0882dc2e",
+    "web/src/game/deckSealNative62Test.fixture.json": "da8d178e304d480d098a9222bce77763f1708a92b7265462ef85913b9702bfdd",
+    "web/src/game/deckSealNative63Test.fixture.json": "8143799e6e588735e6c89f603b1f46673ab2e830a2f1934b88f499ce7105589d",
+    "web/src/game/deckSealNative64Test.fixture.json": "76d8ad03c476824916e1d1610fe50833303585846e464108ef18aecb41d1cfc9",
+    "web/src/game/deckSealNative65Test.fixture.json": "1470bcdca294448ec1878338165c16d0dcf83d40749507a21eb08af2b7ed4af0",
+    "web/src/game/deckSealNative66Test.fixture.json": "f9e2d3291327ed015c7e3b99e0c43fe7f3245fbe293c64fc1da3ec0f805a00af",
+    "web/src/game/deckSealNative67Test.fixture.json": "c044fbed00991ce6f72d9cec0cb5400b3a5dae5d2c99ac0393fd6c4177f61d26",
+    "web/src/game/deckSealNative68Test.fixture.json": "def0ffed237c0fef54b7aa17fc5a7504e7011dd4a1ed3a86a76c429a1241ef10",
+    "web/src/game/deckSealNative69Test.fixture.json": "53616e496c01ba82525ed6fb373b38ea154f87c9a78a4a7c0e10c420a52e1383",
+    "web/src/game/deckSealNative70Test.fixture.json": "47343614a74f6a3219d3a5ef3abc0fae915dff89da4a09e026fd5f9ef44649ca",
+    "web/src/game/deckSealNative71Test.fixture.json": "f7bf2090edc7b04a6e3e4f77ecadf5532b43a48d6a5d9751e2240aaa7d469f2a",
+    "web/src/game/deckSealNative72Test.fixture.json": "65e353bee8e5725bca7fd5244b7af9b00bbb2abf8748f976e3bf777501f1f86b",
+    "web/src/game/deckSealNative73Test.fixture.json": "456c3928227b544b80bd6dd049cf100f0066674b0d524afec141996ab7b31815",
+    "web/src/game/deckSealNative74Test.fixture.json": "9cffb9fa28eb6934b940b7672ab3346efdbe4347c139e6305b7f776fd59389ff",
+    "web/src/game/deckSealNative75Test.fixture.json": "781660f32cbe1dbf19aed212acd0eebc9d64acd8e0d0836cb1f5f5554a38def9",
+    "web/src/game/deckSealNative76Test.fixture.json": "72281bb23d35f3e7da91cd4a6c24b6fafcbe3d438318637e7689c399f2a5ffa4",
+    "web/src/game/deckSealNative77Test.fixture.json": "59a281c5c36b1bd010b79f4de76c40f05dcd6395373574310b4e754b0b77ef38",
+    "web/src/game/deckWorkspace.ts": "a56e676a4ffe1517a30069c265ac5345c98795e3b09ec345f59724c3e31f67c7",
+    "web/src/game/factions.test.tsx": "ed1979a98ee3189cc04eb7b20a5441dffe893f01958b9956e00dbffd8ad0ab4f",
+    "web/src/game/factions.ts": "99a3c6f43f07775ee6e42c97ae2ceaf6e452c9757c3ca0afbb678c981d2ce3f5",
+    "web/src/game/fixedSlotsNative62.fixture.json": "54921d97c00cb1d15ee4126fc28a57b32ed85aa0e01ace947de0f199938eb827",
+    "web/src/game/fixedSlotsNative63.fixture.json": "b6e0ae1c51af64949ea153fc2dda31446ee2cabf11dad25f128160203870c0e0",
+    "web/src/game/fixedSlotsNative64.fixture.json": "b031b20b82b405a5bb180e4a815f29a14235853bc2cd4dde0bb8758336c89002",
+    "web/src/game/fixedSlotsNative65.fixture.json": "9dadaa08119544f76a446d5a76e3e86f3690f97198f975ac8c22c6552a7fcbb0",
+    "web/src/game/fixedSlotsNative66.fixture.json": "3fc7181e15bbda8c6904503f12dc8ab188394fd1c9fff9406bf0ecc14c2514cb",
+    "web/src/game/fixedSlotsNative67.fixture.json": "6c3abf113227269681899aa8808f228f997cb3d0db877f3e6d4253483f0d1ed1",
+    "web/src/game/fixedSlotsNative68.fixture.json": "f4b656b75a698e5d4acfa08c3169f8ccf512c876de8a8a14649a3373f8ddee4d",
+    "web/src/game/fixedSlotsNative69.fixture.json": "fcb307f61a61a58758ba4a12e855c703109fdfb5de626244997526342be627b4",
+    "web/src/game/fixedSlotsNative70.fixture.json": "1435cee887470a685e2f0ae1d3375724ada3b2e86f370a8afcf60ec39682bdb8",
+    "web/src/game/fixedSlotsNative71.fixture.json": "4e4c9a66d26d01f3ae47fa1217979dcda43e6540ce5c578fed1680445f49a5ef",
+    "web/src/game/fixedSlotsNative72.fixture.json": "69dc3c102570e948f51ada5fcfffb033abda9889e11f4126ab1b94aaad05a9b6",
+    "web/src/game/fixedSlotsNative73.fixture.json": "7389708a103b83d47b5947aa4091768f815377852bd3fd85504c383b3b63d020",
+    "web/src/game/fixedSlotsNative74.fixture.json": "2eca75d66dcdba2fcd01f308d460e35ad0ebdf7b7d466289cd7a6bb52f7bafaa",
+    "web/src/game/fixedSlotsNative75.fixture.json": "3e7239592988e676571097b53fa20c4ffcc488f630c3e607f0243046acfe0cd3",
+    "web/src/game/fixedSlotsNative76.fixture.json": "1da2c4b1a137f2a7894156cea22f8232cc2d90e814b7ad6652cdc90c845b5311",
+    "web/src/game/fixedSlotsNative77.fixture.json": "ebe49f65ab8c2d1e8b0a059742812ae92cdef2e043121a0ce464ec954251893a",
+    "web/src/game/game.css": "7350836ecff17cb3cf3db059ebb8cdebecf9c67c20ce6e445fec74ab7567702e",
+    "web/src/game/greenMinimumTest.fixture.json": "bd8ec80e4365802325e444b286c385424d5506e5793a4bfe4344282513f8a125",
+    "web/src/game/jc030Test.fixture.json": "c76b25a0ccb8a01378046fd5a829b6b323c70bb43cc434faec54ea2942d23a39",
+    "web/src/game/jc037Native74.fixture.json": "4245c34ef0f586b5fc1748f74a16e7ebbb44fd31d921aa2e637df61d6d3036c5",
+    "web/src/game/jc037Native75.fixture.json": "30130346ca99de7b8b152d5903748546ae0ecf14a9041ab0a8cd417cc7ca43b6",
+    "web/src/game/jc037Native76.fixture.json": "7e4600716c60f3e281143d6306a804ed79d8ff24cf0f781930a54d3fe0ad8524",
+    "web/src/game/jc037Native77.fixture.json": "16b0cbb75e0ad209e32b8fe09aa247deb8d160175ea4329121bc2419675036d2",
+    "web/src/game/jc046Native77.fixture.json": "a6e3bc6c1ca236d908912320471b51c231a6bc8067fbf9d05f87ea70ee963601",
+    "web/src/game/jc050Native55QuoteTest.fixture.json": "f6e90c42bb4e63fe2e13273101cf2d369c9a72a1ae3401020f0e2b1027be023e",
+    "web/src/game/jc050Native55Test.fixture.json": "5e01d9484a08453c132b3fb99066be191b90a4195198731909aa3e649f888e8a",
+    "web/src/game/jc050Native57QuoteTest.fixture.json": "ec5b5f04887c11de28d276c73a43c5365d373ea354788fe1190b4c293092f3fe",
+    "web/src/game/jc050Native57Test.fixture.json": "f0336f38a7325df8d4937a6a27c6475d00d897c3f863b6a1a6fda16b8e350b1e",
+    "web/src/game/jc050Native59QuoteTest.fixture.json": "47e5b88aba78ffc38787db8a98f4707cf2063d7f97081c6fb645be866dee9d3d",
+    "web/src/game/jc050Native59Test.fixture.json": "99f2f3570e2cb97aba5e5d5f26b3302cc1ed3332ba0f5548109f8628d9dd32ae",
+    "web/src/game/jc050Native60QuoteTest.fixture.json": "c9f3d6be56c3d823c1857298c15deb35c9e1a18e1a8e4fc704caa5961fbc691d",
+    "web/src/game/jc050Native60Test.fixture.json": "fc8a2836245a866c12c3696b529f6fc379c3dcf0ded9891c30a20e90f2e5f5a6",
+    "web/src/game/jc050Native62QuoteTest.fixture.json": "7e5bec54df11655b2bad12d5acefbfdc583fc7cc283bb696ece9c68cb89abac5",
+    "web/src/game/jc050Native62Test.fixture.json": "509b5b75c4e7e34348f7117892a82879a2926f7d8ceb129137163d960653a983",
+    "web/src/game/jc050Native63QuoteTest.fixture.json": "8eed8c98a24e7998f89c2aef1636a43026a62766079d60ccde6cb81f163b8c9d",
+    "web/src/game/jc050Native63Test.fixture.json": "e470717cd0900d3b0eb504a4d4e69229fdb7507aeb35bb39edf39970b88e6d65",
+    "web/src/game/jc050Native64QuoteTest.fixture.json": "d0679907aa42dd0941385cf5ca8cf8ae60b95b0c7c5a88b8e982843872364f1a",
+    "web/src/game/jc050Native64Test.fixture.json": "1e2eadaa2ad06d4be76fffb49d3ae08ed764f5e0608e301a7a395c7284842a06",
+    "web/src/game/jc050Native65QuoteTest.fixture.json": "90c3eff8c4aad8678cd9298b257b2b0449d432785a6245c5eb8c9fadc27222e2",
+    "web/src/game/jc050Native65Test.fixture.json": "1a2460ba3584522e716bf49a6bef573b33727cdcf343e240ec179b7232861cd2",
+    "web/src/game/jc050Native66QuoteTest.fixture.json": "3757dc17b352dd71b35512e7e0930efe7e351b52faea07d4452bbdc72227d59c",
+    "web/src/game/jc050Native66Test.fixture.json": "0f3d73562a70821cec1ddbf1e94d9505e9a4b7414092a0514aaf91085ae124d5",
+    "web/src/game/jc050Native67QuoteTest.fixture.json": "348d92796a710db2bc5f9452efad801bd492dec35385bf9d39e650cfb213bb92",
+    "web/src/game/jc050Native67Test.fixture.json": "994d865738826c1e0e892f28f2933b3a548c17b3522891f53ec491e7b97fcebc",
+    "web/src/game/jc050Native68QuoteTest.fixture.json": "68660d20399fc86fdee25eac61d8aab44906764040af1ffa1aa3e3777e8c31b7",
+    "web/src/game/jc050Native68Test.fixture.json": "152bbce817b42343416fb445cac375c2934cc96da5103088dc1fd84e147c5bb8",
+    "web/src/game/jc050Native69QuoteTest.fixture.json": "cc5413d449e845d8f4b335a66654ef0d648a302c80e04d1ba8d1dc4b7499bd0c",
+    "web/src/game/jc050Native69Test.fixture.json": "63f1f98f8dfd8225009eead4287787e7f91142b33fd4083324d31ff2aa2f5a20",
+    "web/src/game/jc050Native70QuoteTest.fixture.json": "736b0d680b21e3095ca46c825658e022b69919faddf33a8df6105228ea12d698",
+    "web/src/game/jc050Native70Test.fixture.json": "4a0af22cfe154664e0e7dc6d4c08438f2d3272443d6c102fb31cbd066f3c9a97",
+    "web/src/game/jc050Native71QuoteTest.fixture.json": "7eeeebd980c84452238fec94091b3bf1cc806e9a844ed055a05821913eb74409",
+    "web/src/game/jc050Native71Test.fixture.json": "00c6f769e8e87716e9de448d678b180656665e47ef84ee95cb1d3b97c296de43",
+    "web/src/game/jc050Native72QuoteTest.fixture.json": "2846f49a08a3ceb7d9cd160bf1f3b859af1ab45023516e78ffbc1d138f9b1fd7",
+    "web/src/game/jc050Native72Test.fixture.json": "f4ddc6b5747b3d03552c6175f34bf14cb8d932765195aa9bbe2203dccb56c57e",
+    "web/src/game/jc050Native73QuoteTest.fixture.json": "35a1db895e0cc8a26ed7ab8da67ee7f56745d68dd90ea1cc294d363f395788e0",
+    "web/src/game/jc050Native73Test.fixture.json": "2a576c44d6627d982003e3aebfc42492d1297ba21ff56559d4333f3dd8b5519a",
+    "web/src/game/jc050Native74QuoteTest.fixture.json": "af23e1aabf7d19fb109cc3f859b886b3ffaa68309389bdbf7e73a22d8f8d4c44",
+    "web/src/game/jc050Native74Test.fixture.json": "346ea3335bd620b3b5862ee7e915e98c92139ecee15622802c96e1240b6dbf1b",
+    "web/src/game/jc050Native75QuoteTest.fixture.json": "d1533d9a86c596021ab0d269b652591f5b2096003f1d2fa2782184935549f3a9",
+    "web/src/game/jc050Native75Test.fixture.json": "5ee5deb6547a9206f25dbb77619e8bff819d0adf1231c348267b08b73770dfa9",
+    "web/src/game/jc050Native76QuoteTest.fixture.json": "2dcf50f6b236a2237a8489f8a22419230befcb570ea43ed3be2b5d48c61ebb7e",
+    "web/src/game/jc050Native76Test.fixture.json": "992edb920265b88d2ecfc360b76c4051319a9ed8cc7c7e5982a33b364996e831",
+    "web/src/game/jc050Native77QuoteTest.fixture.json": "dd9968acedcb0ebbe6b62faf2b883757de8559ef3b326d9618e3cfb3206c3d46",
+    "web/src/game/jc050Native77Test.fixture.json": "1e925e480cc43ddc2e971ff8e437f0d4652c30d0cf8a48d2e96b15bbff6da0cb",
+    "web/src/game/jc052Native73.fixture.json": "2ec129c5af1770516c41a153c546404ee36e9403822784ff2d44c6070a0d4a6c",
+    "web/src/game/jc052Native73Current.fixture.json": "5867c908d67c71afbf86a6e3e9ee56157bb8529df509d54417ee7bf5abb1ab13",
+    "web/src/game/jc052Native74Current.fixture.json": "a0eb57e189c26fbd9d7254e2c9ae2724d4cf58f360da6f752b5bd1c602820311",
+    "web/src/game/jc052Native75Current.fixture.json": "21ca8deacd8aa1474a6a13600c5d5518925b8dde9f0ac1613263ac2c28eabfde",
+    "web/src/game/jc052Native76Current.fixture.json": "3552811b757172382844a4bdd48c9c76ec74dd37de7903808e7eaec277b46c1c",
+    "web/src/game/jc052Native77Current.fixture.json": "62f81947e6f57d4c0add0dabd5b0069690c1a449c454ec0e8c02c630f78b9480",
+    "web/src/game/jc060Native75.fixture.json": "012fe75913b72b43ceb352d456b31e2d2b6a2aa363e9165b492a2957af9db5a4",
+    "web/src/game/jc060Native76.fixture.json": "81a293077d617a4bf7b01c80550e8e9d1688b97261ebd77f9b61f9dc22b929b6",
+    "web/src/game/jc060Native77.fixture.json": "083be42f4f4e6cc7da0bddfbde8dff2ec8927e30305e52c1473eb51995ef1750",
+    "web/src/game/jc061Native65.fixture.json": "6f7708994aadb43d103ba51989d0a033eebd628f12310bc6fa6ba341a1ea8b67",
+    "web/src/game/jc061Native66.fixture.json": "6367a7a92a9d804c350aac6cfd797f95af0312309b0ef9060907f4f8abd0f416",
+    "web/src/game/jc061Native67.fixture.json": "b76f883d811709fc98a9b9137d67f8c4d6e1d7a304a16b251ac4084f2f63d911",
+    "web/src/game/jc061Native68.fixture.json": "a461f2221a4593b2e8e1ec044a348659151ac3a86689e9387d2c05d3dac6b87e",
+    "web/src/game/jc061Native69.fixture.json": "ea47f2c19e30c14584005a587ceef8499a598066a396e6669803fbe9941f91b6",
+    "web/src/game/jc061Native70.fixture.json": "95c1e844a9c658a9f0212d81199a582ff971c2620e46925da8f3b1f38ce63e97",
+    "web/src/game/jc061Native71.fixture.json": "cad2875b5e801dbb5d61714e416d0154cbc9372513bd0339b0e2ca0cf070b7d6",
+    "web/src/game/jc061Native72.fixture.json": "d60d14dd0ef2ce94eb2809b49183ac63c689b4b5c255e21ec4b12620f8953d19",
+    "web/src/game/jc061Native73.fixture.json": "d29970322efc1cc640be9248e56ad80cb2466f0cb6d8b2060dafff2d95111488",
+    "web/src/game/jc061Native74.fixture.json": "dcc3149d9cba383217daedf346615e9bcdb9ecf542e1972dd06d0654fcfdebc5",
+    "web/src/game/jc061Native75.fixture.json": "0ce257b92b74b80c88e0a35065076abcbf7a56b395d35315554a84b7ef0d5243",
+    "web/src/game/jc061Native76.fixture.json": "adf13c801f59f3aec17ec77d3ab02fc8dd85d729622c834656c5280142fa417d",
+    "web/src/game/jc061Native77.fixture.json": "d17599cdcf127a2404822d71b23786bbeb3ee41f7f8d1e306b9acef9b995ff49",
+    "web/src/game/jc087Native66.fixture.json": "639a52cfe0387ffb5d34454535955eb25edc6845f6f91d387d3ae3d3dbb5c67d",
+    "web/src/game/jc087Native67.fixture.json": "5076dd369a0bf18b46473140c3192c088a37efc5523a36f2d9ff0d0c468a070c",
+    "web/src/game/jc087Native68.fixture.json": "55121da47ea9dad7e6cccb19d0c87d641b31d8e7f4b5da60655a4dc113ec7205",
+    "web/src/game/jc087Native69.fixture.json": "6e456542782b15d2d9b2596e2523f85ef276288721d95e78a92719e3f20bf148",
+    "web/src/game/jc087Native70.fixture.json": "1736d073839fbf5066d4b231251a8ac70e60bd86cb9a3cc7979f09092ed49c0c",
+    "web/src/game/jc087Native71.fixture.json": "0a5b5730945d8172c03c93d3790fc841c2118f904f724c5b1641fa6543618c34",
+    "web/src/game/jc087Native72.fixture.json": "11523e4721653b9865786f0ebc9d3bdb7b0191670a8e5a469edbd3b03b34719d",
+    "web/src/game/jc087Native73.fixture.json": "814bddea1e629bc89bf5c2516525f97fe133be0489dafdf82546d8ad6afb807d",
+    "web/src/game/jc087Native74.fixture.json": "c7e23ab4808e6a05bce506cb8791ac527e91c28ad98532d0509f4917e26b1cec",
+    "web/src/game/jc087Native75.fixture.json": "4ad5bee2abcd630888a20195d036c60148d875b170ed19b4fc1de55541b94380",
+    "web/src/game/jc087Native76.fixture.json": "4ab9dbfbec1e05467833bc04e21643b1b1e377f0d613223d8a70cc65768248f0",
+    "web/src/game/jc087Native77.fixture.json": "05a7cce91c6689aaefa480c34d5b943896842994d274a050f5d8c116be7728b4",
+    "web/src/game/jc089Test.fixture.json": "e15db10257cd4e16591bd46ee2df97e0441a153860efeed54aae4d6ec97119ef",
+    "web/src/game/jc094Native67.fixture.json": "fd254633aba52e3aecb0d2488c28e09d473a6afcf7af3d6da1867c25e9986e4c",
+    "web/src/game/jc094Native68.fixture.json": "f229e25461f8eb033cc4e037e904b46df56f3cc16f77c352f029cb5a159a39d6",
+    "web/src/game/jc094Native69.fixture.json": "7ae3ef352398cafb644c96cfb298e0f31237ba25d7dc88160dcc651edc1f6d05",
+    "web/src/game/jc094Native70.fixture.json": "509f19be3047d9b08ff125f4705811ee84c7de6431d688fa72ff9cbfce921f75",
+    "web/src/game/jc094Native71.fixture.json": "542d60d21ce093b486851434c326cb426d5eb385a865e98eab1ffcd7d3bd5edb",
+    "web/src/game/jc094Native72.fixture.json": "eddfba7c8bf35d822f39d044ea1d6bd1f2344c60396c49efa198806377eabff6",
+    "web/src/game/jc094Native73.fixture.json": "f472fd672089df22628140ee64a15509d3792e3f2d5bc8b456b358b0c7edf9e2",
+    "web/src/game/jc094Native74.fixture.json": "c64472c4416dc425d85c5e2826aad2b2b16ebab8de336ec5e0f72d0467feb0f7",
+    "web/src/game/jc094Native75.fixture.json": "a1731174bfe0101067804703aa024e71046617221020be0090bd4f174d1fbf3c",
+    "web/src/game/jc094Native76.fixture.json": "9a20da0f60d68356c3a13c2302ceb758b6507605b93232b109a111334070e132",
+    "web/src/game/jc094Native77.fixture.json": "fac87b4fde4806bc512aeb65d3171f149484010f8770e360b4a91108956dd5ba",
+    "web/src/game/jc095Native76.fixture.json": "4aa76e328e64a6d4c04f205c3765f961284e413aaea895805c1c38a2b494e84d",
+    "web/src/game/jc095Native77.fixture.json": "f9461f224f9f1f25629ae04d25f7f1edb73ff32c7b1a5f2e0dabc57970d0251d",
+    "web/src/game/jz22Native54Test.fixture.json": "40686ab75f7f2a1461f3ce6e1131e229c6ce95df26cb512f4b9d9203776bef83",
+    "web/src/game/jz22Native57Test.fixture.json": "c81138a26f58a27a276a987d931bffb20a30f7915cf6c0a9a63d0e8848873916",
+    "web/src/game/jz22Native59Test.fixture.json": "b24e762c82c9f5e2cc9a974399072afff64ec954bf24f582d94574788f8760c7",
+    "web/src/game/jz22Native60Test.fixture.json": "9210df534562d7f9dd6123752a1261cadffb8c6fb40baaf22571110959b35633",
+    "web/src/game/jz22Native62Test.fixture.json": "c3591895c90a5c44485aa93e024079496454de96b232cdd5f44bf509c80ff2bf",
+    "web/src/game/jz22Native63Test.fixture.json": "56dccc7f05b87078945549464ed7a3c7968d1d046a1cc84d2f397ff2a973179c",
+    "web/src/game/jz22Native64Test.fixture.json": "111c6f6ca50571ed98e2774e30a0b0951bef30ad6c1cc110eda08ffea019f69a",
+    "web/src/game/jz22Native65Test.fixture.json": "306310220b357b7a925c830c18d5dc7753e54e84793e3f620aa7a4dd7cdc4943",
+    "web/src/game/jz22Native66Test.fixture.json": "00fde0667080fa0c4b7c2469e019139c7bb65a198024342a5863e3e7db53d57e",
+    "web/src/game/jz22Native67Test.fixture.json": "7c2e11cbe65c754b86a47d0fd443ad71ca3b5e51b741ecdf559de18f9120166d",
+    "web/src/game/jz22Native68Test.fixture.json": "5b1211797e9cb01883b3dfe33379bfee8b03bfc84c41e4d25949e5fe0a971ddc",
+    "web/src/game/jz22Native69Test.fixture.json": "9ec6c7bbf8dea73b2ccd4e7786f5c9b939a2e1e1ddefe3a106f7e51b65615a3b",
+    "web/src/game/jz22Native70Test.fixture.json": "8ad8d39b4801d434192317ee83a709937101ec703653806f50842f93712eb607",
+    "web/src/game/jz22Native71Test.fixture.json": "95315d8562a3a67c3d757cf46b2ba11ba7e292796a449c88b6ff009806d81a1e",
+    "web/src/game/jz22Native72Test.fixture.json": "c27b939c3da4f978bc458b557284ba51d1200657030603f9bf5c9942c8e95666",
+    "web/src/game/jz22Native73Test.fixture.json": "b00f883c9dc1ca5edcce40d0f5245071884d747f9b71b1646bf552969bf2086e",
+    "web/src/game/jz22Native74Test.fixture.json": "73cc29be7698e2656f11762109986c42002442bf0f2e7b2690109972081ce4f5",
+    "web/src/game/jz22Native75Test.fixture.json": "ff2fbfe7f806303cf6e8d72b03fb90294873a540b7caae17426ceb50f99fa63f",
+    "web/src/game/jz22Native76Test.fixture.json": "1c766c16d31136646572caab34d5fe20915a5179d9bba4f2ef3de7e8a4740395",
+    "web/src/game/jz22Native77Test.fixture.json": "b1daccac7bb0778f5d2a1e23713df4f15ba68f779ccadb1599fdb6210e46b016",
+    "web/src/game/jz31Test.fixture.json": "cab6c8ef5a52d9b8340914be6f33f73b51b997b0c5167fc75eb29a5310f2a6cd",
+    "web/src/game/jz35Native72.fixture.json": "78d36b666e8f99a8fb0d2ff8d92c7620601c78ae7ee4952c4ee6074de2da6ff2",
+    "web/src/game/jz35Native73.fixture.json": "42d2dfac8634b1e752c07b3ff28ddd90efea33cb3a5e08a789c3ef72c903a785",
+    "web/src/game/jz35Native74.fixture.json": "d01de0172a67e22fa02d23663e3ad5bc210546a5b5a55e9bc2b3a1d3c23bc23a",
+    "web/src/game/jz35Native75.fixture.json": "94fe8bef2d455755b934e4736f434f7042af4e998f6f017963904ed53b4e8dc6",
+    "web/src/game/jz35Native76.fixture.json": "5e0cd11a49260f6474267db1ef57906b23e3ad3025d41963a4f2e05ffa445636",
+    "web/src/game/jz35Native77.fixture.json": "5d1c67f5c5ed160ff6cb82efcd096d5f593675acbb8fbd20c544b6a31bb8b212",
+    "web/src/game/jz48Test.fixture.json": "99182896ad5fe416cbe3fa327e19a22eee165dbf27a85330364cd24ff8542f43",
+    "web/src/game/jz49Test.fixture.json": "16be9fe8dcb6572de75a1f1bc53e9fad750f3b22b04ba612f72caef1c3dd5fa9",
+    "web/src/game/jz50Native48Test.fixture.json": "b3602c1562d64b305049f8925d68f7237bf8580c880cab8a1bbb152b1acf883d",
+    "web/src/game/jz55Test.fixture.json": "866216f19b83147576fc64aefe3a7cc443a02b5f49fd85d78f6b639f2faa2886",
+    "web/src/game/lantern-table.css": "ae90863e58dee1fd92cf944c17390a8b4f6b58a327aa862ca3902ec93d3b4224",
+    "web/src/game/lobby-pages.css": "3ebfa90731d3e322b00858210ca0dd7133036118d8ca18fa84955e0eeb20fa03",
+    "web/src/game/lobbyNavigation.ts": "33150087b653e787f8a231dde7c2c3d1032a1c02dec643ea263fcfc3e78b803b",
+    "web/src/game/millPublicV035Test.fixture.json": "bb4189306f393e99634235777b7136fedb07d035a35c1e03256030c0ae470176",
+    "web/src/game/object-actions.css": "cd4c9dfe2e76634d4b4184fb184bdbbfaeb9f6be44755782ebd1b6117d156c91",
+    "web/src/game/objectActions.test.ts": "8fa66d720b22dd58479aa814d865cf5d0a0e8b66e6f76136d89eab1780cc7cc5",
+    "web/src/game/objectActions.ts": "8b0b9e31ed68a7f282c4edf51582af458d833caf91bd41784ac9c9e6f622117f",
+    "web/src/game/pass-history.css": "5b8cb791fb5fac49ecc619df15bb1c7d90fa1e5958d23631bae3b24e81267e4f",
+    "web/src/game/phaseLabel.ts": "5a2e333b2f0a4d1a071802b169da426f5624acf49c1ed65fa93cfa1e1ddf661d",
+    "web/src/game/playerNameStorage.ts": "9d5b925807809aacc2e9a6d8a759c6e97abed725103404492f335820b492c8eb",
+    "web/src/game/playerStorage.ts": "778455977f1b30d48127683de783f66b320f3246563824a4cb41c3aa2e9a1bfb",
+    "web/src/game/response-intent.css": "337a3cfe984244bc080d5d485b2d8332870e32cb773d9e429239e8dc0f64b8fe",
+    "web/src/game/room-management.css": "8b1459a9139f393dd8c57bb0abd404027a4ecc339c52da66d8ff17e3311c938b",
+    "web/src/game/sealed-cards.css": "ad510f869a729d58c83c3c44d2da616dd689b7f85e2a50b4e29f05e630cbfd72",
+    "web/src/game/sealedNative47Test.fixture.json": "5db46eda15e4d866179ab93a20da03996cfe262cbe9141264f2dd103be9b608d",
+    "web/src/game/sevenCardUIV059.fixture.json": "2fb065d484f639cdc822fdd9b959bca694eea3615ee903ac021a04349e87aa5d",
+    "web/src/game/sevenCardUIV060.fixture.json": "942094b135153ce8540c67436d084000dd898bdcbeaad7abfb714ef4f0bcf516",
+    "web/src/game/sevenCardUIV062.fixture.json": "dfdd9591666db01496d214586d237b91e68414050d4b5f058dd98224d2d8a7b9",
+    "web/src/game/sevenCardUIV063.fixture.json": "55d197f0d0db12a3648af035d0efdec1e5c40f2c35561a1e21ffc77ddb88c3ba",
+    "web/src/game/sevenCardUIV064.fixture.json": "250a398c59d67da07ab630f3fc40427bebb82ca04b1824d37be4f419e65005b8",
+    "web/src/game/sevenCardUIV065.fixture.json": "cc9653311836c91b29e0ecd820235a615d95b5b36fa92e3d7875ae549a0c5460",
+    "web/src/game/sevenCardUIV066.fixture.json": "2e2b20bb8ce8974dd6459e5f37ec66e95ad855c0c3692498637a6d51580665d2",
+    "web/src/game/sevenCardUIV067.fixture.json": "3f8dda8cb9ab9d343e5395221b18b06497da95b94abd7b5def038e39e4906fd5",
+    "web/src/game/sevenCardUIV068.fixture.json": "12eaa39157deb34a0dd81a515df8e5af48b11442acbe853419c31e74e2f131d6",
+    "web/src/game/sevenCardUIV069.fixture.json": "7c30b364b67d1b6ad5471e5a5f08eee1c86e28cbd866c70bc36a59986ee54b29",
+    "web/src/game/sevenCardUIV070.fixture.json": "401a46639b67f3fa6d425dea528bfc2863abac0f80b3201bf165777e7d52f9de",
+    "web/src/game/sevenCardUIV071.fixture.json": "ca38dba6b1e6648c1ec1691d412908b62ef2bede6b636484c3fcbe9519ac2b9d",
+    "web/src/game/sevenCardUIV072.fixture.json": "076ad476b29098355d69109d1ab0e0c1da356dd43784c571a5e040d2f795b5ac",
+    "web/src/game/sevenCardUIV073.fixture.json": "5431cf579953082e2fb462a718a062d2f8a6ce1a0a33ad593c034cc0f7fe21ae",
+    "web/src/game/sevenCardUIV074.fixture.json": "a6e2db0319aa112f526fb809e8e71447a8b67da6e7b8e565363ad5bbb1d14bbb",
+    "web/src/game/sevenCardUIV075.fixture.json": "2b26b9ea1d6110a226ec8ab37aa8b79ccbe08b734128890669e034f16e1a1b87",
+    "web/src/game/sevenCardUIV076.fixture.json": "4d803f9258918403027e098a761ec8e3b787f1ed834b69039ec215aa8ef7ab50",
+    "web/src/game/sevenCardUIV077.fixture.json": "acebbac90cae5bdd4fbd63e945b7a829042e720a14ccd1681a97f2e2fa02ebca",
+    "web/src/game/society.css": "a4735d0725c91ba925606999536158a3b5156932fb67f956ba0ca8c3ff1a5c12",
+    "web/src/game/societyTest.fixture.ts": "98baca279d61cca368e6b70e406741473c98e43d7941787de773f871e3357e67",
+    "web/src/game/table-desktop.css": "3a19d34a53b8957fac9681e898b66904e7f1b93596837013186d49e65835d119",
+    "web/src/game/testFixtures.ts": "7b6f9758e218b12eb4207ee86f74d989b738aa13aa2b24f4e0f0453b472a6757",
+    "web/src/game/testKernel.js": "67baefb8f1467b31aa35c10254f1446bc3e2c9bd5eb20959eafa5770b510554c",
+    "web/src/game/threeColorDeathNative53Test.fixture.json": "a9402571b71302a3e81f6bd98f3ef070415a3331740b9ee18b280bd9778e717c",
+    "web/src/game/threeColorDeathNative57Test.fixture.json": "cc9a42a2dd3f70afc51d88a22611087da153abdc17e8b43d92e5a3eec559925f",
+    "web/src/game/threeColorDeathNative59Test.fixture.json": "5026f72c964590900be2ac038b9245ffdbe4e00ca20e5dd0c84f9a12ce47b3be",
+    "web/src/game/threeColorDeathNative60Test.fixture.json": "32e2e7d1a120e15676797c15c881fd689debae2dc1b8d16896a459bc7dfa13c8",
+    "web/src/game/threeColorDeathNative62Test.fixture.json": "37972addb2182fc5a29b68a25d6066674241f4ae7ddf05dfca8d167072d92b4b",
+    "web/src/game/threeColorDeathNative63Test.fixture.json": "a673971ea9e3a8f3e3d77662a59633bfaa671f2cb4dd1c66c7f16523c0d7eda8",
+    "web/src/game/threeColorDeathNative64Test.fixture.json": "503f0fc27a215fa38b7a99de926d44697ac0b03e24f769720d654e489118b763",
+    "web/src/game/threeColorDeathNative65Test.fixture.json": "95c546b6d143ad39acc4428015f8337c23b744095c7c02d3caba786384e5d22b",
+    "web/src/game/threeColorDeathNative66Test.fixture.json": "1cff014d6bdb9ed89248d61c528c4644c7ef7e3c4a6983b865fe88982d3afed8",
+    "web/src/game/threeColorDeathNative67Test.fixture.json": "0a39baf0d1f90703baccb495e85da40d911a3ac205df7adda37d287feec0af5a",
+    "web/src/game/threeColorDeathNative68Test.fixture.json": "0e6b78aefda7539c057e293567ecba5e2bdc4d151969f9ee1e9a52dd5c237b9e",
+    "web/src/game/threeColorDeathNative69Test.fixture.json": "287c9b40f238330cae1683d643cc89646dfa9c11039674d4b4a7f54cd6ad32f0",
+    "web/src/game/threeColorDeathNative70Test.fixture.json": "587aa8ba4fa0c92e888e8011a9aab47a42dd316046602d964558856e6e1a5330",
+    "web/src/game/threeColorDeathNative71Test.fixture.json": "935968b56bf0f0589a8204cc7cac7decbf90fd1617f3bfa61e739e6eeae01ccf",
+    "web/src/game/threeColorDeathNative72Test.fixture.json": "91e3bd69aff1acd45ef642cdcb711db8204ae4e4949964c84ef103191d310416",
+    "web/src/game/threeColorDeathNative73Test.fixture.json": "1c53b590d6b732d590dd05ebb05c41f1ef30b6616c8e0fa055fc306c2841a048",
+    "web/src/game/threeColorDeathNative74Test.fixture.json": "1d4773bfb1d7e916d3cd8f2f8182442b1c0449a65d28c7d7b5984345f7e3084e",
+    "web/src/game/threeColorDeathNative75Test.fixture.json": "3e266bc6c2ad010a3ff5df71ac87a3eae67b58ea392ff8c9942220a4ce4f8f11",
+    "web/src/game/threeColorDeathNative76Test.fixture.json": "3278a152b17b0bdb1e98beed91b7add04b0a7e220fa680af249ee8a10a473519",
+    "web/src/game/threeColorDeathNative77Test.fixture.json": "a3437322fead181fbbe1c1c54e2325a3eb38d04092719ee8e9116d214ddfc3d8",
+    "web/src/game/types.ts": "cba12e2664a7eaa406f85dfe9ff1e4a95c0ef3e035ca071f8b81b2bb76b88f1d",
+    "web/src/game/useCardVisibility.ts": "c422e81cc0169bdb21a435d438d1deb52387dc05b653f3ed5c996bd2cf6db34f",
+    "web/src/game/useChoiceActionFocus.ts": "e539b34f15c629ed6ef56b2c1c6b8ac994c3d8157ad31a396c6054debba126ff",
+    "web/src/game/useDialogFocus.ts": "9cebc3f5641da9ca95432a4b0bbf08a5e1fbf8ee2ee94d7b0a0907f038930847",
+    "web/src/game/useGame.test.tsx": "4c55a2582fb7b096ce201669e898e0f92d05a9a677d38d9b4304844ae08f6ba8",
+    "web/src/game/useGame.ts": "a8139a45f2ef5a2a8efd5d3df4f0266fba2f25a4cec357e94c8a0d90d5f79c07",
+    "web/src/game/useSeatConflict.test.tsx": "acc2cb14ef276413e16bc1695b016f8cc9dec1a03b5096f689d3142d557d608f",
+    "web/src/game/useSeatConflict.ts": "bc8f8d3aa773edfa13abd0a211b79d56a749f96d3507a885a161587c01cf0266",
+    "web/src/game/wm023Native69.fixture.json": "53555d63479bcf9001a5f19a5ddb847c28ed062faa1f56ac7a292b5e2dd95618",
+    "web/src/game/wm023Native70.fixture.json": "983b0018da19815ffccc87622152179ddbcad206d25b9c189204230fa0d1db13",
+    "web/src/game/wm023Native71.fixture.json": "01d9816e4e6374e6ee11f987fafb6f07cb4c841ad167bdcd4d5c7b819560a87f",
+    "web/src/game/wm023Native72.fixture.json": "2201a2e312229b0347da15d4a2abcbbc3171eb5dc8ccc6d593a4279e31f95a1f",
+    "web/src/game/wm023Native73.fixture.json": "e1309482dfce4df5868ea3cc82b7be21a734fbe1a19b44e2b6c4ef1a23a7d788",
+    "web/src/game/wm023Native74.fixture.json": "569b5ec140731e59023339ebc845d43299fd30c6589f3bae2eb914091a23a2ca",
+    "web/src/game/wm023Native75.fixture.json": "ff25688f06221cdcbeceb23792a6b9091e8abc5bb86ea4de4a8218dfce0a0878",
+    "web/src/game/wm023Native76.fixture.json": "1903a203e19e505ddec1f36bcffd0f65594c216327bcc3d4cbcbc6551030ba83",
+    "web/src/game/wm023Native77.fixture.json": "ac3b5b7d3819453c8e58af09d3715ef30b1509ca18847310dbb1a28fdce62848",
+    "web/src/game/wm038Native71.fixture.json": "412ac48717b38c08f4afa5ee79e1f5716d63a553756c44deb855e07490aceb4f",
+    "web/src/game/wm038Native72.fixture.json": "9e6a9211dc94567cde43dd7c5f0c53a29aaf448f6f6fe53d0036edc4e7c1bb21",
+    "web/src/game/wm038Native73.fixture.json": "4e6866e1ccca861e2a6b3a8254a71d15cfb8c1947f50d1a40f089f10f57a6d9d",
+    "web/src/game/wm038Native74.fixture.json": "7696348aeb8870a6422e9134ed39612d582b804d74ecf7c39196d7d2da9b921c",
+    "web/src/game/wm038Native75.fixture.json": "6a165f153c9d1adad3b834053592d2d23841bfd0ef3d9f1babed9f8412600159",
+    "web/src/game/wm038Native76.fixture.json": "bb70d9b18cd8b81bacbb6fffb06ae4e6d114909594a7317373141b4a91ee31a1",
+    "web/src/game/wm038Native77.fixture.json": "1fe11af32f8c29c1c4373e797da65dff2ff831bd7ec790ea6a80272e147758fa",
+    "web/src/game/wm056Native68.fixture.json": "25adcca536ed1b8afc076f640affc8156f7545ddf894d6fdfb4fccc84709559a",
+    "web/src/game/wm056Native69.fixture.json": "9e510539186cd85c9d66849af58344234879bf66b057675c4bfcc87d371886c0",
+    "web/src/game/wm056Native70.fixture.json": "5fdabe5761de2949fc48de6bc60b6d3d27316aeea69b90a04bceaf2a08960b29",
+    "web/src/game/wm056Native71.fixture.json": "1e57f51efe1c6b6f6efae38d9ac3ccb63c5705ca2d21445cb87f8aff9cd58512",
+    "web/src/game/wm056Native72.fixture.json": "f96735591c81bf35c5b2e8e86523326c0f617cccd63b5cd46987d4642c5ea586",
+    "web/src/game/wm056Native73.fixture.json": "421039de724e800dbab2e235b4d324de97d06d2374f69f00106450dc4b217e69",
+    "web/src/game/wm056Native74.fixture.json": "053e9ca711745e173794d25eda44f25a8998407c8aec527ef15d6798020989c8",
+    "web/src/game/wm056Native75.fixture.json": "70df1f1abbf6ceff7ee5719cb69d0c8403b33bbbc508adc4fd9cea9023e40d88",
+    "web/src/game/wm056Native76.fixture.json": "46299f9c1237b51721e902f8b2be42c9cf6ea1c486750417ea536047f22a9bfd",
+    "web/src/game/wm056Native77.fixture.json": "f39d4e6dee22b42f340e9a6887154e9326be97c80b00238daa1e0af2c3d8e132",
+    "web/src/game/xq18Native60Test.fixture.json": "7fe57d866c726abef14e544d6ab7af554a4e696c70a7ea1cf222b31db56f12fe",
+    "web/src/game/xq18Native62Test.fixture.json": "f2c58788a5296d9f4f7061bb92e875fdbd97c9194c5318f2e04464ae514d1898",
+    "web/src/game/xq18Native63Test.fixture.json": "f22b4d16dadf958b9bba00e6184b0f294645826c886b25e7e5cd10bb9af44973",
+    "web/src/game/xq18Native64Test.fixture.json": "65a34ec333c86de354a074fc8e44aa5228c97a79148c05f57bc87632cfb0e2de",
+    "web/src/game/xq18Native65Test.fixture.json": "1e9057cda2facd884abbdc191072439503dbb9c359ef424e0de14420d2658f07",
+    "web/src/game/xq18Native66Test.fixture.json": "b0feb9276480429d432940e81dc7ba3796465a11b7b7794128d5fda190483737",
+    "web/src/game/xq18Native67Test.fixture.json": "119fbac31c370ad955d670ac9954b8314daafba80c57b0b0a39855dc9f84984e",
+    "web/src/game/xq18Native68Test.fixture.json": "6396b67440f151472212ccaef0f826fafab7149e73c2567dd925be7a07f6a21b",
+    "web/src/game/xq18Native69Test.fixture.json": "7ab3aa33f4be02f1594c4e4b2a50ee94f737bb391aa24d4955a73a58337be53d",
+    "web/src/game/xq18Native70Test.fixture.json": "42c926b9443a628afa3147be6176a5c748b59fe6cb7b2b4ef137f3bb5dcb9efc",
+    "web/src/game/xq18Native71Test.fixture.json": "ec72cdea97dcaf72a0cf9f57d28166edfed540e6c15c40a2b08ef5ceda43ab90",
+    "web/src/game/xq18Native72Test.fixture.json": "4b07662e1d49b77cf40989c1ef092f22c27a96607fdfe459eb38d1863cf5dedb",
+    "web/src/game/xq18Native73Test.fixture.json": "1c367602454024a06b22caa1b8932caaa1160584aaa1a31d46f3f0a91df2b4b8",
+    "web/src/game/xq18Native74Test.fixture.json": "9e28e6a42317b564da374b9f7abceaa4121a510c2fbe5d3b895671fbe004a132",
+    "web/src/game/xq18Native75Test.fixture.json": "1b8c7e6a3744ce50481bacbf52a09471fdbb9493d3d0a2f05bd679edb2be20d5",
+    "web/src/game/xq18Native76Test.fixture.json": "9474e2177e0bd41b37646d5e7a9953e9fc706d36cd82d0f80d675ae1bcdf5777",
+    "web/src/game/xq18Native77Test.fixture.json": "a6e81aad97fe0b2960b2cda8dec198ed10c3f0393d012978ba61a5001fbbda76",
+    "web/src/game/xq24Native65.fixture.json": "49c33271a6305b75a921eebcb5d920752c11de7139e367d6229c538f0a2d619e",
+    "web/src/game/xq24Native66.fixture.json": "07a16c542b8848e7bcddc0cdb78632e2feca053d49422a859f85d7c808c7b348",
+    "web/src/game/xq24Native67.fixture.json": "406de924a4760e40a94367b07e9261b77467901a486d4783bbc875ed4201f998",
+    "web/src/game/xq24Native68.fixture.json": "eb19850a53a1b373286d834ed393dc66648afe63a44e7906f8c4e6988fc497fc",
+    "web/src/game/xq24Native69.fixture.json": "89f33544eab9a7e69bff4399430e73584a6dc98644d071a09a9676acad8320ed",
+    "web/src/game/xq24Native70.fixture.json": "9ca7c27c2a7f2293d69bbec8fb6af924d801181b8e94bd843ef5151cac66d93b",
+    "web/src/game/xq24Native71.fixture.json": "abab394ba44bb14d1a8ddd74c18d116f8ca9968f0523e583dd2b5696467c26eb",
+    "web/src/game/xq24Native72.fixture.json": "7a1add9bc0ed2af31c9e68c2c275f09c50211be4aea250cf5368dcba917bce45",
+    "web/src/game/xq24Native73.fixture.json": "897a066650d104ded5b1098a14f4b3df73a7c98d1df5fb3b3b11e56193721b6e",
+    "web/src/game/xq24Native74.fixture.json": "eaf3cc62f8f65c718e920d8e228ef14134a4e34e053a39fc39a9b3244c7e27a1",
+    "web/src/game/xq24Native75.fixture.json": "5c79befe7bbc73ad33f2b59d594df3d86eca37411df075f7fe1814d649eeb385",
+    "web/src/game/xq24Native76.fixture.json": "1981513c3b295db0711360d34c6046f48a293220947724e2d4728a2f3d7b0c21",
+    "web/src/game/xq24Native77.fixture.json": "7999c9557cfac636452aa066506c7273dc5db2a33fedab1e7705a2c514730957",
+    "web/src/game/xq25Native70.fixture.json": "8bae1fdb9e2b654b48761a3da7ba8776d3423f64e114a5396b7b6217eaf7f7af",
+    "web/src/game/xq25Native71.fixture.json": "b4da620d6e0ea76de60957aa10427601027c1a9c3115d7766426a8e36b1fd3d7",
+    "web/src/game/xq25Native72.fixture.json": "a2588278446db72f83d49d0376c1209ef2d2294f7497aabbb02ee426cfc96f1f",
+    "web/src/game/xq25Native73.fixture.json": "73834330cccf8ee9914e1adb9957d9b66cb8a57a4f70f70a46f481d75da38009",
+    "web/src/game/xq25Native74.fixture.json": "7c1e56d1b563c8e93b88db1c34fb110009e43efd8a108cfb6e1dd5dc0728cb92",
+    "web/src/game/xq25Native75.fixture.json": "3ee51bef634875b36859876d38fd89271993b21e3fd0d0fccf1f1ccd683521f7",
+    "web/src/game/xq25Native76.fixture.json": "5bdf9d1934b69f1bd47dccebca21ed208fb9009b484ead8b661591e9bd5d828b",
+    "web/src/game/xq25Native77.fixture.json": "e5af53e8e7bd860f69913b73f787c4d7299ebc29534add982f026957a04300ad",
+    "web/src/game/xq27Native56Test.fixture.json": "cae0d8a722d56be92cedab748e24041ecef9266a9be1f3f830bf762be248c10b",
+    "web/src/game/xq27Native57Test.fixture.json": "42cfc185b62f790be97cd3443377c24c5ad803eb3f821d7ad715990194736b3e",
+    "web/src/game/xq27Native59Test.fixture.json": "ecf5cab9b30badc5ee5a09b2f5b34f1fff418f45c3e7e9eecbb85f6c7e13c714",
+    "web/src/game/xq27Native60Test.fixture.json": "f2802a5f05d5421e6e0a187f1dc5324d0c4c066a1d0dbe233ad592b76ce45208",
+    "web/src/game/xq27Native62Test.fixture.json": "8950922d59402adca3663c52cb26e70823761a34123e4bbf39e7020b8000f60b",
+    "web/src/game/xq27Native63Test.fixture.json": "0e14ee74776e6b4f966263b39281617650eedee95c6d378e53f0f457c606eb1b",
+    "web/src/game/xq27Native64Test.fixture.json": "521ec9fececc79293b696370c444cbba17cfa6a2035f075e1a13f89d001d3295",
+    "web/src/game/xq27Native65Test.fixture.json": "5fdece0d22db6181d4db2c6b879607abdc189e51b58934228422a186e4f8c02b",
+    "web/src/game/xq27Native66Test.fixture.json": "7c6cbbd9125f721ea93646d84ce78ee7527072994d44b5e37c078d7598eb2bb6",
+    "web/src/game/xq27Native67Test.fixture.json": "3703667cc50953dfa257f4e2ec81f1286bc1fb27e680edc035ffd54f93bfb74b",
+    "web/src/game/xq27Native68Test.fixture.json": "b587fc550b0353bb11147d0dc809e13e97d2d848567f8a59dd3a050ddabf7855",
+    "web/src/game/xq27Native69Test.fixture.json": "fa99b14f160243a209d3b9de11dd9a8de72c3b6c874c7e406c92c67dc2d603ed",
+    "web/src/game/xq27Native70Test.fixture.json": "38844b47c7cfc141e60dd58d4683ef14a669fc21c224ed81906b3e7b8f79b18c",
+    "web/src/game/xq27Native71Test.fixture.json": "eea7ecd61743e0d31b8822f4664a4bdc357cf4b18c08a021699a54385f569d9c",
+    "web/src/game/xq27Native72Test.fixture.json": "c55cdc2f3dc915a750ddd3dbf91fef43f1bb1d4fcfcae04aac764d9b49b91b39",
+    "web/src/game/xq27Native73Test.fixture.json": "43258307f6bc7be5b8e325f15d3b3911193cf2d4ed3870b35004a25e24038447",
+    "web/src/game/xq27Native74Test.fixture.json": "83ce8a2d318f058de9e5d13b0577fb841c8c0508ae7c3ebb029dfb735cf88249",
+    "web/src/game/xq27Native75Test.fixture.json": "7f53b2f75018bb7e6283345874d219839487b9727cb10c4a9170a29241bbb8ba",
+    "web/src/game/xq27Native76Test.fixture.json": "fc997051c0016ec4a7d22ada28e09d1b19b9f27354c672c072e1a6058c955e0a",
+    "web/src/game/xq27Native77Test.fixture.json": "75f85ee899fa27d09bc016487c627364593b6e11e2570ee4ab8cca4290c62c28",
+    "web/src/game/xq37Native57Test.fixture.json": "b465dbda46994cc39d575f9a7a1d85577ab67d758205ff0e837796a6b4775222",
+    "web/src/game/xq37Native59Test.fixture.json": "1b1024f61716bafa57aeaadb848f5587ce3d5cd5d334fa7658c38a3f2a15a13e",
+    "web/src/game/xq37Native60Test.fixture.json": "dc3630827b3fc32df23d541747deeabca945442f5b13bf875c718e69dbea093c",
+    "web/src/game/xq37Native62Test.fixture.json": "2bc35e622c1c784c0eec7af4da4f41ecc7afb0c0cfbb5cf3bfcd73ea19cd2612",
+    "web/src/game/xq37Native63Test.fixture.json": "46abf0942f97576a3292479174b279d1bb8effc74cf859b9d30c9035aa5ae567",
+    "web/src/game/xq37Native64Test.fixture.json": "b15cd97a79b0bb02b6efd71f5f686bfd81b802501296079d3e35a08a3eccd6df",
+    "web/src/game/xq37Native65Test.fixture.json": "1b0a60f8f1cbe647698da81683f97c280179d3ed80fad99b6c84f08507000d66",
+    "web/src/game/xq37Native66Test.fixture.json": "eba7263a408e1ec12f32e2c2aa1b4eec537ea31e7617c5af6eb254677a0cdf05",
+    "web/src/game/xq37Native67Test.fixture.json": "999c0b787a83ffeb5c937326c06a784233b1050aa02e1f845997410fbda37a30",
+    "web/src/game/xq37Native68Test.fixture.json": "aa38f8b89cb5e55d8753dce7923c165a7b85272b8821a31e8e40ba268d823756",
+    "web/src/game/xq37Native69Test.fixture.json": "8cf4fb4c7df976a117c995ce9aa51b5d43cb847c129b4ad33b1510edfdd5f980",
+    "web/src/game/xq37Native70Test.fixture.json": "b7ba0b9020a414532b2c43e23ac212dfae7a60f9c1f5da533b9584af8846bf2d",
+    "web/src/game/xq37Native71Test.fixture.json": "1f7136e1726a4aa1bbae4c570165abe1183f6bc52432ca002ba1e0502cd5cd82",
+    "web/src/game/xq37Native72Test.fixture.json": "a1c175f23cec62b82b036eaf1b48042faa623ff4949124047f675ef3529cbe3c",
+    "web/src/game/xq37Native73Test.fixture.json": "e92533be38f382c87a243911e0a2fe0b7b561944aaad768d278fdcc27fc80833",
+    "web/src/game/xq37Native74Test.fixture.json": "9ffcad6f27deebb935f968d4cc5c5553a47eb161548c18fb80c9b8a29f048663",
+    "web/src/game/xq37Native75Test.fixture.json": "307306d8899a27ceb64a0f86bc6e3ef26a884a93d156f991c2cc41030500b4bc",
+    "web/src/game/xq37Native76Test.fixture.json": "295598fcaea06a2cca3dbdbca2af7377f88ce6f11ce6acafef5de7ff0f984e9a",
+    "web/src/game/xq37Native77Test.fixture.json": "9d9b93104e493c971249a4514ce391b80d8c3a0dd895202364ef8aed5160d97e",
+    "web/src/main.tsx": "e0ac8e002a4c435bec84a25797cb52b9805869f450f926de101b5109d468fae1",
+    "web/src/styles/global.css": "78a41570aa3d21dd9ca640823fa1ef5e9291f4d9022ab57378af2dcaf25cb5b4",
+    "web/src/test/setup.ts": "1fddbba247599203eb5da3748e13f89caaeea93898987642bfa732f86e2e66a3",
+    "web/src/vite-env.d.ts": "9612ffbb2aa8b3b71c1ad509fef1a8fad92399fdb7bef52f9600fb8cfc05201a",
+    "web/tsconfig.app.json": "f2a7feb1daf24deb9112b478c714eed1d2d61f8f59610f44751ef70318c5bed1",
+    "web/tsconfig.json": "c14bc73bac07443677f61403be4d35b8c5cb376686cfdd85f7240ab6ddfc593f",
+    "web/tsconfig.node.json": "dfe6bec888fe2fba5b2c4d7985a9492334832b42c6a6dc212eab493ad94a51f7",
+    "web/vite.config.ts": "3324507e978ca003cc0780d40695ddff717867dd957834ed2fa7a292dd777b05"
+  },
+  "fixtureSha256": "5a5fdf76b537219063838d82e133d45e68e2eec172a95d47f943435ec304e0f2",
+  "nativeRawSha256": "07e919d76415072afee01a4877e6a7af8b9ab88b584bfde77fc561ec9fc82a7b",
+  "wasmSha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e",
+  "productionOutputCount": 179,
+  "runtimeFileCount": 176,
+  "clientFileCount": 166,
+  "auxiliaryOutputs": [
+    ".openai/hosting.json",
+    "server/README.md",
+    "server/index.js.map"
+  ],
+  "files": [
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 91,
+      "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
+    },
+    {
+      "path": "client/assets/index-B7WLNJuY.js",
+      "bytes": 382972,
+      "sha256": "72908f3fcb8cd58ed0090a82c381061ff190107690995be093ace88ab6c8d1c8"
+    },
+    {
+      "path": "client/assets/index-jNIaCara.css",
+      "bytes": 200104,
+      "sha256": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917"
+    },
+    {
+      "path": "client/card-scans.json",
+      "bytes": 33140,
+      "sha256": "4d12cf2d9a7089b2f1221c3a218db072277c67554efe6e27664efac6ab893065"
+    },
+    {
+      "path": "client/cards/BQ022.jpg",
+      "bytes": 938512,
+      "sha256": "f1b58f299c3d901494c388be2123b325ca20c1f341106fe860d9761ded8231eb"
+    },
+    {
+      "path": "client/cards/BQ028.jpg",
+      "bytes": 336814,
+      "sha256": "edefc7294d8df74c8b36dda31591197c878d02c0a7d9b725e0805a3796a32ea6"
+    },
+    {
+      "path": "client/cards/BQ030.jpg",
+      "bytes": 1333870,
+      "sha256": "85aaa7444b65060ab09f33f2ea9057647f88c961ff103fcca0c0763ce2564b86"
+    },
+    {
+      "path": "client/cards/BQ035.jpg",
+      "bytes": 1355796,
+      "sha256": "52500e1a2eac4bb3ab1e9dc56c971669cea058b48f328ff09c42ebd24b7761b5"
+    },
+    {
+      "path": "client/cards/BQ040.jpg",
+      "bytes": 1316410,
+      "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+    },
+    {
+      "path": "client/cards/BQ078.jpg",
+      "bytes": 1324460,
+      "sha256": "d1f6b348c636dd7eb82e367b5cd8abcda4d93bb3fe1ecc7bf95bac3ed36446ea"
+    },
+    {
+      "path": "client/cards/BQ083.jpg",
+      "bytes": 1318007,
+      "sha256": "619db97c8309d903e3781448c6ad35db91bb5f2e4b5660b6e0eef65fcbd6e675"
+    },
+    {
+      "path": "client/cards/BQ104.jpg",
+      "bytes": 1343044,
+      "sha256": "dbee5b3829cf0c46b2820beccefda28708c3c8e87c589dbefce1e975faa916eb"
+    },
+    {
+      "path": "client/cards/DQJC107.jpg",
+      "bytes": 44451,
+      "sha256": "339b9a130ea9c0a82bc5a20d34892a4de52b2ea777a1b0cfec340876d6a4b2b8"
+    },
+    {
+      "path": "client/cards/DQJC108.jpg",
+      "bytes": 48006,
+      "sha256": "5dd2014f700e73b7f8dda56b6c281f29946b6d36a96bdd3838af4b2b393f7c6e"
+    },
+    {
+      "path": "client/cards/DQJC109.jpg",
+      "bytes": 46185,
+      "sha256": "337e5a45432d1ad434f971e66938e7506fc2997649648b21b7a6b1246306c60a"
+    },
+    {
+      "path": "client/cards/DQJC110.jpg",
+      "bytes": 41958,
+      "sha256": "ecafefa26f0d3fa1aca9f63ecb50dcb21c1a51c157890516e94676880d8a1026"
+    },
+    {
+      "path": "client/cards/DQJC111.jpg",
+      "bytes": 54744,
+      "sha256": "e2bc64426c121d41404d758a24b863f4c527a4f69e0582811599e2bc60471e41"
+    },
+    {
+      "path": "client/cards/DQJC112.jpg",
+      "bytes": 45356,
+      "sha256": "9efd49e63ad90c4849bcf123aec4c83cd63e8f135113c374412526be875832ad"
+    },
+    {
+      "path": "client/cards/DQJC113.jpg",
+      "bytes": 46632,
+      "sha256": "3dcac24ae99667ac037001d85f54eb5b77bf83643222769726395571e7135c6e"
+    },
+    {
+      "path": "client/cards/DQJC114.jpg",
+      "bytes": 53746,
+      "sha256": "7ded8662b423543bccedf93e67c098cf0effdd73791b30cc6aaa4acf7bf2a3f2"
+    },
+    {
+      "path": "client/cards/DQJC115.jpg",
+      "bytes": 53304,
+      "sha256": "66fa6d8ceb4ff3529c0d43386782aeac5553c564a761ec47d4e351beb91d0e94"
+    },
+    {
+      "path": "client/cards/DQJC116.jpg",
+      "bytes": 57210,
+      "sha256": "e9dfbc396a733b3bbe7ffcb2a6d67ea371ffe4ca4bd6fc0f4e74b1ee73485d4d"
+    },
+    {
+      "path": "client/cards/JC001.jpg",
+      "bytes": 304832,
+      "sha256": "33b9fd53b30630010a49a520d9e2b89d608822706e67e7c667682c3d1151e312"
+    },
+    {
+      "path": "client/cards/JC002.jpg",
+      "bytes": 293615,
+      "sha256": "21a698ae184e7f909d24ac5374c3eaf7af77f1043b91048cfc8c5a46f9b08680"
+    },
+    {
+      "path": "client/cards/JC003.jpg",
+      "bytes": 324904,
+      "sha256": "027fc054dd7c7ef301108bf0b169e01f91228bf2e918b3ddb8d12e8d05603c3a"
+    },
+    {
+      "path": "client/cards/JC004.jpg",
+      "bytes": 322602,
+      "sha256": "d9209031b83d49c2eacdbedd2967384852acc51329093f362073c462dabf92c4"
+    },
+    {
+      "path": "client/cards/JC005.jpg",
+      "bytes": 327083,
+      "sha256": "216c26cff74fe738dbc486e725828ddc8077705161b1fee566e9d806684364a1"
+    },
+    {
+      "path": "client/cards/JC006.jpg",
+      "bytes": 303268,
+      "sha256": "beec2b1d758e0186cdc4cb57e7c52d6e8df2a4623564e5f212b3d878abb91bf4"
+    },
+    {
+      "path": "client/cards/JC007.jpg",
+      "bytes": 310229,
+      "sha256": "835b85f48270aa66f10f01fa4de7483b0ccf80dcf14e6dc5596639592e14f1ce"
+    },
+    {
+      "path": "client/cards/JC008.jpg",
+      "bytes": 294187,
+      "sha256": "31340e2535e0909359860a090186b7a5032e84d6da94c8181baf32565b5d4f45"
+    },
+    {
+      "path": "client/cards/JC014.jpg",
+      "bytes": 304089,
+      "sha256": "cd1969552197b3111e72ee4bb0725dc4ff513ddb8c940b568b7221699c248bb6"
+    },
+    {
+      "path": "client/cards/JC015.jpg",
+      "bytes": 322933,
+      "sha256": "84ab4fb4fdf5e44f35b8cb8d9a40531d57bb0edb64d29a9c15f80d6e1cd37e1e"
+    },
+    {
+      "path": "client/cards/JC016.jpg",
+      "bytes": 305023,
+      "sha256": "0a3b20635a7fa8e04d6f17ab7a7112a596ed0e7f21293d3e4f4a985463416c35"
+    },
+    {
+      "path": "client/cards/JC018.jpg",
+      "bytes": 341242,
+      "sha256": "a764f6ad543c1aa25e287e42a508ecce2368277e64377c2969b2aff079b63af8"
+    },
+    {
+      "path": "client/cards/JC020.jpg",
+      "bytes": 283808,
+      "sha256": "2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223"
+    },
+    {
+      "path": "client/cards/JC029.jpg",
+      "bytes": 338285,
+      "sha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785"
+    },
+    {
+      "path": "client/cards/JC030.jpg",
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+    },
+    {
+      "path": "client/cards/JC031.jpg",
+      "bytes": 357471,
+      "sha256": "c5d64c9392c3627659b405bc422a49535d35368b5aef5cc50cfc85f2123e6436"
+    },
+    {
+      "path": "client/cards/JC032.jpg",
+      "bytes": 342051,
+      "sha256": "ebeb0a13c62cdf10569f4aa9f300998aff53a65788d756f055e9696f35489b4b"
+    },
+    {
+      "path": "client/cards/JC036.jpg",
+      "bytes": 340194,
+      "sha256": "017507e6a2a229f6541a4690b681ecd71fc09b35962b9673da70f5f035ddba83"
+    },
+    {
+      "path": "client/cards/JC037.jpg",
+      "bytes": 342598,
+      "sha256": "6d4199bd890373683c100b78cebca1cb6e291346b3c8a4fc7b25beea1f2feece"
+    },
+    {
+      "path": "client/cards/JC042.jpg",
+      "bytes": 342837,
+      "sha256": "242a17c708a96d27e95b23f9ab339e01d5b8c1eda282a2f7de8f51ba2c1bdbef"
+    },
+    {
+      "path": "client/cards/JC044.jpg",
+      "bytes": 361527,
+      "sha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800"
+    },
+    {
+      "path": "client/cards/JC045.jpg",
+      "bytes": 336061,
+      "sha256": "7b79668cee2cab604341a79f86decb03587046b31f3c5586123bcc95561d3d60"
+    },
+    {
+      "path": "client/cards/JC046.jpg",
+      "bytes": 359316,
+      "sha256": "5d22023e0848d5d2e6566b2fdfe94ef62a80c7b97812f3f81066392aa97cc1ab"
+    },
+    {
+      "path": "client/cards/JC047.jpg",
+      "bytes": 315262,
+      "sha256": "74d7e3c4bf75c52538fce551dda97f28e5b51d7d64ffbe89c9d427296a3ce9d6"
+    },
+    {
+      "path": "client/cards/JC049.jpg",
+      "bytes": 331035,
+      "sha256": "340c3fbc650b755d72c31ca06a8c379bacb572df6df061a9c52d0fb386d02d58"
+    },
+    {
+      "path": "client/cards/JC050.jpg",
+      "bytes": 313605,
+      "sha256": "2dbbe996c5fec273a1340ca4acadc504689b1af6151b56fe5ae0c217d2df159e"
+    },
+    {
+      "path": "client/cards/JC052.jpg",
+      "bytes": 339386,
+      "sha256": "3b42cde3d48132e0ecbf73dd7ee78c6379c2319a0b83cb7304f24033ab361d33"
+    },
+    {
+      "path": "client/cards/JC054.jpg",
+      "bytes": 364015,
+      "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
+    },
+    {
+      "path": "client/cards/JC056.jpg",
+      "bytes": 285784,
+      "sha256": "75503118eee2b80d23f59ea950884c152f33d28d552d0d051ed872f441810e6d"
+    },
+    {
+      "path": "client/cards/JC057.jpg",
+      "bytes": 324751,
+      "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678"
+    },
+    {
+      "path": "client/cards/JC058.jpg",
+      "bytes": 289748,
+      "sha256": "6585e89991049cb05e75db43143320fd12bf6be781847648d551cb433e85119a"
+    },
+    {
+      "path": "client/cards/JC059.jpg",
+      "bytes": 299356,
+      "sha256": "7d9639d3115dcea8e42f21e1145397f3be4392a80fa0b6c040d7302139eff0ad"
+    },
+    {
+      "path": "client/cards/JC060.jpg",
+      "bytes": 319369,
+      "sha256": "6a879cc4c380b2a79b9fc3f60acf57c408768a9f8fc4dfa07682c9db63b2a4ae"
+    },
+    {
+      "path": "client/cards/JC061.jpg",
+      "bytes": 306855,
+      "sha256": "132918615db6a2233eed3f2d2d045c368c65348e43c52f101f17e4c4ecd756f6"
+    },
+    {
+      "path": "client/cards/JC063.jpg",
+      "bytes": 292803,
+      "sha256": "1b20b9c7392543bf975b6391d227e03e4f50f3fd3134e7c6aa494e7357f88165"
+    },
+    {
+      "path": "client/cards/JC069.jpg",
+      "bytes": 304925,
+      "sha256": "4336d72dc69c89ce8ffe9cdfe7ff8c76423ef4fb73b21a5a70df9b523b1963d4"
+    },
+    {
+      "path": "client/cards/JC070.jpg",
+      "bytes": 328410,
+      "sha256": "3dd1ef905e2cfb4d806b258fdde0b1ec1fe2adad7868bb5cd7dc0bcf9cfe9e1b"
+    },
+    {
+      "path": "client/cards/JC071.jpg",
+      "bytes": 325476,
+      "sha256": "85fde88b2a35d595f166d87c0ab27b244198c3919c1f6a381e54e07598f73b67"
+    },
+    {
+      "path": "client/cards/JC073.jpg",
+      "bytes": 328192,
+      "sha256": "cebf528de52de72d7400d4c769c2642063342d75a01670e120b5bc71aba23d42"
+    },
+    {
+      "path": "client/cards/JC074.jpg",
+      "bytes": 4706143,
+      "sha256": "e34e5bb081f3ee459d99038c68d60f4be4a44af05baa4289759b730045140914"
+    },
+    {
+      "path": "client/cards/JC075.jpg",
+      "bytes": 331174,
+      "sha256": "7db960c7050614dae10a8e752db2567670169e782986e39a789842259231e434"
+    },
+    {
+      "path": "client/cards/JC076.jpg",
+      "bytes": 326205,
+      "sha256": "4390ebf4eabcf44c541303bfb764061c1622cb483ed0e034ee9651571cee27ac"
+    },
+    {
+      "path": "client/cards/JC078.jpg",
+      "bytes": 335412,
+      "sha256": "d238d2c7412349579c00fa4a5a662e9214bdad13df25b8917ae1034251f7e2b9"
+    },
+    {
+      "path": "client/cards/JC084.jpg",
+      "bytes": 316581,
+      "sha256": "3d068fa87dc6f9f7aef426637f71de22aef05f0f278dc096fad0ca50dee99872"
+    },
+    {
+      "path": "client/cards/JC085.jpg",
+      "bytes": 337881,
+      "sha256": "f568ed4c26fc244830d840f0133eb1a78111aceff53a4a345f8ca44c1552aee2"
+    },
+    {
+      "path": "client/cards/JC086.jpg",
+      "bytes": 321608,
+      "sha256": "1bd405a60feeb41d60611050f4a37dd90dc971e1808ba712b66fe0cd37d2d743"
+    },
+    {
+      "path": "client/cards/JC087.jpg",
+      "bytes": 339745,
+      "sha256": "cbd39806bd8126021edff506a65dad651485c6661f181d6e8d8ff9d16911ce00"
+    },
+    {
+      "path": "client/cards/JC088.jpg",
+      "bytes": 314244,
+      "sha256": "9c270203639dae978acb65e9255ac34b5a5d5192e681f8aafd63018ede301a5f"
+    },
+    {
+      "path": "client/cards/JC089.jpg",
+      "bytes": 312412,
+      "sha256": "83853a1a4c3e6ecd9644f7bb5c843e70585d421f1792a0e4a141ebbe867d12f7"
+    },
+    {
+      "path": "client/cards/JC090.jpg",
+      "bytes": 319864,
+      "sha256": "7734b37f8e222307c2958461e6d20a66400011707bc77413a4101e096f40ef0c"
+    },
+    {
+      "path": "client/cards/JC091.jpg",
+      "bytes": 314574,
+      "sha256": "2ea5d65c270a107371f7d69cb22de3e4e60f9e9db81d4e6959744bbfbf6d11cb"
+    },
+    {
+      "path": "client/cards/JC092.jpg",
+      "bytes": 327819,
+      "sha256": "ea1ca5644c38831b659f29dcf4c7ec0cb5dc5a758b0b793ed120b24b74295947"
+    },
+    {
+      "path": "client/cards/JC093.jpg",
+      "bytes": 327300,
+      "sha256": "ac3398f82103f6d50eb97b6bb3467244834c8e3867fb92c295d3c420b522bdd2"
+    },
+    {
+      "path": "client/cards/JC094.jpg",
+      "bytes": 322070,
+      "sha256": "5050b8e0b6d8101d6badcd0aed22f4fa75a2baa61c85e98c17bcd811a5ec72fd"
+    },
+    {
+      "path": "client/cards/JC095.jpg",
+      "bytes": 320210,
+      "sha256": "32dbf8c8af063f8b680bbba87c82920ac5a7dd4a18bcdb33e0d861894e05c020"
+    },
+    {
+      "path": "client/cards/JC096.jpg",
+      "bytes": 311787,
+      "sha256": "28c1eb001f27dc220b8905ba97d7d396680adda8f7c1b8c9e0f2ec97f4907c7c"
+    },
+    {
+      "path": "client/cards/JC102.jpg",
+      "bytes": 346254,
+      "sha256": "842fb9f07e9b8afbc0cecd6c224972c5643bad9b710daa518faceb59fc9a3b5d"
+    },
+    {
+      "path": "client/cards/JC103.jpg",
+      "bytes": 336324,
+      "sha256": "8eee910793908999e04487b65f0e9a398d11ef5b307b360ba6e9d2012adaed63"
+    },
+    {
+      "path": "client/cards/JC104.jpg",
+      "bytes": 375404,
+      "sha256": "877aa980256730bb35350f1b99c2aa75b9110cd5905e61412664e2a89ef4e8da"
+    },
+    {
+      "path": "client/cards/JC107.jpg",
+      "bytes": 343826,
+      "sha256": "ce402d531c9c9bb28da130de0627b4860ced56fb0fa7db1d487082c36e0462e2"
+    },
+    {
+      "path": "client/cards/JC112.jpg",
+      "bytes": 295767,
+      "sha256": "870b526451ed20441601cfed413a99e2e64a266d60daa698bb2066840383bd71"
+    },
+    {
+      "path": "client/cards/JC114.jpg",
+      "bytes": 325963,
+      "sha256": "2cd5cc66ceb3c9a8f9d07d341558489adb170dcb680331c7620e5f1162be12c7"
+    },
+    {
+      "path": "client/cards/JC116.jpg",
+      "bytes": 319810,
+      "sha256": "5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16"
+    },
+    {
+      "path": "client/cards/JC118.jpg",
+      "bytes": 283116,
+      "sha256": "0f112c86afcfd0e9b2b6dea66597e24e57a95155f1b624534b2f9a4b980df97a"
+    },
+    {
+      "path": "client/cards/JC125.jpg",
+      "bytes": 285153,
+      "sha256": "6392c2cdc2d9ea43deca6b26594618a2093ae887bd03d5ad29d130c7e329993a"
+    },
+    {
+      "path": "client/cards/JC126.jpg",
+      "bytes": 302436,
+      "sha256": "33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0"
+    },
+    {
+      "path": "client/cards/JC129.jpg",
+      "bytes": 294504,
+      "sha256": "0c99776d13e342b85c6d6f6cc476459ec6463e6bbdc146046460518c738a0b59"
+    },
+    {
+      "path": "client/cards/JC130.jpg",
+      "bytes": 289306,
+      "sha256": "be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f"
+    },
+    {
+      "path": "client/cards/JC131.jpg",
+      "bytes": 270928,
+      "sha256": "78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f"
+    },
+    {
+      "path": "client/cards/JC132.jpg",
+      "bytes": 295955,
+      "sha256": "219bb4062c3e9053b9fc9d309ad919ebe4b6a98c3af314c6987ca948b3eeb4f1"
+    },
+    {
+      "path": "client/cards/JZ02.jpg",
+      "bytes": 518818,
+      "sha256": "59546782075c26039bdc7d4da34a621bb86de1d8d34c25710a0d59d6761a19e8"
+    },
+    {
+      "path": "client/cards/JZ08.jpg",
+      "bytes": 497242,
+      "sha256": "343561bd351e06811f9a1fc77b6a9fe08e6dfbace83d8c8abb8f6b43fb031d12"
+    },
+    {
+      "path": "client/cards/JZ22.jpg",
+      "bytes": 519522,
+      "sha256": "b368bc3d75306dd0112cff180c8b10501c191e30b0c8d06d78e901ea20cd6160"
+    },
+    {
+      "path": "client/cards/JZ24.jpg",
+      "bytes": 515008,
+      "sha256": "e01995d70e06a6b179dcbbf81c3df73ab548269fc0efe9fafc33e2e2f3c8722d"
+    },
+    {
+      "path": "client/cards/JZ27.jpg",
+      "bytes": 528092,
+      "sha256": "33fbdd4a062962b546cdb0d4f368f35b6c4c019908db73a37cfa09aaa237630e"
+    },
+    {
+      "path": "client/cards/JZ30.jpg",
+      "bytes": 517039,
+      "sha256": "ae1c7e086f18752377467e1cf5e8adef9dcc04b7929e69f9cef2ceb23deb3264"
+    },
+    {
+      "path": "client/cards/JZ31.jpg",
+      "bytes": 507421,
+      "sha256": "57a1fd51243ab4616af46f4fb8a6a1ef46a09ab3c9a11ed2fe2fc90d8b83babf"
+    },
+    {
+      "path": "client/cards/JZ35.jpg",
+      "bytes": 524713,
+      "sha256": "5b84ed6442f88c2406d7a0955ef225e1a8061fe1951da58818567234c193c1dc"
+    },
+    {
+      "path": "client/cards/JZ43.jpg",
+      "bytes": 495991,
+      "sha256": "bbc107878f8041757b38f7674f57b1d5d34028edc79a10551e9f629ae97f6826"
+    },
+    {
+      "path": "client/cards/JZ44.jpg",
+      "bytes": 475293,
+      "sha256": "b5ca6ecde925805b86eeac70bd796ad402695daf342835abfd669e9a157637eb"
+    },
+    {
+      "path": "client/cards/JZ45.jpg",
+      "bytes": 470410,
+      "sha256": "20e18006a7b2f032d7d236f909dc57d75bfc14dc3acf36291c7ca16f3962008f"
+    },
+    {
+      "path": "client/cards/JZ46.jpg",
+      "bytes": 499668,
+      "sha256": "756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785"
+    },
+    {
+      "path": "client/cards/JZ48.jpg",
+      "bytes": 499021,
+      "sha256": "a9a5da75938c22872cca524776356b10f2a0250370d3ba3ed3b31deb332e5b4f"
+    },
+    {
+      "path": "client/cards/JZ49.jpg",
+      "bytes": 499091,
+      "sha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62"
+    },
+    {
+      "path": "client/cards/JZ50.jpg",
+      "bytes": 533019,
+      "sha256": "403e44bb5f7f0ff8715acb267a8369c3715b2dc752d7fe612de085da29b523e7"
+    },
+    {
+      "path": "client/cards/JZ51.jpg",
+      "bytes": 521395,
+      "sha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+    },
+    {
+      "path": "client/cards/JZ52.jpg",
+      "bytes": 521413,
+      "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+    },
+    {
+      "path": "client/cards/JZ53.jpg",
+      "bytes": 509401,
+      "sha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623"
+    },
+    {
+      "path": "client/cards/JZ54.jpg",
+      "bytes": 543412,
+      "sha256": "c7902515865a26e1276d9e7a4bbd05c511704f76aee504c73539737012624af4"
+    },
+    {
+      "path": "client/cards/JZ55.jpg",
+      "bytes": 493536,
+      "sha256": "9155faa90be22aa66e56148dfacd0d517eb7b6f7b56fd1b45b71a6804719784a"
+    },
+    {
+      "path": "client/cards/JZ58.jpg",
+      "bytes": 548446,
+      "sha256": "4cb1892b435cc14fd3f9d8310b428a16eaf5cc5afe1c870760a3dcc457d4dd95"
+    },
+    {
+      "path": "client/cards/JZ59.jpg",
+      "bytes": 518313,
+      "sha256": "b43bf4fc74654c089cf10429306980c2af12743d57d60b603efae03b28eae5f3"
+    },
+    {
+      "path": "client/cards/JZ61.jpg",
+      "bytes": 493374,
+      "sha256": "5da40b475c306d3a295a6582576b9b720c8707050bdedfea3005b92578e4e37f"
+    },
+    {
+      "path": "client/cards/JZ67.jpg",
+      "bytes": 526684,
+      "sha256": "a6554b81e081c7292a32f2bf13ce269f276580f9a852e1df232c60c2c36ff477"
+    },
+    {
+      "path": "client/cards/JZ74.jpg",
+      "bytes": 500480,
+      "sha256": "3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085"
+    },
+    {
+      "path": "client/cards/LC01.jpg",
+      "bytes": 467391,
+      "sha256": "a0defb07b43463cc882e15b993c73eda22ea77ca39062da71e6518a365cc5bd6"
+    },
+    {
+      "path": "client/cards/LC06.jpg",
+      "bytes": 463742,
+      "sha256": "46bcfd890d040fc0b9e558ba601867f402bcc1443851e0ccf7f7a9e1579154b6"
+    },
+    {
+      "path": "client/cards/LC12.jpg",
+      "bytes": 484188,
+      "sha256": "2a13b5e0bf5fa11f320bcf31141cf0e68915a949f9031cd112b5c650420285cf"
+    },
+    {
+      "path": "client/cards/LC19.jpg",
+      "bytes": 469421,
+      "sha256": "41c0fe55aff401721ec54fbb08174d52d36747f0821e32c6ddc5006bba9e9f71"
+    },
+    {
+      "path": "client/cards/LC20.jpg",
+      "bytes": 471968,
+      "sha256": "961b508b54f78c561b98268da91d901a3536a330aef0ea8a49b81b9f6a278248"
+    },
+    {
+      "path": "client/cards/LC21.jpg",
+      "bytes": 437349,
+      "sha256": "62b05d9f5349d53dd6d47dae7077566c1f5735529bc2bd813a45c1d7c3a183b9"
+    },
+    {
+      "path": "client/cards/LC22.jpg",
+      "bytes": 441940,
+      "sha256": "26976ae01006603182b666cef0ea6960bc5d218dc904f2b1c760f3719f142b35"
+    },
+    {
+      "path": "client/cards/LC23.jpg",
+      "bytes": 487166,
+      "sha256": "977959c6deb74b125b18a8b40758deab354396fdffd49b0d9bcc57197144f1c8"
+    },
+    {
+      "path": "client/cards/LC24.jpg",
+      "bytes": 464715,
+      "sha256": "05b4c30ee93bb8ea9b96636e9da3fbcaa560f206aaa5b6c73b5c5ac283fddccb"
+    },
+    {
+      "path": "client/cards/LC30.jpg",
+      "bytes": 1156537,
+      "sha256": "31ce6bd49725e5db643adb13daaef3529b8fb8440691214a00dd9fe666c5041d"
+    },
+    {
+      "path": "client/cards/MSJC01.jpg",
+      "bytes": 263474,
+      "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"
+    },
+    {
+      "path": "client/cards/MSJC02.jpg",
+      "bytes": 249225,
+      "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"
+    },
+    {
+      "path": "client/cards/MSJC03.jpg",
+      "bytes": 238826,
+      "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"
+    },
+    {
+      "path": "client/cards/MSJC04.jpg",
+      "bytes": 250371,
+      "sha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3"
+    },
+    {
+      "path": "client/cards/MSJC05.jpg",
+      "bytes": 232319,
+      "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3"
+    },
+    {
+      "path": "client/cards/MSJC06.jpg",
+      "bytes": 229736,
+      "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"
+    },
+    {
+      "path": "client/cards/MSJC07.jpg",
+      "bytes": 229888,
+      "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"
+    },
+    {
+      "path": "client/cards/MSJC08.jpg",
+      "bytes": 266822,
+      "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1"
+    },
+    {
+      "path": "client/cards/MSJC09.jpg",
+      "bytes": 210792,
+      "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"
+    },
+    {
+      "path": "client/cards/MSJC11.jpg",
+      "bytes": 239506,
+      "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"
+    },
+    {
+      "path": "client/cards/WM003.jpg",
+      "bytes": 1306943,
+      "sha256": "2409ef206e3af93d1eece3ec0bf4ba00a9e3d0c12a8e70443877cc8a28cc9bff"
+    },
+    {
+      "path": "client/cards/WM023.jpg",
+      "bytes": 1317198,
+      "sha256": "b209fe484e37b930ce4d64be078bd3e72a10bdff5250bfd38ba97cb7648cee85"
+    },
+    {
+      "path": "client/cards/WM038.jpg",
+      "bytes": 1240666,
+      "sha256": "847dabd861d6350ae21df04ac548a975e99a7cfd4814f213444409d4c42d7acd"
+    },
+    {
+      "path": "client/cards/WM056.jpg",
+      "bytes": 1302421,
+      "sha256": "35c67bb88ff9547e63932fd51d1581e77aaf649e1124eef706e4d63a8f20b497"
+    },
+    {
+      "path": "client/cards/WM059.jpg",
+      "bytes": 1282461,
+      "sha256": "cc9e57a90d6747733c1edcb6b46bb14307eee908e533f993677841f1b8ef646f"
+    },
+    {
+      "path": "client/cards/WM062.jpg",
+      "bytes": 1188701,
+      "sha256": "a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335"
+    },
+    {
+      "path": "client/cards/XQ03.jpg",
+      "bytes": 1430068,
+      "sha256": "c6e85106105d23ef55df70ba06d6c8878b6ce279a727908fbdeab0a8495679b0"
+    },
+    {
+      "path": "client/cards/XQ07.jpg",
+      "bytes": 1401415,
+      "sha256": "944a254795fc17e946f7150de9a47649d8c6efa3006770850447503b06a22df9"
+    },
+    {
+      "path": "client/cards/XQ12.jpg",
+      "bytes": 1381983,
+      "sha256": "4e9f3afa5f7f22d99fc89284e91586fba78a8ff2ee8827fc6a6ceeb41889fdc8"
+    },
+    {
+      "path": "client/cards/XQ14.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "path": "client/cards/XQ16.jpg",
+      "bytes": 1503073,
+      "sha256": "2ae947c0c5dccd45ae495d3c828ce9b4e1453c34dfb6e24c5e61eea8338cff80"
+    },
+    {
+      "path": "client/cards/XQ17.jpg",
+      "bytes": 1375211,
+      "sha256": "e5ad8fe27074632eab8d6207eb2e6f08efb69d20f343f2d50701d30f5a5bb5eb"
+    },
+    {
+      "path": "client/cards/XQ18.jpg",
+      "bytes": 1431760,
+      "sha256": "c33ebe42e01874807b60ff591a8e94c62e0ce8bfb1bdef7626bfad10432ed10e"
+    },
+    {
+      "path": "client/cards/XQ24.jpg",
+      "bytes": 1451251,
+      "sha256": "420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8"
+    },
+    {
+      "path": "client/cards/XQ25.jpg",
+      "bytes": 1406441,
+      "sha256": "c755f3d8ac0b85c3ab619b01626b92ee316f73885a5dd5a8102d53f3691306a0"
+    },
+    {
+      "path": "client/cards/XQ27.jpg",
+      "bytes": 1342504,
+      "sha256": "78f2d5e2422b611bbf159a33083d70c75bf2ac83103325550430a394e8a803b5"
+    },
+    {
+      "path": "client/cards/XQ34.jpg",
+      "bytes": 1292584,
+      "sha256": "2ca1f5a4b25d308f8af13a7a80018010deaf93f9abe2275bef1fa7656be13e04"
+    },
+    {
+      "path": "client/cards/XQ36.jpg",
+      "bytes": 1471604,
+      "sha256": "84b611615ecdbdf7940022160522187a28edb46322525e540fed1935de0526b9"
+    },
+    {
+      "path": "client/cards/XQ37.jpg",
+      "bytes": 1458533,
+      "sha256": "93778bc4ffa69e5b79ad08738e3f31a78a669a049c42a43e68d04bd6398856b9"
+    },
+    {
+      "path": "client/cards/XQ38.jpg",
+      "bytes": 1487343,
+      "sha256": "26c8311674325491157577a3d295c148ce1c6f27ded59c4d27979faf58e9204e"
+    },
+    {
+      "path": "client/cards/XQ40.jpg",
+      "bytes": 1505785,
+      "sha256": "b4f4e3f294d9ee1893d5b6d11124f0c12e472076e52f6365bdde7ffe49d6162c"
+    },
+    {
+      "path": "client/cards/XQ41.jpg",
+      "bytes": 1463646,
+      "sha256": "02a56f5d1fe9d57121591f19d96f3756a8cf4ab60725ba292474758e5d0af179"
+    },
+    {
+      "path": "client/cards/XQ43.jpg",
+      "bytes": 1456234,
+      "sha256": "6e950624afff514a9ffed208fe51dc4137e5114b3f67a24bb0e694be0c935c93"
+    },
+    {
+      "path": "client/cards/XQ44.jpg",
+      "bytes": 1474456,
+      "sha256": "d4f41bf42958d15358bc7fcb1119967ab94bd187c758273952fd6b70475de047"
+    },
+    {
+      "path": "client/cards/XQ45.jpg",
+      "bytes": 1476070,
+      "sha256": "6475556f30b08853ed5bb2e1c82b3314c73947fb59bc7d044060a5555f5ef8cf"
+    },
+    {
+      "path": "client/cards/XQ46.jpg",
+      "bytes": 1254286,
+      "sha256": "d58e71df94753dde04595f5aa84de4039fcbbe594883acc018e2c06ddb103a89"
+    },
+    {
+      "path": "client/cards/XQ47.jpg",
+      "bytes": 1347172,
+      "sha256": "9b370fb92ad2e1c3ac6f33d3402ab2c8cbdea1898aae4c4a386f17631d654a03"
+    },
+    {
+      "path": "client/cards/XQ48.jpg",
+      "bytes": 1363262,
+      "sha256": "0cd31207bda681093839e86e5bb87cee624a3c0a657c70b60fa765f439089746"
+    },
+    {
+      "path": "client/cards/XQ49.jpg",
+      "bytes": 1336679,
+      "sha256": "8b160c52b18e49a7ef39085b63cc9a1b18531c02dc0ae3d92e2fedd874a29aca"
+    },
+    {
+      "path": "client/index.html",
+      "bytes": 475,
+      "sha256": "b2da2f36e235d65bffbd2de44cd017c9114cccfb984b63b9a9a7e1e9d579c382"
+    },
+    {
+      "path": "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "path": "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "path": "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "path": "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "path": "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "path": "server/60171186c4348d6aa1eeeadbd26e8994813e8c44-hegemony_wasm_bg.wasm",
+      "bytes": 3262869,
+      "sha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e"
+    },
+    {
+      "path": "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "path": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "server/README.md",
+      "bytes": 122,
+      "sha256": "04279239c5a220626080b4db796e8b14f7d3d89274a15a4fb6dbd477295986d7"
+    },
+    {
+      "path": "server/bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "path": "server/index.js",
+      "bytes": 193294,
+      "sha256": "7f9cc04072f4b73bf52c851efc2e35df08adb0548ee73bcef4974fcfda0bb5b7"
+    },
+    {
+      "path": "server/index.js.map",
+      "bytes": 342576,
+      "sha256": "f146755df2e7a9c8f410eb779ddf54bbfc75b2dac4d78e71edfa49dd848cd496"
+    }
+  ],
+  "localClockWorker": [
+    {
+      "path": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "path": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "path": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "path": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "path": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "path": "60171186c4348d6aa1eeeadbd26e8994813e8c44-hegemony_wasm_bg.wasm",
+      "bytes": 3262869,
+      "sha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e"
+    },
+    {
+      "path": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "path": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 123,
+      "sha256": "85f6659300b31546dc8d9e6d08d763e10e995a3763ef0b8b138e786a792898c0"
+    },
+    {
+      "path": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "path": "worker.js",
+      "bytes": 194283,
+      "sha256": "9120175dcbeb383871449fc0d0f4d134d6c03b6413b42fdbaca38af682c25db0"
+    },
+    {
+      "path": "worker.js.map",
+      "bytes": 343560,
+      "sha256": "d188e694e829663b39be3442747877e70deaf40ede8cf31259346dd273722159"
+    }
+  ],
+  "legacyKernels": [
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84
+  ],
+  "productionClockIsRealServerTime": true,
+  "runtimeUnchangedThroughScopedHttpAndSixLocalBrowserScenarios": true,
+  "remainingWorkerFiles": "Running; final coverage and unchanged-source check recorded separately",
+  "status": "Baseline5acb with confirmed pending-choice eliminated-player gap; not releasable",
+  "knownGap": "Pending RepressOne accepts eliminated source actor or target; native and exact ABI85 repro in pending-live-player-repro"
+}

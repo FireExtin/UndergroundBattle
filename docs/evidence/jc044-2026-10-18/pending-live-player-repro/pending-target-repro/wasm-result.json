@@ -1,0 +1,9 @@
+{
+  "source": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "scope": "Native-produced malformed Room string passed opaquely to the exact current ABI85; public view only is parsed",
+  "wasmSha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e",
+  "viewAccepted": true,
+  "targetEliminated": true,
+  "pendingChoicePresent": true,
+  "pendingChoicePlayer": "p2"
+}

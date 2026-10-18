@@ -1,0 +1,13 @@
+{
+  "actor": 0,
+  "actorEliminated": true,
+  "engine": "rust-v0.2.85-jc044-time-repress-candidate",
+  "gameError": null,
+  "gameRestoreAccepted": true,
+  "privateChoiceForLivingTargetAfterActorEliminated": true,
+  "roomError": null,
+  "roomRestoreAccepted": true,
+  "scope": "Native typed Room clone; only pending source actor eliminated flag changed, no JavaScript opaque-state parsing",
+  "target": 2,
+  "targetEliminated": false
+}

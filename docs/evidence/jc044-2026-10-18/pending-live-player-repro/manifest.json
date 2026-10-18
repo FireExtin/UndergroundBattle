@@ -1,0 +1,63 @@
+{
+  "source": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "compiledNativeLibrarySha256": "4e9a4694de54cb02aa5e03f35034ab021fdfd8652a9bf6920d2e163727e108ab",
+  "wasmSha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e",
+  "setupBoundary": "First standalone target probe selected an incompatible cached serde_json and did not execute; second used matching dependency and reproduced. Actor first metadata label was corrected in the preserved second probe; accepted restore result unchanged. No repository Rust or runtime output changed.",
+  "files": [
+    {
+      "path": "pending-actor-repro/build-second.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pending-actor-repro/eliminated-actor-room.json",
+      "bytes": 31152,
+      "sha256": "b0542b7d25f678e7019a63562cf52d94affb7540414f1f32b7f9c55edda2a50f"
+    },
+    {
+      "path": "pending-actor-repro/probe-second.rs",
+      "bytes": 2007,
+      "sha256": "f48173640306799ea551ce602115a1aa7491077ee5246e99dbae1154c969b122"
+    },
+    {
+      "path": "pending-actor-repro/result-second.json",
+      "bytes": 433,
+      "sha256": "91433cd45db7bdf902200140261e4a89c36ccc51c27b04fbae8d29bac762822f"
+    },
+    {
+      "path": "pending-actor-repro/wasm-result.json",
+      "bytes": 389,
+      "sha256": "abe2c00d5f304c1856e2430599176203a19645e1921c067d35414246522d77da"
+    },
+    {
+      "path": "pending-target-repro/build-second.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pending-target-repro/build.log",
+      "bytes": 5982,
+      "sha256": "0592c1fb062ebc167d5fe16049f75aa57655d87533f6c20fd6902665d37e6d8d"
+    },
+    {
+      "path": "pending-target-repro/eliminated-target-room.json",
+      "bytes": 31152,
+      "sha256": "a71b61ed9349b2f5f0f3fe5d443b862aa332c9913bc5f7df1c4ac5a62c5e001b"
+    },
+    {
+      "path": "pending-target-repro/probe.rs",
+      "bytes": 1685,
+      "sha256": "435602a3555d8668382be4056a72354c9f49adbf75aad4e5edd2b5d7874beb4a"
+    },
+    {
+      "path": "pending-target-repro/result.json",
+      "bytes": 341,
+      "sha256": "cf45174265cbe362e962001b62472a9e8217e23f9d66cb89b61aaa1ca3ff18f0"
+    },
+    {
+      "path": "pending-target-repro/wasm-result.json",
+      "bytes": 381,
+      "sha256": "0b70bf267b2a864a7ca0539cd595c85dc3501677482942d580bbbc3a8f47dfac"
+    }
+  ]
+}

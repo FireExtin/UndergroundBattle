@@ -1,5 +1,7 @@
 # JC044验证证据（WIP，尚未完成整批验收）
 
+当前5acbce8存在已确认的Repress待选玩家出局恢复缺口，详见../../JC044_PENDING_LIVE_PLAYER_REPRO_2026-10-18.md；本目录现有通过项为修前基线，不表示可放行。源码和产物在47文件回归期间保持不变，结束后最小修复并重新绑定见证。
+
 输入为已实际查看的JC044新印次原图及同名旧编号基础039的FAQ裁片。原图SHA、FAQ来源和冻结前检查记录在source-and-freeze-preflight.json；档案原notAccepted/selectionEnabled=false/notRun未改。
 
 冻结84位于rust-game-wasm/frozen/abi84，原131输入、13场景124命令20预期拒绝548视图和24坏档见证不改不重签；当前85另用133输入和独立fixture。
