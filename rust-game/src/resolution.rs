@@ -180,6 +180,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard)) {
+                    self.jc044_time_payments(actor).into_iter().map(|p| Some(vec![p.carrier.id])).collect()
                 } else if ability
                     .costs
                     .iter()
@@ -243,7 +245,11 @@ impl Game {
                                     .unwrap_or_default(),
                                 cost.as_ref()
                                     .and_then(|ids| ids.first())
-                                    .and_then(|id| self.players[actor]
+                                    .and_then(|id| self.jc044_time_payments(actor).iter()
+                                        .find(|p| p.carrier.id == *id)
+                                        .filter(|_| ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard)))
+                                        .map(|p| format!("（费用：从{} [{}]移除1个时间标志）", card(&p.carrier.definition).name, p.carrier.id))
+                                        .or_else(|| self.players[actor]
                                         .hand
                                         .iter()
                                         .find(|c| c.id == *id)
@@ -261,7 +267,7 @@ impl Game {
                                             card(&c.definition).name,
                                             r + 1,
                                             c.id
-                                        ))))
+                                        )))))
                                     .unwrap_or_default()
                             );
                             result.push((a, label));
@@ -444,7 +450,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
@@ -865,6 +871,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<PaidCost>> {
         self.validate_wm038_activation_cost(actor, source, spec, a)?;
+        self.jc044_check_activation(source, a)?;
         if spec.per_turn_limit.is_some_and(|limit| {
             self.turn_ability_usage.iter().any(|u| {
                 u.source_instance == source.card.id
@@ -886,6 +893,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
                 Cost::Assets(n) => {
                     let ids = self.players[actor]
                         .assets
@@ -1442,6 +1450,7 @@ impl Game {
         self.validate_jc050_frame(&frame)?;
         self.validate_xq27_frame(&frame)?;
         self.validate_xq37_frame(&frame)?;
+        self.validate_jc044_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1548,6 +1557,7 @@ impl Game {
                         self.grant_execution_traits(id, 0, true);
                     }
                 }
+                Op::JC044AddOneTimeToOriginalSource => self.jc044_add_time(&frame)?,
                 Op::RepressOpponentOne { slot } => {
                     let seat = self.frame_player(&frame, step.context, PlayerRef::Target(slot))?;
                     let team = self.team(seat);

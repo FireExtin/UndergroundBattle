@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.76-jc057-live-inspection-candidate",
-  "engineVersion": "rust-v0.2.84-jc057-live-inspection-candidate",
+  "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
+  "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5758,6 +5758,47 @@
         "file": "resource/ymsj-fun.github.io/cards/cards.json",
         "record": "JC057",
         "image": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "JC044",
+      "name": "灾难使者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师",
+        "邪教徒"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "时间标志1\n【标准行动】自本方卡牌上移除一个时间标志：遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）",
+      "keywords": [
+        "时间标志1"
+      ],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC044",
+        "image": "resource/ymsj-fun.github.io/cards/JC044 灾难使者.jpg"
       },
       "unique": false,
       "society": ""

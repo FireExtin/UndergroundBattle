@@ -567,6 +567,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    RemovedTime(TimeMarkerPayment),
     Discarded {
         old_instance: String,
         holder: usize,
@@ -579,6 +580,14 @@ pub enum PaidCost {
         controller: usize,
         owner: usize,
     },
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TimeMarkerPayment {
+    pub carrier: Card,
+    pub region: Option<usize>,
+    pub attachment_host: Option<String>,
+    pub remaining: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum GuardState {
@@ -893,6 +902,7 @@ impl Game {
         game.validate_xq25_state()?;
         game.validate_jz46_state()?;
         game.validate_jc057_state()?;
+        game.validate_jc044_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_jc052_state()?;

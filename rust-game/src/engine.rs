@@ -598,6 +598,7 @@ impl Game {
         self.validate_jc054_state()?;
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
         self.validate_jc057_state()?;
+        self.validate_jc044_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -607,6 +608,7 @@ impl Game {
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
         next.validate_jc057_state()?;
+        next.validate_jc044_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -1082,6 +1084,7 @@ impl Game {
         self.validate_bq035_frame(&frame)?;
         self.validate_jz46_frame(&frame)?;
         self.validate_jc057_frame(&frame)?;
+        self.validate_jc044_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1956,6 +1959,7 @@ impl Game {
         self.validate_blue_expansion_state()?;
         self.validate_jz46_state()?;
         self.validate_jc057_state()?;
+        self.validate_jc044_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;

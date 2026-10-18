@@ -29,6 +29,9 @@ mod jc046_tests;
 mod jc037;
 mod jc060;
 mod jc057;
+mod jc044;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod jc044_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc057_tests;
 mod jc095;

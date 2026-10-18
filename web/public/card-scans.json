@@ -803,5 +803,10 @@
     "url": "/cards/JC057.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg",
     "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678"
+  },
+  "JC044": {
+    "url": "/cards/JC044.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC044 灾难使者.jpg",
+    "sha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800"
   }
 }

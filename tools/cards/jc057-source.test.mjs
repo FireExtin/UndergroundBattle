@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 const read=p=>readFileSync(new URL('../../'+p,import.meta.url));
 const json=p=>JSON.parse(read(p));
 const hash=b=>createHash('sha256').update(b).digest('hex');
-const data=json('rust-game/data/cards.json'),spec=json('docs/factions/card-specifications.json').cards.JC057;
+const current=json('rust-game/data/cards.json'),data={...current,cards:current.cards.filter(c=>c.id!=='JC044')},spec=json('docs/factions/card-specifications.json').cards.JC057;
 test('JC057 is the complete pinned original, without upgrading archival acceptance',()=>{
   const c=data.cards.find(c=>c.id==='JC057'),s=spec.sourceVerification;
   assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);
@@ -29,6 +29,6 @@ test('JC057 adds exactly one gray card and leaves the original 147 cards, preset
     ['decks',data.decks,'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987'],
     ['world',data.world,'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5'],
   ])assert.equal(hash(JSON.stringify(value)),sha,key+' fixed baseline 14758d9');
-  assert.equal(data.engineVersion,'rust-v0.2.84-jc057-live-inspection-candidate');
-  assert.equal(data.cardPoolVersion,'limited-v2.76-jc057-live-inspection-candidate');
+  assert.equal(data.engineVersion,'rust-v0.2.85-jc044-time-repress-candidate');
+  assert.equal(data.cardPoolVersion,'limited-v2.77-jc044-time-repress-candidate');
 });
