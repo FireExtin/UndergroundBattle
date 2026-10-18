@@ -1,0 +1,27 @@
+{
+  "checkedUtc": "2026-10-18T06:53:37.937970+00:00",
+  "reviewedSource": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "reviewedEvidence": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+  "runtimeManifestSha256": "6123629e7508d08b059c8acdc93df6a03c0a68ff8f0bc2715e0f6c4f14c0b401",
+  "sourceFiles": 960,
+  "productionFiles": 179,
+  "runtimeFiles": 176,
+  "clientFiles": 166,
+  "wasmFiles": 9,
+  "retainedKernels": "77\u201384 exact bytes",
+  "currentWasm": {
+    "bytes": 3263215,
+    "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+  },
+  "productionWorker": {
+    "path": "server/index.js",
+    "bytes": 193294,
+    "sha256": "77139a8daecdfa5f733a7cdd8715e1892e2d779eef4d59d799df99d50d2972b1"
+  },
+  "productionClockIsReal": true,
+  "productionClockBinding": "createWorker(kernel) defaults to now = Date.now; function passed, not called at construction",
+  "fixedClockWorkerExcluded": true,
+  "allProductionSizesAndSha256Match": true,
+  "allSourceGitBytesMatch": true,
+  "testedClockWrapperAlsoVerifiedButNotForPublication": 12
+}

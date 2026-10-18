@@ -1,0 +1,17 @@
+{
+  "sourceThread": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+  "instruction": "Parent completed complete JC044/ABI85 serial independent review, P2 closed, no remaining P0/P1/P2 source blocker; publish exact reviewed artifacts through original official Sites, preserve77\u201384, real clock and public audience; stop on permission rejection; no game-main merge, Actions, database clearing or extra same-hour browser visit.",
+  "reviewedCode": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "reviewedEvidence": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+  "runtimeManifestSha256": "6123629e7508d08b059c8acdc93df6a03c0a68ff8f0bc2715e0f6c4f14c0b401",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "previousProvider": "7ab9768bd86a5a7e66dd988a42324624c1a23943",
+  "sourceHelper": "/workspace/sites-official-abi77-20261015/scripts/site-workflow.mjs",
+  "packagingCommands": [],
+  "credentialPersisted": false,
+  "noPermissionBypass": true,
+  "preflightGameRemote": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+  "preflightMain": "398e220721f9e14c4f523530183c6288b7749096",
+  "preflightActiveBuildsOrTests": [],
+  "previousHourlyBrowser": "06:26:20Z v66 normalTLS blocked;1GET0writes0games;reuse no repeat during same hour"
+}

@@ -1,0 +1,11 @@
+{
+  "checkedUtc": "2026-10-18T07:07:07.663406+00:00",
+  "artifactAndDocumentReferencesVerified": 217,
+  "allRemainingGameChangesOnlyDocumentation": true,
+  "reviewedRuntimeManifestUnchanged": true,
+  "productionWasmAndWorkerUnchanged": true,
+  "providerSourceCleanAndExact": true,
+  "protectedLockUnchanged": true,
+  "deploymentAlreadySucceeded": true,
+  "browserProcessEndedNaturally": true
+}

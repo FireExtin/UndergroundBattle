@@ -553,8 +553,8 @@
   "documents": [
     {
       "path": "docs/JC044_SERIAL_HANDOFF_2026-10-18.md",
-      "bytes": 3153,
-      "sha256": "6e2ff305d8bab2d3b1792db04308e00d106908b874b9e85dcb6fbc391fda7792"
+      "bytes": 3411,
+      "sha256": "999a4d27d31f75d11f359239efccf7919afd2b0dcc61e53e07da86669ef68f2a"
     },
     {
       "path": "docs/JC044_SERIAL_REVIEW_2026-10-18.md",
@@ -593,6 +593,7 @@
   "mainMerged": false,
   "historicalStatus": "1979 not cleared: independent review found inverse stack-source identity gap",
   "supersededBy": "docs/JC044_STACK_SOURCE_IDENTITY_FIX_2026-10-18.md",
-  "updatedAtUtc": "2026-10-18T06:43:21.821823+00:00",
-  "originalManifestCommit": "4f5ba75c33142e0a9d34c54b8e1d983766b83fa2"
+  "updatedAtUtc": "2026-10-18T07:06:11.159685+00:00",
+  "originalManifestCommit": "4f5ba75c33142e0a9d34c54b8e1d983766b83fa2",
+  "subsequentPublicationDocument": "docs/SITES_V67_JC044_PUBLICATION_2026-10-18.md"
 }

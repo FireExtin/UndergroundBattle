@@ -1,5 +1,7 @@
 # JC044 堆栈冻结来源反向身份校验 P2 修复
 
+> 后续状态：父会话已确认JC044/ABI85完整独审通过、P2关闭，官方v67发布成功。见[发布回执](SITES_V67_JC044_PUBLICATION_2026-10-18.md)。以下保留发布前验收及其原边界；线上普通浏览器仍证书阻断，0局。
+
 本次只处理父会话独审指出的恢复缺口；旧完整源码 `1979d2420bd1644c8d6b04a16ff2caa23608b9c5`（文档保存点 `4f5ba75c33142e0a9d34c54b8e1d983766b83fa2`）**未获放行**。独立分支仍为 `codex/jc044-time-repress-review-20261018`，其他独审仍在进行。本次 P2 的本地适用验证已完成，源码保存点为 `f34424b8a699f74f742748a5cdbd4c73529bbe94`；最终证据见[本次独立清单](evidence/jc044-stack-source-2026-10-18/manifest.json)，继续等待父会话串行复审，没有发布或合 main。
 
 输入是原 `jc044Native85.fixture.json.gz` 解压包装的 `raw.json` → `entry-deploy-skip.steps[0].expected.state`。revision=9，stack[0].id=i245，item.card=JC044/i244，frame.source.card=JC044/i243。强类型 Rust 只把 `/game/stack/0/frame/source/card/definition` 从 JC044 改成已准入 LC19，逐项断言其他字段不变；修前 Game/Room 以及原 WASM 均接受。四次真实 PassResponse 后，`resolve_stack` 仍依据 item.card 将 JC044 以正常新 UID i246 入场。现身入口同样成立。JavaScript 没有解析或重写不透明 Room 字符串。

@@ -1,0 +1,184 @@
+{
+  "format": "jc044-v67-publication-evidence-sha256-v1",
+  "createdAtUtc": "2026-10-18T07:06:11.167065+00:00",
+  "reviewedSource": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "reviewedEvidence": "f9b88a7a3d67e420edfc628cb6b11a03c49ea618",
+  "runtimeManifestSha256": "6123629e7508d08b059c8acdc93df6a03c0a68ff8f0bc2715e0f6c4f14c0b401",
+  "providerSource": "db204017bf378fe068447a069acfb928854527bf",
+  "version": 67,
+  "published": true,
+  "deploymentStatus": "succeeded",
+  "scope": "Sanitized official release receipts and hashes; no credentials, databases, caches, compiled or upload archives in Git",
+  "evidenceFiles": [
+    {
+      "path": "archive-audit.log.gz",
+      "bytes": 977,
+      "sha256": "bc1c416c717ebc5d246b319142358c66bc181cae9aab09dd4243ae94826d50ef"
+    },
+    {
+      "path": "archive-prefix-audit.json",
+      "bytes": 616,
+      "sha256": "0005cd82637de9cfc63032e81bd7a0f4a79c6b0add9c1e9fa6c16cb1dfbca3fb"
+    },
+    {
+      "path": "authorization-and-workflow.json",
+      "bytes": 1232,
+      "sha256": "38c3e2255c45b1d157cce362336bd384f3ce7342551a13b90cfb929a3be6b76e"
+    },
+    {
+      "path": "browser/normal-browser.json",
+      "bytes": 3813,
+      "sha256": "2fa07aad7d73f0c2b4c6af0703986acb3821ab2a6ecbaac25b3407113c5a27a4"
+    },
+    {
+      "path": "browser/normal-browser.png",
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+    },
+    {
+      "path": "browser/official-identity.json",
+      "bytes": 1876,
+      "sha256": "64b6d61deb8f6d1c363226e4f70f416ff3208830f783feca15b626aae8e33b4d"
+    },
+    {
+      "path": "browser/v67-normal_browser.py",
+      "bytes": 9261,
+      "sha256": "cee8b8f674245073c2acab8f6cc9e486f1dbc165470d440dda990176f494bf20"
+    },
+    {
+      "path": "first-clock-check-failure.json",
+      "bytes": 568,
+      "sha256": "e9f164d242b33b1451c9e368ff6e4f1b629402979467c95d905d3e078088b55f"
+    },
+    {
+      "path": "normal-browser.exit.json",
+      "bytes": 284,
+      "sha256": "18aa571ac33778571d273179da7c21eacacccddff0ce0959a373ec745418f7aa"
+    },
+    {
+      "path": "normal-browser.log.gz",
+      "bytes": 165,
+      "sha256": "fd8213fa148ea4190dad4b305bf61f3b53087c88b8cbc8c6847580eeb8093c30"
+    },
+    {
+      "path": "official-deployment-initial.json",
+      "bytes": 612,
+      "sha256": "d44a673cc58b098183eecd3fee2b8d423f6450aec9db47ca96cfe7305d8f08c5"
+    },
+    {
+      "path": "official-receipts.json",
+      "bytes": 4800,
+      "sha256": "293857a630ae505481e04a80dbf95fd2308a6545f099909fe1a4cd9582c2cfa3"
+    },
+    {
+      "path": "official-saved-version.json",
+      "bytes": 579,
+      "sha256": "2e49c4d2368066edee18105678dcecffbb963b1bbbb8ac09fbdbec178bdaeb9c"
+    },
+    {
+      "path": "official-workflow-result.json",
+      "bytes": 266,
+      "sha256": "75604e4951f9960fbf0666519a129b153b1e4f5ab3c3376d59e44dc94538f752"
+    },
+    {
+      "path": "pre-final-checkpoint.json",
+      "bytes": 394,
+      "sha256": "4a22d1b850beb3fe2bd1d16e2cd797d8ed4811dd2a912b5c83d0f10206c37bd2"
+    },
+    {
+      "path": "prepare-reviewed-source.log.gz",
+      "bytes": 594,
+      "sha256": "346c9a76699ad1cf5b76bb49f947e279b775c367286fee47a9dcb514ea5447f2"
+    },
+    {
+      "path": "prepare-reviewed-source.py",
+      "bytes": 7438,
+      "sha256": "54b590d69de569d0e83068c49841a15ac9416dd55864c945e721b4b930faf2a5"
+    },
+    {
+      "path": "prepublication-artifacts.json",
+      "bytes": 1058,
+      "sha256": "e03ccbca6bf862ab0002b8276e94fc5658e95271e2410cac966ca0960c728909"
+    },
+    {
+      "path": "provider-copy-plan.json.gz",
+      "bytes": 10316,
+      "sha256": "edab11f384eb3f6505ab746ff74b38a662c3cadd26251d6afb45c8cf4981d0f3"
+    },
+    {
+      "path": "provider-input-audit.json",
+      "bytes": 2983,
+      "sha256": "0e9efa9774ccef5fe4435569bfc90afbad9a855ba22f61d736d06ad4bd4d4a99"
+    },
+    {
+      "path": "provider-source-files.json.gz",
+      "bytes": 70198,
+      "sha256": "f7cffedaff178c517669d32316eadf2b03c0b76d32a5dc534bdeccf06075b0fc"
+    },
+    {
+      "path": "publication-archive-audit.json",
+      "bytes": 29474,
+      "sha256": "35798ae853251ec265e9a01864688a13e587d2e2fb2816df5793e8c3310bacdc"
+    },
+    {
+      "path": "publication-summary.json",
+      "bytes": 1657,
+      "sha256": "22ae1d019bc0354647ebbd6afb0aef666f58c6f09a73c31e476d8d94717be89b"
+    },
+    {
+      "path": "retained-fixture-storage.json",
+      "bytes": 705,
+      "sha256": "0b4ee5e98ffe4273750e41d78187cf96e048ebd70ced4e356d5953b24517e43f"
+    },
+    {
+      "path": "run.py",
+      "bytes": 835,
+      "sha256": "11d28d33f68811c703970b9d78f9221dc3221e4699c7ac6ff2fa634f1f1e577f"
+    },
+    {
+      "path": "verify-publication-archive.py",
+      "bytes": 4954,
+      "sha256": "04c11d5180b7fefe6ca44545b0a218eacd8e7db06d9ac5a473ef99ef8edde824"
+    },
+    {
+      "path": "verify-reviewed-artifacts.py",
+      "bytes": 3120,
+      "sha256": "36614119ca80ae28e17e329f03f346c7f5ed70f9b42ec51b02712ffa898b508f"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/SITES_V67_JC044_PUBLICATION_2026-10-18.md",
+      "bytes": 4774,
+      "sha256": "d9a1d0ad7eec6e5cb8bbd3fdf96d08501f7fad4c981ebe7f560d383a32d2853f"
+    },
+    {
+      "path": "docs/JC044_SERIAL_HANDOFF_2026-10-18.md",
+      "bytes": 3411,
+      "sha256": "999a4d27d31f75d11f359239efccf7919afd2b0dcc61e53e07da86669ef68f2a"
+    },
+    {
+      "path": "docs/JC044_STACK_SOURCE_IDENTITY_FIX_2026-10-18.md",
+      "bytes": 4694,
+      "sha256": "b0bd68f348b855439851a8e13f5c9dbecc180d24decd49d07fc360927aa50d13"
+    },
+    {
+      "path": "docs/evidence/jc044-2026-10-18/manifest.json",
+      "bytes": 20795,
+      "sha256": "c6ad7b63c9ff2fdb0dfb4a99b444f8773d5167074fc1a430933380f1fd18b51e"
+    },
+    {
+      "path": "docs/evidence/jc044-stack-source-2026-10-18/README.md",
+      "bytes": 3792,
+      "sha256": "0653d4dec74d71246dab11d70368d94307f0b41121ee4a8f5cb0358765590b19"
+    },
+    {
+      "path": "docs/evidence/jc044-stack-source-2026-10-18/manifest.json",
+      "bytes": 12113,
+      "sha256": "77fa27654a4485c4b4ce678256fe1aa1333d5fa5a9a4425c6cad44515ddf0ce1"
+    }
+  ],
+  "normalBrowser": "One07UTC-hour normal request, TLS blocked07:03:12Z;1GET0writes0games;no bypass/retry",
+  "gameMainMerged": false,
+  "actionsTriggered": false
+}
