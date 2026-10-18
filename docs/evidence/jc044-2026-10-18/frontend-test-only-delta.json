@@ -1,0 +1,13 @@
+{
+  "changedFile": "web/src/game/JZ55UniqueDestroy.test.jsx",
+  "change": "Exclude only newly added JC044 from the fixed154 historical scan projection",
+  "productCodeChangedAfterFullRun": false,
+  "beforeSha256": "a7bd92c0a54a92effb9419581f9a6d7f41a94bf2b2d04d40026bcddcb84606d6",
+  "afterSha256": "ead8ca4720a1ef96194138994f12db5245df5c9db8b87046f40f4b5b81b110ce",
+  "fullRun": {
+    "passed": 1313,
+    "failed": 1,
+    "testFiles": 138
+  },
+  "fullSuiteRepeated": false
+}

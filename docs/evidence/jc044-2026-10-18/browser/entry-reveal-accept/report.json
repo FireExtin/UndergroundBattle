@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Native85 initial layout; actual production GameApp, listening local HTTP/workerd/nine-WASM/D1 and four independent browser contexts.",
+  "scenario": "entry-reveal-accept",
+  "engine": "rust-v0.2.85-jc044-time-repress-candidate",
+  "wasmSha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "60171186c4348d6aa1eeeadbd26e8994813e8c44-hegemony_wasm_bg.wasm",
+      "sha256": "14cbb10f640fee5a19ede0346dab6761f4e989a194d7a4da7cfe268a7f42222e"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/jc044-real-http-9CdDcG",
+  "productionWorkerSha256": "7f9cc04072f4b73bf52c851efc2e35df08adb0548ee73bcef4974fcfda0bb5b7",
+  "workerSha256": "9120175dcbeb383871449fc0d0f4d134d6c03b6413b42fdbaca38af682c25db0",
+  "clientIndexSha256": "b2da2f36e235d65bffbd2de44cd017c9114cccfb984b63b9a9a7e1e9d579c382",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "reveal",
+      "version": 9,
+      "stateSha256": "428b743db3a1bc296b9f4863da99082382c1dd411e7f566d8e7b65780c5e3cde"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 10,
+      "stateSha256": "60d7b9c2981ecc04d80a84c9619fc03bdd8c54e8f0457aef0e3209f97a7ce095"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 11,
+      "stateSha256": "efce5050a955d7a45c1cf28872fe07f753964e79606612284b47c52cc3961229"
+    },
+    {
+      "index": 3,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 12,
+      "stateSha256": "cdd3a208826caaf7cefee8fb2737b79c95f36fbfb423a0dde09f46c288651e39"
+    },
+    {
+      "index": 4,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 13,
+      "stateSha256": "502672bc423452a69cfe6ab29235991d826f9ece99839254e0f0f8d07914f520"
+    },
+    {
+      "index": 5,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "choose",
+      "version": 14,
+      "stateSha256": "a9245c5ea4ac4e8858f47eed87b907f1f42292f2988cf74aa2fe2556fcdb16cd"
+    },
+    {
+      "index": 6,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 15,
+      "stateSha256": "b2b5bd5daed46402f833d3c208be41c2884e729c94818092496730a464cd67d8"
+    },
+    {
+      "index": 7,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 16,
+      "stateSha256": "484f0aca88a8f380adeaae4aa5434b1b0b894ab362c0dbb9560ec78014be5e58"
+    },
+    {
+      "index": 8,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 17,
+      "stateSha256": "af5a57586dc96b0056884bff82bac230826c78054099f373105312634a3ab330"
+    },
+    {
+      "index": 9,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 18,
+      "stateSha256": "876383fb08b9086835a5cb46bf74274b5e6649588510dde0d0cff31b017cd2ae"
+    }
+  ],
+  "clientPosts": [
+    8,
+    4,
+    4,
+    4
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "restored-choice-5.png",
+    "final.png"
+  ],
+  "reopened": 2,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 9,
+    "seat": 3,
+    "kind": "passResponse"
+  },
+  "originalReceiptsAfterReopen": 10
+}

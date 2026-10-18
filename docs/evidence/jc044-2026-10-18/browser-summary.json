@@ -1,0 +1,66 @@
+{
+  "scope": "Six local production-UI scenarios from Native synthetic initial layouts; not online gameplay",
+  "scenarios": [
+    {
+      "scenario": "actor-0",
+      "commands": 12,
+      "uiAccepted": 8,
+      "expectedRejections": 4,
+      "reopens": 2,
+      "originalReceipts": 8,
+      "pageErrors": []
+    },
+    {
+      "scenario": "physical-attachment-cost",
+      "commands": 7,
+      "uiAccepted": 6,
+      "expectedRejections": 1,
+      "reopens": 2,
+      "originalReceipts": 6,
+      "pageErrors": []
+    },
+    {
+      "scenario": "entry-deploy-accept",
+      "commands": 10,
+      "uiAccepted": 10,
+      "expectedRejections": 0,
+      "reopens": 2,
+      "originalReceipts": 10,
+      "pageErrors": []
+    },
+    {
+      "scenario": "entry-deploy-skip",
+      "commands": 6,
+      "uiAccepted": 6,
+      "expectedRejections": 0,
+      "reopens": 2,
+      "originalReceipts": 6,
+      "pageErrors": []
+    },
+    {
+      "scenario": "entry-reveal-accept",
+      "commands": 10,
+      "uiAccepted": 10,
+      "expectedRejections": 0,
+      "reopens": 2,
+      "originalReceipts": 10,
+      "pageErrors": []
+    },
+    {
+      "scenario": "entry-reveal-skip",
+      "commands": 6,
+      "uiAccepted": 6,
+      "expectedRejections": 0,
+      "reopens": 2,
+      "originalReceipts": 6,
+      "pageErrors": []
+    }
+  ],
+  "totalAttempts": 51,
+  "acceptedViaUi": 46,
+  "expectedRejectionsViaBrowserFetch": 5,
+  "reopens": 12,
+  "originalReceipts": 46,
+  "completeGameCount": 0,
+  "onlineGameplay": false
+}
