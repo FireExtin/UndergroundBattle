@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python3",
+    "/workspace/jc066-publication-retry-20261018/browser/v68-normal_browser.py"
+  ],
+  "startedUtc": "2026-10-18T11:20:31.397092+00:00",
+  "endedUtc": "2026-10-18T11:20:34.372856+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,88 @@
+{
+  "startedAtUtc": "2026-10-18T11:20:31.592788+00:00",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "scope": "Real normal cloud Chromium against published production URL; reachability/identity gate before isolated gameplay",
+  "expectedDeployedVersion": 68,
+  "expectedProviderSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+  "expectedDeploymentId": "appgdep_6ad4ab44dd108191bc0b154e89699224",
+  "officialIdentityVerifiedBeforeBrowser": true,
+  "normalTls": true,
+  "ignoreHttpsErrors": false,
+  "bypassUsed": false,
+  "certificateWarningClicked": false,
+  "certificateOverrideFlags": [],
+  "customTrustStoreConfigured": false,
+  "freshBrowserContext": true,
+  "oldInviteUsed": false,
+  "realUserTableAccessed": false,
+  "roomCreated": false,
+  "roomJoined": false,
+  "posts": 0,
+  "navigationAttempts": 1,
+  "uiReached": false,
+  "versionIdentityReached": false,
+  "fullGameCount": 0,
+  "onlineGameplay": false,
+  "componentTestUsed": false,
+  "apiMockingUsed": false,
+  "neutralAndDualPaused": true,
+  "opaqueStateInjected": false,
+  "compiledDuringBrowserCheck": false,
+  "publicationSucceededBeforeCheck": true,
+  "mainMerged": false,
+  "browserErrors": [],
+  "requests": [
+    {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "method": "GET"
+    }
+  ],
+  "requestsFailed": [
+    {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "method": "GET",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "assetIdentityChecks": [],
+  "consoleErrors": [],
+  "expectedBrowserAssets": {
+    "/assets/index-Bz_JYEF2.js": "a25f09c35587536f6e10d5ad51d39d01be5daa4007d5c437c2b8d83aeeef2c4e",
+    "/assets/index-jNIaCara.css": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917",
+    "/": "24237dd6f5106ca93ba31e5d40d5bff7003ca3f9cfc44193a0fb7aa05bb71931"
+  },
+  "runtimeManifestSha256": "8561e4daa1bb8624f7b491b56a87ca36a3da45962686516366a21ee16efcbbcc",
+  "gameplayChecks": {
+    "red-admitted-mechanisms": "not-executed",
+    "black-admitted-mechanisms": "not-executed",
+    "blue-admitted-mechanisms": "not-executed",
+    "gray-admitted-mechanisms": "not-executed",
+    "jc066-sealed-icons-and-recovery": "not-executed",
+    "jc044-entry-time-and-physical-time-repression": "not-executed",
+    "jc057-reveal-inspect-and-live-hidden-read": "not-executed",
+    "msjc04-paid-initiative-draw-and-red-unique-search": "not-executed",
+    "msjc05-paid-initiative-draw-and-gray-empty-search": "not-executed",
+    "initial-society-and-legal-deck-selection": "not-executed",
+    "card-selection": "not-executed",
+    "repeat-click-single-submission": "not-executed",
+    "refresh-recovery": "not-executed",
+    "complete-game": "not-executed"
+  },
+  "browserVersion": "151.0.7922.173",
+  "browserExecutable": "/usr/bin/chromium",
+  "browserLaunchArgs": [
+    "--no-sandbox",
+    "--disable-dev-shm-usage"
+  ],
+  "navigationAtUtc": "2026-10-18T11:20:33.708307+00:00",
+  "errorAtUtc": "2026-10-18T11:20:33.913341+00:00",
+  "error": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"domcontentloaded\"\n",
+  "outcome": "blocked-tls-before-gameplay",
+  "pageUrlAfterFailure": "about:blank",
+  "titleAfterFailure": "",
+  "finishedAtUtc": "2026-10-18T11:20:34.316544+00:00",
+  "gameWriteRequests": [],
+  "zeroGameWriteRequests": true,
+  "probeReason": "Parent authorized complete reviewed JC066 ABI86 publication; official v68 deployment/source/archive readback succeeded. This single normal visit is the first11UTC-hour check, after10:29 v67 probe; stop on TLS failure, do not retry or bypass.",
+  "getRequests": 1
+}

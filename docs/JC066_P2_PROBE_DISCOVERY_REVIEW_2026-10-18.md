@@ -1,5 +1,7 @@
 # JC066 专用恢复探针默认发现修正（待其余独审）
 
+> 后续状态：父会话已确认完整批次独审通过；官方 v68 / ABI86 已于 11:19:44 UTC 发布成功。见[成功发布回执](SITES_V68_JC066_PUBLICATION_RETRY_2026-10-18.md)。下文保留当时验证与范围；普通浏览器仍受 TLS 证书阻断，0 场线上试玩。
+
 输入为父会话增量独审指出的测试基础设施 P2：`sites/test/jc066-p2-restore.test.mjs` 在模块加载时要求 `JC066_P2_CASES_FILE` 和专用 Worker 路径，但默认 `npm test` 会展开 `test/*.test.mjs` 并加载它。产品恢复 P2 已由该轮独审确认闭合；用户自封印 B 仍为项目裁定，不是官方 FAQ。
 
 从 `a8bf844c30cf988abb25af73e15951849b5fc93a` 作最小修正：将探针移到 [`sites/probes/jc066-p2-restore.mjs`](../sites/probes/jc066-p2-restore.mjs)，更新一处辅助模块相对导入并加显式入口注释。探针的断言、实物输入要求、WASM/HTTP/D1 验证行为均不变；不静默跳过、不替换反例。默认 package 脚本保持原样。当前修前/修后命令见 [`sites/probes/README.md`](../sites/probes/README.md)。

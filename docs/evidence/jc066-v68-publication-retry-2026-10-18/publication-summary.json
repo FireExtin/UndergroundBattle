@@ -1,0 +1,64 @@
+{
+  "checkedAtUtc": "2026-10-18T11:22:56.922789+00:00",
+  "reviewedHead": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "productSource": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "baseEvidenceCommit": "25170f97b0c2784abb79fbb83d0cb8cc89e04b25",
+  "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+  "savedVersionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_16061bbb332c81918709916eea1849a5",
+  "versionNumber": 68,
+  "deploymentId": "appgdep_6ad4ab44dd108191bc0b154e89699224",
+  "deploymentStatus": "succeeded",
+  "deploymentUpdatedAt": "2026-10-18T11:19:44.505847+00:00",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "singleAuthorizedRetry": true,
+  "sameToolAndArguments": true,
+  "newSaveOrUpload": false,
+  "newBuildOrFunctionalTestRun": false,
+  "wasm": {
+    "bytes": 3291234,
+    "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+  },
+  "productionWorker": {
+    "bytes": 211019,
+    "sha256": "a7de0ad85e26e4f171358b2a552e03197cc2830b4be7ef75e64e115b19e28fe0"
+  },
+  "artifactsManifest": {
+    "bytes": 61945,
+    "sha256": "8561e4daa1bb8624f7b491b56a87ca36a3da45962686516366a21ee16efcbbcc"
+  },
+  "priorArchiveAudit": {
+    "bytes": 29796,
+    "sha256": "46c0fdde51a1a3de52005a34db491a4fc92426264ec3318181dfa0da083683c9"
+  },
+  "productionFilesRechecked": 181,
+  "archivePayloadFilesRechecked": 184,
+  "frozenAbi77To85Unchanged": true,
+  "savedArchive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_000000007c9881fd9767396211df3aba",
+    "content_hash": "sha256:5dc3e396d67b9783b6f64b4c4a1b44785ec9f237af6968cfef6caebc0582ae00",
+    "size_bytes": 130068480,
+    "file_count": 184
+  },
+  "archiveMetadataMatches": true,
+  "publicAccessRevision": 2,
+  "environmentRevision": 0,
+  "browser": {
+    "navigationAtUtc": "2026-10-18T11:20:33.708307+00:00",
+    "outcome": "blocked-tls-before-gameplay",
+    "navigationAttempts": 1,
+    "getRequests": 1,
+    "posts": 0,
+    "onlineGames": 0,
+    "uiReached": false,
+    "browserVersionIdentityReached": false,
+    "normalTls": true,
+    "ignoreHttpsErrors": false,
+    "bypassUsed": false,
+    "screenshotViewed": true,
+    "noMoreVisitsThisHour": true
+  },
+  "mainMerged": false,
+  "cleanupPerformed": false,
+  "actionsOperated": false
+}

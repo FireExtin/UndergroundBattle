@@ -1,0 +1,43 @@
+{
+  "reviewedHead": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+  "deploymentId": "appgdep_6ad4ab44dd108191bc0b154e89699224",
+  "files": {
+    "README.md": {
+      "bytes": 1672,
+      "sha256": "074f39bf03048272b8b22cc3b215ee3a23276f0b647db64abb661f9984198bd5"
+    },
+    "browser/normal-browser.json": {
+      "bytes": 3855,
+      "sha256": "6d8745716bd3ccb430dcc567dfe2baed52d40d6138ce9150186eb308d6fd1cfa"
+    },
+    "browser/normal-browser.png": {
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+    },
+    "browser/official-identity.json": {
+      "bytes": 1803,
+      "sha256": "c96ec2ecaab7c87653ac49791f022c57af1892ca35c6bce2f7318eb83ec27eb8"
+    },
+    "browser/v68-normal_browser.py": {
+      "bytes": 9572,
+      "sha256": "e75f0d8bbdebe8ac4295851926dcefcf7cfd9ba8a0da169a51b0a73f8cb8a248"
+    },
+    "normal-browser.exit.json": {
+      "bytes": 290,
+      "sha256": "874c69a770f15a515bdf8c4ddb024e26e74d7788a733558ee3a69dc74bb5fbc0"
+    },
+    "normal-browser.log.gz": {
+      "bytes": 164,
+      "sha256": "4fc3cf9853ff432636b7fbe9e4bd381b4ea74b557a8e2a6d2205569e892f72a2"
+    },
+    "official-receipts.json": {
+      "bytes": 4453,
+      "sha256": "a34d083632132ff493c48d8e9f15d88c2135670d83a6fd56fd387125deb1c954"
+    },
+    "publication-summary.json": {
+      "bytes": 2299,
+      "sha256": "f61f1951913341dd938d555855ef745d168c5a0b55bf33d497b832ac8767a465"
+    }
+  }
+}

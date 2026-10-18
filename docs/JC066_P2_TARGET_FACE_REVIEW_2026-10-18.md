@@ -1,5 +1,7 @@
 # JC066 P2：同UID目标明暗与冻结快照绑定（实现及所列验证完成，WIP待复审）
 
+> 后续状态：父会话已确认完整批次独审通过；官方 v68 / ABI86 已于 11:19:44 UTC 发布成功。见[成功发布回执](SITES_V68_JC066_PUBLICATION_RETRY_2026-10-18.md)。下文保留当时验证与范围；普通浏览器仍受 TLS 证书阻断，0 场线上试玩。
+
 独立分支 `codex/jc066-p2-target-face-review-20261018`，基线 `8607a94298ed323b0375106fac7db01ffbc77ccd`；修复原候选源码 `804f00fce94c2cc7e182119c9bc2f1049cb27105` 的确定P2恢复缺口。不建worktree、不并行开发、不改77–85原件，不合main或发布。
 
 输入为父会话独审给出的真实静态反例：原86 fixture的raw.json，entry-deploy-accept.steps[9].expected.state，revision16/stack0/frame i251，目标i240原为明置JC029（新生血族），controller p2/P2。只把public.kind改hidden、label改暗藏者·P2，其余不变；反向使用actor-1.steps[5].expected.state，revision14/frame i251，目标i246原为暗藏JC095/controller p3，把kind改character、label改唐·格鲁尼。Rust类型化克隆后逐字节撤销两字段核对，JS只传输不透明Room字符串。
