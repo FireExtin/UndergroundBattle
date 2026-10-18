@@ -1,0 +1,26 @@
+{
+  "exitCode": 0,
+  "finishedAtUtc": "2026-10-18T03:01:17.016745+00:00",
+  "verifiedAtUtc": "2026-10-18T03:01:58.233867+00:00",
+  "code": "2261d773da66d5862e6af8bdf5cd1ce28ac405ff",
+  "startingHead": "188596b186a711049bcd65f1dac20da99065ec33",
+  "endingHead": "b874a64a9ab0844e502be083fe52159350914f52",
+  "command": "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc057-evidence-20261018/worker84/server node tools/build-storage.mjs -- bash -c 'cd sites && exec node --test --test-concurrency=1 test/*.test.mjs'",
+  "counts": {
+    "tests": 315,
+    "pass": 315,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "sourcePathsUnchanged": true,
+  "productionFilesUnchanged": 177,
+  "fixedClockWorkerFilesUnchanged": 9,
+  "originalLockUnchanged": true,
+  "manifestSha256": "b90b2e11607432e69972b68d5b1958c859e30c320e69fce5afc106bbbde81d1f",
+  "logSha256": "c32fa6b573d4ace02ca9349c76d52fde0fc3290dd7a77170a93e7cd1e8c03192",
+  "productionCodeFix": false,
+  "websiteAccess": false,
+  "buildOrDeployment": false
+}
