@@ -3,8 +3,32 @@
   "wip": true,
   "files": {
     "README.md": {
-      "bytes": 1149,
-      "sha256": "72e0141b992b1e36fe87892b6384b47ee3273452903cdb7d8ae3583a705f33a4"
+      "bytes": 1274,
+      "sha256": "aca70d69ae58cfe4c5b804ca157f845fce3b04388fe71cfd855e91b9a2cff010"
+    },
+    "browser/browser-ordinary-reveal-land-paid-final/jc041-original-print.png": {
+      "bytes": 780777,
+      "sha256": "42e7afe3876275cfd2c934e8c831b56d99b15e996109f7d97ac75199f08a9569"
+    },
+    "browser/browser-ordinary-reveal-land-paid-final/report.json": {
+      "bytes": 6656,
+      "sha256": "b86ce73fd65ff32b3c1f99ffcb55daa814dbe6a218729c25e4c13e124afc46af"
+    },
+    "browser/browser-water-actor-0-paid-final/final.png": {
+      "bytes": 1211181,
+      "sha256": "1df3e1395a40db39456ec16d366fcf6629af3f1b1ac2bf6dbd28690b001f6601"
+    },
+    "browser/browser-water-actor-0-paid-final/report.json": {
+      "bytes": 7615,
+      "sha256": "628095af1ae1caddcc3ac4c2732523fda3b5da36a97ec9a4b45f9e6c14cfc929"
+    },
+    "browser/browser-water-actor-2-paid-final/report.json": {
+      "bytes": 7615,
+      "sha256": "a7d6bbc3951b00d3d3005fbd0cc74bbb290f03c3e49f3959a05080403efeca5b"
+    },
+    "browser/browser-water-actor-2-paid-final/restored-choice-15.png": {
+      "bytes": 568996,
+      "sha256": "de75060544d4e1542c639bfe63d3c197845d4ff0457261305cfefafa8d26ff40"
     },
     "checkpoint-1312.json": {
       "bytes": 1351,
@@ -18,9 +42,21 @@
       "bytes": 1849,
       "sha256": "764977706b53cd167cd977ff173992e799e772cb3c03441b62e92fbc552310a0"
     },
+    "closed-payment-evidence.json": {
+      "bytes": 2806,
+      "sha256": "c7bf1643e8d25f17e182af46edd4b3bde2bc55bbaf01dab3e36c50abf64a6123"
+    },
     "initial-frozen-harness-note.json": {
       "bytes": 323,
       "sha256": "dfcbab1c1bbbdcaef47ee68c70495038cc5f4a3ebeb216c8018533c35aa47313"
+    },
+    "runs/browser-ordinary-reveal-land-paid-final.exit.json": {
+      "bytes": 493,
+      "sha256": "d7ee637d16c752f6e499fbc229628413bb62462a4f3028b84a07f3d88927ffc1"
+    },
+    "runs/browser-ordinary-reveal-land-paid-final.log.gz": {
+      "bytes": 140,
+      "sha256": "dbcc391a004b108aac04d56faa0110b9527bd454c103c2b9b1ab2784df8e1fbb"
     },
     "runs/browser-reveal-land-first.exit.json": {
       "bytes": 479,
@@ -38,6 +74,14 @@
       "bytes": 132,
       "sha256": "1507b155a3c61759878e0cc90d109e60ec83cc86f7fdb1f3697e89963972a6e0"
     },
+    "runs/browser-water-actor-0-paid-final.exit.json": {
+      "bytes": 479,
+      "sha256": "e9572548664e168c8881a7a323090c581ee9a71a154a9676f4566965d5286146"
+    },
+    "runs/browser-water-actor-0-paid-final.log.gz": {
+      "bytes": 135,
+      "sha256": "0c4707f9759b615948dd882bcc68457684a982603a2bdf12f2d9fea276a225b0"
+    },
     "runs/browser-water-actor-2-first.exit.json": {
       "bytes": 474,
       "sha256": "486f6d1cfe47d3547ebe2037dc49b81dbef0d496915d4f49d432b7a49d729a07"
@@ -45,6 +89,14 @@
     "runs/browser-water-actor-2-first.log.gz": {
       "bytes": 132,
       "sha256": "10e3c083942a814f4e46bb974272df32b8e9838143e254ad5e0944e33099dc5c"
+    },
+    "runs/browser-water-actor-2-paid-final.exit.json": {
+      "bytes": 479,
+      "sha256": "027b6e208bc03886090b3ed03a737d2112c1b647fe24b6a1c6420f6a79ccd358"
+    },
+    "runs/browser-water-actor-2-paid-final.log.gz": {
+      "bytes": 136,
+      "sha256": "2b1ae612f5a29684d729265c41afb94088a5359fc45ce3f9588979f230065678"
     },
     "runs/cargo-check-fixed.exit.json": {
       "bytes": 489,
@@ -54,6 +106,14 @@
       "bytes": 546,
       "sha256": "58e922c286aa1ea9442dd6a5b2ae5324b05034c7f9f3884beec05974a7683381"
     },
+    "runs/closed-payment-evidence-final.exit.json": {
+      "bytes": 313,
+      "sha256": "424d4a7ce132523c43f783854eecb6d71628da69fa5ce29954595626194e9874"
+    },
+    "runs/closed-payment-evidence-final.log.gz": {
+      "bytes": 240,
+      "sha256": "4c63233efd07c60ad0b03bb7e10114d7e494ea9741972984d437d0a00895dd88"
+    },
     "runs/frontend-focused-first.exit.json": {
       "bytes": 393,
       "sha256": "6df9d3af589d4ad7731c3e56d232f3ceac6943c3ae0efe92162cc176f4cbcf60"
@@ -61,6 +121,14 @@
     "runs/frontend-focused-first.log.gz": {
       "bytes": 385,
       "sha256": "64d6dbe775a0490d7e3aa44961c82367139bd2028318d1ff2998a1a36d9ffa7a"
+    },
+    "runs/frontend-full-paid-final.exit.json": {
+      "bytes": 276,
+      "sha256": "bbe830063fc94e58cd8cbdae3502457836de21186bd9fbd39907a079651bc896"
+    },
+    "runs/frontend-full-paid-final.log.gz": {
+      "bytes": 941,
+      "sha256": "f4b1f75c010238c6065cf86032afd54bb20f3f4e7fbcd582b4fa40ca40c00336"
     },
     "runs/frozen86-final.exit.json": {
       "bytes": 255,
@@ -77,6 +145,14 @@
     "runs/initial-cargo-check.log.gz": {
       "bytes": 279,
       "sha256": "a46f8a49ed270abd9c7637ca7f39086756ae0ae158e88db0a140b3556859224e"
+    },
+    "runs/native-export-equality-final.exit.json": {
+      "bytes": 635,
+      "sha256": "1fd5bc83335634b00566adbd14d02f0e19ec8fb582bd2e5605a9f6addcdb0456"
+    },
+    "runs/native-export-equality-final.log.gz": {
+      "bytes": 176,
+      "sha256": "87d1b22c1c64a49024c129dae4b5d55172512a61d297d35093d16c0bd6025220"
     },
     "runs/native-focused-first.exit.json": {
       "bytes": 548,
@@ -117,6 +193,14 @@
     "runs/native-wasm-paid-final.log.gz": {
       "bytes": 312,
       "sha256": "2a78b06b420f44c99742dd8621447ab9c07033f1f7a595c1067d93e274264a98"
+    },
+    "runs/native-workspace-final.exit.json": {
+      "bytes": 590,
+      "sha256": "1694468f5f2297b7ed65f4a3c09a125cc7ab566fb6cb21e8ac1ba0cdc3ecec1e"
+    },
+    "runs/native-workspace-final.log.gz": {
+      "bytes": 30490,
+      "sha256": "11a3613325574a678bb853913cd5349d4123d69857bb24b9c133f0f57d27f38d"
     },
     "runs/native-workspace-first.exit.json": {
       "bytes": 592,
@@ -182,6 +266,14 @@
       "bytes": 314,
       "sha256": "c721e4977f52723a5c12c7f536c0313f35af4f3a459df8f4a99b1019fec0f213"
     },
+    "runs/source-git-binding-final.exit.json": {
+      "bytes": 303,
+      "sha256": "a7655456226e08dff1f69bd328095cdc819b09f3ab2d007f05e7443623742bcd"
+    },
+    "runs/source-git-binding-final.log.gz": {
+      "bytes": 170,
+      "sha256": "6326e2add192383b80eac7124f014e99ccf836e2acd80e39d965b3f7615c2110"
+    },
     "runs/source-guards-first.exit.json": {
       "bytes": 302,
       "sha256": "f38c5d5c96a18e7c07aa0f5eb02c9a56a068a76eccdc5c7bef0ce5d7e11476ad"
@@ -241,6 +333,10 @@
     "runtime-manifest-paid-final.json": {
       "bytes": 64212,
       "sha256": "9d27c9a068fe8c12b3ba54ce5954dd31938d2117e06b0b0963f592ca06f3a648"
+    },
+    "source-binding-git.json": {
+      "bytes": 29493,
+      "sha256": "945b110d7bb96f7117191b5eb968010b2effc903331b815ca5566eca88cf39aa"
     },
     "wip-status.json": {
       "bytes": 4917,

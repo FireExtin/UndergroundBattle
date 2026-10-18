@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python",
+    "/workspace/jc041-evidence-20261018/closed-payment-evidence.py",
+    "closed-payment-evidence.json"
+  ],
+  "startedUtc": "2026-10-18T13:38:12.215409+00:00",
+  "endedUtc": "2026-10-18T13:38:13.791030+00:00",
+  "exitCode": 0
+}

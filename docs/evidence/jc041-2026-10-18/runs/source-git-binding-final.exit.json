@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python",
+    "/workspace/jc041-evidence-20261018/source-git-binding.py",
+    "source-binding-git.json"
+  ],
+  "startedUtc": "2026-10-18T13:35:52.142418+00:00",
+  "endedUtc": "2026-10-18T13:35:55.654502+00:00",
+  "exitCode": 0
+}

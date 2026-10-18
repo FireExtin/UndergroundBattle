@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python",
+    "-c",
+    "from pathlib import Path; import hashlib,json; r=Path(\"/workspace/jc041-evidence-20261018\"); a=(r/\"native87-paid-fix-final/Native87.json\").read_bytes(); b=(r/\"native87-workspace-paid-final/Native87.json\").read_bytes(); assert a==b; print(json.dumps({\"focusedAndFullWorkspaceExportsByteEqual\":True,\"bytes\":len(b),\"sha256\":hashlib.sha256(b).hexdigest(),\"sourceInputs\":137,\"invalidRestores\":35}))"
+  ],
+  "startedUtc": "2026-10-18T13:38:24.201968+00:00",
+  "endedUtc": "2026-10-18T13:38:24.497214+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,99 @@
+{
+  "checkedUtc": "2026-10-18T13:38:13.539007+00:00",
+  "changedCompilerInputsSinceFirst87": [
+    "rust-game/src/engine.rs",
+    "rust-game/src/jc041.rs",
+    "rust-game/src/jc041_tests.rs"
+  ],
+  "allTenNormalOpaqueStateJournalAndViewTracesUnchanged": true,
+  "additionalInvalidNames": [
+    "paid-14",
+    "paid-15"
+  ],
+  "finalInvalidOpaqueStatesAllIndependentlyNativeWasmChecked": 35,
+  "onlyChangedPkgFile": "hegemony_wasm_bg.wasm",
+  "finalWasm": {
+    "bytes": 3327677,
+    "sha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482"
+  },
+  "client168FilesByteEqualBeforeAndAfterPaymentGuard": true,
+  "browserScenarios": [
+    {
+      "directory": "browser-water-actor-0-paid-final",
+      "scenario": "water-actor-0",
+      "uiCommands": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 17,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-water-actor-2-paid-final",
+      "scenario": "water-actor-2",
+      "uiCommands": 17,
+      "expectedRejectedFetch": 2,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 17,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    },
+    {
+      "directory": "browser-ordinary-reveal-land-paid-final",
+      "scenario": "ordinary-reveal-land",
+      "uiCommands": 13,
+      "expectedRejectedFetch": 1,
+      "D1Reopened": 5,
+      "originalReceiptsAfterReopen": 13,
+      "finalRuntimeAndClientIdentityExact": true,
+      "originalScanRead": {
+        "cardId": "JC041",
+        "currentIcons": {
+          "combat": 2,
+          "influence": 1,
+          "investigation": 0
+        },
+        "printedIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "scanLoaded": true,
+        "noCommandOrMutation": true
+      },
+      "onlineGameplay": false
+    }
+  ],
+  "noWitnessRewritten": true,
+  "scope": "Comparison of unpublished87 candidates; retained77-86 originals and all old opaque witnesses untouched."
+}
