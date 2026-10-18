@@ -329,3 +329,75 @@ fn jc041_native87_oracles() {
     }
     println!("JC041_NATIVE87_COUNTS {}",counts);
 }
+
+#[test]
+fn jc041_p2_source_region_uid_probe() {
+    use crate::room::{RoomCommand,RoomEnvelope,SessionAction};
+    use sha2::{Digest,Sha256};
+    let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../rust-game-wasm/tests/jc041P2.original-room.json");
+    let original_state=std::fs::read_to_string(path).unwrap();
+    assert_eq!(format!("{:x}",Sha256::digest(original_state.as_bytes())),"ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c");
+    let original=RoomEnvelope::from_persisted(&original_state).unwrap();
+    assert_eq!((original.revision,original.game.version),(9,9));
+    let source=&original.game.stack[0].frame.as_ref().unwrap().source;
+    assert_eq!((original.game.stack[0].id.as_str(),original.game.stack[0].frame.as_ref().unwrap().frame_id.as_str()),("i252","i252"));
+    assert_eq!(source.card.id,"i251");assert_eq!(source.card.definition,"JC041");
+    assert_eq!((source.card.owner,source.card.controller,source.card.face_down),(1,0,true));
+    assert_eq!(source.region,Some(0));assert_eq!(source.source_region_instance.as_deref(),Some("i240"));
+    assert_eq!(original.game.regions[0].card.id,"i240");assert_eq!(original.game.regions[0].card.definition,"DQJC107");
+    let hand=original.game.players.iter().flat_map(|p|&p.hand).find(|c|catalog::card(&c.definition).kind!="region").unwrap().id.clone();
+    let asset=original.game.players[0].assets[0].id.clone();
+    let expected_accepted=std::env::var("JC041_P2_EXPECT_ACCEPTED").is_ok_and(|v|v=="1");
+    let mut cases=vec![];
+    let other_region=original.game.regions[1].card.id.clone();
+    for (name,uid) in [("source-self","i251".into()),("known-hand-nonregion",hand),("known-paid-asset-nonregion",asset),("known-region-wrong-slot",other_region)] {
+        let mut changed=original.clone();changed.game.stack[0].frame.as_mut().unwrap().source.source_region_instance=Some(uid.clone());
+        let state=serde_json::to_string(&changed).unwrap();
+        let mut undone=changed.clone();undone.game.stack[0].frame.as_mut().unwrap().source.source_region_instance=Some("i240".into());
+        assert_eq!(serde_json::to_string(&undone).unwrap(),original_state,"exactly one source_region_instance field changed");
+        let game_error=Game::from_persisted(&serde_json::to_string(&changed.game).unwrap()).err();
+        let restored=RoomEnvelope::from_persisted(&state);let room_error=restored.as_ref().err().cloned();
+        let command=RoomCommand{command_id:format!("jc041-p2-{name}"),expected_version:9,action:SessionAction::PauseRoom};
+        let (views,pause,poll)=if let Ok(r)=&restored {(
+            Some((0..4).map(|s|r.view(s,0)).collect::<Vec<_>>()),
+            Some(r.transition(0,Some(command.clone()),0).unwrap()),Some(r.transition(0,None,0).unwrap())
+        )}else{(None,None,None)};
+        cases.push(json!({"name":name,"state":state,"regionUid":uid,"gameError":game_error,"roomError":room_error,"views":views,"command":command,"expectedPause":pause,"expectedPoll":poll}));
+        assert_eq!(game_error.is_none(),expected_accepted,"Game {name}: {game_error:?}");
+        assert_eq!(room_error.is_none(),expected_accepted,"Room {name}: {room_error:?}");
+    }
+    let mut legal=vec![];
+    for kind in ["original","source-moved","original-region-retired","vacant-original-slot"] {
+        let mut r=original.clone();
+        if kind!="original" {
+            // Explicit Native layout boundary, followed only by real Room commands.
+            // No claim that the layout edit is a playable response action.
+            let (_,card)=r.game.remove_board("i251").unwrap();r.game.regions[1].cards.push(card);
+            if kind=="original-region-retired" {
+                let index=r.game.world.iter().position(|c|!catalog::card(&c.definition).subtypes.iter().any(|s|s=="水域")).unwrap();
+                let replacement=r.game.world.remove(index);let old=std::mem::replace(&mut r.game.regions[0].card,replacement);
+                let retired=r.game.fresh(old);r.game.world.push(retired);
+                assert!(!r.game.regions.iter().any(|p|p.card.id=="i240")&&!r.game.world.iter().any(|c|c.id=="i240"));
+            }
+            if kind=="vacant-original-slot" {r.game.world.clear();r.game.regions[0].vacant=true;}
+        }
+        let state=serde_json::to_string(&r).unwrap();let r=RoomEnvelope::from_persisted(&state).unwrap();
+        let initial=json!({"state":state,"views":(0..4).map(|s|r.view(s,0)).collect::<Vec<_>>()});
+        let mut t=Trace{name:format!("p2-{kind}"),room:r,initial,steps:vec![]};
+        t.responses();assert!(t.room.game.pending.is_some());
+        t.command(0,SessionAction::PauseRoom,true);t.command(2,SessionAction::ResumeRoom,true);t.drain();
+        assert!(t.room.game.players.iter().all(|p|p.hand.len()==1));
+        assert_eq!(t.room.game.regions.iter().flat_map(|r|&r.cards).filter(|c|c.definition=="JC041"&&!c.face_down).count(),1);
+        legal.push(t.finish());
+    }
+    let mut bindings=crate::jc066_tests::source_bindings();
+    for (name,bytes) in [("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice())] {
+        bindings["files"].as_object_mut().unwrap().insert(name.into(),json!(format!("{:x}",Sha256::digest(bytes))));
+    }
+    let data=json!({"format":"jc041-p2-source-region-v1","sourceBindings":bindings,"expectedAccepted":expected_accepted,"originalState":original_state,"originalViews":(0..4).map(|s|original.view(s,0)).collect::<Vec<_>>(),"cases":cases,"legal":legal});
+    if let Ok(dir)=std::env::var("JC041_P2_DIR") {
+        use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("p2.json")).unwrap().write_all(&serde_json::to_vec(&data).unwrap()).unwrap();
+    }
+    println!("JC041_P2_REGION {}",json!({"accepted":expected_accepted,"cases":4,"legalScenarios":4}));
+}

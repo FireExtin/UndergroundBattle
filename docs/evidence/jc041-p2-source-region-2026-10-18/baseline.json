@@ -1,0 +1,13 @@
+{
+  "checkedUtc": "2026-10-18T14:26:14.700277+00:00",
+  "reviewHead": "f3dece927c733a761cf78d62514c6299fab280fa",
+  "productSource": "a84cc55a8c40359a297ca2c4e47fa33d0e957385",
+  "oldFixtureSha256": "3325dfc4e1135953784be1bece24ea4dba8592587587da378873faec181e5019",
+  "oldNativeRawSha256": "f00c02d928b17a0a304d1dda3d74d112e22240bd2c590cf2ed6047845498fe27",
+  "oldWasmSha256": "980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482",
+  "originalRoomSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c",
+  "originalRoomBytes": 31476,
+  "sourcePath": "raw.scenarios[water-actor-0].steps[0].expected.state",
+  "opaqueRoomStringOnlyExtractedNotParsedOrRewritten": true,
+  "oldRawRetainedAt": "/workspace/jc041-evidence-20261018/native87-paid-fix-final/Native87.json"
+}

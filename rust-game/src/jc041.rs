@@ -71,17 +71,25 @@ impl Game {
         if s.card.definition != "JC041" || s.card.id.is_empty() || actor >= self.players.len()
             || s.card.owner >= self.players.len() || s.card.controller != actor
             || s.region.is_none_or(|r| r >= self.regions.len())
-            || s.source_region_instance.as_ref().is_none_or(|v| v.is_empty())
+            || s.source_region_instance.as_ref().is_none_or(|v| v.is_empty() || *v == s.card.id)
             || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.attachment_host_instance.is_some() {
             return Err("JC041冻结来源、行动者或原地区身份无效".into());
+        }
+        let region_uid = s.source_region_instance.as_deref().unwrap();
+        if self.regions.iter().enumerate().any(|(index,r)| r.card.id == region_uid && Some(index) != s.region) {
+            return Err("JC041原地区UID仍可辨认但位于错误地区槽".into());
         }
         let cards = self.regions.iter().flat_map(|r| std::iter::once(&r.card).chain(&r.cards))
             .chain(self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter())))
             .chain(&self.world).chain(self.attachments.iter().map(|a| &a.card))
             .chain(self.sealed_cards.iter().map(|s| &s.card)).chain(self.stack.iter().filter_map(|s| s.card.as_ref()));
-        if cards.into_iter().any(|c| c.id == s.card.id
-            && (c.definition != s.card.definition || c.owner != s.card.owner || c.face_down != s.card.face_down)) {
-            return Err("JC041冻结UID与既有实体的定义、拥有者或明暗不符".into());
+        for c in cards {
+            if c.id == region_uid && catalog::card(&c.definition).kind != "region" {
+                return Err("JC041原地区UID与可辨认的非地区实体冲突".into());
+            }
+            if c.id == s.card.id && (c.definition != s.card.definition || c.owner != s.card.owner || c.face_down != s.card.face_down) {
+                return Err("JC041冻结UID与既有实体的定义、拥有者或明暗不符".into());
+            }
         }
         Ok(())
     }

@@ -1,0 +1,37 @@
+{
+  "checkedUtc": "2026-10-18T14:42:06.486561+00:00",
+  "wip": true,
+  "reviewBase": "f3dece927c733a761cf78d62514c6299fab280fa",
+  "branch": "codex/jc041-p2-source-region-review-20261018",
+  "nativeBefore": {
+    "tests": 1,
+    "passed": 1,
+    "acceptedGameAndRoomCases": 4,
+    "legalScenarios": 4
+  },
+  "wasmHttpBefore": {
+    "tests": 8,
+    "passed": 8,
+    "badCasesAccepted": 4,
+    "http200": 40,
+    "commandsWrittenPerBadCase": 1,
+    "journalWrittenPerBadCase": 1,
+    "reopenedAndReceiptsConfirmed": true
+  },
+  "nativeAfter": {
+    "tests": 14,
+    "passed": 14,
+    "badCasesRejectedGameAndRoom": 4,
+    "legalScenarios": 4
+  },
+  "sameFourOpaqueCounterexamplesByteEqual": true,
+  "sameFourLegalRoomTracesByteEqual": true,
+  "onlyProductSourceChangedBetweenTypedBeforeAndAfter": "rust-game/src/jc041.rs",
+  "afterWasmBuilt": false,
+  "afterHttpVerified": false,
+  "newCanonicalFixtureBound": false,
+  "reviewComplete": false,
+  "published": false,
+  "mainChangedByThisP2": false,
+  "firstCompileBoundary": "Native-before failed at test-only String reference tuple comparison;0 runtime tests. Corrected comparison only; natural rerun1/1passed."
+}

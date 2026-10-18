@@ -1,0 +1,23 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC041_NATIVE_DIR=/workspace/jc041-p2-region-evidence-20261018/native87-after",
+    "JC041_P2_DIR=/workspace/jc041-p2-region-evidence-20261018/native-after",
+    "cargo",
+    "test",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc041",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1"
+  ],
+  "startedUtc": "2026-10-18T14:38:28.603138+00:00",
+  "endedUtc": "2026-10-18T14:39:51.197293+00:00",
+  "exitCode": 0
+}

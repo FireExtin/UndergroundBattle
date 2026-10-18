@@ -1,5 +1,7 @@
 # JC041 禁婆完整批次审查材料（WIP，待父会话独审）
 
+> 后续独审确认原地区UID恢复P2；本文件保留原f3候选验证范围，不代表P2已关闭。当前修复与边界见[独立P2说明](JC041_P2_SOURCE_REGION_WIP_2026-10-18.md)，未发布或合入JC041。
+
 独立分支 `codex/jc041-blue-hidden-water-review-20261018`，产品源码检查点 `a84cc55a8c40359a297ca2c4e47fa33d0e957385`，基线 `2f141abaf7b2b728a4d5398f17a06acb7ffb021a`。本批完成 JC041 全卡文实现与下列范围验证，交父会话串行独审；JC041未发布、未合 main，当前公开站仍 v68 / ABI86。已审ABI86固定224a619另按本轮新增授权正常快进main，见独立[main记录](REVIEWED_ABI86_MAIN_PROMOTION_2026-10-18.md)。中立、双色暂停；没有新增代理或 worktree。
 
 输入为原图 `resource/ymsj-fun.github.io/cards/JC041 禁婆.jpg`、固定规格 `docs/factions/card-specifications.json.cards.JC041`，以及实读手册印刷 P1/P8/P9。原图 SHA256 `6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89`。完整实读：4费、无忠诚、蓝色、死亡领域1、不死生物/尸鬼、非独有、防御1；永久战斗1、临时战斗1及势力1。档案的 selectionEnabled/gameAcceptance/strategyUiPlaytest 状态不变。
