@@ -118,6 +118,7 @@ impl Game {
             || t.public.region != f.source.region || !label || !t.public.valid
             || t.public.status != "valid" || t.public.invalid_reason.is_some()
             || self.board(&t.id).is_some_and(|(_,c)| c.owner != owner
+                || c.face_down != (t.public.kind == "hidden")
                 || t.public.kind == "character" && catalog::card(&c.definition).name != t.public.label) {
             return Err("JC066冻结目标的种类、原地区或公开快照无效".into());
         }

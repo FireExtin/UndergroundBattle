@@ -9,7 +9,7 @@ const moduleUrl=import.meta.url;
 const root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.78-jc066-sealed-icons-candidate',engineVersion:'rust-v0.2.86-jc066-sealed-icons-candidate'};
-export const scenarioNames=["actor-0", "actor-1", "actor-2", "actor-3", "entry-deploy-accept", "entry-deploy-skip", "entry-reveal-accept", "entry-reveal-skip", "host-hide", "host-return", "self-seal", "shared-hand-seal-attachment", "shared-hand-seal-character", "society-search-gray-unique", "target-hide"];
+export const scenarioNames=["actor-0", "actor-1", "actor-2", "actor-3", "entry-deploy-accept", "entry-deploy-skip", "entry-reveal-accept", "entry-reveal-skip", "host-hide", "host-return", "self-seal", "shared-hand-seal-attachment", "shared-hand-seal-character", "society-search-gray-unique", "target-control", "target-departure", "target-hide", "target-move", "target-reveal"];
 export function assertSources(binding){
  const expected=Object.keys(JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi85/native-source-binding.json'),'utf8')).files).concat(['rust-game/src/jc066.rs','rust-game/src/jc066_tests.rs']).sort();
  assert.equal(binding.algorithm,'sha256');assert.equal(expected.length,135);assert.deepEqual(Object.keys(binding.files).sort(),expected);
@@ -31,10 +31,10 @@ export function validateNative(raw){
    state=row.expected.state;commands++;
   }
  }
- assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[['stack-deploy',16],['stack-reveal',16],['declare',25],['frame',28]].flatMap(([k,length])=>Array.from({length},(_,i)=>`${k}-${String(i).padStart(2,'0')}`)).sort());
+ assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[['stack-deploy',16],['stack-reveal',16],['declare',25],['frame',28]].flatMap(([k,length])=>Array.from({length},(_,i)=>`${k}-${String(i).padStart(2,'0')}`)).concat(['target-face-up-as-hidden','target-hidden-as-face-up']).sort());
  for(const r of raw.invalid){assert.equal(typeof r.state,'string');assert(r.gameError.length>0&&r.roomError.length>0);assert.equal(typeof r.roomId,'string');assert(Number.isSafeInteger(r.revision));}
  const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
- assert.deepEqual(counts,{"scenarios":15,"commands":176,"rejected":16,"projections":764,"invalidRestores":85},'Complete JC066 Native acceptance contract');
+ assert.deepEqual(counts,{"scenarios":19,"commands":252,"rejected":16,"projections":1084,"invalidRestores":87},'Complete JC066 Native acceptance contract');
  return counts;
 }
 export function loadFixture(){

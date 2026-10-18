@@ -21,6 +21,56 @@ const GRAY_SEARCH: crate::msjc06_tests::Spec = crate::msjc06_tests::Spec {
     full:48, color_count:16, uniques:&["JC066"], hits:["JC066","JC066","JC056","LC23"],
 };
 #[test]
+fn jc066_p2_same_uid_target_face_snapshot_restore() {
+    use crate::room::RoomEnvelope;
+    let mut originals=vec![];
+    if let Ok(input)=std::env::var("JC066_P2_EXACT_INPUT") {
+        for name in ["entry-deploy-accept","actor-1"] {
+            let state=std::fs::read_to_string(std::path::Path::new(&input).join(format!("{name}.room.json"))).unwrap();
+            let room:RoomEnvelope=serde_json::from_str(&state).unwrap();
+            assert_eq!(serde_json::to_string(&room).unwrap(),state);
+            originals.push((name.to_string(),room));
+        }
+    } else {
+        for hidden in [false,true] {
+            let mut g=u::game();let victim=u::field(&mut g,"JC029",2);
+            g.board_mut(&victim).unwrap().face_down=hidden;entry(&mut g,false);
+            let mut t=Trace::new(if hidden{"hidden"}else{"visible"},&g);t.choose(vec![victim]);
+            originals.push((t.name.clone(),t.room));
+        }
+    }
+    let reject=std::env::var("JC066_P2_EXPECT").as_deref()!=Ok("accept");
+    let mut cases=vec![];
+    for (name,room) in originals {
+        let original=serde_json::to_string(&room).unwrap();
+        RoomEnvelope::from_persisted(&original).unwrap();
+        Game::from_persisted(&serde_json::to_string(&room.game).unwrap()).unwrap();
+        let mut bad=room.clone();let f=bad.game.stack[0].frame.as_mut().unwrap();
+        assert_eq!(f.ability_key,crate::jc066::KEY);
+        let target=&mut f.targets[0];let before=(target.public.kind.clone(),target.public.label.clone());
+        let live=room.game.board(&target.id).unwrap().1;
+        let controller=target.public.controller.as_ref().unwrap().trim_start_matches('p').parse::<usize>().unwrap();
+        target.public.kind=if live.face_down{"character"}else{"hidden"}.into();
+        target.public.label=if live.face_down{catalog::card(&live.definition).name.clone()}else{format!("暗藏者·{}",room.game.players[controller].name)};
+        let frame_id=f.frame_id.clone();let target_id=target.id.clone();
+        let state=serde_json::to_string(&bad).unwrap();
+        let game=Game::from_persisted(&serde_json::to_string(&bad.game).unwrap());
+        let restored=RoomEnvelope::from_persisted(&state);
+        assert_eq!(game.is_err(),reject,"{name}: Game restore");
+        assert_eq!(restored.is_err(),reject,"{name}: Room restore");
+        let public=bad.game.stack[0].frame.as_ref().unwrap().targets[0].public.clone();
+        let mut undo=bad.clone();let target=&mut undo.game.stack[0].frame.as_mut().unwrap().targets[0];
+        target.public.kind=before.0;target.public.label=before.1;
+        assert_eq!(serde_json::to_string(&undo).unwrap(),original,"Only kind and label were changed");
+        cases.push(serde_json::json!({"name":name,"state":state,"originalState":original,"roomId":room.game.room_id,"inviteCode":room.game.invite_code,"revision":room.revision,"frameId":frame_id,"targetId":target_id,"liveFaceDown":live.face_down,"public":public,"gameAccepted":game.is_ok(),"roomAccepted":restored.is_ok(),"gameError":game.err(),"roomError":restored.err()}));
+    }
+    if let Ok(output)=std::env::var("JC066_P2_REPRO_DIR") {
+        use std::io::Write;std::fs::create_dir_all(&output).unwrap();
+        let result=serde_json::json!({"format":"jc066-p2-face-binding-repro-v1","expectedReject":reject,"sourceBindings":source_bindings(),"cases":cases});
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&output).join("repro.json")).unwrap().write_all(&serde_json::to_vec(&result).unwrap()).unwrap();
+    }
+}
+#[test]
 fn jc066_gray_unique_is_a_real_four_seat_society_search_hit_and_constructible_at_48_gray() {
     crate::msjc06_tests::construction(&GRAY_SEARCH);
     crate::msjc06_tests::four_searches(&GRAY_SEARCH);
@@ -256,6 +306,14 @@ fn bad_target_frames(room:&crate::room::RoomEnvelope)->Vec<serde_json::Value> {
         bad_room(&bad,format!("frame-{n:02}"))
     }).collect()
 }
+fn bad_target_face(room:&crate::room::RoomEnvelope,name:&str)->serde_json::Value {
+    let mut bad=room.clone();let f=bad.game.stack[0].frame.as_mut().unwrap();let t=&mut f.targets[0];
+    let c=room.game.board(&t.id).unwrap().1;
+    let controller=t.public.controller.as_ref().unwrap().trim_start_matches('p').parse::<usize>().unwrap();
+    t.public.kind=if c.face_down{"character"}else{"hidden"}.into();
+    t.public.label=if c.face_down{catalog::card(&c.definition).name.clone()}else{format!("暗藏者·{}",room.game.players[controller].name)};
+    bad_room(&bad,name.into())
+}
 #[test]
 fn jc066_native86_oracles() {
     use crate::room::SessionAction;
@@ -272,7 +330,7 @@ fn jc066_native86_oracles() {
         let p=t.room.game.pending.as_ref().unwrap();let choice=Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![victim.clone()]),..Action::new("choose")};
         t.game(2,choice.clone(),false);t.command(0,SessionAction::PauseRoom,true);t.game(0,choice.clone(),false);t.command(0,SessionAction::ResumeRoom,true);
         t.choose(if skip{vec![]}else{vec![victim.clone()]});
-        if !reveal&&!skip{invalid.extend(bad_target_frames(&t.room));}
+        if !reveal&&!skip{invalid.extend(bad_target_frames(&t.room));invalid.push(bad_target_face(&t.room,"target-face-up-as-hidden"));}
         t.responses();t.game(0,choice,false);
         assert_eq!(t.room.game.sealed_cards.len(),usize::from(!skip));
         if !skip{assert_eq!(t.room.game.sealed_cards[0].host_id,source);}
@@ -285,7 +343,9 @@ fn jc066_native86_oracles() {
         if actor%2==1{g.board_mut(&victim).unwrap().face_down=true;}
         if region!=0{let i=g.regions[0].cards.iter().position(|c|c.id==victim).unwrap();let c=g.regions[0].cards.remove(i);g.regions[region].cards.push(c);}
         let mut t=Trace::new(&format!("actor-{actor}"),&g);
-        t.game(actor,action,true);t.responses();t.choose(vec![victim]);t.responses();
+        t.game(actor,action,true);t.responses();t.choose(vec![victim]);
+        if actor==1{invalid.push(bad_target_face(&t.room,"target-hidden-as-face-up"));}
+        t.responses();
         assert_eq!(t.room.game.sealed_cards[0].card.owner,(actor+2)%4);scenarios.push(t.finish());
     }
     {
@@ -324,7 +384,34 @@ fn jc066_native86_oracles() {
         assert!(t.room.game.players[0].society_zone.used_once_per_game.contains(GRAY_SEARCH.search));
         assert_eq!(t.room.game.players[0].assets.iter().filter(|c|c.exhausted).count(),4);scenarios.push(t.finish());
     }
-    assert_eq!(scenarios.len(),15);assert_eq!(invalid.len(),85);
+    for (i,kind) in ["target-departure","target-move","target-control","target-reveal"].into_iter().enumerate() {
+        let mut g=u::game();g.room_id=format!("{:024x}",860500+i);
+        let victim=u::field(&mut g,if kind=="target-move"{"JC069"}else if kind=="target-control"{"JC125"}else{"JC029"},2);
+        if kind=="target-reveal"{g.board_mut(&victim).unwrap().face_down=true;}
+        u::fund(&mut g,0,"JC066",5);let source=u::held(&mut g,"JC066",0);
+        let response=if kind=="target-departure"{u::fund(&mut g,2,"JC075",2);u::field(&mut g,"JC075",2)}
+            else if kind=="target-move"{
+                u::fund(&mut g,2,"JC069",2);let anchor=u::field(&mut g,"JC125",2);
+                let index=g.regions[0].cards.iter().position(|c|c.id==anchor).unwrap();let mut c=g.regions[0].cards.remove(index);c.lock_markers=1;g.regions[1].cards.push(c);anchor
+            }else if kind=="target-reveal"{u::fund(&mut g,2,"JC029",2);victim.clone()}
+            else{u::fund(&mut g,1,"JC029",6);let id=u::field(&mut g,"JZ27",1);g.board_mut(&id).unwrap().face_down=true;id};
+        let mut t=Trace::new(kind,&g);
+        t.game(0,Action{card_id:Some(source),region:Some(0),..Action::new("deploy")},true);t.responses();t.choose(vec![victim.clone()]);
+        if kind=="target-departure"{t.respond(2,Action{card_id:Some(response),target_id:Some(victim.clone()),..Action::new("activate")});t.responses();
+            assert!(t.room.game.board(&victim).is_none());assert!(t.room.game.players[2].hand.iter().any(|c|c.definition=="JC029"));assert!(t.room.game.sealed_cards.is_empty());
+        }else if kind=="target-move"{t.respond(2,Action{card_id:Some(victim.clone()),ability_id:Some("chase-locked".into()),target_id:Some(response),..Action::new("activate")});t.responses();
+            assert_eq!(t.room.game.board(&victim).unwrap().0,1);assert!(t.room.game.sealed_cards.is_empty());
+        }else if kind=="target-reveal"{t.respond(2,Action{card_id:Some(response),..Action::new("reveal")});t.responses();
+            assert!(matches!(&t.room.game.pending.as_ref().unwrap().resolution,ChoiceResolution::Declare{declaration,..} if declaration.source.card.definition=="JC029"));
+            t.choose(vec![]);t.responses();
+            assert!(t.room.game.board(&victim).is_none());assert!(t.room.game.regions.iter().flat_map(|r|&r.cards).any(|c|c.definition=="JC029"&&!c.face_down&&c.id!=victim));assert!(t.room.game.sealed_cards.is_empty());
+        }else{t.respond(1,Action{card_id:Some(response),..Action::new("reveal")});t.responses();t.choose(vec![victim.clone()]);t.responses();
+            assert!(t.steps.iter().any(|row|{let room=crate::room::RoomEnvelope::from_persisted(row["expected"]["state"].as_str().unwrap()).unwrap();room.game.board(&victim).is_some_and(|(_,c)|c.controller==1)&&room.game.stack.iter().any(|item|item.frame.as_ref().is_some_and(|f|f.ability_key==crate::jc066::KEY&&f.targets[0].public.controller.as_deref()==Some("p2")))}),"Live control changed while the original target snapshot remained frozen");
+            assert!(t.room.game.board(&victim).is_none());assert!(t.room.game.sealed_cards.iter().any(|s|s.card.definition=="JC125"&&s.card.owner==2));
+        }
+        scenarios.push(t.finish());
+    }
+    assert_eq!(scenarios.len(),19);assert_eq!(invalid.len(),87);
     if let Ok(dir)=std::env::var("JC066_NATIVE_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();let result=serde_json::json!({"format":"jc066-native86-v1","scope":"Synthetic offline layouts; real Room commands, complete states/journals/private views and receipts; not online play","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid});
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("native86.json")).unwrap().write_all(&serde_json::to_vec(&result).unwrap()).unwrap();

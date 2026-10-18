@@ -1,0 +1,24 @@
+# JC066 P2：同UID目标明暗与冻结快照绑定（WIP，待复审）
+
+独立分支 `codex/jc066-p2-target-face-review-20261018`，基线 `8607a94298ed323b0375106fac7db01ffbc77ccd`；修复原候选源码 `804f00fce94c2cc7e182119c9bc2f1049cb27105` 的确定P2恢复缺口。不建worktree、不并行开发、不改77–85原件，不合main或发布。
+
+输入为父会话独审给出的真实静态反例：原86 fixture的raw.json，entry-deploy-accept.steps[9].expected.state，revision16/stack0/frame i251，目标i240原为明置JC029（新生血族），controller p2/P2。只把public.kind改hidden、label改暗藏者·P2，其余不变；反向使用actor-1.steps[5].expected.state，revision14/frame i251，目标i246原为暗藏JC095/controller p3，把kind改character、label改唐·格鲁尼。Rust类型化克隆后逐字节撤销两字段核对，JS只传输不透明Room字符串。
+
+修前实际结果：Native Game/Room两入口均接受上述两个状态；原准确a389ee48…WASM的4席view、poll和pause命令也均接受；实际workerd/HTTP/合成SQLite D1四项测试通过，GET返回200、pause写入1条命令和1条日志，重开后原收据重试仍200。原fixture/pkg/十核Worker及原状态保存在 `/workspace/jc066-p2-evidence-20261018`，没有覆盖原证据或真实数据库。
+
+产品修复仅在jc066_target现有same-UID board分支追加：`c.face_down != (t.public.kind == "hidden")` 即拒绝。没有要求已离场目标存在，没有新增当前地区/当前操控者一致性限制。合法翻暗与现身会换UID，旧目标不再在场时仍可恢复原帧并按既有规则失效续行。补明暗双向坏档与实际返手、警犬保持UID移动、哈达莎现身转控轨迹；另验证隐藏目标真实付费现身换UID不会被误拒。
+
+修后第一轮JC066专项16/16通过，含父会话原始两状态被双恢复入口拒绝、真实离场/移动/控制变化续行。原15条正常Native轨迹全部逐字段不变。追加合法目标现身轨迹后继续最终专项和当前135输入见证，最终Native/WASM/HTTP-D1及生产产物尚待重新绑定，不能提前声称全部通过。
+
+自封印仍仅保留原B项目推导，等待用户A/B答复；本批未选择或确认任何裁定，未改该行为、未发布。Worker旧306首轮294过/12个JZ46测试引用失败、修后JZ46文件15过的历史边界不抹去；原覆盖16文件及另5文件6项，不声称全55文件全绿。只做与本次P2相关的必要复验，并给出准确源码/内核/见证/产物身份和未重跑边界。
+
+
+## 10:33 安全检查点：最小修复已验证，完整回归仍在运行
+
+追加目标真实现身轨迹后的专项16/16通过，最终新135输入见证为19场景/252命令/16预期拒绝/1084视图/87坏档；与新WASM逐步完整状态、日志、四席视图及坏档入口对照通过。原15正常轨迹均与原fixture逐字段一致。原两份静态坏状态在修前与修后的不透明字符串逐字节相同，修后Native两入口、WASM六入口均拒绝，HTTP/D1专项4/4通过：两个方向共20次HTTP400，实际重开前后room/commands/journal完全不变；正常原状态4席view仍可读取。
+
+新WASM SHA `2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352`，Native raw `ce6f0329fd30daca4b2d5a960ad4310eec3e4b4a82394ca941b5f642531ffb50`，当前未发布86新fixture `d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6`。只替换本候选86见证，原86修前件与原生产目录535文件已完整保存，不改任何77–85原件。
+
+生产双TypeScript/Vite/十核Wrangler dry-run与隔离固定时钟Worker重建通过；167个客户端文件与修前逐字节相同。相关前端3文件51/51通过；没有重跑或声称新内核下完整前端1342通过。Native workspace全量、JC066新106 HTTP/D1及18路由/6来源检查仍在自然运行，尚不预告结果。
+
+本小时先检查无已存在10点普通浏览器结果，再于10:29:25官方只读核对仍v67/public revision2/provider db204…/原6ad46部署succeeded/env0。10:29:27Z只作一次普通Chromium导航，仍ERR_CERT_AUTHORITY_INVALID，立即停止，0写入0线上游戏，未绕过、未重试；本小时后续复用，不为该检查单独提交报告。自封印仍待用户裁定及父会话复审，未部署。
