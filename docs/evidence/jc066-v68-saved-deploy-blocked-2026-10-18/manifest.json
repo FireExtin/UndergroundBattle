@@ -1,0 +1,49 @@
+{
+  "reviewedHead": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "reviewedProductSource": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+  "savedVersion": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_16061bbb332c81918709916eea1849a5",
+  "deploymentBlocked": true,
+  "files": {
+    "README.md": {
+      "bytes": 1746,
+      "sha256": "dd5dbdbadd4e7de496ae199980602c4de348b9f74b51ef170e19f15d564a201c"
+    },
+    "official-receipts.json": {
+      "bytes": 5389,
+      "sha256": "7141e79144456c628c77cfd7206f8f604dada5df297ffc1ba57a99c54c9aa936"
+    },
+    "prepare-reviewed-source.py": {
+      "bytes": 6760,
+      "sha256": "01af8d96cc0e53f6ce721a8da9c6224ae9c617fce0fecc59992adf42f6ccb917"
+    },
+    "prepublication-artifacts.json": {
+      "bytes": 27459,
+      "sha256": "f02c1b42da0323e7ccceddbb0b7dbbe0e36d78953ecd6384648064b1bd94f0b3"
+    },
+    "provider-copy-plan.json.gz": {
+      "bytes": 10468,
+      "sha256": "2062dcdceae886f1ada66483cb06f15fc48a8c1f0d0c4aac7b72fd610fc7c225"
+    },
+    "provider-input-audit.json": {
+      "bytes": 3060,
+      "sha256": "9604c58ce13f5404e26a710c0bca7edfa79743954c4099a34edfeff936afd25f"
+    },
+    "provider-source-files.json.gz": {
+      "bytes": 71161,
+      "sha256": "6c685a0d21cf4d162acd61b4424c8d5afa5582102e5e3a06c18e4da3a8b3779e"
+    },
+    "publication-archive-audit.json": {
+      "bytes": 29796,
+      "sha256": "46c0fdde51a1a3de52005a34db491a4fc92426264ec3318181dfa0da083683c9"
+    },
+    "retained-fixture-storage.json": {
+      "bytes": 705,
+      "sha256": "0b4ee5e98ffe4273750e41d78187cf96e048ebd70ced4e356d5953b24517e43f"
+    },
+    "verify-publication-archive.py": {
+      "bytes": 5003,
+      "sha256": "2bf12d617c4ef1e8576d1fb850515ef69a2618f1cf7cf9192f65ad19d532ea6f"
+    }
+  }
+}
