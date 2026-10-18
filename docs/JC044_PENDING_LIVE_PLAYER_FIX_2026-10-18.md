@@ -1,0 +1,11 @@
+# JC044待选玩家存活恢复修复：WIP适用验证
+
+修前代码5acbce8的Native及准确ABI85复现见JC044_PENDING_LIVE_PLAYER_REPRO_2026-10-18.md。修前47文件Worker已自然结束，335项323通过/12失败，1761262.77毫秒；另5文件63/63，两组互不重叠共398次测试，源码和产物前后完全一致。12失败均在JZ46全局目录断言期待84、实际85处，未执行该断言之后的轨迹；不称修前整套全绿。
+
+生产改动只在jc044.rs的RepressOne待选容器校验中增加行动者和目标存活要求。原冻结帧仍允许合法目标在响应中出局，随后失效且时间费用不返还。新单测调用真实Game::eliminate，验证出局后的坏待选被Game/Room拒绝，以及响应前后失效路径。保留原32坏档，增加Declare选择者、Repress目标、Repress行动者出局三档，共35。JZ46测试仅把全局目录身份读取改为current85，79/78原房间见证不改。
+
+Native定向17/17自然0（含目录及真实机动授予兼容），133输入仅jc044.rs/jc044_tests.rs变化；原13场景118命令17拒绝524视图、目录及原32坏档/错误逐项完全相同，见pending-live-player-fix-delta.json。新Raw SHA为401f6b2dadccabadc161f94aefe0ad102b406aee574cc09d9d8ce87aec93c542，新WASM SHA为6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001，fixture SHA为41be2ced9b10a52407eeebbe8682b026116f0ce7cf4931b2e540656a09874986。新Native/WASM完整对照35坏档通过；原两份真实复现输入在四席view/apply/poll共12入口均已拒绝。
+
+修后前端专项45/45、TypeScript、production build/dry-run通过。166个客户端文件与修前逐字节相同，77–84八核逐字节相同，179输出/176运行文件/9WASM，生产时钟仍真实Date.now。修前整套前端1313/1、测试集合修正后8/8及六场本地UI只按相同客户端/相同正常Native输出范围复用，不称已重新跑整套。修前pkg/generated/dist/local-clock-server已完整留在/workspace/jc044-evidence-20261018/pre-pending-live-fix-abi85，不重签旧77–84。
+
+当前在新的worker85-live-player-fixed包装下运行七个相关文件：JC044全部场景/35坏档、命名牌组入桌、九核路由/生产身份/清单、全局并发事务以及整个JZ46修正文件，尚待自然回执；之后在新核下复验两场本地四浏览器费用/暂停/私密待选。未跑完整Native或完整Worker修后整轮；各轮边界必须分别报告，不加成一次全绿。最终代码/清单及独审材料以后续保存点为准。当前仍WIP，未发布、未合main、未触发Actions。

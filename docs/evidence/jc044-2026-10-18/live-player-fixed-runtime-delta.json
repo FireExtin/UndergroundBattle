@@ -1,0 +1,10 @@
+{
+  "baselineSource": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "clientFilesByteIdentical": 166,
+  "old77Through84WasmByteIdentical": 8,
+  "productionOutputCount": 179,
+  "runtimeFileCount": 176,
+  "current85WasmChangedOnly": true,
+  "productionClockIsRealServerTime": true,
+  "scope": "Reuse baseline whole-frontend and six-browser UI evidence only for byte-identical client and unchanged normal Native scenarios; post-fix targeted checks separately recorded"
+}

@@ -104,6 +104,26 @@ fn jc044_paid_frame_and_repression_pending_reject_forged_metadata() {
     u::choose(&mut g,vec!["region:2".into()]);
 }
 #[test]
+fn jc044_pending_requires_living_actor_and_target_but_response_target_elimination_fizzles_paid_ability() {
+    let (mut g,source)=layout(0);g.regions[2].influence[1]=1;
+    u::act(&mut g,0,activate(&source,&source,2));response_until_pending(&mut g);
+    let room=crate::jc029_tests::envelope(&g);
+    for seat in [0,2] {
+        let mut bad=room.clone();bad.game.eliminate(seat);
+        assert_eq!(bad.game.status,"playing");assert!(bad.game.pending.is_some());
+        let game_error=Game::from_persisted(&serde_json::to_string(&bad.game).unwrap()).err().expect("dead pending player");
+        let room_error=crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&bad).unwrap()).err().expect("dead pending Room player");
+        assert!(game_error.contains("JC044遏制待选"));assert!(room_error.contains("JC044遏制待选"));
+    }
+    let (mut g,source)=layout(0);g.regions[2].influence[1]=1;
+    u::act(&mut g,0,activate(&source,&source,2));g.eliminate(2);
+    // A formerly legal frozen target may leave during response. Only the
+    // impossible private-choice checkpoint is rejected; payment stays paid.
+    u::restore(&mut g);response_until_pending(&mut g);
+    assert!(g.pending.is_none());assert!(g.stack.is_empty());
+    assert_eq!(g.board(&source).unwrap().1.time_markers,1);assert_eq!(g.regions[2].influence[1],1);
+}
+#[test]
 fn jc044_normal_deploy_and_paid_reveal_have_optional_responsive_entry_time() {
     for reveal in [false,true] {for accept in [false,true] {
         let mut g=u::game();u::fund(&mut g,0,"JC044",3);
@@ -203,7 +223,7 @@ impl Trace {
 }
 fn invalid_pending(room:&crate::room::RoomEnvelope,phase:&str)->Vec<serde_json::Value>{
     let mut rows=vec![];
-    for n in 0..16 {
+    for n in 0..if phase=="declare" {17} else {18} {
         let mut bad=room.clone();let p=bad.game.pending.as_mut().unwrap();
         match n {0=>p.seat=(p.seat+1)%4,1=>p.choice.player_id="p99".into(),2=>p.choice.kind="forged".into(),
             3=>p.choice.title.clear(),4=>p.choice.description.clear(),5=>p.choice.min=None,6=>p.choice.max=Some(2),
@@ -212,8 +232,10 @@ fn invalid_pending(room:&crate::room::RoomEnvelope,phase:&str)->Vec<serde_json::
             13=>p.choice.options.push(p.choice.options[0].clone()),
             14=>match &mut p.resolution{ChoiceResolution::Declare{stage,..}=>*stage=DeclareChoice::Target,
                 ChoiceResolution::Frame{frame,..}=>frame.guard=GuardState::Unchecked,_=>panic!()},
-            _=>match &mut p.resolution{ChoiceResolution::Declare{declaration,..}=>declaration.actor=(declaration.actor+1)%4,
-                ChoiceResolution::Frame{frame,..}=>frame.already_paid.clear(),_=>panic!()}}
+            15=>match &mut p.resolution{ChoiceResolution::Declare{declaration,..}=>declaration.actor=(declaration.actor+1)%4,
+                ChoiceResolution::Frame{frame,..}=>frame.already_paid.clear(),_=>panic!()},
+            16=>bad.game.players[p.seat].eliminated=true,
+            _=>{let ChoiceResolution::Frame{frame,..}=&p.resolution else {panic!()};bad.game.players[frame.actor].eliminated=true;}}
         let state=serde_json::to_string(&bad).unwrap();
         let game_error=Game::from_persisted(&serde_json::to_string(&bad.game).unwrap()).err().expect("invalid Game restore");
         let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().expect("invalid Room restore");
@@ -278,6 +300,7 @@ fn jc044_native85_oracles(){
         t.responses();assert_eq!(t.room.game.pending.as_ref().unwrap().seat,2);t.choose(vec!["region:2".into()]);
         assert!(t.room.game.board(&source).unwrap().1.exhausted);assert_eq!(t.room.game.board(&source).unwrap().1.time_markers,1);scenarios.push(t.finish());
     }
+    assert_eq!(scenarios.len(),13);assert_eq!(invalid.len(),35);
     if let Ok(dir)=std::env::var("JC044_NATIVE_DIR"){
         std::fs::create_dir_all(&dir).unwrap();let output=serde_json::json!({"format":"jc044-native85-v1","scope":"Explicit offline layouts with real Room commands, payments, responses, pause/reopen and complete private views; no online gameplay claim","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid});
         use std::io::Write;std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("native85.json")).unwrap().write_all(&serde_json::to_vec(&output).unwrap()).unwrap();

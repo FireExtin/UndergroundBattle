@@ -1,0 +1,19 @@
+{
+  "scope": "Original two Native-generated repro Rooms now rejected by every view/apply/poll restore entry; no opaque JSON parsing",
+  "wasmSha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001",
+  "cases": [
+    {
+      "case": "pending-target-repro",
+      "inputSha256": "a71b61ed9349b2f5f0f3fe5d443b862aa332c9913bc5f7df1c4ac5a62c5e001b",
+      "originalNativeMalformedInputUnchanged": true,
+      "rejected": 6
+    },
+    {
+      "case": "pending-actor-repro",
+      "inputSha256": "b0542b7d25f678e7019a63562cf52d94affb7540414f1f32b7f9c55edda2a50f",
+      "originalNativeMalformedInputUnchanged": true,
+      "rejected": 6
+    }
+  ],
+  "totalRejected": 12
+}

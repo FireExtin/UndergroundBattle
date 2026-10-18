@@ -251,7 +251,9 @@ impl Game {
                         let expected = Choice { id: p.choice.id.clone(), kind: "target".into(), title: "遏制1：选择移除本方势力的地区".into(),
                             description: "选择符合数量限制的选项，然后确认。".into(), player_id: player_id(target), options,
                             preview_cards: vec![], min: Some(1), max: Some(1), amount: None, allow_decline: Some(false) };
-                        if self.status != "playing" || p.seat != target || *seat != target || p.choice.id.is_empty() || expected_regions.is_empty()
+                        if self.status != "playing" || p.seat != target || *seat != target
+                            || self.players[frame.actor].eliminated || self.players[target].eliminated
+                            || p.choice.id.is_empty() || expected_regions.is_empty()
                             || !same(regions, &expected_regions) || !same(&p.choice, &expected) { return Err("JC044遏制待选的玩家、地区或完整元数据不符".into()); }
                     }
                 },

@@ -1,0 +1,19 @@
+{
+  "baselineSource": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "changedCompilerInputs": [
+    "rust-game/src/jc044.rs",
+    "rust-game/src/jc044_tests.rs"
+  ],
+  "nativeInputs": 133,
+  "original13ScenariosCatalogOpaqueStatesJournalsAllViewsUnchanged": true,
+  "original32BadArchivesAndErrorsUnchanged": true,
+  "addedBadArchives": [
+    "declare-16",
+    "repression-16",
+    "repression-17"
+  ],
+  "newBadArchiveCount": 35,
+  "nativeRawSha256": "401f6b2dadccabadc161f94aefe0ad102b406aee574cc09d9d8ce87aec93c542",
+  "nativeScopedPassed": 17,
+  "wholeNativeNotRepeated": true
+}

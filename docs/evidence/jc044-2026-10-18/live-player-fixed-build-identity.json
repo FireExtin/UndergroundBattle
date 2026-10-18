@@ -1,0 +1,19 @@
+{
+  "baselineSource": "5acbce8b270a1412d28505fb94e909165985de4b",
+  "nativeInputs": 133,
+  "invalidArchives": 35,
+  "files": {
+    "rust-game-wasm/pkg/hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm": {
+      "bytes": 3262955,
+      "sha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001"
+    },
+    "rust-game-wasm/tests/jc044Native85.fixture.json.gz": {
+      "bytes": 994730,
+      "sha256": "41be2ced9b10a52407eeebbe8682b026116f0ce7cf4931b2e540656a09874986"
+    }
+  }
+}
