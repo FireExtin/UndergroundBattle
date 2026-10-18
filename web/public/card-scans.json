@@ -808,5 +808,10 @@
     "url": "/cards/JC044.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC044 灾难使者.jpg",
     "sha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800"
+  },
+  "JC066": {
+    "url": "/cards/JC066.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC066 封魔瓶瑟琳娜.jpg",
+    "sha256": "c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2"
   }
 }

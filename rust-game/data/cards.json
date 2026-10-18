@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
-  "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate",
+  "cardPoolVersion": "limited-v2.78-jc066-sealed-icons-candidate",
+  "engineVersion": "rust-v0.2.86-jc066-sealed-icons-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5802,6 +5802,47 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "JC066",
+      "name": "封魔瓶瑟琳娜",
+      "subtitle": "样本B7021",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "超能力者"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 灰色 灰色",
+      "color": "灰",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "【进场触发】将本地区的目标角色或暗藏者封印于瑟琳娜上。\n【持续】瑟琳娜额外具有被封印在其上的角色牌能力栏内的所有能力图标。",
+      "keywords": [],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC066",
+        "image": "resource/ymsj-fun.github.io/cards/JC066 封魔瓶瑟琳娜.jpg",
+        "sha256": "c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2"
+      }
     }
   ],
   "decks": [

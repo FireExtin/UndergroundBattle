@@ -399,7 +399,8 @@ impl Game {
     }
     fn character_icon_parts(&self, c: &Card, region: usize) -> (Icons, Icons, Icons) {
         let d = card(&c.definition);
-        let mut permanent_result = d.permanent_icons;
+        let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
+        let mut permanent_result = d.permanent_icons.add(sealed_permanent);
         if c.definition == "JC045" && !c.face_down
             && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
         {
@@ -411,7 +412,7 @@ impl Game {
         permanent_result.combat = permanent_result
             .combat
             .saturating_add(self.jc060_friendly_sources(c));
-        let mut temporary_result = d.temporary_icons;
+        let mut temporary_result = d.temporary_icons.add(sealed_temporary);
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
             if matches!(modifier, StaticModifier::JC037ControlledHiddenInvestigation) {
@@ -599,6 +600,7 @@ impl Game {
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
         self.validate_jc057_state()?;
         self.validate_jc044_state()?;
+        self.validate_jc066_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -609,6 +611,7 @@ impl Game {
         next.validate_jz46_state()?;
         next.validate_jc057_state()?;
         next.validate_jc044_state()?;
+        next.validate_jc066_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -683,6 +686,7 @@ impl Game {
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
+                crate::jc066::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -754,6 +758,7 @@ impl Game {
                 }
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
+                crate::jc066::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -1085,6 +1090,7 @@ impl Game {
         self.validate_jz46_frame(&frame)?;
         self.validate_jc057_frame(&frame)?;
         self.validate_jc044_frame(&frame)?;
+        self.validate_jc066_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1960,6 +1966,7 @@ impl Game {
         self.validate_jz46_state()?;
         self.validate_jc057_state()?;
         self.validate_jc044_state()?;
+        self.validate_jc066_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;
