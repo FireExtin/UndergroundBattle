@@ -1,0 +1,58 @@
+{
+  "parentRequest": "One ordinary cloud-browser check after progress/activity/published-identity verification; stop on TLS error. No bypass, component substitution, main promotion or deployment. Neutral and dual paused.",
+  "rawRoot": "/workspace/v65-real-browser-20261018T0030Z",
+  "command": "node tools/build-storage.mjs -- python3 /workspace/v65-real-browser-20261018T0030Z/v65-normal_browser.py > /workspace/v65-real-browser-20261018T0030Z/normal-browser.log 2>&1",
+  "naturalExitCode": 0,
+  "harnessDerivation": {
+    "trackedSeed": "docs/evidence/v65-connection-2026-10-17-1626/v65-normal_browser.py",
+    "replaceOnce": {
+      "from": "2026-10-17T15:26:24.323582+00:00",
+      "to": "2026-10-17T23:30:09.567452+00:00"
+    },
+    "expectedSha256": "4cb4de75596b03b9c96e710af120d86de89224f680ff5d213890989ea6658784"
+  },
+  "unchangedScreenshotGitReference": "docs/evidence/v65-connection-2026-10-17-1426/normal-browser.png",
+  "identityReadbackAtUtc": "2026-10-18T00:29:43.963Z",
+  "previousProbeAtUtc": "2026-10-17T23:30:09.567452+00:00",
+  "navigationAtUtc": "2026-10-18T00:30:10.975653+00:00",
+  "errorAtUtc": "2026-10-18T00:30:11.172089+00:00",
+  "intervalSincePriorProbeSeconds": 3601.408201,
+  "navigationAttempts": 1,
+  "getRequests": 1,
+  "gameWriteCount": 0,
+  "fullGameCount": 0,
+  "onlineGameplayValidationStatus": "WIP_BLOCKED_TLS",
+  "uiAssetsAndCatalogIdentityNotReached": true,
+  "redBlackBlueGrayMechanismsSelectionRepeatClickRefreshCompleteGameNotExecuted": true,
+  "normalTls": true,
+  "bypass": false,
+  "noComponentTestSubstitution": true,
+  "neutralAndDualPaused": true,
+  "noFurtherAttemptsThisRound": true,
+  "newVersionOrDeployment": false,
+  "mainChanged": false,
+  "preProbeGit": {
+    "branch": "codex/stage-pass-progress-20261016",
+    "headAndRemote": "35462f8a074aeca8d3fa3ecc995e3425b1783229",
+    "remoteMain": "398e220721f9e14c4f523530183c6288b7749096",
+    "workingTreeClean": true,
+    "activeDevelopmentProcesses": []
+  },
+  "gitLocksBefore": [
+    {
+      "path": "/workspace/UndergroundBattle/.git/codex-index-refresh.lock",
+      "bytes": 0,
+      "mtimeNs": "1792113855542105945",
+      "inode": "9223372036855987909"
+    }
+  ],
+  "gitLocksAfterBrowser": [
+    {
+      "path": "/workspace/UndergroundBattle/.git/codex-index-refresh.lock",
+      "bytes": 0,
+      "mtimeNs": "1792113855542105945",
+      "inode": "9223372036855987909"
+    }
+  ],
+  "existingLocksUnchanged": true
+}
