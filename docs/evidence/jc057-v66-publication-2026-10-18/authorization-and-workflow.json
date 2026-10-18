@@ -1,0 +1,18 @@
+{
+  "sourceThread": "01a0fe65-0a4f-76cb-9bf7-44e1e01b70d6",
+  "instruction": "Parent serial independent review confirms complete JC057 ABI84 batch passed, P2 closed, no P0/P1/P2 source blocker; publish exact reviewed artifacts via existing official Sites workflow only. Stop on permissions rejection, preserve old77-83 and public audience; one normal browser access after successful identity readback.",
+  "reviewedCode": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+  "reviewedEvidence": "c674946d010559fa991ef78842d01d42de07d2f3",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "previousProvider": "6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0",
+  "preflightRemoteProgress": "c674946d010559fa991ef78842d01d42de07d2f3",
+  "preflightRemoteMain": "398e220721f9e14c4f523530183c6288b7749096",
+  "preflightActiveEditorsOrTests": [],
+  "sourceHelper": "/workspace/sites-official-abi77-20261015/scripts/site-workflow.mjs",
+  "packagingCommands": [],
+  "credentialStoredToFile": false,
+  "publicationPermissionsBypassed": false,
+  "gameMainMerged": false,
+  "actionsTriggered": false,
+  "runtimeDatabaseReadOrReset": false
+}

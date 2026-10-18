@@ -1,0 +1,106 @@
+{
+  "format": "jc057-v66-publication-evidence-v1",
+  "reviewedCode": "5a1a40dee9506b073f3ddd6dc4c796c3f7c72647",
+  "reviewedEvidence": "c674946d010559fa991ef78842d01d42de07d2f3",
+  "providerSource": "7ab9768bd86a5a7e66dd988a42324624c1a23943",
+  "version": 66,
+  "deploymentId": "appgdep_6ad43cd94bd48191b45e73872b0f13cd",
+  "scope": "Existing successful official publication and single browser TLS failure; recovered environment checkpoint only, no repeat publish or browser access.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1834,
+      "sha256": "76f29e5eba61a88c29148a44d858cba6958ef0dfeda3d67c82e29d58d1649352"
+    },
+    {
+      "path": "archive-first-audit.json",
+      "bytes": 564,
+      "sha256": "1c2c92a6778c60cc3c71d97d0bfe56b5aa694767f0abd88e85329acbcd2bda04"
+    },
+    {
+      "path": "authorization-and-workflow.json",
+      "bytes": 1127,
+      "sha256": "5a07eb17bbc5664c9e8596922ee7e2d04542d03bf425624ce8007ea1ece57dbd"
+    },
+    {
+      "path": "normal-browser.json",
+      "bytes": 3644,
+      "sha256": "7cdef38f8957404bc267a1256b359b1005323c9a016cc1819787c9e0483ae75a"
+    },
+    {
+      "path": "normal-browser.log",
+      "bytes": 189,
+      "sha256": "5c6b25e85c3d25322650c92c7fd52b3c1aa7925e23edfd5936d9d8b8e45f95d4"
+    },
+    {
+      "path": "normal-browser.png",
+      "bytes": 38818,
+      "sha256": "f37fa34a631838c9f786b38e03ec16d0efecdfcd0a212d3ee657648c14f37ad1"
+    },
+    {
+      "path": "official-identity.json",
+      "bytes": 1831,
+      "sha256": "8c141560fbcc95f6e4211496d5f2edd32d66157ea0c2de609a45424b95ed16b5"
+    },
+    {
+      "path": "official-receipts.json",
+      "bytes": 3965,
+      "sha256": "9c9e923acb67f15c5bbeca5411d6d5dbd9bd6b023bd633b795f9081042bd3b82"
+    },
+    {
+      "path": "prepare-reviewed-source.py",
+      "bytes": 7149,
+      "sha256": "5226fb94089be27dd81a13d53d9f4a311ced49ef040315b4bef61ba7fa41776f"
+    },
+    {
+      "path": "production-preflight.json",
+      "bytes": 29430,
+      "sha256": "c9513a202575d56e56d8c9ad93d2fdc7fba1a149731a3065b0b0dc00b8f0cdf2"
+    },
+    {
+      "path": "provider-copy-plan.json.gz",
+      "bytes": 10190,
+      "sha256": "2d0b9b6b2dbcec97b4aa4ade9099c30a1fb44953b4cc0477f6db528fa2b6efb8"
+    },
+    {
+      "path": "provider-input-audit.json",
+      "bytes": 3091,
+      "sha256": "bbd77e2c62e97cc1ef8aefe24d059697f7712551abbb90b812d660c38aa19582"
+    },
+    {
+      "path": "provider-source-files.json.gz",
+      "bytes": 69361,
+      "sha256": "785fdc93e20160948699c547bbfb325f96fbe7b6b65541903e6937581a896978"
+    },
+    {
+      "path": "publication-archive-audit.json",
+      "bytes": 29126,
+      "sha256": "01b533c3fbf1677efa9929ccdcffe50ad42ab84ba82644b2cc5ce2f754befafd"
+    },
+    {
+      "path": "publication-summary.json",
+      "bytes": 2273,
+      "sha256": "f3751474e8629c87855f9956c888d716684c7ca46e39b364364616f7b85b963e"
+    },
+    {
+      "path": "recovery-preflight.json",
+      "bytes": 1890,
+      "sha256": "83a6577bee7f909b050e96ba65e914da6c2a6d8572a46009ca8a961379e24a93"
+    },
+    {
+      "path": "retained-fixture-storage.json",
+      "bytes": 705,
+      "sha256": "0b4ee5e98ffe4273750e41d78187cf96e048ebd70ced4e356d5953b24517e43f"
+    },
+    {
+      "path": "v66-normal_browser.py",
+      "bytes": 9044,
+      "sha256": "b010000302a326f0f83beb61b7fbbfe520355aa9303068ff7dcca03f738d4197"
+    },
+    {
+      "path": "verify-publication-archive.py",
+      "bytes": 4971,
+      "sha256": "5176ba28b174ab6069df3723dddca701e031ef36b42932d9bd3da54206cb533e"
+    }
+  ]
+}

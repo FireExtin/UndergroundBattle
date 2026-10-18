@@ -1,0 +1,50 @@
+{
+  "checkedAtUtc": "2026-10-18T03:41:56.447404+00:00",
+  "executionConnectionWorking": true,
+  "localAndRemoteProgressBeforeSave": "c674946d010559fa991ef78842d01d42de07d2f3",
+  "remoteMain": "398e220721f9e14c4f523530183c6288b7749096",
+  "officialProviderSourceLocalClean": "7ab9768bd86a5a7e66dd988a42324624c1a23943",
+  "activeEditBuildTestProcesses": [],
+  "unsavedFilesBeforeRecovery": [
+    "archive-first-audit.json",
+    "authorization-and-workflow.json",
+    "normal-browser.json",
+    "normal-browser.log",
+    "normal-browser.png",
+    "official-identity.json",
+    "official-receipts.json",
+    "prepare-reviewed-source.py",
+    "production-preflight.json",
+    "provider-copy-plan.json.gz",
+    "provider-input-audit.json",
+    "provider-source-files.json.gz",
+    "publication-archive-audit.json",
+    "publication-summary.json",
+    "retained-fixture-storage.json",
+    "v66-normal_browser.py",
+    "verify-publication-archive.py"
+  ],
+  "evidenceFilesScreened": 17,
+  "credentialOrPrivateDataMatches": 0,
+  "databaseOrBuildCacheFiles": 0,
+  "all177ProductionOutputsStillMatchReviewedManifest": true,
+  "all38FrozenReviewEvidenceHashesStillMatch": true,
+  "uploadArchiveStillMatches": true,
+  "readExistingBrowserResultOnly": true,
+  "newBrowserOrPublishCalls": 0,
+  "historicalLockBeforeDisconnect": {
+    "bytes": 0,
+    "mtimeNs": "1792113855542105945",
+    "inode": "9223372036855987909"
+  },
+  "observedLockAfterReconnection": {
+    "bytes": 0,
+    "mtimeNs": "1792294521284793620",
+    "inode": "1048672",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lockMetadataDiffersAcrossReconnect": true,
+  "lockTouchedByThisRecovery": false,
+  "indexLockPresent": false,
+  "scope": "Save existing successful v66 receipts and actual one-shot browser TLS result; no new publication, browser access, source change, main merge or Actions."
+}

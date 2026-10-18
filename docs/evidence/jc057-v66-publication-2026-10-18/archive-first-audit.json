@@ -1,0 +1,7 @@
+{
+  "exitCode": 1,
+  "stage": "Additional provider-source Git blob audit before archive extraction",
+  "path": "test/fixtures/jc046-native-v077.json",
+  "cause": "Existing provider .gitignore intentionally excludes two decompressed fixture targets; they are restored losslessly from the retained tracked gzip via prebuild/pretest hooks. No production artifact mismatch was reported, no save/deploy attempted.",
+  "correction": "Verify both exact outputs against tracked gzip, declared raw size/SHA and source projection; verify remaining source blobs normally."
+}
