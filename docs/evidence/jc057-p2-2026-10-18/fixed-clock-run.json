@@ -1,0 +1,17 @@
+{
+  "name": "fixed-clock",
+  "command": [
+    "env",
+    "HEGEMONY_FIXED_CLOCK_TEST_ROOT=/workspace/jc057-p2-20261018/worker84-p2",
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "sites/scripts/build-fixed-clock-test.mjs"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:08:58.942532+00:00",
+  "finishedAtUtc": "2026-10-18T03:09:06.060683+00:00",
+  "exitCode": 0,
+  "log": "fixed-clock.log"
+}

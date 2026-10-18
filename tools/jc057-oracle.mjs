@@ -9,7 +9,8 @@ const moduleUrl=import.meta.url;
 const root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.76-jc057-live-inspection-candidate',engineVersion:'rust-v0.2.84-jc057-live-inspection-candidate'};
-export const scenarioNames=['reveal-p0','reveal-p1','reveal-p2','reveal-p3','empty','skip','deploy','live-exhaust','live-hide','live-control'].sort();
+export const scenarioNames=['reveal-p0','reveal-p1','reveal-p2','reveal-p3','empty','skip','deploy','live-exhaust','live-hide','live-control','granted-renown','granted-glory','granted-mobility'].sort();
+export const invalidNames=['seat-only','seat-and-player-id','player-id-only','stage-accept','stage-mode','stage-attachment-order','kind','title','description','min','max','missing-min','missing-max','allow-decline','amount','preview','options-missing','options-duplicate','options-order','option-id','option-label','option-card','empty-id','eliminated-actor'].sort();
 export function assertSources(binding) {
   const expected=Object.keys(JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi83/native-source-binding.json'),'utf8')).files)
     .concat(['rust-game/src/jc057.rs','rust-game/src/jc057_tests.rs']).sort();
@@ -20,7 +21,7 @@ export function assertSources(binding) {
 
 
 export function validateNative(raw) {
-  assert.equal(raw.format,'jc057-native84-v1');assertSources(raw.sourceBindings);
+  assert.equal(raw.format,'jc057-native84-v2');assertSources(raw.sourceBindings);
   for(const [key,value]of Object.entries(identity))assert.equal(raw.catalog[key],value);
   assert.equal(raw.catalog.cards.length,148);assert.equal(raw.catalog.societies.length,10);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
@@ -41,11 +42,16 @@ export function validateNative(raw) {
       state=row.expected.state;commands++;
     }
   }
-  return {scenarios:raw.scenarios.length,commands,rejected,projections};
+  assert.deepEqual(raw.invalid.map(row=>row.name).sort(),invalidNames);
+  for(const row of raw.invalid) {
+    assert.equal(typeof row.state,'string');assert(row.gameError.length>0);assert(row.roomError.length>0);
+    assert.equal(row.revision,13);assert.equal(row.choiceId,'i249');
+  }
+  return {scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
 }
 export function loadFixture() {
   const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc057Native84.fixture.json.gz'));
-  const bundle=JSON.parse(gunzipSync(bytes));assert.equal(bundle.format,'jc057-native84-raw-v1');
+  const bundle=JSON.parse(gunzipSync(bytes));assert.equal(bundle.format,'jc057-native84-raw-v2');
   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
   const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);
   return {...bundle,...raw};
@@ -59,13 +65,21 @@ export function compare(fixture,abi,bytes) {
       row.views.forEach((view,seat)=>assert.deepEqual(JSON.parse(abi.view(row.expected.state,seat)),view,scenario.name+' view'));
     }
   }
+  for(const row of fixture.invalid) {
+    const nativeError=error=>{assert.equal(String(error),row.roomError,row.name+' Native/WASM restore error');return true;};
+    for(let seat=0;seat<4;seat++)assert.throws(()=>abi.view(row.state,seat),nativeError,row.name+' view');
+    const command={commandId:'invalid-'+row.name,expectedVersion:row.revision,
+      action:{kind:'game',action:{kind:'choose',choiceId:row.choiceId,selected:[]}}};
+    assert.throws(()=>abi.applyRoom(row.state,row.seat,JSON.stringify(command),'0'),nativeError,row.name+' choose');
+    assert.throws(()=>abi.pollRoom(row.state,0,'0'),nativeError,row.name+' poll');
+  }
   return {...fixture.counts,wasmSha256:fixture.wasmSha256,nativeRawSha256:fixture.raw.sha256,completeOpaqueStatesJournalsAndAllViews:true};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const [nativeFile,wasmFile,destination]=process.argv.slice(2);
   if(!destination)throw Error('Usage: jc057-oracle.mjs Native84.json fresh84.wasm NEW.fixture.json.gz');
   const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
-  const bundle={format:'jc057-native84-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
+  const bundle={format:'jc057-native84-raw-v2',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
   const {kernel,moduleBytes}=await import('../rust-game-wasm/tests/current84-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
   const result=compare({...bundle,...raw},kernel,bytes);
   writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9,mtime:0}),{flag:'wx'});

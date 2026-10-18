@@ -1,0 +1,125 @@
+{
+  "productionWorker": {
+    "path": "server/index.js",
+    "bytes": 175795,
+    "sha256": "6a92fb1b6794bc94d31c976bc2e7e77a9b172504516c07b877b89ac81ead9b46"
+  },
+  "current84Wasm": {
+    "bytes": 3217477,
+    "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+  },
+  "retained77To83": [
+    {
+      "abi": 77,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 2909006,
+          "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+        }
+      ]
+    },
+    {
+      "abi": 78,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 2976205,
+          "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+        }
+      ]
+    },
+    {
+      "abi": 79,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 3005332,
+          "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+        }
+      ]
+    },
+    {
+      "abi": 80,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 3047680,
+          "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+        }
+      ]
+    },
+    {
+      "abi": 81,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 3154323,
+          "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+        }
+      ]
+    },
+    {
+      "abi": 82,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 3165174,
+          "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+        }
+      ]
+    },
+    {
+      "abi": 83,
+      "files": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 3174213,
+          "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+        }
+      ]
+    }
+  ],
+  "runtimeFiles": 174,
+  "buildOutputFiles": 177,
+  "frontendClientFiles": 165,
+  "frontendByteIdenticalTo2261": true,
+  "originalNative83FixtureSha256": "ee2bc666717e6951dd2c658bfb171c0e00be773f68fbb1a3a2a3d642d0c1a80c",
+  "candidateUnreviewed": true,
+  "deployed": false
+}

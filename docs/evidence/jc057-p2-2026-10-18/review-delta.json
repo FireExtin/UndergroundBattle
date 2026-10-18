@@ -1,0 +1,83 @@
+{
+  "beforeCode": "2261d773da66d5862e6af8bdf5cd1ce28ac405ff",
+  "productionSourceChangedOnly": [
+    "rust-game/src/jc057.rs"
+  ],
+  "compilerInputChangedOnly": [
+    "rust-game/src/jc057.rs",
+    "rust-game/src/jc057_tests.rs"
+  ],
+  "reviewDeltaPaths": [
+    "rust-game-wasm/tests/jc057Native84.fixture.json.gz",
+    "rust-game/src/jc057.rs",
+    "rust-game/src/jc057_tests.rs",
+    "sites/test/jc057-integration.test.mjs",
+    "tools/jc057-oracle.mjs"
+  ],
+  "webAndSitesProductionSourceUnchanged": true,
+  "frozenSourceMetadataAndOriginal83WitnessUnchanged": true,
+  "all165ClientFilesByteIdentical": true,
+  "outputDelta": [
+    {
+      "path": "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "before": null,
+      "after": {
+        "path": "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+        "bytes": 3217477,
+        "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+      }
+    },
+    {
+      "path": "server/93ff6a3e93ad491c53039bdbed6b93f3545b7357-hegemony_wasm_bg.wasm",
+      "before": {
+        "path": "server/93ff6a3e93ad491c53039bdbed6b93f3545b7357-hegemony_wasm_bg.wasm",
+        "bytes": 3212947,
+        "sha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb"
+      },
+      "after": null
+    },
+    {
+      "path": "server/README.md",
+      "before": {
+        "path": "server/README.md",
+        "bytes": 122,
+        "sha256": "e5142922e435ea55934c226fc68265d1737b718f00035d091288fde28745ebb7"
+      },
+      "after": {
+        "path": "server/README.md",
+        "bytes": 132,
+        "sha256": "77d1a04e255afb474deb3468e8cf6a1e4da98eb13d1eb4b61269317ddf0c8349"
+      }
+    },
+    {
+      "path": "server/index.js",
+      "before": {
+        "path": "server/index.js",
+        "bytes": 175795,
+        "sha256": "2faf2a0fa7004416fee4f73d27def7ced0958aa99ff85616724e70759933e7eb"
+      },
+      "after": {
+        "path": "server/index.js",
+        "bytes": 175795,
+        "sha256": "6a92fb1b6794bc94d31c976bc2e7e77a9b172504516c07b877b89ac81ead9b46"
+      }
+    },
+    {
+      "path": "server/index.js.map",
+      "before": {
+        "path": "server/index.js.map",
+        "bytes": 311078,
+        "sha256": "a69b890e84d8c527085432e795764b1d13f0b09f639dcde25fc3494c02ccb39a"
+      },
+      "after": {
+        "path": "server/index.js.map",
+        "bytes": 311074,
+        "sha256": "f542d3dfaf83c74b12a0bdbfd2994b0d89f41c9d328b1713b75e6d772bcfd1af"
+      }
+    }
+  ],
+  "noFrontendRerun": true,
+  "noFullNativeOrWorkerRerunAfterP2": true,
+  "noWebsiteAccess": true,
+  "noDeployment": true
+}

@@ -110,6 +110,35 @@ impl Game {
         }
         Ok(())
     }
+    fn jc057_pending_declaration(&self, p: &Pending, d: &Declaration, stage: &DeclareChoice) -> RuleResult<()> {
+        self.jc057_declaration(d)?;
+        if d.source.card.definition != "JC057" && !own(&d.ability) { return Ok(()); }
+        if p.seat != d.actor || p.choice.player_id != player_id(d.actor) {
+            return Err("JC057触发待选必须属于冻结行动者".into());
+        }
+        // Mobility has its own canonical pending-container validation. Its
+        // source snapshot intentionally differs from a Reveal/reward snapshot.
+        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        let options = match (d.ability.targets.as_slice(), stage) {
+            ([slot], DeclareChoice::Target) => self.binding_options(d.actor, &d.source, slot),
+            ([], DeclareChoice::Accept) => vec![ChoiceOption {
+                id: "accept".into(), label: "发动触发能力".into(), card: None,
+            }],
+            _ => return Err("JC057触发待选阶段与冻结程序不符".into()),
+        };
+        let expected = Choice {
+            id: p.choice.id.clone(), kind: "trigger".into(),
+            title: format!("{}：{}", catalog::card(&d.source.card.definition).name, d.ability.label),
+            description: "选择符合数量限制的选项，然后确认。".into(),
+            player_id: player_id(d.actor), options, preview_cards: vec![],
+            min: Some(0), max: Some(1), amount: None, allow_decline: Some(true),
+        };
+        if self.status != "playing" || self.players[d.actor].eliminated || p.choice.id.is_empty()
+            || expected.options.is_empty() || !same(&p.choice, &expected) {
+            return Err("JC057触发待选元数据或真实候选不符".into());
+        }
+        Ok(())
+    }
     fn jc057_player(&self, f: &ResolutionFrame) -> RuleResult<usize> {
         let t = f.targets.first().ok_or("JC057缺少目标玩家")?;
         let seat = t.id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok())
@@ -245,7 +274,7 @@ impl Game {
                 return Err("JC057待选类型与续体不一致".into());
             }
             match &p.resolution {
-                ChoiceResolution::Declare { declaration, .. } => self.jc057_declaration(declaration)?,
+                ChoiceResolution::Declare { declaration, stage } => self.jc057_pending_declaration(p, declaration, stage)?,
                 ChoiceResolution::Frame { frame, choice } => {
                     self.validate_jc057_frame(frame)?;
                     if related(frame) || matches!(choice, FrameChoice::JC057InspectHand { .. }) {

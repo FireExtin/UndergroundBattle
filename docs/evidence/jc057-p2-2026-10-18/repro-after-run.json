@@ -1,0 +1,15 @@
+{
+  "name": "repro-after",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "/workspace/jc057-p2-20261018/probe-after.mjs"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:08:18.011562+00:00",
+  "finishedAtUtc": "2026-10-18T03:08:18.236853+00:00",
+  "exitCode": 0,
+  "log": "repro-after.log"
+}

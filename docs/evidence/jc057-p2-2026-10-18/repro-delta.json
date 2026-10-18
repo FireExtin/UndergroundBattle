@@ -1,0 +1,101 @@
+{
+  "exactOriginalArchivesSameInputStrings": true,
+  "originalOwnerSkipAndOtherSeatRejectionOpaqueNextStatesUnchanged": true,
+  "formerSeatOnlyAndSeatPlusPlayerIdAcceptedNowRejectBeforeRestore": true,
+  "beforeWasmSha256": "191c05fc9c1d2ad0b72e25fd9f66d02b1ecbdc1150304253e399a48a6468fceb",
+  "afterWasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+  "beforeCases": [
+    {
+      "name": "original-owner-skip",
+      "seat": 0,
+      "selected": [],
+      "restored": true,
+      "outcome": "accepted",
+      "errorCode": null,
+      "changed": true,
+      "version": 14
+    },
+    {
+      "name": "original-other-skip",
+      "seat": 1,
+      "selected": [],
+      "restored": true,
+      "outcome": "rejected",
+      "errorCode": "invalid_action",
+      "changed": false,
+      "version": 13
+    },
+    {
+      "name": "bad-seat-only-skip",
+      "seat": 1,
+      "selected": [],
+      "restored": true,
+      "outcome": "accepted",
+      "errorCode": null,
+      "changed": true,
+      "version": 14
+    },
+    {
+      "name": "bad-seat-and-player-id-target",
+      "seat": 1,
+      "selected": [
+        "p1"
+      ],
+      "restored": true,
+      "outcome": "accepted",
+      "errorCode": null,
+      "changed": true,
+      "version": 14
+    }
+  ],
+  "afterCases": [
+    {
+      "name": "original-owner-skip",
+      "seat": 0,
+      "selected": [],
+      "restored": true,
+      "outcome": "accepted",
+      "changed": true,
+      "version": 14
+    },
+    {
+      "name": "original-owner-target",
+      "seat": 0,
+      "selected": [
+        "p1"
+      ],
+      "restored": true,
+      "outcome": "accepted",
+      "changed": true,
+      "version": 14
+    },
+    {
+      "name": "original-other-skip",
+      "seat": 1,
+      "selected": [],
+      "restored": true,
+      "outcome": "rejected",
+      "errorCode": "invalid_action",
+      "changed": false,
+      "version": 13
+    },
+    {
+      "name": "bad-seat-only-skip",
+      "seat": 1,
+      "selected": [],
+      "restored": false,
+      "viewError": "JC057触发待选必须属于冻结行动者",
+      "commandError": "JC057触发待选必须属于冻结行动者"
+    },
+    {
+      "name": "bad-seat-and-player-id-target",
+      "seat": 1,
+      "selected": [
+        "p1"
+      ],
+      "restored": false,
+      "viewError": "JC057触发待选必须属于冻结行动者",
+      "commandError": "JC057触发待选必须属于冻结行动者"
+    }
+  ]
+}

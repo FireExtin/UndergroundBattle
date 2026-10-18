@@ -1,0 +1,20 @@
+{
+  "name": "mobility-compat",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--workspace",
+    "bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_grant",
+    "--",
+    "--nocapture"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:06:23.388914+00:00",
+  "finishedAtUtc": "2026-10-18T03:06:56.692591+00:00",
+  "exitCode": 0,
+  "log": "mobility-compat.log"
+}

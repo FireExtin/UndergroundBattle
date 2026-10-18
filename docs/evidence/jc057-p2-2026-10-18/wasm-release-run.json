@@ -1,0 +1,17 @@
+{
+  "name": "wasm-release",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "rust-game-wasm/pkg",
+    "--",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:07:00.192112+00:00",
+  "finishedAtUtc": "2026-10-18T03:08:10.766134+00:00",
+  "exitCode": 0,
+  "log": "wasm-release.log"
+}

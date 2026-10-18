@@ -1,0 +1,35 @@
+{
+  "oldFixtureSha256": "0832c3999408e52ac19c8d3da6f0710394b874ff49bd848c0a6151f7558298d8",
+  "oldTenScenariosCompleteOpaqueStatesJournalsCommandsFourViewsUnchanged": true,
+  "oldScenarioNames": [
+    "reveal-p0",
+    "reveal-p1",
+    "reveal-p2",
+    "reveal-p3",
+    "empty",
+    "skip",
+    "deploy",
+    "live-exhaust",
+    "live-hide",
+    "live-control"
+  ],
+  "newCompatibilityScenarios": [
+    "granted-renown",
+    "granted-glory",
+    "granted-mobility"
+  ],
+  "nativeInputs": 131,
+  "changedNativeInputs": {
+    "rust-game/src/jc057.rs": {
+      "before": "40e3610370b753028d6f081e4498d60b68d81216edcc6dd187eb89f7b4296b54",
+      "after": "27d97b4829b6690a2f0a1d4840bde898e51e4e1d3d2bc4de05a08b6529bf289f"
+    },
+    "rust-game/src/jc057_tests.rs": {
+      "before": "e701f29335de9447043e0e7b3a7d96eb1dd4da8fc250dde0cb51cbf92dda369c",
+      "after": "78d448440a0a262bda327670d4087612e556e3a5449a054e93ed0e6222bc99c8"
+    }
+  },
+  "exactOriginalRevision13ChoiceI249CheckpointUnchanged": true,
+  "checkpointSha256": "c8ae0c5a3bb8fc2e7635848f3387c13118cc62369ae5faf627a6422e1ae760e2",
+  "invalidPersistedArchives": 24
+}

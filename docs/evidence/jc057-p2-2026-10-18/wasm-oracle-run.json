@@ -1,0 +1,18 @@
+{
+  "name": "wasm-oracle",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/jc057-oracle.mjs",
+    "/workspace/jc057-p2-20261018/native-after/native84.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "/workspace/jc057-p2-20261018/jc057Native84.fixture.json.gz"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:08:16.754005+00:00",
+  "finishedAtUtc": "2026-10-18T03:08:19.117726+00:00",
+  "exitCode": 0,
+  "log": "wasm-oracle.log"
+}

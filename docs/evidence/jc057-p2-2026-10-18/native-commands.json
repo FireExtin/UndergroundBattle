@@ -1,0 +1,27 @@
+{
+  "nativeFirst": {
+    "command": "PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup JC057_NATIVE_DIR=/workspace/jc057-p2-20261018/native-after node tools/build-storage.mjs -- cargo test --locked --workspace jc057_ -- --nocapture",
+    "exit": {
+      "exitCode": 101,
+      "finishedAtUtc": "2026-10-18T03:05:03.426862+00:00"
+    },
+    "log": "native-after-first.log.gz"
+  },
+  "nativeSecond": {
+    "command": "PATH=/workspace/tooling/cargo/bin:$PATH CARGO_HOME=/workspace/tooling/cargo RUSTUP_HOME=/workspace/tooling/rustup JC057_NATIVE_DIR=/workspace/jc057-p2-20261018/native-after node tools/build-storage.mjs -- cargo test --locked --workspace jc057_ -- --nocapture",
+    "exit": {
+      "exitCode": 0,
+      "finishedAtUtc": "2026-10-18T03:06:05.500690+00:00"
+    },
+    "log": "native-after-second.log.gz"
+  },
+  "buildEnvironment": {
+    "cargo": "Rust1.90.0",
+    "wasmBindgen": "0.2.104",
+    "buildStorageGuardUnchanged": true,
+    "cacheDeleted": false,
+    "frontEndBuilt": false,
+    "websiteAccess": false,
+    "deployed": false
+  }
+}

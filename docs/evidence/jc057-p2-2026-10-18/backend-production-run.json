@@ -1,0 +1,17 @@
+{
+  "name": "backend-production",
+  "command": [
+    "env",
+    "HEGEMONY_BACKEND_TEST_ROOT=/workspace/jc057-p2-20261018/backend",
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "sites/scripts/build-backend-test.mjs"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedAtUtc": "2026-10-18T03:08:34.871330+00:00",
+  "finishedAtUtc": "2026-10-18T03:08:42.056861+00:00",
+  "exitCode": 0,
+  "log": "backend-production.log"
+}

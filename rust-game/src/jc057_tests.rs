@@ -157,6 +157,92 @@ fn jc057_restore_rejects_changed_private_hand_and_program_metadata() {
     u::restore(&mut g);
 }
 
+fn corrupted_declarations(g: &Game) -> Vec<(String, Game)> {
+    let names = ["seat-only", "seat-and-player-id", "player-id-only", "stage-accept", "stage-mode",
+        "stage-attachment-order", "kind", "title", "description", "min", "max", "missing-min",
+        "missing-max", "allow-decline", "amount", "preview", "options-missing", "options-duplicate",
+        "options-order", "option-id", "option-label", "option-card", "empty-id", "eliminated-actor"];
+    let preview = g.view(1).hand[0].clone();
+    names.into_iter().enumerate().map(|(index, name)| {
+        let mut bad = g.clone();
+        let p = bad.pending.as_mut().unwrap();
+        let ChoiceResolution::Declare { stage, .. } = &mut p.resolution else { panic!("expected Declare"); };
+        match index {
+            0 => p.seat = 1,
+            1 => { p.seat = 1; p.choice.player_id = "p1".into(); },
+            2 => p.choice.player_id = "p1".into(),
+            3 => *stage = DeclareChoice::Accept,
+            4 => *stage = DeclareChoice::Mode,
+            5 => *stage = DeclareChoice::AttachmentOrder,
+            6 => p.choice.kind = "jc057-hand-inspect".into(),
+            7 => p.choice.title.push('!'),
+            8 => p.choice.description.clear(),
+            9 => p.choice.min = Some(1),
+            10 => p.choice.max = Some(2),
+            11 => p.choice.min = None,
+            12 => p.choice.max = None,
+            13 => p.choice.allow_decline = Some(false),
+            14 => p.choice.amount = Some(1),
+            15 => p.choice.preview_cards.push(preview.clone()),
+            16 => { p.choice.options.pop(); },
+            17 => p.choice.options.push(p.choice.options[0].clone()),
+            18 => p.choice.options.swap(0, 1),
+            19 => p.choice.options[0].id = "p99".into(),
+            20 => p.choice.options[0].label.push('!'),
+            21 => p.choice.options[0].card = Some(preview.clone()),
+            22 => p.choice.id.clear(),
+            _ => bad.players[0].eliminated = true,
+        }
+        (name.into(), bad)
+    }).collect()
+}
+fn invalid_declaration_rows(room: &crate::room::RoomEnvelope) -> Vec<serde_json::Value> {
+    corrupted_declarations(&room.game).into_iter().map(|(name, mut bad)| {
+        let game_state = serde_json::to_string(&bad).unwrap();
+        let game_error = Game::from_persisted(&game_state).err().expect("bad Game must fail restore");
+        let p = bad.pending.as_ref().unwrap();
+        let seat = p.seat;
+        let action = Action { choice_id: Some(p.choice.id.clone()), selected: Some(vec![]), ..Action::new("choose") };
+        assert!(bad.apply(seat, action).is_err(), "bad live Game {name}");
+        assert_eq!(serde_json::to_string(&bad).unwrap(), game_state, "atomic rejection {name}");
+        let mut bad_room = room.clone(); bad_room.game = bad;
+        let state = serde_json::to_string(&bad_room).unwrap();
+        let room_error = crate::room::RoomEnvelope::from_persisted(&state).err().expect("bad Room must fail restore");
+        serde_json::json!({"name":name,"state":state,"gameError":game_error,"roomError":room_error,
+            "seat":seat,"choiceId":room.game.pending.as_ref().unwrap().choice.id,"revision":room.revision})
+    }).collect()
+}
+#[test]
+fn jc057_declare_container_rejects_corruption_before_restore_or_action() {
+    let mut g = u::game(); u::held(&mut g, "JC094", 1); reveal_trigger(&mut g);
+    let room = crate::jc029_tests::envelope(&g);
+    assert_eq!(invalid_declaration_rows(&room).len(), 24);
+    for selected in [vec![], vec!["p1".into()]] {
+        let mut restored = Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+        u::choose(&mut restored, selected);
+        u::restore(&mut restored);
+    }
+}
+#[test]
+fn jc057_declare_each_actor_keeps_optional_skip_and_target_after_restore() {
+    for actor in 0..4 { for skip in [false, true] {
+        let mut g = u::game(); let team = g.team(actor); g.begin_window(Window::Action(team));
+        let source = u::field(&mut g, "JC057", actor);
+        g.board_mut(&source).unwrap().face_down = true; u::fund(&mut g, actor, "JC057", 2);
+        u::act(&mut g, actor, Action { card_id: Some(source), ..Action::new("reveal") });
+        for _ in 0..32 { if g.pending.is_some() { break; } u::pass(&mut g); }
+        assert_eq!(g.pending.as_ref().unwrap().seat, actor); u::restore(&mut g);
+        let choice_id = g.pending.as_ref().unwrap().choice.id.clone();
+        u::reject(&mut g, (actor + 1) % 4, Action { choice_id: Some(choice_id), selected: Some(vec![]), ..Action::new("choose") });
+        u::choose(&mut g, if skip { vec![] } else { vec![player_id(actor)] });
+        if !skip {
+            for _ in 0..32 { if g.pending.is_some() { break; } u::pass(&mut g); }
+            assert_eq!(g.pending.as_ref().unwrap().seat, actor); u::choose(&mut g, vec![]);
+        }
+        assert!(g.pending.is_none()); u::restore(&mut g);
+    }}
+}
+
 
 // Compiler-bound offline Room84 witness. Explicit layouts, real commands,
 // strict restoration, complete journals and four private views per checkpoint.
@@ -247,9 +333,53 @@ fn jc057_native84_oracles() {
         assert_eq!(t.room.game.view(0).private_inspections.len(),usize::from(name=="live-control"));
         scenarios.push(t.finish());
     }
+    for glory in [false, true] {
+        let mut g = u::game(); g.room_id = format!("{:024x}", 840300 + usize::from(glory));
+        let source = u::field(&mut g, "JC057", 0);
+        g.turn_attribute_modifiers.push(TurnAttributeModifier {
+            target_instance: source.clone(), defense_bonus: 0, kill_bonus: 0, grants_retreat: false,
+            printed_defense_override: None, prevents_damage: false,
+            ordinary_icons: Icons { combat: u32::from(glory), ..Icons::default() },
+            grants_renown: !glory, expires_turn: g.turn,
+        });
+        if glory {
+            let curse = g.make_card("JC089", 2); g.attachments.push(Attachment { card: curse, host_id: source });
+            let declaration = g.jc089_combat_glory(0, 0).unwrap(); g.effects.push_back(Effect::Declare { declaration });
+        } else {
+            g.window = Some(Window::After(0, 2)); let region = g.regions[0].card.id.clone(); g.declare_region_renown(0, &region);
+        }
+        g.drive().unwrap(); let before = g.regions[0].influence[0];
+        let mut t = Trace::new(if glory { "granted-glory" } else { "granted-renown" }, &g);
+        assert!(matches!(t.room.game.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { stage: DeclareChoice::Accept, .. }));
+        t.choose(vec!["accept".into()]); t.responses();
+        assert_eq!(t.room.game.regions[0].influence[0], before + 1); scenarios.push(t.finish());
+    }
+    {
+        let mut g = u::game(); g.room_id = format!("{:024x}", 840302);
+        let source = u::field(&mut g, "JC057", 0);
+        let knight = g.make_card("BQ035", 0); g.regions[4].cards.push(knight);
+        for def in ["JC036", "XQ14"] {
+            let card = g.make_card(def, 0); let id = card.id.clone();
+            g.attachments.push(Attachment { card, host_id: source.clone() });
+            let spec = definition(def).attachment.clone().unwrap();
+            if spec.controls_host { g.add_control(&source, 0, ControlLifetime::Attached { source_instance: id }, spec.host_subtype_change); }
+            assert!(g.attachment_host_valid(g.attachments.last().unwrap()));
+        }
+        g.begin_window(Window::Action(1 - g.first_team));
+        for _ in 0..8 { if g.window == Some(Window::Mobility) { break; } u::pass(&mut g); }
+        assert_eq!(g.window, Some(Window::Mobility));
+        let ChoiceResolution::Declare { declaration, .. } = &g.pending.as_ref().unwrap().resolution else { panic!("mobility declaration"); };
+        assert_eq!(declaration.source.card.id, source); assert_eq!(declaration.ability.key, "mobility");
+        let mut t = Trace::new("granted-mobility", &g); t.choose(vec!["region:1".into()]); t.responses();
+        assert_eq!(t.room.game.board(&source).unwrap().0, 1); scenarios.push(t.finish());
+    }
+    let checkpoint = &scenarios.iter().find(|s| s["name"] == "reveal-p1").unwrap()["steps"][5]["expected"]["state"];
+    let checkpoint = crate::room::RoomEnvelope::from_persisted(checkpoint.as_str().unwrap()).unwrap();
+    assert_eq!(checkpoint.revision, 13); assert_eq!(checkpoint.game.pending.as_ref().unwrap().choice.id, "i249");
+    let invalid = invalid_declaration_rows(&checkpoint);
     if let Ok(directory)=std::env::var("JC057_NATIVE_DIR") {
         std::fs::create_dir_all(&directory).unwrap();
-        let output=serde_json::json!({"format":"jc057-native84-v1","scope":"Explicit offline Native layouts and real Room commands; complete opaque states, journals and four views; no online gameplay claim","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios});
+        let output=serde_json::json!({"format":"jc057-native84-v2","scope":"Explicit offline Native layouts and real Room commands; complete opaque states, journals and four views; malformed persisted declarations rejected; no online gameplay claim","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid});
         use std::io::Write;
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&directory).join("native84.json")).unwrap().write_all(&serde_json::to_vec(&output).unwrap()).unwrap();
     }

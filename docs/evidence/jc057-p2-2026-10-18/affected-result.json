@@ -1,0 +1,43 @@
+{
+  "verifiedAtUtc": "2026-10-18T03:14:10.304318+00:00",
+  "run": {
+    "name": "affected-worker",
+    "command": [
+      "env",
+      "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc057-p2-20261018/worker84-p2/server",
+      "node",
+      "tools/build-storage.mjs",
+      "--",
+      "bash",
+      "-c",
+      "cd sites && exec node --test --test-concurrency=1 test/jc057-integration.test.mjs test/jc057-kernel-routing.test.mjs test/kernel-binding.test.mjs test/kernel-routing.test.mjs"
+    ],
+    "cwd": "/workspace/UndergroundBattle",
+    "startedAtUtc": "2026-10-18T03:09:36.021415+00:00",
+    "finishedAtUtc": "2026-10-18T03:13:49.203363+00:00",
+    "exitCode": 0,
+    "log": "affected-worker.log"
+  },
+  "counts": {
+    "tests": 53,
+    "pass": 53,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "positiveNativeHttpScenarios": 13,
+  "corruptedNativeArchives": 24,
+  "http400BeforeAfterD1Reopen": 240,
+  "malformedRoomCommandsJournalUnchanged": true,
+  "sourceHashesUnchanged": true,
+  "productionFilesUnchanged": 177,
+  "fixedClockWorkerFilesUnchanged": 9,
+  "client165UnchangedSince2261": true,
+  "frozen77To83Unchanged": true,
+  "frozen83OriginalFixtureUnchanged": true,
+  "originalLockUnchanged": true,
+  "logSha256": "1c6398b9bff51a73d7a17a3ca095894e6f2077424a44976cd54c51e6fe5b2156",
+  "websiteAccess": false,
+  "deployed": false
+}

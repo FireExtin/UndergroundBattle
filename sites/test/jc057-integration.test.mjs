@@ -71,3 +71,22 @@ for(const scenario of fixture.scenarios)test(`JC057 ABI84 HTTP ${scenario.name}`
   t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native84',accepted,rejected,projections,
     originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true,localSyntheticDatabaseRetained:true}));
 });
+
+for(const invalid of fixture.invalid)test(`JC057 corrupted Declare ${invalid.name} restores as HTTP400 with no D1 writes`,async t=>{
+  const reference=fixture.scenarios.find(s=>s.name==='reveal-p1').steps[5];
+  const scenario={name:'invalid-'+invalid.name,initial:{state:invalid.state,views:reference.views}};
+  const h=await harness(t,scenario),before=await h.snapshot();
+  const command={commandId:'invalid-'+invalid.name,expectedVersion:invalid.revision,
+    action:{kind:'game',action:{kind:'choose',choiceId:invalid.choiceId,selected:[]}}};
+  let rejected=0;
+  for(let reopen=0;reopen<2;reopen++) {
+    if(reopen)await h.reopen();
+    for(let seat=0;seat<4;seat++) {
+      const result=await h.api('state',seat);assert.equal(result.status,400);assert.equal(result.body.message,invalid.roomError);rejected++;
+    }
+    const result=await h.api('commands',invalid.seat,command);assert.equal(result.status,400);assert.equal(result.body.message,invalid.roomError);rejected++;
+    assert.deepEqual(await h.snapshot(),before);
+  }
+  assert.equal(before.commands.length,0);assert.equal(before.journal.length,0);
+  t.diagnostic(JSON.stringify({invalid:invalid.name,http400:rejected,realD1Reopen:true,roomCommandsJournalUnchanged:true}));
+});
