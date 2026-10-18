@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC041_P2_CASES_FILE=/workspace/jc041-p2-region-evidence-20261018/native-before-second/p2.json",
+    "JC041_P2_WASM_DIR=/workspace/jc041-p2-region-evidence-20261018/before-pkg",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc041-p2-region-evidence-20261018/before-worker/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 --test-name-pattern=\"JC041 P2 source-self:\" probes/jc041-p2-source-region.mjs"
+  ],
+  "startedUtc": "2026-10-18T14:55:26.516105+00:00",
+  "endedUtc": "2026-10-18T14:55:33.580900+00:00",
+  "exitCode": 0
+}

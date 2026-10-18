@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC041_P2_CASES_FILE=/workspace/jc041-p2-region-evidence-20261018/native-after/p2.json",
+    "JC041_P2_WASM_DIR=/workspace/UndergroundBattle/rust-game-wasm/pkg",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/undergroundbattle-build/jc041-p2-worker/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 probes/jc041-p2-source-region.mjs test/jc041-kernel-routing.test.mjs test/jc041-retained-http.test.mjs test/kernel-binding.test.mjs ../tools/cards/jc041-source.test.mjs ../tools/cards/jc066-source.test.mjs ../tools/frozen-abi86.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T14:52:09.929459+00:00",
+  "endedUtc": "2026-10-18T14:55:53.703824+00:00",
+  "exitCode": 0
+}

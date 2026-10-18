@@ -1,0 +1,105 @@
+{
+  "checkedUtc": "2026-10-18T15:04:55.824587+00:00",
+  "wipPendingParentReview": true,
+  "published": false,
+  "JC041MergedToMain": false,
+  "reviewBase": "f3dece927c733a761cf78d62514c6299fab280fa",
+  "rustSource": "6b5b824b1e3fd08edfb1b47f7d979ef1ffe69317",
+  "branch": "codex/jc041-p2-source-region-review-20261018",
+  "native": {
+    "tests": 14,
+    "passed": 14,
+    "compilerInputs": 137,
+    "fourSameBadStatesRejectedGameAndRoom": true
+  },
+  "before": {
+    "nativeTests": 1,
+    "acceptedGameRoomCases": 4,
+    "wasmHttpTests": 8,
+    "http200": 40,
+    "commandsWrittenPerBadCase": 1,
+    "journalWrittenPerBadCase": 1,
+    "D1ReopenAndOriginalReceiptConfirmed": true,
+    "immutableGitReplaySmokeTests": 1,
+    "smokeNotAddedToOriginal8": true
+  },
+  "after": {
+    "concentratedTests": 29,
+    "passed": 29,
+    "p2Cases": 4,
+    "wasmEntriesPerCase": 6,
+    "http400": 40,
+    "roomCommandsJournalExtraWrites": 0,
+    "D1ReopenConfirmed": true,
+    "legalScenarios": 4,
+    "legalCommands": 56,
+    "fullOpaqueStatesJournalsAndViewsEqual": true,
+    "originalReceiptsAfterReopen": true,
+    "sameIsolateActualHttpKernels": [
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "pureOld86Witness": {
+      "commands": 252,
+      "views": 1084
+    }
+  },
+  "frontend": {
+    "files": 2,
+    "tests": 77,
+    "passed": 77
+  },
+  "canonical87Wasm": {
+    "scenarios": 10,
+    "commands": 155,
+    "expectedRejected": 9,
+    "views": 660,
+    "badStates": 35,
+    "allPreviousPayloadsUnchanged": true
+  },
+  "wasm": {
+    "bytes": 3325174,
+    "sha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+  },
+  "canonicalNativeRaw": {
+    "bytes": 18803078,
+    "sha256": "9655bf2e2d84669783d5d2d01da4d9728470cc13cb909a26bc839014de1c7b77"
+  },
+  "fixture": {
+    "bytes": 1338486,
+    "sha256": "23b52be411f7f1f692bb3a4fdfc2b009597990670199d1e93ead4acc7ff84bf1"
+  },
+  "productionFiles": 183,
+  "generatedFiles": 22,
+  "localTestWorkerFiles": 14,
+  "elevenRegularHardLinksToExactProductionWasm": true,
+  "productionClockReal": true,
+  "client168Unchanged": true,
+  "retainedBefore183BytesConfirmed": true,
+  "old77to86Exact": true,
+  "beforeSources": "Immutable f3 product + exact6b test-only repro; Rust generated states, no JS rewriting/re-signing.",
+  "runtimeOriginalRoomSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c",
+  "runtimeFixtureNotAdditionalCompilerInput": true,
+  "scopeBoundaries": [
+    "No complete Native workspace1328 run for P2",
+    "No fullfrontend1391 rerun for P2",
+    "No whole173 or all59 defaultWorker rerun for P2",
+    "No new localbrowser gameplay because frontend168 unchanged; relevant77 component assertions rerun",
+    "Moved/retired/vacant initial layouts explicit, subsequent56 genuine Room commands; not represented as playable layout edit actions"
+  ],
+  "history": "First native-before compile0tests failed on test-only String reference comparison; corrected native-before-second1passed. Prior f3 full1327/1391/173 retained as preP2 only.",
+  "ordinaryBrowser": "Reuse14:13 officialv68 read; one14:31 normalTLS visit blocked,1GET0POST0onlineGames, raw hour14 only Gitoutside.",
+  "remaining": [
+    "parent independent re-review"
+  ],
+  "freeBytesAtAudit": 1076604928
+}

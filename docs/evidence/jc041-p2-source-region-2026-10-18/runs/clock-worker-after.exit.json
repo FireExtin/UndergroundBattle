@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/undergroundbattle-build/jc041-p2-worker/server",
+    "--",
+    "node",
+    "tools/build-jc041-p2-clock-worker.mjs",
+    "/workspace/undergroundbattle-build/jc041-p2-worker/server"
+  ],
+  "startedUtc": "2026-10-18T14:50:35.624039+00:00",
+  "endedUtc": "2026-10-18T14:50:36.168339+00:00",
+  "exitCode": 0
+}

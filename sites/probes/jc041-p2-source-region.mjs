@@ -7,6 +7,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
 import {digest} from '../src/service.mjs';
@@ -14,9 +15,18 @@ import {assertPublicView,assertSessionJournal} from '../test/assert-session-jour
 import {assertSources} from '../../tools/jc041-oracle.mjs';
 const file=process.env.JC041_P2_CASES_FILE,wasmDirectory=process.env.JC041_P2_WASM_DIR,worker=process.env.HEGEMONY_CURRENT_WORKER_DIR;
 assert(file&&wasmDirectory&&worker,'Explicit Native P2 file, exact WASM directory and local Worker are required');
-const f=JSON.parse(readFileSync(file,'utf8'));assert.equal(f.format,'jc041-p2-source-region-v1');assertSources(f.sourceBindings);
+const f=JSON.parse(readFileSync(file,'utf8'));assert.equal(f.format,'jc041-p2-source-region-v1');
 assert.equal(f.cases.length,4);assert.equal(f.legal.length,4);
 const sha=b=>createHash('sha256').update(b).digest('hex');
+if(f.expectedAccepted){
+ const repo=path.resolve('..'),expected=Object.keys(JSON.parse(readFileSync(path.join(repo,'rust-game-wasm/frozen/abi86/native-source-binding.json'),'utf8')).files).concat(['rust-game/src/jc041.rs','rust-game/src/jc041_tests.rs']).sort();
+ assert.deepEqual(Object.keys(f.sourceBindings.files).sort(),expected);assert.equal(expected.length,137);
+ // Immutable before product plus the exact test-only repro source compiled then.
+ for(const [name,hash]of Object.entries(f.sourceBindings.files)){
+  const ref=name==='rust-game/src/jc041_tests.rs'?'6b5b824b1e3fd08edfb1b47f7d979ef1ffe69317':'f3dece927c733a761cf78d62514c6299fab280fa';
+  assert.equal(sha(execFileSync('git',['show',ref+':'+name],{cwd:repo})),hash,'Immutable before compiler input '+name);
+ }
+}else assertSources(f.sourceBindings);
 assert.equal(sha(f.originalState),'ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c');
 const bytes=readFileSync(path.join(wasmDirectory,'hegemony_wasm_bg.wasm'));
 if(f.expectedAccepted)assert.equal(sha(bytes),'980e4e727c92918de24a005ef63b2c361c7f9d2c765dc45bf304495efade2482');

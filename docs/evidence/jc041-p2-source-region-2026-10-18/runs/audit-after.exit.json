@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python",
+    "/workspace/jc041-p2-region-evidence-20261018/audit-after.py"
+  ],
+  "startedUtc": "2026-10-18T14:59:51.816907+00:00",
+  "endedUtc": "2026-10-18T14:59:57.894472+00:00",
+  "exitCode": 0
+}

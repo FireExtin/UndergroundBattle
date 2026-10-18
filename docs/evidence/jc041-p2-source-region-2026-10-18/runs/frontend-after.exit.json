@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "src/game/JC041Native87.test.jsx",
+    "src/game/JC066Native86.test.jsx"
+  ],
+  "startedUtc": "2026-10-18T14:52:11.215231+00:00",
+  "endedUtc": "2026-10-18T14:53:09.077630+00:00",
+  "exitCode": 0
+}
