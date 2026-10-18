@@ -1,0 +1,178 @@
+{
+  "checkedUtc": "2026-10-18T12:32:48.601268+00:00",
+  "baseCommit": "2f141abaf7b2b728a4d5398f17a06acb7ffb021a",
+  "branch": "codex/jc041-blue-hidden-water-review-20261018",
+  "card": "JC041",
+  "candidateEngine": "rust-v0.2.87-jc041-water-hidden-candidate",
+  "candidatePool": "limited-v2.79-jc041-water-hidden-candidate",
+  "cards": 151,
+  "societies": 10,
+  "nativeFocusedLatest": {
+    "tests": 10,
+    "passed": 10,
+    "invalidStates": 30,
+    "invalidRestoreEntrypoints": [
+      "Game",
+      "Room"
+    ]
+  },
+  "sourceGuardsLatest": {
+    "tests": 4,
+    "passed": 4
+  },
+  "frozen86Latest": {
+    "tests": 2,
+    "passed": 2,
+    "exactOriginalRuntimeAndWitness": true
+  },
+  "currentWasmBuilt": false,
+  "currentNativeExportComplete": false,
+  "fullRegressionComplete": false,
+  "frontendAndWorkerComplete": false,
+  "productionBuildComplete": false,
+  "parentReviewComplete": false,
+  "published": false,
+  "neutralAndDualPaused": true,
+  "rawRoot": "/workspace/jc041-evidence-20261018",
+  "runs": {
+    "initial-cargo-check": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "cargo",
+        "check",
+        "-p",
+        "hegemony-server",
+        "--locked",
+        "--offline"
+      ],
+      "startedUtc": "2026-10-18T12:20:04.772674+00:00",
+      "endedUtc": "2026-10-18T12:20:05.150355+00:00",
+      "exitCode": 101
+    },
+    "cargo-check-fixed": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "cargo",
+        "check",
+        "-p",
+        "hegemony-server",
+        "--locked",
+        "--offline"
+      ],
+      "startedUtc": "2026-10-18T12:21:44.701509+00:00",
+      "endedUtc": "2026-10-18T12:21:56.977448+00:00",
+      "exitCode": 101
+    },
+    "native-focused-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "cargo",
+        "test",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc041",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "startedUtc": "2026-10-18T12:25:07.019753+00:00",
+      "endedUtc": "2026-10-18T12:25:38.170418+00:00",
+      "exitCode": 101
+    },
+    "native-focused-second": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "cargo",
+        "test",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc041",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "startedUtc": "2026-10-18T12:26:22.254340+00:00",
+      "endedUtc": "2026-10-18T12:27:22.027447+00:00",
+      "exitCode": 101
+    },
+    "native-focused-third": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "env",
+        "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CARGO_HOME=/workspace/tooling/cargo",
+        "RUSTUP_HOME=/workspace/tooling/rustup",
+        "cargo",
+        "test",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "jc041",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "startedUtc": "2026-10-18T12:28:56.891519+00:00",
+      "endedUtc": "2026-10-18T12:29:58.915738+00:00",
+      "exitCode": 0
+    },
+    "frozen86-final": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "--test",
+        "tools/frozen-abi86.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T12:13:37.975103+00:00",
+      "endedUtc": "2026-10-18T12:13:41.041951+00:00",
+      "exitCode": 0
+    },
+    "source-guards-first": {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "node",
+        "--test",
+        "tools/cards/jc041-source.test.mjs",
+        "tools/cards/jc066-source.test.mjs"
+      ],
+      "startedUtc": "2026-10-18T12:30:01.179517+00:00",
+      "endedUtc": "2026-10-18T12:30:02.269969+00:00",
+      "exitCode": 0
+    }
+  }
+}

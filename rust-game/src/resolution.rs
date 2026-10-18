@@ -449,7 +449,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
@@ -716,7 +716,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066") || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066" | "JC041") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -1115,6 +1115,7 @@ impl Game {
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
+        if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc046_declare(declaration.clone())? {
             return Ok(());
         }
@@ -1194,6 +1195,7 @@ impl Game {
     ) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
+        self.jc041_reject_optional(&declaration)?;
         self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {
@@ -1451,6 +1453,7 @@ impl Game {
         self.validate_xq37_frame(&frame)?;
         self.validate_jc044_frame(&frame)?;
         self.validate_jc066_frame(&frame)?;
+        self.validate_jc041_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1476,6 +1479,7 @@ impl Game {
                 Op::JZ46InspectHiddenCriminal => return self.jz46_inspect_start(frame),
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
+                Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
                 Op::JC087HideTargetThenInfluence => self.jc087_hide_then_influence(&frame)?,
@@ -2271,6 +2275,7 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
+        self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
             FrameChoice::WM062AdjacentMove { before, hidden, baseline, region, region_instance, destinations } => {
                 self.wm062_complete(&frame, chooser, &a, &selected, &before, &hidden, baseline.as_ref(), region, &region_instance, &destinations)?;

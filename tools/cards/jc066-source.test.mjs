@@ -9,7 +9,7 @@ const json=p=>JSON.parse(read(p));
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const data=json('rust-game/data/cards.json'),spec=json('docs/factions/card-specifications.json').cards.JC066;
 test('JC066 includes the complete pinned printed card and retains archival acceptance boundaries',()=>{
- const c=data.cards.at(-1),s=spec.sourceVerification,f=spec.fields;
+ const c=data.cards.find(c=>c.id==='JC066'),s=spec.sourceVerification,f=spec.fields;
  assert.equal(c.id,'JC066');assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);
  assert.equal(s.imageSha256,'c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2');
  assert.equal(hash(read(s.imagePath)),s.imageSha256);assert.deepEqual(read(s.imagePath),read('web/public/cards/JC066.jpg'));
@@ -20,13 +20,14 @@ test('JC066 includes the complete pinned printed card and retains archival accep
  assert.deepEqual(c.icons,{permanent:f.permanentIcons,temporary:f.temporaryIcons});assert.equal(c.text,f.printedRuleTextLines.join('\n'));
  assert.deepEqual(spec.openQuestionIds,[]);assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
 });
-test('JC066 adds only one gray card and protects every prior149 definition, deck and world entry',()=>{
- assert.equal(data.cards.length,150);assert.equal(data.cards.at(-1).id,'JC066');
+test('JC066 prior149 definitions remain protected after the separate JC041 blue addition',()=>{
+ assert.equal(data.cards.length,151);assert.equal(data.cards.at(-1).id,'JC041');
+ const prior=data.cards.filter(c=>c.id!=='JC041');assert.equal(prior.length,150);assert.equal(prior.at(-1).id,'JC066');
  for(const[key,value,expected]of [
-  ['cards',data.cards.slice(0,-1),'97e288a031ac6fba1504db69bd903143bfde56c0692028748c51e54e08c0914c'],
+  ['cards',prior.slice(0,-1),'97e288a031ac6fba1504db69bd903143bfde56c0692028748c51e54e08c0914c'],
   ['decks',data.decks,'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987'],
   ['world',data.world,'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5'],
  ])assert.equal(hash(JSON.stringify(value)),expected,key+' reviewed v67 baseline');
- assert.equal(data.engineVersion,'rust-v0.2.86-jc066-sealed-icons-candidate');assert.equal(data.cardPoolVersion,'limited-v2.78-jc066-sealed-icons-candidate');
- const result=validateAdmittedScans();assert.equal(result.checkedCards,150);assert(result.checkedIds.includes('JC066'));
+ assert.equal(data.engineVersion,'rust-v0.2.87-jc041-water-hidden-candidate');assert.equal(data.cardPoolVersion,'limited-v2.79-jc041-water-hidden-candidate');
+ const result=validateAdmittedScans();assert.equal(result.checkedCards,151);assert(result.checkedIds.includes('JC066'));
 });

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.78-jc066-sealed-icons-candidate",
-  "engineVersion": "rust-v0.2.86-jc066-sealed-icons-candidate",
+  "cardPoolVersion": "limited-v2.79-jc041-water-hidden-candidate",
+  "engineVersion": "rust-v0.2.87-jc041-water-hidden-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5843,6 +5843,42 @@
         "image": "resource/ymsj-fun.github.io/cards/JC066 封魔瓶瑟琳娜.jpg",
         "sha256": "c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2"
       }
+    },
+    {
+      "id": "JC041",
+      "name": "禁婆",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "尸鬼"
+      ],
+      "cost": 4,
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【快速暗藏者行动】2：令禁婆由暗藏者状态现身。你只能在其位于水域地区时发动此能力。\n【现身强制触发】每位玩家各弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC041",
+        "image": "resource/ymsj-fun.github.io/cards/JC041 禁婆.jpg"
+      },
+      "unique": false,
+      "society": "王座会"
     }
   ],
   "decks": [

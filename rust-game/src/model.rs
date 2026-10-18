@@ -904,6 +904,7 @@ impl Game {
         game.validate_jc057_state()?;
         game.validate_jc044_state()?;
         game.validate_jc066_state()?;
+        game.validate_jc041_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_jc052_state()?;

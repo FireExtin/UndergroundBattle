@@ -813,5 +813,10 @@
     "url": "/cards/JC066.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC066 封魔瓶瑟琳娜.jpg",
     "sha256": "c4cc8ccb0add2ad04e5a4a328949f24a982011c48d19e2c69073bd9cb05ea4a2"
+  },
+  "JC041": {
+    "url": "/cards/JC041.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC041 禁婆.jpg",
+    "sha256": "6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89"
   }
 }

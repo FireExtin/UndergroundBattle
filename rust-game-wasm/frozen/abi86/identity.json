@@ -1,0 +1,28 @@
+{
+  "scope": "Exact published v68 ABI86 runtime; never rebuild/migrate/re-sign old rooms or Native86 witness.",
+  "providerSource": "ff7fce139c7fa94e3b6cdbe1758498383fa632c4",
+  "reviewedSource": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "reviewedEvidence": "224a619459d64eaead06810b679ff57b1de94fd6",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.78-jc066-sealed-icons-candidate",
+    "engineVersion": "rust-v0.2.86-jc066-sealed-icons-candidate"
+  },
+  "cardCount": 150,
+  "societyCount": 10,
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+  "wasmBytes": 3291234,
+  "gzipSha256": "4742102e877bfa4cbb74f39d0de8157b320dbe26205ac73be29e7c13725c518f",
+  "nativeFixtureSha256": "d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6",
+  "nativeRawSha256": "ce6f0329fd30daca4b2d5a960ad4310eec3e4b4a82394ca941b5f642531ffb50",
+  "nativeRawBytes": 30934684,
+  "nativeInputs": 135,
+  "nativeCounts": {
+    "scenarios": 19,
+    "commands": 252,
+    "rejected": 16,
+    "projections": 1084,
+    "invalidRestores": 87
+  }
+}

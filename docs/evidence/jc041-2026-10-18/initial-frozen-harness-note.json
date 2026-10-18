@@ -1,0 +1,1 @@
+{"observedResult":"2 tests: 1 pass, 1 fail", "cause":"New ABI86 harness still contained copied ABI85 provider/hash/count constants; fixed those exact expected identities. Actual retained runtime and witness bytes were correct and unchanged.","rawFailureLogAvailable":"tool output only; not reconstructed as a natural log"}

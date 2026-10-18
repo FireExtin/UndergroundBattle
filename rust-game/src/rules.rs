@@ -239,6 +239,7 @@ pub enum Op {
     JZ46InspectHiddenCriminal,
     JC057InspectTargetHand,
     JC066SealLocalTargetOnSource,
+    JC041RevealOriginalHidden,
     BQ030AttachmentDraw {
         observation: Option<Box<crate::model::AttachmentEvent>>,
     },
@@ -554,6 +555,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::jc057::validate_ability(card_id, ability)?;
     crate::jc044::validate_ability(card_id, ability)?;
     crate::jc066::validate_ability(card_id, ability)?;
+    crate::jc041::validate_ability(card_id, ability)?;
     crate::wm038::validate_ability(card_id, ability)?;
     crate::jz35::validate_ability(card_id, ability)?;
     crate::jc052::validate_ability(card_id, ability)?;
@@ -1300,6 +1302,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::jc057::validate_definition(card_id, definition)?;
         crate::jc044::validate_definition(card_id, definition)?;
         crate::jc066::validate_definition(card_id, definition)?;
+        crate::jc041::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1932,6 +1935,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC057".into(), crate::jc057::definition());
         m.insert("JC044".into(), crate::jc044::definition());
         m.insert("JC066".into(), crate::jc066::definition());
+        m.insert("JC041".into(), crate::jc041::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("JZ46".into(), crate::jz46::definition());
         m.insert("WM023".into(), crate::wm023::definition());

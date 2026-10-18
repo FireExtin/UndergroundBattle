@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "PATH=/workspace/tooling/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "CARGO_HOME=/workspace/tooling/cargo",
+    "RUSTUP_HOME=/workspace/tooling/rustup",
+    "cargo",
+    "check",
+    "-p",
+    "hegemony-server",
+    "--locked",
+    "--offline"
+  ],
+  "startedUtc": "2026-10-18T12:21:44.701509+00:00",
+  "endedUtc": "2026-10-18T12:21:56.977448+00:00",
+  "exitCode": 101
+}

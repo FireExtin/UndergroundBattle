@@ -601,6 +601,7 @@ impl Game {
         self.validate_jc057_state()?;
         self.validate_jc044_state()?;
         self.validate_jc066_state()?;
+        self.validate_jc041_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -612,6 +613,7 @@ impl Game {
         next.validate_jc057_state()?;
         next.validate_jc044_state()?;
         next.validate_jc066_state()?;
+        next.validate_jc041_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -687,6 +689,7 @@ impl Game {
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
+                crate::jc041::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -759,6 +762,7 @@ impl Game {
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
+                crate::jc041::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -844,10 +848,11 @@ impl Game {
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
-                if c.controller != seat || c.face_down {
-                    return Err("只能发动自己操控的正面角色能力".into());
+                if c.controller != seat || (c.face_down && !crate::jc041::hidden_action(c, &a)) {
+                    return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::jz46::validate_action(&c.definition, &a)?;
+                self.jc041_check_activation(seat, region, c, &a)?;
                 let source = self.source_snapshot(c, region);
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
@@ -1091,6 +1096,7 @@ impl Game {
         self.validate_jc057_frame(&frame)?;
         self.validate_jc044_frame(&frame)?;
         self.validate_jc066_frame(&frame)?;
+        self.validate_jc041_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1967,6 +1973,7 @@ impl Game {
         self.validate_jc057_state()?;
         self.validate_jc044_state()?;
         self.validate_jc066_state()?;
+        self.validate_jc041_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;
@@ -2692,6 +2699,9 @@ impl Game {
                         },
                         format!("现身 {}", card(&c.definition).name),
                     ));
+                    if c.definition == "JC041" {
+                        candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
+                    }
                 } else {
                     candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }
