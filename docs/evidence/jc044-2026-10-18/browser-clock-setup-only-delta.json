@@ -1,0 +1,10 @@
+{
+  "changedFile": "tools/frontend/jc044-http-four-clients-qa.mjs",
+  "beforeSha256": "6dfdd0de1775e48f340f55410e7e0ea4586cd9b502258c934e0eb15e5e7e45b8",
+  "afterSha256": "bc4b5b54981d5aff97daa8c0e7cf530fecff3f63832a7a0156731839359ee62b",
+  "change": "Install clock at03:00 before pausing at unchanged04:00; application navigation occurs after freeze",
+  "productCodeChanged": false,
+  "finalFrozenClientClockUnchanged": true,
+  "timeoutOrThresholdChanged": false,
+  "failedFirstAttemptGameCommands": 0
+}

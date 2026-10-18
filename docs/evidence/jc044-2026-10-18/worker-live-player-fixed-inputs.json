@@ -1,0 +1,32 @@
+{
+  "startedAtUtc": "2026-10-18T05:48:21.278408+00:00",
+  "files": [
+    "jc044-entry.test.mjs",
+    "jc044-integration.test.mjs",
+    "jc044-kernel-routing.test.mjs",
+    "kernel-binding.test.mjs",
+    "kernel-routing.test.mjs",
+    "integration.test.mjs",
+    "jz46-integration.test.mjs"
+  ],
+  "sourceSha256": {
+    "sites/src/http.mjs": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+    "sites/src/index.mjs": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401",
+    "sites/src/kernel-router.mjs": "d1de5b00702eab5c32318caf89509c640491c5a4f88d1f84afc6c7d0b67f605a",
+    "sites/src/kernel.mjs": "46177b1532642713eb1bff24ef3f9c9e7b1bc97fb12c32711d384c20391e1ae0",
+    "sites/src/lazy-kernel.mjs": "c3484b39f681e65ddeb0f3760f2ad13c13083f59f694420b140b43cab3609965",
+    "sites/src/pass-history.mjs": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8",
+    "sites/src/service.mjs": "fc2fbf9d01659e652d00a3665e61b9214ac61f4061c7a092306e82cfe13d8be3",
+    "sites/src/storage-errors.mjs": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+    "sites/src/store.mjs": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811",
+    "sites/test/jc044-entry.test.mjs": "bdfd48bf7a73a7b9645734db041bbf809c59cd3a1deaa9fd1e9d3b58a018a910",
+    "sites/test/jc044-integration.test.mjs": "5833ac0f5c13292f2d33816d79cfe98a8980d1c25195e60d8414596dd28542b8",
+    "sites/test/jc044-kernel-routing.test.mjs": "02b84bbd38540f5e49215e51040e7a1fab6c11610323435f6a6750797386030c",
+    "sites/test/kernel-binding.test.mjs": "85dcf89da3a553c1c8cef13008bc0b2aad0c740fc0add47c4efe279958a7fd00",
+    "sites/test/kernel-routing.test.mjs": "62295ba670c2d35c09b07210ad34343a8095ce915fa0d9c13e8693398a6e63f9",
+    "sites/test/integration.test.mjs": "f160c19b202d1fa94e010b3dd2e0db43535d7da05c1a2e503bbaf7e601b73685",
+    "sites/test/jz46-integration.test.mjs": "f3a3e653e20cb97cef6951635b6ebfe6c8b6fd2f3f9867a3a6341461e711dd9e"
+  },
+  "baselineCoverage": "52 files/398 cases split63pass and323pass12fail; no repeated green full-suite claim",
+  "scope": "New35 malformed archives and all13 JC044 Native scenarios; production identity/nine cores/global concurrency; entire JZ46 file after global85 expectation correction"
+}

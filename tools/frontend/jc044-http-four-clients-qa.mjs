@@ -49,7 +49,9 @@ try{
  for(let seat=0;seat<4;seat++){
   const context=await browser.newContext({viewport:{width:1366,height:900}});
   await context.addInitScript(saved=>{localStorage.setItem('hegemony.session.v1',JSON.stringify(saved));localStorage.setItem('hegemony.seats.v1',JSON.stringify([saved]));localStorage.setItem('hegemony.screen.v1','table');localStorage.setItem('hegemony.autoPass.v1','false');},{roomId:id,inviteCode:initial.inviteCode,seat,token:tokens[seat]});
-  const page=await context.newPage();pages.push(page);await page.clock.install({time:new Date('2026-10-18T04:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T04:00:00Z'));
+  // Install before the intended freeze point: installing and pausing at the
+  // same instant races elapsed setup time. The application still starts at04:00.
+  const page=await context.newPage();pages.push(page);await page.clock.install({time:new Date('2026-10-18T03:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T04:00:00Z'));
   page.on('pageerror',e=>report.pageErrors.push(String(e)));page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/')&&r.method()==='POST')report.clientPosts[seat]++;});
   await page.goto(origin);await expect(page.locator('.hg-connection-online')).toBeVisible();
  }

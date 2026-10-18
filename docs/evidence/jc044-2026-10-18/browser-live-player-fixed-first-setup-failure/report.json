@@ -1,0 +1,71 @@
+{
+  "passed": false,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Native85 initial layout; actual production GameApp, listening local HTTP/workerd/nine-WASM/D1 and four independent browser contexts.",
+  "scenario": "actor-0",
+  "engine": "rust-v0.2.85-jc044-time-repress-candidate",
+  "wasmSha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "481eef6f1bb2e2a14beb1cfac48ba33b51c5f0c2-hegemony_wasm_bg.wasm",
+      "sha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/jc044-real-http-u9J3g4",
+  "productionWorkerSha256": "f9b231860047c0610bce4e071d2231e33120893021f6b9360a5899d8f992023e",
+  "workerSha256": "a203deb58c95f068f46f6eedb986b5718b1b8d009a7cc8b9eba2f54f600cd92d",
+  "clientIndexSha256": "b2da2f36e235d65bffbd2de44cd017c9114cccfb984b63b9a9a7e1e9d579c382",
+  "commands": [],
+  "clientPosts": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "failure-0.png"
+  ],
+  "reopened": 0,
+  "browser": "151.0.7922.173",
+  "failure": {
+    "name": "Error",
+    "message": "clock.pauseAt: Error: Cannot fast-forward to the past\n    at ClockController._innerFastForwardTo (eval at evaluate (:311:30), <anonymous>:201:13)\n    at ClockController.pauseAt (eval at evaluate (:311:30), <anonymous>:132:16)\n    at async <anonymous>:337:30",
+    "stack": "clock.pauseAt: Error: Cannot fast-forward to the past\n    at ClockController._innerFastForwardTo (eval at evaluate (:311:30), <anonymous>:201:13)\n    at ClockController.pauseAt (eval at evaluate (:311:30), <anonymous>:132:16)\n    at async <anonymous>:337:30\n    at /workspace/UndergroundBattle/tools/frontend/jc044-http-four-clients-qa.mjs:52:138"
+  }
+}

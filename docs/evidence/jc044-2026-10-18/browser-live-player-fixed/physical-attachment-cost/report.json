@@ -1,0 +1,131 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Native85 initial layout; actual production GameApp, listening local HTTP/workerd/nine-WASM/D1 and four independent browser contexts.",
+  "scenario": "physical-attachment-cost",
+  "engine": "rust-v0.2.85-jc044-time-repress-candidate",
+  "wasmSha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "481eef6f1bb2e2a14beb1cfac48ba33b51c5f0c2-hegemony_wasm_bg.wasm",
+      "sha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/jc044-real-http-IFu30W",
+  "productionWorkerSha256": "f9b231860047c0610bce4e071d2231e33120893021f6b9360a5899d8f992023e",
+  "workerSha256": "a203deb58c95f068f46f6eedb986b5718b1b8d009a7cc8b9eba2f54f600cd92d",
+  "clientIndexSha256": "b2da2f36e235d65bffbd2de44cd017c9114cccfb984b63b9a9a7e1e9d579c382",
+  "commands": [
+    {
+      "index": 0,
+      "via": "browser-fetch-expected-rejection",
+      "status": 400
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "activate",
+      "version": 9,
+      "stateSha256": "e8c594ec3b419f3cf07d7cf7f5867eb1f09c807f5fb68495e94423523afc253c"
+    },
+    {
+      "index": 2,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 10,
+      "stateSha256": "78674b3718b71ecc364a350910abaf92e3dfa518e11b8db185dea8a465d03446"
+    },
+    {
+      "index": 3,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 11,
+      "stateSha256": "93c3a4d1714c04c1cff4065f5fb07cdd4cad8332344269e9761207fbc174dd49"
+    },
+    {
+      "index": 4,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 12,
+      "stateSha256": "6d08056974bfa3ca8485c5a90e0e5264f04c62e84c53e13e34da973c04bb78e0"
+    },
+    {
+      "index": 5,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 13,
+      "stateSha256": "ba444292fdaece22ae577f2895d8f4d649c18d4218a6ee9174ad3361a292ec17"
+    },
+    {
+      "index": 6,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "choose",
+      "version": 14,
+      "stateSha256": "017734cfce2edf516d099d56743fd5251040e68b46733eff947171eec246becd"
+    }
+  ],
+  "clientPosts": [
+    5,
+    2,
+    4,
+    2
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "physical-time-fee-1.png",
+    "restored-choice-6.png",
+    "final.png"
+  ],
+  "reopened": 2,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 6,
+    "seat": 2,
+    "kind": "game",
+    "gameKind": "choose"
+  },
+  "originalReceiptsAfterReopen": 6
+}

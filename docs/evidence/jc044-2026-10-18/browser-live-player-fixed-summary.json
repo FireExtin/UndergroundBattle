@@ -1,0 +1,32 @@
+{
+  "scope": "Two post-fix local production UI scenarios, independent browser contexts, actual HTTP/workerd/nine-WASM/D1; synthetic Native initial layouts; not online gameplay",
+  "wasmSha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001",
+  "scenarios": [
+    {
+      "scenario": "actor-0",
+      "commands": 12,
+      "uiAccepted": 8,
+      "expectedRejections": 4,
+      "reopens": 2,
+      "originalReceipts": 8,
+      "pageErrors": []
+    },
+    {
+      "scenario": "physical-attachment-cost",
+      "commands": 7,
+      "uiAccepted": 6,
+      "expectedRejections": 1,
+      "reopens": 2,
+      "originalReceipts": 6,
+      "pageErrors": []
+    }
+  ],
+  "totalAttempts": 19,
+  "uiAccepted": 14,
+  "expectedRejections": 5,
+  "reopens": 4,
+  "originalReceipts": 14,
+  "onlineGameplay": false,
+  "wholeGames": 0,
+  "baselineSixNotAddedAsNewDistinctScenarios": true
+}
