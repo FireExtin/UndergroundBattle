@@ -19,3 +19,7 @@
 production本地构建最终177文件、8WASM；77–83全部逐字节保留，当前84精确SHA见build-identity.json，最终运行文件清单在runtime-manifest.json（代码保存点后写入）。本地Worker包装仅把服务时钟固定为0，生产index仍用真实时钟。旧产物整体保留于/workspace/jc057-evidence-20261018/pre-abi84-outputs与pre-private-control-layout-outputs，冻结83载体在/workspace/undergroundbattle-build/frozen-kernels/abi83。数据库、缓存、凭据均未入Git。原codex-index-refresh.lock大小、mtime、inode未变。
 
 这些是本地验证，绝不算公开站点试玩。未合main、未部署、未触发Actions，待父会话按精确批次串行独立复审。最新已审并成功部署身份仍以官方v65/ABI83记录为准，公网01:30普通浏览器证书失败1GET/0POST/0局；下一小时检查另存独立证据，不使用候选84。
+
+代码保存点：`2261d773da66d5862e6af8bdf5cd1ce28ac405ff`；runtime-manifest.json逐个绑定177构建输出文件（含辅助说明）、8内核和七次最终浏览器使用的同一前端，确认布局修正前后执行后端index.js、8WASM及sourceMap逐字节不变（生成README时间不同，差异另存）。独审范围为14758d9到此代码SHA；本目录后续证据提交不改变程序。
+
+本小时最终公网回执：官方02:26仍v65/provider6efc627/既有部署成功；02:30:29.301953普通浏览器单次访问仍证书错误，1GET、0游戏写入、0完整对局，见`docs/evidence/v65-connection-2026-10-18-0230`。未使用候选84，未发布/合main/触发Actions。

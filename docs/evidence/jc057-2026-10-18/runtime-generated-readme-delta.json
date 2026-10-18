@@ -1,0 +1,8 @@
+{
+  "path": "server/README.md",
+  "beforeSha256": "ad52a0297b42fa3d5b7c2cd4968edc22dfd98dbaaf40c8d2958395aa9593e973",
+  "afterSha256": "e5142922e435ea55934c226fc68265d1737b718f00035d091288fde28745ebb7",
+  "beforeText": "This folder contains the built output assets for the worker \"hidden-world-hegemony\" generated at 2026-10-18T01:47:44.819Z.",
+  "afterText": "This folder contains the built output assets for the worker \"hidden-world-hegemony\" generated at 2026-10-18T02:14:24.658Z.",
+  "scope": "Generated Wrangler build timestamp only. Executable Worker, source map and all eight WASM files remain byte-identical."
+}
