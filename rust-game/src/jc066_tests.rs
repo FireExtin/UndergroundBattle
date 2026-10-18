@@ -15,6 +15,16 @@ fn entry(g: &mut Game, reveal: bool) -> String {
     g.regions[0].cards.iter().find(|c| c.definition=="JC066"&&!c.face_down).unwrap().id.clone()
 }
 fn seal(g: &mut Game, target: &str) { u::choose(g,vec![target.into()]);responses(g); }
+const GRAY_SEARCH: crate::msjc06_tests::Spec = crate::msjc06_tests::Spec {
+    id:"MSJC05", search:"search-gray-unique", color:"灰", name:("国家机构","政府权力"), subtypes:&["机构"],
+    cards:&["JC056","JC058","JC059","JC063","JC069","JZ43","XQ27","JZ44","JZ45","XQ24","JC061","XQ25","JC060","JZ46","JC057","JC066"],
+    full:48, color_count:16, uniques:&["JC066"], hits:["JC066","JC066","JC056","LC23"],
+};
+#[test]
+fn jc066_gray_unique_is_a_real_four_seat_society_search_hit_and_constructible_at_48_gray() {
+    crate::msjc06_tests::construction(&GRAY_SEARCH);
+    crate::msjc06_tests::four_searches(&GRAY_SEARCH);
+}
 #[test]
 fn jc066_complete_print_program_and_modifier_cannot_be_split_or_transplanted() {
     let c=catalog::card("JC066");assert_eq!(c.cost,5);assert_eq!(c.loyalty,vec!["灰色";3]);assert_eq!(c.subtitle.as_deref(),Some("样本B7021"));
@@ -82,6 +92,22 @@ fn jc066_printed_icons_ignore_victims_conditional_bonuses_and_keep_live_uid_only
     let c=g.board(&source).unwrap().1.clone();let (p,t)=g.jc066_sealed_printed_icons(&c,0);assert_eq!(p,catalog::card("JC030").permanent_icons);assert_eq!(t,catalog::card("JC030").temporary_icons);
     let mut fake=c.clone();fake.id="departed".into();assert_eq!(g.jc066_sealed_printed_icons(&fake,0),(Icons::default(),Icons::default()));
     let mut hidden=c.clone();hidden.face_down=true;assert_eq!(g.jc066_sealed_printed_icons(&hidden,0),(Icons::default(),Icons::default()));u::restore(&mut g);
+}
+#[test]
+fn jc066_real_control_changes_temporary_initiative_without_copying_sealed_keywords() {
+    let mut g=u::game();let host=u::field(&mut g,"JC066",0);let victim=g.make_card("JC095",2);
+    g.seal_card_on_valid_host(victim,2,&host);
+    let permanent=catalog::card("JC066").permanent_icons.add(catalog::card("JC095").permanent_icons);
+    let temporary=catalog::card("JC066").temporary_icons.add(catalog::card("JC095").temporary_icons);
+    assert_eq!(g.current_icons(g.board(&host).unwrap().1,0),permanent.add(temporary));
+    g.begin_window(Window::Action(g.team(2)));let control=u::held(&mut g,"JC129",2);u::fund(&mut g,2,"JC104",3);
+    u::act(&mut g,2,Action{card_id:Some(control),target_id:Some(host.clone()),..Action::new("play")});responses(&mut g);
+    let c=g.board(&host).unwrap().1;assert_eq!(c.owner,0);assert_eq!(c.controller,2);
+    assert_eq!(g.current_icons(c,0),permanent);assert!(!g.has_renown(c));
+    assert_eq!(g.sealed_cards[0].card.owner,2);u::restore(&mut g);
+    g.control_effects.clear();g.settle_controls();
+    let c=g.board(&host).unwrap().1;assert_eq!(c.controller,0);
+    assert_eq!(g.current_icons(c,0),permanent.add(temporary));u::restore(&mut g);
 }
 #[test]
 fn jc066_entry_containers_reject_foreign_frozen_source_both_directions() {
@@ -281,7 +307,24 @@ fn jc066_native86_oracles() {
         let a=if kind=="host-return"{Action{card_id:Some(response),target_id:Some(host),..Action::new("activate")}}else{Action{card_id:Some(response),target_id:Some(if kind=="host-hide"{host}else{victim}),option:Some("hide".into()),..Action::new("play")}};
         t.respond(if kind=="host-return"{0}else{2},a);t.responses();assert!(t.room.game.sealed_cards.is_empty());scenarios.push(t.finish());
     }
-    assert_eq!(scenarios.len(),14);assert_eq!(invalid.len(),85);
+    {
+        let mut g=crate::msjc06_tests::initial(&GRAY_SEARCH);g.room_id=format!("{:024x}",860400);
+        crate::msjc01_tests::fund(&mut g,0,4);
+        for id in GRAY_SEARCH.hits{let c=g.make_card(id,0);g.players[0].deck.push(c);}
+        let action=crate::msjc06_tests::activate(&g,0,GRAY_SEARCH.search);
+        let mut t=Trace::new("society-search-gray-unique",&g);
+        t.game(1,action.clone(),false);t.game(0,action.clone(),true);t.responses();
+        let p=t.room.game.pending.clone().unwrap();assert_eq!(p.choice.options.len(),2);
+        for seat in 0..4{assert_eq!(t.room.game.view(seat).pending_choice.is_some(),seat==0);}
+        let chosen=p.choice.options[1].id.clone();
+        t.game(1,Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![chosen.clone()]),..Action::new("choose")},false);
+        t.game(0,Action{choice_id:Some(p.choice.id),selected:Some(vec![]),..Action::new("choose")},false);
+        t.choose(vec![chosen]);t.game(0,action,false);
+        assert_eq!(t.room.game.players[0].hand[0].definition,"JC066");
+        assert!(t.room.game.players[0].society_zone.used_once_per_game.contains(GRAY_SEARCH.search));
+        assert_eq!(t.room.game.players[0].assets.iter().filter(|c|c.exhausted).count(),4);scenarios.push(t.finish());
+    }
+    assert_eq!(scenarios.len(),15);assert_eq!(invalid.len(),85);
     if let Ok(dir)=std::env::var("JC066_NATIVE_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();let result=serde_json::json!({"format":"jc066-native86-v1","scope":"Synthetic offline layouts; real Room commands, complete states/journals/private views and receipts; not online play","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid});
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("native86.json")).unwrap().write_all(&serde_json::to_vec(&result).unwrap()).unwrap();

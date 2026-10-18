@@ -385,8 +385,9 @@ pub(super) fn cancelled_frame(spec: &Spec) {
         4
     );
 }
-pub(super) fn no_unique_in_admitted_pool(spec: &Spec) {
-    assert!(!catalog::catalog().cards.iter().any(|c| c.color == spec.color && c.unique));
+pub(super) fn no_unique_in_deck(spec: &Spec) {
+    assert!(spec.cards.iter().copied().chain(["JC052", "LC23"])
+        .all(|id| { let c = catalog::card(id); c.color != spec.color || !c.unique }));
     let mut g = initial(spec);
     for s in 0..4 {
         g.begin_window(Window::Action(g.team(s)));
