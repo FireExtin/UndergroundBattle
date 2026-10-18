@@ -5,21 +5,21 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import { buildEnvironment } from '../../tools/build-storage.mjs';
-import { frozenAbi77, frozenAbi78, frozenAbi79, frozenAbi80, frozenAbi81, frozenAbi82 } from '../../tools/frozen-kernels.mjs';
+import { frozenAbi77, frozenAbi78, frozenAbi79, frozenAbi80, frozenAbi81, frozenAbi82, frozenAbi83 } from '../../tools/frozen-kernels.mjs';
 const repository=fileURLToPath(new URL('../../',import.meta.url));
 const sites=path.join(repository,'sites');
 const output=path.resolve(process.env.HEGEMONY_FIXED_CLOCK_TEST_ROOT || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build','jc054-worker'));
 const environment=buildEnvironment(repository,[output]);
 for(const name of ['hegemony_wasm.js','hegemony_wasm_bg.wasm'])
   assert.deepEqual(readFileSync(path.join(sites,'generated',name)),readFileSync(path.join(repository,'rust-game-wasm/pkg',name)),'Build the fresh production backend before the test wrapper');
-for(const [i,load]of [frozenAbi77,frozenAbi78,frozenAbi79,frozenAbi80,frozenAbi81,frozenAbi82].entries()) {
+for(const [i,load]of [frozenAbi77,frozenAbi78,frozenAbi79,frozenAbi80,frozenAbi81,frozenAbi82,frozenAbi83].entries()) {
   const saved=load(),directory=path.join(sites,'generated',`abi${77+i}`);
   assert.deepEqual(readFileSync(path.join(directory,'hegemony_wasm.js')),saved.js);
   assert.deepEqual(readFileSync(path.join(directory,'hegemony_wasm_bg.wasm')),saved.wasm);
 }
 const pkg=await import(pathToFileURL(path.join(repository,'rust-game-wasm/pkg/hegemony_wasm.js')));
 pkg.initSync({module:readFileSync(path.join(repository,'rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))});
-assert.equal(JSON.parse(pkg.catalog()).engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
+assert.equal(JSON.parse(pkg.catalog()).engineVersion,'rust-v0.2.84-jc057-live-inspection-candidate');
 mkdirSync(output,{recursive:true});
 const relative=file=>'./'+path.relative(output,path.join(sites,'src',file)).split(path.sep).join('/');
 writeFileSync(path.join(output,'worker.mjs'),`import {kernel} from ${JSON.stringify(relative('kernel.mjs'))};\nimport {createWorker} from ${JSON.stringify(relative('http.mjs'))};\n// Trusted local test binding only; production index always uses Date.now.\nexport default {fetch(request,env){const now=Number(env.LOCAL_TEST_CLOCK_MS||'0');if(!Number.isSafeInteger(now)||now<0)throw Error('Invalid local test clock');return createWorker(kernel,()=>now).fetch(request,env);}};\n`);

@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync,readFileSync,writeFileSync,readdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { frozenAbi83,stageFrozenAbi83 } from './frozen-kernels.mjs';
+import { loadFixture,assertSources } from './msjc0405-oracle.mjs';
+const hash=b=>createHash('sha256').update(b).digest('hex');
+test('v65 ABI83 and its 129-input Native witness stay exact before JC057 changes',()=>{
+  const saved=frozenAbi83();
+  assert.equal(saved.identity.providerSource,'6efc6273a4788e3ed4774d1a07b0921ff6d9d9a0');
+  assert.equal(hash(saved.wasm),'f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f');
+  assert.equal(saved.wasm.length,3174213);
+  assert.equal(hash(readFileSync(new URL('../rust-game-wasm/tests/msjc0405Native83.fixture.json.gz',import.meta.url))),saved.identity.nativeFixtureSha256);
+  const fixture=loadFixture();assert.equal(Object.keys(fixture.sourceBindings.files).length,129);
+  const altered=structuredClone(fixture.sourceBindings);altered.files['rust-game/src/room.rs']='0'.repeat(64);
+  assert.throws(()=>assertSources(altered),/Historical Native83 compiler binding/);
+  const dest=mkdtempSync(path.join(tmpdir(),'frozen83-stage-'));stageFrozenAbi83(dest);
+  assert.deepEqual(readdirSync(dest).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
+  assert.deepEqual(readFileSync(path.join(dest,'hegemony_wasm_bg.wasm')),saved.wasm);
+});
+test('missing or tampered v65 bytes stop without rebuild, migration or replacement',()=>{
+  const saved=frozenAbi83(),empty=mkdtempSync(path.join(tmpdir(),'frozen83-missing-'));
+  assert.throws(()=>frozenAbi83({directory:empty}),/Missing published ABI83/);
+  writeFileSync(path.join(empty,'hegemony_wasm.js'),saved.js);
+  writeFileSync(path.join(empty,'hegemony_wasm_bg.wasm.gz'),'tampered');
+  assert.throws(()=>frozenAbi83({directory:empty}),/ABI83 runtime hash mismatch/);
+  assert.equal(readFileSync(path.join(empty,'hegemony_wasm_bg.wasm.gz'),'utf8'),'tampered');
+});

@@ -798,5 +798,10 @@
     "url": "/cards/MSJC05.jpg",
     "source": "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg",
     "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3"
+  },
+  "JC057": {
+    "url": "/cards/JC057.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg",
+    "sha256": "acb8e6d6c421a37862b81e5f194af50a974888e74e252b0a594b7123a6d01678"
   }
 }

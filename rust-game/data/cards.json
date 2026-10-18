@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.75-msjc04-msjc05-societies-candidate",
-  "engineVersion": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+  "cardPoolVersion": "limited-v2.76-jc057-live-inspection-candidate",
+  "engineVersion": "rust-v0.2.84-jc057-live-inspection-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5723,6 +5723,44 @@
         "image": "resource/ymsj-fun.github.io/cards/JC054 蒙古死亡蠕虫.jpg",
         "sha256": "3279d70ffe4b766783cc64262165c7d10cd8b08b1c00dc915397ceaadd3650a2"
       }
+    },
+    {
+      "id": "JC057",
+      "name": "监控员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "工程师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【现身触发】检视目标玩家的手牌。\n【持续】只要监控员未横置，你可以随时检视与其本地区的任一暗藏者。",
+      "keywords": [],
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/cards.json",
+        "record": "JC057",
+        "image": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [

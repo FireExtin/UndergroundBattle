@@ -597,6 +597,7 @@ impl Game {
         self.validate_wm062_state()?;
         self.validate_jc054_state()?;
         // Work on a clone: every rejected command is a strict no-op, including PRNG/ID counters.
+        self.validate_jc057_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -605,6 +606,7 @@ impl Game {
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
+        next.validate_jc057_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -1079,6 +1081,7 @@ impl Game {
         self.validate_jc095_frame(&frame)?;
         self.validate_bq035_frame(&frame)?;
         self.validate_jz46_frame(&frame)?;
+        self.validate_jc057_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1952,6 +1955,7 @@ impl Game {
         self.validate_red_time_state()?;
         self.validate_blue_expansion_state()?;
         self.validate_jz46_state()?;
+        self.validate_jc057_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;
@@ -2441,6 +2445,7 @@ impl Game {
             } else {
                 None
             },
+            private_inspections: self.jc057_private_inspections(seat),
             hand: self.players[seat]
                 .hand
                 .iter()
@@ -2522,6 +2527,8 @@ impl Game {
                         self.blue_expansion_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ46InspectHidden { .. }, .. }) {
                         self.jz46_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JC057InspectHand { .. }, .. }) {
+                        self.jc057_private_choice(p, seat)
                     } else {
                         self.blue_private_choice(p, seat)
                     }

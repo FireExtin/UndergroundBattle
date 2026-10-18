@@ -134,6 +134,7 @@ fn msjc0405_native83_oracles() {
         }
     }
     if let Ok(directory) = std::env::var("MSJC0405_NATIVE_DIR") {
+        assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.83-msjc04-msjc05-societies-candidate", "A newer compiler input cannot export or re-sign the historical Native83 witness");
         std::fs::create_dir_all(&directory).unwrap();
         let output=json!({"format":"msjc0405-native83-v1","scope":"Explicit Native layouts and real Room commands, complete opaque states, journals and four views; no online gameplay claim","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios});
         use std::io::Write;

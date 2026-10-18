@@ -95,6 +95,7 @@ export type View = {
   phase: string; step: string; winScore: number; winnerTeam?: number;
   regions: Region[]; hand: Card[]; assets: Card[]; graveyard: Card[]; scoreCards: Card[];
   privateDeckTop?: Card;
+  privateInspections?: { sourceInstanceId: string; region: number; cards: Card[] }[];
   attachments?: Attachment[];
   sealedCards?: SealedCard[];
   societyZones?: { id: string; playerId: string; card: Card | null }[];

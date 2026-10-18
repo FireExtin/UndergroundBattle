@@ -444,7 +444,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
@@ -1465,6 +1465,7 @@ impl Game {
                 }
                 Op::BQ028InspectTargetHandAttachments => return self.bq028_inspect_start(frame),
                 Op::JZ46InspectHiddenCriminal => return self.jz46_inspect_start(frame),
+                Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
                 Op::JC087HideTargetThenInfluence => self.jc087_hide_then_influence(&frame)?,
@@ -2269,6 +2270,9 @@ impl Game {
             }
             FrameChoice::JZ46InspectHidden { inspected } => {
                 self.jz46_inspect_complete(&frame, inspected, chooser, &a, &selected)?;
+            }
+            FrameChoice::JC057InspectHand { seat, inspected } => {
+                self.jc057_inspect_complete(&frame, seat, &inspected, chooser, &a, &selected)?;
             }
             FrameChoice::BQ028InspectAttachments { seat, inspected } => {
                 self.bq028_inspect_complete(&frame, seat, inspected, &selected)?;

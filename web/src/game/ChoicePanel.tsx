@@ -29,11 +29,12 @@ type ChoicePanelProps = {
   onPauseRoom?: () => void;
   draftStore?: ChoiceDraftStore;
   recoveryNotices?: ReactNode;
+  privateInspectionControls?: ReactNode;
 };
 export function ChoicePanel(props: ChoicePanelProps) {
   return <ChoicePanelContent key={JSON.stringify([props.draftStore?.key, props.viewerId, choiceDraftFingerprint(props.choice)])} {...props} />;
 }
-function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true, onPauseRoom, draftStore, recoveryNotices }: ChoicePanelProps) {
+function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true, onPauseRoom, draftStore, recoveryNotices, privateInspectionControls }: ChoicePanelProps) {
   const dialog = useRef<HTMLElement>(null);
   const optionsRegion = useRef<HTMLDivElement>(null);
   const searchBox = useRef<HTMLInputElement>(null);
@@ -82,7 +83,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     || (choice.kind === 'xq48_passer_search' && max <= 3));
   const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
     && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
-  const privateInspectionZero = choice.kind === 'jz46-hidden-inspect' && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
+  const privateInspectionZero = ['jz46-hidden-inspect', 'jc057-hand-inspect'].includes(choice.kind) && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
   const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
   const complete = (current: ChoiceDraft) => damage ? Object.values(current.allocations).reduce((total, n) => total + n, 0) === amount
     : ordering ? current.top.length + current.bottom.length === choice.options.length
@@ -166,11 +167,13 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
       <p className="hg-choice-filter-summary" role="status" aria-label="选项筛选结果" aria-atomic="true">显示 {visibleOptions.length} / {choice.options.length} 项{hiddenSelected > 0 && <strong>另有 {hiddenSelected} 项已选不在当前结果中</strong>}</p>
     </div>}
     <div ref={optionsRegion} className="hg-choice-body" tabIndex={0} role="region" aria-label="选择选项，可滚动查看" aria-describedby={scrollHintId}>
-    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'jz46-hidden-inspect' ? '你检视的暗藏者' : choice.kind === 'bq028-hand-inspect' ? '你检视的手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
+    {!!choice.previewCards?.length && <div className="hg-choice-preview"><h3>{choice.kind === 'jz46-hidden-inspect' ? '你检视的暗藏者' : ['bq028-hand-inspect', 'jc057-hand-inspect'].includes(choice.kind) ? '你检视的手牌' : '你查看的牌库顶牌'}</h3><div className="hg-choice-options">{choice.previewCards.map(card => <div className="hg-choice-option-entry" key={card.instanceId}>
       {choice.kind === 'jz46-hidden-inspect' ? <div className="hg-choice-option"><CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} /></div>
         : <CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={viewerId} />}
       {onReadCard && <button type="button" className="hg-choice-read hg-small-read" onClick={() => readCard(card)} aria-label={`放大阅读${viewerId ? visibleCard(card, viewerId).name : card.name}`}>放大文字与图标 ↗</button>}
     </div>)}</div></div>}
+    {choice.kind === 'jc057-hand-inspect' && !choice.previewCards?.length && <p role="status">该玩家当前没有手牌。</p>}
+    {privateInspectionControls}
     {ordering ? <div className="hg-order-columns"><div><h3>牌库顶 · 最上面先抓</h3>{reorderList(top, 'top')}</div><div><h3>牌库底 · 自上而下</h3>{reorderList(bottom, 'bottom')}</div></div>
       : damage ? <><div className="hg-damage-meter"><span>总计 <b>{amount}</b></span><span>已分配 <b>{assigned}</b></span><span>剩余 <b>{amount - assigned}</b></span><small>{amount === 1 ? '点选角色分配这一点伤害，可切换目标。' : '点选角色或使用加减按钮分配，每次一点。'}</small></div><div className="hg-damage-options">{choice.options.map((option, index) => {
         const card = option.card && (viewerId ? visibleCard(option.card, viewerId) : option.card);

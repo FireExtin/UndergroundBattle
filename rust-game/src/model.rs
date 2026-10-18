@@ -306,6 +306,8 @@ pub struct View {
     pub revealed_hands: Vec<RevealedHandView>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub private_deck_top: Option<CardView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub private_inspections: Vec<PrivateInspectionView>,
     pub assets: Vec<CardView>,
     pub graveyard: Vec<CardView>,
     pub score_cards: Vec<CardView>,
@@ -325,6 +327,13 @@ pub struct View {
 #[serde(rename_all = "camelCase")]
 pub struct RevealedHandView {
     pub player_id: String,
+    pub cards: Vec<CardView>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PrivateInspectionView {
+    pub source_instance_id: String,
+    pub region: usize,
     pub cards: Vec<CardView>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -623,6 +632,7 @@ pub enum FrameChoice {
     XQ18TimeCarrier { target_instance: String },
     BQ028InspectAttachments { seat: usize, inspected: Vec<Card> },
     JZ46InspectHidden { inspected: Card },
+    JC057InspectHand { seat: usize, inspected: Vec<Card> },
     BQ078CorpseReturn,
     XQ44DreamSealSearch,
     JZ02SpaceSealSearch,
@@ -882,6 +892,7 @@ impl Game {
         game.validate_wm023_state()?;
         game.validate_xq25_state()?;
         game.validate_jz46_state()?;
+        game.validate_jc057_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_jc052_state()?;
