@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc044-stack-source-review-20261018/worker85-fixed/server",
+    "bash",
+    "-c",
+    "cd /workspace/UndergroundBattle/sites && exec node --test --test-concurrency=1 test/integration.test.mjs test/jc044-entry.test.mjs test/jc044-integration.test.mjs test/jc044-kernel-routing.test.mjs test/kernel-binding.test.mjs test/kernel-routing.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T06:34:25.891234+00:00",
+  "endedUtc": "2026-10-18T06:40:44.647497+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,43 @@
+{
+  "phase": "before",
+  "rows": [
+    {
+      "badJC044Placed": true,
+      "badPlacedFreshId": "i246",
+      "badResponseCommands": 4,
+      "gameAccepted": true,
+      "gameError": null,
+      "ids": {
+        "card": "i244",
+        "item": "i245",
+        "source": "i243"
+      },
+      "legalCompleteTransitionsEqualOriginal": true,
+      "legalContinuationCommands": 5,
+      "onlyMutation": "/game/stack/0/frame/source/card/definition: JC044 -> LC19",
+      "revision": 9,
+      "roomAccepted": true,
+      "roomError": null,
+      "scenario": "entry-deploy-skip"
+    },
+    {
+      "badJC044Placed": true,
+      "badPlacedFreshId": "i246",
+      "badResponseCommands": 4,
+      "gameAccepted": true,
+      "gameError": null,
+      "ids": {
+        "card": "i244",
+        "item": "i245",
+        "source": "i243"
+      },
+      "legalCompleteTransitionsEqualOriginal": true,
+      "legalContinuationCommands": 5,
+      "onlyMutation": "/game/stack/0/frame/source/card/definition: JC044 -> LC19",
+      "revision": 9,
+      "roomAccepted": true,
+      "roomError": null,
+      "scenario": "entry-reveal-skip"
+    }
+  ]
+}

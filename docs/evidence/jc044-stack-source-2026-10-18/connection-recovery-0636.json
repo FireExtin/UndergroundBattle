@@ -1,0 +1,33 @@
+{
+  "checkedUtc": "2026-10-18T06:36:04.416007+00:00",
+  "executionConnection": "restored",
+  "sameTestRunContinues": true,
+  "testProcesses": [
+    {
+      "pid": 43681,
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "test/integration.test.mjs",
+        "test/jc044-entry.test.mjs",
+        "test/jc044-integration.test.mjs",
+        "test/jc044-kernel-routing.test.mjs",
+        "test/kernel-binding.test.mjs",
+        "test/kernel-routing.test.mjs"
+      ]
+    }
+  ],
+  "workerLogBytes": 1722,
+  "workerLogMtimeUtc": "2026-10-18T06:35:59.002836+00:00",
+  "naturalExitFileExists": false,
+  "head": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "workingTreeStatus": "",
+  "protectedLock": {
+    "inode": 1048672,
+    "size": 0,
+    "mtimeNs": 1792294521284793620
+  },
+  "testsRestarted": false,
+  "workDiscarded": false
+}

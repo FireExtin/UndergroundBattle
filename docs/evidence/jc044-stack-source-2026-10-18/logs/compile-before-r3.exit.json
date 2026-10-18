@@ -1,0 +1,23 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/jc044-stack-source-review-20261018",
+    "--",
+    "rustc",
+    "--edition=2021",
+    "/workspace/jc044-stack-source-review-20261018/probe.rs",
+    "--extern",
+    "hegemony_server=/workspace/undergroundbattle-build/target/debug/deps/libhegemony_server-e1ebb84119a75fde.rlib",
+    "--extern",
+    "serde_json=/workspace/undergroundbattle-build/target/debug/deps/libserde_json-46b21819a1f6a186.rlib",
+    "-L",
+    "dependency=/workspace/undergroundbattle-build/target/debug/deps",
+    "-o",
+    "/workspace/jc044-stack-source-review-20261018/probe-before-r3"
+  ],
+  "startedUtc": "2026-10-18T06:23:58.956535+00:00",
+  "endedUtc": "2026-10-18T06:23:59.695276+00:00",
+  "exitCode": 0
+}

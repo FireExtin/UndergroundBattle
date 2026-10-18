@@ -1,0 +1,378 @@
+{
+  "source": "f34424b8a699f74f742748a5cdbd4c73529bbe94",
+  "scope": "Six relevant Worker files; full Worker suite not repeated",
+  "summary": {
+    "tests": 69,
+    "pass": 69,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "normalScenarios": [
+    {
+      "scenario": "entry-deploy-skip",
+      "reference": "compiler-bound Native85",
+      "accepted": 6,
+      "rejected": 0,
+      "projections": 56,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "entry-deploy-accept",
+      "reference": "compiler-bound Native85",
+      "accepted": 10,
+      "rejected": 0,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "entry-reveal-skip",
+      "reference": "compiler-bound Native85",
+      "accepted": 6,
+      "rejected": 0,
+      "projections": 56,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "entry-reveal-accept",
+      "reference": "compiler-bound Native85",
+      "accepted": 10,
+      "rejected": 0,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "actor-0",
+      "reference": "compiler-bound Native85",
+      "accepted": 8,
+      "rejected": 4,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "actor-1",
+      "reference": "compiler-bound Native85",
+      "accepted": 8,
+      "rejected": 4,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "actor-2",
+      "reference": "compiler-bound Native85",
+      "accepted": 8,
+      "rejected": 4,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "actor-3",
+      "reference": "compiler-bound Native85",
+      "accepted": 8,
+      "rejected": 4,
+      "projections": 88,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "target-self",
+      "reference": "compiler-bound Native85",
+      "accepted": 6,
+      "rejected": 0,
+      "projections": 56,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "target-partner",
+      "reference": "compiler-bound Native85",
+      "accepted": 6,
+      "rejected": 0,
+      "projections": 56,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "target-empty",
+      "reference": "compiler-bound Native85",
+      "accepted": 5,
+      "rejected": 0,
+      "projections": 48,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "physical-attachment-cost",
+      "reference": "compiler-bound Native85",
+      "accepted": 6,
+      "rejected": 1,
+      "projections": 60,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    {
+      "scenario": "responsive-exhaust",
+      "reference": "compiler-bound Native85",
+      "accepted": 14,
+      "rejected": 0,
+      "projections": 120,
+      "originalReceiptsAfterReopen": true,
+      "opaqueStatesAndJournalsEqual": true,
+      "localSyntheticDatabaseRetained": true
+    }
+  ],
+  "invalidRestores": [
+    {
+      "invalid": "stack-deploy-source-identity",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-00",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-01",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-02",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-03",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-04",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-05",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-06",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-07",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-08",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-09",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-10",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-11",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-12",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-13",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-14",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-15",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "declare-16",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "stack-reveal-source-identity",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-00",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-01",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-02",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-03",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-04",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-05",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-06",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-07",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-08",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-09",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-10",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-11",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-12",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-13",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-14",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-15",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-16",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    },
+    {
+      "invalid": "repression-17",
+      "http400": 10,
+      "realD1Reopen": true,
+      "roomCommandsJournalUnchanged": true
+    }
+  ],
+  "normalAcceptedCommands": 101,
+  "normalExpectedRejections": 17,
+  "httpPrivateViews": 980,
+  "malformedHttp400": 370,
+  "newOriginalReviewInputsHttp400": 20,
+  "reopenAndOriginalReceipts": true,
+  "noExtraRoomCommandsOrJournalWritesForAllMalformedInputs": true,
+  "zeroSkippedOrCancelled": true,
+  "d1Scope": "Real local workerd / SQLite with D1 reopen; remote Cloudflare D1 not tested",
+  "sourceAndArtifactsUnchangedThroughout": true
+}

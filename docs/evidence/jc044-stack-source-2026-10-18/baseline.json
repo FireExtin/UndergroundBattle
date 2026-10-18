@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-18T06:22:55.750253+00:00",
+  "source": "1979d2420bd1644c8d6b04a16ff2caa23608b9c5",
+  "head": "4f5ba75c33142e0a9d34c54b8e1d983766b83fa2",
+  "fixtureSha256": "41be2ced9b10a52407eeebbe8682b026116f0ce7cf4931b2e540656a09874986",
+  "nativeRawSha256": "401f6b2dadccabadc161f94aefe0ad102b406aee574cc09d9d8ce87aec93c542",
+  "fixtureBytes": 994730,
+  "wasmSha256": "6ab5200f2cd2c3c545d5c45169a19fdb558fe04a5df5d152802691c0b01b4001"
+}

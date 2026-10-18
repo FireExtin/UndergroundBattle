@@ -1,0 +1,21 @@
+{
+  "phase": "after",
+  "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+  "opaqueRoomNeverParsedOrReencodedInJs": true,
+  "rows": [
+    {
+      "name": "entry-deploy-skip",
+      "accepted": 0,
+      "rejected": 6,
+      "legalCommandsEqualOriginal": 6,
+      "legalViewsEqualOriginal": 24
+    },
+    {
+      "name": "entry-reveal-skip",
+      "accepted": 0,
+      "rejected": 6,
+      "legalCommandsEqualOriginal": 6,
+      "legalViewsEqualOriginal": 24
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "phase": "after",
+  "rows": [
+    {
+      "badJC044Placed": false,
+      "badPlacedFreshId": null,
+      "badResponseCommands": 0,
+      "gameAccepted": false,
+      "gameError": "JC044\u4e0d\u80fd\u6302\u63a5\u5176\u4ed6\u724c\u7684\u5806\u6808\u7a0b\u5e8f",
+      "ids": {
+        "card": "i244",
+        "item": "i245",
+        "source": "i243"
+      },
+      "legalCompleteTransitionsEqualOriginal": true,
+      "legalContinuationCommands": 5,
+      "onlyMutation": "/game/stack/0/frame/source/card/definition: JC044 -> LC19",
+      "revision": 9,
+      "roomAccepted": false,
+      "roomError": "JC044\u4e0d\u80fd\u6302\u63a5\u5176\u4ed6\u724c\u7684\u5806\u6808\u7a0b\u5e8f",
+      "scenario": "entry-deploy-skip"
+    },
+    {
+      "badJC044Placed": false,
+      "badPlacedFreshId": null,
+      "badResponseCommands": 0,
+      "gameAccepted": false,
+      "gameError": "JC044\u4e0d\u80fd\u6302\u63a5\u5176\u4ed6\u724c\u7684\u5806\u6808\u7a0b\u5e8f",
+      "ids": {
+        "card": "i244",
+        "item": "i245",
+        "source": "i243"
+      },
+      "legalCompleteTransitionsEqualOriginal": true,
+      "legalContinuationCommands": 5,
+      "onlyMutation": "/game/stack/0/frame/source/card/definition: JC044 -> LC19",
+      "revision": 9,
+      "roomAccepted": false,
+      "roomError": "JC044\u4e0d\u80fd\u6302\u63a5\u5176\u4ed6\u724c\u7684\u5806\u6808\u7a0b\u5e8f",
+      "scenario": "entry-reveal-skip"
+    }
+  ]
+}

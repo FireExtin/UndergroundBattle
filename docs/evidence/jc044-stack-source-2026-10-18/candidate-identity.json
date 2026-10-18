@@ -1,0 +1,32 @@
+{
+  "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate",
+  "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
+  "nativeInputs": 133,
+  "scenarios": 13,
+  "commands": 118,
+  "rejected": 17,
+  "projections": 524,
+  "invalidRestores": 37,
+  "files": [
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/tests/jc044Native85.fixture.json.gz",
+      "bytes": 998943,
+      "sha256": "4ad888e66386e390662f19cac5582d16dd36047b2111b90ec89590a84f8ccd63"
+    },
+    {
+      "path": "/workspace/jc044-stack-source-review-20261018/native-fixed/native85.json",
+      "bytes": 13759678,
+      "sha256": "f43a7e8a93b3ad77f29ce63d7fe861aa325248f8f4630a6798405327262df027"
+    }
+  ]
+}

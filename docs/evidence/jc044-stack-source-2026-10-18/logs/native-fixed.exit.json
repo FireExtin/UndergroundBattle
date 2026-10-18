@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC044_NATIVE_DIR=/workspace/jc044-stack-source-review-20261018/native-fixed",
+    "cargo",
+    "test",
+    "--locked",
+    "--workspace",
+    "--",
+    "jc044_",
+    "catalog_is_restricted_real_complete_and_decks_are_legal",
+    "bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_grant",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T06:26:47.204761+00:00",
+  "endedUtc": "2026-10-18T06:29:01.920669+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,17 @@
+{
+  "oldSource": "1979d2420bd1644c8d6b04a16ff2caa23608b9c5",
+  "catalogExactlyUnchanged": true,
+  "all13NormalScenariosCompleteTransitionsAndViewsExactlyUnchanged": true,
+  "all35PriorMalformedArchivesExactlyUnchanged": true,
+  "newMalformedArchives": [
+    "stack-deploy-source-identity",
+    "stack-reveal-source-identity"
+  ],
+  "newMalformedStatesByteIdenticalToOriginalReviewReproductions": true,
+  "nativeInputCount": 133,
+  "changedCompilerInputs": [
+    "rust-game/src/jc044.rs",
+    "rust-game/src/jc044_tests.rs"
+  ],
+  "nativeRawSha256": "f43a7e8a93b3ad77f29ce63d7fe861aa325248f8f4630a6798405327262df027"
+}

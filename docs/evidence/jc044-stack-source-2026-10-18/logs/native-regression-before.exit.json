@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc044_entry_stack_identity_is_symmetric_and_legal_entries_resume",
+    "--",
+    "--exact",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-18T06:25:17.083534+00:00",
+  "endedUtc": "2026-10-18T06:26:06.083761+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "/workspace/jc044-stack-source-review-20261018/probe-wasm.mjs",
+    "before"
+  ],
+  "startedUtc": "2026-10-18T06:24:42.092953+00:00",
+  "endedUtc": "2026-10-18T06:24:42.570873+00:00",
+  "exitCode": 0
+}
