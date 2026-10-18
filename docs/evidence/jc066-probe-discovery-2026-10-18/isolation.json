@@ -1,0 +1,33 @@
+{
+  "checkedUtc": "2026-10-18T11:03:24.332641+00:00",
+  "infraBaseCommit": "a8bf844c30cf988abb25af73e15951849b5fc93a",
+  "unchangedProductSourceCommit": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "probeChangeOnly": [
+    "relocation outside default test glob",
+    "one relative helper import",
+    "opt-in header comment"
+  ],
+  "packageTestScriptUnchanged": true,
+  "compilerInputCount": 135,
+  "compilerInputsUnchanged": true,
+  "wasm": {
+    "bytes": 3291234,
+    "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+  },
+  "own86Fixture": {
+    "bytes": 2236969,
+    "sha256": "d58b1309cd86fed440755dc883ffb55e3b52bc3dc308b56d925e84550c83d0d6"
+  },
+  "prior85Fixture": {
+    "bytes": 998943,
+    "sha256": "4ad888e66386e390662f19cac5582d16dd36047b2111b90ec89590a84f8ccd63"
+  },
+  "productionFilesByteIdentical": 181,
+  "clientFilesByteIdentical": 167,
+  "generatedFilesByteIdentical": 20,
+  "testWorkerFilesByteIdentical": 13,
+  "priorEvidenceUnchangedExceptReadmeAndItsManifestEntry": true,
+  "protectedIndexRefreshLockPreserved": true,
+  "rebuilt": false,
+  "published": false
+}

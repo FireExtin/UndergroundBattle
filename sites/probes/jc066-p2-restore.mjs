@@ -1,3 +1,4 @@
+// Opt-in probe: excluded from the default test/*.test.mjs discovery.
 // Exact review counterexamples. Rust alone changes two typed snapshot fields;
 // JS transports opaque Room strings without parsing or rewriting them.
 import test from 'node:test';
@@ -10,7 +11,7 @@ import {pathToFileURL} from 'node:url';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
 import {digest} from '../src/service.mjs';
-import {assertPublicView} from './assert-session-journal.mjs';
+import {assertPublicView} from '../test/assert-session-journal.mjs';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const reject=process.env.JC066_P2_EXPECT!=='accept';
 assert(process.env.JC066_P2_CASES_FILE);const repro=JSON.parse(readFileSync(process.env.JC066_P2_CASES_FILE,'utf8'));

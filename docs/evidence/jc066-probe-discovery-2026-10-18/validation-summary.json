@@ -1,0 +1,234 @@
+{
+  "checkedUtc": "2026-10-18T11:04:30.402024+00:00",
+  "infraBaseCommit": "a8bf844c30cf988abb25af73e15951849b5fc93a",
+  "unchangedProductSourceCommit": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "probePath": "sites/probes/jc066-p2-restore.mjs",
+  "currentCommands": "sites/probes/README.md",
+  "defaultDiscovery": {
+    "scriptUnchanged": "node --test test/*.test.mjs",
+    "files": 55,
+    "probeExcluded": true,
+    "variablesExplicitlyUnset": [
+      "JC066_P2_CASES_FILE",
+      "JC066_P2_PKG",
+      "JC066_P2_EXPECT",
+      "HEGEMONY_CURRENT_WORKER_DIR"
+    ],
+    "namePattern": "^fixed production Site identity agrees with the candidate source-built ABI86$",
+    "matchingExistingTestBodiesExecuted": 1,
+    "fileModulesLoaded": 55,
+    "fullDefaultSuiteRegression": false,
+    "note": "Node reports 55 passing file/assertion results: 54 modules with filtered test bodies and one matching existing assertion. This is discovery/module-load verification, not complete regression of 55 files."
+  },
+  "explicitProbes": {
+    "beforePassed": 4,
+    "afterPassed": 4,
+    "sameExactBadStateBytesBeforeAndAfter": true,
+    "baselineAcceptanceReproduced": true,
+    "afterWasmEntrypointsRejected": 12,
+    "afterHttp400": 20,
+    "afterNoAdditionalRoomCommandJournalWrites": true,
+    "syntheticLocalD1Only": true
+  },
+  "runs": {
+    "default-discovery-smoke": {
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "env",
+          "-u",
+          "JC066_P2_CASES_FILE",
+          "-u",
+          "JC066_P2_PKG",
+          "-u",
+          "JC066_P2_EXPECT",
+          "-u",
+          "HEGEMONY_CURRENT_WORKER_DIR",
+          "bash",
+          "-c",
+          "cd sites && exec node --test --test-concurrency=1 --test-name-pattern=\"^fixed production Site identity agrees with the candidate source-built ABI86$\" test/*.test.mjs"
+        ],
+        "startedUtc": "2026-10-18T10:58:57.798284+00:00",
+        "endedUtc": "2026-10-18T10:59:32.415850+00:00",
+        "exitCode": 0
+      },
+      "nodeHarnessCounts": {
+        "tests": 55,
+        "pass": 55,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "c4e597b678e3cc70cb5525a67e6e1bfe238888aedf2e0c65cc77974ff5d1a851"
+    },
+    "probe-before": {
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "env",
+          "JC066_P2_EXPECT=accept",
+          "JC066_P2_CASES_FILE=/workspace/jc066-p2-evidence-20261018/native-before/repro.json",
+          "JC066_P2_PKG=/workspace/jc066-p2-evidence-20261018/baseline-pkg",
+          "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/baseline-worker",
+          "bash",
+          "-c",
+          "cd sites && exec node --test --test-concurrency=1 probes/jc066-p2-restore.mjs"
+        ],
+        "startedUtc": "2026-10-18T10:58:58.975731+00:00",
+        "endedUtc": "2026-10-18T10:59:06.477188+00:00",
+        "exitCode": 0
+      },
+      "nodeHarnessCounts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "663cd16bf1c63e386d2f19d7cc544b21e6c8101e3627f1ef4d888097a3989324",
+      "diagnostics": [
+        {
+          "case": "entry-deploy-accept",
+          "reject": false,
+          "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+          "stateSha256": "4ab38744047f2e17f14945a29067351bb33dcbd8cbda1d0495196bb56022d3af",
+          "nativeGameAccepted": true,
+          "nativeRoomAccepted": true,
+          "originalViewsAccepted": 4,
+          "mutatedEntrypoints": 6
+        },
+        {
+          "case": "entry-deploy-accept",
+          "reject": false,
+          "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+          "stateSha256": "4ab38744047f2e17f14945a29067351bb33dcbd8cbda1d0495196bb56022d3af",
+          "httpReads": 8,
+          "httpCommands": 2,
+          "reopened": true,
+          "zeroWrites": false,
+          "originalReceiptAfterReopen": true,
+          "roomCommandsJournalUnchanged": false,
+          "syntheticDatabaseRetained": true
+        },
+        {
+          "case": "actor-1",
+          "reject": false,
+          "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+          "stateSha256": "1b961a1e5403fe0d6899fdcd1a5daa7a676fb7e02d1d58b568b4eb8bcdc5679e",
+          "nativeGameAccepted": true,
+          "nativeRoomAccepted": true,
+          "originalViewsAccepted": 4,
+          "mutatedEntrypoints": 6
+        },
+        {
+          "case": "actor-1",
+          "reject": false,
+          "wasmSha256": "a389ee48edb55ef5089a641c781352f8890ea1a6238efd1bde2664fb6f78d30e",
+          "stateSha256": "1b961a1e5403fe0d6899fdcd1a5daa7a676fb7e02d1d58b568b4eb8bcdc5679e",
+          "httpReads": 8,
+          "httpCommands": 2,
+          "reopened": true,
+          "zeroWrites": false,
+          "originalReceiptAfterReopen": true,
+          "roomCommandsJournalUnchanged": false,
+          "syntheticDatabaseRetained": true
+        }
+      ]
+    },
+    "probe-after": {
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "env",
+          "JC066_P2_EXPECT=reject",
+          "JC066_P2_CASES_FILE=/workspace/jc066-p2-evidence-20261018/native-after-final/repro.json",
+          "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/worker-after/server",
+          "bash",
+          "-c",
+          "cd sites && exec node --test --test-concurrency=1 probes/jc066-p2-restore.mjs"
+        ],
+        "startedUtc": "2026-10-18T11:02:16.415194+00:00",
+        "endedUtc": "2026-10-18T11:02:23.217681+00:00",
+        "exitCode": 0
+      },
+      "nodeHarnessCounts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4c8eabbb9f9c5d898b47d87c42fed20b22f07e0c11f50b8cb892d6f4db34cc80",
+      "diagnostics": [
+        {
+          "case": "entry-deploy-accept",
+          "reject": true,
+          "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+          "stateSha256": "4ab38744047f2e17f14945a29067351bb33dcbd8cbda1d0495196bb56022d3af",
+          "nativeGameAccepted": false,
+          "nativeRoomAccepted": false,
+          "originalViewsAccepted": 4,
+          "mutatedEntrypoints": 6
+        },
+        {
+          "case": "entry-deploy-accept",
+          "reject": true,
+          "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+          "stateSha256": "4ab38744047f2e17f14945a29067351bb33dcbd8cbda1d0495196bb56022d3af",
+          "httpReads": 8,
+          "httpCommands": 2,
+          "reopened": true,
+          "zeroWrites": true,
+          "originalReceiptAfterReopen": false,
+          "roomCommandsJournalUnchanged": true,
+          "syntheticDatabaseRetained": true
+        },
+        {
+          "case": "actor-1",
+          "reject": true,
+          "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+          "stateSha256": "1b961a1e5403fe0d6899fdcd1a5daa7a676fb7e02d1d58b568b4eb8bcdc5679e",
+          "nativeGameAccepted": false,
+          "nativeRoomAccepted": false,
+          "originalViewsAccepted": 4,
+          "mutatedEntrypoints": 6
+        },
+        {
+          "case": "actor-1",
+          "reject": true,
+          "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+          "stateSha256": "1b961a1e5403fe0d6899fdcd1a5daa7a676fb7e02d1d58b568b4eb8bcdc5679e",
+          "httpReads": 8,
+          "httpCommands": 2,
+          "reopened": true,
+          "zeroWrites": true,
+          "originalReceiptAfterReopen": false,
+          "roomCommandsJournalUnchanged": true,
+          "syntheticDatabaseRetained": true
+        }
+      ]
+    }
+  },
+  "productChanged": false,
+  "wasmChanged": false,
+  "rebuilt": false,
+  "historicalReceiptsRewritten": false,
+  "notRerun": [
+    "full Native workspace",
+    "full frontend",
+    "full default Worker suite"
+  ],
+  "independentReview": "remaining review pending parent",
+  "published": false,
+  "newOnlineChecks": 0,
+  "onlineGames": 0
+}

@@ -33,3 +33,8 @@
 原完整前端1342未在本轮重跑，使用51项相关组件与实际新核视图、完整生产TS/Vite及167客户端字节相同作适用验证。旧Worker306/全55文件不重跑、不称全绿：既有306首轮294过/12个JZ46测试版本引用失败，修后JZ46文件15过；原覆盖16文件，另5文件6项，依父会话指定范围保留精确边界。不得跨轮相加。
 
 原件、当前生产产物、合成D1和原始证据在 `/workspace/jc066-p2-evidence-20261018`。Git只保存源码/测试/必要材料，没有数据库、编译WASM、缓存、凭据、真实私人数据或聊天内部标识。没有新worktree/子代理、main合并、Site保存/部署或exchange操作；待父会话复审通过后才进入既有Sites发布授权。
+
+
+## Current opt-in probe entrypoint
+
+The dedicated probe has moved out of default test discovery to [`sites/probes/jc066-p2-restore.mjs`](../../../sites/probes/jc066-p2-restore.mjs). Use the explicit before/after commands in [`sites/probes/README.md`](../../../sites/probes/README.md). Default `npm test` remains `node --test test/*.test.mjs`; it no longer imports this probe or adds its mandatory case-file/Worker environment dependencies. Existing tests retain their original build prerequisites. The original receipts/embedded command arrays above are historical execution evidence and remain byte-for-byte unchanged; their old entrypoint path is not a current instruction.

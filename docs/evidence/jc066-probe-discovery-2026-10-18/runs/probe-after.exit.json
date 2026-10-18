@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC066_P2_EXPECT=reject",
+    "JC066_P2_CASES_FILE=/workspace/jc066-p2-evidence-20261018/native-after-final/repro.json",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/jc066-p2-evidence-20261018/worker-after/server",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 probes/jc066-p2-restore.mjs"
+  ],
+  "startedUtc": "2026-10-18T11:02:16.415194+00:00",
+  "endedUtc": "2026-10-18T11:02:23.217681+00:00",
+  "exitCode": 0
+}

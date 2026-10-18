@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "-u",
+    "JC066_P2_CASES_FILE",
+    "-u",
+    "JC066_P2_PKG",
+    "-u",
+    "JC066_P2_EXPECT",
+    "-u",
+    "HEGEMONY_CURRENT_WORKER_DIR",
+    "bash",
+    "-c",
+    "cd sites && exec node --test --test-concurrency=1 --test-name-pattern=\"^fixed production Site identity agrees with the candidate source-built ABI86$\" test/*.test.mjs"
+  ],
+  "startedUtc": "2026-10-18T10:58:57.798284+00:00",
+  "endedUtc": "2026-10-18T10:59:32.415850+00:00",
+  "exitCode": 0
+}

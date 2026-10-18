@@ -1,0 +1,50 @@
+{
+  "infraBaseCommit": "a8bf844c30cf988abb25af73e15951849b5fc93a",
+  "unchangedProductSourceCommit": "fa94ec406a9e8163ed9b42756181bd629d3a129f",
+  "files": {
+    "README.md": {
+      "bytes": 1566,
+      "sha256": "d40c0f475fd122ca466bc561a9233f89d4777ca04c5b4dd7f015ebdee75705bd"
+    },
+    "discovery.json": {
+      "bytes": 2834,
+      "sha256": "c8b1fe2dc5b68e8a5b719daee7b75376ad4b7da92b904fa6140d08427d8b418a"
+    },
+    "isolation.json": {
+      "bytes": 1113,
+      "sha256": "47f31d4b8b02b834afa6cc13b0b81d452268e3bd212e6d869245faaac270c69e"
+    },
+    "runs/default-discovery-smoke.exit.json": {
+      "bytes": 547,
+      "sha256": "34381706c2fd6104e90b0100f7e3a45f09c00a6ea9aa451dc224ef7244921302"
+    },
+    "runs/default-discovery-smoke.log.gz": {
+      "bytes": 948,
+      "sha256": "b13b35befda91e87b35de9afe774aafe0276d8938f63cb1f3445a3aae98b3032"
+    },
+    "runs/probe-after.exit.json": {
+      "bytes": 530,
+      "sha256": "46200c1c16346dfaadc54e9aacd7380c3431becf248b6b2c8a5f764802eff8b1"
+    },
+    "runs/probe-after.log.gz": {
+      "bytes": 558,
+      "sha256": "cf49ecbc6d929d55c831663507c687f55d950e02107140639a28cded73f69602"
+    },
+    "runs/probe-before.exit.json": {
+      "bytes": 592,
+      "sha256": "6bf6625e47c301e0fb2f2cd3103d32ba7df59158c4a28f96813441468742f8cb"
+    },
+    "runs/probe-before.log.gz": {
+      "bytes": 561,
+      "sha256": "0f650195d71081cabe98d976815691e29845bd71471afedbc09aafae7067003a"
+    },
+    "validation-summary.json": {
+      "bytes": 8371,
+      "sha256": "f3b3306aa175cb72150ff3632e26f3a5e629a565d7c93447bb466ad73afdc279"
+    },
+    "verify-isolation.py": {
+      "bytes": 3199,
+      "sha256": "fc2b814c18409754c86b64500f9b7404316f59baff98761373e689c40770a7e6"
+    }
+  }
+}
