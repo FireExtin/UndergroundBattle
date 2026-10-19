@@ -285,7 +285,7 @@ fn jc035_bad_observations_pending_choices_and_frames_reject_both_loaders() {
             0 => { let card = v["attachments"][0]["card"].clone(); v["attachments"] = serde_json::json!([]);
                 v["regions"][0]["cards"].as_array_mut().unwrap().push(card); },
             1 => v["attachments"][0]["card"]["face_down"] = true.into(),
-            2 => v["attachments"][0]["host_id"] = g.players[0].hand[0].id.clone().into(),
+            2 => v["attachments"][0]["hostId"] = g.players[0].hand[0].id.clone().into(),
             3 => { let card = v["attachments"][0]["card"].clone(); v["players"][0]["assets"].as_array_mut().unwrap().push(card); },
             4 => { v["jc035_preparation"] = Value::Null; v["pending"] = Value::Null; v["effects"] = serde_json::json!([]); },
             5 => v["attachments"][0]["card"]["owner"] = 9.into(),
@@ -475,7 +475,9 @@ fn jc035_native89_actual_room_trajectories_and_rejections() {
         let victim = g.make_card("JC125", 2); let sacrifice = victim.id.clone(); g.regions[1].cards.push(victim);
         let mut t = Trace::new("late-shrink-no-retroactive-trigger", &g); t.until_prepare();
         assert!(t.room.game.jc035_preparation.as_ref().unwrap().entries.is_empty());
-        t.respond(2, Action { card_id: Some(reply), cost_selected: Some(vec![sacrifice]), ..Action::new("play") });
+        // No trigger qualified, so no response stack exists yet. This is the
+        // ordinary fast preparation action; its paid spell then opens responses.
+        t.game(2, Action { card_id: Some(reply), cost_selected: Some(vec![sacrifice]), ..Action::new("play") }, true);
         assert_eq!(t.room.game.players[2].hand.len(), 3); assert!(t.room.game.pending.is_none());
         t.settle(); assert_eq!(t.room.game.players[2].hand.len(), 5);
         assert_eq!(t.room.game.regions[0].influence, [0, 0]); scenarios.push(t.finish());

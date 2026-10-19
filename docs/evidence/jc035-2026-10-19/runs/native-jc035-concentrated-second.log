@@ -1,0 +1,116 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `test` profile [unoptimized] target(s) in 1m 53s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-0867f05b501b1373)
+
+running 32 tests
+test jc035_tests::jc035_actual_paid_attachment_all_four_seats_and_temporary_icon ... ok
+test jc035_tests::jc035_bad_observations_pending_choices_and_frames_reject_both_loaders ... ok
+test jc035_tests::jc035_borrowed_attachment_uses_original_controller_for_condition_and_reward ... ok
+test jc035_tests::jc035_multiple_optional_sources_are_ordered_by_controller_then_responded_to ... ok
+test jc035_tests::jc035_native89_actual_room_trajectories_and_rejections ... JC035_NATIVE89_COUNTS {"commands":145,"invalidRestores":47,"projections":620,"rejected":4,"scenarios":13}
+ok
+test jc035_tests::jc035_optional_decline_once_per_preparation_and_no_draw_yet ... ok
+test jc035_tests::jc035_partial_decline_and_next_turn_can_offer_again_after_real_cleanup ... ok
+test jc035_tests::jc035_preparation_condition_is_event_time_snapshot_not_later_hand_changes ... ok
+test jc035_tests::jc035_preparation_threshold_enemy_relation_and_elimination_matrix ... ok
+test jc035_tests::jc035_rejects_underpayment_wrong_loyalty_and_unprinted_play_payload_atomically ... ok
+test jc035_tests::jc035_replaced_region_does_not_receive_old_reward_or_inherit_host ... ok
+test jc035_tests::jc035_source_destroyed_by_real_fast_reply_still_rewards_original_region ... ok
+test jc035_tests::jc035_temporary_investigation_is_local_ready_and_supports_real_rewards_and_privilege ... ok
+test jc035_tests::jc035_whole_print_and_closed_definition ... ok
+test wm056_tests::wm056_actual_duel_adjacency_all_other_live_regions_and_board_edge_no_wrap_in_teams ... ok
+test xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original ... ok
+test xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room ... ok
+test xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment ... ok
+test xq23_tests::xq23_current89_regression_oracles ... XQ23_CURRENT89_COUNTS {"commands":72,"invalidRestores":31,"projections":324,"rejected":5,"scenarios":9}
+ok
+test xq23_tests::xq23_exact_review_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind ... ok
+test xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip ... ok
+test xq23_tests::xq23_printed_retreat_uses_shared_region_return_without_death ... ok
+test xq23_tests::xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_team_score ... XQ23_P2_ELIMINATION {"actualXQ23Conversions":2,"afterControlledAssets":10,"beforeControlledAssets":11,"canLegallyReturnDeadOwnerAsset":false,"commands":166,"deadOwnerHandRepopulated":false,"eliminatedOwner2AssetSurvives":false,"gameContinues":true,"livingOwner3AssetSurvives":true,"livingOwnerHandReceivedOwnCard":true,"owner2EliminatedByNaturalNextTurnEmptyDraw":true,"readyResourcesAfterElimination":10,"realJC129Declarations":2,"teammate3Lives":true}
+ok
+test xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically ... ok
+test xq23_tests::xq23_rejects_unprinted_action_payload_fields_before_payment ... ok
+test xq23_tests::xq23_restore_after_source_control_change_retains_the_paid_actor_asset_destination ... ok
+test xq23_tests::xq23_restore_after_target_control_transfer_keeps_uid_and_fizzles_without_refund ... ok
+test xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset ... ok
+test xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement ... ok
+test xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund ... ok
+test xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted ... ok
+test xq25_tests::xq25_duel_actual_payment_commit_conceal_and_room_restore ... ok
+
+test result: ok. 32 passed; 0 failed; 0 ignored; 0 measured; 1259 filtered out; finished in 38.58s
+
+     Running unittests src/bin/hegemony-audit.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_audit-d1420e0940bec2a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-71d1984f946f9cb7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/attachment_service.rs (/workspace/undergroundbattle-build/target/debug/deps/attachment_service-3a503e4a00ec59a3)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests/bq030_attachment_regression.rs (/workspace/undergroundbattle-build/target/debug/deps/bq030_attachment_regression-4002890d2858daae)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 27 filtered out; finished in 0.00s
+
+     Running tests/deck_construction.rs (/workspace/undergroundbattle-build/target/debug/deps/deck_construction-111ab9ee557f9d91)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests/jc059_friendly.rs (/workspace/undergroundbattle-build/target/debug/deps/jc059_friendly-01cd044da9b290a0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests/room_pacing.rs (/workspace/undergroundbattle-build/target/debug/deps/room_pacing-5e238cf2e36ccfad)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests/service.rs (/workspace/undergroundbattle-build/target/debug/deps/service-ccbd095a6420379b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+     Running tests/session_service.rs (/workspace/undergroundbattle-build/target/debug/deps/session_service-9df0636aaf62a2c6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_wasm-ca8e2926f0194256)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hegemony_server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hegemony_wasm
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,72 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+   Compiling hegemony-wasm v0.1.0 (/workspace/UndergroundBattle/rust-game-wasm)
+    Finished `test` profile [unoptimized] target(s) in 1m 55s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-0867f05b501b1373)
+
+running 32 tests
+test jc035_tests::jc035_actual_paid_attachment_all_four_seats_and_temporary_icon ... 
+thread 'jc035_tests::jc035_actual_paid_attachment_all_four_seats_and_temporary_icon' panicked at rust-game/src/unit_support.rs:63:39:
+called `Result::unwrap()` on an `Err` value: "JC035准备观察的回合、席位或事件身份无效"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test jc035_tests::jc035_bad_observations_pending_choices_and_frames_reject_both_loaders ... 
+thread 'jc035_tests::jc035_bad_observations_pending_choices_and_frames_reject_both_loaders' panicked at rust-game/src/jc035_tests.rs:8:73:
+Game accepted entity-shape-2
+FAILED
+test jc035_tests::jc035_borrowed_attachment_uses_original_controller_for_condition_and_reward ... ok
+test jc035_tests::jc035_multiple_optional_sources_are_ordered_by_controller_then_responded_to ... ok
+test jc035_tests::jc035_native89_actual_room_trajectories_and_rejections ... 
+thread 'jc035_tests::jc035_native89_actual_room_trajectories_and_rejections' panicked at rust-game/src/jc035_tests.rs:399:53:
+response window
+FAILED
+test jc035_tests::jc035_optional_decline_once_per_preparation_and_no_draw_yet ... ok
+test jc035_tests::jc035_partial_decline_and_next_turn_can_offer_again_after_real_cleanup ... ok
+test jc035_tests::jc035_preparation_condition_is_event_time_snapshot_not_later_hand_changes ... ok
+test jc035_tests::jc035_preparation_threshold_enemy_relation_and_elimination_matrix ... ok
+test jc035_tests::jc035_rejects_underpayment_wrong_loyalty_and_unprinted_play_payload_atomically ... ok
+test jc035_tests::jc035_replaced_region_does_not_receive_old_reward_or_inherit_host ... ok
+test jc035_tests::jc035_source_destroyed_by_real_fast_reply_still_rewards_original_region ... ok
+test jc035_tests::jc035_temporary_investigation_is_local_ready_and_supports_real_rewards_and_privilege ... ok
+test jc035_tests::jc035_whole_print_and_closed_definition ... ok
+test wm056_tests::wm056_actual_duel_adjacency_all_other_live_regions_and_board_edge_no_wrap_in_teams ... 
+thread 'wm056_tests::wm056_actual_duel_adjacency_all_other_live_regions_and_board_edge_no_wrap_in_teams' panicked at rust-game/src/jc029_tests.rs:40:71:
+called `Result::unwrap()` on an `Err` value: "JC035准备观察的回合、席位或事件身份无效"
+FAILED
+test xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original ... 
+thread 'xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original' panicked at rust-game/src/unit_support.rs:63:39:
+called `Result::unwrap()` on an `Err` value: "JC035准备观察的回合、席位或事件身份无效"
+FAILED
+test xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room ... ok
+test xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment ... ok
+test xq23_tests::xq23_current89_regression_oracles ... 
+thread 'xq23_tests::xq23_current89_regression_oracles' panicked at rust-game/src/jc029_tests.rs:40:71:
+called `Result::unwrap()` on an `Err` value: "JC035准备观察的回合、席位或事件身份无效"
+FAILED
+test xq23_tests::xq23_exact_review_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind ... ok
+test xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip ... ok
+test xq23_tests::xq23_printed_retreat_uses_shared_region_return_without_death ... ok
+test xq23_tests::xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_team_score ... XQ23_P2_ELIMINATION {"actualXQ23Conversions":2,"afterControlledAssets":10,"beforeControlledAssets":11,"canLegallyReturnDeadOwnerAsset":false,"commands":166,"deadOwnerHandRepopulated":false,"eliminatedOwner2AssetSurvives":false,"gameContinues":true,"livingOwner3AssetSurvives":true,"livingOwnerHandReceivedOwnCard":true,"owner2EliminatedByNaturalNextTurnEmptyDraw":true,"readyResourcesAfterElimination":10,"realJC129Declarations":2,"teammate3Lives":true}
+ok
+test xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically ... ok
+test xq23_tests::xq23_rejects_unprinted_action_payload_fields_before_payment ... ok
+test xq23_tests::xq23_restore_after_source_control_change_retains_the_paid_actor_asset_destination ... ok
+test xq23_tests::xq23_restore_after_target_control_transfer_keeps_uid_and_fizzles_without_refund ... ok
+test xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset ... ok
+test xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement ... ok
+test xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund ... ok
+test xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted ... ok
+test xq25_tests::xq25_duel_actual_payment_commit_conceal_and_room_restore ... ok
+
+failures:
+
+failures:
+    jc035_tests::jc035_actual_paid_attachment_all_four_seats_and_temporary_icon
+    jc035_tests::jc035_bad_observations_pending_choices_and_frames_reject_both_loaders
+    jc035_tests::jc035_native89_actual_room_trajectories_and_rejections
+    wm056_tests::wm056_actual_duel_adjacency_all_other_live_regions_and_board_edge_no_wrap_in_teams
+    xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original
+    xq23_tests::xq23_current89_regression_oracles
+
+test result: FAILED. 26 passed; 6 failed; 0 ignored; 0 measured; 1259 filtered out; finished in 20.49s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

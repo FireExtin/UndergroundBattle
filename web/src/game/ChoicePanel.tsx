@@ -57,6 +57,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const [search, setSearch] = useState('');
   const [selectedOnly, setSelectedOnly] = useState(false);
   const ordering = choice.kind === 'order' || choice.kind === 'investigation';
+  const triggerOrder = choice.kind === 'jc054-trigger-order' || choice.kind === 'jc035-preparation-order';
   const damage = choice.kind === 'damage';
   const filterable = !ordering && !damage && choice.options.length > 6;
   const query = search.trim().toLocaleLowerCase();
@@ -198,7 +199,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
         return <div key={option.id} className="hg-choice-option-entry"><button type="button" data-choice-option={option.id} data-choice-target-number={option.card?.region === undefined ? undefined : index + 1} data-choice-candidate-number={candidateNumber} className={`hg-choice-option ${isSelected ? 'hg-selected' : ''}`} disabled={busy || atLimit} onKeyDown={event => moveCardGridFocus(event, optionsRegion.current, '.hg-choice-option')} onClick={() => choose(option.id)} aria-pressed={isSelected} aria-describedby={max > 0 ? selectionHintId : undefined}>
         <span className="hg-choice-selection-state" aria-hidden="true"><span className="hg-choice-check">{isSelected ? selectedIndex + 1 : '+'}</span><span>{isSelected ? '已选 · 再点取消' : atLimit ? '已达上限' : max === 1 && selected.length > 0 ? '换选此项' : '点击选择'}</span></span>
         {candidateNumber && <span className="hg-choice-candidate" id={contextId}>候选 {candidateNumber}</span>}
-        {option.card?.region !== undefined && <span className="hg-choice-target-context" id={contextId}><span className="hg-target-number" style={{ color: 'inherit', marginLeft: 0 }}>{choice.kind === 'jc054-trigger-order' ? '触发' : '目标'} {index + 1}</span>{' '}<small>{playerLabels?.[option.card.owner] || option.card.owner} 拥有{option.card.controller !== option.card.owner && ` · ${playerLabels?.[option.card.controller] || option.card.controller} 操控`} · 地区 {option.card.region + 1}{choice.kind === 'jc054-trigger-order' && ` · #${instanceTag(option.card.instanceId)}`}</small></span>}
+        {option.card?.region !== undefined && <span className="hg-choice-target-context" id={contextId}><span className="hg-target-number" style={{ color: 'inherit', marginLeft: 0 }}>{triggerOrder ? '触发' : '目标'} {index + 1}</span>{' '}<small>{playerLabels?.[option.card.owner] || option.card.owner} 拥有{option.card.controller !== option.card.owner && ` · ${playerLabels?.[option.card.controller] || option.card.controller} 操控`} · 地区 {option.card.region + 1}{triggerOrder && ` · #${instanceTag(option.card.instanceId)}`}</small></span>}
         {option.card ? <CardContent card={option.card} definition={definitions.get(option.card.cardId || '')} viewerId={viewerId} /> : <strong className="hg-choice-option-label">{option.label}</strong>}
       </button>{option.card && onReadCard && <button type="button" className="hg-choice-read hg-small-read" aria-label={`放大阅读${viewerId ? visibleCard(option.card, viewerId).name : option.card.name}`} aria-describedby={contextId} onClick={() => readCard(option.card!)}>放大文字与图标 ↗</button>}</div>;
       })}</div>
@@ -207,7 +208,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     </>}
     </div>
     <div className="hg-choice-footer"><span className="hg-choice-summary">{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}
-      {choice.kind === 'jc054-trigger-order' && selected.length === 1 && <small className="hg-trigger-order-selection" aria-live="polite">下一项入栈：{label(selected[0])}</small>}
+      {triggerOrder && selected.length === 1 && <small className="hg-trigger-order-selection" aria-live="polite">下一项入栈：{label(selected[0])}</small>}
       {!damage && !ordering && max > 0 && <small id={selectionHintId}>{selectionHint}</small>}</span>
       <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : choice.kind === 'wm062-adjacent-move' ? '不移动并确认' : '跳过此选择'}</button>}
       <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>

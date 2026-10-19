@@ -146,10 +146,10 @@ impl Game {
     }
     fn jc035_context(&self) -> RuleResult<&PreparationObservation> {
         let o = self.jc035_preparation.as_ref().ok_or("JC035缺少准备步骤观察")?;
-        if o.turn == 0 || o.turn != self.turn || o.first_team != self.first_team || o.first_team > 1
-            || o.hands.len() != self.players.len()
+        if o.turn == 0 || o.turn > self.turn || o.first_team > 1 || o.hands.len() != self.players.len()
             || o.hands.iter().enumerate().any(|(seat, h)| h.seat != seat
                 || h.eliminated && !self.players[seat].eliminated)
+            || (!o.entries.is_empty() && (o.turn != self.turn || o.first_team != self.first_team))
             || (o.entries.is_empty() != o.event_id.is_none())
             || o.event_id.as_ref().is_some_and(|id| id.is_empty()) {
             return Err("JC035准备观察的回合、席位或事件身份无效".into());
