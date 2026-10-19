@@ -818,5 +818,10 @@
     "url": "/cards/JC041.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC041 禁婆.jpg",
     "sha256": "6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89"
+  },
+  "XQ23": {
+    "url": "/cards/XQ23.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ23 谨慎的办事员.jpg",
+    "sha256": "7370d343be9e467716a3d7ada1d95abc012f5901ed15629e2f8d18065ea0769e"
   }
 }

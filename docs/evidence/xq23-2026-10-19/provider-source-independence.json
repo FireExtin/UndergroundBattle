@@ -1,0 +1,291 @@
+{
+  "checkedUtc": "2026-10-19T02:27:14.943685+00:00",
+  "reason": "Prior publication staged immutable source with hard links. Candidate edits exposed sharing; separate provider inodes now preserve published checkout and candidate independently.",
+  "providerHeadUnchanged": "0bf3a2793b0e4d28d4324b8251cebde685c8c085",
+  "sharedSourceFilesIsolated": 44,
+  "explainedDirtyPathsBefore": [
+    "rust-game-wasm/tests/current87-kernel.mjs",
+    "rust-game/data/cards.json",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/lib.rs",
+    "rust-game/src/model.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/rules.rs",
+    "tools/frozen-kernels.mjs",
+    "tools/jc041-oracle.mjs",
+    "web/public/card-scans.json",
+    "web/src/game/cardScans.ts"
+  ],
+  "unknownChangesDiscarded": 0,
+  "candidateBytesUnchanged": true,
+  "providerCleanAfter": true,
+  "sourceFiles": [
+    {
+      "providerPath": "src/kernel.mjs",
+      "gameSource": "sites/src/kernel.mjs",
+      "providerPublishedBlobSha256": "a6bcd0d7319f90687a4e8e7de3f23e85e49ba72cf70756ca082ff1cb0a44c43e",
+      "candidateBytesPreservedSha256": "a6bcd0d7319f90687a4e8e7de3f23e85e49ba72cf70756ca082ff1cb0a44c43e"
+    },
+    {
+      "providerPath": "test/kernel-binding.test.mjs",
+      "gameSource": "sites/test/kernel-binding.test.mjs",
+      "providerPublishedBlobSha256": "2130ed6e4d3badbd1376f1929f6a34e795a2c504316479b493c70beff7d96c5b",
+      "candidateBytesPreservedSha256": "2130ed6e4d3badbd1376f1929f6a34e795a2c504316479b493c70beff7d96c5b"
+    },
+    {
+      "providerPath": "scripts/build.mjs",
+      "gameSource": "sites/scripts/build.mjs",
+      "providerPublishedBlobSha256": "d4b0bb3590a6e6c34ed24c26bff309707ae4e77f70fd66a299d0912740d845ab",
+      "candidateBytesPreservedSha256": "d4b0bb3590a6e6c34ed24c26bff309707ae4e77f70fd66a299d0912740d845ab"
+    },
+    {
+      "providerPath": "tools/frozen-kernels.mjs",
+      "gameSource": "tools/frozen-kernels.mjs",
+      "providerPublishedBlobSha256": "75cd19285e0a49e6e579479801e22dcb29b36f22969543d15a832f508d66827d",
+      "candidateBytesPreservedSha256": "2028bf7eb84aa8d3518fb835268be0229daed4e7f4181115c50203a9001183d0"
+    },
+    {
+      "providerPath": "rust-game/data/cards.json",
+      "gameSource": "rust-game/data/cards.json",
+      "providerPublishedBlobSha256": "c8e3e3280f99b5847cae7c2f7eda696167b9450694c6fb4bfdb7950614b50e08",
+      "candidateBytesPreservedSha256": "53d2f287a570b63343fe22b0a0c465f1a4c78144c8d117a17cda75943a779eba"
+    },
+    {
+      "providerPath": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "gameSource": "web/src/game/JZ55UniqueDestroy.test.jsx",
+      "providerPublishedBlobSha256": "bef6bf1ba86c389e6facc972fa7443acc65803c5893043ba92d4bb271b9851bc",
+      "candidateBytesPreservedSha256": "bef6bf1ba86c389e6facc972fa7443acc65803c5893043ba92d4bb271b9851bc"
+    },
+    {
+      "providerPath": "web/src/game/cardScans.ts",
+      "gameSource": "web/src/game/cardScans.ts",
+      "providerPublishedBlobSha256": "9fa32eec98f644aed428f67c0fe6a86602fe13d2ede390e0b8e20635050be7dc",
+      "candidateBytesPreservedSha256": "3de2589e7af716d6c413e0dfad435805abbf213df3b6301627f4fcf4a41059ac"
+    },
+    {
+      "providerPath": "web/public/card-scans.json",
+      "gameSource": "web/public/card-scans.json",
+      "providerPublishedBlobSha256": "7b8e4a734bcb3360acf719d0d05b4170c069aadfbc565e26cedf115af4e09536",
+      "candidateBytesPreservedSha256": "a6c5db59ffd29631e919273b6b61e342694fe037eff81c37786e74644eeb1a89"
+    },
+    {
+      "providerPath": "rust-game/src/bounded_search_tests.rs",
+      "gameSource": "rust-game/src/bounded_search_tests.rs",
+      "providerPublishedBlobSha256": "e61512f04e440a90db3ea5d4a2cc69120fb92c85a87c08de28fc8fa7e8e81976",
+      "candidateBytesPreservedSha256": "e61512f04e440a90db3ea5d4a2cc69120fb92c85a87c08de28fc8fa7e8e81976"
+    },
+    {
+      "providerPath": "rust-game/src/catalog.rs",
+      "gameSource": "rust-game/src/catalog.rs",
+      "providerPublishedBlobSha256": "66f78b08d400ae1fc6b70cc32356968d5310f3cfac7802419906565add66ad83",
+      "candidateBytesPreservedSha256": "f22e4e8bc9c9f2c5137fc022eb1784f645b92d4ed95c84fe9a8486d6539f5cae"
+    },
+    {
+      "providerPath": "rust-game/src/deck_seal_search_tests.rs",
+      "gameSource": "rust-game/src/deck_seal_search_tests.rs",
+      "providerPublishedBlobSha256": "a37e5255e9e2474b62bfb6d19365cfcd50d5ad15b25a2e511f599d7630613a80",
+      "candidateBytesPreservedSha256": "a37e5255e9e2474b62bfb6d19365cfcd50d5ad15b25a2e511f599d7630613a80"
+    },
+    {
+      "providerPath": "rust-game/src/engine.rs",
+      "gameSource": "rust-game/src/engine.rs",
+      "providerPublishedBlobSha256": "88b6a473c88a27a656e33332e27d719ee30930a09227efcb9481bcab3650ae42",
+      "candidateBytesPreservedSha256": "51c3d38097b9363d2c46cbc6ff0465e42d8000a6725bdb3dd6a05347bd7a5953"
+    },
+    {
+      "providerPath": "rust-game/src/gray_lock_tests.rs",
+      "gameSource": "rust-game/src/gray_lock_tests.rs",
+      "providerPublishedBlobSha256": "c1a66c5c85f413d00755d8660420119acb7297fcb2c583b3047482f06f1efae5",
+      "candidateBytesPreservedSha256": "c1a66c5c85f413d00755d8660420119acb7297fcb2c583b3047482f06f1efae5"
+    },
+    {
+      "providerPath": "rust-game/src/jc089_tests.rs",
+      "gameSource": "rust-game/src/jc089_tests.rs",
+      "providerPublishedBlobSha256": "feabd03296b40e8398c455bb1c6a1bf40850dc9e49cc936b071ef6be9635f34e",
+      "candidateBytesPreservedSha256": "feabd03296b40e8398c455bb1c6a1bf40850dc9e49cc936b071ef6be9635f34e"
+    },
+    {
+      "providerPath": "rust-game/src/lib.rs",
+      "gameSource": "rust-game/src/lib.rs",
+      "providerPublishedBlobSha256": "aedc91cfdaad4b1f9f4292b7fca8bc5a85aae0b084380d261adbfeb420d0bf0a",
+      "candidateBytesPreservedSha256": "5d84e8a82bfd0e7b3d44d9ad6b1c5bef82b2a0df005a4a6c802dc0a68c886b6c"
+    },
+    {
+      "providerPath": "rust-game/src/model.rs",
+      "gameSource": "rust-game/src/model.rs",
+      "providerPublishedBlobSha256": "707eb45d9c6ea9a450a594ac06d579f7cf64bd0ff477d51037c8d07aa1fb871d",
+      "candidateBytesPreservedSha256": "1987d1b3092b92572dbfd013717c1150b1530802375d5b113b77fa87b2e7c86c"
+    },
+    {
+      "providerPath": "rust-game/src/renown_tests.rs",
+      "gameSource": "rust-game/src/renown_tests.rs",
+      "providerPublishedBlobSha256": "4ba728cc549f72f7c31da047fd19ac5f2e7b323234ab30e82133fc198225c0ce",
+      "candidateBytesPreservedSha256": "4ba728cc549f72f7c31da047fd19ac5f2e7b323234ab30e82133fc198225c0ce"
+    },
+    {
+      "providerPath": "rust-game/src/resolution.rs",
+      "gameSource": "rust-game/src/resolution.rs",
+      "providerPublishedBlobSha256": "53af488af1b4db33477cddb8de8c57cccc49b92467c58e8493f4e912973b6439",
+      "candidateBytesPreservedSha256": "198cbba28fa406694471db41268c5153a85c542bfe2f47b39a482cb991a21ab2"
+    },
+    {
+      "providerPath": "rust-game/src/room.rs",
+      "gameSource": "rust-game/src/room.rs",
+      "providerPublishedBlobSha256": "f7f9a55a718696d036c21b55d89f22884a8478ac05296649aa1c538feef5883c",
+      "candidateBytesPreservedSha256": "f7f9a55a718696d036c21b55d89f22884a8478ac05296649aa1c538feef5883c"
+    },
+    {
+      "providerPath": "rust-game/src/rules.rs",
+      "gameSource": "rust-game/src/rules.rs",
+      "providerPublishedBlobSha256": "6a90d3ecb2bfef73a5c5bb77a0d0dbb1874e5e2d9648541f26861b390c6de8d9",
+      "candidateBytesPreservedSha256": "1f97294f2e358c1b291393f5a4d6b2dd4c7ff7fbec043c2e3dad2e1ec5bad9ed"
+    },
+    {
+      "providerPath": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "gameSource": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "providerPublishedBlobSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed",
+      "candidateBytesPreservedSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "providerPath": "rust-game-wasm/tests/current86-kernel.mjs",
+      "gameSource": "rust-game-wasm/tests/current86-kernel.mjs",
+      "providerPublishedBlobSha256": "9a53dceee0a266de363351a28d515b05c3d7fbf8100a737a7e433da2e94a29de",
+      "candidateBytesPreservedSha256": "9a53dceee0a266de363351a28d515b05c3d7fbf8100a737a7e433da2e94a29de"
+    },
+    {
+      "providerPath": "rust-game/src/jc066_tests.rs",
+      "gameSource": "rust-game/src/jc066_tests.rs",
+      "providerPublishedBlobSha256": "1652f4c486dec5f4cda655b168254df625ce1e9ad2533a69313c0cd56442acff",
+      "candidateBytesPreservedSha256": "1652f4c486dec5f4cda655b168254df625ce1e9ad2533a69313c0cd56442acff"
+    },
+    {
+      "providerPath": "tools/cards/jc066-source.test.mjs",
+      "gameSource": "tools/cards/jc066-source.test.mjs",
+      "providerPublishedBlobSha256": "2d29f4bc9b6ae855b59763ad67bb2c454ba84c63432e51854e044e39b8408561",
+      "candidateBytesPreservedSha256": "2d29f4bc9b6ae855b59763ad67bb2c454ba84c63432e51854e044e39b8408561"
+    },
+    {
+      "providerPath": "tools/jc066-oracle.mjs",
+      "gameSource": "tools/jc066-oracle.mjs",
+      "providerPublishedBlobSha256": "83e3605d22651e3ee2ff36da5ee6cdb85f944d39eab76fb3721356a903a5858c",
+      "candidateBytesPreservedSha256": "83e3605d22651e3ee2ff36da5ee6cdb85f944d39eab76fb3721356a903a5858c"
+    },
+    {
+      "providerPath": "rust-game-wasm/frozen/abi86/identity.json",
+      "gameSource": "rust-game-wasm/frozen/abi86/identity.json",
+      "providerPublishedBlobSha256": "aa428734bbb9954249d725d407f560b2dedd4b5c019635c8262b66be64812e6e",
+      "candidateBytesPreservedSha256": "aa428734bbb9954249d725d407f560b2dedd4b5c019635c8262b66be64812e6e"
+    },
+    {
+      "providerPath": "rust-game-wasm/frozen/abi86/native-source-binding.json",
+      "gameSource": "rust-game-wasm/frozen/abi86/native-source-binding.json",
+      "providerPublishedBlobSha256": "bffb832193fbcdd27de68dc02110a59dad6697b681c2141b0b7e639888dffb7d",
+      "candidateBytesPreservedSha256": "bffb832193fbcdd27de68dc02110a59dad6697b681c2141b0b7e639888dffb7d"
+    },
+    {
+      "providerPath": "rust-game-wasm/tests/current87-kernel.mjs",
+      "gameSource": "rust-game-wasm/tests/current87-kernel.mjs",
+      "providerPublishedBlobSha256": "7675c48106c0a74266fbcd8059eb14584b96c94201fad72f4f0df65143a94835",
+      "candidateBytesPreservedSha256": "195492d81da8c13e9b21c2845cbe0e61f70a9a8aa1ce72946cdf786d74334ff8"
+    },
+    {
+      "providerPath": "rust-game-wasm/tests/jc041Native87.fixture.json.gz",
+      "gameSource": "rust-game-wasm/tests/jc041Native87.fixture.json.gz",
+      "providerPublishedBlobSha256": "23b52be411f7f1f692bb3a4fdfc2b009597990670199d1e93ead4acc7ff84bf1",
+      "candidateBytesPreservedSha256": "23b52be411f7f1f692bb3a4fdfc2b009597990670199d1e93ead4acc7ff84bf1"
+    },
+    {
+      "providerPath": "rust-game-wasm/tests/jc041P2.original-room.json",
+      "gameSource": "rust-game-wasm/tests/jc041P2.original-room.json",
+      "providerPublishedBlobSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c",
+      "candidateBytesPreservedSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c"
+    },
+    {
+      "providerPath": "rust-game/src/jc041.rs",
+      "gameSource": "rust-game/src/jc041.rs",
+      "providerPublishedBlobSha256": "3fae814b66d47d3185bcef20aaa2c42f996fba9863aeb1e7a7af5574be44cd6b",
+      "candidateBytesPreservedSha256": "3fae814b66d47d3185bcef20aaa2c42f996fba9863aeb1e7a7af5574be44cd6b"
+    },
+    {
+      "providerPath": "rust-game/src/jc041_tests.rs",
+      "gameSource": "rust-game/src/jc041_tests.rs",
+      "providerPublishedBlobSha256": "69fa3420244a3ae0e293e9738cbfb7261a77d5eec17d55a1bc518ed8451e4d6c",
+      "candidateBytesPreservedSha256": "69fa3420244a3ae0e293e9738cbfb7261a77d5eec17d55a1bc518ed8451e4d6c"
+    },
+    {
+      "providerPath": "probes/jc041-p2-source-region.mjs",
+      "gameSource": "sites/probes/jc041-p2-source-region.mjs",
+      "providerPublishedBlobSha256": "9ec9d63ef8420b5fcc9efecbb7cf56fe8a8c2398908cd94174e69d333cdd0d7d",
+      "candidateBytesPreservedSha256": "9ec9d63ef8420b5fcc9efecbb7cf56fe8a8c2398908cd94174e69d333cdd0d7d"
+    },
+    {
+      "providerPath": "test/jc041-entry.test.mjs",
+      "gameSource": "sites/test/jc041-entry.test.mjs",
+      "providerPublishedBlobSha256": "f80304369b46393a2b2cc3a11a2789e81c142e23f234d3ea673d691ed886d0dc",
+      "candidateBytesPreservedSha256": "f80304369b46393a2b2cc3a11a2789e81c142e23f234d3ea673d691ed886d0dc"
+    },
+    {
+      "providerPath": "test/jc041-integration.test.mjs",
+      "gameSource": "sites/test/jc041-integration.test.mjs",
+      "providerPublishedBlobSha256": "ec205914fd5b049ece3147ff3875a05a0cbac6b97b1ae950b6b9ac8606adf00d",
+      "candidateBytesPreservedSha256": "ec205914fd5b049ece3147ff3875a05a0cbac6b97b1ae950b6b9ac8606adf00d"
+    },
+    {
+      "providerPath": "test/jc041-kernel-routing.test.mjs",
+      "gameSource": "sites/test/jc041-kernel-routing.test.mjs",
+      "providerPublishedBlobSha256": "c571badd4a3f29a9078ea96c0b067cf6dc872a3aa71fdae14c9a1109850f8d0b",
+      "candidateBytesPreservedSha256": "c571badd4a3f29a9078ea96c0b067cf6dc872a3aa71fdae14c9a1109850f8d0b"
+    },
+    {
+      "providerPath": "test/jc041-retained-http.test.mjs",
+      "gameSource": "sites/test/jc041-retained-http.test.mjs",
+      "providerPublishedBlobSha256": "23ca0dbdf0fe0867388ff87d35ce2d2dd83f162f14d5c601090476055bae9746",
+      "candidateBytesPreservedSha256": "23ca0dbdf0fe0867388ff87d35ce2d2dd83f162f14d5c601090476055bae9746"
+    },
+    {
+      "providerPath": "tools/build-jc041-p2-clock-worker.mjs",
+      "gameSource": "tools/build-jc041-p2-clock-worker.mjs",
+      "providerPublishedBlobSha256": "643cf890d3d9ac84c220d83954eab8a0fa557d40722ec62ebe95c5d1a0ceffc0",
+      "candidateBytesPreservedSha256": "643cf890d3d9ac84c220d83954eab8a0fa557d40722ec62ebe95c5d1a0ceffc0"
+    },
+    {
+      "providerPath": "tools/cards/jc041-source.test.mjs",
+      "gameSource": "tools/cards/jc041-source.test.mjs",
+      "providerPublishedBlobSha256": "8f41da3613db62aac14b09975c66906e9406a3447a1c6c9346ac2735dcd9e3f2",
+      "candidateBytesPreservedSha256": "8f41da3613db62aac14b09975c66906e9406a3447a1c6c9346ac2735dcd9e3f2"
+    },
+    {
+      "providerPath": "tools/frontend/jc041-http-four-clients-qa.mjs",
+      "gameSource": "tools/frontend/jc041-http-four-clients-qa.mjs",
+      "providerPublishedBlobSha256": "7954e2623abd5ebb5a9d6af94f2651ef232ef7e4c969a5dad138222ea2436178",
+      "candidateBytesPreservedSha256": "7954e2623abd5ebb5a9d6af94f2651ef232ef7e4c969a5dad138222ea2436178"
+    },
+    {
+      "providerPath": "tools/frozen-abi86.test.mjs",
+      "gameSource": "tools/frozen-abi86.test.mjs",
+      "providerPublishedBlobSha256": "2666ee88b40dd706971b1a61f8ca4bec89d3b7e1512615d550f767137cc7e008",
+      "candidateBytesPreservedSha256": "2666ee88b40dd706971b1a61f8ca4bec89d3b7e1512615d550f767137cc7e008"
+    },
+    {
+      "providerPath": "tools/jc041-oracle.mjs",
+      "gameSource": "tools/jc041-oracle.mjs",
+      "providerPublishedBlobSha256": "7dafd37028d7e25a2921388778795ced379ea29009bfb428f6f7b1374908d944",
+      "candidateBytesPreservedSha256": "47713d34b24c38954172d30aea3e560e659c5b4e59da01f52c59040c3c2b8c96"
+    },
+    {
+      "providerPath": "web/public/cards/JC041.jpg",
+      "gameSource": "web/public/cards/JC041.jpg",
+      "providerPublishedBlobSha256": "6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89",
+      "candidateBytesPreservedSha256": "6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89"
+    },
+    {
+      "providerPath": "web/src/game/JC041Native87.test.jsx",
+      "gameSource": "web/src/game/JC041Native87.test.jsx",
+      "providerPublishedBlobSha256": "1f32324a6dc032e31b965f707e5527be5082d412491a3564db1a1d09c2a808fe",
+      "candidateBytesPreservedSha256": "1f32324a6dc032e31b965f707e5527be5082d412491a3564db1a1d09c2a808fe"
+    }
+  ],
+  "productionDistUnchanged": true,
+  "noResetOrPushOrDeployment": true
+}

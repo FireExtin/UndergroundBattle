@@ -1,0 +1,87 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: `hegemony-server` (lib test) generated 1 warning (run `cargo fix --lib -p hegemony-server --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized] target(s) in 1m 27s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 9 tests
+test xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original ... FAILED
+test xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room ... FAILED
+test xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment ... FAILED
+test xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip ... FAILED
+test xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically ... FAILED
+test xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset ... FAILED
+test xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement ... FAILED
+test xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund ... FAILED
+test xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted ... FAILED
+
+failures:
+
+---- xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original stdout ----
+
+thread 'xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room stdout ----
+
+thread 'xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment stdout ----
+
+thread 'xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip stdout ----
+
+thread 'xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically stdout ----
+
+thread 'xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset stdout ----
+
+thread 'xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement stdout ----
+
+thread 'xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund stdout ----
+
+thread 'xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+---- xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted stdout ----
+
+thread 'xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted' panicked at rust-game/src/rules.rs:3956:37:
+Invalid released rule declaration: XQ23: only the admitted one attachment-or-asset destruction is supported
+
+
+failures:
+    xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original
+    xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room
+    xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment
+    xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip
+    xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically
+    xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset
+    xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement
+    xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund
+    xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted
+
+test result: FAILED. 0 passed; 9 failed; 0 ignored; 0 measured; 1245 filtered out; finished in 0.14s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

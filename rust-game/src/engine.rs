@@ -602,6 +602,7 @@ impl Game {
         self.validate_jc044_state()?;
         self.validate_jc066_state()?;
         self.validate_jc041_state()?;
+        self.validate_xq23_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -614,6 +615,7 @@ impl Game {
         next.validate_jc044_state()?;
         next.validate_jc066_state()?;
         next.validate_jc041_state()?;
+        next.validate_xq23_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -690,6 +692,7 @@ impl Game {
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
                 crate::jc041::validate_character_action(&c.definition, &a)?;
+                crate::xq23::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -763,6 +766,7 @@ impl Game {
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
                 crate::jc041::validate_character_action(&c.definition, &a)?;
+                crate::xq23::validate_character_action(&c.definition, &a)?;
                 crate::jc054::validate_character_action(&c.definition, &a)?;
                 crate::jc095::validate_character_action(&c.definition, &a)?;
                 crate::bq035::validate_character_action(&c.definition, &a)?;
@@ -1097,6 +1101,7 @@ impl Game {
         self.validate_jc044_frame(&frame)?;
         self.validate_jc066_frame(&frame)?;
         self.validate_jc041_frame(&frame)?;
+        self.validate_xq23_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1974,6 +1979,7 @@ impl Game {
         self.validate_jc044_state()?;
         self.validate_jc066_state()?;
         self.validate_jc041_state()?;
+        self.validate_xq23_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;

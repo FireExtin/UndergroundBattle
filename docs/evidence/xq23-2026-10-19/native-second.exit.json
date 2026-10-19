@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "-p",
+    "hegemony-server",
+    "--no-default-features",
+    "xq23",
+    "--",
+    "--test-threads=1"
+  ],
+  "startedUtc": "2026-10-19T02:20:51.586263+00:00",
+  "finishedUtc": "2026-10-19T02:22:19.120437+00:00",
+  "exitCode": 101,
+  "log": "/workspace/xq23-evidence-20261019/native-second.log"
+}

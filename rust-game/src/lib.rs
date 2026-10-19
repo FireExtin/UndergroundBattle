@@ -32,6 +32,9 @@ mod jc057;
 mod jc044;
 mod jc066;
 mod jc041;
+mod xq23;
+#[cfg(test)]
+mod xq23_tests;
 #[cfg(test)]
 mod jc041_tests;
 #[cfg(test)]

@@ -5,7 +5,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 // The private Site source is a bounded standalone checkout with web/core sources.
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { buildEnvironment } = await import(pathToFileURL(root + 'tools/build-storage.mjs').href);
-const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79, stageFrozenAbi80, stageFrozenAbi81, stageFrozenAbi82, stageFrozenAbi83, stageFrozenAbi84, stageFrozenAbi85, stageFrozenAbi86 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
+const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79, stageFrozenAbi80, stageFrozenAbi81, stageFrozenAbi82, stageFrozenAbi83, stageFrozenAbi84, stageFrozenAbi85, stageFrozenAbi86, stageFrozenAbi87 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
 const buildEnv = buildEnvironment(root, [root + 'web/dist', project + 'public', project + 'generated', project + 'dist', project + '.wrangler', project + '.wrangler/config']);
 execFileSync('npm', ['run', 'build'], { cwd: root + 'web', stdio: 'inherit', env: buildEnv });
 rmSync(project + 'public', { recursive: true, force: true });
@@ -24,6 +24,7 @@ stageFrozenAbi83(project + 'generated/abi83');
 stageFrozenAbi84(project + 'generated/abi84');
 stageFrozenAbi85(project + 'generated/abi85');
 stageFrozenAbi86(project + 'generated/abi86');
+stageFrozenAbi87(project + 'generated/abi87');
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });

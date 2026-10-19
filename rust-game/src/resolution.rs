@@ -449,7 +449,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
@@ -544,6 +544,12 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        if definition == "XQ23" && *a != (Action {
+            card_id: a.card_id.clone(), target_id: a.target_id.clone(), ability_id: a.ability_id.clone(),
+            ..Action::new(&a.kind)
+        }) {
+            return Err("XQ23行动只声明原来源和一个本方资产目标".into());
+        }
         if definition == "WM023" && *a != (Action {
             card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), region: a.region,
             ..Action::new(&a.kind)
@@ -609,6 +615,11 @@ impl Game {
     ) -> bool {
         match spec.zone {
             Zone::AttachmentOrAsset => {
+                if spec.predicate == Some(TargetPredicate::XQ23ActorAsset) {
+                    return source.card.definition == "XQ23" && self.asset_location(id)
+                        .is_some_and(|(seat, index)| seat == actor && self.players[seat].assets[index].controller == actor
+                            && !self.players[seat].assets[index].face_down);
+                }
                 self.asset_location(id)
                     .is_some_and(|(s, i)| !self.players[s].assets[i].face_down)
                     || self
@@ -708,6 +719,7 @@ impl Game {
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
+                                rules::TargetPredicate::XQ23ActorAsset => false,
                                 rules::TargetPredicate::XQ18CharacterOrAttachment => {
                                     self.xq18_character_or_attachment(source, c)
                                 }
@@ -1114,6 +1126,7 @@ impl Game {
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
+        self.validate_xq23_declaration(&declaration)?;
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc046_declare(declaration.clone())? {
@@ -1194,8 +1207,10 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
+        self.validate_xq23_declaration(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
+        self.validate_xq23_declaration(&declaration)?;
         self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {
@@ -1454,6 +1469,7 @@ impl Game {
         self.validate_jc044_frame(&frame)?;
         self.validate_jc066_frame(&frame)?;
         self.validate_jc041_frame(&frame)?;
+        self.validate_xq23_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1479,6 +1495,7 @@ impl Game {
                 Op::JZ46InspectHiddenCriminal => return self.jz46_inspect_start(frame),
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
+                Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),

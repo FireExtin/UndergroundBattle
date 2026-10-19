@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "-p",
+    "hegemony-server",
+    "--no-default-features",
+    "xq23",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-19T02:28:12.580356+00:00",
+  "finishedUtc": "2026-10-19T02:30:00.515776+00:00",
+  "exitCode": 101,
+  "log": "/workspace/xq23-evidence-20261019/native-fourth.log"
+}

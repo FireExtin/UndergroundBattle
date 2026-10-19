@@ -89,6 +89,7 @@ pub enum TargetPredicate {
     JZ55UniqueCharacter,
     JC069LockedAnchor,
     XQ18CharacterOrAttachment,
+    XQ23ActorAsset,
     JZ45LockedLocalTarget,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -240,6 +241,7 @@ pub enum Op {
     JC057InspectTargetHand,
     JC066SealLocalTargetOnSource,
     JC041RevealOriginalHidden,
+    XQ23ReturnAssetThenBecomeAsset,
     BQ030AttachmentDraw {
         observation: Option<Box<crate::model::AttachmentEvent>>,
     },
@@ -556,6 +558,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::jc044::validate_ability(card_id, ability)?;
     crate::jc066::validate_ability(card_id, ability)?;
     crate::jc041::validate_ability(card_id, ability)?;
+    crate::xq23::validate_ability(card_id, ability)?;
     crate::wm038::validate_ability(card_id, ability)?;
     crate::jz35::validate_ability(card_id, ability)?;
     crate::jc052::validate_ability(card_id, ability)?;
@@ -756,11 +759,12 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
             "JC069" => gray_lock_definition("JC069"),
+            "XQ23" => Some(crate::xq23::definition()),
             _ => None,
         };
         if admitted.is_none_or(|d| !d.abilities.iter().any(|canonical|
             serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
-            return Err(format!("{card_id}: only the complete JC015, JZ55 or JC069 target predicate ability is supported"));
+            return Err(format!("{card_id}: only the complete JC015, JZ55, JC069 or XQ23 target predicate ability is supported"));
         }
     }
     let execution_op = |op: &Op| {
@@ -875,6 +879,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .targets
         .iter()
         .any(|t| t.zone == Zone::AttachmentOrAsset)
+        && !(card_id == "XQ23" && serde_json::to_value(ability).unwrap()
+            == serde_json::to_value(&crate::xq23::definition().abilities[0]).unwrap())
         && (card_id != "JC107"
             || ability.targets.len() != 1
             || ability.targets[0].kind != EntityKind::Any
@@ -886,7 +892,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             ))
     {
         return Err(format!(
-            "{card_id}: only the admitted one attachment-or-asset destruction is supported"
+            "{card_id}: only the admitted JC107 destruction or complete XQ23 asset return is supported"
         ));
     }
     for op in &ability.ops {
@@ -1303,6 +1309,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::jc044::validate_definition(card_id, definition)?;
         crate::jc066::validate_definition(card_id, definition)?;
         crate::jc041::validate_definition(card_id, definition)?;
+        crate::xq23::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1936,6 +1943,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC044".into(), crate::jc044::definition());
         m.insert("JC066".into(), crate::jc066::definition());
         m.insert("JC041".into(), crate::jc041::definition());
+        m.insert("XQ23".into(), crate::xq23::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("JZ46".into(), crate::jz46::definition());
         m.insert("WM023".into(), crate::wm023::definition());

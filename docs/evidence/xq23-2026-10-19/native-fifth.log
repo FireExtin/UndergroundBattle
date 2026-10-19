@@ -1,0 +1,72 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: `hegemony-server` (lib test) generated 1 warning (run `cargo fix --lib -p hegemony-server --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized] target(s) in 1m 59s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 12 tests
+test xq23_tests::xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original ... ok
+test xq23_tests::xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room ... ok
+test xq23_tests::xq23_can_return_an_exhausted_asset_including_one_just_used_for_payment ... ok
+test xq23_tests::xq23_native88_oracles ... XQ23_NATIVE88_COUNTS {"commands":72,"invalidRestores":25,"projections":324,"rejected":5,"scenarios":9}
+ok
+test xq23_tests::xq23_normal_paid_deploy_and_public_conceal_rejection_roundtrip ... ok
+test xq23_tests::xq23_printed_retreat_uses_shared_region_return_without_death ... ok
+test xq23_tests::xq23_rejects_foreign_assets_nonassets_unpaid_or_exhausted_sources_atomically ... ok
+test xq23_tests::xq23_rejects_unprinted_action_payload_fields_before_payment ... ok
+test xq23_tests::xq23_return_uses_asset_owner_and_source_becomes_frozen_actor_asset ... ok
+test xq23_tests::xq23_source_returned_by_real_response_does_not_resurrect_or_move_same_name_replacement ... ok
+test xq23_tests::xq23_target_returned_by_second_real_fast_action_fizzles_first_without_refund ... ok
+test xq23_tests::xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1245 filtered out; finished in 9.07s
+
+     Running tests/attachment_service.rs (/workspace/undergroundbattle-build/target/debug/deps/attachment_service-dc4c1f1075c7ea3f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/bq030_attachment_regression.rs (/workspace/undergroundbattle-build/target/debug/deps/bq030_attachment_regression-f6d48765f97dcab0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 26 filtered out; finished in 0.00s
+
+     Running tests/deck_construction.rs (/workspace/undergroundbattle-build/target/debug/deps/deck_construction-8c230629d904b15d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+     Running tests/jc059_friendly.rs (/workspace/undergroundbattle-build/target/debug/deps/jc059_friendly-714b4d8430e16806)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests/room_pacing.rs (/workspace/undergroundbattle-build/target/debug/deps/room_pacing-fcf384912f7964ee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+
+     Running tests/service.rs (/workspace/undergroundbattle-build/target/debug/deps/service-9250d127a0bdc86c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/session_service.rs (/workspace/undergroundbattle-build/target/debug/deps/session_service-c03cba6ba0fd6feb)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
