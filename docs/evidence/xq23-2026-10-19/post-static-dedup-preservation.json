@@ -1,0 +1,19 @@
+{
+  "allHashesPreserved": true,
+  "verified": {
+    "candidate": {
+      "base": "/workspace/UndergroundBattle/sites/dist",
+      "files": 185
+    },
+    "oldBackup": {
+      "base": "/workspace/xq23-evidence-20261019/before-production/dist",
+      "files": 183
+    },
+    "provider": {
+      "base": "/workspace/hidden-world-sites-abi77-20261015/dist",
+      "files": 183
+    }
+  },
+  "providerClean": true,
+  "protectedLockUnchanged": true
+}

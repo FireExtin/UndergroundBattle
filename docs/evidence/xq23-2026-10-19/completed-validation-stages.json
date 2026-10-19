@@ -1,6 +1,6 @@
 {
   "runtimeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
-  "scope": "Completed natural stages only; complete final Web passed, full Worker and local browsers pending",
+  "scope": "Completed natural stages only; Native/Web/Worker passed; browser first guard78 and actual actor0 target obstruction preserved; frontend correction pending",
   "runs": [
     {
       "name": "workspace-owner-final",
@@ -242,6 +242,81 @@
       "testFiles": 141,
       "tests": 1406,
       "passed": 1406
+    },
+    {
+      "name": "worker-owner-first",
+      "rawBytes": 137805,
+      "rawSha256": "dc874767248d6ba5126e6061dd7021bcdd6e5442a99c6744db2293d3d6c8f433",
+      "gzipBytes": 17068,
+      "gzipSha256": "16c42cc90d6d8766f30ef8614e1b618e10bb4ff5fb0bfaa40fd47f22d675922d",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "--input-type=module",
+          "-e",
+          "import {spawnSync} from 'node:child_process';import {readdirSync} from 'node:fs';process.chdir('sites');const files=readdirSync('test').filter(n=>n.endsWith('.test.mjs')).sort().map(n=>'test/'+n);console.log(JSON.stringify({scope:'all Site test files, serial',files:files.length}));const r=spawnSync(process.execPath,['--test','--test-concurrency=1',...files],{stdio:'inherit',env:process.env});if(r.error)throw r.error;process.exitCode=r.status??1;"
+        ],
+        "startedUtc": "2026-10-19T04:15:04.193726+00:00",
+        "finishedUtc": "2026-10-19T05:39:27.941412+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/worker-owner-first.log"
+      },
+      "testFiles": 63,
+      "tests": 632,
+      "passed": 632,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    {
+      "name": "browser-actor-0-first",
+      "rawBytes": 313,
+      "rawSha256": "243e5256ef4cbf5a93ccf35914827d21384c5d0ff3159ab8686527b49119dcc5",
+      "gzipBytes": 186,
+      "gzipSha256": "725f3ff8a0d5a14d6746e74ae5d5a922846a75fd419a614789ddfda6f0506e01",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-actor-0-first"
+        ],
+        "startedUtc": "2026-10-19T05:39:50.361812+00:00",
+        "finishedUtc": "2026-10-19T05:39:50.408263+00:00",
+        "exitCode": 78,
+        "log": "/workspace/xq23-evidence-20261019/browser-actor-0-first.log"
+      },
+      "startupGuardRejected": true,
+      "browserStarted": false
+    },
+    {
+      "name": "browser-actor-0-second",
+      "rawBytes": 5420,
+      "rawSha256": "3ea8c1cf8a451ea5ea944f6384f0d2ba8df3887f13fb9518ee3399c6abc6f2f9",
+      "gzipBytes": 959,
+      "gzipSha256": "1cce07321a4d19237495279e5a5fd266860d22c2f210a3f2edd440b6c60e9702",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-actor-0-second"
+        ],
+        "startedUtc": "2026-10-19T05:44:59.315041+00:00",
+        "finishedUtc": "2026-10-19T05:45:50.088743+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/browser-actor-0-second.log"
+      },
+      "browserStarted": true,
+      "commandsCompleted": 0,
+      "failure": "Actual production target panel intercepts pointer events above original asset; fixed-size235px panel overlaps185px hand dock"
     }
   ]
 }

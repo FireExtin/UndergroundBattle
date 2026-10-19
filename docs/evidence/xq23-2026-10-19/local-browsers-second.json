@@ -1,0 +1,15 @@
+{
+  "scope": "Resume after preserved guard78; static output paths/bytes all preserved; three explicit offline layouts, four independent local browser contexts each; never online gameplay",
+  "startedUtc": "2026-10-19T05:44:59.262602+00:00",
+  "runs": [
+    {
+      "scenario": "actor-0",
+      "name": "browser-actor-0-second",
+      "exitCode": 1,
+      "report": "/workspace/xq23-evidence-20261019/browser-actor-0-second/report.json"
+    }
+  ],
+  "passed": false,
+  "failure": "browser-actor-0-second failed; preserve every existing run and resume only after diagnosis",
+  "finishedUtc": "2026-10-19T05:45:50.109156+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Local only; failed target click; no screenshots or D1 databases committed",
+  "screenshots": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/failure-0.png",
+      "bytes": 1102131,
+      "sha256": "dab2eb23b0d9e130d4d30b1f4eef0760a040d124116608600914b63af5ce55a0"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/failure-1.png",
+      "bytes": 1213082,
+      "sha256": "47dd9d0c2a8358694d8c0549999aa4e90abb5ab86dfc021fd2f6790f0bee8d95"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/failure-2.png",
+      "bytes": 1214545,
+      "sha256": "62e88059c1295d7faddd92906bf779ce346b35be708c5fcf7ee4287ec88afda2"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/failure-3.png",
+      "bytes": 1213859,
+      "sha256": "4ef3f794ebc2e4a2ce9acb205ef3f3f993dbe4ad7a977d24c601207b19d9e55c"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/xq23-original-print.png",
+      "bytes": 697114,
+      "sha256": "64bb4ef4b624af81a7329b80b10f51076d8b3a1983d3fadf286bd1986b1329bb"
+    }
+  ]
+}

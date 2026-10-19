@@ -1,0 +1,15 @@
+{
+  "scope": "Three explicit offline layouts, four independent local browser contexts each; never online gameplay",
+  "startedUtc": "2026-10-19T05:39:50.309557+00:00",
+  "runs": [
+    {
+      "scenario": "actor-0",
+      "name": "browser-actor-0-first",
+      "exitCode": 78,
+      "report": "/workspace/xq23-evidence-20261019/browser-actor-0-first/report.json"
+    }
+  ],
+  "passed": false,
+  "failure": "browser-actor-0-first failed; preserve every existing run and resume only after diagnosis",
+  "finishedUtc": "2026-10-19T05:39:50.416080+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Resume only after the natural first Web terminal; do not repeat passed Native/build stages",
+  "runtimeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "verificationFileHashes": {
+    "rust-game-wasm/tests/current87-kernel.mjs": "824e38bb0290160bd790ab2df61d4e81c594a186759068f848e86c8674556ec8",
+    "rust-game-wasm/tests/current88-kernel.mjs": "7e0e148433dd1566ddadfdf23939f4221b845ed6068ac6dff24f9addc2d82dea",
+    "tools/xq23-oracle.mjs": "2593fc1dd1f102aa7cefc1628491aa302f77b020845f45988d149f8ed198857e",
+    "web/src/game/XQ23Native88.test.jsx": "2b65f605db5ffd8c1e53706795b097c417fa9d32341ed2a9c9764ef052f2c266"
+  },
+  "startedUtc": "2026-10-19T04:06:29.066937+00:00",
+  "stages": [
+    {
+      "name": "kernel-loaders-after-web-fix",
+      "exitCode": 0
+    },
+    {
+      "name": "web-owner-final",
+      "exitCode": 0
+    },
+    {
+      "name": "worker-owner-first",
+      "exitCode": 0
+    }
+  ],
+  "passed": true,
+  "finishedUtc": "2026-10-19T05:39:27.965454+00:00"
+}
