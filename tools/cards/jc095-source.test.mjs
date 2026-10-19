@@ -1,3 +1,4 @@
+import {catalogBeforeAbi84} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
@@ -6,13 +7,13 @@ import {validateAdmittedScans} from './validate-admitted-scans.mjs';
 const root=new URL('../../',import.meta.url),read=n=>readFileSync(new URL(n,root)),json=n=>JSON.parse(read(n));
 const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
 const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
-const spec=json('docs/factions/card-specifications.json').cards.JC095,pool=json('rust-game/data/cards.json');
+const spec=json('docs/factions/card-specifications.json').cards.JC095,pool=catalogBeforeAbi84(json('rust-game/data/cards.json'));
 test('JC095 preserves all 141 accepted ABI75 definitions, decks and metadata',()=>{
  const {cards,engineVersion,cardPoolVersion,...metadata}=pool;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['JC095','JC046'].includes(c.id))),'77b09d55d0208d66d301928343d7ce7918db017b00fdd98937be2f215ff320f0');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
+ assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
 });
 test('JC095 complete gold-name Leader and Renown face matches pinned095/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'9720d1ed8a4aec97e480ebe7ed5384716951c5a46c2e33593b2f9d1059a7dc18');
@@ -24,5 +25,5 @@ test('JC095 complete gold-name Leader and Renown face matches pinned095/135 orig
 });
 test('JC095 public scan is the byte-identical original and all admitted scans remain valid',()=>{
  const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
- assert.deepEqual(read('web/public/cards/JC095.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,147);assert.equal(r.manifestEntries,160);
+ assert.deepEqual(read('web/public/cards/JC095.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,152);assert.equal(r.manifestEntries,165);
 });

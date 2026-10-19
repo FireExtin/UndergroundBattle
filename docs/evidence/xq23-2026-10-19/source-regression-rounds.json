@@ -1,0 +1,209 @@
+{
+  "scope": "Exact natural source-test rounds; independent archive, no Git worktree and no source rewriting",
+  "baselineCommit": "4ffa7155537187d057b52612d2da076da6a2a47d",
+  "candidateRustCheckpoint": "e44a769db0744792a8efe28ea226ed456ef0939b",
+  "rounds": {
+    "v69-card-source-baseline": {
+      "log": "/workspace/xq23-evidence-20261019/v69-card-source-baseline.log",
+      "logBytes": 40123,
+      "logSha256": "60a4757ec2433d75d37b5c34842efdaf80889566c82109d48c95459cf353e691",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "bash",
+          "-c",
+          "node --test --test-concurrency=1 /workspace/xq23-evidence-20261019/v69-card-source-archive/tools/cards/*.test.mjs"
+        ],
+        "startedUtc": "2026-10-19T02:50:08.621181+00:00",
+        "finishedUtc": "2026-10-19T02:50:28.992648+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/v69-card-source-baseline.log"
+      },
+      "totals": {
+        "tests": 65,
+        "pass": 28,
+        "fail": 37
+      },
+      "failedTests": [
+        "bq030-source.test.mjs:130",
+        "bq030-source.test.mjs:98",
+        "bq035-source.test.mjs:10",
+        "bq035-source.test.mjs:31",
+        "jc037-source.test.mjs:10",
+        "jc037-source.test.mjs:25",
+        "jc044-source.test.mjs:10",
+        "jc044-source.test.mjs:21",
+        "jc046-source.test.mjs:18",
+        "jc046-source.test.mjs:51",
+        "jc052-source.test.mjs:10",
+        "jc052-source.test.mjs:26",
+        "jc054-source.test.mjs:12",
+        "jc054-source.test.mjs:29",
+        "jc057-source.test.mjs:25",
+        "jc060-source.test.mjs:10",
+        "jc060-source.test.mjs:25",
+        "jc094-source.test.mjs:15",
+        "jc094-source.test.mjs:36",
+        "jc095-source.test.mjs:10",
+        "jc095-source.test.mjs:25",
+        "jz35-source.test.mjs:10",
+        "jz35-source.test.mjs:26",
+        "jz46-source.test.mjs:12",
+        "jz46-source.test.mjs:26",
+        "wm023-source.test.mjs:10",
+        "wm023-source.test.mjs:26",
+        "wm038-source.test.mjs:10",
+        "wm038-source.test.mjs:26",
+        "wm056-source.test.mjs:10",
+        "wm056-source.test.mjs:27",
+        "wm062-source.test.mjs:12",
+        "wm062-source.test.mjs:26",
+        "xq24-source.test.mjs:15",
+        "xq24-source.test.mjs:59",
+        "xq25-source.test.mjs:10",
+        "xq25-source.test.mjs:26"
+      ]
+    },
+    "card-source-regression-first": {
+      "log": "/workspace/xq23-evidence-20261019/card-source-regression-first.log",
+      "logBytes": 40000,
+      "logSha256": "5596f249955f0f8b0659e6b945a95506023a6443d57285b27f775185965eeeee",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "bash",
+          "-c",
+          "node --test tools/cards/*.test.mjs"
+        ],
+        "startedUtc": "2026-10-19T02:43:25.887991+00:00",
+        "finishedUtc": "2026-10-19T02:43:32.764971+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/card-source-regression-first.log"
+      },
+      "totals": {
+        "tests": 67,
+        "pass": 27,
+        "fail": 40
+      },
+      "failedTests": [
+        "bq030-source.test.mjs:130",
+        "bq030-source.test.mjs:98",
+        "bq035-source.test.mjs:10",
+        "bq035-source.test.mjs:31",
+        "jc037-source.test.mjs:10",
+        "jc037-source.test.mjs:25",
+        "jc041-source.test.mjs:11",
+        "jc041-source.test.mjs:24",
+        "jc044-source.test.mjs:10",
+        "jc044-source.test.mjs:21",
+        "jc046-source.test.mjs:18",
+        "jc046-source.test.mjs:51",
+        "jc052-source.test.mjs:10",
+        "jc052-source.test.mjs:26",
+        "jc054-source.test.mjs:12",
+        "jc054-source.test.mjs:29",
+        "jc057-source.test.mjs:25",
+        "jc060-source.test.mjs:10",
+        "jc060-source.test.mjs:25",
+        "jc066-source.test.mjs:23",
+        "jc094-source.test.mjs:15",
+        "jc094-source.test.mjs:36",
+        "jc095-source.test.mjs:10",
+        "jc095-source.test.mjs:25",
+        "jz35-source.test.mjs:10",
+        "jz35-source.test.mjs:26",
+        "jz46-source.test.mjs:12",
+        "jz46-source.test.mjs:26",
+        "wm023-source.test.mjs:10",
+        "wm023-source.test.mjs:26",
+        "wm038-source.test.mjs:10",
+        "wm038-source.test.mjs:26",
+        "wm056-source.test.mjs:10",
+        "wm056-source.test.mjs:27",
+        "wm062-source.test.mjs:12",
+        "wm062-source.test.mjs:26",
+        "xq24-source.test.mjs:15",
+        "xq24-source.test.mjs:59",
+        "xq25-source.test.mjs:10",
+        "xq25-source.test.mjs:26"
+      ]
+    },
+    "card-source-candidate-second": {
+      "log": "/workspace/xq23-evidence-20261019/card-source-candidate-second.log",
+      "logBytes": 7775,
+      "logSha256": "0cc9cbf1b46fa38f4869b0d0b2dc2a403bb6c1e401a1808fe85628cdaf5ca93a",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "bash",
+          "-c",
+          "node --test --test-concurrency=1 tools/cards/*.test.mjs"
+        ],
+        "startedUtc": "2026-10-19T02:51:17.573120+00:00",
+        "finishedUtc": "2026-10-19T02:51:30.931550+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/card-source-candidate-second.log"
+      },
+      "totals": {
+        "tests": 67,
+        "pass": 66,
+        "fail": 1
+      },
+      "failedTests": [
+        "jc046-source.test.mjs:52"
+      ]
+    },
+    "card-source-final": {
+      "log": "/workspace/xq23-evidence-20261019/card-source-final.log",
+      "logBytes": 6857,
+      "logSha256": "6b647666cd39c697d444c10165062d721b9358b6d5ee2d3f1b365d7460284236",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "bash",
+          "-c",
+          "node --test --test-concurrency=1 tools/cards/*.test.mjs"
+        ],
+        "startedUtc": "2026-10-19T02:59:01.698362+00:00",
+        "finishedUtc": "2026-10-19T02:59:16.168626+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/card-source-final.log"
+      },
+      "totals": {
+        "tests": 67,
+        "pass": 67,
+        "fail": 0
+      },
+      "failedTests": []
+    }
+  },
+  "preExistingFailures": 37,
+  "newlyAffectedTests": [
+    "jc041-source.test.mjs:11",
+    "jc041-source.test.mjs:24",
+    "jc066-source.test.mjs:23"
+  ],
+  "preservation": {
+    "all151PriorCardRecordsEqual": true,
+    "currentSuffix": [
+      "XQ23"
+    ],
+    "preAbi84ProjectedSuffix": [
+      "JC057",
+      "JC044",
+      "JC066",
+      "JC041",
+      "XQ23"
+    ],
+    "original147ArraySha256": "429f9097a748309da8bf3d29c2f70fac03c727c47e8fd36c1f98086a1da7e4f2",
+    "original151ArraySha256": "baa6c537d1309d2e0d88ec6f5053cd0debe816390ba19cdfb245ab6c04c56b8c"
+  }
+}

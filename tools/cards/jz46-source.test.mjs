@@ -1,3 +1,4 @@
+import {catalogBeforeAbi84} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -8,14 +9,14 @@ import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>readFileSync(root+p), json=p=>JSON.parse(read(p));
 const original=JSON.parse(execFileSync('git',['show','0c98068f6b1d35ecef6ee512f2a6773ab7b5cdba:rust-game/data/cards.json'],{cwd:root}));
-const pool=json('rust-game/data/cards.json'), spec=json('docs/factions/card-specifications.json').cards.JZ46;
+const pool=catalogBeforeAbi84(json('rust-game/data/cards.json')), spec=json('docs/factions/card-specifications.json').cards.JZ46;
 test('JZ46 adds one whole definition while every original 144 card and deck/world metadata stays exact',()=>{
   const {cards,engineVersion,cardPoolVersion,...meta}=pool;
   const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=original;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.deepEqual(cards.filter(c=>!['JZ46','WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
-  assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
-  assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
+  assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
 });
 test('the entire JZ46 runtime matches the pinned image specification and preserves source acceptance status',()=>{
   const f=spec.fields,s=spec.sourceVerification;
@@ -27,5 +28,5 @@ test('JZ46 art is byte-exact and all 145 admitted scans remain pinned',()=>{
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),'756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785');
   assert.deepEqual(read('web/public/cards/JZ46.jpg'),original);
-  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,147);assert.equal(checked.manifestEntries,160);
+  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,152);assert.equal(checked.manifestEntries,165);
 });

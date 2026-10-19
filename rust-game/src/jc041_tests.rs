@@ -335,8 +335,22 @@ fn jc041_p2_source_region_uid_probe() {
     use crate::room::{RoomCommand,RoomEnvelope,SessionAction};
     use sha2::{Digest,Sha256};
     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../rust-game-wasm/tests/jc041P2.original-room.json");
-    let original_state=std::fs::read_to_string(path).unwrap();
-    assert_eq!(format!("{:x}",Sha256::digest(original_state.as_bytes())),"ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c");
+    let archived_state=std::fs::read_to_string(path).unwrap();
+    let archived_hash=format!("{:x}",Sha256::digest(archived_state.as_bytes()));
+    assert_eq!(archived_hash,"ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c");
+    // Parse only to inspect identity. The current reducer must reject the exact
+    // old room; its original runtime/probe remains an immutable ABI87 dependency.
+    let archived:RoomEnvelope=serde_json::from_str(&archived_state).unwrap();
+    assert_eq!(archived.versions.engine,"rust-v0.2.87-jc041-water-hidden-candidate");
+    assert!(RoomEnvelope::from_persisted(&archived_state).err().unwrap().contains("旧局"));
+    assert!(Game::from_persisted(&serde_json::to_string(&archived.game).unwrap()).err().unwrap().contains("旧局"));
+    // Build a separate current layout and pay through a real Room declaration.
+    // Never replace a version or UID inside the archived opaque state string.
+    let mut g=native_game(41,0,2);u::fund(&mut g,0,"JC125",2);let id=hidden(&mut g,0);
+    g.board_mut(&id).unwrap().owner=1;
+    let mut trace=Trace::new("current-p2-source-region",&g);trace.game(0,action(&id),true);
+    let original=trace.room;
+    let original_state=serde_json::to_string(&original).unwrap();
     let original=RoomEnvelope::from_persisted(&original_state).unwrap();
     assert_eq!((original.revision,original.game.version),(9,9));
     let source=&original.game.stack[0].frame.as_ref().unwrap().source;
@@ -347,7 +361,7 @@ fn jc041_p2_source_region_uid_probe() {
     assert_eq!(original.game.regions[0].card.id,"i240");assert_eq!(original.game.regions[0].card.definition,"DQJC107");
     let hand=original.game.players.iter().flat_map(|p|&p.hand).find(|c|catalog::card(&c.definition).kind!="region").unwrap().id.clone();
     let asset=original.game.players[0].assets[0].id.clone();
-    let expected_accepted=std::env::var("JC041_P2_EXPECT_ACCEPTED").is_ok_and(|v|v=="1");
+    let expected_accepted=false;
     let mut cases=vec![];
     let other_region=original.game.regions[1].card.id.clone();
     for (name,uid) in [("source-self","i251".into()),("known-hand-nonregion",hand),("known-paid-asset-nonregion",asset),("known-region-wrong-slot",other_region)] {
@@ -391,10 +405,16 @@ fn jc041_p2_source_region_uid_probe() {
         legal.push(t.finish());
     }
     let mut bindings=crate::jc066_tests::source_bindings();
-    for (name,bytes) in [("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice())] {
+    for (name,bytes) in [
+        ("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),
+        ("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice()),
+        ("rust-game/src/xq23.rs",include_bytes!("xq23.rs").as_slice()),
+        ("rust-game/src/xq23_tests.rs",include_bytes!("xq23_tests.rs").as_slice()),
+    ] {
         bindings["files"].as_object_mut().unwrap().insert(name.into(),json!(format!("{:x}",Sha256::digest(bytes))));
     }
-    let data=json!({"format":"jc041-p2-source-region-v1","sourceBindings":bindings,"expectedAccepted":expected_accepted,"originalState":original_state,"originalViews":(0..4).map(|s|original.view(s,0)).collect::<Vec<_>>(),"cases":cases,"legal":legal});
+    assert_eq!(bindings["files"].as_object().unwrap().len(),139);
+    let data=json!({"format":"jc041-source-region-current-v1","archivedStateSha256":archived_hash,"currentIdentity":catalog::catalog().engine_version,"sourceBindings":bindings,"expectedAccepted":expected_accepted,"originalState":original_state,"originalViews":(0..4).map(|s|original.view(s,0)).collect::<Vec<_>>(),"cases":cases,"legal":legal});
     if let Ok(dir)=std::env::var("JC041_P2_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("p2.json")).unwrap().write_all(&serde_json::to_vec(&data).unwrap()).unwrap();

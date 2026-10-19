@@ -1,3 +1,4 @@
+// Historical77-87 rooms remain exact inside the current twelve-module production wrapper.
 // All eleven actual reducers in one local workerd isolate; retained D1 rooms stay opaque.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ import {digest} from '../src/service.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc041-worker/server');
 test('one actual eleven-kernel HTTP/D1 isolate preserves original77-86 and new87 state, commands, u64 and receipts',async t=>{
- const modules=readdirSync(worker).filter(f=>f.endsWith('.wasm'));assert.equal(modules.length,11);
+ const modules=readdirSync(worker).filter(f=>f.endsWith('.wasm'));assert.equal(modules.length,12);
  const options=convertV4MiniflareOptions({name:'jc041-retained-http',resourcePersistencePath:mkdtempSync(path.join(tmpdir(),'jc041-retained-http-')),modulesRoot:worker,
  modules:[{type:'ESModule',path:path.join(worker,'worker.js')},...modules.map(f=>({type:'CompiledWasm',path:path.join(worker,f)}))],compatibilityDate:'2026-10-02',cf:false,bindings:{LOCAL_TEST_CLOCK_MS:'0'},d1Databases:{DB:'jc041-retained-http'}});
  const mf=new Miniflare(options);t.after(()=>mf.dispose());const db=await mf.getD1Database('DB');

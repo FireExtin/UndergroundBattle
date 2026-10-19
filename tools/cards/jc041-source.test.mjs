@@ -9,7 +9,7 @@ const json=p=>JSON.parse(read(p));
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const data=json('rust-game/data/cards.json'),spec=json('docs/factions/card-specifications.json').cards.JC041;
 test('JC041 admits its complete pinned blue print with both abilities and exact original scan',()=>{
- const c=data.cards.at(-1),s=spec.sourceVerification,f=spec.fields;
+ const c=data.cards.find(c=>c.id==='JC041'),s=spec.sourceVerification,f=spec.fields;
  assert.equal(c.id,'JC041');assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);
  assert.equal(s.imageSha256,'6ec41c75ea9709b9043ab4c842f425087ac615b2e9e5cc65879c0e16970e3f89');
  assert.equal(hash(read(s.imagePath)),s.imageSha256);assert.deepEqual(read(s.imagePath),read('web/public/cards/JC041.jpg'));
@@ -22,12 +22,12 @@ test('JC041 admits its complete pinned blue print with both abilities and exact 
  assert.deepEqual(spec.openQuestionIds,[]);assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
 });
 test('JC041 adds one blue card while preserving all150 prior definitions, decks, world and archival ownership',()=>{
- assert.equal(data.cards.length,151);assert.equal(data.cards.at(-1).id,'JC041');
+ assert.equal(data.cards.length,152);assert.equal(data.cards.at(-1).id,'XQ23');
  for(const[key,value,expected]of [
-  ['cards',data.cards.filter(c=>c.id!=='JC041'),'0914aa5f5ef9b55b5c24dafbe4c38a654a03376a7c989a7cd36a945a96653c2c'],
+  ['cards',data.cards.filter(c=>!['JC041','XQ23'].includes(c.id)),'0914aa5f5ef9b55b5c24dafbe4c38a654a03376a7c989a7cd36a945a96653c2c'],
   ['decks',data.decks,'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987'],
   ['world',data.world,'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5'],
  ])assert.equal(hash(JSON.stringify(value)),expected,key+' reviewed v68 baseline');
- assert.equal(data.engineVersion,'rust-v0.2.87-jc041-water-hidden-candidate');assert.equal(data.cardPoolVersion,'limited-v2.79-jc041-water-hidden-candidate');
- const result=validateAdmittedScans();assert.equal(result.checkedCards,151);assert(result.checkedIds.includes('JC041'));
+ assert.equal(data.engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');assert.equal(data.cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
+ const result=validateAdmittedScans();assert.equal(result.checkedCards,152);assert(result.checkedIds.includes('JC041'));
 });

@@ -1,3 +1,4 @@
+import {catalogBeforeAbi84} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
@@ -6,13 +7,13 @@ import {validateAdmittedScans} from './validate-admitted-scans.mjs';
 const root=new URL('../../',import.meta.url),read=n=>readFileSync(new URL(n,root)),json=n=>JSON.parse(read(n));
 const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
 const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
-const spec=json('docs/factions/card-specifications.json').cards.JC037,pool=json('rust-game/data/cards.json');
+const spec=json('docs/factions/card-specifications.json').cards.JC037,pool=catalogBeforeAbi84(json('rust-game/data/cards.json'));
 test('JC037 preserves all 139 accepted0939 definitions, decks, world and metadata',()=>{
  const {cards,engineVersion,cardPoolVersion,...metadata}=pool;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['JC037','JC060','JC095','JC046'].includes(c.id))),'8a45c42f19aed17a700793ab46ee89f5eff99b2073bdc85dfc03f1c4318246b0');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
+ assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
 });
 test('JC037 complete gold-name Leader and continuous text match the pinned037/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'d38386f43e8b9856b416a567def8e0d7f2e53bb741c3b974edb588ea5ab79978');
@@ -24,5 +25,5 @@ test('JC037 complete gold-name Leader and continuous text match the pinned037/13
 });
 test('JC037 public image retains original bytes and all admitted scans validate',()=>{
  const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
- assert.deepEqual(read('web/public/cards/JC037.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,147);assert.equal(r.manifestEntries,160);
+ assert.deepEqual(read('web/public/cards/JC037.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,152);assert.equal(r.manifestEntries,165);
 });

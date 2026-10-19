@@ -1,3 +1,4 @@
+// Current ordinary entry regression; historical opaque room fixtures keep their original ABI.
 // Real entry/ready/start requests, without initial state or room DB injection.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ for(const societyId of ['MSJC03'])test(`JC041 in ${societyId} enters with a name
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.87-jc041-water-hidden-candidate');
+  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
   assert.equal(catalog.societies.length,10);
   const draft=(id,count=50)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'JC041',count:3}];

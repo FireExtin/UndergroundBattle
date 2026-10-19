@@ -1,0 +1,28 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--workspace",
+    "--",
+    "--test-threads=1",
+    "--nocapture",
+    "xq23",
+    "entry_search_originals_and_closed_definitions_are_complete",
+    "deck_seal_printed_registry_and_finite_programs",
+    "catalog_is_restricted_real_complete_and_decks_are_legal",
+    "gray_lock_whole_original_fields_and_closed_definitions",
+    "jc041_p2_source_region_uid_probe",
+    "jc089_exact_printed_curse_and_complete_attached_host_definition",
+    "msjc05_whole_original_and_gray_unique_program",
+    "renown_original_fields_and_bounded_program_are_complete"
+  ],
+  "startedUtc": "2026-10-19T03:02:04.663663+00:00",
+  "finishedUtc": "2026-10-19T03:05:03.245807+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/native-fixed-focus.log"
+}

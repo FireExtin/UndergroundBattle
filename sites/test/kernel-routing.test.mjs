@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI86 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI88 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -64,32 +64,17 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current86 and retained85/84/83/82/81/80/79/78/77 WASM', () => {
-  assert.deepEqual(readdirSync('generated').sort(), ['abi77', 'abi78', 'abi79', 'abi80', 'abi81', 'abi82', 'abi83', 'abi84', 'abi85', 'hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
-  assert.deepEqual(readdirSync('generated/abi77').sort(), ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']);
-  const files = readdirSync('dist/server').filter(name => name.endsWith('.wasm'));
-  const retained = readFileSync('generated/abi77/hegemony_wasm_bg.wasm');
-  const retained78 = readFileSync('generated/abi78/hegemony_wasm_bg.wasm');
-  const retained79 = readFileSync('generated/abi79/hegemony_wasm_bg.wasm');
-  const retained80 = readFileSync('generated/abi80/hegemony_wasm_bg.wasm');
-  const retained81 = readFileSync('generated/abi81/hegemony_wasm_bg.wasm');
-  const retained82 = readFileSync('generated/abi82/hegemony_wasm_bg.wasm');
-  const retained83 = readFileSync('generated/abi83/hegemony_wasm_bg.wasm');
-  const retained84 = readFileSync('generated/abi84/hegemony_wasm_bg.wasm');
-  const retained85 = readFileSync('generated/abi85/hegemony_wasm_bg.wasm');
-  assert.equal(files.length, 10);
-  const emitted = files.map(name => readFileSync('dist/server/' + name));
-  assert.equal(emitted.filter(bytes => bytes.equals(currentBytes)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained78)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained79)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained80)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained81)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained82)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained83)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained84)).length, 1);
-  assert.equal(emitted.filter(bytes => bytes.equals(retained85)).length, 1);
-  assert(readFileSync('dist/server/index.js').length + currentBytes.length + retained.length + retained78.length + retained79.length + retained80.length + retained81.length + retained82.length + retained83.length + retained84.length + retained85.length < 64 * 1024 * 1024);
+test('production Worker contains exactly current88 and all eleven original77-87 WASM modules', () => {
+  const retainedNames=Array.from({length:11},(_,i)=>'abi'+(77+i));
+  assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
+  const originals=retainedNames.map(name=>{
+    assert.deepEqual(readdirSync('generated/'+name).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
+    return readFileSync('generated/'+name+'/hegemony_wasm_bg.wasm');
+  });
+  const emitted=readdirSync('dist/server').filter(name=>name.endsWith('.wasm')).map(name=>readFileSync('dist/server/'+name));
+  assert.equal(emitted.length,12);
+  for(const original of [currentBytes,...originals])assert.equal(emitted.filter(bytes=>bytes.equals(original)).length,1,'Each exact module is emitted once');
+  assert(readFileSync('dist/server/index.js').length+emitted.reduce((n,b)=>n+b.length,0)<64*1024*1024);
 });
 
 test('engine83 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {

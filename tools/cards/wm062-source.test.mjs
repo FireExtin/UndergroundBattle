@@ -1,3 +1,4 @@
+import {catalogBeforeAbi84} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -8,14 +9,14 @@ import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>readFileSync(root+p),json=p=>JSON.parse(read(p));
 const baseline=JSON.parse(execFileSync('git',['show','27026fd864b96da5950c07ca1f58a8315c27a70e:rust-game/data/cards.json'],{cwd:root}));
-const pool=json('rust-game/data/cards.json'),spec=json('docs/factions/card-specifications.json').cards.WM062;
+const pool=catalogBeforeAbi84(json('rust-game/data/cards.json')),spec=json('docs/factions/card-specifications.json').cards.WM062;
 test('WM062 adds one complete black card and preserves every former 145 definition, deck and world byte value',()=>{
  const {cards,engineVersion,cardPoolVersion,...meta}=pool;
  const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=baseline;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.deepEqual(cards.filter(c=>!['WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
- assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
- assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');
+ assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
+ assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
 });
 test('WM062 full runtime fields agree with its exact original without promoting archival acceptance',()=>{
  const f=spec.fields,s=spec.sourceVerification;
@@ -27,5 +28,5 @@ test('WM062 art is exact and all 146 admitted scans retain their pinned source i
  const s=spec.sourceVerification,b=read(s.imagePath);
  assert.equal(createHash('sha256').update(b).digest('hex'),'a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335');
  assert.deepEqual(read('web/public/cards/WM062.jpg'),b);
- const checked=validateAdmittedScans();assert.equal(checked.checkedCards,147);assert.equal(checked.manifestEntries,160);
+ const checked=validateAdmittedScans();assert.equal(checked.checkedCards,152);assert.equal(checked.manifestEntries,165);
 });

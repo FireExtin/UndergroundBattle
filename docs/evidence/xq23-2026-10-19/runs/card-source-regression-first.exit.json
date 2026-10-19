@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "bash",
+    "-c",
+    "node --test tools/cards/*.test.mjs"
+  ],
+  "startedUtc": "2026-10-19T02:43:25.887991+00:00",
+  "finishedUtc": "2026-10-19T02:43:32.764971+00:00",
+  "exitCode": 1,
+  "log": "/workspace/xq23-evidence-20261019/card-source-regression-first.log"
+}

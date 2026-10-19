@@ -1,0 +1,103 @@
+{
+  "scope": "First complete Native workspace natural terminal, no restart; original process survived transport outage",
+  "compiledRustCheckpoint": "e44a769db0744792a8efe28ea226ed456ef0939b",
+  "receipt": {
+    "command": [
+      "node",
+      "tools/build-storage.mjs",
+      "--",
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "startedUtc": "2026-10-19T02:36:38.759905+00:00",
+    "finishedUtc": "2026-10-19T02:59:47.765719+00:00",
+    "exitCode": 101,
+    "log": "/workspace/xq23-evidence-20261019/workspace-first.log"
+  },
+  "tests": {
+    "total": 1273,
+    "passed": 1265,
+    "failed": 8
+  },
+  "logBytes": 130202,
+  "logSha256": "28a758acd4fb102c2d480cf8830a0a0664d524026308589032a06bdf36183407",
+  "failedTests": [
+    "bounded_search_tests::entry_search_originals_and_closed_definitions_are_complete",
+    "deck_seal_search_tests::deck_seal_printed_registry_and_finite_programs",
+    "engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal",
+    "gray_lock_tests::gray_lock_whole_original_fields_and_closed_definitions",
+    "jc041_tests::jc041_p2_source_region_uid_probe",
+    "jc089_tests::jc089_exact_printed_curse_and_complete_attached_host_definition",
+    "msjc0405_tests::msjc05_whole_original_and_gray_unique_program",
+    "renown_tests::renown_original_fields_and_bounded_program_are_complete"
+  ],
+  "failures": [
+    {
+      "name": "bounded_search_tests::entry_search_originals_and_closed_definitions_are_complete",
+      "location": "rust-game/src/bounded_search_tests.rs:62:5",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    },
+    {
+      "name": "deck_seal_search_tests::deck_seal_printed_registry_and_finite_programs",
+      "location": "rust-game/src/deck_seal_search_tests.rs:71:5",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    },
+    {
+      "name": "engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal",
+      "location": "rust-game/src/engine.rs:2870:9",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    },
+    {
+      "name": "gray_lock_tests::gray_lock_whole_original_fields_and_closed_definitions",
+      "location": "rust-game/src/gray_lock_tests.rs:55:5",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    },
+    {
+      "name": "jc041_tests::jc041_p2_source_region_uid_probe",
+      "location": "rust-game/src/jc041_tests.rs:340:64",
+      "assertion": "called `Result::unwrap()` on an `Err` value: \"旧局schema/固定版本与当前rust-v0.2.88-xq23-asset-return-candidate不兼容；请使用对应旧核，不能静默迁移\"",
+      "actual": "",
+      "expected": ""
+    },
+    {
+      "name": "jc089_tests::jc089_exact_printed_curse_and_complete_attached_host_definition",
+      "location": "rust-game/src/jc089_tests.rs:69:46",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    },
+    {
+      "name": "msjc0405_tests::msjc05_whole_original_and_gray_unique_program",
+      "location": "rust-game/src/msjc06_tests.rs:164:5",
+      "assertion": "assertion `left == right` failed",
+      "actual": "17",
+      "expected": "16"
+    },
+    {
+      "name": "renown_tests::renown_original_fields_and_bounded_program_are_complete",
+      "location": "rust-game/src/renown_tests.rs:198:5",
+      "assertion": "assertion `left == right` failed",
+      "actual": "152",
+      "expected": "151"
+    }
+  ],
+  "classification": {
+    "sixTotalCardCounts": "XQ23 adds exactly one role; original151 array pinned and unchanged",
+    "grayColorCount": "16 original gray nonregions plus nonunique XQ23 =17; gray unique remains JC066 only",
+    "legacyProbe": "Exact ABI87 P2 room correctly rejected by current88; preserve archive and frozen87, generate a separate current paid Room probe"
+  }
+}

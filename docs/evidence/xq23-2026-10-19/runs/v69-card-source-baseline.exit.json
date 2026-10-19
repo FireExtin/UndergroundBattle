@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "bash",
+    "-c",
+    "node --test --test-concurrency=1 /workspace/xq23-evidence-20261019/v69-card-source-archive/tools/cards/*.test.mjs"
+  ],
+  "startedUtc": "2026-10-19T02:50:08.621181+00:00",
+  "finishedUtc": "2026-10-19T02:50:28.992648+00:00",
+  "exitCode": 1,
+  "log": "/workspace/xq23-evidence-20261019/v69-card-source-baseline.log"
+}

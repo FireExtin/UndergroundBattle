@@ -109,6 +109,8 @@ fn xq23_native88_oracles() {
 fn xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original() {
     for actor in 0..4 {
         let (mut g,source,target)=active(actor);
+        let ordinary_asset_already_used=actor%2==1;
+        g.players[actor].asset_used=ordinary_asset_already_used;
         {let c=g.board_mut(&source).unwrap();c.time_markers=2;c.lock_markers=1;c.wounds=0;c.shield=2;}
         u::act(&mut g,actor,action(&source,&target));assert!(g.board(&source).unwrap().1.exhausted);
         assert_eq!(u::resources(&g,actor),1);assert!(g.players[actor].assets.iter().any(|c|c.id==target));
@@ -120,14 +122,13 @@ fn xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_res
         assert_eq!((clerk.time_markers,clerk.lock_markers,clerk.damage,clerk.wounds,clerk.shield),(0,0,0,0,0));
         assert!(g.players[actor].hand.iter().any(|c|c.definition=="JC060"&&c.id!=target&&!c.exhausted));
         assert_eq!(u::resources(&g,actor),0);assert!(g.pending.is_none());
+        assert_eq!(g.players[actor].asset_used,ordinary_asset_already_used,"Card conversion preserves the ordinary establishment quota");
         let asset_id=clerk.id.clone();
         for viewer in 0..4 {
             let v=g.view(viewer);
-            if viewer==actor {
-                let shown=v.assets.iter().find(|c|c.instance_id==asset_id).unwrap();
-                assert_eq!(shown.kind,"asset");assert!(shown.exhausted);assert!(shown.card_id.is_none());
-                assert!(shown.text.is_none()&&shown.icons.is_none()&&shown.defense.is_none());
-            }
+            let shown=v.assets.iter().find(|c|c.instance_id==asset_id).unwrap();
+            assert_eq!(shown.kind,"asset");assert!(shown.exhausted);assert!(shown.card_id.is_none());
+            assert!(shown.text.is_none()&&shown.icons.is_none()&&shown.defense.is_none());
         }
     }
 }
@@ -266,4 +267,3 @@ impl Trace {
     }
     fn finish(self)->serde_json::Value{serde_json::json!({"name":self.name,"initial":self.initial,"steps":self.steps})}
 }
-

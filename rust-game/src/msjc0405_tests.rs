@@ -15,7 +15,7 @@ const GRAY: Spec = Spec {
     name: ("国家机构", "政府权力"), subtypes: &["机构"],
     cards: &["JC056", "JC058", "JC059", "JC063", "JC069", "JZ43", "XQ27", "JZ44",
         "JZ45", "XQ24", "JC061", "XQ25", "JC060", "JZ46", "JC057"],
-    full: 45, color_count: 16, uniques: &["JC066"],
+    full: 45, color_count: 17, uniques: &["JC066"],
     hits: ["JC060", "JZ46", "JC056", "LC23"],
 };
 #[test] fn msjc04_whole_original_and_real_red_unique_program() { original(&RED); }

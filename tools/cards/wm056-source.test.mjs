@@ -1,3 +1,4 @@
+import {catalogBeforeAbi84} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -6,13 +7,13 @@ import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=new URL('../../',import.meta.url),read=n=>readFileSync(new URL(n,root)),json=n=>JSON.parse(read(n));
 const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
 const digest=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
-const spec=json('docs/factions/card-specifications.json').cards.WM056,pool=json('rust-game/data/cards.json');
+const spec=json('docs/factions/card-specifications.json').cards.WM056,pool=catalogBeforeAbi84(json('rust-game/data/cards.json'));
 test('WM056 preserves the cumulative 133 definitions and metadata from 3bbd8b5',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['WM056','WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'dc9c67b1bfe71e241ace7c9e59f8dadfdfe46e888ad31387421ab51ada963074');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(cardPoolVersion,'limited-v2.75-msjc04-msjc05-societies-candidate');assert.equal(engineVersion,'rust-v0.2.83-msjc04-msjc05-societies-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
 });
 test('WM056 complete fields and exact printed source have no unresolved question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'a385a5674cd8f00b935e4e78a487aee46ce6a1d2d94a0bcf0a3a79511be8dafc');
@@ -28,5 +29,5 @@ test('WM056 public image retains original bytes and all admitted scans validate'
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
   assert.deepEqual(read('web/public/cards/WM056.jpg'),original);
-  const result=validateAdmittedScans();assert.equal(result.checkedCards,147);assert.ok(result.checkedIds.includes('WM056'));
+  const result=validateAdmittedScans();assert.equal(result.checkedCards,152);assert.ok(result.checkedIds.includes('WM056'));
 });
