@@ -1,0 +1,26 @@
+{
+  "format": "jc035-worker-incomplete-checkpoint-v1",
+  "utc": "2026-10-19T12:24:55.748426+00:00",
+  "headAtSnapshot": "4bdfd867c3c76728e029d35b3643bd759c4ba71a",
+  "scope": "Original 69-file full serial Worker remains active. No new test run, source or test changes, deletions or cleanup. Partial log only, not a final result.",
+  "originalRunnerPid": 199780,
+  "originalRunnerAlive": true,
+  "observedCompletedTestLines": 591,
+  "passedLines": 589,
+  "failedLines": [
+    "✖ JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (1561.527847ms)",
+    "✖ JC066 ABI86 HTTP target-reveal (37202.791364ms)"
+  ],
+  "failureAssertionDetails": "Pending default spec final failure report; do not attribute cause yet.",
+  "lastTest": "✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (2.526271ms)",
+  "naturalExitReceiptPresent": false,
+  "partialLog": "docs/evidence/jc035-2026-10-19/runs/worker-full-first.20261019T122455Z.partial.log.gz",
+  "partialLogGzipSha256": "cfab3ac9d191c94c80101847b751ccc820964367c0b3b27ede63af00a3360d2f",
+  "partialLogRawBytes": 124329,
+  "partialLogRawSha256": "d4775ff0757af2befe44cd80aa2554f85915a9961f2e3f6f5e8ba7b62c64596b",
+  "nativeCompilerInputsUnchanged": 141,
+  "buildStorageGuardUnchanged": true,
+  "customLockUnchanged": true,
+  "freeDiskBytes": 1099767808,
+  "startupMinimumFreeDiskBytes": 1073741824
+}
