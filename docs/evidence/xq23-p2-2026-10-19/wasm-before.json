@@ -1,0 +1,785 @@
+{
+  "wasmSha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc",
+  "results": [
+    {
+      "name": "control",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    },
+    {
+      "name": "uid-other-asset",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i241",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "i241",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i241",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i241",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i241",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i241",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i241",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i241",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i241",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    },
+    {
+      "name": "uid-empty",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    },
+    {
+      "name": "kind-hidden",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "hidden",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "hidden",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "hidden",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "hidden",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "hidden",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "hidden",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "hidden",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "hidden",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    },
+    {
+      "name": "kind-character",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    }
+  ]
+}

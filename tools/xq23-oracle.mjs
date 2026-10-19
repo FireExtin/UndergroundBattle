@@ -31,10 +31,10 @@ export function validateNative(raw){
    state=r.expected.state;commands++;
   }
  }
- assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[...Array.from({length:23},(_,i)=>'shape-'+i),'bypass-stack','duplicate-frame','asset-owner-before-declaration','asset-owner-paid-frame'].sort());
+ assert.deepEqual(raw.invalid.map(r=>r.name).sort(),[...Array.from({length:23},(_,i)=>'shape-'+i),'bypass-stack','duplicate-frame','asset-owner-before-declaration','asset-owner-paid-frame','target-summary-other-asset-uid','target-summary-empty-uid','target-summary-hidden-kind','target-summary-character-kind'].sort());
  for(const r of raw.invalid){assert.equal(typeof r.state,'string');assert(r.gameError&&r.roomError);assert.match(r.roomId,/^[0-9a-f]{24}$/);assert(Number.isSafeInteger(r.revision));}
  const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
- assert.deepEqual(counts,raw.counts);assert.deepEqual(counts,{scenarios:9,commands:72,rejected:5,projections:324,invalidRestores:27});return counts;
+ assert.deepEqual(counts,raw.counts);assert.deepEqual(counts,{scenarios:9,commands:72,rejected:5,projections:324,invalidRestores:31});return counts;
 }
 export function loadFixture(){
  const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23Native88.fixture.json.gz'))));

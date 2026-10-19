@@ -1,0 +1,74 @@
+{
+  "reviewBefore": "dd974287393b1dc39ac5728766f0a6a2da4b3b04",
+  "originalStateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65",
+  "originalStateBytes": 31197,
+  "originalRevision": 9,
+  "cases": [
+    {
+      "name": "control",
+      "roomFile": "/workspace/xq23-p2-summary-evidence-20261019/control.room.json",
+      "gameFile": "/workspace/xq23-p2-summary-evidence-20261019/control.game.json",
+      "changedPaths": [],
+      "actualTarget": "i243",
+      "frozenPublicTarget": "i243",
+      "roomBytes": 31197,
+      "roomSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65"
+    },
+    {
+      "name": "uid-other-asset",
+      "roomFile": "/workspace/xq23-p2-summary-evidence-20261019/uid-other-asset.room.json",
+      "gameFile": "/workspace/xq23-p2-summary-evidence-20261019/uid-other-asset.game.json",
+      "changedPaths": [
+        "/game/stack/0/frame/targets/0/public/instanceId"
+      ],
+      "actualTarget": "i243",
+      "frozenPublicTarget": "i241",
+      "roomBytes": 31197,
+      "roomSha256": "3e4304dc46169e39bab1915e4cadf97882064f01d67506e89ff68729637aa93f"
+    },
+    {
+      "name": "uid-empty",
+      "roomFile": "/workspace/xq23-p2-summary-evidence-20261019/uid-empty.room.json",
+      "gameFile": "/workspace/xq23-p2-summary-evidence-20261019/uid-empty.game.json",
+      "changedPaths": [
+        "/game/stack/0/frame/targets/0/public/instanceId"
+      ],
+      "actualTarget": "i243",
+      "frozenPublicTarget": "",
+      "roomBytes": 31193,
+      "roomSha256": "241d22f7cd753349b4c3413d9a327d3a65c91541b440a8fbff36cdd46824ac59"
+    },
+    {
+      "name": "kind-hidden",
+      "roomFile": "/workspace/xq23-p2-summary-evidence-20261019/kind-hidden.room.json",
+      "gameFile": "/workspace/xq23-p2-summary-evidence-20261019/kind-hidden.game.json",
+      "changedPaths": [
+        "/game/stack/0/frame/targets/0/public/kind"
+      ],
+      "actualTarget": "i243",
+      "frozenPublicTarget": "i243",
+      "roomBytes": 31198,
+      "roomSha256": "737b3ca1a78bd910d7dd8b29a82506e60c9834622a0c1e6f15432ba3948784a6"
+    },
+    {
+      "name": "kind-character",
+      "roomFile": "/workspace/xq23-p2-summary-evidence-20261019/kind-character.room.json",
+      "gameFile": "/workspace/xq23-p2-summary-evidence-20261019/kind-character.game.json",
+      "changedPaths": [
+        "/game/stack/0/frame/targets/0/public/kind"
+      ],
+      "actualTarget": "i243",
+      "frozenPublicTarget": "i243",
+      "roomBytes": 31201,
+      "roomSha256": "2539ff9d9c2bfd2a20cb146c0dbcc3f2e599872670a78a66040c7b30b9cf2301"
+    }
+  ],
+  "actualNativeLibrarySha256": "70175431931e6c2ad683c383d28a4838845d9d4182d38c2756be679d71741f57",
+  "actualBeforeWasmSha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc",
+  "beforeEliminationNative": {
+    "rawBytes": 18091609,
+    "rawSha256": "02f66c397941247ad040d0f9c9752ea58496dec520f54d132a8edcb492cf63a3",
+    "gzipBytes": 1232613,
+    "gzipSha256": "a690c5d22a99eae6f810ef459e4b6c5a39b70beec33a2cc0bd6ab48623463802"
+  }
+}

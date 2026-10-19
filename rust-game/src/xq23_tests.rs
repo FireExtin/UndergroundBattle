@@ -25,6 +25,19 @@ fn bad(g: &Game, name: &str) {
     let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().unwrap_or_else(||panic!("Room accepted {name}"));
     BAD_EXPORT.with(|saved|if let Some(rows)=saved.borrow_mut().as_mut(){rows.push(serde_json::json!({"name":name,"state":state,"gameError":game_error,"roomError":room_error,"roomId":room.game.room_id,"inviteCode":room.game.invite_code,"revision":room.revision}))});
 }
+fn source_bindings() -> Value {
+    let mut binding=crate::jc066_tests::source_bindings();
+    use sha2::{Digest,Sha256};
+    for(name,bytes)in[
+        ("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),
+        ("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice()),
+        ("rust-game/src/xq23.rs",include_bytes!("xq23.rs").as_slice()),
+        ("rust-game/src/xq23_tests.rs",include_bytes!("xq23_tests.rs").as_slice()),
+    ] {binding["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
+    assert_eq!(binding["files"].as_object().unwrap().len(),139);
+    binding
+}
+
 #[test]
 fn xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted() {
     let c=catalog::card("XQ23");assert_eq!(c.cost,1);assert_eq!(c.loyalty,vec!["灰色"]);assert_eq!(c.color,"灰");
@@ -91,16 +104,8 @@ fn xq23_native88_oracles() {
     }
     BAD_EXPORT.with(|saved|*saved.borrow_mut()=Some(vec![]));
     xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room();
-    let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),27);
-    let mut binding=crate::jc066_tests::source_bindings();
-    use sha2::{Digest,Sha256};
-    for(name,bytes)in[
-        ("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),
-        ("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice()),
-        ("rust-game/src/xq23.rs",include_bytes!("xq23.rs").as_slice()),
-        ("rust-game/src/xq23_tests.rs",include_bytes!("xq23_tests.rs").as_slice()),
-    ] {binding["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
-    assert_eq!(binding["files"].as_object().unwrap().len(),139);
+    let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),31);
+    let binding=source_bindings();
     let commands=scenarios.iter().map(|s|s["steps"].as_array().unwrap().len()).sum::<usize>();
     let rejected=scenarios.iter().flat_map(|s|s["steps"].as_array().unwrap()).filter(|r|!r["expected"]["errorCode"].is_null()).count();
     let counts=serde_json::json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":4*(commands+scenarios.len()),"invalidRestores":invalid.len()});
@@ -209,6 +214,109 @@ fn xq23_rejects_unprinted_action_payload_fields_before_payment() {
     };u::reject(&mut g.clone(),0,a);}
 }
 #[test]
+fn xq23_exact_review_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind() {
+    use sha2::{Digest,Sha256};
+    let raw=std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"),"/../docs/evidence/xq23-p2-2026-10-19/paid-room-before.json")).unwrap();
+    assert_eq!(raw.len(),31_197);
+    assert_eq!(format!("{:x}",Sha256::digest(raw.as_bytes())),"76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65");
+    let original:Value=serde_json::from_str(&raw).unwrap();
+    crate::room::RoomEnvelope::from_persisted(&raw).unwrap();
+    Game::from_persisted(&serde_json::to_string(&original["game"]).unwrap()).unwrap();
+    for(field,value)in[("instanceId","i241"),("instanceId",""),("kind","hidden"),("kind","character")] {
+        let mut changed=original.clone();changed["game"]["stack"][0]["frame"]["targets"][0]["public"][field]=value.into();
+        assert_eq!(changed["game"]["stack"][0]["target"],"i243");
+        assert_eq!(changed["game"]["stack"][0]["frame"]["targets"][0]["id"],"i243");
+        let game_error=Game::from_persisted(&serde_json::to_string(&changed["game"]).unwrap()).unwrap_err();
+        let room_error=crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&changed).unwrap()).unwrap_err();
+        assert!(game_error.contains("XQ23"));assert_eq!(game_error,room_error);
+    }
+}
+#[test]
+fn xq23_restore_after_target_control_transfer_keeps_uid_and_fizzles_without_refund() {
+    let(mut g,source,target)=active(0);u::act(&mut g,0,action(&source,&target));
+    // Explicit response-time control/zone fixture; no claim that a standard
+    // JC129 spell may be cast during a response window.
+    let index=g.players[0].assets.iter().position(|c|c.id==target).unwrap();
+    let mut asset=g.players[0].assets.remove(index);asset.controller=2;g.players[2].assets.push(asset);
+    u::restore(&mut g);crate::jc029_tests::checkpoint(&g);
+    let summary=&g.view(0).stack[0].target_summaries[0];
+    assert_eq!(summary.instance_id,target);assert_eq!(summary.controller.as_deref(),Some("p2"));assert!(!summary.valid);
+    assert_eq!(g.stack[0].frame.as_ref().unwrap().targets[0].public.controller.as_deref(),Some("p0"));
+    u::top(&mut g);assert!(g.board(&source).unwrap().1.exhausted);
+    assert!(g.players[2].assets.iter().any(|c|c.id==target&&c.controller==2));
+    assert!(g.players[0].hand.is_empty());assert!(g.players[0].assets.iter().all(|c|c.exhausted));
+}
+#[test]
+fn xq23_restore_after_source_control_change_retains_the_paid_actor_asset_destination() {
+    let(mut g,source,target)=active(0);u::act(&mut g,0,action(&source,&target));
+    g.add_control(&source,2,ControlLifetime::TurnEnd{turn:g.turn},SubtypeChange::None);
+    assert_eq!(g.board(&source).unwrap().1.controller,2);
+    u::restore(&mut g);crate::jc029_tests::checkpoint(&g);u::top(&mut g);
+    assert!(g.board(&source).is_none());
+    assert!(g.players[0].assets.iter().any(|c|c.definition=="XQ23"&&c.controller==0&&c.owner==0&&c.exhausted));
+    assert!(g.players[0].hand.iter().any(|c|c.definition=="JC060"));
+}
+#[test]
+fn xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_team_score() {
+    use sha2::{Digest,Sha256};
+    // Start from the same explicit initial sequence as the independently run
+    // pre-fix Native probe. All subsequent changes use ordinary Room commands.
+    let(mut g,_,_)=active(0);g.room_id=format!("{:024x}",880031);
+    for p in &mut g.players {p.hand.clear();p.assets.clear();p.graveyard.clear();p.score_cards.clear();}
+    for r in &mut g.regions {r.cards.clear();r.influence=[0;2];}
+    let mut sources=vec![];
+    for owner in [2,3,0] {let c=g.make_card("XQ23",owner);sources.push(c.id.clone());g.regions[0].cards.push(c);}
+    u::fund(&mut g,0,"JC104",6);u::fund(&mut g,0,"JC060",5);
+    let spells=[u::held(&mut g,"JC129",0),u::held(&mut g,"JC129",0)];
+    u::fund(&mut g,3,"JC060",1);
+    let score=g.make_card("DQJC107",2);g.players[2].score_cards.push(score);
+    let score=g.make_card("DQJC115",3);g.players[3].score_cards.push(score);g.players[2].deck.clear();
+    let mut trace=Trace::new("owner-p2",&g);
+    assert_eq!(format!("{:x}",Sha256::digest(trace.initial["state"].as_str().unwrap().as_bytes())),"dc7bb4725fa63701c785416876c6c200d30ee9a79f6d338e3532dcf6ea280d76");
+    let mut converted=vec![];
+    for(index,owner)in[2,3].into_iter().enumerate() {
+        trace.game(0,Action{card_id:Some(spells[index].clone()),target_id:Some(sources[index].clone()),..Action::new("play")},true);trace.responses();
+        let source=trace.room.game.board(&sources[index]).unwrap().1;
+        assert_eq!((source.owner,source.controller),(owner,0));
+        let target=trace.room.game.players[0].assets.iter().find(|c|c.definition=="JC060"&&c.owner==0).unwrap().id.clone();
+        trace.game(0,action(&sources[index],&target),true);trace.responses();
+        let asset=trace.room.game.players[0].assets.iter().find(|c|c.definition=="XQ23"&&c.owner==owner).unwrap();
+        assert_eq!(asset.controller,0);assert!(asset.exhausted);converted.push(asset.id.clone());
+    }
+    let before=serde_json::to_string(&trace.room).unwrap();
+    assert_eq!(format!("{:x}",Sha256::digest(before.as_bytes())),"09721ef434dff49da5bc5ceda8a1f7e974f13857a8fd6522fe3e8691e9e584a8");
+    assert_eq!(trace.room.game.players[0].assets.len(),11);
+    let live_owned_before=trace.room.game.players.iter().flat_map(|p|&p.assets).filter(|c|c.owner!=2).map(|c|c.id.clone()).collect::<std::collections::BTreeSet<_>>();
+    for _ in 0..600 {if trace.room.game.players[2].eliminated {break;}assert!(trace.room.game.pending.is_none());trace.pass_current();}
+    assert!(trace.room.game.players[2].eliminated);assert!(!trace.room.game.players[3].eliminated);
+    assert_eq!(trace.room.game.status,"playing");
+    assert!(trace.room.game.players.iter().flat_map(|p|&p.assets).all(|c|c.owner!=2));
+    assert!(trace.room.game.players[0].assets.iter().all(|c|c.id!=converted[0]));
+    assert!(trace.room.game.players[0].assets.iter().any(|c|c.id==converted[1]&&c.owner==3&&c.controller==0));
+    assert_eq!(trace.room.game.players.iter().flat_map(|p|&p.assets).map(|c|c.id.clone()).collect::<std::collections::BTreeSet<_>>(),live_owned_before);
+    assert_eq!(trace.room.game.players[0].assets.len(),10);
+    assert_eq!(trace.room.game.players[0].assets.iter().filter(|c|!c.exhausted).count(),10);
+    assert_eq!((trace.room.view(0,0).players[2].score,trace.room.view(0,0).players[3].score),(4,2));
+    let after=serde_json::to_string(&trace.room).unwrap();
+    for _ in 0..16 {
+        if trace.room.game.legal_actions(0).iter().any(|a|a.action.kind=="activate"&&a.action.card_id.as_deref()==Some(sources[2].as_str())&&a.action.target_id.as_deref()==Some(converted[1].as_str())) {break;}
+        trace.pass_current();
+    }
+    assert!(trace.room.game.legal_actions(0).iter().all(|a|a.action.target_id.as_deref()!=Some(converted[0].as_str())));
+    trace.game(0,action(&sources[2],&converted[0]),false);
+    trace.game(0,action(&sources[2],&converted[1]),true);trace.responses();
+    assert!(trace.room.game.players[2].hand.is_empty());
+    assert!(trace.room.game.players[3].hand.iter().any(|c|c.definition=="XQ23"));
+    assert_eq!((trace.room.view(0,0).players[2].score,trace.room.view(0,0).players[3].score),(4,2));
+    let count=trace.steps.len();
+    let value=serde_json::json!({"format":"xq23-owner-elimination-native-v1","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"initial":trace.initial,"steps":trace.steps,"beforeElimination":before,"afterElimination":after,"summary":{"actualXQ23Conversions":2,"realJC129Declarations":2,"beforeControlledAssets":11,"afterControlledAssets":10,"readyResourcesAfterElimination":10,"eliminatedOwner2AssetSurvives":false,"livingOwner3AssetSurvives":true,"canLegallyReturnDeadOwnerAsset":false,"deadOwnerHandRepopulated":false,"livingOwnerHandReceivedOwnCard":true,"owner2EliminatedByNaturalNextTurnEmptyDraw":true,"teammate3Lives":true,"gameContinues":true,"commands":count}});
+    if let Ok(dir)=std::env::var("XQ23_P2_NATIVE_DIR") {
+        use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("Native88P2.json")).unwrap().write_all(&serde_json::to_vec(&value).unwrap()).unwrap();
+    }
+    println!("XQ23_P2_ELIMINATION {}",value["summary"]);
+}
+#[test]
 fn xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room() {
     let (mut g,s,t)=active(0);u::act(&mut g,0,action(&s,&t));
     for variant in 0..23 {
@@ -231,6 +339,17 @@ fn xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_r
     let mut next=g.clone();next.stack.push(next.stack[0].clone());bad(&next,"duplicate-frame");
     let mut next=g.clone();next.players[0].assets.iter_mut().find(|c|c.id==t).unwrap().owner=7;
     bad(&next,"asset-owner-paid-frame");
+    let other=g.players[0].assets.iter().find(|c|c.id!=t).unwrap().id.clone();
+    for(name,field,value)in[
+        ("target-summary-other-asset-uid","instanceId",other.as_str()),
+        ("target-summary-empty-uid","instanceId",""),
+        ("target-summary-hidden-kind","kind","hidden"),
+        ("target-summary-character-kind","kind","character"),
+    ] {
+        let mut next=serde_json::to_value(&g).unwrap();
+        next["stack"][0]["frame"]["targets"][0]["public"][field]=value.into();
+        bad(&serde_json::from_value(next).unwrap(),name);
+    }
     let (mut next,source,target)=active(0);
     next.players[0].assets.iter_mut().find(|c|c.id==target).unwrap().owner=7;
     let before=serde_json::to_string(&next).unwrap();
@@ -259,6 +378,16 @@ impl Trace {
         self.steps.push(serde_json::json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0","expected":expected,"views":views}));
     }
     fn game(&mut self,seat:usize,a:Action,accepted:bool){self.command(seat,crate::room::SessionAction::Game{action:a},accepted);}
+    fn pass_current(&mut self) {
+        use crate::room::*;
+        if let Some(window)=self.room.pacing.window.clone() {
+            let seat=*window.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
+            self.command(seat,SessionAction::PassResponse{window_id:window.id},true);
+        } else {
+            let seat=(0..4).find(|s|self.room.game.legal_actions(*s).iter().any(|a|a.action.kind=="pass")).unwrap();
+            self.game(seat,Action::new("pass"),true);
+        }
+    }
     fn respond(&mut self,seat:usize,action:Action){
         use crate::room::*;
         let window=loop {

@@ -1,0 +1,47 @@
+{
+  "wasmSha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc",
+  "scope": "Real JC129 and XQ23 declarations/responses, ordinary passes to next-turn empty draw; complete actual Native opaque transitions/journals and four-seat views equal",
+  "commands": 165,
+  "views": 664,
+  "summary": {
+    "actualXQ23Conversions": 2,
+    "afterControlledAssets": 11,
+    "beforeControlledAssets": 11,
+    "borrowedOwner2AssetId": "i268",
+    "borrowedOwner3AssetId": "i274",
+    "canLegallyReturnDeadOwnerAsset": true,
+    "commands": 165,
+    "deadOwnerHandRepopulated": true,
+    "eliminatedOwner2AssetSurvives": true,
+    "explicitInitialLayout": true,
+    "gameContinues": true,
+    "livingOwner3AssetSurvives": true,
+    "livingOwnerHandReceivedOwnCard": false,
+    "owner2EliminatedByNaturalNextTurnEmptyDraw": true,
+    "readyResourcesAfterElimination": 11,
+    "realJC129Declarations": 2,
+    "scores": [
+      {
+        "eliminated": false,
+        "score": 0,
+        "seat": 0
+      },
+      {
+        "eliminated": false,
+        "score": 0,
+        "seat": 1
+      },
+      {
+        "eliminated": true,
+        "score": 4,
+        "seat": 2
+      },
+      {
+        "eliminated": false,
+        "score": 2,
+        "seat": 3
+      }
+    ],
+    "teammate3Lives": true
+  }
+}

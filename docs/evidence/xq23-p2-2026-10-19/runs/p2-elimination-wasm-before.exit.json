@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "/workspace/xq23-p2-summary-evidence-20261019/wasm-elimination-compare.mjs",
+    "/workspace/xq23-p2-summary-evidence-20261019/elimination-before-native.json",
+    "/workspace/xq23-p2-summary-evidence-20261019/elimination-before-wasm.json"
+  ],
+  "startedUtc": "2026-10-19T06:21:38.300463+00:00",
+  "finishedUtc": "2026-10-19T06:21:40.203253+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-elimination-wasm-before.log"
+}

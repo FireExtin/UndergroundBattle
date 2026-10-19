@@ -118,6 +118,7 @@ impl Game {
         if f.ability_key == KEY {
             if f.source.card.exhausted || f.targets.len() != 1 || f.targets[0].id.is_empty()
                 || f.targets[0].id == f.source.card.id || !same(&f.targets[0].spec, &definition().abilities[0].targets[0])
+                || f.targets[0].public.instance_id != f.targets[0].id || f.targets[0].public.kind != "asset"
                 || f.steps.len() != 1 || f.steps[0].context != f.actor || !matches!(f.steps[0].op, Op::XQ23ReturnAssetThenBecomeAsset)
                 || f.cursor > 1 || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
                 || f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)

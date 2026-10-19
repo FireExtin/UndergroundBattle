@@ -1,0 +1,43 @@
+{
+  "beforeReviewCommit": "dd974287393b1dc39ac5728766f0a6a2da4b3b04",
+  "nativeAfterFocused": {
+    "passed": 116,
+    "failed": 0,
+    "filtered": 1161,
+    "exitCode": 0,
+    "finishedUtc": "2026-10-19T06:32:24.719831+00:00"
+  },
+  "native139Inputs": 139,
+  "onlyChangedCompilerInputs": [
+    "rust-game/src/engine.rs",
+    "rust-game/src/xq23.rs",
+    "rust-game/src/xq23_tests.rs"
+  ],
+  "originalNineScenariosAllOpaqueStateAndViewsIdentical": true,
+  "sameBorrowedAssetInitialAndPreEliminationStateAsActualBeforeProbe": true,
+  "exports": {
+    "Native88.json": {
+      "bytes": 9185783,
+      "sha256": "68a2606f45689bfd6e0a9845484bdd0a3180a8523c4eb9a44878548dbaf25a35"
+    },
+    "Native88P2.json": {
+      "bytes": 18360678,
+      "sha256": "24ce205be841267b28e2824218e4a0d46590d42c049f2659030734470e06b463"
+    },
+    "current-p2/p2.json": {
+      "bytes": 6486736,
+      "sha256": "766927fb084300922aefec76a77540b78ee8b69de694e0dd9a8ed52230fe2415"
+    }
+  },
+  "wasmAfter": "pending",
+  "httpD1After": "pending",
+  "newProduction185Manifest": "pending",
+  "screenshotsArchive": {
+    "library_file_id": "libfile_f8d42198f698819198e52935075dbca6",
+    "file_id": "file_00000000eb1481fd9d94c004d9d547e1",
+    "file_name": "XQ23-dd974287-pixel-evidence-20261019.zip",
+    "sha256": "abf8f8af6b55dc38d1e62bcd2c4eec701408e58138f385192c93021c2a8a48f7",
+    "originalPngs": 3,
+    "reviewVersionUnchanged": true
+  }
+}

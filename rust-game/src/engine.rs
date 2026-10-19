@@ -998,6 +998,12 @@ impl Game {
         self.players[seat].deck.clear();
         self.players[seat].assets.clear();
         self.players[seat].graveyard.clear();
+        // Converted borrowed characters retain their owner in another seat's
+        // asset area. Elimination removes that owner's cards everywhere; their
+        // scored cards stay intact so the surviving teammate keeps the points.
+        for player in &mut self.players {
+            player.assets.retain(|card| card.owner != seat);
+        }
         let leaving = self
             .regions
             .iter()
