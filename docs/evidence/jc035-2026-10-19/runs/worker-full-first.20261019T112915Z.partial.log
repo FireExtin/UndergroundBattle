@@ -1,0 +1,455 @@
+✔ historical assassin fixture rejects without altering persisted data (4191.110989ms)
+✔ bounded employee/1: private candidates, pause/reopen, exact result and one receipt (8850.764125ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":1,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded employeeEmpty/0: private candidates, pause/reopen, exact result and one receipt (8659.402654ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/0: private candidates, pause/reopen, exact result and one receipt (4044.083921ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passers/3: private candidates, pause/reopen, exact result and one receipt (4032.119299ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":3,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ bounded passersEmpty/0: private candidates, pause/reopen, exact result and one receipt (3862.168961ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"privateOtherSeats":3,"acceptedCount":0,"pauseReopen":true,"duplicateReceipt":true,"exactNativeWasmD1State":true}
+✔ BQ035 ABI78 HTTP accepted-blood-real-destroy (10510.50947ms)
+ℹ {"nativeScenario":"accepted-blood-real-destroy","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP accepted-knight-real-bounce (9036.303612ms)
+ℹ {"nativeScenario":"accepted-knight-real-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP converted-jc095-keeps-mobility-separate-from-entry (6682.832313ms)
+ℹ {"nativeScenario":"converted-jc095-keeps-mobility-separate-from-entry","retained77":false,"accepted":9,"rejected":0,"projections":36,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP duel-grant-can-use-nonadjacent-slot (14402.717348ms)
+ℹ {"nativeScenario":"duel-grant-can-use-nonadjacent-slot","retained77":false,"accepted":5,"rejected":0,"projections":10,"reopened":3,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP granted-glory-real-source-bounce (7944.475255ms)
+ℹ {"nativeScenario":"granted-glory-real-source-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP paid-attachments-mobility-glory-next-turn (32735.03303ms)
+ℹ {"nativeScenario":"paid-attachments-mobility-glory-next-turn","retained77":false,"accepted":183,"rejected":1,"projections":736,"reopened":5,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP paid-loyalty-and-extra-payload-rejected (3061.947158ms)
+ℹ {"nativeScenario":"paid-loyalty-and-extra-payload-rejected","retained77":false,"accepted":0,"rejected":2,"projections":8,"reopened":1,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP printed-glory-real-source-bounce (7701.326199ms)
+ℹ {"nativeScenario":"printed-glory-real-source-bounce","retained77":false,"accepted":17,"rejected":0,"projections":68,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP printed-jc061-mobility-then-paid-entry (6986.262995ms)
+ℹ {"nativeScenario":"printed-jc061-mobility-then-paid-entry","retained77":false,"accepted":14,"rejected":0,"projections":56,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP queued-blood-real-destroy (8147.211906ms)
+ℹ {"nativeScenario":"queued-blood-real-destroy","retained77":false,"accepted":22,"rejected":0,"projections":88,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP queued-knight-real-bounce (10754.071826ms)
+ℹ {"nativeScenario":"queued-knight-real-bounce","retained77":false,"accepted":22,"rejected":0,"projections":88,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP wm023-duel-paid-conversion-blood-knight-move (12036.361381ms)
+ℹ {"nativeScenario":"wm023-duel-paid-conversion-blood-knight-move","retained77":false,"accepted":20,"rejected":0,"projections":40,"reopened":4,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ BQ035 ABI78 HTTP wm023-paid-conversion-blood-knight-move (12799.307754ms)
+ℹ {"nativeScenario":"wm023-paid-conversion-blood-knight-move","retained77":false,"accepted":32,"rejected":0,"projections":128,"reopened":3,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ retained published77 raw Native scenario keeps its old reducer, catalog, opaque D1 state and receipts through current79 Worker (9796.096803ms)
+ℹ {"nativeScenario":"paid-seat0","retained77":true,"accepted":13,"rejected":0,"projections":52,"reopened":2,"completeHttpCoreViewsAndNativeJournalsEqual":true,"opaqueD1StatesEqual":true,"originalReceiptsAfterReopen":true}
+✔ historical control-pair fixture rejects without altering persisted data (4929.923846ms)
+✔ deck seal51 Native/D1 0: private choice, pause/reopen, sealing/event and duplicate receipt (5758.308887ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 1: private choice, pause/reopen, sealing/event and duplicate receipt (4759.326773ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 2: private choice, pause/reopen, sealing/event and duplicate receipt (7270.9764ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":3,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 3: private choice, pause/reopen, sealing/event and duplicate receipt (5532.451473ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ deck seal51 Native/D1 4: private choice, pause/reopen, sealing/event and duplicate receipt (5246.802994ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":4,"privateOtherSeats":3,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ historical fire-scholar fixture rejects without altering persisted data (3798.764511ms)
+✔ gray lock52 Native/D1 0: lock/chase, pause/reopen, real responses and duplicate receipt (5716.459289ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 1: lock/chase, pause/reopen, real responses and duplicate receipt (5820.822471ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ gray lock52 Native/D1 2: lock/chase, pause/reopen, real responses and duplicate receipt (4960.424015ms)
+ℹ {"engine":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate","preparedNativeLayout":true,"commands":7,"publicLockAllSeats":4,"pauseReopen":true,"duplicateOriginalReceipt":true,"completeNativeWasmD1StateEqual":true}
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (8736.234396ms)
+ℹ {"currentVersion":"rust-v0.2.89-jc035-preparation-candidate","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /workspace/undergroundbattle-build/tmp/hegemony-worker-d1-IFymij
+✖ JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (1561.527847ms)
+✔ JC035 ABI89 HTTP actor-0 (26772.21138ms)
+ℹ {"scenario":"actor-0","reference":"compiler-bound Native89","accepted":11,"rejected":1,"projections":100,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP actor-1 (35103.540137ms)
+ℹ {"scenario":"actor-1","reference":"compiler-bound Native89","accepted":11,"rejected":1,"projections":100,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP actor-2 (36183.777246ms)
+ℹ {"scenario":"actor-2","reference":"compiler-bound Native89","accepted":11,"rejected":1,"projections":100,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP actor-3 (37459.681531ms)
+ℹ {"scenario":"actor-3","reference":"compiler-bound Native89","accepted":11,"rejected":1,"projections":100,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP optional-decline (18591.546802ms)
+ℹ {"scenario":"optional-decline","reference":"compiler-bound Native89","accepted":5,"rejected":0,"projections":48,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP threshold-four (16484.233311ms)
+ℹ {"scenario":"threshold-four","reference":"compiler-bound Native89","accepted":4,"rejected":0,"projections":40,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP source-destroyed-response (38209.582842ms)
+ℹ {"scenario":"source-destroyed-response","reference":"compiler-bound Native89","accepted":15,"rejected":0,"projections":128,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP hand-growth-response (35638.739837ms)
+ℹ {"scenario":"hand-growth-response","reference":"compiler-bound Native89","accepted":15,"rejected":0,"projections":128,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP late-shrink-no-retroactive-trigger (22594.54443ms)
+ℹ {"scenario":"late-shrink-no-retroactive-trigger","reference":"compiler-bound Native89","accepted":9,"rejected":0,"projections":80,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP same-controller-order (51578.029706ms)
+ℹ {"scenario":"same-controller-order","reference":"compiler-bound Native89","accepted":19,"rejected":0,"projections":160,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP won-original-region (92708.03603ms)
+ℹ {"scenario":"won-original-region","reference":"compiler-bound Native89","accepted":20,"rejected":0,"projections":168,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP ordinary-attach (15509.320447ms)
+ℹ {"scenario":"ordinary-attach","reference":"compiler-bound Native89","accepted":5,"rejected":0,"projections":48,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 ABI89 HTTP duel-preparation (15655.59134ms)
+ℹ {"scenario":"duel-preparation","reference":"compiler-bound Native89","accepted":5,"rejected":0,"projections":24,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC035 corrupted prepare-shape-0 restores HTTP400 with no D1 writes (3570.160028ms)
+ℹ {"invalid":"prepare-shape-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-1 restores HTTP400 with no D1 writes (4166.03757ms)
+ℹ {"invalid":"prepare-shape-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-2 restores HTTP400 with no D1 writes (5283.25273ms)
+ℹ {"invalid":"prepare-shape-2","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-3 restores HTTP400 with no D1 writes (3627.256797ms)
+ℹ {"invalid":"prepare-shape-3","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-4 restores HTTP400 with no D1 writes (3162.449148ms)
+ℹ {"invalid":"prepare-shape-4","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-5 restores HTTP400 with no D1 writes (3203.860696ms)
+ℹ {"invalid":"prepare-shape-5","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-6 restores HTTP400 with no D1 writes (3205.639377ms)
+ℹ {"invalid":"prepare-shape-6","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-7 restores HTTP400 with no D1 writes (3309.18703ms)
+ℹ {"invalid":"prepare-shape-7","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-8 restores HTTP400 with no D1 writes (4412.920526ms)
+ℹ {"invalid":"prepare-shape-8","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-9 restores HTTP400 with no D1 writes (3789.264586ms)
+ℹ {"invalid":"prepare-shape-9","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-10 restores HTTP400 with no D1 writes (4047.500864ms)
+ℹ {"invalid":"prepare-shape-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-11 restores HTTP400 with no D1 writes (3983.158254ms)
+ℹ {"invalid":"prepare-shape-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-12 restores HTTP400 with no D1 writes (3197.670846ms)
+ℹ {"invalid":"prepare-shape-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-13 restores HTTP400 with no D1 writes (3599.05715ms)
+ℹ {"invalid":"prepare-shape-13","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-14 restores HTTP400 with no D1 writes (3345.568904ms)
+ℹ {"invalid":"prepare-shape-14","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-15 restores HTTP400 with no D1 writes (3920.99771ms)
+ℹ {"invalid":"prepare-shape-15","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-16 restores HTTP400 with no D1 writes (5234.805907ms)
+ℹ {"invalid":"prepare-shape-16","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-17 restores HTTP400 with no D1 writes (3605.692546ms)
+ℹ {"invalid":"prepare-shape-17","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-18 restores HTTP400 with no D1 writes (3499.146314ms)
+ℹ {"invalid":"prepare-shape-18","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-19 restores HTTP400 with no D1 writes (3801.793311ms)
+ℹ {"invalid":"prepare-shape-19","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-20 restores HTTP400 with no D1 writes (3975.901485ms)
+ℹ {"invalid":"prepare-shape-20","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-21 restores HTTP400 with no D1 writes (4042.720394ms)
+ℹ {"invalid":"prepare-shape-21","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-22 restores HTTP400 with no D1 writes (3300.805616ms)
+ℹ {"invalid":"prepare-shape-22","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted prepare-shape-23 restores HTTP400 with no D1 writes (3701.165461ms)
+ℹ {"invalid":"prepare-shape-23","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-0 restores HTTP400 with no D1 writes (4031.920419ms)
+ℹ {"invalid":"entity-shape-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-1 restores HTTP400 with no D1 writes (3628.465093ms)
+ℹ {"invalid":"entity-shape-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-2 restores HTTP400 with no D1 writes (3535.139626ms)
+ℹ {"invalid":"entity-shape-2","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-3 restores HTTP400 with no D1 writes (3311.916761ms)
+ℹ {"invalid":"entity-shape-3","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-4 restores HTTP400 with no D1 writes (3949.593296ms)
+ℹ {"invalid":"entity-shape-4","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-5 restores HTTP400 with no D1 writes (3777.116372ms)
+ℹ {"invalid":"entity-shape-5","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted entity-shape-6 restores HTTP400 with no D1 writes (4167.760096ms)
+ℹ {"invalid":"entity-shape-6","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-0 restores HTTP400 with no D1 writes (4473.601162ms)
+ℹ {"invalid":"frame-shape-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-1 restores HTTP400 with no D1 writes (3858.560073ms)
+ℹ {"invalid":"frame-shape-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-2 restores HTTP400 with no D1 writes (3580.264997ms)
+ℹ {"invalid":"frame-shape-2","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-3 restores HTTP400 with no D1 writes (3674.147618ms)
+ℹ {"invalid":"frame-shape-3","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-4 restores HTTP400 with no D1 writes (3960.905139ms)
+ℹ {"invalid":"frame-shape-4","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-5 restores HTTP400 with no D1 writes (3675.091412ms)
+ℹ {"invalid":"frame-shape-5","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-6 restores HTTP400 with no D1 writes (3430.833019ms)
+ℹ {"invalid":"frame-shape-6","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-7 restores HTTP400 with no D1 writes (3799.260902ms)
+ℹ {"invalid":"frame-shape-7","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-8 restores HTTP400 with no D1 writes (4184.476939ms)
+ℹ {"invalid":"frame-shape-8","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-9 restores HTTP400 with no D1 writes (4115.784719ms)
+ℹ {"invalid":"frame-shape-9","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-10 restores HTTP400 with no D1 writes (4363.050008ms)
+ℹ {"invalid":"frame-shape-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-11 restores HTTP400 with no D1 writes (6074.097372ms)
+ℹ {"invalid":"frame-shape-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted frame-shape-12 restores HTTP400 with no D1 writes (3429.33912ms)
+ℹ {"invalid":"frame-shape-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted resolved-event-replay restores HTTP400 with no D1 writes (3941.604826ms)
+ℹ {"invalid":"resolved-event-replay","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted attach-shape-0 restores HTTP400 with no D1 writes (4265.818709ms)
+ℹ {"invalid":"attach-shape-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC035 corrupted attach-shape-1 restores HTTP400 with no D1 writes (3600.435243ms)
+ℹ {"invalid":"attach-shape-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ ABI89 adds only complete JC035 and preserves the entire published88 catalog apart from identity (51.681438ms)
+✔ thirteen-kernel router keeps exact ABI77 state, joins, polls and commands (600.192719ms)
+✔ thirteen-kernel router keeps exact ABI78 state, joins, polls and commands (132.494013ms)
+✔ thirteen-kernel router keeps exact ABI79 state, joins, polls and commands (128.840826ms)
+✔ thirteen-kernel router keeps exact ABI80 state, joins, polls and commands (122.890188ms)
+✔ thirteen-kernel router keeps exact ABI81 state, joins, polls and commands (129.278874ms)
+✔ thirteen-kernel router keeps exact ABI82 state, joins, polls and commands (113.250972ms)
+✔ thirteen-kernel router keeps exact ABI83 state, joins, polls and commands (119.244202ms)
+✔ thirteen-kernel router keeps exact ABI84 state, joins, polls and commands (135.373382ms)
+✔ thirteen-kernel router keeps exact ABI85 state, joins, polls and commands (142.482126ms)
+✔ thirteen-kernel router keeps exact ABI86 state, joins, polls and commands (162.198627ms)
+✔ thirteen-kernel router keeps exact ABI87 state, joins, polls and commands (127.666732ms)
+✔ thirteen-kernel router keeps exact ABI88 state, joins, polls and commands (127.640485ms)
+✔ thirteen-kernel router replays the unchanged actual Native88 legal and owner-elimination witnesses (25312.050236ms)
+✔ one actual thirteen-kernel HTTP/D1 isolate preserves original77-88 and new89 state, commands, u64 and receipts (6060.606239ms)
+ℹ {"actualHttpKernelVersions":[77,78,79,80,81,82,83,84,85,86,87,88,89],"sameIsolate":true,"rooms":13,"accepted":13,"originalReceipts":13,"opaqueStatesExact":true,"seedU64Exact":true,"syntheticDatabaseRetained":true}
+✔ JC037 ABI77 duel-paid-deploy: continuous Native commands, journals, D1 reopening and receipts (6896.111168ms)
+ℹ {"preparedNativeLayout":true,"accepted":3,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 leader-replace: continuous Native commands, journals, D1 reopening and receipts (10434.308082ms)
+ℹ {"preparedNativeLayout":true,"accepted":6,"rejected":1,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 paid-deploy: continuous Native commands, journals, D1 reopening and receipts (11669.312959ms)
+ℹ {"preparedNativeLayout":true,"accepted":7,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 paid-reveal: continuous Native commands, journals, D1 reopening and receipts (11417.435437ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 secret-deployment: continuous Native commands, journals, D1 reopening and receipts (3870.922828ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-control: continuous Native commands, journals, D1 reopening and receipts (7803.559555ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-hide: continuous Native commands, journals, D1 reopening and receipts (11253.007648ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC037 ABI77 source-return: continuous Native commands, journals, D1 reopening and receipts (8164.850263ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ JC041 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (6073.959594ms)
+ℹ {"societyId":"MSJC03","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP water-actor-0 (59683.335844ms)
+ℹ {"scenario":"water-actor-0","reference":"compiler-bound Native87","accepted":17,"rejected":2,"projections":152,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP water-actor-1 (46002.009435ms)
+ℹ {"scenario":"water-actor-1","reference":"compiler-bound Native87","accepted":17,"rejected":2,"projections":152,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP water-actor-2 (44127.568439ms)
+ℹ {"scenario":"water-actor-2","reference":"compiler-bound Native87","accepted":17,"rejected":2,"projections":152,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP water-actor-3 (42870.273684ms)
+ℹ {"scenario":"water-actor-3","reference":"compiler-bound Native87","accepted":17,"rejected":2,"projections":152,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP ordinary-deploy (14733.58054ms)
+ℹ {"scenario":"ordinary-deploy","reference":"compiler-bound Native87","accepted":5,"rejected":0,"projections":48,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP ordinary-reveal-land (49125.21321ms)
+ℹ {"scenario":"ordinary-reveal-land","reference":"compiler-bound Native87","accepted":13,"rejected":1,"projections":116,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP empty-hands (36229.867298ms)
+ℹ {"scenario":"empty-hands","reference":"compiler-bound Native87","accepted":11,"rejected":0,"projections":96,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP hidden-return-response (31063.952454ms)
+ℹ {"scenario":"hidden-return-response","reference":"compiler-bound Native87","accepted":11,"rejected":0,"projections":96,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP revealed-source-return-response (44279.113511ms)
+ℹ {"scenario":"revealed-source-return-response","reference":"compiler-bound Native87","accepted":19,"rejected":0,"projections":160,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 ABI87 HTTP repeated-hidden-actions (53088.227132ms)
+ℹ {"scenario":"repeated-hidden-actions","reference":"compiler-bound Native87","accepted":19,"rejected":0,"projections":160,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC041 corrupted paid-0 restores HTTP400 with no D1 writes (3762.570767ms)
+ℹ {"invalid":"paid-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-1 restores HTTP400 with no D1 writes (3914.610408ms)
+ℹ {"invalid":"paid-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-2 restores HTTP400 with no D1 writes (3535.314768ms)
+ℹ {"invalid":"paid-2","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-3 restores HTTP400 with no D1 writes (4267.382203ms)
+ℹ {"invalid":"paid-3","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-4 restores HTTP400 with no D1 writes (4069.989244ms)
+ℹ {"invalid":"paid-4","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-5 restores HTTP400 with no D1 writes (3736.212273ms)
+ℹ {"invalid":"paid-5","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-6 restores HTTP400 with no D1 writes (3381.992339ms)
+ℹ {"invalid":"paid-6","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-7 restores HTTP400 with no D1 writes (3790.435612ms)
+ℹ {"invalid":"paid-7","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-8 restores HTTP400 with no D1 writes (3944.114355ms)
+ℹ {"invalid":"paid-8","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-9 restores HTTP400 with no D1 writes (3527.422946ms)
+ℹ {"invalid":"paid-9","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-10 restores HTTP400 with no D1 writes (3751.054015ms)
+ℹ {"invalid":"paid-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-11 restores HTTP400 with no D1 writes (4295.172109ms)
+ℹ {"invalid":"paid-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-12 restores HTTP400 with no D1 writes (3839.696489ms)
+ℹ {"invalid":"paid-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-13 restores HTTP400 with no D1 writes (5168.50086ms)
+ℹ {"invalid":"paid-13","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-14 restores HTTP400 with no D1 writes (4826.542147ms)
+ℹ {"invalid":"paid-14","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted paid-15 restores HTTP400 with no D1 writes (5185.396902ms)
+ℹ {"invalid":"paid-15","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted direct-effect restores HTTP400 with no D1 writes (5308.750184ms)
+ℹ {"invalid":"direct-effect","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted duplicate-frame restores HTTP400 with no D1 writes (5200.31656ms)
+ℹ {"invalid":"duplicate-frame","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-0 restores HTTP400 with no D1 writes (4732.239704ms)
+ℹ {"invalid":"discard-0","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-1 restores HTTP400 with no D1 writes (6487.139776ms)
+ℹ {"invalid":"discard-1","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-2 restores HTTP400 with no D1 writes (4029.553098ms)
+ℹ {"invalid":"discard-2","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-3 restores HTTP400 with no D1 writes (3751.375872ms)
+ℹ {"invalid":"discard-3","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-4 restores HTTP400 with no D1 writes (4472.046791ms)
+ℹ {"invalid":"discard-4","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-5 restores HTTP400 with no D1 writes (3948.520713ms)
+ℹ {"invalid":"discard-5","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-6 restores HTTP400 with no D1 writes (4389.921915ms)
+ℹ {"invalid":"discard-6","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-7 restores HTTP400 with no D1 writes (4012.350097ms)
+ℹ {"invalid":"discard-7","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-8 restores HTTP400 with no D1 writes (3674.061278ms)
+ℹ {"invalid":"discard-8","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-9 restores HTTP400 with no D1 writes (3730.228015ms)
+ℹ {"invalid":"discard-9","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-10 restores HTTP400 with no D1 writes (3851.935176ms)
+ℹ {"invalid":"discard-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-11 restores HTTP400 with no D1 writes (4190.33315ms)
+ℹ {"invalid":"discard-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-12 restores HTTP400 with no D1 writes (4953.379913ms)
+ℹ {"invalid":"discard-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted discard-13 restores HTTP400 with no D1 writes (5255.41302ms)
+ℹ {"invalid":"discard-13","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted missing-hidden-frame restores HTTP400 with no D1 writes (5849.890175ms)
+ℹ {"invalid":"missing-hidden-frame","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted missing-forced-frame restores HTTP400 with no D1 writes (5071.37209ms)
+ℹ {"invalid":"missing-forced-frame","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC041 corrupted missing-discard-frame restores HTTP400 with no D1 writes (6432.446012ms)
+ℹ {"invalid":"missing-discard-frame","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ ABI87 adds only complete JC041 and keeps all 150 previous definitions, societies and presets (55.97333ms)
+✔ eleven-kernel router retains exact ABI77 views, joins, commands and polls (621.230912ms)
+✔ eleven-kernel router retains exact ABI78 views, joins, commands and polls (248.538843ms)
+✔ eleven-kernel router retains exact ABI79 views, joins, commands and polls (212.523401ms)
+✔ eleven-kernel router retains exact ABI80 views, joins, commands and polls (281.363658ms)
+✔ eleven-kernel router retains exact ABI81 views, joins, commands and polls (172.499282ms)
+✔ eleven-kernel router retains exact ABI82 views, joins, commands and polls (227.929692ms)
+✔ eleven-kernel router retains exact ABI83 views, joins, commands and polls (171.254253ms)
+✔ eleven-kernel router retains exact ABI84 views, joins, commands and polls (245.809278ms)
+✔ eleven-kernel router retains exact ABI85 views, joins, commands and polls (206.622425ms)
+✔ eleven-kernel router retains exact ABI86 views, joins, commands and polls (169.500828ms)
+✔ eleven-kernel router preserves original Native86 opaque states, journals and all four views (33730.523865ms)
+✔ one actual eleven-kernel HTTP/D1 isolate preserves original77-86 and new87 state, commands, u64 and receipts (7663.064815ms)
+ℹ {"actualHttpKernelVersions":[77,78,79,80,81,82,83,84,85,86,87],"sameIsolate":true,"rooms":11,"accepted":11,"originalReceipts":11,"opaqueStatesExact":true,"seedU64Exact":true,"syntheticDatabaseRetained":true}
+✔ JC044 in MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (8145.633575ms)
+ℹ {"societyId":"MSJC04","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP entry-deploy-skip (19002.128286ms)
+ℹ {"scenario":"entry-deploy-skip","reference":"compiler-bound Native85","accepted":6,"rejected":0,"projections":56,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP entry-deploy-accept (34077.856568ms)
+ℹ {"scenario":"entry-deploy-accept","reference":"compiler-bound Native85","accepted":10,"rejected":0,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP entry-reveal-skip (30262.155864ms)
+ℹ {"scenario":"entry-reveal-skip","reference":"compiler-bound Native85","accepted":6,"rejected":0,"projections":56,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP entry-reveal-accept (31129.418494ms)
+ℹ {"scenario":"entry-reveal-accept","reference":"compiler-bound Native85","accepted":10,"rejected":0,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP actor-0 (40942.137654ms)
+ℹ {"scenario":"actor-0","reference":"compiler-bound Native85","accepted":8,"rejected":4,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP actor-1 (25889.887827ms)
+ℹ {"scenario":"actor-1","reference":"compiler-bound Native85","accepted":8,"rejected":4,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP actor-2 (31934.08921ms)
+ℹ {"scenario":"actor-2","reference":"compiler-bound Native85","accepted":8,"rejected":4,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP actor-3 (27668.077878ms)
+ℹ {"scenario":"actor-3","reference":"compiler-bound Native85","accepted":8,"rejected":4,"projections":88,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP target-self (19575.583307ms)
+ℹ {"scenario":"target-self","reference":"compiler-bound Native85","accepted":6,"rejected":0,"projections":56,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP target-partner (20571.346635ms)
+ℹ {"scenario":"target-partner","reference":"compiler-bound Native85","accepted":6,"rejected":0,"projections":56,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP target-empty (17473.471828ms)
+ℹ {"scenario":"target-empty","reference":"compiler-bound Native85","accepted":5,"rejected":0,"projections":48,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP physical-attachment-cost (21337.443133ms)
+ℹ {"scenario":"physical-attachment-cost","reference":"compiler-bound Native85","accepted":6,"rejected":1,"projections":60,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 ABI85 HTTP responsive-exhaust (40513.420839ms)
+ℹ {"scenario":"responsive-exhaust","reference":"compiler-bound Native85","accepted":14,"rejected":0,"projections":120,"originalReceiptsAfterReopen":true,"opaqueStatesAndJournalsEqual":true,"localSyntheticDatabaseRetained":true}
+✔ JC044 corrupted stack-deploy-source-identity restores HTTP400 with no D1 writes (3819.510404ms)
+ℹ {"invalid":"stack-deploy-source-identity","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-00 restores HTTP400 with no D1 writes (4954.258531ms)
+ℹ {"invalid":"declare-00","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-01 restores HTTP400 with no D1 writes (3829.381926ms)
+ℹ {"invalid":"declare-01","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-02 restores HTTP400 with no D1 writes (4413.856151ms)
+ℹ {"invalid":"declare-02","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-03 restores HTTP400 with no D1 writes (4970.942715ms)
+ℹ {"invalid":"declare-03","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-04 restores HTTP400 with no D1 writes (3395.309514ms)
+ℹ {"invalid":"declare-04","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-05 restores HTTP400 with no D1 writes (3496.860346ms)
+ℹ {"invalid":"declare-05","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-06 restores HTTP400 with no D1 writes (5963.612569ms)
+ℹ {"invalid":"declare-06","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-07 restores HTTP400 with no D1 writes (6406.762812ms)
+ℹ {"invalid":"declare-07","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-08 restores HTTP400 with no D1 writes (3716.677683ms)
+ℹ {"invalid":"declare-08","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-09 restores HTTP400 with no D1 writes (4717.212265ms)
+ℹ {"invalid":"declare-09","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-10 restores HTTP400 with no D1 writes (7752.435359ms)
+ℹ {"invalid":"declare-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-11 restores HTTP400 with no D1 writes (30282.755838ms)
+ℹ {"invalid":"declare-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-12 restores HTTP400 with no D1 writes (5219.364896ms)
+ℹ {"invalid":"declare-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-13 restores HTTP400 with no D1 writes (3445.21216ms)
+ℹ {"invalid":"declare-13","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-14 restores HTTP400 with no D1 writes (3949.321203ms)
+ℹ {"invalid":"declare-14","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-15 restores HTTP400 with no D1 writes (3965.047881ms)
+ℹ {"invalid":"declare-15","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted declare-16 restores HTTP400 with no D1 writes (4003.117457ms)
+ℹ {"invalid":"declare-16","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted stack-reveal-source-identity restores HTTP400 with no D1 writes (3401.701254ms)
+ℹ {"invalid":"stack-reveal-source-identity","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-00 restores HTTP400 with no D1 writes (3542.203982ms)
+ℹ {"invalid":"repression-00","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-01 restores HTTP400 with no D1 writes (4357.817601ms)
+ℹ {"invalid":"repression-01","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-02 restores HTTP400 with no D1 writes (3582.817807ms)
+ℹ {"invalid":"repression-02","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-03 restores HTTP400 with no D1 writes (5041.502816ms)
+ℹ {"invalid":"repression-03","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-04 restores HTTP400 with no D1 writes (3644.376803ms)
+ℹ {"invalid":"repression-04","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-05 restores HTTP400 with no D1 writes (3866.860707ms)
+ℹ {"invalid":"repression-05","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-06 restores HTTP400 with no D1 writes (4328.453727ms)
+ℹ {"invalid":"repression-06","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-07 restores HTTP400 with no D1 writes (4655.962325ms)
+ℹ {"invalid":"repression-07","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-08 restores HTTP400 with no D1 writes (9116.582401ms)
+ℹ {"invalid":"repression-08","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-09 restores HTTP400 with no D1 writes (4054.210474ms)
+ℹ {"invalid":"repression-09","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-10 restores HTTP400 with no D1 writes (4437.442004ms)
+ℹ {"invalid":"repression-10","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-11 restores HTTP400 with no D1 writes (3817.38403ms)
+ℹ {"invalid":"repression-11","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-12 restores HTTP400 with no D1 writes (3692.26474ms)
+ℹ {"invalid":"repression-12","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-13 restores HTTP400 with no D1 writes (5533.509147ms)
+ℹ {"invalid":"repression-13","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-14 restores HTTP400 with no D1 writes (4094.399487ms)
+ℹ {"invalid":"repression-14","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-15 restores HTTP400 with no D1 writes (4636.134408ms)
+ℹ {"invalid":"repression-15","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-16 restores HTTP400 with no D1 writes (5158.294968ms)
+ℹ {"invalid":"repression-16","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ JC044 corrupted repression-17 restores HTTP400 with no D1 writes (5351.412106ms)
+ℹ {"invalid":"repression-17","http400":10,"realD1Reopen":true,"roomCommandsJournalUnchanged":true}
+✔ ABI85 adds only complete JC044 and keeps all 148 previous definitions, societies and presets (39.121525ms)
+✔ nine-kernel router retains exact ABI77 views, joins, commands and polls (339.855523ms)
+✔ nine-kernel router retains exact ABI78 views, joins, commands and polls (91.843028ms)
+✔ nine-kernel router retains exact ABI79 views, joins, commands and polls (109.025789ms)
+✔ nine-kernel router retains exact ABI80 views, joins, commands and polls (90.141104ms)
+✔ nine-kernel router retains exact ABI81 views, joins, commands and polls (102.889727ms)
+✔ nine-kernel router retains exact ABI82 views, joins, commands and polls (87.292112ms)
+✔ nine-kernel router retains exact ABI83 views, joins, commands and polls (80.748096ms)
+✔ nine-kernel router retains exact ABI84 views, joins, commands and polls (95.536218ms)
+✔ nine-kernel router preserves original Native84 opaque states, journals and all four views (12412.595202ms)
+✔ JC046 ABI77 aura-loss-before-next-seat: continuous Native commands, journals, D1 reopening and receipts (14406.096945ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 choose-self-among-others: continuous Native commands, journals, D1 reopening and receipts (14095.445745ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-exhausted: continuous Native commands, journals, D1 reopening and receipts (5924.345886ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-hidden: continuous Native commands, journals, D1 reopening and receipts (8248.502899ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-kill-two: continuous Native commands, journals, D1 reopening and receipts (4861.594175ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-other-region: continuous Native commands, journals, D1 reopening and receipts (5119.649702ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 combat-two-sources: continuous Native commands, journals, D1 reopening and receipts (5071.894575ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 conceal-no-trigger: continuous Native commands, journals, D1 reopening and receipts (4051.517584ms)
+ℹ {"preparedNativeLayout":true,"accepted":1,"rejected":0,"reopened":1,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 continuation-container-reference: continuous Native commands, journals, D1 reopening and receipts (7365.191662ms)
+ℹ {"preparedNativeLayout":true,"accepted":5,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 control-source-sacrifice-restores-next-seat: continuous Native commands, journals, D1 reopening and receipts (8620.673903ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 current-control-owner-graves: continuous Native commands, journals, D1 reopening and receipts (9630.974986ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":2,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}
+✔ JC046 ABI77 death-callbacks-after-all-seats: continuous Native commands, journals, D1 reopening and receipts (10490.671593ms)
+ℹ {"preparedNativeLayout":true,"accepted":15,"rejected":0,"reopened":3,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"rejectedOnlyScenario":false,"duplicateOriginalReceipt":true}

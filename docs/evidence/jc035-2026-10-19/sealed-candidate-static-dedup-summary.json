@@ -1,0 +1,17 @@
+{
+  "format": "jc035-sealed-candidate-static-dedup-v1",
+  "startedUtc": "2026-10-19T11:09:37.447186+00:00",
+  "scope": "Only sealed generated client static outputs; keep every path, byte, permission, uid, gid. No source, DB, cache, WASM or active Worker modules mutated. Before rebuild move whole candidate outputs aside.",
+  "freeBytesBefore": 1139048448,
+  "production187ManifestUnchanged": true,
+  "allPathsBytesPermissionsPreserved": true,
+  "finishedUtc": "2026-10-19T11:09:41.382187+00:00",
+  "freeBytesAfter": 1439326208,
+  "paths": 510,
+  "atomicIdenticalHardlinkReplacements": 506,
+  "recoveredBytes": 300277760,
+  "ledger": "docs/evidence/jc035-2026-10-19/sealed-candidate-static-dedup.json.gz",
+  "ledgerSha256": "57831bf336666c66ef92354324d5994238304ce11d94ecf141973f27c6161139",
+  "rawLedgerSha256": "64f1632f22b0843efa070e8975aa07e6a06de7b5023a08442a9c4b6b4b6ee533",
+  "noActiveWorkerModuleOrWasmChanges": true
+}

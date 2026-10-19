@@ -1,0 +1,20 @@
+{
+  "format": "jc035-worker-incomplete-checkpoint-v1",
+  "utc": "2026-10-19T11:29:15.463724+00:00",
+  "headAtSnapshot": "8aed1e19f7d977b6c982c249736194ede93ef043",
+  "scope": "Original full serial Worker still running; partial log only, not a final or all-green result. No original run restart and no running source/test input changes.",
+  "observedCompletedTestLines": 247,
+  "passedLines": 246,
+  "failedLines": [
+    "✖ JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (1561.527847ms)"
+  ],
+  "lastTest": "✔ JC046 ABI77 death-callbacks-after-all-seats: continuous Native commands, journals, D1 reopening and receipts (10490.671593ms)",
+  "naturalExitReceiptPresent": false,
+  "partialLog": "docs/evidence/jc035-2026-10-19/runs/worker-full-first.20261019T112915Z.partial.log",
+  "partialLogBytes": 52800,
+  "partialLogSha256": "7ae769680976234eb481d2c6a435c7433fdfec5d259d07b9f67ab40803cd8517",
+  "nativeCompilerInputsUnchanged": 141,
+  "buildStorageGuardUnchanged": true,
+  "customLockUnchanged": true,
+  "freeDiskBytes": 1317830656
+}
