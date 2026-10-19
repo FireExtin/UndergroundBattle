@@ -156,6 +156,11 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_xq23_state(&self) -> RuleResult<()> {
+        // Asset targets expose owner labels before a paid frame exists. Reject
+        // invalid seat indexes before projection as well as before resolution.
+        if self.players.iter().flat_map(|p| &p.assets).any(|c| c.owner >= self.players.len()) {
+            return Err("资产区拥有者座位无效".into());
+        }
         let mut ids = BTreeSet::new();
         for item in &self.stack {
             if let Some(f) = &item.frame {

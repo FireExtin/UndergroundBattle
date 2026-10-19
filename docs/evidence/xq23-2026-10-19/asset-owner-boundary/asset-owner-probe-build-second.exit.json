@@ -1,0 +1,24 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "rustc",
+    "--edition=2021",
+    "/workspace/xq23-evidence-20261019/asset-owner-probe.rs",
+    "--crate-name",
+    "xq23_asset_owner_probe",
+    "--extern",
+    "hegemony_server=/workspace/undergroundbattle-build/target/debug/deps/libhegemony_server-e1ebb84119a75fde.rlib",
+    "--extern",
+    "serde_json=/workspace/undergroundbattle-build/target/debug/deps/libserde_json-46b21819a1f6a186.rlib",
+    "-L",
+    "dependency=/workspace/undergroundbattle-build/target/debug/deps",
+    "-o",
+    "/workspace/undergroundbattle-build/target/xq23-asset-owner-probe"
+  ],
+  "startedUtc": "2026-10-19T03:16:33.162049+00:00",
+  "finishedUtc": "2026-10-19T03:16:34.511794+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/asset-owner-probe-build-second.log"
+}

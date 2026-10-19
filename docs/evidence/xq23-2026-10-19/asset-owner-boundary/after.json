@@ -1,0 +1,22 @@
+{
+  "scope": "Same source/input probe after early owner-seat guard",
+  "result": {
+    "case": "asset-owner-out-of-bounds",
+    "error": "资产区拥有者座位无效",
+    "restored": false
+  },
+  "probeSourceSha256": "381256f5a110678d837cfae4f71163219d13d6cbdcfb1037b2c62edd019fa8fc",
+  "nativeLibrarySha256": "70175431931e6c2ad683c383d28a4838845d9d4182d38c2756be679d71741f57",
+  "beforeNativeLibrarySha256": "06ba4e087d7cd2d255330629c28b43bc7fbb2166c356394cbaed9bc01c545eac",
+  "noInputVersionOrUidReplacement": true,
+  "newFixtureCases": [
+    "asset-owner-before-declaration",
+    "asset-owner-paid-frame"
+  ],
+  "focusedNative": {
+    "total": 13,
+    "passed": 13,
+    "exit": 0
+  },
+  "fullNativeAfterFix": "pending"
+}

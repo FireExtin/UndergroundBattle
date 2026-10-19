@@ -14,6 +14,12 @@ fn bad(g: &Game, name: &str) {
     let mut g=g.clone();BAD_EXPORT.with(|saved|if let Some(rows)=saved.borrow().as_ref(){g.room_id=format!("{:024x}",889000+rows.len())});
     let game_error=Game::from_persisted(&serde_json::to_string(&g).unwrap()).err().unwrap_or_else(||panic!("Game accepted {name}"));
     let mut clean=g.clone();clean.stack.clear();clean.effects.clear();clean.pending=None;
+    // Only the temporary valid envelope scaffold is sanitized. The complete
+    // original corrupted Game is restored below before either loader sees it.
+    let seats=clean.players.len();
+    for (seat,p) in clean.players.iter_mut().enumerate() {
+        for c in &mut p.assets {if c.owner>=seats {c.owner=seat;}}
+    }
     let mut room=crate::jc029_tests::envelope(&clean);room.game=g.clone();
     let state=serde_json::to_string(&room).unwrap();
     let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().unwrap_or_else(||panic!("Room accepted {name}"));
@@ -85,7 +91,7 @@ fn xq23_native88_oracles() {
     }
     BAD_EXPORT.with(|saved|*saved.borrow_mut()=Some(vec![]));
     xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room();
-    let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),25);
+    let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),27);
     let mut binding=crate::jc066_tests::source_bindings();
     use sha2::{Digest,Sha256};
     for(name,bytes)in[
@@ -223,6 +229,14 @@ fn xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_r
     }
     let mut next=g.clone();let frame=next.stack.pop().unwrap().frame.unwrap();next.effects.push_back(Effect::Frame {frame:Box::new(frame)});bad(&next,"bypass-stack");
     let mut next=g.clone();next.stack.push(next.stack[0].clone());bad(&next,"duplicate-frame");
+    let mut next=g.clone();next.players[0].assets.iter_mut().find(|c|c.id==t).unwrap().owner=7;
+    bad(&next,"asset-owner-paid-frame");
+    let (mut next,source,target)=active(0);
+    next.players[0].assets.iter_mut().find(|c|c.id==target).unwrap().owner=7;
+    let before=serde_json::to_string(&next).unwrap();
+    assert!(next.apply(0,action(&source,&target)).unwrap_err().contains("资产区"));
+    assert_eq!(serde_json::to_string(&next).unwrap(),before,"Invalid owners reject before labels, costs or mutation");
+    bad(&next,"asset-owner-before-declaration");
 }
 
 struct Trace { name:String, room:crate::room::RoomEnvelope, initial:serde_json::Value, steps:Vec<serde_json::Value> }

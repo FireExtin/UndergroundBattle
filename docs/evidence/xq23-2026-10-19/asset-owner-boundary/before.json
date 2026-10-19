@@ -1,0 +1,20 @@
+{
+  "status": "Reproduced pre-fix; final full Native still in progress, no Rust edits while running",
+  "sourceCheckpoint": "ce427bf0e58aac3ea293c6f43960183473718329",
+  "method": "Same current built native rlib, separate tiny probe outside repository; actual Native88 initial Room with only target asset.owner changed to7; no state version/UID replacement",
+  "rawInput": "native-fifth/Native88.json scenario actor-0",
+  "nativeLibrary": "/workspace/undergroundbattle-build/target/debug/deps/libhegemony_server-e1ebb84119a75fde.rlib",
+  "nativeLibraryBytes": 46172234,
+  "nativeLibrarySha256": "06ba4e087d7cd2d255330629c28b43bc7fbb2166c356394cbaed9bc01c545eac",
+  "probeSourceSha256": "381256f5a110678d837cfae4f71163219d13d6cbdcfb1037b2c62edd019fa8fc",
+  "result": {
+    "restored": true,
+    "panickedAtStep": 0,
+    "failure": "resolution.rs:235 action label indexes nonexistent owner seat7 with only4 players"
+  },
+  "harnessBuilds": {
+    "first": "Tooling dependency variant mismatch between the two cached serde_core builds; no product code execution",
+    "second": "Correct matching cached serde_json; natural exit0"
+  },
+  "next": "After original full test naturally ends, reject invalid asset owner seats before any projection/declaration; add predeclaration and paid-frame cases, then regenerate139-input witnesses and required regression"
+}

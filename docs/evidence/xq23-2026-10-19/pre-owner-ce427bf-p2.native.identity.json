@@ -1,0 +1,14 @@
+{
+  "scope": "Actual current Native P2 export; full workspace still in progress, WASM compare pending",
+  "nativeRustCheckpoint": "ce427bf0e58aac3ea293c6f43960183473718329",
+  "nativeInputs": 139,
+  "rawBytes": 6486736,
+  "rawSha256": "969f3028da66b2e7da876ff1db9bf8cbd58f3bd68588d896eb9922c2935c7719",
+  "gzipBytes": 450628,
+  "gzipSha256": "7a4bb79014111cb03241df536fcd0a0ee605cc8fe90de2f6372c61d708483966",
+  "originalArchiveSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c",
+  "currentIdentity": "rust-v0.2.88-xq23-asset-return-candidate",
+  "invalidCases": 4,
+  "legalScenarios": 4,
+  "commands": 56
+}

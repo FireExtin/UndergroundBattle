@@ -1,0 +1,94 @@
+{
+  "scope": "Complete workspace at ce427 before the separately reproduced asset-owner hardening; not the final candidate validation",
+  "sourceCheckpoint": "ce427bf0e58aac3ea293c6f43960183473718329",
+  "receipt": {
+    "command": [
+      "node",
+      "tools/build-storage.mjs",
+      "--",
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "startedUtc": "2026-10-19T03:06:02.350783+00:00",
+    "finishedUtc": "2026-10-19T03:25:00.904746+00:00",
+    "exitCode": 0,
+    "log": "/workspace/xq23-evidence-20261019/workspace-final.log"
+  },
+  "results": [
+    {
+      "outcome": "ok",
+      "passed": 1273,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 0,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 0,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 27,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 0,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 0,
+      "failed": 0
+    },
+    {
+      "outcome": "ok",
+      "passed": 0,
+      "failed": 0
+    }
+  ],
+  "totalPassedInThisOneWorkspaceRun": 1340,
+  "rawBytes": 136273,
+  "rawSha256": "7b58b8e0c5d19a2d529c3c86731c4a61a029d110ab071a804cbb67fb4b1ee9f9",
+  "knownCounterexample": "asset-owner-boundary/before.json"
+}

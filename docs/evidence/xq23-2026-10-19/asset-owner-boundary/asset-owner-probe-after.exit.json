@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "/workspace/undergroundbattle-build/target/xq23-asset-owner-probe-after"
+  ],
+  "startedUtc": "2026-10-19T03:32:58.196034+00:00",
+  "finishedUtc": "2026-10-19T03:32:58.656550+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/asset-owner-probe-after.log"
+}
