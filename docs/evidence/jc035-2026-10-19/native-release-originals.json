@@ -1,0 +1,63 @@
+{
+  "compiledSource": "fba026bd887458b65c46fc855b9d28484c8a1a57",
+  "scope": "Actual release Native originals before WASM qualification; no opaque-state rewriting.",
+  "passed": 1358,
+  "failed": 0,
+  "ignored": 0,
+  "profiles": [
+    "release"
+  ],
+  "files": [
+    {
+      "path": "Native89.json",
+      "bytes": 18341343,
+      "sha256": "d4e71ecf71850448000b08f7b5e5424cab05986c156ce765350c22cedd4c64e6",
+      "format": "jc035-native89-v1",
+      "inputs": 141,
+      "counts": {
+        "commands": 145,
+        "invalidRestores": 47,
+        "projections": 620,
+        "rejected": 4,
+        "scenarios": 13
+      }
+    },
+    {
+      "path": "NativeCurrent89.json",
+      "bytes": 9238669,
+      "sha256": "7a0da255ac8ab0a58e7d00595f52e91d538685dca11615670de425e0048b2789",
+      "format": "xq23-current-native89-v1",
+      "inputs": 141,
+      "counts": {
+        "commands": 72,
+        "invalidRestores": 31,
+        "projections": 324,
+        "rejected": 5,
+        "scenarios": 9
+      }
+    },
+    {
+      "path": "NativeCurrentOwner89.json",
+      "bytes": 18455995,
+      "sha256": "a858caa99b83c6cac804141b885061e3f756274e3acea975b1965318d319f231",
+      "format": "xq23-current-owner-elimination-native-v1",
+      "inputs": 141,
+      "counts": {
+        "actualXQ23Conversions": 2,
+        "afterControlledAssets": 10,
+        "beforeControlledAssets": 11,
+        "canLegallyReturnDeadOwnerAsset": false,
+        "commands": 166,
+        "deadOwnerHandRepopulated": false,
+        "eliminatedOwner2AssetSurvives": false,
+        "gameContinues": true,
+        "livingOwner3AssetSurvives": true,
+        "livingOwnerHandReceivedOwnCard": true,
+        "owner2EliminatedByNaturalNextTurnEmptyDraw": true,
+        "readyResourcesAfterElimination": 10,
+        "realJC129Declarations": 2,
+        "teammate3Lives": true
+      }
+    }
+  ]
+}
