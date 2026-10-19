@@ -1,0 +1,31 @@
+{
+  "startedUtc": "2026-10-19T02:04:13.946856+00:00",
+  "finishedUtc": "2026-10-19T02:04:14.050453+00:00",
+  "approvalMessage": "Sentinel_38d5c85712f48191a49d195ea66daa41",
+  "deletedOnlyPath": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+  "allocatedBytesBefore": 1092812800,
+  "allocatedBytesAfter": 0,
+  "filesDeleted": 1147,
+  "directoryAbsent": true,
+  "before": {
+    "availableBytes": 994086912,
+    "guardBytes": 1073741824
+  },
+  "after": {
+    "availableBytes": 2086899712,
+    "guardBytes": 1073741824
+  },
+  "actualAvailableBytesIncrease": 1092812800,
+  "protectedDirectoriesSameInodes": true,
+  "retainedGitOriginalsAndAbi78Exact": true,
+  "production183ExactAfter": true,
+  "worktreeClean": true,
+  "guard": {
+    "exitCode": 0,
+    "stdout": "{\"target\":\"/workspace/undergroundbattle-build/target\",\"temporary\":\"/workspace/undergroundbattle-build/tmp\",\"jobs\":1}\n",
+    "stderr": ""
+  },
+  "noOtherCleanup": true,
+  "mainNotMerged": true,
+  "noDeployment": true
+}

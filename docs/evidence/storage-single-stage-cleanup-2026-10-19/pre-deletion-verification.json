@@ -1,0 +1,132 @@
+{
+  "checkedUtc": "2026-10-19T02:04:13.946087+00:00",
+  "approvalMessage": "Sentinel_38d5c85712f48191a49d195ea66daa41",
+  "approvedOnlyPath": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114",
+  "auditCommit": "1abe880efc143d93deb68fa51b38b751591c3304",
+  "mappedFiles": 1145,
+  "retainedGitBlobMatches": 1143,
+  "extraOwnedFilesExact": 2,
+  "filesToDelete": 1147,
+  "directoriesInside": 26,
+  "allocatedBytesBefore": 1092812800,
+  "mappingRetainedInFixedMain": true,
+  "externalAbi78Originals": [
+    {
+      "path": "/workspace/undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoredBytes": 18203,
+      "restoredSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm_bg.wasm.gz",
+      "sha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e",
+      "restoredBytes": 2976205,
+      "restoredSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    }
+  ],
+  "symlinksFound": 0,
+  "nestedMounts": [],
+  "sameFilesystemThroughout": true,
+  "activeApplicationProcesses": [],
+  "candidateProcessReferences": [],
+  "existingSystemProcReadLimits": [
+    {
+      "pid": 1,
+      "comm": "tail",
+      "part": "maps"
+    },
+    {
+      "pid": 2,
+      "comm": "caas-prefix-tra",
+      "part": "maps"
+    },
+    {
+      "pid": 117,
+      "comm": "dockerd",
+      "part": "fd"
+    },
+    {
+      "pid": 117,
+      "comm": "dockerd",
+      "part": "maps"
+    },
+    {
+      "pid": 184,
+      "comm": "containerd",
+      "part": "fd"
+    },
+    {
+      "pid": 184,
+      "comm": "containerd",
+      "part": "maps"
+    },
+    {
+      "pid": 451,
+      "comm": "codex",
+      "part": "maps"
+    },
+    {
+      "pid": 124238,
+      "comm": "codex-linux-san",
+      "part": "maps"
+    },
+    {
+      "pid": 124240,
+      "comm": "bwrap",
+      "part": "maps"
+    }
+  ],
+  "readLimitsAlreadyDisclosedInApprovedAudit": true,
+  "protectedDirectories": {
+    "/workspace/UndergroundBattle": {
+      "device": 27,
+      "inode": 9223372036855909305
+    },
+    "/workspace/UndergroundBattle/.git": {
+      "device": 27,
+      "inode": 9223372036855987662
+    },
+    "/workspace/UndergroundBattle/docs": {
+      "device": 27,
+      "inode": 9223372036855987712
+    },
+    "/workspace/UndergroundBattle/sites/dist": {
+      "device": 27,
+      "inode": 1203272
+    },
+    "/workspace/UndergroundBattle/rust-game-wasm/pkg": {
+      "device": 27,
+      "inode": 1082760
+    },
+    "/workspace/hidden-world-sites-abi77-20261015": {
+      "device": 27,
+      "inode": 1314273
+    },
+    "/workspace/undergroundbattle-build/frozen-kernels": {
+      "device": 27,
+      "inode": 1446298
+    },
+    "/workspace/undergroundbattle-build/target": {
+      "device": 27,
+      "inode": 1054527
+    },
+    "/workspace/undergroundbattle-build/tmp": {
+      "device": 27,
+      "inode": 1054528
+    },
+    "/workspace/undergroundbattle-build/npm-cache": {
+      "device": 27,
+      "inode": 1049084
+    },
+    "/workspace/undergroundbattle-build/source-stage-bq035-20261016-11927a3": {
+      "device": 27,
+      "inode": 1196034
+    },
+    "/workspace/undergroundbattle-build/source-stage-bq035-20261016": {
+      "device": 27,
+      "inode": 1194527
+    }
+  },
+  "production183ExactBefore": true,
+  "noCleanupOutsideExactApprovedPath": true
+}

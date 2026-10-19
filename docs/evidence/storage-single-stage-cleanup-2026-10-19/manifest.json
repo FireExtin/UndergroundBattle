@@ -1,0 +1,17 @@
+{
+  "files": {
+    "verify-and-remove-approved-stage.py": {
+      "bytes": 8709,
+      "sha256": "c8d300724ec38e67b54cff059b67bb3fc333892efe82edab2b8efc30fe35ae1f"
+    },
+    "pre-deletion-verification.json": {
+      "bytes": 3503,
+      "sha256": "6c992bf15054f212aa359683f6c4ecc434ae62311e0be0ce817a754ec95e78ac"
+    },
+    "deletion-and-space-result.json": {
+      "bytes": 1019,
+      "sha256": "cbdfc59d6ed653ee74279e605934375705f22a3676a807b6cdf17314fc1ae920"
+    }
+  },
+  "approvedOnlyPath": "/workspace/undergroundbattle-build/source-stage-bq035-p2-20261016-53b2114"
+}
