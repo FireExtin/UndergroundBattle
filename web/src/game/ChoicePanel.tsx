@@ -88,7 +88,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
   const complete = (current: ChoiceDraft) => damage ? Object.values(current.allocations).reduce((total, n) => total + n, 0) === amount
     : ordering ? current.top.length + current.bottom.length === choice.options.length
-      : current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline || zeroConfirmation);
+      : current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline && !triggerOrder || zeroConfirmation);
   const valid = complete(draft);
   const selectionFull = selected.length >= max;
   const selectionHint = max === 1

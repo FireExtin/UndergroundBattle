@@ -2,8 +2,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {loadOwnerFixture} from '../../tools/xq23-current-owner-oracle.mjs';
+import {loadCurrentFixture} from '../../tools/xq23-current-oracle.mjs';
 import {harness} from './xq23-http-harness.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
+const current=loadCurrentFixture(),summaryCases=current.invalid.filter(c=>c.name.startsWith('target-summary-'));
+assert.equal(summaryCases.length,4);
+for(const c of summaryCases)test('current89 fresh paid state '+c.name+' rejects reads and commands across D1 reopen',async t=>{
+ const reference=current.scenarios[0].initial.views.map(v=>({...v,roomId:c.roomId,inviteCode:c.inviteCode,version:c.revision}));
+ const h=await harness(t,{initial:{state:c.state,views:reference}}),before=await h.snapshot();let rejected=0;
+ for(let reopened=0;reopened<2;reopened++){
+  if(reopened)await h.reopen();
+  for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,400);assert.equal(r.body.message,c.roomError);rejected++;}
+  const r=await h.api('commands',0,{commandId:'current-'+c.name,expectedVersion:c.revision,action:{kind:'pauseRoom'}});assert.equal(r.status,400);assert.equal(r.body.message,c.roomError);rejected++;
+  assert.deepEqual(await h.snapshot(),before);
+ }
+ t.diagnostic(JSON.stringify({source:'fresh Native141 current89 paid frame',http400:rejected,original88Untouched:true,noD1Writes:true}));
+});
 test('current89 retains borrowed-owner cleanup, score and original receipts after real D1 reopen',async t=>{
  const f=loadOwnerFixture(),h=await harness(t,f),receipts=[];let accepted=0,rejected=0,projections=0,reopened=0;
  const views=async expected=>{for(const[seat,v]of expected.entries()){const r=await h.api('state',seat);assert.equal(r.status,200);assertPublicView(r.body,v);projections++;}};

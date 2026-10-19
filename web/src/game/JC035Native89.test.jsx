@@ -16,6 +16,7 @@ it.each(choices)('$name selects or declines the actual observed source and confi
  const m=render(<Table catalog={catalog} view={view} busy={false} connection='online' onAction={onAction}/>);
  expect(screen.getByText('传媒魔咒：选择下一项准备触发')).toBeInTheDocument();
  expect(screen.getByText('触发 1')).toBeInTheDocument();
+ expect(screen.getByRole('button',{name:'确认选择',exact:true})).toBeDisabled();
  for(const id of a.selected||[])fireEvent.click(m.container.querySelector(`[data-choice-option="${id}"]`));
  if(a.selected?.length)expect(screen.getByText(/^下一项入栈：地区/)).toBeInTheDocument();
  fireEvent.click(screen.getByRole('button',{name:a.selected?.length?'确认选择':'跳过此选择',exact:true}));
@@ -37,6 +38,7 @@ it('keeps a pending source selection after remount and clears it when the next r
  fireEvent.click(screen.getByRole('button',{name:'确认选择',exact:true}));expect(onAction).toHaveBeenCalledOnce();
  m.rerender(<Table {...props} view={entry.row.views[entry.row.seat]}/>);
  expect(m.container.querySelector(`[data-choice-option="${id}"]`)).toBeNull();
+ expect(screen.getByRole('button',{name:'确认选择',exact:true})).toBeDisabled();
 });
 it('does not expose another player preparation controls or the stored enemy-hand observation',()=>{
  const entry=choices.find(({name})=>name==='actor-0');
