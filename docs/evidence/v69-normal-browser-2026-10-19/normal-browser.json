@@ -1,0 +1,89 @@
+{
+  "startedAtUtc": "2026-10-19T02:06:00.347329+00:00",
+  "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+  "scope": "Real normal cloud Chromium against published production URL; reachability/identity gate before isolated gameplay",
+  "expectedDeployedVersion": 69,
+  "expectedProviderSource": "0bf3a2793b0e4d28d4324b8251cebde685c8c085",
+  "expectedDeploymentId": "appgdep_6ad4e5f033188191a290b0fb89fcf263",
+  "officialIdentityVerifiedBeforeBrowser": true,
+  "normalTls": true,
+  "ignoreHttpsErrors": false,
+  "bypassUsed": false,
+  "certificateWarningClicked": false,
+  "certificateOverrideFlags": [],
+  "customTrustStoreConfigured": false,
+  "freshBrowserContext": true,
+  "oldInviteUsed": false,
+  "realUserTableAccessed": false,
+  "roomCreated": false,
+  "roomJoined": false,
+  "posts": 0,
+  "navigationAttempts": 1,
+  "uiReached": false,
+  "versionIdentityReached": false,
+  "fullGameCount": 0,
+  "onlineGameplay": false,
+  "componentTestUsed": false,
+  "apiMockingUsed": false,
+  "neutralAndDualPaused": true,
+  "opaqueStateInjected": false,
+  "compiledDuringBrowserCheck": false,
+  "publicationSucceededBeforeCheck": true,
+  "mainMerged": false,
+  "browserErrors": [],
+  "requests": [
+    {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "method": "GET"
+    }
+  ],
+  "requestsFailed": [
+    {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/",
+      "method": "GET",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "assetIdentityChecks": [],
+  "consoleErrors": [],
+  "expectedBrowserAssets": {
+    "/assets/index-Dz8ElhbZ.js": "07261861863e59b76a049b7e4754353bd2962ffc37cc0d93ab8ad0002b077b34",
+    "/assets/index-jNIaCara.css": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917",
+    "/": "df8e2c8d747af15d500451ad9de562617afbc4504811e6d20cc3f9c7effddcdb"
+  },
+  "runtimeManifestSha256": "deaa965554f59805b9c222c6b8869e6c3db31378b561231c6bb07ad3a3f597f7",
+  "gameplayChecks": {
+    "red-admitted-mechanisms": "not-executed",
+    "black-admitted-mechanisms": "not-executed",
+    "blue-admitted-mechanisms": "not-executed",
+    "gray-admitted-mechanisms": "not-executed",
+    "jc041-water-hidden-and-source-region-recovery": "not-executed",
+    "jc066-sealed-icons-and-recovery": "not-executed",
+    "jc044-entry-time-and-physical-time-repression": "not-executed",
+    "jc057-reveal-inspect-and-live-hidden-read": "not-executed",
+    "msjc04-paid-initiative-draw-and-red-unique-search": "not-executed",
+    "msjc05-paid-initiative-draw-and-gray-empty-search": "not-executed",
+    "initial-society-and-legal-deck-selection": "not-executed",
+    "card-selection": "not-executed",
+    "repeat-click-single-submission": "not-executed",
+    "refresh-recovery": "not-executed",
+    "complete-game": "not-executed"
+  },
+  "browserVersion": "151.0.7922.173",
+  "browserExecutable": "/usr/bin/chromium",
+  "browserLaunchArgs": [
+    "--no-sandbox",
+    "--disable-dev-shm-usage"
+  ],
+  "navigationAtUtc": "2026-10-19T02:06:03.313114+00:00",
+  "errorAtUtc": "2026-10-19T02:06:03.603795+00:00",
+  "error": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\nCall log:\n  - navigating to \"https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/\", waiting until \"domcontentloaded\"\n",
+  "outcome": "blocked-tls-before-gameplay",
+  "pageUrlAfterFailure": "about:blank",
+  "titleAfterFailure": "",
+  "finishedAtUtc": "2026-10-19T02:06:05.226563+00:00",
+  "gameWriteRequests": [],
+  "zeroGameWriteRequests": true,
+  "probeReason": "Parent relayed user approval for one source-stage deletion; exact cleanup and unchanged 183 production files verified, original storage guard passed. Official v69 ABI87 deployment/source/archive identity re-read succeeded. This is the first v69 normal browser launch after the previous storage block. Stop immediately on a certificate warning; do not retry or bypass.",
+  "getRequests": 1
+}
