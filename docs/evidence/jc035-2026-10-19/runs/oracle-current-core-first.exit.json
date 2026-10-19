@@ -1,0 +1,21 @@
+{
+  "stage": "oracle-current-core-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/xq23-current-oracle.mjs",
+    "/workspace/jc035-evidence-20261019/native-release-final/NativeCurrent89.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "rust-game-wasm/tests/xq23CoreNative89.fixture.json.gz"
+  ],
+  "startedUtc": "2026-10-19T10:19:43.498878+00:00",
+  "finishedUtc": "2026-10-19T10:19:45.457324+00:00",
+  "exitCode": 0,
+  "durationSeconds": 1.9585002579988213,
+  "log": "/workspace/jc035-evidence-20261019/oracle-current-core-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

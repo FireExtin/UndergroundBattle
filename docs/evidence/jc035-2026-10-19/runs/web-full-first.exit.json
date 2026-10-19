@@ -1,0 +1,22 @@
+{
+  "stage": "web-full-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1"
+  ],
+  "startedUtc": "2026-10-19T10:19:50.377300+00:00",
+  "finishedUtc": "2026-10-19T10:27:58.776743+00:00",
+  "exitCode": 1,
+  "durationSeconds": 488.39949192600034,
+  "log": "/workspace/jc035-evidence-20261019/web-full-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

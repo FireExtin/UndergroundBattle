@@ -1,0 +1,37 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/JZ55UniqueDestroy.test.jsx (8 tests | 1 failed) 1835ms
+   × opens the exact original and displays cannot respond without inventing a magic requirement 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/JZ55UniqueDestroy.test.jsx > opens the exact original and displays cannot respond without inventing a magic requirement
+AssertionError: expected [ 'JC125', 'LC19', 'LC20', …(152) ] to have a length of 154 but got 155
+
+- Expected
++ Received
+
+- 154
++ 155
+
+ ❯ src/game/JZ55UniqueDestroy.test.jsx:36:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 142 passed (143)
+      Tests  1 failed | 1430 passed (1431)
+   Start at  10:19:51
+   Duration  487.11s (transform 14.55s, setup 20.73s, import 42.05s, tests 288.97s, environment 103.06s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

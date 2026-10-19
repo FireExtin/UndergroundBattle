@@ -1,0 +1,22 @@
+{
+  "stage": "wasm-current-comparison-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "rust-game-wasm/tests/jc035-compare.mjs",
+    "rust-game-wasm/tests/xq23-current-owner-compare.mjs",
+    "rust-game-wasm/tests/xq23-current-compare.mjs"
+  ],
+  "startedUtc": "2026-10-19T10:19:45.518454+00:00",
+  "finishedUtc": "2026-10-19T10:19:50.325675+00:00",
+  "exitCode": 0,
+  "durationSeconds": 4.807128696003929,
+  "log": "/workspace/jc035-evidence-20261019/wasm-current-comparison-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

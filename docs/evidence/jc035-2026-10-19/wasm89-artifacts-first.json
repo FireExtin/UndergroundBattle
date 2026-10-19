@@ -1,0 +1,37 @@
+{
+  "scope": "Actual new89 artifact identities after full Native release and WASM comparison; frontend/Worker/production/browser still pending.",
+  "compiledSource": "fba026bd887458b65c46fc855b9d28484c8a1a57",
+  "nativeInputSha256": "0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98",
+  "commands": 383,
+  "rejected": 10,
+  "projections": 1612,
+  "invalidRestores": 78,
+  "nativeInputs": 141,
+  "files": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 3470546,
+      "sha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc035Native89.fixture.json.gz",
+      "bytes": 1253665,
+      "sha256": "412eeabefa2c99a313040d04f7b77fb3cd24f8643f4fb800e993911ba9b1e9f3"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23CoreNative89.fixture.json.gz",
+      "bytes": 679873,
+      "sha256": "8e086650350c96c95307dfd97d83b7aa214685faa7f96153bf8063d96ea4b752"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23OwnerNative89.fixture.json.gz",
+      "bytes": 1359539,
+      "sha256": "adcbf8d27ae824253ced3a5a9594157e6716fad16a8aba0cc404d74f1d03e9eb"
+    }
+  ]
+}

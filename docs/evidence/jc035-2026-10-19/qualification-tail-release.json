@@ -1,0 +1,35 @@
+{
+  "source": "fba026bd887458b65c46fc855b9d28484c8a1a57",
+  "scope": "Serial qualification only; no deployment, main merge, old artifact overwrite, or source rewrite.",
+  "startedUtc": "2026-10-19T09:49:19.465107+00:00",
+  "stages": [
+    {
+      "name": "wasm89-first",
+      "exitCode": 0
+    },
+    {
+      "name": "oracle-jc035-first",
+      "exitCode": 0
+    },
+    {
+      "name": "oracle-current-owner-first",
+      "exitCode": 0
+    },
+    {
+      "name": "oracle-current-core-first",
+      "exitCode": 0
+    },
+    {
+      "name": "wasm-current-comparison-first",
+      "exitCode": 0
+    },
+    {
+      "name": "web-full-first",
+      "exitCode": 1
+    }
+  ],
+  "nativeInputSha256": "0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98",
+  "passed": false,
+  "failure": "web-full-first failed; preserve all outputs and original failed receipts",
+  "finishedUtc": "2026-10-19T10:27:58.798793+00:00"
+}

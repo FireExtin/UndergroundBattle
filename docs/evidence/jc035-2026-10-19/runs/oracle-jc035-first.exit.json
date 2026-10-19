@@ -1,0 +1,21 @@
+{
+  "stage": "oracle-jc035-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/jc035-oracle.mjs",
+    "/workspace/jc035-evidence-20261019/native-release-final/Native89.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "rust-game-wasm/tests/jc035Native89.fixture.json.gz"
+  ],
+  "startedUtc": "2026-10-19T10:19:36.951698+00:00",
+  "finishedUtc": "2026-10-19T10:19:40.291080+00:00",
+  "exitCode": 0,
+  "durationSeconds": 3.3394141449971357,
+  "log": "/workspace/jc035-evidence-20261019/oracle-jc035-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

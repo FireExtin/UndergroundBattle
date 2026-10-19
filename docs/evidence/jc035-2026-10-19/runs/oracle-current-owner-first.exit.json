@@ -1,0 +1,21 @@
+{
+  "stage": "oracle-current-owner-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/xq23-current-owner-oracle.mjs",
+    "/workspace/jc035-evidence-20261019/native-release-final/NativeCurrentOwner89.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "rust-game-wasm/tests/xq23OwnerNative89.fixture.json.gz"
+  ],
+  "startedUtc": "2026-10-19T10:19:40.369300+00:00",
+  "finishedUtc": "2026-10-19T10:19:43.443059+00:00",
+  "exitCode": 0,
+  "durationSeconds": 3.07386661900091,
+  "log": "/workspace/jc035-evidence-20261019/oracle-current-owner-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

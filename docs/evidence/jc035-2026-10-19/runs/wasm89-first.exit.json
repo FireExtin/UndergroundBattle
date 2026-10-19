@@ -1,0 +1,20 @@
+{
+  "stage": "wasm89-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/UndergroundBattle/rust-game-wasm/pkg",
+    "--",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "startedUtc": "2026-10-19T10:18:03.283216+00:00",
+  "finishedUtc": "2026-10-19T10:19:36.859078+00:00",
+  "exitCode": 0,
+  "durationSeconds": 93.57592323599965,
+  "log": "/workspace/jc035-evidence-20261019/wasm89-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

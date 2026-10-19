@@ -1,0 +1,14 @@
+{"commands":145,"invalidRestores":47,"projections":620,"rejected":4,"scenarios":13,"nativeInputs":141,"wasmSha256":"02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640","nativeRawSha256":"d4e71ecf71850448000b08f7b5e5424cab05986c156ce765350c22cedd4c64e6","allOpaqueStatesJournalsAndActualSeatViewsEqual":true}
+✔ rust-game-wasm/tests/jc035-compare.mjs (2053.200519ms)
+✔ current89 executes fresh Native141 XQ23 trajectories and all31 restore refusals without re-signing88 (818.477771ms)
+ℹ {"commands":72,"invalidRestores":31,"projections":324,"rejected":5,"scenarios":9,"wasmSha256":"02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640","nativeRawSha256":"7a0da255ac8ab0a58e7d00595f52e91d538685dca11615670de425e0048b2789","completeOpaqueStatesJournalsAndFourViews":true,"nativeInputs":141}
+✔ current89 independently re-executes the complete actual Native141 owner-elimination trajectory (1479.080902ms)
+ℹ {"commands":166,"rejected":1,"projections":668,"nativeInputs":141,"wasmSha256":"02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640","nativeRawSha256":"a858caa99b83c6cac804141b885061e3f756274e3acea975b1965318d319f231","completeOpaqueStatesJournalsAndFourSeatViewsEqual":true}
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4663.103396
