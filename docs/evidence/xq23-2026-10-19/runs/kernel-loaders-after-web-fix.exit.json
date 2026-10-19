@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--input-type=module",
+    "-e",
+    "await import('./rust-game-wasm/tests/xq23-compare.mjs');await import('./rust-game-wasm/tests/current88-p2-compare.mjs');const {loadFixture,compare}=await import('./tools/jc041-oracle.mjs');const {kernel,moduleBytes}=await import('./rust-game-wasm/tests/current87-kernel.mjs');console.log(JSON.stringify({scope:'Original frozen87 after loader-only fix',...compare(loadFixture(),kernel,moduleBytes)}));"
+  ],
+  "startedUtc": "2026-10-19T04:06:29.106119+00:00",
+  "finishedUtc": "2026-10-19T04:06:32.028208+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/kernel-loaders-after-web-fix.log"
+}

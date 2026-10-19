@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "run",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism"
+  ],
+  "startedUtc": "2026-10-19T03:55:45.909677+00:00",
+  "finishedUtc": "2026-10-19T04:03:01.023083+00:00",
+  "exitCode": 1,
+  "log": "/workspace/xq23-evidence-20261019/web-owner-first.log"
+}

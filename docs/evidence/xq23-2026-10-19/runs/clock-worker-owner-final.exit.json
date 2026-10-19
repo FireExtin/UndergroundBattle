@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/build-xq23-clock-worker.mjs",
+    "/workspace/undergroundbattle-build/xq23-worker/server"
+  ],
+  "startedUtc": "2026-10-19T03:55:45.009755+00:00",
+  "finishedUtc": "2026-10-19T03:55:45.860803+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/clock-worker-owner-final.log"
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "rust-game-wasm/pkg",
+    "--",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "startedUtc": "2026-10-19T03:53:43.928676+00:00",
+  "finishedUtc": "2026-10-19T03:55:16.027198+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/wasm-owner-final.log"
+}

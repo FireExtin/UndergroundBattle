@@ -5,7 +5,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-const root=fileURLToPath(new URL('../',import.meta.url));
+const moduleUrl=import.meta.url,root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.80-xq23-asset-return-candidate',engineVersion:'rust-v0.2.88-xq23-asset-return-candidate'};
 export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','ordinary-deploy','target-return-response','source-return-response','paid-target','exhausted-target'].sort();
@@ -58,7 +58,7 @@ export function compare(f,abi,wasm){
  }
  return {...f.counts,wasmSha256:f.wasmSha256,nativeRawSha256:f.raw.sha256,completeOpaqueStatesJournalsAndFourViews:true};
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(moduleUrl)){
  const[nativeFile,wasmFile,destination]=process.argv.slice(2);if(!destination)throw Error('Usage: xq23-oracle.mjs Native88.json current88.wasm NEW.fixture.json.gz');
  const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
  const bundle={format:'xq23-native88-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "sites",
+    "run",
+    "build"
+  ],
+  "startedUtc": "2026-10-19T03:55:19.719992+00:00",
+  "finishedUtc": "2026-10-19T03:55:44.903747+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/production-owner-final.log"
+}

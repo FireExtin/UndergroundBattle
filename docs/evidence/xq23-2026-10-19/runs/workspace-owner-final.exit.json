@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--workspace",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-19T03:36:10.229035+00:00",
+  "finishedUtc": "2026-10-19T03:53:42.829482+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/workspace-owner-final.log"
+}

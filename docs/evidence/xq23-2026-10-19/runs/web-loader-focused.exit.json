@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "run",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "src/game/JC041Native87.test.jsx",
+    "src/game/XQ23Native88.test.jsx"
+  ],
+  "startedUtc": "2026-10-19T04:04:36.947561+00:00",
+  "finishedUtc": "2026-10-19T04:05:03.561473+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/web-loader-focused.log"
+}

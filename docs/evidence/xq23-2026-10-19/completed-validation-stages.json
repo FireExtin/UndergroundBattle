@@ -1,0 +1,247 @@
+{
+  "runtimeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "scope": "Completed natural stages only; complete final Web passed, full Worker and local browsers pending",
+  "runs": [
+    {
+      "name": "workspace-owner-final",
+      "rawBytes": 136195,
+      "rawSha256": "4e7e531728dbc2e8e344e6c2565d281afe240a02e9a318b3d9f8f462ed2f909a",
+      "gzipBytes": 31310,
+      "gzipSha256": "492a39dfe5aaed10670c51eed4c00e72b6590844c7923f239bfa90fd0baed4b7",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "cargo",
+          "test",
+          "--locked",
+          "--offline",
+          "--workspace",
+          "--",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "startedUtc": "2026-10-19T03:36:10.229035+00:00",
+        "finishedUtc": "2026-10-19T03:53:42.829482+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/workspace-owner-final.log"
+      }
+    },
+    {
+      "name": "wasm-owner-final",
+      "rawBytes": 220,
+      "rawSha256": "55fdb999e39d2eb46d30d449cc750f43c43b0e0bda1995a6a5a99c6c459cfe18",
+      "gzipBytes": 152,
+      "gzipSha256": "ea33e9209bdf2c958432f5dca3e11c20bdbdf915b30d981c2caaf2d67dfde532",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--output-dir",
+          "rust-game-wasm/pkg",
+          "--",
+          "bash",
+          "rust-game-wasm/build.sh"
+        ],
+        "startedUtc": "2026-10-19T03:53:43.928676+00:00",
+        "finishedUtc": "2026-10-19T03:55:16.027198+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/wasm-owner-final.log"
+      }
+    },
+    {
+      "name": "native88-wasm-final",
+      "rawBytes": 380,
+      "rawSha256": "f08e37586ad1e7b908dacacd1edcf47dc09aa615273b4ce8dbb5288d52e1dda8",
+      "gzipBytes": 297,
+      "gzipSha256": "20ca8e112607e076d3ae6381927af26f4eca6ba69eeecdd2f2e27acd1744fc5b",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/xq23-oracle.mjs",
+          "/workspace/xq23-evidence-20261019/owner-final-native/Native88.json",
+          "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+          "rust-game-wasm/tests/xq23Native88.fixture.json.gz"
+        ],
+        "startedUtc": "2026-10-19T03:55:16.090293+00:00",
+        "finishedUtc": "2026-10-19T03:55:17.703244+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/native88-wasm-final.log"
+      }
+    },
+    {
+      "name": "current-p2-wasm-final",
+      "rawBytes": 382,
+      "rawSha256": "48fb2e61e77dd80274308c178b5cc0a13557434127e3b6a234824bd0908bb62e",
+      "gzipBytes": 297,
+      "gzipSha256": "5e96cdd0a61c73ac219b8d7d177f15f3df9a79514cb6193eedc5f649d7679d7d",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "rust-game-wasm/tests/current88-p2-compare.mjs",
+          "/workspace/xq23-evidence-20261019/owner-final-native/current-p2/p2.json"
+        ],
+        "startedUtc": "2026-10-19T03:55:18.315320+00:00",
+        "finishedUtc": "2026-10-19T03:55:18.980547+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/current-p2-wasm-final.log"
+      }
+    },
+    {
+      "name": "production-owner-final",
+      "rawBytes": 1707,
+      "rawSha256": "c10af6eec58605125cf0816253b1195c3aec8a4302df1b9c1f8c67be8d08a103",
+      "gzipBytes": 755,
+      "gzipSha256": "19705f57518fd443e16b7661db4d90e70d263d46c98b9eff3d1a95109c5437ec",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "sites",
+          "run",
+          "build"
+        ],
+        "startedUtc": "2026-10-19T03:55:19.719992+00:00",
+        "finishedUtc": "2026-10-19T03:55:44.903747+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/production-owner-final.log"
+      }
+    },
+    {
+      "name": "clock-worker-owner-final",
+      "rawBytes": 164,
+      "rawSha256": "22ce45ef585c0bc5becea15647af93a840243e74d9762a6a47c3ad351b8381fa",
+      "gzipBytes": 154,
+      "gzipSha256": "4ff1e6413dd61d845699ec23a1928f4ba8d5094922c60271a81598853f2e87d4",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/build-xq23-clock-worker.mjs",
+          "/workspace/undergroundbattle-build/xq23-worker/server"
+        ],
+        "startedUtc": "2026-10-19T03:55:45.009755+00:00",
+        "finishedUtc": "2026-10-19T03:55:45.860803+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/clock-worker-owner-final.log"
+      }
+    },
+    {
+      "name": "web-owner-first",
+      "rawBytes": 2073,
+      "rawSha256": "c8dd1cfd7e40097acb456ad1692fed9da594e8827668d3478cdbcef967cb103d",
+      "gzipBytes": 951,
+      "gzipSha256": "49a5abd8f75df055293da64f8b80762a591c29dd772951a187ee650e19d3823a",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "web",
+          "run",
+          "test",
+          "--",
+          "--maxWorkers=1",
+          "--no-file-parallelism"
+        ],
+        "startedUtc": "2026-10-19T03:55:45.909677+00:00",
+        "finishedUtc": "2026-10-19T04:03:01.023083+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/web-owner-first.log"
+      }
+    },
+    {
+      "name": "web-loader-focused",
+      "rawBytes": 584,
+      "rawSha256": "70231f2a33d38cbedf6688975e735faef20be959a53749f95de0d618b559cc8a",
+      "gzipBytes": 387,
+      "gzipSha256": "d22fb7c034ba1d7d05aab849a3b2459e5dbb5f821e7e8a878f06a931bbcc148d",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "web",
+          "run",
+          "test",
+          "--",
+          "--maxWorkers=1",
+          "--no-file-parallelism",
+          "src/game/JC041Native87.test.jsx",
+          "src/game/XQ23Native88.test.jsx"
+        ],
+        "startedUtc": "2026-10-19T04:04:36.947561+00:00",
+        "finishedUtc": "2026-10-19T04:05:03.561473+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/web-loader-focused.log"
+      }
+    },
+    {
+      "name": "kernel-loaders-after-web-fix",
+      "rawBytes": 1023,
+      "rawSha256": "a785b7bc4f4ba26a550a46fcac39b218c3356054c71b4737fc59efd31339783a",
+      "gzipBytes": 550,
+      "gzipSha256": "2312558a6ffc5c63397b122913fd02adab03c07c5618dd36c964469053163e09",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "--input-type=module",
+          "-e",
+          "await import('./rust-game-wasm/tests/xq23-compare.mjs');await import('./rust-game-wasm/tests/current88-p2-compare.mjs');const {loadFixture,compare}=await import('./tools/jc041-oracle.mjs');const {kernel,moduleBytes}=await import('./rust-game-wasm/tests/current87-kernel.mjs');console.log(JSON.stringify({scope:'Original frozen87 after loader-only fix',...compare(loadFixture(),kernel,moduleBytes)}));"
+        ],
+        "startedUtc": "2026-10-19T04:06:29.106119+00:00",
+        "finishedUtc": "2026-10-19T04:06:32.028208+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/kernel-loaders-after-web-fix.log"
+      }
+    },
+    {
+      "name": "web-owner-final",
+      "rawBytes": 536,
+      "rawSha256": "7309afec4717ae829783e981c75c257012f43f4a8d56a167e89a964665cea747",
+      "gzipBytes": 359,
+      "gzipSha256": "e9d6085c96eca5707a53d8707757a7e181c502abc3621b5ad9968ecddf10f658",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "web",
+          "run",
+          "test",
+          "--",
+          "--maxWorkers=1",
+          "--no-file-parallelism"
+        ],
+        "startedUtc": "2026-10-19T04:06:32.069838+00:00",
+        "finishedUtc": "2026-10-19T04:15:04.127127+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/web-owner-final.log"
+      },
+      "testFiles": 141,
+      "tests": 1406,
+      "passed": 1406
+    }
+  ]
+}

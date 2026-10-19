@@ -1,0 +1,22 @@
+{
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8",
+  "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+  "node": "v24.19.0",
+  "npm": "11.9.0",
+  "wasmBindgen": "wasm-bindgen 0.2.104",
+  "buildStorage": {
+    "target": "/workspace/undergroundbattle-build/target",
+    "temporary": "/workspace/undergroundbattle-build/tmp",
+    "jobs": 1,
+    "incremental": 0,
+    "requiredDiskAndMemoryHeadroomBytes": 1073741824
+  },
+  "packages": {
+    "vite": "8.0.3",
+    "vitest": "4.1.2",
+    "miniflare": "5.20261001.0-alpha",
+    "wrangler": "4.146.0"
+  },
+  "serial-final-validation.pySha256": "ba0aa3673103b1ad6d8f50ae0e3cd19cad44e9bfd60c24cf8a6d7ce2a884ea75",
+  "run-recorded.pySha256": "ef1686d7006c69c39502fab379fb9645e648d8266663f98344d64862afd92148"
+}

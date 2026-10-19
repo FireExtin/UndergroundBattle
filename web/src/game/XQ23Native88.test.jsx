@@ -10,7 +10,7 @@ const fixture=loadFixture();expect(sha256(moduleBytes)).toBe(fixture.wasmSha256)
 beforeEach(()=>sessionStorage.clear());afterEach(()=>sessionStorage.clear());
 const rows=fixture.scenarios.flatMap(s=>s.steps.map((row,i)=>({name:s.name,row,views:i?s.steps[i-1].views:s.initial.views})));
 const activations=rows.filter(({row})=>!row.expected.errorCode&&row.command.action.action?.kind==='activate'&&row.command.action.action.abilityId==='xq23-return-asset-become-asset');
-it.each(activations)('$name selects the actual own asset, submits the Native action and removes the old source after resolution',({row,views})=>{
+it.each(activations)('$name selects the actual own asset and submits the exact Native command',({row,views})=>{
  const view=views[row.seat],core=row.command.action.action,submit=vi.fn();
  const props={catalog,busy:false,connection:'online',onAction:submit};const m=render(<Table {...props} view={view}/>);
  const legal=view.legalActions.find(a=>a.kind===core.kind&&a.cardId===core.cardId&&a.targetId===core.targetId&&a.abilityId===core.abilityId);expect(legal).toBeDefined();

@@ -1,0 +1,18 @@
+[
+  {
+    "source": "sites/dist",
+    "preservedAt": "/workspace/xq23-evidence-20261019/before-production/dist"
+  },
+  {
+    "source": "sites/public",
+    "preservedAt": "/workspace/xq23-evidence-20261019/before-production/public"
+  },
+  {
+    "source": "sites/generated",
+    "preservedAt": "/workspace/xq23-evidence-20261019/before-production/generated"
+  },
+  {
+    "source": "web/dist",
+    "preservedAt": "/workspace/xq23-evidence-20261019/before-production/web-dist"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "scope": "Actual final current Native P2 export, full workspace exit0 and exact current WASM compare exit0",
+  "nativeRustCheckpoint": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "nativeInputs": 139,
+  "rawBytes": 6486736,
+  "rawSha256": "67f2459ceacaf8cdd4116f1d1c8a9448f24a7c34d40e596e60102846b39edff6",
+  "gzipBytes": 450630,
+  "gzipSha256": "1bd66dc01acb771fb29e189c3a79fd67fdaf2d78c1adc1a21647b09a507b3c0a",
+  "originalArchiveSha256": "ad127d41b99f0bcae5cb8fe8c1488775fad1ef1c0407140fc30d6ccd2f83850c",
+  "currentIdentity": "rust-v0.2.88-xq23-asset-return-candidate",
+  "invalidCases": 4,
+  "legalScenarios": 4,
+  "commands": 56
+}
