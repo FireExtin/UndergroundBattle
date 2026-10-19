@@ -57,6 +57,7 @@ impl Game {
             turn_attribute_modifiers: vec![],
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
+            jc035_preparation: None,
             control_effects: vec![],
             control_baselines: vec![],
             room_id,
@@ -338,6 +339,7 @@ impl Game {
         }
         let d = card(&c.definition);
         if d.kind != "character" {
+            if c.definition == "JC035" { return self.jc035_current_icons(c, region); }
             return self.jz46_current_icons(c, region);
         }
         let (permanent, temporary, ordinary) = self.character_icon_parts(c, region);
@@ -555,8 +557,10 @@ impl Game {
             self.active_team = team;
         }
         let end_step = window == Window::End;
+        let prepare = window == Window::Prepare;
         self.window = Some(window);
         if end_step { self.jc054_begin_end_step(); }
+        if prepare { self.jc035_begin_preparation(); }
         self.priority_team = self.priority_default();
         self.reset_passes();
     }
@@ -603,6 +607,7 @@ impl Game {
         self.validate_jc066_state()?;
         self.validate_jc041_state()?;
         self.validate_xq23_state()?;
+        self.validate_jc035_state()?;
         let mut next = self.clone();
         next.version = revision;
         next.apply_inner(seat, action)?;
@@ -616,6 +621,7 @@ impl Game {
         next.validate_jc066_state()?;
         next.validate_jc041_state()?;
         next.validate_xq23_state()?;
+        next.validate_jc035_state()?;
         next.validate_wm062_state()?;
         next.validate_jc054_state()?;
         *self = next;
@@ -819,6 +825,7 @@ impl Game {
                 crate::wm062::validate_action(&c.definition, &a)?;
                 crate::wm038::validate_play_action(&c.definition, &a)?;
                 crate::jz35::validate_play_action(&c.definition, &a)?;
+                crate::jc035::validate_play_action(&c.definition, &a)?;
                 if c.definition == "JC050" && (a.region.is_some() || a.target_id.is_some()) {
                     return Err("JC050须在结算时选择地区，不能预声明地区或目标".into());
                 }
@@ -886,6 +893,7 @@ impl Game {
         self.turn_attribute_modifiers.clear();
         self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
+                self.jc035_preparation = None;
         self.regions.clear();
         self.attachments.clear();
         self.sealed_cards.clear();
@@ -1108,6 +1116,7 @@ impl Game {
         self.validate_jc066_frame(&frame)?;
         self.validate_jc041_frame(&frame)?;
         self.validate_xq23_frame(&frame)?;
+        self.validate_jc035_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
@@ -1280,7 +1289,7 @@ impl Game {
     pub(crate) fn contest_counts(&self, region: usize, contest: usize) -> [u32; 2] {
         if !self.region_live(region) { return [0, 0]; }
         let mut counts = [0; 2];
-        for c in self.regions[region].cards.iter().chain(self.jz46_region_cards(region)) {
+        for c in self.regions[region].cards.iter().chain(self.jz46_region_cards(region)).chain(self.jc035_region_cards(region)) {
             counts[self.team(c.controller)] += self.icons(c, region).at(contest);
         }
         counts
@@ -1293,6 +1302,7 @@ impl Game {
                     .cards
                     .iter()
                     .chain(self.jz46_region_cards(region))
+                    .chain(self.jc035_region_cards(region))
                     .any(|c| c.controller == *s && self.icons(c, region).at(contest) > 0)
             })
             .collect()
@@ -1837,6 +1847,7 @@ impl Game {
                 self.turn += 1;
                 self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
+                self.jc035_preparation = None;
                 self.modifiers.clear();
                 self.first_team = 1 - self.first_team;
                 self.privilege_used = false;
@@ -1986,6 +1997,7 @@ impl Game {
         self.validate_jc066_state()?;
         self.validate_jc041_state()?;
         self.validate_xq23_state()?;
+        self.validate_jc035_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;
         self.validate_wm062_state()?;
@@ -2026,6 +2038,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JC035PreparationOrder { declarations } => self.jc035_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::JC054TriggerOrder { declarations } => self.jc054_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::Declare { declaration, stage } => {
                 self.choose_declaration(declaration, stage, selected)?

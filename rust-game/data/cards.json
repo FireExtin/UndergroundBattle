@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.80-xq23-asset-return-candidate",
-  "engineVersion": "rust-v0.2.88-xq23-asset-return-candidate",
+  "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
+  "engineVersion": "rust-v0.2.89-jc035-preparation-candidate",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -5920,6 +5920,44 @@
       },
       "unique": false,
       "society": ""
+    },
+    {
+      "id": "JC035",
+      "name": "传媒魔咒",
+      "kind": "attachment",
+      "type": "附属/结界/媒体",
+      "subtypes": [
+        "结界",
+        "媒体"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "结附于目标地区\n【准备步骤触发】若有对手的手牌数量少于或等于三张，你可以在本地区放置一个本方势力标志。",
+      "keywords": [],
+      "unique": false,
+      "society": "",
+      "source": {
+        "file": "resource/ymsj-fun.github.io/cards/JC035 传媒魔咒.jpg",
+        "sha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319",
+        "basis": "actual whole original face and pinned B10 fields checked"
+      }
     }
   ],
   "decks": [

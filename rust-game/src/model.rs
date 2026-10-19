@@ -773,6 +773,9 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JC035PreparationOrder {
+        declarations: Vec<Declaration>,
+    },
     JC054TriggerOrder {
         declarations: Vec<Declaration>,
     },
@@ -828,6 +831,8 @@ pub struct Game {
     pub turn: u32,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub jc054_end_step_turn: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub jc035_preparation: Option<crate::jc035::PreparationObservation>,
     pub winner_team: Option<usize>,
     pub regions: Vec<Region>,
     #[serde(default)]
@@ -906,6 +911,7 @@ impl Game {
         game.validate_jc066_state()?;
         game.validate_jc041_state()?;
         game.validate_xq23_state()?;
+        game.validate_jc035_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_jc052_state()?;

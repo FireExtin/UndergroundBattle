@@ -38,6 +38,7 @@ pub enum Event {
     Sealed,
     Hide,
     EndStep,
+    Prepare,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
@@ -242,6 +243,7 @@ pub enum Op {
     JC066SealLocalTargetOnSource,
     JC041RevealOriginalHidden,
     XQ23ReturnAssetThenBecomeAsset,
+    JC035PreparedInfluence { event_id: Option<String> },
     BQ030AttachmentDraw {
         observation: Option<Box<crate::model::AttachmentEvent>>,
     },
@@ -559,6 +561,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     crate::jc066::validate_ability(card_id, ability)?;
     crate::jc041::validate_ability(card_id, ability)?;
     crate::xq23::validate_ability(card_id, ability)?;
+    crate::jc035::validate_ability(card_id, ability)?;
     crate::wm038::validate_ability(card_id, ability)?;
     crate::jz35::validate_ability(card_id, ability)?;
     crate::jc052::validate_ability(card_id, ability)?;
@@ -1310,6 +1313,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::jc066::validate_definition(card_id, definition)?;
         crate::jc041::validate_definition(card_id, definition)?;
         crate::xq23::validate_definition(card_id, definition)?;
+        crate::jc035::validate_definition(card_id, definition)?;
         crate::gray_expansion::validate_definition(card_id, definition)?;
         if card_id == "XQ27" && serde_json::to_value(definition).unwrap()
             != serde_json::to_value(xq27_definition()).unwrap() {
@@ -1468,7 +1472,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1944,6 +1948,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JC066".into(), crate::jc066::definition());
         m.insert("JC041".into(), crate::jc041::definition());
         m.insert("XQ23".into(), crate::xq23::definition());
+        m.insert("JC035".into(), crate::jc035::definition());
         m.insert("XQ25".into(), crate::xq25::definition());
         m.insert("JZ46".into(), crate::jz46::definition());
         m.insert("WM023".into(), crate::wm023::definition());

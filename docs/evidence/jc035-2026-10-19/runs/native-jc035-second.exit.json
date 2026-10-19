@@ -1,0 +1,23 @@
+{
+  "stage": "native-jc035-second",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "jc035",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-19T08:39:28.773769+00:00",
+  "finishedUtc": "2026-10-19T08:40:43.320380+00:00",
+  "exitCode": 101,
+  "durationSeconds": 74.54699344000255,
+  "log": "/workspace/jc035-evidence-20261019/native-jc035-second.log",
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

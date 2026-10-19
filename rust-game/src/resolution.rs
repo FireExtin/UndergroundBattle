@@ -449,10 +449,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -1129,6 +1129,7 @@ impl Game {
         self.validate_xq23_declaration(&declaration)?;
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
+        if self.jc035_declare(declaration.clone())? { return Ok(()); }
         if self.jc046_declare(declaration.clone())? {
             return Ok(());
         }
@@ -1210,6 +1211,7 @@ impl Game {
         self.validate_xq23_declaration(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
+        self.jc035_reject_optional(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
@@ -1470,6 +1472,7 @@ impl Game {
         self.validate_jc066_frame(&frame)?;
         self.validate_jc041_frame(&frame)?;
         self.validate_xq23_frame(&frame)?;
+        self.validate_jc035_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             return Ok(());
         }
@@ -1496,6 +1499,7 @@ impl Game {
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
                 Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
+                Op::JC035PreparedInfluence { .. } => self.jc035_resolve(&frame)?,
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),

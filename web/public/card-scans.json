@@ -823,5 +823,10 @@
     "url": "/cards/XQ23.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ23 谨慎的办事员.jpg",
     "sha256": "7370d343be9e467716a3d7ada1d95abc012f5901ed15629e2f8d18065ea0769e"
+  },
+  "JC035": {
+    "url": "/cards/JC035.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC035 传媒魔咒.jpg",
+    "sha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319"
   }
 }

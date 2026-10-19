@@ -2,6 +2,7 @@
 // Artwork is not a rules registry and does not admit a card to the playable pool.
 const scans: Record<string, string> = {
   "XQ23": "/cards/XQ23.jpg",
+  "JC035": "/cards/JC035.jpg",
   "JC041": "/cards/JC041.jpg",
   "JC066": "/cards/JC066.jpg",
   "JC044": "/cards/JC044.jpg",

@@ -1,9 +1,9 @@
-// XQ23 candidate ABI88. Original77-87 are separate immutable dependencies.
-import {readFileSync} from 'node:fs';
-import * as abi from '../pkg/hegemony_wasm.js';
-const moduleUrl=import.meta.url;
-export const moduleBytes=readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm',moduleUrl));
-abi.initSync({module:moduleBytes});
-export const kernel=abi,catalog=JSON.parse(abi.catalog());
-export const identity=Object.fromEntries(['rulesVersion','cardPoolVersion','engineVersion'].map(k=>[k,catalog[k]]));
-if(catalog.engineVersion!=='rust-v0.2.88-xq23-asset-return-candidate'||catalog.cardPoolVersion!=='limited-v2.80-xq23-asset-return-candidate'||catalog.cards.length!==152||catalog.societies.length!==10)throw Error('Current ABI88 identity mismatch');
+// Exact published v70 / ABI88; never substitute a candidate rebuild.
+import {createRequire} from 'node:module';
+import {frozenAbi88} from '../../tools/frozen-kernels.mjs';
+const saved=frozenAbi88();
+const abi=createRequire(import.meta.url)(saved.jsPath);
+abi.initSync({module:saved.wasm});
+export const kernel=abi,moduleBytes=saved.wasm,catalog=JSON.parse(abi.catalog());
+export const identity=saved.identity.catalogIdentity;
+if(catalog.engineVersion!==identity.engineVersion||catalog.cardPoolVersion!==identity.cardPoolVersion||catalog.cards.length!==152||catalog.societies.length!==10)throw Error('Retained ABI88 identity mismatch');

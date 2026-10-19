@@ -10,10 +10,8 @@ export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.80-xq23-asset-return-candidate',engineVersion:'rust-v0.2.88-xq23-asset-return-candidate'};
 export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','ordinary-deploy','target-return-response','source-return-response','paid-target','exhausted-target'].sort();
 export function assertSources(binding){
- const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi87/native-source-binding.json'),'utf8'));
- const names=Object.keys(saved.files).concat(['rust-game/src/xq23.rs','rust-game/src/xq23_tests.rs']).sort();
- assert.equal(binding.algorithm,'sha256');assert.equal(names.length,139);assert.deepEqual(Object.keys(binding.files).sort(),names);
- for(const[name,value]of Object.entries(binding.files))assert.equal(sha256(readFileSync(path.join(root,name))),value,'Compiler input '+name);
+ const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi88/native-source-binding.json'),'utf8'));
+ assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(binding.files).length,139);assert.deepEqual(binding,saved,'Exact original Native88 compiler binding; no current89 source substitution');
 }
 export function validateNative(raw){
  assert.equal(raw.format,'xq23-native88-v1');assertSources(raw.sourceBindings);
