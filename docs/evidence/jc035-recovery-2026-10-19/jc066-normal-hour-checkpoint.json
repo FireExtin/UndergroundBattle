@@ -1,0 +1,32 @@
+{
+  "capturedUtc": "2026-10-19T21:42:20.723967+00:00",
+  "sameExistingWorkerSession": 82121,
+  "validatedSourceSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "scopeFiles": 69,
+  "expectedTestCasesPendingFinalSummary": 722,
+  "observedPassedTopLevelCases": 434,
+  "observedFailureMarkers": 1,
+  "failureLines": [
+    "✖ JC041 corrupted discard-6 restores HTTP400 with no D1 writes (26514.679158ms)"
+  ],
+  "lastCompletedPassingCase": "✔ JC066 corrupted frame-07 restores HTTP400 with no D1 writes (10581.013999ms)",
+  "logLastModifiedUtc": "2026-10-19T21:42:16.823976+00:00",
+  "detailedFailureExceptionAvailable": false,
+  "naturalExitReceiptPresent": false,
+  "interimCountsAreNotFinal": true,
+  "noRestartRetrySourceBudgetConcurrencyOrResourceChange": true,
+  "jc066All19NormalScenariosPassed": true,
+  "jc066TargetRevealPassedInSameFullRun": true,
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "jc066InvalidCaseMatrixStillRunning": true,
+  "normalScenarioProof": "jc066-normal-scenarios-in-full-run.json",
+  "normalScenarioProofSha256": "39aa359da44c6eebe521a45a4ecd520a9c2a23f95d119704205e6bfe235405b1",
+  "rawLogPrefix": {
+    "path": "runs/worker-full-recovered.20261019T214220Z.jc066-normal.partial.log.gz",
+    "decodedBytes": 94128,
+    "decodedSha256": "b52f5dce924bac933286718f82bc60d843c7fef935d85e9de224d1d19d8d6249",
+    "gzipBytes": 10325,
+    "gzipSha256": "9e2ae85ed0ac35813755cfa3d9495f9ca18f2f7efa981a46be02edb9a8577f18"
+  },
+  "failureClassification": "JC041 discard-6 failure marker only; concrete exception and root cause still pending natural reporter output."
+}

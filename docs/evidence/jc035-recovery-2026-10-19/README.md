@@ -20,3 +20,7 @@
 ## 21:23计数与资源检查点
 
 [progress-counting-and-resource-checkpoint.json](progress-counting-and-resource-checkpoint.json)保留同一原运行的新日志前缀及只读核验：377个通过用例、1条失败标记，未自然退出。数字按完成的顶层测试用例计，不是文件或命令数；同一69文件以及当前378个用例的名称/顺序与旧轮对应前缀一致（只归一化已有秘社ID改名），预期全量722仍须末尾Node汇总确认。CPU配额/节流、OOM和可用磁盘是整个环境的观察值，不能判定失败根因。前缀耗时外推约5小时只是估计，不是超时、终止或重试条件。源码、测试、资源与预算均未改动。
+
+## 21:42 JC066正常场景与小时检查点
+
+[jc066-normal-hour-checkpoint.json](jc066-normal-hour-checkpoint.json)和独立有界日志前缀记录同一82121运行434个通过用例、1条JC041 discard-6失败标记，最新日志21:42:16 UTC，详细异常仍未输出，尚无自然退出。[jc066-normal-scenarios-in-full-run.json](jc066-normal-scenarios-in-full-run.json)逐项记录JC066全部19条正常场景通过，包括原失败target-reveal；87种非法状态矩阵仍在执行。原socket关闭根因仍未证实，没有新增重试或改预算，未把中途结果合计为完整资格通过。

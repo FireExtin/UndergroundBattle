@@ -1,0 +1,111 @@
+{
+  "checkedAtUtc": "2026-10-19T21:36:29.197283+00:00",
+  "sameExistingFullRunSession": 82121,
+  "scope": "All19 normal Native86/HTTP scenarios only; separate87 invalid cases and the overall69-file run still require completion.",
+  "normalScenariosPassed": 19,
+  "targetRevealPassedInFullRun": {
+    "status": "✔",
+    "scenario": "target-reveal",
+    "durationMs": 92484.052136
+  },
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "noRetryOrBudgetChange": true,
+  "cases": [
+    {
+      "status": "✔",
+      "scenario": "entry-deploy-accept",
+      "durationMs": 78427.042227
+    },
+    {
+      "status": "✔",
+      "scenario": "entry-deploy-skip",
+      "durationMs": 73995.570979
+    },
+    {
+      "status": "✔",
+      "scenario": "entry-reveal-accept",
+      "durationMs": 84054.219139
+    },
+    {
+      "status": "✔",
+      "scenario": "entry-reveal-skip",
+      "durationMs": 61341.100665
+    },
+    {
+      "status": "✔",
+      "scenario": "actor-0",
+      "durationMs": 53563.475695
+    },
+    {
+      "status": "✔",
+      "scenario": "actor-1",
+      "durationMs": 54210.565645
+    },
+    {
+      "status": "✔",
+      "scenario": "actor-2",
+      "durationMs": 61004.731655
+    },
+    {
+      "status": "✔",
+      "scenario": "actor-3",
+      "durationMs": 66988.720874
+    },
+    {
+      "status": "✔",
+      "scenario": "self-seal",
+      "durationMs": 64679.403443
+    },
+    {
+      "status": "✔",
+      "scenario": "shared-hand-seal-character",
+      "durationMs": 45126.113638
+    },
+    {
+      "status": "✔",
+      "scenario": "shared-hand-seal-attachment",
+      "durationMs": 41404.4858
+    },
+    {
+      "status": "✔",
+      "scenario": "host-hide",
+      "durationMs": 105541.955638
+    },
+    {
+      "status": "✔",
+      "scenario": "target-hide",
+      "durationMs": 91563.501028
+    },
+    {
+      "status": "✔",
+      "scenario": "host-return",
+      "durationMs": 69983.140925
+    },
+    {
+      "status": "✔",
+      "scenario": "society-search-gray-unique",
+      "durationMs": 44944.117274
+    },
+    {
+      "status": "✔",
+      "scenario": "target-departure",
+      "durationMs": 77785.989033
+    },
+    {
+      "status": "✔",
+      "scenario": "target-move",
+      "durationMs": 83507.354562
+    },
+    {
+      "status": "✔",
+      "scenario": "target-control",
+      "durationMs": 180349.936396
+    },
+    {
+      "status": "✔",
+      "scenario": "target-reveal",
+      "durationMs": 92484.052136
+    }
+  ],
+  "fullRunNaturalExitReceiptPresent": false
+}
