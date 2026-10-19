@@ -496,7 +496,13 @@ fn jc035_native89_actual_room_trajectories_and_rejections() {
         g.regions[0].influence[0] = catalog::card(&g.regions[0].card.definition).threshold.unwrap() - 1;
         let mut t = Trace::new("won-original-region", &g); t.until_prepare(); t.choose(vec![a]); t.choose(vec![b]); t.settle();
         assert_ne!(t.room.game.regions[0].card.id, original);
-        assert_eq!(t.room.game.regions[0].influence, [0, 0]); scenarios.push(t.finish());
+        assert_eq!(t.room.game.regions[0].influence, [0, 0]);
+        // Printed win batch returns both attachments to their owner's deck;
+        // normal host-departure burial does not replace that return batch.
+        assert_eq!(t.room.game.players[0].deck.iter().filter(|c| c.definition == "JC035").count(), 2);
+        assert!(t.room.game.players[0].graveyard.iter().all(|c| c.definition != "JC035"));
+        assert!(t.room.game.attachments.iter().all(|a| a.card.definition != "JC035"));
+        scenarios.push(t.finish());
     }
     {
         let mut g = u::game(); g.room_id = format!("{:024x}", 890024); u::fund(&mut g, 0, "JC029", 3);

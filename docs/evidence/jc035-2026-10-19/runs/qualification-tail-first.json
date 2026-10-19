@@ -1,0 +1,9 @@
+{
+  "source": "52ef9cb1e08990badc5973c6d9f3c136dc4ec316",
+  "scope": "Serial qualification only; no deployment, main merge, old artifact overwrite, or source rewrite.",
+  "startedUtc": "2026-10-19T09:32:07.171884+00:00",
+  "stages": [],
+  "passed": false,
+  "failure": "",
+  "finishedUtc": "2026-10-19T09:45:41.120071+00:00"
+}
