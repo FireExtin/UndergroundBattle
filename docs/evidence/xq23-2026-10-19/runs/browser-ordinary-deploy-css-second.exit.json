@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/frontend/xq23-http-four-clients-qa.mjs",
+    "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second"
+  ],
+  "startedUtc": "2026-10-19T05:55:25.412456+00:00",
+  "finishedUtc": "2026-10-19T05:56:16.134459+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second.log"
+}

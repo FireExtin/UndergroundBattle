@@ -1,0 +1,50 @@
+{
+  "scope": "Only local paths and screenshot hashes; screenshots and databases retained locally, not in Git",
+  "screenshots": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/anonymous-asset-seat-0.png",
+      "bytes": 398610,
+      "sha256": "22c0336e1b5c188b0198e8e918d87611c5381edee0d8c09d19b65efa58bec293"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/anonymous-asset-seat-1.png",
+      "bytes": 398247,
+      "sha256": "37a0a2dc7549cc379b3df3a174392ac0260b003e48ece8966cb78d42d7bc6c88"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/anonymous-asset-seat-2.png",
+      "bytes": 398282,
+      "sha256": "29d8bbc107a7dc4df7c9a342f961500d9ce4749ff6d993285b4d45c224de9549"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/anonymous-asset-seat-3.png",
+      "bytes": 405816,
+      "sha256": "3b955fac72fd5418f78309b3218eb638ee9ceae974a9b193017e413ae9c95975"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/final.png",
+      "bytes": 1137096,
+      "sha256": "b5c49819d3b3acaebfb98a3e122ff0708ffe9830ce68bc1ba2a08e849e921314"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/restored-paid-or-paused-0.png",
+      "bytes": 1158368,
+      "sha256": "9dbb7ddd0bcb6c57cfb29b3f1294eb30bf6e9be7e55b086e78f0da458d66803f"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/restored-paid-or-paused-1.png",
+      "bytes": 1192822,
+      "sha256": "c08cf067fb95deec56d500b348bd8de7ca1bc99ad23e3a1c43702ac3467da895"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/target-ready-0.png",
+      "bytes": 1137690,
+      "sha256": "685b0acc28ab14cbfab97c43f3b026b974115e318c82009e39f016ad998efe64"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/xq23-original-print.png",
+      "bytes": 695224,
+      "sha256": "70d8cc87c456b2901a17573d0a6c0af45fa142333d105b0b709d8aa287c8fd21"
+    }
+  ]
+}

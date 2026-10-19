@@ -1,0 +1,25 @@
+{
+  "scope": "Only local paths and screenshot hashes; screenshots and databases retained locally, not in Git",
+  "screenshots": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/failure-0.png",
+      "bytes": 453720,
+      "sha256": "701b62b4be39eb3c17c4afce8c161f533d227037a817a9ff33f9e536e4840fed"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/failure-1.png",
+      "bytes": 1206778,
+      "sha256": "07f4c1cad060883e788e6ee5d07f7827da944efa75c0db83ebd34210ad54596d"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/failure-2.png",
+      "bytes": 1204377,
+      "sha256": "b7d4469316d4174e1d8b7e8099afe1ff2b0cfae4920faee41fdc4076112d17e2"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/failure-3.png",
+      "bytes": 1203721,
+      "sha256": "67b943badc2c5d49d2fe98cb380818a8f2059c28938a478c92f2f6cb6b4625b2"
+    }
+  ]
+}

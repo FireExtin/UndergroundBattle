@@ -1,0 +1,240 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "syntheticInitialLayout": true,
+  "scope": "Native88 initial layout; actual production GameApp, listening local HTTP/workerd/twelve-WASM/D1 and four independent browser contexts.",
+  "driverSha256": "e24c379308ba2cf4730e2819a13f5fb7c73c1cb412c47acf06e3cb8ab63842a5",
+  "scenario": "actor-0",
+  "engine": "rust-v0.2.88-xq23-asset-return-candidate",
+  "wasmSha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "26b3b25fc21298e8ab8f8de20d0b2895117d997f-hegemony_wasm_bg.wasm",
+      "sha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "file": "aa1cdbd215e8daf0adb949451e7d8dc3ae11831f-hegemony_wasm_bg.wasm",
+      "sha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "file": "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    }
+  ],
+  "persist": "/workspace/undergroundbattle-build/tmp/xq23-real-http-f71F5Q",
+  "productionWorkerSha256": "e80aa44b3c44318f8aa5b2417db1917753f4664d2277c95c1eda5dd55883b995",
+  "workerSha256": "eaf8314fff491a6199916a834627d6ab0f7a3ee37e1fd3f770d2a9146579a80d",
+  "clientIndexSha256": "c4ad41a247369e42080eb89a82d37152cdee9a41f7cece9d12c713619dc18b95",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "game",
+      "gameKind": "activate",
+      "version": 9,
+      "stateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "pauseRoom",
+      "version": 10,
+      "stateSha256": "1d0e001e464572b2c1e7e9d0e1e30dd725b347c55ee8fa2228f21a8986814db7"
+    },
+    {
+      "index": 2,
+      "via": "browser-fetch-expected-rejection",
+      "status": 409
+    },
+    {
+      "index": 3,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "resumeRoom",
+      "version": 11,
+      "stateSha256": "f6ced91e82e6ad1e0a15025ee90181aadfdd79c12063d39437902d621c2a0045"
+    },
+    {
+      "index": 4,
+      "seat": 0,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 12,
+      "stateSha256": "6cdb504a36d46224e9237efb87b8ec163a4d7a88fcea1e4e2ab65fd1441af7fd"
+    },
+    {
+      "index": 5,
+      "seat": 1,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 13,
+      "stateSha256": "5d37fcdcf617acf58e9bd7e37cd3ff8f4de49537355279d60dec5e5d01c89b2b"
+    },
+    {
+      "index": 6,
+      "seat": 2,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 14,
+      "stateSha256": "6ae6e5517b661fc647c8f9cf442d7d33e310da70906e4d3ff7011a0ead6b02ac"
+    },
+    {
+      "index": 7,
+      "seat": 3,
+      "via": "production-ui",
+      "kind": "passResponse",
+      "version": 15,
+      "stateSha256": "3dd691c604c5360d7ca67c8de6f1f203325bbcd35cba920771817226af20964c"
+    }
+  ],
+  "clientPosts": [
+    7,
+    2,
+    2,
+    4
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "xq23-original-print.png",
+    "target-ready-0.png",
+    "restored-paid-or-paused-0.png",
+    "restored-paid-or-paused-1.png",
+    "anonymous-asset-seat-0.png",
+    "anonymous-asset-seat-1.png",
+    "anonymous-asset-seat-2.png",
+    "anonymous-asset-seat-3.png",
+    "final.png"
+  ],
+  "reopened": 3,
+  "targetGeometry": [
+    {
+      "index": 0,
+      "instanceId": "i243",
+      "target": {
+        "x": 272,
+        "y": 546.875,
+        "width": 34,
+        "height": 42,
+        "bottom": 588.875
+      },
+      "panel": {
+        "x": 38,
+        "y": 612.375,
+        "width": 900,
+        "height": 130,
+        "bottom": 742.375
+      },
+      "dock": {
+        "x": 30,
+        "y": 601.375,
+        "width": 1306,
+        "height": 150,
+        "bottom": 751.375
+      },
+      "ordinaryPointerReachable": true
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "sourceRead": {
+    "seat": 0,
+    "cardId": "XQ23",
+    "zone": "region",
+    "projectedIcons": {
+      "combat": 0,
+      "influence": 1,
+      "investigation": 0
+    },
+    "currentIconsShown": true,
+    "printedIcons": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 1
+    },
+    "scanLoaded": true,
+    "noCommandOrMutation": true
+  },
+  "activeStep": {
+    "index": 7,
+    "seat": 3,
+    "kind": "passResponse"
+  },
+  "originalReceiptsAfterReopen": 7,
+  "assetReads": [
+    {
+      "seat": 0,
+      "instanceId": "i246",
+      "exhausted": true,
+      "originalIdentityHidden": true,
+      "noOriginalScan": true,
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 1,
+      "instanceId": "i246",
+      "exhausted": true,
+      "originalIdentityHidden": true,
+      "noOriginalScan": true,
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 2,
+      "instanceId": "i246",
+      "exhausted": true,
+      "originalIdentityHidden": true,
+      "noOriginalScan": true,
+      "noCommandOrMutation": true
+    },
+    {
+      "seat": 3,
+      "instanceId": "i246",
+      "exhausted": true,
+      "originalIdentityHidden": true,
+      "noOriginalScan": true,
+      "noCommandOrMutation": true
+    }
+  ]
+}

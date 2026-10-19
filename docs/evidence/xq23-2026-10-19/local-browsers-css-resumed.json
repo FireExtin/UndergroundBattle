@@ -1,0 +1,33 @@
+{
+  "scope": "Resume only uncompleted layouts after correcting test-only hand icon assertion; two earlier browser passes retained, not repeated",
+  "productionSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "startedUtc": "2026-10-19T05:55:25.289042+00:00",
+  "preservedPassedRuns": [
+    "browser-actor-0-css",
+    "browser-actor-3-css"
+  ],
+  "runs": [
+    {
+      "scenario": "ordinary-deploy",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "name": "browser-ordinary-deploy-css-second",
+      "exitCode": 0,
+      "report": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second/report.json"
+    },
+    {
+      "scenario": "actor-0",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "name": "browser-actor-0-short-css",
+      "exitCode": 0,
+      "report": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/report.json"
+    }
+  ],
+  "passed": true,
+  "finishedUtc": "2026-10-19T05:56:57.778768+00:00"
+}

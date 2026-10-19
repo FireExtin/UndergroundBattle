@@ -1,0 +1,40 @@
+{
+  "scope": "Three explicit offline Native88 layouts, four independent local browser contexts each; plus actor0 at1366x768 after actual target obstruction; no online gameplay",
+  "productionSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "startedUtc": "2026-10-19T05:52:06.160837+00:00",
+  "runs": [
+    {
+      "scenario": "actor-0",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "name": "browser-actor-0-css",
+      "exitCode": 0,
+      "report": "/workspace/xq23-evidence-20261019/browser-actor-0-css/report.json"
+    },
+    {
+      "scenario": "actor-3",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "name": "browser-actor-3-css",
+      "exitCode": 0,
+      "report": "/workspace/xq23-evidence-20261019/browser-actor-3-css/report.json"
+    },
+    {
+      "scenario": "ordinary-deploy",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "name": "browser-ordinary-deploy-css",
+      "exitCode": 1,
+      "report": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/report.json"
+    }
+  ],
+  "passed": false,
+  "failure": "browser-ordinary-deploy-css failed; retain original failure and resume only uncompleted checks after diagnosis",
+  "finishedUtc": "2026-10-19T05:53:37.090366+00:00"
+}

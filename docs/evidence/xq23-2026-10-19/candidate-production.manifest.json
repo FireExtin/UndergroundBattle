@@ -1,8 +1,8 @@
 {
-  "scope": "Local candidate production identity, no upload/deployment",
-  "sourceCheckpoint": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "scope": "Final candidate production after local browser obstruction correction; no deployment",
+  "sourceCheckpoint": "1218442dcdec9b37141a165caacc52a359877ff9",
   "fileCount": 185,
-  "totalBytes": 138395479,
+  "totalBytes": 138395503,
   "workerBytes": 246467,
   "workerSha256": "e80aa44b3c44318f8aa5b2417db1917753f4664d2277c95c1eda5dd55883b995",
   "wasmBytes": 3353431,
@@ -19,14 +19,14 @@
       "sha256": "ed3a4753f9e2960e88424decbf7efb0b2d8583852f8b9200154674cda5ce25d2"
     },
     {
-      "path": "client/assets/index-DK58a4bz.js",
-      "bytes": 383045,
-      "sha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf"
+      "path": "client/assets/index-B-FQr3pJ.css",
+      "bytes": 200128,
+      "sha256": "a53988ff4594f49ae86449efa854fac56424a9ef126b36fac31f2a7fd00b7d21"
     },
     {
-      "path": "client/assets/index-jNIaCara.css",
-      "bytes": 200104,
-      "sha256": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917"
+      "path": "client/assets/index-CnRS-CaT.js",
+      "bytes": 383045,
+      "sha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf"
     },
     {
       "path": "client/card-scans.json",
@@ -861,7 +861,7 @@
     {
       "path": "client/index.html",
       "bytes": 475,
-      "sha256": "406a8434dd6dac9810bd7287b19454ac75327f1d75be42919b7db78f027824ca"
+      "sha256": "c4ad41a247369e42080eb89a82d37152cdee9a41f7cece9d12c713619dc18b95"
     },
     {
       "path": "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
@@ -906,7 +906,7 @@
     {
       "path": "server/README.md",
       "bytes": 122,
-      "sha256": "6003ce7d2bcb5d0f6cc5a0d57c23fe34485e00f7ee3f26d8b85ce56fcfe96f96"
+      "sha256": "8c4eb259c5f024bee34d6b19eaf9557a78e04947ac724837e01b3e9492a7322f"
     },
     {
       "path": "server/a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
@@ -937,6 +937,69 @@
       "path": "server/index.js.map",
       "bytes": 437073,
       "sha256": "2d34717a89edc95bd2c7109336ed85ee6a11cc5775ae6f859e90aca00b7a3edf"
+    }
+  ],
+  "nativeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "wasmModules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "26b3b25fc21298e8ab8f8de20d0b2895117d997f-hegemony_wasm_bg.wasm",
+      "bytes": 3325174,
+      "sha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "file": "aa1cdbd215e8daf0adb949451e7d8dc3ae11831f-hegemony_wasm_bg.wasm",
+      "bytes": 3353431,
+      "sha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "file": "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
     }
   ]
 }

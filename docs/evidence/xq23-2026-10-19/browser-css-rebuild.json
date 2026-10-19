@@ -1,0 +1,21 @@
+{
+  "scope": "Only frontend CSS rebuilt after real local asset-target obstruction; no repeated Native/WASM/Web/Worker suites",
+  "productionSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "nativeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "startedUtc": "2026-10-19T05:50:23.456869+00:00",
+  "native139InputsUnchanged": true,
+  "buildExitCode": 0,
+  "passed": true,
+  "metadataVerifierFirstFailed": true,
+  "metadataVerifierResumedWithoutRebuild": true,
+  "productionFiles": 185,
+  "productionBytes": 138395503,
+  "workerUnchanged": true,
+  "twelveWasmUnchanged": true,
+  "previousCandidateAllPathsBytesPreserved": true,
+  "originalV69BackupAndProviderUnchanged": true,
+  "providerClean": true,
+  "protectedLockUnchanged": true,
+  "availableBytesAfterDedup": 1235898368,
+  "finishedUtc": "2026-10-19T05:51:47.515489+00:00"
+}

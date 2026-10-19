@@ -1,6 +1,6 @@
 {
   "runtimeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
-  "scope": "Completed natural stages only; Native/Web/Worker passed; browser first guard78 and actual actor0 target obstruction preserved; frontend correction pending",
+  "scope": "All applicable validation stages naturally completed; original failures and guard rejection remain distinct; ready for parent serial independent review, not approved or deployed",
   "runs": [
     {
       "name": "workspace-owner-final",
@@ -316,7 +316,183 @@
       },
       "browserStarted": true,
       "commandsCompleted": 0,
-      "failure": "Actual production target panel intercepts pointer events above original asset; fixed-size235px panel overlaps185px hand dock"
+      "failure": "Actual production target panel intercepts pointer events above original asset;235px panel exceeds178px desktop hand dock (source CSS and final actual geometry)"
+    },
+    {
+      "name": "production-css-final",
+      "rawBytes": 1707,
+      "rawSha256": "4bcead79ec9393bd149f4852570bcb59674193e50be56555289dad6e73a86bf9",
+      "gzipBytes": 757,
+      "gzipSha256": "6e90dd72fd51503f31a55cc373b3f275685b5e6daacc8d75f949e351c32dbb17",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "sites",
+          "run",
+          "build"
+        ],
+        "startedUtc": "2026-10-19T05:50:25.196046+00:00",
+        "finishedUtc": "2026-10-19T05:50:59.735706+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/production-css-final.log"
+      }
+    },
+    {
+      "name": "browser-driver-syntax",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "--check",
+          "tools/frontend/xq23-http-four-clients-qa.mjs"
+        ],
+        "startedUtc": "2026-10-19T05:51:47.702749+00:00",
+        "finishedUtc": "2026-10-19T05:51:47.811481+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/browser-driver-syntax.log"
+      }
+    },
+    {
+      "name": "browser-actor-0-css",
+      "rawBytes": 128,
+      "rawSha256": "1cf715e2cc793d89b79e4205b34840a4c0746af9e2145278f1f64c0e701e4075",
+      "gzipBytes": 127,
+      "gzipSha256": "8f4c3786b41ed0d2628352db53a47c6dd2e9ab6ff30e98ec876d91bf7c4856bc",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-actor-0-css"
+        ],
+        "startedUtc": "2026-10-19T05:52:06.218215+00:00",
+        "finishedUtc": "2026-10-19T05:52:40.604080+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/browser-actor-0-css.log"
+      },
+      "browserPassed": true,
+      "commandsCompleted": 8,
+      "uiAccepted": 7,
+      "expectedRejects": 1,
+      "d1Reopened": 3
+    },
+    {
+      "name": "browser-actor-3-css",
+      "rawBytes": 128,
+      "rawSha256": "4ada0444823306d3a4036720a9d3fed8d88bbb1d452e6ce00af5c1855acbabb8",
+      "gzipBytes": 127,
+      "gzipSha256": "e9b8076a91a1d026ed1db70596bb7168dc7fbe6a2002c92ff53f1728787f3926",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-actor-3-css"
+        ],
+        "startedUtc": "2026-10-19T05:52:40.648271+00:00",
+        "finishedUtc": "2026-10-19T05:53:20.854106+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/browser-actor-3-css.log"
+      },
+      "browserPassed": true,
+      "commandsCompleted": 8,
+      "uiAccepted": 7,
+      "expectedRejects": 1,
+      "d1Reopened": 3
+    },
+    {
+      "name": "browser-ordinary-deploy-css",
+      "rawBytes": 1523,
+      "rawSha256": "942fddba6fed3aa4f52a948718efd7c624625f08a518dbc3eafa2e1cb681257c",
+      "gzipBytes": 603,
+      "gzipSha256": "fe783b4f8788265d1e9f86ccd9e95cb65679cce98c703ef830f68f0604a2d5ef",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css"
+        ],
+        "startedUtc": "2026-10-19T05:53:20.897827+00:00",
+        "finishedUtc": "2026-10-19T05:53:37.080011+00:00",
+        "exitCode": 1,
+        "log": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css.log"
+      },
+      "browserPassed": false,
+      "commandsCompleted": 0,
+      "uiAccepted": 0,
+      "expectedRejects": 0,
+      "d1Reopened": 0
+    },
+    {
+      "name": "browser-ordinary-deploy-css-second",
+      "rawBytes": 151,
+      "rawSha256": "154d33349e1649c8978b4c829737910883ae3d2a6e89ec81277f624d9c090bc1",
+      "gzipBytes": 136,
+      "gzipSha256": "832ed611639ceeac343ea2e0bcdf911ad38eb2a728c2b9736edd4b4ff23b5799",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second"
+        ],
+        "startedUtc": "2026-10-19T05:55:25.412456+00:00",
+        "finishedUtc": "2026-10-19T05:56:16.134459+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second.log"
+      },
+      "browserPassed": true,
+      "commandsCompleted": 6,
+      "uiAccepted": 5,
+      "expectedRejects": 1,
+      "d1Reopened": 2
+    },
+    {
+      "name": "browser-actor-0-short-css",
+      "rawBytes": 134,
+      "rawSha256": "8a0c0aa642df9177f24e44e4e0a2d3957d95fea75ba50381d4da5948094c82e0",
+      "gzipBytes": 130,
+      "gzipSha256": "2bc4216d8e7c00e2c5407f25afcc5d6cfdda08a330148a3bbfab4fac6162e1ab",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/frontend/xq23-http-four-clients-qa.mjs",
+          "/workspace/xq23-evidence-20261019/browser-actor-0-short-css"
+        ],
+        "startedUtc": "2026-10-19T05:56:16.206711+00:00",
+        "finishedUtc": "2026-10-19T05:56:57.764323+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css.log"
+      },
+      "browserPassed": true,
+      "commandsCompleted": 8,
+      "uiAccepted": 7,
+      "expectedRejects": 1,
+      "d1Reopened": 3
     }
-  ]
+  ],
+  "productionSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "completedUtc": "2026-10-19T05:58:50.857823+00:00"
 }

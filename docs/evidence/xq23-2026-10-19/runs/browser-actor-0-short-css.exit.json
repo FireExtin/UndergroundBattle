@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/frontend/xq23-http-four-clients-qa.mjs",
+    "/workspace/xq23-evidence-20261019/browser-actor-0-short-css"
+  ],
+  "startedUtc": "2026-10-19T05:56:16.206711+00:00",
+  "finishedUtc": "2026-10-19T05:56:57.764323+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css.log"
+}

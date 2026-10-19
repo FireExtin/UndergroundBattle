@@ -1,0 +1,8 @@
+{
+  "scope": "All first candidate generated outputs moved intact; no source/database/cache/evidence deletion",
+  "fullReceipt": "before-browser-css-production.outputs.json.gz",
+  "rawBytes": 210609,
+  "rawSha256": "1272e699e7efb9cfc759c9321b83251d82ee451f9a5f37b5300ece3977e3307f",
+  "gzipSha256": "b5275ea256984c89630c701aaa02c21e4f37f40e943f0f6b4585b9be9eff84db",
+  "fileCount": 547
+}

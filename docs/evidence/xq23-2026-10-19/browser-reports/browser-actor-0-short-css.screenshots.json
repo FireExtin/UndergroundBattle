@@ -1,0 +1,50 @@
+{
+  "scope": "Only local paths and screenshot hashes; screenshots and databases retained locally, not in Git",
+  "screenshots": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/anonymous-asset-seat-0.png",
+      "bytes": 384587,
+      "sha256": "3f00349cd1f11c6d56bd757efe68de3e2ca08a6e659712f69d6afcede0e53df6"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/anonymous-asset-seat-1.png",
+      "bytes": 379593,
+      "sha256": "834abac757c1c86e05eb45ca32dfd3b2b7d5d981a755db615506b41ba50e1ce7"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/anonymous-asset-seat-2.png",
+      "bytes": 378833,
+      "sha256": "44c8e86120e5b73684bd494356a60b936142835078ed494e86b643fc64f5d677"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/anonymous-asset-seat-3.png",
+      "bytes": 378588,
+      "sha256": "b00474f11ccbc7f6c5624b4ea29fa4e82c682b9fd40185ed15c022b2ea1d7a6c"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/final.png",
+      "bytes": 980556,
+      "sha256": "c235b0dfb7e63adc0adb6901bc7ff083bf37dfa500fa39cbfc7c7274ea95d182"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/restored-paid-or-paused-0.png",
+      "bytes": 981555,
+      "sha256": "d91a6dd89c43d7fae2bbfcd707ab0dcaff96aa7ca2a739ec02d5e7c16bbba28d"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/restored-paid-or-paused-1.png",
+      "bytes": 1009953,
+      "sha256": "1edb5e517c3e23abc3d03866f05d6f07c9590bba14c9300286738e308f108be8"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/target-ready-0.png",
+      "bytes": 967757,
+      "sha256": "dbcea4537f33d8d1db215c0d022ba8ce540819d9762749d293bbc29e518e6b90"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/xq23-original-print.png",
+      "bytes": 580289,
+      "sha256": "04359ce68549e1775fc9cf24aeb031e620c276183d95d9c3e3c389606d974be6"
+    }
+  ]
+}

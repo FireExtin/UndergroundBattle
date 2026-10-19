@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--check",
+    "tools/frontend/xq23-http-four-clients-qa.mjs"
+  ],
+  "startedUtc": "2026-10-19T05:51:47.702749+00:00",
+  "finishedUtc": "2026-10-19T05:51:47.811481+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/browser-driver-syntax.log"
+}

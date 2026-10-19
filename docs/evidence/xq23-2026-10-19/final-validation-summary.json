@@ -1,0 +1,148 @@
+{
+  "reviewStatus": "Ready for parent serial independent review; no merge or deployment approval",
+  "branch": "codex/xq23-gray-asset-return-review-20261019",
+  "reviewDiffBase": "b9e75816987df872ba53059d2222f0d9c15e70ff",
+  "nativeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "productionSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "nativeInputs": 139,
+  "nativeInputsUnchangedAtProductionSourceAndWorkingTree": true,
+  "originalCardSha256": "7370d343be9e467716a3d7ada1d95abc012f5901ed15629e2f8d18065ea0769e",
+  "native88RawSha256": "54e805dbf3e1d4becdf776e7112a5eda9619bc31821c5e2635a2ada786291aad",
+  "native88Counts": {
+    "commands": 72,
+    "invalidRestores": 27,
+    "projections": 324,
+    "rejected": 5,
+    "scenarios": 9
+  },
+  "currentWasmSha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc",
+  "workerSha256": "e80aa44b3c44318f8aa5b2417db1917753f4664d2277c95c1eda5dd55883b995",
+  "clientJsSha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf",
+  "productionFiles": 185,
+  "productionBytes": 138395503,
+  "productionManifestSha256": "324a7854b3ad11a8958c2cbf7050e953ced84c12705497529d2709ccfef12451",
+  "wasmModules": 12,
+  "tests": {
+    "cardSource": {
+      "passed": 67,
+      "exitCode": 0
+    },
+    "nativeWorkspace": {
+      "passed": 1340,
+      "library": 1273,
+      "integration": 67,
+      "exitCode": 0
+    },
+    "web": {
+      "files": 141,
+      "passed": 1406,
+      "exitCode": 0,
+      "beforeCssOnlyCorrection": true,
+      "executableJsUnchangedAfterCorrection": true
+    },
+    "siteWorker": {
+      "files": 63,
+      "passed": 632,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "exitCode": 0
+    },
+    "productionBuildAfterCssCorrection": {
+      "exitCode": 0,
+      "typescript": true,
+      "vite": true,
+      "workerDryRunOnly": true
+    },
+    "localBrowserRuns": [
+      {
+        "name": "browser-actor-0-css",
+        "scenario": "actor-0",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "independentContexts": 4,
+        "acceptedUiCommands": 7,
+        "expectedRejectedBrowserFetches": 1,
+        "d1Reopens": 3,
+        "originalReceiptsAfterReopen": 7,
+        "anonymousAssetReads": 4,
+        "driverSha256": "ef271c56067581618091e48caaab7c7ee042b72aed4880b480adb18bf9e257ef",
+        "finishedUtc": "2026-10-19T05:52:40.604080+00:00",
+        "exitCode": 0,
+        "pageErrors": 0
+      },
+      {
+        "name": "browser-actor-3-css",
+        "scenario": "actor-3",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "independentContexts": 4,
+        "acceptedUiCommands": 7,
+        "expectedRejectedBrowserFetches": 1,
+        "d1Reopens": 3,
+        "originalReceiptsAfterReopen": 7,
+        "anonymousAssetReads": 4,
+        "driverSha256": "ef271c56067581618091e48caaab7c7ee042b72aed4880b480adb18bf9e257ef",
+        "finishedUtc": "2026-10-19T05:53:20.854106+00:00",
+        "exitCode": 0,
+        "pageErrors": 0
+      },
+      {
+        "name": "browser-ordinary-deploy-css-second",
+        "scenario": "ordinary-deploy",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "independentContexts": 4,
+        "acceptedUiCommands": 5,
+        "expectedRejectedBrowserFetches": 1,
+        "d1Reopens": 2,
+        "originalReceiptsAfterReopen": 5,
+        "anonymousAssetReads": 0,
+        "driverSha256": "e24c379308ba2cf4730e2819a13f5fb7c73c1cb412c47acf06e3cb8ab63842a5",
+        "finishedUtc": "2026-10-19T05:56:16.134459+00:00",
+        "exitCode": 0,
+        "pageErrors": 0
+      },
+      {
+        "name": "browser-actor-0-short-css",
+        "scenario": "actor-0",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "independentContexts": 4,
+        "acceptedUiCommands": 7,
+        "expectedRejectedBrowserFetches": 1,
+        "d1Reopens": 3,
+        "originalReceiptsAfterReopen": 7,
+        "anonymousAssetReads": 4,
+        "driverSha256": "e24c379308ba2cf4730e2819a13f5fb7c73c1cb412c47acf06e3cb8ab63842a5",
+        "finishedUtc": "2026-10-19T05:56:57.764323+00:00",
+        "exitCode": 0,
+        "pageErrors": 0
+      }
+    ]
+  },
+  "browserDriverFinalSha256": "e24c379308ba2cf4730e2819a13f5fb7c73c1cb412c47acf06e3cb8ab63842a5",
+  "noPassedFullSuiteRepeatedAfterCssOnlyChange": true,
+  "oldRelease183HashesVerifiedInBackupAndProvider": true,
+  "providerClean": true,
+  "protectedLockUnchanged": true,
+  "specAcceptanceFlagsUnchanged": true,
+  "startupDiskAndMemoryGuardBytes": 1073741824,
+  "ordinaryDiskTargetAndTmp": true,
+  "availableDiskBytesAtClosure": 1197342720,
+  "oldArtifactsAndEvidencePreserved": true,
+  "onlineGameplay": false,
+  "siteChanged": false,
+  "mainMerged": false,
+  "agentsSpawned": 0,
+  "worktreesCreated": 0,
+  "completedUtc": "2026-10-19T05:58:52.749607+00:00"
+}

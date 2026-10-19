@@ -65,14 +65,19 @@ try{
  await reader.locator(`[data-card-instance="${source.instanceId}"]`).first().click();
  await reader.getByRole('button',{name:'放大阅读谨慎的办事员',exact:true}).click();
  const reading=reader.locator('.hg-reading');await expect(reading).toContainText('公开');await expect(reading).toContainText('撤回');await expect(reading).toContainText('拥有者手上');await expect(reading).toContainText('资产区');
- await expect(reading.getByLabel('当前有效图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
- await expect(reading.getByLabel('印刷图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
+ if(source.region!==undefined){
+  await expect(reading.getByLabel('当前有效图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
+  await expect(reading.getByLabel('印刷图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
+ }else{
+  await expect(reading.getByLabel('图标：调查0，战斗0，势力1',{exact:true})).toBeVisible();
+  await expect(reading.getByLabel('当前有效图标：调查0，战斗0，势力1',{exact:true})).toHaveCount(0);
+ }
  await reading.getByRole('button',{name:'原始牌面',exact:true}).click();
  const scan=reading.getByRole('img',{name:'谨慎的办事员原始牌面',exact:true});await expect(scan).toHaveAttribute('src','/cards/XQ23.jpg');
  await expect(scan).toBeVisible();await expect.poll(()=>scan.evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
  await capture(reader,'xq23-original-print');await reader.getByRole('button',{name:'关闭放大阅读',exact:true}).click();
  assert.equal(report.clientPosts[readerSeat],readPosts);assert.deepEqual(await snapshot(),beforeRead);
- report.sourceRead={seat:readerSeat,cardId:'XQ23',currentIcons:source.icons,printedIcons:{investigation:0,combat:0,influence:1},scanLoaded:true,noCommandOrMutation:true};
+ report.sourceRead={seat:readerSeat,cardId:'XQ23',zone:source.region===undefined?'hand':'region',projectedIcons:source.icons,currentIconsShown:source.region!==undefined,printedIcons:{investigation:0,combat:0,influence:1},scanLoaded:true,noCommandOrMutation:true};
  const fetchRoom=(seat,operation,command)=>pages[seat].evaluate(async({id,operation,command})=>{const saved=JSON.parse(localStorage.getItem('hegemony.session.v1'));const r=await fetch(`/api/rooms/${id}/${operation}`,{method:command?'POST':'GET',headers:{Authorization:'Bearer '+saved.token,...(command?{'Content-Type':'application/json'}:{})},...(command?{body:JSON.stringify(command)}:{})});return{status:r.status,body:await r.json()};},{id,operation,command});
  for(const[index,row]of scenario.steps.entries()){
   const page=pages[row.seat],session=row.command.action,action=session.action;report.activeStep={index,seat:row.seat,kind:session.kind,gameKind:action?.kind};

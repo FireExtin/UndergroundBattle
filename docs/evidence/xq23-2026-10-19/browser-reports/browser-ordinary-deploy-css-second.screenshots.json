@@ -1,0 +1,20 @@
+{
+  "scope": "Only local paths and screenshot hashes; screenshots and databases retained locally, not in Git",
+  "screenshots": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second/final.png",
+      "bytes": 1205715,
+      "sha256": "6b6b66d45be836e6caf7e0fce94d2ed4f27edef3d52c26b490ac1bfff98aae93"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second/restored-paid-or-paused-1.png",
+      "bytes": 1163220,
+      "sha256": "aa90375494855a86320e1810bca5ea74c9aaba4ae1fdb7eaecdc04ec42512b0a"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second/xq23-original-print.png",
+      "bytes": 598347,
+      "sha256": "b4a9605e9090872a4490bd0775f81da4ac5196dc9a7ea69ffa306f17d636c099"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "scope": "Actual image-tool visual inspection; supplements DOM/HTTP/state assertions; local only, not online gameplay",
+  "inspectedUtc": "2026-10-19T05:58:50.859451+00:00",
+  "images": [
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-second/failure-0.png",
+      "sha256": "dab2eb23b0d9e130d4d30b1f4eef0760a040d124116608600914b63af5ce55a0",
+      "observation": "实际面板遮住本方资产；原鼠标点击失败现场"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-css/xq23-original-print.png",
+      "sha256": "8f93246faa41fbb21c398ed21db11d4b2f3cf31f5ca0cffd6808eadeb64ad3e7",
+      "observation": "原卡扫描完整可读，含公开、撤回、付费横置与两段移区"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-css/target-ready-0.png",
+      "sha256": "3385cae280a252a94e4e7e79d688a138a6b9c37148df1b67c0e493befbf826fd",
+      "observation": "本方资产位于面板上方，普通鼠标可达"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-css/anonymous-asset-seat-3.png",
+      "sha256": "9cd566aff4768bac8f59373402a990df0629ecbd6ca00cb1d07068b55d4f69b5",
+      "observation": "对手阅读只显示匿名资产和横置状态，无原名或原图按钮"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-3-css/target-ready-0.png",
+      "sha256": "685b0acc28ab14cbfab97c43f3b026b974115e318c82009e39f016ad998efe64",
+      "observation": "后位行动者的资产目标可达，owner/controller分别显示"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css/failure-0.png",
+      "sha256": "701b62b4be39eb3c17c4afce8c161f533d227037a817a9ff33f9e536e4840fed",
+      "observation": "手牌仅印刷图标符合既有显示契约；失败为脚本要求场上双行"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-actor-0-short-css/target-ready-0.png",
+      "sha256": "dbcea4537f33d8d1db215c0d022ba8ce540819d9762749d293bbc29e518e6b90",
+      "observation": "1366×768面板130px，位于150px手牌区内；资产可达"
+    },
+    {
+      "path": "/workspace/xq23-evidence-20261019/browser-ordinary-deploy-css-second/final.png",
+      "sha256": "6b6b66d45be836e6caf7e0fce94d2ed4f27edef3d52c26b490ac1bfff98aae93",
+      "observation": "普通公开派遣结算后角色仍在地区，付费资产横置，手牌已空"
+    }
+  ]
+}

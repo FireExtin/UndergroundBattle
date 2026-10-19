@@ -1,0 +1,12 @@
+{
+  "scope": "Only sealed current-batch generated artifacts; all paths/content preserved, equal mode/uid/gid/device checked before each link; no editable source or older release/provider touched",
+  "beforeAvailableBytes": 858816512,
+  "afterAvailableBytes": 1235898368,
+  "reclaimedAvailableBytes": 377081856,
+  "linkedFiles": 544,
+  "uniqueNewFiles": 3,
+  "fullReceipt": "browser-css-artifact-dedup.json.gz",
+  "rawBytes": 177661,
+  "rawSha256": "37107cb428ae891bebdd7534120eef06a6247da2c9651b111d7bb5e0302f83c0",
+  "gzipSha256": "4f0660e9c18c9ada374469eee9812092e0dc6871dcf7303310b2635fbf948111"
+}

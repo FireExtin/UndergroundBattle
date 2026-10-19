@@ -1,0 +1,12 @@
+{
+  "scope": "Post-build metadata verifier failed only; production build exited0 and dedup completed; resume hashes without rebuilding",
+  "command": [
+    "python3",
+    "/workspace/xq23-evidence-20261019/rebuild-browser-css.py"
+  ],
+  "exitCode": 1,
+  "type": "TypeError",
+  "message": "'int' object is not iterable",
+  "cause": "exactWasmModules is the integer12, not a module list; compare exact wasm identities from original185-file manifest instead",
+  "dedupReceipt": "/workspace/xq23-evidence-20261019/browser-css-artifact-dedup.json"
+}

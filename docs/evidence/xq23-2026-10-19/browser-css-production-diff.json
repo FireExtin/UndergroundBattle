@@ -1,0 +1,68 @@
+{
+  "beforeSource": "7c96909731b165af6b3e1116fc22676b0f2fa3c2",
+  "afterSource": "1218442dcdec9b37141a165caacc52a359877ff9",
+  "changes": [
+    {
+      "path": "client/assets/index-B-FQr3pJ.css",
+      "before": null,
+      "after": {
+        "path": "client/assets/index-B-FQr3pJ.css",
+        "bytes": 200128,
+        "sha256": "a53988ff4594f49ae86449efa854fac56424a9ef126b36fac31f2a7fd00b7d21"
+      }
+    },
+    {
+      "path": "client/assets/index-CnRS-CaT.js",
+      "before": null,
+      "after": {
+        "path": "client/assets/index-CnRS-CaT.js",
+        "bytes": 383045,
+        "sha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf"
+      }
+    },
+    {
+      "path": "client/assets/index-DK58a4bz.js",
+      "before": {
+        "path": "client/assets/index-DK58a4bz.js",
+        "bytes": 383045,
+        "sha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf"
+      },
+      "after": null
+    },
+    {
+      "path": "client/assets/index-jNIaCara.css",
+      "before": {
+        "path": "client/assets/index-jNIaCara.css",
+        "bytes": 200104,
+        "sha256": "702f786db62bd32132d2404bea406639dea0caaf198d3e3fa22b9222d0fff917"
+      },
+      "after": null
+    },
+    {
+      "path": "client/index.html",
+      "before": {
+        "path": "client/index.html",
+        "bytes": 475,
+        "sha256": "406a8434dd6dac9810bd7287b19454ac75327f1d75be42919b7db78f027824ca"
+      },
+      "after": {
+        "path": "client/index.html",
+        "bytes": 475,
+        "sha256": "c4ad41a247369e42080eb89a82d37152cdee9a41f7cece9d12c713619dc18b95"
+      }
+    },
+    {
+      "path": "server/README.md",
+      "before": {
+        "path": "server/README.md",
+        "bytes": 122,
+        "sha256": "6003ce7d2bcb5d0f6cc5a0d57c23fe34485e00f7ee3f26d8b85ce56fcfe96f96"
+      },
+      "after": {
+        "path": "server/README.md",
+        "bytes": 122,
+        "sha256": "8c4eb259c5f024bee34d6b19eaf9557a78e04947ac724837e01b3e9492a7322f"
+      }
+    }
+  ]
+}
