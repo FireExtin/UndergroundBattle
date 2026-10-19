@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP：新环境已恢复精确十三核载体，MSJC03入桌完整文件与原样JC066 target-reveal定向复验各1/1通过。新69文件完整Worker仍在运行，已出现JC041 discard-6一条失败标记，错误栈和断言差异尚待自然终态；原轮720/722及两项失败记录完整保留，旧socket关闭根因仍未证实。完整资格与父串行独审未完成，不能发布。**
+**WIP：新环境已恢复精确十三核载体，MSJC03入桌完整文件与原样JC066 target-reveal定向复验各1/1通过。新69文件完整Worker仍在运行，已出现5条失败标记：JC041 discard-6及4项pass-history，错误栈和断言差异尚待自然终态。只读检查另确认pass-history专用本地构建目录缺失，待完整异常核对关联后处理；原轮720/722及两项失败记录完整保留，旧socket关闭根因仍未证实。完整资格与父串行独审未完成，不能发布。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -42,6 +42,8 @@
 同一检查点记录普通磁盘余27.015GiB、OOM计数0、CPU配额`400000 100000`。本轮期间约4%的cgroup调度周期有节流记录；这些是整个环境的计数，不是独立Worker CPU，不能用于判定全部变慢原因或JC041失败根因。以已完成前缀耗时比外推整轮约5小时，仅是随用例组合/负载变化的粗估，不是超时或终止期限。没有改资源、并发或任何预算；继续现有运行，不增加重试。
 
 21:42:20 UTC的[小时检查点](evidence/jc035-recovery-2026-10-19/jc066-normal-hour-checkpoint.json)保留同一运行的新前缀：434个通过用例、1条JC041 discard-6失败标记，最新日志21:42:16 UTC，详细异常仍未输出，尚无自然退出。JC066的[全部19条正常HTTP/D1场景](evidence/jc035-recovery-2026-10-19/jc066-normal-scenarios-in-full-run.json)已通过，其中原失败`target-reveal`在本轮也通过，耗时92484.052136ms；87种非法状态矩阵仍在执行。因此原socket异常在定向及本轮该场景均未复现，但关闭根因仍未证实，也不能把本轮或JC066整个文件称为通过。没有为小时保存重启、重复测试或修改源码、并发、资源与预算。
+
+22:05:34 UTC的[实质变化检查点](evidence/jc035-recovery-2026-10-19/pass-history-failures-checkpoint.json)保留547个通过用例、5条失败标记：原JC041 discard-6，加上`pass-history-integration.test.mjs`的全部4项（37条Native77轨迹、超时/取消/暂停、真实HTTP双端完整回合、CAS与并发回执），仍未自然退出或输出具体异常。[22:06只读检查](evidence/jc035-recovery-2026-10-19/pass-history-build-prerequisite-readonly.json)确认，这4项硬编码使用的`/workspace/undergroundbattle-build/pass-history-worker/server`不存在，不读取当前Worker覆盖变量；仓库已有`sites/scripts/build-pass-history-test.mjs`，会从精确原ABI77载体生成独立本地时钟包装并仅执行Wrangler dry-run。此处记录的是确定的构建前置缺口，具体异常与关联仍待完整报告核对；不改写为生产断言失败或已证明同因。保留现场，待本轮结束后再补齐并完整复验受影响文件；当前不构建、不重试，也不改活动输入。
 
 完整Native release1358、前端1431、Native/WASM383命令/78坏档及四客户端15命令的旧通过范围未重复运行：141输入、实际WASM、Worker和前端资产字节未变化，原生产构建源码至验证代码的唯一业务/测试路径差异是已列出的入桌夹具一行。原失败回执、外置PNG和封存候选仍按旧环境边界保留；本次不是线上实局，没有发布或合main。剩余工作是当前完整Worker自然结果、最终输入/187项产物核对和父串行独审。
 

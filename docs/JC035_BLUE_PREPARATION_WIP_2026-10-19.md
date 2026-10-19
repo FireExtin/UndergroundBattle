@@ -160,3 +160,9 @@ MSJC03入桌完整文件自然退出0，1/1通过，四席命名完整牌组、�
 现有会话82121未中断。[检查点](evidence/jc035-recovery-2026-10-19/jc066-normal-hour-checkpoint.json)记录434个通过用例、1条JC041 discard-6失败标记，日志最新21:42:16 UTC，详细错误仍待自然终态。JC066的19条正常HTTP/D1场景全部通过，[逐场景原始结果](evidence/jc035-recovery-2026-10-19/jc066-normal-scenarios-in-full-run.json)保留名称、状态与耗时；原失败target-reveal在本轮通过，92484.052136ms。非法状态矩阵仍在执行，不能称整个文件或722用例全量通过；原socket关闭根因仍未证实。
 
 本次仅增加这项新事实、对应有界原日志前缀与WIP文档，排敏后正常快进推送，不制造空提交。活动测试、游戏源码、资源、并发和预算均未改动，继续同一轮至自然退出，取得具体异常后再定位与必要修正。
+
+## 22:05新增pass-history失败与构建前置缺口（同一运行）
+
+[实质变化检查点](evidence/jc035-recovery-2026-10-19/pass-history-failures-checkpoint.json)记录原会话82121的547个通过用例、5条失败标记，仍未自然退出。除JC041 discard-6外，新增`pass-history-integration.test.mjs`全部4项失败，逐项名称、耗时和有界原日志均保留；详细错误类型、原因链和栈仍未输出，不据名称归因。
+
+[只读前置检查](evidence/jc035-recovery-2026-10-19/pass-history-build-prerequisite-readonly.json)确认新环境缺少该文件硬编码使用的专用`pass-history-worker/server`目录；这些测试不使用十三核当前Worker覆盖变量。仓库已有本地构建脚本，读取精确ABI77原件，仅生成测试包装与Wrangler dry-run，不重编译历史核。待自然终态核对具体异常后再补齐并复验整个受影响文件。当前只保存这一实质缺口及WIP状态，未为修复改变仍在运行的输入，也未重启测试、放宽断言或改预算。

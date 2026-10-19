@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-19T22:06:34.534587+00:00",
+  "missingDirectory": "/workspace/undergroundbattle-build/pass-history-worker/server",
+  "directoryExists": false,
+  "fixedBranchAlreadyContainsLocalOnlyBuildScript": "sites/scripts/build-pass-history-test.mjs",
+  "buildScriptSha256": "4b2baaa2f11e36bf203f397c81471df2a06765421d44815b2b4c550cd2b65e43",
+  "consumerTest": "sites/test/pass-history-integration.test.mjs",
+  "consumerSha256": "ead7847dff4d1ac9577c58c56e27cc357420b60b6fd54f908764981f8f8c197a",
+  "consumerDoesNotUseCurrentWorkerOverride": true,
+  "buildUsesExactPublished77InputsAndWranglerDryRun": true,
+  "historicalWasmIsOriginalNotRecompiled": true,
+  "plannedActionAfterCurrentNaturalExit": "If final exception confirms missing directory, build the existing local-only pass-history wrapper from exact restored ABI77 bytes under unchanged storage guard, then run complete affected4-case file; do not change running inputs now.",
+  "detailedExceptionStillPending": true,
+  "existingFullWorkerNotInterrupted": 82121
+}

@@ -24,3 +24,7 @@
 ## 21:42 JC066正常场景与小时检查点
 
 [jc066-normal-hour-checkpoint.json](jc066-normal-hour-checkpoint.json)和独立有界日志前缀记录同一82121运行434个通过用例、1条JC041 discard-6失败标记，最新日志21:42:16 UTC，详细异常仍未输出，尚无自然退出。[jc066-normal-scenarios-in-full-run.json](jc066-normal-scenarios-in-full-run.json)逐项记录JC066全部19条正常场景通过，包括原失败target-reveal；87种非法状态矩阵仍在执行。原socket关闭根因仍未证实，没有新增重试或改预算，未把中途结果合计为完整资格通过。
+
+## 22:05新增失败与前置缺口
+
+[pass-history-failures-checkpoint.json](pass-history-failures-checkpoint.json)保留同一82121运行547个通过用例、5条失败标记的新前缀；新增4项均来自pass-history文件，尚无自然退出或具体异常。[pass-history-build-prerequisite-readonly.json](pass-history-build-prerequisite-readonly.json)确认该文件专用的本地Worker目录在新环境缺失，以及固定分支中已有的构建脚本和精确ABI77来源。缺口与失败异常的关联待最终报告核对；当前只读留证，不补建活动依赖、不重试、不修改源码或预算。

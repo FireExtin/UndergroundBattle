@@ -1,0 +1,27 @@
+{
+  "capturedUtc": "2026-10-19T22:05:34.766428+00:00",
+  "sameExistingWorkerSession": 82121,
+  "validatedSourceSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "observedPassed": 547,
+  "observedFailureMarkers": 5,
+  "failureLines": [
+    "✖ JC041 corrupted discard-6 restores HTTP400 with no D1 writes (26514.679158ms)",
+    "✖ all 37 original Native77 traces preserve opaque states, core views, journals and duplicate receipts while recording passes (3.121183ms)",
+    "✖ timeout, cancellation, pause and late rejection record only committed public passes and preserve their original contexts (1.533484ms)",
+    "✖ real HTTP manual passes traverse a complete duel turn; both clients and a reopened Worker see identical event-time history (1.975636ms)",
+    "✖ pass metadata shares the command CAS: rollback and concurrent retries leave exactly one committed event (1.390721ms)"
+  ],
+  "latestLogUtc": "2026-10-19T22:05:13.170272+00:00",
+  "detailedExceptionAvailable": false,
+  "errorLines": [],
+  "naturalExitReceiptPresent": false,
+  "rawPrefix": {
+    "path": "runs/worker-full-recovered.20261019T220534Z.pass-history-failures.partial.log.gz",
+    "decodedBytes": 118027,
+    "decodedSha256": "6444824da304124475ebb83e42904249e20092ff3aa077f1c5ab83dd9bd967fe",
+    "gzipBytes": 13922,
+    "gzipSha256": "dedefc3864bf35f7e4d01616c84d3e77cb88567e64f3b14a2dd9dc46e20885bd"
+  },
+  "noSourceBudgetResourceConcurrencyRetryChange": true,
+  "failureClassificationPending": true
+}
