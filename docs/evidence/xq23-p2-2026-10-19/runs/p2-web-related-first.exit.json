@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "run",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "src/game/XQ23Native88.test.jsx",
+    "src/game/XQ23P2Native88.test.jsx"
+  ],
+  "startedUtc": "2026-10-19T06:53:17.280675+00:00",
+  "finishedUtc": "2026-10-19T06:53:30.621017+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-web-related-first.log"
+}

@@ -1,0 +1,39 @@
+{
+  "scope": "Only sealed generated outputs and byte-identical sealed pkg, same mode/uid/gid/device; every path and byte retained; no editable source/old release/provider/database/cache deletion",
+  "beforeAvailableBytes": 713637888,
+  "afterAvailableBytes": 1090674688,
+  "reclaimedBytes": 377036800,
+  "linkedFiles": 545,
+  "sealedPkg": [
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "bytes": 3921
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm.js",
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "bytes": 18203
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "sha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+      "bytes": 3353559
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "bytes": 1944
+    },
+    {
+      "path": "/workspace/UndergroundBattle/rust-game-wasm/pkg/package.json",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33
+    }
+  ],
+  "fullReceipt": "production-sealed-output-dedup.json.gz",
+  "rawBytes": 180072,
+  "rawSha256": "0dae335a66dd0654d83de6af73e65e9f1573c7e96953dab8acbd724b576b3ede",
+  "gzipBytes": 32015,
+  "gzipSha256": "008601a554af567d12dea2cc02ffb895f3d5622137be3034cc80176ecb5128a0"
+}

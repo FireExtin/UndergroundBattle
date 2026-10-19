@@ -1,0 +1,25 @@
+{
+  "scope": "Related component files, original9 HTTP trajectories, exact four one-field HTTP corruption cases, actual P2 owner-elimination trajectory, twelve-core HTTP; no repeated full unrelated suites or browser runs",
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "productionSource": "ffd2fb8303ba1c173d7f6ce9b1952802c5cc8742",
+  "startedUtc": "2026-10-19T06:53:17.200362+00:00",
+  "testFileHashes": {
+    "sites/test/xq23-http-harness.mjs": "0456c8b79ee0597cc5f198b3efff1d80fe4e7384e061e3eba3bf598189533a78",
+    "sites/test/xq23-integration.test.mjs": "1ce039e39adbb30224afb2fa197b1c90dc42406e141b76db423e486e02d1f510",
+    "sites/test/xq23-p2-integration.test.mjs": "982f6a4c4741de47175796fa22a60f6bce76b6e5da150623f80627d39afdb2ae",
+    "web/src/game/XQ23P2Native88.test.jsx": "2ea568fb8f3a4df415434382a9557e5ff4509d2d35a135962647b8a17b8a2682",
+    "tools/xq23-p2-oracle.mjs": "b59e2778bfedfb64fd7b68820106ccb210f686f526ee80be25f44971e4ae4b46"
+  },
+  "runs": [
+    {
+      "name": "p2-web-related-first",
+      "exitCode": 0
+    },
+    {
+      "name": "p2-worker-related-first",
+      "exitCode": 0
+    }
+  ],
+  "passed": true,
+  "finishedUtc": "2026-10-19T06:59:49.045816+00:00"
+}

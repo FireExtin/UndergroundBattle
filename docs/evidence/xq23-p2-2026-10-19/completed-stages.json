@@ -1,5 +1,5 @@
 {
-  "scope": "WIP: related Native and actual new WASM comparisons completed naturally; HTTP/D1, frontend and new production manifest pending",
+  "scope": "All selected applicable P2 validation naturally completed; original full baseline suites retained, not repeated or counted as new passes",
   "runs": [
     {
       "name": "p2-summary-native-before-build",
@@ -326,6 +326,105 @@
       "rawBytes": 2579,
       "gzipSha256": "bdfd383a5f90b48dacef0a612e23f8cc890cb5774254db1317f7afb4f59186bd",
       "gzipBytes": 601
+    },
+    {
+      "name": "p2-production-first",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "sites",
+          "run",
+          "build"
+        ],
+        "startedUtc": "2026-10-19T06:48:44.069302+00:00",
+        "finishedUtc": "2026-10-19T06:49:20.345250+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-production-first.log"
+      },
+      "rawSha256": "cdc68c7dc46e8317b68b1daa5f2f2fb92d3e8b11c4a0a27529690ad0014253be",
+      "rawBytes": 1707,
+      "gzipSha256": "ae2404bd5143b123a4668a4322516f3de7dbc10d4a20f05f95cc1491f5813db2",
+      "gzipBytes": 756
+    },
+    {
+      "name": "p2-clock-worker-first",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/build-xq23-clock-worker.mjs",
+          "/workspace/undergroundbattle-build/xq23-p2-worker/server"
+        ],
+        "startedUtc": "2026-10-19T06:51:40.084192+00:00",
+        "finishedUtc": "2026-10-19T06:51:40.542617+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-clock-worker-first.log"
+      },
+      "rawSha256": "2479685301e742fc4c77752951fb456a590bb6db35b7540647b6742ce5619466",
+      "rawBytes": 167,
+      "gzipSha256": "20236636c18229aa5af2f1b4d6e9300a2bbe0b84dba3ee55d70880190fdc2a56",
+      "gzipBytes": 156
+    },
+    {
+      "name": "p2-web-related-first",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "npm",
+          "--prefix",
+          "web",
+          "run",
+          "test",
+          "--",
+          "--maxWorkers=1",
+          "--no-file-parallelism",
+          "src/game/XQ23Native88.test.jsx",
+          "src/game/XQ23P2Native88.test.jsx"
+        ],
+        "startedUtc": "2026-10-19T06:53:17.280675+00:00",
+        "finishedUtc": "2026-10-19T06:53:30.621017+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-web-related-first.log"
+      },
+      "rawSha256": "d6c605ca48c3a92a0a223d49db546261055506fc6e019f1ed126521874a062e5",
+      "rawBytes": 584,
+      "gzipSha256": "2be10281630ec5e7f2bc404da34cc0a76e7c2398a9a6f56475da24e942fd0cbe",
+      "gzipBytes": 377
+    },
+    {
+      "name": "p2-worker-related-first",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "--input-type=module",
+          "-e",
+          "import{spawnSync}from'node:child_process';process.chdir('sites');const r=spawnSync(process.execPath,['--test','--test-concurrency=1','--test-name-pattern=^(XQ23 ABI88 HTTP|XQ23 P2|one actual twelve-kernel)','test/xq23-integration.test.mjs','test/xq23-p2-integration.test.mjs','test/xq23-retained-http.test.mjs'],{stdio:'inherit',env:process.env});if(r.error)throw r.error;process.exitCode=r.status??1;"
+        ],
+        "startedUtc": "2026-10-19T06:53:30.722113+00:00",
+        "finishedUtc": "2026-10-19T06:59:49.016998+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-worker-related-first.log"
+      },
+      "rawSha256": "9eef07117d1a62a92c531c55b42d98ed5c0cfaca4ea80c49e82ebd5b61d256db",
+      "rawBytes": 4801,
+      "gzipSha256": "c5d70caf2e0bebde04cf634133f02522fb1de109c7ad6c29567a92165497af8a",
+      "gzipBytes": 1121,
+      "selectedTests": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
     }
   ]
 }

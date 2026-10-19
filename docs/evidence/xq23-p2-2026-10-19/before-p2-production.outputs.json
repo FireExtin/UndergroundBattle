@@ -1,0 +1,27 @@
+{
+  "scope": "Move all sealed previous candidate outputs intact; no file/dir deletion",
+  "moves": [
+    {
+      "source": "sites/dist",
+      "preservedAt": "/workspace/xq23-p2-summary-evidence-20261019/before-p2-production/dist"
+    },
+    {
+      "source": "sites/public",
+      "preservedAt": "/workspace/xq23-p2-summary-evidence-20261019/before-p2-production/public"
+    },
+    {
+      "source": "sites/generated",
+      "preservedAt": "/workspace/xq23-p2-summary-evidence-20261019/before-p2-production/generated"
+    },
+    {
+      "source": "web/dist",
+      "preservedAt": "/workspace/xq23-p2-summary-evidence-20261019/before-p2-production/web-dist"
+    }
+  ],
+  "fullReceipt": "before-p2-production.outputs.json.gz",
+  "rawBytes": 213355,
+  "rawSha256": "99263ab781ac559469930ee87eb852afe05a85dcbd2c64ca2d787f834d79fd38",
+  "gzipBytes": 31478,
+  "gzipSha256": "47e9e1318a4e1fb44506734e2b03317725d0ada45c81a4d7f76eb5ee7cd91ec9",
+  "fileCount": 547
+}

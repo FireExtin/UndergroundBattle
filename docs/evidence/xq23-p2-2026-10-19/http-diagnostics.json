@@ -1,0 +1,156 @@
+[
+  {
+    "scenario": "actor-0",
+    "reference": "compiler-bound Native88",
+    "accepted": 7,
+    "rejected": 1,
+    "projections": 68,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "actor-1",
+    "reference": "compiler-bound Native88",
+    "accepted": 7,
+    "rejected": 1,
+    "projections": 68,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "actor-2",
+    "reference": "compiler-bound Native88",
+    "accepted": 7,
+    "rejected": 1,
+    "projections": 68,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "actor-3",
+    "reference": "compiler-bound Native88",
+    "accepted": 7,
+    "rejected": 1,
+    "projections": 68,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "ordinary-deploy",
+    "reference": "compiler-bound Native88",
+    "accepted": 5,
+    "rejected": 1,
+    "projections": 52,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "target-return-response",
+    "reference": "compiler-bound Native88",
+    "accepted": 11,
+    "rejected": 0,
+    "projections": 96,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "source-return-response",
+    "reference": "compiler-bound Native88",
+    "accepted": 13,
+    "rejected": 0,
+    "projections": 112,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "exhausted-target",
+    "reference": "compiler-bound Native88",
+    "accepted": 5,
+    "rejected": 0,
+    "projections": 48,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "scenario": "paid-target",
+    "reference": "compiler-bound Native88",
+    "accepted": 5,
+    "rejected": 0,
+    "projections": 48,
+    "originalReceiptsAfterReopen": true,
+    "opaqueStatesAndJournalsEqual": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "exactOriginalPaidStateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65",
+    "singleField": "/game/stack/0/frame/targets/0/public/instanceId",
+    "http400": 10,
+    "realD1Reopen": true,
+    "noRoomCommandOrJournalWrites": true
+  },
+  {
+    "exactOriginalPaidStateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65",
+    "singleField": "/game/stack/0/frame/targets/0/public/instanceId",
+    "http400": 10,
+    "realD1Reopen": true,
+    "noRoomCommandOrJournalWrites": true
+  },
+  {
+    "exactOriginalPaidStateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65",
+    "singleField": "/game/stack/0/frame/targets/0/public/kind",
+    "http400": 10,
+    "realD1Reopen": true,
+    "noRoomCommandOrJournalWrites": true
+  },
+  {
+    "exactOriginalPaidStateSha256": "76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65",
+    "singleField": "/game/stack/0/frame/targets/0/public/kind",
+    "http400": 10,
+    "realD1Reopen": true,
+    "noRoomCommandOrJournalWrites": true
+  },
+  {
+    "source": "actual139-input Native88P2",
+    "accepted": 165,
+    "rejected": 1,
+    "projections": 704,
+    "reopened": 11,
+    "completeOpaqueStatesAndJournals": true,
+    "scorePreserved": "4+2",
+    "deadOwnerAssetsAndHandAbsent": true,
+    "liveOwnerReturnSucceeded": true,
+    "allOriginalReceiptsRetriedWithoutWrites": true,
+    "localSyntheticDatabaseRetained": true
+  },
+  {
+    "actualHttpKernelVersions": [
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88
+    ],
+    "sameIsolate": true,
+    "rooms": 12,
+    "accepted": 12,
+    "originalReceipts": 12,
+    "opaqueStatesExact": true,
+    "seedU64Exact": true,
+    "syntheticDatabaseRetained": true
+  }
+]

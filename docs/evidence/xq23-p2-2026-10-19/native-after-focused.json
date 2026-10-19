@@ -35,8 +35,15 @@
     "buildExitCode": 0,
     "fourCompletedComparisonStages": true
   },
-  "httpD1After": "pending",
-  "newProduction185Manifest": "pending",
+  "httpD1After": {
+    "selectedTests": 15,
+    "passed": 15,
+    "exitCode": 0,
+    "exactMalformedHttp400": 40,
+    "ownerEliminationCommands": 166,
+    "reopens": 11
+  },
+  "newProduction185Manifest": "candidate-p2-production.manifest.json",
   "screenshotsArchive": {
     "library_file_id": "libfile_f8d42198f698819198e52935075dbca6",
     "file_id": "file_00000000eb1481fd9d94c004d9d547e1",

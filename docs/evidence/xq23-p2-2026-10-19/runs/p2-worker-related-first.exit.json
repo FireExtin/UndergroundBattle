@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "--input-type=module",
+    "-e",
+    "import{spawnSync}from'node:child_process';process.chdir('sites');const r=spawnSync(process.execPath,['--test','--test-concurrency=1','--test-name-pattern=^(XQ23 ABI88 HTTP|XQ23 P2|one actual twelve-kernel)','test/xq23-integration.test.mjs','test/xq23-p2-integration.test.mjs','test/xq23-retained-http.test.mjs'],{stdio:'inherit',env:process.env});if(r.error)throw r.error;process.exitCode=r.status??1;"
+  ],
+  "startedUtc": "2026-10-19T06:53:30.722113+00:00",
+  "finishedUtc": "2026-10-19T06:59:49.016998+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-worker-related-first.log"
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Read-only final packet identity check, no repeated project tests",
+  "source139Match": true,
+  "current185ProductionHashesMatch": true,
+  "all547OldCandidateOutputHashesPreserved": true,
+  "oldRelease183HashesInBothCopiesMatch": true,
+  "oldReviewDocsEvidenceFrozenAndCatalogSpecCssUnchanged": true,
+  "providerClean": true,
+  "protectedLockUnchanged": true,
+  "newChangedFilesChecked": 23,
+  "compiledOutputsDbCachesPngExcludedFromGit": true,
+  "credentialPatternMatches": 0
+}

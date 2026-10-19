@@ -1,0 +1,102 @@
+{
+  "reviewStatus": "Ready for parent serial independent re-review; not approved, merged or published",
+  "beforeReviewCommit": "dd974287393b1dc39ac5728766f0a6a2da4b3b04",
+  "branch": "codex/xq23-gray-asset-return-review-20261019",
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "productionSource": "ffd2fb8303ba1c173d7f6ce9b1952802c5cc8742",
+  "nativeInputs": 139,
+  "nativeCompilerInputsMatchFrozenSourceAndCurrentFiles": true,
+  "native": {
+    "selectedPassed": 116,
+    "failed": 0,
+    "filtered": 1161,
+    "exitCode": 0,
+    "workspaceFullSuiteNotRepeated": true
+  },
+  "native88": {
+    "scenarios": 9,
+    "commands": 72,
+    "expectedRejected": 5,
+    "projections": 324,
+    "invalidRestores": 31,
+    "rawSha256": "68a2606f45689bfd6e0a9845484bdd0a3180a8523c4eb9a44878548dbaf25a35",
+    "originalNineOpaqueStateStringsAndViewsUnchanged": true
+  },
+  "eliminationNative": {
+    "commands": 166,
+    "expectedRejected": 1,
+    "fourSeatProjections": 668,
+    "rawSha256": "24ce205be841267b28e2824218e4a0d46590d42c049f2659030734470e06b463",
+    "sameInitialAndPreOutStateAsBefore": true
+  },
+  "currentSourceRegionP2": {
+    "commands": 56,
+    "projections": 244,
+    "badOperations": 24,
+    "nativeInputs": 139
+  },
+  "wasm": {
+    "bytes": 3353559,
+    "sha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+    "newBuildExitCode": 0,
+    "allActualNativeTransitionsJournalsAndViewsCompared": true,
+    "exactPaidStateControlAcceptedFourSingleFieldCorruptionsRejected": true,
+    "exactPaidStateBytes": 31197
+  },
+  "web": {
+    "files": 2,
+    "passed": 24,
+    "failed": 0,
+    "exitCode": 0,
+    "fullPrior1406NotRepeatedOrRecounted": true
+  },
+  "siteWorker": {
+    "selectedTests": 15,
+    "passed": 15,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "exactCorruptionCases": 4,
+    "http400Operations": 40,
+    "roomCommandsJournalUnchangedAcrossReopen": true,
+    "oldNineScenariosPassed": 9,
+    "ownerElimination": {
+      "source": "actual139-input Native88P2",
+      "accepted": 165,
+      "rejected": 1,
+      "projections": 704,
+      "reopened": 11,
+      "completeOpaqueStatesAndJournals": true,
+      "scorePreserved": "4+2",
+      "deadOwnerAssetsAndHandAbsent": true,
+      "liveOwnerReturnSucceeded": true,
+      "allOriginalReceiptsRetriedWithoutWrites": true,
+      "localSyntheticDatabaseRetained": true
+    },
+    "twelveOriginalsAndCurrentOneIsolatePassed": true,
+    "fullPrior632NotRepeatedOrRecounted": true
+  },
+  "production": {
+    "files": 185,
+    "bytes": 138395631,
+    "workerBytes": 246467,
+    "workerSha256": "7632b867cebdf19ec405c4fe4a9aa2fc363bef1b3a88924527ef08921faacda8",
+    "manifestSha256": "8d90ce050632311097fb28bd6b1b9b50f43463dbf4aa76f540f965ef9ac1b1ad",
+    "wasmModules": 12,
+    "typescriptAndVitePassed": true,
+    "workerDryRunOnly": true,
+    "realDateNowOnly": true,
+    "executableFrontendJsUnchangedSha256": "a40ebb636852c83983b7b8a1788fb467c3520d7826bc069eb64ac802d00f8cbf"
+  },
+  "newBrowserRuns": 0,
+  "onlineGameplay": false,
+  "mainMerged": false,
+  "deployed": false,
+  "oldReviewEvidenceUnmodified": true,
+  "artifactHardlinksOnlySealedGeneratedFiles": true,
+  "futureBuildMustMovePkgAndOutputsAside": true,
+  "ordinaryDiskTargetAndTmp": true,
+  "startupDiskMemoryGuardBytes": 1073741824,
+  "completedUtc": "2026-10-19T07:05:13.217642+00:00"
+}

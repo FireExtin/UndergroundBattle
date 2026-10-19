@@ -1,0 +1,17 @@
+{
+  "scope": "New production identity after both proven P2 fixes, no deployment",
+  "productionSource": "ffd2fb8303ba1c173d7f6ce9b1952802c5cc8742",
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "startedUtc": "2026-10-19T06:48:42.284112+00:00",
+  "productionExitCode": 0,
+  "passed": true,
+  "productionFiles": 185,
+  "productionBytes": 138395631,
+  "workerSha256": "7632b867cebdf19ec405c4fe4a9aa2fc363bef1b3a88924527ef08921faacda8",
+  "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+  "sealedOldAndNewOutputsPreserved": true,
+  "providerClean": true,
+  "protectedLockUnchanged": true,
+  "availableBytesAfterDedup": 1090674688,
+  "finishedUtc": "2026-10-19T06:49:24.107448+00:00"
+}
