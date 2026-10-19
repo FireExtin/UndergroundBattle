@@ -1,0 +1,6 @@
+{
+  "workerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "matchesPriorFourClientBrowserTestWorker": true,
+  "exactWasmModules": 13,
+  "productionWorkerSha256": "ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d"
+}

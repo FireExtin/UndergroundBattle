@@ -1,0 +1,24 @@
+{
+  "checkedAtUtc": "2026-10-19T18:31:25.131771+00:00",
+  "sourceAtRebuild": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "originalManifestSha256": "8695312fbc911f79e247f03816fc22932eb87911ef77fad1ac7418cb788f9148",
+  "originalManifestSource": "31949d778d83ea2f88957b10f812df20bc7a9499",
+  "expectedFiles": 187,
+  "actualFiles": 187,
+  "missing": [],
+  "extra": [],
+  "different": [
+    {
+      "path": "server/README.md",
+      "expectedSha256": "b81126293b129d3e98ee30cdf0ee615f5b2a6a248349fa46ee0bf80b81579c88",
+      "actualSha256": "86f9d6f1929a687d2c7ee8559afae8dfb763826327c96e56f751027ef4ed3277"
+    }
+  ],
+  "all187OutputsMatchOldCandidate": false,
+  "workerSha256": "ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d",
+  "workspaceAvailableAfterFirstProductionBuildBytes": 29331652608,
+  "workspaceAvailableAfterFirstProductionBuildGiB": 27.317,
+  "minimumConservativeReserveBytes": 6442450944,
+  "minimumConservativeReserveSatisfied": true,
+  "noRustOrHistoricalKernelRecompile": true
+}

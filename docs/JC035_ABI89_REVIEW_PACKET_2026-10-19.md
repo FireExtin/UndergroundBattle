@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP：完整Worker自然退出1，722项中720通过、2失败。入桌夹具已最小修正但未验证；JC066为测试内socket关闭异常，原样保留。后续验证被1GiB磁盘启动守卫阻塞，不能发布。**
+**WIP：新环境已恢复精确十三核载体，MSJC03入桌完整文件与原样JC066 target-reveal定向复验各1/1通过。新69文件完整Worker仍在运行，尚无自然退出；原轮720/722及两项失败记录完整保留，socket关闭根因仍未证实。完整资格与父串行独审未完成，不能发布。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -11,13 +11,31 @@
 | 审查分支 | `codex/jc035-blue-preparation-review-20261019` |
 | 批次基线 | `cf0f1f461a7180ccc834a3289f3211583a417e11` |
 | Native与WASM编译源码 | `fba026bd887458b65c46fc855b9d28484c8a1a57` |
-| 生产候选构建源码 | `31949d778d83ea2f88957b10f812df20bc7a9499` |
+| 原生产候选构建源码 | `31949d778d83ea2f88957b10f812df20bc7a9499` |
+| 新环境恢复与验证代码 | `5056e4e65f0e1edacf617ce12175d67f86eee0fc`；后续小时保存仅新增证据/文档 |
 | Native141输入清单SHA256 | `0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98` |
 | 新89 WASM | 3,470,546B，`02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640` |
 | 标准生产Worker | `ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d` |
 | 构建后、完整Worker前清单 | 187文件 /142,256,926B；`8695312fbc911f79e247f03816fc22932eb87911ef77fad1ac7418cb788f9148` |
 
-构建后清单见[production89-before-worker.manifest.json](evidence/jc035-2026-10-19/production89-before-worker.manifest.json)。编译源码之后的提交仅为测试投影/入桌夹具修正、测试见证和证据文档；当前生产代码与该编译源码一致。完整Worker结果与待验证修正见下文；最终证据提交为本材料所在提交，不改变上述编译和构建身份。
+构建后清单见[production89-before-worker.manifest.json](evidence/jc035-2026-10-19/production89-before-worker.manifest.json)。编译源码之后的提交仅为测试投影/入桌夹具修正、测试见证和证据文档；当前生产代码与该编译源码一致。原完整Worker结果与新环境WIP复验见下文；证据提交不改变上述编译身份。
+
+## 新环境恢复与定向复验（完整Worker仍运行）
+
+用户授权经官方Library流程迁移精确原件。迁移包13,882,939B，SHA256 `02a4d8fb4ababa881589b80fff7252ac0406063f99defcd0d75574b468b75c43`；27个文件共13,841,070B逐项验证后按相对清单恢复。包路径、逐文件哈希、12个gzip解压WASM及13个实际ABI目录全部匹配，没有重编译或替代历史内核。公开回执见[恢复核验](evidence/jc035-recovery-2026-10-19/runtime-restoration-verification.json)及[实际ABI身份](evidence/jc035-recovery-2026-10-19/runtime-abi-identities.json)；私有传输标识、签名URL、数据库、缓存与二进制载体未纳入Git。
+
+新生产构建通过两套TS检查、Vite和Wrangler dry-run；构建后普通磁盘可用27.317GiB。187项中186个执行/静态文件与原候选逐字节相同，标准Worker及十三个WASM均保持原哈希。唯一不同路径是Wrangler以当前UTC生成的`server/README.md`；旧README原件未迁入，没有重构或改写它来匹配旧哈希。[初次整清单对照](evidence/jc035-recovery-2026-10-19/production-rebuild-verification.json)与[生成器差异分析](evidence/jc035-recovery-2026-10-19/production-rebuild-delta-analysis.json)分别保留。本次187项/142,256,926B的[新环境候选清单](evidence/jc035-recovery-2026-10-19/production-recovered.manifest.json)SHA256为`0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77`。本地测试Worker为`6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567`，与原四客户端浏览器验证所用字节一致。
+
+| 本次已自然结束阶段 | 实际结果 |
+| --- | --- |
+| MSJC03入桌完整文件 | 1/1通过；四席命名完整牌组、六张起手、D1重开及原回执；[退出/输入回执](evidence/jc035-recovery-2026-10-19/runs/jc035-entry-msjc03-recovered.exit.json) |
+| 原样JC066 ABI86 HTTP target-reveal | 1/1通过；19条接受命令、160次投影；[退出/输入回执](evidence/jc035-recovery-2026-10-19/runs/jc066-target-reveal-recovered.exit.json) |
+
+入桌失败的已确认原因仍是原黄色MSJC01夹具只能凑39张；本次验证的是已有单行MSJC03修正，没有修改断言、业务或预算。JC066的原socket异常本次未复现，关闭根因仍未证实，没有添加重试或据通过结果归因。
+
+新完整Worker于2026-10-19 18:37:29 UTC以原69文件、`--test-concurrency=1`启动，同一会话持续运行，未重启。19:36:18 UTC的[小时检查点](evidence/jc035-recovery-2026-10-19/hour-checkpoint.json)仅观察到60条通过、0条失败；JC035的13条正常HTTP轨迹通过，47种坏档矩阵仍在执行，没有自然退出回执。这些是日志前缀计数，不是完整通过汇总。141编译输入、Worker测试源码和27个载体的前后校验由原运行记录器保留，最终校验须等该轮自然结束。
+
+完整Native release1358、前端1431、Native/WASM383命令/78坏档及四客户端15命令的旧通过范围未重复运行：141输入、实际WASM、Worker和前端资产字节未变化，原生产构建源码至验证代码的唯一业务/测试路径差异是已列出的入桌夹具一行。原失败回执、外置PNG和封存候选仍按旧环境边界保留；本次不是线上实局，没有发布或合main。剩余工作是当前完整Worker自然结果、最终输入/187项产物核对和父串行独审。
 
 ## 整张卡与运行行为
 
@@ -39,7 +57,7 @@
 | [jc035_tests.rs](../rust-game/src/jc035_tests.rs) | 原图字段、阈值与敌我/出局矩阵、普通付费、图标奖励、原地区、47坏档、13条原生轨迹 |
 | [ChoicePanel.tsx](../web/src/game/ChoicePanel.tsx) / [JC035Native89.test.jsx](../web/src/game/JC035Native89.test.jsx) | 来源分辨、换选、下一待选清空选中、确认与跳过边界 |
 | [jc035-integration.test.mjs](../sites/test/jc035-integration.test.mjs) | 原生轨迹逐命令经HTTP/D1、重开与原回执；坏档零写入 |
-| [jc035-entry.test.mjs](../sites/test/jc035-entry.test.mjs) | 普通API创建/加入/准备/开始、已命名完整牌组和六张起手；原轮夹具失败已确认并最小修正，修正后未验证 |
+| [jc035-entry.test.mjs](../sites/test/jc035-entry.test.mjs) | 普通API创建/加入/准备/开始、已命名完整牌组和六张起手；MSJC03修正后的完整文件已1/1通过，新完整轮亦通过该项 |
 | [jc035-retained-http.test.mjs](../sites/test/jc035-retained-http.test.mjs) / [jc035-kernel-routing.test.mjs](../sites/test/jc035-kernel-routing.test.mjs) | 原77–88载体、同一十三核Worker路由与当前89严格拒绝旧身份 |
 | [xq23-current-owner-integration.test.mjs](../sites/test/xq23-current-owner-integration.test.mjs) | 新89真实借控出局/返还轨迹，独立保留原88/P2见证 |
 
@@ -62,7 +80,8 @@
 | 生产候选 | 两套TS检查、Vite、Wrangler dry-run通过；13个精确WASM |
 | 本地四客户端浏览器 | 15个真实UI命令、3次D1重开、15份原回执重试、页面异常0；1366×768 |
 | 完整Worker原轮 | **69文件自然完成，722项中720通过、2失败；退出1，0取消/跳过；141输入前后相同** |
-| 修正后必要验证 | **未启动**；只运行原守卫预检，退出78：1,031,143,424B可用，最低1,073,741,824B |
+| 新环境定向复验 | MSJC03入桌完整文件1/1、原样JC066 target-reveal单例1/1通过；旧空间预检退出78的原回执仍保留 |
+| 新环境完整Worker | **运行中，无自然退出**；见小时检查点，不能以定向或日志前缀替代完整结果 |
 
 JC035专属Native为13场景/145命令/4拒绝/620投影/47坏档；当前89的XQ23九场景为72命令/5拒绝/324投影/31坏档，借控出局为166命令/1拒绝/668投影。三份新的压缩见证都在实际WASM比较后才写入，141源码绑定直接核对当前文件，没有重签原88状态。
 
@@ -73,6 +92,8 @@ JC035的真实Room轨迹包括四席与双席、放弃、阈值4、JC005来源�
 本地浏览器从本次Native的精确待选状态开始，检查普通换选、刷新草稿、双击确认、下一来源清空旧选中、决定者权限、原图、HTTP/D1及回执。已查看待选和结算截图，原PNG在`/workspace/jc035-evidence-20261019/browser-jc035-first/`，Git仅保留[报告](evidence/jc035-2026-10-19/browser-local-report.json)和[图片身份](evidence/jc035-2026-10-19/browser-local-images.json)。这不是线上实局，也不是全卡组合覆盖。
 
 ## 失败边界与旧版本
+
+以下记录原失败轮次及当时的待验证/空间阻塞状态；新环境恢复后的进展单独见上节，不覆盖或改写原失败。
 
 完整失败轮次、修正与命令均原样记录在[WIP交接](JC035_BLUE_PREPARATION_WIP_2026-10-19.md)及[runs](evidence/jc035-2026-10-19/runs/)。默认profile全量两轮分别1279通过/10失败、1290通过/1失败，后者暴露同一目录测试后续的非地区143和末牌JC035固定值；没有把修正后的局部结果合并称为全绿。最终完整release轮独立为1358通过。
 

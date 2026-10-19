@@ -1,0 +1,46 @@
+{
+  "stage": "production89-recovered",
+  "sourceAtLaunch": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/UndergroundBattle/web/dist",
+    "--output-dir",
+    "/workspace/UndergroundBattle/sites/dist",
+    "--",
+    "npm",
+    "--prefix",
+    "sites",
+    "run",
+    "build"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedUtc": "2026-10-19T18:29:25.210209+00:00",
+  "log": "/workspace/jc035-recovery-20261019/runs/production89-recovered.log",
+  "childTimeout": null,
+  "retryAdded": false,
+  "nativeCompilerInputs": 141,
+  "resourcesBefore": {
+    "workspaceAvailableBytes": 29719785472,
+    "memory.current": "1799139328",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 427435625\nuser_usec 281763973\nsystem_usec 145671651\nnice_usec 0\nnr_periods 7598\nnr_throttled 52\nthrottled_usec 5994213\nnr_bursts 0\nburst_usec 0"
+  },
+  "finishedUtc": "2026-10-19T18:31:02.788475+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 97.56063207900024,
+  "logSha256": "4df73b879be3247ec60c202d8b0e5e0fc96c1a8b90a5ed04ff553853c7021806",
+  "inputsUnchangedDuringRun": true,
+  "nativeCompilerInputsMatchPinnedWitness": true,
+  "resourcesAfter": {
+    "workspaceAvailableBytes": 29331656704,
+    "memory.current": "2232250368",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 564932191\nuser_usec 397575649\nsystem_usec 167356542\nnice_usec 0\nnr_periods 8570\nnr_throttled 61\nthrottled_usec 6409193\nnr_bursts 0\nburst_usec 0"
+  },
+  "nodeTestSummary": {},
+  "guard": "Unchanged tools/build-storage.mjs; ordinary workspace disk target/TMPDIR, jobs1, incremental0, 1GiB disk/memory startup minimum."
+}

@@ -1,0 +1,37 @@
+{
+  "stage": "worker-full-recovered",
+  "sourceAtLaunch": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python3",
+    "-c",
+    "import subprocess,sys;from pathlib import Path;files=sorted(str(p) for p in Path(\"sites/test\").glob(\"*.test.mjs\"));sys.exit(subprocess.call([\"node\",\"--test\",\"--test-concurrency=1\",*[str(Path(p).relative_to(\"sites\")) for p in files]],cwd=\"sites\"))"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedUtc": "2026-10-19T18:37:29.006178+00:00",
+  "log": "/workspace/jc035-recovery-20261019/runs/worker-full-recovered.log",
+  "childTimeout": null,
+  "retryAdded": false,
+  "nativeCompilerInputs": 141,
+  "resourcesBefore": {
+    "workspaceAvailableBytes": 29324754944,
+    "memory.current": "2116968448",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 970015318\nuser_usec 680137004\nsystem_usec 289878313\nnice_usec 0\nnr_periods 11350\nnr_throttled 182\nthrottled_usec 17425286\nnr_bursts 0\nburst_usec 0"
+  },
+  "recorderSha256": "f804f08043b70a2f7ed23b8cc18af4f56c7624cef4f407338dec1e9dab671e25",
+  "environment": {
+    "HEGEMONY_CURRENT_WORKER_DIR": "/workspace/undergroundbattle-build/jc035-worker/server",
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "/workspace/undergroundbattle-build",
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "WRANGLER_SEND_METRICS": "false"
+  }
+}

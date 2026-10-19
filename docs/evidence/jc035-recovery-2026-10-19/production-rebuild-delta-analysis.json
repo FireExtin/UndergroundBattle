@@ -1,0 +1,24 @@
+{
+  "checkedAtUtc": "2026-10-19T18:32:11.199663+00:00",
+  "oldCandidateFiles": 187,
+  "recoveredCandidateFiles": 187,
+  "unchangedFiles": 186,
+  "runtimeWorkerWasmAndClientBytesUnchanged": true,
+  "onlyChangedFile": "server/README.md",
+  "currentReadme": "This folder contains the built output assets for the worker \"hidden-world-hegemony\" generated at 2026-10-19T18:30:55.922Z.",
+  "readmeTimestamp": "2026-10-19T18:30:55.922Z",
+  "generator": {
+    "package": "wrangler",
+    "version": "4.146.0",
+    "sourcePath": "/workspace/UndergroundBattle/sites/node_modules/wrangler/wrangler-dist/cli.js",
+    "line": 213707,
+    "statement": "`This folder contains the built output assets for the worker \"${props.name}\" generated at ${(/* @__PURE__ */ new Date()).toISOString()}.`",
+    "sha256": "c7b877d822ee750090ae4cf59ead57a61b8928ffe17563ad25cf9a491b2af86e"
+  },
+  "oldReadmeWasNotTransferred": true,
+  "oldReadmeBytesNotReconstructed": true,
+  "noOutputRewrittenToMatchOldHash": true,
+  "recoveredManifest": "/workspace/jc035-recovery-20261019/production-recovered.manifest.json",
+  "recoveredManifestSha256": "0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77",
+  "allApplicablePriorNativeWasmFrontendAndBrowserProofsRetained": "Compiled inputs, actual WASM bytes, current production Worker and frontend asset bytes are unchanged. No repeated full Native, full frontend, WASM-command or four-client browser run without a new change."
+}

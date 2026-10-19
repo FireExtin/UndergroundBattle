@@ -1,0 +1,111 @@
+{
+  "scope": "Restored exact runtime identity inspection only; no game command or database.",
+  "exactRuntimeAbiCount": 13,
+  "results": [
+    {
+      "abi": 77,
+      "engineVersion": "rust-v0.2.77-jc046-mandatory-sacrifice-candidate",
+      "cardPoolVersion": "limited-v2.70-jc046-mandatory-sacrifice-candidate",
+      "cards": 143,
+      "societies": 8,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "abi": 78,
+      "engineVersion": "rust-v0.2.78-bq035-vampire-mobility-candidate",
+      "cardPoolVersion": "limited-v2.71-bq035-vampire-mobility-candidate",
+      "cards": 144,
+      "societies": 8,
+      "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "abi": 79,
+      "engineVersion": "rust-v0.2.79-jz46-private-criminal-inspection-candidate",
+      "cardPoolVersion": "limited-v2.72-jz46-private-criminal-inspection-candidate",
+      "cards": 145,
+      "societies": 8,
+      "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "abi": 80,
+      "engineVersion": "rust-v0.2.80-wm062-conceal-adjacent-move-candidate",
+      "cardPoolVersion": "limited-v2.73-wm062-conceal-adjacent-move-candidate",
+      "cards": 146,
+      "societies": 8,
+      "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "abi": 81,
+      "engineVersion": "rust-v0.2.81-jc054-complete-conceal-candidate",
+      "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+      "cards": 147,
+      "societies": 8,
+      "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "abi": 82,
+      "engineVersion": "rust-v0.2.82-response-source-preview-candidate",
+      "cardPoolVersion": "limited-v2.74-jc054-complete-conceal-candidate",
+      "cards": 147,
+      "societies": 8,
+      "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "abi": 83,
+      "engineVersion": "rust-v0.2.83-msjc04-msjc05-societies-candidate",
+      "cardPoolVersion": "limited-v2.75-msjc04-msjc05-societies-candidate",
+      "cards": 147,
+      "societies": 10,
+      "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "abi": 84,
+      "engineVersion": "rust-v0.2.84-jc057-live-inspection-candidate",
+      "cardPoolVersion": "limited-v2.76-jc057-live-inspection-candidate",
+      "cards": 148,
+      "societies": 10,
+      "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "abi": 85,
+      "engineVersion": "rust-v0.2.85-jc044-time-repress-candidate",
+      "cardPoolVersion": "limited-v2.77-jc044-time-repress-candidate",
+      "cards": 149,
+      "societies": 10,
+      "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    {
+      "abi": 86,
+      "engineVersion": "rust-v0.2.86-jc066-sealed-icons-candidate",
+      "cardPoolVersion": "limited-v2.78-jc066-sealed-icons-candidate",
+      "cards": 150,
+      "societies": 10,
+      "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "abi": 87,
+      "engineVersion": "rust-v0.2.87-jc041-water-hidden-candidate",
+      "cardPoolVersion": "limited-v2.79-jc041-water-hidden-candidate",
+      "cards": 151,
+      "societies": 10,
+      "wasmSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "abi": 88,
+      "engineVersion": "rust-v0.2.88-xq23-asset-return-candidate",
+      "cardPoolVersion": "limited-v2.80-xq23-asset-return-candidate",
+      "cards": 152,
+      "societies": 10,
+      "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3"
+    },
+    {
+      "abi": 89,
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
+      "engineVersion": "rust-v0.2.89-jc035-preparation-candidate",
+      "cards": 153,
+      "societies": 10,
+      "wasmSha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640"
+    }
+  ]
+}

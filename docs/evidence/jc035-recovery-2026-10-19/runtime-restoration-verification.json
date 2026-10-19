@@ -1,0 +1,241 @@
+{
+  "format": "jc035-exact-runtime-restoration-v1",
+  "restoredAtUtc": "2026-10-19T18:26:56.368515+00:00",
+  "transferRoute": "User-authorized official ChatGPT Library materialization; private transfer identifiers/metadata excluded from Git evidence.",
+  "archiveFilename": "HiddenWorld_JC035_ABI77-89_5056e4e_migration.zip",
+  "archiveBytes": 13882939,
+  "archiveSha256": "02a4d8fb4ababa881589b80fff7252ac0406063f99defcd0d75574b468b75c43",
+  "allZipPathsSafe": true,
+  "payloadFiles": 27,
+  "payloadBytes": 13841070,
+  "allPayloadHashesMatched": true,
+  "frozenIdentitiesEqualGit": true,
+  "historicalRebuildPerformed": false,
+  "files": [
+    {
+      "abi": 77,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi77/hegemony_wasm.js"
+    },
+    {
+      "abi": 77,
+      "bytes": 776316,
+      "sha256": "2b041aa5daa089e00f3157cfdb4a54c10a6f531bc3527998a43e835c580438ff",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi77/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 78,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm.js"
+    },
+    {
+      "abi": 78,
+      "bytes": 793962,
+      "sha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi78/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 79,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi79/hegemony_wasm.js"
+    },
+    {
+      "abi": 79,
+      "bytes": 802098,
+      "sha256": "816390c4997a73785c23db506e9a69558aef9c5ecdb34999e0d697b4273f41d1",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi79/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 80,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi80/hegemony_wasm.js"
+    },
+    {
+      "abi": 80,
+      "bytes": 814803,
+      "sha256": "66a867ec60b0df1946b9637ee7d581689aed68faabd079710f0371b6019705ff",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi80/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 81,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi81/hegemony_wasm.js"
+    },
+    {
+      "abi": 81,
+      "bytes": 846230,
+      "sha256": "b882f9e672ca63ed5577eef74aa896360ee0c533d52cbc1be4945130d2f2bcb0",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi81/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 82,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi82/hegemony_wasm.js"
+    },
+    {
+      "abi": 82,
+      "bytes": 850080,
+      "sha256": "b9e853c63ae5ed6ab54e5938428fae4c47bead1c37adedec0eb7b364c849e29c",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi82/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 83,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi83/hegemony_wasm.js"
+    },
+    {
+      "abi": 83,
+      "bytes": 850940,
+      "sha256": "b8929ef2e811a4741b268a3b95eb2dc40316eb010d42d77d9f7c96af576c9fdb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi83/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 84,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi84/hegemony_wasm.js"
+    },
+    {
+      "abi": 84,
+      "bytes": 860868,
+      "sha256": "7ae756b248e92105a7e77c7e722302be0eedd412eff1670eacfc3d3146aca884",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi84/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 85,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi85/hegemony_wasm.js"
+    },
+    {
+      "abi": 85,
+      "bytes": 873635,
+      "sha256": "0c1a3ce80966e1c61dbe7d3f9899f70ac81da5c73136bc89e956f8e85678c872",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi85/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 86,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi86/hegemony_wasm.js"
+    },
+    {
+      "abi": 86,
+      "bytes": 878689,
+      "sha256": "4742102e877bfa4cbb74f39d0de8157b320dbe26205ac73be29e7c13725c518f",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi86/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 87,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi87/hegemony_wasm.js"
+    },
+    {
+      "abi": 87,
+      "bytes": 889114,
+      "sha256": "3dd2f474a9c98a1cc3dff5d4fd5c23f5a007078daf438ed2b5f60e499e5ea3ca",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi87/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 88,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi88/hegemony_wasm.js"
+    },
+    {
+      "abi": 88,
+      "bytes": 897117,
+      "sha256": "e80413a8fadae8b47a7aa1f8588438a2c3599ba32f6bfbbdd49abb0326b1d22f",
+      "restoreRelativeToWorkspace": "undergroundbattle-build/frozen-kernels/abi88/hegemony_wasm_bg.wasm.gz"
+    },
+    {
+      "abi": 89,
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "restoreRelativeToWorkspace": "UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm.js"
+    },
+    {
+      "abi": 89,
+      "bytes": 3470546,
+      "sha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640",
+      "restoreRelativeToWorkspace": "UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm_bg.wasm"
+    },
+    {
+      "abi": 89,
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "restoreRelativeToWorkspace": "UndergroundBattle/rust-game-wasm/pkg/package.json"
+    }
+  ],
+  "decodedFrozenWasm": [
+    {
+      "abi": 77,
+      "wasmBytes": 2909006,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "abi": 78,
+      "wasmBytes": 2976205,
+      "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "abi": 79,
+      "wasmBytes": 3005332,
+      "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "abi": 80,
+      "wasmBytes": 3047680,
+      "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "abi": 81,
+      "wasmBytes": 3154323,
+      "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "abi": 82,
+      "wasmBytes": 3165174,
+      "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "abi": 83,
+      "wasmBytes": 3174213,
+      "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "abi": 84,
+      "wasmBytes": 3217477,
+      "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "abi": 85,
+      "wasmBytes": 3263215,
+      "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    {
+      "abi": 86,
+      "wasmBytes": 3291234,
+      "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "abi": 87,
+      "wasmBytes": 3325174,
+      "wasmSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "abi": 88,
+      "wasmBytes": 3353559,
+      "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3"
+    }
+  ],
+  "actualAbiIdentityReceipt": "runtime-abi-identities.json"
+}

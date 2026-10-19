@@ -1,0 +1,59 @@
+{
+  "format": "jc035-recovery-pre-full-result-checkpoint-v1",
+  "checkedAtUtc": "2026-10-19T19:16:51.202599+00:00",
+  "validationSourceSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "fullWorkerStillPending": true,
+  "fullWorkerFileCount": 69,
+  "fullWorkerSessionId": 82121,
+  "observedPassedTopLevelLines": 38,
+  "observedFailureLines": 0,
+  "interimCountsAreNotFinal": true,
+  "partialLog": {
+    "path": "runs/worker-full-recovered.20261019T191651Z.partial.log.gz",
+    "originalBytes": 11542,
+    "originalPrefixSha256": "a695440948c8600e6376aa4b3825c584c7baf144f98bfe947187d2701cc59c67",
+    "boundedPrefixOfExistingRun": true
+  },
+  "completedStageLogs": [
+    {
+      "stage": "production89-recovered",
+      "originalBytes": 1084,
+      "originalSha256": "4df73b879be3247ec60c202d8b0e5e0fc96c1a8b90a5ed04ff553853c7021806",
+      "compressedGitPath": "runs/production89-recovered.log.gz",
+      "compressedBytes": 644,
+      "compressedSha256": "5fa2093b78113e76c3c4679e89681b4ab2c48d72bc698e449bc54650bc8417dd",
+      "originalExitReceipt": "runs/production89-recovered.exit.json"
+    },
+    {
+      "stage": "clock-worker89-recovered",
+      "originalBytes": 165,
+      "originalSha256": "04b427339bdbe73c7afba9694b13311e8890903728bc6e9cbf80f54a7ef4d10f",
+      "compressedGitPath": "runs/clock-worker89-recovered.log.gz",
+      "compressedBytes": 155,
+      "compressedSha256": "b2f89587c99591fbcdc21917f323267a141a8de7c290f0cee5eb52e237f05352",
+      "originalExitReceipt": "runs/clock-worker89-recovered.exit.json"
+    },
+    {
+      "stage": "jc035-entry-msjc03-recovered",
+      "originalBytes": 422,
+      "originalSha256": "9d76d965709e387109ed4b682caeef3fd905e4153f7eeef90994edc1159a104a",
+      "compressedGitPath": "runs/jc035-entry-msjc03-recovered.log.gz",
+      "compressedBytes": 317,
+      "compressedSha256": "f2c0e23de7e03e2f66103ee2d13efb212b18814cc45cc2c2b991e46e29d9edc6",
+      "originalExitReceipt": "runs/jc035-entry-msjc03-recovered.exit.json"
+    },
+    {
+      "stage": "jc066-target-reveal-recovered",
+      "originalBytes": 396,
+      "originalSha256": "21b2eada1f613f0fca1de1a35d394c16646621b0099d2bc5230e5518a2c3738d",
+      "compressedGitPath": "runs/jc066-target-reveal-recovered.log.gz",
+      "compressedBytes": 300,
+      "compressedSha256": "9360b92a9eb430c2eca7d30c4eca2b2d37e41304d4612fc4fff6adb690b72074",
+      "originalExitReceipt": "runs/jc066-target-reveal-recovered.exit.json"
+    }
+  ],
+  "oldFullWorker720of722RemainsFailed": true,
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "noTestRestartOrRetry": true,
+  "notDeployedOrMerged": true
+}

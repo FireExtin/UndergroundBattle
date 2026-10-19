@@ -1,0 +1,51 @@
+{
+  "format": "jc035-recovery-hour-checkpoint-v1",
+  "checkedAtUtc": "2026-10-19T19:36:18.639891+00:00",
+  "validationCodeSource": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "scope": "WIP evidence/documents checkpoint only; active full Worker not interrupted and has no natural exit receipt.",
+  "fullWorkerStartedUtc": "2026-10-19T18:37:29.006178+00:00",
+  "fullWorkerSessionId": 82121,
+  "fullWorkerFileCount": 69,
+  "fullWorkerNaturalExitReceiptPresent": false,
+  "observedPassedTopLevelLines": 60,
+  "observedFailureLines": 0,
+  "latestPassedLine": "JC035 corrupted prepare-shape-14 restores HTTP400 with no D1 writes (13062.987647ms)",
+  "interimCountsAreNotFinal": true,
+  "jc035HttpTrajectoriesPassed": 13,
+  "jc035PassedTrajectoryNames": [
+    "actor-0",
+    "actor-1",
+    "actor-2",
+    "actor-3",
+    "optional-decline",
+    "threshold-four",
+    "source-destroyed-response",
+    "hand-growth-response",
+    "late-shrink-no-retroactive-trigger",
+    "same-controller-order",
+    "won-original-region",
+    "ordinary-attach",
+    "duel-preparation"
+  ],
+  "jc035InvalidStateMatrixStillRunning": true,
+  "partialLog": {
+    "path": "runs/worker-full-recovered.20261019T193618Z.partial.log.gz",
+    "originalPrefixBytes": 16469,
+    "originalPrefixSha256": "a21a6a9c0c97b1a63440d1dc0f3de0c709b21922c3387e8eed70d8e50f97d6c0",
+    "gzipSha256": "7359d0f7db15874011e4c5994d6f542234919c3c785497895b6c9f4bcaded2e4",
+    "boundedReadOfExistingLog": true
+  },
+  "all27RuntimeFilesStillMatch": true,
+  "originalFailedWorkerLogSha256Unchanged": "2b93a35abf6d5ea3dc2b5e53992a9a5f1925bd0626e81e7761e7004c977bb217",
+  "businessSourceAndTestsModified": false,
+  "noRestartRetryBudgetOrBusinessChange": true,
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "workspaceAvailableBytes": 29263253504,
+  "workspaceAvailableGiB": 27.254,
+  "notDeployedOrMerged": true,
+  "remaining": [
+    "Full69-file Worker natural result",
+    "Post-run141-source/test/carrier and187-output integrity audit",
+    "Final evidence/docs and fixed-SHA handoff for independent parent review"
+  ]
+}

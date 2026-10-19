@@ -1,0 +1,27 @@
+{
+  "format": "jc035-restored-toolchain-versions-v1",
+  "versions": {
+    "node": "v24.19.0",
+    "npm": "11.9.0",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8",
+    "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+    "rustfmt": "rustfmt 1.8.0-stable (1159e78c47 2025-09-14)",
+    "wasmBindgen": "wasm-bindgen 0.2.104",
+    "playwright": "Version 1.62.1",
+    "workerd": "workerd 2026-10-01"
+  },
+  "rustupInstalledTargets": [
+    "wasm32-unknown-unknown",
+    "x86_64-unknown-linux-gnu"
+  ],
+  "repository": "FireExtin/UndergroundBattle",
+  "validationSourceSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "repositorySourceAndLockfilesUnchanged": true,
+  "ordinaryDiskTarget": "/workspace/undergroundbattle-build/target",
+  "ordinaryDiskTmpdir": "/workspace/undergroundbattle-build/tmp",
+  "guardSha256": "f450bc9ac4f16d1ec4410284ef4bb57a4f6599dbdbe48af3d54a0f66f5701ca3",
+  "jobs": 1,
+  "incremental": 0,
+  "startupDiskAndMemoryMinimumBytes": 1073741824,
+  "nativeOrHistoricalKernelBuildPerformed": false
+}
