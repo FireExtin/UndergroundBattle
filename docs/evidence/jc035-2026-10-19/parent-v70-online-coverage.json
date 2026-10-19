@@ -1,0 +1,32 @@
+{
+  "basis": "Parent delegation dated2026-10-19; parent owns original cloud-browser evidence. This file records its stated coverage only; no local tests renamed as online.",
+  "siteVersion": 70,
+  "providerSource": "8061ec2cb987202e68b9a4dd15ff57730364ee03",
+  "uiIdentity": "ABI88",
+  "wholeGames": 1,
+  "mode": "duel",
+  "decks": "both pure gray",
+  "result": "turn7,10:0, natural victory; both terminal states consistent after refresh",
+  "xq23": [
+    "asset selection",
+    "double-click confirmation",
+    "immediate refresh after paying2",
+    "pending resolution recovery",
+    "asset returned to hand",
+    "source became exhausted asset"
+  ],
+  "redBlackBlueCoverage": [
+    "filtering",
+    "original face preview",
+    "deck card increment/decrement UI"
+  ],
+  "notCovered": [
+    "four-color mechanics games",
+    "teams games",
+    "borrowed-owner elimination cleanup",
+    "complex counterplay"
+  ],
+  "browserWasmBytesIndependentlyHashed": false,
+  "newBlockingIssueReported": false,
+  "notRepeatedByThisLine": true
+}

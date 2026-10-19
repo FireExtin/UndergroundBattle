@@ -1,0 +1,31 @@
+{
+  "checkedUtc": "2026-10-19T08:14:41.742698+00:00",
+  "operation": "Regular hardlink deduplication of explicitly listed immutable historical generated production only; all original paths and bytes retained",
+  "canonicalRoots": [
+    "/workspace/UndergroundBattle/sites/dist"
+  ],
+  "sealedHistoricalRoots": [
+    "/workspace/wm062-publication-20261017/prepublish-v61-dist",
+    "/workspace/jc054-publication-20261017/prepublish-v62-dist",
+    "/workspace/response-preview-publication-20261017/prepublish-v63-dist",
+    "/workspace/msjc0405-publication-20261017/prepublish-v64-dist",
+    "/workspace/jc057-publication-20261018/prepublish-v65-dist",
+    "/workspace/jc044-publication-20261018/prepublish-v66-dist",
+    "/workspace/jc066-publication-20261018/prepublish-v67-dist",
+    "/workspace/jc041-publication-20261018/prepublish-v68-dist",
+    "/workspace/xq23-publication-20261019/prepublish-v69-dist",
+    "/workspace/xq23-evidence-20261019/before-production",
+    "/workspace/xq23-evidence-20261019/before-browser-css-production",
+    "/workspace/jc041-p2-region-evidence-20261018/before-production"
+  ],
+  "filesVerifiedBeforeAndAfter": 2863,
+  "filesRelinked": 2094,
+  "physicalBytesReclaimed": 1334808576,
+  "diskFreeBefore": 959250432,
+  "diskFreeAfter": 2294059008,
+  "noSourceDatabaseCacheOrArchiveChanges": true,
+  "noPathsDeleted": true,
+  "sourceFilesHardlinked": 0,
+  "fullLedgerRawSha256": "4f1f1aa5524a5177e1c5208aaf8bcacdd3d835103db22351cf6131779620f500",
+  "fullLedgerGzipSha256": "d845884c774b526a57e7e480de4bde6dc0a96ac533a7973e1e86bd4f52650b97"
+}

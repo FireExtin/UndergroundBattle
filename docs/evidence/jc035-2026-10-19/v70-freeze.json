@@ -1,0 +1,49 @@
+{
+  "checkedUtc": "2026-10-19T08:22:39.916570+00:00",
+  "identity": {
+    "scope": "Exact published v70 ABI88 with reviewed P2 fixes; never rebuild, migrate or re-sign old rooms or Native88 witnesses.",
+    "providerSource": "8061ec2cb987202e68b9a4dd15ff57730364ee03",
+    "reviewedSource": "ffd2fb8303ba1c173d7f6ce9b1952802c5cc8742",
+    "reviewedEvidence": "b7e4c78e5afaf2b73ab5a0fb770451e7b5fd78d4",
+    "catalogIdentity": {
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.80-xq23-asset-return-candidate",
+      "engineVersion": "rust-v0.2.88-xq23-asset-return-candidate"
+    },
+    "cardCount": 152,
+    "societyCount": 10,
+    "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+    "wasmBytes": 3353559,
+    "gzipSha256": "e80413a8fadae8b47a7aa1f8588438a2c3599ba32f6bfbbdd49abb0326b1d22f",
+    "nativeFixtureSha256": "2303efc711b1c729c42aeba2d5f7bff89f963b6bee4b0d56a0963d00575edaef",
+    "nativeRawSha256": "68a2606f45689bfd6e0a9845484bdd0a3180a8523c4eb9a44878548dbaf25a35",
+    "nativeRawBytes": 9185783,
+    "nativeInputs": 139,
+    "nativeCounts": {
+      "commands": 72,
+      "invalidRestores": 31,
+      "projections": 324,
+      "rejected": 5,
+      "scenarios": 9
+    },
+    "p2NativeFixtureSha256": "56a05cbeccde704010ac58169c42431b21795026aa58def04453e076330a9d63",
+    "p2NativeRawSha256": "24ce205be841267b28e2824218e4a0d46590d42c049f2659030734470e06b463",
+    "p2NativeRawBytes": 18360678,
+    "p2NativeCounts": {
+      "commands": 166,
+      "rejected": 1,
+      "projections": 668,
+      "nativeInputs": 139
+    },
+    "productionManifestSha256": "8d90ce050632311097fb28bd6b1b9b50f43463dbf4aa76f540f965ef9ac1b1ad",
+    "productionWorkerSha256": "7632b867cebdf19ec405c4fe4a9aa2fc363bef1b3a88924527ef08921faacda8"
+  },
+  "oldPkg": "/workspace/jc035-evidence-20261019/before-abi89-pkg",
+  "oldOutputs": "/workspace/jc035-evidence-20261019/before-abi89-production",
+  "oldProductionFilesVerified": 185,
+  "oldFixtureBytesUnchanged": true,
+  "all139CompilerInputFilesMatchedBeforeCandidateChanges": true,
+  "publishedProviderRemainsUntouched": true,
+  "allMoveOperationsPreservedWholeDirectories": true
+}
