@@ -1,0 +1,10 @@
+{
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "nativeInputs": 139,
+  "rawBytes": 6486736,
+  "rawSha256": "766927fb084300922aefec76a77540b78ee8b69de694e0dd9a8ed52230fe2415",
+  "gzipBytes": 450628,
+  "gzipSha256": "8b91f5584f4c67fab9257429ead83ebb62c812fd8a9b46d7deb3ab0828519188",
+  "explicitFileWasmCompareCompleted": true,
+  "oldArchived87StateNotRewritten": true
+}

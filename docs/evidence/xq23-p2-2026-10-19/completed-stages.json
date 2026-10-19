@@ -1,5 +1,5 @@
 {
-  "scope": "WIP, completed actual before probes and focused Native after fix; WASM/HTTP/production after fix not yet run",
+  "scope": "WIP: related Native and actual new WASM comparisons completed naturally; HTTP/D1, frontend and new production manifest pending",
   "runs": [
     {
       "name": "p2-summary-native-before-build",
@@ -215,6 +215,117 @@
       "rawBytes": 12723,
       "gzipSha256": "8c77e0be678b545e2671cfcb81409b11bae7cb1337881f2beb0ceaaa8f82c289",
       "gzipBytes": 3916
+    },
+    {
+      "name": "p2-wasm-first",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--output-dir",
+          "rust-game-wasm/pkg",
+          "--",
+          "bash",
+          "rust-game-wasm/build.sh"
+        ],
+        "startedUtc": "2026-10-19T06:37:32.383411+00:00",
+        "finishedUtc": "2026-10-19T06:39:11.492109+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-wasm-first.log"
+      },
+      "rawSha256": "895ba5c2d1d3ecf06648e243c28ba1992654234c332d6889ea0195663e6c5c92",
+      "rawBytes": 220,
+      "gzipSha256": "df44a5f0a5dcde721205dc1df08ce9abd341478eb30f8adb318270baf055e5ea",
+      "gzipBytes": 152
+    },
+    {
+      "name": "p2-native88-wasm",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/xq23-oracle.mjs",
+          "/workspace/xq23-p2-summary-evidence-20261019/native-fixed-first/Native88.json",
+          "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+          "rust-game-wasm/tests/xq23Native88.fixture.json.gz"
+        ],
+        "startedUtc": "2026-10-19T06:42:12.070650+00:00",
+        "finishedUtc": "2026-10-19T06:42:13.842309+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-native88-wasm.log"
+      },
+      "rawSha256": "51b34528a4c9ee6fda7a40be757bdb094ae19ec7ad81131b0490cf701e68a69d",
+      "rawBytes": 380,
+      "gzipSha256": "dfee1b10fafcc7e333a34d2ef4684e39f674d9eca07b9d52ec6e4173c6a6a5bf",
+      "gzipBytes": 297
+    },
+    {
+      "name": "p2-elimination-wasm-after",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "tools/xq23-p2-oracle.mjs",
+          "/workspace/xq23-p2-summary-evidence-20261019/native-fixed-first/Native88P2.json",
+          "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+          "rust-game-wasm/tests/xq23P2Native88.fixture.json.gz"
+        ],
+        "startedUtc": "2026-10-19T06:42:13.896240+00:00",
+        "finishedUtc": "2026-10-19T06:42:17.637315+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-elimination-wasm-after.log"
+      },
+      "rawSha256": "53f82f1d359b19cc67be70615c53617a00b93a68b5d073b9edeb93ef4ebe9512",
+      "rawBytes": 391,
+      "gzipSha256": "65b85c625f5aeca91e798f2308287a7a9aaccccfb9d98b1e47f45a5d62cdcd1f",
+      "gzipBytes": 303
+    },
+    {
+      "name": "p2-current-p2-wasm",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "rust-game-wasm/tests/current88-p2-compare.mjs",
+          "/workspace/xq23-p2-summary-evidence-20261019/native-fixed-first/current-p2/p2.json"
+        ],
+        "startedUtc": "2026-10-19T06:42:17.732954+00:00",
+        "finishedUtc": "2026-10-19T06:42:19.301783+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-current-p2-wasm.log"
+      },
+      "rawSha256": "360efc74de61d095ac2f262700a3e6075bddeafd7267000ef1d23e7cfadd7d5b",
+      "rawBytes": 382,
+      "gzipSha256": "3c9f05f619b9bfc4568548c28d28544b676e3a890571a48a6a3875d3945d4b70",
+      "gzipBytes": 298
+    },
+    {
+      "name": "p2-exact-summary-wasm-after",
+      "receipt": {
+        "command": [
+          "node",
+          "tools/build-storage.mjs",
+          "--",
+          "node",
+          "/workspace/xq23-p2-summary-evidence-20261019/wasm-summary-probe.mjs",
+          "/workspace/xq23-p2-summary-evidence-20261019/probe-inputs.json",
+          "/workspace/xq23-p2-summary-evidence-20261019/wasm-after.json"
+        ],
+        "startedUtc": "2026-10-19T06:42:19.885667+00:00",
+        "finishedUtc": "2026-10-19T06:42:21.015194+00:00",
+        "exitCode": 0,
+        "log": "/workspace/xq23-evidence-20261019/p2-exact-summary-wasm-after.log"
+      },
+      "rawSha256": "ff70ea8362bea2abcd0d215397850328a507326a5fa1648885c9df295e6ab816",
+      "rawBytes": 2579,
+      "gzipSha256": "bdfd383a5f90b48dacef0a612e23f8cc890cb5774254db1317f7afb4f59186bd",
+      "gzipBytes": 601
     }
   ]
 }

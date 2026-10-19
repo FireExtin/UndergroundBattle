@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "/workspace/xq23-p2-summary-evidence-20261019/wasm-summary-probe.mjs",
+    "/workspace/xq23-p2-summary-evidence-20261019/probe-inputs.json",
+    "/workspace/xq23-p2-summary-evidence-20261019/wasm-after.json"
+  ],
+  "startedUtc": "2026-10-19T06:42:19.885667+00:00",
+  "finishedUtc": "2026-10-19T06:42:21.015194+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-exact-summary-wasm-after.log"
+}

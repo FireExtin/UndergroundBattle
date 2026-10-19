@@ -29,7 +29,12 @@
       "sha256": "766927fb084300922aefec76a77540b78ee8b69de694e0dd9a8ed52230fe2415"
     }
   },
-  "wasmAfter": "pending",
+  "wasmAfter": {
+    "bytes": 3353559,
+    "sha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+    "buildExitCode": 0,
+    "fourCompletedComparisonStages": true
+  },
   "httpD1After": "pending",
   "newProduction185Manifest": "pending",
   "screenshotsArchive": {
@@ -39,5 +44,6 @@
     "sha256": "abf8f8af6b55dc38d1e62bcd2c4eec701408e58138f385192c93021c2a8a48f7",
     "originalPngs": 3,
     "reviewVersionUnchanged": true
-  }
+  },
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54"
 }

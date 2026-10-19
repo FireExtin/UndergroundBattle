@@ -1,0 +1,189 @@
+{
+  "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+  "results": [
+    {
+      "name": "control",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": true,
+      "projectedTargetsFourSeats": [
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ],
+        [
+          {
+            "instanceId": "i243",
+            "label": "资产",
+            "kind": "asset",
+            "owner": "p0",
+            "controller": "p0",
+            "valid": true,
+            "status": "valid"
+          }
+        ]
+      ],
+      "polls": [
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        },
+        {
+          "changed": false,
+          "projectedTargets": [
+            {
+              "instanceId": "i243",
+              "label": "资产",
+              "kind": "asset",
+              "owner": "p0",
+              "controller": "p0",
+              "valid": true,
+              "status": "valid"
+            }
+          ]
+        }
+      ],
+      "remainingTransitions": [
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 10
+        },
+        {
+          "changed": false,
+          "errorCode": "room_paused",
+          "version": 10
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 11
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 12
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 13
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 14
+        },
+        {
+          "changed": true,
+          "errorCode": null,
+          "version": 15
+        }
+      ],
+      "finalStateMatchesOriginalNative": true,
+      "originalActualTargetStillInAssets": false,
+      "forgedSummaryTargetStillInAssets": true,
+      "handInstances": [
+        {
+          "id": "i245",
+          "definition": "JC060"
+        }
+      ]
+    },
+    {
+      "name": "uid-other-asset",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i241",
+      "accepted": false,
+      "error": "XQ23必须保留完整目标、两份资产支付、原来源横置和真实游标"
+    },
+    {
+      "name": "uid-empty",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "",
+      "accepted": false,
+      "error": "XQ23必须保留完整目标、两份资产支付、原来源横置和真实游标"
+    },
+    {
+      "name": "kind-hidden",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": false,
+      "error": "XQ23必须保留完整目标、两份资产支付、原来源横置和真实游标"
+    },
+    {
+      "name": "kind-character",
+      "actualTarget": "i243",
+      "mutatedPublicTarget": "i243",
+      "accepted": false,
+      "error": "XQ23必须保留完整目标、两份资产支付、原来源横置和真实游标"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "tools/xq23-oracle.mjs",
+    "/workspace/xq23-p2-summary-evidence-20261019/native-fixed-first/Native88.json",
+    "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "rust-game-wasm/tests/xq23Native88.fixture.json.gz"
+  ],
+  "startedUtc": "2026-10-19T06:42:12.070650+00:00",
+  "finishedUtc": "2026-10-19T06:42:13.842309+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-native88-wasm.log"
+}

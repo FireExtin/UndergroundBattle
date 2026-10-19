@@ -5,7 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import {assertSources,sha256} from '../../tools/xq23-oracle.mjs';
 import {kernel,moduleBytes,catalog} from './current88-kernel.mjs';
 
-const file=process.argv[2]||new URL('../../docs/evidence/xq23-2026-10-19/current-p2.native.json.gz',import.meta.url);
+const file=process.argv[2]||new URL('../../docs/evidence/xq23-p2-2026-10-19/current-p2.native.json.gz',import.meta.url);
 const input=readFileSync(file),raw=input[0]===0x1f&&input[1]===0x8b?gunzipSync(input):input;
 const f=JSON.parse(raw);assert.equal(f.format,'jc041-source-region-current-v1');assertSources(f.sourceBindings);
 assert.equal(f.currentIdentity,catalog.engineVersion);assert.equal(f.expectedAccepted,false);

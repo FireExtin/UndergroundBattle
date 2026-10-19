@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "node",
+    "rust-game-wasm/tests/current88-p2-compare.mjs",
+    "/workspace/xq23-p2-summary-evidence-20261019/native-fixed-first/current-p2/p2.json"
+  ],
+  "startedUtc": "2026-10-19T06:42:17.732954+00:00",
+  "finishedUtc": "2026-10-19T06:42:19.301783+00:00",
+  "exitCode": 0,
+  "log": "/workspace/xq23-evidence-20261019/p2-current-p2-wasm.log"
+}

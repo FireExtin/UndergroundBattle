@@ -1,0 +1,16 @@
+{
+  "nativeSource": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "wasmBytes": 3353559,
+  "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+  "actualJsonWitnesses": {
+    "rust-game-wasm/tests/xq23Native88.fixture.json.gz": {
+      "bytes": 668908,
+      "sha256": "2303efc711b1c729c42aeba2d5f7bff89f963b6bee4b0d56a0963d00575edaef"
+    },
+    "rust-game-wasm/tests/xq23P2Native88.fixture.json.gz": {
+      "bytes": 1340130,
+      "sha256": "56a05cbeccde704010ac58169c42431b21795026aa58def04453e076330a9d63"
+    }
+  },
+  "noWasmBinariesCommitted": true
+}

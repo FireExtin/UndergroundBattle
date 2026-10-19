@@ -1,0 +1,9 @@
+{
+  "scope": "Only moved-aside sealed WASM generated output, same bytes/mode/uid/gid/device as existing immutable production; original paths and content kept, source untouched",
+  "preservedPkg": "/workspace/xq23-p2-summary-evidence-20261019/before-p2-abi88-pkg",
+  "canonicalProductionModule": "/workspace/UndergroundBattle/sites/dist/server/aa1cdbd215e8daf0adb949451e7d8dc3ae11831f-hegemony_wasm_bg.wasm",
+  "beforeAvailableBytes": 1096052736,
+  "afterAvailableBytes": 1099407360,
+  "reclaimedBytes": 3354624,
+  "sha256": "05120936f41bc80e434945cd29e9ac80dbb17c34f9d1a1d533b5dd3cadbde8dc"
+}

@@ -1,0 +1,25 @@
+{
+  "source": "27f585d972bd6bf04bc5bcc5065d00be51920b54",
+  "scope": "Only completed stages; no repeated Native suites or browser runs",
+  "startedUtc": "2026-10-19T06:42:12.032708+00:00",
+  "runs": [
+    {
+      "name": "p2-native88-wasm",
+      "exitCode": 0
+    },
+    {
+      "name": "p2-elimination-wasm-after",
+      "exitCode": 0
+    },
+    {
+      "name": "p2-current-p2-wasm",
+      "exitCode": 0
+    },
+    {
+      "name": "p2-exact-summary-wasm-after",
+      "exitCode": 0
+    }
+  ],
+  "passed": true,
+  "finishedUtc": "2026-10-19T06:42:21.057079+00:00"
+}
