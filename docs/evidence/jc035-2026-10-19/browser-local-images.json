@@ -1,0 +1,34 @@
+{
+  "scope": "Local four-client browser evidence only; synthetic Native pending layout, not online gameplay. PNG originals retained outside game Git.",
+  "visuallyInspected": [
+    "restored-pending-draft.png",
+    "resolved-three-regions.png"
+  ],
+  "checks": [
+    "Distinct trigger numbers, original region/instance and selected state visible.",
+    "Confirmation/skip footer reachable at 1366x768.",
+    "Three original regions show the resolved own influence markers."
+  ],
+  "files": [
+    {
+      "path": "/workspace/jc035-evidence-20261019/browser-jc035-first/next-source-after-reopen.png",
+      "bytes": 455210,
+      "sha256": "bfc7fbe5d9884808ce29098e6c69d7ae647fb281c7d16e0fddecfce23b14d21f"
+    },
+    {
+      "path": "/workspace/jc035-evidence-20261019/browser-jc035-first/original-jc035.png",
+      "bytes": 567912,
+      "sha256": "294dfb5ad8f362c04643ccf2d8671d841202a062c298bb2fff7bc4e12dd5004f"
+    },
+    {
+      "path": "/workspace/jc035-evidence-20261019/browser-jc035-first/resolved-three-regions.png",
+      "bytes": 996718,
+      "sha256": "e14be73d19903fcfb8160ad96056dd5273616006755ddbc85616e966c6690855"
+    },
+    {
+      "path": "/workspace/jc035-evidence-20261019/browser-jc035-first/restored-pending-draft.png",
+      "bytes": 470749,
+      "sha256": "64a73ca3078a15fa245fb71ff797c8b119313c7610b176428387067fa258d19d"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "stage": "production89-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/UndergroundBattle/web/dist",
+    "--output-dir",
+    "/workspace/UndergroundBattle/sites/dist",
+    "--",
+    "npm",
+    "--prefix",
+    "sites",
+    "run",
+    "build"
+  ],
+  "startedUtc": "2026-10-19T10:49:44.655477+00:00",
+  "finishedUtc": "2026-10-19T10:50:07.541826+00:00",
+  "exitCode": 0,
+  "durationSeconds": 22.886440079993918,
+  "log": "/workspace/jc035-evidence-20261019/production89-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

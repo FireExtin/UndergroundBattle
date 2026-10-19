@@ -1,0 +1,21 @@
+{
+  "stage": "browser-jc035-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "HEGEMONY_CURRENT_WORKER_DIR=/workspace/undergroundbattle-build/jc035-worker/server",
+    "node",
+    "tools/frontend/jc035-http-four-clients-qa.mjs",
+    "/workspace/jc035-evidence-20261019/browser-jc035-first"
+  ],
+  "startedUtc": "2026-10-19T10:50:08.011318+00:00",
+  "finishedUtc": "2026-10-19T10:50:48.642976+00:00",
+  "exitCode": 0,
+  "durationSeconds": 40.631697684002575,
+  "log": "/workspace/jc035-evidence-20261019/browser-jc035-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

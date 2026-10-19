@@ -1,0 +1,25 @@
+{
+  "stage": "web-full-third-original-budget",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "--testTimeout=5000",
+    "--reporter=verbose"
+  ],
+  "startedUtc": "2026-10-19T10:41:49.889299+00:00",
+  "finishedUtc": "2026-10-19T10:49:44.572309+00:00",
+  "exitCode": 0,
+  "durationSeconds": 474.68304192699725,
+  "log": "/workspace/jc035-evidence-20261019/web-full-third-original-budget.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

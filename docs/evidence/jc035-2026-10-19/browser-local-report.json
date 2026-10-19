@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "onlineGameplay": false,
+  "syntheticNativeInitialState": true,
+  "siteChanged": false,
+  "mainMerged": false,
+  "scope": "Actual local production UI, listening HTTP/workerd/thirteen original WASMs/D1 and four browser contexts; three ordered JC035 declarations.",
+  "nativeInitialStateSha256": "1e7d8e10e7aab07299f07cf19a596e1b352f072e682c0cf37dd66c0a71cc5e63",
+  "nativeRawSha256": "d4e71ecf71850448000b08f7b5e5424cab05986c156ce765350c22cedd4c64e6",
+  "nativeInputs": 141,
+  "wasmSha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640",
+  "modules": [
+    {
+      "file": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "file": "23471f790b5d19c8f150e258316d878625132547-hegemony_wasm_bg.wasm",
+      "sha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640"
+    },
+    {
+      "file": "26b3b25fc21298e8ab8f8de20d0b2895117d997f-hegemony_wasm_bg.wasm",
+      "sha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "file": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "file": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "file": "4a17c8f1fa73ab5b8791af4eceea84d3e07a8e55-hegemony_wasm_bg.wasm",
+      "sha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3"
+    },
+    {
+      "file": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "file": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "file": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "file": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "file": "a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "file": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "file": "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    }
+  ],
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "persist": "/workspace/undergroundbattle-build/tmp/jc035-browser-Ko6hRj",
+  "driverSha256": "e01a230afd69efc650f0856519cd67ca4df7263a3e5263d2b9a083cd29ac275b",
+  "workerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "productionWorkerSha256": "ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d",
+  "clientIndexSha256": "220e1689e8c6a5e3cd83726fa42e8687172076a37665d48c08ddd4ce4a38dab1",
+  "commands": [
+    {
+      "index": 0,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "choose",
+      "stateSha256": "5f914334c862148d3b12fd84c71cec1090d73b974a71e2897db7103a91dce0c2"
+    },
+    {
+      "index": 1,
+      "seat": 0,
+      "kind": "game",
+      "gameKind": "choose",
+      "stateSha256": "9b58a62f52068ba95c4ab723817c99ad8d9d1651320f3575a828cdf4b21a65f6"
+    },
+    {
+      "index": 2,
+      "seat": 1,
+      "kind": "game",
+      "gameKind": "choose",
+      "stateSha256": "d2825f5f38c716c16bd41337134a47e24f34e61908a6701e34fa9ac6bbcabb4e"
+    },
+    {
+      "index": 3,
+      "seat": 2,
+      "kind": "passResponse",
+      "stateSha256": "9d8aff444012a2627a76d19d30d05413667d19dfc9dad4d8d8316d8b8ffbb82e"
+    },
+    {
+      "index": 4,
+      "seat": 3,
+      "kind": "passResponse",
+      "stateSha256": "0319de607597c18f3b1e106da1996307ca0a488f2139e1c903966977b0bef401"
+    },
+    {
+      "index": 5,
+      "seat": 0,
+      "kind": "passResponse",
+      "stateSha256": "d1a1c0d431255267d8c51fde273128f758b3bdd26550d6639448a2416675c850"
+    },
+    {
+      "index": 6,
+      "seat": 1,
+      "kind": "passResponse",
+      "stateSha256": "22cb156e947a2480501167cd14cb032780878ca8485258388ecb869b614417cb"
+    },
+    {
+      "index": 7,
+      "seat": 2,
+      "kind": "passResponse",
+      "stateSha256": "db8746ff309881df9cecc0792ffc0ccc22c25be43260d1e03203c2c1a2f03519"
+    },
+    {
+      "index": 8,
+      "seat": 3,
+      "kind": "passResponse",
+      "stateSha256": "7ee9a634e5af853a095322c2b4c81c59f24abfba298dcb1488c569ba6708f09c"
+    },
+    {
+      "index": 9,
+      "seat": 0,
+      "kind": "passResponse",
+      "stateSha256": "2cdafae0935e1404c5d7ae751667a8c3d7de95eb062ae37de94eb2dae1a45a7f"
+    },
+    {
+      "index": 10,
+      "seat": 1,
+      "kind": "passResponse",
+      "stateSha256": "442eafcf64ba8d27a3cdfc8fc14198399d3b33025d98874f41bce5d026ead4e0"
+    },
+    {
+      "index": 11,
+      "seat": 2,
+      "kind": "passResponse",
+      "stateSha256": "292f8b463d9c8d7ee71b14eeca376c8418d9b8c32237040fa329a6f3d79104ac"
+    },
+    {
+      "index": 12,
+      "seat": 3,
+      "kind": "passResponse",
+      "stateSha256": "478f76b45a5ed0cf6136aaa91bf571ecf37c3d33572082ba16f3836fc0133739"
+    },
+    {
+      "index": 13,
+      "seat": 0,
+      "kind": "passResponse",
+      "stateSha256": "ef7be6b36aaf75991d3915397032817e0712fedc0a16b1e742eac7e1bb1ddc06"
+    },
+    {
+      "index": 14,
+      "seat": 1,
+      "kind": "passResponse",
+      "stateSha256": "5257c8d1a85eeff6d4a86610ddeeb93294867546ddbffbae7bbf0edb61d16285"
+    }
+  ],
+  "screenshots": [
+    "original-jc035.png",
+    "restored-pending-draft.png",
+    "next-source-after-reopen.png",
+    "resolved-three-regions.png"
+  ],
+  "posts": [
+    10,
+    8,
+    6,
+    6
+  ],
+  "pageErrors": [],
+  "reopened": 3,
+  "browser": "151.0.7922.173",
+  "activeStep": {
+    "index": 14,
+    "seat": 1,
+    "action": "passResponse"
+  },
+  "originalReceiptsAfterReopen": 15
+}

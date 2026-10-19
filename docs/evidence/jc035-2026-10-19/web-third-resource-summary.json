@@ -1,0 +1,50 @@
+{
+  "scope": "Read-only cgroup and scheduling samples during original-budget full frontend run; no business or timeout change.",
+  "samples": 867,
+  "maxSampleGapSeconds": 0.6349084180110367,
+  "first": {
+    "utc": "2026-10-19T10:42:29.714889+00:00",
+    "gapSeconds": 0.00015124998753890395,
+    "cpu": {
+      "usage_usec": 61804377350,
+      "user_usec": 51960082180,
+      "system_usec": 9844295170,
+      "nice_usec": 0,
+      "nr_periods": 534052,
+      "nr_throttled": 23231,
+      "throttled_usec": 1297369253,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "memoryBytes": 10947158016,
+    "memoryEvents": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n"
+  },
+  "last": {
+    "utc": "2026-10-19T10:49:44.610644+00:00",
+    "gapSeconds": 0.5005441980028991,
+    "cpu": {
+      "usage_usec": 62393677700,
+      "user_usec": 52485705909,
+      "system_usec": 9907971791,
+      "nice_usec": 0,
+      "nr_periods": 538401,
+      "nr_throttled": 23233,
+      "throttled_usec": 1297393398,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "memoryBytes": 10661703680,
+    "memoryEvents": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n"
+  },
+  "cpuDeltas": {
+    "usage_usec": 589300350,
+    "user_usec": 525623729,
+    "system_usec": 63676621,
+    "nice_usec": 0,
+    "nr_periods": 4349,
+    "nr_throttled": 2,
+    "throttled_usec": 24145,
+    "nr_bursts": 0,
+    "burst_usec": 0
+  }
+}
