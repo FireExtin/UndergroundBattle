@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {catalogBeforeAbi89} from './historical-catalog.mjs';
+import {validateAdmittedScans} from './validate-admitted-scans.mjs';
+const moduleUrl=import.meta.url,read=p=>readFileSync(new URL('../../'+p,moduleUrl)),json=p=>JSON.parse(read(p));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const data=json('rust-game/data/cards.json'),spec=json('docs/factions/card-specifications.json').cards.JC035;
+test('JC035 binds the complete actual pinned blue attachment and leaves archival acceptance unchanged',()=>{
+ const c=data.cards.at(-1),f=spec.fields,s=spec.sourceVerification;
+ assert.equal(c.id,'JC035');assert.equal(c.name,f.name);assert.equal(c.cost,3);assert.deepEqual(c.loyalty,['蓝色']);
+ assert.equal(c.color,'蓝');assert.equal(c.kind,'attachment');assert.deepEqual(c.subtypes,['结界','媒体']);assert.equal(c.magic,'心灵');assert.equal(c.unique,false);
+ assert.deepEqual(c.icons,{permanent:f.permanentIcons,temporary:f.temporaryIcons});assert.equal(c.text,f.printedRuleTextLines.join('\n'));
+ assert.equal(s.imageSha256,'e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319');
+ assert.equal(hash(read(s.imagePath)),s.imageSha256);assert.deepEqual(read(s.imagePath),read('web/public/cards/JC035.jpg'));
+ assert.deepEqual(json('web/public/card-scans.json').JC035,{url:'/cards/JC035.jpg',source:s.imagePath,sha256:s.imageSha256});
+ assert.match(read('web/src/game/cardScans.ts').toString(),/"JC035": "\/cards\/JC035\.jpg"/);
+ assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
+ assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);assert.deepEqual(spec.openQuestionIds,[]);
+});
+test('JC035 adds one complete blue print, preserves every old152 value, presets, world and actual88 identity',async()=>{
+ assert.equal(data.cards.length,153);assert.equal(data.engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
+ assert.equal(catalogBeforeAbi89(data).cards.length,152);
+ assert.equal(hash(JSON.stringify(data.decks)),'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987');
+ assert.equal(hash(JSON.stringify(data.world)),'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5');
+ const scans=validateAdmittedScans();assert.equal(scans.checkedCards,153);assert(scans.checkedIds.includes('JC035'));
+ const old=await import('../../rust-game-wasm/tests/current88-kernel.mjs');
+ assert.equal(old.catalog.cards.length,152);assert.equal(old.catalog.cards.some(c=>c.id==='JC035'),false);
+ assert.equal(hash(old.moduleBytes),'5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3');
+});

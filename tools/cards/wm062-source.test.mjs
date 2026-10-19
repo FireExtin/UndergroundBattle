@@ -15,8 +15,8 @@ test('WM062 adds one complete black card and preserves every former 145 definiti
  const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=baseline;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.deepEqual(cards.filter(c=>!['WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
- assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
- assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
+ assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+ assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('WM062 full runtime fields agree with its exact original without promoting archival acceptance',()=>{
  const f=spec.fields,s=spec.sourceVerification;
@@ -28,5 +28,5 @@ test('WM062 art is exact and all 146 admitted scans retain their pinned source i
  const s=spec.sourceVerification,b=read(s.imagePath);
  assert.equal(createHash('sha256').update(b).digest('hex'),'a277463a0dc41c9eba202f7d46d4088779a7d756ca835d5d6a3e57611bf7f335');
  assert.deepEqual(read('web/public/cards/WM062.jpg'),b);
- const checked=validateAdmittedScans();assert.equal(checked.checkedCards,152);assert.equal(checked.manifestEntries,165);
+ const checked=validateAdmittedScans();assert.equal(checked.checkedCards,153);assert.equal(checked.manifestEntries,166);
 });

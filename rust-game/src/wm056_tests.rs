@@ -170,6 +170,7 @@ fn wm056_actual_duel_adjacency_all_other_live_regions_and_board_edge_no_wrap_in_
     let (mut g, id) = setup(0);
     g.mode = "duel".into();
     g.players.truncate(2);
+    g.jc035_preparation = None; // Explicit two-seat fixture discards the four-seat observation.
     g.regions[0].influence[0] = 1;
     g.regions[4].influence[0] = 1;
     g.apply(0, activate(&id)).unwrap();

@@ -15,8 +15,8 @@ test('JZ46 adds one whole definition while every original 144 card and deck/worl
   const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=original;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.deepEqual(cards.filter(c=>!['JZ46','WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
-  assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');
-  assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
+  assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+  assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('the entire JZ46 runtime matches the pinned image specification and preserves source acceptance status',()=>{
   const f=spec.fields,s=spec.sourceVerification;
@@ -28,5 +28,5 @@ test('JZ46 art is byte-exact and all 145 admitted scans remain pinned',()=>{
   const original=read(spec.sourceVerification.imagePath);
   assert.equal(createHash('sha256').update(original).digest('hex'),'756bdb34307c84a5c5f1e9cc1b7e13f9112ae727e934847f6993169ae1451785');
   assert.deepEqual(read('web/public/cards/JZ46.jpg'),original);
-  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,152);assert.equal(checked.manifestEntries,165);
+  const checked=validateAdmittedScans();assert.equal(checked.checkedCards,153);assert.equal(checked.manifestEntries,166);
 });

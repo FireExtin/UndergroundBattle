@@ -25,7 +25,7 @@ fn bad(g: &Game, name: &str) {
     let room_error=crate::room::RoomEnvelope::from_persisted(&state).err().unwrap_or_else(||panic!("Room accepted {name}"));
     BAD_EXPORT.with(|saved|if let Some(rows)=saved.borrow_mut().as_mut(){rows.push(serde_json::json!({"name":name,"state":state,"gameError":game_error,"roomError":room_error,"roomId":room.game.room_id,"inviteCode":room.game.invite_code,"revision":room.revision}))});
 }
-fn source_bindings() -> Value {
+pub(crate) fn source_bindings() -> Value {
     let mut binding=crate::jc066_tests::source_bindings();
     use sha2::{Digest,Sha256};
     for(name,bytes)in[
@@ -60,7 +60,7 @@ fn xq23_whole_print_and_definition_cannot_be_weakened_or_transplanted() {
 }
 
 #[test]
-fn xq23_native88_oracles() {
+fn xq23_current89_regression_oracles() {
     use crate::room::SessionAction;
     let mut scenarios=vec![];
     for actor in 0..4 {
@@ -105,16 +105,16 @@ fn xq23_native88_oracles() {
     BAD_EXPORT.with(|saved|*saved.borrow_mut()=Some(vec![]));
     xq23_bad_paid_frames_targets_sources_and_response_shells_reject_in_game_and_room();
     let invalid=BAD_EXPORT.with(|saved|saved.borrow_mut().take().unwrap());assert_eq!(invalid.len(),31);
-    let binding=source_bindings();
+    let binding=crate::jc035_tests::source_bindings();
     let commands=scenarios.iter().map(|s|s["steps"].as_array().unwrap().len()).sum::<usize>();
     let rejected=scenarios.iter().flat_map(|s|s["steps"].as_array().unwrap()).filter(|r|!r["expected"]["errorCode"].is_null()).count();
     let counts=serde_json::json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":4*(commands+scenarios.len()),"invalidRestores":invalid.len()});
-    let value=serde_json::json!({"format":"xq23-native88-v1","catalog":catalog::catalog(),"sourceBindings":binding,"scenarios":scenarios,"invalid":invalid,"counts":counts});
-    if let Ok(dir)=std::env::var("XQ23_NATIVE_DIR") {
+    let value=serde_json::json!({"format":"xq23-current-native89-v1","catalog":catalog::catalog(),"sourceBindings":binding,"scenarios":scenarios,"invalid":invalid,"counts":counts});
+    if let Ok(dir)=std::env::var("XQ23_CURRENT_CORE_NATIVE_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
-        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("Native88.json")).unwrap().write_all(&serde_json::to_vec(&value).unwrap()).unwrap();
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("NativeCurrent89.json")).unwrap().write_all(&serde_json::to_vec(&value).unwrap()).unwrap();
     }
-    println!("XQ23_NATIVE88_COUNTS {}",counts);
+    println!("XQ23_CURRENT89_COUNTS {}",counts);
 }
 #[test]
 fn xq23_all_four_seats_pay_and_exhaust_before_response_then_return_asset_and_reset_original() {
@@ -220,12 +220,20 @@ fn xq23_exact_review_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind
     assert_eq!(raw.len(),31_197);
     assert_eq!(format!("{:x}",Sha256::digest(raw.as_bytes())),"76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65");
     let original:Value=serde_json::from_str(&raw).unwrap();
-    crate::room::RoomEnvelope::from_persisted(&raw).unwrap();
-    Game::from_persisted(&serde_json::to_string(&original["game"]).unwrap()).unwrap();
-    for(field,value)in[("instanceId","i241"),("instanceId",""),("kind","hidden"),("kind","character")] {
-        let mut changed=original.clone();changed["game"]["stack"][0]["frame"]["targets"][0]["public"][field]=value.into();
-        assert_eq!(changed["game"]["stack"][0]["target"],"i243");
-        assert_eq!(changed["game"]["stack"][0]["frame"]["targets"][0]["id"],"i243");
+    // The unchanged published88 control belongs only to the exact frozen88
+    // reducer. Never alter its version fields, UIDs or source bindings for89.
+    assert!(crate::room::RoomEnvelope::from_persisted(&raw).unwrap_err().contains("版本"));
+    assert!(Game::from_persisted(&serde_json::to_string(&original["game"]).unwrap()).unwrap_err().contains("版本"));
+    let (mut g,source,target)=active(0);u::act(&mut g,0,action(&source,&target));
+    let current=serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();
+    let fresh=serde_json::to_string(&current).unwrap();
+    crate::room::RoomEnvelope::from_persisted(&fresh).unwrap();
+    Game::from_persisted(&serde_json::to_string(&current["game"]).unwrap()).unwrap();
+    let other=g.players[0].assets.iter().find(|c|c.id!=target).unwrap().id.as_str();
+    for(field,value)in[("instanceId",other),("instanceId",""),("kind","hidden"),("kind","character")] {
+        let mut changed=current.clone();changed["game"]["stack"][0]["frame"]["targets"][0]["public"][field]=value.into();
+        assert_eq!(changed["game"]["stack"][0]["target"],target);
+        assert_eq!(changed["game"]["stack"][0]["frame"]["targets"][0]["id"],target);
         let game_error=Game::from_persisted(&serde_json::to_string(&changed["game"]).unwrap()).unwrap_err();
         let room_error=crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&changed).unwrap()).unwrap_err();
         assert!(game_error.contains("XQ23"));assert_eq!(game_error,room_error);
@@ -258,7 +266,6 @@ fn xq23_restore_after_source_control_change_retains_the_paid_actor_asset_destina
 }
 #[test]
 fn xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_team_score() {
-    use sha2::{Digest,Sha256};
     // Start from the same explicit initial sequence as the independently run
     // pre-fix Native probe. All subsequent changes use ordinary Room commands.
     let(mut g,_,_)=active(0);g.room_id=format!("{:024x}",880031);
@@ -272,7 +279,8 @@ fn xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_
     let score=g.make_card("DQJC107",2);g.players[2].score_cards.push(score);
     let score=g.make_card("DQJC115",3);g.players[3].score_cards.push(score);g.players[2].deck.clear();
     let mut trace=Trace::new("owner-p2",&g);
-    assert_eq!(format!("{:x}",Sha256::digest(trace.initial["state"].as_str().unwrap().as_bytes())),"dc7bb4725fa63701c785416876c6c200d30ee9a79f6d338e3532dcf6ea280d76");
+    // Original exact88 state remains pinned by frozen-abi88.test.mjs; this is a fresh current-engine run.
+    assert_eq!(trace.room.game.versions.engine,catalog::ENGINE_VERSION);
     let mut converted=vec![];
     for(index,owner)in[2,3].into_iter().enumerate() {
         trace.game(0,Action{card_id:Some(spells[index].clone()),target_id:Some(sources[index].clone()),..Action::new("play")},true);trace.responses();
@@ -284,7 +292,7 @@ fn xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_
         assert_eq!(asset.controller,0);assert!(asset.exhausted);converted.push(asset.id.clone());
     }
     let before=serde_json::to_string(&trace.room).unwrap();
-    assert_eq!(format!("{:x}",Sha256::digest(before.as_bytes())),"09721ef434dff49da5bc5ceda8a1f7e974f13857a8fd6522fe3e8691e9e584a8");
+    assert_eq!(crate::room::RoomEnvelope::from_persisted(&before).unwrap().game.versions.engine,catalog::ENGINE_VERSION);
     assert_eq!(trace.room.game.players[0].assets.len(),11);
     let live_owned_before=trace.room.game.players.iter().flat_map(|p|&p.assets).filter(|c|c.owner!=2).map(|c|c.id.clone()).collect::<std::collections::BTreeSet<_>>();
     for _ in 0..600 {if trace.room.game.players[2].eliminated {break;}assert!(trace.room.game.pending.is_none());trace.pass_current();}
@@ -309,10 +317,10 @@ fn xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_
     assert!(trace.room.game.players[3].hand.iter().any(|c|c.definition=="XQ23"));
     assert_eq!((trace.room.view(0,0).players[2].score,trace.room.view(0,0).players[3].score),(4,2));
     let count=trace.steps.len();
-    let value=serde_json::json!({"format":"xq23-owner-elimination-native-v1","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"initial":trace.initial,"steps":trace.steps,"beforeElimination":before,"afterElimination":after,"summary":{"actualXQ23Conversions":2,"realJC129Declarations":2,"beforeControlledAssets":11,"afterControlledAssets":10,"readyResourcesAfterElimination":10,"eliminatedOwner2AssetSurvives":false,"livingOwner3AssetSurvives":true,"canLegallyReturnDeadOwnerAsset":false,"deadOwnerHandRepopulated":false,"livingOwnerHandReceivedOwnCard":true,"owner2EliminatedByNaturalNextTurnEmptyDraw":true,"teammate3Lives":true,"gameContinues":true,"commands":count}});
-    if let Ok(dir)=std::env::var("XQ23_P2_NATIVE_DIR") {
+    let value=serde_json::json!({"format":"xq23-current-owner-elimination-native-v1","catalog":catalog::catalog(),"sourceBindings":crate::jc035_tests::source_bindings(),"initial":trace.initial,"steps":trace.steps,"beforeElimination":before,"afterElimination":after,"summary":{"actualXQ23Conversions":2,"realJC129Declarations":2,"beforeControlledAssets":11,"afterControlledAssets":10,"readyResourcesAfterElimination":10,"eliminatedOwner2AssetSurvives":false,"livingOwner3AssetSurvives":true,"canLegallyReturnDeadOwnerAsset":false,"deadOwnerHandRepopulated":false,"livingOwnerHandReceivedOwnCard":true,"owner2EliminatedByNaturalNextTurnEmptyDraw":true,"teammate3Lives":true,"gameContinues":true,"commands":count}});
+    if let Ok(dir)=std::env::var("XQ23_CURRENT_NATIVE_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();
-        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("Native88P2.json")).unwrap().write_all(&serde_json::to_vec(&value).unwrap()).unwrap();
+        std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("NativeCurrentOwner89.json")).unwrap().write_all(&serde_json::to_vec(&value).unwrap()).unwrap();
     }
     println!("XQ23_P2_ELIMINATION {}",value["summary"]);
 }

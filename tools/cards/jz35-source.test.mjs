@@ -13,7 +13,7 @@ test('JZ35 preserves all 137 definitions and metadata from d303545',()=>{
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'1740110194f78c5a71f166a6efec4f0ffa5a9f6c32a4d2f59eb16f88152d9787');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
+  assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('JZ35 complete fields match its original without unresolved source questions',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'93579e39a80ad3515f9e5b82f3770eb683de5a7ad1fed579811d99f1ebe2e296');
@@ -26,5 +26,5 @@ test('JZ35 complete fields match its original without unresolved source question
 });
 test('JZ35 public face is the exact pinned original and all admitted scans validate',()=>{
   const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
-  assert.deepEqual(read('web/public/cards/JZ35.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,152);assert.ok(r.checkedIds.includes('JZ35'));
+  assert.deepEqual(read('web/public/cards/JZ35.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,153);assert.ok(r.checkedIds.includes('JZ35'));
 });

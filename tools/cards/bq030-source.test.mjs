@@ -111,8 +111,8 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
   assert.equal(digest(otherData), approvedPins.otherPoolMetadata,
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.80-xq23-asset-return-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.88-xq23-asset-return-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.81-jc035-preparation-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.89-jc035-preparation-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {
@@ -131,7 +131,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
 test('actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings', () => {
   // Reuse the existing byte/provenance/TS/public mapping checker instead of duplicating it.
   const result = validateAdmittedScans(repository);
-  assert.equal(result.checkedCards, 152);
+  assert.equal(result.checkedCards, 153);
   assert.ok(result.checkedIds.includes('BQ030'));
 });
 

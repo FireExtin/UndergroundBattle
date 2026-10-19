@@ -546,6 +546,7 @@ fn xq25_duel_actual_payment_commit_conceal_and_room_restore() {
     let mut g = game(0);
     g.mode = "duel".into();
     g.players.truncate(2);
+    g.jc035_preparation = None; // Explicit two-seat fixture discards the four-seat observation.
     g.first_team = 0;
     g.begin_window(Window::Action(0));
     fund(&mut g, 0, "JC059", 4);

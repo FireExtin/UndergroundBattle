@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI88 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI89 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -64,15 +64,15 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current88 and all eleven original77-87 WASM modules', () => {
-  const retainedNames=Array.from({length:11},(_,i)=>'abi'+(77+i));
+test('production Worker contains exactly current89 and all twelve original77-88 WASM modules', () => {
+  const retainedNames=Array.from({length:12},(_,i)=>'abi'+(77+i));
   assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
   const originals=retainedNames.map(name=>{
     assert.deepEqual(readdirSync('generated/'+name).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
     return readFileSync('generated/'+name+'/hegemony_wasm_bg.wasm');
   });
   const emitted=readdirSync('dist/server').filter(name=>name.endsWith('.wasm')).map(name=>readFileSync('dist/server/'+name));
-  assert.equal(emitted.length,12);
+  assert.equal(emitted.length,13);
   for(const original of [currentBytes,...originals])assert.equal(emitted.filter(bytes=>bytes.equals(original)).length,1,'Each exact module is emitted once');
   assert(readFileSync('dist/server/index.js').length+emitted.reduce((n,b)=>n+b.length,0)<64*1024*1024);
 });

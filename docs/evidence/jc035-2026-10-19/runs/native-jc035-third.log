@@ -1,0 +1,29 @@
+   Compiling hegemony-server v0.1.0 (/workspace/UndergroundBattle/rust-game)
+    Finished `test` profile [unoptimized] target(s) in 1m 11s
+     Running unittests src/lib.rs (/workspace/undergroundbattle-build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 11 tests
+test jc035_tests::jc035_actual_paid_attachment_all_four_seats_and_temporary_icon ... ok
+test jc035_tests::jc035_bad_observations_pending_choices_and_frames_reject_both_loaders ... ok
+test jc035_tests::jc035_departed_source_retains_original_region_reward_and_real_response ... 
+thread 'jc035_tests::jc035_departed_source_retains_original_region_reward_and_real_response' panicked at rust-game/src/unit_support.rs:71:19:
+called `Result::unwrap()` on an `Err` value: "目标不存在或不满足目标条件"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test jc035_tests::jc035_multiple_optional_sources_are_ordered_by_controller_then_responded_to ... ok
+test jc035_tests::jc035_optional_decline_once_per_preparation_and_no_draw_yet ... ok
+test jc035_tests::jc035_partial_decline_and_next_turn_can_offer_again_after_real_cleanup ... ok
+test jc035_tests::jc035_preparation_condition_is_event_time_snapshot_not_later_hand_changes ... ok
+test jc035_tests::jc035_preparation_threshold_enemy_relation_and_elimination_matrix ... ok
+test jc035_tests::jc035_rejects_underpayment_wrong_loyalty_and_unprinted_play_payload_atomically ... ok
+test jc035_tests::jc035_replaced_region_does_not_receive_old_reward_or_inherit_host ... ok
+test jc035_tests::jc035_whole_print_and_closed_definition ... ok
+
+failures:
+
+failures:
+    jc035_tests::jc035_departed_source_retains_original_region_reward_and_real_response
+
+test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1277 filtered out; finished in 9.19s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

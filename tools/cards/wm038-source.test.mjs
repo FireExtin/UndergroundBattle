@@ -13,7 +13,7 @@ test('WM038 preserves all 136 definitions and metadata from cumulative 912f230',
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
   assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(c.id))),'9d71a64108f1850060337fda12466c5e588c0f8b3e7d762f898ea678a0bc7b37');
   assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(engineVersion,'rust-v0.2.88-xq23-asset-return-candidate');assert.equal(cardPoolVersion,'limited-v2.80-xq23-asset-return-candidate');
+  assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('WM038 complete fields match the pinned original and have no unresolved source question',()=>{
   assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'d7ac78da2029dee8ce26aaa645df0261c1ba21dba9db34f276cab404bf0f7143');
@@ -26,5 +26,5 @@ test('WM038 complete fields match the pinned original and have no unresolved sou
 });
 test('WM038 public bytes preserve the original and all admitted scans validate',()=>{
   const original=read(spec.sourceVerification.imagePath);assert.equal(createHash('sha256').update(original).digest('hex'),spec.sourceVerification.imageSha256);
-  assert.deepEqual(read('web/public/cards/WM038.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,152);assert.ok(r.checkedIds.includes('WM038'));
+  assert.deepEqual(read('web/public/cards/WM038.jpg'),original);const r=validateAdmittedScans();assert.equal(r.checkedCards,153);assert.ok(r.checkedIds.includes('WM038'));
 });

@@ -1,0 +1,25 @@
+{
+  "stage": "native-workspace-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "env",
+    "JC035_NATIVE_DIR=/workspace/jc035-evidence-20261019/native-first",
+    "XQ23_CURRENT_NATIVE_DIR=/workspace/jc035-evidence-20261019/native-first",
+    "cargo",
+    "test",
+    "--workspace",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "startedUtc": "2026-10-19T08:51:15.079877+00:00",
+  "finishedUtc": "2026-10-19T09:16:05.944096+00:00",
+  "exitCode": 101,
+  "durationSeconds": 1490.8643025239871,
+  "log": "/workspace/jc035-evidence-20261019/native-workspace-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

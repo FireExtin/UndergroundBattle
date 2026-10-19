@@ -27,8 +27,8 @@ test('XQ24 matches its reviewed original and preserves the entire 7809971 baseli
     'da45496e0eb1497cb141809f4d3aaa1b173a15983497f65d0a957230caf6a556');
   assert.equal(digest(metadata), '5a331fc2c9cacb7f40248ca854ccc7245819162d675d3424130c060b22e48f58');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.80-xq23-asset-return-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.88-xq23-asset-return-candidate');
+  assert.equal(cardPoolVersion, 'limited-v2.81-jc035-preparation-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.89-jc035-preparation-candidate');
   const f = spec.fields, source = spec.sourceVerification;
   assert.deepEqual(cards.find(c => c.id === 'XQ24'), {
     id: 'XQ24', name: f.name, kind: 'character', subtypes: f.subtypes,
@@ -63,6 +63,6 @@ test('XQ24 original, published card face and both client mappings agree byte for
     '420b412908d7b86112e26c2ba0f94593a29c40bf8f6b54e8809ce489a66f61b8');
   assert.deepEqual(read('web/public/cards/XQ24.jpg'), original);
   const result = validateAdmittedScans();
-  assert.equal(result.checkedCards, 152);
+  assert.equal(result.checkedCards, 153);
   assert.ok(result.checkedIds.includes('XQ24'));
 });

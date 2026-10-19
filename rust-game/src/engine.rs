@@ -1397,10 +1397,7 @@ impl Game {
             || self.team(seat) != self.first_team
             || counts[0] != counts[1]
             || self.regions[region].skip
-            || !self.regions[region]
-                .cards
-                .iter()
-                .any(|c| c.controller == seat && self.icons(c, region).at(contest) > 0)
+            || !self.contributors(self.first_team, region, contest).contains(&seat)
         {
             return Err("先手特权条件不足".into());
         }
@@ -2886,7 +2883,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 152);
+        assert_eq!(c.cards.len(), 153);
         let active = c
             .cards
             .iter()

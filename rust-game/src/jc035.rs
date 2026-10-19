@@ -146,9 +146,10 @@ impl Game {
     }
     fn jc035_context(&self) -> RuleResult<&PreparationObservation> {
         let o = self.jc035_preparation.as_ref().ok_or("JC035缺少准备步骤观察")?;
-        if o.turn == 0 || o.turn > self.turn || o.first_team > 1 || o.hands.len() != self.players.len()
-            || o.hands.iter().enumerate().any(|(seat, h)| h.seat != seat)
-            || (!o.entries.is_empty() && (o.turn != self.turn || o.first_team != self.first_team))
+        if o.turn == 0 || o.turn != self.turn || o.first_team != self.first_team || o.first_team > 1
+            || o.hands.len() != self.players.len()
+            || o.hands.iter().enumerate().any(|(seat, h)| h.seat != seat
+                || h.eliminated && !self.players[seat].eliminated)
             || (o.entries.is_empty() != o.event_id.is_none())
             || o.event_id.as_ref().is_some_and(|id| id.is_empty()) {
             return Err("JC035准备观察的回合、席位或事件身份无效".into());
@@ -278,6 +279,9 @@ impl Game {
         if f.frame_id.is_empty() { return Err("JC035缺少帧身份".into()); }
         if f.ability_key == "attach" {
             self.jc035_source(&f.source, f.actor, false)?;
+            if self.jc035_physical_cards().any(|c| c.id == f.source.card.id) {
+                return Err("JC035结附的原手牌实体必须已经离开物理区域".into());
+            }
             let [t] = f.targets.as_slice() else { return Err("JC035结附须恰好一个地区目标".into()); };
             let r = t.id.strip_prefix("region:").and_then(|s| s.parse::<usize>().ok())
                 .filter(|r| *r < self.regions.len() && t.id == format!("region:{r}"))
@@ -334,6 +338,27 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jc035_state(&self) -> RuleResult<()> {
+        if self.regions.iter().any(|r| r.card.definition == "JC035"
+            || r.cards.iter().any(|c| c.definition == "JC035")) {
+            return Err("JC035在场内只能是公开的地区附属，不能成为角色或地区".into());
+        }
+        let physical = self.jc035_physical_cards().filter(|c| c.definition == "JC035").collect::<Vec<_>>();
+        for c in physical {
+            if c.id.is_empty() || c.owner >= self.players.len() || c.controller >= self.players.len()
+                || self.jc035_physical_cards().filter(|other| other.id == c.id).count() != 1 {
+                return Err("JC035物理实体必须有合法拥有者、操控者和唯一UID".into());
+            }
+        }
+        for a in self.attachments.iter().filter(|a| a.card.definition == "JC035") {
+            if a.card.face_down || self.players[a.card.owner].eliminated
+                || self.players[a.card.controller].eliminated || !self.attachment_host_valid(a) {
+                return Err("JC035场内附属必须公开、由存活玩家持有并结附实际地区".into());
+            }
+        }
+        if self.window == Some(Window::Prepare) && self.jc035_preparation.is_none()
+            && self.attachments.iter().any(|a| a.card.definition == "JC035") {
+            return Err("JC035准备步骤不能丢失整份观察及其声明".into());
+        }
         if self.jc035_preparation.is_some() { self.jc035_context()?; }
         let mut seen = BTreeSet::new();
         let mut remember = |s: &SourceSnapshot| -> RuleResult<()> {
