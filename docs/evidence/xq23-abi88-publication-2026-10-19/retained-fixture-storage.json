@@ -1,0 +1,22 @@
+{
+  "scripts/restore-test-fixtures.mjs": {
+    "bytes": 965,
+    "sha256": "d4858b3aea1d2df64676e6d5dfdf0698300b78deca212b968df82ce661527931"
+  },
+  "scripts/test-fixture-storage.json": {
+    "bytes": 432,
+    "sha256": "acfa2824c1bc25d8bddc3beee1c73b1f1cfd024e63d2594fc9474e659e35cf55"
+  },
+  "TEST_FIXTURE_STORAGE.md": {
+    "bytes": 901,
+    "sha256": "4ec5784e33dd285aacf090f6d1631c7668a86e7b29562d97e072bd8a33d05893"
+  },
+  "test/fixtures/jc046-native-v077.json.gz": {
+    "bytes": 3067696,
+    "sha256": "7bafedfeef38eb076caeddc9c0890faf8ab8d78ea5d5430db74679246dc5d848"
+  },
+  ".gitignore": {
+    "bytes": 275,
+    "sha256": "fbbe466bd19300fe4e6d5a31e24dd12e9b01a1e63eb0cd187bba1d8be30ee8d2"
+  }
+}

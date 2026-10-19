@@ -1,0 +1,16 @@
+{
+  "opening": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "0bf3a2793b0e4d28d4324b8251cebde685c8c085"
+  },
+  "packaging": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/hidden-world-sites-abi77-20261015",
+    "commit_sha": "8061ec2cb987202e68b9a4dd15ff57730364ee03",
+    "archive": "/workspace/xq23-publication-20261019/abi88-reviewed.tar.gz"
+  },
+  "commands": [],
+  "testsAndBuildNotRepeated": true,
+  "credentialsNotPersisted": true
+}

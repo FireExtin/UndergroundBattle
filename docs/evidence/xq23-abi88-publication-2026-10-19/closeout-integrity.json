@@ -1,0 +1,37 @@
+{
+  "checkedAtUtc": "2026-10-19T07:35:20.022501+00:00",
+  "reviewedGameCommit": "b7e4c78e5afaf2b73ab5a0fb770451e7b5fd78d4",
+  "providerSource": "8061ec2cb987202e68b9a4dd15ff57730364ee03",
+  "reviewedProductionFilesVerifiedInGameAndProvider": 185,
+  "exactWasmModules": 12,
+  "frozen77to87Retained": {
+    "77": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+    "78": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+    "79": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+    "80": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+    "81": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+    "82": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+    "83": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+    "84": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+    "85": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+    "86": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+    "87": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+  },
+  "current88WasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+  "productionWorkerSha256": "7632b867cebdf19ec405c4fe4a9aa2fc363bef1b3a88924527ef08921faacda8",
+  "gzipArchiveUnchangedAfterSave": true,
+  "protectedLock": {
+    "inode": 1048672,
+    "bytes": 0,
+    "mtimeNs": 1792294521284793620
+  },
+  "providerClean": true,
+  "gameRemoteHeads": [
+    "b7e4c78e5afaf2b73ab5a0fb770451e7b5fd78d4\trefs/heads/codex/xq23-gray-asset-return-review-20261019",
+    "224a619459d64eaead06810b679ff57b1de94fd6\trefs/heads/main"
+  ],
+  "diskFreeBytes": 959651840,
+  "buildsOrTestsRepeated": false,
+  "sourceCredentialPersisted": false,
+  "gameMainMerged": false
+}
