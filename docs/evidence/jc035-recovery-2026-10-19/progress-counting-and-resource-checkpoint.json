@@ -1,0 +1,81 @@
+{
+  "format": "jc035-progress-counting-and-resource-checkpoint-v1",
+  "checkedAtUtc": "2026-10-19T21:23:00.785554+00:00",
+  "validationSourceSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "parentEvidenceSha": "2c2652839a811c2f405b8089229446bf5e13e8cc",
+  "workerSessionId": 82121,
+  "sameRunStartedUtc": "2026-10-19T18:37:29.006178+00:00",
+  "elapsedSeconds": 9931.8,
+  "currentCompletedCaseMarkers": 378,
+  "observedPassedCases": 377,
+  "observedFailureMarkers": 1,
+  "latestCompletedCase": "JC066 ABI86 HTTP shared-hand-seal-attachment",
+  "failureNames": [
+    "JC041 corrupted discard-6 restores HTTP400 with no D1 writes"
+  ],
+  "naturalExitReceiptPresent": false,
+  "interimCountsAreNotFinal": true,
+  "countingContract": {
+    "fileCount": 69,
+    "sameOrderedFileListAsOldFull": true,
+    "oldAuthoritativeTests": 722,
+    "oldPassMarkers": 720,
+    "oldFailureMarkersInInitial722": 2,
+    "expectedCurrentTests": 722,
+    "expectedTotalRequiresNaturalNodeSummary": true,
+    "progressMarkersRepresent": "Completed individual top-level test cases; not files, assertions, HTTP requests or Native commands",
+    "currentCompletedCaseNamesMatchOldOrderedPrefix": true,
+    "knownNameNormalization": "Existing JC035 entry loop changed one society ID MSJC01 to MSJC03; no case added or removed",
+    "reporterOutcomeChangesComparedToOldPrefix": [
+      {
+        "index1": 32,
+        "name": "JC035 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen",
+        "oldMarker": "\u2716",
+        "currentMarker": "\u2714"
+      },
+      {
+        "index1": 151,
+        "name": "JC041 corrupted discard-6 restores HTTP400 with no D1 writes",
+        "oldMarker": "\u2714",
+        "currentMarker": "\u2716"
+      }
+    ]
+  },
+  "timing": {
+    "oldFullWallSeconds": 7071.558598107993,
+    "matchedCompletedPrefixDurationRatio": 2.564,
+    "roughLinearTotalHours": 5.04,
+    "estimateNotDeadlineOrTimeout": true,
+    "caveat": "Completed-prefix extrapolation only; later test mix, host load and startup costs differ."
+  },
+  "resources": {
+    "cpuQuotaRaw": "400000 100000",
+    "cgroupCpuSecondsSinceFullStart": 15975.523,
+    "wholeCgroupAverageCoreEquivalent": 1.609,
+    "periodsDelta": 99197,
+    "throttledPeriodsDelta": 3927,
+    "throttledPeriodFraction": 0.0396,
+    "throttledSecondsCounterDelta": 422.095,
+    "memoryEvents": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0
+    },
+    "workspaceAvailableGiB": 27.015,
+    "interpretation": "Whole-environment counters show some quota throttling. They do not isolate Worker CPU time or determine the total slowdown/failure cause. No resource, concurrency or budget change."
+  },
+  "failureDetailLinesCurrentlyReported": [],
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "newJc041FailureRootCauseStillUnproven": true,
+  "partialLog": {
+    "path": "runs/worker-full-recovered.20261019T212300Z.progress.partial.log.gz",
+    "rawPrefixBytes": 82937,
+    "rawPrefixSha256": "13ed45ed8e6d1eef5f5d3f7b23b9737730eb341c9331c38d4291bd86292aa14b",
+    "gzipSha256": "07c105f89b969469e3034bf2142d8be2e78df904978cf2fbd808d45ae8b4efc0",
+    "boundedPrefixOfExistingRun": true
+  },
+  "scope": "WIP progress/count/resource evidence only; no source/test modification, no restart or retry."
+}
