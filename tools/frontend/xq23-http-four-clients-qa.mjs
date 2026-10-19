@@ -19,6 +19,8 @@ const fixture=loadFixture();assert.equal(sha256(moduleBytes),fixture.wasmSha256)
 const scenario=fixture.scenarios.find(s=>s.name===(process.env.XQ23_BROWSER_SCENARIO||'actor-0'));assert(scenario);assert(['actor-0','actor-3','ordinary-deploy'].includes(scenario.name),'Browser driver scope is explicit; response composition is checked separately');
 const initial=scenario.initial.views[0],id=initial.roomId,worker=process.env.HEGEMONY_CURRENT_WORKER_DIR;assert(worker);
 const client=resolve(process.env.XQ23_CLIENT_DIRECTORY||join(sites,'dist/client'));
+const viewport={width:1366,height:Number(process.env.XQ23_BROWSER_HEIGHT||900)};
+assert([768,900].includes(viewport.height),'Check explicit desktop viewport heights');
 const wasmModules=await Promise.all((await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
 const previous=await Promise.all([77,78,79,80,81,82,83,84,85,86,87].map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`))).wasmSha256));
 assert.deepEqual(wasmModules.map(m=>m.sha256).sort(),[fixture.wasmSha256,...previous].sort());
@@ -32,7 +34,7 @@ const report={passed:false,onlineGameplay:false,siteChanged:false,mainMerged:fal
  scope:'Native88 initial layout; actual production GameApp, listening local HTTP/workerd/twelve-WASM/D1 and four independent browser contexts.',
  driverSha256:sha256(await readFile(fileURLToPath(import.meta.url))),scenario:scenario.name,engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,wasmModules,persist,
  productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),workerSha256:sha256(await readFile(join(worker,'worker.js'))),
- clientIndexSha256:sha256(await readFile(join(client,'index.html'))),commands:[],clientPosts:[0,0,0,0],pageErrors:[],screenshots:[],reopened:0};
+ clientIndexSha256:sha256(await readFile(join(client,'index.html'))),viewport,commands:[],clientPosts:[0,0,0,0],pageErrors:[],screenshots:[],reopened:0,targetGeometry:[]};
 let mf,db,browser,origin;const pages=[],receipts=[];const store=()=>new RoomStore(db);
 const snapshot=async()=>({room:await store().room(id),commands:(await db.prepare('SELECT * FROM commands WHERE room_id=? ORDER BY version').bind(id).all()).results,
  journal:(await db.prepare('SELECT * FROM journal WHERE room_id=? ORDER BY version').bind(id).all()).results});
@@ -47,7 +49,7 @@ try{
  for(let seat=1;seat<4;seat++)await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id,seat,await digest(tokens[seat])).run();
  browser=await chromium.launch({headless:true,executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage']});report.browser=browser.version();
  for(let seat=0;seat<4;seat++){
-  const context=await browser.newContext({viewport:{width:1366,height:900}});
+  const context=await browser.newContext({viewport});
   await context.addInitScript(saved=>{localStorage.setItem('hegemony.session.v1',JSON.stringify(saved));localStorage.setItem('hegemony.seats.v1',JSON.stringify([saved]));localStorage.setItem('hegemony.screen.v1','table');localStorage.setItem('hegemony.autoPass.v1','false');},{roomId:id,inviteCode:initial.inviteCode,seat,token:tokens[seat]});
   // Install before the intended freeze point: installing and pausing at the
   // same instant races elapsed setup time. The application still starts at04:00.
@@ -97,7 +99,16 @@ try{
     const match=payloads.map((p,i)=>({p,i})).filter(({p})=>p.kind===action.kind&&p.cardId===action.cardId&&(!action.abilityId||p.abilityId===action.abilityId)&&JSON.stringify(p.costSelected)===JSON.stringify(action.costSelected));assert.equal(match.length,1);
     await groups.nth(match[0].i).click();
     if(action.region!==undefined)await page.locator(`button.hg-region-center[data-region-index="${action.region}"]`).click();
-    if(action.targetId)await page.locator(/^p[0-3]$/.test(action.targetId)?`[data-player-target="${action.targetId}"]`:`[data-card-instance="${action.targetId}"]`).first().click();
+    if(action.targetId){
+     const target=page.locator(/^p[0-3]$/.test(action.targetId)?`[data-player-target="${action.targetId}"]`:`[data-card-instance="${action.targetId}"]`).first();
+     await hit(target);
+     report.targetGeometry.push({index,instanceId:action.targetId,...await target.evaluate(el=>{
+      const rect=node=>{const r=node.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom};};
+      const table=el.closest('.hg-table'),panel=table.querySelector('.hg-inspector'),dock=table.querySelector('.hg-hand-dock');
+      return{target:rect(el),panel:rect(panel),dock:rect(dock),ordinaryPointerReachable:true};
+     })});
+     await capture(page,'target-ready-'+index);await target.click();
+    }
    }
    const controls=page.locator('button[data-action-id]'),ids=await controls.evaluateAll(nodes=>nodes.map(n=>n.dataset.actionId)),position=ids.indexOf(legal.id);assert(position>=0);await hit(controls.nth(position));await controls.nth(position).dblclick({delay:20});
   }else throw Error('Unhandled actual UI action '+JSON.stringify(session));

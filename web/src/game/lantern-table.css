@@ -609,10 +609,11 @@
     height: calc(100dvh - 146px); min-height: 610px;
   }
   /* Targeting belongs on the near blotter, leaving rightmost board targets
-     physically clickable instead of underneath the inspection panel. */
+     physically clickable instead of underneath the inspection panel. Its
+     height stays within the hand dock so near-side assets remain clickable too. */
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector:has(.hg-object-targeting) {
     left: 26px; right: auto; top: auto; bottom: 20px;
-    width: min(900px, calc(100% - 52px)); max-height: 235px;
+    width: min(900px, calc(100% - 52px)); max-height: calc(var(--lt-dock-h) - 20px);
     display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 4px 12px;
   }
   .hg-app .hg-lantern-table.hg-archive-table.hg-table .hg-inspector:has(.hg-object-targeting) > .hg-section-title { grid-column: 1 / -1; }
