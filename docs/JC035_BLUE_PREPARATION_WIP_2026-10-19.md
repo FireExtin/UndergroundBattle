@@ -166,3 +166,17 @@ MSJC03入桌完整文件自然退出0，1/1通过，四席命名完整牌组、�
 [实质变化检查点](evidence/jc035-recovery-2026-10-19/pass-history-failures-checkpoint.json)记录原会话82121的547个通过用例、5条失败标记，仍未自然退出。除JC041 discard-6外，新增`pass-history-integration.test.mjs`全部4项失败，逐项名称、耗时和有界原日志均保留；详细错误类型、原因链和栈仍未输出，不据名称归因。
 
 [只读前置检查](evidence/jc035-recovery-2026-10-19/pass-history-build-prerequisite-readonly.json)确认新环境缺少该文件硬编码使用的专用`pass-history-worker/server`目录；这些测试不使用十三核当前Worker覆盖变量。仓库已有本地构建脚本，读取精确ABI77原件，仅生成测试包装与Wrangler dry-run，不重编译历史核。待自然终态核对具体异常后再补齐并复验整个受影响文件。当前只保存这一实质缺口及WIP状态，未为修复改变仍在运行的输入，也未重启测试、放宽断言或改预算。
+
+## 23:02新环境完整Worker自然终态与23:05前置补建
+
+原会话82121于23:01:59 UTC自然退出1：69文件、722用例，717通过、5失败，0取消/跳过，耗时15870.093秒。[完整原日志](evidence/jc035-recovery-2026-10-19/runs/worker-full-recovered.log.gz)、[退出回执](evidence/jc035-recovery-2026-10-19/runs/worker-full-recovered.exit.json)及[完整失败栈](evidence/jc035-recovery-2026-10-19/worker-full-recovered.failure-details.txt)单独保留，不改旧轮720/722。141编译输入、74个测试源码、27载体运行前后及终态一致；[终态核验](evidence/jc035-recovery-2026-10-19/full-worker-natural-exit-integrity.json)还确认187候选产物、13测试WASM、标准/时钟Worker及旧失败证据不变，722用例名称/顺序仅有已有秘社夹具改名。
+
+4项pass-history均为夹具`harness:21`的`ENOENT scandir`，产品断言尚未执行。本次恢复启动预检漏查了独立ABI77包装；现已用既有`sites/scripts/build-pass-history-test.mjs`补齐，dry-run自然退出0，执行文件哈希与旧包装`de4caa99…49a42ce`一致，原ABI77 WASM也一致，没有历史核重编译。完整4项文件已串行启动复验，结果待自然结束；当前不重跑未变的Native、前端或浏览器范围。
+
+JC041 discard-6的具体异常为fetch TypeError、原因链SocketError other side closed。[锁定Miniflare源码映射](evidence/jc035-recovery-2026-10-19/jc041-transport-stack-mapping.json)确认其子线程栈对应同步绑定代理fetch，未保留具体夹具await位置，没有业务值断言差异。关闭根因及与旧JC066是否同因均未证明，不改依赖、断言、并发、资源或预算；下一步完整45项JC041文件复验。原完整失败和后续补验保持独立，适用资格与父独审尚未闭合，不能发布。
+
+## 23:09专用包装完整4项通过，串行启动JC041完整45项
+
+pass-history整文件自然退出0，4/4通过、0取消/跳过，198.223秒。[结果与前后核验](evidence/jc035-recovery-2026-10-19/pass-history-complete-verification.json)确认37原Native77轨迹、322接受命令、224公开让过记录、真实双端整回合48次让过及CAS/并发回执断言通过；141输入、74测试源码、27载体、独立包装8文件及Miniflare依赖前后不变。漏建包装的恢复准备遗漏已完成原文件复验，没有修改产品逻辑、测试断言或预算。
+
+此项结束后，23:09:38 UTC以相同十三核时钟Worker及锁定依赖，串行启动完整JC041 integration文件，10正常场景加35坏档，共45项，无筛选、无额外重试；[启动门槛](evidence/jc035-recovery-2026-10-19/jc041-complete-followup-gate.json)与原始启动/输入回执已保留。当前此项仍运行，不能用原完整717通过加补验4项称为一轮全绿；等待实际自然结果及最终核验后交父独审。

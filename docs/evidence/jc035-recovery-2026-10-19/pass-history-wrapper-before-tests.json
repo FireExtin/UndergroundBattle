@@ -1,0 +1,57 @@
+{
+  "verifiedUtc": "2026-10-19T23:05:43.438665+00:00",
+  "scope": "Independent local-only historical ABI77 pass-history wrapper; not production or current89 Worker. Existing build script and exact restored bytes, no historical kernel compile.",
+  "root": "/workspace/undergroundbattle-build/pass-history-worker",
+  "files": [
+    {
+      "path": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "path": "server/README.md",
+      "bytes": 125,
+      "sha256": "15409bd91c57f7b580d48ddee5e635f83b34a6ad2985ce8fbd474b7f49a6d4b4"
+    },
+    {
+      "path": "server/worker.js",
+      "bytes": 53999,
+      "sha256": "de4caa99beae0ddc3b150ea38fcea2b4641e93a8008f401785e45ddfe49a42ce"
+    },
+    {
+      "path": "server/worker.js.map",
+      "bytes": 90896,
+      "sha256": "a0d273ea07e19c830f0ed97d0d8c24a9a809c35167a4d1fdde48141ca31b3c4b"
+    },
+    {
+      "path": "worker.mjs",
+      "bytes": 741,
+      "sha256": "23620c5a043a1aee331e96479756ea79db36e11fc17165ae195653f740adce86"
+    },
+    {
+      "path": "wrangler.json",
+      "bytes": 215,
+      "sha256": "f383a4ef1f42c4f31bfc2ae6e7893347f336b4bbec53454502d32bdbade0a788"
+    }
+  ],
+  "serverFileCount": 4,
+  "wasmModules": 1,
+  "exactOriginalAbi77WasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "workerSha256": "de4caa99beae0ddc3b150ea38fcea2b4641e93a8008f401785e45ddfe49a42ce",
+  "oldHistoricalWrapperWorkerSha256": "de4caa99beae0ddc3b150ea38fcea2b4641e93a8008f401785e45ddfe49a42ce",
+  "workerByteIdenticalToOriginalHistoricalWrapper": true,
+  "sourceBuildScript": "sites/scripts/build-pass-history-test.mjs",
+  "sourceBuildScriptSha256": "4b2baaa2f11e36bf203f397c81471df2a06765421d44815b2b4c550cd2b65e43",
+  "miniflareBundleSha256": "d6c68c92bc33371e4baa88a1c6da0042b4fbf8c872a297b84e729556f49f9632",
+  "remedies": "Confirmed ENOENT due to omitted independent wrapper in new-environment preparation. All4 cases will run unfiltered before qualification."
+}

@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP：新环境已恢复精确十三核载体，MSJC03入桌完整文件与原样JC066 target-reveal定向复验各1/1通过。新69文件完整Worker仍在运行，已出现5条失败标记：JC041 discard-6及4项pass-history，错误栈和断言差异尚待自然终态。只读检查另确认pass-history专用本地构建目录缺失，待完整异常核对关联后处理；原轮720/722及两项失败记录完整保留，旧socket关闭根因仍未证实。完整资格与父串行独审未完成，不能发布。**
+**WIP：新环境完整69文件Worker已自然退出1：722项中717通过、5失败，0取消/跳过。4项pass-history失败确认为恢复准备漏建专用Worker目录，已用既有脚本补建并完整4/4通过；另1项JC041 discard-6为Miniflare同步绑定代理的fetch/SocketError，关闭根因未证明，完整45项文件正在复验。MSJC03入桌与原样JC066 target-reveal定向各1/1通过；旧轮720/722及全部失败原件保留。适用补验与父串行独审尚未完成，不能发布。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -20,7 +20,7 @@
 
 构建后清单见[production89-before-worker.manifest.json](evidence/jc035-2026-10-19/production89-before-worker.manifest.json)。编译源码之后的提交仅为测试投影/入桌夹具修正、测试见证和证据文档；当前生产代码与该编译源码一致。原完整Worker结果与新环境WIP复验见下文；证据提交不改变上述编译身份。
 
-## 新环境恢复与定向复验（完整Worker仍运行）
+## 新环境恢复与验证（完整轮已结束，补验进行中）
 
 用户授权经官方Library流程迁移精确原件。迁移包13,882,939B，SHA256 `02a4d8fb4ababa881589b80fff7252ac0406063f99defcd0d75574b468b75c43`；27个文件共13,841,070B逐项验证后按相对清单恢复。包路径、逐文件哈希、12个gzip解压WASM及13个实际ABI目录全部匹配，没有重编译或替代历史内核。公开回执见[恢复核验](evidence/jc035-recovery-2026-10-19/runtime-restoration-verification.json)及[实际ABI身份](evidence/jc035-recovery-2026-10-19/runtime-abi-identities.json)；私有传输标识、签名URL、数据库、缓存与二进制载体未纳入Git。
 
@@ -30,6 +30,9 @@
 | --- | --- |
 | MSJC03入桌完整文件 | 1/1通过；四席命名完整牌组、六张起手、D1重开及原回执；[退出/输入回执](evidence/jc035-recovery-2026-10-19/runs/jc035-entry-msjc03-recovered.exit.json) |
 | 原样JC066 ABI86 HTTP target-reveal | 1/1通过；19条接受命令、160次投影；[退出/输入回执](evidence/jc035-recovery-2026-10-19/runs/jc066-target-reveal-recovered.exit.json) |
+| 新完整Worker自然终态 | 69文件、722用例：717通过、5失败，0取消/跳过，退出1；[完整回执](evidence/jc035-recovery-2026-10-19/runs/worker-full-recovered.exit.json)与[完整原日志](evidence/jc035-recovery-2026-10-19/runs/worker-full-recovered.log.gz) |
+| pass-history专用本地Worker补建 | 既有脚本dry-run退出0；执行文件与旧专用包装逐字节相同，WASM为原ABI77；[构建回执](evidence/jc035-recovery-2026-10-19/runs/pass-history-worker-recovered.exit.json)及[产物身份](evidence/jc035-recovery-2026-10-19/pass-history-wrapper-before-tests.json) |
+| pass-history完整文件补验 | 4/4通过，退出0，0取消/跳过；含37原Native77轨迹、322接受命令和224条公开让过记录；[回执](evidence/jc035-recovery-2026-10-19/runs/pass-history-complete-recovered.exit.json)及[前后核验](evidence/jc035-recovery-2026-10-19/pass-history-complete-verification.json) |
 
 入桌失败的已确认原因仍是原黄色MSJC01夹具只能凑39张；本次验证的是已有单行MSJC03修正，没有修改断言、业务或预算。JC066的原socket异常本次未复现，关闭根因仍未证实，没有添加重试或据通过结果归因。
 
@@ -45,7 +48,13 @@
 
 22:05:34 UTC的[实质变化检查点](evidence/jc035-recovery-2026-10-19/pass-history-failures-checkpoint.json)保留547个通过用例、5条失败标记：原JC041 discard-6，加上`pass-history-integration.test.mjs`的全部4项（37条Native77轨迹、超时/取消/暂停、真实HTTP双端完整回合、CAS与并发回执），仍未自然退出或输出具体异常。[22:06只读检查](evidence/jc035-recovery-2026-10-19/pass-history-build-prerequisite-readonly.json)确认，这4项硬编码使用的`/workspace/undergroundbattle-build/pass-history-worker/server`不存在，不读取当前Worker覆盖变量；仓库已有`sites/scripts/build-pass-history-test.mjs`，会从精确原ABI77载体生成独立本地时钟包装并仅执行Wrangler dry-run。此处记录的是确定的构建前置缺口，具体异常与关联仍待完整报告核对；不改写为生产断言失败或已证明同因。保留现场，待本轮结束后再补齐并完整复验受影响文件；当前不构建、不重试，也不改活动输入。
 
-完整Native release1358、前端1431、Native/WASM383命令/78坏档及四客户端15命令的旧通过范围未重复运行：141输入、实际WASM、Worker和前端资产字节未变化，原生产构建源码至验证代码的唯一业务/测试路径差异是已列出的入桌夹具一行。原失败回执、外置PNG和封存候选仍按旧环境边界保留；本次不是线上实局，没有发布或合main。剩余工作是当前完整Worker自然结果、最终输入/187项产物核对和父串行独审。
+23:01:59 UTC，同一原会话82121自然退出1，Node最终汇总为722项、717通过、5失败、0取消/跳过，耗时15870.093秒。[完整失败栈](evidence/jc035-recovery-2026-10-19/worker-full-recovered.failure-details.txt)与[终态完整性核验](evidence/jc035-recovery-2026-10-19/full-worker-natural-exit-integrity.json)独立保存。141编译输入、74个顶层Worker测试源码、27个原始载体前后及终态均相同；187项新候选产物、十三核测试WASM、标准/时钟Worker哈希及旧失败日志也保持原样。全部722用例的名称和顺序与旧轮相同，仅归一化已有JC035秘社夹具改名。末尾重复打印失败名称不另计失败，最终5项以Node汇总为准。
+
+4项pass-history均在`harness`第21行`readdirSync`抛出`ENOENT scandir /workspace/undergroundbattle-build/pass-history-worker/server`，未到产品断言；这是本次恢复启动预检漏查独立本地包装的准备遗漏。23:05已通过仓库既有脚本补建，执行文件SHA256为`de4caa99beae0ddc3b150ea38fcea2b4641e93a8008f401785e45ddfe49a42ce`，与旧专用包装原记录一致；唯一WASM为精确ABI77原件`b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c`，没有重编译历史核。完整4项原文件已自然退出0，4/4通过、0取消/跳过，耗时198.223秒；37条原Native77轨迹、322接受命令、224公开让过记录、真实双端整回合48次让过及CAS/并发回执断言均通过。全部输入、独立包装8个文件及Miniflare依赖前后不变。完整套件的准备门槛需同时核对十三核当前时钟Worker和这一独立ABI77 pass-history Worker。
+
+JC041 discard-6的实际错误为`TypeError: fetch failed`，原因链`SocketError: other side closed`，耗时26514.679158ms。[本地锁定依赖源码映射](evidence/jc035-recovery-2026-10-19/jc041-transport-stack-mapping.json)把`[worker eval]:32:22`定位到Miniflare `core/proxy/fetch-sync.ts`的子线程fetch；该机制转发异常时未保留具体夹具await位置。可观察异常位于同步绑定代理传输，没有业务值断言差异；socket关闭根因仍未证明，也未证明与旧JC066异常同因，不据CPU/OOM样本归因。23:09:38 UTC，前项完整文件结束后，已按[启动核验](evidence/jc035-recovery-2026-10-19/jc041-complete-followup-gate.json)以相同十三核、依赖、断言、并发和预算串行启动完整JC041文件（10正常场景、35坏档），保留实际结果再判定闭合范围。
+
+完整Native release1358、前端1431、Native/WASM383命令/78坏档及四客户端15命令的旧通过范围未重复运行：141输入、实际WASM、Worker和前端资产字节未变化，原生产构建源码至验证代码的唯一业务/测试路径差异是已列出的入桌夹具一行。原失败回执、外置PNG和封存候选仍按旧环境边界保留；本次不是线上实局，没有发布或合main。剩余工作是适用补验、最终身份复核和父串行独审；不能把原失败轮与补验合写成一轮722项全绿。
 
 ## 整张卡与运行行为
 
@@ -91,7 +100,8 @@
 | 本地四客户端浏览器 | 15个真实UI命令、3次D1重开、15份原回执重试、页面异常0；1366×768 |
 | 完整Worker原轮 | **69文件自然完成，722项中720通过、2失败；退出1，0取消/跳过；141输入前后相同** |
 | 新环境定向复验 | MSJC03入桌完整文件1/1、原样JC066 target-reveal单例1/1通过；旧空间预检退出78的原回执仍保留 |
-| 新环境完整Worker | **运行中，已有1条失败标记，无自然退出**；见最新计数/资源检查点，不能以定向或日志前缀替代完整结果 |
+| 新环境完整Worker | **69文件自然完成，722项中717通过、5失败；退出1，0取消/跳过；输入与187项产物不变**；4项为独立本地包装漏建，1项为JC041代理fetch/SocketError，适用补验尚未完成 |
+| 新环境完整文件补验 | pass-history 4/4通过；JC041完整45项运行中。原完整失败轮保持717/722，补验单独计数 |
 
 JC035专属Native为13场景/145命令/4拒绝/620投影/47坏档；当前89的XQ23九场景为72命令/5拒绝/324投影/31坏档，借控出局为166命令/1拒绝/668投影。三份新的压缩见证都在实际WASM比较后才写入，141源码绑定直接核对当前文件，没有重签原88状态。
 

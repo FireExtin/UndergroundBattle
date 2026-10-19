@@ -1,6 +1,6 @@
 # JC035新环境恢复WIP证据
 
-验证代码固定为`5056e4e65f0e1edacf617ce12175d67f86eee0fc`。本目录仅记录恢复、构建、已自然完成的两项定向复验，以及现有完整Worker的中途前缀；不是完整资格通过或发布回执。
+验证代码固定为`5056e4e65f0e1edacf617ce12175d67f86eee0fc`。本目录记录恢复、构建、两项定向复验、完整Worker的原始中途前缀及自然终态，以及后续独立补验；当前补验尚未完成，不是完整资格通过或发布回执。
 
 - 迁移包13,882,939B，SHA256 `02a4d8fb4ababa881589b80fff7252ac0406063f99defcd0d75574b468b75c43`；27个原始文件13,841,070B均验证并恢复，13个实际ABI目录匹配。见[runtime-restoration-verification.json](runtime-restoration-verification.json)和[runtime-abi-identities.json](runtime-abi-identities.json)。私有Library传输标识、签名URL、xattrs和二进制载体没有纳入Git。
 - 生产构建自然通过；186个执行/静态文件与旧候选完全相同，唯一不同路径是Wrangler写入当前UTC的`server/README.md`。旧README字节未迁移、未重构或覆盖。原整清单对照的差异与生成器定位分别保留在[初次对照](production-rebuild-verification.json)和[差异分析](production-rebuild-delta-analysis.json)。本次187项清单见[production-recovered.manifest.json](production-recovered.manifest.json)，SHA256 `0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77`。
@@ -28,3 +28,11 @@
 ## 22:05新增失败与前置缺口
 
 [pass-history-failures-checkpoint.json](pass-history-failures-checkpoint.json)保留同一82121运行547个通过用例、5条失败标记的新前缀；新增4项均来自pass-history文件，尚无自然退出或具体异常。[pass-history-build-prerequisite-readonly.json](pass-history-build-prerequisite-readonly.json)确认该文件专用的本地Worker目录在新环境缺失，以及固定分支中已有的构建脚本和精确ABI77来源。缺口与失败异常的关联待最终报告核对；当前只读留证，不补建活动依赖、不重试、不修改源码或预算。
+
+## 23:02自然终态与独立补验
+
+原完整Worker自然退出1：69文件、722项，717通过、5失败，0取消/跳过；见[最终回执](runs/worker-full-recovered.exit.json)、[完整原日志](runs/worker-full-recovered.log.gz)和[失败原文](worker-full-recovered.failure-details.txt)。[完整性核验](full-worker-natural-exit-integrity.json)确认141编译输入、74个测试源码、27个载体前后相同，187项候选产物、13个测试WASM、两个Worker及旧失败证据不变；本轮原日志SHA256为`b6728a4c16b5fc195078241618c5f1ff5925eb871917e4a675cad7b9da5cdd6f`。722用例名称/顺序与旧轮仅有已知秘社夹具改名。
+
+4项pass-history均为缺少专用Worker目录的ENOENT，属于恢复准备遗漏，产品断言未执行。23:05已有脚本dry-run补建完成，执行文件与原专用ABI77包装字节一致；见[构建回执](runs/pass-history-worker-recovered.exit.json)与[包装身份](pass-history-wrapper-before-tests.json)。完整4项文件正在复验。JC041的fetch/SocketError栈映射到[Miniflare同步绑定代理](jc041-transport-stack-mapping.json)，关闭根因仍未证明，待完整45项文件复验。保留原失败轮，后续结果单独记录，不把补验与原失败合为一轮全绿。
+
+23:09更新：pass-history完整文件已自然退出0，4/4通过，0取消/跳过；[回执](runs/pass-history-complete-recovered.exit.json)、[完整原日志](runs/pass-history-complete-recovered.log.gz)和[前后核验](pass-history-complete-verification.json)记录37原Native77轨迹、322接受命令、224公开让过记录，以及双端整回合和CAS检查通过。漏建包装的环境遗漏已补齐并复验。前项结束后，[完整JC04145项启动核验](jc041-complete-followup-gate.json)与[原始启动回执](runs/jc041-complete-recovered.started.json)记录同依赖、同十三核、同预算的串行补验，结果仍待自然终态。

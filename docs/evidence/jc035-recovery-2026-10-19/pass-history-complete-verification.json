@@ -1,0 +1,67 @@
+{
+  "verifiedUtc": "2026-10-19T23:09:38.023272+00:00",
+  "validatedCodeSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "completeUnfilteredSourceFile": "sites/test/pass-history-integration.test.mjs",
+  "nodeSummary": {
+    "tests": 4,
+    "suites": 0,
+    "pass": 4,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 197764.560837
+  },
+  "naturalExitCode": 0,
+  "inputsUnchangedDuringRun": true,
+  "durationSeconds": 198.22257357099807,
+  "diagnostics": [
+    {
+      "scenarios": 37,
+      "acceptedCommands": 322,
+      "publicPassRecords": 224,
+      "originalOpaqueStatesEqual": true,
+      "originalCoreViewsEqual": true
+    },
+    {
+      "publicPasses": 48,
+      "windows": [
+        "start/prepare",
+        "start/draw",
+        "action/team:1",
+        "action/team:0",
+        "confrontation/mobility",
+        "confrontation/region:0:investigation:before",
+        "confrontation/region:0:investigation:after",
+        "confrontation/region:0:combat:before",
+        "confrontation/region:0:combat:after",
+        "confrontation/region:0:influence:before",
+        "confrontation/region:0:influence:after",
+        "confrontation/region:1:investigation:before",
+        "confrontation/region:1:investigation:after",
+        "confrontation/region:1:combat:before",
+        "confrontation/region:1:combat:after",
+        "confrontation/region:1:influence:before",
+        "confrontation/region:1:influence:after",
+        "confrontation/region:2:investigation:before",
+        "confrontation/region:2:investigation:after",
+        "confrontation/region:2:combat:before",
+        "confrontation/region:2:combat:after",
+        "confrontation/region:2:influence:before",
+        "confrontation/region:2:influence:after",
+        "end/end"
+      ],
+      "fullTurn": true,
+      "bothClients": true,
+      "reopened": true
+    }
+  ],
+  "independentWrapperAll8FilesUnchangedAfterTests": true,
+  "miniflareDependencyBundleUnchanged": true,
+  "exactOriginalAbi77Wasm": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+  "workerByteIdenticalToOldHistoricalWrapper": true,
+  "confirmedEnvironmentPreparationOmissionCorrected": true,
+  "productLogicOrAssertionsChanged": false,
+  "retryAdded": false,
+  "noOldFailureRoundOverwritten": true
+}

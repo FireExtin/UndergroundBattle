@@ -1,0 +1,85 @@
+✖ failing tests:
+
+test at test/jc041-integration.test.mjs:75:38
+✖ JC041 corrupted discard-6 restores HTTP400 with no D1 writes (26514.679158ms)
+  TypeError: fetch failed
+      at Object.processResponse (/workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:237:16)
+      at /workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:1081:19
+      at /workspace/UndergroundBattle/sites/node_modules/undici/index.js:157:7
+      at async MessagePort.<anonymous> ([worker eval]:32:22) {
+    [cause]: SocketError: other side closed
+        at Socket.onHttpSocketEnd (/workspace/UndergroundBattle/sites/node_modules/undici/lib/dispatcher/client-h1.js:959:22)
+        at Socket.emit (node:events:521:24)
+        at endReadableNT (node:internal/streams/readable:1736:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+  }
+
+test at test/pass-history-integration.test.mjs:48:1
+✖ all 37 original Native77 traces preserve opaque states, core views, journals and duplicate receipts while recording passes (3.121183ms)
+  Error: ENOENT: no such file or directory, scandir '/workspace/undergroundbattle-build/pass-history-worker/server'
+      at readdirSync (node:fs:1631:26)
+      at harness (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:21:8)
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:49:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: '/workspace/undergroundbattle-build/pass-history-worker/server'
+  }
+
+test at test/pass-history-integration.test.mjs:89:1
+✖ timeout, cancellation, pause and late rejection record only committed public passes and preserve their original contexts (1.533484ms)
+  Error: ENOENT: no such file or directory, scandir '/workspace/undergroundbattle-build/pass-history-worker/server'
+      at readdirSync (node:fs:1631:26)
+      at harness (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:21:8)
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:90:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: '/workspace/undergroundbattle-build/pass-history-worker/server'
+  }
+
+test at test/pass-history-integration.test.mjs:137:1
+✖ real HTTP manual passes traverse a complete duel turn; both clients and a reopened Worker see identical event-time history (1.975636ms)
+  Error: ENOENT: no such file or directory, scandir '/workspace/undergroundbattle-build/pass-history-worker/server'
+      at readdirSync (node:fs:1631:26)
+      at harness (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:21:8)
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:138:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: '/workspace/undergroundbattle-build/pass-history-worker/server'
+  }
+
+test at test/pass-history-integration.test.mjs:206:1
+✖ pass metadata shares the command CAS: rollback and concurrent retries leave exactly one committed event (1.390721ms)
+  Error: ENOENT: no such file or directory, scandir '/workspace/undergroundbattle-build/pass-history-worker/server'
+      at readdirSync (node:fs:1631:26)
+      at harness (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:21:8)
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/pass-history-integration.test.mjs:207:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'scandir',
+    path: '/workspace/undergroundbattle-build/pass-history-worker/server'
+  }

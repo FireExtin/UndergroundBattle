@@ -1,0 +1,15 @@
+{
+  "capturedUtc": "2026-10-19T23:09:38.023272+00:00",
+  "scopeFile": "sites/test/jc041-integration.test.mjs",
+  "normalScenarios": 10,
+  "invalidScenarios": 35,
+  "expectedUnfilteredCases": 45,
+  "priorFailure": "JC041 corrupted discard-6 restores HTTP400 with no D1 writes",
+  "purpose": "Whole affected file revalidation after observable Miniflare proxy socket exception; no product/dependency/budget fix claimed.",
+  "clockWorkerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "exactWasmModules": 13,
+  "miniflareBundleSha256": "d6c68c92bc33371e4baa88a1c6da0042b4fbf8c872a297b84e729556f49f9632",
+  "passHistoryWholeFile4PassedAndFinishedFirst": true,
+  "serialNoParallelAppTests": true,
+  "noAssertionDependencyBudgetConcurrencyOrResourceChange": true
+}

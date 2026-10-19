@@ -1,0 +1,53 @@
+{
+  "verifiedUtc": "2026-10-19T23:03:58.247781+00:00",
+  "validatedCodeSha": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "evidenceHeadSha": "2c566bbb84540994cc230539289c75c8ba0ece0a",
+  "fullRunNaturalExitCode": 1,
+  "fullNodeSummary": {
+    "tests": 722,
+    "suites": 0,
+    "pass": 717,
+    "fail": 5,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 15869229.012756
+  },
+  "durationSeconds": 15870.092669661,
+  "finishedUtc": "2026-10-19T23:01:59.103047+00:00",
+  "rawLogSha256": "b6728a4c16b5fc195078241618c5f1ff5925eb871917e4a675cad7b9da5cdd6f",
+  "failureDetailsSha256": "419de4bc2010b907b41d53507bb26850c270dbc0651cc6120cd27e037519e073",
+  "compilerInputsMatchedBeforeAfterAndNow": 141,
+  "workerTestSourceFilesMatchedBeforeAfterAndNow": 74,
+  "exactRuntimeFilesMatchedBeforeAfterAndNow": 27,
+  "productionManifestSha256": "0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77",
+  "productionFilesVerifiedUnchanged": 187,
+  "exactClockWasmModulesVerifiedUnchanged": 13,
+  "standardWorkerSha256": "ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d",
+  "clockWorkerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "oldFailureLogAndDetailsVerifiedUnchanged": true,
+  "same69FileScopeAsBefore": true,
+  "all722CaseNamesAndOrderMatchOldAfterOnlyKnownJc035SocietyRename": true,
+  "normalized722CaseNameOrderSha256": "6a6ec4ebfd7f7afe8878c9e0fdcca7eb796bdc3908f3f8f1a015e783fac302d8",
+  "environmentSetupFailures": {
+    "count": 4,
+    "consumer": "sites/test/pass-history-integration.test.mjs",
+    "exception": "ENOENT scandir",
+    "missingLocalWorker": "/workspace/undergroundbattle-build/pass-history-worker/server",
+    "preflightOmittedIndependentLocalWrapper": true,
+    "productAssertionsNotReached": true
+  },
+  "transportFailure": {
+    "count": 1,
+    "case": "JC041 corrupted discard-6 restores HTTP400 with no D1 writes",
+    "exception": "TypeError: fetch failed",
+    "cause": "SocketError: other side closed",
+    "observedStack": "Undici processResponse237:16 / fetch1081:19 / index157:7 / MessagePort [worker eval]32:22",
+    "underlyingSocketCloseCauseProven": false,
+    "productAssertionValueMismatchObserved": false,
+    "noResourceKernelOrBusinessRootCauseClaim": true
+  },
+  "workspaceAvailableGiB": 26.838,
+  "qualificationComplete": false,
+  "pending": "Build missing local-only wrapper using existing exactABI77 build script; run complete4-case pass-history file and investigate/revalidate JC041 under unchanged assertions,concurrency,budgets. Keep old and new failed full runs separate."
+}

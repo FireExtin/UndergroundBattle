@@ -1,0 +1,53 @@
+{
+  "stage": "pass-history-worker-recovered",
+  "sourceAtLaunch": "2c566bbb84540994cc230539289c75c8ba0ece0a",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/undergroundbattle-build/pass-history-worker",
+    "--",
+    "node",
+    "sites/scripts/build-pass-history-test.mjs"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedUtc": "2026-10-19T23:04:54.724918+00:00",
+  "log": "/workspace/jc035-recovery-20261019/runs/pass-history-worker-recovered.log",
+  "childTimeout": null,
+  "retryAdded": false,
+  "nativeCompilerInputs": 141,
+  "resourcesBefore": {
+    "workspaceAvailableBytes": 28817174528,
+    "memory.current": "2127806464",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 26263926718\nuser_usec 18741313231\nsystem_usec 7522613487\nnice_usec 0\nnr_periods 170213\nnr_throttled 5607\nthrottled_usec 581932660\nnr_bursts 0\nburst_usec 0"
+  },
+  "recorderSha256": "f804f08043b70a2f7ed23b8cc18af4f56c7624cef4f407338dec1e9dab671e25",
+  "environment": {
+    "HEGEMONY_CURRENT_WORKER_DIR": "/workspace/undergroundbattle-build/jc035-worker/server",
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "/workspace/undergroundbattle-build",
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "WRANGLER_SEND_METRICS": "false"
+  },
+  "finishedUtc": "2026-10-19T23:05:05.281098+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 10.553902678999293,
+  "logSha256": "21a709157ac1428826a87fabb0ddbdd9c52838857434bd5939a8557b7626f297",
+  "inputsUnchangedDuringRun": true,
+  "nativeCompilerInputsMatchPinnedWitness": true,
+  "resourcesAfter": {
+    "workspaceAvailableBytes": 28811059200,
+    "memory.current": "2139389952",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 26270440516\nuser_usec 18744605634\nsystem_usec 7525834881\nnice_usec 0\nnr_periods 170298\nnr_throttled 5607\nthrottled_usec 581932660\nnr_bursts 0\nburst_usec 0"
+  },
+  "nodeTestSummary": {},
+  "guard": "Unchanged tools/build-storage.mjs; ordinary workspace disk target/TMPDIR, jobs1, incremental0, 1GiB disk/memory startup minimum."
+}

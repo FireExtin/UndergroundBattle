@@ -1,0 +1,19 @@
+{
+  "mappedAtUtc": "2026-10-19T23:05:08.038406+00:00",
+  "failureCase": "JC041 corrupted discard-6 restores HTTP400 with no D1 writes",
+  "exception": "TypeError: fetch failed",
+  "cause": "SocketError: other side closed",
+  "installedMiniflareVersion": "5.20261001.0-alpha",
+  "installedUndiciVersion": "7.29.1",
+  "dependencyFile": "sites/node_modules/miniflare/dist/src/index.js",
+  "dependencyFileSha256": "d6c68c92bc33371e4baa88a1c6da0042b4fbf8c872a297b84e729556f49f9632",
+  "bundledSourcePath": "src/plugins/core/proxy/fetch-sync.ts",
+  "evalStackLine": 32,
+  "matchedGeneratedLine": "const response = await fetch(url, { method, headers, body, dispatcher });",
+  "mechanism": "Miniflare synchronous host binding proxy sends a fetch in a worker thread and forwards the fetch exception back over MessagePort; stack line32 maps to that fetch.",
+  "inference": "This locates the observable exception in the local binding-proxy transport. The original stack does not retain which harness await was active or establish why the peer socket closed.",
+  "productAssertionDifferenceObserved": false,
+  "underlyingSocketCloseCauseProven": false,
+  "doesNotProveSameRootCauseAsOriginalJc066SocketFailure": true,
+  "noDependencyCodeOrTimeoutMutation": true
+}
