@@ -1,0 +1,51 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ❯ src/game/ObjectActions.test.tsx (19 tests | 1 failed) 33575ms
+     × keeps a chosen object after a mistaken region click and directs the player back to highlighted objects 26824ms
+ ❯ src/game/DeckLibrary.test.tsx (10 tests | 1 failed) 15839ms
+     × copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck 9464ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/DeckLibrary.test.tsx > local named deck editor > copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/game/DeckLibrary.test.tsx:53:3
+     51|     expect(screen.queryByRole('spinbutton')).not.toBeInTheDocument();
+     52|   });
+     53|   it('copies a spell-containing preset, searches transactions, adds on…
+       |   ^
+     54|     const select = vi.fn();
+     55|     const withSpells = { ...catalog, decks: [{ ...catalog.decks[0], ca…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/game/ObjectActions.test.tsx > object actions on a synthetic table > keeps a chosen object after a mistaken region click and directs the player back to highlighted objects
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/game/ObjectActions.test.tsx:17:3
+     15|
+     16| describe('object actions on a synthetic table', () => {
+     17|   it('keeps a chosen object after a mistaken region click and directs …
+       |   ^
+     18|     const submit = vi.fn();
+     19|     const region = { id: 'r0', index: 0, cardId: 'world', name: '纽约', …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 141 passed (143)
+      Tests  2 failed | 1429 passed (1431)
+   Start at  10:29:12
+   Duration  563.25s (transform 16.48s, setup 20.91s, import 43.25s, tests 358.13s, environment 107.97s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

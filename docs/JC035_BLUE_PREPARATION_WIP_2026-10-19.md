@@ -71,3 +71,16 @@ JC035前端将触发来源标为触发编号、原地区及实例标记；必须
 首轮全量前端自然退出1：1430通过、1失败，142文件通过/1文件失败；141编译输入全程稳定。唯一失败是JZ55原图用例对历史扫描投影预期154，而新增JC035后未从此历史投影排除，实际155；现已仅将JC035加入排除列表，历史154及JZ55原图固定哈希仍保留。JC035新增16个前端用例本轮通过；未将局部通过合称全量前端通过。生产构建与后续Worker/本地浏览器尚未开始。
 
 以下重跑完整前端当前源；Native/Rust和WASM字节不变，已通过的完整Native1358与383命令WASM比较不重跑。后续先做生产构建及新场景本地浏览器，再执行完整Worker，使UI修正可在长Worker回归之前闭合。
+
+## 10:41原环境恢复及第二轮前端精确断点
+
+10:38:24 UTC只读连接恢复，原Vitest PID196315与等待流程仍存在，未重启原测试或替换环境。原第二轮于10:38:35 UTC自然退出1：1429通过、2失败，141输入前后完全一致。完整原日志、退出及输入回执已原样保存，不覆盖第一轮。失败准确为：
+
+- ObjectActions.test.tsx:17，object actions on a synthetic table > keeps a chosen object after a mistaken region click and directs the player back to highlighted objects，耗时26824ms。
+- DeckLibrary.test.tsx:53，local named deck editor > copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck，耗时9464ms。
+
+两项最终均为Test timed out in 5000ms，无值断言差异；栈仅指向对应测试声明。没有据此认定目录变更或本批trigger-order导致失败，也没有修改业务、断言、夹具、setup或延长预算。原测试源保持基线。
+
+保持默认5000ms，单工作进程并显式no-file-parallelism隔离执行这两个原文件，自然退出0：29/29通过；上述原用例本次分别984ms、455ms。资源前后样本无新增cgroup throttled或OOM计数，但不能据此证明原失败根因。以下以相同5000ms预算显式串行执行完整前端、记录逐用例输出，不将隔离29通过合计为全量通过。
+
+第二轮失败后流程已停止，生产、clock Worker、本地浏览器及完整Worker尚未运行。Native/Rust和WASM产物保持原字节，已通过部分不重复跑。

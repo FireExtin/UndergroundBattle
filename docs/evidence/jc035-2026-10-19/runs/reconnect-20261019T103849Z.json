@@ -1,0 +1,11 @@
+{
+  "utc": "20261019T103849Z",
+  "scope": "Read-only status snapshot after transport reconnect; original running test preserved, no retry or environment replacement.",
+  "originalLog": "/workspace/jc035-evidence-20261019/web-full-second.log",
+  "snapshot": "/workspace/jc035-evidence-20261019/web-full-second.20261019T103849Z.partial.log",
+  "snapshotBytes": 2462,
+  "snapshotSha256": "0673c0e2c09b355f0f7d236070250de24f0b67eced149049d9d3c486d73176ad",
+  "finalExitReceiptExists": true,
+  "nativeInputs": 141,
+  "changedNativeInputs": []
+}

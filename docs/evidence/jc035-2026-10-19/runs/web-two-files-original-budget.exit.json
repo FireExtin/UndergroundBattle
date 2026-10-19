@@ -1,0 +1,26 @@
+{
+  "stage": "web-two-files-original-budget",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "--reporter=verbose",
+    "src/game/ObjectActions.test.tsx",
+    "src/game/DeckLibrary.test.tsx"
+  ],
+  "startedUtc": "2026-10-19T10:40:13.823262+00:00",
+  "finishedUtc": "2026-10-19T10:40:26.402652+00:00",
+  "exitCode": 0,
+  "durationSeconds": 12.579694359999849,
+  "log": "/workspace/jc035-evidence-20261019/web-two-files-original-budget.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

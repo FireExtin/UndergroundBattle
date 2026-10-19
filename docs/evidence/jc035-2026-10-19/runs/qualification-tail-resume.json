@@ -1,0 +1,15 @@
+{
+  "source": "e74a51d4b7030a5c9d48df442b7e7252be7d5c47",
+  "scope": "Serial qualification only; no deployment, main merge, old artifact overwrite, or source rewrite.",
+  "startedUtc": "2026-10-19T10:29:10.643943+00:00",
+  "stages": [
+    {
+      "name": "web-full-second",
+      "exitCode": 1
+    }
+  ],
+  "nativeInputSha256": "0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98",
+  "passed": false,
+  "failure": "web-full-second failed; preserve all outputs and original failed receipts",
+  "finishedUtc": "2026-10-19T10:38:35.935429+00:00"
+}

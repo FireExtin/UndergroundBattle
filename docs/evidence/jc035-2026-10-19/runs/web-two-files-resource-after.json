@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-19T10:40:38.478708+00:00",
+  "resources": {
+    "cpu.max": "400000 100000\n",
+    "cpu.stat": "usage_usec 61753416609\nuser_usec 51912989717\nsystem_usec 9840426891\nnice_usec 0\nnr_periods 533509\nnr_throttled 23231\nthrottled_usec 1297369253\nnr_bursts 0\nburst_usec 0\n",
+    "memory.max": "17179869184\n",
+    "memory.current": "10639532032\n",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n"
+  }
+}

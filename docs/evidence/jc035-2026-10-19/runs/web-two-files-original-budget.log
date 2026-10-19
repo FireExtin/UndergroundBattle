@@ -1,0 +1,47 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=1 --no-file-parallelism --reporter=verbose src/game/ObjectActions.test.tsx src/game/DeckLibrary.test.tsx
+
+
+ RUN  v4.1.2 /workspace/UndergroundBattle/web
+
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > keeps a chosen object after a mistaken region click and directs the player back to highlighted objects 984ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > shows description-only distinctions as separately named object actions 263ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > keeps ability, mode, and explicit sacrifice alternatives distinct while narrowing target highlights to the chosen action 219ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > selects a player directly from their highlighted mat and leaves a target-only action on its own card 296ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > keeps old-room actions with an unavailable source reachable globally without guessing an object identity 75ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > blocks an unprojected target without offering numbered blind selections 122ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > blocks a selected target removed from the projection even if revision and legal action stay unchanged 356ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > blocks an old-room global action whose destination is not projected 31ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > replaces seven funeral combination buttons with player graveyard targets and confirms the untouched legal action once 421ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > only opens legal graveyard candidates and never reconstructs a concealed target from the catalog 230ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > cancels locally by button or Escape, while Escape in the reader closes only the reader 467ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > rejects non-target clicks, switches legal targets, and blocks busy or uncertain confirmation 612ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > invalidates an expired target even when the replacement has the same printed card 323ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > drops all local selections on a room switch with colliding versions and instance IDs 275ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > drops all local selections on a viewer switch with colliding versions and instance IDs 268ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > keeps a private search in its modal and resets expired options without exposing them in player zones 596ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > preserves old/new response envelopes and explicit sacrifice costs (modern=false) 270ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > preserves old/new response envelopes and explicit sacrifice costs (modern=true) 262ms
+ ✓ src/game/ObjectActions.test.tsx > object actions on a synthetic table > exposes mounted attachment actions through their own object, and keeps unrelated deployments out of region actions 256ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > copies a preset, names and saves it, reloads it, and selects a full public draft 597ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > saves an incomplete draft while blocking selection, then filters and adjusts cards 458ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > copies a spell-containing preset, searches transactions, adds one, and selects the corrected deck 455ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > shows copy violations immediately and allows a draft to be saved for later correction 271ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > never enables adding regions or unsupported cards and searches only the supplied catalog 185ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > keeps obsolete draft provenance until the user explicitly revalidates it 162ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > recovers from corrupt storage and reports a failed save without selecting an unsaved draft 160ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > keeps the deleted draft save-as action available after a real quota failure and allows retry 289ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > retains a saved draft and permits a later deletion when writing its deletion marker fails 1ms
+ ✓ src/game/DeckLibrary.test.tsx > local named deck editor > does not certify custom decks when construction metadata is missing 91ms
+
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  10:40:14
+   Duration  11.63s (transform 521ms, setup 323ms, import 635ms, tests 9.00s, environment 1.25s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
