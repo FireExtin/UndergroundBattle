@@ -1,0 +1,31 @@
+{
+  "source": "31949d778d83ea2f88957b10f812df20bc7a9499",
+  "scope": "Serial qualification only; no deployment, main merge, old artifact overwrite, or source rewrite.",
+  "startedUtc": "2026-10-19T10:41:49.808596+00:00",
+  "stages": [
+    {
+      "name": "web-full-third-original-budget",
+      "exitCode": 0
+    },
+    {
+      "name": "production89-first",
+      "exitCode": 0
+    },
+    {
+      "name": "clock-worker89-first",
+      "exitCode": 0
+    },
+    {
+      "name": "browser-jc035-first",
+      "exitCode": 0
+    },
+    {
+      "name": "worker-full-first",
+      "exitCode": 1
+    }
+  ],
+  "nativeInputSha256": "0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98",
+  "passed": false,
+  "failure": "worker-full-first failed; preserve all outputs and original failed receipts",
+  "finishedUtc": "2026-10-19T12:48:40.273414+00:00"
+}

@@ -7,7 +7,7 @@ import path from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
 const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc035-worker/server');
-for(const societyId of ['MSJC01'])test(`JC035 in ${societyId} enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`,async t=>{
+for(const societyId of ['MSJC03'])test(`JC035 in ${societyId} enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`,async t=>{
   const persist=mkdtempSync(path.join(tmpdir(),'jc035-entry-'));
   const options=convertV4MiniflareOptions({name:'jc035-entry',resourcePersistencePath:persist,modulesRoot:worker,modules:[
     {type:'ESModule',path:path.join(worker,'worker.js')},

@@ -1,0 +1,17 @@
+{
+  "format": "jc035-entry-fixture-correction-v1",
+  "confirmedFailure": "11 !== 0 at sites/test/jc035-entry.test.mjs:31:12",
+  "change": "MSJC01 yellow -> MSJC03 blue; one literal only",
+  "oldTestSha256": "541f84a99a21a23f649452d49629a2bcd2f9a916b91cb40a8af1ca265fa6e242",
+  "newTestSha256": "661b4090bc1a53a0e1272a73634a593860300d14dc42b5fd85409ec8bd464b4c",
+  "catalogCarrierSha256": "d4e71ecf71850448000b08f7b5e5424cab05986c156ce765350c22cedd4c64e6",
+  "originalReadOnlyAuditSha256": "05edd9b7d55c47ceaff857e218e4072316a0fd9cb4136607514acf0d9fb02e84",
+  "oldYellowDraftCards": 39,
+  "oldYellowDraftMissing": 11,
+  "blueDraftCards": 50,
+  "blueDraftJc035Copies": 3,
+  "invalidBlueCountBeforeNeutralPadding": 24,
+  "unchangedJc066TestAndSessionAssertionsSinceBaseline": true,
+  "validationAfterCorrection": "Not started: unchanged build-storage preflight exit78 below1GiB.",
+  "noRuntimeBusinessOrTimeoutChange": true
+}

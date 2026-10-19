@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP：完整Worker仍在原进程运行，已观察两项失败，详细断言待最终报告；本材料尚未交付完整批次独审，不能发布。**
+**WIP：完整Worker自然退出1，722项中720通过、2失败。入桌夹具已最小修正但未验证；JC066为测试内socket关闭异常，原样保留。后续验证被1GiB磁盘启动守卫阻塞，不能发布。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -17,7 +17,7 @@
 | 标准生产Worker | `ba792492721a5bbf96a5af5bada80c9d3d3d72411b50d9aaaa92f7cd5184f15d` |
 | 构建后、完整Worker前清单 | 187文件 /142,256,926B；`8695312fbc911f79e247f03816fc22932eb87911ef77fad1ac7418cb788f9148` |
 
-构建后清单见[production89-before-worker.manifest.json](evidence/jc035-2026-10-19/production89-before-worker.manifest.json)。编译源码之后的提交仅为测试投影修正、测试见证和证据文档；当前生产代码与该编译源码一致。最终证据提交及完整Worker结果待填写。
+构建后清单见[production89-before-worker.manifest.json](evidence/jc035-2026-10-19/production89-before-worker.manifest.json)。编译源码之后的提交仅为测试投影/入桌夹具修正、测试见证和证据文档；当前生产代码与该编译源码一致。完整Worker结果与待验证修正见下文；最终证据提交为本材料所在提交，不改变上述编译和构建身份。
 
 ## 整张卡与运行行为
 
@@ -39,7 +39,7 @@
 | [jc035_tests.rs](../rust-game/src/jc035_tests.rs) | 原图字段、阈值与敌我/出局矩阵、普通付费、图标奖励、原地区、47坏档、13条原生轨迹 |
 | [ChoicePanel.tsx](../web/src/game/ChoicePanel.tsx) / [JC035Native89.test.jsx](../web/src/game/JC035Native89.test.jsx) | 来源分辨、换选、下一待选清空选中、确认与跳过边界 |
 | [jc035-integration.test.mjs](../sites/test/jc035-integration.test.mjs) | 原生轨迹逐命令经HTTP/D1、重开与原回执；坏档零写入 |
-| [jc035-entry.test.mjs](../sites/test/jc035-entry.test.mjs) | 普通API创建/加入/准备/开始、已命名完整牌组和六张起手；当前完整轮存在失败待核 |
+| [jc035-entry.test.mjs](../sites/test/jc035-entry.test.mjs) | 普通API创建/加入/准备/开始、已命名完整牌组和六张起手；原轮夹具失败已确认并最小修正，修正后未验证 |
 | [jc035-retained-http.test.mjs](../sites/test/jc035-retained-http.test.mjs) / [jc035-kernel-routing.test.mjs](../sites/test/jc035-kernel-routing.test.mjs) | 原77–88载体、同一十三核Worker路由与当前89严格拒绝旧身份 |
 | [xq23-current-owner-integration.test.mjs](../sites/test/xq23-current-owner-integration.test.mjs) | 新89真实借控出局/返还轨迹，独立保留原88/P2见证 |
 
@@ -61,7 +61,8 @@
 | 完整前端第三轮 | 143文件、1431用例通过；单工作进程、显式无文件并行、原5000ms预算 |
 | 生产候选 | 两套TS检查、Vite、Wrangler dry-run通过；13个精确WASM |
 | 本地四客户端浏览器 | 15个真实UI命令、3次D1重开、15份原回执重试、页面异常0；1366×768 |
-| 完整Worker | **原69文件运行中，已观察JC035入桌和JC066 target-reveal两项失败；尚无最终结果** |
+| 完整Worker原轮 | **69文件自然完成，722项中720通过、2失败；退出1，0取消/跳过；141输入前后相同** |
+| 修正后必要验证 | **未启动**；只运行原守卫预检，退出78：1,031,143,424B可用，最低1,073,741,824B |
 
 JC035专属Native为13场景/145命令/4拒绝/620投影/47坏档；当前89的XQ23九场景为72命令/5拒绝/324投影/31坏档，借控出局为166命令/1拒绝/668投影。三份新的压缩见证都在实际WASM比较后才写入，141源码绑定直接核对当前文件，没有重签原88状态。
 
@@ -77,9 +78,20 @@ JC035的真实Room轨迹包括四席与双席、放弃、阈值4、JC005来源�
 
 前端第一轮1430通过/1历史扫描投影失败，修正只补JC035历史排除项，保留154历史数量和原图固定哈希。第二轮1429通过/2失败，详细错误均为原5000ms超时，栈只指测试声明；未有值差异。原文件/断言/夹具/setup和业务未改，隔离29/29及完整第三轮1431/1431在相同预算通过。未据此编造原失败根因，原失败回执保留。
 
-完整Worker中途新增的两项失败为`JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`与`JC066 ABI86 HTTP target-reveal`。原进程继续运行；断言数值、栈、最终退出与必要修正验证待自然结束后填写。当前不能认定第二项为目录、核版本、业务、资源或超时问题。
+完整Worker于12:48:40 UTC自然退出1，耗时7071.559秒；同轮722项中720通过、2失败，0取消/跳过，141输入前后不变。原完整日志SHA256为`2b93a35abf6d5ea3dc2b5e53992a9a5f1925bd0626e81e7761e7004c977bb217`。原件、退出与输入回执、最终失败详单已完整保留，见[汇总](evidence/jc035-2026-10-19/worker-full-first.summary.json)与[原失败详单](evidence/jc035-2026-10-19/worker-full-first.failure-details.txt)。
+
+- `JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`：1561.527847ms；`AssertionError [ERR_ASSERTION]`，实际11、预期0；栈为`jc035-entry.test.mjs:31:12 draft`、`:36:49`。黄色MSJC01同色副本只能凑39张，缺11，在有效牌组创建请求发出前失败。现仅把该测试的一处MSJC01改为蓝色MSJC03；原生目录只读复算可凑含3张JC035的50张。原断言、业务和预算未改，修正后测试尚未启动，不能宣称通过。
+- `JC066 ABI86 HTTP target-reveal`：37202.791364ms；`TypeError: fetch failed`，原因链`SocketError: other side closed`；栈落在Undici fetch `index.js:237:16`、`:1081:19`、Undici `index.js:157:7`、`[worker eval]:32:22`及`client-h1.js:959:22`。未出现业务值断言差异，也未证明socket关闭根因；不归因为目录、核版本、业务、资源或测试预算。该测试与session断言自批次基线未改，保留原样待验证，不添加重试掩盖异常。
+
+JC035本身13条HTTP/D1轨迹及47坏档、同一实际十三核HTTP/D1、原88见证重放均在此完整轮通过。当前89的166命令借控拥有者自然出局、清除、计分和回执也通过；原88/P2独立166命令轨迹及原12核检查分别通过。这些局部通过没有被合称为完整Worker全绿。
+
+12:50只运行未改的`node tools/build-storage.mjs`启动预检，无测试命令；自然退出78，target与TMPDIR同一普通磁盘可用1,031,143,424B，低于1,073,741,824B。预检明确“没有开始构建，没有存储回退或清理”；见[原预检输出](evidence/jc035-2026-10-19/runs/validation-preflight-after-worker.log)。执行连接正常，原Worker已自然结束；当前阻塞是新验证的磁盘门槛，不是执行连接中断。按父协调保留数据，不删除缓存、数据库或证据，不降低守卫或改用tmpfs。
+
+后续先恢复至少1GiB普通磁盘可用空间，再串行验证修正后的完整`jc035-entry.test.mjs`和原样`JC066 ABI86 HTTP target-reveal`；根据实际结果处理必要修正。完成适用验证后才交父串行独审，不能现在发布。
 
 原v70的ABI88仍为3,353,559B、SHA256 `5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3`，保留原139输入绑定、原九场景72命令/31坏档及P2 166命令见证。原31,197B付费状态SHA256仍为`76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65`；当前89原生载入会拒绝其旧身份，旧兼容核执行原字节。新旧JS包装哈希相同不代表WASM身份相同。
+
+完整Worker后重新核对候选全部187路径、字节和哈希，原构建清单保持`8695312fbc911f79e247f03816fc22932eb87911ef77fad1ac7418cb788f9148`。标准Worker、当前89 WASM和clock目录13个WASM均未变；[运行后核对记录](evidence/jc035-2026-10-19/production89-after-worker.verification.json)明确标为资格未通过，没有新构建或部署。
 
 11:09静态封存去重只对三个生成client目录的510个路径进行同字节、同权限/uid/gid硬链接归并，保留全部路径并再核候选187项清单，净回收300,277,760字节；活动Worker模块、WASM、源码、数据库与缓存均未改。明细见[封存静态去重记录](evidence/jc035-2026-10-19/sealed-candidate-static-dedup-summary.json)。任何重建前必须先将整个候选输出目录移出封存，不能原位覆盖共享inode。
 

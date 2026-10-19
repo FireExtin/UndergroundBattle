@@ -1,0 +1,19 @@
+{
+  "stage": "worker-full-first",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python3",
+    "-c",
+    "import os,subprocess,sys;from pathlib import Path;files=sorted(str(p) for p in Path('sites/test').glob('*.test.mjs'));sys.exit(subprocess.call(['node','--test','--test-concurrency=1',*[str(Path(p).relative_to('sites')) for p in files]],cwd='sites',env=dict(os.environ,HEGEMONY_CURRENT_WORKER_DIR='/workspace/undergroundbattle-build/jc035-worker/server')))"
+  ],
+  "startedUtc": "2026-10-19T10:50:48.692732+00:00",
+  "finishedUtc": "2026-10-19T12:48:40.251291+00:00",
+  "exitCode": 1,
+  "durationSeconds": 7071.558598107993,
+  "log": "/workspace/jc035-evidence-20261019/worker-full-first.log",
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchangedDuringRun": true,
+  "guard": "All build/test commands launched through unchanged tools/build-storage.mjs; ordinary-disk target and TMPDIR, jobs1, incremental0,1GiB disk/memory startup minimum."
+}

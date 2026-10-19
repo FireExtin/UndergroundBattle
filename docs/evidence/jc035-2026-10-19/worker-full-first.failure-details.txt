@@ -1,0 +1,34 @@
+✖ failing tests:
+
+test at test/jc035-entry.test.mjs:10:35
+✖ JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (1561.527847ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  11 !== 0
+  
+      at draft (file:///workspace/UndergroundBattle/sites/test/jc035-entry.test.mjs:31:12)
+      at TestContext.<anonymous> (file:///workspace/UndergroundBattle/sites/test/jc035-entry.test.mjs:36:49)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 11,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc066-integration.test.mjs:37:41
+✖ JC066 ABI86 HTTP target-reveal (37202.791364ms)
+  TypeError: fetch failed
+      at Object.processResponse (/workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:237:16)
+      at /workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:1081:19
+      at /workspace/UndergroundBattle/sites/node_modules/undici/index.js:157:7
+      at async MessagePort.<anonymous> ([worker eval]:32:22) {
+    [cause]: SocketError: other side closed
+        at Socket.onHttpSocketEnd (/workspace/UndergroundBattle/sites/node_modules/undici/lib/dispatcher/client-h1.js:959:22)
+        at Socket.emit (node:events:521:24)
+        at endReadableNT (node:internal/streams/readable:1736:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+  }

@@ -1,0 +1,50 @@
+{
+  "format": "jc035-full-worker-first-summary-v1",
+  "sourceAtLaunch": "31949d778d83ea2f88957b10f812df20bc7a9499",
+  "headAtEvidenceSeal": "2241257f8564e0ed0d56dd105bfce5fdfdd805dd",
+  "startedUtc": "2026-10-19T10:50:48.692732+00:00",
+  "finishedUtc": "2026-10-19T12:48:40.251291+00:00",
+  "naturalExitCode": 1,
+  "tests": 722,
+  "passed": 720,
+  "failed": 2,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "nativeCompilerInputs": 141,
+  "nativeCompilerInputsUnchanged": true,
+  "logSha256": "2b93a35abf6d5ea3dc2b5e53992a9a5f1925bd0626e81e7761e7004c977bb217",
+  "failureDetailsSha256": "96805bf9422aa9a95939b0fffecadd29ae91ded346635818564a2e730490bbcc",
+  "failures": [
+    {
+      "name": "JC035 in MSJC01 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen",
+      "durationMs": 1561.527847,
+      "error": "AssertionError [ERR_ASSERTION]",
+      "actual": 11,
+      "expected": 0,
+      "stack": [
+        "sites/test/jc035-entry.test.mjs:31:12 (draft)",
+        "sites/test/jc035-entry.test.mjs:36:49"
+      ],
+      "confirmedScope": "Test draft chooses yellow MSJC01 and cannot fill 50 cards; no room creation request has occurred for the valid draft."
+    },
+    {
+      "name": "JC066 ABI86 HTTP target-reveal",
+      "durationMs": 37202.791364,
+      "error": "TypeError: fetch failed",
+      "cause": "SocketError: other side closed",
+      "stack": [
+        "sites/node_modules/undici/lib/web/fetch/index.js:237:16",
+        "sites/node_modules/undici/lib/web/fetch/index.js:1081:19",
+        "sites/node_modules/undici/index.js:157:7",
+        "[worker eval]:32:22",
+        "sites/node_modules/undici/lib/dispatcher/client-h1.js:959:22"
+      ],
+      "businessAssertionDifference": null,
+      "causeAttribution": "Observed transport exception inside test; not attributed to catalog, kernel, business logic, timeout budget or execution connection. Needs unchanged-case verification."
+    }
+  ],
+  "notAnAllGreenRun": true,
+  "noTestRestartDuringOriginalRun": true,
+  "allOriginalEvidencePreserved": true
+}

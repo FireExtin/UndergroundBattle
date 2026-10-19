@@ -1,0 +1,229 @@
+{
+  "format": "jc035-entry-fixture-readonly-audit-v1",
+  "utc": "2026-10-19T11:02:32.055668+00:00",
+  "scope": "Read-only arithmetic against exact fresh Native catalog; not a test rerun or final Worker assertion diagnosis. Original full Worker inputs unchanged.",
+  "catalogCarrierSha256": "d4e71ecf71850448000b08f7b5e5424cab05986c156ce765350c22cedd4c64e6",
+  "testSha256": "541f84a99a21a23f649452d49629a2bcd2f9a916b91cb40a8af1ca265fa6e242",
+  "records": [
+    {
+      "societyId": "MSJC01",
+      "societyColor": "黄",
+      "requestedBeforeNeutralPadding": 24,
+      "remainingBeforeAssertion": 0,
+      "generatedBeforeAssertion": 24,
+      "cards": [
+        {
+          "cardId": "JC035",
+          "count": 3
+        },
+        {
+          "cardId": "JC002",
+          "count": 3
+        },
+        {
+          "cardId": "JC003",
+          "count": 3
+        },
+        {
+          "cardId": "JC004",
+          "count": 3
+        },
+        {
+          "cardId": "JC005",
+          "count": 3
+        },
+        {
+          "cardId": "JC008",
+          "count": 3
+        },
+        {
+          "cardId": "XQ03",
+          "count": 3
+        },
+        {
+          "cardId": "JC001",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "societyId": "MSJC01",
+      "societyColor": "黄",
+      "requestedBeforeNeutralPadding": 50,
+      "remainingBeforeAssertion": 11,
+      "generatedBeforeAssertion": 39,
+      "cards": [
+        {
+          "cardId": "JC035",
+          "count": 3
+        },
+        {
+          "cardId": "JC002",
+          "count": 3
+        },
+        {
+          "cardId": "JC003",
+          "count": 3
+        },
+        {
+          "cardId": "JC004",
+          "count": 3
+        },
+        {
+          "cardId": "JC005",
+          "count": 3
+        },
+        {
+          "cardId": "JC008",
+          "count": 3
+        },
+        {
+          "cardId": "XQ03",
+          "count": 3
+        },
+        {
+          "cardId": "JC001",
+          "count": 3
+        },
+        {
+          "cardId": "JC006",
+          "count": 3
+        },
+        {
+          "cardId": "JC007",
+          "count": 3
+        },
+        {
+          "cardId": "WM003",
+          "count": 3
+        },
+        {
+          "cardId": "LC01",
+          "count": 3
+        },
+        {
+          "cardId": "JZ02",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "societyId": "MSJC03",
+      "societyColor": "蓝",
+      "requestedBeforeNeutralPadding": 24,
+      "remainingBeforeAssertion": 0,
+      "generatedBeforeAssertion": 24,
+      "cards": [
+        {
+          "cardId": "JC035",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "XQ16",
+          "count": 3
+        },
+        {
+          "cardId": "JC036",
+          "count": 3
+        },
+        {
+          "cardId": "JZ27",
+          "count": 3
+        },
+        {
+          "cardId": "XQ14",
+          "count": 3
+        },
+        {
+          "cardId": "JC029",
+          "count": 3
+        },
+        {
+          "cardId": "JC030",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "societyId": "MSJC03",
+      "societyColor": "蓝",
+      "requestedBeforeNeutralPadding": 50,
+      "remainingBeforeAssertion": 0,
+      "generatedBeforeAssertion": 50,
+      "cards": [
+        {
+          "cardId": "JC035",
+          "count": 3
+        },
+        {
+          "cardId": "XQ12",
+          "count": 3
+        },
+        {
+          "cardId": "XQ16",
+          "count": 3
+        },
+        {
+          "cardId": "JC036",
+          "count": 3
+        },
+        {
+          "cardId": "JZ27",
+          "count": 3
+        },
+        {
+          "cardId": "XQ14",
+          "count": 3
+        },
+        {
+          "cardId": "JC029",
+          "count": 3
+        },
+        {
+          "cardId": "JC030",
+          "count": 3
+        },
+        {
+          "cardId": "JC032",
+          "count": 3
+        },
+        {
+          "cardId": "JZ24",
+          "count": 3
+        },
+        {
+          "cardId": "JC031",
+          "count": 3
+        },
+        {
+          "cardId": "JZ22",
+          "count": 3
+        },
+        {
+          "cardId": "BQ028",
+          "count": 3
+        },
+        {
+          "cardId": "BQ030",
+          "count": 3
+        },
+        {
+          "cardId": "WM023",
+          "count": 3
+        },
+        {
+          "cardId": "JC037",
+          "count": 3
+        },
+        {
+          "cardId": "BQ035",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

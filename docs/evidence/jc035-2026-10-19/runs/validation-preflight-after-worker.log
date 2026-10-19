@@ -1,0 +1,4 @@
+Build preflight failed:
+/workspace/undergroundbattle-build/target: 1031143424 bytes available; require at least 1073741824 bytes on disk.
+/workspace/undergroundbattle-build/tmp: 1031143424 bytes available; require at least 1073741824 bytes on disk.
+No build started; no storage fallback or cleanup was performed.
