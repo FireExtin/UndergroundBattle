@@ -1,0 +1,31 @@
+{
+  "format": "jc035-recovery-first-new-worker-failure-checkpoint-v1",
+  "checkedAtUtc": "2026-10-19T20:17:20.609591+00:00",
+  "sourceAtLaunch": "5056e4e65f0e1edacf617ce12175d67f86eee0fc",
+  "docsEvidenceHead": "47ab47947f71e4f652fd42b0d5cdd0f09eb67575",
+  "sessionId": 82121,
+  "sameExistingRunNotRestarted": true,
+  "fullFileScope": 69,
+  "expectedTests": 722,
+  "expectedTotalRequiresNaturalNodeSummary": true,
+  "naturalExitReceiptPresent": false,
+  "observedPassedCaseMarkers": 160,
+  "observedFailureMarkers": 1,
+  "interimCountsAreNotFinal": true,
+  "failures": [
+    {
+      "line": 285,
+      "reporterText": "\u2716 JC041 corrupted discard-6 restores HTTP400 with no D1 writes (26514.679158ms)"
+    }
+  ],
+  "errorStackAndAssertionDetailsNotYetReported": true,
+  "newFailureRootCause": "Not yet determined; do not attribute to socket, catalog, kernel, business, resource or budget before final evidence.",
+  "originalSocketCloseRootCauseStillUnproven": true,
+  "partialLog": {
+    "path": "runs/worker-full-recovered.20261019T201720Z.first-failure.partial.log.gz",
+    "rawPrefixBytes": 35889,
+    "rawPrefixSha256": "2fced5ac6035cd9c16b78b6aab4a27fcfd375e807038bc02a1dd1313099c259e",
+    "boundedPrefix": true
+  },
+  "next": "Let this original run finish naturally; preserve final exception and cause chain, then diagnose before any new fix/revalidation."
+}

@@ -1,0 +1,34 @@
+{
+  "format": "jc035-new-worker-failure-read-only-resource-sample-v1",
+  "observedAtUtc": "2026-10-19T20:15:56.395627+00:00",
+  "scope": "Read-only live sample after the failure marker while adjacent cases continued. It does not establish the exception or cause.",
+  "observedPassedLines": 155,
+  "observedFailureLines": 1,
+  "logBytes": 34923,
+  "lastLogUpdateUtc": "2026-10-19T20:15:52.099903+00:00",
+  "currentMemoryBytes": 4155883520,
+  "maximumMemoryBytes": 17179869184,
+  "memoryEvents": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0,
+    "oom_group_kill": 0
+  },
+  "cpuStat": {
+    "usage_usec": 10328290144,
+    "user_usec": 7263543530,
+    "system_usec": 3064746613,
+    "nice_usec": 0,
+    "nr_periods": 70327,
+    "nr_throttled": 3026,
+    "throttled_usec": 335210941,
+    "nr_bursts": 0,
+    "burst_usec": 0
+  },
+  "workspaceAvailableGiBRounded": 27.174,
+  "naturalExitReceiptPresent": false,
+  "errorOrStackLinesInCurrentLog": [],
+  "noRootCauseAttribution": true
+}
