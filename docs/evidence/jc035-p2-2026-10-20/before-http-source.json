@@ -1,0 +1,9 @@
+{
+  "capturedUtc": "2026-10-19T23:56:14.234134+00:00",
+  "probeSource": "before_http_probe.mjs",
+  "probeSourceSha256": "ac57bcf697f7549506cdef65158edf57080d1c7ef85e8176814a722efb80e9a8",
+  "clockWorkerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "wasmSha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640",
+  "productCodeNotModifiedYet": true,
+  "intendedResult": "Observe pre-fix erroneous WASM andHTTP read/pause acceptance; this is a vulnerability reproduction,not a product test pass."
+}

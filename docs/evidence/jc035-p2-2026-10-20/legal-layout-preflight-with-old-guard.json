@@ -1,0 +1,7 @@
+{
+  "capturedUtc": "2026-10-20T00:23:18.626382+00:00",
+  "oldProbeUnmodified": true,
+  "stdout": "CASE departed-pending-unsupported GAME_ACCEPTED=true ROOM_ACCEPTED=true\nGAME departed-pending-unsupported pending=true stack=0 effects=0 window=Some(Prepare) undecided=1\nROOM departed-pending-unsupported revision=12 pending=true stack=0 effects=0\nCASE departed-accepted GAME_ACCEPTED=true ROOM_ACCEPTED=true\nGAME departed-accepted pending=false stack=1 effects=0 window=Some(Prepare) undecided=0\nROOM departed-accepted revision=13 pending=false stack=1 effects=0\nCASE changed-controller-accepted GAME_ACCEPTED=true ROOM_ACCEPTED=true\nGAME changed-controller-accepted pending=false stack=1 effects=0 window=Some(Prepare) undecided=0\nROOM changed-controller-accepted revision=13 pending=false stack=1 effects=0\n",
+  "note": "The manual JSON departure variants are not identical to the host_leaves-generated pending fixture. All three manual variants are accepted by the old guard; the initial expectation that the manual pending variant would reject was wrong. No production guard was weakened. The regression departure control now uses the real supported accepted-frame phase.",
+  "manualPendingFirstTeam": 1
+}

@@ -1,0 +1,32 @@
+{
+  "capturedUtc": "2026-10-19T23:51:54.251667+00:00",
+  "sourceSelector": "scenarios[0](actor-0).steps[4].expected.state",
+  "onlyMutations": [
+    "/game/stack -> []",
+    "/pacing/window -> null"
+  ],
+  "acceptedObservationRetained": true,
+  "allPlayersAliveAndPlaying": true,
+  "files": [
+    {
+      "name": "accepted-original-room.json",
+      "bytes": 32645,
+      "sha256": "208873365247007156968cf79aa707b9bd3bf0e0d6b242c7e8bf69d60778196a"
+    },
+    {
+      "name": "accepted-original-game.json",
+      "bytes": 32248,
+      "sha256": "274dd5ea99fa5675a9f59c6b2b2e7219e35cd484117fa9f16bdf42a29f5849b4"
+    },
+    {
+      "name": "accepted-missing-frame-room.json",
+      "bytes": 31863,
+      "sha256": "f7feb4b383f7c3dad0c5b199575081af6457acb1c55f57473540c11110d0c779"
+    },
+    {
+      "name": "accepted-missing-frame-game.json",
+      "bytes": 31618,
+      "sha256": "9af58ac7be6ce86b2c70268055d7484bcdb1e9f0d1ed2a71bf06395033a0db6a"
+    }
+  ]
+}

@@ -59,3 +59,27 @@ for(const invalid of fixture.invalid)test(`JC035 corrupted ${invalid.name} resto
  assert.equal(before.commands.length,0);assert.equal(before.journal.length,0);
  t.diagnostic(JSON.stringify({invalid:invalid.name,http400:rejected,realD1Reopen:true,roomCommandsJournalUnchanged:true}));
 });
+
+for(const restore of fixture.legalRestores)test(`JC035 P2 legal restore ${restore.name}`,async t=>{
+ const h=await harness(t,{name:restore.name,initial:{state:restore.state,views:restore.views}}),before=await h.snapshot();
+ for(let reopen=0;reopen<2;reopen++){
+  if(reopen)await h.reopen();
+  for(let seat=0;seat<restore.views.length;seat++){
+   const result=await h.api('state',seat);assert.equal(result.status,200,restore.name);
+   assertPublicView(result.body,restore.views[seat]);
+  }
+  assert.deepEqual(await h.snapshot(),before,restore.name+' restore is read-only and does not pump');
+ }
+ if(restore.continuation){
+  const r=restore.continuation,result=await h.api('commands',r.seat,r.command);
+  assert.equal(result.status,200,JSON.stringify(result.body));assertPublicView(result.body,r.expected.view);
+  assert.equal((await h.store().room(h.id)).state,r.expected.state);
+  const journal=await h.db().prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(h.id,r.expected.version).first();
+  assertSessionJournal(journal.entry,r.expected.journal);
+  const after=await h.snapshot();await h.reopen();
+  const retry=await h.api('commands',r.seat,r.command);assert.equal(retry.status,200);assert.deepEqual(retry.body,result.body);
+  assert.deepEqual(await h.snapshot(),after);
+ }
+ t.diagnostic(JSON.stringify({restore:restore.name,validBeforeAndAfterD1Reopen:true,readOnlyLoadNoPump:true,
+  realPendingContinuation:!!restore.continuation,localSyntheticDatabaseRetained:true}));
+});

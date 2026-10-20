@@ -1,0 +1,57 @@
+{
+  "case": "accepted-missing-frame",
+  "phase": "before-fix, vulnerability expected and observed",
+  "originalStateSha256": "208873365247007156968cf79aa707b9bd3bf0e0d6b242c7e8bf69d60778196a",
+  "invalidStateSha256": "f7feb4b383f7c3dad0c5b199575081af6457acb1c55f57473540c11110d0c779",
+  "wasmViewIncorrectlyAcceptedForSeats": 4,
+  "wasmPauseIncorrectlyAccepted": true,
+  "httpReads": [
+    {
+      "reopen": 0,
+      "seat": 0,
+      "status": 200
+    },
+    {
+      "reopen": 0,
+      "seat": 1,
+      "status": 200
+    },
+    {
+      "reopen": 0,
+      "seat": 2,
+      "status": 200
+    },
+    {
+      "reopen": 0,
+      "seat": 3,
+      "status": 200
+    },
+    {
+      "reopen": 1,
+      "seat": 0,
+      "status": 200
+    },
+    {
+      "reopen": 1,
+      "seat": 1,
+      "status": 200
+    },
+    {
+      "reopen": 1,
+      "seat": 2,
+      "status": 200
+    },
+    {
+      "reopen": 1,
+      "seat": 3,
+      "status": 200
+    }
+  ],
+  "httpPauseStatus": 200,
+  "readOnlySnapshotUnchangedAcrossReopen": true,
+  "committedCommands": 1,
+  "committedJournalRows": 1,
+  "beforeSnapshotSha256": "fd559d92da1c839cd02342c2211f02b9087a71d3490bb5be6fe5b64d25831729",
+  "afterSnapshotSha256": "adac211211b5889d127da80f3c1f9c771d9ca2ae8095990e9c89ba77f8d8781d",
+  "noPrivateAuthHeadersOrTokensRecorded": true
+}

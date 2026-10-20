@@ -1,0 +1,52 @@
+{
+  "stage": "p2-before-two-loaders",
+  "sourceAtLaunch": "ecf2236e53817c011f503042bc71eb3c48cc4861",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python3",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/run_native_probe.py",
+    "before"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedUtc": "2026-10-19T23:54:44.369879+00:00",
+  "log": "/workspace/jc035-recovery-20261019/runs/p2-before-two-loaders.log",
+  "childTimeout": null,
+  "retryAdded": false,
+  "nativeCompilerInputs": 141,
+  "resourcesBefore": {
+    "workspaceAvailableBytes": 28672487424,
+    "memory.current": "1970159616",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 29213677995\nuser_usec 20946914585\nsystem_usec 8266763409\nnice_usec 0\nnr_periods 191118\nnr_throttled 6059\nthrottled_usec 625638630\nnr_bursts 0\nburst_usec 0"
+  },
+  "recorderSha256": "f804f08043b70a2f7ed23b8cc18af4f56c7624cef4f407338dec1e9dab671e25",
+  "environment": {
+    "HEGEMONY_CURRENT_WORKER_DIR": null,
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "/workspace/undergroundbattle-build",
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "WRANGLER_SEND_METRICS": "false"
+  },
+  "finishedUtc": "2026-10-19T23:54:46.004424+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 1.6317598640016513,
+  "logSha256": "89fb5f1e1785f0ee1c1e25d258bd954e9edf28b6fae5aa1e5e04cf5bf06a554b",
+  "inputsUnchangedDuringRun": true,
+  "nativeCompilerInputsMatchPinnedWitness": true,
+  "resourcesAfter": {
+    "workspaceAvailableBytes": 28664991744,
+    "memory.current": "2010710016",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 29215424468\nuser_usec 20947583934\nsystem_usec 8267840533\nnice_usec 0\nnr_periods 191134\nnr_throttled 6059\nthrottled_usec 625638630\nnr_bursts 0\nburst_usec 0"
+  },
+  "nodeTestSummary": {},
+  "guard": "Unchanged tools/build-storage.mjs; ordinary workspace disk target/TMPDIR, jobs1, incremental0, 1GiB disk/memory startup minimum."
+}

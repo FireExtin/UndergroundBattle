@@ -9,6 +9,8 @@ const moduleUrl=import.meta.url,root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
 export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.81-jc035-preparation-candidate',engineVersion:'rust-v0.2.89-jc035-preparation-candidate'};
 export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','optional-decline','threshold-four','source-destroyed-response','hand-growth-response','late-shrink-no-retroactive-trigger','same-controller-order','won-original-region','ordinary-attach','duel-preparation'].sort();
+export const legalRestoreNames=['live-pending','live-queued-undecided','live-accepted','declined-without-container','resolved-without-container',
+ 'eliminated-actor-undecided','eliminated-actor-accepted','finished-undecided','finished-accepted','departed-source-accepted','changed-controller-accepted'].sort();
 export function assertSources(binding){
  const old=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi88/native-source-binding.json')));
  const names=Object.keys(old.files).concat(['rust-game/src/jc035.rs','rust-game/src/jc035_tests.rs']).sort();
@@ -32,10 +34,20 @@ export function validateNative(raw){
    state=r.expected.state;commands++;
   }
  }
- const invalidNames=[...Array.from({length:24},(_,i)=>'prepare-shape-'+i),...Array.from({length:13},(_,i)=>'frame-shape-'+i),...Array.from({length:7},(_,i)=>'entity-shape-'+i),...Array.from({length:2},(_,i)=>'attach-shape-'+i),'resolved-event-replay'].sort();
+ const invalidNames=[...Array.from({length:24},(_,i)=>'prepare-shape-'+i),...Array.from({length:13},(_,i)=>'frame-shape-'+i),...Array.from({length:7},(_,i)=>'entity-shape-'+i),...Array.from({length:2},(_,i)=>'attach-shape-'+i),'resolved-event-replay',
+  'orphan-undecided-pending','orphan-undecided-partial-choice','orphan-accepted-frame'].sort();
  assert.deepEqual(raw.invalid.map(c=>c.name).sort(),invalidNames);
  for(const c of raw.invalid){assert(c.gameError&&c.roomError);assert.equal(typeof c.state,'string');assert.match(c.roomId,/^[0-9a-f]{24}$/);}
- const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};assert.deepEqual(counts,raw.counts);
+ assert.deepEqual(raw.legalRestores.map(c=>c.name).sort(),legalRestoreNames);
+ let restoreContinuationCommands=0;
+ for(const c of raw.legalRestores){
+  assert.equal(typeof c.gameState,'string');assert.equal(typeof c.state,'string');assert.equal(c.views.length,4);
+  if(c.continuation){const r=c.continuation;assert.equal(c.name,'live-pending');assert.equal(r.serverNowMs,'0');
+   assert.equal(r.expected.outcome,'accepted');assert.equal(r.expected.changed,true);assert.equal(r.expected.errorCode??null,null);
+   assert.equal(r.views.length,4);assert.deepEqual(r.expected.view,r.views[r.seat]);restoreContinuationCommands++;}
+ }
+ const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length,
+  legalRestores:raw.legalRestores.length,restoreContinuationCommands};assert.deepEqual(counts,raw.counts);
  return counts;
 }
 export function loadFixture(){
@@ -57,6 +69,13 @@ export function compare(f,abi,bytes){
   for(let seat=0;seat<4;seat++)assert.throws(()=>abi.view(c.state,seat),error);
   assert.throws(()=>abi.applyRoom(c.state,0,JSON.stringify({commandId:'invalid-'+c.name,expectedVersion:c.revision,action:{kind:'pauseRoom'}}),'0'),error);
   assert.throws(()=>abi.pollRoom(c.state,0,'0'),error);
+ }
+ for(const c of f.legalRestores){
+  c.views.forEach((view,seat)=>assert.deepEqual(JSON.parse(abi.view(c.state,seat)),view,c.name+' legal restore'));
+  const poll=JSON.parse(abi.pollRoom(c.state,0,'0'));assert.equal(poll.changed,false,c.name+' loading must not pump');assert.equal(poll.state,c.state);
+  if(c.continuation){const r=c.continuation;
+   assert.deepEqual(JSON.parse(abi.applyRoom(c.state,r.seat,JSON.stringify(r.command),r.serverNowMs)),r.expected,c.name+' real pending continuation');
+   r.views.forEach((view,seat)=>assert.deepEqual(JSON.parse(abi.view(r.expected.state,seat)),view,c.name+' continued view'));}
  }
  return {...f.counts,nativeInputs:141,wasmSha256:f.wasmSha256,nativeRawSha256:f.raw.sha256,allOpaqueStatesJournalsAndActualSeatViewsEqual:true};
 }

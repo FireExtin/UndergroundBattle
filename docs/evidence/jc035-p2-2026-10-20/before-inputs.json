@@ -1,0 +1,71 @@
+{
+  "capturedUtc": "2026-10-19T23:45:42.230601+00:00",
+  "beforeSourceHead": "ecf2236e53817c011f503042bc71eb3c48cc4861",
+  "productCodeStillOriginal5056": true,
+  "compilerInputsStillOriginal141": true,
+  "sourceFixture": "rust-game-wasm/tests/jc035Native89.fixture.json.gz",
+  "fixtureSha256": "412eeabefa2c99a313040d04f7b77fb3cd24f8643f4fb800e993911ba9b1e9f3",
+  "sourceSelector": "wrapper.raw.json.scenarios[0](actor-0).steps[4].state",
+  "sourceBytes": 33229,
+  "sourceSha256": "98aa2e997a51b959a646e2a9e09e5cde46a1ab47c833bb32898932e4c66a8425",
+  "onlyMutation": "/game/pending -> null",
+  "noLossyU64JsonSerialization": true,
+  "roomId": "0000000000000000000d9490",
+  "revision": 12,
+  "choiceId": "i258",
+  "sourceId": "i256",
+  "originalCommand": {
+    "action": {
+      "action": {
+        "choiceId": "i258",
+        "kind": "choose",
+        "selected": [
+          "i256"
+        ]
+      },
+      "kind": "game"
+    },
+    "commandId": "actor-0-4",
+    "expectedVersion": 12
+  },
+  "allPlayersAliveAndPlaying": true,
+  "emptyStackEffectsAndPacingWindow": true,
+  "undecidedObservationRetained": true,
+  "files": [
+    {
+      "path": "abi89-pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "abi89-pkg/hegemony_wasm_bg.wasm",
+      "bytes": 3470546,
+      "sha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640"
+    },
+    {
+      "path": "abi89-pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    },
+    {
+      "path": "missing-pending-game.json",
+      "bytes": 31590,
+      "sha256": "a6348d5385473a9b31888f32a761967ea46c981fe7e4487b35e66f6ba8f82e6e"
+    },
+    {
+      "path": "missing-pending-room.json",
+      "bytes": 31835,
+      "sha256": "4f7006543975d73f31729f5035116fd73b136118c2f69b50ac3275a4c78294bd"
+    },
+    {
+      "path": "original-game.json",
+      "bytes": 32984,
+      "sha256": "327b79e3236244151decc7ec707873cc14349b398103028bc81f131d7cf2622d"
+    },
+    {
+      "path": "original-room.json",
+      "bytes": 33229,
+      "sha256": "98aa2e997a51b959a646e2a9e09e5cde46a1ab47c833bb32898932e4c66a8425"
+    }
+  ]
+}

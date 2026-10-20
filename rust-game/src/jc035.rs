@@ -431,6 +431,22 @@ impl Game {
                 _ => {},
             }
         }
+        // The forward checks bind every container to its observation and reject
+        // duplicates. A live unfinished observation must also have a container.
+        // Elimination and finish legitimately cancel containers without rewriting
+        // these historical decisions; leaving or changing control does not.
+        if self.status == "playing" {
+            if let Some(observation) = &self.jc035_preparation {
+                for entry in &observation.entries {
+                    if !self.players[entry.source.card.controller].eliminated
+                        && matches!(&entry.decision, None | Some(PreparationDecision::Accepted { .. }))
+                        && !seen.contains(&entry.source.card.id)
+                    {
+                        return Err("JC035未完成准备观察必须对应原声明、待选或响应帧".into());
+                    }
+                }
+            }
+        }
         Ok(())
     }
 }

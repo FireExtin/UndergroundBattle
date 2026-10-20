@@ -1,0 +1,50 @@
+{
+  "capturedUtc": "2026-10-20T00:11:50.390204+00:00",
+  "phase": "WIP: Native JC03515/15 passed; exact independent post-fix probe, fresh WASM/HTTP/production/browser still pending",
+  "beforeSourceHead": "ecf2236e53817c011f503042bc71eb3c48cc4861",
+  "onlyProductCompilerChangesNow": [
+    "rust-game/src/jc035.rs",
+    "rust-game/src/jc035_tests.rs"
+  ],
+  "beforeSourceInputWitnessSha256": "0e98a5cb1c714c94ed2bc9c38ace3b48089fcd4a6a466f6fac158de83267fe98",
+  "oldAbi89WasmSha256": "02e36dc9cd760213978dad67ebbcd95392793a64a5e9a5e108ec59eb4fcac640",
+  "oldProductionManifestSha256": "0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77",
+  "oldClockWorkerSha256": "6dc7cf9e217f6be438b8b422e66a91ff725f837e45beacddab8a500a0108e567",
+  "originalCounterexampleBytes": 33229,
+  "originalCounterexampleSha256": "98aa2e997a51b959a646e2a9e09e5cde46a1ab47c833bb32898932e4c66a8425",
+  "missingPendingOnlyChangesGamePendingToNull": true,
+  "twoGameAndRoomLoaderDefectsObserved": [
+    "missing-pending",
+    "accepted-missing-frame"
+  ],
+  "wasmInvalidViewsAcceptedPerCase": 4,
+  "httpInvalidViewsAcceptedPerCase": 8,
+  "httpPauseStatusPerCase": 200,
+  "committedCommandAndJournalRowsPerCase": [
+    1,
+    1
+  ],
+  "reproductionProbePassMeansVulnerabilityObservedNotProductPass": true,
+  "allBeforeRuns141CompilerAnd27RuntimeInputsUnchanged": true,
+  "beforeLinkedNativeLibraryAndProbeBinariesKeptOutsideGit": true,
+  "oldInputsRawStateGzipPreservesU64Precisely": true,
+  "postFixAllSourceWitnessRuntimeAndProductionIdentitiesMustBeNew": true,
+  "independentReviewStillBlockedByP2": true,
+  "old4PngPixelsNotReviewedByIndependentReviewer": true,
+  "parentReportedOldLibraryUpload401NoBypass": true,
+  "updatedUtc": "2026-10-20T00:36:30.739110+00:00",
+  "native02NaturalExit": 0,
+  "native02Passed": 15,
+  "native02Filtered": 1261,
+  "fixedSource141WitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79",
+  "native02Counts": {
+    "commands": 145,
+    "invalidRestores": 50,
+    "legalRestores": 11,
+    "projections": 620,
+    "rejected": 4,
+    "restoreContinuationCommands": 1,
+    "scenarios": 13
+  },
+  "firstFailedRoundKept": true
+}

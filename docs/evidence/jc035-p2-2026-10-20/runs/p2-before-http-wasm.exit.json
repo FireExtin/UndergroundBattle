@@ -1,0 +1,61 @@
+{
+  "stage": "p2-before-http-wasm",
+  "sourceAtLaunch": "ecf2236e53817c011f503042bc71eb3c48cc4861",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "python3",
+    "-c",
+    "import subprocess,sys;sys.exit(subprocess.call([\"node\",\"--test\",\"--test-concurrency=1\",\"/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before_http_probe.mjs\"],cwd=\"sites\"))"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "startedUtc": "2026-10-19T23:56:14.473007+00:00",
+  "log": "/workspace/jc035-recovery-20261019/runs/p2-before-http-wasm.log",
+  "childTimeout": null,
+  "retryAdded": false,
+  "nativeCompilerInputs": 141,
+  "resourcesBefore": {
+    "workspaceAvailableBytes": 28661682176,
+    "memory.current": "1987956736",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 29216637939\nuser_usec 20948106245\nsystem_usec 8268531693\nnice_usec 0\nnr_periods 191278\nnr_throttled 6059\nthrottled_usec 625638630\nnr_bursts 0\nburst_usec 0"
+  },
+  "recorderSha256": "f804f08043b70a2f7ed23b8cc18af4f56c7624cef4f407338dec1e9dab671e25",
+  "environment": {
+    "HEGEMONY_CURRENT_WORKER_DIR": "/workspace/undergroundbattle-build/jc035-worker/server",
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "/workspace/undergroundbattle-build",
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "WRANGLER_SEND_METRICS": "false"
+  },
+  "finishedUtc": "2026-10-19T23:56:39.698007+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 25.2232707209987,
+  "logSha256": "4a1e27cc1fcee5db106f0781f340750aff1ef8b3854bc25c49b952b79ba5f9bc",
+  "inputsUnchangedDuringRun": true,
+  "nativeCompilerInputsMatchPinnedWitness": true,
+  "resourcesAfter": {
+    "workspaceAvailableBytes": 28660035584,
+    "memory.current": "2051751936",
+    "memory.max": "17179869184",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "cpu.stat": "usage_usec 29254064927\nuser_usec 20970741063\nsystem_usec 8283323863\nnice_usec 0\nnr_periods 191530\nnr_throttled 6061\nthrottled_usec 625683521\nnr_bursts 0\nburst_usec 0"
+  },
+  "nodeTestSummary": {
+    "tests": 2,
+    "suites": 0,
+    "pass": 2,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 24780.90725
+  },
+  "guard": "Unchanged tools/build-storage.mjs; ordinary workspace disk target/TMPDIR, jobs1, incremental0, 1GiB disk/memory startup minimum."
+}

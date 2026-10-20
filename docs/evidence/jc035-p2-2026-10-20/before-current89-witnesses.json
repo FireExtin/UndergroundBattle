@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "rust-game-wasm/tests/jc035Native89.fixture.json.gz",
+      "sha256": "412eeabefa2c99a313040d04f7b77fb3cd24f8643f4fb800e993911ba9b1e9f3",
+      "preserved": "before/original-jc035Native89.fixture.json.gz"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23CoreNative89.fixture.json.gz",
+      "sha256": "8e086650350c96c95307dfd97d83b7aa214685faa7f96153bf8063d96ea4b752",
+      "preserved": "before/original-xq23CoreNative89.fixture.json.gz"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23OwnerNative89.fixture.json.gz",
+      "sha256": "adcbf8d27ae824253ced3a5a9594157e6716fad16a8aba0cc404d74f1d03e9eb",
+      "preserved": "before/original-xq23OwnerNative89.fixture.json.gz"
+    }
+  ]
+}

@@ -4,10 +4,14 @@ use serde_json::Value;
 thread_local! { static BAD_EXPORT: std::cell::RefCell<Option<Vec<Value>>> = const { std::cell::RefCell::new(None) }; }
 
 fn reject_restore(original: &Game, changed: Value, name: &str) {
+    reject_restore_with_window(original, changed, name, false);
+}
+fn reject_restore_with_window(original: &Game, changed: Value, name: &str, clear_window: bool) {
     let raw = serde_json::to_string(&changed).unwrap();
     let game_error = Game::from_persisted(&raw).err().unwrap_or_else(|| panic!("Game accepted {name}"));
     let mut room = serde_json::to_value(crate::jc029_tests::envelope(original)).unwrap();
     room["game"] = changed;
+    if clear_window { room["pacing"]["window"] = Value::Null; }
     let state = serde_json::to_string(&room).unwrap();
     let room_error = crate::room::RoomEnvelope::from_persisted(&state).err().unwrap_or_else(|| panic!("Room accepted {name}"));
     BAD_EXPORT.with(|saved| if let Some(rows) = saved.borrow_mut().as_mut() {
@@ -246,6 +250,15 @@ fn jc035_bad_observations_pending_choices_and_frames_reject_both_loaders() {
     let mut g = u::game(); g.room_id = "0000000000000000008900aa".into();
     hands(&mut g, &[4, 4, 3, 4]); let source = attachment(&mut g, 0, 0); preparation(&mut g);
     let initial = serde_json::to_value(&g).unwrap();
+    let mut orphan = initial.clone(); orphan["pending"] = Value::Null;
+    reject_restore(&g, orphan, "orphan-undecided-pending");
+    let mut multiple = u::game(); multiple.room_id = "0000000000000000008900ac".into();
+    hands(&mut multiple, &[4, 4, 3, 4]); attachment(&mut multiple, 0, 0); attachment(&mut multiple, 0, 1);
+    preparation(&mut multiple);
+    let mut partial = serde_json::to_value(&multiple).unwrap();
+    partial["pending"]["resolution"]["JC035PreparationOrder"]["declarations"].as_array_mut().unwrap().pop();
+    partial["pending"]["choice"]["options"].as_array_mut().unwrap().pop();
+    reject_restore(&multiple, partial, "orphan-undecided-partial-choice");
     for variant in 0..24 {
         let mut v = initial.clone();
         match variant {
@@ -294,6 +307,8 @@ fn jc035_bad_observations_pending_choices_and_frames_reject_both_loaders() {
         reject_restore(&g, v, &format!("entity-shape-{variant}"));
     }
     choose(&mut g, &source); let accepted = serde_json::to_value(&g).unwrap();
+    let mut orphan = accepted.clone(); orphan["stack"] = serde_json::json!([]);
+    reject_restore_with_window(&g, orphan, "orphan-accepted-frame", true);
     for variant in 0..13 {
         let mut v = accepted.clone();
         match variant {
@@ -332,6 +347,64 @@ fn jc035_bad_observations_pending_choices_and_frames_reject_both_loaders() {
         } else { v["stack"][0]["card"]["exhausted"] = true.into(); }
         reject_restore(&paid, v, &format!("attach-shape-{variant}"));
     }
+}
+
+fn legal_restore_cases() -> Vec<Value> {
+    let mut pending = u::game(); hands(&mut pending, &[4, 4, 3, 4]);
+    let source = attachment(&mut pending, 0, 0); preparation(&mut pending);
+    let mut queued = pending.clone();
+    let ChoiceResolution::JC035PreparationOrder { declarations } = queued.pending.take().unwrap().resolution else { unreachable!() };
+    queued.effects.extend(declarations.into_iter().map(|declaration| Effect::Declare { declaration }));
+    let mut accepted = pending.clone(); choose(&mut accepted, &source);
+    let mut declined = pending.clone(); u::choose(&mut declined, vec![]);
+    let mut resolved = accepted.clone(); u::top(&mut resolved);
+    assert!(matches!(declined.jc035_preparation.as_ref().unwrap().entries[0].decision, Some(jc035::PreparationDecision::Declined)));
+    assert!(matches!(resolved.jc035_preparation.as_ref().unwrap().entries[0].decision, Some(jc035::PreparationDecision::Resolved { .. })));
+    let mut eliminated_undecided = queued.clone(); eliminated_undecided.eliminate(0);
+    let mut eliminated_accepted = accepted.clone(); eliminated_accepted.eliminate(0);
+    assert_eq!(eliminated_undecided.status, "playing"); assert_eq!(eliminated_accepted.status, "playing");
+    assert!(eliminated_undecided.effects.is_empty() && eliminated_accepted.stack.is_empty());
+    let mut finished_undecided = pending.clone(); finished_undecided.finish(0);
+    let mut finished_accepted = accepted.clone(); finished_accepted.finish(0);
+    let mut departed = accepted.clone(); let host = departed.regions[0].card.id.clone(); departed.host_leaves(&host);
+    assert!(departed.attachments.is_empty());
+    // Explicit shared control layout, not a claim that JC129 targets attachments.
+    let mut controlled = accepted.clone(); controlled.attachments[0].card.controller = 2;
+    let layouts = vec![
+        ("live-pending", pending), ("live-queued-undecided", queued), ("live-accepted", accepted),
+        ("declined-without-container", declined), ("resolved-without-container", resolved),
+        ("eliminated-actor-undecided", eliminated_undecided), ("eliminated-actor-accepted", eliminated_accepted),
+        ("finished-undecided", finished_undecided), ("finished-accepted", finished_accepted),
+        ("departed-source-accepted", departed), ("changed-controller-accepted", controlled),
+    ];
+    layouts.into_iter().enumerate().map(|(index, (name, mut game))| {
+        game.room_id = format!("{:024x}", 890100 + index);
+        let game_state = serde_json::to_string(&game).unwrap();
+        let restored = Game::from_persisted(&game_state).unwrap_or_else(|e| panic!("{name}: {e}"));
+        assert_eq!(serde_json::to_string(&restored).unwrap(), game_state, "{name}: loading must not pump or rebuild");
+        let room = crate::jc029_tests::envelope(&game);
+        let state = serde_json::to_string(&room).unwrap();
+        let restored = crate::room::RoomEnvelope::from_persisted(&state).unwrap_or_else(|e| panic!("{name}: {e}"));
+        assert_eq!(serde_json::to_string(&restored).unwrap(), state, "{name}: Room loading must not pump or rebuild");
+        let views = (0..room.players.len()).map(|seat| room.view(seat, 0)).collect::<Vec<_>>();
+        let continuation = (name == "live-pending").then(|| {
+            let choice = game.pending.as_ref().unwrap();
+            let command = crate::room::RoomCommand { command_id: "p2-restored-choice".into(), expected_version: room.revision,
+                action: crate::room::SessionAction::Game { action: Action { choice_id: Some(choice.choice.id.clone()),
+                    selected: Some(vec![source.clone()]), ..Action::new("choose") } } };
+            let expected = room.transition(choice.seat, Some(command.clone()), 0).unwrap();
+            assert!(expected.changed && expected.error_code.is_none());
+            let after = crate::room::RoomEnvelope::from_persisted(&expected.state).unwrap();
+            serde_json::json!({"seat":choice.seat,"command":command,"serverNowMs":"0","expected":expected,
+                "views":(0..after.players.len()).map(|seat|after.view(seat,0)).collect::<Vec<_>>()})
+        });
+        serde_json::json!({"name":name,"gameState":game_state,"state":state,"views":views,"continuation":continuation})
+    }).collect()
+}
+
+#[test]
+fn jc035_legal_restore_keeps_live_containers_and_cancelled_or_completed_history() {
+    assert_eq!(legal_restore_cases().len(), 11);
 }
 
 pub(crate) fn source_bindings() -> Value {
@@ -529,13 +602,16 @@ fn jc035_native89_actual_room_trajectories_and_rejections() {
     }
     BAD_EXPORT.with(|saved| *saved.borrow_mut() = Some(vec![]));
     jc035_bad_observations_pending_choices_and_frames_reject_both_loaders();
-    let invalid = BAD_EXPORT.with(|saved| saved.borrow_mut().take().unwrap()); assert_eq!(invalid.len(), 47);
+    let invalid = BAD_EXPORT.with(|saved| saved.borrow_mut().take().unwrap()); assert_eq!(invalid.len(), 50);
+    let legal_restores = legal_restore_cases();
     let commands = scenarios.iter().map(|s| s["steps"].as_array().unwrap().len()).sum::<usize>();
     let rejected = scenarios.iter().flat_map(|s| s["steps"].as_array().unwrap()).filter(|r| !r["expected"]["errorCode"].is_null()).count();
     let projections = scenarios.iter().map(|s| s["initial"]["views"].as_array().unwrap().len()
         + s["steps"].as_array().unwrap().iter().map(|r| r["views"].as_array().unwrap().len()).sum::<usize>()).sum::<usize>();
-    let counts = serde_json::json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":projections,"invalidRestores":invalid.len()});
-    let value = serde_json::json!({"format":"jc035-native89-v1","catalog":catalog::catalog(),"sourceBindings":source_bindings(),"scenarios":scenarios,"invalid":invalid,"counts":counts});
+    let counts = serde_json::json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":projections,
+        "invalidRestores":invalid.len(),"legalRestores":legal_restores.len(),"restoreContinuationCommands":1});
+    let value = serde_json::json!({"format":"jc035-native89-v1","catalog":catalog::catalog(),"sourceBindings":source_bindings(),
+        "scenarios":scenarios,"invalid":invalid,"legalRestores":legal_restores,"counts":counts});
     if let Ok(dir) = std::env::var("JC035_NATIVE_DIR") {
         use std::io::Write; std::fs::create_dir_all(&dir).unwrap();
         std::fs::OpenOptions::new().create_new(true).write(true).open(std::path::Path::new(&dir).join("Native89.json"))
