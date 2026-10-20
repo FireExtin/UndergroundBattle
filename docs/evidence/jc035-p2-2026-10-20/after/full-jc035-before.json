@@ -1,0 +1,17 @@
+{
+  "verifiedUtc": "2026-10-20T00:59:22.083443+00:00",
+  "sourceHead": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "source141WitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79",
+  "productionManifestSha256": "28b461d38f3d0140ef7413c62509bbd58be46f88dea5f4141bcab054f6bc4da8",
+  "productionFileCount": 187,
+  "productionWorkerSha256": "695c17c25667d165df429351ab65414dfd7d749e4b5c9a7837a7cfc851e4fb45",
+  "clockWorkerSha256": "eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221",
+  "current89WasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+  "allSealedProductionPkgWitnessAndClockFilesUnchanged": true,
+  "allOriginalFrozen24CarriersUnchanged": true,
+  "preservedPreFixProduction187AndNativeProbesUnchanged": true,
+  "sameEightBeforeStateInputsAndOriginalPkgUnchanged": true,
+  "testRunnerSha256": "e9f83bdd0c108b27e7d51d9e2d3612d55697d18178ce94bd53ab9e3ee26eeae8",
+  "freeWorkspaceBytes": 27987763200,
+  "oldEnvironmentPhysicalFinalHashCheckRemainsParentReleaseGate": true
+}

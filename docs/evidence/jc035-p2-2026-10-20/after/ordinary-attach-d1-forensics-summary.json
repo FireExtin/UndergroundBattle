@@ -1,0 +1,29 @@
+{
+  "capturedUtc": "2026-10-20T01:22:28.712478+00:00",
+  "scope": "Post-naturalexit forensics: copy closed synthetic D1 sqlite/WAL/SHM bytes, query only copies; original DBs never opened or mutated. Directory ordering alone is inference.",
+  "originalSqliteWalShmCopiedWithoutOpeningOriginals": true,
+  "roomId": "0000000000000000000d94a8",
+  "version": 11,
+  "stateSha256": "c306d0e67d086c33e18e2c8e33c7295b2d4de9e9ad2ab9714613d2727b3f4dec",
+  "matchesNativeStateIndex": [
+    3
+  ],
+  "commands": 3,
+  "journal": 3,
+  "originalFilesStillSameHash": true,
+  "sourceFiles": [
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/xq23-http-opX0Ii/d1/miniflare-D1DatabaseObject/2babe81bece0afab84e6f5fdb1a5ee5e05ff7a1f4b1677215eb378b8b865f982.sqlite",
+      "sha256": "97e8d54f8a7255106f66cf1b213c4a4d7b558d21310b1c2bfedc3d0d526dddda"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/xq23-http-opX0Ii/d1/miniflare-D1DatabaseObject/2babe81bece0afab84e6f5fdb1a5ee5e05ff7a1f4b1677215eb378b8b865f982.sqlite-wal",
+      "sha256": "901750aa048b33a869b487e3e97c42b3e6edaf52d5c4f74ae539aa450126200a"
+    },
+    {
+      "path": "/workspace/undergroundbattle-build/tmp/xq23-http-opX0Ii/d1/miniflare-D1DatabaseObject/2babe81bece0afab84e6f5fdb1a5ee5e05ff7a1f4b1677215eb378b8b865f982.sqlite-shm",
+      "sha256": "57608c7238410a9ed74de0455ef8b44f7b9b3fb9292a54d44954c1c040a45357"
+    }
+  ],
+  "specificHarnessAwaitAndSocketCloseCauseStillUnknown": true
+}

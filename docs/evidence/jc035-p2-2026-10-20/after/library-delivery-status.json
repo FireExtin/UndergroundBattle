@@ -1,0 +1,46 @@
+{
+  "startedUtc": "2026-10-20T01:30:53.548420+00:00",
+  "finishedUtc": "2026-10-20T01:30:54.568989+00:00",
+  "action": "Save four requested new browser PNG deliverables and current89 runtime/review ZIP to Library using the official batch helper",
+  "status": "blocked-before-prepare-or-create",
+  "httpStatus": 401,
+  "error": "library upload failed: hosted apps tools/list request failed with HTTP status 401",
+  "filesSaved": 0,
+  "prepareOrCreateStarted": false,
+  "oneHelperInvocationOnly": true,
+  "noDirectWriteFallbackOrAuthenticationBypass": true,
+  "files": [
+    {
+      "file": "original-jc035.png",
+      "bytes": 567912,
+      "sha256": "294dfb5ad8f362c04643ccf2d8671d841202a062c298bb2fff7bc4e12dd5004f"
+    },
+    {
+      "file": "restored-pending-draft.png",
+      "bytes": 470749,
+      "sha256": "64a73ca3078a15fa245fb71ff797c8b119313c7610b176428387067fa258d19d"
+    },
+    {
+      "file": "next-source-after-reopen.png",
+      "bytes": 455210,
+      "sha256": "bfc7fbe5d9884808ce29098e6c69d7ae647fb281c7d16e0fddecfce23b14d21f"
+    },
+    {
+      "file": "resolved-three-regions.png",
+      "bytes": 996718,
+      "sha256": "e14be73d19903fcfb8160ad96056dd5273616006755ddbc85616e966c6690855"
+    },
+    {
+      "file": "HiddenWorld_JC035_P2_100161b_ABI89_review_packet.zip",
+      "bytes": 7364242,
+      "sha256": "0538ef9db85c9a32fdb87bd1e9ff95b019993e57c28a8e557701ebcd97d780b4"
+    }
+  ],
+  "officialHelperSourceSha256": {
+    "library_upload.py": "5bc473dadefe1f68ee8797baaed19d6662642d0ea4bcba128fa12938faa0d767",
+    "library_hosted_apps.py": "97d029b097ace62b744c82dfde20ef6921ed543a33a771ecf6452bd655d11b59",
+    "library_file_transfer.py": "5e1557817be17db06e2375f8c34ed83e948d520242e5ee4cb50a30c7a4c83378"
+  },
+  "localFilesAndEvidencePreserved": true,
+  "remaining": "Restore authentication for the official environment transfer channel, then deliver new images/runtime packet; parent code and pixel review and final old-environment physical carrier hashes remain required."
+}

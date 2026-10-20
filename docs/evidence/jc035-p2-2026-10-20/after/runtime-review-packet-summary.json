@@ -1,0 +1,10 @@
+{
+  "createdUtc": "2026-10-20T01:28:53.991622+00:00",
+  "path": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/review-delivery/HiddenWorld_JC035_P2_100161b_ABI89_review_packet.zip",
+  "bytes": 7364242,
+  "sha256": "0538ef9db85c9a32fdb87bd1e9ff95b019993e57c28a8e557701ebcd97d780b4",
+  "payloadFiles": 200,
+  "embeddedReviewPacketSha256": "75cf3c01c02d11904dce72b8abd6c61d18d0f6ed77898c612763643a81d871a8",
+  "codeAndWitnessCheckpoint": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "candidateNeverDeployed": true
+}

@@ -1,0 +1,17 @@
+{
+  "observedUtc": "2026-10-20T01:16:32.808221+00:00",
+  "stage": "http-jc035-complete-p2-fixed",
+  "activeSession": 60227,
+  "sourceCheckpoint": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "source141StillMatches": true,
+  "observedFailures": [
+    "✖ JC035 ABI89 HTTP ordinary-attach (22883.88021ms)"
+  ],
+  "fullStackNotYetEmitted": true,
+  "naturalExitReceiptPresent": false,
+  "logPrefixBytes": 10540,
+  "logPrefixSha256": "667d9eecd5e2912f8d931db9eff9cf2add950d048e7f96c9bbff92fb5eed9c25",
+  "testNotRestarted": true,
+  "noFailureAttributionYet": true,
+  "ordinaryNormalBehaviorFailureStillRequiresDiagnosis": true
+}

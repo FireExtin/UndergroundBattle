@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP，P2最小修复已取得修前接受/写入与修后Game、Room、WASM拒绝、HTTP20次400且D1零写入的精确对照。新141输入、当前89、三份见证、标准/时钟Worker和完整生产清单均已重新绑定；Native JC03515/15、前端指定16/16、十三核路由14/14、保留核HTTP1/1、MSJC03入桌1/1通过。当前完整74项JC035 HTTP/D1及新浏览器证据仍待完成，父独审未完成；原完整Worker717/722及后续4/4、45/45保留不改，socket根因未知。不发布、不合main。**
+**WIP，P2精确修前接受/写入与修后Game、Room、WASM拒绝、HTTP20次400且D1零写入已完成。新源码、当前89、三份见证、Worker及187项生产清单已绑定。完整受影响HTTP原轮73/74，ordinary-attach代理fetch/SocketError失败保留；同源同产物单项补验1/1通过，分轮统计。新四客户端浏览器15命令/3重开/15原回执、页面异常0，四PNG已生成并由实现者查看；父独审待完成；新图/运行包的官方Library交付在创建前返回401，阻塞记录见下。原完整Worker失败轮保持原样，socket关闭根因未知。仅交固定候选复审，不发布、不合main。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -21,7 +21,20 @@
 | 路由/保留核/入桌 | 路由14/14，含238条原88命令；同一新十三核Worker保留核HTTP1/1（13核/13房/13命令及原回执）；MSJC03入桌完整文件1/1 |
 | 精确坏档WASM/HTTP/D1 | [丢pending](evidence/jc035-p2-2026-10-20/after/missing-pending.http-wasm-rejection.json)及[丢Accepted帧](evidence/jc035-p2-2026-10-20/after/accepted-missing-frame.http-wasm-rejection.json)各10次HTTP400，D1重开前后房间不变、commands/journal各0；Game/Room/WASM错误一致 |
 
-完整回执及原始压缩日志保留于[本次runs](evidence/jc035-p2-2026-10-20/runs/)。原输出5目录556文件已完整改名保留，旧时钟Worker硬链接字节未变；新187项中184路径相同，另为新当前89模块、标准Worker引用和README生成时间，所有客户端字节相同。新完整74项JC035 HTTP/D1（13正常、50坏档、11合法）及四客户端浏览器/新PNG正式传递仍待完成；不重跑旧全量722或前端1431。
+完整回执及原始压缩日志保留于[本次runs](evidence/jc035-p2-2026-10-20/runs/)。原输出5目录556文件已完整改名保留，旧时钟Worker硬链接字节未变；新187项中184旧路径相同，另为新当前89模块、标准Worker引用和README生成时间，所有客户端字节相同。
+
+| 后续受影响完整范围与新浏览器 | 实际分轮结果 |
+| --- | --- |
+| 完整JC035 HTTP/D1原轮 | [74项、73通过、1失败](evidence/jc035-p2-2026-10-20/runs/http-jc035-complete-p2-fixed.exit.json)，自然退出1，0取消/跳过；原日志`648c46e3ef5c89812eb451a93a67a63fd06de92cc8e5a3076ae2168984fb8f90` |
+| ordinary-attach失败定位 | [完整栈](evidence/jc035-p2-2026-10-20/after/http-jc035-complete.failure-details.txt)为Miniflare同步代理fetch的SocketError other side closed；[源码映射](evidence/jc035-p2-2026-10-20/after/ordinary-attach-transport-mapping.json)不证明关闭根因；[D1副本取证](evidence/jc035-p2-2026-10-20/after/ordinary-attach-d1-forensics-summary.json)的3命令/3日志及版本11状态完全匹配Native第3步，原SQLite/WAL/SHM未修改 |
+| 原断言ordinary-attach单项补验 | [1/1、自然退出0](evidence/jc035-p2-2026-10-20/runs/http-ordinary-attach-followup-p2-fixed.exit.json)，5接受命令、48投影、重开及原回执通过；源码、夹具、依赖、产物、预算未改，不称socket根因已修复 |
+| 分轮适用范围核对 | [原73项加单项补验](evidence/jc035-p2-2026-10-20/after/http-jc035-complete.summary.json)覆盖全部74声明范围，保持原轮73/74；13正常合计141接受/4拒绝/1224投影，50坏档500次400且D1不变，11合法恢复88只读投影及1真实续行，载入不泵状态 |
+| 新四客户端浏览器 | [新报告](evidence/jc035-p2-2026-10-20/after/browser-four-clients-report.json)在固定代码/见证`100161b628e56b9153041d952ac0f5d83428ca88`及上述新核/Worker上通过15UI命令、3D1重开、15原回执，页面异常0；Chromium151.0.7922.173 |
+| 新四PNG | [身份与实现者查看记录](evidence/jc035-p2-2026-10-20/after/browser-images.json)，viewport1366×768、full-page图1366×900；独立像素审查未冒称完成，正式Library交付结果另记 |
+
+未重跑旧全量722或前端1431；原完整失败与本次73/74及单项补验独立保留，不能合写为一轮全绿。
+
+新四PNG和当前89运行/审查包本地齐备；[ZIP身份](evidence/jc035-p2-2026-10-20/after/runtime-review-packet-summary.json)为7,364,242B、SHA256 `0538ef9db85c9a32fdb87bd1e9ff95b019993e57c28a8e557701ebcd97d780b4`，200项载荷经排敏。01:30:54 UTC官方批量助手在工具发现阶段返回401，未进入prepare/create、保存0文件；[真实交付结果](evidence/jc035-p2-2026-10-20/after/library-delivery-status.json)和本地原件保留，没有直传替代或认证绕过。官方环境传输认证恢复前，父仍未获得新图的Library交付，不能声称独立像素审查已完成。
 
 ABI77–88仍使用迁入的原件，未重编译；新环境逐项哈希核验不替代父在任何未来发布前对旧环境实际载体的最终哈希检查。旧独审者未见四PNG像素及官方Library401仍如实保留，当前不发布、不合main。
 
@@ -99,7 +112,7 @@ JC041 discard-6的实际错误为`TypeError: fetch failed`，原因链`SocketErr
 | --- | --- |
 | [jc035.rs](../rust-game/src/jc035.rs) | 整张定义、准备观察、可选排序、独立帧、地区UID与恢复守卫 |
 | [engine.rs](../rust-game/src/engine.rs) / [resolution.rs](../rust-game/src/resolution.rs) | 重置后准备时点、实际图标贡献、共同先手特权、响应与结算接入 |
-| [jc035_tests.rs](../rust-game/src/jc035_tests.rs) | 原图字段、阈值与敌我/出局矩阵、普通付费、图标奖励、原地区、47坏档、13条原生轨迹 |
+| [jc035_tests.rs](../rust-game/src/jc035_tests.rs) | 原图字段、阈值与敌我/出局矩阵、普通付费、图标奖励、原地区、50坏档、11合法恢复及真实续行、13条原生轨迹；原47坏档见修前记录 |
 | [ChoicePanel.tsx](../web/src/game/ChoicePanel.tsx) / [JC035Native89.test.jsx](../web/src/game/JC035Native89.test.jsx) | 来源分辨、换选、下一待选清空选中、确认与跳过边界 |
 | [jc035-integration.test.mjs](../sites/test/jc035-integration.test.mjs) | 原生轨迹逐命令经HTTP/D1、重开与原回执；坏档零写入 |
 | [jc035-entry.test.mjs](../sites/test/jc035-entry.test.mjs) | 普通API创建/加入/准备/开始、已命名完整牌组和六张起手；MSJC03修正后的完整文件已1/1通过，新完整轮亦通过该项 |
@@ -114,7 +127,9 @@ JC041 discard-6的实际错误为`TypeError: fetch failed`，原因链`SocketErr
 
 四席组队为0/1对2/3，双席为0对1。同团队不同操控者仍依既有项目席位顺序处理，每个操控者选择自己来源的顺序；没有将此席位顺序宣称为官方多人规则裁定。
 
-## 已完成验证
+## P2修前已完成验证（历史范围）
+
+本表的完整Native1358、前端1431及383命令/78坏档是P2修前历史成绩；P2修后实际新范围和新身份见首节，不能把历史通过改写为修后全量复跑。
 
 | 验证 | 同轮结果与范围 |
 | --- | --- |
@@ -135,7 +150,7 @@ JC035的真实Room轨迹包括四席与双席、放弃、阈值4、JC005来源�
 
 原地区赢取轨迹中，下层准备帧在原地区仍有效时结算，然后完成真实赢区窗口/回底/替换；没有声称该下层帧在替换之后失效。替代地区不继承旧UID效果由明确的共享替换原语单元布局覆盖。
 
-原实现者的本地浏览器记录从当时Native精确待选状态开始，覆盖普通换选、刷新草稿、双击确认、下一来源清空旧选中、决定者权限、原图、HTTP/D1及回执；原实现者记录已查看待选和结算截图。原PNG在旧环境`/workspace/jc035-evidence-20261019/browser-jc035-first/`，Git仅保留[报告](evidence/jc035-2026-10-19/browser-local-report.json)和[图片身份](evidence/jc035-2026-10-19/browser-local-images.json)。**当前独审者尚未看到旧四PNG像素**；父报告官方Library上传返回401，未绕过认证，不能把报告/哈希核对写成像素独审通过。P2修后将另取当前候选截图并分别记录身份与正式传递结果。这些均不是线上实局或全卡组合覆盖。
+原实现者的本地浏览器记录从当时Native精确待选状态开始，覆盖普通换选、刷新草稿、双击确认、下一来源清空旧选中、决定者权限、原图、HTTP/D1及回执；原实现者记录已查看待选和结算截图。原PNG在旧环境`/workspace/jc035-evidence-20261019/browser-jc035-first/`，Git仅保留[报告](evidence/jc035-2026-10-19/browser-local-report.json)和[图片身份](evidence/jc035-2026-10-19/browser-local-images.json)。**当前独审者尚未看到旧四PNG像素**；父报告官方Library上传返回401，未绕过认证，不能把报告/哈希核对写成像素独审通过。P2修后已另取当前候选四张新图，并由实现者查看；新候选及图片身份见首节，正式传递与父独立像素审查分别记录。这些均不是线上实局或全卡组合覆盖。
 
 ## 失败边界与旧版本
 

@@ -1,6 +1,6 @@
 {
   "capturedUtc": "2026-10-20T00:11:50.390204+00:00",
-  "phase": "WIP: exact before/after four-chain fix passed; fresh artifacts and3witnesses bound; complete74JC035 HTTP andbrowser pending",
+  "phase": "WIP fixed candidate local evidence complete; official Library delivery blocked before prepare/create by401; parent independent review pending",
   "beforeSourceHead": "ecf2236e53817c011f503042bc71eb3c48cc4861",
   "onlyProductCompilerChangesNow": [
     "rust-game/src/jc035.rs",
@@ -29,10 +29,9 @@
   "beforeLinkedNativeLibraryAndProbeBinariesKeptOutsideGit": true,
   "oldInputsRawStateGzipPreservesU64Precisely": true,
   "postFixAllSourceWitnessRuntimeAndProductionIdentitiesMustBeNew": true,
-  "independentReviewStillBlockedByP2": true,
   "old4PngPixelsNotReviewedByIndependentReviewer": true,
   "parentReportedOldLibraryUpload401NoBypass": true,
-  "updatedUtc": "2026-10-20T00:57:14.708240+00:00",
+  "updatedUtc": "2026-10-20T01:33:23.002384+00:00",
   "native02NaturalExit": 0,
   "native02Passed": 15,
   "native02Filtered": 1261,
@@ -73,8 +72,38 @@
   "independentReviewRequired": true,
   "oldEnvironmentPhysicalHashGateStillPendingParent": true,
   "remainingScopes": [
-    "complete74 JC035 HTTP/D1",
-    "four-client browser andnew4PNG official delivery",
-    "parent independent review"
-  ]
+    "restore official environment transfer authentication and deliver4newPNG+runtime packet",
+    "parent independent code andnewpixel review",
+    "parent physical old-environment carrier finalhash before futurepublication"
+  ],
+  "candidateCodeAndWitnessCheckpoint": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "originalFull74": {
+    "tests": 74,
+    "pass": 73,
+    "fail": 1,
+    "naturalExit": 1
+  },
+  "ordinaryFollowup": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "naturalExit": 0,
+    "accepted": 5,
+    "projections": 48
+  },
+  "oneUnfilteredGreen74Run": false,
+  "all74ScopesCoveredAcrossSeparateRuns": true,
+  "socketCloseCauseProven": false,
+  "browserPassed": true,
+  "browserCommands": 15,
+  "browserD1Reopens": 3,
+  "browserOriginalReceipts": 15,
+  "browserPageErrors": 0,
+  "newFourPngImplementerViewed": true,
+  "newFourPngIndependentPixelReviewClaimed": false,
+  "officialLibraryDeliveryStatus": "401 at hosted apps tools/list before prepare/create",
+  "officialLibraryFilesSaved": 0,
+  "officialLibraryNoFallbackOrBypass": true,
+  "runtimeReviewPacketBytes": 7364242,
+  "runtimeReviewPacketSha256": "0538ef9db85c9a32fdb87bd1e9ff95b019993e57c28a8e557701ebcd97d780b4"
 }

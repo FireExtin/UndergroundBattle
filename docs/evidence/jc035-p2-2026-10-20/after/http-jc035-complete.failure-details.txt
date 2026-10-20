@@ -1,0 +1,15 @@
+✖ failing tests:
+
+test at test/jc035-integration.test.mjs:9:41
+✖ JC035 ABI89 HTTP ordinary-attach (22883.88021ms)
+  TypeError: fetch failed
+      at Object.processResponse (/workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:237:16)
+      at /workspace/UndergroundBattle/sites/node_modules/undici/lib/web/fetch/index.js:1081:19
+      at /workspace/UndergroundBattle/sites/node_modules/undici/index.js:157:7
+      at async MessagePort.<anonymous> ([worker eval]:32:22) {
+    [cause]: SocketError: other side closed
+        at Socket.onHttpSocketEnd (/workspace/UndergroundBattle/sites/node_modules/undici/lib/dispatcher/client-h1.js:959:22)
+        at Socket.emit (node:events:521:24)
+        at endReadableNT (node:internal/streams/readable:1736:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+  }

@@ -1,0 +1,93 @@
+{
+  "mappedAtUtc": "2026-10-20T01:23:04.319962+00:00",
+  "failureCase": "JC035 ABI89 HTTP ordinary-attach",
+  "exception": "TypeError: fetch failed",
+  "cause": "SocketError: other side closed",
+  "installedMiniflareVersion": "5.20261001.0-alpha",
+  "installedUndiciVersion": "7.29.1",
+  "dependencyFile": "sites/node_modules/miniflare/dist/src/index.js",
+  "dependencyFileSha256": "d6c68c92bc33371e4baa88a1c6da0042b4fbf8c872a297b84e729556f49f9632",
+  "bundledSourcePath": "src/plugins/core/proxy/fetch-sync.ts",
+  "evalStackLine": 32,
+  "matchedGeneratedLine": "const response = await fetch(url, { method, headers, body, dispatcher });",
+  "mechanism": "Miniflare synchronous host binding proxy sends a fetch in a worker thread and forwards the fetch exception back over MessagePort; stack line32 maps to that fetch.",
+  "inference": "This locates the observable exception in the local binding-proxy transport. The original stack does not retain which harness await was active or establish why the peer socket closed.",
+  "productAssertionDifferenceObserved": false,
+  "underlyingSocketCloseCauseProven": false,
+  "doesNotProveSameRootCauseAsOriginalJc066SocketFailure": true,
+  "noDependencyCodeOrTimeoutMutation": true,
+  "rawFailureLogSha256": "648c46e3ef5c89812eb451a93a67a63fd06de92cc8e5a3076ae2168984fb8f90",
+  "newSourceLookupUsesSameVerifiedDependencyBytes": true,
+  "ordinarySixTraceStates": [
+    {
+      "index": 0,
+      "revision": 8,
+      "stateSha256": "6d038b0fc141da2f6c756482a9cddf99b160d9459fae6dbb9604bfc9d356c970",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    },
+    {
+      "index": 1,
+      "revision": 9,
+      "stateSha256": "21f845bb2d7d4c3ef70c42e53df1cf851589ac6c8e9c4e493f605b63b9576c46",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    },
+    {
+      "index": 2,
+      "revision": 10,
+      "stateSha256": "31a744ec3d7a0a217a342a8317e922fb6959d10a439f9c12be1803bb09123fe3",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    },
+    {
+      "index": 3,
+      "revision": 11,
+      "stateSha256": "c306d0e67d086c33e18e2c8e33c7295b2d4de9e9ad2ab9714613d2727b3f4dec",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    },
+    {
+      "index": 4,
+      "revision": 12,
+      "stateSha256": "8498ecf5c4b31b340c71b3baa7407721b48d8a7725d4182ee43f0bea075db3a8",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    },
+    {
+      "index": 5,
+      "revision": 13,
+      "stateSha256": "d68fc91a613e0d27fda1684c0798e0c28db65f8cf5c63d2702e446efe860f2e0",
+      "observationPresent": true,
+      "observationEntries": 0,
+      "status": "playing",
+      "window": {
+        "Action": 0
+      }
+    }
+  ],
+  "ordinaryDirectNativeWasmComparisonPassed": true,
+  "addedReverseLoopHasNoObservationEntriesInTheseSixStates": true,
+  "doesNotProveSameRootCauseAsOtherSocketFailures": true,
+  "normalHttpBehaviorStillRequiresOwnScopedFollowup": true
+}

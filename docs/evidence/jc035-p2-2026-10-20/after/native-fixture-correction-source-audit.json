@@ -1,0 +1,9 @@
+{
+  "capturedUtc": "2026-10-20T01:03:41.755378+00:00",
+  "compilerInputsChangedBetweenNative01And02": [
+    "rust-game/src/jc035_tests.rs"
+  ],
+  "productGuardSha256SameInBothRounds": true,
+  "firstFailureKept": true,
+  "fixtureOnlyCorrectionFromPendingHostCleanupToAcceptedSourceDeparture": true
+}

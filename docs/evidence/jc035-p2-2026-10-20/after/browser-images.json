@@ -1,0 +1,47 @@
+{
+  "inspectedUtc": "2026-10-20T01:27:15.573230+00:00",
+  "implementerViewedNewPixels": true,
+  "independentPixelReviewClaimed": false,
+  "sourceCodeAndWitnessCheckpoint": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "newCurrent89WasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+  "productionWorkerSha256": "695c17c25667d165df429351ab65414dfd7d749e4b5c9a7837a7cfc851e4fb45",
+  "localClockWorkerSha256": "eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221",
+  "reportSha256": "32598211ebe5abb4b2332d76108e4612b2807c9d68cc9033be1a7fe5e6fa499f",
+  "browser": "151.0.7922.173",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "fullPageCapture": true,
+  "syntheticOnlyNoOnlineGameplay": true,
+  "images": [
+    {
+      "file": "original-jc035.png",
+      "bytes": 567912,
+      "sha256": "294dfb5ad8f362c04643ccf2d8671d841202a062c298bb2fff7bc4e12dd5004f",
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "restored-pending-draft.png",
+      "bytes": 470749,
+      "sha256": "64a73ca3078a15fa245fb71ff797c8b119313c7610b176428387067fa258d19d",
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "next-source-after-reopen.png",
+      "bytes": 455210,
+      "sha256": "bfc7fbe5d9884808ce29098e6c69d7ae647fb281c7d16e0fddecfce23b14d21f",
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "resolved-three-regions.png",
+      "bytes": 996718,
+      "sha256": "e14be73d19903fcfb8160ad96056dd5273616006755ddbc85616e966c6690855",
+      "width": 1366,
+      "height": 900
+    }
+  ]
+}
