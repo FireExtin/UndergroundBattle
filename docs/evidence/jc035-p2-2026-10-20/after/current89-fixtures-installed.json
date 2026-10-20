@@ -1,0 +1,48 @@
+[
+  {
+    "path": "rust-game-wasm/tests/jc035Native89.fixture.json.gz",
+    "bytes": 1325428,
+    "sha256": "dbb88c8816b642d12139e42cf7ebe2a590d405092739ea471b704a1991aa77ca",
+    "nativeRawSha256": "85a5b7bf3bdb89f162d8a37efb2bade6e00387287f459456b5124be2cd68e1a9",
+    "counts": {
+      "scenarios": 13,
+      "commands": 145,
+      "rejected": 4,
+      "projections": 620,
+      "invalidRestores": 50,
+      "legalRestores": 11,
+      "restoreContinuationCommands": 1
+    },
+    "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+    "oldPreservedSha256": "412eeabefa2c99a313040d04f7b77fb3cd24f8643f4fb800e993911ba9b1e9f3"
+  },
+  {
+    "path": "rust-game-wasm/tests/xq23CoreNative89.fixture.json.gz",
+    "bytes": 679873,
+    "sha256": "7da89f1bc920577c6b83a9bf918454e2e88eb747765d849266b4d3b2103d1da9",
+    "nativeRawSha256": "2155c92b223ba30f13e99b2d0b071540d1407abc607c71efc92420ef7c7d2e08",
+    "counts": {
+      "scenarios": 9,
+      "commands": 72,
+      "rejected": 5,
+      "projections": 324,
+      "invalidRestores": 31
+    },
+    "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+    "oldPreservedSha256": "8e086650350c96c95307dfd97d83b7aa214685faa7f96153bf8063d96ea4b752"
+  },
+  {
+    "path": "rust-game-wasm/tests/xq23OwnerNative89.fixture.json.gz",
+    "bytes": 1359547,
+    "sha256": "51d8d7ab4c78df83cbe0778d7bdbdf43aa26effe2e09a80e88497b286032eaaf",
+    "nativeRawSha256": "b89678ab3cf13259f625fb1103f382681569e2c1e58d0d1628746f4786481a63",
+    "counts": {
+      "commands": 166,
+      "rejected": 1,
+      "projections": 668,
+      "nativeInputs": 141
+    },
+    "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+    "oldPreservedSha256": "adcbf8d27ae824253ced3a5a9594157e6716fad16a8aba0cc404d74f1d03e9eb"
+  }
+]

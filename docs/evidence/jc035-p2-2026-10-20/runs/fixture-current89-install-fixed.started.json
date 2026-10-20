@@ -1,0 +1,27 @@
+{
+  "stage": "fixture-current89-install-fixed",
+  "startedUtc": "2026-10-20T00:49:23.856810+00:00",
+  "sourceHead": "d2c245606ec377136615c67edfc8434fe7ff8752",
+  "worktreeDiffSha256": "0b41d4b70268185f422e4f2b78775397c0b9ce7f912316d0259a409f5b745f34",
+  "sourceWitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79",
+  "recorderSha256": "c9b3a845d91ae40a30865936cc1c0327940d020fec7c0413672dad7f8046e038",
+  "command": [
+    "python3",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/install_current_witnesses.py"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "allowedArtifactWrites": [
+    "current89Witnesses"
+  ],
+  "childTimeout": null,
+  "retryAdded": false,
+  "environment": {
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "HEGEMONY_CURRENT_WORKER_DIR": null
+  }
+}

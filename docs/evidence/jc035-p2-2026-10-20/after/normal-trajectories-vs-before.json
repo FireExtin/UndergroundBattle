@@ -1,0 +1,31 @@
+{
+  "capturedUtc": "2026-10-20T00:56:22.903341+00:00",
+  "comparisons": [
+    {
+      "fixture": "jc035Native89.fixture.json.gz",
+      "fieldsCompared": {
+        "scenarios": true
+      },
+      "allOrdinaryTraceStateCommandsJournalsAndViewsUnchanged": true
+    },
+    {
+      "fixture": "xq23CoreNative89.fixture.json.gz",
+      "fieldsCompared": {
+        "scenarios": true
+      },
+      "allOrdinaryTraceStateCommandsJournalsAndViewsUnchanged": true
+    },
+    {
+      "fixture": "xq23OwnerNative89.fixture.json.gz",
+      "fieldsCompared": {
+        "initial": true,
+        "steps": true,
+        "beforeElimination": true,
+        "afterElimination": true,
+        "summary": true
+      },
+      "allOrdinaryTraceStateCommandsJournalsAndViewsUnchanged": true
+    }
+  ],
+  "scope": "Ordinary13JC035+9XQ23+owner trajectories remain byte/structure identical to original current89 witnesses; source bindings and new integrity cases are fresh."
+}

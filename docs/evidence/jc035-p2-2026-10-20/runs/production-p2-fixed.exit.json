@@ -1,0 +1,48 @@
+{
+  "stage": "production-p2-fixed",
+  "startedUtc": "2026-10-20T00:49:54.669386+00:00",
+  "sourceHead": "d2c245606ec377136615c67edfc8434fe7ff8752",
+  "worktreeDiffSha256": "3a77bfa1188d902379237966baeeb0109534f39c4468693893a7330191cd31f4",
+  "sourceWitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79",
+  "recorderSha256": "c9b3a845d91ae40a30865936cc1c0327940d020fec7c0413672dad7f8046e038",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--output-dir",
+    "/workspace/UndergroundBattle/sites/dist",
+    "--",
+    "npm",
+    "--prefix",
+    "sites",
+    "run",
+    "build"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "allowedArtifactWrites": [
+    "productionSites",
+    "productionWeb"
+  ],
+  "childTimeout": null,
+  "retryAdded": false,
+  "environment": {
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "HEGEMONY_CURRENT_WORKER_DIR": null
+  },
+  "finishedUtc": "2026-10-20T00:50:52.489304+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 57.80477226199946,
+  "logSha256": "a31c83732819d670dd7c5b88a47c3309067237eb24ea0581e1786a3997ca3e88",
+  "source141AndFrozen77to88Unchanged": true,
+  "changedSnapshotSections": [
+    "productionSites",
+    "productionWeb"
+  ],
+  "unexpectedChangedSections": [],
+  "nodeTestSummary": {},
+  "nativeTestSummaries": []
+}

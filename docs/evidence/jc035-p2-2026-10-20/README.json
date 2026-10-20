@@ -1,6 +1,6 @@
 {
   "capturedUtc": "2026-10-20T00:11:50.390204+00:00",
-  "phase": "WIP: Native JC03515/15 passed; exact independent post-fix probe, fresh WASM/HTTP/production/browser still pending",
+  "phase": "WIP: exact before/after four-chain fix passed; fresh artifacts and3witnesses bound; complete74JC035 HTTP andbrowser pending",
   "beforeSourceHead": "ecf2236e53817c011f503042bc71eb3c48cc4861",
   "onlyProductCompilerChangesNow": [
     "rust-game/src/jc035.rs",
@@ -32,7 +32,7 @@
   "independentReviewStillBlockedByP2": true,
   "old4PngPixelsNotReviewedByIndependentReviewer": true,
   "parentReportedOldLibraryUpload401NoBypass": true,
-  "updatedUtc": "2026-10-20T00:36:30.739110+00:00",
+  "updatedUtc": "2026-10-20T00:57:14.708240+00:00",
   "native02NaturalExit": 0,
   "native02Passed": 15,
   "native02Filtered": 1261,
@@ -46,5 +46,35 @@
     "restoreContinuationCommands": 1,
     "scenarios": 13
   },
-  "firstFailedRoundKept": true
+  "firstFailedRoundKept": true,
+  "exactBeforeAfterNativeProbePassed": true,
+  "sameEightOriginalStateBytesVerified": true,
+  "sameNativeProbeSourceUsedBothPhases": true,
+  "postFixInvalidGameAndRoomAccepted": false,
+  "originalLegalGameAndRoomAccepted": true,
+  "oldBuildOutputDirectoriesRenamedAndPreserved": 5,
+  "oldBuildOutputFilesPreserved": 556,
+  "newCurrent89WasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+  "newProductionWorkerSha256": "695c17c25667d165df429351ab65414dfd7d749e4b5c9a7837a7cfc851e4fb45",
+  "newLocalClockWorkerSha256": "eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221",
+  "newProductionManifestSha256": "28b461d38f3d0140ef7413c62509bbd58be46f88dea5f4141bcab054f6bc4da8",
+  "current89NativeWasmTrajectoryCommands": 383,
+  "current89NativeWasmInvalidRestores": 81,
+  "current89NativeWasmLegalRestores": 11,
+  "current89NativeWasmRestoredContinuationCommands": 1,
+  "targetedFrontendPass": 16,
+  "routerPass": 14,
+  "retainedHttpPass": 1,
+  "msjc03EntryPass": 1,
+  "exactCounterexampleHttpPass": 2,
+  "exactCounterexampleHttp400": 20,
+  "exactCounterexampleCommittedCommands": 0,
+  "exactCounterexampleCommittedJournalRows": 0,
+  "independentReviewRequired": true,
+  "oldEnvironmentPhysicalHashGateStillPendingParent": true,
+  "remainingScopes": [
+    "complete74 JC035 HTTP/D1",
+    "four-client browser andnew4PNG official delivery",
+    "parent independent review"
+  ]
 }

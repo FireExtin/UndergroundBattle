@@ -1,6 +1,6 @@
 # JC035传媒魔咒 / ABI89批次审查材料
 
-**WIP，父独审P2阻断：发现未决定/Accepted准备观察可丢失活动容器而被静态恢复接受。修前原ecf2236候选已实测Game、Room、WASM及HTTP均错误接受，pause还各提交1条命令和日志；正在最小修复与重新绑定源码/见证/ABI89/Worker/完整生产清单。下述5056e4e、旧ABI89与187清单仅为P2修复前历史身份，不能直接作为修后资格。既有Worker失败及4/4、45/45补验保留可复用，socket根因未知；当前不能放行、发布或合main。**
+**WIP，P2最小修复已取得修前接受/写入与修后Game、Room、WASM拒绝、HTTP20次400且D1零写入的精确对照。新141输入、当前89、三份见证、标准/时钟Worker和完整生产清单均已重新绑定；Native JC03515/15、前端指定16/16、十三核路由14/14、保留核HTTP1/1、MSJC03入桌1/1通过。当前完整74项JC035 HTTP/D1及新浏览器证据仍待完成，父独审未完成；原完整Worker717/722及后续4/4、45/45保留不改，socket根因未知。不发布、不合main。**
 
 本批只新增蓝色JC035整张卡，有限池153张普通定义、10张秘社。新核为`rust-v0.2.89-jc035-preparation-candidate` / `limited-v2.81-jc035-preparation-candidate`；保留实际已发布ABI77–88十二个旧核，候选共十三核。没有新增中立或双色卡。共同先手特权改为按实际图标贡献者判断，因而也覆盖既有JZ46地区附属，此共享行为变化在下文单独列出。
 
@@ -8,7 +8,20 @@
 
 修前精确反例、Game/Room实际loader探针、WASM/HTTP接受及D1写入证据见[本次P2材料](evidence/jc035-p2-2026-10-20/README.md)。最小修复保留原容器→观察绑定及拒重复检查，反向要求进行中的存活原观察者，其None/Accepted记录必须仍有原声明、待选或响应帧。真正Declined/Resolved、出局及终局历史可无活动容器；不泵状态、不重建触发，不要求来源仍在场或当前操控者不变。
 
-141项编译输入仅`jc035.rs`与`jc035_tests.rs`变化，当前[v2源码清单](evidence/jc035-p2-2026-10-20/source-141.fixed-02.json)SHA256为`4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79`。新增3类坏档使JC035坏档共50类，另有11种合法恢复及1条真实待选续行命令。Native首轮13通过、2失败，均由新增离场夹具触发既有完整待选选项校验；失败日志及v1源码保留。仅修正夹具为接受后来源离场，产品守卫不变。Native02于00:35:55 UTC自然退出0，15/15通过，141项源码及原ABI77–88前后不变；见[完整回执](evidence/jc035-p2-2026-10-20/runs/native-jc035-fixed-02.exit.json)。修后精确两loader独立探针、WASM/HTTP、新见证绑定、新ABI89/Worker/生产清单及浏览器尚待完成。
+141项编译输入仅`jc035.rs`与`jc035_tests.rs`变化，最小源码检查点为`d2c245606ec377136615c67edfc8434fe7ff8752`。[v2源码清单](evidence/jc035-p2-2026-10-20/source-141.fixed-02.json)SHA256为`4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79`。Native首轮13通过、2失败均为新增离场夹具触发旧完整待选选项校验；原失败/v1输入保留，仅修正为接受后来源离场，产品守卫不变。Native02自然退出0、15/15通过，含50坏档、11合法恢复及1条真实续行；[独立精确双loader对照](evidence/jc035-p2-2026-10-20/after/exact-native-before-after-verification.json)确认八份修前输入原字节未变、同一探针换新链接库后两坏档均拒绝，两个原始合法状态仍接受。
+
+| P2修后候选/已自然结束范围 | 本次实际身份或结果 |
+| --- | --- |
+| 当前89 WASM | 3,471,247B；`df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de` |
+| 标准生产Worker | `695c17c25667d165df429351ab65414dfd7d749e4b5c9a7837a7cfc851e4fb45` |
+| 本地时钟Worker（不得发布） | `eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221` |
+| [完整新生产清单](evidence/jc035-p2-2026-10-20/after/production-p2-fixed.manifest.json) | 187文件/142,257,627B；`28b461d38f3d0140ef7413c62509bbd58be46f88dea5f4141bcab054f6bc4da8`；TS/Vite/Wrangler仅dry-run |
+| 三份新Native/WASM见证 | 383轨迹命令、81坏档、11合法恢复及1续行全部实际比较；[绑定身份](evidence/jc035-p2-2026-10-20/after/current89-fixtures-installed.json) |
+| 正常机制/前端适用性 | [三份普通轨迹与修前完全相同](evidence/jc035-p2-2026-10-20/after/normal-trajectories-vs-before.json)；全部客户端文件逐字节未变，JC035前端指定文件16/16通过 |
+| 路由/保留核/入桌 | 路由14/14，含238条原88命令；同一新十三核Worker保留核HTTP1/1（13核/13房/13命令及原回执）；MSJC03入桌完整文件1/1 |
+| 精确坏档WASM/HTTP/D1 | [丢pending](evidence/jc035-p2-2026-10-20/after/missing-pending.http-wasm-rejection.json)及[丢Accepted帧](evidence/jc035-p2-2026-10-20/after/accepted-missing-frame.http-wasm-rejection.json)各10次HTTP400，D1重开前后房间不变、commands/journal各0；Game/Room/WASM错误一致 |
+
+完整回执及原始压缩日志保留于[本次runs](evidence/jc035-p2-2026-10-20/runs/)。原输出5目录556文件已完整改名保留，旧时钟Worker硬链接字节未变；新187项中184路径相同，另为新当前89模块、标准Worker引用和README生成时间，所有客户端字节相同。新完整74项JC035 HTTP/D1（13正常、50坏档、11合法）及四客户端浏览器/新PNG正式传递仍待完成；不重跑旧全量722或前端1431。
 
 ABI77–88仍使用迁入的原件，未重编译；新环境逐项哈希核验不替代父在任何未来发布前对旧环境实际载体的最终哈希检查。旧独审者未见四PNG像素及官方Library401仍如实保留，当前不发布、不合main。
 

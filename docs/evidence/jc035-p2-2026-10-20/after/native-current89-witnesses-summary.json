@@ -1,0 +1,52 @@
+[
+  {
+    "file": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/native-jc035-02/Native89.json",
+    "bytes": 19576994,
+    "sha256": "85a5b7bf3bdb89f162d8a37efb2bade6e00387287f459456b5124be2cd68e1a9",
+    "source141Matches": true,
+    "countsOrSummary": {
+      "commands": 145,
+      "invalidRestores": 50,
+      "legalRestores": 11,
+      "projections": 620,
+      "rejected": 4,
+      "restoreContinuationCommands": 1,
+      "scenarios": 13
+    }
+  },
+  {
+    "file": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/native-xq23-core/NativeCurrent89.json",
+    "bytes": 9238669,
+    "sha256": "2155c92b223ba30f13e99b2d0b071540d1407abc607c71efc92420ef7c7d2e08",
+    "source141Matches": true,
+    "countsOrSummary": {
+      "commands": 72,
+      "invalidRestores": 31,
+      "projections": 324,
+      "rejected": 5,
+      "scenarios": 9
+    }
+  },
+  {
+    "file": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/native-xq23-owner/NativeCurrentOwner89.json",
+    "bytes": 18455995,
+    "sha256": "b89678ab3cf13259f625fb1103f382681569e2c1e58d0d1628746f4786481a63",
+    "source141Matches": true,
+    "countsOrSummary": {
+      "actualXQ23Conversions": 2,
+      "afterControlledAssets": 10,
+      "beforeControlledAssets": 11,
+      "canLegallyReturnDeadOwnerAsset": false,
+      "commands": 166,
+      "deadOwnerHandRepopulated": false,
+      "eliminatedOwner2AssetSurvives": false,
+      "gameContinues": true,
+      "livingOwner3AssetSurvives": true,
+      "livingOwnerHandReceivedOwnCard": true,
+      "owner2EliminatedByNaturalNextTurnEmptyDraw": true,
+      "readyResourcesAfterElimination": 10,
+      "realJC129Declarations": 2,
+      "teammate3Lives": true
+    }
+  }
+]

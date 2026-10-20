@@ -1,0 +1,43 @@
+{
+  "scope": "Rename existing build directories intact before fresh ABI89 build; no deletion or overwrite of old output or hard-linked inodes.",
+  "oldProductionManifestSha256": "0ba0f278b10e65f71908acdb27b2c5366c3387aaa3616bfe676931577ceaaa77",
+  "oldClockWorkerAndThirteenModulesUnchanged": true,
+  "directories": [
+    {
+      "oldRelativePath": "rust-game-wasm/pkg",
+      "preservedPath": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/pkg89-original-directory",
+      "files": 3,
+      "bytes": 3488782,
+      "treeSha256": "7a966ba59d9901b247f36ea5032ef5acf0d090529ad1f078ab55df48a75afb18"
+    },
+    {
+      "oldRelativePath": "sites/dist",
+      "preservedPath": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/production-sites-dist-original",
+      "files": 187,
+      "bytes": 142256926,
+      "treeSha256": "31f17bf22d6acc93d3200bfe22a5bc14151f2260ef9f309836a1fb449167a798"
+    },
+    {
+      "oldRelativePath": "web/dist",
+      "preservedPath": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/production-web-dist-original",
+      "files": 170,
+      "bytes": 100170815,
+      "treeSha256": "3764b077aeb65ae329bce9b0e25d6af05fc588a2d8f87230963ee40ef1828b32"
+    },
+    {
+      "oldRelativePath": "sites/generated",
+      "preservedPath": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/production-generated-original",
+      "files": 26,
+      "bytes": 41589777,
+      "treeSha256": "68d03a4f235044652984ff0a39f82f4d59bef59afdf728f13fb2261cb9197f3b"
+    },
+    {
+      "oldRelativePath": "sites/public",
+      "preservedPath": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/production-public-original",
+      "files": 170,
+      "bytes": 100170815,
+      "treeSha256": "3764b077aeb65ae329bce9b0e25d6af05fc588a2d8f87230963ee40ef1828b32"
+    }
+  ],
+  "complete556FileArchiveManifestKeptOutsideGit": true
+}

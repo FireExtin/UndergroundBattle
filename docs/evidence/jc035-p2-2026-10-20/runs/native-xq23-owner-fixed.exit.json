@@ -1,0 +1,58 @@
+{
+  "stage": "native-xq23-owner-fixed",
+  "startedUtc": "2026-10-20T00:37:21.478371+00:00",
+  "sourceHead": "d2c245606ec377136615c67edfc8434fe7ff8752",
+  "worktreeDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceWitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79",
+  "recorderSha256": "c9b3a845d91ae40a30865936cc1c0327940d020fec7c0413672dad7f8046e038",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--release",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--no-default-features",
+    "xq23_tests::xq23_real_borrowed_assets_follow_owner_elimination_across_seats_and_preserve_team_score",
+    "--",
+    "--exact",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "cwd": "/workspace/UndergroundBattle",
+  "allowedArtifactWrites": [],
+  "childTimeout": null,
+  "retryAdded": false,
+  "environment": {
+    "CARGO_HOME": "/workspace/jc035-toolchain/cargo",
+    "RUSTUP_HOME": "/workspace/jc035-toolchain/rustup",
+    "CARGO_TARGET_DIR": "/workspace/undergroundbattle-build/target",
+    "TMPDIR": "/workspace/undergroundbattle-build/tmp",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_INCREMENTAL": "0",
+    "HEGEMONY_CURRENT_WORKER_DIR": null
+  },
+  "finishedUtc": "2026-10-20T00:37:25.624598+00:00",
+  "naturalExitCode": 0,
+  "durationSeconds": 4.135122317999048,
+  "logSha256": "9e7d870913d7b9ab8f3a17ae8c307b21263d22f74ec21e92f14f209801290a59",
+  "source141AndFrozen77to88Unchanged": true,
+  "changedSnapshotSections": [],
+  "unexpectedChangedSections": [],
+  "nodeTestSummary": {},
+  "nativeTestSummaries": [
+    {
+      "status": "ok",
+      "pass": "1",
+      "fail": "0",
+      "ignored": "0",
+      "measured": "0",
+      "filtered": "1275"
+    }
+  ]
+}

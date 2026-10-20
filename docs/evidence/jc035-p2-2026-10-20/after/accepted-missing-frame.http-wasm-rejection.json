@@ -1,0 +1,78 @@
+{
+  "case": "accepted-missing-frame",
+  "phase": "after-fix",
+  "invalidStateSha256": "f7feb4b383f7c3dad0c5b199575081af6457acb1c55f57473540c11110d0c779",
+  "exactSameInputAsBefore": true,
+  "nativeGameAndRoomRejected": true,
+  "wasmViewApplyAndPollRejected": true,
+  "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+  "workerSha256": "eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221",
+  "expectedError": "JC035未完成准备观察必须对应原声明、待选或响应帧",
+  "httpResponses": [
+    {
+      "reopen": 0,
+      "operation": "state",
+      "seat": 0,
+      "status": 400
+    },
+    {
+      "reopen": 0,
+      "operation": "state",
+      "seat": 1,
+      "status": 400
+    },
+    {
+      "reopen": 0,
+      "operation": "state",
+      "seat": 2,
+      "status": 400
+    },
+    {
+      "reopen": 0,
+      "operation": "state",
+      "seat": 3,
+      "status": 400
+    },
+    {
+      "reopen": 0,
+      "operation": "commands",
+      "seat": 0,
+      "status": 400
+    },
+    {
+      "reopen": 1,
+      "operation": "state",
+      "seat": 0,
+      "status": 400
+    },
+    {
+      "reopen": 1,
+      "operation": "state",
+      "seat": 1,
+      "status": 400
+    },
+    {
+      "reopen": 1,
+      "operation": "state",
+      "seat": 2,
+      "status": 400
+    },
+    {
+      "reopen": 1,
+      "operation": "state",
+      "seat": 3,
+      "status": 400
+    },
+    {
+      "reopen": 1,
+      "operation": "commands",
+      "seat": 0,
+      "status": 400
+    }
+  ],
+  "http400Count": 10,
+  "databaseSnapshotSha256": "102ef8c1a9ddc29fde427413de37a109f039f460f378ce508847d79f1b3f427c",
+  "roomCommandsAndJournalUnchangedAcrossD1Reopen": true,
+  "committedCommands": 0,
+  "committedJournalRows": 0
+}

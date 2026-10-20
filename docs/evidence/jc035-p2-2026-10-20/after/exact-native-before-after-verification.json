@@ -1,0 +1,84 @@
+{
+  "verifiedUtc": "2026-10-20T00:41:42.236308+00:00",
+  "sameEightExactInputsAsBefore": [
+    {
+      "name": "missing-pending-game.json",
+      "bytes": 31590,
+      "sha256": "a6348d5385473a9b31888f32a761967ea46c981fe7e4487b35e66f6ba8f82e6e"
+    },
+    {
+      "name": "missing-pending-room.json",
+      "bytes": 31835,
+      "sha256": "4f7006543975d73f31729f5035116fd73b136118c2f69b50ac3275a4c78294bd"
+    },
+    {
+      "name": "original-game.json",
+      "bytes": 32984,
+      "sha256": "327b79e3236244151decc7ec707873cc14349b398103028bc81f131d7cf2622d"
+    },
+    {
+      "name": "original-room.json",
+      "bytes": 33229,
+      "sha256": "98aa2e997a51b959a646e2a9e09e5cde46a1ab47c833bb32898932e4c66a8425"
+    },
+    {
+      "name": "accepted-original-room.json",
+      "bytes": 32645,
+      "sha256": "208873365247007156968cf79aa707b9bd3bf0e0d6b242c7e8bf69d60778196a"
+    },
+    {
+      "name": "accepted-original-game.json",
+      "bytes": 32248,
+      "sha256": "274dd5ea99fa5675a9f59c6b2b2e7219e35cd484117fa9f16bdf42a29f5849b4"
+    },
+    {
+      "name": "accepted-missing-frame-room.json",
+      "bytes": 31863,
+      "sha256": "f7feb4b383f7c3dad0c5b199575081af6457acb1c55f57473540c11110d0c779"
+    },
+    {
+      "name": "accepted-missing-frame-game.json",
+      "bytes": 31618,
+      "sha256": "9af58ac7be6ce86b2c70268055d7484bcdb1e9f0d1ed2a71bf06395033a0db6a"
+    }
+  ],
+  "sameNativeProbeSource": true,
+  "newLinkedLibrary": true,
+  "before": {
+    "original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "missing-pending": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "accepted-original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "accepted-missing-frame": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    }
+  },
+  "after": {
+    "original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "missing-pending": {
+      "GameAccepted": false,
+      "RoomAccepted": false
+    },
+    "accepted-original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "accepted-missing-frame": {
+      "GameAccepted": false,
+      "RoomAccepted": false
+    }
+  },
+  "fixedSource141WitnessSha256": "4c153aae7ad91b280f38253a2badeec903d6f58860d434bd4a7e29fd5f3a6f79"
+}

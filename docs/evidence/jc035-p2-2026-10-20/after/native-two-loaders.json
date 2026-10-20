@@ -1,0 +1,57 @@
+{
+  "phase": "after",
+  "capturedUtc": "2026-10-20T00:41:21.490117+00:00",
+  "sourceProbeSha256": "8fcfb710d548683dd61893583fc3fc6bfb41e74a1696b0db3ab0cfe51d1459da",
+  "compiledProbeSha256": "68ea0eb26b2cab30e808dc925352c5abd4369f71d166f67ac2483672e9e33951",
+  "linkedGameLibrarySha256": "6c2bfc3bcc0ed8a4502046fa16ae2f094fe23ed2a1a8ab7b2fb92777dd7e2a6c",
+  "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8\n",
+  "compileArgv": [
+    "rustc",
+    "--edition=2021",
+    "--crate-name",
+    "jc035_p2_native_probe",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/native_restore_probe.rs",
+    "--extern",
+    "hegemony_server=/workspace/undergroundbattle-build/target/release/libhegemony_server.rlib",
+    "-L",
+    "dependency=/workspace/undergroundbattle-build/target/release/deps",
+    "-o",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/native-restore-probe"
+  ],
+  "runArgv": [
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/native-restore-probe",
+    "original",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/original-game.json",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/original-room.json",
+    "missing-pending",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/missing-pending-game.json",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/missing-pending-room.json",
+    "accepted-original",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/accepted-original-game.json",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/accepted-original-room.json",
+    "accepted-missing-frame",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/accepted-missing-frame-game.json",
+    "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/before/accepted-missing-frame-room.json"
+  ],
+  "stdout": "CASE original GAME_ACCEPTED=true ROOM_ACCEPTED=true\nGAME original pending=true stack=0 effects=0 window=Some(Prepare) undecided=1\nROOM original revision=12 pending=true stack=0 effects=0\nCASE missing-pending GAME_ACCEPTED=false ROOM_ACCEPTED=false\nGAME_ERROR missing-pending JC035未完成准备观察必须对应原声明、待选或响应帧\nROOM_ERROR missing-pending JC035未完成准备观察必须对应原声明、待选或响应帧\nCASE accepted-original GAME_ACCEPTED=true ROOM_ACCEPTED=true\nGAME accepted-original pending=false stack=1 effects=0 window=Some(Prepare) undecided=0\nROOM accepted-original revision=13 pending=false stack=1 effects=0\nCASE accepted-missing-frame GAME_ACCEPTED=false ROOM_ACCEPTED=false\nGAME_ERROR accepted-missing-frame JC035未完成准备观察必须对应原声明、待选或响应帧\nROOM_ERROR accepted-missing-frame JC035未完成准备观察必须对应原声明、待选或响应帧\n",
+  "observed": {
+    "original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "missing-pending": {
+      "GameAccepted": false,
+      "RoomAccepted": false
+    },
+    "accepted-original": {
+      "GameAccepted": true,
+      "RoomAccepted": true
+    },
+    "accepted-missing-frame": {
+      "GameAccepted": false,
+      "RoomAccepted": false
+    }
+  },
+  "beforePhaseConfirmsVulnerabilityRatherThanClaimingFunctionalPass": false,
+  "sameExactStateFilesInBothPhases": true
+}
