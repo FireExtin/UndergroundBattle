@@ -1,0 +1,145 @@
+{
+  "format": "jc035-independent-local-visual-review-v1",
+  "reviewer": "/root/jc035_independent_visual_review",
+  "independentOfImplementationAndAuthorSelfCheck": true,
+  "completedUtc": "2026-10-20T04:22:50.125553+00:00",
+  "conclusion": "pass_with_explicit_evidence_limits",
+  "newConcreteBlockers": [],
+  "actualPixelViewing": {
+    "tool": "tools.view_image(detail=original) then image(image_url,original)",
+    "allFourActuallyDisplayed": true,
+    "noDerivedOrReplacementImages": true
+  },
+  "repository": "/workspace/UndergroundBattle",
+  "branch": "codex/jc035-blue-preparation-review-20261019",
+  "evidenceHead": "d3105cd0e8a45ab2de0fc2ea5feef9016d14f6d4",
+  "codeAndWitnessHead": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "images": [
+    {
+      "file": "original-jc035.png",
+      "path": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/browser-four-clients-p2-01/original-jc035.png",
+      "bytes": 567912,
+      "sha256": "294dfb5ad8f362c04643ccf2d8671d841202a062c298bb2fff7bc4e12dd5004f",
+      "actualPixelsViewed": true,
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "restored-pending-draft.png",
+      "path": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/browser-four-clients-p2-01/restored-pending-draft.png",
+      "bytes": 470749,
+      "sha256": "64a73ca3078a15fa245fb71ff797c8b119313c7610b176428387067fa258d19d",
+      "actualPixelsViewed": true,
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "next-source-after-reopen.png",
+      "path": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/browser-four-clients-p2-01/next-source-after-reopen.png",
+      "bytes": 455210,
+      "sha256": "bfc7fbe5d9884808ce29098e6c69d7ae647fb281c7d16e0fddecfce23b14d21f",
+      "actualPixelsViewed": true,
+      "width": 1366,
+      "height": 900
+    },
+    {
+      "file": "resolved-three-regions.png",
+      "path": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/after/browser-four-clients-p2-01/resolved-three-regions.png",
+      "bytes": 996718,
+      "sha256": "e14be73d19903fcfb8160ad96056dd5273616006755ddbc85616e966c6690855",
+      "actualPixelsViewed": true,
+      "width": 1366,
+      "height": 900
+    }
+  ],
+  "staticCrossChecks": {
+    "nativeSourceInputs": 141,
+    "sourceMismatches": [],
+    "browserExpectedStateHashesMatched": 15,
+    "productionFilesMatched": 187,
+    "productionBytes": 142257627,
+    "currentPkgFilesMatched": 5,
+    "clockWorkerModulesMatched": 13,
+    "publicNativeViewsInspected": 620,
+    "internalPreparationKeyInPublicViews": 0,
+    "foreignPendingChoiceInPublicViews": 0,
+    "foreignOwnedCardInOwnHand": 0
+  },
+  "finalNativeResult": {
+    "version": 27,
+    "pendingChoice": null,
+    "waitingChoice": null,
+    "stackCount": 0,
+    "influenceByRegion": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "visuallyReadFirstThreeInfluenceCounts": false,
+    "attachmentBadgesMean": "controller seat + 1"
+  },
+  "recordedDynamicResults": {
+    "commands": 15,
+    "d1Reopens": 3,
+    "originalReceiptsAfterReopen": 15,
+    "pageErrors": 0,
+    "frontendCases": 16,
+    "frontendPassed": 16,
+    "httpOriginalFullPassed": 73,
+    "httpOriginalFullTotal": 74,
+    "httpOrdinaryFollowupPassed": 1,
+    "httpOrdinaryFollowupTotal": 1,
+    "oneUnfilteredGreen74Run": false,
+    "underlyingSocketCloseCauseProven": false,
+    "invalidCases": 50,
+    "invalidHttp400": 500,
+    "legalRestores": 11,
+    "restoreContinuationCommands": 1
+  },
+  "limits": [
+    "Final first-three own influence rows are outside visible central scroll position; 1/1/1 is corroborated by Native/data, not direct pixels.",
+    "No independent rerun; dynamic outcomes come from retained raw records and inspected driver.",
+    "No adversarial credential-isolation or broad application-security verification.",
+    "No mobile/other-resolution screenshots or central-region scrolling performed."
+  ],
+  "actions": {
+    "testsRun": false,
+    "buildRun": false,
+    "browserRun": false,
+    "wasmRun": false,
+    "repositoryWritten": false,
+    "oldEvidenceWritten": false,
+    "libraryAccessed": false,
+    "uploaded": false,
+    "deployed": false,
+    "mergedMain": false
+  },
+  "fixedIdentities": {
+    "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+    "productionWorkerSha256": "695c17c25667d165df429351ab65414dfd7d749e4b5c9a7837a7cfc851e4fb45",
+    "clockWorkerSha256": "eeb4af7441cb2c4546c934e01b748694c5e37f19a9657d764de2437a4e458221",
+    "productionManifestSha256": "28b461d38f3d0140ef7413c62509bbd58be46f88dea5f4141bcab054f6bc4da8",
+    "originalCardSha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319",
+    "driverSha256": "e01a230afd69efc650f0856519cd67ca4df7263a3e5263d2b9a083cd29ac275b",
+    "browserReportSha256": "32598211ebe5abb4b2332d76108e4612b2807c9d68cc9033be1a7fe5e6fa499f"
+  },
+  "report": "/workspace/jc035-recovery-20261019/p2-observation-integrity-20261019/independent-visual-review-20261020T0416/report.md",
+  "reportSha256": "d43b8205eaef577de405a456df1b9cb4cc44344f812a6aff1034f9dfa228e3fd"
+}
