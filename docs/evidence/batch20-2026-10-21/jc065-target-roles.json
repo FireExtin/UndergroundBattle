@@ -1,0 +1,37 @@
+{
+  "id": "B20-UX-JC065-target-roles",
+  "severity": "nonBlockingUX",
+  "status": "fixedLocally; notDeployed",
+  "origin": "Coordinator report from independent real browser session on v73; this task did not run that browser.",
+  "reportedProblem": "The selected repression player appeared unselected in the confirmation panel; two player targets on the stack were unlabeled.",
+  "change": "Name sacrifice opponent, repression player and region separately; show repression already bound by the chosen candidate; no legality or command-field changes.",
+  "sourceFiles": {
+    "web/src/game/Table.tsx": "fdde71ad20c19fb7eb032c99b6d64af13f996a937048281bc27fe71dd967c4cb",
+    "web/src/game/ResponseWindow.tsx": "8dc009464ab8afd371849360e745e4ff0d70acb4cf99dda78b6532c0a47295fb",
+    "web/src/game/ObjectActions.test.tsx": "a7decafc55dbb7c29044df48b68dc0a69502e5ce23121507548621cf16ba848d",
+    "web/src/game/ResponseWindow.test.tsx": "5fe8f61116262a28ff47c887d2e2d4dee5a02ce1fc2b06da3271f7e45ac65128"
+  },
+  "testBaseCommit": "308cadfe736db03f19254951b3160381fce3b8af",
+  "validation": {
+    "web": {
+      "files": 4,
+      "passed": 92,
+      "failed": 0,
+      "exitCode": 0,
+      "command": "npm --prefix web test -- src/game/ObjectActions.test.tsx src/game/ResponseWindow.test.tsx src/game/TargetRetention.test.tsx src/game/OrdinaryTargetRetention.test.tsx --maxWorkers=1",
+      "log": "jc065-target-labels-web.log",
+      "logSha256": "6de1f0e0ceff7d2afff75214fbba254b6cecd375866316c379a6678fefc966f2"
+    },
+    "typecheck": {
+      "command": "npm --prefix web run typecheck",
+      "exitCode": 0,
+      "log": "jc065-target-labels-typecheck.log",
+      "logSha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5"
+    },
+    "regression": "Independent players (including self repression), prebound choice display, three stack roles even when players match, duplicate confirm submits the unchanged server action once.",
+    "browserForThisFix": "notRun",
+    "githubCi": "notRun"
+  },
+  "firstBatchReviewSnapshot": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762 unchanged",
+  "recordedAt": "2026-10-21T13:58:34.785838+00:00"
+}

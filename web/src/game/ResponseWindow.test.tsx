@@ -7,6 +7,21 @@ import { testChoice, testView } from './testFixtures';
 import type { View } from './types';
 
 describe('public stack projection', () => {
+  it.each([['p0', '甲'], ['p1', '乙']])('labels Interrogate sacrifice and repression separately when repression is %s', (id, name) => {
+    const view: View = { ...testView, status: 'playing', stack: [{ id: 'interrogate', label: '审问嫌疑人', controller: 'p0',
+      abilityId: 'batch20-jc065-interrogate', targetSummaries: [
+        { instanceId: 'region:0', label: '纽约', kind: 'region', region: 0, valid: true, status: 'valid' },
+        { instanceId: 'p1', label: '乙', kind: 'player', valid: true, status: 'valid' },
+        { instanceId: id, label: name, kind: 'player', valid: true, status: 'valid' },
+      ] }], legalActions: [] };
+    render(<ResponseWindow view={view} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} />);
+    const targets = within(screen.getByRole('list', { name: '公开目标' })).getAllByRole('listitem');
+    expect(targets).toHaveLength(3);
+    expect(targets[0]).toHaveTextContent('地区：纽约');
+    expect(targets[1]).toHaveTextContent('牺牲暗藏者的对手：乙');
+    expect(targets[2]).toHaveTextContent(`遏制对象：${name}`);
+  });
+
   it('uses public target labels and server validity even when no matching board instance exists', () => {
     const view: View = { ...testView, status: 'playing', stack: [{ id: 'effect', label: '公开效果', controller: 'p0',
       targetSummaries: [{ instanceId: 'private-target', label: '暗藏者·甲', kind: 'hidden', valid: true, status: 'valid' }] }], legalActions: [] };

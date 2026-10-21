@@ -1,0 +1,110 @@
+{
+  "id": "B20-IR-01",
+  "severity": "P2",
+  "sourceBase": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
+  "minimalFixCommit": "a0b1b3da71887bde9aaed06f85dc74638d36d38c",
+  "ruleEvidence": "Parent independent reviewer verified rulebook PDF9/printed7 original page: society zone is headquarters independent of optional society card.",
+  "affected": [
+    "JC033",
+    "JC034",
+    "JZ29",
+    "JC068"
+  ],
+  "engine": "rust-v0.2.92-society-zone-fix",
+  "pool": "limited-v2.82-batch20",
+  "unchangedOrdinaryCards": 173,
+  "cardDataComparison": "Entire JSON unchanged except engineVersion; society definition implementation unchanged",
+  "tests": {
+    "nativeNew": {
+      "pass": 9,
+      "fail": 0
+    },
+    "nativeBatch20": {
+      "pass": 30,
+      "fail": 0
+    },
+    "nativeSociety": {
+      "pass": 6,
+      "fail": 0
+    },
+    "webEmptyAndSociety": {
+      "pass": 19,
+      "fail": 0
+    },
+    "webIntegratedBeforeTwoNewYorkCases": {
+      "pass": 114,
+      "fail": 0
+    },
+    "webTriggerFinal": {
+      "pass": 5,
+      "fail": 0
+    },
+    "typecheckBeforeUXIntegration": "passed",
+    "fullSuite": "not run for this candidate",
+    "browser": "owned by parent; this task did not perform browser gameplay",
+    "independentSupplementalReview": "pending"
+  },
+  "failedEvidence": {
+    "oldKernelNative": "0 passed/9 failed, before fix",
+    "oldWeb": "1 passed/6 failed, before fix",
+    "firstFixedNative": "4 passed/5 failed due unsynchronized synthetic RoomEnvelope pacing; fixtures corrected to valid pacing and actual transition/journal replay before final9passed"
+  },
+  "compatibility": "New rooms use92. Existing77-89/91 retain exact originals; existing91 rooms retain this P2. No room migration, no society card granted and no existing browser table modified.",
+  "ux": [
+    "JC065 labels sacrifice opponent, independent repression player and region without restricting original legality",
+    "Optional trigger displays unique exact printed-name match from room catalog, source and card text; acceptance/decline unchanged"
+  ],
+  "buildAndStartup": "pending",
+  "logs": [
+    {
+      "name": "batch20-society-zone-fix-native-before.log",
+      "sha256": "99871231296eb5a17e6e8be33451666c6f2b6734d3f5d5b75f413afee45aa677",
+      "bytes": 7344
+    },
+    {
+      "name": "batch20-society-zone-fix-web-before.log",
+      "sha256": "8afe7f23f762d06472adcbbaaa631948c79b2f322672d91d1ef5e48543b2120d",
+      "bytes": 133609
+    },
+    {
+      "name": "batch20-society-zone-fix-native-after.log",
+      "sha256": "efc87d7e01c75b2e6decdff634a21acfd2f8c51650237141489b96e65739cdcd",
+      "bytes": 4262
+    },
+    {
+      "name": "batch20-society-zone-fix-native-final.log",
+      "sha256": "e89358cc3e887426ec01f0e5a0f036d98d1dc2c5f7cf21b70e64d136885f97b4",
+      "bytes": 1804
+    },
+    {
+      "name": "batch20-society-zone-fix-regression-batch20.log",
+      "sha256": "d92c59765ae9f2a1eed6daec7fa7437dee7ccedb7b718657a4d9fa566dab2202",
+      "bytes": 3825
+    },
+    {
+      "name": "batch20-society-zone-fix-regression-society.log",
+      "sha256": "b88c1d94be54f800655f2eda4d9a46fe4f03bcb9154c8007630cc4210542d7cd",
+      "bytes": 1410
+    },
+    {
+      "name": "batch20-society-zone-fix-web-after.log",
+      "sha256": "9bea708d86e6e4fd3b18ea1950e56b88b76e5e7b8baa9c03ddf66c72ed48ab49",
+      "bytes": 255
+    },
+    {
+      "name": "batch20-society-zone-fix-web-typecheck.log",
+      "sha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5",
+      "bytes": 324
+    },
+    {
+      "name": "society-fix-combined-web.log",
+      "sha256": "8a045e9bebac22fafba09b5cd5f371f111b98809823e1fb34fe1051a18edd195",
+      "bytes": 758
+    },
+    {
+      "name": "society-fix-trigger-context-final.log",
+      "sha256": "e60e08007b24002ea6d5441fb6cb10d951d3254e548aacf1fa987776bf749388",
+      "bytes": 546
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { frozenAbi77, stageFrozenAbi77, frozenAbi89 } from './frozen-kernels.mjs';
+import { frozenAbi77, stageFrozenAbi77, frozenAbi89, frozenAbi91, stageFrozenAbi91 } from './frozen-kernels.mjs';
 const digest = b => createHash('sha256').update(b).digest('hex');
 test('retained ABI77 is the exact published v58 input rather than the evolving candidate',()=>{
   const r=frozenAbi77();assert.equal(r.identity.providerSource,'eec9ffb81b66b149bdcc4f045c1be834dae21748');
@@ -36,4 +36,35 @@ test('retained v71 ABI89 uses the recovered post-P2 bytes and rejects absent inp
   const empty = mkdtempSync(join(tmpdir(), 'audit-missing89-'));
   t.after(() => rmSync(empty, { recursive: true, force: true }));
   assert.throws(() => frozenAbi89({ directory: empty }), /Missing published ABI89 inputs/);
+});
+
+test('v73 ABI91 retains the reward-fixed bytes and catalog for staging', async t => {
+  const saved = frozenAbi91();
+  assert.equal(saved.identity.siteSource, 'e1969c3ded2ffa44ce429be87c0005d928d5ef38');
+  assert.equal(saved.identity.catalogIdentity.engineVersion, 'rust-v0.2.91-batch20');
+  assert.equal(saved.wasm.length, 3796219);
+  assert.equal(digest(saved.wasm), 'b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376');
+  assert.notEqual(digest(saved.wasm), 'b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4');
+  const abi = await import('data:text/javascript;base64,' + saved.js.toString('base64'));
+  abi.initSync({ module: saved.wasm });
+  const catalog = JSON.parse(abi.catalog());
+  assert.deepEqual({ rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion,
+    engineVersion: catalog.engineVersion }, saved.identity.catalogIdentity);
+  assert.equal(catalog.cards.length, 173);
+  assert.equal(catalog.societies.length, 10);
+  const dir = mkdtempSync(join(tmpdir(), 'frozen91-stage-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  stageFrozenAbi91(dir);
+  assert.deepEqual(readFileSync(join(dir, 'hegemony_wasm.js')), saved.js);
+  assert.deepEqual(readFileSync(join(dir, 'hegemony_wasm_bg.wasm')), saved.wasm);
+});
+
+test('absent or corrupt ABI91 fails without modifying inputs or using the current core', t => {
+  const saved = frozenAbi91(), dir = mkdtempSync(join(tmpdir(), 'frozen91-invalid-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  assert.throws(() => frozenAbi91({ directory: dir }), /Missing published ABI91 inputs/);
+  writeFileSync(join(dir, 'hegemony_wasm.js'), saved.js);
+  writeFileSync(join(dir, 'hegemony_wasm_bg.wasm.gz'), 'not the original v73 runtime');
+  assert.throws(() => frozenAbi91({ directory: dir }), /Published ABI91 runtime hash mismatch/);
+  assert.equal(readFileSync(join(dir, 'hegemony_wasm_bg.wasm.gz'), 'utf8'), 'not the original v73 runtime');
 });

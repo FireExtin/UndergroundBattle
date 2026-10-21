@@ -47,7 +47,7 @@ test('batch20 changes only its 20 admissions, three verified icon fields and cur
   const { cards, cardPoolVersion, engineVersion, ...metadata } = data;
   assert.equal(digest(metadata), 'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
   assert.equal(cardPoolVersion, 'limited-v2.82-batch20');
-  assert.equal(engineVersion, 'rust-v0.2.91-batch20');
+  assert.equal(engineVersion, 'rust-v0.2.92-society-zone-fix');
   const rust = read('rust-game/src/catalog.rs').toString();
   const constant = name => rust.match(new RegExp(`pub const ${name}: &str = "([^"]+)";`))?.[1];
   assert.equal(constant('RULES_VERSION'), data.rulesVersion);

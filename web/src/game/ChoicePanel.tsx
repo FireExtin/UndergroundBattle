@@ -59,6 +59,11 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const ordering = choice.kind === 'order' || choice.kind === 'investigation';
   const triggerOrder = choice.kind === 'jc054-trigger-order' || choice.kind === 'jc035-preparation-order';
   const damage = choice.kind === 'damage';
+  // Existing kernels title declarations as `${printedName}：${abilityLabel}`.
+  // Read only this room's catalog for display; never infer actions from card text.
+  const triggerSources = choice.kind === 'trigger'
+    ? [...definitions.values()].filter(card => choice.title.startsWith(`${card.name}：`)) : [];
+  const triggerSource = triggerSources.length === 1 ? triggerSources[0] : undefined;
   const filterable = !ordering && !damage && choice.options.length > 6;
   const query = search.trim().toLocaleLowerCase();
   const visibleOptions = choice.options.map((option, index) => ({ option, index })).filter(({ option }) => {
@@ -152,7 +157,8 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
     {onPauseRoom && <button type="button" className="hg-button hg-button-quiet" disabled={busy} onClick={onPauseRoom}>暂停并保存此桌</button>}
     <div className="hg-choice-heading">
     <div className="hg-section-title"><span className="hg-eyebrow">轮到你选择</span><span className="hg-choice-tag" role="status" aria-atomic="true">{damage ? `尚余 ${amount - assigned} 点` : ordering ? '自上而下排列' : `已选 ${selected.length} / ${max}`}</span></div>
-    <h2>{choice.title}</h2><p>{choice.description}</p>
+    <h2>{choice.title}</h2><p className="hg-choice-description">{choice.description}</p>
+    {triggerSource?.text && <div className="hg-choice-source" aria-label="触发来源与卡牌文字"><strong>来源：{triggerSource.name}</strong><p>{triggerSource.text}</p></div>}
     <p className="hg-choice-scroll-hint" id={scrollHintId}>{choice.kind === 'mulligan' ? '点选要替换的手牌，未选中的保留。' : '先查看选项，再确认你的选择。'} 选项区可上下滚动，确认按钮始终在下方。{!ordering && !damage && choice.options.length > 1 && <span className="hg-choice-keyboard-hint">方向键浏览 · Home / End 首尾 · Enter / 空格选择</span>}</p>
     </div>
     {filterable && <div className="hg-choice-filters">
