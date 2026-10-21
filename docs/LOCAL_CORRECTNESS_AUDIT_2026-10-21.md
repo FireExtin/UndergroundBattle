@@ -37,4 +37,4 @@ node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-w
 - tools来源测试99/99、冻结输入专项6/6、三文件无Git历史来源测试9/9通过。最终WASM、Web、Sites14模块dry-run及独立stage的13冻结loader/backend dry-run通过；独立stage前端未再次构建。
 - 原始v71 ABI89精确哈希门禁及oracle通过；本地同一HTTP/D1实例的ABI77–90共14桌状态、u64和重复回执验证通过。香港私密性与BQ028公开Room/WASM恢复探针通过。
 
-详细原日志、阶段来源和覆盖边界在独立整改证据包。未进行浏览器试玩、线上回归或GitHub CI。新候选尚未独立复审、合并或部署；GitHub Actions、push、PR、tag/release、自动合main与部署均暂停。
+详细原日志、阶段来源和覆盖边界在独立整改证据包。未进行浏览器试玩、线上回归或GitHub CI；候选尚未独立复审或部署。此后用户明确授权保存main，以上整改及README已正常快进推送至 `d98117d188cfc65f4e29fb757dfcf9accdd545e5`。用户又将后续顺序改为每20张完整整理并上线后，再全套重跑、独立复审与dot真实浏览器对战，见[下一批记录](factions/batch20-2026-10-21.md)。这些授权没有改变本页阶段性测试结果，也没有解除禁GitHub CI或官方Sites权限限制。

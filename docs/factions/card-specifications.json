@@ -28210,7 +28210,17 @@
         "imageSha256": "edde9a868361e90592c13fef469b025676ee23dfdf35f4f821f86871e5631bb3",
         "evidenceId": "card-JC034",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "nameInk",
+            "previous": "white",
+            "corrected": "gold",
+            "basis": "原图标题为金色；独有不可按白名处理。",
+            "imageSha256": "edde9a868361e90592c13fef469b025676ee23dfdf35f4f821f86871e5631bb3"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "034/135",
@@ -28222,7 +28232,7 @@
       "fields": {
         "name": "心兽之道",
         "subtitle": null,
-        "nameInk": "white",
+        "nameInk": "gold",
         "colorKey": "蓝",
         "basicType": "附属",
         "subtypes": [
@@ -28711,7 +28721,17 @@
         "imageSha256": "9f84e160119ce8b109eee78171e3212769caf7a3bac6b17c6b6e24ef24772a92",
         "evidenceId": "card-JC038",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "printedRuleTextLines",
+            "previous": "所有其他本方王座会角色",
+            "corrected": "所有其他友方王座会角色",
+            "basis": "复看完整原图，持续能力实印为友方，包含队友；不是本方。",
+            "imageSha256": "9f84e160119ce8b109eee78171e3212769caf7a3bac6b17c6b6e24ef24772a92"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "038/135",
@@ -28764,7 +28784,7 @@
         ],
         "printedRuleTextLines": [
           "领袖",
-          "【持续】所有其他本方王座会角色获得袭击1。",
+          "【持续】所有其他友方王座会角色获得袭击1。",
           "【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。"
         ],
         "additionalPrintedSymbols": [],
@@ -28780,7 +28800,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "【持续】所有其他本方王座会角色获得袭击1。",
+          "printedText": "【持续】所有其他友方王座会角色获得袭击1。",
           "notExecutable": true
         },
         {
@@ -30041,8 +30061,8 @@
         },
         {
           "id": "JC048-05",
-          "scenario": "沙漏原有1时间，同地区祭司有1时间，准备触发",
-          "expected": "沙漏增加1后地区计3，对该地区每个正面角色造成3伤，再按地区阈值牺牲沙漏；不把标志移动到地区牌本身。",
+          "scenario": "沙漏原有1时间，同地区祭司有1时间，准备触发；分别覆盖祭司在伤害后存活和离场两种输入",
+          "expected": "沙漏增加1后按地区当前3时间处理伤害；伤害和死亡处理后重新检查仍在地区内的时间数量，再决定是否牺牲沙漏，不复用伤害前缓存值。存活/离场与同时结算边界须在实现中分别核验；不把标志移动到地区牌本身。",
           "status": "notRun"
         }
       ]
@@ -30753,7 +30773,17 @@
         "imageSha256": "673cf3ff51067ba55547ab7a5b7122f6b789f7b778b819bd44a623ad3dc6cb32",
         "evidenceId": "card-JC055",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "printedRuleTextLines",
+            "previous": "【标准行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+            "corrected": "【行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+            "basis": "原图印刷“行动”，不是“标准行动”；仍为普通行动，不改成快速。",
+            "imageSha256": "673cf3ff51067ba55547ab7a5b7122f6b789f7b778b819bd44a623ad3dc6cb32"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "055/135",
@@ -30805,7 +30835,7 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "【准备步骤触发】在目标角色或附属上放置一个时间标志。",
-          "【标准行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。"
+          "【行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -30819,7 +30849,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "【标准行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+          "printedText": "【行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
           "notExecutable": true
         }
       ],
@@ -32014,7 +32044,22 @@
         "imageSha256": "6b094d1f2659a370959329ed77b2fd9189734f3495fdf3b5a2228cd900a49d3e",
         "evidenceId": "card-JC065",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "domains",
+            "previous": [
+              {
+                "id": "mind",
+                "count": 1
+              }
+            ],
+            "corrected": [],
+            "basis": "原图右下无领域菱形；不得添加心灵领域。",
+            "imageSha256": "6b094d1f2659a370959329ed77b2fd9189734f3495fdf3b5a2228cd900a49d3e"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "065/135",
@@ -32042,12 +32087,7 @@
             "count": 1
           }
         ],
-        "domains": [
-          {
-            "id": "mind",
-            "count": 1
-          }
-        ],
+        "domains": [],
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
@@ -46345,7 +46385,17 @@
         "imageSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
         "evidenceId": "card-JZ52",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 B23后逐图标四色背景放大复查。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "subtitle",
+            "previous": "魔特之子",
+            "corrected": "赛特之子",
+            "basis": "重新查看锁定原图副名，纠正转写字形。",
+            "imageSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "52/76",
@@ -46356,7 +46406,7 @@
       },
       "fields": {
         "name": "大维齐尔迈哈穆德",
-        "subtitle": "魔特之子",
+        "subtitle": "赛特之子",
         "nameInk": "gold",
         "colorKey": "黑",
         "basicType": "角色",
@@ -51058,7 +51108,17 @@
         "imageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
         "evidenceId": "card-LC16",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "colorKey",
+            "previous": "灰",
+            "corrected": "黑",
+            "basis": "完整原图右上为方碑序列徽记，与灰色国家机构柱廊徽记不同；左侧三领域为忠诚而非颜色。",
+            "imageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "16/30",
@@ -51071,7 +51131,7 @@
         "name": "江月",
         "subtitle": "狐之影",
         "nameInk": "gold",
-        "colorKey": "灰",
+        "colorKey": "黑",
         "basicType": "角色",
         "subtypes": [
           "妖",
@@ -64268,7 +64328,17 @@
         "imageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f",
         "evidenceId": "card-WM033",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "printedRuleTextLines",
+            "previous": "时间标志1；传闻",
+            "corrected": "时间标志1；【隐秘】传闻",
+            "basis": "原图传闻前有月牙条件符号；霸权印刷P19定义隐秘条件，不能按无条件传闻实现。",
+            "imageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "33/98",
@@ -64319,19 +64389,26 @@
         "points": null,
         "printedKeywords": [
           "时间标志1",
-          "传闻"
+          "【隐秘】传闻"
         ],
         "printedRuleTextLines": [
-          "时间标志1；传闻",
+          "时间标志1；【隐秘】传闻",
           "行动 自钟楼怪客上移除一个时间标志：将一张法术或灾难牌从本方墓地移回你的手中。该能力每回合只能发动一次。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-keyword-condition",
+            "status": "confirmed",
+            "printedText": "〔月牙〕传闻",
+            "interpretation": "本方秘社上有隐秘标志时才获得传闻。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "时间标志1；传闻",
+          "printedText": "时间标志1；【隐秘】传闻",
           "notExecutable": true
         },
         {
@@ -73624,7 +73701,25 @@
         "imageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
         "evidenceId": "card-XG12",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "fieldCorrections": [
+          {
+            "date": "2026-10-21",
+            "field": "printedRuleTextLines",
+            "previous": "持续 受此结附的角色获得永久战斗2和机动，且额外具有蝙蝠类别。",
+            "corrected": "持续 受此结附的角色获得临时战斗1、永久战斗1和机动，且额外具有蝙蝠类别。",
+            "basis": "原文第一枚剑图标白底黑剑，第二枚黑底白剑；区分临时与永久。",
+            "imageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd"
+          },
+          {
+            "date": "2026-10-21",
+            "field": "printedRuleTextLines",
+            "previous": "和机动，",
+            "corrected": "和【隐秘】机动，",
+            "basis": "原图机动前有月牙条件符号；不能遗漏条件或写成无条件机动。",
+            "imageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd"
+          }
+        ]
       },
       "edition": {
         "printedCollectorCode": "12/48",
@@ -73676,10 +73771,17 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "结附于目标吸血鬼角色",
-          "持续 受此结附的角色获得永久战斗2和机动，且额外具有蝙蝠类别。",
+          "持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。",
           "行动②：将兽形变化结附到另一个吸血鬼角色上。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-keyword-condition",
+            "status": "confirmed",
+            "printedText": "〔月牙〕机动",
+            "interpretation": "受结附角色获得带隐秘条件的机动；条件适用的操控者边界见 batch20-2026-10-21.md。"
+          }
+        ]
       },
       "abilities": [
         {
@@ -73691,7 +73793,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "持续 受此结附的角色获得永久战斗2和机动，且额外具有蝙蝠类别。",
+          "printedText": "持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。",
           "notExecutable": true
         },
         {

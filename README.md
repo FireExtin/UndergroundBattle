@@ -7,10 +7,12 @@
 | 范围 | 已核实状态 |
 | --- | --- |
 | 产品源码候选 | `a69793d77b887351ceabe291596854e45f732476`，引擎 `rust-v0.2.90-audit-correctness-candidate`；以下文档基于该候选核对 |
+| GitHub保存状态 | 上述整改与README已正常推入main，已确认提交为 `d98117d188cfc65f4e29fb757dfcf9accdd545e5`；这不是Sites发布 |
 | 规则 / 卡池 | `hegemony-pdf-v1` / `limited-v2.81-jc035-preparation-candidate` |
 | 最近已发布 Site | **v71 / ABI89**；2026-10-21通过官方Sites元数据确认既有发布成功，没有访问线上牌桌 |
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
 | 尚未完成 | ABI90候选独立复审、该候选的浏览器完整对局和发布 |
+| 下一批20张 | [20张清单与进度](docs/factions/batch20-2026-10-21.md)：原图复核和规格修正完成；规则实现、准入及发布未完成，当前目录数量未增加 |
 
 [已发布的游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)对应既有v71，并不包含本地ABI90修复。Sites保存的有限源码提交为 `8b44f0bcd1243fe4603e0dc5d96f7354376c8c07`，与GitHub产品仓库的提交号属于不同源码仓库，不应混用。
 
@@ -178,9 +180,11 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 
 已有Site身份在 [sites/.openai/hosting.json](sites/.openai/hosting.json)，更新时复用项目和现有访问范围，不重新注册Site。详细流程见 [Sites README](sites/README.md)：使用当前官方Sites插件的源码工作流同步同一版本源码、执行必要构建并打包，再按已有受众保存版本和部署。GitHub仓库的main与Sites源码仓库不是同一个远端；单独推GitHub main不构成一次已验证发布。
 
-截至本次核查，**禁止运行GitHub CI的项目限制仍有效**。候选和本次文档仅在本地保存；推送main尚待确认成果范围和自动任务触发条件。没有创建PR/tag/release或部署，也不通过修改权限、关闭检查或强推解除门槛。
+2026-10-21用户更新发布顺序为：**每批完整整理并上线20张卡，再集中全套重跑、独立复审和dot真实浏览器对战**。发布前保留必要构建、启动与版本身份检查，确认无已知破坏性故障；上线批次标记待验收。旧文档中的全套/独立复审先行门槛不再拦本批发布，但仍不能把未实现的能力开放为可玩。
 
-GitHub main和本地候选的树中没有 `.github/workflows`；历史Actions记录中存在Copilot动态任务。连接器未提供完整workflow清单、webhook及外部自动部署设置的核验能力，所以不能承诺推送绝不触发任何自动任务。Sites的显式发布操作，以及官方凭据明确接受的限时 `publish_on_push`，都可能产生生产部署；本轮没有获取写凭据、开启此窗口或调用发布操作。
+**禁止运行GitHub CI的限制仍有效。** 用户已明确授权正常保存和推送相关源码；`d98117d`及其前三个相关提交已快进推入main，Git与GitHub只读接口核对一致。推送前后的实际树没有 `.github/workflows`，已知配置无push自动部署证据，推送后即时查询未新增Actions运行。连接器的workflow清单HTTP400表示该URL不受支持，不表示Git保存权限被拒绝；不能据此断言存在未知外部CI，也不承诺所有外部服务均已穷举。后续仍检查实际触发器，不强推、不改权限、不创建PR/tag/release或触发CI。
+
+Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均可能产生生产部署。本批读取站点并成功取得短期源码凭据，未开启自动私有发布；本环境尚缺官方 `site-workflow.mjs` 的可执行安装路径，无法完成规定的源码打开与打包流程。没有调用保存版本或部署，没有发布权限拒绝。精确状态、20张实现缺口和所需工具见[批次记录](docs/factions/batch20-2026-10-21.md)。
 
 ## 资料与维护
 

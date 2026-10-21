@@ -1,0 +1,838 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch20-2026-10-21",
+  "purpose": "第一批20张的来源与待实现清单，不是运行牌池或上线声明。",
+  "baseCommit": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
+  "stage": "sourcePreparationComplete",
+  "rulesVersion": "hegemony-pdf-v1",
+  "releaseOrder": [
+    "completeImplementation",
+    "buildStartupIdentityCheck",
+    "officialSitesPendingAcceptancePublish",
+    "localFullSuites",
+    "independentReview",
+    "realBrowserBattle",
+    "fixAndRecheck"
+  ],
+  "githubCiAllowed": false,
+  "scope": {
+    "newCardCount": 20,
+    "implementedNewCardCount": 0,
+    "releasedNewCardCount": 0,
+    "neutralOrDualExpansion": "paused",
+    "uwproImporter": "separateTaskNoSharedEdits"
+  },
+  "inputs": [
+    {
+      "path": "docs/factions/card-specifications.json",
+      "sha256": "cfa9b18529ff9b2d24468eecb6633553f782bc2564d070f0ca0bfcffcc85ec12"
+    },
+    {
+      "path": "docs/factions/card-reviews.json",
+      "sha256": "f7d9bf6dfe408deb852dd39caa4f1ce2e1746b1838b238872093d1ad0d7d26ac"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "d1a4ccf232267aee29dbff469d8d4e89941454d62ca181acdb1175913da58876"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a"
+    }
+  ],
+  "currentCandidate": {
+    "engineVersion": "rust-v0.2.90-audit-correctness-candidate",
+    "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
+    "ordinaryCardCount": 153,
+    "societyCount": 10,
+    "newRuntimeDefinitionsSinceV71": 0
+  },
+  "cards": [
+    {
+      "id": "JC043",
+      "name": "纵火狂",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC043 纵火狂.jpg",
+        "sha256": "f16d940974d714ea7de4415bc7f3f60f3f196c1d9145c52dd69a77019f2a9617",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC043",
+      "printedRules": [
+        "【进场触发】消灭目标结附于秘社或本地区上的附属。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "秘社宿主及直接地区宿主均可指定；其他地区及角色宿主不可混入",
+          "status": "notRun"
+        },
+        {
+          "scenario": "进场后来源换区仍绑定原地区；目标响应离场则失效",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC048",
+      "name": "诅咒沙漏",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC048 诅咒沙漏.jpg",
+        "sha256": "4344e488c07cfa57d891913a1dc14e68b295bd1001458a1267782d080f69d952",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC048",
+      "printedRules": [
+        "结附于目标地区",
+        "【准备步骤强制触发】在诅咒沙漏上放置一个时间标志。然后该地区每有一个时间标志，就对位于该地区的所有角色造成1点伤害。然后若该地区上有三个或更多时间标志，则牺牲诅咒沙漏。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "强制准备加标志、全区计数、全正面角色受伤后重新计数",
+          "status": "notRun"
+        },
+        {
+          "scenario": "时间载体死亡导致3降2时保留沙漏；保留3时牺牲；选择/响应中恢复",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JZ33",
+      "name": "蚀日星魔",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ33 蚀日星魔.jpg",
+        "sha256": "cb45e8f0e7aabc2e126af4f4e4556eadd456e6a8790b3568c03f02081d5e8086",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ33",
+      "printedRules": [
+        "额外费用 每有一个已毁灭的地区，正面打出蚀日星魔的所需费用减少②。",
+        "进场强制触发 对已毁灭的地区上的所有角色造成1点伤害。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "毁灭0/1/多地区时正面费用与忠诚；暗藏及付费现身不套用该减费",
+          "status": "notRun"
+        },
+        {
+          "scenario": "强制伤害所有毁灭地区角色含己方与自身；未毁灭地区不受影响",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JZ37",
+      "name": "终焉",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ37 终焉.jpg",
+        "sha256": "41090a7ea8201a4afcd60b03d8c64651046e5f3dbb65733c28283e79787c982b",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ37",
+      "printedRules": [
+        "行动 消灭所有角色、暗藏者和附属，毁灭所有地区。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "全场角色、暗藏者、地区/角色/秘社附属均清理；资产与秘社保留",
+          "status": "notRun"
+        },
+        {
+          "scenario": "同波死亡观察者冻结；每区至多一毁灭标志，赢取计分后每枚减1",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "WM034",
+      "name": "消逝的乌尔德",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/WM034 消逝的乌尔德.jpg",
+        "sha256": "9f1e5f9ce6e9b6eaf3e69c33b2e30bcde3114044d35951a993b1b2fc3d38f700",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/WM034",
+      "printedRules": [
+        "领袖；时间标志1",
+        "行动 横置，从消逝的乌尔德上移除一个时间标志：消灭所有其他角色。",
+        "准备步骤强制触发 若消逝的乌尔德上没有时间标志，则牺牲之。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "进场时间1；横置及移除本人合法载体时间均是成本",
+          "status": "notRun"
+        },
+        {
+          "scenario": "全场其他角色被消灭，来源及暗藏者保留；零时间准备不能拒绝",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "BQ080",
+      "name": "回收专员",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ080 回收专员.jpg",
+        "sha256": "5181897442261a2db4040ddfaae40fd8d7ff8c0673f30c43768608d16d921faa",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/BQ080",
+      "printedRules": [
+        "公开；撤回",
+        "进场触发 将你墓地中的目标角色牌置于你的手中。",
+        "触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "本人墓地目标角色回手；队友墓地与非角色不可选",
+          "status": "notRun"
+        },
+        {
+          "scenario": "本方指定副名附属实际进场可潜伏；敌方/队友附属及转移结附不误触发",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "BQ091",
+      "name": "废弃收容所",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ091 废弃收容所.jpg",
+        "sha256": "ea26d41e901c780856d92b819fe1806a14f53229e62b86713b8daa52429275a2",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/BQ091",
+      "printedRules": [
+        "结附于目标地区",
+        "准备步骤触发 将你的牌库顶牌置于墓地。",
+        "持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "准备顶牌置墓可拒绝；空牌库不按空抓判负",
+          "status": "notRun"
+        },
+        {
+          "scenario": "墓地6/7边界动态增加/移除附属自身永久调查，不加在宿主角色上",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "BQ094",
+      "name": "费格马变量实验室",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ094 费格马变量实验室.jpg",
+        "sha256": "263178b503125e854f8f26e4564ff2c0be29c67d3bd7630485b9e48494f550e0",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/BQ094",
+      "printedRules": [
+        "非资产",
+        "结附于目标地区",
+        "强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "本人多角色同波死亡逐个强制触发，冻结原宿主地区",
+          "status": "notRun"
+        },
+        {
+          "scenario": "队友死亡、暗藏者离场和潜伏不计；临时调查随先手生效",
+          "status": "notRun"
+        },
+        {
+          "scenario": "非资产只禁止建立资产，不阻止当前霸权规则允许的效果置资产",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JZ52",
+      "name": "大维齐尔迈哈穆德",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
+        "sha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ52",
+      "printedRules": [
+        "领袖",
+        "持续 你不能从手中正面打出角色牌。",
+        "持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "本人手牌正面角色被禁，秘密派遣/付费现身/效果置入不误禁",
+          "status": "notRun"
+        },
+        {
+          "scenario": "本人墓地死亡角色按正常费用忠诚入响应；其他领域/队友墓地拒绝",
+          "status": "notRun"
+        },
+        {
+          "scenario": "来源潜伏/离场后执行与合法动作同时失去权限和禁令",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JZ57",
+      "name": "骷髅纹身",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg",
+        "sha256": "a9de7e904fe18c5cc5f00887add743ffea83fb2e112d291a10b1afa014e79bf4",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ57",
+      "printedRules": [
+        "结附于目标人类角色",
+        "持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。",
+        "行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "人类获得额外不死生物/骷髅及防御，原类别保留",
+          "status": "notRun"
+        },
+        {
+          "scenario": "横置附属及牺牲本人不死生物作成本，含宿主；支付时冻结骷髅类别",
+          "status": "notRun"
+        },
+        {
+          "scenario": "磨少于2不判空抓且不取消可选抓1；抓牌可拒绝",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC033",
+      "name": "家族传承",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC033 家族传承.jpg",
+        "sha256": "e504b78b9433732ed5b8034e463b10b03db86f65fc0cfec79c00b7a0ad738e30",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC033",
+      "printedRules": [
+        "结附于本方秘社",
+        "【持续】所有本方暗藏者，付费翻面时所需费用减少1。",
+        "【标准行动】1，牺牲家族传承：从你的牌库中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于目标地区，然后洗牌。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "秘社结附本人；多张减费累加最低0且仍需忠诚，不影响秘密派遣",
+          "status": "notRun"
+        },
+        {
+          "scenario": "付1及牺牲先行；本人牌库吸血鬼角色展示、暗藏进入目标地区、洗牌",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC034",
+      "name": "心兽之道",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC034 心兽之道.jpg",
+        "sha256": "edde9a868361e90592c13fef469b025676ee23dfdf35f4f821f86871e5631bb3",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC034",
+      "printedRules": [
+        "结附于本方秘社",
+        "你只能操控至多一个道途。",
+        "【持续】当你赢得一次战斗对抗时，若有本方吸血鬼角色参与了这次战斗对抗，你可以令目标对手弃一张手牌。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "独有与一道途约束都成立",
+          "status": "notRun"
+        },
+        {
+          "scenario": "本人吸血鬼实际参加并赢战斗，是否分配伤害不影响可选触发",
+          "status": "notRun"
+        },
+        {
+          "scenario": "目标对手自行私密弃牌；队友参战不能替代本方参战",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC038",
+      "name": "列恩·爱弗罗德",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC038 列恩·爱弗罗德.jpg",
+        "sha256": "9f84e160119ce8b109eee78171e3212769caf7a3bac6b17c6b6e24ef24772a92",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC038",
+      "printedRules": [
+        "领袖",
+        "【持续】所有其他友方王座会角色获得袭击1。",
+        "【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "其他友方王座会角色获袭击1，含队友而排除自身；与原袭击叠加",
+          "status": "notRun"
+        },
+        {
+          "scenario": "牺牲仅限本人吸血鬼/奴仆且可牺牲来源自身",
+          "status": "notRun"
+        },
+        {
+          "scenario": "对手先弃后自己抓；对手无手牌仍自己抓1",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC040",
+      "name": "安普莎，冥府的侍女",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg",
+        "sha256": "ef2f30c5f794f900f66facc4fce7e90bb1edd9a56dc84c666331ae3ee2163750",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC040",
+      "printedRules": [
+        "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "一次实际弃3张是一项遏制3，不是三项遏制1",
+          "status": "notRun"
+        },
+        {
+          "scenario": "成本弃牌计入；磨牌/牺牲不计；敌方而非队友事件",
+          "status": "notRun"
+        },
+        {
+          "scenario": "由指定目标玩家移除全场本人势力，不限制为刚弃牌者；不足X全部移除",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "XG12",
+      "name": "兽形变化",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
+        "sha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG12",
+      "printedRules": [
+        "结附于目标吸血鬼角色",
+        "持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。",
+        "行动②：将兽形变化结附到另一个吸血鬼角色上。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "临时战斗1随宿主先手生效，永久战斗1与蝙蝠不受月牙条件影响",
+          "status": "notRun"
+        },
+        {
+          "scenario": "月牙机动的当前操控者与入栈后条件变化须先记录规则判读",
+          "status": "notRun"
+        },
+        {
+          "scenario": "普通行动2转移不同吸血鬼；不新增进场/换操控者；转移目标属性待明确",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "BQ054",
+      "name": "沙地特种兵",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ054 沙地特种兵.jpg",
+        "sha256": "467e5eb971c626486926be6b5891445701c97cc0659552cc4efb7782fab3c512",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/BQ054",
+      "printedRules": [
+        "进场触发 横置本地区的目标暗藏者。",
+        "手牌触发 当你从手中弃掉沙地特种兵时，你可以在目标角色或暗藏者上放置一个锁定标志。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "进场横置本地区任意方暗藏者；响应现身后不能继续按暗藏者作用",
+          "status": "notRun"
+        },
+        {
+          "scenario": "本人手中此实例弃牌触发可全场锁角色/暗藏者，保持弃牌来源隐私",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC065",
+      "name": "审问嫌疑人",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC065 审问嫌疑人.jpg",
+        "sha256": "6b094d1f2659a370959329ed77b2fd9189734f3495fdf3b5a2228cd900a49d3e",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC065",
+      "printedRules": [
+        "【快速行动】选择目标地区，然后目标对手牺牲一个位于该地区的暗藏者。遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "快速支付后由指定对手选择当地暗藏者牺牲，不能施法者直选受害者",
+          "status": "notRun"
+        },
+        {
+          "scenario": "零暗藏或响应全部现身仍继续遏制；两个玩家目标关系先明确",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC067",
+      "name": "约翰·F·纳特里",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC067 约翰·F·纳特里.jpg",
+        "sha256": "86283a6b8cf860e8b0ee253ddc83a8396f8c2b9f09316e5850e480db847ee192",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC067",
+      "printedRules": [
+        "领袖　公开　声望",
+        "【持续】本地区在对抗阶段时额外进行一次势力对抗。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "原势力之后追加完整势力对抗、前后窗口/平局特权/赢区均执行",
+          "status": "notRun"
+        },
+        {
+          "scenario": "同地区按有效纳特里数量计次且离场重入不刷新；刷新恢复不重复奖励",
+          "status": "notRun"
+        },
+        {
+          "scenario": "声望等待地区全部对抗结束，不提前发放",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "CQ16",
+      "name": "前线士官",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/CQ16 前线士官.jpg",
+        "sha256": "65cd0717f883edb1e5fa0d5910de04ebe329433ea355feeb6375cc2b1403ff93",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/CQ16",
+      "printedRules": [
+        "公开",
+        "进场触发 在本地区的目标角色上放置一个锁定标志。",
+        "快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "公开限制；进场可锁当地任意角色包括自己，不锁暗藏者",
+          "status": "notRun"
+        },
+        {
+          "scenario": "快速付1及横置作成本，检索本人印刷费用恰1的士兵角色",
+          "status": "notRun"
+        },
+        {
+          "scenario": "正面置入原地区产生进场触发，再洗牌；不另付忠诚或印刷费用",
+          "status": "notRun"
+        }
+      ]
+    },
+    {
+      "id": "JC068",
+      "name": "阿格斯IV",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC068 阿格斯IV.jpg",
+        "sha256": "9b47581d3745bd5b9bbe7cd80cbaae75fc6d6aa7a1635e70e50319714044ee1c",
+        "visuallyReviewed": true,
+        "reviewedAt": "2026-10-21"
+      },
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JC068",
+      "printedRules": [
+        "结附于本方秘社",
+        "【准备步骤强制触发】支付1，否则横置阿格斯IV。",
+        "【持续】只要阿格斯IV未横置，对手就不能进行秘密派遣行动。"
+      ],
+      "implementation": "notStarted",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "gameAcceptance": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun",
+      "plannedChecks": [
+        {
+          "scenario": "金名独有且只结附本人秘社；重置后准备强制支付1否则横置",
+          "status": "notRun"
+        },
+        {
+          "scenario": "未横置时执行与合法动作均禁对手秘密派遣；横置/离场恢复",
+          "status": "notRun"
+        },
+        {
+          "scenario": "效果暗藏进场、潜伏和现身不因这条限制被禁",
+          "status": "notRun"
+        }
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": "LC16",
+      "reason": "原规格颜色误为灰，原图方碑黑色已更正；本批以JC068替补。"
+    },
+    {
+      "id": "JC055",
+      "reason": "变量时间费用留后批；实印行动标签已更正。"
+    },
+    {
+      "id": "WM033",
+      "reason": "试选替补撤回；传闻具有月牙条件，已补来源，不当无条件准入。"
+    }
+  ],
+  "ruleInterpretationsPending": [
+    {
+      "id": "XG12",
+      "detail": "月牙机动拟随获授予角色的当前操控者秘社；基于通用规则组合判读，无专属跨操控者问答。须明确条件变化及转移句是否指定目标。"
+    },
+    {
+      "id": "JC065",
+      "detail": "牺牲目标对手与遏制目标玩家的绑定关系不能由单目标程序替代卡文裁定。"
+    }
+  ],
+  "carriedAuditFixes": {
+    "newCardsCounted": 0,
+    "count": 8,
+    "record": "docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md",
+    "commits": [
+      "4f85f06854bb7df81883bfd10264df01ffa04d8e",
+      "0e83079b3e81ef1be2226c0c0b21bda127a46f42",
+      "a69793d77b887351ceabe291596854e45f732476",
+      "d98117d188cfc65f4e29fb757dfcf9accdd545e5"
+    ]
+  },
+  "publication": {
+    "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "audience": "public",
+    "existingVersion": 71,
+    "existingAbi": 89,
+    "credentialRequest": "succeeded",
+    "publishOnPushAccepted": false,
+    "sourceOpenedWithOfficialHelper": false,
+    "sourcePushed": false,
+    "saveVersionAttempted": false,
+    "deployAttempted": false,
+    "versionId": null,
+    "deploymentId": null,
+    "sourceCommit": null,
+    "blocker": {
+      "action": "openAndPackageExistingSitesSource",
+      "target": "scripts/site-workflow.mjs for appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "reason": "Official helper not available in checked readable installation paths; skill resource lookup did not supply it.",
+      "denied": false,
+      "outcome": "notAttempted",
+      "requiredInput": "Supported official helper installed or provided at a readable executable path in this environment."
+    }
+  },
+  "validation": {
+    "sourceImages": "20/20 hash match",
+    "newCardsRemainDisabled": "20/20",
+    "sourceSchema": "passed: validate_specifications; no engine/UI acceptance",
+    "diffCheck": "passed",
+    "documentLinks": "105 local paths exist",
+    "newBatchFullSuites": "notRun",
+    "independentReview": "notRun",
+    "realBrowserBattle": "notRun",
+    "githubCi": "notRun",
+    "onlyExpectedSourceRecordsChanged": [
+      "JC034",
+      "JC038",
+      "JC048",
+      "JC055",
+      "JC065",
+      "JZ52",
+      "LC16",
+      "WM033",
+      "XG12"
+    ],
+    "runtimeAndHistoricalSnapshotsUnchanged": true
+  },
+  "historicalSnapshotWarning": "2026-10-03 research index and implementation matrix have stale source hashes/support labels. This batch does not rebuild or approve their 685 records."
+}

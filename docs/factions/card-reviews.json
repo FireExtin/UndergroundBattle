@@ -3535,7 +3535,7 @@
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "领袖；【持续】所有其他本方王座会角色获得袭击1。；【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。",
+      "abilitySummary": "领袖；【持续】所有其他友方王座会角色获得袭击1。；【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。",
       "confirmedMechanismIds": [
         "leader",
         "continuous",
@@ -3756,7 +3756,7 @@
         "colorKey": "红",
         "basicType": "角色"
       },
-      "abilitySummary": "【准备步骤触发】在目标角色或附属上放置一个时间标志。；【标准行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+      "abilitySummary": "【准备步骤触发】在目标角色或附属上放置一个时间标志。；【行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
       "confirmedMechanismIds": [
         "timeDestroy",
         "costReduction",
@@ -5662,7 +5662,7 @@
       "evidenceId": "card-LC16",
       "verifiedFields": {
         "name": "江月",
-        "colorKey": "灰",
+        "colorKey": "黑",
         "basicType": "角色"
       },
       "abilitySummary": "创伤2；准备步骤触发 从你的牌库中寻找一张法术牌或阴牌，将该牌置于你的墓地，然后将你的牌库洗牌。在目标地区上放置一个本方势力标志。",
@@ -8557,7 +8557,7 @@
         "colorKey": "红",
         "basicType": "角色"
       },
-      "abilitySummary": "时间标志1；传闻；行动 自钟楼怪客上移除一个时间标志：将一张法术或灾难牌从本方墓地移回你的手中。该能力每回合只能发动一次。",
+      "abilitySummary": "时间标志1；【隐秘】传闻；行动 自钟楼怪客上移除一个时间标志：将一张法术或灾难牌从本方墓地移回你的手中。该能力每回合只能发动一次。",
       "confirmedMechanismIds": [
         "timeDestroy",
         "rumor",
@@ -11216,7 +11216,7 @@
         "colorKey": "蓝",
         "basicType": "附属"
       },
-      "abilitySummary": "结附于目标吸血鬼角色；持续 受此结附的角色获得永久战斗2和机动，且额外具有蝙蝠类别。；行动②：将兽形变化结附到另一个吸血鬼角色上。",
+      "abilitySummary": "结附于目标吸血鬼角色；持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。；行动②：将兽形变化结附到另一个吸血鬼角色上。",
       "confirmedMechanismIds": [
         "attachment",
         "continuous",
