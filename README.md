@@ -13,15 +13,15 @@
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
 | 尚未完成 | 第一批Sites最终单轮全套正在固定快照上执行；本批独立复审和真实浏览器对战由协调任务分别安排，尚无完成结论；旧桌兼容未独立确认 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
-| 第二批20张 | [独立开发清单](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/batch20-next-20261021`；红黑蓝灰20张运行机制开发中，尚未准入或发布，不计作已实现 |
+| 第二批20张 | [独立开发清单](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/batch20-next-20261021`；红黑蓝灰20张运行机制开发中；蓝灰7张源码已接入候选，其最终源码和完整批次待验证，未发布 |
 
 [已发布的游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)的官方部署记录现指向v73，包含第一批20卡及此前整改。部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)。
 
 Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go正式架构、WebSocket路线和计划目录不是当前实现；历史内容仍可从Git历史查看。
 
-## 卡牌与玩法范围
+## 已发布v73的卡牌与玩法范围
 
-当前运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，已有牌桌使用其自己的 `/api/rooms/{roomId}/catalog`。
+下表统计v73冻结版本；当前分支的第二批候选尚未发布。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，已有牌桌使用其自己的 `/api/rooms/{roomId}/catalog`。
 
 | 目录类型 | 数量 |
 | --- | ---: |
@@ -151,7 +151,7 @@ npm --prefix web test -- --maxWorkers=2
 node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```
 
-Sites全套测试还需要已构建的14模块Worker和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
+本分支Sites全套测试还需要已构建的15模块Worker（当前候选ABI92及原件77–89、91；v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
 
 ```sh
 node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server"

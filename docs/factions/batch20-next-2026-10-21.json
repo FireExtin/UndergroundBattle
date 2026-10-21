@@ -8,9 +8,10 @@
   "scope": {
     "selectedNewCards": 20,
     "fullyIntegratedNewCards": 0,
-    "selectionEnabledNewCards": 0,
+    "selectionEnabledNewCards": 7,
     "publishedNewCards": 0,
-    "neutralOrDualExpansion": "paused"
+    "neutralOrDualExpansion": "paused",
+    "sourceIntegratedNewCards": 7
   },
   "cards": [
     {
@@ -193,10 +194,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -210,10 +221,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -227,10 +248,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -244,10 +275,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -261,10 +302,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -278,10 +329,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -295,10 +356,20 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "testedSource": "555c1820e359cc7575b9491d16129de223b9898b",
+        "nativeGroups": {
+          "new": 13,
+          "batch20Regression": 30,
+          "jc035Regression": 15
+        },
+        "failed": 0,
+        "finalSource": "9966d705f35c1f54831d99de187eb0369ba41ef8",
+        "finalSourceValidation": "notRun; pending owner integration checks"
+      },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun"
     },
@@ -421,5 +492,27 @@
       "logSha256": "f697325c0c4c3dc4c6e3ca8f6c11d213e3914d7da1de3b4e7ea53b6318686929",
       "scope": "Original77/89 protection plus retained91 byte/catalog/staging/missing/corrupt input checks; not old-room browser acceptance"
     }
+  },
+  "candidateIdentity": {
+    "rules": "hegemony-pdf-v1",
+    "cardPool": "limited-v2.83-batch20-next",
+    "engine": "rust-v0.2.92-batch20-next",
+    "status": "WIP source constants; current WASM not built for this identity",
+    "retainedAbi": [
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      91
+    ]
   }
 }

@@ -70,7 +70,7 @@ const removedDirectories = ['rust-game/data'];
 copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
 // Unlisted old kernels are not part of a candidate build. The retained ABI77–89
-// identities are source; exact runtimes must be supplied externally to the build.
+// and ABI91 identities are source; exact runtimes must be supplied externally to the build.
 const wasmDestination = path.join(destination, 'rust-game-wasm');
 if (existsSync(wasmDestination)) {
   for (const name of readdirSync(wasmDestination).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) removedDirectories.push('rust-game-wasm/' + name);
