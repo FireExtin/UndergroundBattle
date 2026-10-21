@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T15:42:46.610762+00:00",
+  "sourceCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
+  "engine": "rust-v0.2.91-batch20",
+  "cardPool": "limited-v2.82-batch20",
+  "wasm": {
+    "bytes": 3796219,
+    "sha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+  },
+  "command": "node --test --test-concurrency=2 test/*.test.mjs",
+  "cwd": "sites",
+  "environment": {
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "<isolated first-batch build directory>",
+    "TMPDIR": "$UNDERGROUNDBATTLE_BUILD_ROOT/tmp",
+    "HEGEMONY_CURRENT_WORKER_DIR": "$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server",
+    "HEGEMONY_PASS_HISTORY_ABI77_DIR": "$UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi77"
+  },
+  "result": {
+    "exitCode": 0,
+    "tests": 736,
+    "passed": 736,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 2244554.28068
+  },
+  "startedAt": "2026-10-21T14:56:50.779163+00:00",
+  "lastLogWriteAt": "2026-10-21T15:34:14.002523+00:00",
+  "observedCompletedAt": "2026-10-21T15:42:46.610762+00:00",
+  "log": {
+    "file": "batch20-final-full-sites-fixed-02.log",
+    "bytes": 159420,
+    "sha256": "267b897700a39ec446dba262362f6c7fdb6279a8dc878f2bafebee358249acff"
+  },
+  "priorRun": {
+    "exitCode": 1,
+    "tests": 656,
+    "passed": 644,
+    "failed": 12,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 2207286.928544,
+    "failureReason": "Isolated build input setup omitted ABI78-89. Eleven test modules failed loading missing frozen inputs; the fourteen-kernel HTTP test failed on missing ABI78. Cases in unloaded modules were not executed.",
+    "log": {
+      "file": "batch20-final-full-sites-fixed.log",
+      "bytes": 164863,
+      "sha256": "056715fb5cd561dbd3ba3a635c1c1596d0ac24344262eeb25861e4f19b9fa7a8"
+    }
+  },
+  "restoredOriginalInputs": [
+    {
+      "abi": 77,
+      "wasmBytes": 2909006,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "2b041aa5daa089e00f3157cfdb4a54c10a6f531bc3527998a43e835c580438ff"
+    },
+    {
+      "abi": 78,
+      "wasmBytes": 2976205,
+      "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "47ebbbd0a8921a19f4d49e6376eca66b62b1224118b51e139b3546f5bf6dfe5e"
+    },
+    {
+      "abi": 79,
+      "wasmBytes": 3005332,
+      "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "816390c4997a73785c23db506e9a69558aef9c5ecdb34999e0d697b4273f41d1"
+    },
+    {
+      "abi": 80,
+      "wasmBytes": 3047680,
+      "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "66a867ec60b0df1946b9637ee7d581689aed68faabd079710f0371b6019705ff"
+    },
+    {
+      "abi": 81,
+      "wasmBytes": 3154323,
+      "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "b882f9e672ca63ed5577eef74aa896360ee0c533d52cbc1be4945130d2f2bcb0"
+    },
+    {
+      "abi": 82,
+      "wasmBytes": 3165174,
+      "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "b9e853c63ae5ed6ab54e5938428fae4c47bead1c37adedec0eb7b364c849e29c"
+    },
+    {
+      "abi": 83,
+      "wasmBytes": 3174213,
+      "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "b8929ef2e811a4741b268a3b95eb2dc40316eb010d42d77d9f7c96af576c9fdb"
+    },
+    {
+      "abi": 84,
+      "wasmBytes": 3217477,
+      "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "7ae756b248e92105a7e77c7e722302be0eedd412eff1670eacfc3d3146aca884"
+    },
+    {
+      "abi": 85,
+      "wasmBytes": 3263215,
+      "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "0c1a3ce80966e1c61dbe7d3f9899f70ac81da5c73136bc89e956f8e85678c872"
+    },
+    {
+      "abi": 86,
+      "wasmBytes": 3291234,
+      "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "4742102e877bfa4cbb74f39d0de8157b320dbe26205ac73be29e7c13725c518f"
+    },
+    {
+      "abi": 87,
+      "wasmBytes": 3325174,
+      "wasmSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "3dd2f474a9c98a1cc3dff5d4fd5c23f5a007078daf438ed2b5f60e499e5ea3ca"
+    },
+    {
+      "abi": 88,
+      "wasmBytes": 3353559,
+      "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "e80413a8fadae8b47a7aa1f8588438a2c3599ba32f6bfbbdd49abb0326b1d22f"
+    },
+    {
+      "abi": 89,
+      "wasmBytes": 3471247,
+      "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+      "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "gzipSha256": "73fcc1c3804f9c75016bbe1c74664549f29e35f0148fc11a6b7cbec70a7b831b"
+    }
+  ],
+  "restoredInputEvidence": {
+    "file": "BATCH20-FINAL-SITES-RESTORED-INPUTS.json",
+    "bytes": 4300,
+    "sha256": "4e057107492b08ae08653ae88152dd4982e693a2075b317fe6224141161799ca"
+  },
+  "sourceUnchanged": true,
+  "githubCI": "notRun",
+  "scope": "All sites/test/*.test.mjs at fixed7f, using original frozen kernel bytes; author-run local HTTP/workerd/D1 tests.",
+  "exclusions": [
+    "Not a v74/ABI92 full-suite result",
+    "Not a next20/ABI93 full-suite result",
+    "Not independent review",
+    "Not real browser gameplay",
+    "Does not close the known v73 empty-society-zone defect"
+  ]
+}
