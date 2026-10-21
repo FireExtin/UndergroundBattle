@@ -719,6 +719,7 @@ impl Game {
                     return Err("超出正常派遣距离".into());
                 }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -797,6 +798,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -852,11 +854,11 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
-                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
                 crate::wm038::validate_play_action(&c.definition, &a)?;
@@ -899,6 +901,7 @@ impl Game {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
+                crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 self.jc041_check_activation(seat, region, c, &a)?;
                 let source = self.source_snapshot(c, region);

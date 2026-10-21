@@ -138,6 +138,28 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     Ok(())
 }
 
+pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if definition(id).is_none() {
+        return Ok(());
+    }
+    if a.selected.is_some()
+        || a.choice_id.is_some()
+        || a.top.is_some()
+        || a.bottom.is_some()
+        || a.allocations.is_some()
+        || a.cost_selected.is_some()
+        || a.deck_draft.is_some()
+        || (matches!(a.kind.as_str(), "deploy" | "conceal" | "reveal")
+            && (a.option.is_some() || a.target_id.is_some() || a.ability_id.is_some()))
+        || (matches!(a.kind.as_str(), "activate" | "play")
+            && (a.region.is_some() || a.target_id.is_some()))
+        || (a.kind == "activate" && a.option.is_some())
+    {
+        return Err("暴露牌公开命令含有不属于印刷动作的字段".into());
+    }
+    Ok(())
+}
+
 impl Game {
     pub(crate) fn society_exposure(&self, seat: usize) -> u32 {
         self.players[seat].society_zone.exposure
@@ -368,7 +390,7 @@ impl Game {
             }
             "wm040-repress" => f.already_paid.is_empty(),
             "wm042-news" => {
-                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if assets(ids, 1))
+                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && assets(ids, ids.len()))
                     && f.source.region.is_none()
                     && f.source.play_source.is_none()
             }
@@ -478,6 +500,13 @@ impl Game {
             match e {
                 Effect::Declare { declaration: d } => declaration(d)?,
                 Effect::Frame { frame } => self.validate_exposure_frame(frame)?,
+                Effect::JZ57AfterMill { frame } => {
+                    self.validate_batch20_frame(frame)?;
+                    if frame.ability_key != "batch20-jz57-mill" || frame.cursor != 1 || !matches!(frame.guard, GuardState::Accepted)
+                        || !self.pending.as_ref().is_some_and(|p| matches!(&p.resolution, ChoiceResolution::Rumor { batch } if batch.from_deck && batch.cause.as_ref().is_some_and(|c| same(c, frame)))) {
+                        return Err("骷髅磨牌续体必须属于当前传闻批次".into());
+                    }
+                }
                 _ => {}
             }
         }

@@ -47,7 +47,7 @@ fn bad(g: &Game, changed: Game) {
 }
 fn mill_source(g: &mut Game, holder: usize) {
     let id = held(g, "JZ49", 0, 0);
-    fund(g, 0, "JZ46", 4);
+    fund(g, 0, "JC084", 2);
     apply(
         g,
         0,
@@ -253,9 +253,9 @@ fn exposure_commissioner_actual_removal_repress_pending_restore_and_heal_wounds(
         .collect();
     choose(&mut g, ids);
     assert_eq!(g.regions.iter().map(|r| r.influence[1]).sum::<u32>(), 1);
-    let own = board(&mut g, "JC125", 0, 2);
-    let teammate = board(&mut g, "JC125", 2, 2);
-    let away = board(&mut g, "JC125", 0, 1);
+    let own = board(&mut g, "JC059", 0, 2);
+    let teammate = board(&mut g, "JC059", 2, 2);
+    let away = board(&mut g, "JC059", 0, 1);
     g.board_mut(&own).unwrap().wounds = 1;
     g.board_mut(&teammate).unwrap().wounds = 1;
     g.board_mut(&away).unwrap().wounds = 1;
@@ -345,7 +345,7 @@ fn exposure_rumor_effect_discard_batches_count_only_actual_discard_and_continue_
     let host = board(&mut g, "JC125", 0, 2);
     let observer = board(&mut g, "JC040", 0, 1);
     let source = board(&mut g, "JC038", 0, 2);
-    let victim = board(&mut g, "JC027", 0, 2);
+    let victim = board(&mut g, "JC029", 0, 2);
     let rumor = held(&mut g, "WM042", 2, 1);
     let before = g.players[0].hand.len();
     apply(
@@ -410,4 +410,170 @@ fn exposure_normal_spell_burial_cleanup_and_cost_discard_do_not_trigger_rumor() 
     g.discard_hand_card(0, &id).unwrap();
     assert!(g.pending.is_none());
     assert_eq!(g.players[0].graveyard.len(), 1);
+}
+
+#[test]
+fn exposure_condition_mobility_capture_survives_response_marker_removal() {
+    let mut g = game(0);
+    let id = board(&mut g, "WM040", 0, 2);
+    g.add_society_markers(0, 1, 0);
+    g.begin_window(Window::Action(1));
+    for _ in 0..8 {
+        if g.pending.is_some() {
+            break;
+        }
+        let seat = (0..4)
+            .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
+            .unwrap();
+        apply(&mut g, seat, Action::new("pass"));
+    }
+    let p = g.pending.clone().unwrap();
+    let ChoiceResolution::Declare { declaration, .. } = p.resolution else {
+        panic!("mobility declaration")
+    };
+    assert_eq!(declaration.ability.key, "mobility");
+    assert_eq!(declaration.source.observed_exposure, Some(1));
+    let mut changed = g.clone();
+    if let ChoiceResolution::Declare { declaration, .. } =
+        &mut changed.pending.as_mut().unwrap().resolution
+    {
+        declaration.source.observed_exposure = Some(0);
+    }
+    bad(&g, changed);
+    choose(&mut g, vec!["region:1".into()]);
+    let actor = (0..4).find(|s| g.team(*s) == g.priority_team).unwrap();
+    news(&mut g, actor, "cover");
+    assert_eq!(g.society_exposure(0), 0);
+    assert!(!g.has_mobility(g.board(&id).unwrap().1));
+    pass_top(&mut g);
+    assert_eq!(g.board(&id).unwrap().0, 1);
+    checkpoint(&g);
+}
+
+#[test]
+fn exposure_rumor_room_repeated_choice_is_atomic_and_restored() {
+    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 0, 2);
+    let c = g.make_card("WM042", 1);
+    g.players[1].deck = vec![c];
+    mill_source(&mut g, 1);
+    let p = g.pending.clone().unwrap();
+    let room = envelope(&g);
+    let command = RoomCommand {
+        command_id: "rumor-once".into(),
+        expected_version: room.revision,
+        action: SessionAction::Game {
+            action: Action {
+                choice_id: Some(p.choice.id),
+                selected: Some(vec![host]),
+                ..Action::new("choose")
+            },
+        },
+    };
+    let first = room.transition(1, Some(command.clone()), 0).unwrap();
+    assert!(first.error_code.is_none());
+    let after = RoomEnvelope::from_persisted(&first.state).unwrap();
+    assert_eq!(after.game.sealed_cards.len(), 1);
+    let repeat = after.transition(1, Some(command), 0).unwrap();
+    let repeated = RoomEnvelope::from_persisted(&repeat.state).unwrap();
+    assert_eq!(
+        serde_json::to_value(&after.game).unwrap(),
+        serde_json::to_value(&repeated.game).unwrap()
+    );
+}
+
+#[test]
+fn exposure_paid_hand_discard_is_not_effect_discard() {
+    let mut g = game(0);
+    board(&mut g, "JC125", 0, 2);
+    let source = board(&mut g, "XQ38", 0, 2);
+    fund(&mut g, 0, "JC084", 2);
+    let c = g.make_card("JC125", 0);
+    let target = c.id.clone();
+    g.players[0].graveyard.push(c);
+    let rumor = held(&mut g, "WM042", 0, 0);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(source),
+            ability_id: Some("recover-grave-discard".into()),
+            target_id: Some(target),
+            cost_selected: Some(vec![rumor]),
+            ..Action::new("activate")
+        },
+    );
+    assert!(g.pending.is_none());
+    assert!(g.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "WM042"));
+    pass_top(&mut g);
+    assert!(g.sealed_cards.is_empty());
+}
+
+#[test]
+fn exposure_rumor_multi_player_mill_resumes_exact_remaining_steps() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 0, 2);
+    for seat in 0..4 {
+        g.players[seat].deck = (0..4)
+            .map(|i| g.make_card(if i == 0 && seat < 2 { "WM042" } else { "JC125" }, seat))
+            .collect();
+    }
+    let id = held(&mut g, "XQ36", 0, 0);
+    fund(&mut g, 0, "JC084", 1);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(id),
+            region: Some(2),
+            ..Action::new("deploy")
+        },
+    );
+    pass_top(&mut g);
+    choose(&mut g, vec!["accept".into()]);
+    pass_top(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 0);
+    choose(&mut g, vec![host.clone()]);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 1);
+    checkpoint(&g);
+    choose(&mut g, vec![]);
+    assert!(g.players.iter().all(|p| p.deck.is_empty()));
+    assert_eq!(g.players[0].graveyard.len(), 3);
+    assert_eq!(g.players[1].graveyard.len(), 4);
+    assert_eq!(g.players[2].graveyard.len(), 4);
+    assert_eq!(g.players[3].graveyard.len(), 4);
+}
+
+#[test]
+fn exposure_analysis_source_departure_does_not_grant_a_new_instance() {
+    let mut g = game(0);
+    let source = board(&mut g, "WM039", 0, 2);
+    let rescue = board(&mut g, "JC075", 0, 2);
+    fund(&mut g, 0, "JC059", 3);
+    g.add_society_markers(0, 1, 0);
+    activate(&mut g, 0, &source, "wm039-analysis");
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(rescue),
+            ability_id: Some("rescue".into()),
+            target_id: Some(source.clone()),
+            ..Action::new("activate")
+        },
+    );
+    pass_top(&mut g);
+    pass_top(&mut g);
+    assert_eq!(g.society_exposure(0), 0);
+    assert!(g.board(&source).is_none());
+    assert!(g.turn_attribute_modifiers.is_empty());
+    assert!(g.players[0]
+        .hand
+        .iter()
+        .any(|c| c.definition == "WM039" && c.id != source));
+    checkpoint(&g);
 }

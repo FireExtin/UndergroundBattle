@@ -269,6 +269,19 @@ impl Game {
         } else {
             &self.players[b.holder].hand
         };
+        if b.from_deck
+            && !same(
+                &b.originals[b.cursor..].to_vec(),
+                &zone
+                    .iter()
+                    .take(b.originals.len() - b.cursor)
+                    .cloned()
+                    .collect::<Vec<_>>(),
+            )
+        {
+            return Err("传闻磨牌必须保留原批次牌库顶顺序".into());
+        }
+        let mut outcome_ids = BTreeSet::new();
         for c in &b.originals[b.cursor..] {
             if zone.iter().filter(|live| *live == c).count() != 1 {
                 return Err("传闻尚未替换的牌必须仍在原手牌或牌库中".into());
@@ -277,6 +290,9 @@ impl Game {
         for (old, outcome) in b.originals.iter().zip(&b.outcomes) {
             let c = match outcome {
                 TransferOutcome::Grave(c) => {
+                    if c.owner >= self.players.len() {
+                        return Err("入墓收据拥有者无效".into());
+                    }
                     if !self.players[c.owner].graveyard.iter().any(|live| live == c) {
                         return Err("传闻批次实际入墓收据不符".into());
                     }
@@ -294,7 +310,8 @@ impl Game {
                     card
                 }
             };
-            if c.owner != old.owner
+            if !outcome_ids.insert(&c.id)
+                || c.owner != old.owner
                 || c.definition != old.definition
                 || c.id == old.id
                 || c.controller != c.owner
@@ -333,6 +350,54 @@ impl Game {
         }
         self.validate_batch20_frame(f)?;
         self.validate_jc035_frame(f)?;
+        // Authenticate the full original program, including every later step.
+        // Runtime batch observations keep their existing stricter validators.
+        let dynamic = matches!(
+            f.steps.get(f.cursor - 1).map(|s| &s.op),
+            Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. })
+        );
+        if !dynamic {
+            let candidates = crate::rules::definition(&f.source.card.definition)
+                .abilities
+                .iter()
+                .flat_map(|a| {
+                    let mut v = vec![a.clone()];
+                    for m in &a.modes {
+                        let mut selected = a.clone();
+                        selected.targets = m.targets.clone();
+                        selected.ops = m.ops.clone();
+                        selected.modes.clear();
+                        v.push(selected);
+                    }
+                    v
+                })
+                .collect::<Vec<_>>();
+            if !candidates.iter().any(|a| {
+                let expected = self.make_frame(
+                    f.actor,
+                    f.source.clone(),
+                    a,
+                    f.targets.clone(),
+                    f.already_paid.clone(),
+                    f.chosen_region,
+                );
+                a.key == f.ability_key
+                    && a.modes.is_empty()
+                    && same(&expected.steps, &f.steps)
+                    && same(
+                        &a.targets,
+                        &f.targets.iter().map(|t| t.spec.clone()).collect::<Vec<_>>(),
+                    )
+            }) {
+                return Err("传闻续体不能移植或改写原完整程序".into());
+            }
+        }
+        if f.targets
+            .iter()
+            .any(|t| t.id.is_empty() || t.public.instance_id != t.id)
+        {
+            return Err("传闻原效应目标身份无效".into());
+        }
         let step = &f.steps[f.cursor - 1];
         let seat = |p: PlayerRef| match p {
             PlayerRef::Actor => Some(f.actor),
