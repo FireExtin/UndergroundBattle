@@ -251,3 +251,23 @@ describe('object actions on a synthetic table', () => {
     expect(screen.queryByRole('button', { name: /来源牌派遣/ })).not.toBeInTheDocument();
   });
 });
+
+it('keeps Interrogate repression independent from its sacrifice opponent and region before submission', () => {
+  const spell = { ...funeral, instanceId: 'interrogate', cardId: 'JC065', name: '审问嫌疑人' };
+  const region = { id: 'original-region', index: 0, cardId: 'DQJC109', name: '纽约', threshold: 3, points: 3, influence: [1, 0], characters: [] };
+  const legal: LegalAction = { id: 'interrogate-own-repress', kind: 'play', cardId: spell.instanceId, abilityId: 'batch20-jc065-interrogate',
+    targetId: 'p1', region: 0, selected: ['p0'], label: '审问嫌疑人：遏制 甲 → 纽约；牺牲方 乙' };
+  const enemyRepress = { ...legal, id: 'interrogate-enemy-repress', selected: ['p1'], label: '审问嫌疑人：遏制 乙 → 纽约；牺牲方 乙' };
+  const submit = vi.fn();
+  const { container } = render(<Table {...props} view={{ ...view, hand: [spell], regions: [region], legalActions: [legal, enemyRepress] }} onAction={submit} />);
+  fireEvent.click(screen.getByRole('button', { name: '查看审问嫌疑人' }));
+  fireEvent.click(screen.getByRole('button', { name: '审问嫌疑人：遏制 甲' }));
+  expect(submit).not.toHaveBeenCalled();
+  fireEvent.click(container.querySelector('[data-player-target="p1"]')!);
+  fireEvent.click(container.querySelector('[data-region-available="true"] .hg-region-center')!);
+  expect(screen.getByText(/目标：乙/)).toBeInTheDocument();
+  const confirm = screen.getByRole('button', { name: '确认 · 审问嫌疑人：遏制 甲 → 地区 1 · 纽约' });
+  fireEvent.click(confirm);fireEvent.click(confirm);
+  expect(submit).toHaveBeenCalledExactlyOnceWith(legal);
+  expect(actionForRoom(view, legal)).toMatchObject({ targetId: 'p1', region: 0, selected: ['p0'] });
+});

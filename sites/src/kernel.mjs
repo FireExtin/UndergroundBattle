@@ -28,7 +28,7 @@ import * as published89 from '../generated/abi89/hegemony_wasm.js';
 import published89Module from '../generated/abi89/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 import { lazyKernel } from './lazy-kernel.mjs';
-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.90-audit-correctness-candidate"});
+const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.82-batch20","engineVersion":"rust-v0.2.91-batch20"});
 const kernel89 = lazyKernel(published89, published89Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.89-jc035-preparation-candidate"});
 const kernel88 = lazyKernel(published88, published88Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.80-xq23-asset-return-candidate","engineVersion":"rust-v0.2.88-xq23-asset-return-candidate"});
 const kernel87 = lazyKernel(published87, published87Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.79-jc041-water-hidden-candidate","engineVersion":"rust-v0.2.87-jc041-water-hidden-candidate"});

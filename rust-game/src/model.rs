@@ -640,6 +640,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    JC065Sacrifice { seat: usize, region: usize, region_instance: String },
     Batch20Repress { seat: usize, regions: Vec<(usize, String, u32)> },
     Batch20SearchEntry,
     Batch20OptionalDraw,

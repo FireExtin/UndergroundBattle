@@ -828,5 +828,100 @@
     "url": "/cards/JC035.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC035 传媒魔咒.jpg",
     "sha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319"
+  },
+  "JC043": {
+    "url": "/cards/JC043.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC043 纵火狂.jpg",
+    "sha256": "f16d940974d714ea7de4415bc7f3f60f3f196c1d9145c52dd69a77019f2a9617"
+  },
+  "JC048": {
+    "url": "/cards/JC048.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC048 诅咒沙漏.jpg",
+    "sha256": "4344e488c07cfa57d891913a1dc14e68b295bd1001458a1267782d080f69d952"
+  },
+  "JZ33": {
+    "url": "/cards/JZ33.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ33 蚀日星魔.jpg",
+    "sha256": "cb45e8f0e7aabc2e126af4f4e4556eadd456e6a8790b3568c03f02081d5e8086"
+  },
+  "JZ37": {
+    "url": "/cards/JZ37.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ37 终焉.jpg",
+    "sha256": "41090a7ea8201a4afcd60b03d8c64651046e5f3dbb65733c28283e79787c982b"
+  },
+  "WM034": {
+    "url": "/cards/WM034.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM034 消逝的乌尔德.jpg",
+    "sha256": "9f1e5f9ce6e9b6eaf3e69c33b2e30bcde3114044d35951a993b1b2fc3d38f700"
+  },
+  "BQ080": {
+    "url": "/cards/BQ080.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ080 回收专员.jpg",
+    "sha256": "5181897442261a2db4040ddfaae40fd8d7ff8c0673f30c43768608d16d921faa"
+  },
+  "BQ091": {
+    "url": "/cards/BQ091.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ091 废弃收容所.jpg",
+    "sha256": "ea26d41e901c780856d92b819fe1806a14f53229e62b86713b8daa52429275a2"
+  },
+  "BQ094": {
+    "url": "/cards/BQ094.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ094 费格马变量实验室.jpg",
+    "sha256": "263178b503125e854f8f26e4564ff2c0be29c67d3bd7630485b9e48494f550e0"
+  },
+  "JZ57": {
+    "url": "/cards/JZ57.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg",
+    "sha256": "a9de7e904fe18c5cc5f00887add743ffea83fb2e112d291a10b1afa014e79bf4"
+  },
+  "JC033": {
+    "url": "/cards/JC033.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC033 家族传承.jpg",
+    "sha256": "e504b78b9433732ed5b8034e463b10b03db86f65fc0cfec79c00b7a0ad738e30"
+  },
+  "JC034": {
+    "url": "/cards/JC034.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC034 心兽之道.jpg",
+    "sha256": "edde9a868361e90592c13fef469b025676ee23dfdf35f4f821f86871e5631bb3"
+  },
+  "JC038": {
+    "url": "/cards/JC038.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC038 列恩·爱弗罗德.jpg",
+    "sha256": "9f84e160119ce8b109eee78171e3212769caf7a3bac6b17c6b6e24ef24772a92"
+  },
+  "JC040": {
+    "url": "/cards/JC040.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg",
+    "sha256": "ef2f30c5f794f900f66facc4fce7e90bb1edd9a56dc84c666331ae3ee2163750"
+  },
+  "JZ29": {
+    "url": "/cards/JZ29.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ29 锐齿颈环.jpg",
+    "sha256": "d3ea6d9e33e4904db39f584ef91165122cb2c51e3ae6cb3722355ee6bdc2675f"
+  },
+  "BQ054": {
+    "url": "/cards/BQ054.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ054 沙地特种兵.jpg",
+    "sha256": "467e5eb971c626486926be6b5891445701c97cc0659552cc4efb7782fab3c512"
+  },
+  "JC065": {
+    "url": "/cards/JC065.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC065 审问嫌疑人.jpg",
+    "sha256": "6b094d1f2659a370959329ed77b2fd9189734f3495fdf3b5a2228cd900a49d3e"
+  },
+  "JC067": {
+    "url": "/cards/JC067.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC067 约翰·F·纳特里.jpg",
+    "sha256": "86283a6b8cf860e8b0ee253ddc83a8396f8c2b9f09316e5850e480db847ee192"
+  },
+  "CQ16": {
+    "url": "/cards/CQ16.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ16 前线士官.jpg",
+    "sha256": "65cd0717f883edb1e5fa0d5910de04ebe329433ea355feeb6375cc2b1403ff93"
+  },
+  "JC068": {
+    "url": "/cards/JC068.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC068 阿格斯IV.jpg",
+    "sha256": "9b47581d3745bd5b9bbe7cd80cbaae75fc6d6aa7a1635e70e50319714044ee1c"
   }
 }

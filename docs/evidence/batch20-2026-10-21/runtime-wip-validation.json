@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "batch": "batch20-2026-10-21",
-  "stage": "18 runtime programs WIP; 2 decisions pending; no release",
-  "baseCommit": "70c1a43178d9e394953a73936a397b723c52ccab",
+  "stage": "20 implemented and admitted; necessary builds/startup passed; official publication and post-release acceptance pending",
+  "baseCommit": "fce0a9bb07d89e80cbe2f47942a1e88e1031a8bb",
   "logRoot": "/workspace/audit-underground-100161b",
   "logs": [
     {
@@ -74,11 +74,137 @@
         "✓ built in 314ms"
       ],
       "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-final-two-compile.log",
+      "sha256": "dba83d13025c0a85a669297d0cdc56551240b93bf06266673b8bd4c9cfcaf1c1",
+      "summary": [
+        "error[E0434]: can't capture dynamic environment in a fn item",
+        "error[E0434]: can't capture dynamic environment in a fn item"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-twenty-tests.log",
+      "sha256": "c0ac8e36f34f9d39716d5559b5a0facf0dbead062c27f91d6c4f7b3677546741",
+      "summary": [
+        "error[E0502]: cannot borrow `g` as immutable because it is also borrowed as mutable",
+        "error[E0502]: cannot borrow `g` as immutable because it is also borrowed as mutable"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-twenty-tests-02.log",
+      "sha256": "d0abde431b8e6f0be24a718a32d44a32616ba6c64e24b00af0380c4c0f436626",
+      "summary": [
+        "Finished `test` profile [unoptimized] target(s) in 35.66s",
+        "test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 1293 filtered out; finished in 5.14s"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-final-ui.log",
+      "sha256": "25589b4718cd480355a53c60a27e2fff5845c12ade472cb6bab55a98fcd6132d",
+      "summary": [
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  1 failed | 31 passed (32)"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-final-ui-02.log",
+      "sha256": "865ef2eeb0e46c1468bb497095b00f8dc2be9129c80c64d6039cbca429191329",
+      "summary": [
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  1 failed | 31 passed (32)"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-final-ui-03.log",
+      "sha256": "f3bd617424224934cdc57c7f8afb4f0cb127991604562da2c40359b9c8c02dbf",
+      "summary": [
+        "Test Files  2 passed (2)",
+        "Tests  32 passed (32)"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-native-build.log",
+      "sha256": "4b669e3383f97c7e71ceb4f3ef0443bb03397a1e734a97bf59940b404447a1b8",
+      "summary": [
+        "Finished `dev` profile [unoptimized] target(s) in 17.71s"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-wasm-build.log",
+      "sha256": "db0a6f2d9ac1304d2abec226040063c909c6bebbc42a9808cf39a83c770ae9b2",
+      "summary": [
+        "Finished `release` profile [optimized] target(s) in 1m 00s"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-final-web-build.log",
+      "sha256": "63aac97a95f4d08f569b5141ea2f4f34b01ffb563a9e292b92f0151a1a958e1d",
+      "summary": [
+        "✓ built in 574ms"
+      ],
+      "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-startup-check.log",
+      "sha256": "542a9aa581c2522bdc0025eb2d2c36ccca9eca6e41e771baa1105d7f1bba5ae1",
+      "summary": [],
+      "scope": "local scoped verification; not full suite or real browser"
     }
   ],
   "fullSuite": "notRun",
   "independentReview": "notRunForBatch",
   "realBrowserBattle": "notRun",
   "githubCi": "notRun",
-  "frozenKernels": "unchanged"
+  "frozenKernels": "unchanged",
+  "startup": {
+    "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+    "engine": "rust-v0.2.91-batch20",
+    "pool": "limited-v2.82-batch20",
+    "ordinaryCards": 173,
+    "societies": 10,
+    "batchIds": [
+      "JC043",
+      "JC048",
+      "JZ33",
+      "JZ37",
+      "WM034",
+      "BQ080",
+      "BQ091",
+      "BQ094",
+      "JZ52",
+      "JZ57",
+      "JC033",
+      "JC034",
+      "JC038",
+      "JC040",
+      "JZ29",
+      "BQ054",
+      "JC065",
+      "JC067",
+      "CQ16",
+      "JC068"
+    ],
+    "wasmSha256": "b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4",
+    "wasmBytes": 3796176,
+    "checks": [
+      "all 20 supported",
+      "all 20 accepted in custom deck",
+      "WASM create/join/ready/start",
+      "opaque max-u64 seed preserved",
+      "Native HTTP create/join/ready/start",
+      "Native catalog equals WASM",
+      "new room catalog",
+      "static index and 20 card images"
+    ],
+    "result": "passed"
+  }
 }

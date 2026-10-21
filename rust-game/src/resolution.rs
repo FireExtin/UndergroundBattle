@@ -128,6 +128,7 @@ impl Game {
         region: Option<usize>,
         kind: &str,
     ) -> Vec<(Action, String)> {
+        if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         let source = self.source_snapshot(c, region);
         let mut result = vec![];
         for ability in rules::definition(&c.definition)
@@ -462,7 +463,7 @@ impl Game {
             source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -850,7 +851,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (matches!(source.card.definition.as_str(), "MSJC11" | "JC033")
+            && (matches!(source.card.definition.as_str(), "MSJC11" | "JC033" | "JC065")
                 // WM023's own hand-entry action freezes a region UID. A fully
                 // canonical granted mobility destination retains the shared
                 // slot contract, independently of the recipient's print.
@@ -869,6 +870,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
         spec.targets
             .iter()
             .map(|slot| {
@@ -1127,6 +1129,7 @@ impl Game {
             self.observe_attachment_committed(&source.card.id);
             self.observe_bq080_attachment_entry(&source.card.id);
         }
+        if event == Event::Reveal { self.observe_jz29_vampire_reveal(&source); }
         let granted_raid = event == Event::Reveal && self.emit_jc038_raid(&source);
         for spec in rules::definition(&source.card.definition)
             .abilities
@@ -1525,6 +1528,13 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JC065SacrificeHidden => return self.jc065_sacrifice_start(frame),
+                Op::JC065RepressOne => return self.batch20_repress_start(frame),
+                Op::JZ29ReturnOnVampireReveal { .. } => {
+                    if let Some((_, c)) = self.leave_in_play(&frame.source.card.id) {
+                        let c = self.reset_zone_card(c); self.players[c.owner].hand.push(c);
+                    }
+                }
                 Op::JC034CombatDiscard { .. } => return self.batch20_combat_discard_start(frame),
                 Op::JC040RepressDiscard { .. } => return self.batch20_repress_start(frame),
                 Op::JC038GrantedRaid { grants } => self.jc038_raid_resolve(&frame, &grants)?,
@@ -2357,6 +2367,7 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::JC065Sacrifice { seat, region, region_instance } => return self.jc065_sacrifice_complete(*frame, chooser, seat, region, &region_instance, &selected),
             FrameChoice::Batch20Repress { seat, regions } => return self.batch20_repress_complete(&frame, chooser, seat, &regions, &selected),
             FrameChoice::Batch20SearchEntry => return self.batch20_search_complete(&frame, chooser, &selected),
             FrameChoice::Batch20OptionalDraw => return self.batch20_optional_draw(&frame, chooser, &selected),

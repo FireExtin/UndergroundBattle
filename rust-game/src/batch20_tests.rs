@@ -444,3 +444,65 @@ fn batch20_optional_observation_rejects_replayed_event_and_forced_choice_rewrite
     }
     assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
 }
+
+#[test]
+fn batch20_jc065_independent_targets_bind_before_payment_and_victim_chooses_hidden() {
+    let mut g = game(); fund(&mut g, 0, "JC063", 1);
+    let enemy = (1..4).find(|s| g.team(*s) != g.team(0)).unwrap();
+    let other = (1..4).find(|s| g.team(*s) == g.team(0)).unwrap();
+    let other_team = g.team(other);g.regions[2].influence[other_team] = 2;
+    let h1 = field(&mut g, "JC125", enemy); g.board_mut(&h1).unwrap().face_down = true;
+    let h2 = field(&mut g, "JC125", enemy); g.board_mut(&h2).unwrap().face_down = true;
+    let ally = field(&mut g, "JC125", other); g.board_mut(&ally).unwrap().face_down = true;
+    let source = held(&mut g, "JC065", 0);
+    let action = g.legal_actions(0).into_iter().find(|a| a.action.kind == "play" && a.action.card_id.as_deref()==Some(&source)
+        && a.action.region==Some(0) && a.action.target_id.as_deref()==Some(&player_id(enemy))
+        && a.action.selected==Some(vec![player_id(other)])).unwrap().action;
+    let mut illegal = action.clone();illegal.target_id=Some(player_id(other));reject(&mut g,0,illegal);
+    let mut illegal = action.clone();illegal.selected=None;reject(&mut g,0,illegal);
+    act(&mut g,0,action);assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().targets.len(),3);
+    while g.pending.is_none() { pass(&mut g); }
+    let p=g.pending.as_ref().unwrap();assert_eq!(p.seat,enemy);assert_eq!(p.choice.options.len(),2);
+    assert!(!p.choice.options.iter().any(|o|o.id==ally));
+    choose(&mut g,vec![h2.clone()]);assert!(g.board(&h2).is_none());assert!(g.board(&h1).is_some());
+    assert_eq!(g.pending.as_ref().unwrap().seat,other);restore(&mut g);
+    choose(&mut g,vec!["region:2:marker:0".into()]);assert_eq!(g.regions[2].influence[g.team(other)],1);
+    assert!(g.players[0].graveyard.iter().any(|c|c.definition=="JC065"));
+}
+
+#[test]
+fn batch20_jc065_empty_or_revealed_hidden_still_represses_but_replaced_region_cancels() {
+    for mode in 0..3 {
+        let mut g=game();fund(&mut g,0,"JC063",1);
+        let enemy=(1..4).find(|s|g.team(*s)!=g.team(0)).unwrap();let enemy_team=g.team(enemy);g.regions[1].influence[enemy_team]=1;
+        let h=field(&mut g,"JC125",enemy);g.board_mut(&h).unwrap().face_down=mode!=0;
+        let source=held(&mut g,"JC065",0);
+        act(&mut g,0,Action{card_id:Some(source),region:Some(0),target_id:Some(player_id(enemy)),selected:Some(vec![player_id(enemy)]),..Action::new("play")});
+        if mode==1 {g.board_mut(&h).unwrap().face_down=false;} // response result, no hidden remains
+        if mode==2 {g.regions[0].card=g.make_card("DQJC109",0);} // exact-region guard primitive
+        restore(&mut g);
+        if mode==2 {top(&mut g);assert_eq!(g.regions[1].influence[g.team(enemy)],1);assert_eq!(resources(&g,0),0);}
+        else {while g.pending.is_none(){pass(&mut g);}assert_eq!(g.pending.as_ref().unwrap().choice.kind,"influence");
+            choose(&mut g,vec!["region:1:marker:0".into()]);assert_eq!(g.regions[1].influence[g.team(enemy)],0);}
+    }
+}
+
+#[test]
+fn batch20_jz29_entry_discard_and_own_vampire_reveal_return_are_distinct_optional_events() {
+    let mut g=game();society(&mut g,0);fund(&mut g,0,"JC031",2);
+    let source=held(&mut g,"JZ29",0);held(&mut g,"JC125",1);
+    act(&mut g,0,Action{card_id:Some(source),target_id:Some("society:p0".into()),..Action::new("play")});
+    while g.pending.is_none(){pass(&mut g);}
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"trigger");choose(&mut g,vec![player_id(1)]);
+    while g.pending.is_none(){pass(&mut g);}let discard=g.pending.as_ref().unwrap().choice.options[0].id.clone();
+    choose(&mut g,vec![discard]);assert!(g.players[1].hand.is_empty());
+    let ring=g.attachments[0].card.id.clone();
+    let teammate=(1..4).find(|s|g.team(*s)==g.team(0)).unwrap();
+    let foreign=field(&mut g,"JC031",teammate);trigger(&mut g,&foreign,Event::Reveal);assert!(g.pending.is_none());
+    let own=field(&mut g,"JC031",0);trigger(&mut g,&own,Event::Enter);assert!(g.pending.is_none());
+    trigger(&mut g,&own,Event::Reveal);assert_eq!(g.pending.as_ref().unwrap().choice.min,Some(0));
+    choose(&mut g,vec![]);assert!(g.in_play(&ring).is_some());
+    trigger(&mut g,&own,Event::Reveal);choose(&mut g,vec!["accept".into()]);
+    g.remove_dead(&own,RemovalCause::Destroy);restore(&mut g);top(&mut g);
+    assert!(g.in_play(&ring).is_none());assert!(g.players[0].hand.iter().any(|c|c.definition=="JZ29"&&c.id!=ring));
+}

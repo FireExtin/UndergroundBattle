@@ -21,16 +21,39 @@ pub struct DiscardObservation {
     pub holder: usize,
     pub cards: Vec<Card>,
 }
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct VampireRevealObservation {
+    pub event_id: String,
+    pub turn: u32,
+    pub card: Card,
+    pub vampire: bool,
+}
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 fn observation_id(ops: &[Op]) -> Option<&str> {
     match ops {
         [Op::JC034CombatDiscard { observation: Some(o) }] => Some(&o.event_id),
         [Op::JC040RepressDiscard { observation: Some(o) }] => Some(&o.event_id),
         [Op::BQ080HideForAttachment { observation: Some(o) }] => Some(&o.event_id),
+        [Op::JZ29ReturnOnVampireReveal { observation: Some(o) }] => Some(&o.event_id),
         _ => None,
     }
 }
 impl Game {
+    pub(crate) fn observe_jz29_vampire_reveal(&mut self, revealed: &SourceSnapshot) {
+        let c = &revealed.card;
+        if c.face_down || catalog::card(&c.definition).kind != "character" || !self.current_subtypes(c).iter().any(|s| s == "吸血鬼") { return; }
+        let sources = self.attachments.iter().filter(|a| a.card.definition == "JZ29" && !a.card.face_down
+            && a.card.controller == c.controller && self.attachment_host_valid(a))
+            .map(|a| self.source_snapshot(&a.card, None)).collect::<Vec<_>>();
+        if sources.is_empty() { return; }
+        let observation = VampireRevealObservation { event_id: self.id(), turn: self.turn, card: c.clone(), vampire: true };
+        for source in sources {
+            let mut ability = batch20::definition("JZ29").unwrap().abilities[2].clone();
+            ability.ops = vec![Op::JZ29ReturnOnVampireReveal { observation: Some(observation.clone()) }];
+            self.effects.push_back(Effect::Declare { declaration: Declaration { actor: c.controller, source, ability } });
+        }
+    }
     pub(crate) fn jc034_combat_observers(&mut self, team: usize, region: usize) -> Vec<Declaration> {
         let sources = self.attachments.iter().filter(|a| a.card.definition == "JC034" && !a.card.face_down
             && self.team(a.card.controller) == team && self.attachment_host_valid(a)).filter_map(|a| {
@@ -66,6 +89,18 @@ impl Game {
     }
     pub(crate) fn validate_batch20_observation(&self, actor: usize, s: &SourceSnapshot, steps: &[Step]) -> RuleResult<()> {
         match steps {
+            [Step { context, op: Op::JZ29ReturnOnVampireReveal { observation: Some(o) } }] => {
+                let c = &o.card;
+                if *context != actor || s.card.definition != "JZ29" || s.region.is_some()
+                    || s.attachment_host_instance.as_deref() != Some(&format!("society:p{actor}"))
+                    || o.event_id.is_empty() || o.turn != self.turn || !o.vampire || c.face_down
+                    || c.id.is_empty() || c.controller != actor || c.owner >= self.players.len()
+                    || catalog::card(&c.definition).kind != "character"
+                    || !(catalog::card(&c.definition).subtypes.iter().any(|s| s == "吸血鬼" || s == "人类") || c.definition == "JC030") {
+                    return Err("锐齿颈环缺少本方吸血鬼实际现身观察".into());
+                }
+                self.mobility_immutable_identity(c)?;
+            }
             [Step { context, op: Op::JC034CombatDiscard { observation: Some(o) } }] => {
                 let c = &o.participant;
                 if *context != actor || s.card.definition != "JC034" || s.attachment_host_instance.as_deref() != Some(&format!("society:p{actor}"))
@@ -102,6 +137,7 @@ impl Game {
     fn batch20_repress_amount(f: &ResolutionFrame) -> RuleResult<usize> {
         match f.steps.first().map(|s| &s.op) {
             Some(Op::JC040RepressDiscard { observation: Some(o) }) => Ok(o.cards.len()),
+            Some(Op::JC065SacrificeHidden) if f.ability_key == "batch20-jc065-interrogate" => Ok(1),
             _ => Err("未知遏制数量来源".into()),
         }
     }
@@ -116,7 +152,7 @@ impl Game {
         })).collect()
     }
     pub(crate) fn batch20_repress_start(&mut self, f: ResolutionFrame) -> RuleResult<()> {
-        let seat = f.targets[0].id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).filter(|s| *s < self.players.len()).ok_or("遏制目标玩家无效")?;
+        let seat = f.targets[if f.ability_key == "batch20-jc065-interrogate" { 2 } else { 0 }].id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).filter(|s| *s < self.players.len()).ok_or("遏制目标玩家无效")?;
         if self.players[seat].eliminated { return Ok(()); }
         let regions = self.batch20_repress_regions(seat);
         let n = Self::batch20_repress_amount(&f)?.min(regions.iter().map(|(_,_,n)| *n as usize).sum());
@@ -130,8 +166,9 @@ impl Game {
         self.validate_batch20_frame(f)?;
         if seat >= self.players.len() { return Err("遏制选择者无效".into()); }
         let n = Self::batch20_repress_amount(f)?.min(regions.iter().map(|(_,_,n)| *n as usize).sum());
-        if f.ability_key != "batch20-jc040-repress" || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
-            || f.targets[0].id != player_id(seat) || p.seat != seat || p.choice.player_id != player_id(seat)
+        if !matches!(f.ability_key.as_str(), "batch20-jc040-repress" | "batch20-jc065-interrogate")
+            || f.cursor != (if f.ability_key == "batch20-jc065-interrogate" { 2 } else { 1 }) || !matches!(f.guard, GuardState::Accepted)
+            || f.targets[if f.ability_key == "batch20-jc065-interrogate" { 2 } else { 0 }].id != player_id(seat) || p.seat != seat || p.choice.player_id != player_id(seat)
             || p.choice.kind != "influence" || p.choice.title != format!("遏制{n}：选择并移除本方势力标志")
             || p.choice.min != Some(n) || p.choice.max != Some(n) || p.choice.amount != Some(n as u32) || p.choice.allow_decline != Some(false)
             || n == 0 || !same(&regions.to_vec(), &self.batch20_repress_regions(seat))

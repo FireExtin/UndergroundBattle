@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-2026-10-21",
-  "purpose": "20张原图来源、运行时实现WIP与发布账本；尚未开放选牌或发布。",
+  "purpose": "20张原图来源、运行时实现与发布账本；20张已准入，待官方Sites发布后集中验收。",
   "baseCommit": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
-  "stage": "runtimeImplementationWip",
+  "stage": "readyForOfficialSitesBuildAndPendingAcceptancePublish",
   "rulesVersion": "hegemony-pdf-v1",
   "releaseOrder": [
     "completeImplementation",
@@ -17,11 +17,11 @@
   "githubCiAllowed": false,
   "scope": {
     "newCardCount": 20,
-    "implementedNewCardCount": 0,
+    "implementedNewCardCount": 20,
     "releasedNewCardCount": 0,
     "neutralOrDualExpansion": "paused",
-    "uwproImporter": "integratedFromCcc8037At70c1a43; scoped verification passed; no release",
-    "runtimeProgramsInProgress": 18
+    "uwproImporter": "integratedFromCcc8037At70c1a43; scoped verification passed; included in pending release",
+    "runtimeProgramsInProgress": 0
   },
   "inputs": [
     {
@@ -34,7 +34,7 @@
     },
     {
       "path": "rust-game/data/cards.json",
-      "sha256": "be8351dc21a4197094d65b068e7fd31520ab6e7d6020a60177f2268fc3edafbc"
+      "sha256": "392cc9340dcdcf85b4f9a063566e4365660473c3fa10d5c69f32bbdcc2c94f47"
     },
     {
       "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
@@ -58,13 +58,13 @@
     }
   ],
   "currentCandidate": {
-    "engineVersion": "rust-v0.2.90-audit-correctness-candidate",
-    "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
-    "ordinaryCardCount": 171,
+    "engineVersion": "rust-v0.2.91-batch20",
+    "cardPoolVersion": "limited-v2.82-batch20",
+    "ordinaryCardCount": 173,
     "societyCount": 10,
-    "newRuntimeDefinitionsSinceV71": 18,
-    "newDefinitionsSelectionEnabled": false,
-    "finalVersionIdentityAssigned": false
+    "newRuntimeDefinitionsSinceV71": 20,
+    "newDefinitionsSelectionEnabled": true,
+    "finalVersionIdentityAssigned": true
   },
   "cards": [
     {
@@ -81,8 +81,8 @@
       "printedRules": [
         "【进场触发】消灭目标结附于秘社或本地区上的附属。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -114,8 +114,8 @@
         "结附于目标地区",
         "【准备步骤强制触发】在诅咒沙漏上放置一个时间标志。然后该地区每有一个时间标志，就对位于该地区的所有角色造成1点伤害。然后若该地区上有三个或更多时间标志，则牺牲诅咒沙漏。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -147,8 +147,8 @@
         "额外费用 每有一个已毁灭的地区，正面打出蚀日星魔的所需费用减少②。",
         "进场强制触发 对已毁灭的地区上的所有角色造成1点伤害。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -179,8 +179,8 @@
       "printedRules": [
         "行动 消灭所有角色、暗藏者和附属，毁灭所有地区。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -213,8 +213,8 @@
         "行动 横置，从消逝的乌尔德上移除一个时间标志：消灭所有其他角色。",
         "准备步骤强制触发 若消逝的乌尔德上没有时间标志，则牺牲之。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -247,8 +247,8 @@
         "进场触发 将你墓地中的目标角色牌置于你的手中。",
         "触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -281,8 +281,8 @@
         "准备步骤触发 将你的牌库顶牌置于墓地。",
         "持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -315,8 +315,8 @@
         "结附于目标地区",
         "强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -353,8 +353,8 @@
         "持续 你不能从手中正面打出角色牌。",
         "持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -391,8 +391,8 @@
         "持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。",
         "行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -429,8 +429,8 @@
         "【持续】所有本方暗藏者，付费翻面时所需费用减少1。",
         "【标准行动】1，牺牲家族传承：从你的牌库中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于目标地区，然后洗牌。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -463,8 +463,8 @@
         "你只能操控至多一个道途。",
         "【持续】当你赢得一次战斗对抗时，若有本方吸血鬼角色参与了这次战斗对抗，你可以令目标对手弃一张手牌。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -501,8 +501,8 @@
         "【持续】所有其他友方王座会角色获得袭击1。",
         "【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -537,8 +537,8 @@
       "printedRules": [
         "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -560,42 +560,39 @@
       "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
-      "id": "XG12",
-      "name": "兽形变化",
+      "id": "JZ29",
+      "name": "锐齿颈环",
       "color": "蓝",
       "source": {
-        "path": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
-        "sha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
+        "path": "resource/ymsj-fun.github.io/cards/JZ29 锐齿颈环.jpg",
+        "sha256": "d3ea6d9e33e4904db39f584ef91165122cb2c51e3ae6cb3722355ee6bdc2675f",
         "visuallyReviewed": true,
         "reviewedAt": "2026-10-21"
       },
-      "sourceSpecRef": "docs/factions/card-specifications.json#cards/XG12",
+      "sourceSpecRef": "docs/factions/card-specifications.json#cards/JZ29",
       "printedRules": [
-        "结附于目标吸血鬼角色",
-        "持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。",
-        "行动②：将兽形变化结附到另一个吸血鬼角色上。"
+        "非资产",
+        "结附于本方秘社",
+        "进场触发 目标玩家弃一张手牌。",
+        "触发 当一个本方吸血鬼角色现身时，你可以将锐齿颈环移回其拥有者手中。"
       ],
-      "implementation": "pendingDecision",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "plannedChecks": [
         {
-          "scenario": "临时战斗1随宿主先手生效，永久战斗1与蝙蝠不受月牙条件影响",
-          "status": "notRun"
+          "scenario": "本人秘社结附、可选进场令目标玩家自行弃1；空手继续",
+          "status": "coveredByScopedTests"
         },
         {
-          "scenario": "月牙机动的当前操控者与入栈后条件变化须先记录规则判读",
-          "status": "notRun"
-        },
-        {
-          "scenario": "普通行动2转移不同吸血鬼；不新增进场/换操控者；转移目标属性待明确",
-          "status": "notRun"
+          "scenario": "本方吸血鬼实际现身可选回手；队友或普通进场不误触发；观察中刷新恢复",
+          "status": "coveredByScopedTests"
         }
       ],
-      "runtimeScopedChecks": "notRun"
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "BQ054",
@@ -612,8 +609,8 @@
         "进场触发 横置本地区的目标暗藏者。",
         "手牌触发 当你从手中弃掉沙地特种兵时，你可以在目标角色或暗藏者上放置一个锁定标志。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -644,8 +641,8 @@
       "printedRules": [
         "【快速行动】选择目标地区，然后目标对手牺牲一个位于该地区的暗藏者。遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）"
       ],
-      "implementation": "pendingDecision",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -656,11 +653,11 @@
           "status": "notRun"
         },
         {
-          "scenario": "零暗藏或响应全部现身仍继续遏制；两个玩家目标关系先明确",
+          "scenario": "零暗藏或响应全部现身仍继续遏制；牺牲对手、地区、遏制玩家在付款前分别选择",
           "status": "notRun"
         }
       ],
-      "runtimeScopedChecks": "notRun"
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC067",
@@ -677,8 +674,8 @@
         "领袖　公开　声望",
         "【持续】本地区在对抗阶段时额外进行一次势力对抗。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -715,8 +712,8 @@
         "进场触发 在本地区的目标角色上放置一个锁定标志。",
         "快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -753,8 +750,8 @@
         "【准备步骤强制触发】支付1，否则横置阿格斯IV。",
         "【持续】只要阿格斯IV未横置，对手就不能进行秘密派遣行动。"
       ],
-      "implementation": "runtimeWip",
-      "selectionEnabled": false,
+      "implementation": "implementedPendingAcceptance",
+      "selectionEnabled": true,
       "release": "notReleased",
       "gameAcceptance": "notRun",
       "independentReview": "notRun",
@@ -788,20 +785,13 @@
     {
       "id": "WM033",
       "reason": "试选替补撤回；传闻具有月牙条件，已补来源，不当无条件准入。"
-    }
-  ],
-  "ruleInterpretationsPending": [
-    {
-      "id": "XG12",
-      "detail": "XG12月牙机动需要真实秘社隐秘标志生产入口；现开放153张及其余19张均无此入口。待确认是否增加依赖BQ090及完整神秘学博弈；不使用虚构开关或将恒假条件冒充实现。",
-      "status": "answerPending; notPermissionDenied"
     },
     {
-      "id": "JC065",
-      "detail": "牺牲目标对手与遏制目标玩家的绑定关系不能由单目标程序替代卡文裁定。",
-      "status": "answerPending; notPermissionDenied"
+      "id": "XG12",
+      "reason": "本批替换为同蓝色JZ29；XG12及秘社隐秘标志生产/消费配套留后续，不删除需求。BQ090并非唯一生产入口，CQ07也有直接入口；本批不扩BQ090/CQ07或神秘学博弈。"
     }
   ],
+  "ruleInterpretationsPending": [],
   "carriedAuditFixes": {
     "newCardsCounted": 0,
     "count": 8,
@@ -828,11 +818,10 @@
     "deploymentId": null,
     "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
     "blocker": null,
-    "stage": "implementationIncomplete; no save or deploy attempted"
+    "stage": "necessaryNativeWasmWebAndNewRoomChecksPassed; officialSitesBuildAndPublishNext"
   },
   "validation": {
-    "sourceImages": "20/20 hash match",
-    "newCardsRemainDisabled": "18/18 registered new definitions disabled; XG12 and JC065 not registered",
+    "sourceImages": "20/20 hash match; 19 newly shipped files and existing JZ52",
     "sourceSchema": "passed: validate_specifications; no engine/UI acceptance",
     "diffCheck": "passed",
     "documentLinks": "105 local paths exist",
@@ -865,10 +854,69 @@
     "typecheck": "passed",
     "webBuild": {
       "status": "passed",
-      "log": "batch20-web-build.log"
+      "log": "batch20-final-web-build.log",
+      "includes": "TypeScript app/node checks and Vite production build"
     },
-    "nativeWasmParity": "notRun",
-    "runtimeStartupIdentity": "notRun"
+    "nativeWasmParity": "catalog and new-room startup identity checked; full replay notRunForBatch",
+    "runtimeStartupIdentity": {
+      "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+      "engine": "rust-v0.2.91-batch20",
+      "pool": "limited-v2.82-batch20",
+      "ordinaryCards": 173,
+      "societies": 10,
+      "batchIds": [
+        "JC043",
+        "JC048",
+        "JZ33",
+        "JZ37",
+        "WM034",
+        "BQ080",
+        "BQ091",
+        "BQ094",
+        "JZ52",
+        "JZ57",
+        "JC033",
+        "JC034",
+        "JC038",
+        "JC040",
+        "JZ29",
+        "BQ054",
+        "JC065",
+        "JC067",
+        "CQ16",
+        "JC068"
+      ],
+      "wasmSha256": "b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4",
+      "wasmBytes": 3796176,
+      "checks": [
+        "all 20 supported",
+        "all 20 accepted in custom deck",
+        "WASM create/join/ready/start",
+        "opaque max-u64 seed preserved",
+        "Native HTTP create/join/ready/start",
+        "Native catalog equals WASM",
+        "new room catalog",
+        "static index and 20 card images"
+      ],
+      "result": "passed"
+    },
+    "newCardsEnabled": "20/20 registered definitions supported; accepted together in new custom deck",
+    "webFinalScopedTests": {
+      "files": 2,
+      "passed": 32,
+      "failed": 0,
+      "log": "batch20-final-ui-03.log",
+      "earlierRuns": "31 passed / 1 test-selector failure, twice; logs retained; no product behavior change needed"
+    },
+    "nativeBuild": {
+      "status": "passed",
+      "log": "batch20-native-build.log"
+    },
+    "wasmBuild": {
+      "status": "passed",
+      "log": "batch20-wasm-build.log"
+    },
+    "admittedScans": "passed: 173 ordinary definitions; societies/art-only excluded"
   },
   "historicalSnapshotWarning": "2026-10-03 research index and implementation matrix have stale source hashes/support labels. This batch does not rebuild or approve their 685 records.",
   "runtimeWorktree": {
@@ -888,16 +936,18 @@
       "JC034",
       "JC038",
       "JC040",
+      "JZ29",
       "BQ054",
+      "JC065",
       "JC067",
       "CQ16",
       "JC068"
     ],
-    "catalogDefinitions": 171,
-    "newDefinitionsSupported": false,
-    "finalVersionIdentityAssigned": false,
+    "catalogDefinitions": 173,
+    "newDefinitionsSupported": true,
+    "finalVersionIdentityAssigned": true,
     "scopedRustTests": {
-      "passed": 27,
+      "passed": 30,
       "failed": 0,
       "coversCards": [
         "JC043",
@@ -914,13 +964,16 @@
         "JC034",
         "JC038",
         "JC040",
+        "JZ29",
         "BQ054",
+        "JC065",
         "JC067",
         "CQ16",
         "JC068"
       ],
-      "log": "batch20-eighteen-tests-03.log",
-      "fullSuite": false
+      "log": "batch20-twenty-tests-02.log",
+      "fullSuite": false,
+      "stage": "last-two-card source; before final identity and supported flags switched; current ABI91 Native/WASM build and new-room checks subsequently passed"
     },
     "regionStateTests": {
       "passed": 3,
@@ -972,5 +1025,17 @@
       "JC044"
     ],
     "browserRerun": false
-  }
+  },
+  "resolvedRuleInterpretations": [
+    {
+      "id": "JC065",
+      "decision": "地区、牺牲对手、遏制玩家为独立目标，全部在付款前选定",
+      "basis": "原手册印刷P3/PDF5遏制定义；印刷P7/PDF9付款前选择所有目标；FAQ PDF4无暗藏者仍遏制。父协调确认按此实现。"
+    },
+    {
+      "id": "XG12",
+      "decision": "同色替换为JZ29，配套隐秘标志工作后续处理",
+      "basis": "父协调明确授权，未扩中立双色或额外依赖。"
+    }
+  ]
 }

@@ -11,7 +11,7 @@ pub struct AttachmentEntryObservation {
     pub attachment: Attachment,
 }
 
-pub(crate) const IMPLEMENTING: &[&str] = &["JZ33", "JZ37", "JC043", "BQ054", "JC048", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "BQ080", "JZ57", "JC033", "JC038", "CQ16", "JC034", "JC040", "JC067"];
+pub(crate) const IMPLEMENTING: &[&str] = &["JZ33", "JZ37", "JC043", "BQ054", "JC048", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "BQ080", "JZ57", "JC033", "JC038", "CQ16", "JC034", "JC040", "JC067", "JC065", "JZ29"];
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
@@ -102,7 +102,8 @@ fn owns(ops: &[Op]) -> bool {
             | Op::Batch20Prepare { .. } | Op::WM034AddOneTime | Op::WM034DestroyOtherCharacters
             | Op::BQ080HideForAttachment { .. } | Op::JZ57MillAndOptionalDraw
             | Op::Batch20SearchEntry | Op::CQ16LockLocalCharacter
-            | Op::JC034CombatDiscard { .. } | Op::JC040RepressDiscard { .. } => true,
+            | Op::JC034CombatDiscard { .. } | Op::JC040RepressDiscard { .. }
+            | Op::JC065SacrificeHidden | Op::JC065RepressOne | Op::JZ29ReturnOnVampireReveal { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -119,6 +120,23 @@ fn related(f: &ResolutionFrame) -> bool {
         || f.already_paid.iter().any(|p| matches!(p, PaidCost::SourceRemovedTime(_) | PaidCost::SacrificedSubtype { .. }))
 }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "JC065" {
+        let mut a = rules::ability("batch20-jc065-interrogate", "快速行动：目标对手牺牲当地暗藏者，独立目标玩家遏制1", Timing::Fast, vec![],
+            vec![rules::target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere),
+                 rules::target(Zone::Player, EntityKind::Any, Relation::EnemyTeam, Range::Anywhere),
+                 rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
+            vec![Op::JC065SacrificeHidden, Op::JC065RepressOne], None);
+        a.play_only = true; return Some(rules::with_abilities(vec![a]));
+    }
+    if id == "JZ29" {
+        let mut d = rules::attachment_definition(rules::target(Zone::Society, EntityKind::Any, Relation::ControlledByActor, Range::Anywhere));
+        d.abilities.push(rules::ability("batch20-jz29-discard", "进场触发：目标玩家弃1", Timing::Fast, vec![],
+            vec![rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
+            vec![Op::Discard { player: PlayerRef::Target(0), count: Some(1), redraw: false, optional: false }], Some(Event::Enter)));
+        d.abilities.push(rules::ability("batch20-jz29-return", "本方吸血鬼现身：可以将锐齿颈环移回拥有者手中", Timing::Fast, vec![], vec![],
+            vec![Op::JZ29ReturnOnVampireReveal { observation: None }], Some(Event::VampireRevealed)));
+        return Some(d);
+    }
     if id == "JC067" { let mut d = Definition::default(); d.traits.public = true; d.traits.renown = true; return Some(d); }
     if id == "JC034" {
         let mut d = rules::attachment_definition(rules::target(Zone::Society, EntityKind::Any, Relation::ControlledByActor, Range::Anywhere));
@@ -238,6 +256,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     for op in &mut normalized.ops { match op {
         Op::JC034CombatDiscard { observation } => *observation = None,
         Op::JC040RepressDiscard { observation } => *observation = None,
+        Op::JZ29ReturnOnVampireReveal { observation } => *observation = None,
         _ => {},
     } }
     if owned_ability(a) && definition(id).is_none_or(|d| !d.abilities.iter().any(|e| same(&normalized, e))) {
@@ -253,6 +272,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "JC065" { return crate::jc065::validate_action(a); }
     if matches!(id, "JZ33" | "JZ37" | "JC043" | "BQ054" | "WM034") && a.kind != "activate" && (a.target_id.is_some() || a.option.is_some()
         || a.choice_id.is_some() || a.selected.is_some() || a.top.is_some()
         || a.bottom.is_some() || a.allocations.is_some() || a.cost_selected.is_some()
@@ -552,7 +572,7 @@ impl Game {
                 self.validate_bq080_entry(&f.source, observation)?;
                 a.ops = vec![Op::BQ080HideForAttachment { observation: observation.clone() }];
             }
-            if matches!(a.key.as_str(), "batch20-jc034-combat" | "batch20-jc040-repress") {
+            if matches!(a.key.as_str(), "batch20-jc034-combat" | "batch20-jc040-repress" | "batch20-jz29-return") {
                 self.validate_batch20_observation(f.actor, &f.source, &f.steps)?;
                 a.ops = f.steps.iter().map(|s| s.op.clone()).collect();
             }
@@ -609,6 +629,7 @@ impl Game {
             if f.ability_key == "batch20-wm034-destroy" { self.validate_wm034_payment(f)?; }
             if !a.costs.is_empty() && f.ability_key != "batch20-wm034-destroy" { self.validate_batch20_payment(f, &a.costs)?; }
         }
+        if f.source.card.definition == "JC065" { self.validate_jc065_frame(f)?; }
         Ok(())
     }
     pub(crate) fn validate_batch20_declaration(&self, d: &Declaration) -> RuleResult<()> {
@@ -665,7 +686,7 @@ impl Game {
                         || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked) {
                         return Err("本批堆叠外壳不符".into());
                     }
-                    let transaction = matches!(f.ability_key.as_str(), "deploy" | "reveal" | "attach" | "batch20-jz37-world");
+                    let transaction = matches!(f.ability_key.as_str(), "deploy" | "reveal" | "attach" | "batch20-jz37-world" | "batch20-jc065-interrogate");
                     if transaction != item.card.is_some() || item.card.as_ref().is_some_and(|c|
                         c.definition != f.source.card.definition || c.owner != f.source.card.owner || c.controller != f.actor || c.face_down)
                         || item.deploy_region != (if matches!(f.ability_key.as_str(), "deploy" | "reveal") { f.chosen_region } else { None })
@@ -686,12 +707,13 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Frame { frame, choice: FrameChoice::JC065Sacrifice { seat, region, region_instance } } => self.validate_jc065_pending(p, frame, *seat, *region, region_instance)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::Batch20Repress { seat, regions } } => self.validate_batch20_repress_pending(p, frame, *seat, regions)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::Batch20SearchEntry } => self.validate_batch20_search_pending(p, frame)?,
                 ChoiceResolution::Frame { frame: f, choice: FrameChoice::Discard { seat, redraw } } if related(f) => {
                     self.validate_batch20_frame(f)?;
                     let expected = self.players.get(*seat).ok_or("弃牌玩家无效")?.hand.iter().map(|c| self.option(c, *seat, None, None)).collect::<Vec<_>>();
-                    if !matches!(f.ability_key.as_str(), "batch20-jc038-discard-draw" | "batch20-jc034-combat") || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
+                    if !matches!(f.ability_key.as_str(), "batch20-jc038-discard-draw" | "batch20-jc034-combat" | "batch20-jz29-discard") || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
                         || f.targets.first().is_none_or(|t| t.id != player_id(*seat)) || *redraw
                         || p.seat != *seat || p.choice.player_id != player_id(*seat) || p.choice.kind != "discard"
                         || p.choice.min != Some(1) || p.choice.max != Some(1) || p.choice.allow_decline != Some(false)

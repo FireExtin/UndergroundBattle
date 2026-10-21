@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    VampireRevealed,
     DiscardObserved,
     VampireCombatWon,
     AttachmentEntered,
@@ -231,6 +232,9 @@ pub enum SearchVisibility {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
+    JC065SacrificeHidden,
+    JC065RepressOne,
+    JZ29ReturnOnVampireReveal { observation: Option<crate::batch20_observers::VampireRevealObservation> },
     JC040RepressDiscard { observation: Option<crate::batch20_observers::DiscardObservation> },
     JC038GrantedRaid { grants: Vec<crate::model::Card> },
     Batch20SearchEntry,
@@ -1118,8 +1122,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         location: &str,
         targets: &[TargetSlotSpec],
         ops: &[Op],
+        interrogate: bool,
     ) -> Result<(), String> {
-        if targets.len() > 1 {
+        if targets.len() > 1 && !(interrogate && targets.len() == 3) {
             return Err(format!(
                 "{location}: unsupported target slots {}; only zero or one slot is supported",
                 targets.len()
@@ -1304,12 +1309,13 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         Ok(())
     }
     let location = format!("cardId={card_id} abilityKey={}", ability.key);
-    validate_program(&location, &ability.targets, &ability.ops)?;
+    validate_program(&location, &ability.targets, &ability.ops, card_id == "JC065" && ability.key == "batch20-jc065-interrogate")?;
     for mode in &ability.modes {
         validate_program(
             &format!("{location} modeKey={}", mode.key),
             &mode.targets,
             &mode.ops,
+            false,
         )?;
     }
     Ok(())
@@ -1501,7 +1507,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character

@@ -1,6 +1,7 @@
 mod attachment;
 mod region_destruction;
 mod batch20;
+mod jc065;
 mod extra_influence;
 mod batch20_observers;
 mod raid;
