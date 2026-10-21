@@ -427,6 +427,9 @@ impl Game {
             .combat
             .saturating_add(self.jc060_friendly_sources(c));
         let mut temporary_result = d.temporary_icons.add(sealed_temporary);
+        let (black_permanent, black_temporary) = self.black_next20_icon_bonus(c, region);
+        permanent_result = permanent_result.add(black_permanent);
+        temporary_result = temporary_result.add(black_temporary);
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
             if matches!(modifier, StaticModifier::JC037ControlledHiddenInvestigation) {
@@ -1141,6 +1144,7 @@ impl Game {
         self.validate_xq23_frame(&frame)?;
         self.validate_jc035_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
+        self.validate_black_next20_frame(&frame)?;
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)

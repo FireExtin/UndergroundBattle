@@ -181,7 +181,8 @@ impl Game {
             ));
             // Same zone reset/owner-graveyard path as mill. Deck -> graveyard is
             // not a death, so neither remove_dead nor Death event is involved.
-            self.players[owner].graveyard.push(c);
+            self.players[owner].graveyard.push(c.clone());
+            self.observe_black_deck_to_graveyard(actor, &[c]);
         }
         self.shuffle_player(actor);
         self.note(format!(

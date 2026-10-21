@@ -460,11 +460,14 @@ impl Game {
         Ok(())
     }
     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
+        let mut actual = Vec::new();
         for _ in 0..count.min(self.players[seat].deck.len()) {
             let c = self.players[seat].deck.remove(0);
             let c = self.reset_zone_card(c);
+            actual.push(c.clone());
             self.players[c.owner].graveyard.push(c);
         }
+        self.observe_black_deck_to_graveyard(seat, &actual);
     }
     fn jc068_exhaust(&mut self, id: &str) {
         if let Some(c) = self.board_mut(id) { c.exhausted = true; }
@@ -675,6 +678,7 @@ impl Game {
     }
     pub(crate) fn validate_batch20_state(&self) -> RuleResult<()> {
         self.validate_next_blue_gray_state()?;
+        self.validate_black_next20_state()?;
         self.validate_destruction_state()?;
         self.validate_influence_contests()?;
         self.validate_raid_state()?;

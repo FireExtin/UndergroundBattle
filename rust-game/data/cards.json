@@ -7088,6 +7088,210 @@
       "unique": true,
       "society": "",
       "supported": true
+    },
+    {
+      "id": "BQ077",
+      "name": "近海食人鱼",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "鱼"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "不能被装备结附\n持续 若位于水域地区，近海食人鱼获得永久战斗1。\n墓地触发 当近海食人鱼从牌库进入本方墓地时，你可以将其放置进场并置于目标水域地区。",
+      "keywords": [
+        "不能被装备结附"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ077",
+        "image": "resource/ymsj-fun.github.io/cards/BQ077 近海食人鱼.jpg",
+        "imageSha256": "e1a86f244d35599454a5eae84013cbdadec4535157a4b94ad7c8b588e9851043"
+      },
+      "unique": false,
+      "society": "方碑序列"
+    },
+    {
+      "id": "BQ085",
+      "name": "三号骸堆",
+      "subtitle": "食尸鬼之王",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "食尸鬼"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "准备步骤强制触发 将你墓地中的两张牌置于你的牌库底，否则牺牲三号骸堆。\n触发 当一个本方非食尸鬼角色死亡时，你可以从本方墓地中将目标食尸鬼角色牌横置放置进场并置于本地区。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ085",
+        "image": "resource/ymsj-fun.github.io/cards/BQ085 三号骸堆.jpg",
+        "imageSha256": "30fdec32ce8e636596509253fe4fa666c08672e4e2cdbf5932115a6454502816"
+      },
+      "unique": true,
+      "society": "方碑序列"
+    },
+    {
+      "id": "CQ26",
+      "name": "暮天使莉芮尔",
+      "subtitle": "执镰者",
+      "kind": "character",
+      "subtypes": [
+        "天使",
+        "异界"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "非资产\n持续 若你的墓地中有七张或更多牌，暮天使莉芮尔获得临时调查1和永久战斗1。\n触发 每当有一张或更多角色牌从本方牌库进入墓地时，你可以弃一张牌，若你如此做，抓一张牌。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ26",
+        "image": "resource/ymsj-fun.github.io/cards/CQ26 暮天使莉芮尔.jpg",
+        "imageSha256": "7d6e38c0817d7740e680153ff5dbbdd13007f8743d15d654c36e1dcf29aa9b76"
+      },
+      "unique": true,
+      "society": "方碑序列"
+    },
+    {
+      "id": "XG27",
+      "name": "悍狼的怨灵",
+      "subtitle": "背叛者等待救赎",
+      "kind": "character",
+      "subtypes": [
+        "幽灵"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "灵体\n持续 你所打出的诅咒牌其所需费用减少①。\n墓地触发 每当一个敌方角色死亡时，你可以支付①，然后将悍狼的怨灵以暗藏者状态从墓地放置进场，并置于该死亡角色之前所在的地区。",
+      "keywords": [
+        "灵体"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG27",
+        "image": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
+        "imageSha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0"
+      },
+      "unique": true,
+      "society": "方碑序列"
+    },
+    {
+      "id": "XQ39",
+      "name": "方碑印记",
+      "subtitle": "方碑序列同盟",
+      "kind": "attachment",
+      "subtypes": [
+        "徽章"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n【快速行动】【横置】：本回合中你下一张正面打出或翻面的方碑序列牌的所需费用减少1。\n【快速行动】2，【横置】：将你墓地中的目标角色牌置于你的牌库顶。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ39",
+        "image": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg",
+        "imageSha256": "1be69fe1f9cdf2e99f5b46b28ddeceb97c921ee3cc44c63d4ff084c0ac04f2ae"
+      },
+      "unique": true,
+      "society": "方碑序列"
     }
   ],
   "decks": [

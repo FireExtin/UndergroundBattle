@@ -460,10 +460,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17") {
+            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -485,7 +485,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(if c.definition == "JZ33" { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
+        card(&c.definition).cost.saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if c.definition == "JZ33" { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -574,6 +574,12 @@ impl Game {
             ..Action::new(&a.kind)
         }) {
             return Err("WM056移动势力行动不声明目标、地区或额外选择".into());
+        }
+        if definition == "XQ39" && *a != (Action {
+            card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), target_id: a.target_id.clone(),
+            ..Action::new(&a.kind)
+        }) {
+            return Err("方碑印记仅声明本牌、印刷能力及其单个目标".into());
         }
         let mut candidates = rules::definition(definition)
             .abilities
@@ -668,6 +674,8 @@ impl Game {
                 .and_then(|s| s.parse::<usize>().ok())
                 .is_some_and(|r| {
                     self.region_live(r)
+                        && (spec.predicate != Some(TargetPredicate::BQ077WaterRegion)
+                            || (source.card.definition == "BQ077" && card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "水域")))
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
                                 self.regions_adjacent(r, from)
@@ -725,6 +733,7 @@ impl Game {
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
+                                TargetPredicate::BQ077WaterRegion => false,
                                 TargetPredicate::JC043SocietyOrOriginalRegion => {
                                     source.card.definition == "JC043" && self.attachments.iter().find(|a| a.card.id == c.id)
                                         .is_some_and(|a| self.attachment_host_valid(a) && (self.society_host_seat(&a.host_id).is_some()
@@ -1163,6 +1172,7 @@ impl Game {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
+        self.validate_black_next20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         if self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
@@ -1194,6 +1204,7 @@ impl Game {
         {
             return Ok(());
         }
+        if !self.black_next20_trigger_available(&declaration) { return Ok(()); }
         let title = format!(
             "{}：{}",
             card(&declaration.source.card.definition).name,
@@ -1249,6 +1260,7 @@ impl Game {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
+        self.validate_black_next20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
@@ -1283,7 +1295,8 @@ impl Game {
                 let public =
                     self.public_target(declaration.actor, &declaration.source, &slot, selected);
                 vec![BoundTarget {
-                    region_instance: None,
+                    region_instance: if slot.predicate == Some(TargetPredicate::BQ077WaterRegion) { selected.strip_prefix("region:")
+                        .and_then(|r| r.parse::<usize>().ok()).and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone()) } else { None },
                     id: selected.clone(),
                     spec: slot,
                     public,
@@ -1313,7 +1326,8 @@ impl Game {
             card(&declaration.source.card.definition).name,
             declaration.ability.label
         );
-        let paid = if declaration.source.card.definition == "JZ23" || declaration.ability.event == Some(Event::HandDiscard)
+        let paid = if declaration.source.card.definition == "JZ23" || (declaration.source.card.definition == "XG27" && declaration.ability.event == Some(Event::BlackCharacterDeathObserved))
+            || declaration.ability.event == Some(Event::HandDiscard)
             || (declaration.source.card.definition == "JC031"
                 && declaration.ability.event == Some(Event::CharacterDeathObserved))
             || (declaration.source.card.definition == "JC061"
@@ -1502,6 +1516,7 @@ impl Game {
         self.validate_red_time_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
+        self.validate_black_next20_frame(&frame)?;
         self.validate_wm056_frame(&frame)?;
         self.validate_wm062_frame(&frame)?;
         self.validate_wm023_frame(&frame)?;
@@ -1538,6 +1553,9 @@ impl Game {
                 Op::JZ23RevealReward { observation } => self.jz23_reward(observation.as_ref().ok_or("缺少现身观察")?),
                 Op::CQ08Prepare { .. } => { self.jc035_resolve(&frame)?; return self.next_blue_gray_search_start(frame); },
                 Op::BQ059EntryShield => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.shield = c.shield.saturating_add(2); } },
+                Op::BlackDeckToGraveyard { .. } => self.black_deck_recovery(&frame)?,
+                Op::BlackDeathRecovery { observation } => self.black_death_recovery(&frame, observation.as_ref().ok_or("黑色死亡事件缺少快照")?)?,
+                Op::XQ39GraveCharacterToDeckTop => self.xq39_grave_to_top(&frame)?,
                 Op::JC065SacrificeHidden => return self.jc065_sacrifice_start(frame),
                 Op::JC065RepressOne => return self.batch20_repress_start(frame),
                 Op::JZ29ReturnOnVampireReveal { .. } => {
@@ -1583,7 +1601,7 @@ impl Game {
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
                 Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
-                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } => self.jc035_resolve(&frame)?,
                 Op::WM034AddOneTime => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
                 Op::WM034DestroyOtherCharacters => self.wm034_destroy_others(&frame),
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
@@ -2455,6 +2473,7 @@ impl Game {
                 }
                 self.players[seat].deck = pile;
             }
+            FrameChoice::BQ085Upkeep => { self.bq085_upkeep_complete(&frame, &selected)?; return Ok(()); }
             FrameChoice::Discard { seat, redraw } => {
                 let count = selected.len();
                 self.discard_hand_cards(seat, &selected)?;

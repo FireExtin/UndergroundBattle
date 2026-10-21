@@ -230,3 +230,7 @@ mod jz49_tests;
 mod jz48_tests;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jc089_tests;
+
+mod black_next20;
+#[cfg(test)]
+mod black_next20_tests;

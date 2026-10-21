@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    BlackCharacterDeathObserved,
+    DeckToGraveyardObserved,
     VampireRevealed,
     DiscardObserved,
     VampireCombatWon,
@@ -93,6 +95,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    BQ077WaterRegion,
     JC043SocietyOrOriginalRegion,
     JC039BlueCharacter,
     JC015NonHumanPrintedCostAtLeastThree,
@@ -237,6 +240,10 @@ pub enum Op {
     JZ28DiscardSearch { observation: Option<crate::batch20_observers::DiscardObservation> },
     CQ08Prepare { event_id: Option<String> },
     BQ059EntryShield,
+    BlackDeckToGraveyard { observation: Option<crate::black_next20::DeckGraveObservation> },
+    BlackDeathRecovery { observation: Option<crate::black_next20::BlackDeathObservation> },
+    BQ085Prepare { event_id: Option<String> },
+    XQ39GraveCharacterToDeckTop,
     JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
     JC065SacrificeHidden,
     JC065RepressOne,
@@ -510,6 +517,9 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    BQ077WaterCombat,
+    CQ26GraveIcons,
+    XG27CurseReduction,
     BQ035PrintedGlory,
     BQ035OwnBloodVampireMobility,
     BQ035OwnEquippedVampireGlory,
@@ -580,6 +590,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
     }
+    crate::black_next20::validate_ability(card_id, ability)?;
     if crate::next20_blue_gray::related_ability(card_id, ability) {
         return crate::next20_blue_gray::validate_ability(card_id, ability);
     }
@@ -794,7 +805,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || (card_id == "JC015" && !runtime_reward) || card_id == "JZ55" {
+    if (finite_predicate && !matches!(card_id, "BQ077" | "XQ18" | "JZ45")) || (card_id == "JC015" && !runtime_reward) || card_id == "JZ55" {
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
@@ -1038,14 +1049,14 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 ))
             }
             Op::CostReductionOnFaceUpOrPaidReveal { filter, amount }
-                if card_id != "JC103"
+                if !matches!((card_id, filter), ("JC103", CardFilter::PrintedColor(c)) if c == "紫")
+                    && !matches!((card_id, filter), ("XQ39", CardFilter::PrintedColor(c)) if c == "黑")
                     || *amount != 1
-                    || !matches!(filter,CardFilter::PrintedColor(c)if c=="紫")
                     || !ability.targets.is_empty()
                     || !matches!(ability.costs.as_slice(), [Cost::ExhaustSource]) =>
             {
                 return Err(format!(
-                    "{card_id}: invalid admitted purple paid-reveal discount"
+                    "{card_id}: invalid admitted purple/black paid-reveal discount"
                 ))
             }
             _ => {}
@@ -1340,6 +1351,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::red_time::validate_definition(card_id, definition)?;
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
+        crate::black_next20::validate_definition(card_id, definition)?;
         crate::wm056::validate_definition(card_id, definition)?;
         crate::wm062::validate_definition(card_id, definition)?;
         crate::wm023::validate_definition(card_id, definition)?;
@@ -1517,7 +1529,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -4015,6 +4027,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             );
         }
         m.insert("XQ36".into(), xq36_definition());
+        for id in crate::black_next20::CARDS {
+            m.insert((*id).into(), crate::black_next20::definition(id).unwrap());
+        }
         m.insert("XQ46".into(), Definition {
             traits: Traits { public: true, ..Default::default() },
             ..Default::default()

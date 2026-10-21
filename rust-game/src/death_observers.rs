@@ -1,4 +1,5 @@
-//! Three printed death observers. Eligibility is frozen for each removal wave;
+//! Printed death observers, including bounded black graveyard recovery.
+//! Eligibility is frozen for each removal wave;
 //! the existing event queue and stack retain all declaration/resolution timing.
 use crate::{catalog, engine::RuleResult, model::*, rules::{self, Event}};
 
@@ -26,6 +27,7 @@ impl Game {
         let previous_effects = self.effects.len();
         let mut receipts = Vec::new();
         let mut observers = Vec::new();
+        let black_sources = self.capture_black_death_sources();
         for (r, region) in self.regions.iter().enumerate() {
             for c in &region.cards {
                 if !c.face_down && matches!(c.definition.as_str(), "JC045" | "JC031") {
@@ -46,12 +48,14 @@ impl Game {
         let deaths = deaths.into_iter().map(|(id, cause, source)| {
             let vampire = self.board(&id).is_some_and(|(_, c)|
                 self.current_subtypes(c).iter().any(|s| s == "吸血鬼"));
-            (id, cause, source, vampire)
+            let black_death = self.capture_black_death(&id);
+            (id, cause, source, vampire, black_death)
         }).collect::<Vec<_>>();
-        for (id, cause, source, vampire) in deaths {
+        for (id, cause, source, vampire, black_death) in deaths {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
             if let Some(receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source)) {
                 receipts.push(receipt);
+                if let Some(observation) = black_death { self.emit_black_death(&black_sources, observation); }
                 for observer in &observers {
                     if observer.card.definition != "JC045"
                         && (dead.card.controller != observer.card.controller
@@ -66,7 +70,7 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Death | Event::CharacterDeathObserved)) =>
+                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });
