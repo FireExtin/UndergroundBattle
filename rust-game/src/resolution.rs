@@ -555,6 +555,7 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        crate::next20_blue_gray::validate_action(definition, a)?;
         if definition == "XQ23" && *a != (Action {
             card_id: a.card_id.clone(), target_id: a.target_id.clone(), ability_id: a.ability_id.clone(),
             ..Action::new(&a.kind)

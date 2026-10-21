@@ -711,6 +711,7 @@ impl Game {
                 }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 crate::batch20::validate_action(&c.definition, &a)?;
+                crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -787,6 +788,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::batch20::validate_action(&c.definition, &a)?;
+                crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -840,6 +842,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::batch20::validate_action(&c.definition, &a)?;
+                crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
@@ -1141,6 +1144,8 @@ impl Game {
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)
+                    || (crate::next20_blue_gray::CARDS.contains(&c.definition.as_str())
+                        && self.original_region(&frame.source) != Some(region))
                     || (c.definition == "JC052" && !self.jc052_original_region_live(&frame.source))
                     || (c.definition == "JC095" && !self.jc095_original_region_live(&frame.source)) {
                     self.effects.push_front(Effect::Bury { card: c });
@@ -2027,6 +2032,7 @@ impl Game {
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
+        crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
@@ -2903,7 +2909,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 173);
+        assert_eq!(c.cards.len(), 180);
         let active = c
             .cards
             .iter()
@@ -2918,7 +2924,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 163);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 170);
         assert!(c.cards.iter().all(|card| card.supported));
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {

@@ -6825,7 +6825,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "JZ23",
@@ -6865,7 +6865,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "JZ28",
@@ -6911,7 +6911,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XG10",
@@ -6953,7 +6953,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ08",
@@ -6993,7 +6993,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ059",
@@ -7043,7 +7043,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ17",
@@ -7087,7 +7087,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     }
   ],
   "decks": [
