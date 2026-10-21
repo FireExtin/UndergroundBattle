@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "bindgen": "wasm-bindgen 0.2.104",
+  "bindgenExecutableSha256": "9e04f8fc32eafed0396f48d897d74ba8ae5081ff4d4f70550b885fb51ae7c47c",
+  "cargoLockSha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54",
+  "pathMap": "--remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo=/workspace/audit-underground-100161b/cargo",
+  "rawWasmSha256": "f186f9ca6052392b455076e14d4e8b1840188f7db09108b7d3d0c542cb0f613d",
+  "files": [
+    {
+      "file": "hegemony_wasm_bg.wasm",
+      "bytes": 4315979,
+      "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "expectedSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+    },
+    {
+      "file": "hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "expectedSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "file": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "expectedSha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "expectedSha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "file": "package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "expectedSha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "allFiveFilesByteIdentical": true,
+  "oldBinaryUsedAsInput": false,
+  "directMetadataRewriting": false,
+  "sourceUnchanged": true,
+  "scope": "Author execution of this explicit ABI93 recipe; independent review remains pending."
+}

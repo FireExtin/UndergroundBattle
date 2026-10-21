@@ -1,0 +1,13 @@
+{
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "branch": "progress/source-ignore-cleanup-20261021",
+  "source_cleanup_commit": "3103444a9c111667f20ce41535a920f7b36a9de0",
+  "based_on_main": "38d987de593faad4483128f3e3795b1a511aa30c",
+  "pushed": true,
+  "remote_sha_verified": true,
+  "all649ExcludedPathsStillExist": true,
+  "default_branch_changed": false,
+  "site_version_saved": false,
+  "deployed": false,
+  "github_ci_triggered": false
+}

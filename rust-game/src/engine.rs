@@ -2300,7 +2300,7 @@ impl Game {
                 && !c.face_down
                 && region.is_some()
                 && d.kind == "character"
-                && rules::definition(&c.definition).traits.spirit)
+                && self.current_spirit(c))
                 .then(|| self.spirit_protected(c)),
             current_printed_defense: (!asset && !c.face_down && region.is_some())
                 .then(|| self.printed_defense_override(c))
@@ -2312,8 +2312,8 @@ impl Game {
             .then_some(true),
             current_barrier: (!asset
                 && !c.face_down
-                && region.is_some()
-                && d.kind == "character"
+                && (region.is_some() || kind == Some("attachment"))
+                && (d.kind == "character" || kind == Some("attachment"))
                 && self.has_barrier(c))
             .then_some(true),
             current_renown: (!asset && !c.face_down && region.is_some() && self.has_renown(c))

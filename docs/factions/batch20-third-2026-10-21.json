@@ -72,7 +72,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
       "sourceImageSha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": [
         "martialLawRedCostRing"
@@ -597,7 +597,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 16,
+    "unreviewedRuntimeCards": 15,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -638,6 +638,26 @@
         "four-renown-34": 34,
         "four-msjc11-12": 12,
         "wm033-rumor-15": 15
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "fiveCardPilot": {
+      "passed": 23,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "WM030",
+        "BQ042",
+        "WM033",
+        "XG26",
+        "WM035"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/five-card-pilot.json",
+      "affectedRegressionFilters": {
+        "five-regression-death_observer": 23,
+        "five-regression-black_next20": 21,
+        "five-regression-next20_red": 15,
+        "five-regression-control": 163
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

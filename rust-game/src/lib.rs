@@ -1,6 +1,7 @@
 mod batch3;
 mod batch3_red;
 mod batch3_black;
+mod batch3_host;
 mod exposure;
 mod rumor;
 #[cfg(all(test, not(feature = "society-fixtures")))]

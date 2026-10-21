@@ -7798,6 +7798,50 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM035",
+      "name": "安东尼·布洛克",
+      "subtitle": "艺术品大亨",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红红",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 2,
+      "text": "领袖；持续 所有本方人类角色额外具有宿主类别。；触发 每当一个本方宿主角色死亡时，抓一张牌。",
+      "keywords": [
+        "领袖"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM035",
+        "image": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
+        "imageSha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

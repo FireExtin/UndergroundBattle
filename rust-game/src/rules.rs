@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    WM035HostDeath,
     BlackCharacterDeathObserved,
     DeckToGraveyardObserved,
     JZ34OtherDeath,
@@ -244,6 +245,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM035HostDeathDraw { observation: Option<crate::black_next20::BlackDeathObservation> },
     XG26AttachmentBarrier,
     WM033ReturnSpellOrDisaster,
     BQ042DestroyAttachment,
@@ -540,6 +542,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    WM035HumansGainHost,
     XG26InfluenceAndConditionalGuard,
     WM030CultistIcons,
     BQ077WaterCombat,

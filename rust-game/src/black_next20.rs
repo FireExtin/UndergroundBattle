@@ -378,7 +378,7 @@ impl Game {
         &mut self,
         sources: &[SourceSnapshot],
         mut observation: BlackDeathObservation,
-    ) {
+    ) -> BlackDeathObservation {
         observation.event_id = self.id();
         for source in sources {
             let actor = source.card.controller;
@@ -407,6 +407,7 @@ impl Game {
                 },
             });
         }
+        observation
     }
     pub(crate) fn black_next20_trigger_available(&self, d: &Declaration) -> bool {
         match (d.source.card.definition.as_str(), d.ability.event) {

@@ -89,6 +89,10 @@ impl Game {
             a.card.definition == "JZ57" && !a.card.face_down && a.host_id == c.id) {
             for subtype in ["不死生物", "骷髅"] { if !result.iter().any(|s| s == subtype) { result.push(subtype.into()); } }
         }
+        if result.iter().any(|s| s == "人类") && self.wm035_grants_host(c)
+            && !result.iter().any(|s| s == "宿主") {
+            result.push("宿主".into());
+        }
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

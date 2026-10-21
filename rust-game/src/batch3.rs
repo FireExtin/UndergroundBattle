@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,19 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "WM035" => {
+            let mut d = rules::with_abilities(vec![rules::ability(
+                "batch3-wm035-host-death",
+                "本方宿主角色死亡：抓一张牌",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::WM035HostDeathDraw { observation: None }],
+                Some(Event::WM035HostDeath),
+            )]);
+            d.modifiers.push(StaticModifier::WM035HumansGainHost);
+            Some(d)
+        }
         "XG26" => {
             let mut a = rules::ability(
                 "batch3-xg26-barrier",
@@ -88,7 +101,9 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     } else if d.modifiers.iter().any(|m| {
         matches!(
             m,
-            StaticModifier::WM030CultistIcons | StaticModifier::XG26InfluenceAndConditionalGuard
+            StaticModifier::WM030CultistIcons
+                | StaticModifier::XG26InfluenceAndConditionalGuard
+                | StaticModifier::WM035HumansGainHost
         )
     }) || d.abilities.iter().any(related_ability)
     {
@@ -98,7 +113,8 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    a.key.starts_with("batch3-")
+    a.event == Some(Event::WM035HostDeath)
+        || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
         || a.costs.iter().any(|c| matches!(c, Cost::Batch3RemoveTime))
@@ -108,9 +124,10 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ042DestroyAttachment | Op::WM033ReturnSpellOrDisaster | Op::XG26AttachmentBarrier => {
-            true
-        }
+        Op::WM035HostDeathDraw { .. }
+        | Op::BQ042DestroyAttachment
+        | Op::WM033ReturnSpellOrDisaster
+        | Op::XG26AttachmentBarrier => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted {
             exhausted, ready, ..
@@ -127,12 +144,24 @@ fn related(f: &ResolutionFrame) -> bool {
             .any(|p| matches!(p, PaidCost::Batch3RemovedTime(_)))
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
-    if related_ability(a)
-        && !definition(id).is_some_and(|d| d.abilities.iter().any(|expected| same(expected, a)))
-    {
+    if related_ability(a) && canonical_ability(id, a).is_none_or(|expected| !same(&expected, a)) {
         return Err("第三批能力的来源、程序、费用或目标被修改".into());
     }
     Ok(())
+}
+fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    let mut expected = definition(id)?
+        .abilities
+        .into_iter()
+        .find(|printed| printed.key == a.key)?;
+    if a.key == "batch3-wm035-host-death" {
+        if let [Op::WM035HostDeathDraw { observation }] = a.ops.as_slice() {
+            expected.ops = vec![Op::WM035HostDeathDraw {
+                observation: observation.clone(),
+            }];
+        }
+    }
+    Some(expected)
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if !IMPLEMENTING.contains(&id) {
@@ -232,7 +261,19 @@ impl Game {
         }
         if IMPLEMENTING.contains(&d.source.card.definition.as_str()) || related_ability(&d.ability)
         {
-            return Err("第三批当前准入角色没有可选触发声明".into());
+            self.batch3_source(d.actor, &d.source)?;
+            let expected = canonical_ability(&d.source.card.definition, &d.ability)
+                .ok_or("第三批触发声明没有固定程序")?;
+            if d.source.card.definition != "WM035"
+                || d.ability.event != Some(Event::WM035HostDeath)
+                || d.source.card.face_down
+                || d.source.play_source.is_some()
+                || !same(&d.ability, &expected)
+            {
+                return Err("第三批触发声明的来源、事件或程序不符".into());
+            }
+            self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?
+                .ok_or("宿主触发缺少观察")?;
         }
         Ok(())
     }
@@ -264,9 +305,22 @@ impl Game {
             }
             return Ok(());
         }
-        let a = definition(&f.source.card.definition)
+        let mut a = definition(&f.source.card.definition)
             .and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
             .ok_or("非准入第三批执行帧")?;
+        if a.key == "batch3-wm035-host-death" {
+            if let [Step {
+                op: Op::WM035HostDeathDraw { observation },
+                ..
+            }] = f.steps.as_slice()
+            {
+                a.ops = vec![Op::WM035HostDeathDraw {
+                    observation: observation.clone(),
+                }];
+            }
+            self.wm035_observation_key(f.actor, &f.source, &a.ops)?
+                .ok_or("宿主帧缺少观察")?;
+        }
         let steps = a
             .ops
             .iter()
@@ -300,6 +354,13 @@ impl Game {
             })
         {
             return Err("第三批程序、冻结目标或执行环境不符".into());
+        }
+        if a.event.is_some() {
+            return if f.already_paid.is_empty() {
+                Ok(())
+            } else {
+                Err("宿主死亡触发不应有费用收据".into())
+            };
         }
         if f.ability_key == "batch3-xg26-barrier" {
             if f.source.card.exhausted
@@ -338,11 +399,26 @@ impl Game {
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
         self.validate_attachment_barrier_modifiers()?;
         let mut frames = BTreeSet::new();
+        let mut observations = BTreeSet::new();
+        let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
+            if let [Op::WM035HostDeathDraw {
+                observation: Some(o),
+            }] = ops
+            {
+                if !observations.insert((source.card.id.clone(), o.event_id.clone())) {
+                    return Err("同一宿主死亡观察不能由同一来源重复执行".into());
+                }
+            }
+            Ok(())
+        };
         for s in &self.stack {
             if let Some(f) = &s.frame {
                 self.validate_batch3_frame(f)?;
                 if !related(f) || self.validated_cross_card_frame(f)? {
                     continue;
+                }
+                if let [Step { op, .. }] = f.steps.as_slice() {
+                    remember(&f.source, std::slice::from_ref(op))?;
                 }
                 let deploy = matches!(f.ability_key.as_str(), "deploy" | "reveal");
                 if !frames.insert(&f.frame_id)
@@ -373,7 +449,10 @@ impl Game {
         }
         for e in &self.effects {
             match e {
-                Effect::Declare { declaration } => self.validate_batch3_declaration(declaration)?,
+                Effect::Declare { declaration } => {
+                    self.validate_batch3_declaration(declaration)?;
+                    remember(&declaration.source, &declaration.ability.ops)?;
+                }
                 Effect::Frame { frame }
                     if related(frame) && !self.validated_cross_card_frame(frame)? =>
                 {
@@ -388,8 +467,14 @@ impl Game {
                     frame,
                     choice: FrameChoice::WM033GraveSpell,
                 } => self.validate_wm033_pending(p, frame)?,
-                ChoiceResolution::Declare { declaration, .. } => {
-                    self.validate_batch3_declaration(declaration)?
+                ChoiceResolution::Declare { declaration, stage } => {
+                    self.validate_batch3_declaration(declaration)?;
+                    if declaration.source.card.definition == "WM035"
+                        && declaration.ability.key == "batch3-wm035-host-death"
+                    {
+                        self.validate_wm035_pending(p, declaration, stage)?;
+                    }
+                    remember(&declaration.source, &declaration.ability.ops)?;
                 }
                 ChoiceResolution::Frame { frame, .. }
                     if related(frame) && !self.validated_cross_card_frame(frame)? =>
@@ -532,6 +617,32 @@ mod tests {
         let mut definitions = rules::definitions().clone();
         definitions.insert("WM030".into(), Definition::default());
         assert!(rules::validate_definitions(&definitions).is_err());
+    }
+
+    #[test]
+    fn batch3_bq042_four_seat_view_tracks_conditional_spirit_without_revealing_hidden_print() {
+        let mut g = game();
+        let id = field(&mut g, "BQ042", 0);
+        for moon in [false, true, false] {
+            g.players[0].society_zone.secrecy = u32::from(moon);
+            // An ally's moon cannot enable this personal keyword.
+            g.players[1].society_zone.secrecy = 1;
+            for seat in 0..4 {
+                let view = g.view(seat);
+                let c = view.regions[0].characters.iter().find(|c| c.instance_id == id).unwrap();
+                assert_eq!(c.current_spirit_protection, moon.then_some(true));
+            }
+            restore(&mut g);
+        }
+        g.players[0].society_zone.secrecy = 1;
+        g.board_mut(&id).unwrap().face_down = true;
+        for seat in 0..4 {
+            let view = g.view(seat);
+            let c = view.regions[0].characters.iter().find(|c| c.instance_id == id).unwrap();
+            assert_eq!(c.current_spirit_protection, None);
+            if seat != 0 { assert_eq!(c.card_id, None); }
+        }
+        restore(&mut g);
     }
 
     #[test]

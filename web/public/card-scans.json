@@ -1043,5 +1043,10 @@
     "url": "/cards/XG26.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
     "sha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0"
+  },
+  "WM035": {
+    "url": "/cards/WM035.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
+    "sha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a"
   }
 }

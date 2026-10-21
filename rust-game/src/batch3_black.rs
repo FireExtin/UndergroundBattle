@@ -122,6 +122,46 @@ mod tests {
     }
 
     #[test]
+    fn batch3_xg26_four_seat_views_show_paid_attachment_barrier_and_expiry() {
+        for society in [false, true] {
+            let mut g = game();
+            g.players[0].society_zone.card = None;
+            let source = field(&mut g, "XG26", 0);
+            let target = g.make_card(if society { "JC068" } else { "JC048" }, 0);
+            let id = target.id.clone();
+            g.attachments.push(Attachment {
+                card: target,
+                host_id: if society { "society:p0".into() } else { g.regions[0].card.id.clone() },
+            });
+            fund(&mut g, 0, "JC047", 1);
+            act(&mut g, 0, activate(&source, &id));
+            top(&mut g);
+            for active in [true, false] {
+                if !active {
+                    g.turn += 1;
+                    g.prune_turn_attribute_modifiers();
+                }
+                for seat in 0..4 {
+                    let view = g.view(seat);
+                    let c = &view.attachments.iter().find(|a| a.card.instance_id == id).unwrap().card;
+                    assert_eq!(c.current_barrier, active.then_some(true));
+                    assert_eq!(g.targetable(2, g.in_play(&id).unwrap().1), !active);
+                }
+                restore(&mut g);
+            }
+            // A concealed print or face-down asset never exports keyword fields.
+            let mut hidden = g.in_play(&id).unwrap().1.clone();
+            hidden.face_down = true;
+            for seat in 0..4 {
+                let view = g.card_view(&hidden, seat, Some(0), Some("attachment"));
+                assert_eq!(view.current_barrier, None);
+                if seat != 0 { assert_eq!(view.card_id, None); }
+                assert_eq!(g.card_view(&hidden, seat, None, Some("asset")).current_barrier, None);
+            }
+        }
+    }
+
+    #[test]
     fn batch3_xg26_targets_own_society_attachment_without_a_society_card() {
         let mut g = game();
         g.players[0].society_zone.card = None;

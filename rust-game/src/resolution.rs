@@ -1601,6 +1601,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
                 Op::XG26AttachmentBarrier => self.xg26_grant_barrier(&frame)?,
                 Op::WM033ReturnSpellOrDisaster => return self.wm033_start(frame),
                 Op::JC043DestroyAttachment | Op::BQ042DestroyAttachment => {

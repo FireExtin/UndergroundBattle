@@ -29,6 +29,7 @@ impl Game {
         let mut receipts = Vec::new();
         let mut observers = Vec::new();
         let black_sources = self.capture_black_death_sources();
+        let host_sources = self.wm035_death_sources();
         for (r, region) in self.regions.iter().enumerate() {
             for c in &region.cards {
                 if !c.face_down && matches!(c.definition.as_str(), "JC045" | "JC031") {
@@ -56,7 +57,10 @@ impl Game {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
             if let Some(receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source)) {
                 receipts.push(receipt);
-                if let Some(observation) = black_death { self.emit_black_death(&black_sources, observation); }
+                if let Some(observation) = black_death {
+                    let observation = self.emit_black_death(&black_sources, observation);
+                    self.wm035_emit_host_death(&host_sources, &observation);
+                }
                 self.jz34_observe_death(&red_observers, &dead.card);
                 for observer in &observers {
                     if observer.card.definition != "JC045"
@@ -72,7 +76,7 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath)) =>
+                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });
