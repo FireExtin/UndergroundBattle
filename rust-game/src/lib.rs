@@ -166,6 +166,8 @@ pub mod rules;
 #[cfg(feature = "native")]
 pub mod service;
 pub mod society;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod society_zone_tests;
 #[cfg(test)]
 mod white_wound_tests;
 mod world;
