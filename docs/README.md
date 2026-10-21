@@ -1,5 +1,10 @@
-# docs
+# 项目文档
 
-Purpose: project-level design, testing, protocol, and versioning documents for humans and AI collaborators.
+当前架构、运行方式、卡池和发布边界以[根README](../README.md)及实际代码为入口。
 
-- [蓝色最低切片 Air 待审候选](BLUE_MINIMUM_AIR_CANDIDATE_2026-10-06.md)：原始依据、有限续体、准入防护、实际核验与交接包。
+- [2026-10-21本地审查后整改](LOCAL_CORRECTNESS_AUDIT_2026-10-21.md)：固定100161b基线、ABI90候选、原始ABI77–89输入、修复与实际验证阶段；尚未独立复审或发布。
+- [卡牌研究与准入资料](factions/README.md)：研究索引和来源证据；不是运行时完整支持清单。
+- [完整机制设计资料](architecture/full-mechanics-design/README.md)：设计与研究范围，不能替代当前已实现能力。
+- [早期云端切片说明](HEGEMONY_CLOUD_SLICE_2026-10-02.md)、[蓝色最低切片候选](BLUE_MINIMUM_AIR_CANDIDATE_2026-10-06.md)：保留历史上下文，不作为最新版本或当前验收状态。
+
+本目录包含历史发布、探针源码、JSON回放、运行日志、补丁和图像证据。文件日期、版本及证据范围需要分别核对；不能把整个目录当作生成缓存，也不能把某次历史测试通过升级为当前全套通过。固定版本审查的逐文件覆盖账本与完整报告在对应交付包中，后续整改另存记录。

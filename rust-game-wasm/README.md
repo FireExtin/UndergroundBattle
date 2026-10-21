@@ -1,65 +1,42 @@
-# Shared Rust kernel WASM proof
+# 同一Rust规则核的WASM边界
 
-This crate exposes the existing deterministic `hegemony-server` kernel to a server-side JavaScript host. It contains no separate rules implementation. The native service remains the default build; its HTTP, SQLite, authentication and SSE code is behind the `native` feature and is excluded from this WASM build.
+本crate以`hegemony-server`的纯规则部分构建WASM，关闭Native HTTP/SQLite特性。Sites Worker在服务端调用它；浏览器展示投影，不运行另一套权威规则。当前版本及已验证阶段见[根README](../README.md)和[整改记录](../docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md)。
 
-This is a local compilation and compatibility proof. No Workers room service, hosting configuration or Internet deployment is included or validated.
+## 构建与验证
 
-## Build and verify
-
-Use Rust 1.90.0, Node.js and `wasm-bindgen-cli` **0.2.104** (matching the exact crate version):
+从仓库根目录执行。需要Rust1.90.0、Node、`wasm32-unknown-unknown`及`wasm-bindgen-cli`精确版本0.2.104；缺失时按根README安装。先设置独立普通磁盘`UNDERGROUNDBATTLE_BUILD_ROOT`。
 
 ```sh
-rustup target add wasm32-unknown-unknown
-cargo install wasm-bindgen-cli --version 0.2.104 --locked
+bash rust-game-wasm/build.sh
 bash rust-game-wasm/verify.sh
 ```
 
-Cloud builds use `tools/build-storage.mjs`: a reusable `/workspace/undergroundbattle-build/target` and disk-backed temporary directory, one Cargo job, and no debug/incremental cache. `UNDERGROUNDBATTLE_BUILD_ROOT` selects another ordinary disk location; a supplied `CARGO_TARGET_DIR` must also be disk-backed. The launch guard requires 1 GiB free disk and 1 GiB cgroup headroom, based on the observed serial kernel builds plus output margin; this is not a guaranteed peak budget. It fails before launching tools when storage is tmpfs or resources are insufficient. It never deletes files or falls back to `/tmp` or `/dev/shm`. Run a Native command through the same guard, for example `node tools/build-storage.mjs -- cargo test --locked --offline --no-default-features --lib xq37 -- --test-threads=1`. WASM binding outputs and Sites staging/build destinations are also checked before writing, copying or output removal; build from an ordinary disk checkout. Output checks cover both existing destinations and their parent directories because tools may retain a symlink or remove it and recreate the output. Build evidence/archive destinations should also be ordinary disk directories.
+`build.sh`输出被Git忽略的`pkg/hegemony_wasm.js`、`hegemony_wasm_bg.wasm`及类型声明；`WASM_BINDGEN`可指定CLI路径。脚本通过现有[资源预检](../tools/build-storage.mjs)运行，不绕过磁盘/内存门禁。
 
-`WASM_BINDGEN=/path/to/wasm-bindgen` selects an alternate CLI location. `build.sh` creates the ignored `rust-game-wasm/pkg/hegemony_wasm.js` ESM binding and `hegemony_wasm_bg.wasm`. `verify.sh` compiles the module, generates native fixture results, actually instantiates the WASM in Node, then compares every transition and each player's view.
+`verify.sh`依次构建当前核、由Native生成真实结果、在Node中实例化WASM并比较完整状态/各席位视图，再调用现有Rust测试导出当前XQ24输入检查恢复入口。它只清理自己创建的临时夹具目录。当前已记录433场景对照及XQ24检查，详细阶段差异保留在整改记录中；并非单次最终端到端命令全套结果，更不是浏览器试玩。
 
-After each build, remove its temporary files and intermediate outputs that cannot be reused. Keep one bounded, actually reusable Cargo target directory at the ordinary-disk build root; remove inactive targets from earlier build locations once no process uses them. Keep the current WASM and deployment outputs needed for validation or publication. Preserve source, Git, work in progress, active files and unique evidence; archive and verify necessary original evidence before releasing duplicate files. Do not treat evidence directories as caches. `verify.sh` removes its own temporary fixture package and cases on exit.
+`--society-fixtures`只生成隔离的`pkg-society-fixtures`测试内核；不是公开准入牌或发布产物。
 
-The v2.1 fixtures cover duel and four-player teams plus an explicitly marked initial-layout scenario whose subsequent transitions use real JC042/JC091 response Actions, JZ54 sacrifice choices, LC24 frame forecast continuations and the LC19 heal exhaustion cost. The fixtures also require both native and WASM to reject previous-patch opaque states. Every opaque state string and every player view is compared against native output. Decimal seeds `18446744073709551615` and `9007199254740993` remain exact.
+## 导出接口
 
-The completed v2.1 run on fixed commit `d94baaf3e7caabfdb81e1b3cc2a537fefe355fd0`, built in the fresh `/tmp/hegemony-d94baaf-final-target`, compared **397 transitions / 1,165 player projections**, all identical. Node actually instantiated the module and verified opaque-state equality, private projections, exact maximum-u64 seeds, rejected repeat actions and previous-patch state rejection. Its generated module is **1,040,341 bytes**, SHA-256:
+[src/lib.rs](src/lib.rs)定义以下JSON字符串边界：
 
-```text
-a6366ef6bc7df03ba666b33286d3a01c412ac6bf779d6396fcbf6affcdc43966
-```
+| 导出 | 用途 |
+| --- | --- |
+| `catalog` / `stateIdentity` | 当前公开目录 / 严格读取存档身份 |
+| `newGame` / `joinGame` | 预组入桌 |
+| `newGameWithDeck` / `joinGameWithDeck` | 自组牌组入桌 |
+| `roomCatalog` / `view` | 经版本及席位验证的目录与席位视图 |
+| `applyRoom` | 完整RoomCommand及可信服务端毫秒时间驱动的状态迁移 |
+| `pollRoom` | 可信时间驱动的到期处理与状态读取 |
+| `quoteRoom` | 响应操作报价 |
 
-The historical `8a16cf3` v2.0 run compared 394 transitions / 1,159 player projections; its 1,039,765-byte module SHA-256 was `b00480fe9490117d327ead03acc94774ccfc0377f9ff1993a330e7be0c2522cb`.
+旧`apply`导出保留但直接拒绝：schema3必须使用`applyRoom`。客户端时钟不能替代可信服务端时间；decimal seed/time和完整opaque状态应保持原字符串，不经JavaScript Number重写u64。
 
-The historical `84a2c59` v1 proof compared 374 transitions / 1,119 player projections; its 803,612-byte module SHA-256 was `fb75e4c68f604c46febba70211d673d4d492c5994bc17dead7c5de26d8c330be`. These are historical values, not the current v2.1 artifact.
+## 精确历史内核
 
-## Server-only interface
+当前候选ABI90与原始ABI77–89分别装载。历史JS/WASM运行字节不在Git，身份与来源记录在[frozen](frozen/)，由[统一loader](../tools/frozen-kernels.mjs)校验JS、gzip、解压长度和WASM哈希。输入准备及v71原件来源见根README；不使用新源码重建结果替代旧字节。
 
-| Export | Arguments | JSON string result |
-| --- | --- | --- |
-| `catalog` | none | Public card/deck catalog |
-| `newGame` | room ID, invite code, mode, player name, deck ID, decimal seed string | `{ state, view, version, seat }` |
-| `joinGame` | opaque state string, player name, deck ID | `{ state, view, version, seat }` |
-| `apply` | opaque state string, authenticated seat, action JSON string | `{ state, view, version, seat }` |
-| `view` | opaque state string, authenticated seat | Only that player's projected view |
+`tests/current89-kernel.mjs`这个历史命名现在明确加载冻结v71 ABI89；当前新编译核的比较入口是`tests/current-kernel.mjs`。旧fixture保留原身份，不能改版本字符串后冒称新Native结果。缺失冻结输入会使相应测试初始化失败，应先补齐输入而不是放松哈希。
 
-Parse the outer result to access its fields, but preserve `state` as an **opaque string** in server storage. Never parse and reserialize that string through JavaScript: native `u64` values exceed JavaScript's exact integer range. Pass the seed as decimal text for the same reason. Full `state` contains private information and must never be returned to a browser. The HTTP response may contain only the authenticated player's `view` and relevant public metadata.
-
-The caller must authenticate and map the seat, enforce expected versions and command deduplication, serialize room mutations, and persist before acknowledging. This crate supplies none of those room-service responsibilities. Imported states are checked against the pinned rules, card-pool and engine versions.
-
-Node verification initializes the `--target web` output using:
-
-```js
-import { readFileSync } from 'node:fs';
-import { initSync, newGame } from './pkg/hegemony_wasm.js';
-initSync({ module: readFileSync('./pkg/hegemony_wasm_bg.wasm') });
-const result = JSON.parse(newGame('room', 'invite', 'duel', '玩家', 'watchers', '9007199254740993'));
-// Save result.state unchanged on the server; send only result.view to this seat.
-```
-
-A runtime that imports a compiled `WebAssembly.Module` can pass that module to `initSync`; provider-specific import, limits and execution behavior still require validation before deployment.
-
-## Compatibility boundary
-
-V2.1 uses state schema 2, rules `hegemony-pdf-v1`, card pool `limited-v2.1`, engine `rust-v0.2.1`. The shared core now uses typed abilities, paid costs, bound target predicates and public snapshots, one whole-object guard, persisted effect cursors, source last-known information, and finite queries/modifiers. All 25 released player cards and four active world types use that kernel. The curated ten-card world contains three DQJC107, three DQJC112, two DQJC113 and two DQJC114. The original four decks remain intact; a fifth 50-card curated deck exposes the four newly verified cards. V2.1 adds registration guards, distinguishes entering play from entering a region, and corrects LC19’s heal cost to two assets plus exhausting its source. Existing API fields are unchanged.
-
-V1 and prior `rust-v0.2.0` / `limited-v2` states are explicitly rejected before typed deserialization. Keep original binaries/databases for old rooms and replay; no silent migration is supplied. Historical native damage choices could also contain a 64-bit `usize::MAX` value that cannot be read by 32-bit WASM. Current choice metadata uses actual target counts. Existing native processes and their old databases remain untouched.
+Sites负责旧桌的内核选择；单个WASM模块和Native服务都不提供任意历史状态迁移。
