@@ -13,7 +13,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadFixture } = await import(pathToFileURL(root + 'tools/jz46-oracle.mjs').href);
 const fixture = loadFixture();
-const { identity: currentIdentity } = await import(pathToFileURL(root + 'rust-game-wasm/tests/current89-kernel.mjs').href);
+const { catalog: currentIdentity } = await import(pathToFileURL(root + 'rust-game-wasm/tests/current-kernel.mjs').href);
 const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'jz46-http-'));

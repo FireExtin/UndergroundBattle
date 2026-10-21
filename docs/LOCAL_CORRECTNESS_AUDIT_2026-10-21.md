@@ -1,4 +1,4 @@
-# 固定 100161b 审查后的本地整改（WIP）
+# 固定 100161b 审查后的本地整改（待独立复审）
 
 审查基线为 `100161b628e56b9153041d952ac0f5d83428ca88`，产品 v71/ABI89。固定审查报告、5689文件/304目录清单、805普通代码文件逐段覆盖账本与原始失败证据保存在本任务独立审查目录；未把第三方归档、历史补丁、全部资料或浏览器场景称为全量验证。本文件记录后续修改，不替代固定版本报告。
 
@@ -14,7 +14,7 @@
 
 ABI77–88来自已恢复的 `HiddenWorld_JC035_ABI77-89_5056e4e_migration.zip`，ZIP SHA256 `02a4d8fb4ababa881589b80fff7252ac0406063f99defcd0d75574b468b75c43`。该包的ABI89是P2修复前产物，不可用于v71。
 
-v71 ABI89原件来自 `HiddenWorld_JC035_v71_ABI89_100161b_exact_original_inputs_2026-10-21.zip`，ZIP SHA256 `ed328fff20063cb097283040826d2434c00a457388ec85dc817c53084ceb9365`。JS SHA256为`fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb`，原始WASM为3471247字节/SHA256 `df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de`。本次仅对这些已验证原字节使用Python `gzip.compress(wasm, mtime=0)`生成运输压缩输入，gzip SHA256 `73fcc1c3804f9c75016bbe1c74664549f29e35f0148fc11a6b7cbec70a7b831b`；没有重编内核。141个历史源码哈希保存在ABI89的native-source-binding.json，历史Native89测试比较该原始见证，不比较不断变化的当前源码。
+v71 ABI89原件来自 `HiddenWorld_JC035_v71_ABI89_100161b_exact_original_inputs_2026-10-21.zip`，ZIP SHA256 `ed328fff20063cb097283040826d2434c00a457388ec85dc817c53084ceb9365`。JS SHA256为`fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb`，原始WASM为3471247字节/SHA256 `df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de`。本次仅对这些已验证原字节使用Python `gzip.compress(wasm, mtime=0)`生成运输压缩输入，gzip SHA256 `73fcc1c3804f9c75016bbe1c74664549f29e35f0148fc11a6b7cbec70a7b831b`；没有重编内核。整改交付包另附`frozen-kernels/abi89`下这两份精确运输文件，接续环境直接使用它们，不依赖跨Python/zlib版本重压缩的字节一致性。141个历史源码哈希保存在ABI89的native-source-binding.json，历史Native89测试比较该原始见证，不比较不断变化的当前源码。
 
 ```sh
 node tools/build-storage.mjs -- cargo test --locked --workspace
@@ -29,4 +29,12 @@ node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-w
 
 `verify.sh`用现有两个XQ24 Rust回归测试导出当前Native输入，再检查当前WASM的恢复入口；不要求手工复制一套v090历史夹具。导出的opaque状态直接作为字符串交给WASM，保留u64精度。单独运行`tools/cards/check-xq24-containers.mjs`时，第三参数可指定该导出目录（含`invalid.json`和`room/*.json`）；历史版本化夹具入口继续保留。
 
-验证结果另存整改记录，未运行的检查不得写为通过。新候选尚未独立复审、合并或部署。GitHub CI/Actions、push、PR、tag/release、自动合main与部署均暂停。
+## 本环境验证结果
+
+- 修复阶段Rust workspace：1365通过；此全套编译早于最终法术奖励限制收窄及死原型删除。最终源码另有5项公开命令、4项奖励负例/来源绑定、2项XQ24回归通过，不能把它们写为最终提交全套重跑。
+- 默认Native生成及最终WASM比较：433场景、24407迁移、96991视图相等，含两处原失败cleanup。Native生成器早于上述两项末尾变动，最终WASM为3471082字节/SHA256 `9e8aba115338ad8cc628ff631b4db9074a5b3a6d996097a8f8f36e966f61e009`。另用最终源码导出的XQ24输入验证4非法状态/12恢复入口和12正常场景117命令370视图通过。
+- Web全套：1431通过、1陈旧文案断言失败；修正后的该文件4/4通过。Sites全套：736项中708通过、28旧当前身份断言失败；四组修正后的28项均定向通过。两者都没有为更新状态再跑整套。
+- tools来源测试99/99、冻结输入专项6/6、三文件无Git历史来源测试9/9通过。最终WASM、Web、Sites14模块dry-run及独立stage的13冻结loader/backend dry-run通过；独立stage前端未再次构建。
+- 原始v71 ABI89精确哈希门禁及oracle通过；本地同一HTTP/D1实例的ABI77–90共14桌状态、u64和重复回执验证通过。香港私密性与BQ028公开Room/WASM恢复探针通过。
+
+详细原日志、阶段来源和覆盖边界在独立整改证据包。未进行浏览器试玩、线上回归或GitHub CI。新候选尚未独立复审、合并或部署；GitHub Actions、push、PR、tag/release、自动合main与部署均暂停。
