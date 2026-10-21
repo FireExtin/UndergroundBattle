@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     WM035HostDeath,
     BQ079CorpseGrave,
+    BQ037OtherVampireEntered,
     XQ26NamedCharacterEntered,
     WM041PublicCharacterPlayed,
     BlackCharacterDeathObserved,
@@ -256,6 +257,8 @@ pub enum Op {
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
     WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
+    BQ037FeedPair { observation: Option<crate::batch3_blood::VampireEntryObservation> },
+    BQ037RevealVampire,
     XQ26Name,
     XQ26Wanted { observation: Option<crate::batch3_warrant::NamedEntryObservation> },
     BQ079CorpseIcons { observation: Option<crate::batch3_ghoul::CorpseGraveObservation> },

@@ -8258,6 +8258,47 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "BQ037",
+      "name": "穿刺公弗拉德三世",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        }
+      },
+      "defense": 3,
+      "text": "触发 当另一个本方吸血鬼角色进场时，该角色和穿刺公弗拉德三世饮血1。；行动①：若目标本方暗藏者的正面是吸血鬼角色，你可以令其现身。该能力每回合只能发动一次。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ037",
+        "image": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
+        "imageSha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false,
+      "subtitle": "“龙之子”"
     }
   ],
   "decks": [

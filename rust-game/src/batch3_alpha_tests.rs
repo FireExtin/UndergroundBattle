@@ -41,3 +41,6 @@ fn ready_reward(g:&mut Game){for _ in 0..32{if g.stack.last().and_then(|s|s.fram
     let mut g=game();fill(&mut g);fund(&mut g,0,"JC056",6);let id=held(&mut g,"WM041",0);let hand=g.players[0].hand.len();act(&mut g,0,Action{card_id:Some(id),region:Some(0),..Action::new("deploy")});assert_eq!(g.stack.len(),1);top(&mut g);
     let c=g.regions[0].cards.iter().find(|c|c.definition=="WM041").unwrap();assert_eq!(g.current_icons(c,0),Icons{investigation:3,combat:1,influence:2});assert_eq!(g.defense(c,0),2);assert!(g.current_leader(c));assert!(!g.has_renown(c));assert_eq!(g.players[0].society_zone.exposure,0);assert_eq!(g.players[0].hand.len(),hand-1);assert!(g.players[0].assets.iter().all(|c|c.exhausted));restore(&mut g);
 }
+#[test]fn batch3_wm041_observer_source_cannot_be_a_private_copy_with_a_forged_board_region(){
+    let mut g=game();fill(&mut g);field(&mut g,"WM041",0);fund(&mut g,0,"JC056",2);let id=held(&mut g,"JC056",0);act(&mut g,0,Action{card_id:Some(id),region:Some(0),..Action::new("deploy")});ready_reward(&mut g);let c=g.make_card("WM041",0);g.players[0].hand.push(c.clone());g.stack.last_mut().unwrap().frame.as_mut().unwrap().source.card=c;assert!(Game::from_persisted(&serde_json::to_string(&g).unwrap()).is_err());
+}

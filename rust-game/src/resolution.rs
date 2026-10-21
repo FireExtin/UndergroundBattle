@@ -1608,6 +1608,8 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::BQ037FeedPair { .. } => return self.bq037_feed_start(frame),
+                Op::BQ037RevealVampire => return self.bq037_reveal_start(frame),
                 Op::XQ26Name => return self.xq26_name_start(frame),
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
                 Op::WM041PublicPlay { .. } => { self.add_society_markers(frame.actor,1,0); self.draw(frame.actor,1)?; },
@@ -2438,6 +2440,8 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),
+            FrameChoice::BQ037Reveal => return self.bq037_reveal_complete(&frame,chooser,&a,&selected),
             FrameChoice::XQ26Name => return self.xq26_name_complete(&frame, chooser, &a, &selected),
             FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),

@@ -659,6 +659,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BloodFeed { state: crate::batch3_blood::BloodFeedCursor },
+    BQ037Reveal,
     XQ26Name,
     JC064Upkeep,
     BQ079Upkeep,

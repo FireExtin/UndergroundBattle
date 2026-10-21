@@ -1062,6 +1062,7 @@ impl Game {
     }
     pub(crate) fn eliminate(&mut self, seat: usize) {
         self.players[seat].eliminated = true;
+        self.return_sealed_cards(&format!("society:p{seat}"));
         self.players[seat].hand.clear();
         self.players[seat].deck.clear();
         self.players[seat].assets.clear();
@@ -1259,6 +1260,7 @@ impl Game {
             }
         }
         self.xq26_observe_entry(id);
+        self.bq037_observe_entry(id);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
         }
