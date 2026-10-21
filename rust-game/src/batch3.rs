@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,33 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "JZ25" => Some(rules::with_abilities(vec![rules::ability(
+            "batch3-jz25-seal", "进场：目标玩家随机封印一张手牌在本牌上", Timing::Fast,
+            vec![], vec![rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
+            vec![Op::JZ25SealRandomHand], Some(Event::Enter),
+        )])),
+        "XG28" => {
+            let mut d = rules::attachment_definition(rules::target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere));
+            d.abilities[0].key = "batch3-xg28-attach".into();
+            d.abilities.push(rules::ability("batch3-xg28-prepare", "准备步骤：牌库顶一张置于墓地", Timing::Fast,
+                vec![], vec![], vec![Op::Batch3Prepare { event_id: None }], Some(Event::Prepare)));
+            let mut t = rules::target(Zone::Graveyard, EntityKind::Character, Relation::OwnedByActor, Range::Anywhere);
+            t.predicate = Some(TargetPredicate::Batch3OwnGraveCharacter);
+            let mut a = rules::ability("batch3-xg28-return", "行动2、横置：墓地角色回手；本方隐秘则重置本牌", Timing::Standard,
+                vec![Cost::Assets(2), Cost::ExhaustSource], vec![t], vec![Op::XG28GraveReturn], None);
+            a.activation_only = true;
+            d.abilities.push(a);
+            Some(d)
+        }
+        "BQ089" => {
+            let mut t = rules::target(Zone::Graveyard, EntityKind::Character, Relation::OwnedByActor, Range::Anywhere);
+            t.predicate = Some(TargetPredicate::Batch3OwnGraveCharacter);
+            let mut a = rules::ability("batch3-bq089-reanimate", "行动：墓地中印刷费用至多3的角色进入目标地区；隐秘时至多5", Timing::Standard,
+                vec![], vec![t, rules::target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere)],
+                vec![Op::BQ089GraveEntry], None);
+            a.play_only = true;
+            Some(rules::with_abilities(vec![a]))
+        }
         "WM035" => {
             let mut d = rules::with_abilities(vec![rules::ability(
                 "batch3-wm035-host-death",
@@ -120,11 +147,12 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
         || a.costs.iter().any(|c| matches!(c, Cost::Batch3RemoveTime))
         || a.targets
             .iter()
-            .any(|t| t.predicate == Some(TargetPredicate::BQ042SocietyOrOriginalRegion))
+            .any(|t| matches!(t.predicate, Some(TargetPredicate::BQ042SocietyOrOriginalRegion | TargetPredicate::Batch3OwnGraveCharacter)))
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::WM035HostDeathDraw { .. }
+        Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        | Op::WM035HostDeathDraw { .. }
         | Op::BQ042DestroyAttachment
         | Op::WM033ReturnSpellOrDisaster
         | Op::XG26AttachmentBarrier => true,
@@ -144,6 +172,9 @@ fn related(f: &ResolutionFrame) -> bool {
             .any(|p| matches!(p, PaidCost::Batch3RemovedTime(_)))
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
+    if a.event == Some(Event::Prepare) && IMPLEMENTING.contains(&id) {
+        return crate::jc035::validate_ability(id, a);
+    }
     if related_ability(a) && canonical_ability(id, a).is_none_or(|expected| !same(&expected, a)) {
         return Err("第三批能力的来源、程序、费用或目标被修改".into());
     }
@@ -167,6 +198,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if !IMPLEMENTING.contains(&id) {
         return Ok(());
     }
+    if matches!(id, "XG28" | "BQ089") { return crate::batch3_grave::validate_action(id, a); }
     let expected = match a.kind.as_str() {
         "deploy" | "conceal" => Action {
             card_id: a.card_id.clone(),
@@ -259,6 +291,18 @@ impl Game {
         if self.validated_cross_card_declaration(d)? {
             return Ok(());
         }
+        if d.ability.event == Some(Event::Prepare) && IMPLEMENTING.contains(&d.source.card.definition.as_str()) {
+            return crate::jc035::validate_ability(&d.source.card.definition, &d.ability);
+        }
+        if d.source.card.definition == "JZ25" {
+            self.batch3_source(d.actor, &d.source)?;
+            self.validate_jz25_origin(&d.source)?;
+            let expected = definition("JZ25").unwrap().abilities.remove(0);
+            if d.source.card.face_down || d.source.play_source.is_some() || !same(&expected, &d.ability) {
+                return Err("卡迪纳猎杀者触发来源或程序不符".into());
+            }
+            return Ok(());
+        }
         if IMPLEMENTING.contains(&d.source.card.definition.as_str()) || related_ability(&d.ability)
         {
             self.batch3_source(d.actor, &d.source)?;
@@ -280,6 +324,11 @@ impl Game {
     pub(crate) fn validate_batch3_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if self.validated_cross_card_frame(f)? || !related(f) {
             return Ok(());
+        }
+        if crate::jc035::preparation_frame(f) { return self.validate_jc035_frame(f); }
+        if matches!(f.source.card.definition.as_str(), "XG28" | "BQ089")
+            || (f.source.card.definition == "JZ25" && !matches!(f.ability_key.as_str(), "deploy" | "reveal")) {
+            return self.validate_batch3_grave_frame(f);
         }
         self.batch3_source(f.actor, &f.source)?;
         if f.frame_id.is_empty()
@@ -401,6 +450,10 @@ impl Game {
         let mut frames = BTreeSet::new();
         let mut observations = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
+            if matches!(ops, [Op::JZ25SealRandomHand])
+                && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
+                return Err("同一猎杀者进场不能重复封印".into());
+            }
             if let [Op::WM035HostDeathDraw {
                 observation: Some(o),
             }] = ops
@@ -421,13 +474,14 @@ impl Game {
                     remember(&f.source, std::slice::from_ref(op))?;
                 }
                 let deploy = matches!(f.ability_key.as_str(), "deploy" | "reveal");
+                let played = matches!(f.ability_key.as_str(), "batch3-xg28-attach" | "batch3-bq089-reanimate");
                 if !frames.insert(&f.frame_id)
                     || s.id != f.frame_id
                     || s.controller != f.actor
                     || s.target != f.targets.first().map(|t| t.id.clone())
                     || f.cursor != 0
                     || !matches!(f.guard, GuardState::Unchecked)
-                    || deploy != s.card.is_some()
+                    || (deploy || played) != s.card.is_some()
                     || s.card.as_ref().is_some_and(|c| {
                         c.definition != f.source.card.definition
                             || c.owner != f.source.card.owner
@@ -473,6 +527,9 @@ impl Game {
                         && declaration.ability.key == "batch3-wm035-host-death"
                     {
                         self.validate_wm035_pending(p, declaration, stage)?;
+                    }
+                    if declaration.source.card.definition == "JZ25" {
+                        self.validate_jz25_pending(p, declaration, stage)?;
                     }
                     remember(&declaration.source, &declaration.ability.ops)?;
                 }

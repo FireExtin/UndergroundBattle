@@ -1048,5 +1048,20 @@
     "url": "/cards/WM035.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
     "sha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a"
+  },
+  "JZ25": {
+    "url": "/cards/JZ25.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
+    "sha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9"
+  },
+  "XG28": {
+    "url": "/cards/XG28.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+    "sha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a"
+  },
+  "BQ089": {
+    "url": "/cards/BQ089.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
+    "sha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0"
   }
 }

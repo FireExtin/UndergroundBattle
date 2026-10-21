@@ -2069,6 +2069,7 @@ impl Game {
         self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
+        crate::batch3_grave::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

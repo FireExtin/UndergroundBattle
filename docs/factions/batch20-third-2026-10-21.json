@@ -107,7 +107,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
       "sourceImageSha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -129,7 +129,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
       "sourceImageSha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -173,7 +173,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
       "sourceImageSha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": [
         "martialLawRedCostRing"
@@ -597,7 +597,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 15,
+    "unreviewedRuntimeCards": 12,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -658,6 +658,28 @@
         "five-regression-black_next20": 21,
         "five-regression-next20_red": 15,
         "five-regression-control": 163
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "eightCardPilot": {
+      "passed": 34,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "WM030",
+        "BQ042",
+        "WM033",
+        "XG26",
+        "WM035",
+        "JZ25",
+        "XG28",
+        "BQ089"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/eight-card-pilot.json",
+      "affectedFilters": {
+        "rumor": 16,
+        "preparation": 15,
+        "sealing": 29
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

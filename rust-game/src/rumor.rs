@@ -415,6 +415,7 @@ impl Game {
         self.validate_jc041_frame(f)?;
         self.validate_black_next20_frame(f)?;
         self.validate_next_blue_gray_frame(f)?;
+        self.validate_batch3_frame(f)?;
         if f.source.observed_death.is_some() {
             // The original observer was accepted before the random/nonrandom
             // discard. Authenticate its captured death and paid-once limit at
@@ -438,7 +439,7 @@ impl Game {
         };
         let dynamic = observer_discard || matches!(
             f.steps.get(f.cursor - 1).map(|s| &s.op),
-            Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. })
+            Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. } | Op::Batch3Prepare { .. })
         );
         if !dynamic {
             let candidates = crate::rules::definition(&f.source.card.definition)
@@ -522,6 +523,10 @@ impl Game {
                     && f.source.card.definition == "BQ091"
                     && b.holder == f.actor
                     && b.originals.len() == 1
+            }
+            Op::Batch3Prepare { .. } => {
+                b.from_deck && f.source.card.definition == "XG28"
+                    && b.holder == f.actor && b.originals.len() == 1
             }
             Op::Discard {
                 player,

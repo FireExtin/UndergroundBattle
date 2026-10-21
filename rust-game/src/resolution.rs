@@ -129,6 +129,7 @@ impl Game {
         kind: &str,
     ) -> Vec<(Action, String)> {
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
+        if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
         let source = self.source_snapshot(c, region);
         let mut result = vec![];
         for ability in rules::definition(&c.definition)
@@ -464,7 +465,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -734,6 +735,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
                                 TargetPredicate::JZ34DestroyedRegion => false,
@@ -866,7 +868,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (matches!(source.card.definition.as_str(), "MSJC11" | "JC033" | "JC065")
+            && (matches!(source.card.definition.as_str(), "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1602,6 +1604,10 @@ impl Game {
                     }
                 }
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
+                Op::JZ25SealRandomHand => self.jz25_seal_random_hand(&frame)?,
+                Op::XG28GraveReturn => self.xg28_return(&frame)?,
+                Op::BQ089GraveEntry => self.bq089_reanimate(&frame)?,
+                Op::Batch3Prepare { .. } => self.jc035_resolve(&frame)?,
                 Op::XG26AttachmentBarrier => self.xg26_grant_barrier(&frame)?,
                 Op::WM033ReturnSpellOrDisaster => return self.wm033_start(frame),
                 Op::JC043DestroyAttachment | Op::BQ042DestroyAttachment => {

@@ -7842,6 +7842,128 @@
       "unique": true,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "JZ25",
+      "name": "卡迪纳猎杀者",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 目标玩家随机选择一张手牌，将该牌封印在卡迪纳猎杀者上。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ25",
+        "image": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
+        "imageSha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "XG28",
+      "name": "违禁品临时收容所",
+      "kind": "attachment",
+      "subtypes": [
+        "设施",
+        "罪犯"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑黑",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区；准备步骤触发 将你的牌库顶牌置于墓地。；行动②，横置：将你墓地中的目标角色牌置于你的手中。若本方秘社上有隐秘〔月形〕标志，重置违禁品临时收容所。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG28",
+        "image": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+        "imageSha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ089",
+      "name": "生化改造手术",
+      "kind": "spell",
+      "subtypes": [
+        "研究"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑黑",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "非资产；行动 选择目标地区，将你墓地中印刷费用小于或等于③的目标角色牌放置进场并置于该地区。若本方秘社上有隐秘标志，则改为将你墓地中印刷费用小于或等于⑤的目标角色牌放置进场并置于该地区。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ089",
+        "image": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
+        "imageSha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [
