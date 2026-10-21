@@ -1,0 +1,23 @@
+# WM039 / WM040 / WM042 implementation notes
+
+This local implementation is based on the original card images, not the external UnderWorldPro card templates. The original attribution and repository licence are unchanged. No external executable implementation was copied.
+
+| Original | SHA-256 | Relevant reading |
+| --- | --- | --- |
+| `resource/ymsj-fun.github.io/cards/WM039 P．S．C．精神分析师.jpg` | `cdaad886511acf9dddab39bb9bf3c5b0bfe792fb19de523d35fa549c5cd74549` | Unconditional mobility; action 1; exposure removal is after the colon, an effect; ordinary investigation +1 through turn end; once per source instance per turn. |
+| `resource/ymsj-fun.github.io/cards/WM040 心理审察委员.jpg` | `ffa49271712453387a717d004196d96b232d672bb6bcc6ef7bce657c1a273062` | Both public and mobility have the sun condition. Enter removes all exposure, then represses by the actual removed count. Fast action 1 and exhaust the source; place one personal exposure, then remove all wounds on controlled characters in the original region. |
+| `resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg` | `6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d` | Unconditional rumor; fast play with exactly one of the two all-society exposure modes. |
+
+The active WM040 source specification and review are corrected to preserve the two sun conditions. Frozen historical input files, pool/engine/ABI versions, and the top-level README are unchanged.
+
+The `霸权说明书.pdf`, printed P19/PDF page 20, and the original `帷幕之后说明书.jpg` and `星光俱乐部说明书.jpg` establish personal hand limit `max(0, 7 + secrecy - exposure)`, immediate equal cancellation, and controller-based conditional keywords. This package supplies their necessary shared mechanics, without admitting unrelated secret-contest or secret-plan cards. Markers live on the existing stable `SocietyZone`.
+
+The original `隐秘世界规则手册.pdf`, printed P6/PDF page 8, says a replacement prevents the original event and substitutes another event. Combined with the original rumor paragraph in `帷幕之后说明书.jpg`, this means a selected rumor that is sealed has not actually entered the graveyard or been discarded. It is excluded from actual discard and deck-to-graveyard observations. A redraw conditioned on discarding counts only the cards actually discarded. Costs, hand-limit rule discards, and normal spell resolution burial do not use the effect-discard entry point.
+
+`rumor.rs` retains the exact original card in its original hand/deck until its owner accepts a legal character target or declines. It uses the existing `Pending`, sealed-card zone and effect queue. The frozen batch records original identities, completed real outcomes, observers and the complete causing frame; interruptions preserve remaining operations and do not repeat costs. Cards that really move reset their identities exactly once. The whole completed deck batch calls `observe_black_deck_to_graveyard` once, with only actual new graveyard instances.
+
+Integration boundary: the isolated exposure branch contains an explicitly labelled empty `observe_black_deck_to_graveyard` hook. The black next20 branch supplies its real CQ26/BQ077 implementation; remove the stub when combining the branches. CQ26's dynamic observation frame also needs the black validator at the rumor-cause validation boundary (cursor 2 / Accepted); it must not be weakened into a generic accepted-program exception. The complete CQ26 frame has no remaining operations, so no completed `Effect::Frame` is queued.
+
+Public view additions are `societyZones[].exposure`, `secrecy`, `handLimit`, and optional `CardView.currentPublic`; existing `currentMobility` remains the live query. Rumor uses `kind: "rumor"`, owner `playerId`, zero or one ordinary board-character option and `selected: [instanceId]` or `[]`. WM040 reuses the existing `influence` marker-choice shape with actual X and original region-instance receipts.
+
+Native command regressions are in `rust-game/src/exposure_tests.rs`. Their initial boards are explicit test fixtures; subsequent decisions and responses use public commands and round-trip the full Game/Room state and all four views. They are not a claim of UI playtesting, deployment or release acceptance.
