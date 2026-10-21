@@ -1,7 +1,7 @@
 //! A small, fresh Native/WASM integration witness. This is not a full-suite
 //! export or public-batch acceptance. Every step uses the current Room protocol.
 use crate::{catalog,model::*,room::*,unit_support::*};
-fn step(room:&mut RoomEnvelope,seat:usize,action:SessionAction,steps:&mut Vec<serde_json::Value>){
+pub(crate) fn step(room:&mut RoomEnvelope,seat:usize,action:SessionAction,steps:&mut Vec<serde_json::Value>){
     let before=serde_json::to_string(room).unwrap();
     let command=RoomCommand{command_id:format!("batch3-abi94-{}",steps.len()),expected_version:room.revision,action};
     let expected=room.transition(seat,Some(command.clone()),0).unwrap();assert_eq!(expected.error_code,None,"{:?}",expected.error_message);

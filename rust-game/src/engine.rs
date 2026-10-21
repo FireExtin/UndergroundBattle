@@ -1893,6 +1893,13 @@ impl Game {
                         c.damage = 0;
                     }
                 }
+                // Dual-type characters keep their damage in the attachment
+                // container; clear it in the same batch as field characters.
+                for attachment in &mut self.attachments {
+                    if card(&attachment.card.definition).kind == "character" {
+                        attachment.card.damage = 0;
+                    }
+                }
                 self.turn_attribute_modifiers.clear();
                 self.modifiers.clear();
                 self.control_effects

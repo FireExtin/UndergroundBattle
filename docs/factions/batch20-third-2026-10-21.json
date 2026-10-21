@@ -988,14 +988,37 @@
       "remainingPrograms": [
         "CQ11/TK008"
       ],
-      "status": "authorNecessaryPreparationOnlyPendingCompleteTwenty"
+      "status": "authorNecessaryPreparationOnlyPendingCompleteTwenty",
+      "evidenceCheckpoint": "30f39aecbe7c592aa256cfceafb21d16f8749daa",
+      "supersededBy": "abi94CleanupP2"
+    },
+    "abi94CleanupP2": {
+      "evidence": "docs/evidence/batch20-third-2026-10-21/abi94-cleanup-p2.json",
+      "nativeBatsPassed": 19,
+      "relatedNativeFilters": {
+        "wound_defence": 15,
+        "jc008_cleanup": 3,
+        "jc008_hand_limit": 1,
+        "control_tests": 21,
+        "equipment_abilities_tests": 21
+      },
+      "nativeIntegrationProducerPassed": 1,
+      "nativeWasmCommands": 13,
+      "fourSeatViews": 52,
+      "sitesTargetedPassed": 11,
+      "wasmSha256": "92d4f815159e3ea28695bb10c3b3f891962398fa4faa206582eeb55581868da9",
+      "publicAdmissions": 0,
+      "independentClosure": "pendingParentVerification",
+      "fullSuites": "notRerun",
+      "browserAcceptance": "notRun",
+      "status": "authorDirectedFixVerifiedPendingCompleteTwenty"
     }
   },
   "developmentIdentity": {
     "engine": "rust-v0.2.94-batch20-third",
     "pool": "limited-v2.84-batch20-third",
-    "status": "unreleasedNativeDevelopmentOnly",
-    "wasmBuilt": false,
+    "status": "unreleasedNecessaryIntegrationPreparation",
+    "wasmBuilt": true,
     "publicAdmissions": 0,
     "requires": "Complete20 and current-only Worker integration; necessary build/start/identity checks, then publish as pending acceptance; consolidated fresh current fixtures/full suites, independent review and real browser acceptance follow publication."
   }

@@ -17,6 +17,104 @@ fn source(g:&Game,id:&str)->SourceSnapshot { let(r,c)=g.board(id).unwrap();g.sou
     for seat in 0..4 {let v=g.view(seat);let a=v.attachments.iter().find(|a|a.card.instance_id==bat).unwrap();assert_eq!(a.card.defense,Some(1));assert_eq!(a.card.icons.unwrap().combat,1);assert_eq!(a.card.current_mobility,None);let h=v.regions[0].characters.iter().find(|c|c.instance_id==host).unwrap();assert_eq!(h.current_enemy_spell_protection,Some(true));}
     g.damage([(bat.clone(),1)].into_iter().collect()).unwrap();assert!(g.board(&bat).is_none());assert!(g.board(&host).is_some());assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="BQ026").count(),1);restore(&mut g);
 }
+#[test]
+fn batch3_bq026_real_damage_and_end_cleanup_remove_damage_before_temporary_defense_expires() {
+    for on_host in [false, true] {
+        let mut g = game();
+        let host = field(&mut g, "JC029", 0);
+        let hermit = field(&mut g, "LC12", 0);
+        fund(&mut g, 0, "JC029", 1);
+        let hand_bat = held(&mut g, "BQ026", 0);
+        act(&mut g, 0, Action {
+            card_id: Some(hand_bat), region: Some(0), ..Action::new("deploy")
+        });
+        pending(&mut g);
+        let bat = g.regions[0].cards.iter().find(|c| c.definition == "BQ026").unwrap().id.clone();
+        choose(&mut g, if on_host { vec![host.clone()] } else { vec![] });
+        if on_host { top(&mut g); }
+        assert_eq!(g.attached_character(&bat), on_host);
+        act(&mut g, 0, Action {
+            card_id: Some(hermit), ability_id: Some("protect-local-character".into()),
+            target_id: Some(bat.clone()), ..Action::new("activate")
+        });
+        top(&mut g);
+        assert_eq!(g.defense(g.board(&bat).unwrap().1, 0), 2);
+
+        // Real combat-damage allocation applies damage through the normal
+        // pending action; never seed a damage field or call FinishCleanup here.
+        g.effects.push_back(Effect::Damage { seat: 2, region: 0, amount: 1 });
+        g.drive().unwrap();
+        let p = g.pending.clone().unwrap();
+        act(&mut g, p.seat, Action {
+            choice_id: Some(p.choice.id),
+            allocations: Some([(bat.clone(), 1)].into_iter().collect()),
+            ..Action::new("choose")
+        });
+        assert_eq!(g.board(&bat).unwrap().1.damage, 1);
+        assert_eq!(g.defense(g.board(&bat).unwrap().1, 0), 2);
+
+        // The real end-window pass sequence pauses for hand-limit discard with
+        // FinishCleanup still queued. Both sides of that pause survive reload.
+        for _ in 0..8 { held(&mut g, "JC125", 0); }
+        let turn = g.turn;
+        g.begin_window(Window::End);
+        for _ in 0..64 {
+            if g.pending.is_some() { break; }
+            pass(&mut g);
+        }
+        assert_eq!(g.turn, turn);
+        assert!(g.effects.iter().any(|e| matches!(e, Effect::FinishCleanup)));
+        assert_eq!(g.board(&bat).unwrap().1.damage, 1);
+        assert_eq!(g.defense(g.board(&bat).unwrap().1, 0), 2);
+        restore(&mut g);
+        let p = g.pending.clone().unwrap();
+        assert_eq!(p.seat, 0);
+        let mut room = crate::jc029_tests::envelope(&g);
+        let initial = serde_json::json!({
+            "state": serde_json::to_string(&room).unwrap(),
+            "views": (0..4).map(|s| room.view(s, 0)).collect::<Vec<_>>()
+        });
+        let mut steps = vec![];
+        crate::batch3_abi94_tests::step(&mut room, p.seat, crate::room::SessionAction::Game {
+            action: Action {
+                choice_id: Some(p.choice.id), selected: Some(vec![p.choice.options[0].id.clone()]),
+                ..Action::new("choose")
+            }
+        }, &mut steps);
+        if on_host {
+            if let Ok(path) = std::env::var("BATCH3_ABI94_CLEANUP_SMOKE_OUT") {
+                std::fs::write(path, serde_json::to_vec(&serde_json::json!({
+                    "format": "batch3-native94-integration-smoke-v1",
+                    "method": "Paid entry, real LC12 defense and damage allocation; end-window passes pause at discard; real Room cleanup command, replay and four views; not browser acceptance",
+                    "catalog": catalog::catalog(), "initial": initial, "steps": steps,
+                    "seedDecimal": g.seed.to_string(), "originalBatInstance": bat, "hostInstance": host
+                })).unwrap()).unwrap();
+            }
+        }
+        g = room.game;
+        assert_eq!(g.turn, turn + 1);
+        let c = g.board(&bat).expect("original bat must survive atomic cleanup").1;
+        assert_eq!(c.damage, 0);
+        assert_eq!(g.defense(c, 0), 1);
+        assert!(g.turn_attribute_modifiers.is_empty());
+        assert!(g.players[0].graveyard.iter().all(|c| c.definition != "BQ026"));
+        if on_host {
+            let a = g.attachments.iter().find(|a| a.card.id == bat).unwrap();
+            assert_eq!(a.host_id, host);
+        }
+        restore(&mut g);
+        for seat in 0..4 {
+            let v = g.view(seat);
+            let c = if on_host {
+                &v.attachments.iter().find(|a| a.card.instance_id == bat).unwrap().card
+            } else {
+                v.regions[0].characters.iter().find(|c| c.instance_id == bat).unwrap()
+            };
+            assert_eq!(c.damage, Some(0));
+            assert_eq!(c.defense, Some(1));
+        }
+    }
+}
 #[test] fn batch3_bq026_attached_cannot_move_independently_but_follows_actual_host_move_and_emits_entry_once() {
     let mut g=game();let host=field(&mut g,"JC029",0);let bat=attached(&mut g,&host);assert!(!g.has_mobility(g.board(&bat).unwrap().1));g.move_on_board_instance(&bat,1);assert_eq!(g.board(&bat).unwrap().0,0);
     g.move_on_board_instance(&host,1);assert_eq!(g.board(&bat).unwrap().0,1);assert_eq!(g.attachments[0].host_id,host);

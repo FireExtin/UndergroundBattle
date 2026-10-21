@@ -13,7 +13,18 @@ assert.equal(catalog.cards.length,212);
 assert.equal(catalog.cards.filter(c=>c.supported).length,193);
 assert.equal(catalog.cards.filter(c=>!c.supported).length,19);
 assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
-assert(BigInt(native.seedDecimal)>BigInt(Number.MAX_SAFE_INTEGER));
+if(native.originalBatInstance){
+  assert.equal(native.steps.length,1,'Cleanup witness has one actual discard/cleanup command');
+  assert.equal(native.seedDecimal,'8','Cleanup witness preserves the disclosed unit-layout seed');
+  for(let seat=0;seat<4;seat++){
+    const before=native.initial.views[seat].attachments.find(c=>c.instanceId===native.originalBatInstance);
+    const after=native.steps[0].views[seat].attachments.find(c=>c.instanceId===native.originalBatInstance);
+    assert(before&&after,'Same original attached character must survive for every seat');
+    assert.equal(before.hostId,native.hostInstance);assert.equal(after.hostId,native.hostInstance);
+    assert.equal(before.damage,1);assert.equal(before.defense,2);
+    assert.equal(after.damage,0);assert.equal(after.defense,1);
+  }
+}else assert(BigInt(native.seedDecimal)>BigInt(Number.MAX_SAFE_INTEGER));
 let state=native.initial.state;
 assert(state.includes(`"seed":${native.seedDecimal}`),'Keep the original u64 decimal in opaque state');
 for(let seat=0;seat<4;seat++)assert.deepEqual(JSON.parse(kernel.view(state,seat)),native.initial.views[seat]);
@@ -24,7 +35,7 @@ for(const step of native.steps){
   for(let seat=0;seat<4;seat++)assert.deepEqual(JSON.parse(kernel.view(actual.state,seat)),step.views[seat]);
   state=actual.state;
 }
-const output=process.argv[3] || 'docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-privacy.current.json.gz';
+const output=process.argv[3] || 'docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-cleanup.current.json.gz';
 if (existsSync(output)) assert.deepEqual(loadCurrentFixture(output),native,'Existing evidence must match; never overwrite or relabel it');
 else writeCurrentFixture(output,native);
 process.stdout.write(JSON.stringify({identity:{rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion},nativeCommands:native.steps.length,fourPrivateViewsPerStep:true,wasmBytes:moduleBytes.length,wasmSha256:currentWasmSha256,currentSourceManifestSha256,nativeRawJsonBytes:bytes.length,nativeRawJsonSha256:sha256(bytes),catalogDefinitions:212,constructionSupported:193,pendingDisabled:19,publicBatchAdmissions:0,output,scope:'Author Native/WASM integration smoke only; no full-suite, independent or browser acceptance'},null,2)+'\n');

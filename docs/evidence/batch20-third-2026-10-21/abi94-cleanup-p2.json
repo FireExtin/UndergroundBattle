@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-21T23:44:57.236321+00:00",
+  "baseCheckpoint": "30f39aecbe7c592aa256cfceafb21d16f8749daa",
+  "issue": "FinishCleanup omitted damage on attached BQ026; defense expiry then caused a false lethal death",
+  "fix": "Clear attached primary-character damage before expiring temporary effects in the existing atomic cleanup batch",
+  "reproduction": {
+    "preFixFailedAtOriginalBatSurvival": true,
+    "actualPaidEntryAndOptionalAttach": true,
+    "actualLC12TemporaryDefenseAction": true,
+    "actualDamageAllocationAction": true,
+    "actualEndWindowPassesAndHandLimitPause": true,
+    "queuedFinishCleanupSurvivesRestore": true,
+    "actualRoomCleanupCommandAndJournalReplay": true,
+    "sameOriginalBatAndHostInstances": true,
+    "fourSeatDamageDefenseBeforeAfter": [
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "setupFailuresPreserved": "First two attempts used the departed hand UID; corrected to actual entered instance before the confirmed reproduction"
+  },
+  "relatedTraversalAudit": [
+    "Turn-attribute pruning includes attached primary characters",
+    "Lethal settlement uses region_characters, including attached characters",
+    "NextTurn already resets exhaustion in regions and attachments",
+    "No broader rule refactor or claim that every dual-type path was audited"
+  ],
+  "authorValidation": {
+    "nativeBats": 19,
+    "nativeIntegrationProducer": 1,
+    "relatedNativeFilters": {
+      "wound_defence": 15,
+      "jc008_cleanup": 3,
+      "jc008_hand_limit": 1,
+      "control_tests": 21,
+      "equipment_abilities_tests": 21
+    },
+    "relatedFiltersNote": "Same production engine fix; these filters ran before test-only Room witness augmentation; counts not added across overlapping filters",
+    "nativeWasmWitnesses": [
+      {
+        "identity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.84-batch20-third",
+          "engineVersion": "rust-v0.2.94-batch20-third"
+        },
+        "nativeCommands": 12,
+        "fourPrivateViewsPerStep": true,
+        "wasmBytes": 4973564,
+        "wasmSha256": "92d4f815159e3ea28695bb10c3b3f891962398fa4faa206582eeb55581868da9",
+        "currentSourceManifestSha256": "25e5e8ea4aec6e73b1cf369dac415a4631af1b005be0f7cbf0fe9c5a57303ee3",
+        "nativeRawJsonBytes": 1548748,
+        "nativeRawJsonSha256": "91ea35b0b69c2528c175e5895ff3e78b5fdc8a61391f6b4a04c11d15a4a50ab0",
+        "catalogDefinitions": 212,
+        "constructionSupported": 193,
+        "pendingDisabled": 19,
+        "publicBatchAdmissions": 0,
+        "output": "docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-cleanup.current.json.gz",
+        "scope": "Author Native/WASM integration smoke only; no full-suite, independent or browser acceptance"
+      },
+      {
+        "identity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.84-batch20-third",
+          "engineVersion": "rust-v0.2.94-batch20-third"
+        },
+        "nativeCommands": 1,
+        "fourPrivateViewsPerStep": true,
+        "wasmBytes": 4973564,
+        "wasmSha256": "92d4f815159e3ea28695bb10c3b3f891962398fa4faa206582eeb55581868da9",
+        "currentSourceManifestSha256": "25e5e8ea4aec6e73b1cf369dac415a4631af1b005be0f7cbf0fe9c5a57303ee3",
+        "nativeRawJsonBytes": 396249,
+        "nativeRawJsonSha256": "d262705cc3366aea16acf7d041ea34b98743d529a20e803738864e75aa23a5bd",
+        "catalogDefinitions": 212,
+        "constructionSupported": 193,
+        "pendingDisabled": 19,
+        "publicBatchAdmissions": 0,
+        "output": "docs/evidence/batch20-third-2026-10-21/abi94-bq026-cleanup.current.json.gz",
+        "scope": "Author Native/WASM integration smoke only; no full-suite, independent or browser acceptance"
+      }
+    ],
+    "nativeWasmCommands": 13,
+    "nativeWasmPrivateViews": 52,
+    "sitesPassed": 11,
+    "sitesFiles": [
+      "kernel-binding",
+      "kernel-routing",
+      "current-kernel-http",
+      "batch3-abi94-integration",
+      "storage-retry"
+    ],
+    "d1ReopenThenRepeatReceiptAndFourViews": true,
+    "retiredHeaderHttp410Calls": 64,
+    "historicalIdentitiesRejectedBeforeStateOperation": 56,
+    "webWorkerBuildDryRun": true,
+    "singleCurrentWasmModule": true,
+    "startup": {
+      "engineVersion": "rust-v0.2.94-batch20-third",
+      "localUrl": "http://127.0.0.1:32875/",
+      "healthAndExactCatalog": "passed by existing qa-preview.mjs",
+      "rootHtmlStatus": 200,
+      "singleCurrentKernel": true,
+      "syntheticD1": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../batch3-build/qa-abi94-start-20261021-04",
+      "publicAdmissions": 0,
+      "scope": "Local startup/identity/connectivity only; no public Site or browser gameplay acceptance",
+      "exitCode": 130,
+      "shutdown": "requestedSIGINT"
+    }
+  },
+  "currentIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.84-batch20-third",
+    "engineVersion": "rust-v0.2.94-batch20-third"
+  },
+  "currentWasm": {
+    "bytes": 4973564,
+    "sha256": "92d4f815159e3ea28695bb10c3b3f891962398fa4faa206582eeb55581868da9"
+  },
+  "currentSourceManifestSha256": "25e5e8ea4aec6e73b1cf369dac415a4631af1b005be0f7cbf0fe9c5a57303ee3",
+  "currentSourceManifest": "abi94-cleanup-source-manifest.json",
+  "buildRecipe": "abi94-cleanup-wasm-build.json",
+  "buildInvocationUnchanged": "abi94-build-invocation.py",
+  "validationInvocation": "abi94-cleanup-validation-invocation.py",
+  "logs": [
+    {
+      "scope": "setup-stale-hand-uid",
+      "file": "abi94-cleanup-setup-stale-hand-uid.log.gz",
+      "rawBytes": 1071,
+      "rawSha256": "52f3a97729702c049ecdc3b6a910db87db85c2d3ccc3dec2145a52a78b89a216",
+      "gzipSha256": "19a73a701ade46a40087f68e294d4c06971ddcf6d877b8f18e4135a75f3bc899"
+    },
+    {
+      "scope": "setup-stale-hand-uid-backtrace",
+      "file": "abi94-cleanup-setup-stale-hand-uid-backtrace.log.gz",
+      "rawBytes": 980,
+      "rawSha256": "bf362f92e6ac5410b125f3ac01766a630e0aa078cd79f1eca36975058e8ee2dd",
+      "gzipSha256": "d90609a37df7539daa364e9bfe588134a922316188bcb032738c9717510ebebd"
+    },
+    {
+      "scope": "reproduced-original-death",
+      "file": "abi94-cleanup-reproduced-original-death.log.gz",
+      "rawBytes": 1030,
+      "rawSha256": "6689c98c4d3a1b335a8f76c15cf0b66d2e250cbb4f39fe292ddbeab06d5c8d3f",
+      "gzipSha256": "3eeeaaf95b4c48c70693bc276460a2628011055cee2f9b1f81a988a4c80dae8c"
+    },
+    {
+      "scope": "native-bats-19",
+      "file": "abi94-cleanup-native-bats-19.log.gz",
+      "rawBytes": 2759,
+      "rawSha256": "60c3782b2cffd2a10eccb0c450d5c9084a15de37b6840fd6b8210cb31c6bb04c",
+      "gzipSha256": "6bcdaa2c95ac9d7ff9de6cdb28afcdba22ff67787392f0d2de342946deee6c0b"
+    },
+    {
+      "scope": "native-producer-1",
+      "file": "abi94-cleanup-native-producer-1.log.gz",
+      "rawBytes": 383,
+      "rawSha256": "5877ff9a672154e9f50884af4dbe131f924e5224fbc5e41b6d82ec7a9e69664c",
+      "gzipSha256": "81110b2c626ab2eeb964c0774a746142b06810ea19c0cf1c767b51c02267d014"
+    },
+    {
+      "scope": "wound_defence",
+      "file": "abi94-cleanup-wound_defence.log.gz",
+      "rawBytes": 1892,
+      "rawSha256": "6a346f6604a761ca3711864a85ed38f0515f6304ad34ef75003777f6eef9f495",
+      "gzipSha256": "2bdaabd8e053baa1fe3cc44cfde29a77f1988bd24a45fce5629150b3891a8aee"
+    },
+    {
+      "scope": "jc008_cleanup",
+      "file": "abi94-cleanup-jc008_cleanup.log.gz",
+      "rawBytes": 633,
+      "rawSha256": "a38b91b8bb7d945de7f6f545d7a59799372dffdb3a6d82d6a8280d55f048dfc9",
+      "gzipSha256": "5b482b6edb2301d3b204b32b7ddd5e57554dfceaf5714afbbf56a5bdd14da654"
+    },
+    {
+      "scope": "jc008_hand_limit",
+      "file": "abi94-cleanup-jc008_hand_limit.log.gz",
+      "rawBytes": 423,
+      "rawSha256": "6bf56701333959d6404d6886a0bc2780a3434650688f866ef9358ad1bec5e8b5",
+      "gzipSha256": "fa2c695c1458ea57d93a7bb666966a5fe9c46b1283666f978c3c09da146c1365"
+    },
+    {
+      "scope": "control_tests",
+      "file": "abi94-cleanup-control_tests.log.gz",
+      "rawBytes": 2429,
+      "rawSha256": "06ffdc17ab6315aeb9aa013f1b2ea036a957ac1efe994f10a17f6b4001f2b117",
+      "gzipSha256": "7df358de390749c272ce081ab8e8df8ed72de03f703a26b6aebe3c949755576e"
+    },
+    {
+      "scope": "equipment_abilities_tests",
+      "file": "abi94-cleanup-equipment_abilities_tests.log.gz",
+      "rawBytes": 2526,
+      "rawSha256": "83bb7de243fb5915a61fb908296e3178a91dbad1dbb62ae2bb1076f9ff7b4216",
+      "gzipSha256": "52e84866ce5b0f1303338a249a36f87ee40c1ed0318af3e19cf6bb46f4890a90"
+    },
+    {
+      "scope": "wasm-build",
+      "file": "abi94-cleanup-wasm-build.log.gz",
+      "rawBytes": 673,
+      "rawSha256": "fe7ae3aba70b691c2631c31820fe9c1ebacb0c259da3ba76dbc7a0c86994d771",
+      "gzipSha256": "83a039031599e6c0f581b4277f1e8b4c58c63be1fdeb19fe3cef8c72f8f0d1aa"
+    },
+    {
+      "scope": "cross-inspections",
+      "file": "abi94-cleanup-cross-inspections.log.gz",
+      "rawBytes": 885,
+      "rawSha256": "2961b3252d4d92f3aab08e9f0fee9682fb4ca9fec0e192770300033cf6c137da",
+      "gzipSha256": "8424104e7bba79fe916c42108289e3826bafc6354a20a0cf8c2920e29a79e2a4"
+    },
+    {
+      "scope": "cross-cleanup",
+      "file": "abi94-cleanup-cross-cleanup.log.gz",
+      "rawBytes": 871,
+      "rawSha256": "6772723d350fa3274c70f957e01e003dac1bcef166831a984052384620bd0bbd",
+      "gzipSha256": "9c6d81c91aa1d364e14c32a84ba2ee131aba76ea23e04f9e9372d0571eb6f6a3"
+    },
+    {
+      "scope": "sites-build",
+      "file": "abi94-cleanup-sites-build.log.gz",
+      "rawBytes": 1122,
+      "rawSha256": "4ab00af2fd75a64ab90dc5188e2534c322d4daf68e55bdff5cd2b4bedeca6ecb",
+      "gzipSha256": "7e5b7a328e31dbae85756e191f842ea5a0838c53c26b87166ee29374e7d3162b"
+    },
+    {
+      "scope": "clock-build",
+      "file": "abi94-cleanup-clock-build.log.gz",
+      "rawBytes": 202,
+      "rawSha256": "3d48aeba985cf1f1d9bbb4100ceeaa0d79d7400a34b6b9d0f321bdc838649ff2",
+      "gzipSha256": "269f405b11d70371465c5b7b9f45c282290974c4d6784b90c53b2fd6983bd708"
+    },
+    {
+      "scope": "sites-targeted",
+      "file": "abi94-cleanup-sites-targeted.log.gz",
+      "rawBytes": 2383,
+      "rawSha256": "9e4be60c9476ae3e1c4e5b0b19c5bf8aaa4f8c5cd5e7a139471d75907d3c4011",
+      "gzipSha256": "e0a6c23711cb59c4a11e8302599dc438b5dba2dd3b06dde2b8f410e5c5bc1b44"
+    },
+    {
+      "scope": "local-start",
+      "file": "abi94-cleanup-local-start.log.gz",
+      "rawBytes": 175,
+      "rawSha256": "504247c1f9186919265f18581df00bb901bc9fc81019edab0b6e75f00c11c265",
+      "gzipSha256": "cda50381eab2cd7c12b06ce9bd8d69e49cee2b95c1b48aa2b7cfdfcbf525495c"
+    }
+  ],
+  "nativePilotCards": 19,
+  "fullyIntegratedBatchCards": 0,
+  "publicAdmissions": 0,
+  "construction": {
+    "total": 212,
+    "enabled": 193,
+    "thirdBatchDisabled": 19
+  },
+  "supersededActiveWitnessPreserved": "abi94-integration-smoke-privacy.current.json.gz",
+  "priorEvidencePreserved": "abi94-integration-preparation.json",
+  "limits": [
+    "Author directed verification; parent reported the P2, independent closure/re-execution remains pending",
+    "No full-suite rerun, independent reproducibility claim or browser gameplay acceptance",
+    "Fresh rerun of the unchanged inspection trace has identical deterministic raw bytes; current source/WASM binding is newly generated, not an old state version relabel",
+    "Large-u64 preservation is exercised by the 12-command inspection witness; cleanup witness explicitly keeps seed8",
+    "CQ11/TK008 remains unimplemented pending authoritative rules; nineteen is not twenty",
+    "No publication or standalone Sites source sync; original v74 last observed pending at23:31:02UTC, productionhealth403 not retried",
+    "Generated binaries, dependencies, caches and synthetic databases remain ignored outside the commit"
+  ]
+}

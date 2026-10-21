@@ -12,8 +12,12 @@ import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
-const native=loadCurrentFixture('docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-privacy.current.json.gz');
-test('ABI94 inspections, random traps and four private views survive D1 reopen and identical receipts',async t=>{
+for(const [label,fixture] of [
+  ['inspections and random traps','abi94-integration-smoke-cleanup.current.json.gz'],
+  ['attached-character atomic cleanup','abi94-bq026-cleanup.current.json.gz']
+]){
+const native=loadCurrentFixture('docs/evidence/batch20-third-2026-10-21/'+fixture);
+test(`ABI94 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{
   const persist=mkdtempSync(join(tmpdir(),'batch3-abi94-d1-'));
   const options=convertV4MiniflareOptions({name:'batch3-abi94',resourcePersistencePath:persist,cf:false,
     modules:[{type:'ESModule',path:resolve('dist/server/index.js')},...readdirSync('dist/server').filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:resolve('dist/server',n)}))],compatibilityDate:'2026-10-02',d1Databases:{DB:'batch3-abi94'}});
@@ -36,9 +40,13 @@ test('ABI94 inspections, random traps and four private views survive D1 reopen a
     for(let seat=0;seat<4;seat++)assertPublicView(await service.state(id,'Bearer '+credentials[seat],null),step.views[seat]);
     if(i===Math.floor(native.steps.length/2)){
       await mf.dispose();mf=new Miniflare(options);db=await mf.getD1Database('DB');store=new RoomStore(db);service=new RoomService(db,routeKernels(kernel),()=>0);assert.equal((await store.room(id)).state,step.expected.state);
+      for(let seat=0;seat<4;seat++)assertPublicView(await service.state(id,'Bearer '+credentials[seat],null),step.views[seat]);
+      assert.deepEqual(await service.command(id,auth,step.command),result);
+      assert.equal((await store.room(id)).state,step.expected.state);
     }
   }
   const receipts=await db.prepare('SELECT COUNT(*) AS n FROM commands WHERE room_id=?').bind(id).first();assert.equal(receipts.n,native.steps.length);
   const journalCount=await db.prepare('SELECT COUNT(*) AS n FROM journal WHERE room_id=?').bind(id).first();assert.equal(journalCount.n,native.steps.length);
   t.diagnostic(JSON.stringify({engine:native.catalog.engineVersion,nativeCommands:native.steps.length,privateViews:native.steps.length*4,reopened:true,identicalReceipts:true,opaqueU64Preserved:true,publicAdmissions:0}));
 });
+}

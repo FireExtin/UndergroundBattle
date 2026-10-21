@@ -37,7 +37,9 @@ for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(projec
 copy(repository + 'tools/build-storage.mjs', 'tools/build-storage.mjs');
 copy(repository + 'tools/current-native-source.mjs', 'tools/current-native-source.mjs');
 copy(repository + 'tools/check-batch3-abi94-smoke.mjs', 'tools/check-batch3-abi94-smoke.mjs');
-copy(repository + 'docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-privacy.current.json.gz', 'docs/evidence/batch20-third-2026-10-21/abi94-integration-smoke-privacy.current.json.gz');
+for (const fixture of ['abi94-integration-smoke-cleanup.current.json.gz', 'abi94-bq026-cleanup.current.json.gz']) {
+  copy(repository + 'docs/evidence/batch20-third-2026-10-21/' + fixture, 'docs/evidence/batch20-third-2026-10-21/' + fixture);
+}
 copy(repository + 'tools/build-current-clock-worker.mjs', 'tools/build-current-clock-worker.mjs');
 for (const file of readdirSync(repository + 'tools').filter(name => name.endsWith('-oracle.mjs'))) copy(repository + 'tools/' + file, 'tools/' + file);
 for (const file of ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml']) copy(repository + file, file);
