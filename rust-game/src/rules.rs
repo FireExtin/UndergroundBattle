@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    DiscardObserved,
+    VampireCombatWon,
     AttachmentEntered,
     HandDiscard,
     Enter,
@@ -228,6 +230,11 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
+    JC040RepressDiscard { observation: Option<crate::batch20_observers::DiscardObservation> },
+    JC038GrantedRaid { grants: Vec<crate::model::Card> },
+    Batch20SearchEntry,
+    CQ16LockLocalCharacter,
     BQ080HideForAttachment { observation: Option<crate::batch20::AttachmentEntryObservation> },
     JZ57MillAndOptionalDraw,
     Batch20Prepare { event_id: Option<String> },
@@ -556,6 +563,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
     // The registry separately forbids static transplantation. At runtime the
     // shared mobility validator also requires the exact event-time source receipt.
     if crate::mobility::related_ability(ability) {
@@ -1309,6 +1317,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
         crate::batch20::validate_definition(card_id, definition)?;
         crate::bq035::validate_definition(card_id, definition)?;
         crate::mobility::validate_definition(card_id, definition)?;
@@ -1492,7 +1501,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character

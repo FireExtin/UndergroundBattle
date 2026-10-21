@@ -1,6 +1,9 @@
 mod attachment;
 mod region_destruction;
 mod batch20;
+mod extra_influence;
+mod batch20_observers;
+mod raid;
 #[cfg(test)]
 mod batch20_tests;
 mod bq035;

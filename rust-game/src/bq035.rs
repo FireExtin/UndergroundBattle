@@ -83,7 +83,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_bq035_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? || f.source.card.definition != "BQ035" {
+        if self.validated_cross_card_frame(f)? || f.source.card.definition != "BQ035" {
             return Ok(());
         }
         self.bq035_snapshot(f.actor, &f.source)?;
@@ -130,7 +130,7 @@ impl Game {
         Ok(())
     }
     fn validate_bq035_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? || d.source.card.definition != "BQ035" {
+        if self.validated_cross_card_declaration(d)? || d.source.card.definition != "BQ035" {
             return Ok(());
         }
         self.bq035_snapshot(d.actor, &d.source)?;
@@ -161,7 +161,7 @@ impl Game {
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_bq035_frame(f)?;
-                if self.validated_mobility_frame(f)? {
+                if self.validated_cross_card_frame(f)? {
                     continue;
                 }
                 if f.source.card.definition == "BQ035" {
@@ -200,7 +200,7 @@ impl Game {
         if let Some(p) = &self.pending {
             match &p.resolution {
                 ChoiceResolution::Declare { declaration: d, .. }
-                    if self.validated_mobility_declaration(d)? =>
+                    if self.validated_cross_card_declaration(d)? =>
                 {
                     self.validate_mobility_state()?
                 }

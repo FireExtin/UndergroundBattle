@@ -346,7 +346,7 @@ fn jc057_native84_oracles() {
             let curse = g.make_card("JC089", 2); g.attachments.push(Attachment { card: curse, host_id: source });
             let declaration = g.jc089_combat_glory(0, 0).unwrap(); g.effects.push_back(Effect::Declare { declaration });
         } else {
-            g.window = Some(Window::After(0, 2)); let region = g.regions[0].card.id.clone(); g.declare_region_renown(0, &region);
+            g.window = Some(Window::After(0, 2)); g.complete_influence_contest(0);
         }
         g.drive().unwrap(); let before = g.regions[0].influence[0];
         let mut t = Trace::new(if glory { "granted-glory" } else { "granted-renown" }, &g);

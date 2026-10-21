@@ -801,9 +801,8 @@ fn xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_e
         if enemy {
             board(&mut g, "XQ48", 2, 2);
         }
-        let region_id = g.regions[2].card.id.clone();
         g.begin_window(Window::After(2, 2));
-        g.declare_region_renown(2, &region_id);
+        g.complete_influence_contest(2);
         g.drive().unwrap();
         assert_eq!(g.pending.is_some(), reward);
         if reward {

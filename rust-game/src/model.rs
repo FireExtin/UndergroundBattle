@@ -640,6 +640,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    Batch20Repress { seat: usize, regions: Vec<(usize, String, u32)> },
+    Batch20SearchEntry,
     Batch20OptionalDraw,
     JC068Upkeep,
     WM062AdjacentMove {
@@ -847,6 +849,8 @@ pub struct Game {
     pub jc054_end_step_turn: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub jc035_preparation: Option<crate::jc035::PreparationObservation>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub influence_contests: Vec<crate::extra_influence::InfluenceProgress>,
     pub winner_team: Option<usize>,
     pub regions: Vec<Region>,
     #[serde(default)]

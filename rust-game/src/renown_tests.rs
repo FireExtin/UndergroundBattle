@@ -195,7 +195,7 @@ fn renown_original_fields_and_bounded_program_are_complete() {
             ..
         }
     ));
-    assert_eq!(catalog::catalog().cards.len(),153);
+    assert!(a.supported && b.supported && c.supported);
 }
 
 #[test]
@@ -711,8 +711,7 @@ fn renown_skipped_region_and_stale_region_identity_cannot_get_a_reward() {
     assert!(g.pending.is_none());
     g.regions[0].skip = false;
     g.begin_window(Window::After(0, 2));
-    let old = g.regions[0].card.id.clone();
-    g.declare_region_renown(0, &old);
+    g.complete_influence_contest(0);
     g.drive().unwrap();
     accept(&mut g);
     g.regions[0].card = g.make_card("DQJC109", 0); // Explicit guard primitive, not a natural action.

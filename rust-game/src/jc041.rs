@@ -104,7 +104,7 @@ impl Game {
         }
     }
     fn jc041_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if d.source.card.definition != "JC041" && !own(&d.ability) { return Ok(()); }
         self.jc041_source(&d.source, d.actor)?;
         if d.source.card.face_down || d.source.play_source.is_some()
@@ -128,7 +128,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jc041_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? || !related(f) { return Ok(()); }
+        if self.validated_cross_card_frame(f)? || !related(f) { return Ok(()); }
         self.jc041_source(&f.source, f.actor)?;
         if f.frame_id.is_empty() || !f.targets.is_empty() { return Err("JC041帧身份或多余目标无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
@@ -215,7 +215,7 @@ impl Game {
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_jc041_frame(f)?;
-                if related(f) && !self.validated_mobility_frame(f)? {
+                if related(f) && !self.validated_cross_card_frame(f)? {
                     if !ids.insert(f.frame_id.clone()) || item.id != f.frame_id || item.controller != f.actor
                         || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked) || item.target.is_some() {
                         return Err("JC041堆栈身份或外壳无效".into());
@@ -261,7 +261,7 @@ impl Game {
                     }
                 }
                 ChoiceResolution::Declare { declaration: d, stage } if d.source.card.definition == "JC041" || own(&d.ability) => {
-                    if self.validated_mobility_declaration(d)? { return Ok(()); }
+                    if self.validated_cross_card_declaration(d)? { return Ok(()); }
                     self.jc041_reject_optional(d)?;
                     let expected = Choice { id:p.choice.id.clone(), kind:"trigger".into(), title:format!("{}：{}", catalog::card("JC041").name, d.ability.label), description:"选择符合数量限制的选项，然后确认。".into(), player_id:player_id(d.actor),
                         options:vec![ChoiceOption { id:"accept".into(),label:"发动触发能力".into(),card:None }], preview_cards:vec![], min:Some(0),max:Some(1),amount:None,allow_decline:Some(true) };

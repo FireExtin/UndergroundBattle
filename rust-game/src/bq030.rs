@@ -385,7 +385,7 @@ impl Game {
     }
 
     pub(crate) fn validate_bq030_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if !relevant_declaration(d) {
             return Ok(());
         }
@@ -546,7 +546,7 @@ impl Game {
     }
 
     pub(crate) fn validate_bq030_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if !relevant_frame(f) {
             return Ok(());
         }
@@ -696,7 +696,7 @@ impl Game {
                 return Err("裁定官交易必须保留自身来源的完整冻结程序".into());
             }
             if let Some(f) = &item.frame {
-                if self.validated_mobility_frame(f)? { continue; }
+                if self.validated_cross_card_frame(f)? { continue; }
                 self.validate_bq030_frame(f)?;
                 if relevant_frame(f) {
                     let play = matches!(f.ability_key.as_str(), "deploy" | "reveal");
@@ -782,7 +782,7 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
-                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_cross_card_declaration(declaration)? => {
                     self.validate_mobility_state()?;
                 }
                 ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),

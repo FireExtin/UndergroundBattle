@@ -253,7 +253,7 @@ impl Game {
     }
 
     pub(crate) fn validate_red_time_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         self.validate_red_time_catalogue()?;
         admitted_source(&f.source)?;
         if !relevant_frame(f) { return Ok(()); }
@@ -308,7 +308,7 @@ impl Game {
     pub(crate) fn validate_red_time_state(&self) -> RuleResult<()> {
         self.validate_red_time_catalogue()?;
         let declaration = |d: &Declaration| -> RuleResult<()> {
-            if self.validated_mobility_declaration(d)? { return Ok(()); }
+            if self.validated_cross_card_declaration(d)? { return Ok(()); }
             if !relevant_ability(&d.source.card.definition, &d.ability) { return Ok(()); }
             validate_red_time_ability(&d.source.card.definition, &d.ability)?;
             self.red_time_source(d.actor, &d.source, false)?;
@@ -329,7 +329,7 @@ impl Game {
         };
         for item in &self.stack {
             if let Some(f) = &item.frame {
-                if self.validated_mobility_frame(f)? { continue; }
+                if self.validated_cross_card_frame(f)? { continue; }
                 atomic(f)?;
                 if relevant_frame(f) {
                     if item.id != f.frame_id || item.controller != f.actor
@@ -359,7 +359,7 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
-                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_cross_card_declaration(declaration)? => {
                     self.validate_mobility_state()?;
                 }
                 ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),

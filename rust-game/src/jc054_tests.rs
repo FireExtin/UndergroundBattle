@@ -362,7 +362,7 @@ fn jc054_granted_renown_keeps_its_frozen_public_source_after_the_grant_expires()
     let mut g=u::game();let worm=u::field(&mut g,"JC054",0);
     g.turn_attribute_modifiers.push(TurnAttributeModifier { target_instance:worm,defense_bonus:0,kill_bonus:0,
         grants_retreat:false,printed_defense_override:None,ordinary_icons:Icons::default(),grants_renown:true,prevents_damage:false,expires_turn:g.turn });
-    g.begin_window(Window::After(0,2));let region=g.regions[0].card.id.clone();g.declare_region_renown(0,&region);
+    g.begin_window(Window::After(0,2));g.complete_influence_contest(0);g.drive().unwrap();
     g.turn_attribute_modifiers.clear();g.drive().unwrap();
     let option=g.pending.as_ref().unwrap().choice.options[0].id.clone();u::choose(&mut g,vec![option]);
     top(&mut g);assert_eq!(g.regions[0].influence[0],1);restore_both(&g);

@@ -27633,7 +27633,8 @@
         "imageSha256": "b3da8f1546e2f8bbbaae8d3c4d4c79dd712cfa7f8d133fe1723efaa1fa152785",
         "evidenceId": "card-JC029",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "iconCorrection20261021": "同一原图像素复核：黑底为永久、白底为临时。详见 docs/UWPRO_CARD_ICON_ADJUDICATION_2026-10-21.md；旧版本与冻结内核保持原字节。"
       },
       "edition": {
         "printedCollectorCode": "029/135",
@@ -27670,12 +27671,12 @@
         "permanentIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "defense": 1,
         "startingHand": null,
@@ -29460,7 +29461,8 @@
         "imageSha256": "e250b0edab5c9ba2dd3a3d3cd15d0708bb72420ca6a059bcb6b116321c411800",
         "evidenceId": "card-JC044",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
-        "blockingFields": []
+        "blockingFields": [],
+        "iconCorrection20261021": "同一原图像素复核：黑底为永久、白底为临时。详见 docs/UWPRO_CARD_ICON_ADJUDICATION_2026-10-21.md；旧版本与冻结内核保持原字节。"
       },
       "edition": {
         "printedCollectorCode": "044/135",
@@ -29499,12 +29501,12 @@
         "permanentIcons": {
           "investigation": 1,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporaryIcons": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "defense": 1,
         "startingHand": null,
@@ -46022,7 +46024,8 @@
         "imageSha256": "208b2370433fb420ba91e1557ad6633589e43b1391d2008d63ebee2ed90fdf62",
         "evidenceId": "card-JZ49",
         "scope": "完整原图及图标/正文放大区人工核对；完整转写可读游戏字段，独立登记术语/时序疑点，不把规则解释未知当已设计或已实现。",
-        "blockingFields": []
+        "blockingFields": [],
+        "iconCorrection20261021": "同一原图像素复核：黑底为永久、白底为临时。详见 docs/UWPRO_CARD_ICON_ADJUDICATION_2026-10-21.md；旧版本与冻结内核保持原字节。"
       },
       "edition": {
         "printedCollectorCode": "49/76",
@@ -46059,12 +46062,12 @@
         ],
         "permanentIcons": {
           "investigation": 0,
-          "combat": 1,
+          "combat": 0,
           "influence": 0
         },
         "temporaryIcons": {
           "investigation": 0,
-          "combat": 1,
+          "combat": 2,
           "influence": 0
         },
         "defense": 1,

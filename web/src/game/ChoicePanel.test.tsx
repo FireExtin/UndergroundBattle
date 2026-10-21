@@ -494,3 +494,12 @@ describe('batched choice interactions', () => {
     expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: choice.id, top: [], bottom: direction === '上移' ? ['c', 'a', 'b'] : ['b', 'c', 'a'] });
   });
 });
+
+it('confirms an empty batch search without treating the compulsory shuffle as decline', () => {
+  const submit = vi.fn();
+  const choice = { ...testChoice, kind: 'batch20_search', min: 0, max: 0, allowDecline: false, options: [] };
+  render(<ChoicePanel choice={choice} action={base} definitions={new Map()} busy={false} onSubmit={submit} viewerId="p0" />);
+  expect(screen.queryByRole('button', { name: '跳过此选择' })).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: '不取牌并洗牌' }));
+  expect(submit).toHaveBeenCalledExactlyOnceWith({ ...base, choiceId: choice.id, selected: [] });
+});

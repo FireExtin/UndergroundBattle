@@ -58,6 +58,7 @@ impl Game {
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
             jc035_preparation: None,
+            influence_contests: vec![],
             control_effects: vec![],
             control_baselines: vec![],
             room_id,
@@ -541,6 +542,7 @@ impl Game {
     pub(crate) fn begin_window(&mut self, window: Window) {
         if let Window::Win(region, seat) = window {
             let region_instance = self.regions[region].card.id.clone();
+            for p in self.influence_contests.iter_mut().filter(|p| p.region_instance == region_instance) { p.ended = true; }
             if !self.win_contexts.iter().any(|c| c.region_instance == region_instance) {
                 // A nested capture also invalidates an earlier saved contest
                 // in this region; its replacement must not contest this turn.
@@ -1251,17 +1253,15 @@ impl Game {
                         let winner = if counts[0] > counts[1] { 0 } else { 1 };
                         self.reward(winner, region, contest, counts[0].abs_diff(counts[1]))?;
                     }
-                    if contest == 2 {
-                        self.effects.push_back(Effect::RegionConfrontationsEnded {
-                            region,
-                            region_instance: self.regions[region].card.id.clone(),
-                        });
-                    }
+                    if contest == 2 { self.complete_influence_contest(region); }
                 }
             }
             Window::After(region, contest) => {
                 if self.region_live(region) && contest < 2 {
                     self.begin_window(Window::Before(region, contest + 1));
+                } else if contest == 2 && self.continue_influence_contests(region) {
+                    // The helper opens another real before-window, or retains
+                    // the after-window while the final renown event resolves.
                 } else {
                     self.begin_next_region(region + 1);
                 }
@@ -1346,6 +1346,7 @@ impl Game {
             // damage or departure. Exactly one optional 威名 declaration,
             // even when printed JC018 or several curses/hosts contributed.
             let glory = self.jc089_combat_glory(team, region);
+            let path_triggers = self.jc034_combat_observers(team, region);
             let kills = self.regions[region]
                 .cards
                 .iter()
@@ -1374,6 +1375,7 @@ impl Game {
                     amount: total,
                 });
             }
+            self.effects.extend(path_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
             if let Some(declaration) = glory {
                 self.effects.push_back(Effect::Declare { declaration });
             }
@@ -1417,12 +1419,7 @@ impl Game {
         self.privilege_used = true;
         self.begin_window(Window::After(region, contest));
         self.reward(self.first_team, region, contest, 1)?;
-        if contest == 2 {
-            self.effects.push_back(Effect::RegionConfrontationsEnded {
-                region,
-                region_instance: self.regions[region].card.id.clone(),
-            });
-        }
+        if contest == 2 { self.complete_influence_contest(region); }
         Ok(())
     }
     pub(crate) fn choice(
@@ -1860,6 +1857,7 @@ impl Game {
             }
             Effect::NextTurn => {
                 self.turn += 1;
+                self.influence_contests.clear();
                 self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
                 self.jc035_preparation = None;
@@ -2081,9 +2079,7 @@ impl Game {
             }
             ChoiceResolution::Discard { redraw } => {
                 let count = selected.len();
-                for id in selected {
-                    self.discard_hand_card(seat, &id)?;
-                }
+                self.discard_hand_cards(seat, &selected)?;
                 if redraw {
                     self.draw(seat, count)?;
                 }

@@ -20,13 +20,13 @@
     "implementedNewCardCount": 0,
     "releasedNewCardCount": 0,
     "neutralOrDualExpansion": "paused",
-    "uwproImporter": "separateTaskNoSharedEdits",
-    "runtimeProgramsInProgress": 12
+    "uwproImporter": "integratedFromCcc8037At70c1a43; scoped verification passed; no release",
+    "runtimeProgramsInProgress": 18
   },
   "inputs": [
     {
       "path": "docs/factions/card-specifications.json",
-      "sha256": "cfa9b18529ff9b2d24468eecb6633553f782bc2564d070f0ca0bfcffcc85ec12"
+      "sha256": "f50b838c43c7fbcef846ab51c44a3c54d0a12237be56a6b2fd65dbded173a2ff"
     },
     {
       "path": "docs/factions/card-reviews.json",
@@ -34,7 +34,7 @@
     },
     {
       "path": "rust-game/data/cards.json",
-      "sha256": "d1a4ccf232267aee29dbff469d8d4e89941454d62ca181acdb1175913da58876"
+      "sha256": "be8351dc21a4197094d65b068e7fd31520ab6e7d6020a60177f2268fc3edafbc"
     },
     {
       "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
@@ -60,9 +60,11 @@
   "currentCandidate": {
     "engineVersion": "rust-v0.2.90-audit-correctness-candidate",
     "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
-    "ordinaryCardCount": 153,
+    "ordinaryCardCount": 171,
     "societyCount": 10,
-    "newRuntimeDefinitionsSinceV71": 0
+    "newRuntimeDefinitionsSinceV71": 18,
+    "newDefinitionsSelectionEnabled": false,
+    "finalVersionIdentityAssigned": false
   },
   "cards": [
     {
@@ -94,7 +96,8 @@
           "scenario": "进场后来源换区仍绑定原地区；目标响应离场则失效",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC048",
@@ -126,7 +129,8 @@
           "scenario": "时间载体死亡导致3降2时保留沙漏；保留3时牺牲；选择/响应中恢复",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JZ33",
@@ -158,7 +162,8 @@
           "scenario": "强制伤害所有毁灭地区角色含己方与自身；未毁灭地区不受影响",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JZ37",
@@ -189,7 +194,8 @@
           "scenario": "同波死亡观察者冻结；每区至多一毁灭标志，赢取计分后每枚减1",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "WM034",
@@ -222,7 +228,8 @@
           "scenario": "全场其他角色被消灭，来源及暗藏者保留；零时间准备不能拒绝",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "BQ080",
@@ -255,7 +262,8 @@
           "scenario": "本方指定副名附属实际进场可潜伏；敌方/队友附属及转移结附不误触发",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "BQ091",
@@ -288,7 +296,8 @@
           "scenario": "墓地6/7边界动态增加/移除附属自身永久调查，不加在宿主角色上",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "BQ094",
@@ -325,7 +334,8 @@
           "scenario": "非资产只禁止建立资产，不阻止当前霸权规则允许的效果置资产",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JZ52",
@@ -362,7 +372,8 @@
           "scenario": "来源潜伏/离场后执行与合法动作同时失去权限和禁令",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JZ57",
@@ -399,7 +410,8 @@
           "scenario": "磨少于2不判空抓且不取消可选抓1；抓牌可拒绝",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC033",
@@ -417,7 +429,7 @@
         "【持续】所有本方暗藏者，付费翻面时所需费用减少1。",
         "【标准行动】1，牺牲家族传承：从你的牌库中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于目标地区，然后洗牌。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -432,7 +444,8 @@
           "scenario": "付1及牺牲先行；本人牌库吸血鬼角色展示、暗藏进入目标地区、洗牌",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC034",
@@ -450,7 +463,7 @@
         "你只能操控至多一个道途。",
         "【持续】当你赢得一次战斗对抗时，若有本方吸血鬼角色参与了这次战斗对抗，你可以令目标对手弃一张手牌。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -469,7 +482,8 @@
           "scenario": "目标对手自行私密弃牌；队友参战不能替代本方参战",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC038",
@@ -487,7 +501,7 @@
         "【持续】所有其他友方王座会角色获得袭击1。",
         "【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -506,7 +520,8 @@
           "scenario": "对手先弃后自己抓；对手无手牌仍自己抓1",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC040",
@@ -522,7 +537,7 @@
       "printedRules": [
         "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -541,7 +556,8 @@
           "scenario": "由指定目标玩家移除全场本人势力，不限制为刚弃牌者；不足X全部移除",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "XG12",
@@ -559,7 +575,7 @@
         "持续 受此结附的角色获得临时战斗1、永久战斗1和【隐秘】机动，且额外具有蝙蝠类别。",
         "行动②：将兽形变化结附到另一个吸血鬼角色上。"
       ],
-      "implementation": "notStarted",
+      "implementation": "pendingDecision",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -578,7 +594,8 @@
           "scenario": "普通行动2转移不同吸血鬼；不新增进场/换操控者；转移目标属性待明确",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "notRun"
     },
     {
       "id": "BQ054",
@@ -610,7 +627,8 @@
           "scenario": "本人手中此实例弃牌触发可全场锁角色/暗藏者，保持弃牌来源隐私",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC065",
@@ -626,7 +644,7 @@
       "printedRules": [
         "【快速行动】选择目标地区，然后目标对手牺牲一个位于该地区的暗藏者。遏制1。（目标玩家选择并移除一个他所拥有的势力标志。）"
       ],
-      "implementation": "notStarted",
+      "implementation": "pendingDecision",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -641,7 +659,8 @@
           "scenario": "零暗藏或响应全部现身仍继续遏制；两个玩家目标关系先明确",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "notRun"
     },
     {
       "id": "JC067",
@@ -658,7 +677,7 @@
         "领袖　公开　声望",
         "【持续】本地区在对抗阶段时额外进行一次势力对抗。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -677,7 +696,8 @@
           "scenario": "声望等待地区全部对抗结束，不提前发放",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "CQ16",
@@ -695,7 +715,7 @@
         "进场触发 在本地区的目标角色上放置一个锁定标志。",
         "快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -714,7 +734,8 @@
           "scenario": "正面置入原地区产生进场触发，再洗牌；不另付忠诚或印刷费用",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     },
     {
       "id": "JC068",
@@ -751,7 +772,8 @@
           "scenario": "效果暗藏进场、潜伏和现身不因这条限制被禁",
           "status": "notRun"
         }
-      ]
+      ],
+      "runtimeScopedChecks": "passed; see scopedRustTests; not all planned scenarios claimed"
     }
   ],
   "deferred": [
@@ -771,11 +793,13 @@
   "ruleInterpretationsPending": [
     {
       "id": "XG12",
-      "detail": "月牙机动拟随获授予角色的当前操控者秘社；基于通用规则组合判读，无专属跨操控者问答。须明确条件变化及转移句是否指定目标。"
+      "detail": "XG12月牙机动需要真实秘社隐秘标志生产入口；现开放153张及其余19张均无此入口。待确认是否增加依赖BQ090及完整神秘学博弈；不使用虚构开关或将恒假条件冒充实现。",
+      "status": "answerPending; notPermissionDenied"
     },
     {
       "id": "JC065",
-      "detail": "牺牲目标对手与遏制目标玩家的绑定关系不能由单目标程序替代卡文裁定。"
+      "detail": "牺牲目标对手与遏制目标玩家的绑定关系不能由单目标程序替代卡文裁定。",
+      "status": "answerPending; notPermissionDenied"
     }
   ],
   "carriedAuditFixes": {
@@ -796,25 +820,19 @@
     "existingAbi": 89,
     "credentialRequest": "succeeded",
     "publishOnPushAccepted": false,
-    "sourceOpenedWithOfficialHelper": false,
+    "sourceOpenedWithOfficialHelper": true,
     "sourcePushed": false,
     "saveVersionAttempted": false,
     "deployAttempted": false,
     "versionId": null,
     "deploymentId": null,
-    "sourceCommit": null,
-    "blocker": {
-      "action": "openAndPackageExistingSitesSource",
-      "target": "scripts/site-workflow.mjs for appgprj_6abf7bf54a7481918a50e1ef1509ca68",
-      "reason": "Official helper not available in checked readable installation paths; skill resource lookup did not supply it.",
-      "denied": false,
-      "outcome": "notAttempted",
-      "requiredInput": "Supported official helper installed or provided at a readable executable path in this environment."
-    }
+    "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
+    "blocker": null,
+    "stage": "implementationIncomplete; no save or deploy attempted"
   },
   "validation": {
     "sourceImages": "20/20 hash match",
-    "newCardsRemainDisabled": "20/20",
+    "newCardsRemainDisabled": "18/18 registered new definitions disabled; XG12 and JC065 not registered",
     "sourceSchema": "passed: validate_specifications; no engine/UI acceptance",
     "diffCheck": "passed",
     "documentLinks": "105 local paths exist",
@@ -831,9 +849,26 @@
       "JZ52",
       "LC16",
       "WM033",
-      "XG12"
+      "XG12",
+      "JC029",
+      "JZ49",
+      "JC044"
     ],
-    "runtimeAndHistoricalSnapshotsUnchanged": true
+    "runtimeAndHistoricalSnapshotsUnchanged": false,
+    "frozenHistoricalKernelsUnchanged": true,
+    "webScopedTests": {
+      "files": 6,
+      "passed": 110,
+      "failed": 0,
+      "log": "batch20-ui-integration-tests-02.log"
+    },
+    "typecheck": "passed",
+    "webBuild": {
+      "status": "passed",
+      "log": "batch20-web-build.log"
+    },
+    "nativeWasmParity": "notRun",
+    "runtimeStartupIdentity": "notRun"
   },
   "historicalSnapshotWarning": "2026-10-03 research index and implementation matrix have stale source hashes/support labels. This batch does not rebuild or approve their 685 records.",
   "runtimeWorktree": {
@@ -849,32 +884,68 @@
       "BQ094",
       "JZ52",
       "JZ57",
+      "JC033",
+      "JC034",
+      "JC038",
+      "JC040",
       "BQ054",
+      "JC067",
+      "CQ16",
       "JC068"
     ],
-    "catalogDefinitions": 165,
+    "catalogDefinitions": 171,
     "newDefinitionsSupported": false,
     "finalVersionIdentityAssigned": false,
     "scopedRustTests": {
-      "passed": 11,
+      "passed": 27,
       "failed": 0,
       "coversCards": [
+        "JC043",
+        "JC048",
         "JZ33",
         "JZ37",
-        "JC043",
-        "BQ054",
-        "JC048",
         "WM034",
+        "BQ080",
         "BQ091",
+        "BQ094",
+        "JZ52",
+        "JZ57",
+        "JC033",
+        "JC034",
+        "JC038",
+        "JC040",
+        "BQ054",
+        "JC067",
+        "CQ16",
         "JC068"
       ],
-      "log": "batch20-twelve-tests.log",
+      "log": "batch20-eighteen-tests-03.log",
       "fullSuite": false
     },
     "regionStateTests": {
       "passed": 3,
       "log": "batch20-region-test.log",
       "stage": "before later card additions"
+    },
+    "integratedUwproCommit": "70c1a43178d9e394953a73936a397b723c52ccab",
+    "mobilityRegression": {
+      "passed": 12,
+      "failed": 0,
+      "log": "batch20-mobility-regression.log"
+    },
+    "renownRegression": {
+      "initialPassed": 25,
+      "initialFailed": 7,
+      "initialLog": "batch20-renown-regression.log",
+      "rerun": "passed",
+      "log": "batch20-renown-regression-02.log",
+      "passed": 32,
+      "failed": 0
+    },
+    "grantedRewardRegression": {
+      "passed": 3,
+      "failed": 0,
+      "log": "batch20-granted-rewards-regression.log"
     }
   },
   "sitesWorkflow": {
@@ -887,5 +958,19 @@
     "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
     "publication": "notAttempted",
     "liveVersion": 71
+  },
+  "uwproIntegration": {
+    "originalCommit": "ccc8037f5bdf515a138a08e1761ef2a4ee43ad73",
+    "integratedCommit": "70c1a43178d9e394953a73936a397b723c52ccab",
+    "zipSha256": "879536dc835146f48f91ab8d95ec1710bd3ce27650db17ea532b1d0cc59ab9e9",
+    "payloadHashesVerified": 22,
+    "mappingVersion": "uwpro-deck-preview-v2-icon-corrections",
+    "mappedIdentities": 77,
+    "correctedIcons": [
+      "JC029",
+      "JZ49",
+      "JC044"
+    ],
+    "browserRerun": false
   }
 }

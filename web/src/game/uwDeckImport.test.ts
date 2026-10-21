@@ -6,24 +6,31 @@ import { UW_PLAYER_MAPPINGS, UW_SOCIETY_MAPPINGS } from './uwDeckManifest';
 import { importCatalog, entry, uwText, validImportText } from '../test/uwDeckImportFixtures';
 
 describe('UWPro strict deck preview', () => {
-  it('checks all 77 explicit identities against the real print registry, leaving the 3 image conflicts isolated', () => {
+  it('checks all 77 identities and corrected icon categories against the current print registry', () => {
     expect(UW_PLAYER_MAPPINGS).toHaveLength(77);
     expect(new Set(UW_PLAYER_MAPPINGS.map(item => item.sourcePath)).size).toBe(77);
     expect(new Set(UW_PLAYER_MAPPINGS.map(item => item.targetId)).size).toBe(77);
-    const quarantined: string[] = [];
     for (const item of UW_PLAYER_MAPPINGS) {
       const card = raw.cards.find(card => card.id === item.targetId)!;
       expect([card.name, card.kind, card.color, card.cost]).toEqual([item.name, item.kind, item.color, item.cost]);
       expect(['红', '黑', '蓝', '灰']).toContain(item.color);
+      expect(Object.values(card.icons.permanent)).toEqual(item.permanent);
+      expect(Object.values(card.icons.temporary)).toEqual(item.temporary);
       const preview = previewUwDeckImport(uwText([entry(item.targetId)]), importCatalog);
-      if (['JC029', 'JZ49', 'JC044'].includes(item.targetId)) {
-        expect(preview.rows[0].status).toBe('quarantined'); expect(preview.draft).toBeNull(); quarantined.push(item.targetId);
-      } else {
-        expect(preview.rows[0].status).toBe('mapped'); expect(preview.draft?.cards).toEqual([{ cardId: item.targetId, count: 1 }]);
-        expect(preview.validation?.valid).toBe(false);
-      }
+      expect(preview.rows[0].status).toBe('mapped');
+      expect(preview.draft?.cards).toEqual([{ cardId: item.targetId, count: 1 }]);
+      expect(preview.validation?.valid).toBe(false);
     }
-    expect(quarantined.sort()).toEqual(['JC029', 'JC044', 'JZ49']);
+  });
+  it('refuses the three historical icon records even when a caller supplies a newer version label', () => {
+    for (const [id, permanent, temporary] of [
+      ['JC029', [0,0,1], [0,1,0]], ['JZ49', [0,1,0], [0,1,0]], ['JC044', [1,1,0], [0,0,1]],
+    ] as const) {
+      const icons = (values: readonly number[]) => ({ investigation: values[0], combat: values[1], influence: values[2] });
+      const old = { ...importCatalog, engineVersion: 'new-label-does-not-certify-data', cards: importCatalog.cards.map(c => c.id === id ? { ...c, permanentIcons: icons(permanent), temporaryIcons: icons(temporary) } : c) };
+      const preview = previewUwDeckImport(uwText([entry(id)]), old);
+      expect(preview.rows[0].status).toBe('changed'); expect(preview.draft).toBeNull();
+    }
   });
   it('produces a complete valid current-catalog draft without modifying either input or inventing a society', () => {
     const before = JSON.stringify(importCatalog); const source = validImportText();

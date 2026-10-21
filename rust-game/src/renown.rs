@@ -73,6 +73,7 @@ impl Game {
         // An ordinary influence Award is queued first and opens Win before this
         // effect. After(r,2) is also used after replacement: never emit there.
         if self.window != Some(Window::After(region, 2))
+            || !self.influence_contests.iter().any(|p| p.region == region && p.region_instance == region_instance && p.ended && p.turn == self.turn)
             || !self
                 .regions
                 .get(region)

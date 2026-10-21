@@ -3474,12 +3474,12 @@
         "permanent": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         },
         "temporary": {
           "investigation": 0,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         }
       },
       "defense": 1,
@@ -3912,12 +3912,12 @@
       "icons": {
         "permanent": {
           "investigation": 0,
-          "combat": 1,
+          "combat": 0,
           "influence": 0
         },
         "temporary": {
           "investigation": 0,
-          "combat": 1,
+          "combat": 2,
           "influence": 0
         }
       },
@@ -5782,12 +5782,12 @@
         "permanent": {
           "investigation": 1,
           "combat": 1,
-          "influence": 0
+          "influence": 1
         },
         "temporary": {
           "investigation": 0,
           "combat": 0,
-          "influence": 1
+          "influence": 0
         }
       },
       "defense": 1,
@@ -6451,6 +6451,260 @@
         "image": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg"
       },
       "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC033",
+      "name": "家族传承",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "仪式",
+        "吸血鬼"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n【持续】所有本方暗藏者，付费翻面时所需费用减少1。\n【标准行动】1，牺牲家族传承：从你的牌库中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于目标地区，然后洗牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC033",
+        "image": "resource/ymsj-fun.github.io/cards/JC033 家族传承.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC038",
+      "name": "列恩·爱弗罗德",
+      "subtitle": "“玛士撒拉”",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 8,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色蓝色",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 3,
+          "influence": 3
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 4,
+      "text": "领袖\n【持续】所有其他友方王座会角色获得袭击1。\n【标准行动】牺牲一个吸血鬼或奴仆角色：令目标对手弃一张手牌，然后你抓一张牌。",
+      "keywords": [
+        "领袖"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC038",
+        "image": "resource/ymsj-fun.github.io/cards/JC038 列恩·爱弗罗德.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "CQ16",
+      "name": "前线士官",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "士兵"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n进场触发 在本地区的目标角色上放置一个锁定标志。\n快速行动①，横置：从你的牌库中寻找一张印刷费用为①的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ16",
+        "image": "resource/ymsj-fun.github.io/cards/CQ16 前线士官.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC034",
+      "name": "心兽之道",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "道途",
+        "吸血鬼"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n你只能操控至多一个道途。\n【持续】当你赢得一次战斗对抗时，若有本方吸血鬼角色参与了这次战斗对抗，你可以令目标对手弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC034",
+        "image": "resource/ymsj-fun.github.io/cards/JC034 心兽之道.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC040",
+      "name": "安普莎，冥府的侍女",
+      "subtitle": "赫克缇的仆人",
+      "kind": "character",
+      "subtypes": [
+        "女妖",
+        "奴仆"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【触发】每当敌方玩家弃牌时，遏制X。X等于此次弃牌的数量。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC040",
+        "image": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC067",
+      "name": "约翰·F·纳特里",
+      "subtitle": "刚愎自用的市长",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "政治家"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 3
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "领袖　公开　声望\n【持续】本地区在对抗阶段时额外进行一次势力对抗。",
+      "keywords": [
+        "领袖",
+        "公开",
+        "声望"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC067",
+        "image": "resource/ymsj-fun.github.io/cards/JC067 约翰·F·纳特里.jpg"
+      },
+      "unique": true,
       "society": "",
       "supported": false
     }

@@ -59,12 +59,14 @@ export type Player = {
   id: string; seat: number; name: string; team: number; deckId: string;
   deckName?: string;
   ready: boolean; eliminated: boolean; handCount: number; deckCount: number; score: number;
+  destructionMarkers?: number;
 };
 export type Region = {
   id: string; index: number; cardId: string; name: string; threshold: number;
   points: number; influence: number[]; characters: Card[];
   iconsByTeam?: [Icons, Icons];
   skipConfrontation?: boolean;
+  destroyed?: boolean;
 };
 export type StackEffect = {
   id: string; label: string; controller: string; cardId?: string; targetId?: string;

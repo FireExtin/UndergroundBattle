@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "batch": "batch20-2026-10-21",
+  "stage": "18 runtime programs WIP; 2 decisions pending; no release",
+  "baseCommit": "70c1a43178d9e394953a73936a397b723c52ccab",
+  "logRoot": "/workspace/audit-underground-100161b",
+  "logs": [
+    {
+      "file": "batch20-eighteen-tests-03.log",
+      "sha256": "a837a089b642d8da3ca82017a83c8720b3ff5e6413ed75f217716e54c0e6c5f4",
+      "summary": [
+        "test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 1293 filtered out; finished in 4.38s"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-mobility-regression.log",
+      "sha256": "e8750c347805fd189e27fe57b1478d2307bd1af08845eb373123c3125b8ae4f1",
+      "summary": [
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1308 filtered out; finished in 3.15s"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-renown-regression.log",
+      "sha256": "2c45e76c72ee92f95d315ca4e6185cfb9b231182da4e413e249acf6129b4c933",
+      "summary": [
+        "test bounded_search_tests::xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_exhausted ... FAILED",
+        "test jc046_tests::jc046_existing_granted_renown_and_combat_glory_remain_optional ... FAILED",
+        "test jc052_tests::jc052_source_guard_preserves_existing_granted_renown_and_combat_glory_programs ... FAILED",
+        "test jc054_tests::jc054_granted_renown_keeps_its_frozen_public_source_after_the_grant_expires ... FAILED",
+        "test jz22_tests::jz22_preserves_existing_granted_renown_program ... FAILED",
+        "test renown_tests::renown_original_fields_and_bounded_program_are_complete ... FAILED",
+        "test renown_tests::renown_skipped_region_and_stale_region_identity_cannot_get_a_reward ... FAILED",
+        "test result: FAILED. 25 passed; 7 failed; 0 ignored; 0 measured; 1288 filtered out; finished in 5.21s"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-renown-regression-02.log",
+      "sha256": "d80a4f7a4d6c2c279a242c69643381151c7db1303457e56c361e897db2cf2391",
+      "summary": [
+        "test result: ok. 32 passed; 0 failed; 0 ignored; 0 measured; 1288 filtered out; finished in 6.78s"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-granted-rewards-regression.log",
+      "sha256": "e0df8f4507a1865b9cc35219334157662a6c4e9580c654757b71a282c09ad69c",
+      "summary": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 1317 filtered out; finished in 2.90s"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-ui-integration-tests-02.log",
+      "sha256": "c16a1e2804efcff6e98d50a015ce407ba02699c09eda86dfb55a20dffa3c38af",
+      "summary": [
+        " Test Files  6 passed (6)",
+        "      Tests  110 passed (110)"
+      ],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-ui-typecheck.log",
+      "sha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5",
+      "summary": [],
+      "scope": "local; not full suite or real browser"
+    },
+    {
+      "file": "batch20-web-build.log",
+      "sha256": "22f2189ef8453a4de00c4ef565594e090698d58f6020b09b7fc5f74808322024",
+      "summary": [
+        "✓ built in 314ms"
+      ],
+      "scope": "local; not full suite or real browser"
+    }
+  ],
+  "fullSuite": "notRun",
+  "independentReview": "notRunForBatch",
+  "realBrowserBattle": "notRun",
+  "githubCi": "notRun",
+  "frozenKernels": "unchanged"
+}

@@ -114,7 +114,7 @@ impl Game {
         }
     }
     fn jc044_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if d.source.card.definition != "JC044" && !own(&d.ability) { return Ok(()); }
         self.jc044_source(d.actor, &d.source)?;
         if d.source.card.face_down || d.source.play_source.is_some()
@@ -137,7 +137,7 @@ impl Game {
         Ok(seat)
     }
     pub(crate) fn validate_jc044_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if !related(f) { return Ok(()); }
         self.jc044_source(f.actor, &f.source)?;
         if f.frame_id.is_empty() { return Err("JC044缺少帧身份".into()); }
@@ -229,7 +229,7 @@ impl Game {
             match &p.resolution {
                 ChoiceResolution::Declare { declaration: d, stage } => {
                     self.jc044_declaration(d)?;
-                    if d.source.card.definition == "JC044" && !self.validated_mobility_declaration(d)? {
+                    if d.source.card.definition == "JC044" && !self.validated_cross_card_declaration(d)? {
                         let expected = Choice { id: p.choice.id.clone(), kind: "trigger".into(),
                             title: format!("{}：{}", catalog::card("JC044").name, d.ability.label),
                             description: "选择符合数量限制的选项，然后确认。".into(), player_id: player_id(d.actor),

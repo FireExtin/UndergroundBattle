@@ -11,7 +11,7 @@ pub struct AttachmentEntryObservation {
     pub attachment: Attachment,
 }
 
-pub(crate) const IMPLEMENTING: &[&str] = &["JZ33", "JZ37", "JC043", "BQ054", "JC048", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "BQ080", "JZ57"];
+pub(crate) const IMPLEMENTING: &[&str] = &["JZ33", "JZ37", "JC043", "BQ054", "JC048", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "BQ080", "JZ57", "JC033", "JC038", "CQ16", "JC034", "JC040", "JC067"];
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
@@ -100,7 +100,9 @@ fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
         Op::JZ33ScorchDestroyedRegions | Op::JZ37DestroyWorld | Op::BQ054LockTarget | Op::JC043DestroyAttachment
             | Op::Batch20Prepare { .. } | Op::WM034AddOneTime | Op::WM034DestroyOtherCharacters
-            | Op::BQ080HideForAttachment { .. } | Op::JZ57MillAndOptionalDraw => true,
+            | Op::BQ080HideForAttachment { .. } | Op::JZ57MillAndOptionalDraw
+            | Op::Batch20SearchEntry | Op::CQ16LockLocalCharacter
+            | Op::JC034CombatDiscard { .. } | Op::JC040RepressDiscard { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -114,9 +116,46 @@ fn owned_ability(a: &AbilitySpec) -> bool {
 fn related(f: &ResolutionFrame) -> bool {
     IMPLEMENTING.contains(&f.source.card.definition.as_str()) || f.ability_key.starts_with("batch20-")
         || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
-        || f.already_paid.iter().any(|p| matches!(p, PaidCost::SourceRemovedTime(_)))
+        || f.already_paid.iter().any(|p| matches!(p, PaidCost::SourceRemovedTime(_) | PaidCost::SacrificedSubtype { .. }))
 }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "JC067" { let mut d = Definition::default(); d.traits.public = true; d.traits.renown = true; return Some(d); }
+    if id == "JC034" {
+        let mut d = rules::attachment_definition(rules::target(Zone::Society, EntityKind::Any, Relation::ControlledByActor, Range::Anywhere));
+        d.abilities.push(rules::ability("batch20-jc034-combat", "本方吸血鬼参与并赢战斗：目标对手弃1", Timing::Fast,
+            vec![], vec![rules::target(Zone::Player, EntityKind::Any, Relation::EnemyTeam, Range::Anywhere)],
+            vec![Op::JC034CombatDiscard { observation: None }], Some(Event::VampireCombatWon)));
+        return Some(d);
+    }
+    if id == "JC040" {
+        return Some(rules::with_abilities(vec![rules::ability("batch20-jc040-repress", "敌方一次弃牌：遏制相同数量", Timing::Fast,
+            vec![], vec![rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
+            vec![Op::JC040RepressDiscard { observation: None }], Some(Event::DiscardObserved))]));
+    }
+    if id == "JC033" {
+        let mut d = rules::attachment_definition(rules::target(Zone::Society, EntityKind::Any, Relation::ControlledByActor, Range::Anywhere));
+        let mut a = rules::ability("batch20-jc033-search", "行动1、牺牲：检索吸血鬼角色，展示后暗藏于目标地区并洗牌", Timing::Standard,
+            vec![Cost::Assets(1), Cost::SacrificeSource], vec![rules::target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere)],
+            vec![Op::Batch20SearchEntry], None);
+        a.activation_only = true; d.abilities.push(a); return Some(d);
+    }
+    if id == "CQ16" {
+        let mut a = rules::ability("batch20-cq16-search", "快速行动1、横置：检索印刷费用1的士兵角色置入原地区并洗牌", Timing::Fast,
+            vec![Cost::Assets(1), Cost::ExhaustSource], vec![], vec![Op::Batch20SearchEntry], None);
+        a.activation_only = true;
+        let mut d = rules::with_abilities(vec![rules::ability("batch20-cq16-lock", "进场触发：在原地区目标角色上放置一个锁定标志", Timing::Fast,
+            vec![], vec![rules::target(Zone::Board, EntityKind::Character, Relation::Any, Range::SourceRegion)],
+            vec![Op::CQ16LockLocalCharacter], Some(Event::Enter)), a]);
+        d.traits.public = true; return Some(d);
+    }
+    if id == "JC038" {
+        let mut a = rules::ability("batch20-jc038-discard-draw", "行动：牺牲本方吸血鬼或奴仆，目标对手弃1，然后抓1", Timing::Standard,
+            vec![Cost::SacrificeControlledSubtype(vec!["吸血鬼".into(), "奴仆".into()])],
+            vec![rules::target(Zone::Player, EntityKind::Any, Relation::EnemyTeam, Range::Anywhere)],
+            vec![Op::Discard { player: PlayerRef::Target(0), count: Some(1), redraw: false, optional: false },
+                Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }], None);
+        a.activation_only = true; return Some(rules::with_abilities(vec![a]));
+    }
     if id == "BQ080" {
         let mut d = rules::with_abilities(vec![
             rules::ability("batch20-bq080-return", "进场触发：回收自己的墓地目标角色", Timing::Fast,
@@ -196,6 +235,11 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     let mut normalized = a.clone();
     if let [Op::Batch20Prepare { event_id }] = normalized.ops.as_mut_slice() { *event_id = None; }
     if let [Op::BQ080HideForAttachment { observation }] = normalized.ops.as_mut_slice() { *observation = None; }
+    for op in &mut normalized.ops { match op {
+        Op::JC034CombatDiscard { observation } => *observation = None,
+        Op::JC040RepressDiscard { observation } => *observation = None,
+        _ => {},
+    } }
     if owned_ability(a) && definition(id).is_none_or(|d| !d.abilities.iter().any(|e| same(&normalized, e))) {
         return Err("本批卡牌只准入已核原图的完整固定程序".into());
     }
@@ -220,6 +264,72 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
 }
 
 impl Game {
+    pub(crate) fn jc033_reveal_reduction(&self, actor: usize) -> u32 {
+        self.attachments.iter().filter(|a| a.card.definition == "JC033" && !a.card.face_down
+            && a.card.controller == actor && self.attachment_host_valid(a)).count() as u32
+    }
+    fn batch20_search_options(&self, f: &ResolutionFrame) -> Vec<ChoiceOption> {
+        self.players[f.actor].deck.iter().filter(|c| {
+            let d = catalog::card(&c.definition);
+            d.kind == "character" && if f.source.card.definition == "JC033" {
+                d.subtypes.iter().any(|s| s == "吸血鬼")
+            } else { d.cost == 1 && d.subtypes.iter().any(|s| s == "士兵") }
+        }).map(|c| self.option(c, f.actor, None, None)).collect()
+    }
+    fn batch20_search_region(&self, f: &ResolutionFrame) -> Option<usize> {
+        if f.source.card.definition == "JC033" {
+            let t = f.targets.first()?;
+            let r = t.id.strip_prefix("region:")?.parse::<usize>().ok()?;
+            self.regions.get(r).filter(|region| !region.vacant && Some(&region.card.id) == t.region_instance.as_ref()).map(|_| r)
+        } else { self.original_region(&f.source) }
+    }
+    fn batch20_search_title(f: &ResolutionFrame) -> &'static str {
+        if f.source.card.definition == "JC033" { "检索一张吸血鬼角色，展示后暗藏进场并洗牌" }
+        else { "检索一张印刷费用1的士兵角色置入原地区并洗牌" }
+    }
+    pub(crate) fn batch20_search_start(&mut self, f: ResolutionFrame) -> RuleResult<()> {
+        if self.players[f.actor].eliminated { return Ok(()); }
+        let options = self.batch20_search_options(&f);
+        let n = usize::from(!options.is_empty());
+        self.choice(f.actor, "batch20_search", Self::batch20_search_title(&f).into(), options, n, n, None,
+            ChoiceResolution::Frame { frame: Box::new(f), choice: FrameChoice::Batch20SearchEntry });
+        self.pending.as_mut().unwrap().choice.allow_decline = Some(false);
+        Ok(())
+    }
+    fn validate_batch20_search_pending(&self, p: &Pending, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_batch20_frame(f)?;
+        let expected = self.batch20_search_options(f);
+        let n = usize::from(!expected.is_empty());
+        if !matches!(f.ability_key.as_str(), "batch20-jc033-search" | "batch20-cq16-search")
+            || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
+            || p.seat != f.actor || p.choice.player_id != player_id(f.actor) || p.choice.kind != "batch20_search"
+            || p.choice.title != Self::batch20_search_title(f) || p.choice.min != Some(n) || p.choice.max != Some(n)
+            || p.choice.allow_decline != Some(false) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty()
+            || !same(&expected, &p.choice.options) { return Err("本批检索续体与来源、费用、牌库不符".into()); }
+        Ok(())
+    }
+    pub(crate) fn batch20_search_complete(&mut self, f: &ResolutionFrame, chooser: usize, selected: &[String]) -> RuleResult<()> {
+        self.validate_batch20_frame(f)?;
+        let options = self.batch20_search_options(f);
+        if chooser != f.actor || selected.len() != usize::from(!options.is_empty())
+            || selected.iter().any(|id| !options.iter().any(|o| &o.id == id)) { return Err("检索选择不符".into()); }
+        if let Some(id) = selected.first() {
+            let i = self.players[f.actor].deck.iter().position(|c| &c.id == id).ok_or("检索牌已不在牌库")?;
+            self.note(format!("{} 展示检索的 {}", self.players[f.actor].name, catalog::card(&self.players[f.actor].deck[i].definition).name));
+            // A vanished original region cannot receive the card. Preserve it in
+            // the deck and still perform the printed shuffle.
+            if let Some(r) = self.batch20_search_region(f) {
+                let c = self.players[f.actor].deck.remove(i);
+                let mut c = self.reset_zone_card(c); c.controller = f.actor;
+                c.face_down = f.source.card.definition == "JC033";
+                let (id, definition, hidden) = (c.id.clone(), c.definition.clone(), c.face_down);
+                self.regions[r].cards.push(c);
+                if !hidden { self.enter_triggers(f.actor, &definition, &id, false); }
+            }
+        }
+        self.shuffle_player(f.actor);
+        Ok(())
+    }
     pub(crate) fn observe_bq080_attachment_entry(&mut self, id: &str) {
         let Some(a) = self.attachments.iter().find(|a| a.card.id == id && !a.card.face_down && self.attachment_host_valid(a)
             && catalog::card(&a.card.definition).subtitle.as_deref() == Some("圣甲虫产业")).cloned() else { return; };
@@ -256,10 +366,14 @@ impl Game {
         self.remove_dead(&ids[0], RemovalCause::Sacrifice);
         Ok(receipt)
     }
-    fn validate_subtype_payment(&self, f: &ResolutionFrame, expected: &[Cost]) -> RuleResult<()> {
-        if expected.len() != f.already_paid.len() { return Err("类别牺牲费用数量不符".into()); }
+    fn validate_batch20_payment(&self, f: &ResolutionFrame, expected: &[Cost]) -> RuleResult<()> {
+        if expected.len() != f.already_paid.len() { return Err("本批费用数量不符".into()); }
         for (cost, receipt) in expected.iter().zip(&f.already_paid) {
             match (cost, receipt) {
+                (Cost::Assets(n), PaidCost::Assets(ids)) if ids.len() == *n as usize
+                    && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len() => {},
+                (Cost::SacrificeSource, PaidCost::Sacrificed { old_instance, controller, owner })
+                    if old_instance == &f.source.card.id && *controller == f.actor && *owner == f.source.card.owner => {},
                 (Cost::ExhaustSource, PaidCost::Exhausted(id)) if id == &f.source.card.id && !f.source.card.exhausted => {},
                 (Cost::SacrificeControlledSubtype(required), PaidCost::SacrificedSubtype { card:c, subtypes })
                     if !c.id.is_empty() && !c.face_down && c.controller == f.actor && c.owner < self.players.len()
@@ -438,6 +552,10 @@ impl Game {
                 self.validate_bq080_entry(&f.source, observation)?;
                 a.ops = vec![Op::BQ080HideForAttachment { observation: observation.clone() }];
             }
+            if matches!(a.key.as_str(), "batch20-jc034-combat" | "batch20-jc040-repress") {
+                self.validate_batch20_observation(f.actor, &f.source, &f.steps)?;
+                a.ops = f.steps.iter().map(|s| s.op.clone()).collect();
+            }
             return Ok(a);
         }
         let region = f.source.source_region_instance.as_deref().ok_or("奖励缺少原地区实例")?;
@@ -455,7 +573,7 @@ impl Game {
                 return Err("墓地出牌缺少有效的事件时死亡领域许可".into());
             }
         }
-        if self.validated_mobility_frame(f)? || !related(f) { return Ok(()); }
+        if self.validated_cross_card_frame(f)? || !related(f) { return Ok(()); }
         if f.source.card.definition == "BQ094" && f.source.observed_death.is_some() { return self.validate_observer_frame(f, None); }
         if crate::jc035::preparation_frame(f) { return self.validate_jc035_frame(f); }
         self.validate_batch20_source(f.actor, &f.source)?;
@@ -479,7 +597,7 @@ impl Game {
             if !same(&steps, &f.steps) || f.source.card.face_down || f.source.play_source.is_some()
                 || (f.chosen_region.is_some() && !a.targets.iter().any(|s| s.zone == Zone::Region))
                 || (a.event.is_some() && !f.already_paid.is_empty())
-                || (a.event.is_none() && !a.costs.iter().any(|c| matches!(c, Cost::SacrificeControlledSubtype(_) | Cost::RemoveOneTimeFromSource)) && !paid_printed) {
+                || (a.event.is_none() && a.costs.is_empty() && !paid_printed) {
                 return Err("本批程序、费用收据或声明地区不符".into());
             }
             if f.targets.len() != a.targets.len() || f.targets.iter().zip(&a.targets).any(|(t, s)|
@@ -489,12 +607,12 @@ impl Game {
                 return Err("本批目标绑定与固定程序不符".into());
             }
             if f.ability_key == "batch20-wm034-destroy" { self.validate_wm034_payment(f)?; }
-            if a.costs.iter().any(|c| matches!(c, Cost::SacrificeControlledSubtype(_))) { self.validate_subtype_payment(f, &a.costs)?; }
+            if !a.costs.is_empty() && f.ability_key != "batch20-wm034-destroy" { self.validate_batch20_payment(f, &a.costs)?; }
         }
         Ok(())
     }
     pub(crate) fn validate_batch20_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if d.source.card.definition == "BQ094" && d.source.observed_death.is_some() { return self.validate_observer_declaration(d); }
         if d.ability.event == Some(Event::Prepare) { return crate::jc035::validate_ability(&d.source.card.definition, &d.ability); }
         if !IMPLEMENTING.contains(&d.source.card.definition.as_str()) && !owned_ability(&d.ability) { return Ok(()); }
@@ -518,8 +636,27 @@ impl Game {
         }
         Ok(true)
     }
+    fn validate_batch20_pending_declaration(&self, p: &Pending, d: &Declaration, stage: &DeclareChoice) -> RuleResult<()> {
+        if self.validated_cross_card_declaration(d)? || !IMPLEMENTING.contains(&d.source.card.definition.as_str()) { return Ok(()); }
+        self.validate_batch20_declaration(d)?;
+        self.batch20_reject_optional(d)?;
+        let targeted = !d.ability.targets.is_empty();
+        if p.seat != d.actor || p.choice.player_id != player_id(d.actor) || p.choice.id.is_empty()
+            || p.choice.kind != "trigger" || p.choice.min != Some(0) || p.choice.max != Some(1)
+            || p.choice.allow_decline != Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty()
+            || p.choice.title != format!("{}：{}", catalog::card(&d.source.card.definition).name, d.ability.label)
+            || (targeted && !matches!(stage, DeclareChoice::Target)) || (!targeted && !matches!(stage, DeclareChoice::Accept))
+            || p.choice.options.is_empty() || p.choice.options.iter().map(|o| &o.id).collect::<BTreeSet<_>>().len() != p.choice.options.len()
+            || (!targeted && !same(&p.choice.options, &vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }])) {
+            return Err("本批可选声明的选择者、阶段、数量或身份无效".into());
+        }
+        Ok(())
+    }
     pub(crate) fn validate_batch20_state(&self) -> RuleResult<()> {
         self.validate_destruction_state()?;
+        self.validate_influence_contests()?;
+        self.validate_raid_state()?;
+        self.validate_batch20_observation_duplicates()?;
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_batch20_frame(f)?;
@@ -549,10 +686,18 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
-                ChoiceResolution::Declare { declaration, .. } => {
-                    self.validate_batch20_declaration(declaration)?;
-                    self.batch20_reject_optional(declaration)?;
+                ChoiceResolution::Frame { frame, choice: FrameChoice::Batch20Repress { seat, regions } } => self.validate_batch20_repress_pending(p, frame, *seat, regions)?,
+                ChoiceResolution::Frame { frame, choice: FrameChoice::Batch20SearchEntry } => self.validate_batch20_search_pending(p, frame)?,
+                ChoiceResolution::Frame { frame: f, choice: FrameChoice::Discard { seat, redraw } } if related(f) => {
+                    self.validate_batch20_frame(f)?;
+                    let expected = self.players.get(*seat).ok_or("弃牌玩家无效")?.hand.iter().map(|c| self.option(c, *seat, None, None)).collect::<Vec<_>>();
+                    if !matches!(f.ability_key.as_str(), "batch20-jc038-discard-draw" | "batch20-jc034-combat") || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted)
+                        || f.targets.first().is_none_or(|t| t.id != player_id(*seat)) || *redraw
+                        || p.seat != *seat || p.choice.player_id != player_id(*seat) || p.choice.kind != "discard"
+                        || p.choice.min != Some(1) || p.choice.max != Some(1) || p.choice.allow_decline != Some(false)
+                        || expected.is_empty() || !same(&expected, &p.choice.options) { return Err("本批弃牌续体无效".into()); }
                 }
+                ChoiceResolution::Declare { declaration, stage } => self.validate_batch20_pending_declaration(p, declaration, stage)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC068Upkeep } if crate::jc035::preparation_frame(frame) => {},
                 ChoiceResolution::Frame { frame: f, choice: FrameChoice::Batch20OptionalDraw } => {
                     self.validate_batch20_frame(f)?;

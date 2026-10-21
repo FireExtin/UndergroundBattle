@@ -80,7 +80,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const max = choice.max ?? choice.options.length;
   const jz50Search = choice.kind === 'jz50_death_search' && min === 0 && max === 1 && !choice.allowDecline;
   const entrySearchZero = !choice.allowDecline && min === 0 && (
-    (choice.kind === 'bq104_employee_search' && max === 0 && choice.options.length === 0)
+    (['bq104_employee_search', 'batch20_search'].includes(choice.kind) && max === 0 && choice.options.length === 0)
     || (choice.kind === 'xq48_passer_search' && max <= 3));
   const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
     && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;

@@ -93,7 +93,7 @@ impl Game {
         }
     }
     fn jc066_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if d.source.card.definition != "JC066" && !own(&d.ability) { return Ok(()); }
         self.jc066_source(d.actor, &d.source)?;
         if d.source.card.face_down || d.source.play_source.is_some()
@@ -125,7 +125,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jc066_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if !related(f) { return Ok(()); }
         self.jc066_source(f.actor, &f.source)?;
         if f.frame_id.is_empty() { return Err("JC066缺少帧身份".into()); }
@@ -219,7 +219,7 @@ impl Game {
             match &p.resolution {
                 ChoiceResolution::Declare { declaration:d, stage } => {
                     self.jc066_declaration(d)?;
-                    if d.source.card.definition == "JC066" && !self.validated_mobility_declaration(d)? {
+                    if d.source.card.definition == "JC066" && !self.validated_cross_card_declaration(d)? {
                         let options = match (d.ability.targets.as_slice(), stage) {
                             ([slot], DeclareChoice::Target) => self.binding_options(d.actor, &d.source, slot),
                             ([], DeclareChoice::Accept) => vec![ChoiceOption { id:"accept".into(),label:"发动触发能力".into(),card:None }],
@@ -237,7 +237,7 @@ impl Game {
                 },
                 ChoiceResolution::Frame { frame, .. } => {
                     self.validate_jc066_frame(frame)?;
-                    if related(frame) && !self.validated_mobility_frame(frame)? {
+                    if related(frame) && !self.validated_cross_card_frame(frame)? {
                         return Err("JC066封印或奖励不能挂接额外帧待选".into());
                     }
                 },

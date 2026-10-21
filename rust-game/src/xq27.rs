@@ -34,7 +34,7 @@ fn declaration(d: &Declaration) -> RuleResult<()> {
 }
 impl Game {
     pub(crate) fn validate_xq27_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if !relevant(f) {
             return Ok(());
         }
@@ -79,7 +79,7 @@ impl Game {
     pub(crate) fn validate_xq27_state(&self) -> RuleResult<()> {
         for s in &self.stack {
             if let Some(f) = &s.frame {
-                if self.validated_mobility_frame(f)? { continue; }
+                if self.validated_cross_card_frame(f)? { continue; }
                 self.validate_xq27_frame(f)?;
                 if relevant(f)
                     && (s.controller != f.actor
@@ -112,7 +112,7 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
-                ChoiceResolution::Declare { declaration, .. } if self.validated_mobility_declaration(declaration)? => {
+                ChoiceResolution::Declare { declaration, .. } if self.validated_cross_card_declaration(declaration)? => {
                     self.validate_mobility_state()?;
                 }
                 ChoiceResolution::Frame { frame, .. } if crate::mobility::related_frame(frame) => return Err("机动没有帧内续体".into()),

@@ -131,6 +131,7 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
   const assets = view.assets.filter(card => card.controller === player.id);
   const mine = player.id === view.you;
   const societyZone = view.societyZones?.find(zone => zone.playerId === player.id);
+  const societyAttachments = view.attachments?.filter(item => item.hostId === societyZone?.id) || [];
   const ownTeam = view.players.find(item => item.id === view.you)?.team ?? 0;
   const renderCard = (card: Card) => <CardTile key={card.instanceId} card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} compact owner={view.players.find(item => item.id === card.owner)} controller={view.players.find(item => item.id === card.controller)} sameNameTag={tagFor(card)} selected={selectedCard === card.instanceId || selectedTarget === card.instanceId} targeted={targetIds.has(card.instanceId)} actionable={candidateHints.has(card.instanceId)} actionHint={candidateHints.get(card.instanceId)} onSelect={() => onCard(card.instanceId)} onPreview={() => onPreview(card.instanceId)} onPreviewEnd={() => onPreview(null)} />;
   const renderPile = (kind: 'graveyard' | 'scoreCards', label: string) => {
@@ -148,7 +149,10 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
       <div className="hg-mat-assets" aria-label={`${player.name}的资产`}><span className="hg-mat-zone-label">资产 · 费用与忠诚</span><div className="hg-assets" style={{ '--hg-card-count': Math.max(1, assets.length) } as CSSProperties}>{assets.map(renderCard)}{!assets.length && <span className="hg-table-empty">尚无资产</span>}</div></div>
       <section className="hg-society-zone" aria-label={`${player.name}的秘社区`} data-society-zone={societyZone?.id} data-society-player={player.id}>
         <strong>秘社区</strong>
+        {societyZone?.card && targetIds.has(societyZone.id) && <button type="button" className="hg-player-target" data-card-targeted="true" aria-pressed={selectedTarget === societyZone.id} onClick={() => onCard(societyZone.id)}>选择{player.name}的秘社</button>}
         {societyZone?.card ? <><div className="hg-society-piece">{renderCard(societyZone.card)}</div><small>{societyZone.card.exhausted ? '已横置' : '未横置'}</small></> : <><span aria-hidden="true">◈</span><small>{!societyZone ? '未开放' : view.status === 'lobby' ? '开局时公开' : '未选择'}</small></>}
+        {societyAttachments.length > 0 && <div className="hg-society-attachments" aria-label={`${player.name}的秘社附属`}>{societyAttachments.map(renderCard)}</div>}
+        {!!player.destructionMarkers && <small>毁灭标志 {player.destructionMarkers} · 已计入分数扣减</small>}
       </section>
     </div>
     {!mine && <div className="hg-other-hand" aria-label={`${player.name}的手牌，${player.handCount}张，身份隐藏`} data-hand-owner={player.id} data-hand-count={player.handCount}><span>手牌 {player.handCount}</span><div aria-hidden="true">{Array.from({ length: Math.min(player.handCount, 8) }, (_, index) => <i key={index} className="hg-card-back">◈</i>)}</div></div>}
@@ -185,7 +189,7 @@ function RegionTile({ region, view, definitions, candidateHints, selected, targe
     {renderSide(1 - yourTeam)}
     <button type="button" className="hg-region-center" data-region-index={region.index} onClick={onRegion} aria-pressed={selected} aria-label={`查看地区${region.index + 1} ${region.name}`}>
       <ArchiveArtwork key={region.cardId} card={{ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false }} />
-      <span className="hg-region-number">{region.index + 1}</span><span className="hg-region-title"><small className={region.skipConfrontation ? 'hg-region-skip' : undefined}>{region.skipConfrontation ? '本回合略过对抗比较' : '隐秘地区'}</small><strong>{region.name}</strong></span><span className="hg-region-value"><b>{region.points}</b><small>分</small></span>
+      <span className="hg-region-number">{region.index + 1}</span><span className="hg-region-title"><small className={region.skipConfrontation ? 'hg-region-skip' : undefined}>{region.destroyed ? '已毁灭 · 计分减少1' : region.skipConfrontation ? '本回合略过对抗比较' : '隐秘地区'}</small><strong>{region.name}</strong></span><span className="hg-region-value"><b>{region.points}</b><small>分</small></span>
       <span className="hg-region-threshold">控制阈值 <b>{region.threshold}</b>{available && <em>合法落点</em>}</span>
     </button>
     {!!view.attachments?.some(item => item.hostId === region.id) && <div className="hg-region-attachments" aria-label={`${region.name}的地区附属`}>{view.attachments.filter(item => item.hostId === region.id).map(item => <button type="button" key={item.instanceId} className="hg-mounted-object" data-attachment-instance={item.instanceId} data-attachment-host={region.id} data-card-actionable={candidateHints.has(item.instanceId)} data-card-targeted={targetIds.has(item.instanceId)} aria-pressed={selectedCard === item.instanceId || selectedTarget === item.instanceId} onClick={() => onCard(item.instanceId)} onMouseEnter={() => onPreview(item.instanceId)} onMouseLeave={() => onPreview(null)} aria-label={`查看地区附属${visibleCard(item, view.you).name}`} aria-description={mountedDescription(item)} data-control-differs={item.controller !== item.owner || undefined}>{mountedSeat(item)}{visibleCard(item, view.you).name}{mountedTag(item)}{candidateHints.get(item.instanceId) && <small className="hg-mounted-action-hint">◇ {candidateHints.get(item.instanceId)}</small>}</button>)}</div>}
@@ -238,7 +242,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     return card ? [card] : [];
   });
   const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...(view.revealedHands || []).flatMap(hand => hand.cards), ...view.regions.flatMap(region => region.characters), ...attachments, ...sealedCards, ...societyCards].map(item => visibleCard(item, view.you));
-  const presentedIds = new Set([...allCards.map(card => card.instanceId), ...view.players.map(player => player.id), ...activeRegions.map(region => region.id)]);
+  const presentedIds = new Set([...allCards.map(card => card.instanceId), ...view.players.map(player => player.id), ...activeRegions.map(region => region.id), ...(view.societyZones || []).filter(zone => zone.card).map(zone => zone.id)]);
   // Same-name tags cover table pieces only; revealed hands remain text readers.
   const sameNames = sameNameTags([...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters), ...attachments, ...societyCards]);
   const tagFor = (item: Card) => sameNames.get(item.instanceId);
@@ -286,11 +290,13 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
       || view.pendingChoice?.options.map(option => option.card && visibleCard(option.card, view.you)).find(item => item?.instanceId === reading.instanceId)
       || view.pendingChoice?.previewCards?.map(item => visibleCard(item, view.you)).find(item => item.instanceId === reading.instanceId)
       || regionCard : undefined;
-  const attachedCards = card ? attachments.filter(item => item.hostId === card.instanceId) : [];
+  const selectedSociety = view.societyZones?.find(zone => zone.card?.instanceId === card?.instanceId);
+  const attachedCards = card ? attachments.filter(item => item.hostId === (selectedSociety?.id || card.instanceId)) : [];
   const attachmentContext = (item: Attachment, includeInstance = true) => {
     const host = allCards.find(candidate => candidate.instanceId === item.hostId);
     const hostRegion = activeRegions.find(candidate => candidate.id === item.hostId);
-    return `${playerName(item.owner)} 拥有${item.controller !== item.owner ? ` · ${playerName(item.controller)} 操控` : ''} · 附着于 ${hostRegion ? `地区${hostRegion.name}` : host ? `${playerName(host.owner)} 的${host.name}` : '宿主'}${item.region !== undefined ? ` · ${regionLabel(item.region, view.regions)}` : ''}${includeInstance && tagFor(item) ? ` · 同名对象 #${tagFor(item)}` : ''}`;
+    const hostSociety = view.societyZones?.find(zone => zone.id === item.hostId);
+    return `${playerName(item.owner)} 拥有${item.controller !== item.owner ? ` · ${playerName(item.controller)} 操控` : ''} · 附着于 ${hostSociety ? `${playerName(hostSociety.playerId)} 的秘社` : hostRegion ? `地区${hostRegion.name}` : host ? `${playerName(host.owner)} 的${host.name}` : '宿主'}${item.region !== undefined ? ` · ${regionLabel(item.region, view.regions)}` : ''}${includeInstance && tagFor(item) ? ` · 同名对象 #${tagFor(item)}` : ''}`;
   };
   const selectedAttachment = attachments.find(item => item.instanceId === selectedCard);
   const readingAttachment = attachments.find(item => item.instanceId === readingCard?.instanceId);
@@ -414,7 +420,7 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
   const chosenTag = chosenTarget && tagFor(chosenTarget);
   const chosenZone = chosenTarget && chosenTag ? zoneOf(chosenTarget) : undefined;
   const targetLabel = chosenTarget ? `${view.players.find(player => player.id === chosenTarget.owner)?.name || '玩家'}的${chosenTarget.name}${chosenTag ? ` #${chosenTag}${chosenZone ? ` · ${chosenZone}` : ''}` : ''}`
-    : view.players.find(player => player.id === selectedTarget)?.name || (selectedTarget ? '所选目标' : '尚未选择');
+    : view.players.find(player => player.id === selectedTarget)?.name || ((view.societyZones || []).some(zone => zone.id === selectedTarget) ? `${playerName(view.societyZones!.find(zone => zone.id === selectedTarget)!.playerId)}的秘社` : selectedTarget ? '所选目标' : '尚未选择');
   const confirmTarget = (action: Action) => {
     if (!activeGroup || actionBusy || submittedDraft.current || unavailable(action) || !matchingActions.includes(action as LegalAction)) return;
     submittedDraft.current = true;

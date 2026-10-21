@@ -1135,8 +1135,7 @@ fn jc046_existing_granted_renown_and_combat_glory_remain_optional() {
             g.effects.push_back(Effect::Declare { declaration: d });
         } else {
             g.window = Some(Window::After(2, 2));
-            let region = g.regions[2].card.id.clone();
-            g.declare_region_renown(2, &region);
+            g.complete_influence_contest(2);
         }
         g.drive().unwrap();
         let mut t = Trace::new(

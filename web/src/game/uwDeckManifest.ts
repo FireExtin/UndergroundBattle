@@ -11,8 +11,9 @@ export type UwPlayerMapping = {
 };
 export type UwSocietyMapping = { sourcePath: string; targetId: string; name: string };
 export const UW_SOURCE_SHA = '0d60c78b68697867697f20f0c171e41445735cc4';
+// Original identity baseline; v2 corrects three icon records against the same original images.
 export const UW_REVIEWED_TARGET_SHA = 'd98117d188cfc65f4e29fb757dfcf9accdd545e5';
-export const UW_MANIFEST_VERSION = 'uwpro-deck-preview-v1';
+export const UW_MANIFEST_VERSION = 'uwpro-deck-preview-v2-icon-corrections';
 export const UW_PLAYER_MAPPINGS: readonly UwPlayerMapping[] = [
   {"sourcePath":"res://Cards/Data/PlayerCards/BQ/BQ028_shuigoushuqunmitan.tres","targetId":"BQ028","name":"水沟鼠群密探","kind":"character","color":"蓝","cost":2,"permanent":[0,0,0],"temporary":[1,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/BQ/BQ030_caidingguan.tres","targetId":"BQ030","name":"裁定官","kind":"character","color":"蓝","cost":2,"permanent":[0,0,0],"temporary":[0,0,1]},
@@ -20,7 +21,7 @@ export const UW_PLAYER_MAPPINGS: readonly UwPlayerMapping[] = [
   {"sourcePath":"res://Cards/Data/PlayerCards/BQ/BQ040_xianxue.tres","targetId":"BQ040","name":"鲜血","kind":"attachment","color":"蓝","cost":1,"permanent":[0,0,0],"temporary":[0,0,0],"notes":["非角色防御的空值/0/-1记法不同；保留当前目录定义。"]},
   {"sourcePath":"res://Cards/Data/PlayerCards/BQ/BQ078_zhuanyeqingliyuan.tres","targetId":"BQ078","name":"专业清理员","kind":"character","color":"黑","cost":2,"permanent":[0,0,1],"temporary":[0,1,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/BQ/BQ083_suomingkulou.tres","targetId":"BQ083","name":"索命骷髅","kind":"character","color":"黑","cost":4,"permanent":[0,1,1],"temporary":[0,0,0]},
-  {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC029_xinshengxuezu.tres","targetId":"JC029","name":"新生血族","kind":"character","color":"蓝","cost":2,"permanent":[0,0,1],"temporary":[0,1,0],"quarantine":"卡面为临时战斗1、临时势力1；当前目录的势力图标分类不一致，暂不导入。"},
+  {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC029_xinshengxuezu.tres","targetId":"JC029","name":"新生血族","kind":"character","color":"蓝","cost":2,"permanent":[0,0,0],"temporary":[0,1,1],"notes":["本版已按同一原图纠正永久/临时图标分类；旧内核目录不自动导入。"]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC030_juxingbianfu.tres","targetId":"JC030","name":"巨型蝙蝠","kind":"character","color":"蓝","cost":3,"permanent":[0,2,0],"temporary":[0,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC031_huanlingshi.tres","targetId":"JC031","name":"唤灵师","kind":"character","color":"蓝","cost":3,"permanent":[0,0,1],"temporary":[1,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC032_xuezuzhanglao.tres","targetId":"JC032","name":"血族长老","kind":"character","color":"蓝","cost":5,"permanent":[1,1,2],"temporary":[0,0,0]},
@@ -29,7 +30,7 @@ export const UW_PLAYER_MAPPINGS: readonly UwPlayerMapping[] = [
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC037_kelisidinaaifuluode.tres","targetId":"JC037","name":"克里斯蒂娜·爱弗罗德","kind":"character","color":"蓝","cost":6,"permanent":[0,2,2],"temporary":[0,0,1]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC041_jinpo.tres","targetId":"JC041","name":"禁婆","kind":"character","color":"蓝","cost":4,"permanent":[0,1,0],"temporary":[0,1,1]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC042_morixintu.tres","targetId":"JC042","name":"末日信徒","kind":"character","color":"红","cost":1,"permanent":[0,1,0],"temporary":[0,0,0]},
-  {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC044_zainanshizhe.tres","targetId":"JC044","name":"灾难使者","kind":"character","color":"红","cost":3,"permanent":[1,1,0],"temporary":[0,0,1],"quarantine":"卡面为永久调查1、战斗1、势力1；当前目录的势力图标分类不一致，暂不导入。"},
+  {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC044_zainanshizhe.tres","targetId":"JC044","name":"灾难使者","kind":"character","color":"红","cost":3,"permanent":[1,1,1],"temporary":[0,0,0],"notes":["本版已按同一原图纠正永久/临时图标分类；旧内核目录不自动导入。"]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC045_zhongbaijisi.tres","targetId":"JC045","name":"钟摆祭司","kind":"character","color":"红","cost":4,"permanent":[1,2,0],"temporary":[0,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC046_wumiantuluzhe.tres","targetId":"JC046","name":"无面屠戮者","kind":"character","color":"红","cost":5,"permanent":[0,2,1],"temporary":[0,0,1]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JC/JC047_liehuozhongwei.tres","targetId":"JC047","name":"烈火重围","kind":"spell","color":"红","cost":3,"permanent":[0,0,0],"temporary":[0,0,0],"notes":["非角色防御的空值/0/-1记法不同；保留当前目录定义。"]},
@@ -70,7 +71,7 @@ export const UW_PLAYER_MAPPINGS: readonly UwPlayerMapping[] = [
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ045_jingyongzhishengji.tres","targetId":"JZ45","name":"警用直升机","kind":"character","color":"灰","cost":5,"permanent":[1,1,1],"temporary":[0,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ046_biantongdiao.tres","targetId":"JZ46","name":"狴犴铜雕","kind":"attachment","color":"灰","cost":2,"permanent":[0,0,1],"temporary":[0,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ048_jietoujiefei.tres","targetId":"JZ48","name":"街头劫匪","kind":"character","color":"黑","cost":1,"permanent":[0,1,0],"temporary":[0,0,0]},
-  {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ049_panshanxingshi.tres","targetId":"JZ49","name":"蹒跚行尸","kind":"character","color":"黑","cost":1,"permanent":[0,1,0],"temporary":[0,1,0],"quarantine":"卡面为临时战斗2；当前目录将其中1个列为永久图标，暂不导入。"},
+  {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ049_panshanxingshi.tres","targetId":"JZ49","name":"蹒跚行尸","kind":"character","color":"黑","cost":1,"permanent":[0,0,0],"temporary":[0,2,0],"notes":["本版已按同一原图纠正永久/临时图标分类；旧内核目录不自动导入。"]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ050_muxueshishigui.tres","targetId":"JZ50","name":"墓穴食尸鬼","kind":"character","color":"黑","cost":2,"permanent":[0,1,0],"temporary":[0,0,0]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ054_atamasifengxianyishi.tres","targetId":"JZ54","name":"阿塔玛斯奉献仪式","kind":"spell","color":"黑","cost":2,"permanent":[0,0,0],"temporary":[0,0,0],"notes":["非角色防御的空值/0/-1记法不同；保留当前目录定义。"]},
   {"sourcePath":"res://Cards/Data/PlayerCards/JZ/JZ055_chuanqiluomu.tres","targetId":"JZ55","name":"传奇落幕","kind":"spell","color":"黑","cost":2,"permanent":[0,0,0],"temporary":[0,0,0],"notes":["非角色防御的空值/0/-1记法不同；保留当前目录定义。"]},

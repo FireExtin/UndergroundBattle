@@ -1035,8 +1035,7 @@ fn gray_expansion_existing_granted_rewards_keep_valid_accept_stage_and_guard_met
                 g.effects.push_back(Effect::Declare { declaration: d });
             } else {
                 g.begin_window(Window::After(2, 2));
-                let region_instance = g.regions[2].card.id.clone();
-                g.declare_region_renown(2, &region_instance);
+                g.complete_influence_contest(2);
             }
             g.drive().unwrap();
             checkpoint(&g);

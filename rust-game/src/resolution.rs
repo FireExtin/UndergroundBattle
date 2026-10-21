@@ -459,10 +459,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -498,7 +498,7 @@ impl Game {
         )
     }
     pub(crate) fn paid_reveal_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(
+        card(&c.definition).cost.saturating_sub(self.jc033_reveal_reduction(actor)).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -751,7 +751,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066" | "JC041" | "BQ054") || spec.range != Range::SourceRegion
+                        && (!(spec.range == Range::SourceRegion && source.source_region_instance.is_some()) && !matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066" | "JC041" | "BQ054" | "CQ16") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -850,7 +850,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (source.card.definition == "MSJC11"
+            && (matches!(source.card.definition.as_str(), "MSJC11" | "JC033")
                 // WM023's own hand-entry action freezes a region UID. A fully
                 // canonical granted mobility destination retains the shared
                 // slot contract, independently of the recipient's print.
@@ -1127,10 +1127,11 @@ impl Game {
             self.observe_attachment_committed(&source.card.id);
             self.observe_bq080_attachment_entry(&source.card.id);
         }
+        let granted_raid = event == Event::Reveal && self.emit_jc038_raid(&source);
         for spec in rules::definition(&source.card.definition)
             .abilities
             .iter()
-            .filter(|s| s.event == Some(event))
+            .filter(|s| s.event == Some(event) && !(granted_raid && s.key.starts_with("raid-")))
         {
             // XQ37's printed if-condition must hold at the actual entry event.
             // Do not defer this gate to declaration processing: earlier queued
@@ -1153,7 +1154,7 @@ impl Game {
         }
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
-        self.validated_mobility_declaration(&declaration)?;
+        self.validated_cross_card_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         if self.batch20_declare_forced(&declaration)? { return Ok(()); }
@@ -1238,7 +1239,7 @@ impl Game {
         stage: DeclareChoice,
         selected: Vec<String>,
     ) -> RuleResult<()> {
-        self.validated_mobility_declaration(&declaration)?;
+        self.validated_cross_card_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
@@ -1339,6 +1340,17 @@ impl Game {
     // A discard is neither a play nor a death. Ownership of the graveyard is
     // independent of the player whose hand was used, including paid discards.
     pub(crate) fn discard_hand_card(&mut self, holder: usize, id: &str) -> RuleResult<PaidCost> {
+        Ok(self.discard_hand_cards(holder, &[id.into()])?.remove(0))
+    }
+    pub(crate) fn discard_hand_cards(&mut self, holder: usize, ids: &[String]) -> RuleResult<Vec<PaidCost>> {
+        let cards = ids.iter().map(|id| self.players[holder].hand.iter().find(|c| c.id == *id).cloned().ok_or_else(|| "弃牌引用失效".into())).collect::<RuleResult<Vec<_>>>()?;
+        if ids.iter().collect::<std::collections::BTreeSet<_>>().len() != ids.len() { return Err("弃牌重复".into()); }
+        let observers = self.capture_discard_observers(holder);
+        let paid = ids.iter().map(|id| self.discard_hand_card_unobserved(holder, id)).collect::<RuleResult<Vec<_>>>()?;
+        self.emit_discard_observed(holder, cards, observers);
+        Ok(paid)
+    }
+    fn discard_hand_card_unobserved(&mut self, holder: usize, id: &str) -> RuleResult<PaidCost> {
         let c = self.remove_hand(holder, id)?;
         let owner = c.owner;
         let old_instance = c.id.clone();
@@ -1478,7 +1490,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
-        self.validated_mobility_frame(&frame)?;
+        self.validated_cross_card_frame(&frame)?;
         self.validate_red_time_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
@@ -1513,6 +1525,13 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::JC034CombatDiscard { .. } => return self.batch20_combat_discard_start(frame),
+                Op::JC040RepressDiscard { .. } => return self.batch20_repress_start(frame),
+                Op::JC038GrantedRaid { grants } => self.jc038_raid_resolve(&frame, &grants)?,
+                Op::Batch20SearchEntry => return self.batch20_search_start(frame),
+                Op::CQ16LockLocalCharacter => {
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
+                }
                 Op::BQ080HideForAttachment { .. } => { self.hide_in_place(&frame.source.card.id); }
                 Op::JZ57MillAndOptionalDraw => return self.jz57_resolve(frame),
                 Op::BQ054LockTarget => {
@@ -2338,6 +2357,8 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::Batch20Repress { seat, regions } => return self.batch20_repress_complete(&frame, chooser, seat, &regions, &selected),
+            FrameChoice::Batch20SearchEntry => return self.batch20_search_complete(&frame, chooser, &selected),
             FrameChoice::Batch20OptionalDraw => return self.batch20_optional_draw(&frame, chooser, &selected),
             FrameChoice::JC068Upkeep => return self.jc068_upkeep_complete(&frame, chooser, &selected),
             FrameChoice::WM062AdjacentMove { before, hidden, baseline, region, region_instance, destinations } => {
@@ -2414,9 +2435,7 @@ impl Game {
             }
             FrameChoice::Discard { seat, redraw } => {
                 let count = selected.len();
-                for id in selected {
-                    self.discard_hand_card(seat, &id)?;
-                }
+                self.discard_hand_cards(seat, &selected)?;
                 if redraw {
                     self.draw(seat, count)?;
                 }

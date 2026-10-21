@@ -907,8 +907,7 @@ fn blue_expansion_rat_actual_granted_rewards_bind_frozen_source_and_reject_bad_p
             apply(&mut g, 0, a);
             pass_top(&mut g);
             g.begin_window(Window::After(2, 2));
-            let original = g.regions[2].card.id.clone();
-            g.declare_region_renown(2, &original);
+            g.complete_influence_contest(2);
         }
         g.drive().unwrap();
         let p = g

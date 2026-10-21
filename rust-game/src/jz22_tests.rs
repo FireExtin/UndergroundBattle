@@ -481,8 +481,7 @@ fn jz22_preserves_existing_granted_renown_program() {
     );
     pass_top(&mut g);
     g.begin_window(Window::After(2, 2));
-    let region = g.regions[2].card.id.clone();
-    g.declare_region_renown(2, &region);
+    g.complete_influence_contest(2);
     g.drive().unwrap();
     checkpoint(&g);
     accept(&mut g);
@@ -561,8 +560,7 @@ fn jz22_joint_key_and_program_replacement_and_runtime_region_transplant_rejected
     );
     pass_top(&mut g);
     g.begin_window(Window::After(2, 2));
-    let region = g.regions[2].card.id.clone();
-    g.declare_region_renown(2, &region);
+    g.complete_influence_contest(2);
     g.drive().unwrap();
     for accepted in [false, true] {
         let mut mutated = g.clone();

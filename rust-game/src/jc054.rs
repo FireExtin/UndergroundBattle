@@ -148,7 +148,7 @@ impl Game {
         Ok(())
     }
     fn jc054_validate_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if !own_ability(&d.ability) && d.source.card.definition != "JC054" { return Ok(()); }
         if !own_ability(&d.ability) {
             self.jc054_source(&d.source, d.actor)?;
@@ -260,7 +260,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jc054_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? || !related(f) { return Ok(()); }
+        if self.validated_cross_card_frame(f)? || !related(f) { return Ok(()); }
         self.jc054_source(&f.source, f.actor)?;
         if f.frame_id.is_empty() || !f.targets.is_empty() { return Err("JC054帧身份或多余目标无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {

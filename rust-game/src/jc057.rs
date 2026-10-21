@@ -101,7 +101,7 @@ impl Game {
         }
     }
     fn jc057_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if d.source.card.definition != "JC057" && !own(&d.ability) { return Ok(()); }
         self.jc057_source(d.actor, &d.source)?;
         if d.source.card.face_down || d.source.play_source.is_some()
@@ -118,7 +118,7 @@ impl Game {
         }
         // Mobility has its own canonical pending-container validation. Its
         // source snapshot intentionally differs from a Reveal/reward snapshot.
-        if self.validated_mobility_declaration(d)? { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         let options = match (d.ability.targets.as_slice(), stage) {
             ([slot], DeclareChoice::Target) => self.binding_options(d.actor, &d.source, slot),
             ([], DeclareChoice::Accept) => vec![ChoiceOption {
@@ -153,7 +153,7 @@ impl Game {
         Ok(seat)
     }
     pub(crate) fn validate_jc057_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? { return Ok(()); }
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if !related(f) { return Ok(()); }
         self.jc057_source(f.actor, &f.source)?;
         if f.frame_id.is_empty() { return Err("JC057缺少帧身份".into()); }

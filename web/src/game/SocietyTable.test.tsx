@@ -114,3 +114,19 @@ describe('per-seat society UI on synthetic authorized projections', () => {
     expect(submit).not.toHaveBeenCalled();
   });
 });
+
+it('renders society attachments and permits a server-bound society host target', () => {
+  const attachment = { instanceId: 'family-in-hand', cardId: 'JC033', name: '家族传承', kind: 'attachment', owner: 'p0', controller: 'p0', exhausted: false, faceDown: false };
+  const action: LegalAction = { id: 'attach-society', kind: 'play', cardId: attachment.instanceId, targetId: 'society:p0', abilityId: 'attach', label: '家族传承：结附 → 甲的秘社' };
+  const submit = vi.fn();
+  const { rerender } = render(<Table {...props} view={{ ...view, hand: [attachment], legalActions: [action] }} onAction={submit} />);
+  fireEvent.click(screen.getByRole('button', { name: '查看家族传承' }));
+  fireEvent.click(screen.getByRole('button', { name: '家族传承：结附' }));
+  fireEvent.click(screen.getByRole('button', { name: '选择甲的秘社' }));
+  fireEvent.click(screen.getByRole('button', { name: `确认 · ${action.label}` }));
+  expect(submit).toHaveBeenCalledExactlyOnceWith(action);
+  rerender(<Table {...props} view={{ ...view, version: 2, attachments: [{ ...attachment, instanceId: 'family-attached', hostId: 'society:p0' }], hand: [], legalActions: [] }} onAction={submit} />);
+  const zone = screen.getByRole('region', { name: '甲的秘社区' });
+  fireEvent.click(within(zone).getByRole('button', { name: '查看家族传承' }));
+  expect(screen.getByText(/附着于 甲 的秘社/)).toBeInTheDocument();
+});

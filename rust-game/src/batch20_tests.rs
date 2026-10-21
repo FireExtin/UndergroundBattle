@@ -176,3 +176,271 @@ fn batch20_satellite_upkeep_can_choose_payment_and_restore_while_waiting() {
     assert_eq!(resources(&g, 0), 0);
     assert!(!g.in_play(&id).unwrap().1.exhausted);
 }
+
+#[test]
+fn batch20_bq094_observes_own_death_even_in_its_own_destroy_wave_and_is_not_an_asset() {
+    let mut g = game();
+    let id = held(&mut g, "BQ094", 0);
+    reject(&mut g, 0, Action { card_id: Some(id), ..Action::new("asset") });
+    let observer = attach_region(&mut g, "BQ094", 0, 0);
+    let own = field(&mut g, "JC125", 0);
+    let teammate = field(&mut g, "JC125", 1);
+    let hidden = field(&mut g, "JC125", 0); g.board_mut(&hidden).unwrap().face_down = true;
+    let deaths = [observer, own, teammate, hidden].iter().map(|id| {
+        let (r,c) = g.in_play(id).unwrap(); (id.clone(), RemovalCause::Destroy, g.source_snapshot(c, r))
+    }).collect();
+    g.remove_death_batch(deaths); g.drive().unwrap(); restore(&mut g);
+    assert!(g.pending.is_none(), "BQ094 is mandatory");
+    assert_eq!(g.stack.len(), 1);
+    top(&mut g);
+    assert_eq!(g.regions[0].influence, [1,0]);
+}
+
+#[test]
+fn batch20_jz52_blocks_hand_faceup_but_allows_conceal_and_real_death_grave_play() {
+    let mut g = game(); let vizier = field(&mut g, "JZ52", 0);
+    fund(&mut g, 0, "JC031", 12);
+    let hand = held(&mut g, "JC031", 0);
+    reject(&mut g, 0, Action { card_id: Some(hand.clone()), region: Some(0), ..Action::new("deploy") });
+    assert!(g.legal_actions(0).iter().any(|a| a.action.kind == "conceal" && a.action.card_id.as_deref() == Some(&hand)));
+    let grave = g.make_card("JC031", 0); let id = grave.id.clone(); g.players[0].graveyard.push(grave);
+    act(&mut g, 0, Action { card_id: Some(id), region: Some(0), ..Action::new("deploy") });
+    assert!(matches!(g.stack[0].frame.as_ref().unwrap().source.play_source, Some(PlaySource::GraveyardByJZ52(_))));
+    g.remove_dead(&vizier, RemovalCause::Destroy); restore(&mut g);
+    top(&mut g);
+    assert!(g.regions[0].cards.iter().any(|c| c.definition == "JC031" && !c.face_down));
+}
+
+#[test]
+fn batch20_bq080_entry_return_and_scarab_attachment_trigger_have_separate_receipts() {
+    let mut g = game(); let source = field(&mut g, "BQ080", 0);
+    let c = g.make_card("JC125", 0); let grave = c.id.clone(); g.players[0].graveyard.push(c);
+    trigger(&mut g, &source, Event::Enter); choose(&mut g, vec![grave]); top(&mut g);
+    assert!(g.players[0].hand.iter().any(|c| c.definition == "JC125"));
+    let attachment = attach_region(&mut g, "BQ094", 0, 0);
+    trigger(&mut g, &attachment, Event::Enter);
+    assert!(matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { declaration, .. }
+        if declaration.ability.key == "batch20-bq080-hide"));
+    choose(&mut g, vec!["accept".into()]);
+    let mut forged = g.clone();
+    if let Op::BQ080HideForAttachment { observation: Some(o) } = &mut forged.stack[0].frame.as_mut().unwrap().steps[0].op { o.attachment.card.controller = 1; }
+    assert!(Game::from_persisted(&serde_json::to_string(&forged).unwrap()).is_err());
+    top(&mut g);
+    assert!(g.regions[0].cards.iter().any(|c| c.definition == "BQ080" && c.face_down && c.id != source));
+}
+
+#[test]
+fn batch20_jz57_grants_real_skeleton_sacrifice_and_optional_draw_after_short_mill() {
+    let mut g = game(); let host = field(&mut g, "JC125", 0);
+    let c = g.make_card("JZ57", 0); let tattoo = c.id.clone();
+    g.attachments.push(Attachment { card: c, host_id: host.clone() });
+    let (_,c) = g.board(&host).unwrap();
+    assert!(g.current_subtypes(c).iter().any(|s| s == "骷髅"));
+    deck_cards(&mut g, 2, &["JC125"]); deck_cards(&mut g, 0, &["JC125"]);
+    act(&mut g, 0, Action { card_id: Some(tattoo), ability_id: Some("batch20-jz57-mill".into()),
+        target_id: Some("p2".into()), cost_selected: Some(vec![host]), ..Action::new("activate") });
+    assert!(g.attachments.is_empty(), "paying the host also removes the tattoo");
+    while g.pending.is_none() { pass(&mut g); }
+    assert!(g.players[2].deck.is_empty() && !g.players[2].eliminated);
+    assert_eq!(g.players[2].graveyard.len(), 1); restore(&mut g);
+    choose(&mut g, vec!["draw".into()]);
+    assert_eq!(g.players[0].hand.len(), 1);
+}
+
+#[test]
+fn batch20_jc033_reduces_only_own_paid_reveal_and_search_survives_its_sacrifice() {
+    let mut g = game(); society(&mut g, 0); fund(&mut g, 0, "JC031", 4);
+    let c = g.make_card("JC033", 0); let id = c.id.clone();
+    g.attachments.push(Attachment { card: c, host_id: "society:p0".into() });
+    let c = g.make_card("JC031", 0);
+    assert_eq!(g.paid_reveal_cost(0, &c), crate::catalog::card("JC031").cost - 1);
+    assert_eq!(g.paid_reveal_cost(1, &c), crate::catalog::card("JC031").cost);
+    assert_eq!(g.effective_cost(0, &c), crate::catalog::card("JC031").cost);
+    let eligible = deck_cards(&mut g, 0, &["JC031", "JC125"])[0].clone();
+    act(&mut g, 0, Action { card_id: Some(id.clone()), ability_id: Some("batch20-jc033-search".into()), region: Some(1), ..Action::new("activate") });
+    assert!(g.in_play(&id).is_none());
+    while g.pending.is_none() { pass(&mut g); }
+    assert_eq!(g.pending.as_ref().unwrap().choice.options.len(), 1);
+    choose(&mut g, vec![eligible]);
+    assert!(g.regions[1].cards.iter().any(|c| c.definition == "JC031" && c.face_down));
+    assert_eq!(g.players[0].deck.len(), 1);
+}
+
+#[test]
+fn batch20_cq16_search_preserves_original_region_and_filters_exact_printed_cost() {
+    let mut g = game(); let source = field(&mut g, "CQ16", 0); fund(&mut g, 0, "JC063", 1);
+    let hidden = field(&mut g, "JC125", 0); g.board_mut(&hidden).unwrap().face_down = true;
+    trigger(&mut g, &source, Event::Enter);
+    assert!(g.pending.as_ref().unwrap().choice.options.iter().any(|o| o.id == source));
+    assert!(!g.pending.as_ref().unwrap().choice.options.iter().any(|o| o.id == hidden));
+    choose(&mut g, vec![source.clone()]); top(&mut g);
+    assert_eq!(g.board(&source).unwrap().1.lock_markers, 1);
+    let eligible = deck_cards(&mut g, 0, &["BQ054", "CQ16", "JC125"])[0].clone();
+    act(&mut g, 0, Action { card_id: Some(source.clone()), ability_id: Some("batch20-cq16-search".into()), ..Action::new("activate") });
+    g.remove_dead(&source, RemovalCause::Destroy);
+    while g.pending.is_none() { pass(&mut g); }
+    assert_eq!(g.pending.as_ref().unwrap().choice.options.len(), 1);
+    choose(&mut g, vec![eligible]);
+    assert!(g.regions[0].cards.iter().any(|c| c.definition == "BQ054" && !c.face_down));
+    assert_eq!(g.players[0].deck.len(), 2);
+}
+
+#[test]
+fn batch20_jc038_combines_granted_and_printed_raid_and_keeps_event_time_grant() {
+    let mut g = game(); let leader = field(&mut g, "JC038", 1);
+    let source = field(&mut g, "JC029", 0); let victim = field(&mut g, "JZ52", 2);
+    trigger(&mut g, &source, Event::Reveal);
+    assert!(g.pending.as_ref().unwrap().choice.title.contains("袭击2"));
+    choose(&mut g, vec![victim.clone()]);
+    g.remove_dead(&leader, RemovalCause::Destroy); restore(&mut g);
+    assert_eq!(g.stack.len(), 1); top(&mut g);
+    assert_eq!(g.board(&victim).unwrap().1.damage, 2);
+}
+
+#[test]
+fn batch20_jc038_self_sacrifice_still_draws_after_empty_or_victim_chosen_discard() {
+    for empty in [false, true] {
+        let mut g = game(); let source = field(&mut g, "JC038", 0); deck_cards(&mut g, 0, &["JC125"]);
+        let hand = if empty { None } else { Some(held(&mut g, "JC125", 2)) };
+        act(&mut g, 0, Action { card_id: Some(source.clone()), ability_id: Some("batch20-jc038-discard-draw".into()),
+            cost_selected: Some(vec![source.clone()]), target_id: Some("p2".into()), ..Action::new("activate") });
+        assert!(g.board(&source).is_none());
+        if let Some(hand) = hand {
+            while g.pending.is_none() { pass(&mut g); }
+            assert_eq!(g.pending.as_ref().unwrap().seat, 2); choose(&mut g, vec![hand]);
+        } else { top(&mut g); }
+        assert_eq!(g.players[0].hand.len(), 1);
+    }
+}
+
+#[test]
+fn batch20_jc040_aggregates_one_discard_event_and_represses_across_regions_once() {
+    let mut g = game(); field(&mut g, "JC040", 0);
+    let ally = held(&mut g, "JC125", 1); g.discard_hand_card(1, &ally).unwrap();
+    assert!(g.effects.is_empty());
+    let ids = (0..3).map(|_| held(&mut g, "JC125", 2)).collect::<Vec<_>>();
+    g.regions[0].influence = [0,1]; g.regions[1].influence = [0,1];
+    g.discard_hand_cards(2, &ids).unwrap();
+    assert_eq!(g.effects.len(), 1);
+    g.drive().unwrap(); restore(&mut g);
+    choose(&mut g, vec!["p3".into()]); // Can repress a different player from the discarder.
+    while g.pending.is_none() { pass(&mut g); }
+    assert_eq!(g.pending.as_ref().unwrap().seat, 3);
+    assert_eq!(g.pending.as_ref().unwrap().choice.min, Some(2)); // X=3, only two remain.
+    let ids = g.pending.as_ref().unwrap().choice.options.iter().map(|o| o.id.clone()).collect();
+    choose(&mut g, ids);
+    assert_eq!(g.regions[0].influence, [0,0]); assert_eq!(g.regions[1].influence, [0,0]);
+    let deck = g.players[2].deck.len(); g.mill_cards(2, 2); assert!(deck >= 2 && g.effects.is_empty());
+}
+
+#[test]
+fn batch20_jc034_requires_its_own_actual_vampire_combat_contribution() {
+    let mut g = game(); society(&mut g, 0);
+    let c = g.make_card("JC034", 0); let path = c.id.clone();
+    g.attachments.push(Attachment { card:c, host_id:"society:p0".into() });
+    field(&mut g, "JC029", 1); // A teammate alone does not qualify.
+    assert!(g.jc034_combat_observers(0, 0).is_empty());
+    let vampire = field(&mut g, "JC029", 0);
+    g.board_mut(&vampire).unwrap().exhausted = true;
+    assert!(g.jc034_combat_observers(0, 0).is_empty());
+    g.board_mut(&vampire).unwrap().exhausted = false;
+    let hand = held(&mut g, "JC125", 2);
+    g.reward(0, 0, 1, 1).unwrap();
+    g.remove_dead(&vampire, RemovalCause::Destroy); g.remove_dead(&path, RemovalCause::Destroy);
+    g.drive().unwrap(); restore(&mut g);
+    while !matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { declaration,.. } if declaration.source.card.definition == "JC034") { resolve_choice(&mut g); }
+    choose(&mut g, vec!["p2".into()]);
+    while g.pending.is_none() { pass(&mut g); }
+    assert_eq!(g.pending.as_ref().unwrap().seat, 2);
+    choose(&mut g, vec![hand]);
+    assert!(g.players[2].hand.is_empty());
+}
+
+#[test]
+fn batch20_corrected_printed_icons_apply_only_to_current_kernel_and_initiative() {
+    let mut g = game();
+    for (id, initiative, other) in [
+        ("JC029", Icons { investigation:0, combat:1, influence:1 }, Icons::default()),
+        ("JZ49", Icons { investigation:0, combat:2, influence:0 }, Icons::default()),
+        ("JC044", Icons { investigation:1, combat:1, influence:1 }, Icons { investigation:1, combat:1, influence:1 }),
+    ] {
+        let instance = field(&mut g, id, 0);
+        g.first_team = 0; assert_eq!(g.icons(g.board(&instance).unwrap().1, 0), initiative, "{id} first");
+        g.first_team = 1; assert_eq!(g.icons(g.board(&instance).unwrap().1, 0), other, "{id} second");
+        g.board_mut(&instance).unwrap().exhausted = true;
+        assert_eq!(g.icons(g.board(&instance).unwrap().1, 0), Icons::default());
+    }
+    restore(&mut g);
+}
+
+#[test]
+fn batch20_jc067_runs_a_second_full_influence_contest_then_one_renown() {
+    let mut g = game(); let mayor = field(&mut g, "JC067", 0);
+    // Equal influence totals avoid an Award; renown waits for both comparisons.
+    field(&mut g, "JC038", 2);
+    assert!(!g.board(&mayor).unwrap().1.exhausted);
+    g.begin_window(Window::Before(0,2));
+    g.close_window().unwrap(); g.drive().unwrap(); restore(&mut g);
+    assert_eq!(g.influence_contests[0].completed, 1); assert!(!g.influence_contests[0].ended);
+    assert!(g.pending.is_none());
+    g.close_window().unwrap(); assert_eq!(g.window, Some(Window::Before(0,2)));
+    g.close_window().unwrap(); g.drive().unwrap(); restore(&mut g);
+    assert_eq!(g.influence_contests[0].completed, 2); assert!(g.influence_contests[0].ended);
+    assert!(matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { declaration, .. } if declaration.ability.key == "renown"));
+    choose(&mut g, vec!["accept".into()]); top(&mut g);
+    assert_eq!(g.regions[0].influence, [1,0]);
+    g.close_window().unwrap(); assert_eq!(g.window, Some(Window::Before(1,0)));
+}
+
+#[test]
+fn batch20_jc067_leaving_and_returning_does_not_reset_completed_contests() {
+    let mut g = game(); let mayor = field(&mut g, "JC067", 0); g.board_mut(&mayor).unwrap().exhausted = true;
+    g.begin_window(Window::Before(0,2)); g.close_window().unwrap(); g.drive().unwrap();
+    g.return_hand(&mayor); field(&mut g, "JC067", 0);
+    g.regions[0].cards.iter_mut().for_each(|c| c.exhausted = true);
+    g.close_window().unwrap(); g.close_window().unwrap(); g.drive().unwrap(); restore(&mut g);
+    assert_eq!(g.influence_contests[0].completed, 2);
+    g.close_window().unwrap(); assert_eq!(g.window, Some(Window::Before(1,0)));
+}
+
+#[test]
+fn batch20_jc067_loss_of_grant_ends_region_without_skipping_final_responses() {
+    let mut g = game(); let mayor = field(&mut g, "JC067", 0); g.board_mut(&mayor).unwrap().exhausted = true;
+    g.begin_window(Window::Before(0,2)); g.close_window().unwrap(); g.drive().unwrap();
+    g.return_hand(&mayor);
+    g.close_window().unwrap();
+    assert_eq!(g.window, Some(Window::After(0,2)));
+    assert!(g.influence_contests[0].ended); assert_eq!(g.effects.len(), 1);
+    g.drive().unwrap(); restore(&mut g);
+    g.close_window().unwrap(); assert_eq!(g.window, Some(Window::Before(1,0)));
+}
+
+#[test]
+fn batch20_jc067_scored_region_replacement_cannot_receive_an_extra_comparison() {
+    let mut g = game(); field(&mut g, "JC067", 0);
+    let old = g.regions[0].card.id.clone();
+    g.begin_window(Window::Before(0,2)); g.close_window().unwrap(); g.drive().unwrap();
+    assert!(matches!(g.window, Some(Window::Win(0,0))));
+    assert!(g.influence_contests[0].ended);
+    drain(&mut g);
+    // Complete the win response window and its ordinary return/score decisions.
+    for _ in 0..40 {
+        if g.regions[0].card.id != old { break; }
+        if g.pending.is_some() { resolve_choice(&mut g); } else { pass(&mut g); }
+    }
+    assert_ne!(g.regions[0].card.id, old); restore(&mut g);
+    assert!(!g.continue_influence_contests(0));
+}
+
+#[test]
+fn batch20_optional_observation_rejects_replayed_event_and_forced_choice_rewrites() {
+    let mut g = game(); field(&mut g, "JC040", 0); let id = held(&mut g, "JC125", 2);
+    g.discard_hand_card(2, &id).unwrap(); g.drive().unwrap(); restore(&mut g);
+    let mut bad = g.clone(); bad.pending.as_mut().unwrap().choice.min = Some(1);
+    assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
+    let mut bad = g.clone();
+    if let ChoiceResolution::Declare { declaration, .. } = &bad.pending.as_ref().unwrap().resolution {
+        bad.effects.push_back(Effect::Declare { declaration: declaration.clone() });
+    }
+    assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
+}

@@ -90,7 +90,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_xq23_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if self.validated_mobility_declaration(d)? || d.source.card.definition != "XQ23" && !own(&d.ability) { return Ok(()); }
+        if self.validated_cross_card_declaration(d)? || d.source.card.definition != "XQ23" && !own(&d.ability) { return Ok(()); }
         self.xq23_source(&d.source, d.actor)?;
         if d.source.card.face_down || d.source.play_source.is_some()
             || !same(&d.ability, &self.xq23_granted(&d.ability.key, &d.source)?) {
@@ -99,7 +99,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_xq23_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if self.validated_mobility_frame(f)? || !related(f) { return Ok(()); }
+        if self.validated_cross_card_frame(f)? || !related(f) { return Ok(()); }
         self.xq23_source(&f.source, f.actor)?;
         if f.frame_id.is_empty() { return Err("XQ23缺少冻结帧身份".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
@@ -166,7 +166,7 @@ impl Game {
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_xq23_frame(f)?;
-                if related(f) && !self.validated_mobility_frame(f)? {
+                if related(f) && !self.validated_cross_card_frame(f)? {
                     if !ids.insert(f.frame_id.clone()) || item.id != f.frame_id || item.controller != f.actor
                         || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked)
                         || item.target != f.targets.first().map(|t| t.id.clone()) {
@@ -205,7 +205,7 @@ impl Game {
             match &p.resolution {
                 ChoiceResolution::Frame { frame, .. } if related(frame) => return Err("XQ23原行动不产生待选续体".into()),
                 ChoiceResolution::Declare { declaration: d, stage } if d.source.card.definition == "XQ23" || own(&d.ability) => {
-                    if self.validated_mobility_declaration(d)? { return Ok(()); }
+                    if self.validated_cross_card_declaration(d)? { return Ok(()); }
                     self.validate_xq23_declaration(d)?;
                     let expected = Choice { id: p.choice.id.clone(), kind: "trigger".into(), title: format!("{}：{}", catalog::card("XQ23").name, d.ability.label), description: "选择符合数量限制的选项，然后确认。".into(), player_id: player_id(d.actor), options: vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }], preview_cards: vec![], min: Some(0), max: Some(1), amount: None, allow_decline: Some(true) };
                     if !matches!(stage, DeclareChoice::Accept) || p.seat != d.actor || p.choice.id.is_empty() || !same(&p.choice, &expected) {
