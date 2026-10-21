@@ -394,5 +394,13 @@
       "invalid": 0
     }
   },
-  "recordedAt": "2026-10-21T13:50:17.361668+00:00"
+  "recordedAt": "2026-10-21T13:50:17.361668+00:00",
+  "carriedFixes": [
+    {
+      "id": "B20-UX-JC065-target-roles",
+      "status": "fixedLocally; notDeployed",
+      "evidence": "docs/evidence/batch20-2026-10-21/jc065-target-roles.json",
+      "countedAsNewCard": false
+    }
+  ]
 }

@@ -5,10 +5,14 @@ import './response-intent.css';
 
 export function StackTargets({ effect, view }: { effect: StackEffect; view: View }) {
   if (!effect.targetSummaries?.length) return null;
+  // JC065's existing server frame binds region, sacrifice opponent, repression
+  // player in this order. Retain separate roles even when both players match.
+  const roles = effect.abilityId === 'batch20-jc065-interrogate' && effect.targetSummaries.length === 3
+    ? ['地区', '牺牲暗藏者的对手', '遏制对象'] : [];
   return <ul className="hg-stack-targets" aria-label="公开目标">{effect.targetSummaries.map((target, index) => {
     const owner = view.players.find(player => player.id === target.owner)?.name;
     return <li key={`${target.instanceId}-${index}`} data-target-instance={target.instanceId} data-target-valid={target.valid} data-target-status={target.status}>
-      <span><b>{target.label}</b>{owner && <small> · {owner} 拥有</small>}{target.region !== undefined && <small> · 地区 {target.region + 1}</small>}</span>
+      <span>{roles[index] && `${roles[index]}：`}<b>{target.label}</b>{owner && <small> · {owner} 拥有</small>}{target.region !== undefined && <small> · 地区 {target.region + 1}</small>}</span>
       <em className={target.valid ? '' : 'hg-target-invalid'}>{target.status === 'guardAccepted' ? '已进入结算' : target.valid ? '有效目标' : target.invalidReason || '目标已失效'}</em>
     </li>;
   })}</ul>;

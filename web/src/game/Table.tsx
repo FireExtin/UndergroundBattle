@@ -34,36 +34,47 @@ function regionLabel(index: number, regions: Region[]) {
   const region = regions.find(item => item.index === index);
   return `地区 ${index + 1}${region ? ` · ${region.name}` : ''}`;
 }
-function actionLabel(action: LegalAction, regions: Region[]) {
+function actionLabel(action: LegalAction, regions: Region[], players: Player[]) {
+  if (action.abilityId === 'batch20-jc065-interrogate') {
+    const name = (id?: string) => players.find(player => player.id === id)?.name || '玩家';
+    return `审问嫌疑人 · 牺牲暗藏者的对手：${name(action.targetId)} · 遏制对象：${name(action.selected?.[0])} · 地区：${action.region === undefined ? '尚未选择' : regionLabel(action.region, regions)}`;
+  }
   if (action.region === undefined) return action.label;
   const destination = regionLabel(action.region, regions);
   const arrow = action.label.lastIndexOf('→');
   return arrow < 0 ? `${action.label} · ${destination}` : `${action.label.slice(0, arrow + 1)} ${destination}`;
+}
+function groupLabel(group: ObjectActionGroup, players: Player[]) {
+  const action = group.actions[0];
+  return action.abilityId === 'batch20-jc065-interrogate'
+    ? `审问嫌疑人 · 遏制对象：${players.find(player => player.id === action.selected?.[0])?.name || '玩家'}`
+    : group.label;
 }
 /** Display-only split of a grouped label's cost clause; accessible names and payloads keep the full label. */
 function costParts(label: string): [string, string | undefined] {
   const at = label.indexOf('（费用：');
   return at < 0 ? [label, undefined] : [label.slice(0, at).trim(), label.slice(at + 1).replace(/）$/, '')];
 }
-function ActionButtons({ actions, busy, onAction, regions = [], onRegionPreview, confirm = false, unavailable }: { actions: LegalAction[]; busy: boolean; onAction: (action: Action) => void; regions?: Region[]; onRegionPreview?: (region: number | null) => void; confirm?: boolean; unavailable?: (action: Action) => boolean }) {
+function ActionButtons({ actions, busy, onAction, regions = [], players = [], onRegionPreview, confirm = false, unavailable }: { actions: LegalAction[]; busy: boolean; onAction: (action: Action) => void; regions?: Region[]; players?: Player[]; onRegionPreview?: (region: number | null) => void; confirm?: boolean; unavailable?: (action: Action) => boolean }) {
   return <div className="hg-actions">{actions.map(action => <button type="button" key={action.id} data-action-id={action.id} data-action-kind={action.kind} data-action-region={action.region} aria-controls={action.region === undefined ? undefined : `hg-region-${action.region}`} className={`hg-button ${['start', 'restart', 'ready'].includes(action.kind) ? 'hg-button-primary' : action.kind === 'pass' ? 'hg-button-quiet' : 'hg-button-action'}${confirm ? ' hg-button-confirm' : ''}`} disabled={busy || unavailable?.(action)} onClick={() => onAction(action)} title={unavailable?.(action) ? '目标当前未显示，请等待牌桌更新。' : action.description}
     onMouseEnter={() => onRegionPreview?.(action.region ?? null)} onMouseLeave={() => onRegionPreview?.(null)} onFocus={() => onRegionPreview?.(action.region ?? null)} onBlur={() => onRegionPreview?.(null)} onPointerDown={() => onRegionPreview?.(action.region ?? null)}>
-    <span>{confirm ? '确认 · ' : ''}{actionLabel(action, regions)}</span>{action.description && <small>{action.description}</small>}
+    <span>{confirm ? '确认 · ' : ''}{actionLabel(action, regions, players)}</span>{action.description && <small>{action.description}</small>}
   </button>)}</div>;
 }
 
-function ObjectActionButtons({ groups, busy, onSelect, onAction, regions, unavailable }: {
+function ObjectActionButtons({ groups, busy, onSelect, onAction, regions, players, unavailable }: {
   groups: ObjectActionGroup[]; busy: boolean; onSelect: (group: ObjectActionGroup) => void;
-  onAction: (action: Action) => void; regions: Region[]; unavailable: (action: Action) => boolean;
+  onAction: (action: Action) => void; regions: Region[]; players: Player[]; unavailable: (action: Action) => boolean;
 }) {
   return <div className="hg-object-actions">{groups.map(group => {
     const destination = group.actions.some(action => action.cardId && (action.targetId
       || regions.some(region => region.index === action.region)));
     const description = group.actions[0].description;
-    const [name, cost] = costParts(group.label);
-    return destination ? <button key={group.key} type="button" className="hg-button hg-button-action" aria-label={description ? `${group.label} · ${description}` : group.label} data-object-action={group.key} disabled={busy} onClick={() => onSelect(group)}>
+    const label = groupLabel(group, players);
+    const [name, cost] = costParts(label);
+    return destination ? <button key={group.key} type="button" className="hg-button hg-button-action" aria-label={description ? `${label} · ${description}` : label} data-object-action={group.key} disabled={busy} onClick={() => onSelect(group)}>
       <span>{name}</span>{cost && <span className="hg-action-cost">{cost}</span>}{description && <small>{description}</small>}<small>点选高亮{group.actions.some(action => action.targetId) ? '目标' : '地区'} → 确认</small>
-    </button> : <ActionButtons key={group.key} actions={group.actions} busy={busy} onAction={onAction} regions={regions} unavailable={unavailable} />;
+    </button> : <ActionButtons key={group.key} actions={group.actions} busy={busy} onAction={onAction} regions={regions} players={players} unavailable={unavailable} />;
   })}</div>;
 }
 
@@ -487,15 +498,17 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
       <section className="hg-hand-section" aria-label="你的手牌"><span className="hg-hand-label">你的手牌 <b>{view.hand.length}</b></span><div className="hg-hand" style={{ '--hg-card-count': Math.max(1, view.hand.length) } as CSSProperties}>{view.hand.map(item => <CardTile key={item.instanceId} card={item} definition={definitions.get(item.cardId || '')} viewerId={view.you} compact sameNameTag={tagFor(item)} actionable={hints.cards.has(item.instanceId)} actionHint={hints.cards.get(item.instanceId)} selected={selectedCard === item.instanceId} targeted={targetIds.has(item.instanceId)} onSelect={() => selectCard(item.instanceId)} onPreview={() => setHoveredCard(item.instanceId)} onPreviewEnd={() => setHoveredCard(null)} />)}{!view.hand.length && <p className="hg-empty">目前没有手牌。</p>}</div></section>
     </section>
     {(card || region) && <aside className="hg-inspector hg-inspector-active" aria-label="选牌行动"><div className="hg-section-title"><span className="hg-eyebrow">{browsingOnly ? '浏览牌桌 · 暂不可行动' : '当前可用行动'}</span><button className="hg-inspector-close" onClick={clearSelection} aria-label="关闭卡牌详情">×</button></div>
-      {card ? <><div className="hg-inspected-card" role="button" tabIndex={0} aria-label={`放大阅读${card.name}`} onClick={() => readCard(card)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); readCard(card); } }}><CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} /></div><button type="button" className="hg-small-read" onClick={() => readCard(card)}>放大文字与图标 ↗</button>{selectedAttachment ? <p className="hg-attachment-context">{attachmentContext(selectedAttachment)}</p> : objectContext(card) && <p className="hg-object-context">{objectContext(card)}</p>}{attachedCards.length > 0 && <section className="hg-attached-cards" aria-label="此角色的附属"><h3>附属 · {attachedCards.length} 张</h3>{attachedCards.map(item => <button key={item.instanceId} type="button" className="hg-attachment-link" data-attachment-instance={item.instanceId} data-attachment-host={item.hostId} onClick={() => readCard(item)} aria-label={`放大阅读附属${visibleCard(item, view.you).name}`}><span><strong>{visibleCard(item, view.you).name}</strong><small>{attachmentContext(item, false)}</small>{tagFor(item) && <small>同名对象 #{tagFor(item)}</small>}</span><span>阅读 ↗</span></button>)}{attachedCards.map(item => <button key={`action-${item.instanceId}`} type="button" className="hg-small-read" onClick={() => selectCard(item.instanceId)} aria-label={`查看附属动作${visibleCard(item, view.you).name}`}>查看{visibleCard(item, view.you).name}的动作</button>)}</section>}{lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗。</p>}<ObjectActionButtons groups={activeGroup ? [] : groups} busy={actionBusy} onSelect={beginTargeting} onAction={onAction} regions={activeRegions} unavailable={unavailable} />{!cardActions.length && <p className="hg-wait-note">当前时点此牌没有可执行行动，可继续浏览牌桌。</p>}</> : region && <><h2>{regionLabel(region.index, view.regions)}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p>{region.skipConfrontation && <p className="hg-skip-explanation">本回合略过对抗比较。</p>}<p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p><button type="button" className="hg-small-read" onClick={() => readCard({ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false })}>放大地区文字 ↗</button><section className="hg-attached-cards" aria-label="此地区的附属">{attachments.filter(item => item.hostId === region.id).map(item => <button type="button" key={item.instanceId} className="hg-attachment-link" onClick={() => selectCard(item.instanceId)} aria-label={`查看地区附属动作${visibleCard(item, view.you).name}`}><strong>{visibleCard(item, view.you).name}</strong><small>{attachmentContext(item, false)}</small>{tagFor(item) && <small>同名对象 #{tagFor(item)}</small>}</button>)}</section><ActionButtons actions={regionActions} busy={actionBusy} onAction={onAction} regions={activeRegions} onRegionPreview={setPreviewRegion} unavailable={unavailable} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}</>}
+      {card ? <><div className="hg-inspected-card" role="button" tabIndex={0} aria-label={`放大阅读${card.name}`} onClick={() => readCard(card)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); readCard(card); } }}><CardContent card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} /></div><button type="button" className="hg-small-read" onClick={() => readCard(card)}>放大文字与图标 ↗</button>{selectedAttachment ? <p className="hg-attachment-context">{attachmentContext(selectedAttachment)}</p> : objectContext(card) && <p className="hg-object-context">{objectContext(card)}</p>}{attachedCards.length > 0 && <section className="hg-attached-cards" aria-label="此角色的附属"><h3>附属 · {attachedCards.length} 张</h3>{attachedCards.map(item => <button key={item.instanceId} type="button" className="hg-attachment-link" data-attachment-instance={item.instanceId} data-attachment-host={item.hostId} onClick={() => readCard(item)} aria-label={`放大阅读附属${visibleCard(item, view.you).name}`}><span><strong>{visibleCard(item, view.you).name}</strong><small>{attachmentContext(item, false)}</small>{tagFor(item) && <small>同名对象 #{tagFor(item)}</small>}</span><span>阅读 ↗</span></button>)}{attachedCards.map(item => <button key={`action-${item.instanceId}`} type="button" className="hg-small-read" onClick={() => selectCard(item.instanceId)} aria-label={`查看附属动作${visibleCard(item, view.you).name}`}>查看{visibleCard(item, view.you).name}的动作</button>)}</section>}{lastHandCharacterToAsset && <p className="hg-strategy-note">转为资产后，手中将暂时没有角色。资产提供费用与忠诚，但不能参与对抗。</p>}<ObjectActionButtons groups={activeGroup ? [] : groups} busy={actionBusy} onSelect={beginTargeting} onAction={onAction} regions={activeRegions} players={view.players} unavailable={unavailable} />{!cardActions.length && <p className="hg-wait-note">当前时点此牌没有可执行行动，可继续浏览牌桌。</p>}</> : region && <><h2>{regionLabel(region.index, view.regions)}</h2><p>控制阈值 {region.threshold} · 赢得后 {region.points} 分</p>{region.skipConfrontation && <p className="hg-skip-explanation">本回合略过对抗比较。</p>}<p className="hg-rule-text">{definitions.get(region.cardId)?.text}</p><button type="button" className="hg-small-read" onClick={() => readCard({ instanceId: region.id, cardId: region.cardId, name: region.name, kind: 'region', owner: view.you, controller: view.you, exhausted: false, faceDown: false })}>放大地区文字 ↗</button><section className="hg-attached-cards" aria-label="此地区的附属">{attachments.filter(item => item.hostId === region.id).map(item => <button type="button" key={item.instanceId} className="hg-attachment-link" onClick={() => selectCard(item.instanceId)} aria-label={`查看地区附属动作${visibleCard(item, view.you).name}`}><strong>{visibleCard(item, view.you).name}</strong><small>{attachmentContext(item, false)}</small>{tagFor(item) && <small>同名对象 #{tagFor(item)}</small>}</button>)}</section><ActionButtons actions={regionActions} busy={actionBusy} onAction={onAction} regions={activeRegions} onRegionPreview={setPreviewRegion} unavailable={unavailable} />{!regionActions.length && <p className="hg-wait-note">选择手牌可查看向此地区派遣的行动。</p>}</>}
       {targetNotice && <p role="status" className="hg-target-notice">{targetNotice}</p>}
       {activeGroup && <section className="hg-object-targeting" aria-label="点选合法目标" data-targeting-action={activeGroup.key}>
-        <strong>{activeGroup.label}</strong><p role="status">{needsTarget && `目标：${targetLabel}`}{needsRegion && ` ${selectedRegion === null ? '尚未选择地区' : regionLabel(selectedRegion, view.regions)}`}</p>
+        <strong>{groupLabel(activeGroup, view.players)}</strong><p role="status">{activeGroup.actions[0].abilityId === 'batch20-jc065-interrogate'
+          ? <><span>牺牲暗藏者的对手：{targetLabel}</span> · <span>遏制对象：{playerName(activeGroup.actions[0].selected?.[0] || '')}（已由候选选定）</span> · <span>地区：{selectedRegion === null ? '尚未选择' : regionLabel(selectedRegion, view.regions)}</span></>
+          : <>{needsTarget && `目标：${targetLabel}`}{needsRegion && ` ${selectedRegion === null ? '尚未选择地区' : regionLabel(selectedRegion, view.regions)}`}</>}</p>
         {chosenTarget && <button type="button" className="hg-small-read" onClick={() => readCard(chosenTarget)}>放大阅读所选目标</button>}
         <p>点选高亮对象后确认。未高亮的对象不会改变目标。</p>
         <div className="hg-target-navigation"><button type="button" className="hg-button hg-button-quiet" onClick={focusTarget}>前往高亮对象</button><button type="button" className="hg-button hg-button-quiet" onClick={cancelTargeting}>取消选目标</button></div>
         {missingDestinations && <p role="status">部分目标当前未显示，无法选择这些目标。请等待牌桌更新，或取消后重新选择动作。</p>}
-        {matchingActions.length ? <div aria-label="确认目标行动"><ActionButtons confirm actions={matchingActions} busy={actionBusy} onAction={confirmTarget} regions={activeRegions} onRegionPreview={setPreviewRegion} /></div> : <button type="button" className="hg-button hg-button-primary" disabled>点选高亮对象后确认</button>}
+        {matchingActions.length ? <div aria-label="确认目标行动"><ActionButtons confirm actions={matchingActions} busy={actionBusy} onAction={confirmTarget} regions={activeRegions} players={view.players} onRegionPreview={setPreviewRegion} /></div> : <button type="button" className="hg-button hg-button-primary" disabled>点选高亮对象后确认</button>}
       </section>}
     </aside>}
     {hover && !reading && !activeGroup && <aside className="hg-card-hover" aria-label={`悬停阅读${hover.name}`} data-hover-card={hover.instanceId}><CardContent card={hover} definition={definitions.get(hover.cardId || '')} viewerId={view.you} /></aside>}
