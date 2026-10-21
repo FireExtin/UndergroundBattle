@@ -64,6 +64,7 @@ impl Game {
         self.validate_jc062_frame(&f)?;
         if f.targets.is_empty() { return Ok(false); }
         let inspected=f.targets.iter().map(|t|self.board(&t.id).map(|(_,c)|c.clone()).ok_or_else(||"检视原暗藏者失效".into())).collect::<RuleResult<Vec<_>>>()?;
+        for c in &inspected {self.observe_hidden_inspection(f.actor,&c.id);}
         self.choice(f.actor,KIND,TITLE.into(),vec![],0,0,None,ChoiceResolution::Frame {frame:Box::new(f),choice:FrameChoice::JC062Inspection {inspected}});
         self.pending.as_mut().unwrap().choice.allow_decline=Some(false);
         Ok(true)

@@ -1228,7 +1228,7 @@ impl Game {
         if !self.black_next20_trigger_available(&declaration) { return Ok(()); }
         let title = format!(
             "{}：{}",
-            card(&declaration.source.card.definition).name,
+            crate::batch3_trap::source_label(&declaration.source),
             spec.label
         );
         let (options, stage) = if !spec.modes.is_empty() {
@@ -1346,7 +1346,7 @@ impl Game {
         };
         let label = format!(
             "{}：{}",
-            card(&declaration.source.card.definition).name,
+            crate::batch3_trap::source_label(&declaration.source),
             declaration.ability.label
         );
         let paid = if declaration.source.card.definition == "JZ23" || (declaration.source.card.definition == "XG27" && declaration.ability.event == Some(Event::BlackCharacterDeathObserved))
@@ -1615,6 +1615,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::JZ26Trap { .. } => self.jz26_resolve(&frame)?,
                 Op::BQ026Attach { .. } => self.bq026_attach(&frame),
                 Op::BQ029SelfFeed { .. } => return self.bq029_feed_start(frame),
                 Op::BQ037FeedPair { .. } => return self.bq037_feed_start(frame),
@@ -1633,10 +1634,10 @@ impl Game {
                 Op::XG26AttachmentBarrier => self.xg26_grant_barrier(&frame)?,
                 Op::WM033ReturnSpellOrDisaster => return self.wm033_start(frame),
                 Op::JC043DestroyAttachment | Op::BQ042DestroyAttachment => {
-                    if let Some(t) = frame.targets.first() { self.remove_dead(&t.id, RemovalCause::Destroy); }
+                    if let Some(t) = frame.targets.first() { self.destroy_from_frame(&frame, &t.id); }
                 }
                 Op::JZ33ScorchDestroyedRegions => self.jz33_scorch()?,
-                Op::JZ37DestroyWorld => self.jz37_destroy_world(),
+                Op::JZ37DestroyWorld => self.jz37_destroy_world(frame.actor),
                 Op::JC052DestroyOtherOriginalRegionCharacters => self.jc052_destroy_others(&frame),
                 Op::JC095ConvertEnemyInfluenceInOriginalRegion => self.jc095_convert_enemy_influence(&frame),
                 Op::JZ35SacrificeReturnControlledHosts => self.jz35_resolve(&frame)?,
@@ -1674,7 +1675,7 @@ impl Game {
                 Op::DestroyTargetIfSealed => {
                     let host = &frame.targets.first().ok_or("缺少封印载体目标")?.id;
                     if self.sealed_cards.iter().any(|s| s.host_id == *host) {
-                        self.remove_dead(host, RemovalCause::Destroy);
+                        self.destroy_from_frame(&frame, host);
                     }
                 }
                 Op::JC032TopSixVampireHidden => return self.jc032_start(frame),
@@ -2063,7 +2064,7 @@ impl Game {
                         let c = self.reset_zone_card(c);
                         self.commit_owner_grave(c, None);
                     } else {
-                        self.remove_dead(&id, RemovalCause::Destroy);
+                        self.destroy_from_frame(&frame, &id);
                     }
                 }
                 Op::XQ27DestroyAllHidden => {
@@ -2072,7 +2073,7 @@ impl Game {
                         region.cards.iter().filter(|c| c.face_down)
                             .map(move |c| (c.id.clone(), RemovalCause::Destroy, game.source_snapshot(c, Some(r)))))
                         .collect();
-                    self.remove_death_batch(deaths);
+                    self.destroy_wave_as(frame.actor,deaths);
                 }
                 Op::JC050DestroyChosenRegionCharacters => {
                     let region = frame.chosen_region.ok_or("JC050缺少已选择地区")?;
@@ -2080,11 +2081,11 @@ impl Game {
                         .cards.iter().filter(|c| c.face_down || card(&c.definition).kind == "character")
                         .map(|c| (c.id.clone(), RemovalCause::Destroy, self.source_snapshot(c, Some(region))))
                         .collect();
-                    self.remove_death_batch(deaths);
+                    self.destroy_wave_as(frame.actor,deaths);
                 }
                 Op::Destroy(entity) => {
                     if let Some(id) = Self::frame_entity(&frame, entity) {
-                        self.remove_dead(id, RemovalCause::Destroy);
+                        self.destroy_from_frame(&frame, id);
                     }
                 }
                 Op::DrawIfActorHasInitiative { count } => {

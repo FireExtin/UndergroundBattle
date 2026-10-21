@@ -49,3 +49,18 @@ fn settle(g:&mut Game){for _ in 0..128{if let Some(p)=&g.pending{let ids=match &
     let mut g=game();field(&mut g,"BQ037",0);field(&mut g,"BQ030",0);let a=grave(&mut g,"XQ14",0);let b=grave(&mut g,"BQ040",0);g.players[0].deck=(0..5).map(|_|g.make_card("JC125",0)).collect();let id=field(&mut g,"JC029",0);g.enter_triggers(0,"JC029",&id,false);pending(&mut g);choose(&mut g,vec!["accept".into()]);pending(&mut g);choose(&mut g,vec![a]);choose(&mut g,vec![b]);let before=g.players[0].hand.len();
     for _ in 0..64{if let Some(p)=g.pending.clone(){assert!(matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.source.card.definition=="BQ030"));choose(&mut g,vec![p.choice.options[0].id.clone()]);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}assert_eq!(g.players[0].hand.len(),before+2);restore(&mut g);
 }
+#[test]fn batch3_entry_order_shared_producer_two_entries_in_one_queue_keeps_observer_references_distinct(){
+    let mut g=game();field(&mut g,"BQ037",0);
+    for _ in 0..2{let id=grave(&mut g,"JZ22",0);g.world_graveyard_entry(0,0,&id).unwrap();}
+    assert_eq!(g.entry_order_groups.len(),2);let all=g.entry_order_groups.iter().flat_map(|g|g.remaining.iter()).collect::<std::collections::BTreeSet<_>>();assert_eq!(all.len(),4);restore(&mut g);settle(&mut g);assert!(g.entry_order_groups.is_empty());restore(&mut g);
+}
+#[test]fn batch3_real_extra_paid_guard_public_reward_and_two_warrants_consume_once_through_restored_responses(){
+    let mut g=game();field(&mut g,"WM041",0);let host=field(&mut g,"JC029",0);fund(&mut g,0,"JC029",5);let blood=grave(&mut g,"XQ14",0);g.players[0].deck=(0..5).map(|_|g.make_card("JC125",0)).collect();
+    for name in ["赤鳞近卫","吸血蝙蝠群"]{let mut c=g.make_card("XQ26",2);c.named_character=Some(name.into());g.attachments.push(Attachment{card:c,host_id:"society:p2".into()});}
+    let bat=held(&mut g,"BQ026",0);deploy(&mut g,true);
+    for _ in 0..96{if let Some(p)=g.pending.clone(){let ids=match &p.resolution{ChoiceResolution::Declare{declaration:d,..} if d.source.card.definition=="BQ029"=>vec!["accept".into()],ChoiceResolution::Batch3EntryOrder{..}=>vec![p.choice.options[0].id.clone()],_=>panic!("unexpected first guard choice")};choose(&mut g,ids);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}
+    assert_eq!(g.resources(0),2);assert_eq!(g.players[0].hand.len(),1);assert_eq!(g.players[0].society_zone.exposure,0);assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="BQ029").count(),1);assert!(g.players[0].graveyard.iter().any(|c|c.id==blood));
+    act(&mut g,0,Action{card_id:Some(bat),region:Some(0),..Action::new("deploy")});
+    for _ in 0..96{if let Some(p)=g.pending.clone(){let ids=match &p.resolution{ChoiceResolution::Declare{declaration:d,..} if d.source.card.definition=="BQ026"=>vec![host.clone()],ChoiceResolution::Batch3EntryOrder{..}=>vec![p.choice.options[0].id.clone()],_=>panic!("unexpected public bat choice")};choose(&mut g,ids);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}
+    assert_eq!(g.resources(0),1);assert_eq!(g.players[0].society_zone.exposure,1);assert_eq!(g.players[0].hand.len(),1);assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="BQ026").count(),1);assert_eq!(g.players[2].graveyard.iter().filter(|c|c.definition=="XQ26").count(),2);assert!(g.attachments.is_empty());restore(&mut g);
+}

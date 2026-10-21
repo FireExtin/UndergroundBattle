@@ -8389,6 +8389,49 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "JZ26",
+      "name": "袖中毒物",
+      "kind": "character",
+      "subtypes": [
+        "蛇",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐匿；不能被装备结附；触发 当袖中毒物在暗藏者状态被敌方玩家检视或消灭时，若你的资产区具有两个蓝色图标，则随机消灭一个本地区上印刷费用最低的敌方角色。",
+      "keywords": [
+        "隐匿",
+        "不能被装备结附"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ26",
+        "image": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
+        "imageSha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

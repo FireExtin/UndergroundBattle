@@ -188,7 +188,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
       "sourceImageSha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": [
         "martialLawRedCostRing"
@@ -599,7 +599,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 2,
+    "unreviewedRuntimeCards": 1,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -934,6 +934,41 @@
         "jc044": 17,
         "jc052": 20,
         "bq030-name-filter": 3
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "nineteenCardPilot": {
+      "passed": 148,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "BQ042",
+        "WM030",
+        "WM033",
+        "WM035",
+        "BQ079",
+        "BQ087",
+        "BQ089",
+        "XG26",
+        "XG28",
+        "BQ026",
+        "BQ029",
+        "BQ037",
+        "JZ25",
+        "JZ26",
+        "JC062",
+        "JC064",
+        "XQ22",
+        "XQ26",
+        "WM041"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/nineteen-card-pilot.json",
+      "affectedFilters": {
+        "monitor": 14,
+        "bronze-inspection": 12,
+        "hidden-sweep": 11,
+        "jc052": 20,
+        "batch20": 30
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

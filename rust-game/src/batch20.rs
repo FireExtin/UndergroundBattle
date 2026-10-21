@@ -538,7 +538,7 @@ impl Game {
             .map(|c| (c.id.clone(), 1)).collect::<BTreeMap<_, _>>();
         self.damage(allocations)
     }
-    pub(crate) fn jz37_destroy_world(&mut self) {
+    pub(crate) fn jz37_destroy_world(&mut self,actor:usize) {
         // Freeze one simultaneous wave before losing any observers or control grants.
         let characters = self.regions.iter().enumerate().flat_map(|(r, region)|
             region.cards.iter().filter(|c| c.face_down || catalog::card(&c.definition).kind == "character")
@@ -550,7 +550,7 @@ impl Game {
                 self.source_snapshot(&a.card, self.attachment_region(a))))
             .chain(characters)
             .collect();
-        self.remove_death_batch(deaths);
+        self.destroy_wave_as(actor,deaths);
         self.destroy_all_regions();
     }
     fn validate_batch20_source(&self, actor: usize, source: &SourceSnapshot) -> RuleResult<()> {

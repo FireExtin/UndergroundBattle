@@ -901,6 +901,8 @@ pub struct Game {
     pub regions: Vec<Region>,
     #[serde(default)]
     pub attachments: Vec<Attachment>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub inspection_receipts: Vec<crate::batch3_trap::InspectionReceipt>,
     // Public, blank, out-of-play cards. They are deliberately absent from board().
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub sealed_cards: Vec<SealedCard>,

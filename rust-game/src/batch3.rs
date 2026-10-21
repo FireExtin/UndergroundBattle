@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037", "BQ029", "BQ026"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037", "BQ029", "BQ026", "JZ26"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "JZ26" => Some(crate::batch3_trap::definition()),
         "BQ026" => Some(crate::batch3_bats::definition()),
         "BQ029" => Some(crate::batch3_blood::bq029_definition()),
         "BQ037" => Some(crate::batch3_blood::bq037_definition()),
@@ -165,7 +166,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ026Attach { .. } | Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        Op::JZ26Trap { .. } | Op::BQ026Attach { .. } | Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
         | Op::BQ029SelfFeed { .. }
         | Op::BQ037FeedPair { .. } | Op::BQ037RevealVampire
         | Op::XQ26Name | Op::XQ26Wanted { .. }
@@ -204,6 +205,9 @@ fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
         .abilities
         .into_iter()
         .find(|printed| printed.key == a.key)?;
+    if a.key == "batch3-jz26-trap" {
+        if let [Op::JZ26Trap { observation }] = a.ops.as_slice() { expected.ops=vec![Op::JZ26Trap { observation:observation.clone() }]; }
+    }
     if a.key == "batch3-bq026-attach" {
         if let [Op::BQ026Attach { observation }] = a.ops.as_slice() { expected.ops = vec![Op::BQ026Attach { observation: observation.clone() }]; }
     }
@@ -335,6 +339,7 @@ impl Game {
         if d.ability.event == Some(Event::Prepare) && IMPLEMENTING.contains(&d.source.card.definition.as_str()) {
             return crate::jc035::validate_ability(&d.source.card.definition, &d.ability);
         }
+        if d.source.card.definition=="JZ26" {return self.validate_jz26_declaration(d);}
         if d.source.card.definition == "XQ26" { return self.validate_xq26_declaration(d); }
         if d.source.card.definition == "JZ25" {
             self.batch3_source(d.actor, &d.source)?;
@@ -367,6 +372,7 @@ impl Game {
         if self.validated_cross_card_frame(f)? || !related(f) {
             return Ok(());
         }
+        if f.source.card.definition=="JZ26" && !matches!(f.ability_key.as_str(),"deploy"|"reveal") {return self.validate_jz26_frame(f);}
         if crate::jc035::preparation_frame(f) { return self.validate_jc035_frame(f); }
         if f.source.card.definition == "JC062" { return self.validate_jc062_frame(f); }
         if f.source.card.definition == "XQ22" && !matches!(f.ability_key.as_str(), "deploy" | "reveal") { return self.validate_xq22_frame(f); }
@@ -516,6 +522,7 @@ impl Game {
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
         self.validate_entry_order_groups()?;
         self.validate_bq026_state()?;
+        self.validate_inspection_receipts()?;
         self.validate_attachment_barrier_modifiers()?;
         self.validate_bq079_markers()?;
         self.validate_named_characters()?;
@@ -525,6 +532,9 @@ impl Game {
             if matches!(ops, [Op::JZ25SealRandomHand])
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
+            }
+            if let [Op::JZ26Trap { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(),o.event_id.clone())) {return Err("同次检视或消灭不能重复毒物触发".into());}
             }
             if let [Op::BQ026Attach { observation: Some(o) }] = ops {
                 if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("蝙蝠群同次进入地区不能重复触发".into()); }
@@ -625,6 +635,7 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     self.batch3_reject_optional(declaration)?;
+                    if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
                     if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "WM035"
                         && declaration.ability.key == "batch3-wm035-host-death"

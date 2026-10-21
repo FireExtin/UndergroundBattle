@@ -7,7 +7,19 @@ use std::collections::BTreeSet;
 #[derive(Clone,Debug,Serialize,Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EntryOrderGroup{pub entry_instance:String,pub turn:u32,pub actor:usize,pub remaining:Vec<String>}
-fn key(d:&Declaration)->String{format!("{}:{}",d.source.card.id,d.ability.key)}
+fn key(d:&Declaration)->String{
+    // One observer may contribute to distinct entries before the queue drains.
+    // Qualify the existing reference with its actual observation, not just the
+    // observer UID and printed ability shared by all of those entries.
+    let event=match d.ability.ops.as_slice(){
+        [crate::rules::Op::BQ037FeedPair{observation:Some(o)}]=>Some(o.event_id.as_str()),
+        [crate::rules::Op::XQ26Wanted{observation:Some(o)}]=>Some(o.event_id.as_str()),
+        [crate::rules::Op::BQ029SelfFeed{observation:Some(o)}]=>Some(o.event_id.as_str()),
+        [crate::rules::Op::BQ026Attach{observation:Some(o)}]=>Some(o.event_id.as_str()),
+        _=>None,
+    };
+    if let Some(event)=event{format!("{}:{event}:{}",d.source.card.id,d.ability.key)}else{format!("{}:{}",d.source.card.id,d.ability.key)}
+}
 fn same<T:Serialize>(a:&T,b:&T)->bool{serde_json::to_value(a).unwrap()==serde_json::to_value(b).unwrap()}
 impl Game{
     pub(crate) fn batch3_register_entry_order(&mut self,entry:&str,previous:usize){

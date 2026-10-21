@@ -78,6 +78,7 @@ impl Game {
             winner_team: None,
             regions: vec![],
             attachments: vec![],
+            inspection_receipts: vec![],
             sealed_cards: vec![],
             region_return: None,
             world: vec![],
@@ -638,6 +639,7 @@ impl Game {
         next.apply_inner(seat, action)?;
         next.settle_deaths();
         next.drive()?;
+        next.prune_inspection_receipts();
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
         next.validate_batch3_state()?;
@@ -657,6 +659,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn apply_inner(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        if a.kind=="inspect-hidden" {return self.inspect_hidden_command(seat,&a);}
         if self.pending.is_some() {
             if a.kind != "choose" {
                 return Err("等待玩家完成选择".into());
@@ -763,6 +766,7 @@ impl Game {
                     ));
                     self.reset_passes();
                 } else {
+                    if rules::definition(&c.definition).traits.stealth {return Err("隐匿角色不能正面打出".into());}
                     if self.jc064_blocks_character(&c, r) { return Err("戒严地区不能正面打出非国家机构角色".into()); }
                     if rules::definition(&c.definition).traits.city_play_only
                         && !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市")
@@ -946,6 +950,7 @@ impl Game {
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
+        self.inspection_receipts.clear();
         self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
                 self.jc035_preparation = None;
@@ -1120,6 +1125,7 @@ impl Game {
         self.pending = None;
         self.effects.clear();
         self.entry_order_groups.clear();
+        self.inspection_receipts.clear();
         self.stack.clear();
         self.note(format!("团队 {} 获胜", team + 1));
         self.win_contexts.clear();
@@ -2671,8 +2677,9 @@ impl Game {
         }
     }
     pub fn legal_actions(&self, seat: usize) -> Vec<LegalAction> {
+        let inspections=self.jc057_inspection_actions(seat);
         if let Some(p) = &self.pending {
-            return if p.seat == seat {
+            let mut actions=if p.seat == seat {
                 vec![LegalAction {
                     action: Action {
                         kind: "choose".into(),
@@ -2687,8 +2694,10 @@ impl Game {
             } else {
                 vec![]
             };
+            actions.extend(inspections.into_iter().map(|(action,label)|LegalAction{id:serde_json::to_string(&action).unwrap(),source_zone_id:None,action,label,description:None}));
+            return actions;
         }
-        let mut candidates: Vec<(Action, String)> = vec![];
+        let mut candidates: Vec<(Action, String)> = inspections;
         if self.status == "lobby" {
             candidates.push((
                 Action::new("ready"),

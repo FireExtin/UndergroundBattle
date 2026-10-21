@@ -1,5 +1,8 @@
 mod batch3;
 mod batch3_bats;
+mod batch3_trap;
+#[cfg(test)]
+mod batch3_trap_tests;
 #[cfg(test)]
 mod batch3_bats_tests;
 mod batch3_entry_order;

@@ -59,7 +59,7 @@ impl Game {
             r.cards.iter().filter(move |source| source.definition == "JC057"
                 && source.controller == viewer && !source.face_down && !source.exhausted)
                 .filter_map(move |source| {
-                    let cards: Vec<_> = r.cards.iter().filter(|c| c.face_down).map(|c| {
+                    let cards: Vec<_> = r.cards.iter().filter(|c| c.face_down && self.jc057_inspection_known(viewer,&source.id,&c.id,region)).map(|c| {
                         let mut front = c.clone(); front.face_down = false;
                         // Inspect printed information; a hidden entity does not gain face-up stats.
                         self.card_view(&front, viewer, None, None)

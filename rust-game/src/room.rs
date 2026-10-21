@@ -418,7 +418,7 @@ impl RoomEnvelope {
                     }).collect()
             } else { vec![] };
             if !matches!(mine, Some(Decision::Composing { .. })) {
-                view.legal_actions.retain(|a| a.action.kind == "pass");
+                view.legal_actions.retain(|a| a.action.kind == "pass" || a.action.kind == "inspect-hidden");
             }
             ResponseWindowView {
                 id: w.id.clone(),
@@ -585,7 +585,8 @@ impl RoomEnvelope {
                 self.pacing.pause = None;
             }
             SessionAction::Game { action } => {
-                if self.pacing.window.is_some() {
+                let inspection=action.kind=="inspect-hidden";
+                if self.pacing.window.is_some() && !inspection {
                     return Err(failure(
                         "invalid_action",
                         "请先决定是否连锁，再通过响应提交或明确让过",
@@ -594,7 +595,7 @@ impl RoomEnvelope {
                 self.game
                     .apply_at_revision(seat, action.clone(), revision)
                     .map_err(|m| failure("invalid_action", m))?;
-                self.synchronize_window(now, true)
+                self.synchronize_window(now, !inspection)
                     .map_err(|m| failure("invalid_action", m))?;
             }
             SessionAction::BeginResponse {

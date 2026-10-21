@@ -249,6 +249,7 @@ impl Game {
         if !self.jz46_inspected_valid(&f, &inspected) {
             return Err("JZ46检视检查点无效".into());
         }
+        self.observe_hidden_inspection(f.actor,&inspected.id);
         self.choice(
             f.actor,
             CHOICE,

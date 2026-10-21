@@ -6,6 +6,7 @@ fn setup() -> (Game, String, String) {
     let source = u::field(&mut g, "JC057", 0);
     let hidden = u::field(&mut g, "JC052", 1);
     g.board_mut(&hidden).unwrap().face_down = true;
+    u::act(&mut g,0,Action{card_id:Some(source.clone()),target_id:Some(hidden.clone()),..Action::new("inspect-hidden")});
     (g, source, hidden)
 }
 #[test]
@@ -55,9 +56,9 @@ fn jc057_read_permission_tracks_ready_face_region_and_current_control() {
         let mut branch=g.clone();
         match mutation {
             0=>branch.board_mut(&source).unwrap().exhausted=true,
-            1=>branch.board_mut(&source).unwrap().face_down=true,
+            1=>{branch.hide_in_place_successor(&source);},
             2=>{let c=branch.regions[0].cards.remove(0);branch.regions[1].cards.push(c);},
-            3=>{branch.board_mut(&source).unwrap().controller=2;assert_eq!(branch.view(2).private_inspections.len(),1);},
+            3=>{branch.board_mut(&source).unwrap().controller=2;assert!(branch.view(2).private_inspections.is_empty());u::act(&mut branch,2,Action{card_id:Some(source.clone()),target_id:Some(hidden.clone()),..Action::new("inspect-hidden")});assert_eq!(branch.view(2).private_inspections.len(),1);},
             _=>{let c=branch.regions[0].cards.remove(0);branch.players[0].assets.push(c);},
         }
         assert!(branch.view(0).private_inspections.is_empty(),"mutation{mutation}");
@@ -72,6 +73,7 @@ fn jc057_read_permission_tracks_ready_face_region_and_current_control() {
 fn jc057_repeated_views_and_restore_are_pure_with_multiple_sources_and_hidden_cards() {
     let (mut g,_,_)=setup();u::field(&mut g,"JC057",0);
     let second=u::field(&mut g,"JC125",2);g.board_mut(&second).unwrap().face_down=true;
+    let reads=g.jc057_inspection_actions(0);for(a,_)in reads{u::act(&mut g,0,a);}
     assert_eq!(g.view(0).private_inspections.len(),2);
     assert!(g.view(0).private_inspections.iter().all(|p|p.cards.len()==2));
     let before=serde_json::to_string(&g).unwrap();
@@ -294,6 +296,8 @@ fn jc057_native84_oracles() {
         let reveal=Action{card_id:Some(source),..Action::new("reveal")};
         t.game(1,reveal.clone(),false);t.game(0,reveal,true);t.responses();
         assert_eq!(t.room.game.pending.as_ref().unwrap().choice.kind,"trigger");
+        let monitor=t.room.game.regions[0].cards.iter().find(|c|c.definition=="JC057" && !c.face_down).unwrap().id.clone();
+        t.game(0,Action{card_id:Some(monitor),target_id:Some(hidden),..Action::new("inspect-hidden")},true);
         assert_eq!(t.room.game.view(0).private_inspections.len(),1);
         t.choose(vec![player_id(target)]);t.responses();
         assert_eq!(t.room.game.pending.as_ref().unwrap().choice.kind,"jc057-hand-inspect");
@@ -326,11 +330,13 @@ fn jc057_native84_oracles() {
         let mut g=u::game();g.room_id=format!("{:024x}",840200+mode_index);
         let source=u::field(&mut g,"JC057",source_seat);let hidden=u::field(&mut g,"JC052",2);g.board_mut(&hidden).unwrap().face_down=true;
         let held=u::held(&mut g,spell,0);u::fund(&mut g,0,if name=="live-control"{"JC104"}else{spell},fund);
+        u::act(&mut g,source_seat,Action{card_id:Some(source.clone()),target_id:Some(hidden.clone()),..Action::new("inspect-hidden")});
         assert_eq!(g.view(source_seat).private_inspections.len(),1);
         let mut t=Trace::new(name,&g);
-        t.game(0,Action{card_id:Some(held),target_id:Some(source),option:option.map(Into::into),..Action::new("play")},true);t.responses();
+        t.game(0,Action{card_id:Some(held),target_id:Some(source.clone()),option:option.map(Into::into),..Action::new("play")},true);t.responses();
         assert!(t.room.game.view(source_seat).private_inspections.is_empty());
-        assert_eq!(t.room.game.view(0).private_inspections.len(),usize::from(name=="live-control"));
+        assert!(t.room.game.view(0).private_inspections.is_empty());
+        if name=="live-control"{t.game(0,Action{card_id:Some(source),target_id:Some(hidden),..Action::new("inspect-hidden")},true);assert_eq!(t.room.game.view(0).private_inspections.len(),1);}
         scenarios.push(t.finish());
     }
     for glory in [false, true] {

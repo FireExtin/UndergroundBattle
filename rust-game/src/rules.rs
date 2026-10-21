@@ -24,6 +24,7 @@ pub enum Event {
     WM035HostDeath,
     BQ079CorpseGrave,
     BQ037OtherVampireEntered,
+    JZ26HiddenObserved,
     BQ029QualifiedEntry,
     XQ26NamedCharacterEntered,
     WM041PublicCharacterPlayed,
@@ -258,6 +259,7 @@ pub enum Op {
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
     WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
+    JZ26Trap { observation: Option<crate::batch3_trap::HiddenObservation> },
     BQ026Attach { observation: Option<crate::batch3_bats::RegionEntry> },
     BQ029SelfFeed { observation: Option<crate::batch3_blood::BQ029EntryObservation> },
     BQ037FeedPair { observation: Option<crate::batch3_blood::VampireEntryObservation> },
@@ -545,6 +547,8 @@ pub struct AbilitySpec {
 pub struct Traits {
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub slow: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub stealth: bool,
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub spirit: bool,
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
@@ -1576,6 +1580,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                 "cardId=XQ43: only the complete admitted region attachment is supported".into(),
             );
         }
+        if definition.traits.stealth && card_id != "JZ26" {return Err(format!("cardId={card_id}: only the complete JZ26 stealth definition is admitted"));}
         for ability in &definition.abilities {
             validate_ability(card_id, ability)?;
         }

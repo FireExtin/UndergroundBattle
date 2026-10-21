@@ -1,0 +1,32 @@
+{
+  "sources": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    }
+  ],
+  "observedFacts": [
+    "Normal triggered abilities are optional unless the print explicitly marks them mandatory; they use the stack and permit responses.",
+    "Inspecting a hidden front is private information, not revealing it to the other players.",
+    "Stealth prevents a face-up play but does not itself prohibit a later reveal.",
+    "Destruction differs from sacrifice. Hidden entities do not receive character damage merely from their front.",
+    "FAQ monitor permission is available anytime while the monitor is not exhausted."
+  ],
+  "implementationBoundary": [
+    "An explicit free information command records actual monitor inspections; it does not add a cost, priority requirement or new player permission.",
+    "GET/view rendering never emits events or advances the random generator.",
+    "A player-controlled destroying effect supplies its true actor; an automatic world frame placeholder does not.",
+    "Condition gates retain the event-time two-blue-assets observation and recheck the original ability controllers assets on resolution, following the existing conditional-trigger implementation pattern."
+  ],
+  "acceptanceClaim": "Source interpretation and author native WIP only; not independent review or published acceptance.",
+  "physicalPages": {
+    "baseTriggeredAbility": 4,
+    "baseInspectionPrivacy": 7,
+    "baseDestructionSacrificeAndStealth": 12,
+    "faqMonitor": 3
+  }
+}

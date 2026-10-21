@@ -1113,5 +1113,10 @@
     "url": "/cards/BQ026.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
     "sha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59"
+  },
+  "JZ26": {
+    "url": "/cards/JZ26.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
+    "sha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9"
   }
 }

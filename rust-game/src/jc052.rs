@@ -165,7 +165,7 @@ impl Game {
                 )
             })
             .collect();
-        self.remove_death_batch(deaths);
+        self.destroy_wave_as(f.actor,deaths);
     }
     fn validate_jc052_source(&self, s: &SourceSnapshot, actor: usize) -> RuleResult<()> {
         if s.card.definition != "JC052"
