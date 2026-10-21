@@ -1,0 +1,20 @@
+{
+  "scope": "Retained exact JS/WASM bytes from the official v73 Site source e1969c3. Official deployment succeeded and identifies this source/version; public HTTP runtime identity check returned403 and was not completed. Transport gzip is not a kernel rebuild. Never migrate or re-sign these rooms.",
+  "providerSource": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+  "evidenceCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
+  "siteSource": "e1969c3ded2ffa44ce429be87c0005d928d5ef38",
+  "siteVersion": 73,
+  "deploymentId": "appgdep_6ad8bf5fa23081918eca730d2b96e3bb",
+  "publicationEvidence": "docs/evidence/batch20-2026-10-21/publication-v73.json",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.82-batch20",
+    "engineVersion": "rust-v0.2.91-batch20"
+  },
+  "cardCount": 173,
+  "societyCount": 10,
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+  "wasmBytes": 3796219,
+  "gzipSha256": "ddd70840e49c4beeb184a39ae9c4308ffd00e0e78e18c527549cc3f90e7af038"
+}

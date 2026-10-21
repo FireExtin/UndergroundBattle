@@ -402,5 +402,24 @@
       "evidence": "docs/evidence/batch20-2026-10-21/jc065-target-roles.json",
       "countedAsNewCard": false
     }
-  ]
+  ],
+  "retainedFirstBatchKernel": {
+    "abi": 91,
+    "identityManifest": "rust-game-wasm/frozen/abi91/identity.json",
+    "sourceInventory": "rust-game-wasm/frozen/abi91/native-source-binding.json",
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+    "wasmBytes": 3796219,
+    "gzipSha256": "ddd70840e49c4beeb184a39ae9c4308ffd00e0e78e18c527549cc3f90e7af038",
+    "retainedRuntimeRebuilt": false,
+    "inputDirectory": "$UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi91",
+    "routing": "Original first-batch router untouched. Add retained91 routing when assigning the next engine identity.",
+    "validation": {
+      "passed": 8,
+      "failed": 0,
+      "exitCode": 0,
+      "log": "frozen91-retention-test.log",
+      "logSha256": "f697325c0c4c3dc4c6e3ca8f6c11d213e3914d7da1de3b4e7ea53b6318686929",
+      "scope": "Original77/89 protection plus retained91 byte/catalog/staging/missing/corrupt input checks; not old-room browser acceptance"
+    }
+  }
 }

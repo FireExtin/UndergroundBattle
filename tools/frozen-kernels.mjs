@@ -56,3 +56,5 @@ export const frozenAbi88 = (options = {}) => frozenAbi(88, options);
 export const stageFrozenAbi88 = (destination, options = {}) => stageFrozenAbi(88, destination, options);
 export const frozenAbi89 = (options = {}) => frozenAbi(89, options);
 export const stageFrozenAbi89 = (destination, options = {}) => stageFrozenAbi(89, destination, options);
+export const frozenAbi91 = (options = {}) => frozenAbi(91, options);
+export const stageFrozenAbi91 = (destination, options = {}) => stageFrozenAbi(91, destination, options);
