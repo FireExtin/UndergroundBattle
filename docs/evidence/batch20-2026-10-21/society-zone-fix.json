@@ -42,19 +42,45 @@
     "typecheckBeforeUXIntegration": "passed",
     "fullSuite": "not run for this candidate",
     "browser": "owned by parent; this task did not perform browser gameplay",
-    "independentSupplementalReview": "pending"
+    "independentSupplementalReview": "pending",
+    "frozenOriginals": {
+      "pass": 8,
+      "fail": 0,
+      "versions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91
+      ],
+      "allVersionHashGateRecord": "society-fix-original-frozen-inputs.json"
+    },
+    "cardSourceAfterRestoringTrackedInputImages": {
+      "pass": 4,
+      "fail": 0
+    }
   },
   "failedEvidence": {
     "oldKernelNative": "0 passed/9 failed, before fix",
     "oldWeb": "1 passed/6 failed, before fix",
-    "firstFixedNative": "4 passed/5 failed due unsynchronized synthetic RoomEnvelope pacing; fixtures corrected to valid pacing and actual transition/journal replay before final9passed"
+    "firstFixedNative": "4 passed/5 failed due unsynchronized synthetic RoomEnvelope pacing; fixtures corrected to valid pacing and actual transition/journal replay before final9passed",
+    "sourceToolFirst": "11 passed/1 failed: sparse checkout omitted173 tracked original images; restored exact HEAD blobs verified against source hashes. No source/test assertion change; corrected4source checks pass."
   },
   "compatibility": "New rooms use92. Existing77-89/91 retain exact originals; existing91 rooms retain this P2. No room migration, no society card granted and no existing browser table modified.",
   "ux": [
     "JC065 labels sacrifice opponent, independent repression player and region without restricting original legality",
     "Optional trigger displays unique exact printed-name match from room catalog, source and card text; acceptance/decline unchanged"
   ],
-  "buildAndStartup": "pending",
+  "buildAndStartup": "WASM and Native bin builds passed; official Site build and local startup pending",
   "logs": [
     {
       "name": "batch20-society-zone-fix-native-before.log",
@@ -105,6 +131,55 @@
       "name": "society-fix-trigger-context-final.log",
       "sha256": "e60e08007b24002ea6d5441fb6cb10d951d3254e548aacf1fa987776bf749388",
       "bytes": 546
+    },
+    {
+      "name": "society-fix-wasm-build.log",
+      "sha256": "e24df0d72065c3196984ac2b789bd7394647f7782a87cbf27aec35d74f069e96",
+      "bytes": 995
+    },
+    {
+      "name": "society-fix-native-build.log",
+      "sha256": "dec2e6d3312973dddf8308d22a8ef2e1f362c45a7f27418bd4983fd3c0e3f361",
+      "bytes": 2509
+    },
+    {
+      "name": "society-fix-native-oracle.log",
+      "sha256": "f5fa419798a369aaf023cd639ab63c663e262997f3ac75abe351a4b14106c596",
+      "bytes": 1850
+    },
+    {
+      "name": "society-fix-wasm-compare.log",
+      "sha256": "a3ce95c4226ae94785c39ef51d807d0de5caa12e4fffbbaa84d8fca2f6edf4b9",
+      "bytes": 1809
+    },
+    {
+      "name": "society-fix-source-and-frozen.log",
+      "sha256": "b19b0ad906fc339aaab28eec04c7fbaf3b20c7cc815c43a2d0ad6abc0a0cff21",
+      "bytes": 31672
+    },
+    {
+      "name": "society-fix-source-restored.log",
+      "sha256": "d9efeddb49b7f8f263a8617d79962457a3fa4dbe7030933077c90a78f721d5e8",
+      "bytes": 558
     }
-  ]
+  ],
+  "runtimeSourceCommit": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
+  "wasm": {
+    "ok": true,
+    "cases": 8,
+    "wasmBytes": 3796247,
+    "wasmSha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f",
+    "transitions": 74,
+    "projections": 296,
+    "quotes": 0,
+    "rejectedCommands": 24,
+    "rejectedDeckCreations": 0,
+    "choiceKinds": [
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 37.71,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  }
 }

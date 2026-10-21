@@ -1,6 +1,6 @@
 # Sites Worker / D1宿主
 
-本目录为React客户端提供HTTP房间服务、D1事务和静态资源，并调用同一Rust WASM规则核。当前候选ABI90、v71旧桌边界及测试阶段见[根README](../README.md)；候选未独立复审、未发布。
+本目录为React客户端提供HTTP房间服务、D1事务和静态资源，并调用同一Rust WASM规则核。当前空秘社区修复候选ABI92，保留原ABI77–89及91共15个内核；v73/ABI91已经发布，新修复的补验与发布状态见[根README](../README.md)。已有v73牌桌仍使用原ABI91，不会自动获得本规则修复。
 
 ## 构建、本地运行与测试
 
@@ -13,7 +13,7 @@ npm --prefix sites run db:local
 npm --prefix sites run dev -- --ip 127.0.0.1
 ```
 
-`build`调用`wrangler deploy --dry-run`并输出`sites/dist/server`与`sites/dist/client`，不是部署。`db:local`使用本地D1，dev在8102本地运行。全套集成测试还需要根README中的14模块固定时钟wrapper及`HEGEMONY_CURRENT_WORKER_DIR`；wrapper不能发布。
+`build`调用`wrangler deploy --dry-run`并输出`sites/dist/server`与`sites/dist/client`，不是部署。`db:local`使用本地D1，dev在8102本地运行。全套集成测试还需要根README中的15模块固定时钟wrapper及`HEGEMONY_CURRENT_WORKER_DIR`；wrapper不能发布。
 
 [src/http.mjs](src/http.mjs)处理路由与认证入口，[service.mjs](src/service.mjs)协调可信时间、请求意图与回执，[store.mjs](src/store.mjs)保存opaque状态、日志和命令回执。CAS失败的尝试不能旁写日志/回执；创建/加入同样提供requestId回执。数据库故障不应被确认为成功。
 
@@ -21,7 +21,7 @@ npm --prefix sites run dev -- --ip 127.0.0.1
 
 ## 已有Site及官方发布流程
 
-身份在[.openai/hosting.json](.openai/hosting.json)，项目更新应复用其project_id和访问范围，不重新创建Site。2026-10-21官方只读元数据确认公开v71发布成功；这不是本轮部署结果。GitHub产品仓库与Sites托管源码仓库不同，GitHub main提交不能直接当作Sites的源码commit_sha。
+身份在[.openai/hosting.json](.openai/hosting.json)，项目更新应复用其project_id和访问范围，不重新创建Site。2026-10-21官方部署回执确认公开v73发布成功；本ABI92修复仍在准备。GitHub产品仓库与Sites托管源码仓库不同，GitHub main提交不能直接当作Sites的源码commit_sha。
 
 正式发布时使用当前官方Sites插件流程。以下是有发布授权时的操作说明，**本次文档更新没有执行这些发布步骤**：
 

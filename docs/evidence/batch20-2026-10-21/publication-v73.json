@@ -1,0 +1,88 @@
+{
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "source": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/audit-underground-100161b/site-checkout-batch20-storage",
+    "commit_sha": "e1969c3ded2ffa44ce429be87c0005d928d5ef38",
+    "archive": "/workspace/audit-underground-100161b/batch20-abi91-reward-fixed-site.tar.gz"
+  },
+  "version": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_76add4b0b24c81918f11870e1d644505",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 73,
+    "source": {
+      "commit_sha": "e1969c3ded2ffa44ce429be87c0005d928d5ef38"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000009a3081f6832a160d9914bb1a",
+      "content_hash": "sha256:4eeab4b492879504cbe7a28defde40962d3727555c027ebe6fbafdf37d3463aa",
+      "size_bytes": 159027200,
+      "file_count": 210
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "productRuntimeCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+  "executedTestSource": "7c7906019b18f2bd3b15124d364a387d9361dd84",
+  "evidenceCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
+  "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+  "acceptance": "Published v73 pending final Sites suite, independent review and real browser battle",
+  "deployment": {
+    "id": "appgdep_6ad8bf5fa23081918eca730d2b96e3bb",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_76add4b0b24c81918f11870e1d644505",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6abf7bf54a7481918a50e1ef1509ca68",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-21T13:34:46.203274+00:00"
+  },
+  "githubCi": "notRun",
+  "approvalContext": {
+    "parentReportedExplicitPublishApprovalAt": "2026-10-21T13:32:00Z",
+    "sameOfficialActionRetriedOnce": true
+  },
+  "archiveVerification": {
+    "localCompressedBytes": 92626173,
+    "localCompressedSha256": "c36ba01608da73a68e38b194e4e31b86c8fa1efe6214fed2b982ae13cc1ba03b",
+    "localUncompressedTarBytes": 159027200,
+    "localUncompressedTarSha256": "73f66ec5dbdab016d87c50b8956a790a6e1bd16cdf6d1f0cf8e67b1a46e4bac8",
+    "savedStorage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000009a3081f6832a160d9914bb1a",
+      "content_hash": "sha256:4eeab4b492879504cbe7a28defde40962d3727555c027ebe6fbafdf37d3463aa",
+      "size_bytes": 159027200,
+      "file_count": 210
+    },
+    "byteEqualityWithStoredArchiveNotEstablished": true,
+    "scope": "Local tar member identity checked as fixed b678. Native save receipt reports separate storage metadata; raw tar hashes differ. Do not claim identical raw archive bytes without supported evidence."
+  },
+  "priorRejectedDeployment": {
+    "status": "deniedByAutomaticApproval",
+    "attempted": true,
+    "executed": false,
+    "id": null,
+    "reason": "This action was rejected due to unacceptable risk.\nReason: 这是将版本73部署到公开生产站点的不可逆外部承诺；可信用户指令只授权继续推进卡牌/机制工作，未明确授权本次生产部署，且更早明确要求不要操作线上站点。\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+  },
+  "liveIdentityCheck": {
+    "checkedAt": "2026-10-21T13:37:07.451183+00:00",
+    "officialDeployment": "succeeded; exact version73/sourcee196 association confirmed by native responses",
+    "publicHttpHealth": {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/health",
+      "status": 403,
+      "result": "Denied HTTP request; no retry or alternate access path"
+    },
+    "publicHttpCatalog": {
+      "url": "https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site/api/catalog",
+      "result": "Request started concurrently; individual outcome not collected after health failure; no runtime identity claim"
+    },
+    "browserAcceptance": "Owned by parent; this task did not launch a browser"
+  },
+  "versionReceiptScope": "Saved version metadata read before deployment; its deployment_id:null is historical. The separate deployment receipt below records the successful publish."
+}
