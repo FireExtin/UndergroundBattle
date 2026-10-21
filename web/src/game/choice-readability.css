@@ -9,6 +9,9 @@
 .hg-app .hg-desktop-table.hg-table .hg-table-choice-layer { position: fixed; inset: 64px 0 0; padding: 16px; }
 .hg-choice-heading { flex: 0 0 auto; }
 .hg-choice-heading > p { color: #d6d7cc; font-size: 14px; line-height: 1.6; margin: 0 0 8px; }
+.hg-choice-description { white-space: pre-line; }
+.hg-choice-source { margin: 8px 0 12px; }
+.hg-choice-source p { white-space: pre-line; line-height: 1.6; margin: 4px 0 0; }
 .hg-choice-heading > .hg-choice-scroll-hint { color: #decda6; font-size: 13px; margin-bottom: 14px; }
 .hg-choice-keyboard-hint { display: none; }
 .hg-choice-filters { flex: 0 0 auto; display: grid; grid-template-columns: minmax(180px, 1fr) auto auto minmax(110px, 190px); align-items: end; gap: 12px; padding-bottom: 12px; }
