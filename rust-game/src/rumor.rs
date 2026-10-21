@@ -456,9 +456,9 @@ impl Game {
                         if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
                             && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 } else {
-                    // Existing nontrivial JC038 sacrifice is authenticated above
+                    // Existing nontrivial JC038/JZ57 sacrifice is authenticated above
                     // by validate_batch20_frame, including captured actual subtype.
-                    f.source.card.definition == "JC038"
+                    matches!(f.source.card.definition.as_str(), "JC038" | "JZ57")
                 };
                 a.key == f.ability_key
                     && payment

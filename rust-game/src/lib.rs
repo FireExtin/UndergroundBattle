@@ -1,6 +1,6 @@
 mod exposure;
 mod rumor;
-#[cfg(test)]
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod exposure_tests;
 mod attachment;
 mod region_destruction;

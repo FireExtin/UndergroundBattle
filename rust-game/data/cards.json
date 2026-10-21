@@ -7541,7 +7541,8 @@
         "imageSha256": "cdaad886511acf9dddab39bb9bf3c5b0bfe792fb19de523d35fa549c5cd74549"
       },
       "unique": false,
-      "society": ""
+      "society": "",
+      "supported": true
     },
     {
       "id": "WM040",
@@ -7584,7 +7585,8 @@
         "imageSha256": "ffa49271712453387a717d004196d96b232d672bb6bcc6ef7bce657c1a273062"
       },
       "unique": false,
-      "society": ""
+      "society": "",
+      "supported": true
     },
     {
       "id": "WM042",
@@ -7625,7 +7627,8 @@
         "imageSha256": "6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d"
       },
       "unique": false,
-      "society": ""
+      "society": "",
+      "supported": true
     }
   ],
   "decks": [

@@ -66,6 +66,8 @@ fn exposure_complete_printed_programs_and_finite_rejection() {
     for id in ["WM039", "WM040", "WM042"] {
         let c = catalog::card(id);
         assert_eq!(c.color, "灰");
+        assert!(c.supported);
+        assert_eq!(crate::deck::copy_limit(c), Some(3));
         assert!(!c.unique);
         assert_eq!(c.loyalty, ["灰色"]);
         let d = crate::exposure::definition(id).unwrap();
@@ -880,8 +882,8 @@ fn exposure_rumor_jc031_random_and_selected_discards_preserve_real_death_receipt
         board(&mut g, "JC031", 0, 2);
         let victim = board(&mut g, if vampire { "JC029" } else { "JC125" }, 0, 1);
         let rumor = held(&mut g, "WM042", 3, 2);
-        let destroy = held(&mut g, "JC091", 0, 0);
-        fund(&mut g, 0, "JC084", 3);
+        let destroy = held(&mut g, "JC102", 0, 0);
+        fund(&mut g, 0, "JC104", 2);
         apply(
             &mut g,
             0,
