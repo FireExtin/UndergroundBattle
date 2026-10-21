@@ -651,6 +651,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM033GraveSpell,
     NextBlueGraySearch { inspected_ids: Vec<String> },
     BQ085Upkeep,
     JC051Badge,
@@ -756,6 +757,8 @@ pub struct TurnAttributeModifier {
     pub ordinary_icons: Icons,
     #[serde(default, skip_serializing_if = "is_false")]
     pub grants_renown: bool,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub grants_barrier: bool,
     #[serde(default, skip_serializing_if = "is_false")]
     pub prevents_damage: bool,
     pub expires_turn: u32,

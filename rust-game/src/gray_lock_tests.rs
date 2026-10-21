@@ -491,7 +491,7 @@ fn gray_lock_damage_prevention_and_self_target_use_existing_atomic_damage() {
     let mut g=game(0);let source=board(&mut g,"JZ43",0,2);let target=board(&mut g,"JC059",1,2);lock(&mut g,&target,2);
     g.turn_attribute_modifiers.push(TurnAttributeModifier{target_instance:target.clone(),defense_bonus:0,
         kill_bonus:0,grants_retreat:false,printed_defense_override:None,ordinary_icons:Icons::default(),
-        grants_renown:false,prevents_damage:true,expires_turn:g.turn});
+        grants_renown:false,grants_barrier: false, prevents_damage:true,expires_turn:g.turn});
     trigger(&mut g,&source,Some(&target),false);pass_top(&mut g);
     assert_eq!((g.board(&target).unwrap().1.damage,g.board(&target).unwrap().1.lock_markers),(0,2));
     g.return_hand(&target);lock(&mut g,&source,1);trigger(&mut g,&source,Some(&source),false);pass_top(&mut g);

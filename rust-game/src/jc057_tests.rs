@@ -338,7 +338,7 @@ fn jc057_native84_oracles() {
         let source = u::field(&mut g, "JC057", 0);
         g.turn_attribute_modifiers.push(TurnAttributeModifier {
             target_instance: source.clone(), defense_bonus: 0, kill_bonus: 0, grants_retreat: false,
-            printed_defense_override: None, prevents_damage: false,
+            printed_defense_override: None, grants_barrier: false, prevents_damage: false,
             ordinary_icons: Icons { combat: u32::from(glory), ..Icons::default() },
             grants_renown: !glory, expires_turn: g.turn,
         });

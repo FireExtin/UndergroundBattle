@@ -244,6 +244,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG26AttachmentBarrier,
+    WM033ReturnSpellOrDisaster,
     BQ042DestroyAttachment,
     NextBlueGraySearch,
     JZ23RevealReward { observation: Option<crate::next20_blue_gray::LocalVampireReveal> },
@@ -538,6 +540,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG26InfluenceAndConditionalGuard,
     WM030CultistIcons,
     BQ077WaterCombat,
     CQ26GraveIcons,

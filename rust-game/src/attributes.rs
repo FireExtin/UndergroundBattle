@@ -145,7 +145,7 @@ impl Game {
                 printed_defense_override: None,
                 ordinary_icons: Icons::default(),
                 grants_renown: false,
-                prevents_damage: false,
+                grants_barrier: false, prevents_damage: false,
                 expires_turn: self.turn,
             });
     }
@@ -205,8 +205,11 @@ impl Game {
             .filter(|c| !c.face_down && card(&c.definition).kind == "character")
             .map(|c| c.id.as_str())
             .collect::<std::collections::BTreeSet<_>>();
+        let attachments = self.attachments.iter().filter(|a| !a.card.face_down)
+            .map(|a| a.card.id.as_str()).collect::<std::collections::BTreeSet<_>>();
         self.turn_attribute_modifiers.retain(|m| {
-            m.expires_turn == self.turn && present.contains(m.target_instance.as_str())
+            m.expires_turn == self.turn && (present.contains(m.target_instance.as_str())
+                || (m.grants_barrier && attachments.contains(m.target_instance.as_str())))
         });
     }
     pub(crate) fn actor_has_asset_domain(

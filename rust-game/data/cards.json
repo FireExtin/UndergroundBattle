@@ -7713,6 +7713,91 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM033",
+      "name": "钟楼怪客",
+      "kind": "character",
+      "subtypes": [
+        "熵",
+        "法师"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "时间标志1；【隐秘】传闻；行动 自钟楼怪客上移除一个时间标志：将一张法术或灾难牌从本方墓地移回你的手中。该能力每回合只能发动一次。",
+      "keywords": [
+        "时间标志1",
+        "【隐秘】传闻"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM033",
+        "image": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
+        "imageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "XG26",
+      "name": "看场打手",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐秘〔月形〕护卫1；持续 若位于有本方势力标志的地区，看场打手获得临时势力1。；快速行动①，横置看场打手：目标本方附属获得屏障直到回合结束。",
+      "keywords": [
+        "隐秘〔月形〕护卫1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG26",
+        "image": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+        "imageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

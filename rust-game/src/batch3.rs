@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,41 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "XG26" => {
+            let mut a = rules::ability(
+                "batch3-xg26-barrier",
+                "快速行动1、横置：目标本方附属获得屏障直到回合结束",
+                Timing::Fast,
+                vec![Cost::Assets(1), Cost::ExhaustSource],
+                vec![rules::target(
+                    Zone::Board,
+                    EntityKind::Attachment,
+                    Relation::ControlledByActor,
+                    Range::Anywhere,
+                )],
+                vec![Op::XG26AttachmentBarrier],
+                None,
+            );
+            a.activation_only = true;
+            let mut d = rules::with_abilities(vec![a]);
+            d.modifiers
+                .push(StaticModifier::XG26InfluenceAndConditionalGuard);
+            Some(d)
+        }
+        "WM033" => {
+            let mut action = rules::ability(
+                "batch3-wm033-return",
+                "行动：移除自身1个时间标志，将本方墓地一张法术或灾难牌移回手中，每回合一次",
+                Timing::Standard,
+                vec![Cost::Batch3RemoveTime],
+                vec![],
+                vec![Op::WM033ReturnSpellOrDisaster],
+                None,
+            );
+            action.activation_only = true;
+            action.per_turn_limit = Some(1);
+            Some(rules::with_abilities(vec![action]))
+        }
         "BQ042" => {
             let mut target = rules::target(
                 Zone::Board,
@@ -50,11 +85,12 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
         if !same(d, &expected) {
             return Err("第三批须保留完整固定定义".into());
         }
-    } else if d
-        .modifiers
-        .iter()
-        .any(|m| matches!(m, StaticModifier::WM030CultistIcons))
-        || d.abilities.iter().any(related_ability)
+    } else if d.modifiers.iter().any(|m| {
+        matches!(
+            m,
+            StaticModifier::WM030CultistIcons | StaticModifier::XG26InfluenceAndConditionalGuard
+        )
+    }) || d.abilities.iter().any(related_ability)
     {
         return Err("第三批有限程序不能移植".into());
     }
@@ -72,7 +108,9 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ042DestroyAttachment => true,
+        Op::BQ042DestroyAttachment | Op::WM033ReturnSpellOrDisaster | Op::XG26AttachmentBarrier => {
+            true
+        }
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted {
             exhausted, ready, ..
@@ -110,11 +148,19 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
             card_id: a.card_id.clone(),
             ..Action::new("reveal")
         },
-        "activate" if id == "BQ042" => Action {
+        "activate" if matches!(id, "BQ042" | "WM033" | "XG26") => Action {
             card_id: a.card_id.clone(),
             ability_id: a.ability_id.clone(),
-            target_id: a.target_id.clone(),
-            cost_selected: a.cost_selected.clone(),
+            target_id: if id != "WM033" {
+                a.target_id.clone()
+            } else {
+                None
+            },
+            cost_selected: if id == "XG26" {
+                None
+            } else {
+                a.cost_selected.clone()
+            },
             ..Action::new("activate")
         },
         _ => return Err("第三批角色操作种类不符".into()),
@@ -136,7 +182,7 @@ impl Game {
                         .is_some_and(|p| p.society_zone.secrecy > 0)))
     }
     pub(crate) fn batch3_entry_keywords(&mut self, definition: &str, id: &str) {
-        if definition == "BQ042" {
+        if matches!(definition, "BQ042" | "WM033") {
             if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) {
                 c.time_markers = c.time_markers.saturating_add(1);
             }
@@ -255,6 +301,16 @@ impl Game {
         {
             return Err("第三批程序、冻结目标或执行环境不符".into());
         }
+        if f.ability_key == "batch3-xg26-barrier" {
+            if f.source.card.exhausted
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
+                if ids.len() == 1 && !ids[0].is_empty() && ids[0] != f.source.card.id
+                    && f.targets.iter().all(|target| target.id != ids[0]) && id == &f.source.card.id)
+            {
+                return Err("看场打手必须实际支付1并横置自身".into());
+            }
+            return Ok(());
+        }
         let [PaidCost::Batch3RemovedTime(p)] = f.already_paid.as_slice() else {
             return Err("第三批缺少时间支付收据".into());
         };
@@ -280,6 +336,7 @@ impl Game {
         self.mobility_immutable_identity(&p.carrier)
     }
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
+        self.validate_attachment_barrier_modifiers()?;
         let mut frames = BTreeSet::new();
         for s in &self.stack {
             if let Some(f) = &s.frame {
@@ -327,6 +384,10 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Frame {
+                    frame,
+                    choice: FrameChoice::WM033GraveSpell,
+                } => self.validate_wm033_pending(p, frame)?,
                 ChoiceResolution::Declare { declaration, .. } => {
                     self.validate_batch3_declaration(declaration)?
                 }

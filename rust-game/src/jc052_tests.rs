@@ -726,7 +726,7 @@ fn jc052_source_guard_preserves_existing_granted_renown_and_combat_glory_program
             kill_bonus: 0,
             grants_retreat: false,
             printed_defense_override: None,
-            prevents_damage: false,
+            grants_barrier: false, prevents_damage: false,
             ordinary_icons: Icons {
                 combat: 1,
                 ..Default::default()

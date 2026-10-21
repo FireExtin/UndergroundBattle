@@ -1601,6 +1601,8 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::XG26AttachmentBarrier => self.xg26_grant_barrier(&frame)?,
+                Op::WM033ReturnSpellOrDisaster => return self.wm033_start(frame),
                 Op::JC043DestroyAttachment | Op::BQ042DestroyAttachment => {
                     if let Some(t) = frame.targets.first() { self.remove_dead(&t.id, RemovalCause::Destroy); }
                 }
@@ -1680,7 +1682,7 @@ impl Game {
                         printed_defense_override: None,
                         ordinary_icons,
                         grants_renown,
-                        prevents_damage: false,
+                        grants_barrier: false, prevents_damage: false,
                         expires_turn: self.turn,
                     });
                 }
@@ -1820,7 +1822,7 @@ impl Game {
                             target_instance: id, defense_bonus: 0, kill_bonus: 0,
                             grants_retreat: false, printed_defense_override: None,
                             ordinary_icons: Icons { investigation: 1, ..Default::default() },
-                            grants_renown: false, prevents_damage: false, expires_turn: self.turn,
+                            grants_renown: false, grants_barrier: false, prevents_damage: false, expires_turn: self.turn,
                         });
                     }
                 }
@@ -1834,7 +1836,7 @@ impl Game {
                         printed_defense_override: None,
                         ordinary_icons: Icons::default(),
                         grants_renown: false,
-                        prevents_damage: true,
+                        grants_barrier: false, prevents_damage: true,
                         expires_turn: self.turn,
                     });
                 }
@@ -1860,7 +1862,7 @@ impl Game {
                                 ..Default::default()
                             },
                             grants_renown: false,
-                            prevents_damage: false,
+                            grants_barrier: false, prevents_damage: false,
                             expires_turn: self.turn,
                         });
                     }
@@ -1892,7 +1894,7 @@ impl Game {
                             printed_defense_override: Some(1),
                             ordinary_icons: Icons::default(),
                             grants_renown: false,
-                            prevents_damage: false,
+                            grants_barrier: false, prevents_damage: false,
                             expires_turn: self.turn,
                         });
                     }
@@ -2423,6 +2425,7 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::WM033GraveSpell => return self.wm033_finish(&frame, chooser, &a, &selected),
             FrameChoice::JC051Badge => return self.jc051_choose_badge(&frame,&selected),
             FrameChoice::JC051Host { badge } => return self.jc051_finish_attach(&frame,&badge,selected.first().ok_or("请选择徽章宿主")?),
             FrameChoice::JZ32Hourglass => return self.jz32_finish(&frame,&selected),

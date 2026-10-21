@@ -214,7 +214,7 @@ fn next20_red_jz41_public_attachment_forecast_private_restore_and_replay() {
 fn next20_red_jz41_actual_damage_wounds_once_prevention_zero_and_lethal_identity() {
     let mut g=game(); let host=field(&mut g,"JC051",0); let a=g.make_card("JZ41",2); let ring=a.id.clone(); g.attachments.push(Attachment {card:a,host_id:host.clone()});
     g.damage(BTreeMap::from([(host.clone(),0)])).unwrap(); assert!(g.effects.is_empty());
-    g.turn_attribute_modifiers.push(TurnAttributeModifier { target_instance:host.clone(),defense_bonus:0,kill_bonus:0,grants_retreat:false,printed_defense_override:None,ordinary_icons:Icons::default(),grants_renown:false,prevents_damage:true,expires_turn:g.turn });
+    g.turn_attribute_modifiers.push(TurnAttributeModifier { target_instance:host.clone(),defense_bonus:0,kill_bonus:0,grants_retreat:false,printed_defense_override:None,ordinary_icons:Icons::default(),grants_renown:false,grants_barrier: false, prevents_damage:true,expires_turn:g.turn });
     g.damage(BTreeMap::from([(host.clone(),1)])).unwrap(); assert!(g.effects.is_empty()); g.turn_attribute_modifiers.clear();
     g.damage(BTreeMap::from([(host.clone(),1)])).unwrap(); g.drive().unwrap(); restore(&mut g);
     let mut bad=g.clone(); if let ChoiceResolution::Declare { declaration,.. }=&mut bad.pending.as_mut().unwrap().resolution { declaration.source.attachment_host_instance=Some("different".into()); } rejected_state(&bad);

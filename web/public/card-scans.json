@@ -1033,5 +1033,15 @@
     "url": "/cards/BQ042.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
     "sha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b"
+  },
+  "WM033": {
+    "url": "/cards/WM033.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
+    "sha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f"
+  },
+  "XG26": {
+    "url": "/cards/XG26.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+    "sha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0"
   }
 }

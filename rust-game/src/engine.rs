@@ -314,6 +314,7 @@ impl Game {
     pub(crate) fn has_barrier(&self, c: &Card) -> bool {
         !c.face_down
             && (rules::definition(&c.definition).traits.barrier
+                || self.turn_attribute_modifiers.iter().any(|m| m.target_instance == c.id && m.expires_turn == self.turn && m.grants_barrier)
                 || self.attachments.iter().any(|a| {
                     a.host_id == c.id
                         && self.attachment_host_valid(a)
@@ -433,6 +434,7 @@ impl Game {
         permanent_result = permanent_result.add(black_permanent);
         temporary_result = temporary_result.add(black_temporary);
         temporary_result.influence += self.jc051_aura(c);
+        temporary_result.influence += u32::from(self.xg26_local_influence(c, region));
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
             if matches!(modifier, StaticModifier::JC037ControlledHiddenInvestigation) {
@@ -2175,7 +2177,7 @@ impl Game {
                     .filter(|c| {
                         !c.face_down
                             && self.is_enemy(seat, c)
-                            && rules::definition(&c.definition).traits.guard > 0
+                            && self.current_guard(c) > 0
                     })
                     .collect::<Vec<_>>();
                 let total = p.choice.amount.unwrap_or(0);
@@ -2186,14 +2188,14 @@ impl Game {
                             .get(&c.id)
                             .copied()
                             .unwrap_or(0)
-                            .min(rules::definition(&c.definition).traits.guard)
+                            .min(self.current_guard(c))
                     })
                     .sum::<u32>();
                 if guard_assigned
                     < total.min(
                         guards
                             .iter()
-                            .map(|c| rules::definition(&c.definition).traits.guard)
+                            .map(|c| self.current_guard(c))
                             .sum(),
                     )
                 {

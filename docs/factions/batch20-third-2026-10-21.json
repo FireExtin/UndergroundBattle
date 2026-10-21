@@ -61,7 +61,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
       "sourceImageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -118,7 +118,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
       "sourceImageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -597,7 +597,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 18,
+    "unreviewedRuntimeCards": 16,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -614,6 +614,32 @@
       "failed": 0,
       "identity": "rust-v0.2.94-batch20-third",
       "log": "docs/evidence/batch20-third-2026-10-21/source-pilot-7.log.gz"
+    },
+    "wm033Pilot": {
+      "batch3FilterPassed": 10,
+      "failed": 0,
+      "rumorFilterPassed": 15,
+      "overlap": 1,
+      "scope": "native only; not complete Web/Worker integration or independent acceptance"
+    },
+    "fourCardPilot": {
+      "passed": 15,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "WM030",
+        "BQ042",
+        "WM033",
+        "XG26"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/four-card-pilot.json",
+      "affectedRegressionFilters": {
+        "four-barrier-21": 21,
+        "four-renown-34": 34,
+        "four-msjc11-12": 12,
+        "wm033-rumor-15": 15
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
     }
   },
   "developmentIdentity": {
@@ -622,6 +648,6 @@
     "status": "unreleasedNativeDevelopmentOnly",
     "wasmBuilt": false,
     "publicAdmissions": 0,
-    "requires": "Complete20, current-only Worker integration and fresh Native/WASM fixtures before publish"
+    "requires": "Complete20 and current-only Worker integration; necessary build/start/identity checks, then publish as pending acceptance; consolidated fresh current fixtures/full suites, independent review and real browser acceptance follow publication."
   }
 }

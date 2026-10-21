@@ -116,7 +116,7 @@ fn ordinary(g: &mut Game, id: &str) {
             ..Default::default()
         },
         grants_renown: false,
-        prevents_damage: false,
+        grants_barrier: false, prevents_damage: false,
         expires_turn: g.turn,
     });
 }

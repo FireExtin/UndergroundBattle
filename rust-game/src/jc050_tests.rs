@@ -148,7 +148,7 @@ fn jc050_destroy_is_non_damage_and_bypasses_target_shields() {
     g.board_mut(&id).unwrap().shield = 3;
     g.turn_attribute_modifiers.push(TurnAttributeModifier {
         target_instance: id.clone(),
-        prevents_damage: true,
+        grants_barrier: false, prevents_damage: true,
         expires_turn: g.turn,
         defense_bonus: 0,
         kill_bonus: 0,

@@ -23,6 +23,13 @@ pub enum TransferOutcome {
 }
 
 impl Game {
+    fn rumor_eligible(&self, c: &Card) -> bool {
+        !c.face_down && (c.definition == "WM042"
+            || (c.definition == "WM033" && self.players.get(c.controller).is_some_and(|p| p.society_zone.secrecy > 0)))
+    }
+    fn rumor_title(c: &Card) -> String {
+        format!("{}：可改为封印在目标角色上", catalog::card(&c.definition).name)
+    }
     fn rumor_options(&self, c: &Card) -> Vec<ChoiceOption> {
         self.binding_options(
             c.owner,
@@ -129,7 +136,7 @@ impl Game {
     ) -> RuleResult<()> {
         while batch.cursor < batch.originals.len() {
             let c = &batch.originals[batch.cursor];
-            if c.definition == "WM042" && !self.players[c.owner].eliminated {
+            if self.rumor_eligible(c) && !self.players[c.owner].eliminated {
                 let options = self.rumor_options(c);
                 if !options.is_empty() {
                     if batch.cause.is_none() {
@@ -138,7 +145,7 @@ impl Game {
                     self.choice(
                         c.owner,
                         "rumor",
-                        "新闻管控：可改为封印在目标角色上".into(),
+                        Self::rumor_title(c),
                         options,
                         0,
                         1,
@@ -187,7 +194,7 @@ impl Game {
         selected: &[String],
     ) -> RuleResult<()> {
         let c = batch.originals.get(batch.cursor).ok_or("传闻游标无效")?;
-        if chooser != c.owner || c.definition != "WM042" || selected.len() > 1 {
+        if chooser != c.owner || !self.rumor_eligible(c) || selected.len() > 1 {
             return Err("传闻必须由原牌拥有者选择".into());
         }
         if let Some(host) = selected.first() {
@@ -260,12 +267,12 @@ impl Game {
         }
         let current = &b.originals[b.cursor];
         let options = self.rumor_options(current);
-        if current.definition != "WM042"
+        if !self.rumor_eligible(current)
             || p.seat != current.owner
             || p.choice.player_id != player_id(current.owner)
             || p.choice.id.is_empty()
             || p.choice.kind != "rumor"
-            || p.choice.title != "新闻管控：可改为封印在目标角色上"
+            || p.choice.title != Self::rumor_title(current)
             || p.choice.min != Some(0)
             || p.choice.max != Some(1)
             || p.choice.allow_decline != Some(true)
@@ -311,7 +318,7 @@ impl Game {
                     c
                 }
                 TransferOutcome::Sealed { card, host_id } => {
-                    if old.definition != "WM042"
+                    if !matches!(old.definition.as_str(), "WM042" | "WM033")
                         || !self
                             .sealed_cards
                             .iter()

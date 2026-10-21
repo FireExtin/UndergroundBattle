@@ -476,7 +476,7 @@ fn jc029_source_departure_does_not_cancel_independent_raid_and_prevention_is_reu
         printed_defense_override: None,
         ordinary_icons: Icons::default(),
         grants_renown: false,
-        prevents_damage: true,
+        grants_barrier: false, prevents_damage: true,
         expires_turn: g.turn,
     });
     pass_top(&mut g);

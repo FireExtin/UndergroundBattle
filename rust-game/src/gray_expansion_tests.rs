@@ -1022,7 +1022,7 @@ fn gray_expansion_existing_granted_rewards_keep_valid_accept_stage_and_guard_met
                 printed_defense_override: None,
                 ordinary_icons: Icons::default(),
                 grants_renown: !glory,
-                prevents_damage: false,
+                grants_barrier: false, prevents_damage: false,
                 expires_turn: g.turn,
             });
             if glory {
