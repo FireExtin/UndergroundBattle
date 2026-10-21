@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "XQ26" => Some(crate::batch3_warrant::definition()),
         "WM041" => Some(crate::batch3_alpha::definition()),
         "BQ079" => Some(crate::batch3_ghoul::definition()),
         "JC062" => Some(crate::batch3_inspect::definition()),
@@ -150,7 +151,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed))
+    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered))
         || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
@@ -162,6 +163,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
         Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        | Op::XQ26Name | Op::XQ26Wanted { .. }
         | Op::WM041PublicPlay { .. }
         | Op::BQ079CorpseIcons { .. }
         | Op::WM035HostDeathDraw { .. }
@@ -216,7 +218,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if !IMPLEMENTING.contains(&id) {
         return Ok(());
     }
-    if matches!(id, "XG28" | "BQ089" | "JC064") { return crate::batch3_grave::validate_action(id, a); }
+    if matches!(id, "XQ26" | "XG28" | "BQ089" | "JC064") { return crate::batch3_grave::validate_action(id, a); }
     if id == "JC062" { return crate::batch3_inspect::validate_action(a); }
     if id == "XQ22" && a.kind == "activate" { return crate::batch3_politician::validate_action(a); }
     let expected = match a.kind.as_str() {
@@ -314,6 +316,7 @@ impl Game {
         if d.ability.event == Some(Event::Prepare) && IMPLEMENTING.contains(&d.source.card.definition.as_str()) {
             return crate::jc035::validate_ability(&d.source.card.definition, &d.ability);
         }
+        if d.source.card.definition == "XQ26" { return self.validate_xq26_declaration(d); }
         if d.source.card.definition == "JZ25" {
             self.batch3_source(d.actor, &d.source)?;
             self.validate_jz25_origin(&d.source)?;
@@ -348,7 +351,7 @@ impl Game {
         if crate::jc035::preparation_frame(f) { return self.validate_jc035_frame(f); }
         if f.source.card.definition == "JC062" { return self.validate_jc062_frame(f); }
         if f.source.card.definition == "XQ22" && !matches!(f.ability_key.as_str(), "deploy" | "reveal") { return self.validate_xq22_frame(f); }
-        if matches!(f.source.card.definition.as_str(), "XG28" | "BQ089" | "JC064")
+        if matches!(f.source.card.definition.as_str(), "XQ26" | "XG28" | "BQ089" | "JC064")
             || (f.source.card.definition == "JZ25" && !matches!(f.ability_key.as_str(), "deploy" | "reveal")) {
             return self.validate_batch3_grave_frame(f);
         }
@@ -478,12 +481,17 @@ impl Game {
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
         self.validate_attachment_barrier_modifiers()?;
         self.validate_bq079_markers()?;
+        self.validate_named_characters()?;
         let mut frames = BTreeSet::new();
         let mut observations = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
             if matches!(ops, [Op::JZ25SealRandomHand])
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
+            }
+            if matches!(ops,[Op::XQ26Name]) && !observations.insert((source.card.id.clone(),"XQ26-enter".into())) { return Err("通缉令进场命名不能重复".into()); }
+            if let [Op::XQ26Wanted { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("同一通缉入场不能由同一令重复执行".into()); }
             }
             if let [Op::WM041PublicPlay { observation: Some(o) }] = ops {
                 if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("阿尔法先生同一公开打出不能重复奖励".into()); }
@@ -511,7 +519,7 @@ impl Game {
                     remember(&f.source, std::slice::from_ref(op))?;
                 }
                 let deploy = matches!(f.ability_key.as_str(), "deploy" | "reveal");
-                let played = matches!(f.ability_key.as_str(), "batch3-xg28-attach" | "batch3-bq089-reanimate" | "batch3-jc062-investigate" | "batch3-jc064-attach");
+                let played = matches!(f.ability_key.as_str(), "batch3-xq26-attach" | "batch3-xg28-attach" | "batch3-bq089-reanimate" | "batch3-jc062-investigate" | "batch3-jc064-attach");
                 if !frames.insert(&f.frame_id)
                     || s.id != f.frame_id
                     || s.controller != f.actor
@@ -561,6 +569,7 @@ impl Game {
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC062Inspection { inspected } } =>
                     self.validate_jc062_pending(p, frame, inspected)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::XQ22Orientation } => self.validate_xq22_pending(p, frame)?,
+                ChoiceResolution::Frame { frame, choice: FrameChoice::XQ26Name } => self.validate_xq26_pending(p, frame)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } => self.validate_jc064_pending(p, frame)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::BQ079Upkeep } => self.validate_bq079_pending(p, frame)?,
                 ChoiceResolution::Declare { declaration, stage } => {
@@ -571,6 +580,7 @@ impl Game {
                     {
                         self.validate_wm035_pending(p, declaration, stage)?;
                     }
+                    if declaration.source.card.definition == "XQ26" { self.validate_xq26_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ25" {
                         self.validate_jz25_pending(p, declaration, stage)?;

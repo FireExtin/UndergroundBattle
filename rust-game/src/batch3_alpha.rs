@@ -38,9 +38,9 @@ impl Game{
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn batch3_forced_declare(&mut self,d:&Declaration)->RuleResult<bool>{
-        if d.ability.event!=Some(Event::WM041PublicCharacterPlayed){return Ok(false);}
+        if !matches!(d.ability.event,Some(Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered)){return Ok(false);}
         self.validate_batch3_declaration(d)?;
         if !self.players[d.actor].eliminated{let f=self.make_frame(d.actor,d.source.clone(),&d.ability,vec![],vec![],None);self.dispatch_frame(f,d.ability.label.clone(),None,ResponsePolicy::Respondable);}Ok(true)
     }
-    pub(crate) fn batch3_reject_optional(&self,d:&Declaration)->RuleResult<()>{if d.ability.event==Some(Event::WM041PublicCharacterPlayed){return Err("阿尔法先生公开打出奖励是强制触发".into());}Ok(())}
+    pub(crate) fn batch3_reject_optional(&self,d:&Declaration)->RuleResult<()>{if matches!(d.ability.event,Some(Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered)){return Err("阿尔法先生公开打出奖励是强制触发".into());}Ok(())}
 }

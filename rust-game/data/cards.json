@@ -8218,6 +8218,46 @@
       "society": "",
       "supported": false,
       "subtitle": "P.S.C.管理员"
+    },
+    {
+      "id": "XQ26",
+      "name": "通缉令",
+      "kind": "attachment",
+      "subtypes": [
+        "局势"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社；【进场触发】说出一个角色牌名称。；【强制触发】每当该名称的角色牌进场时，牺牲通缉令，然后消灭该角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ26",
+        "image": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
+        "imageSha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

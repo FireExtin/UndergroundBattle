@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     WM035HostDeath,
     BQ079CorpseGrave,
+    XQ26NamedCharacterEntered,
     WM041PublicCharacterPlayed,
     BlackCharacterDeathObserved,
     DeckToGraveyardObserved,
@@ -255,6 +256,8 @@ pub enum Op {
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
     WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
+    XQ26Name,
+    XQ26Wanted { observation: Option<crate::batch3_warrant::NamedEntryObservation> },
     BQ079CorpseIcons { observation: Option<crate::batch3_ghoul::CorpseGraveObservation> },
     WM035HostDeathDraw { observation: Option<crate::black_next20::BlackDeathObservation> },
     XG26AttachmentBarrier,
@@ -1577,7 +1580,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character

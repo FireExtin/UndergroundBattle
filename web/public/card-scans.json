@@ -1093,5 +1093,10 @@
     "url": "/cards/WM041.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
     "sha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090"
+  },
+  "XQ26": {
+    "url": "/cards/XQ26.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
+    "sha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854"
   }
 }

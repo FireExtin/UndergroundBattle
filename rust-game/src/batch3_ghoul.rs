@@ -37,7 +37,7 @@ impl Game {
             self.effects.push_back(Effect::Declare{declaration:Declaration{actor:source.card.controller,source,ability:a}});
         }
     }
-    fn bq079_physical(&self)->impl Iterator<Item=&Card>{
+    pub(crate) fn batch3_physical_cards(&self)->impl Iterator<Item=&Card>{
         self.regions.iter().flat_map(|r|std::iter::once(&r.card).chain(&r.cards))
             .chain(self.players.iter().flat_map(|p|p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter())))
             .chain(&self.world).chain(self.attachments.iter().map(|a|&a.card)).chain(self.sealed_cards.iter().map(|s|&s.card))
@@ -48,12 +48,12 @@ impl Game {
         let c=&o.arrived;
         if s.card.definition!="BQ079" || s.card.face_down || s.card.controller!=actor || actor>=self.players.len()
             || s.play_source.is_some() || s.region.is_none() || s.source_region_instance.is_none()
-            || c.id.is_empty() || c.owner!=actor || c.controller!=actor || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || c.permanent_combat_markers!=0 || c.permanent_defense_markers!=0
+            || c.id.is_empty() || c.owner!=actor || c.controller!=actor || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || c.permanent_combat_markers!=0 || c.permanent_defense_markers!=0 || c.named_character.is_some()
             || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.name=="无名尸体")
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id
             || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence)
-            || self.bq079_physical().any(|live|live.id==c.id && (!same(live,c) || !self.players[actor].graveyard.iter().any(|grave|grave==live)))
-            || self.bq079_physical().any(|live|live.id==s.card.id && !self.board(&s.card.id).is_some_and(|(_,board)|board.id==live.id && board.definition==s.card.definition && board.owner==s.card.owner)) {
+            || self.batch3_physical_cards().any(|live|live.id==c.id && (!same(live,c) || !self.players[actor].graveyard.iter().any(|grave|grave==live)))
+            || self.batch3_physical_cards().any(|live|live.id==s.card.id && !self.board(&s.card.id).is_some_and(|(_,board)|board.id==live.id && board.definition==s.card.definition && board.owner==s.card.owner)) {
             return Err("食尸鬼入墓观察的牌名、拥有者、原来源或区域不符".into());
         }
         self.mobility_immutable_identity(c)?;
@@ -66,7 +66,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_bq079_markers(&self)->RuleResult<()> {
-        if self.bq079_physical().any(|c|c.permanent_defense_markers>0 && (c.definition!="BQ079" || c.face_down || !self.board(&c.id).is_some_and(|(_,live)|live==c))){return Err("食尸鬼永久防御标志只能留在原公开场内实例".into());}
+        if self.batch3_physical_cards().any(|c|c.permanent_defense_markers>0 && (c.definition!="BQ079" || c.face_down || !self.board(&c.id).is_some_and(|(_,live)|live==c))){return Err("食尸鬼永久防御标志只能留在原公开场内实例".into());}
         Ok(())
     }
     pub(crate) fn bq079_upkeep_start(&mut self,f:&ResolutionFrame)->RuleResult<()> {

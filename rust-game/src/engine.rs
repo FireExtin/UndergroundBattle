@@ -134,6 +134,7 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        c.named_character = None;
         c.time_markers = 0;
         c.permanent_combat_markers = 0;
         c.permanent_defense_markers = 0;
@@ -149,6 +150,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            named_character: None,
             permanent_combat_markers: 0,
             permanent_defense_markers: 0,
             time_markers: 0,
@@ -1256,6 +1258,7 @@ impl Game {
                 self.emit_event(seat, source, Event::Reveal);
             }
         }
+        self.xq26_observe_entry(id);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
         }
@@ -2273,6 +2276,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
             permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),

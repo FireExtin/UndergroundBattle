@@ -1,4 +1,7 @@
 mod batch3;
+mod batch3_warrant;
+#[cfg(test)]
+mod batch3_warrant_tests;
 mod batch3_alpha;
 #[cfg(test)]
 mod batch3_alpha_tests;

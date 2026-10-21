@@ -10,6 +10,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match (id, a.kind.as_str()) {
         ("BQ089", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
             target_id: a.target_id.clone(), region: a.region, ..Action::new("play") },
+        ("XQ26", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), target_id: a.target_id.clone(), ..Action::new("play") },
         ("XG28" | "JC064", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
             region: a.region, ..Action::new("play") },
         ("XG28", "activate") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
@@ -64,7 +65,10 @@ impl Game {
     pub(crate) fn validate_batch3_grave_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         let c = &f.source.card;
         let d = crate::batch3::definition(&c.definition).ok_or("非准入回收来源")?;
-        let a = d.abilities.iter().find(|a| a.key == f.ability_key).ok_or("回收程序不属于原来源")?;
+        let mut a = d.abilities.iter().find(|a| a.key == f.ability_key).cloned().ok_or("回收程序不属于原来源")?;
+        if a.key=="batch3-xq26-wanted" {
+            let ops=f.steps.iter().map(|s|s.op.clone()).collect::<Vec<_>>();self.xq26_observation(f.actor,&f.source,&ops)?;a.ops=ops;
+        }
         // Attachment commitment runs its target guard before this empty frame
         // reaches the interpreter. Stack containers still require Unchecked.
         let attachment_commit = a.play_only && catalog::card(&c.definition).kind == "attachment" && a.ops.is_empty();
@@ -84,6 +88,7 @@ impl Game {
             if f.source.region.is_some() || f.source.source_region_instance.is_some() || f.source.attachment_host_instance.is_some() {
                 return Err("手牌打出不能伪装场内来源".into());
             }
+        } else if c.definition=="XQ26" { self.xq26_validate_source(f.actor,&f.source)?;
         } else {
             let r = f.source.region.filter(|r| *r < self.regions.len()).ok_or("场内来源缺少地区")?;
             let uid = f.source.source_region_instance.as_deref().filter(|id| !id.is_empty() && *id != c.id).ok_or("场内来源缺少原地区UID")?;
@@ -111,6 +116,9 @@ impl Game {
                     let seat = t.id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).filter(|s| *s < self.players.len()).ok_or("目标玩家无效")?;
                     if t.id != player_id(seat) || t.public.kind != "player" || t.public.controller != Some(t.id.clone())
                         || t.public.owner.is_some() || t.public.region.is_some() || t.region_instance.is_some() { return Err("玩家公开绑定不符".into()); }
+                }
+                Zone::Society => {
+                    if t.id!=format!("society:p{}",f.actor) || t.public.kind!="society" || t.public.owner!=Some(player_id(f.actor)) || t.public.controller!=Some(player_id(f.actor)) || t.public.region.is_some() || t.region_instance.is_some() || f.chosen_region.is_some() { return Err("通缉令须绑定本方秘社区域".into()); }
                 }
                 Zone::Graveyard => {
                     if t.public.kind != "character" || t.public.owner != Some(player_id(f.actor)) || t.public.region.is_some()
