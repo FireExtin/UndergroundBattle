@@ -1,0 +1,204 @@
+[
+  {
+    "label": "original",
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+    "sections": [
+      {
+        "kind": 1,
+        "name": null,
+        "bytes": 427,
+        "sha256": "eae02712f35b5111bd8c69d44af1c56c09e65cbb90cdc486e9b1016e25269cdd"
+      },
+      {
+        "kind": 2,
+        "name": null,
+        "bytes": 78,
+        "sha256": "879003e738fb2abf36a303d0949d65a35b80093f6b9da0daa639271a7f05224a"
+      },
+      {
+        "kind": 3,
+        "name": null,
+        "bytes": 4311,
+        "sha256": "79b9b1ebce3c741b8972e31decc23450036ded6b22d7239a346981717fe537fa"
+      },
+      {
+        "kind": 4,
+        "name": null,
+        "bytes": 11,
+        "sha256": "30dcac77f4b4acb922acc5fce3dde823d3f27df680cd3fa81db5e5ad092ea5d8"
+      },
+      {
+        "kind": 5,
+        "name": null,
+        "bytes": 3,
+        "sha256": "a1c09eb8693e4fb8f027acac907b3cc649d93aeb2c6c9ac444c0a77ff7b63cb0"
+      },
+      {
+        "kind": 6,
+        "name": null,
+        "bytes": 9,
+        "sha256": "da3c74f89a28b8e9a570d349d0f0a216ef8e69818c7226007164845feaceaf63"
+      },
+      {
+        "kind": 7,
+        "name": null,
+        "bytes": 302,
+        "sha256": "0932e14e5dcbfb09726d16974216d2f870ddfccd57607386e63472bdd2c65c0a"
+      },
+      {
+        "kind": 9,
+        "name": null,
+        "bytes": 742,
+        "sha256": "95a7a19c267d47540a6927d84d3dc8ee5de7653eba63488882f3bb32bb733f11"
+      },
+      {
+        "kind": 10,
+        "name": null,
+        "bytes": 3449524,
+        "sha256": "b56458bd03ef33881341bf9fc6126ef5545cf3bcd1f187028f8272a7d2ec8270"
+      },
+      {
+        "kind": 11,
+        "name": null,
+        "bytes": 423691,
+        "sha256": "08fc4d099ad968d7bf088b8d3a02192a4daeabc5f98a726d26fb013a20578a40"
+      },
+      {
+        "kind": 0,
+        "name": "name",
+        "bytes": 436575,
+        "sha256": "694580fa9dc520c52e11151fd5d94495162c090a84c824393bfc746a74673fc8"
+      },
+      {
+        "kind": 0,
+        "name": "producers",
+        "bytes": 112,
+        "sha256": "24bebc2ac2cc90f6eef508480a287e0ada2104d63e7de61f3cc47e6bfad771bf"
+      },
+      {
+        "kind": 0,
+        "name": "target_features",
+        "bytes": 148,
+        "sha256": "97ceea95e0687b14437e21c205ebb40eea27aa5ecaa971f7d87601e3aa213bfd"
+      }
+    ],
+    "absoluteSourceStrings": [
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/impls.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-0.2.104/src/convert/slices.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/error.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/ser.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/ser.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-0.2.104/src/externref.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/de.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/de.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/mod.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/mod.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/read.rs",
+      "/workspace/audit-underground-100161b/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itoa-1.0.18/src/lib.rs"
+    ]
+  },
+  {
+    "label": "rebuilt",
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-build/rebuilt-a8b1ddba-pkg/hegemony_wasm_bg.wasm",
+    "bytes": 4316183,
+    "sha256": "a8b1ddba7737c7fee463c1630ea2ad9388f7df796811c0307452fa17d60b53da",
+    "sections": [
+      {
+        "kind": 1,
+        "name": null,
+        "bytes": 427,
+        "sha256": "eae02712f35b5111bd8c69d44af1c56c09e65cbb90cdc486e9b1016e25269cdd"
+      },
+      {
+        "kind": 2,
+        "name": null,
+        "bytes": 78,
+        "sha256": "879003e738fb2abf36a303d0949d65a35b80093f6b9da0daa639271a7f05224a"
+      },
+      {
+        "kind": 3,
+        "name": null,
+        "bytes": 4311,
+        "sha256": "79b9b1ebce3c741b8972e31decc23450036ded6b22d7239a346981717fe537fa"
+      },
+      {
+        "kind": 4,
+        "name": null,
+        "bytes": 11,
+        "sha256": "30dcac77f4b4acb922acc5fce3dde823d3f27df680cd3fa81db5e5ad092ea5d8"
+      },
+      {
+        "kind": 5,
+        "name": null,
+        "bytes": 3,
+        "sha256": "a1c09eb8693e4fb8f027acac907b3cc649d93aeb2c6c9ac444c0a77ff7b63cb0"
+      },
+      {
+        "kind": 6,
+        "name": null,
+        "bytes": 9,
+        "sha256": "da3c74f89a28b8e9a570d349d0f0a216ef8e69818c7226007164845feaceaf63"
+      },
+      {
+        "kind": 7,
+        "name": null,
+        "bytes": 302,
+        "sha256": "0932e14e5dcbfb09726d16974216d2f870ddfccd57607386e63472bdd2c65c0a"
+      },
+      {
+        "kind": 9,
+        "name": null,
+        "bytes": 742,
+        "sha256": "95a7a19c267d47540a6927d84d3dc8ee5de7653eba63488882f3bb32bb733f11"
+      },
+      {
+        "kind": 10,
+        "name": null,
+        "bytes": 3449524,
+        "sha256": "cc9acbea52a5d3cdacecd3ea193c703a67896a7264f82d4b9f7c4592a8b298bd"
+      },
+      {
+        "kind": 11,
+        "name": null,
+        "bytes": 423883,
+        "sha256": "4a739519de74b45356e6e568dc6d5cc8b81f174fa028dacba821ef714f5fcf11"
+      },
+      {
+        "kind": 0,
+        "name": "name",
+        "bytes": 436575,
+        "sha256": "694580fa9dc520c52e11151fd5d94495162c090a84c824393bfc746a74673fc8"
+      },
+      {
+        "kind": 0,
+        "name": "producers",
+        "bytes": 124,
+        "sha256": "a55ae0e7ed32eeb91b4af2935d5c15290a3da074586a587947bf355f8f2a309b"
+      },
+      {
+        "kind": 0,
+        "name": "target_features",
+        "bytes": 148,
+        "sha256": "97ceea95e0687b14437e21c205ebb40eea27aa5ecaa971f7d87601e3aa213bfd"
+      }
+    ],
+    "absoluteSourceStrings": [
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/impls.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-0.2.104/src/convert/slices.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/error.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/ser.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/ser.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasm-bindgen-0.2.104/src/externref.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/de.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/de.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/mod.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/de/mod.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/read.rs",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itoa-1.0.18/src/lib.rs"
+    ]
+  }
+]

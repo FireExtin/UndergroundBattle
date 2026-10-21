@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T20:23:46.873023+00:00",
+  "baseCommit": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "branch": "progress/batch20-third-20261021",
+  "nativeDevelopmentIdentity": "rust-v0.2.94-batch20-third",
+  "publicAdmissions": 0,
+  "fullyIntegratedNewCards": 0,
+  "nativePilot": {
+    "passed": 7,
+    "failed": 0,
+    "filter": "batch3",
+    "command": "node tools/build-storage.mjs -- cargo test --offline --manifest-path rust-game/Cargo.toml --lib batch3 -- --nocapture",
+    "inputManifest": "native-input-files.json",
+    "inputManifestSha256": "2de4d76547db435890a4ca3c6d873c31e4adc2b70e280dcdf8a87b101f1ae31a"
+  },
+  "sourcePilot": {
+    "passed": 7,
+    "failed": 0
+  },
+  "affectedRegressions": {
+    "spiritFilteredRun": {
+      "passed": 13,
+      "includesThirdBatchPilot": 1,
+      "priorCases": 12
+    },
+    "batch20_jc043": 1,
+    "wm034": 1,
+    "failed": 0,
+    "overlappingRunsNotAdded": true
+  },
+  "regressionTiming": "Affected prior regressions ran before rustfmt of the new module and before ABI94 identity reservation; the 7 new native cases and 7 source cases were rerun after both. No existing test logic changed. No full-suite claim.",
+  "prior193RecordsSha256": "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e",
+  "sourceCorrections": [
+    "BQ042",
+    "BQ087",
+    "BQ029",
+    "WM041",
+    "XG26"
+  ],
+  "logs": [
+    {
+      "file": "native-pilot-7.log.gz",
+      "rawBytes": 1101,
+      "rawSha256": "6bba7b539a79b62a6956674ef13c61e55fdd0ef503a4569e4e8f78663869c1fe",
+      "gzipBytes": 553,
+      "gzipSha256": "ca77d4a98cdbed91c8c96414cec06b4a1f6a958b4428bffcf6b33876e59d3865"
+    },
+    {
+      "file": "source-pilot-7.log.gz",
+      "rawBytes": 869,
+      "rawSha256": "f8723286970b780224cb1df2d81ca8398555e1146f8b864eec38dff85291a5cb",
+      "gzipBytes": 454,
+      "gzipSha256": "ec301d9335a5f376b048d624eede9290ef797918e5938dcf2ab47555e47d7228"
+    },
+    {
+      "file": "affected-spirit-13.log.gz",
+      "rawBytes": 1693,
+      "rawSha256": "f97a64a6b73ed9bfdf10fa38bb4cd71c0929d1b5ea925e458f1a986656fa78f7",
+      "gzipBytes": 767,
+      "gzipSha256": "3d531ec3ba24a5199cfa5c4c14d083bab8bbad93f33695fa9b2170a248801b48"
+    },
+    {
+      "file": "affected-jc043-1.log.gz",
+      "rawBytes": 427,
+      "rawSha256": "90d0121313ded3b7fbb868d951dd983267495fa1bb9c5bfa3422a3b4f1cabf1d",
+      "gzipBytes": 313,
+      "gzipSha256": "35cb67d739963e00b5fb283e0e0eb3f9cfe3099608369daeda43c948a435ef1c"
+    },
+    {
+      "file": "affected-wm034-1.log.gz",
+      "rawBytes": 422,
+      "rawSha256": "66a6bdb55fea1311ad55dc7e416797c9db5a6a52643caea098d9bd1c72f70f43",
+      "gzipBytes": 311,
+      "gzipSha256": "f2c9a666e3c3bf0c09f2f9788f8a39e8864cca8cd24aaae32895700da868379f"
+    },
+    {
+      "file": "initial-native-pilot-failed.log.gz",
+      "rawBytes": 4471,
+      "rawSha256": "c1a86b9fd478de72943da16d423c79eadc1cdc2fb532daff93099da5a9c4d116",
+      "gzipBytes": 1631,
+      "gzipSha256": "8ca38411e6e021576fc2ece5d34746e2065910f121d06401bbdbf56e41369a55"
+    },
+    {
+      "file": "native-compile-receipt-type-failed.log.gz",
+      "rawBytes": 2350,
+      "rawSha256": "8e1f2c97009d088b739711fe49747e945885e4c501be7d1269477dbfc5d10bd4",
+      "gzipBytes": 552,
+      "gzipSha256": "f79f568b2184e14aaffe5443e767a9a6456d4a1e2ed05b080c13651755ae3186"
+    },
+    {
+      "file": "native-region-context-failed.log.gz",
+      "rawBytes": 1382,
+      "rawSha256": "4fd16b32de108e862389b5a54f2d2cede72beebc06f0a323dc4cf5e296d8623f",
+      "gzipBytes": 780,
+      "gzipSha256": "4cccd350a2cee8c8968527d0fc2f7bdcb168174d53772575c3e791a1e6f68a00"
+    },
+    {
+      "file": "native-receipt-namespace-failed.log.gz",
+      "rawBytes": 1373,
+      "rawSha256": "bb9eb8f4c58ed52affcc3fd53487952dc0e6be23dd3aa636f7485eb6dc324565",
+      "gzipBytes": 763,
+      "gzipSha256": "56de567c101d11c91a5e6ec5cd7fbaa4476ed4a12be14d042a18462dd2c12227"
+    },
+    {
+      "file": "abi93-remap-compile-first-failed.log.gz",
+      "rawBytes": 1027,
+      "rawSha256": "bb33d3dd76b30bb4bb44677d1dbb9cdb3cb55b59465c627e2b45045377e0f81d",
+      "gzipBytes": 511,
+      "gzipSha256": "a9d796b8cc26aec53fcdaa5db96695c2480be15ecc3992da0adf2fd7c00d7415"
+    },
+    {
+      "file": "abi93-remap-compile.log.gz",
+      "rawBytes": 1739,
+      "rawSha256": "b7021d852e81841ffb4b761e6d90bb797e9378cc69d1b082b196aa220706c38f",
+      "gzipBytes": 821,
+      "gzipSha256": "18785c449b2c647338aa2cf1ed0fcd4b762c8ea3b00eb8976955a86aaf05d908"
+    },
+    {
+      "file": "bindgen-cli-install.log.gz",
+      "rawBytes": 10328,
+      "rawSha256": "80ad850cd01c5f85b72c325d010c2ff7672ccbf637736e2cbc69795298cee5e2",
+      "gzipBytes": 2525,
+      "gzipSha256": "8e761f8b777bbcf8beef4fd69b643c971e5bdb3866fb1b2b367f67cff97e3449"
+    }
+  ],
+  "abi93ExactReproduction": "wasm-abi93-exact-reproduction.json",
+  "sourceIndexCleanup": "sites-source-index-cleanup.json",
+  "scope": "Author execution evidence only; no independent or browser acceptance; no full-suite repeat, no CI, no publication."
+}

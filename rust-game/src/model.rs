@@ -586,6 +586,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    Batch3RemovedTime(TimeMarkerPayment),
     JC055Time(Vec<TimeMarkerPayment>),
     SacrificedSubtype { card: Card, subtypes: Vec<String> },
     SourceRemovedTime(TimeMarkerPayment),
@@ -957,6 +958,7 @@ impl Game {
         game.validate_jz35_state()?;
         game.validate_batch20_state()?;
         game.validate_next20_red_state()?;
+        game.validate_batch3_state()?;
         game.validate_jc052_state()?;
         game.validate_jc046_state()?;
         game.validate_jc095_state()?;

@@ -23,25 +23,27 @@ const correctedIcons = {
   JC044: { permanent: { investigation: 1, combat: 1, influence: 1 }, temporary: { investigation: 0, combat: 0, influence: 0 } },
 };
 
-test('only the 14 explicitly reviewed source corrections differ from the d98117d specification baseline', () => {
-  const reviewed = ['JC029', 'JC034', 'JC038', 'JC044', 'JC048', 'JC055', 'JC065', 'JZ49', 'JZ52', 'LC16', 'WM033', 'XG12', 'WM040', 'XG27'];
+test('only the 19 explicitly reviewed source corrections differ from the d98117d specification baseline', () => {
+  const reviewed = ['JC029', 'JC034', 'JC038', 'JC044', 'JC048', 'JC055', 'JC065', 'JZ49', 'JZ52', 'LC16', 'WM033', 'XG12', 'WM040', 'XG27', 'BQ042', 'BQ087', 'BQ029', 'WM041', 'XG26'];
   assert.equal(Object.keys(specs).length, 683);
   const unchanged = Object.fromEntries(Object.entries(specs).filter(([id]) => !reviewed.includes(id)));
   // Pin recomputed independently from d98117d after excluding the newly
-  // reviewed WM040 sun conditions and XG27's printed spirit keyword.
-  assert.equal(digest(unchanged), '94356bc104f520ae8d4e9c4c53ed65f24b024a8e9885cdfb7f93a779b06d2a01');
+  // reviewed conditions and costs, excluding exactly the named records.
+  assert.equal(digest(unchanged), '23e2934c0c7e2b1f9fbc6327f3f05909a79325affa2a481cbdd3bd9356a48c42');
   assert.deepEqual(specs.WM040.fields.printedKeywords, ['暴露条件：公开', '暴露条件：机动']);
   assert.deepEqual(specs.WM040.fields.additionalPrintedSymbols, ['公开前太阳符号：操控者秘社有暴露时生效', '机动前太阳符号：操控者秘社有暴露时生效']);
   assert.deepEqual(specs.XG27.fields.printedKeywords, ['灵体']);
+  assert.deepEqual(specs.BQ042.fields.printedKeywords, ['隐秘条件：灵体', '时间标志1']);
+  assert.equal(specs.BQ042.fields.additionalPrintedSymbols[0].printedText, '〔月牙〕灵体');
   assert.equal(specs.XG27.sourceVerification.imageSha256, '9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0');
 });
 
 test('next batch adds exactly twenty admissions while preserving all 173 published records', () => {
-  assert.equal(data.cards.length, 193);
-  assert.equal(data.cards.filter(card => card.kind !== 'region').length, 183);
-  assert.equal(new Set(data.cards.map(card => card.id)).size, 193);
+  assert.equal(data.cards.filter(card => card.supported !== false).length, 193);
+  assert.equal(data.cards.filter(card => card.kind !== 'region' && card.supported !== false).length, 183);
+  assert.equal(new Set(data.cards.map(card => card.id)).size, data.cards.length);
   assert.deepEqual(data.cards.slice(153, 173).map(card => card.id), ids);
-  assert.deepEqual(data.cards.slice(173).map(card => card.id).sort(), [...nextIds].sort());
+  assert.deepEqual(data.cards.slice(173, 193).map(card => card.id).sort(), [...nextIds].sort());
   // Independently pinned from 7f4e6d63, including every original field and order.
   assert.equal(digest(data.cards.slice(0, 173)), '2e3c30a1172f4a995c8a5227e484360d47562dfd63c4a2e5974a55cf68303fd9');
   // Pin read independently from d98117d188cfc65f4e29fb757dfcf9accdd545e5.
@@ -58,8 +60,8 @@ test('next batch adds exactly twenty admissions while preserving all 173 publish
   assert.equal(digest(prior), '46ae8563bddc922ff124e7ce0ea6938ec584a84921d8f33a2299a2a8b5b2adac');
   const { cards, cardPoolVersion, engineVersion, ...metadata } = data;
   assert.equal(digest(metadata), 'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
-  assert.equal(cardPoolVersion, 'limited-v2.83-batch20-next');
-  assert.equal(engineVersion, 'rust-v0.2.93-batch20-next');
+  assert.equal(cardPoolVersion, 'limited-v2.84-batch20-third');
+  assert.equal(engineVersion, 'rust-v0.2.94-batch20-third');
   const rust = read('rust-game/src/catalog.rs').toString();
   const constant = name => rust.match(new RegExp(`pub const ${name}: &str = "([^"]+)";`))?.[1];
   assert.equal(constant('RULES_VERSION'), data.rulesVersion);
@@ -89,6 +91,6 @@ test(`all 20 ${batch} batch prints retain their independently reviewed names, co
 
 test('all 193 admitted scans retain exact original bytes and both public mappings', () => {
   const result = validateAdmittedScans();
-  assert.equal(result.checkedCards, 193);
+  assert.equal(result.checkedCards, data.cards.length);
   for (const id of [...ids, ...nextIds]) assert(result.checkedIds.includes(id), id);
 });

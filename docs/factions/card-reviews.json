@@ -6011,13 +6011,13 @@
     },
     "BQ029": {
       "reviewStatus": "primaryImageReviewed",
-      "evidenceId": "card-BQ029",
+      "evidenceId": "batch20-third-bq029-original-20261021",
       "verifiedFields": {
         "name": "赤鳞近卫",
         "colorKey": "蓝",
         "basicType": "角色"
       },
-      "abilitySummary": "非资产；袭击1；额外费用 你可以支付①。；进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "abilitySummary": "【暴露】非资产；袭击1；额外费用 你可以支付①。；进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
       "confirmedMechanismIds": [
         "nonAsset",
         "combatKeywords",
@@ -6742,13 +6742,13 @@
     },
     "BQ042": {
       "reviewStatus": "primaryImageReviewed",
-      "evidenceId": "card-BQ042",
+      "evidenceId": "batch20-third-bq042-original-20261021",
       "verifiedFields": {
         "name": "矛盾体",
         "colorKey": "红",
         "basicType": "角色"
       },
-      "abilitySummary": "灵体；时间标志1；行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。",
+      "abilitySummary": "【隐秘】灵体；时间标志1；行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。",
       "confirmedMechanismIds": [
         "spirit",
         "timeDestroy",
@@ -7549,13 +7549,13 @@
     },
     "BQ087": {
       "reviewStatus": "primaryImageReviewed",
-      "evidenceId": "card-BQ087",
+      "evidenceId": "batch20-third-bq087-original-20261021",
       "verifiedFields": {
         "name": "赫雀瑟，黄金之蛇",
         "colorKey": "黑",
         "basicType": "角色"
       },
-      "abilitySummary": "领袖；传闻；准备步骤触发 将你墓地中的目标角色牌放置进场并置于随机地区。",
+      "abilitySummary": "【暴露】领袖；【隐秘】传闻；准备步骤强制触发 将你墓地中的目标角色牌放置进场并置于随机地区。",
       "confirmedMechanismIds": [
         "leader",
         "rumor",
@@ -8702,13 +8702,13 @@
     },
     "WM041": {
       "reviewStatus": "primaryImageReviewed",
-      "evidenceId": "card-WM041",
+      "evidenceId": "batch20-third-wm041-original-20261021",
       "verifiedFields": {
         "name": "阿尔法先生",
         "colorKey": "灰",
         "basicType": "角色"
       },
-      "abilitySummary": "领袖；声望；持续 所有本方公开角色获得声望。所有敌方角色失去声望。；强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。",
+      "abilitySummary": "领袖；【暴露】声望；持续 所有本方公开角色获得声望。所有敌方角色失去声望。；强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。",
       "confirmedMechanismIds": [
         "leader",
         "renown",
@@ -11485,19 +11485,18 @@
     },
     "XG26": {
       "reviewStatus": "primaryImageReviewed",
-      "evidenceId": "card-XG26",
+      "evidenceId": "batch20-third-xg26-original-20261021",
       "verifiedFields": {
         "name": "看场打手",
         "colorKey": "黑",
         "basicType": "角色"
       },
-      "abilitySummary": "隐秘〔月形〕护卫1；持续 若位于有本方势力标志的地区，看场打手获得临时势力1。；快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。",
+      "abilitySummary": "隐秘〔月形〕护卫1；持续 若位于有本方势力标志的地区，看场打手获得临时势力1。；快速行动①，横置看场打手：目标本方附属获得屏障直到回合结束。",
       "confirmedMechanismIds": [
         "mysticContest",
         "combatKeywords",
         "continuous",
         "temporaryIcons",
-        "sacrifice",
         "attachment",
         "barrier"
       ],

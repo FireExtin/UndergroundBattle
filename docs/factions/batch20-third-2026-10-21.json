@@ -1,0 +1,627 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch20-third-20261021",
+  "status": "sourceReviewAndImplementationWip",
+  "baseCommit": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "baseRegularDefinitions": 193,
+  "baseRegularRecordsSha256": "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e",
+  "priorBatch20": {
+    "selectedNewCards": 20,
+    "fullyIntegratedNewCards": 20,
+    "selectionEnabledNewCards": 20,
+    "publishedNewCards": 0,
+    "neutralOrDualExpansion": "paused",
+    "sourceIntegratedNewCards": 20,
+    "integrationMeaning": "20 implemented/admitted; Native129, Web180, build/startup,16kernelHTTP/D1 and35+8 Native/WASM passed. Official v75 saved; deployment not requested while existing v74 remains pending. Next20 full suites/independent review/browser pending."
+  },
+  "scope": {
+    "selected": 20,
+    "fullyIntegratedNewCards": 0,
+    "selectionEnabled": 0,
+    "published": 0
+  },
+  "cards": [
+    {
+      "id": "BQ042",
+      "name": "矛盾体",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
+      "sourceImageSha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "CQ11",
+      "name": "暴乱煽动者",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg",
+      "sourceImageSha256": "8906b607ea300248c417f346a7d5fee0b3bb215e525f06a5862bdfe04adaa2c4",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM030",
+      "name": "狂热信众",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
+      "sourceImageSha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM033",
+      "name": "钟楼怪客",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
+      "sourceImageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM035",
+      "name": "安东尼·布洛克",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
+      "sourceImageSha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "BQ079",
+      "name": "亡嚎食尸鬼",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
+      "sourceImageSha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ087",
+      "name": "赫雀瑟，黄金之蛇",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
+      "sourceImageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ089",
+      "name": "生化改造手术",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
+      "sourceImageSha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG26",
+      "name": "看场打手",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+      "sourceImageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG28",
+      "name": "违禁品临时收容所",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+      "sourceImageSha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ026",
+      "name": "吸血蝙蝠群",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
+      "sourceImageSha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ029",
+      "name": "赤鳞近卫",
+      "color": "蓝",
+      "sourceImage": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+      "sourceImageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ037",
+      "name": "穿刺公弗拉德三世",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
+      "sourceImageSha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ25",
+      "name": "卡迪纳猎杀者",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
+      "sourceImageSha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "JZ26",
+      "name": "袖中毒物",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
+      "sourceImageSha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "JC062",
+      "name": "调查档案",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
+      "sourceImageSha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "multiTargetInvalidation"
+      ]
+    },
+    {
+      "id": "JC064",
+      "name": "戒严",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
+      "sourceImageSha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "XQ22",
+      "name": "州议员贝伦·希恩斯",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
+      "sourceImageSha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "XQ26",
+      "name": "通缉令",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
+      "sourceImageSha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "WM041",
+      "name": "阿尔法先生",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
+      "sourceImageSha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": []
+    }
+  ],
+  "constraints": [
+    "red/black/blue/gray only",
+    "no neutral or dual expansion",
+    "fixed bb77 acceptance candidate lives in separate ordinary clone",
+    "no worktrees or GitHub CI",
+    "no publication while original v74 deployment remains pending"
+  ],
+  "sourceCorrections": [
+    {
+      "card": "BQ042",
+      "originalImageSha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b",
+      "evidenceId": "batch20-third-bq042-original-20261021",
+      "fields": {
+        "name": "矛盾体",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "红",
+        "basicType": "角色",
+        "subtypes": [
+          "熵",
+          "法师",
+          "罪犯"
+        ],
+        "printedCollectorCode": "039/116",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "红",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘条件：灵体",
+          "时间标志1"
+        ],
+        "printedRuleTextLines": [
+          "【隐秘】灵体；时间标志1",
+          "行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-keyword-condition",
+            "status": "confirmed",
+            "printedText": "〔月牙〕灵体",
+            "interpretation": "本方秘社上有隐秘标志时才获得灵体。"
+          }
+        ]
+      }
+    },
+    {
+      "card": "BQ087",
+      "originalImageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
+      "evidenceId": "batch20-third-bq087-original-20261021",
+      "fields": {
+        "name": "赫雀瑟，黄金之蛇",
+        "subtitle": "魔特之子",
+        "nameInk": "gold",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "法师"
+        ],
+        "printedCollectorCode": "52/76",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 7,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 3
+          }
+        ],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporaryIcons": {
+          "investigation": 3,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 5,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "暴露条件：领袖",
+          "隐秘条件：传闻"
+        ],
+        "printedRuleTextLines": [
+          "【暴露】领袖；【隐秘】传闻",
+          "准备步骤强制触发 将你墓地中的目标角色牌放置进场并置于随机地区。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-leader",
+            "status": "confirmed",
+            "printedText": "〔太阳〕领袖",
+            "interpretation": "本方秘社上有暴露标志时才获得领袖。"
+          },
+          {
+            "id": "moon-rumor",
+            "status": "confirmed",
+            "printedText": "〔月牙〕传闻",
+            "interpretation": "本方秘社上有隐秘标志时才获得传闻。"
+          }
+        ]
+      }
+    },
+    {
+      "card": "BQ029",
+      "originalImageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
+      "evidenceId": "batch20-third-bq029-original-20261021",
+      "fields": {
+        "name": "赤鳞近卫",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "蓝",
+        "basicType": "角色",
+        "subtypes": [
+          "吸血鬼",
+          "忍者"
+        ],
+        "printedCollectorCode": "24/98",
+        "seriesSymbol": "霸权三角环符号",
+        "printedCost": 2,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "蓝",
+            "count": 2
+          }
+        ],
+        "domains": [
+          {
+            "id": "blood",
+            "count": 1
+          }
+        ],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "暴露条件：非资产",
+          "袭击1"
+        ],
+        "printedRuleTextLines": [
+          "【暴露】非资产；袭击1",
+          "额外费用 你可以支付①。",
+          "进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-nonasset",
+            "status": "confirmed",
+            "printedText": "〔太阳〕非资产",
+            "interpretation": "本方秘社上有暴露标志时才具有非资产。"
+          }
+        ]
+      }
+    },
+    {
+      "card": "WM041",
+      "originalImageSha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090",
+      "evidenceId": "batch20-third-wm041-original-20261021",
+      "fields": {
+        "name": "阿尔法先生",
+        "subtitle": "P.S.C.管理员",
+        "nameInk": "gold",
+        "colorKey": "灰",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "特工",
+          "互联网"
+        ],
+        "printedCollectorCode": "41/98",
+        "seriesSymbol": "帷幕之后眼形符号",
+        "printedCost": 6,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "灰",
+            "count": 3
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 3,
+          "combat": 1,
+          "influence": 2
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 2,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "领袖",
+          "暴露条件：声望"
+        ],
+        "printedRuleTextLines": [
+          "领袖；【暴露】声望",
+          "持续 所有本方公开角色获得声望。所有敌方角色失去声望。",
+          "强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-renown",
+            "status": "confirmed",
+            "printedText": "〔太阳〕声望",
+            "interpretation": "本方秘社上有暴露标志时才获得印刷声望。"
+          }
+        ]
+      }
+    },
+    {
+      "card": "XG26",
+      "originalImageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
+      "evidenceId": "batch20-third-xg26-original-20261021",
+      "fields": {
+        "name": "看场打手",
+        "subtitle": null,
+        "nameInk": "white",
+        "colorKey": "黑",
+        "basicType": "角色",
+        "subtypes": [
+          "人类",
+          "罪犯"
+        ],
+        "printedCollectorCode": "26/48",
+        "seriesSymbol": "星光四芒形符号",
+        "printedCost": 1,
+        "loyalty": [
+          {
+            "kind": "color",
+            "value": "黑",
+            "count": 1
+          }
+        ],
+        "domains": [],
+        "permanentIcons": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporaryIcons": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "defense": 1,
+        "startingHand": null,
+        "influenceThreshold": null,
+        "points": null,
+        "printedKeywords": [
+          "隐秘〔月形〕护卫1"
+        ],
+        "printedRuleTextLines": [
+          "隐秘〔月形〕护卫1",
+          "持续 若位于有本方势力标志的地区，看场打手获得临时势力1。",
+          "快速行动①，横置看场打手：目标本方附属获得屏障直到回合结束。"
+        ],
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "护卫1前月形隐秘标志",
+            "interpretation": "独立印刷条件/栏位；不计入角色能力图标或忠诚。"
+          }
+        ]
+      }
+    }
+  ],
+  "unresolved": [
+    "red cost-ring is a source geometry fact; no new speed rule is inferred",
+    "TK008 full token program and disappearance rules required for CQ11",
+    "BQ026 attachment role semantics must be confirmed before admission",
+    "JC062: implement zero/one/two explicit target binding with existing whole-effect cancellation; original rules physical PDF9 and FAQ3 verified",
+    "All twenty runtime programs are not complete; zero new public admissions, no new WASM or deployment"
+  ],
+  "validation": {
+    "nativePilot": {
+      "filter": "batch3",
+      "passed": 7,
+      "failed": 0,
+      "scope": [
+        "WM030 personal continuous permanent icons",
+        "BQ042 source time payment and once-per-turn destroy",
+        "exact definitions, restore and forged receipt refusal"
+      ],
+      "log": "docs/evidence/batch20-third-2026-10-21/native-pilot-7.log.gz",
+      "identityNote": "Fresh 7-case native run passed after reserving unreleased ABI94.",
+      "identity": "rust-v0.2.94-batch20-third"
+    },
+    "sourceRecordsPreserved": 193,
+    "unreviewedRuntimeCards": 18,
+    "affectedPriorRegressions": {
+      "spiritFilteredRun": {
+        "passed": 13,
+        "includesThirdBatchPilot": 1,
+        "priorCases": 12
+      },
+      "batch20_jc043": 1,
+      "wm034": 1,
+      "failed": 0,
+      "overlappingRunsNotAdded": true
+    },
+    "sourcePilot": {
+      "passed": 7,
+      "failed": 0,
+      "identity": "rust-v0.2.94-batch20-third",
+      "log": "docs/evidence/batch20-third-2026-10-21/source-pilot-7.log.gz"
+    }
+  },
+  "developmentIdentity": {
+    "engine": "rust-v0.2.94-batch20-third",
+    "pool": "limited-v2.84-batch20-third",
+    "status": "unreleasedNativeDevelopmentOnly",
+    "wasmBuilt": false,
+    "publicAdmissions": 0,
+    "requires": "Complete20, current-only Worker integration and fresh Native/WASM fixtures before publish"
+  }
+}

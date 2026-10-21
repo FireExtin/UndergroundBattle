@@ -5651,7 +5651,7 @@
         "basis": "directOriginalImageReview",
         "imagePath": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
         "imageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
-        "evidenceId": "card-BQ029",
+        "evidenceId": "batch20-third-bq029-original-20261021",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
         "blockingFields": [],
         "recoveryProvenanceRef": "docs/factions/source-recovery.json#recoveredOriginals"
@@ -5704,21 +5704,28 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "非资产",
+          "暴露条件：非资产",
           "袭击1"
         ],
         "printedRuleTextLines": [
-          "非资产；袭击1",
+          "【暴露】非资产；袭击1",
           "额外费用 你可以支付①。",
           "进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-nonasset",
+            "status": "confirmed",
+            "printedText": "〔太阳〕非资产",
+            "interpretation": "本方秘社上有暴露标志时才具有非资产。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "非资产；袭击1",
+          "printedText": "【暴露】非资产；袭击1",
           "notExecutable": true
         },
         {
@@ -7241,7 +7248,7 @@
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
         "imageSha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b",
-        "evidenceId": "card-BQ042",
+        "evidenceId": "batch20-third-bq042-original-20261021",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
         "blockingFields": []
       },
@@ -7294,20 +7301,27 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "灵体",
+          "隐秘条件：灵体",
           "时间标志1"
         ],
         "printedRuleTextLines": [
-          "灵体；时间标志1",
+          "【隐秘】灵体；时间标志1",
           "行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "hidden-keyword-condition",
+            "status": "confirmed",
+            "printedText": "〔月牙〕灵体",
+            "interpretation": "本方秘社上有隐秘标志时才获得灵体。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "灵体；时间标志1",
+          "printedText": "【隐秘】灵体；时间标志1",
           "notExecutable": true
         },
         {
@@ -12577,7 +12591,7 @@
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
         "imageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
-        "evidenceId": "card-BQ087",
+        "evidenceId": "batch20-third-bq087-original-20261021",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
         "blockingFields": []
       },
@@ -12608,7 +12622,12 @@
             "count": 3
           }
         ],
-        "domains": [],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
         "permanentIcons": {
           "investigation": 0,
           "combat": 1,
@@ -12624,26 +12643,39 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "领袖",
-          "传闻"
+          "暴露条件：领袖",
+          "隐秘条件：传闻"
         ],
         "printedRuleTextLines": [
-          "领袖；传闻",
-          "准备步骤触发 将你墓地中的目标角色牌放置进场并置于随机地区。"
+          "【暴露】领袖；【隐秘】传闻",
+          "准备步骤强制触发 将你墓地中的目标角色牌放置进场并置于随机地区。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-leader",
+            "status": "confirmed",
+            "printedText": "〔太阳〕领袖",
+            "interpretation": "本方秘社上有暴露标志时才获得领袖。"
+          },
+          {
+            "id": "moon-rumor",
+            "status": "confirmed",
+            "printedText": "〔月牙〕传闻",
+            "interpretation": "本方秘社上有隐秘标志时才获得传闻。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "领袖；传闻",
+          "printedText": "【暴露】领袖；【隐秘】传闻",
           "notExecutable": true
         },
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "准备步骤触发 将你墓地中的目标角色牌放置进场并置于随机地区。",
+          "printedText": "准备步骤强制触发 将你墓地中的目标角色牌放置进场并置于随机地区。",
           "notExecutable": true
         }
       ],
@@ -65346,7 +65378,7 @@
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
         "imageSha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090",
-        "evidenceId": "card-WM041",
+        "evidenceId": "batch20-third-wm041-original-20261021",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
         "blockingFields": []
       },
@@ -65395,20 +65427,27 @@
         "points": null,
         "printedKeywords": [
           "领袖",
-          "声望"
+          "暴露条件：声望"
         ],
         "printedRuleTextLines": [
-          "领袖；声望",
+          "领袖；【暴露】声望",
           "持续 所有本方公开角色获得声望。所有敌方角色失去声望。",
           "强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "sun-renown",
+            "status": "confirmed",
+            "printedText": "〔太阳〕声望",
+            "interpretation": "本方秘社上有暴露标志时才获得印刷声望。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "领袖；声望",
+          "printedText": "领袖；【暴露】声望",
           "notExecutable": true
         },
         {
@@ -75508,7 +75547,7 @@
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
         "imageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
-        "evidenceId": "card-XG26",
+        "evidenceId": "batch20-third-xg26-original-20261021",
         "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
         "blockingFields": []
       },
@@ -75560,7 +75599,7 @@
         "printedRuleTextLines": [
           "隐秘〔月形〕护卫1",
           "持续 若位于有本方势力标志的地区，看场打手获得临时势力1。",
-          "快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。"
+          "快速行动①，横置看场打手：目标本方附属获得屏障直到回合结束。"
         ],
         "additionalPrintedSymbols": [
           {
@@ -75587,7 +75626,7 @@
         {
           "id": "printed-3",
           "kind": "sourceTextOnly",
-          "printedText": "快速行动①，牺牲看场打手：目标本方附属获得屏障直到回合结束。",
+          "printedText": "快速行动①，横置看场打手：目标本方附属获得屏障直到回合结束。",
           "notExecutable": true
         }
       ],
@@ -75596,7 +75635,6 @@
         "combatKeywords",
         "continuous",
         "temporaryIcons",
-        "sacrifice",
         "attachment",
         "barrier"
       ],

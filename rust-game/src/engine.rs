@@ -382,7 +382,7 @@ impl Game {
     fn region_converts_temporary(&self, c: &Card, region: usize) -> bool {
         !c.face_down
             && card(&c.definition).kind == "character"
-            && rules::definition(&c.definition).traits.spirit
+            && self.current_spirit(c)
             && self
                 .regions
                 .get(region)
@@ -413,6 +413,7 @@ impl Game {
         let d = card(&c.definition);
         let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
         let mut permanent_result = d.permanent_icons.add(sealed_permanent);
+        permanent_result = permanent_result.add(self.wm030_cultist_icons(c, region));
         permanent_result.combat = permanent_result.combat.saturating_add(c.permanent_combat_markers)
             .saturating_add(self.cq17_combat_bonus(c, region));
         if c.definition == "JC045" && !c.face_down
@@ -618,6 +619,7 @@ impl Game {
         }
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
+        self.validate_batch3_state()?;
         self.validate_exposure_state()?;
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
@@ -636,6 +638,7 @@ impl Game {
         next.drive()?;
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
+        next.validate_batch3_state()?;
         next.validate_exposure_state()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
@@ -723,6 +726,7 @@ impl Game {
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
+                crate::batch3::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -802,6 +806,7 @@ impl Game {
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
+                crate::batch3::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -858,6 +863,7 @@ impl Game {
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
+                crate::batch3::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
@@ -901,6 +907,7 @@ impl Game {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
+                crate::batch3::validate_action(&c.definition, &a)?;
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 self.jc041_check_activation(seat, region, c, &a)?;
@@ -1147,6 +1154,7 @@ impl Game {
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
+        self.validate_batch3_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1223,6 +1231,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
+        self.batch3_entry_keywords(definition, id);
         // Intermezzo slow is an entry requirement, not an optional trigger or
         // an exhaust cost. Apply it before freezing the entry declaration.
         if rules::definition(definition).traits.slow {
@@ -2034,6 +2043,7 @@ impl Game {
         self.validate_exposure_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
+        self.validate_batch3_state()?;
         self.validate_jc052_state()?;
         self.validate_jc046_state()?;
         self.validate_jc095_state()?;

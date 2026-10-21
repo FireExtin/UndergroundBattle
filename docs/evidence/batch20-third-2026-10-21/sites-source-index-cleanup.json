@@ -1,0 +1,16 @@
+{
+  "sourceBaseline": "38d987de593faad4483128f3e3795b1a511aa30c",
+  "localBranch": "progress/source-ignore-cleanup-20261021",
+  "indexCacheEntriesBefore": 647,
+  "indexDependencyLinksBefore": 2,
+  "indexExcludedEntriesAfter": 0,
+  "originalPathsPreservedByLstat": true,
+  "commitCreated": true,
+  "pushed": false,
+  "published": false,
+  "effect": "local committed untracking plus ignore only; all original files, links and v76 Git history preserved",
+  "localCleanupCommit": "3103444a9c111667f20ce41535a920f7b36a9de0",
+  "workingTreeClean": true,
+  "identity": "Existing bb77 Codex author reused for this one command only; no global or local identity config changed",
+  "all647CachePathsStillPresentByLstat": true
+}

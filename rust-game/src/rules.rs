@@ -50,6 +50,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    Batch3RemoveTime,
     JC055RemoveTime,
     SacrificeControlledSubtype(Vec<String>),
     RemoveOneTimeFromSource,
@@ -98,6 +99,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    BQ042SocietyOrOriginalRegion,
     BQ077WaterRegion,
     JC055CharacterOrAttachment,
     JZ34DestroyedRegion,
@@ -242,6 +244,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ042DestroyAttachment,
     NextBlueGraySearch,
     JZ23RevealReward { observation: Option<crate::next20_blue_gray::LocalVampireReveal> },
     JZ28DiscardSearch { observation: Option<crate::batch20_observers::DiscardObservation> },
@@ -535,6 +538,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    WM030CultistIcons,
     BQ077WaterCombat,
     CQ26GraveIcons,
     XG27CurseReduction,
@@ -601,6 +605,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
     if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
     if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
     // The registry separately forbids static transplantation. At runtime the
@@ -1363,6 +1368,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::batch3::validate_definition(card_id, definition)?;
         if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
         crate::next20_blue_gray::validate_definition(card_id, definition)?;
         crate::exposure::validate_definition(card_id, definition)?;
@@ -2023,6 +2029,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }
         for id in crate::next20_blue_gray::CARDS {
             m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());
         }

@@ -1023,5 +1023,15 @@
     "url": "/cards/WM042.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg",
     "sha256": "6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d"
+  },
+  "WM030": {
+    "url": "/cards/WM030.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
+    "sha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4"
+  },
+  "BQ042": {
+    "url": "/cards/BQ042.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
+    "sha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b"
   }
 }

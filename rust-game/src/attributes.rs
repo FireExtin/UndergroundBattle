@@ -151,7 +151,7 @@ impl Game {
     }
     pub fn spirit_protected(&self, c: &Card) -> bool {
         if c.face_down
-            || !crate::rules::definition(&c.definition).traits.spirit
+            || !self.current_spirit(c)
             || card(&c.definition).kind != "character"
         {
             return false;

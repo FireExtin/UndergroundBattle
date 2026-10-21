@@ -1,0 +1,53 @@
+{
+  "sourceCommit": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "sourceBaselineForRuntime": "058e921b8a571d27ce35dc082a868387a5a7e252",
+  "rustc": "1.90.0 (1159e78c4 2025-09-14)",
+  "cliVersion": "wasm-bindgen 0.2.104",
+  "cliExecutableSha256": "9e04f8fc32eafed0396f48d897d74ba8ae5081ff4d4f70550b885fb51ae7c47c",
+  "cliSource": "crates.io wasm-bindgen-cli 0.2.104, Cargo install --locked",
+  "cargoRegistryPathRemap": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo=/workspace/audit-underground-100161b/cargo",
+  "rawRustWasmSha256": "f186f9ca6052392b455076e14d4e8b1840188f7db09108b7d3d0c542cb0f613d",
+  "allFiveFilesByteIdentical": true,
+  "files": [
+    {
+      "file": "hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "originalSha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "rebuiltSha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758",
+      "identical": true
+    },
+    {
+      "file": "hegemony_wasm.js",
+      "bytes": 18203,
+      "originalSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "rebuiltSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+      "identical": true
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm",
+      "bytes": 4315979,
+      "originalSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "rebuiltSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "identical": true
+    },
+    {
+      "file": "hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "originalSha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "rebuiltSha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3",
+      "identical": true
+    },
+    {
+      "file": "package.json",
+      "bytes": 33,
+      "originalSha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "rebuiltSha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "identical": true
+    }
+  ],
+  "originalArtifactUnchanged": true,
+  "directMetadataRewriting": false,
+  "fixturesRewritten": false,
+  "published": false,
+  "scope": "ABI93 exact-byte reproduction with this explicit recipe; default build.sh is not yet path-normalized for future ABI94 builds"
+}

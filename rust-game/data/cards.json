@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.83-batch20-next",
-  "engineVersion": "rust-v0.2.93-batch20-next",
+  "cardPoolVersion": "limited-v2.84-batch20-third",
+  "engineVersion": "rust-v0.2.94-batch20-third",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -7629,6 +7629,90 @@
       "unique": false,
       "society": "",
       "supported": true
+    },
+    {
+      "id": "WM030",
+      "name": "狂热信众",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "持续 所有位于已毁灭的地区的本方邪教徒角色获得永久势力1。；持续 若本方秘社上有三个隐秘标志，则所有本方邪教徒角色获得永久调查1。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM030",
+        "image": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
+        "imageSha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ042",
+      "name": "矛盾体",
+      "kind": "character",
+      "subtypes": [
+        "熵",
+        "法师",
+        "罪犯"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【隐秘】灵体；时间标志1；行动 自矛盾体上移除一个时间标志：消灭目标结附于本地区或秘社上的附属。该能力每回合只能发动一次。",
+      "keywords": [
+        "隐秘条件：灵体",
+        "时间标志1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ042",
+        "image": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
+        "imageSha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

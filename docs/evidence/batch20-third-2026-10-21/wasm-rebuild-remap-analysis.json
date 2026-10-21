@@ -1,0 +1,28 @@
+{
+  "source": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "originalWasm": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+  "remappedWasm": "2b091f6bee7ab4096504b89076c8e0a8029d8cdf6a65982527ff1aa2cb87efe1",
+  "differentSections": [
+    {
+      "kind": 0,
+      "name": "producers",
+      "original": {
+        "kind": 0,
+        "name": "producers",
+        "bytes": 112,
+        "sha256": "24bebc2ac2cc90f6eef508480a287e0ada2104d63e7de61f3cc47e6bfad771bf"
+      },
+      "remapped": {
+        "kind": 0,
+        "name": "producers",
+        "bytes": 124,
+        "sha256": "a55ae0e7ed32eeb91b4af2935d5c15290a3da074586a587947bf355f8f2a309b"
+      }
+    }
+  ],
+  "allExecutableAndDataSectionsIdentical": true,
+  "remainingDifference": "wasm-bindgen producer version: 0.2.104 versus prebuilt 0.2.104 (4ea9d98ce)",
+  "reproducibleFullBytesSolved": false,
+  "originalArtifactUnchanged": true,
+  "published": false
+}

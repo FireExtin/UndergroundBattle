@@ -185,7 +185,7 @@ impl Game {
                     self.regions.iter().flat_map(|r| &r.cards).filter(|c| !c.face_down && c.controller == actor
                         && card(&c.definition).kind == "character" && required.iter().any(|s| self.current_subtypes(c).contains(s)))
                         .map(|c| Some(vec![c.id.clone()])).collect()
-                } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSource)) {
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSource | Cost::Batch3RemoveTime)) {
                     self.wm034_time_payments(&source).into_iter().map(|p| Some(vec![p.carrier.id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard)) {
                     self.jc044_time_payments(actor).into_iter().map(|p| Some(vec![p.carrier.id])).collect()
@@ -461,7 +461,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -738,8 +738,8 @@ impl Game {
                                 TargetPredicate::BQ077WaterRegion => false,
                                 TargetPredicate::JZ34DestroyedRegion => false,
                                 TargetPredicate::JC055CharacterOrAttachment => source.card.definition == "JC055" && !c.face_down && matches!(d.kind.as_str(), "character" | "attachment"),
-                                TargetPredicate::JC043SocietyOrOriginalRegion => {
-                                    source.card.definition == "JC043" && self.attachments.iter().find(|a| a.card.id == c.id)
+                                TargetPredicate::JC043SocietyOrOriginalRegion | TargetPredicate::BQ042SocietyOrOriginalRegion => {
+                                    matches!(source.card.definition.as_str(), "JC043" | "BQ042") && self.attachments.iter().find(|a| a.card.id == c.id)
                                         .is_some_and(|a| self.attachment_host_valid(a) && (self.society_host_seat(&a.host_id).is_some()
                                             || source.region.and_then(|r| self.regions.get(r)).is_some_and(|r|
                                                 !r.vacant && source.source_region_instance.as_ref() == Some(&r.card.id)
@@ -951,6 +951,7 @@ impl Game {
             match cost {
                 Cost::JC055RemoveTime => return Err("JC055须通过时间标志支付选择".into()),
                 Cost::SacrificeControlledSubtype(subtypes) => paid.push(self.pay_subtype_sacrifice(actor, subtypes, a)?),
+                Cost::Batch3RemoveTime => paid.push(self.batch3_pay_time(source, a)?),
                 Cost::RemoveOneTimeFromSource => paid.push(self.wm034_pay_time(source, a)?),                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
                 Cost::Assets(n) => {
                     let ids = self.players[actor]
@@ -1181,6 +1182,7 @@ impl Game {
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
         self.validate_next20_red_declaration(&declaration)?;
+        self.validate_batch3_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         if self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
@@ -1270,6 +1272,7 @@ impl Game {
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
         self.validate_next20_red_declaration(&declaration)?;
+        self.validate_batch3_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
@@ -1536,6 +1539,7 @@ impl Game {
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
+        self.validate_batch3_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1597,7 +1601,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
-                Op::JC043DestroyAttachment => {
+                Op::JC043DestroyAttachment | Op::BQ042DestroyAttachment => {
                     if let Some(t) = frame.targets.first() { self.remove_dead(&t.id, RemovalCause::Destroy); }
                 }
                 Op::JZ33ScorchDestroyedRegions => self.jz33_scorch()?,
