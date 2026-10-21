@@ -1,3 +1,4 @@
+import { newCommandId } from './api';
 import { useEffect, useMemo, useState } from 'react';
 import type { Action, StackEffect, View } from './types';
 import './response-intent.css';
@@ -65,7 +66,7 @@ export function ResponseWindow({ view, busy, uncertain, connection, onSelectCard
   const decisionEnabled = commandsEnabled && member?.status === 'undecided' && remainingMs !== null && remainingMs > 0;
   const decide = (begin: boolean) => {
     if (!window || !decisionEnabled || !remainingNow() || (begin && !window.canBegin)) return;
-    onAction?.(begin ? { kind: 'beginResponse', windowId: window.id, intentId: crypto.randomUUID() } : { kind: 'passResponse', windowId: window.id });
+    onAction?.(begin ? { kind: 'beginResponse', windowId: window.id, intentId: newCommandId() } : { kind: 'passResponse', windowId: window.id });
   };
   const cancel = () => {
     if (!window?.myIntentId || member?.status !== 'composing' || !commandsEnabled) return;

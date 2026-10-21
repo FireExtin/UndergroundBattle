@@ -21,7 +21,7 @@ test('XQ23 whole gray print and source artwork remain pinned without changing ar
  assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
 });
 test('XQ23 preserves the reviewed151 definitions, all decks and world; exact published87 remains a dependency',async()=>{
- assert.equal(data.cards.length,152);assert.equal(data.engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
+ assert.equal(data.cards.length,152);assert.equal(data.engineVersion,'rust-v0.2.90-audit-correctness-candidate');assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
  for(const[key,value,expected]of [
   ['cards',data.cards.filter(c=>c.id!=='XQ23'),'baa6c537d1309d2e0d88ec6f5053cd0debe816390ba19cdfb245ab6c04c56b8c'],
   ['decks',data.decks,'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987'],

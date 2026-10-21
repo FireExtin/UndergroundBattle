@@ -7,6 +7,22 @@ use crate::{
 };
 
 impl Game {
+    // Printed icons belong to the live attachment, independently of its host's icons.
+    pub(crate) fn region_attachment_cards(&self, region: usize) -> impl Iterator<Item = &Card> {
+        self.attachments.iter().filter(move |a| !a.card.face_down
+            && self.attachment_host_valid(a) && self.attachment_region(a) == Some(region))
+            .map(|a| &a.card)
+    }
+    pub(crate) fn attachment_current_icons(&self, c: &Card, region: usize) -> Icons {
+        if !self.region_attachment_cards(region).any(|live|
+            serde_json::to_value(live).unwrap() == serde_json::to_value(c).unwrap()) {
+            return Icons::default();
+        }
+        let d = card(&c.definition);
+        d.permanent_icons.add(if self.team(c.controller) == self.first_team {
+            d.temporary_icons
+        } else { Icons::default() })
+    }
     pub(crate) fn attachment_region(&self, attachment: &Attachment) -> Option<usize> {
         let spec = rules::definition(&attachment.card.definition)
             .attachment

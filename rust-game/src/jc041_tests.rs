@@ -318,7 +318,7 @@ fn jc041_native87_oracles() {
     for (name,bytes) in [("rust-game/src/jc041.rs",include_bytes!("jc041.rs").as_slice()),("rust-game/src/jc041_tests.rs",include_bytes!("jc041_tests.rs").as_slice())] {
         source["files"].as_object_mut().unwrap().insert(name.into(),json!(format!("{:x}",Sha256::digest(bytes))));
     }
-    assert_eq!(source["files"].as_object().unwrap().len(),137);
+    assert_eq!(source["files"].as_object().unwrap().len(),136);
     let commands=scenarios.iter().map(|s|s["steps"].as_array().unwrap().len()).sum::<usize>();
     let rejected=scenarios.iter().flat_map(|s|s["steps"].as_array().unwrap()).filter(|r|!r["expected"]["errorCode"].is_null()).count();
     let counts=json!({"scenarios":scenarios.len(),"commands":commands,"rejected":rejected,"projections":4*(commands+scenarios.len()),"invalidRestores":invalid.len()});
@@ -413,7 +413,7 @@ fn jc041_p2_source_region_uid_probe() {
     ] {
         bindings["files"].as_object_mut().unwrap().insert(name.into(),json!(format!("{:x}",Sha256::digest(bytes))));
     }
-    assert_eq!(bindings["files"].as_object().unwrap().len(),139);
+    assert_eq!(bindings["files"].as_object().unwrap().len(),138);
     let data=json!({"format":"jc041-source-region-current-v1","archivedStateSha256":archived_hash,"currentIdentity":catalog::catalog().engine_version,"sourceBindings":bindings,"expectedAccepted":expected_accepted,"originalState":original_state,"originalViews":(0..4).map(|s|original.view(s,0)).collect::<Vec<_>>(),"cases":cases,"legal":legal});
     if let Ok(dir)=std::env::var("JC041_P2_DIR") {
         use std::io::Write;std::fs::create_dir_all(&dir).unwrap();

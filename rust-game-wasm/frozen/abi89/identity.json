@@ -1,0 +1,17 @@
+{
+  "scope": "Exact deployed v71 ABI89. Original JS/WASM recovered from the sealed v71 inputs; gzip is a deterministic transport encoding, not a rebuilt kernel. Never migrate or re-sign these rooms.",
+  "providerSource": "100161b628e56b9153041d952ac0f5d83428ca88",
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.81-jc035-preparation-candidate",
+    "engineVersion": "rust-v0.2.89-jc035-preparation-candidate"
+  },
+  "cardCount": 153,
+  "societyCount": 10,
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+  "wasmBytes": 3471247,
+  "gzipSha256": "73fcc1c3804f9c75016bbe1c74664549f29e35f0148fc11a6b7cbec70a7b831b",
+  "originalInputZipSha256": "ed328fff20063cb097283040826d2434c00a457388ec85dc817c53084ceb9365",
+  "productionManifestSha256": "28b461d38f3d0140ef7413c62509bbd58be46f88dea5f4141bcab054f6bc4da8"
+}

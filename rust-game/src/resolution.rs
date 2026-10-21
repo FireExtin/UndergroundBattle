@@ -1212,7 +1212,6 @@ impl Game {
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
         self.jc035_reject_optional(&declaration)?;
-        self.validate_xq23_declaration(&declaration)?;
         self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
         if crate::bq030::is_attachment_declaration(&declaration) {

@@ -61,17 +61,20 @@ for (const scenario of fixtures.scenarios) test(`engine63 ${scenario.name}: cont
     }
     assert.equal((await store.room(id)).state, step.expected.state, step.inputName);
     for (let seat = 0; seat < tokens.length; seat++) assert.deepEqual(await service.state(id, 'Bearer ' + tokens[seat], null), step.views[seat]);
-    const key = step.expected.view.paused ? 'paused' : step.expected.view.regions.some(r => r.cardId === '') ? 'vacant'
-      : step.expected.view.step.includes(':win') ? 'win' : step.expected.view.pendingChoice ? 'choice'
-      : step.expected.view.stack.some(s => s.name?.includes('裁定官')) ? 'BQ030-stack' : null;
-    if (key && !reopenedStates.has(key)) {
-      reopenedStates.add(key);
+    const keys = [step.expected.view.pause && 'paused', step.expected.view.regions.some(r => r.cardId === '') && 'vacant',
+      step.expected.view.step.includes(':win') && 'win', step.expected.view.pendingChoice && 'choice',
+      step.expected.view.stack.some(s => s.label?.includes('裁定官')) && 'BQ030-stack'].filter(Boolean);
+    if (keys.some(key => !reopenedStates.has(key))) {
+      keys.forEach(key => reopenedStates.add(key));
       await mf.dispose(); mf = new Miniflare(options); db = await mf.getD1Database('DB');
       store = new RoomStore(db); service = new RoomService(db, routeKernels(abi), () => now);
       assert.equal((await store.room(id)).state, step.expected.state);
       reopened++;
     }
   }
+  if (scenario.steps.some(step => step.expected.view.pause)) assert(reopenedStates.has('paused'));
+  if (scenario.steps.some(step => step.expected.view.stack.some(s => s.label?.includes('裁定官')))) assert(reopenedStates.has('BQ030-stack'));
+
   const saved = await store.room(id);
   now = 600000;
   assert.deepEqual(await service.command(id, 'Bearer ' + tokens[lastAccepted.seat], lastAccepted.command), lastView);

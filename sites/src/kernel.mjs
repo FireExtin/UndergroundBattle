@@ -24,9 +24,12 @@ import * as published87 from '../generated/abi87/hegemony_wasm.js';
 import published87Module from '../generated/abi87/hegemony_wasm_bg.wasm';
 import * as published88 from '../generated/abi88/hegemony_wasm.js';
 import published88Module from '../generated/abi88/hegemony_wasm_bg.wasm';
+import * as published89 from '../generated/abi89/hegemony_wasm.js';
+import published89Module from '../generated/abi89/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 import { lazyKernel } from './lazy-kernel.mjs';
-const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.89-jc035-preparation-candidate"});
+const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.90-audit-correctness-candidate"});
+const kernel89 = lazyKernel(published89, published89Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.89-jc035-preparation-candidate"});
 const kernel88 = lazyKernel(published88, published88Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.80-xq23-asset-return-candidate","engineVersion":"rust-v0.2.88-xq23-asset-return-candidate"});
 const kernel87 = lazyKernel(published87, published87Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.79-jc041-water-hidden-candidate","engineVersion":"rust-v0.2.87-jc041-water-hidden-candidate"});
 const kernel86 = lazyKernel(published86, published86Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.78-jc066-sealed-icons-candidate","engineVersion":"rust-v0.2.86-jc066-sealed-icons-candidate"});
@@ -39,5 +42,5 @@ const kernel80 = lazyKernel(published80, published80Module, {"rulesVersion":"heg
 const kernel79 = lazyKernel(published79, published79Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.72-jz46-private-criminal-inspection-candidate","engineVersion":"rust-v0.2.79-jz46-private-criminal-inspection-candidate"});
 const kernel78 = lazyKernel(published78, published78Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.71-bq035-vampire-mobility-candidate","engineVersion":"rust-v0.2.78-bq035-vampire-mobility-candidate"});
 const kernel77 = lazyKernel(published77, published77Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.70-jc046-mandatory-sacrifice-candidate","engineVersion":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate"});
-// Published v70/v69/v68/v67/v66/v65/v64/v63/v62/v61/v60/ABI77 rooms retain exact reducers, opaque state and receipts.
-export const kernel = routeKernels(kernel0, [kernel88, kernel87, kernel86, kernel85, kernel84, kernel83, kernel82, kernel81, kernel80, kernel79, kernel78, kernel77]);
+// Published v71/v70/v69/v68/v67/v66/v65/v64/v63/v62/v61/v60/ABI77 rooms retain exact reducers, opaque state and receipts.
+export const kernel = routeKernels(kernel0, [kernel89, kernel88, kernel87, kernel86, kernel85, kernel84, kernel83, kernel82, kernel81, kernel80, kernel79, kernel78, kernel77]);

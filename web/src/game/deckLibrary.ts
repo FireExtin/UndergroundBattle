@@ -1,3 +1,4 @@
+import { newCommandId } from './api';
 import type { CardDefinition, Catalog, Deck, SocietyDefinition } from './types';
 
 export type DeckDraft = {
@@ -147,7 +148,7 @@ export function sameDeckSnapshot(left: DeckDraft, right: DeckDraft): boolean {
 
 export function createDeckDraft(catalog: DeckCatalog, preset?: Deck): DeckDraft {
   return {
-    id: `draft-${crypto.randomUUID()}`, name: preset ? `${preset.name}（副本）` : '我的牌组', description: preset?.description || '', societyId: null,
+    id: `draft-${newCommandId()}`, name: preset ? `${preset.name}（副本）` : '我的牌组', description: preset?.description || '', societyId: null,
     cards: preset ? preset.cards.map(({ cardId, count }) => ({ cardId, count })) : [],
     rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion, engineVersion: catalog.engineVersion, updatedAt: new Date().toISOString(),
   };

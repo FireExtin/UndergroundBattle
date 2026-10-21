@@ -112,7 +112,7 @@ test('historical BQ030 admission preserves its 128-card baseline inside the curr
     'Decks, world and source metadata must be preserved; candidate versions are checked separately');
   assert.equal(rulesVersion, 'hegemony-pdf-v1');
   assert.equal(cardPoolVersion, 'limited-v2.81-jc035-preparation-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.89-jc035-preparation-candidate');
+  assert.equal(engineVersion, 'rust-v0.2.90-audit-correctness-candidate');
 
   const catalog = read('rust-game/src/catalog.rs').toString('utf8');
   const constant = name => {

@@ -1,21 +1,20 @@
-import {catalogBeforeAbi84} from './historical-catalog.mjs';
+import {catalogBeforeAbi84, catalogDigest} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>readFileSync(root+p), json=p=>JSON.parse(read(p));
-const original=JSON.parse(execFileSync('git',['show','0c98068f6b1d35ecef6ee512f2a6773ab7b5cdba:rust-game/data/cards.json'],{cwd:root}));
+// Semantic JSON pins read from approved 0c98068f6b1d35ecef6ee512f2a6773ab7b5cdba; execution does not require Git history.
+const approvedCards='9302a17864a55c3d84c30b4cc9639af54e07655ca760d5a224d2abc42c84c534', approvedMetadata='a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0';
 const pool=catalogBeforeAbi84(json('rust-game/data/cards.json')), spec=json('docs/factions/card-specifications.json').cards.JZ46;
 test('JZ46 adds one whole definition while every original 144 card and deck/world metadata stays exact',()=>{
   const {cards,engineVersion,cardPoolVersion,...meta}=pool;
-  const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=original;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
-  assert.deepEqual(cards.filter(c=>!['JZ46','WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
-  assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+  assert.equal(catalogDigest(cards.filter(c=>!['JZ46','WM062','JC054'].includes(c.id))),approvedCards);assert.equal(catalogDigest(meta),approvedMetadata);
+  assert.equal(engineVersion,'rust-v0.2.90-audit-correctness-candidate');
   assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('the entire JZ46 runtime matches the pinned image specification and preserves source acceptance status',()=>{

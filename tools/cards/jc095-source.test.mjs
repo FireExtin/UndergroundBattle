@@ -13,7 +13,7 @@ test('JC095 preserves all 141 accepted ABI75 definitions, decks and metadata',()
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
  assert.equal(digest(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(c=>!['JC095','JC046'].includes(c.id))),'77b09d55d0208d66d301928343d7ce7918db017b00fdd98937be2f215ff320f0');
  assert.equal(digest(metadata),'a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0');
- assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
+ assert.equal(engineVersion,'rust-v0.2.90-audit-correctness-candidate');assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('JC095 complete gold-name Leader and Renown face matches pinned095/135 original',()=>{
  assert.equal(digest({fields:spec.fields,sourceVerification:spec.sourceVerification,edition:spec.edition}),'9720d1ed8a4aec97e480ebe7ed5384716951c5a46c2e33593b2f9d1059a7dc18');

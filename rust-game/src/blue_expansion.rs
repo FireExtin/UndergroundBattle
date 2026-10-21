@@ -135,7 +135,6 @@ impl Game {
             || s.card.owner >= self.players.len()
             || s.card.definition != "BQ028"
             || s.card.id.is_empty()
-            || s.card.time_markers != 0
             || s.card.face_down
             || s.region.is_none_or(|r| r >= self.regions.len())
             || s.source_region_instance

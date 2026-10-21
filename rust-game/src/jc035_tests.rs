@@ -416,7 +416,7 @@ pub(crate) fn source_bindings() -> Value {
     ] {
         binding["files"].as_object_mut().unwrap().insert(name.into(), serde_json::json!(format!("{:x}", Sha256::digest(bytes))));
     }
-    assert_eq!(binding["files"].as_object().unwrap().len(), 141); binding
+    assert_eq!(binding["files"].as_object().unwrap().len(), 140); binding
 }
 
 struct Trace { name: String, room: crate::room::RoomEnvelope, initial: Value, steps: Vec<Value> }

@@ -34,7 +34,7 @@ pub(crate) fn source_bindings() -> Value {
         ("rust-game/src/xq23.rs",include_bytes!("xq23.rs").as_slice()),
         ("rust-game/src/xq23_tests.rs",include_bytes!("xq23_tests.rs").as_slice()),
     ] {binding["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
-    assert_eq!(binding["files"].as_object().unwrap().len(),139);
+    assert_eq!(binding["files"].as_object().unwrap().len(),138);
     binding
 }
 

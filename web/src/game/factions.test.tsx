@@ -33,7 +33,7 @@ describe('official factions and curated deck boundaries', () => {
       ['灰', '国家机构', 1], ['白', '圣贤', 0], ['黑', '方碑序列', 1], ['紫', '梦境行者', 0],
     ]);
   });
-  it('keeps eight faction descriptions separate from five selectable curated decks and does not unlock societies or construction', () => {
+  it('keeps eight faction descriptions separate from five selectable curated decks and keeps choices gated by the supplied catalog', () => {
     const create = vi.fn();
     const { container } = render(<Lobby catalog={catalog} busy={false} onCreate={create} onJoin={vi.fn()} retry={vi.fn()} />);
     fireEvent.click(screen.getByRole('button', { name: '入席' }));
@@ -50,7 +50,7 @@ describe('official factions and curated deck boundaries', () => {
       expect(within(row as HTMLElement).getByText('未实现')).toBeInTheDocument();
     }
     expect(screen.queryByRole('button', { name: /圣贤|梦境行者|自由构筑|秘社选择/ })).not.toBeInTheDocument();
-    expect(screen.getByText(/编辑、保存自己的牌组；秘社牌尚未开放/)).toBeInTheDocument();
+    expect(screen.getByText(/编辑、保存自己的牌组/)).toBeInTheDocument();
     expect(screen.getByText(/不是第九个派系/)).toBeInTheDocument();
     expect(container.querySelector('[data-deck-id="watchers"]')).toHaveAttribute('data-deck-main-faction', 'yellow');
     expect(container.querySelector('[data-deck-id="hunters"]')).toHaveAttribute('data-deck-main-faction', 'green');

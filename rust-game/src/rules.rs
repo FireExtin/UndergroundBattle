@@ -616,6 +616,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         }
     }
 
+    let runtime_reward = crate::jz22::runtime_ability_is_admitted(ability);
     fn uses_gray_lock(ops: &[Op]) -> bool {
         ops.iter().any(|op| match op {
             Op::JC069LockTarget | Op::JC069ChaseLockedTarget | Op::JZ43LockOrDamageLocalTarget => true,
@@ -626,7 +627,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     }
     let gray_predicate = ability.targets.iter().chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|slot| slot.predicate == Some(TargetPredicate::JC069LockedAnchor));
-    if (gray_lock_definition(card_id).is_some() && ability.key != "renown")
+    if (gray_lock_definition(card_id).is_some() && !runtime_reward)
         || gray_predicate || uses_gray_lock(&ability.ops) || ability.modes.iter().any(|m| uses_gray_lock(&m.ops))
     {
         if gray_lock_definition(card_id).is_none_or(|d| !d.abilities.iter().any(|canonical|
@@ -642,7 +643,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => false,
         })
     }
-    if deck_seal_search_definition(card_id).is_some() || uses_deck_seal(&ability.ops)
+    if (deck_seal_search_definition(card_id).is_some() && !(card_id == "JZ02" && runtime_reward)) || uses_deck_seal(&ability.ops)
         || ability.modes.iter().any(|m| uses_deck_seal(&m.ops)) {
         if deck_seal_search_definition(card_id).is_none_or(|d|
             serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
@@ -657,7 +658,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => false,
         })
     }
-    if (matches!(card_id, "BQ104" | "XQ48") && ability.key != "renown") || uses_entry_search(&ability.ops)
+    if (matches!(card_id, "BQ104" | "XQ48") && !runtime_reward) || uses_entry_search(&ability.ops)
         || ability.modes.iter().any(|m| uses_entry_search(&m.ops)) {
         let canonical = entry_search_definition(card_id).ok_or_else(|| format!("{card_id}: entry search cannot be transplanted"))?;
         if serde_json::to_value(ability).unwrap() != serde_json::to_value(&canonical.abilities[0]).unwrap() {
@@ -673,7 +674,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => false,
         })
     }
-    if (card_id == "JZ50" || uses_jz50_search(&ability.ops)
+    if ((card_id == "JZ50" && !runtime_reward) || uses_jz50_search(&ability.ops)
         || ability.modes.iter().any(|m| uses_jz50_search(&m.ops)))
         && (card_id != "JZ50" || serde_json::to_value(ability).unwrap()
             != serde_json::to_value(&jz50_definition().abilities[0]).unwrap()) {
@@ -688,7 +689,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => false,
         })
     }
-    if sealing_definition(card_id).is_some() || ability.event == Some(Event::Sealed)
+    if (sealing_definition(card_id).is_some() && !runtime_reward) || ability.event == Some(Event::Sealed)
         || uses_sealing(&ability.ops) || ability.modes.iter().any(|m| uses_sealing(&m.ops)) {
         if sealing_definition(card_id).is_none_or(|d|
             serde_json::to_value(ability).unwrap() != serde_json::to_value(&d.abilities[0]).unwrap()) {
@@ -708,7 +709,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     }
     let two_card_mill = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
         .any(|op| matches!(op, Op::MoveDeckTopToGraveyard { count: 2, .. }));
-    if (card_id == "JZ49" || ability.key == "mill-two-entry" || two_card_mill)
+    if ((card_id == "JZ49" && !runtime_reward) || ability.key == "mill-two-entry" || two_card_mill)
         && (card_id != "JZ49" || serde_json::to_value(ability).unwrap()
             != serde_json::to_value(&jz49_definition().abilities[0]).unwrap())
     {
@@ -716,7 +717,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     }
     let death_influence = ability.ops.iter().chain(ability.modes.iter().flat_map(|m| &m.ops))
         .any(|op| matches!(op, Op::PlaceOneInfluenceInSourceRegion));
-    if (card_id == "JZ31" || death_influence)
+    if ((card_id == "JZ31" && !runtime_reward) || death_influence)
         && (card_id != "JZ31" || serde_json::to_value(ability).unwrap()
             != serde_json::to_value(&jz31_definition().abilities[0]).unwrap())
     {
@@ -733,7 +734,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => false,
         })
     }
-    if (card_id == "XQ36"
+    if ((card_id == "XQ36" && !runtime_reward)
         || has_loop_mill(&ability.ops, false)
         || ability.modes.iter().any(|m| has_loop_mill(&m.ops, false)))
         && serde_json::to_value(ability).unwrap()
@@ -757,7 +758,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .iter()
         .chain(ability.modes.iter().flat_map(|m| &m.targets))
         .any(|t| t.predicate.is_some());
-    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || matches!(card_id, "JC015" | "JZ55") {
+    if (finite_predicate && !matches!(card_id, "XQ18" | "JZ45")) || (card_id == "JC015" && !runtime_reward) || card_id == "JZ55" {
         let admitted = match card_id {
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
@@ -4272,4 +4273,22 @@ mod tests {
         assert!(error.contains("cardId=JC063 abilityKey=chase modeKey=hide"));
         assert!(error.contains("nested ForEachLivingPlayer is unsupported"));
     }
+    #[test]
+    fn audit_runtime_rewards_accept_exact_characters_and_reject_mutants() {
+        for id in ["JC015", "XQ36", "JZ31", "JZ49", "XQ40", "XQ41", "JZ50", "JZ02", "BQ104", "XQ48", "JC069", "JZ43"] {
+            for reward in [crate::renown::renown_ability("original-region"), jc089_combat_glory_ability("original-region")] {
+                validate_ability(id, &reward).unwrap();
+                let mut bad = reward.clone();
+                bad.ops = vec![Op::PlaceInfluence { region_instance: "original-region".into(), amount: 2 }];
+                assert!(validate_ability(id, &bad).is_err(), "{id}: reward amount must remain exactly one");
+                bad = reward.clone();
+                bad.event = None;
+                assert!(validate_ability(id, &bad).is_err(), "{id}: a reward key alone is not sufficient");
+            }
+        }
+        for spell in ["JZ55", "XQ44"] {
+            assert!(validate_ability(spell, &crate::renown::renown_ability("region")).is_err());
+        }
+    }
+
 }

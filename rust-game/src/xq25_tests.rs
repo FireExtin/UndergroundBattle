@@ -144,9 +144,11 @@ fn xq25_actual_paid_region_attachment_all_seats_all_live_regions_without_charact
             assert!(!a.card.face_down && !a.card.exhausted);
             assert_eq!(g.secret_deploy_cost(r), 2);
             assert!(g.pending.is_none());
-            // Printed temporary investigation is retained; an attachment itself is not a character contributor.
-            assert_eq!(g.icons(&a.card, r), Icons::default());
-            assert_eq!(g.contest_counts(r, 0), [0, 0]);
+            let first = g.team(actor) == g.first_team;
+            assert_eq!(g.icons(&a.card, r).investigation, u32::from(first));
+            let mut expected = [0, 0];
+            expected[g.team(actor)] = u32::from(first);
+            assert_eq!(g.contest_counts(r, 0), expected);
             checkpoint(&g);
         }
     }

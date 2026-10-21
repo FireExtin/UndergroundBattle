@@ -20,7 +20,7 @@ test('JC035 binds the complete actual pinned blue attachment and leaves archival
  assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);assert.deepEqual(spec.openQuestionIds,[]);
 });
 test('JC035 adds one complete blue print, preserves every old152 value, presets, world and actual88 identity',async()=>{
- assert.equal(data.cards.length,153);assert.equal(data.engineVersion,'rust-v0.2.89-jc035-preparation-candidate');assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
+ assert.equal(data.cards.length,153);assert.equal(data.engineVersion,'rust-v0.2.90-audit-correctness-candidate');assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
  assert.equal(catalogBeforeAbi89(data).cards.length,152);
  assert.equal(hash(JSON.stringify(data.decks)),'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987');
  assert.equal(hash(JSON.stringify(data.world)),'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5');

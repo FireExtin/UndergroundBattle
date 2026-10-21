@@ -1384,7 +1384,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
                     choice: FrameChoice::SimultaneousSearch { .. },
                     ..
                 } => {
-                    assert!(generic_search);
+                    assert!(generic_search || pending.choice.options.is_empty());
                     assert_eq!(
                         room.game
                             .players
@@ -1417,7 +1417,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
                             .contains(prior.as_str()));
                         }
                     }
-                    action.selected = if seat == 1 {
+                    action.selected = if seat == 1 || pending.choice.options.is_empty() {
                         Some(vec![])
                     } else {
                         let id = pending.choice.options[0].id.clone();

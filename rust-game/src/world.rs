@@ -237,19 +237,16 @@ impl Game {
         frame: ResolutionFrame,
         filter: CardFilter,
         participants: Vec<usize>,
-        mut committed: Vec<(usize, Option<String>)>,
+        committed: Vec<(usize, Option<String>)>,
     ) -> RuleResult<()> {
-        while let Some(&seat) = participants.get(committed.len()) {
+        if let Some(&seat) = participants.get(committed.len()) {
             let options = self.players[seat]
                 .deck
                 .iter()
                 .filter(|c| self.filter_card(&filter, c))
                 .map(|c| self.option(c, seat, None, None))
                 .collect::<Vec<_>>();
-            if options.is_empty() {
-                committed.push((seat, None));
-                continue;
-            }
+            // Empty searches still confirm privately; skipping exposes deck contents.
             self.choice(
                 seat,
                 "search",
@@ -744,6 +741,33 @@ mod tests {
         );
     }
     #[test]
+    fn hong_kong_no_hit_and_hit_have_identical_observer_views_until_everyone_confirms() {
+        let mut empty = fixture("teams", 17);
+        for seat in 0..4 {
+            empty.players[seat].deck.clear();
+            let c = empty.make_card("JC125", seat);
+            empty.players[seat].deck.push(c);
+        }
+        let mut hit = empty.clone();
+        hit.players[0].deck[0].definition = "BQ022".into();
+        let selected = hit.players[0].deck[0].id.clone();
+        program(&mut empty, "DQJC116", 0, None);
+        program(&mut hit, "DQJC116", 0, None);
+        for seat in 0..4 {
+            assert_eq!(empty.pending.as_ref().unwrap().seat, seat);
+            assert_eq!(hit.pending.as_ref().unwrap().seat, seat);
+            empty = restored(&empty);
+            hit = restored(&hit);
+            assert_eq!(serde_json::to_value(empty.view(3)).unwrap(), serde_json::to_value(hit.view(3)).unwrap());
+            assert!(hit.players[0].hand.is_empty());
+            select(&mut empty, vec![]);
+            select(&mut hit, if seat == 0 { vec![selected.clone()] } else { vec![] });
+        }
+        assert!(empty.pending.is_none() && hit.pending.is_none());
+        assert!(empty.players[0].hand.is_empty());
+        assert_eq!(hit.players[0].hand[0].definition, "BQ022");
+    }
+    #[test]
     fn hong_kong_exact_binding_is_attachment_only_and_empty_search_does_not_draw() {
         assert!(
             matches!(rules::definition("DQJC116").abilities[0].ops.as_slice(), [Op::SimultaneousSearch { filter: CardFilter::Kind(kind) }] if kind == "attachment")
@@ -752,6 +776,12 @@ mod tests {
         let hands = g.players.iter().map(|p| p.hand.len()).collect::<Vec<_>>();
         let sizes = g.players.iter().map(|p| p.deck.len()).collect::<Vec<_>>();
         program(&mut g, "DQJC116", 0, None);
+        for seat in 0..2 {
+            assert_eq!(g.pending.as_ref().unwrap().seat, seat);
+            assert!(g.pending.as_ref().unwrap().choice.options.is_empty());
+            g = restored(&g);
+            select(&mut g, vec![]);
+        }
         assert!(g.pending.is_none());
         assert_eq!(
             g.players.iter().map(|p| p.hand.len()).collect::<Vec<_>>(),

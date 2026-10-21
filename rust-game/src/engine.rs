@@ -339,8 +339,7 @@ impl Game {
         }
         let d = card(&c.definition);
         if d.kind != "character" {
-            if c.definition == "JC035" { return self.jc035_current_icons(c, region); }
-            return self.jz46_current_icons(c, region);
+            return self.attachment_current_icons(c, region);
         }
         let (permanent, temporary, ordinary) = self.character_icon_parts(c, region);
         Self::combine_character_icons(
@@ -1289,7 +1288,7 @@ impl Game {
     pub(crate) fn contest_counts(&self, region: usize, contest: usize) -> [u32; 2] {
         if !self.region_live(region) { return [0, 0]; }
         let mut counts = [0; 2];
-        for c in self.regions[region].cards.iter().chain(self.jz46_region_cards(region)).chain(self.jc035_region_cards(region)) {
+        for c in self.regions[region].cards.iter().chain(self.region_attachment_cards(region)) {
             counts[self.team(c.controller)] += self.icons(c, region).at(contest);
         }
         counts
@@ -1301,8 +1300,7 @@ impl Game {
                 self.regions[region]
                     .cards
                     .iter()
-                    .chain(self.jz46_region_cards(region))
-                    .chain(self.jc035_region_cards(region))
+                    .chain(self.region_attachment_cards(region))
                     .any(|c| c.controller == *s && self.icons(c, region).at(contest) > 0)
             })
             .collect()
@@ -1767,6 +1765,8 @@ impl Game {
                     }
                 }
                 if options.len() > 1 {
+                    // Each sacrifice may leave another same-name group unresolved.
+                    self.effects.push_front(Effect::Unique { seat });
                     let title = if options
                         .iter()
                         .any(|o| o.card.as_ref().is_some_and(|c| c.kind == "attachment"))

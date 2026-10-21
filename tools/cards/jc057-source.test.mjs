@@ -29,6 +29,6 @@ test('JC057 adds exactly one gray card and leaves the original 147 cards, preset
     ['decks',data.decks,'3b51ce8f6ae0c78445e9660c4dc0e0c0bdc07bc35c7c8b30ae5ae107097e1987'],
     ['world',data.world,'c7026487b412b58385ddd94e073b224e65e730ee636a2834586901c25b1252a5'],
   ])assert.equal(hash(JSON.stringify(value)),sha,key+' fixed baseline 14758d9');
-  assert.equal(data.engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+  assert.equal(data.engineVersion,'rust-v0.2.90-audit-correctness-candidate');
   assert.equal(data.cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });

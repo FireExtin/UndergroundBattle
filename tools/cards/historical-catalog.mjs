@@ -24,3 +24,10 @@ export function catalogBeforeAbi89(current) {
     'The entire reviewed152-card prefix must remain byte-value equivalent');
   return {...current,cards};
 }
+
+// Semantic JSON hashing for fixed historical catalog pins, independent of object key order.
+export function catalogDigest(value) {
+  const canonical = v => Array.isArray(v) ? v.map(canonical)
+    : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, canonical(v[k])])) : v;
+  return createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
+}

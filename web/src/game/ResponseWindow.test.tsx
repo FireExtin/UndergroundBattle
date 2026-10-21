@@ -1,3 +1,5 @@
+import { rememberPlayerName } from './playerNameStorage';
+import { createDeckDraft } from './deckLibrary';
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ResponseWindow } from './ResponseWindow';
@@ -68,6 +70,20 @@ describe('server-owned response intent', () => {
     expect(screen.getByRole('button', { name: '不连锁，让过' })).toBeDisabled();
     expect(screen.getByRole('region', { name: '当前待结算效果与响应' })).toHaveAttribute('data-response-state', 'undecided');
     advance(20_000); expect(submit).not.toHaveBeenCalled();
+  });
+
+  it('supports response, guest name and deck creation when only getRandomValues is available', () => {
+    vi.stubGlobal('crypto', { getRandomValues: crypto.getRandomValues.bind(crypto) });
+    try {
+      const submit = vi.fn();
+      render(<ResponseWindow view={view} busy={false} uncertain={false} connection="online" onSelectCard={vi.fn()} onAction={submit} />);
+      fireEvent.click(screen.getByRole('button', { name: '连锁' }));
+      expect(submit).toHaveBeenCalledExactlyOnceWith({ kind: 'beginResponse', windowId: 'window-one', intentId: expect.any(String) });
+      expect(submit.mock.calls[0][0].intentId).toMatch(/^[0-9a-f]{32}$/);
+      expect(rememberPlayerName('')).toMatch(/^旅人·[0-9A-F]{6}$/);
+      const catalog = { rulesVersion: 'r', cardPoolVersion: 'p', engineVersion: 'e', cards: [], decks: [] };
+      expect(createDeckDraft(catalog).id).toMatch(/^draft-[0-9a-f]{32}$/);
+    } finally { vi.unstubAllGlobals(); }
   });
 
   it('begins an intent for this window without choosing or paying for a card', () => {

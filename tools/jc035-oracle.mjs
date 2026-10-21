@@ -12,10 +12,9 @@ export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','optional-de
 export const legalRestoreNames=['live-pending','live-queued-undecided','live-accepted','declined-without-container','resolved-without-container',
  'eliminated-actor-undecided','eliminated-actor-accepted','finished-undecided','finished-accepted','departed-source-accepted','changed-controller-accepted'].sort();
 export function assertSources(binding){
- const old=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi88/native-source-binding.json')));
- const names=Object.keys(old.files).concat(['rust-game/src/jc035.rs','rust-game/src/jc035_tests.rs']).sort();
- assert.equal(binding.algorithm,'sha256');assert.equal(names.length,141);assert.deepEqual(Object.keys(binding.files).sort(),names);
- for(const[name,digest]of Object.entries(binding.files))assert.equal(sha256(readFileSync(path.join(root,name))),digest,'Native141 input '+name);
+ const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi89/native-source-binding.json'),'utf8'));
+ assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(binding.files).length,141);
+ assert.deepEqual(binding,saved,'Exact original Native89 compiler binding; no current source substitution');
 }
 export function validateNative(raw){
  assert.equal(raw.format,'jc035-native89-v1');assertSources(raw.sourceBindings);

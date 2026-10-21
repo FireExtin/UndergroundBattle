@@ -360,7 +360,6 @@ fn source_bindings() -> serde_json::Value {
         ("rust-game/src/bounded_search.rs", include_bytes!("bounded_search.rs")),
         ("rust-game/src/bounded_search_tests.rs", include_bytes!("bounded_search_tests.rs")),
         ("rust-game/src/bq030.rs", include_bytes!("bq030.rs")),
-        ("rust-game/src/bq030_preparation.rs", include_bytes!("bq030_preparation.rs")),
         ("rust-game/src/bq035.rs", include_bytes!("bq035.rs")),
         ("rust-game/src/bq035_tests.rs", include_bytes!("bq035_tests.rs")),
         ("rust-game/src/catalog.rs", include_bytes!("catalog.rs")),

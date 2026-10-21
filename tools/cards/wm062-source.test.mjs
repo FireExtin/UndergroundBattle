@@ -1,21 +1,20 @@
-import {catalogBeforeAbi84} from './historical-catalog.mjs';
+import {catalogBeforeAbi84, catalogDigest} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>readFileSync(root+p),json=p=>JSON.parse(read(p));
-const baseline=JSON.parse(execFileSync('git',['show','27026fd864b96da5950c07ca1f58a8315c27a70e:rust-game/data/cards.json'],{cwd:root}));
+// Semantic JSON pins read from approved 27026fd864b96da5950c07ca1f58a8315c27a70e; execution does not require Git history.
+const approvedCards='ce9f2cd75f010e2a663508b641a80d6330ab4b0d92ccc82bc751a2302face1e9', approvedMetadata='a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0';
 const pool=catalogBeforeAbi84(json('rust-game/data/cards.json')),spec=json('docs/factions/card-specifications.json').cards.WM062;
 test('WM062 adds one complete black card and preserves every former 145 definition, deck and world byte value',()=>{
  const {cards,engineVersion,cardPoolVersion,...meta}=pool;
- const {cards:old,engineVersion:oldEngine,cardPoolVersion:oldPool,...oldMeta}=baseline;
  assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
- assert.deepEqual(cards.filter(c=>!['WM062','JC054'].includes(c.id)),old);assert.deepEqual(meta,oldMeta);
- assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+ assert.equal(catalogDigest(cards.filter(c=>!['WM062','JC054'].includes(c.id))),approvedCards);assert.equal(catalogDigest(meta),approvedMetadata);
+ assert.equal(engineVersion,'rust-v0.2.90-audit-correctness-candidate');
  assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
 });
 test('WM062 full runtime fields agree with its exact original without promoting archival acceptance',()=>{

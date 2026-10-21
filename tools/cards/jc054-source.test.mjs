@@ -1,22 +1,21 @@
-import {catalogBeforeAbi84} from './historical-catalog.mjs';
+import {catalogBeforeAbi84, catalogDigest} from './historical-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>readFileSync(root+p),json=p=>JSON.parse(read(p));
-const previous=JSON.parse(execFileSync('git',['show','f89b4371c8f1a2139c7a89edc275c169fd098b10:rust-game/data/cards.json'],{cwd:root}));
+// Semantic JSON pins read from approved f89b4371c8f1a2139c7a89edc275c169fd098b10; execution does not require Git history.
+const approvedCards='636a4ec3796171f53e5bad96c358eb0a1a2a31f754b6170fa88252f43c828dd8', approvedMetadata='a0ca39bf9ba052ac13c2e64e7698bb1d5f051d38f5a75a380d54424811a357f0';
 const pool=catalogBeforeAbi84(json('rust-game/data/cards.json')),spec=json('docs/factions/card-specifications.json').cards.JC054;
 test('JC054 adds only one complete red card while preserving all 146 earlier cards, decks and world',()=>{
   const {cards,cardPoolVersion,engineVersion,...metadata}=pool;
-  const {cards:old,cardPoolVersion:oldPool,engineVersion:oldEngine,...oldMetadata}=previous;
   assert.equal(cards.length,147);assert.equal(new Set(cards.map(c=>c.id)).size,147);
-  assert.deepEqual(cards.filter(c=>c.id!=='JC054'),old);assert.deepEqual(metadata,oldMetadata);
+  assert.equal(catalogDigest(cards.filter(c=>c.id!=='JC054')),approvedCards);assert.equal(catalogDigest(metadata),approvedMetadata);
   assert.equal(cardPoolVersion,'limited-v2.81-jc035-preparation-candidate');
-  assert.equal(engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+  assert.equal(engineVersion,'rust-v0.2.90-audit-correctness-candidate');
 });
 test('JC054 complete printed fields stay pinned without promoting source-only acceptance or admitting neutral/dual cards',()=>{
   const f=spec.fields,s=spec.sourceVerification;

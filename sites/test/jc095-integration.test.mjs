@@ -53,7 +53,7 @@ for (const scenario of fixtures.scenarios) test(`JC095 ABI77 ${scenario.name}: c
     }
     assert.equal((await store.room(id)).state, step.expected.state, step.inputName);
     for (let seat = 0; seat < tokens.length; seat++) assert.deepEqual(await service.state(id, 'Bearer ' + tokens[seat], null), step.views[seat]);
-    const key = step.expected.view.paused ? 'paused' : step.expected.view.regions.some(r => r.cardId === '') ? 'vacant'
+    const key = step.expected.view.pause ? 'paused' : step.expected.view.regions.some(r => r.cardId === '') ? 'vacant'
       : step.expected.view.step.includes(':win') ? 'win' : step.expected.view.pendingChoice ? 'choice'
       : step.expected.view.stack.length ? 'stack' : null;
     if (key && !reopenedStates.has(key)) {

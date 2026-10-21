@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
-import { kernel } from './current-kernel.mjs';
+import { kernel, moduleBytes } from './current-kernel.mjs';
 const root=resolve(process.argv[2]);
 let steps=0, snapshots=0, projections=0, rejected=0;
 for(const name of readdirSync(resolve(root,'trace')).filter(n=>n.endsWith('.json')).sort()) {
@@ -27,4 +27,4 @@ for(const name of readdirSync(resolve(root,'invalid')).sort()) {
   rejected++;
 }
 console.log(JSON.stringify({scope:'current Native→WASM full transitions/four-seat views and invalid state rejection',steps,snapshots,projections,rejected,
-  wasmSha256:createHash('sha256').update(readFileSync(new URL('../pkg/hegemony_wasm_bg.wasm',import.meta.url))).digest('hex')}));
+  wasmSha256:createHash('sha256').update(moduleBytes).digest('hex')}));

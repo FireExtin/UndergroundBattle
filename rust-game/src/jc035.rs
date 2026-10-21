@@ -104,15 +104,6 @@ pub(crate) fn validate_play_action(id: &str, a: &Action) -> RuleResult<()> {
 }
 
 impl Game {
-    pub(crate) fn jc035_region_cards(&self, region: usize) -> impl Iterator<Item = &Card> {
-        self.attachments.iter().filter(move |a| a.card.definition == "JC035" && !a.card.face_down
-            && self.attachment_host_valid(a) && self.attachment_region(a) == Some(region)).map(|a| &a.card)
-    }
-    pub(crate) fn jc035_current_icons(&self, c: &Card, region: usize) -> Icons {
-        if !self.jc035_region_cards(region).any(|live| same(live, c)) { return Icons::default(); }
-        let d = catalog::card("JC035");
-        d.permanent_icons.add(if self.team(c.controller) == self.first_team { d.temporary_icons } else { Icons::default() })
-    }
     fn jc035_physical_cards(&self) -> impl Iterator<Item = &Card> {
         self.regions.iter().flat_map(|r| std::iter::once(&r.card).chain(&r.cards))
             .chain(self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)

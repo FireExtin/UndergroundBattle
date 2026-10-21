@@ -516,6 +516,7 @@ fn cleanup_case(wound: bool) -> Value {
         c.damage = 1;
     }
     g.window = Some(Window::End);
+            g.jc054_end_step_turn = Some(g.turn);
     g.priority_team = 0;
     g.passed.clear();
     g.team_passed = [false; 2];
