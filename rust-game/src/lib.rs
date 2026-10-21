@@ -1,6 +1,8 @@
 mod exposure;
 mod rumor;
 #[cfg(all(test, not(feature = "society-fixtures")))]
+mod next20_cross_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod exposure_tests;
 mod attachment;
 mod region_destruction;

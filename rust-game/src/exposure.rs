@@ -655,7 +655,4 @@ impl Game {
         }
         self.validate_rumor_state()
     }
-    // Integration hook: the parallel black-card branch supplies the real observer.
-    // Remove this stub when merging its implementation; never call both.
-    pub(crate) fn observe_black_deck_to_graveyard(&mut self, _deck_seat: usize, _cards: &[Card]) {}
 }

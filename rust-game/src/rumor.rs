@@ -406,6 +406,8 @@ impl Game {
         self.validate_batch20_frame(f)?;
         self.validate_jc035_frame(f)?;
         self.validate_jc041_frame(f)?;
+        self.validate_black_next20_frame(f)?;
+        self.validate_next_blue_gray_frame(f)?;
         if f.source.observed_death.is_some() {
             // The original observer was accepted before the random/nonrandom
             // discard. Authenticate its captured death and paid-once limit at
@@ -417,7 +419,17 @@ impl Game {
         }
         // Authenticate the full original program, including every later step.
         // Runtime batch observations keep their existing stricter validators.
-        let dynamic = matches!(
+        let observer_discard = match (f.source.card.definition.as_str(), f.ability_key.as_str(), f.steps.as_slice()) {
+            ("JZ23", "next-bg-jz23-reveal", [Step { op: Op::JZ23RevealReward { observation: Some(_) }, .. }, Step { op: Op::Discard { .. }, .. }]) => {
+                f.cursor == 2 && !b.from_deck && !b.redraw && b.originals.len() == 1
+                    && f.targets.first().is_some_and(|t| t.id == player_id(b.holder))
+            },
+            ("CQ26", "black20-cq26-loot", [Step { op: Op::BlackDeckToGraveyard { observation: Some(_) }, .. }, Step { op: Op::Discard { .. }, .. }]) => {
+                f.cursor == 2 && !b.from_deck && b.redraw && b.originals.len() == 1 && b.holder == f.actor
+            },
+            _ => false,
+        };
+        let dynamic = observer_discard || matches!(
             f.steps.get(f.cursor - 1).map(|s| &s.op),
             Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. })
         );

@@ -661,7 +661,7 @@ impl Game {
             || c.owner >= self.players.len()
             || c.controller != actor
             || s.observed_death.is_some()
-            || s.observed_mobility_grant.is_some()
+            || s.observed_mobility_grant.is_some() || s.observed_exposure.is_some()
             || self
                 .in_play(&c.id)
                 .is_some_and(|(_, live)| live.definition != c.definition || live.owner != c.owner)
@@ -726,6 +726,8 @@ impl Game {
                         || v.source_region_instance.is_none()
                         || v.play_source.is_some()
                         || v.observed_death.is_some()
+                        || v.observed_mobility_grant.is_some()
+                        || v.observed_exposure.is_some()
                     {
                         return Err("召集人必须观察另一个本方吸血鬼在同一原地区现身".into());
                     }
@@ -1021,6 +1023,11 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Rumor { batch } => {
+                    let f = batch.cause.as_ref().ok_or("传闻缺少蓝色观察原帧")?;
+                    self.validate_next_blue_gray_frame(f)?;
+                    receipt(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
+                }
                 ChoiceResolution::Frame {
                     frame: f,
                     choice: FrameChoice::NextBlueGraySearch { inspected_ids },

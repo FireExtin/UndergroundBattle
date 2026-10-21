@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI92 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI93 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -77,7 +77,7 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current92 and all fourteen retained77-89/91 WASM modules', () => {
+test('production Worker contains exactly current93 and all fourteen retained77-89/91 WASM modules', () => {
   const retainedNames=[...Array.from({length:13},(_,i)=>'abi'+(77+i)), 'abi91'];
   assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
   const originals=retainedNames.map(name=>{

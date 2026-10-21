@@ -126,7 +126,7 @@ impl Game {
     fn jc035_source(&self, s: &SourceSnapshot, actor: usize, prepared: bool) -> RuleResult<()> {
         if !preparation_card(&s.card.definition) || s.card.id.is_empty() || s.card.face_down
             || actor >= self.players.len() || s.card.controller != actor || s.card.owner >= self.players.len()
-            || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.play_source.is_some()
+            || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.observed_exposure.is_some() || s.play_source.is_some()
             || self.jc035_physical_cards().any(|c| c.id == s.card.id
                 && (c.definition != s.card.definition || c.owner != s.card.owner || (c.face_down && s.card.definition != "JC055"))) {
             return Err("JC035冻结来源、拥有者或操控席位不符".into());

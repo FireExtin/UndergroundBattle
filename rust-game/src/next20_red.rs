@@ -147,7 +147,7 @@ impl Game {
     fn red_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
         let c = &s.card;
         if !CARDS.contains(&c.definition.as_str()) || c.id.is_empty() || actor >= self.players.len() || c.controller != actor || c.owner >= self.players.len()
-            || s.region.is_some_and(|r| r >= self.regions.len()) || s.observed_death.is_some() || s.observed_mobility_grant.is_some()
+            || s.region.is_some_and(|r| r >= self.regions.len()) || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.observed_exposure.is_some()
             || s.region.is_some() != s.source_region_instance.is_some()
             || s.source_region_instance.as_ref().is_some_and(|id| id.is_empty() || id == &c.id
                 || self.regions.iter().enumerate().any(|(r,region)| region.card.id == *id && Some(r) != s.region))

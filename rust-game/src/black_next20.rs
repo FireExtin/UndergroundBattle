@@ -432,7 +432,7 @@ impl Game {
             || c.owner >= self.players.len()
             || c.id.is_empty()
             || s.observed_death.is_some()
-            || s.observed_mobility_grant.is_some()
+            || s.observed_mobility_grant.is_some() || s.observed_exposure.is_some()
             || s.region.is_some_and(|r| r >= self.regions.len())
             || (c.definition != "XQ39" && s.attachment_host_instance.is_some())
             || s.region.is_some() != s.source_region_instance.is_some()
@@ -996,6 +996,11 @@ impl Game {
         }
         if let Some(p) = &self.pending {
             match &p.resolution {
+                ChoiceResolution::Rumor { batch } => {
+                    let f = batch.cause.as_ref().ok_or("传闻缺少黑色观察原帧")?;
+                    self.validate_black_next20_frame(f)?;
+                    remember(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
+                }
                 ChoiceResolution::Declare {
                     declaration: d,
                     stage,

@@ -227,22 +227,22 @@ fn next20_red_jz41_actual_damage_wounds_once_prevention_zero_and_lethal_identity
     let replacement=field(&mut g,"JC051",0); choose(&mut g,vec!["accept".into()]); top(&mut g); assert_eq!(g.board(&replacement).unwrap().1.wounds,0);
 }
 
-// Cross-package validation: the test is explicitly ignored in the red-only base.
-// The integration owner runs this after the real JC039 and XQ39 definitions land.
+// Cross-package validation uses both real badge definitions and public commands.
 #[test]
-#[ignore = "requires real blue JC039 and black XQ39 runtime definitions"]
 fn next20_red_jc051_cross_package_badge_public_search_host_restore() {
     for badge_id in ["JC039","XQ39"] {
         assert!(catalog::card(badge_id).subtypes.iter().any(|s| s=="徽章"));
-        let mut g=game(); let source=field(&mut g,"JC051",0); g.board_mut(&source).unwrap().face_down=true;
+        let mut g=game(); g.players[0].society_zone.card=Some(g.make_card("MSJC04",0)); let source=field(&mut g,"JC051",0); g.board_mut(&source).unwrap().face_down=true;
         fund(&mut g,0,"JC047",6); let badge=g.make_card(badge_id,0); let badge_instance=badge.id.clone(); g.players[0].deck.push(badge);
         act(&mut g,0,command("reveal",&source)); until_choice(&mut g); choose(&mut g,vec!["accept".into()]); until_choice(&mut g);
         assert!(g.view(2).pending_choice.is_none());
+        let mut expected=g.clone(); expected.players[0].deck.retain(|c| c.id!=badge_instance); expected.shuffle_player(0);
         let request=choose_request(&g,vec![badge_instance.clone()]); act(&mut g,0,request.clone()); reject(&mut g,0,request);
         if matches!(g.pending.as_ref().map(|p| &p.resolution),Some(ChoiceResolution::Frame { choice:FrameChoice::JC051Host {..},.. })) {
             let host=g.pending.as_ref().unwrap().choice.options[0].id.clone(); choose(&mut g,vec![host]);
         }
-        assert!(g.attachments.iter().any(|a| a.card.definition==badge_id));
+        assert!(g.attachments.iter().any(|a| a.card.definition==badge_id && a.card.id!=badge_instance && a.host_id=="society:p0"));
+        assert_eq!(g.players[0].deck,expected.players[0].deck); assert_eq!(g.random,expected.random,"badge search shuffles exactly once");
         assert!(!g.players[0].deck.iter().any(|c| c.id==badge_instance)); restore(&mut g);
     }
 }

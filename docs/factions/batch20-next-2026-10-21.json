@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-next-2026-10-21",
-  "stage": "WIP-runtimeImplementation",
+  "stage": "WIP-sourceIntegratedPendingCompositeValidation",
   "baseCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
   "branch": "progress/batch20-next-20261021",
   "firstBatchSnapshotUnchanged": true,
   "scope": {
     "selectedNewCards": 20,
     "fullyIntegratedNewCards": 0,
-    "selectionEnabledNewCards": 7,
+    "selectionEnabledNewCards": 20,
     "publishedNewCards": 0,
     "neutralOrDualExpansion": "paused",
-    "sourceIntegratedNewCards": 7
+    "sourceIntegratedNewCards": 20
   },
   "cards": [
     {
@@ -24,12 +24,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Red-only source; group result, not composite acceptance",
+        "finalSource": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+        "passed": 14,
+        "failed": 0,
+        "ignored": 1,
+        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "evidence": "Implementer handoff; command output retained in task history"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JC055",
@@ -41,12 +50,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Red-only source; group result, not composite acceptance",
+        "finalSource": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+        "passed": 14,
+        "failed": 0,
+        "ignored": 1,
+        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "evidence": "Implementer handoff; command output retained in task history"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JZ32",
@@ -58,12 +76,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Red-only source; group result, not composite acceptance",
+        "finalSource": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+        "passed": 14,
+        "failed": 0,
+        "ignored": 1,
+        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "evidence": "Implementer handoff; command output retained in task history"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JZ34",
@@ -75,12 +102,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Red-only source; group result, not composite acceptance",
+        "finalSource": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+        "passed": 14,
+        "failed": 0,
+        "ignored": 1,
+        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "evidence": "Implementer handoff; command output retained in task history"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JZ41",
@@ -92,12 +128,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Red-only source; group result, not composite acceptance",
+        "finalSource": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+        "passed": 14,
+        "failed": 0,
+        "ignored": 1,
+        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "evidence": "Implementer handoff; command output retained in task history"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "BQ077",
@@ -109,12 +154,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Black-only source; group result, not composite acceptance",
+        "finalSource": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+        "passed": 21,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-black-build/logs/black-next20-targeted-third.log",
+        "logSha256": "ad9163f010e87eee1502a44d3fae7fa60ebb3cce981f79d6dfda13f1c667af94"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "BQ085",
@@ -126,12 +180,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Black-only source; group result, not composite acceptance",
+        "finalSource": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+        "passed": 21,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-black-build/logs/black-next20-targeted-third.log",
+        "logSha256": "ad9163f010e87eee1502a44d3fae7fa60ebb3cce981f79d6dfda13f1c667af94"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "CQ26",
@@ -143,12 +206,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Black-only source; group result, not composite acceptance",
+        "finalSource": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+        "passed": 21,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-black-build/logs/black-next20-targeted-third.log",
+        "logSha256": "ad9163f010e87eee1502a44d3fae7fa60ebb3cce981f79d6dfda13f1c667af94"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "XG27",
@@ -160,12 +232,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Black-only source; group result, not composite acceptance",
+        "finalSource": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+        "passed": 21,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-black-build/logs/black-next20-targeted-third.log",
+        "logSha256": "ad9163f010e87eee1502a44d3fae7fa60ebb3cce981f79d6dfda13f1c667af94"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "XQ39",
@@ -177,12 +258,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Black-only source; group result, not composite acceptance",
+        "finalSource": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+        "passed": 21,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-black-build/logs/black-next20-targeted-third.log",
+        "logSha256": "ad9163f010e87eee1502a44d3fae7fa60ebb3cce981f79d6dfda13f1c667af94"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JC039",
@@ -209,7 +299,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JZ23",
@@ -236,7 +327,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "JZ28",
@@ -263,7 +355,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "XG10",
@@ -290,7 +383,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "CQ08",
@@ -317,7 +411,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "BQ059",
@@ -344,7 +439,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "CQ17",
@@ -371,7 +467,8 @@
         "finalSourceValidation": "notRun; pending owner integration checks"
       },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "WM039",
@@ -383,12 +480,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Gray exposure-only source; group result, not composite acceptance",
+        "finalSource": "17015c4924bce9423801af2e3e1a4087718779f1",
+        "passed": 22,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-exposure-build/next20-exposure-22-final.log",
+        "logSha256": "ef410c4ab23382b53b94dc35ee9ff5525269ab4a031da78cb8febecf42243dcf"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "WM040",
@@ -400,12 +506,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Gray exposure-only source; group result, not composite acceptance",
+        "finalSource": "17015c4924bce9423801af2e3e1a4087718779f1",
+        "passed": 22,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-exposure-build/next20-exposure-22-final.log",
+        "logSha256": "ef410c4ab23382b53b94dc35ee9ff5525269ab4a031da78cb8febecf42243dcf"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     },
     {
       "id": "WM042",
@@ -417,12 +532,21 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "inProgressInIndependentClone",
-      "selectionEnabled": false,
+      "implementation": "integratedPendingCompositeValidation",
+      "selectionEnabled": true,
       "release": "notReleased",
-      "localScopedTests": "notRun",
+      "localScopedTests": {
+        "scope": "Gray exposure-only source; group result, not composite acceptance",
+        "finalSource": "17015c4924bce9423801af2e3e1a4087718779f1",
+        "passed": 22,
+        "failed": 0,
+        "ignored": 0,
+        "log": "/workspace/audit-underground-100161b/next20-exposure-build/next20-exposure-22-final.log",
+        "logSha256": "ef410c4ab23382b53b94dc35ee9ff5525269ab4a031da78cb8febecf42243dcf"
+      },
       "independentReview": "notRun",
-      "realBrowserBattle": "notRun"
+      "realBrowserBattle": "notRun",
+      "compositeValidation": "notRun; awaiting owner Cargo slot"
     }
   ],
   "sourceCorrectionsPending": [
@@ -483,7 +607,7 @@
     "gzipSha256": "ddd70840e49c4beeb184a39ae9c4308ffd00e0e78e18c527549cc3f90e7af038",
     "retainedRuntimeRebuilt": false,
     "inputDirectory": "$UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi91",
-    "routing": "Original first-batch router untouched. Add retained91 routing when assigning the next engine identity.",
+    "routing": "Existing exact ABI91 retained route is present; published original bytes and identity remain unchanged.",
     "validation": {
       "passed": 8,
       "failed": 0,
@@ -496,8 +620,8 @@
   "candidateIdentity": {
     "rules": "hegemony-pdf-v1",
     "cardPool": "limited-v2.83-batch20-next",
-    "engine": "rust-v0.2.92-batch20-next",
-    "status": "WIP source constants; current WASM not built for this identity",
+    "engine": "rust-v0.2.93-batch20-next",
+    "status": "ABI93 reserved in source only; no WASM built; ABI92 reserved for first-batch P2",
     "retainedAbi": [
       77,
       78,
@@ -513,6 +637,58 @@
       88,
       89,
       91
-    ]
+    ],
+    "pendingRetainedP2": {
+      "abi": 92,
+      "status": "awaiting owner exact original identity and runtime bytes",
+      "frozenInputsCreated": false
+    }
+  },
+  "combinedIntegration": {
+    "branch": "progress/next20-combined-20261021",
+    "clone": "/workspace/audit-underground-100161b/next20-combined-dev",
+    "baseCommit": "d611b3269c48612c8e1500b349fb363915779b22",
+    "sourceInputs": {
+      "black": "305a0a8ef2c2d750cb3b57bd85eba21c7c4fd704",
+      "red": "b6d4e3faf8abca1a2765a949f6873bf5625892b8",
+      "grayChain": [
+        "359c1f3f0b00e54896acffb338fcb4ef1404eb5e",
+        "bfc2bd608913cf168c85628af9bcc3b72c36470f",
+        "4f820a454910e17a7a428ce827dd12a79f97c743",
+        "920881e32c26c92adb2befdff279bb1f4e2c866a",
+        "28fbb6325406028199f1ee0217bee2bad147f2f1",
+        "17015c4924bce9423801af2e3e1a4087718779f1"
+      ]
+    },
+    "registry": {
+      "cards": 193,
+      "nonRegionCards": 183,
+      "originalRecords": 173,
+      "originalRecordsUnchanged": true,
+      "originalRecordsCanonicalSha256": "2e3c30a1172f4a995c8a5227e484360d47562dfd63c4a2e5974a55cf68303fd9"
+    },
+    "sharedHooks": "docs/factions/next20-combined-integration-20261021.md",
+    "staticValidation": {
+      "diffCheck": "clean",
+      "rustSyntaxFiles": 29,
+      "rustTypeCheck": "notRun",
+      "javascriptSyntax": "parsed",
+      "cargoInvoked": false
+    },
+    "crossTests": {
+      "newTests": 7,
+      "file": "rust-game/src/next20_cross_tests.rs",
+      "realBadgeTestEnabled": "next20_red_tests::next20_red_jc051_cross_package_badge_public_search_host_restore",
+      "status": "notRun"
+    },
+    "remaining": [
+      "Owner-assigned guarded Cargo slot for targeted composite tests and failures",
+      "Owner P2 source plus two UX patches to be integrated later",
+      "Exact P2 ABI92 original identity before retained92 route",
+      "Combined WASM and Native builds, current tests, browser acceptance and independent review; not claimed passed"
+    ],
+    "published": false,
+    "pushed": false,
+    "githubCITriggered": false
   }
 }
