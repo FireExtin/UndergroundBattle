@@ -3,7 +3,7 @@
   "recordedAt": "2026-10-21T16:58:12.720376+00:00",
   "baselineCommit": "9aa4fda499c25268a632fa578c31a04c70eac6e8",
   "branch": "progress/latest-kernel-only-20261021",
-  "status": "WIP acceptance; current-only runtime built and targeted tests passed; fixed source hash recorded by enclosing Git commit and external checkpoint",
+  "status": "WIP acceptance: fixed implementation and targeted verification complete; independent deletion review and publication pending",
   "runtimeSourceBeforeCleanup": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
   "rustOrCardRulesChanged": false,
   "currentKernel": {
@@ -167,7 +167,7 @@
     "newDeploymentRequested": false,
     "v75WithdrawnFromQueue": true,
     "v74ExistingDeployment": {
-      "observedAt": "2026-10-21 16:56:41 UTC",
+      "observedAt": "2026-10-21T17:02:24.991011+00:00",
       "result": {
         "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
         "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
@@ -241,5 +241,10 @@
       "bytes": 4315979,
       "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
     }
-  ]
+  ],
+  "implementationCommit": "c1e5e8dd79b4899b1cf9eb0f871bb861e4bdb10b",
+  "whitespaceCheck": {
+    "sourceAndDocumentation": "passed",
+    "rawLogs": "Original Wrangler trailing column spaces retained byte-for-byte; full diff --check reports these log lines only."
+  }
 }
