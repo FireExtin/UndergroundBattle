@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "batch": "batch20-2026-10-21",
+  "scope": "Completed existing default Native/WASM verification script, plus its XQ24 recovery checks; not independent review or browser play.",
+  "recordedAt": "2026-10-21T12:08:15.139021+00:00",
+  "startedAt": "2026-10-21T11:52:33+00:00",
+  "lastLogWriteAt": "2026-10-21T12:06:44.181628+00:00",
+  "source": {
+    "executedCheckoutSha": "7c7906019b18f2bd3b15124d364a387d9361dd84",
+    "runtimeSourceCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+    "runtimeTrees": {
+      "rust-game": "d3f1b74eecdcc108ae33cd4ede98969f50e1b9c8",
+      "rust-game-wasm": "c0c6bf22f8d6c9b38d37e8f73998ae7959f41b11"
+    },
+    "differencesFromRuntimeCommit": [
+      "README.md",
+      "docs/evidence/batch20-2026-10-21/runtime-wip-validation.json",
+      "docs/factions/batch20-2026-10-21.json",
+      "docs/factions/batch20-2026-10-21.md"
+    ],
+    "cleanAtCollection": true
+  },
+  "command": "CARGO_HOME=/workspace/audit-underground-100161b/cargo RUSTUP_HOME=/workspace/audit-underground-100161b/rustup PATH=/workspace/audit-underground-100161b/cargo/bin:$PATH UNDERGROUNDBATTLE_BUILD_ROOT=/workspace/audit-underground-100161b/build bash rust-game-wasm/verify.sh",
+  "collection": {
+    "originalVerifyPid": 133606,
+    "originalParentPid": 133594,
+    "bothProcessesExited": true,
+    "restarted": false,
+    "sessionId": null,
+    "processExitCode": null,
+    "exitCodeLimitation": "The initial tool response was truncated and its session ID was unavailable. Final per-case and aggregate success records, final XQ24 output and process exit were verified; an original shell exit code is not claimed."
+  },
+  "log": {
+    "path": "/workspace/audit-underground-100161b/batch20-fixed-full-wasm.log",
+    "bytes": 127821,
+    "sha256": "a90bca8f040a4ee2cc50be445b0cb4719c7eea221075a4da833046dec4509233"
+  },
+  "result": {
+    "passed": true,
+    "passedCases": 440,
+    "failedCases": 0,
+    "nativeExportCases": 440,
+    "ok": true,
+    "cases": 440,
+    "wasmBytes": 3796219,
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+    "transitions": 24582,
+    "projections": 97691,
+    "quotes": 1,
+    "rejectedCommands": 319,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "damage",
+      "discard",
+      "investigation",
+      "mulligan",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 43.85,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "xq24": {
+    "nativeTestsPassed": 2,
+    "nativeTestsFailed": 0,
+    "passed": true,
+    "rejectedStates": 4,
+    "restoreEntrypoints": 12,
+    "normalScenarios": 12,
+    "normalCommands": 117,
+    "seatViews": 370,
+    "fixtureSha256": "04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0",
+    "wasmBytes": 3796219,
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+  },
+  "addedRewardCases": [
+    {
+      "case": 124,
+      "name": "batch20-JZ33-granted-renown-restore",
+      "transitions": 15,
+      "projections": 60,
+      "sha256": "89df3b707dc42adc99d867e55ee313eab5b0f9cce6214e5df133718e41d78a40",
+      "ok": true
+    },
+    {
+      "case": 125,
+      "name": "batch20-JZ52-granted-renown-restore",
+      "transitions": 15,
+      "projections": 60,
+      "sha256": "a386eea244fd1386a3f6c932a34bba83fe1770477f91a41ba239af6c8192922e",
+      "ok": true
+    },
+    {
+      "case": 126,
+      "name": "batch20-JC040-granted-renown-restore",
+      "transitions": 15,
+      "projections": 60,
+      "sha256": "ebc23aa7c89bd26215460eb93e8514d66ee17df0c9568ca9aaccc1806349d64f",
+      "ok": true
+    },
+    {
+      "case": 127,
+      "name": "batch20-JC067-granted-renown-restore",
+      "transitions": 23,
+      "projections": 92,
+      "sha256": "9431969b05e6ba6bab00b47362e9a128d15673cdd31cdd117193efbf12c50bd1",
+      "ok": true
+    },
+    {
+      "case": 128,
+      "name": "batch20-JZ33-granted-jc089-combat-glory-restore",
+      "transitions": 35,
+      "projections": 140,
+      "sha256": "7c7e8f5a0725dcc5dbd1b955b7ff8cff9911b264911aff57b941fdb61d9545af",
+      "ok": true
+    },
+    {
+      "case": 129,
+      "name": "batch20-JZ52-granted-jc089-combat-glory-restore",
+      "transitions": 36,
+      "projections": 144,
+      "sha256": "5dfa50d35b1dc1d7f497a065cd2ef7db95b3977ea64b13d66b2420e343b37f80",
+      "ok": true
+    },
+    {
+      "case": 130,
+      "name": "batch20-JC040-granted-jc089-combat-glory-restore",
+      "transitions": 36,
+      "projections": 144,
+      "sha256": "5722dca52bd423cbf0f3b203897aad83898e5f57ef9ffd358ecc6d963c1eebf6",
+      "ok": true
+    }
+  ],
+  "identity": {
+    "engine": "rust-v0.2.91-batch20",
+    "pool": "limited-v2.82-batch20",
+    "rules": "hegemony-pdf-v1",
+    "wasmBytes": 3796219,
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+    "matchesPreparedSiteCandidateBytes": true
+  },
+  "limits": {
+    "original433Run": "Separate b3ece039 artifact; not used as proof of this fixed artifact.",
+    "singleFinalFullSitesRun": false,
+    "independentReviewForBatch": "notRun",
+    "realBrowserBattle": "notRun",
+    "githubCi": "notRun",
+    "deployment": "Not attempted for fixed candidate; previous deployment denial remains pending explicit approval."
+  },
+  "fixedCandidateIdentitySha256": "5b370db2bb92873ed8a4c6811e6eaaeabf5d96e8c8a18290a46081d9f3b488bb"
+}

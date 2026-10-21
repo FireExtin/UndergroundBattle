@@ -425,6 +425,16 @@
         "{\"output\":\"/workspace/audit-underground-100161b/build/batch20-reward-fixed-repo-clock/server\",\"files\":17,\"exactWasmModules\":14,\"hardLinksOnlyNoDuplicateWasm\":true,\"productionUnmodified\":true}"
       ],
       "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-fixed-full-wasm.log",
+      "sha256": "a90bca8f040a4ee2cc50be445b0cb4719c7eea221075a4da833046dec4509233",
+      "summary": [
+        "{\"ok\":true,\"cases\":440,\"wasmBytes\":3796219,\"wasmSha256\":\"b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376\",\"transitions\":24582,\"projections\":97691,\"quotes\":1,\"rejectedCommands\":319,\"rejectedDeckCreations\":42,\"choiceKinds\":[\"damage\",\"discard\",\"investigation\",\"mulligan\",\"optional-shuffle\",\"recipient\",\"region_return\",\"revealed-hand-discard\",\"search\",\"target\",\"trigger\"],\"slowestFixtureStepMs\":43.85,\"opaqueState\":true,\"maximumU64SeedExact\":true,\"nativeWasmStateAndViewsMatch\":true}",
+        "test result: ok. 2 passed; 0 failed;",
+        "{\"passed\":true,\"rejectedStates\":4,\"restoreEntrypoints\":12,\"normalScenarios\":12,\"normalCommands\":117,\"seatViews\":370,\"fixtureSha256\":\"04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0\",\"wasmBytes\":3796219,\"wasmSha256\":\"b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376\"}"
+      ],
+      "scope": "Original existing full verify process133606 completed; no duplicate launch. Fixed artifact b678, not original b3. Shell exit code unavailable; complete final success reports and process exit verified."
     }
   ],
   "fullSuite": {
@@ -452,7 +462,7 @@
       "log": "batch20-full-tools-03.log"
     },
     "sites": "Initial full681/55; all15 affected files final81/0 on fixed candidate. Not a single final full Sites run.",
-    "remainingNativeAndWasm": "Rust workspace1395/0; original b3 full433 and fixed b678 scoped13 passed; fixed b678 full433 not run",
+    "remainingNativeAndWasm": "Rust workspace1395/0; fixed b678 full440 scenarios/24582 transitions/97691 views and final XQ24 checks passed. Original b3 full433 remains separate historical evidence.",
     "singleFinalWorkspaceAllPassClaimed": true,
     "nativeIntegrationInitial": {
       "passedBeforeStop": 6,
@@ -558,7 +568,36 @@
       },
       "siteSourcePreparedLocally": true,
       "siteSourcePushed": false,
-      "productionDeploymentAttempted": false
+      "productionDeploymentAttempted": false,
+      "wasmFull": {
+        "passed": true,
+        "cases": 440,
+        "failed": 0,
+        "transitions": 24582,
+        "projections": 97691,
+        "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+        "wasmBytes": 3796219,
+        "sourceSha": "7c7906019b18f2bd3b15124d364a387d9361dd84",
+        "runtimeSourceCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+        "log": "batch20-fixed-full-wasm.log",
+        "logSha256": "a90bca8f040a4ee2cc50be445b0cb4719c7eea221075a4da833046dec4509233",
+        "evidence": "docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json",
+        "xq24": {
+          "nativeTestsPassed": 2,
+          "nativeTestsFailed": 0,
+          "passed": true,
+          "rejectedStates": 4,
+          "restoreEntrypoints": 12,
+          "normalScenarios": 12,
+          "normalCommands": 117,
+          "seatViews": 370,
+          "fixtureSha256": "04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0",
+          "wasmBytes": 3796219,
+          "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+        },
+        "originalProcessExitCode": null,
+        "completionEvidence": "All440 per-case success records, aggregate success and final XQ24 success; original process no longer exists."
+      }
     },
     "sitesInitial": {
       "passed": 681,
@@ -586,7 +625,36 @@
       "log": "batch20-sites-failures-recheck-02.log",
       "singleFinalFullSitesRun": false
     },
-    "workspaceMeaning": "cargo --workspace only; Sites and distinct WASM artifacts retain their separate boundaries"
+    "workspaceMeaning": "cargo --workspace only; Sites and distinct WASM artifacts retain their separate boundaries",
+    "fixedFullWasmFinal": {
+      "passed": true,
+      "cases": 440,
+      "failed": 0,
+      "transitions": 24582,
+      "projections": 97691,
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "sourceSha": "7c7906019b18f2bd3b15124d364a387d9361dd84",
+      "runtimeSourceCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+      "log": "batch20-fixed-full-wasm.log",
+      "logSha256": "a90bca8f040a4ee2cc50be445b0cb4719c7eea221075a4da833046dec4509233",
+      "evidence": "docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json",
+      "xq24": {
+        "nativeTestsPassed": 2,
+        "nativeTestsFailed": 0,
+        "passed": true,
+        "rejectedStates": 4,
+        "restoreEntrypoints": 12,
+        "normalScenarios": 12,
+        "normalCommands": 117,
+        "seatViews": 370,
+        "fixtureSha256": "04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0",
+        "wasmBytes": 3796219,
+        "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+      },
+      "originalProcessExitCode": null,
+      "completionEvidence": "All440 per-case success records, aggregate success and final XQ24 success; original process no longer exists."
+    }
   },
   "independentReview": "notRunForBatch",
   "realBrowserBattle": "notRun",
@@ -659,7 +727,7 @@
     {
       "id": "B20-P1-01",
       "severity": "P1",
-      "status": "fixed; final Rust workspace1395 and Sites affected files81 passed; fixed WASM13 and new-room startup passed; not deployed",
+      "status": "fixed; final Rust workspace1395, fixed WASM full440, Sites affected files81 and new-room startup passed; not deployed",
       "source": "rust-game/src/resolution.rs:463",
       "consumer": "rust-game/src/batch20.rs:581",
       "affectedCards": [
@@ -758,7 +826,36 @@
     },
     "siteSourcePreparedLocally": true,
     "siteSourcePushed": false,
-    "productionDeploymentAttempted": false
+    "productionDeploymentAttempted": false,
+    "wasmFull": {
+      "passed": true,
+      "cases": 440,
+      "failed": 0,
+      "transitions": 24582,
+      "projections": 97691,
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "sourceSha": "7c7906019b18f2bd3b15124d364a387d9361dd84",
+      "runtimeSourceCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+      "log": "batch20-fixed-full-wasm.log",
+      "logSha256": "a90bca8f040a4ee2cc50be445b0cb4719c7eea221075a4da833046dec4509233",
+      "evidence": "docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json",
+      "xq24": {
+        "nativeTestsPassed": 2,
+        "nativeTestsFailed": 0,
+        "passed": true,
+        "rejectedStates": 4,
+        "restoreEntrypoints": 12,
+        "normalScenarios": 12,
+        "normalCommands": 117,
+        "seatViews": 370,
+        "fixtureSha256": "04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0",
+        "wasmBytes": 3796219,
+        "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+      },
+      "originalProcessExitCode": null,
+      "completionEvidence": "All440 per-case success records, aggregate success and final XQ24 success; original process no longer exists."
+    }
   },
   "fixtureCorrectionHistory": [
     "First new reward fixture incorrectly assumed enemy influence remained positive for JC067; assertion fixed to cover removal or placement. No WASM comparison ran in that failed export.",
@@ -787,5 +884,5 @@
       "noTestsRepeatedForEquivalentDebugComment": true
     }
   },
-  "fixedCandidateIdentitySha256": "eed30b3e223c0676ceb7b089144e2e9a1b3ceeafbcdf89d9f4a592d036350742"
+  "fixedCandidateIdentitySha256": "5b370db2bb92873ed8a4c6811e6eaaeabf5d96e8c8a18290a46081d9f3b488bb"
 }
