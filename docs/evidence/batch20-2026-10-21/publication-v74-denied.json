@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-21T15:16:20.032Z",
+  "action": "deploy_site_version",
+  "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+  "version_number": 74,
+  "source": {
+    "commit_sha": "fe182e656f35153be9225c0b17fbce708831b1ba"
+  },
+  "knownOutcome": "denied by automatic approval; get_site_version afterwards confirms deployment_id null",
+  "deployment_id": null,
+  "rejection": [
+    "This action was rejected due to unacceptable risk.\nReason: 该动作会把公开站点的 v74 部署到生产环境；用户此前明确批准的是 v73，当前可信证据没有明确授权 v74，不能将旧版本授权扩展到新版本。\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+  ],
+  "noRetry": true,
+  "independentSupplemental": {
+    "source": "a0b1b3da71887bde9aaed06f85dc74638d36d38c",
+    "status": "passed per coordinator",
+    "scope": "16 valid combinations;192 invalid targets rejected;Native45;Web19;typecheck;not independent WASM or UX/next20",
+    "reportLibraryId": "libfile_c4a2a23fdc5481918eb3b1dbd9b1d8f7"
+  },
+  "nextBatchPublication": "on hold; do not publish the denied fix indirectly through another candidate"
+}

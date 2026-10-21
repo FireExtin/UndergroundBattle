@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "sourceBase": "4f388a8dd318465e7ca1d12af38aec18aede286c",
+  "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "engine": "rust-v0.2.93-batch20-next",
+  "pool": "limited-v2.83-batch20-next",
+  "ordinaryCards": 193,
+  "playerCards": 183,
+  "counts": {
+    "character": 121,
+    "spell": 34,
+    "attachment": 28,
+    "region": 10
+  },
+  "wasm": {
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "nativeService": {
+    "bytes": 30647520,
+    "sha256": "9200101acc05527cc85756bf00603b948eaa3eaed5f0bbf7939c6ee0b3d1faf0"
+  },
+  "results": {
+    "nativeTargeted": {
+      "passed": 129,
+      "failed": 0,
+      "ignored": 0,
+      "filteredOut": 1281,
+      "evidence": "../../factions/next20-combined-native-20261021.json"
+    },
+    "webTargeted": {
+      "files": 10,
+      "passed": 180,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "webBuild": "passed",
+    "nativeServiceBuild": "passed",
+    "wasmBuild": "passed",
+    "sourceAndArt": {
+      "passed": 7,
+      "failed": 0,
+      "all193OriginalBytesVerified": true
+    },
+    "startup": {
+      "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+      "engine": "rust-v0.2.93-batch20-next",
+      "pool": "limited-v2.83-batch20-next",
+      "ordinaryCards": 193,
+      "societies": 10,
+      "batchIds": [
+        "JC051",
+        "JC055",
+        "JZ32",
+        "JZ34",
+        "JZ41",
+        "BQ077",
+        "BQ085",
+        "CQ26",
+        "XG27",
+        "XQ39",
+        "JC039",
+        "JZ23",
+        "JZ28",
+        "XG10",
+        "CQ08",
+        "BQ059",
+        "CQ17",
+        "WM039",
+        "WM040",
+        "WM042"
+      ],
+      "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "wasmBytes": 4315979,
+      "checks": [
+        "all 20 supported",
+        "all 20 accepted in custom deck",
+        "WASM create/join/ready/start",
+        "opaque max-u64 seed preserved",
+        "Native HTTP create/join/ready/start",
+        "Native catalog equals WASM",
+        "new room catalog",
+        "static index and 20 card images"
+      ],
+      "result": "passed"
+    },
+    "sitesBuild": {
+      "status": "passed",
+      "exitCode": 0,
+      "wasmModules": 15,
+      "versions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        93
+      ],
+      "publish": "not attempted; local wrangler dry-run only"
+    },
+    "sitesKernelStartup": {
+      "passed": 8,
+      "failed": 0,
+      "actualHttpD1Rooms": 15,
+      "actualKernelVersions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        93
+      ],
+      "opaqueStateAndOriginalReceiptChecks": "passed",
+      "browser": false
+    }
+  },
+  "sourceCorrection": {
+    "card": "XG27",
+    "ruleChange": false,
+    "imageSha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0",
+    "evidence": "Root directly viewed original image; centered 灵体 text and existing full printed text both confirm spirit. Add missing historical printedKeywords entry; runtime already correct.",
+    "baselineHashPolicy": "Pin all other specification records independently from d98117d excluding the14 named reviewed corrections"
+  },
+  "failedEvidence": {
+    "newSourceCoverage": "First expanded source test6pass/1fail: five black raw JSON records omit supported, which CardDefinition defaults to true. Source test now follows that documented default; actual Native/WASM startup separately confirms all20 admitted. No runtime change."
+  },
+  "logs": {
+    "next20-abi93-wasm-build.log": {
+      "bytes": 1358,
+      "sha256": "555649ff31f9571a4359745bf285bede472e229745278f9076ea04e27705167f"
+    },
+    "next20-native-service-build.log": {
+      "bytes": 631,
+      "sha256": "7ce542c0d8d1398f1f6514df6dc69b4fb646a3e1b60b2261db0c599374ebb975"
+    },
+    "next20-web-typecheck.log": {
+      "bytes": 324,
+      "sha256": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5"
+    },
+    "next20-web-targeted.log": {
+      "bytes": 865,
+      "sha256": "1aef1ba7f57897755451dd8016cb1f533119bed719833526db2a1f4d34aeb32b"
+    },
+    "next20-web-build.log": {
+      "bytes": 689,
+      "sha256": "1ae05617e69d580a490ba3661de6d9609dc6c6f76d7e4952f4733514f154eb01"
+    },
+    "next20-source-scans.log": {
+      "bytes": 715,
+      "sha256": "42e48f7710f89769308bc0b03112f656536c3e24889238e993a07094b7387b73"
+    },
+    "next20-source-scans-final.log": {
+      "bytes": 1811,
+      "sha256": "f07f653b772caa23c69fc11c772745e249ee7dc70c5890c22eeeb98c23e2896c"
+    },
+    "next20-source-scans-final-02.log": {
+      "bytes": 841,
+      "sha256": "0d198fc16370f5eefea157763bf7f311007403e40f00b4099a2dabce3c36ef54"
+    },
+    "next20-startup-check.log": {
+      "bytes": 723,
+      "sha256": "c7d82eca560c38a238029f4112d29f79f94ecdd17e6b914d8ff1314ce337e96b"
+    },
+    "next20-sites-build.log": {
+      "bytes": 1736,
+      "sha256": "85f790bce59f7517910e34b2bc36283faae2aa3f037cde5efc5fa1fdd778e6af"
+    },
+    "next20-clock-worker-build.log": {
+      "bytes": 191,
+      "sha256": "d8a3137302a3367fc35235c4899d10db52e37a5600d0c09c27ce7f249986d166"
+    },
+    "next20-sites-kernel-startup.log": {
+      "bytes": 1318,
+      "sha256": "19ec3d949fe7363737336c98efc58179534fa0915ecc3cb00ce5d68a6e8ac36a"
+    },
+    "next20-native-oracle-first.log": {
+      "bytes": 182,
+      "sha256": "0f08a8cbf39c47a56dde4b6d1f1e839fd53c5eccc6ea1a7a50d1ff4709e28f07"
+    }
+  },
+  "notValidated": [
+    "complete Native/WASM suite for this batch",
+    "complete Sites suite for this batch",
+    "independent review of next20",
+    "real browser battle of next20",
+    "publication"
+  ],
+  "publication": "not started; v74 deployment denied, do not publish this candidate as an indirect retry",
+  "retainedInputs": [
+    {
+      "abi": 77,
+      "wasmSha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "wasmBytes": 2909006,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 78,
+      "wasmSha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "wasmBytes": 2976205,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 79,
+      "wasmSha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "wasmBytes": 3005332,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 80,
+      "wasmSha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+      "wasmBytes": 3047680,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 81,
+      "wasmSha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "wasmBytes": 3154323,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 82,
+      "wasmSha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+      "wasmBytes": 3165174,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 83,
+      "wasmSha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+      "wasmBytes": 3174213,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 84,
+      "wasmSha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+      "wasmBytes": 3217477,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 85,
+      "wasmSha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+      "wasmBytes": 3263215,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 86,
+      "wasmSha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+      "wasmBytes": 3291234,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 87,
+      "wasmSha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed",
+      "wasmBytes": 3325174,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 88,
+      "wasmSha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+      "wasmBytes": 3353559,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 89,
+      "wasmSha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+      "wasmBytes": 3471247,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 91,
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "hashGate": "passed original gzip+JS+decompressed wasm"
+    }
+  ],
+  "nativeWasmOracle": {
+    "implementedCases": 35,
+    "portedP2Cases": 8,
+    "status": "not run; compile launch stopped by existing cgroup headroom guard before Cargo started",
+    "guardExitCode": 78,
+    "requiredHeadroomBytes": 1073741824,
+    "observedHeadroomBytes": 510406656,
+    "sourceFiles": [
+      "rust-game-wasm/examples/native_fixtures.rs",
+      "rust-game-wasm/examples/support/next20.rs",
+      "rust-game-wasm/examples/support/society_zone.rs"
+    ],
+    "syntheticPaidFrameInitialLayouts": 6,
+    "naturalBrowserClaim": false
+  },
+  "recordedAt": "2026-10-21T15:27:29.631375+00:00"
+}
