@@ -118,7 +118,8 @@ pub(crate) fn validate_construction(
 impl Game {
     pub(crate) fn society_host_seat(&self, id: &str) -> Option<usize> {
         let seat = id.strip_prefix("society:p")?.parse::<usize>().ok()?;
-        self.players.get(seat).filter(|p| !p.eliminated && p.society_zone.card.is_some()
+        // Headquarters is a per-seat zone; choosing a society card is optional.
+        self.players.get(seat).filter(|p| !p.eliminated
             && id == format!("society:p{seat}")).map(|_| seat)
     }
     pub(crate) fn society_usage(&self, source: &str) -> Option<&BTreeSet<String>> {
