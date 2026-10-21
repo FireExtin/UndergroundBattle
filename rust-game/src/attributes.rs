@@ -202,6 +202,7 @@ impl Game {
             .regions
             .iter()
             .flat_map(|r| r.cards.iter())
+            .chain(self.attachments.iter().map(|a| &a.card))
             .filter(|c| !c.face_down && card(&c.definition).kind == "character")
             .map(|c| c.id.as_str())
             .collect::<std::collections::BTreeSet<_>>();

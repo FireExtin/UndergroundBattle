@@ -142,7 +142,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
       "sourceImageSha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -599,7 +599,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 3,
+    "unreviewedRuntimeCards": 2,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -897,6 +897,43 @@
       "affectedFilters": {
         "raid-9": 9,
         "jz22-18": 18
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "eighteenCardPilot": {
+      "passed": 132,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "BQ042",
+        "WM030",
+        "WM033",
+        "WM035",
+        "BQ079",
+        "BQ087",
+        "BQ089",
+        "XG26",
+        "XG28",
+        "BQ026",
+        "BQ029",
+        "BQ037",
+        "JZ25",
+        "JC062",
+        "JC064",
+        "XQ22",
+        "XQ26",
+        "WM041"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/eighteen-card-pilot.json",
+      "affectedFilters": {
+        "attachment": 7,
+        "death-observer": 23,
+        "mobility": 14,
+        "renown": 36,
+        "blue-expansion": 20,
+        "jc044": 17,
+        "jc052": 20,
+        "bq030-name-filter": 3
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

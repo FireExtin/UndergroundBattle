@@ -153,9 +153,7 @@ impl Game {
             .ok_or("原地区实例已失效")?;
         while !remaining_players.is_empty() {
             let seat = remaining_players.remove(0);
-            let options: Vec<_> = self.regions[r]
-                .cards
-                .iter()
+            let options: Vec<_> = self.region_characters(r)
                 .filter(|c| {
                     c.controller == seat && !c.face_down && card(&c.definition).kind == "character"
                 })
@@ -203,7 +201,7 @@ impl Game {
             .filter(|_| selected.len() == 1)
             .ok_or("必须选择一个角色牺牲")?;
         if self.team(seat) == self.team(frame.actor)
-            || !self.regions[r].cards.iter().any(|c| {
+            || !self.region_characters(r).any(|c| {
                 &c.id == id
                     && c.controller == seat
                     && !c.face_down

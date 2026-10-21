@@ -17,6 +17,8 @@ pub struct CardDefinition {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subtitle: Option<String>,
     pub kind: String,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub additional_kinds: Vec<String>,
     #[serde(default)]
     pub r#type: String,
     #[serde(default)]
@@ -229,4 +231,15 @@ pub fn card(id: &str) -> &'static CardDefinition {
 }
 pub fn deck(id: &str) -> Option<&'static DeckDefinition> {
     catalog().decks.iter().find(|d| d.id == id)
+}
+
+/// The reviewed dual print retains both types in every physical zone.
+pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
+    d.kind == kind || d.additional_kinds.iter().any(|k| k == kind)
+}
+
+/// Snapshot validation admits only this fixed implemented pool. Deck and preset
+/// admission deliberately continue to use supported alone during batch work.
+pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
+    d.supported || crate::batch3::IMPLEMENTING.contains(&d.id.as_str())
 }

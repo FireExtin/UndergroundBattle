@@ -11,7 +11,7 @@ use crate::{
 use std::collections::BTreeSet;
 
 pub(crate) fn printed(id: &str) -> bool {
-    matches!(id, "JC014" | "JZ45" | "JC061" | "BQ035" | "WM039")
+    matches!(id, "BQ026" | "JC014" | "JZ45" | "JC061" | "BQ035" | "WM039")
 }
 pub(crate) fn ability() -> AbilitySpec {
     let mut a = rules::ability(
@@ -73,7 +73,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 impl Game {
     pub(crate) fn has_mobility(&self, c: &Card) -> bool {
         self.board(&c.id).is_some_and(|(_, live)| {
-            !live.face_down
+            !live.face_down && !self.attached_character(&live.id)
                 && catalog::card(&live.definition).kind == "character"
                 && (printed(&live.definition) || (live.definition == "WM040" && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some())
         })
@@ -153,7 +153,7 @@ impl Game {
             || c.owner >= self.players.len()
             || c.id.is_empty()
             || c.face_down
-            || c.exhausted
+            || c.exhausted || self.attached_character(&c.id)
             || !admitted(c, "character")
             || s.region.is_none_or(|r| r >= self.regions.len())
             || s.source_region_instance.is_some()

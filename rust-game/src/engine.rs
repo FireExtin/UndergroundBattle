@@ -389,10 +389,7 @@ impl Game {
         !c.face_down
             && card(&c.definition).kind == "character"
             && self.current_spirit(c)
-            && self
-                .regions
-                .get(region)
-                .is_some_and(|r| r.cards.iter().any(|live| live.id == c.id))
+            && self.board(&c.id).is_some_and(|(r,_)| r==region)
             && self.attachments.iter().any(|a| {
                 !a.card.face_down
                     && self.attachment_region(a) == Some(region)
@@ -446,7 +443,7 @@ impl Game {
                 permanent_result.investigation = permanent_result.investigation.saturating_add(self.jc037_controlled_hidden(c));
             }
             if let StaticModifier::NoEnemyCharacters(permanent, temporary) = modifier {
-                if !self.regions[region].cards.iter().any(|other| {
+                if !self.region_characters(region).any(|other| {
                     !other.face_down
                         && card(&other.definition).kind == "character"
                         && self.is_enemy(c.controller, other)
@@ -484,10 +481,7 @@ impl Game {
     pub(crate) fn current_permanent_combat(&self, c: &Card, region: usize) -> u32 {
         if c.face_down
             || card(&c.definition).kind != "character"
-            || !self
-                .regions
-                .get(region)
-                .is_some_and(|r| r.cards.iter().any(|live| live.id == c.id))
+            || !self.board(&c.id).is_some_and(|(r,_)|r==region)
         {
             return 0;
         }
@@ -1410,9 +1404,7 @@ impl Game {
             // even when printed JC018 or several curses/hosts contributed.
             let glory = self.jc089_combat_glory(team, region);
             let path_triggers = self.jc034_combat_observers(team, region);
-            let kills = self.regions[region]
-                .cards
-                .iter()
+            let kills = self.region_characters(region)
                 .filter(|c| {
                     self.team(c.controller) == team
                         && !c.face_down
@@ -1646,9 +1638,7 @@ impl Game {
                 amount,
             } => {
                 if !self.region_live(region) { return Ok(()); }
-                let options: Vec<_> = self.regions[region]
-                    .cards
-                    .iter()
+                let options: Vec<_> = self.region_characters(region)
                     .filter(|c| !c.face_down && self.is_enemy(seat, c))
                     .map(|c| self.option(c, seat, Some(region), None))
                     .collect();
@@ -2027,8 +2017,8 @@ impl Game {
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
             let mut dead = vec![];
-            for (r, region) in self.regions.iter().enumerate() {
-                for c in &region.cards {
+            for r in 0..self.regions.len() {
+                for c in self.region_characters(r) {
                     if !c.face_down
                         && card(&c.definition).kind == "character"
                         && c.damage >= self.defense(c, r)
@@ -2194,9 +2184,7 @@ impl Game {
                 {
                     return Err("须向合法角色分配全部伤害".into());
                 }
-                let guards = self.regions[region]
-                    .cards
-                    .iter()
+                let guards = self.region_characters(region)
                     .filter(|c| {
                         !c.face_down
                             && self.is_enemy(seat, c)
@@ -2289,6 +2277,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
             permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),

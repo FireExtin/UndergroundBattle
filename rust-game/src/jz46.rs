@@ -233,7 +233,7 @@ impl Game {
             && catalog::catalog()
                 .cards
                 .iter()
-                .any(|d| d.id == inspected.definition && d.supported && d.kind == "character")
+                .any(|d| d.id == inspected.definition && catalog::runtime_implemented(d) && d.kind == "character")
             && self.valid_bound_target(f.actor, &f.source, &f.targets[0])
             && self
                 .board(&inspected.id)

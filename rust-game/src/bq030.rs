@@ -243,7 +243,7 @@ impl Game {
             || !catalog::catalog()
                 .cards
                 .iter()
-                .any(|d| d.id == c.definition && (d.supported || crate::batch3::IMPLEMENTING.contains(&d.id.as_str())) && d.kind == kind)
+                .any(|d| d.id == c.definition && (d.supported || crate::batch3::IMPLEMENTING.contains(&d.id.as_str())) && catalog::has_kind(d, kind))
         {
             return Err("结附事件包含未知牌面、暗置对象或非法历史实例".into());
         }
@@ -256,10 +256,7 @@ impl Game {
                 || current.definition != c.definition
                 || current.owner != c.owner
                 || (kind == "character"
-                    && !self
-                        .regions
-                        .iter()
-                        .any(|r| r.cards.iter().any(|live| live.id == c.id)))
+                    && self.board(&c.id).is_none())
                 || (kind == "attachment" && !self.attachments.iter().any(|a| a.card.id == c.id))
             {
                 return Err("结附历史实例与现存卡牌身份或容器不符".into());

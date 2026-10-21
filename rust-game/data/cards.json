@@ -8343,6 +8343,52 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "BQ026",
+      "name": "吸血蝙蝠群",
+      "kind": "character",
+      "additionalKinds": [
+        "attachment"
+      ],
+      "subtypes": [
+        "蝙蝠",
+        "魔宠"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。",
+      "keywords": [
+        "公开",
+        "机动"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ026",
+        "image": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
+        "imageSha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

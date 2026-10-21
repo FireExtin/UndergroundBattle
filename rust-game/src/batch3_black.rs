@@ -1,5 +1,5 @@
 //! Third-batch black attributes and the source-bound attachment barrier action.
-use crate::{catalog, engine::RuleResult, model::*, rules};
+use crate::{engine::RuleResult, model::*, rules};
 use std::collections::BTreeSet;
 
 impl Game {
@@ -34,12 +34,7 @@ impl Game {
             return Err("看场打手的屏障程序或执行阶段不符".into());
         }
         let target = &f.targets[0].id;
-        if !self.attachments.iter().any(|a| {
-            a.card.id == *target
-                && !a.card.face_down
-                && a.card.controller == f.actor
-                && self.attachment_host_valid(a)
-        }) {
+        if !self.in_play(target).is_some_and(|(_,c)|c.controller==f.actor && self.live_attachment_role(c)) {
             return Ok(());
         }
         if !self.turn_attribute_modifiers.iter().any(|m| {
@@ -79,17 +74,8 @@ impl Game {
                 || m.ordinary_icons != Icons::default()
                 || m.grants_renown
                 || m.prevents_damage
-                || !self.attachments.iter().any(|a| {
-                    a.card.id == m.target_instance
-                        && !a.card.face_down
-                        && a.card.owner < self.players.len()
-                        && a.card.controller < self.players.len()
-                        && catalog::catalog()
-                            .cards
-                            .iter()
-                            .any(|d| d.id == a.card.definition && d.kind == "attachment")
-                        && self.attachment_host_valid(a)
-                })
+                || !self.regions.iter().flat_map(|r| &r.cards).chain(self.attachments.iter().map(|a| &a.card)).find(|c|c.id==m.target_instance)
+                    .is_some_and(|c|c.owner<self.players.len() && c.controller<self.players.len() && self.live_attachment_role(c))
             {
                 return Err("附属屏障的实体、期限或单一效果不符".into());
             }

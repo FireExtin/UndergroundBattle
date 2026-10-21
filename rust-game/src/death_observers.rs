@@ -24,6 +24,7 @@ impl Game {
         self.remove_death_batch_with_receipts(deaths);
     }
     pub(crate) fn remove_death_batch_with_receipts(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) -> Vec<CharacterDeathReceipt> {
+        let deaths = self.dual_character_death_wave(deaths);
         let previous_effects = self.effects.len();
         let red_observers = self.jz34_observers();
         let mut receipts = Vec::new();
@@ -164,7 +165,7 @@ impl Game {
         for a in &self.attachments {
             if a.card.time_markers > 0 && (a.card.face_down
                 || catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
-                    .is_none_or(|d| d.kind != "attachment")
+                    .is_none_or(|d| !catalog::has_kind(d,"attachment"))
                 || self.board(&a.host_id).is_some_and(|(_, host)| !catalog::catalog().cards.iter()
                     .any(|d| d.id == host.definition))
                 || !self.attachment_host_valid(a)) {

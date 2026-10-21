@@ -210,7 +210,7 @@ impl Game {
         for c in inspected {
             if c.id.is_empty() || !ids.insert(&c.id) || c.face_down
                 || c.owner >= self.players.len() || c.controller >= self.players.len()
-                || !catalog::catalog().cards.iter().any(|d| d.id == c.definition && d.supported && d.kind != "region") {
+                || !catalog::catalog().cards.iter().any(|d| d.id == c.definition && catalog::runtime_implemented(d) && d.kind != "region") {
                 return Err("JC057检视手牌的实体或印刷定义无效".into());
             }
         }

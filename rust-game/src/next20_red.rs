@@ -280,7 +280,7 @@ impl Game {
             if c.id.is_empty() || !ids.insert(&c.id) || c.face_down || c.controller != f.actor || c.owner >= self.players.len()
                 || p.remaining >= c.time_markers || p.region.is_some_and(|r| r >= self.regions.len())
                 || !matches!(catalog::card(&c.definition).kind.as_str(), "character" | "attachment")
-                || (catalog::card(&c.definition).kind == "attachment") != p.attachment_host.is_some()
+                || (c.definition != "BQ026" && (catalog::card(&c.definition).kind == "attachment") != p.attachment_host.is_some())
                 || p.attachment_host.as_ref().is_some_and(|h| h.is_empty() || h == &c.id)
                 || (c.id == f.source.card.id && (!same(c, &f.source.card) || p.region != f.source.region))
                 || self.in_play(&c.id).is_some_and(|(_, now)| now.definition != c.definition || now.owner != c.owner) { return Err("JC055时间费用载体或数量错误".into()); }

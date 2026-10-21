@@ -259,12 +259,13 @@ impl Game {
         }) else { return; };
         // Only visible characters qualify. Hidden identities are not consulted;
         // printed cost, not a player's cost modifiers, supplies the threshold.
-        let ids = self.regions[region].cards.iter().filter(|c| {
+        let ids = self.region_characters(region).filter(|c| {
             !c.face_down && {
                 let d = crate::catalog::card(&c.definition);
                 d.kind == "character" && d.cost <= 3
             }
         }).map(|c| c.id.clone()).collect::<Vec<_>>();
+        let mut ids=ids; ids.sort_by_key(|id| !self.attached_character(id));
         for id in ids {
             self.hide_in_place(&id);
         }

@@ -1108,5 +1108,10 @@
     "url": "/cards/BQ029.jpg",
     "source": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
     "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e"
+  },
+  "BQ026": {
+    "url": "/cards/BQ026.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
+    "sha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59"
   }
 }

@@ -294,7 +294,7 @@ impl Game {
             Op::JC054ConcealBurst { .. } => {
                 if let Some(region) = f.source.region.filter(|r| self.regions.get(*r).is_some_and(|reg|
                     !reg.vacant && f.source.source_region_instance.as_ref() == Some(&reg.card.id))) {
-                    let allocations = self.regions[region].cards.iter().filter(|c| !c.face_down
+                    let allocations = self.region_characters(region).filter(|c| !c.face_down
                         && c.id != f.source.card.id && catalog::card(&c.definition).kind == "character")
                         .map(|c| (c.id.clone(), 1)).collect::<BTreeMap<_, _>>();
                     self.damage(allocations)?;

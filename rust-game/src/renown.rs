@@ -32,7 +32,7 @@ impl Game {
     pub(crate) fn jc089_combat_glory(&self, team: usize, region: usize) -> Option<Declaration> {
         // Only the fully admitted JC018 print and real JC089 host grant qualify.
         // Merge their identical 威名 into one optional combat-time reward.
-        let source = self.regions[region].cards.iter().filter(|c|
+        let source = self.region_characters(region).filter(|c|
             self.team(c.controller) == team && !self.players[c.controller].eliminated
                 && self.icons(c, region).combat > 0 && self.has_combat_glory(c))
             .min_by_key(|c| c.controller)?;
@@ -83,9 +83,7 @@ impl Game {
             return;
         }
         let mut counts = [0u32; 2];
-        let eligible = self.regions[region]
-            .cards
-            .iter()
+        let eligible = self.region_characters(region)
             .filter(|c| {
                 !c.exhausted && !self.players[c.controller].eliminated && self.has_renown(c)
             })

@@ -79,6 +79,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_enemy_spell_protection: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_combat_markers: Option<u32>,

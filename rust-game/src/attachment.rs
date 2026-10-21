@@ -26,15 +26,23 @@ impl Game {
         } else { Icons::default() })
     }
     pub(crate) fn attachment_region(&self, attachment: &Attachment) -> Option<usize> {
-        let spec = rules::definition(&attachment.card.definition)
-            .attachment
-            .as_ref()?;
-        self.regions.iter().position(|r| !r.vacant && match spec.host.zone {
-            Zone::Region => r.card.id == attachment.host_id,
-            Zone::Board => r.cards.iter().any(|c| c.id == attachment.host_id),
-            _ => false,
-        })
+        let mut current = attachment;
+        let mut seen = std::collections::BTreeSet::new();
+        loop {
+            if !seen.insert(current.card.id.as_str()) { return None; }
+            let spec = rules::definitions().get(&current.card.definition)?.attachment.as_ref()?;
+            match spec.host.zone {
+                Zone::Region => return self.regions.iter().position(|r| !r.vacant && r.card.id == current.host_id),
+                Zone::Board => {
+                    if let Some(r) = self.regions.iter().position(|r| !r.vacant && r.cards.iter().any(|c| c.id == current.host_id)) { return Some(r); }
+                    current = self.attachments.iter().find(|a| a.card.id == current.host_id)?;
+                    if current.card.face_down || card(&current.card.definition).kind != "character" { return None; }
+                },
+                _ => return None,
+            }
+        }
     }
+
     pub(crate) fn reattach_source(&mut self, source_id: &str, target_id: &str) {
         let Some(index) = self.attachments.iter().position(|a| a.card.id == source_id) else {
             self.note("转移结附的来源已离场，效果不再改变场上对象".into());
@@ -97,7 +105,11 @@ impl Game {
         // Remove attachments before their hosts while retaining every object in
         // this explicit batch. No host-departure cleanup can change destinations.
         let mut removing = ids.clone();
-        removing.sort_by_key(|id| !self.attachments.iter().any(|a| a.card.id == *id));
+        removing.sort_by_key(|id| {
+            let mut depth=0; let mut next=id.as_str(); let mut seen=std::collections::BTreeSet::new();
+            while seen.insert(next) { if let Some(a)=self.attachments.iter().find(|a|a.card.id==next) {depth+=1;next=&a.host_id;} else {break;} }
+            std::cmp::Reverse(depth)
+        });
         let mut cards = std::collections::BTreeMap::new();
         for id in removing {
             self.return_sealed_cards(&id);
@@ -117,7 +129,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn attachment_host_valid(&self, attachment: &Attachment) -> bool {
-        let Some(spec) = &rules::definition(&attachment.card.definition).attachment else {
+        let Some(spec) = rules::definitions().get(&attachment.card.definition).and_then(|d| d.attachment.as_ref()) else {
             return false;
         };
         if spec.host.zone == Zone::Region {
@@ -171,6 +183,9 @@ impl Game {
     }
     pub(crate) fn host_leaves(&mut self, host_id: &str) {
         self.return_sealed_cards(host_id);
+        let children = self.attachments.iter().filter(|a| a.host_id == host_id && card(&a.card.definition).kind == "character")
+            .map(|a| (a.card.id.clone(), RemovalCause::Destroy, self.source_snapshot(&a.card, self.attachment_region(a)))).collect::<Vec<_>>();
+        if !children.is_empty() { self.remove_death_batch(children); }
         let all = std::mem::take(&mut self.attachments);
         let (departing, staying): (Vec<_>, Vec<_>) = all
             .into_iter()
@@ -220,6 +235,7 @@ impl Game {
             .map(|a| a.card.id.clone())
             .collect::<Vec<_>>();
         for id in invalid {
+            if self.attachments.iter().any(|a| a.card.id == id && a.card.definition == "BQ026") { self.remove_dead(&id, RemovalCause::Destroy); continue; }
             if let Some(index) = self.attachments.iter().position(|a| a.card.id == id) {
                 // A host losing its required type is not departure. Neither this
                 // cleanup nor destroying an attachment itself invokes recycling.

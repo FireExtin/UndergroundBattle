@@ -950,7 +950,7 @@ impl Game {
         if self
             .world
             .iter()
-            .chain(self.attachments.iter().map(|a| &a.card))
+            .chain(self.attachments.iter().filter(|a| catalog::card(&a.card.definition).kind != "character").map(|a| &a.card))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref()))
             .chain(
@@ -962,7 +962,7 @@ impl Game {
         {
             return Err("永久图标标志不能存在于非场上角色区域".into());
         }
-        if self.regions.iter().flat_map(|r| &r.cards).any(|c| {
+        if self.regions.iter().flat_map(|r| &r.cards).chain(self.attachments.iter().map(|a| &a.card)).any(|c| {
             c.permanent_combat_markers > 0
                 && (c.face_down || catalog::card(&c.definition).kind != "character")
         }) {

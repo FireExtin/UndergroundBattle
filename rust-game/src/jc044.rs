@@ -162,11 +162,11 @@ impl Game {
             self.jc044_player(f)?;
             let [PaidCost::RemovedTime(p)] = f.already_paid.as_slice() else { return Err("JC044须恰好支付一个时间标志".into()); };
             let c = &p.carrier;
-            let kind = catalog::catalog().cards.iter().find(|d| d.id == c.definition && d.supported).map(|d| d.kind.as_str());
+            let kind = catalog::catalog().cards.iter().find(|d| d.id == c.definition && catalog::runtime_implemented(d)).map(|d| d.kind.as_str());
             if c.id.is_empty() || c.owner >= self.players.len() || c.controller != f.actor || c.face_down
                 || c.time_markers.checked_sub(1) != Some(p.remaining)
                 || p.region.is_some_and(|r| r >= self.regions.len())
-                || (match kind { Some("character") => p.region.is_none() || p.attachment_host.is_some(),
+                || (match kind { Some("character") => p.region.is_none() || (c.definition != "BQ026" && p.attachment_host.is_some()) || p.attachment_host.as_ref().is_some_and(|id|id.is_empty() || id==&c.id),
                     Some("attachment") => p.attachment_host.as_ref().is_none_or(|id| id.is_empty() || id == &c.id), _ => true })
                 || (c.id == f.source.card.id && (!same(c, &f.source.card) || p.region != f.source.region)) {
                 return Err("JC044时间费用的真实载体、控制权或单枚扣除凭据无效".into());

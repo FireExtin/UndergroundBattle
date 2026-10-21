@@ -279,7 +279,7 @@ impl Game {
         self.regions
             .iter()
             .enumerate()
-            .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
+            .flat_map(|(r, _)| self.region_characters(r).map(move |c| (r, c)))
             .filter(|(_, c)| {
                 c.controller == seat
                     && !c.face_down

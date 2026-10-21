@@ -354,7 +354,7 @@ impl Game {
         let Some(a) = self.attachments.iter().find(|a| a.card.id == id && !a.card.face_down && self.attachment_host_valid(a)
             && catalog::card(&a.card.definition).subtitle.as_deref() == Some("圣甲虫产业")).cloned() else { return; };
         let actor = a.card.controller;
-        let observers = self.regions.iter().enumerate().flat_map(|(r, reg)| reg.cards.iter().map(move |c| (r,c)))
+        let observers = self.regions.iter().enumerate().flat_map(|(r, _)| self.region_characters(r).map(move |c| (r,c)))
             .filter(|(_,c)| c.definition == "BQ080" && !c.face_down && c.controller == actor)
             .map(|(r,c)| self.source_snapshot(c, Some(r))).collect::<Vec<_>>();
         if observers.is_empty() { return; }
@@ -441,7 +441,7 @@ impl Game {
                 }
                 if let Some(r) = self.original_region(&f.source) {
                     let n = self.region_time(r);
-                    self.damage(self.regions[r].cards.iter().filter(|c| !c.face_down
+                    self.damage(self.region_characters(r).filter(|c| !c.face_down
                         && catalog::card(&c.definition).kind == "character").map(|c| (c.id.clone(), n)).collect())?;
                     if self.region_time(r) >= 3 { self.remove_dead(&f.source.card.id, RemovalCause::Sacrifice); }
                 }
@@ -532,8 +532,8 @@ impl Game {
         self.remove_death_batch(deaths);
     }
     pub(crate) fn jz33_scorch(&mut self) -> RuleResult<()> {
-        let allocations = self.regions.iter().filter(|r| !r.vacant && r.destroyed)
-            .flat_map(|r| &r.cards)
+        let allocations = self.regions.iter().enumerate().filter(|(_,r)| !r.vacant && r.destroyed)
+            .flat_map(|(r,_)| self.region_characters(r))
             .filter(|c| !c.face_down && catalog::card(&c.definition).kind == "character")
             .map(|c| (c.id.clone(), 1)).collect::<BTreeMap<_, _>>();
         self.damage(allocations)

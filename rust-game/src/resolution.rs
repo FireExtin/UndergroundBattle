@@ -12,6 +12,8 @@ impl Game {
     // existing entity and attachments, and emits EnterRegion only. Primitive
     // unit fixtures call this operation rather than inventing a legal ability.
     pub(crate) fn move_on_board_instance(&mut self, id: &str, region: usize) {
+        if self.attached_character(id) { return; }
+        let followers = self.attachments.iter().filter(|a| a.card.definition == "BQ026" && a.host_id == id && !a.card.face_down).map(|a| a.card.id.clone()).collect::<Vec<_>>();
         if self.board(id).is_some_and(|(from, c)| from != region && !self.jc064_blocks_character(c, region)) {
             if let Some((_, c)) = self.remove_board(id) {
                 let actor = c.controller;
@@ -21,6 +23,7 @@ impl Game {
                 // must not announce its front or emit that front's entry trigger.
                 if !source.card.face_down {
                     self.emit_event(actor, source, Event::EnterRegion);
+                    for id in followers { if let Some((r,c)) = self.board(&id) { let s=self.source_snapshot(c,Some(r)); self.emit_event(c.controller,s,Event::EnterRegion); } }
                 }
             }
         }
@@ -98,7 +101,7 @@ impl Game {
                 let kind = match selector.kind {
                     EntityKind::Any => true,
                     EntityKind::Character => !c.face_down && d.kind == "character",
-                    EntityKind::Attachment => !c.face_down && d.kind == "attachment",
+                    EntityKind::Attachment => !c.face_down && crate::catalog::has_kind(d, "attachment"),
                     EntityKind::Hidden => c.face_down,
                     EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
                 };
@@ -321,7 +324,7 @@ impl Game {
                 } else if c.face_down {
                     "hidden"
                 } else {
-                    card(&c.definition).kind.as_str()
+                    if (spec.kind == EntityKind::Attachment || spec.zone == Zone::AttachmentOrAsset) && crate::catalog::has_kind(card(&c.definition), "attachment") { "attachment" } else { card(&c.definition).kind.as_str() }
                 }
                 .into(),
                 Some(player_id(c.owner)),
@@ -466,7 +469,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -649,6 +652,7 @@ impl Game {
                 }
                 self.asset_location(id)
                     .is_some_and(|(s, i)| !self.players[s].assets[i].face_down)
+                    || self.board(id).is_some_and(|(_, c)| !c.face_down && c.definition == "BQ026" && self.targetable(actor, c) && self.bq026_spell_targetable(actor, source, c))
                     || self
                         .attachments
                         .iter()
@@ -656,7 +660,7 @@ impl Game {
                         .is_some_and(|a| {
                             !a.card.face_down
                                 && self.attachment_host_valid(a)
-                                && self.targetable(actor, &a.card)
+                                && self.targetable(actor, &a.card) && self.bq026_spell_targetable(actor, source, &a.card)
                         })
             }
             Zone::Player => id
@@ -700,7 +704,7 @@ impl Game {
                     let kind = match spec.kind {
                         EntityKind::Any => true,
                         EntityKind::Character => !c.face_down && d.kind == "character",
-                        EntityKind::Attachment => !c.face_down && d.kind == "attachment",
+                        EntityKind::Attachment => !c.face_down && crate::catalog::has_kind(d, "attachment"),
                         EntityKind::Hidden => c.face_down,
                         EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
                     };
@@ -783,7 +787,7 @@ impl Game {
                                     .subtypes_any
                                     .iter()
                                     .any(|s| self.target_subtypes(c, spec).contains(s))))
-                        && (spec.zone != Zone::Board || self.targetable(actor, c))
+                        && (spec.zone != Zone::Board || (self.targetable(actor, c) && self.bq026_spell_targetable(actor, source, c)))
                 })
             }
         }
@@ -1155,11 +1159,10 @@ impl Game {
         if event == Event::Reveal { self.observe_jz29_vampire_reveal(&source);
             self.observe_jz23_vampire_reveal(&source); }
         let granted_raid = event == Event::Reveal && self.emit_jc038_raid(&source);
-        for spec in rules::definition(&source.card.definition)
-            .abilities
-            .iter()
-            .filter(|s| s.event == Some(event) && !(granted_raid && s.key.starts_with("raid-")))
-        {
+        let specs = rules::definition(&source.card.definition).abilities.iter()
+            .filter(|s| s.event == Some(event) && !(granted_raid && s.key.starts_with("raid-"))).cloned().collect::<Vec<_>>();
+        for mut spec in specs {
+            if spec.key == "batch3-bq026-attach" { spec.ops = vec![Op::BQ026Attach { observation: Some(crate::batch3_bats::RegionEntry { event_id: self.id(), turn: self.turn }) }]; }
             // XQ37's printed if-condition must hold at the actual entry event.
             // Do not defer this gate to declaration processing: earlier queued
             // rewards or responses must not retroactively qualify an entry.
@@ -1612,6 +1615,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::BQ026Attach { .. } => self.bq026_attach(&frame),
                 Op::BQ029SelfFeed { .. } => return self.bq029_feed_start(frame),
                 Op::BQ037FeedPair { .. } => return self.bq037_feed_start(frame),
                 Op::BQ037RevealVampire => return self.bq037_reveal_start(frame),

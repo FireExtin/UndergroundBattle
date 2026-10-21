@@ -191,7 +191,7 @@ impl Game {
         let selected = self
             .regions
             .iter()
-            .flat_map(|reg| reg.cards.iter())
+            .enumerate().flat_map(|(r,_)| self.region_characters(r))
             .filter(|c| {
                 !c.face_down
                     && card(&c.definition).kind == "character"
@@ -203,6 +203,8 @@ impl Game {
             .collect::<Vec<_>>();
         let conceal_event = selected.iter().any(|id| self.board(id).is_some_and(|(_, c)| c.definition == "JC054"))
             .then(|| self.id());
+        let mut selected=selected;
+        selected.sort_by_key(|id| !self.attached_character(id));
         for id in selected {
             self.hide_in_place_successor_in_batch(&id, conceal_event.as_deref());
         }

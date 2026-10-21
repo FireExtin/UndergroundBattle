@@ -220,7 +220,7 @@ impl CardFilter {
             Self::PrintedColor(color) => definition.color == *color,
             Self::Any => true,
             Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
-            Self::Kind(kind) => definition.kind == *kind,
+            Self::Kind(kind) => crate::catalog::has_kind(definition, kind),
             Self::PrintedColorAndUnique { color } => {
                 definition.color == *color && definition.unique
             }
@@ -258,6 +258,7 @@ pub enum Op {
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
     WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
+    BQ026Attach { observation: Option<crate::batch3_bats::RegionEntry> },
     BQ029SelfFeed { observation: Option<crate::batch3_blood::BQ029EntryObservation> },
     BQ037FeedPair { observation: Option<crate::batch3_blood::VampireEntryObservation> },
     BQ037RevealVampire,
@@ -1597,7 +1598,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: unsupported attachment host specification"
                 ));
             }
-            if !definition.abilities.iter().any(|a| {
+            if card_id != "BQ026" && !definition.abilities.iter().any(|a| {
                 a.event.is_none()
                     && a.timing == Timing::Standard
                     && a.targets.len() == 1

@@ -224,7 +224,7 @@ impl Game {
         self.validate_wm062_frame(f)?;
         let admitted = catalog::catalog().cards.iter().any(|d| {
             d.id == before.definition
-                && d.supported
+                && catalog::runtime_implemented(d)
                 && d.kind == "character"
                 && d.subtypes.iter().any(|s| s == "罪犯")
         });

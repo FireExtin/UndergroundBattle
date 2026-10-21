@@ -152,9 +152,7 @@ impl Game {
             return;
         }
         let region = f.source.region.unwrap();
-        let deaths = self.regions[region]
-            .cards
-            .iter()
+        let deaths = self.region_characters(region)
             .filter(|c| {
                 c.id != f.source.card.id
                     && (c.face_down || catalog::card(&c.definition).kind == "character")

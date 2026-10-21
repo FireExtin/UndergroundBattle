@@ -277,7 +277,7 @@ impl Game {
         self.bq028_validate_inspected_hand(&inspected)?;
         let options: Vec<_> = inspected
             .iter()
-            .filter(|c| catalog::card(&c.definition).kind == "attachment")
+            .filter(|c| catalog::has_kind(catalog::card(&c.definition), "attachment"))
             .map(|c| self.option(c, frame.actor, None, None))
             .collect();
         let max = usize::from(!options.is_empty());
@@ -322,7 +322,7 @@ impl Game {
         if let Some(id) = selected.first() {
             if !inspected
                 .iter()
-                .any(|c| c.id == *id && catalog::card(&c.definition).kind == "attachment")
+                .any(|c| c.id == *id && catalog::has_kind(catalog::card(&c.definition), "attachment"))
             {
                 return Err("密探只能选择所检视原手牌中的附属".into());
             }
@@ -379,7 +379,7 @@ impl Game {
                 || c.face_down
                 || !catalog::catalog().cards.iter().any(|d| {
                     d.id == c.definition
-                        && d.supported
+                        && catalog::runtime_implemented(d)
                         && matches!(d.kind.as_str(), "character" | "spell" | "attachment")
                 })
             {
@@ -515,7 +515,7 @@ impl Game {
                         }
                         let options: Vec<_> = inspected
                             .iter()
-                            .filter(|c| catalog::card(&c.definition).kind == "attachment")
+                            .filter(|c| catalog::has_kind(catalog::card(&c.definition), "attachment"))
                             .map(|c| self.option(c, f.actor, None, None))
                             .collect();
                         if !same(&p.choice.options, &options)
