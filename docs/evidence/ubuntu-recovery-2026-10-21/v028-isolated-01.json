@@ -1,0 +1,17 @@
+{
+  "name": "v028-isolated-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/web",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/game/V028DeckEntry.test.jsx",
+    "--maxWorkers=1",
+    "--reporter=verbose"
+  ],
+  "startedAt": "2026-10-21T18:59:29.952060+00:00",
+  "endedAt": "2026-10-21T18:59:31.465054+00:00",
+  "durationSeconds": 1.513,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/v028-isolated-01.log"
+}

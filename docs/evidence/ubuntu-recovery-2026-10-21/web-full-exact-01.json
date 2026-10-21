@@ -1,0 +1,16 @@
+{
+  "name": "web-full-exact-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/web",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--maxWorkers=2",
+    "--reporter=verbose"
+  ],
+  "startedAt": "2026-10-21T19:06:58.758528+00:00",
+  "endedAt": "2026-10-21T19:08:01.701139+00:00",
+  "durationSeconds": 62.943,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/web-full-exact-01.log"
+}

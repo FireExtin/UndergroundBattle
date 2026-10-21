@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T19:33:31.729864+00:00",
+  "runtimeSourceBaseline": "058e921b8a571d27ce35dc082a868387a5a7e252",
+  "singleKernelReviewBaseline": "677a7b1d60fb41221f54fa2aaa0e81012bce3010",
+  "sourceIgnoreFixCommit": "3b99ec9974ba2231f3165ac618e0c5167cdae4da",
+  "progressBranch": "progress/ubuntu-abi93-recovery-20261021",
+  "exactWasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+  "rebuiltWasmSha256": "a8b1ddba7737c7fee463c1630ea2ad9388f7df796811c0307452fa17d60b53da",
+  "scope": "Fresh local recovery evidence; historical raw Native archives not retrieved; not production/browser/independent acceptance.",
+  "rebuiltArtifactRuns": [
+    "wasm-build-01",
+    "v028-isolated-01",
+    "sites-build-01",
+    "current-clock-build-01",
+    "sites-current-guard-01",
+    "web-deck-regressions-01",
+    "source-tools-01"
+  ],
+  "knownFailuresRetained": {
+    "source-tools-01": "Strict compiler/source inventory binding rejected the different rebuilt WASM.",
+    "sites-full-exact-01": "Connection/exec-server transport lost after 539 recorded passes; no terminal result. Excluded from full-suite pass claims.",
+    "stage-source-ignore-01": "Sandbox subprocess EPERM; partial output retained and a new directory used.",
+    "qa-preview-exact-01": "One-shot harness buffered-output and planned SIGINT classification error; product READY/ENGINE already emitted."
+  },
+  "countsNotAddedAcrossOverlappingRuns": true,
+  "rawLogCompression": "Lossless gzip, mtime=0; raw and compressed bytes hashed separately.",
+  "completeSitesRun": "sites-full-exact-02",
+  "runCommandHelper": {
+    "firstRuns": "run-command-01.py",
+    "sites-full-exact-02": "run-command.py"
+  },
+  "runs": [
+    {
+      "name": "sites-full-exact-01",
+      "exitCode": null,
+      "status": "interrupted",
+      "startedAt": null,
+      "endedAt": null,
+      "durationSeconds": null,
+      "metadata": "sites-full-exact-01.json",
+      "compressedLog": "sites-full-exact-01.log.gz",
+      "rawLogBytes": 123358,
+      "rawLogSha256": "4bb52aba310e0d3539eeccd63054af33baaa2b567b92c687e1978f5c56747c0d"
+    },
+    {
+      "name": "wasm-build-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T18:55:54.322450+00:00",
+      "endedAt": "2026-10-21T18:56:44.786239+00:00",
+      "durationSeconds": 50.464,
+      "metadata": "wasm-build-01.json",
+      "compressedLog": "wasm-build-01.log.gz",
+      "rawLogBytes": 2130,
+      "rawLogSha256": "20a7e5be3323c6956d32bab9c737cd08c98345029d56a1ecbde070016a852362"
+    },
+    {
+      "name": "web-typecheck-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T18:56:08.358279+00:00",
+      "endedAt": "2026-10-21T18:56:13.090525+00:00",
+      "durationSeconds": 4.732,
+      "metadata": "web-typecheck-01.json",
+      "compressedLog": "web-typecheck-01.log.gz",
+      "rawLogBytes": 116,
+      "rawLogSha256": "1d56b222d812575b916ca0744a9cc3fbe03e09309312af8a4135dc0e861fc98b"
+    },
+    {
+      "name": "web-build-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T18:57:01.040543+00:00",
+      "endedAt": "2026-10-21T18:57:05.690878+00:00",
+      "durationSeconds": 4.65,
+      "metadata": "web-build-01.json",
+      "compressedLog": "web-build-01.log.gz",
+      "rawLogBytes": 481,
+      "rawLogSha256": "341477c780851ccc7ed88bccb40fa3ddb0b5df81540bb483e243a30bd0f0cf16"
+    },
+    {
+      "name": "v028-isolated-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T18:59:29.952060+00:00",
+      "endedAt": "2026-10-21T18:59:31.465054+00:00",
+      "durationSeconds": 1.513,
+      "metadata": "v028-isolated-01.json",
+      "compressedLog": "v028-isolated-01.log.gz",
+      "rawLogBytes": 526,
+      "rawLogSha256": "19159ad9f57f31eb7af6f9ade28a07b00b102560083a962e48503b0bb4d37962"
+    },
+    {
+      "name": "sites-build-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:02:05.432384+00:00",
+      "endedAt": "2026-10-21T19:02:12.940338+00:00",
+      "durationSeconds": 7.508,
+      "metadata": "sites-build-01.json",
+      "compressedLog": "sites-build-01.log.gz",
+      "rawLogBytes": 1115,
+      "rawLogSha256": "2fd1f0582b58284f7b4ab0d97f25da9b88bca98037173aadea076f70918bd252"
+    },
+    {
+      "name": "current-clock-build-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:03:49.302131+00:00",
+      "endedAt": "2026-10-21T19:03:49.334579+00:00",
+      "durationSeconds": 0.032,
+      "metadata": "current-clock-build-01.json",
+      "compressedLog": "current-clock-build-01.log.gz",
+      "rawLogBytes": 189,
+      "rawLogSha256": "dc06bd540901330dda03447323eb70fa56e76e3684aedb76656d36ac2ca59cfd"
+    },
+    {
+      "name": "web-deck-regressions-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:04:15.859880+00:00",
+      "endedAt": "2026-10-21T19:04:21.968225+00:00",
+      "durationSeconds": 6.108,
+      "metadata": "web-deck-regressions-01.json",
+      "compressedLog": "web-deck-regressions-01.log.gz",
+      "rawLogBytes": 554,
+      "rawLogSha256": "6026346af4082086dfb467b9e22a3e831e9e57146691a5860579e37b1d1967fc"
+    },
+    {
+      "name": "source-tools-01",
+      "exitCode": 1,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:04:15.862583+00:00",
+      "endedAt": "2026-10-21T19:04:16.473625+00:00",
+      "durationSeconds": 0.611,
+      "metadata": "source-tools-01.json",
+      "compressedLog": "source-tools-01.log.gz",
+      "rawLogBytes": 2597,
+      "rawLogSha256": "a602b584cec813b6af22dd054ee84ea13d9dea6ffb88770bfacc0f10b298e8c3"
+    },
+    {
+      "name": "sites-current-guard-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:04:19.713903+00:00",
+      "endedAt": "2026-10-21T19:04:31.587247+00:00",
+      "durationSeconds": 11.873,
+      "metadata": "sites-current-guard-01.json",
+      "compressedLog": "sites-current-guard-01.log.gz",
+      "rawLogBytes": 3552,
+      "rawLogSha256": "a8ca0ef3bedae0cb74285e88ba67a6285bac7a4f4e7678212cd7c21ff3f679fa"
+    },
+    {
+      "name": "sites-build-exact-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:06:22.144072+00:00",
+      "endedAt": "2026-10-21T19:06:28.069758+00:00",
+      "durationSeconds": 5.926,
+      "metadata": "sites-build-exact-01.json",
+      "compressedLog": "sites-build-exact-01.log.gz",
+      "rawLogBytes": 1223,
+      "rawLogSha256": "42f396624a97342556ebcdd69300f086960f2dc0900fa270943531160a5ad4e5"
+    },
+    {
+      "name": "current-clock-exact-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:06:58.322200+00:00",
+      "endedAt": "2026-10-21T19:06:58.357166+00:00",
+      "durationSeconds": 0.035,
+      "metadata": "current-clock-exact-01.json",
+      "compressedLog": "current-clock-exact-01.log.gz",
+      "rawLogBytes": 195,
+      "rawLogSha256": "6d2d306a515e5db0cc202c722f312b16625d837c436f4f8b8a3a1c39a70d6ac4"
+    },
+    {
+      "name": "source-tools-exact-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:06:58.753223+00:00",
+      "endedAt": "2026-10-21T19:07:00.386355+00:00",
+      "durationSeconds": 1.633,
+      "metadata": "source-tools-exact-01.json",
+      "compressedLog": "source-tools-exact-01.log.gz",
+      "rawLogBytes": 1535,
+      "rawLogSha256": "15e51ed5cdf2f06d4b5529481cb38926f2aec9f87bb78fd9cc3834faed917b35"
+    },
+    {
+      "name": "web-full-exact-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:06:58.758528+00:00",
+      "endedAt": "2026-10-21T19:08:01.701139+00:00",
+      "durationSeconds": 62.943,
+      "metadata": "web-full-exact-01.json",
+      "compressedLog": "web-full-exact-01.log.gz",
+      "rawLogBytes": 231634,
+      "rawLogSha256": "d38321ef39b1062a46685c32923e1b1649d0c7228ef8a82cffa25993bb2a8125"
+    },
+    {
+      "name": "stage-source-ignore-01",
+      "exitCode": 1,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:08:29.843968+00:00",
+      "endedAt": "2026-10-21T19:08:29.956238+00:00",
+      "durationSeconds": 0.112,
+      "metadata": "stage-source-ignore-01.json",
+      "compressedLog": "stage-source-ignore-01.log.gz",
+      "rawLogBytes": 982,
+      "rawLogSha256": "fbded0d03b3822c7de54bc2c9083b2ea885089daea48e1c08f7a70502d42697d"
+    },
+    {
+      "name": "stage-source-ignore-02",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:09:23.866690+00:00",
+      "endedAt": "2026-10-21T19:09:23.958325+00:00",
+      "durationSeconds": 0.092,
+      "metadata": "stage-source-ignore-02.json",
+      "compressedLog": "stage-source-ignore-02.log.gz",
+      "rawLogBytes": 230,
+      "rawLogSha256": "87f542a4da34f01655e93652bc27a277b8ae9714ff079d9cd18f437ac472bc17"
+    },
+    {
+      "name": "qa-preview-exact-01",
+      "exitCode": 1,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:09:28.833755+00:00",
+      "endedAt": "2026-10-21T19:09:59.290206+00:00",
+      "durationSeconds": 30.456,
+      "metadata": "qa-preview-exact-01.json",
+      "compressedLog": "qa-preview-exact-01.log.gz",
+      "rawLogBytes": 230,
+      "rawLogSha256": "37cfa2f11ef35f7f13bac046121b3382d187fd7b63f44a7cee869a29c52b93cf"
+    },
+    {
+      "name": "qa-preview-exact-02",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:11:01.170090+00:00",
+      "endedAt": "2026-10-21T19:11:01.597377+00:00",
+      "durationSeconds": 0.427,
+      "metadata": "qa-preview-exact-02.json",
+      "compressedLog": "qa-preview-exact-02.log.gz",
+      "rawLogBytes": 385,
+      "rawLogSha256": "ff1702de77eaffac7d3441339914538ba7afe90958fe34a1c40e3b8c6a5815d6"
+    },
+    {
+      "name": "catalog-five-exact-01",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:15:43.882551+00:00",
+      "endedAt": "2026-10-21T19:15:54.429154+00:00",
+      "durationSeconds": 10.547,
+      "metadata": "catalog-five-exact-01.json",
+      "compressedLog": "catalog-five-exact-01.log.gz",
+      "rawLogBytes": 1618,
+      "rawLogSha256": "b85d045bd9ee66a548f22f3d9e12469b1de6e0f9f436a8fe837321db978e4406"
+    },
+    {
+      "name": "sites-full-exact-02",
+      "exitCode": 0,
+      "status": "completed",
+      "startedAt": "2026-10-21T19:24:55.072101+00:00",
+      "endedAt": "2026-10-21T19:32:07.438101+00:00",
+      "durationSeconds": 432.366,
+      "metadata": "sites-full-exact-02.json",
+      "compressedLog": "sites-full-exact-02.log.gz",
+      "rawLogBytes": 147726,
+      "rawLogSha256": "4f695bac9a62f1d32f7cd2cd44709b5f9f4e08548f1fd596fdd13e9728b9fb26"
+    }
+  ],
+  "files": {
+    "wasm-build-01.json": {
+      "bytes": 404,
+      "sha256": "86d27abbbb5714e79557041e75e7381372d356a0402fca17ed8b5caa2c4043e7"
+    },
+    "wasm-build-01.log.gz": {
+      "bytes": 711,
+      "sha256": "00f9b09119d43d64c73c1e8841c4d1676f78fb57fb00d016856c83e2bdb39f4c"
+    },
+    "web-typecheck-01.json": {
+      "bytes": 409,
+      "sha256": "a4b0138913f02e27ff840af9a113b6f223101632caa85615584ca4dd942f5a28"
+    },
+    "web-typecheck-01.log.gz": {
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    "web-build-01.json": {
+      "bytes": 396,
+      "sha256": "1701228c977c8761c2ebf7329b022c6b75c2a280f555ddeabd5d1b50b7c06b6d"
+    },
+    "web-build-01.log.gz": {
+      "bytes": 309,
+      "sha256": "6758bb8aa4f7586027704a7002249b6422c9986e33f697771f2bd6b507ea6d90"
+    },
+    "v028-isolated-01.json": {
+      "bytes": 490,
+      "sha256": "da8ba34068dd89a816ece6f10fc578689c6663693b699f11eed3e79be535c5e9"
+    },
+    "v028-isolated-01.log.gz": {
+      "bytes": 366,
+      "sha256": "d2c811558d1b8b5919aed27421c9e2375c26c517574ac23d8791498fad85c5a4"
+    },
+    "sites-build-01.json": {
+      "bytes": 403,
+      "sha256": "938c69e4a7d529ba55ad75a8b6b6dfc3acbee9045e7f453f26f925b415a9feb5"
+    },
+    "sites-build-01.log.gz": {
+      "bytes": 661,
+      "sha256": "a9e941a4d7cdeac9c2741cfe4c83023be6518b437ca3a5505a992ca195c53602"
+    },
+    "current-clock-build-01.json": {
+      "bytes": 522,
+      "sha256": "5a9b51bf4b1cf81e01e47fdc075d74a1fd8f3c812420ba9de0648d71efbd5262"
+    },
+    "current-clock-build-01.log.gz": {
+      "bytes": 170,
+      "sha256": "ce6c7f958536bcc9de5407b8fd2b75eb5eda11ece8fd98f7ff2d9a4a5ea30158"
+    },
+    "sites-current-guard-01.json": {
+      "bytes": 702,
+      "sha256": "16fe9b962c2c6b9b1b432522a62d9a60d629399b2a04903132796bee08b77c96"
+    },
+    "sites-current-guard-01.log.gz": {
+      "bytes": 1700,
+      "sha256": "fcfd86611a344392bd0b12bf682f31cf873770e369f3ec7aca3d98424e9609ce"
+    },
+    "web-deck-regressions-01.json": {
+      "bytes": 720,
+      "sha256": "deef5b3526765486f253609fdead06cfea216684acfdb024652c2b660a4cb254"
+    },
+    "web-deck-regressions-01.log.gz": {
+      "bytes": 338,
+      "sha256": "488d7cebc79d43b2c5cb8aa7129d81102485dfe804fcaefca34e2992772dde7b"
+    },
+    "source-tools-01.json": {
+      "bytes": 1546,
+      "sha256": "dcb18980734daa0d0de78c6f5307744174194a3232126207263288207fe9fc50"
+    },
+    "source-tools-01.log.gz": {
+      "bytes": 905,
+      "sha256": "fe5a906ba2dd30bb0d0fb366c6294ff137c63e2d7e345f30f4372284c816919d"
+    },
+    "sites-build-exact-01.json": {
+      "bytes": 415,
+      "sha256": "dbdf6e0fead03e84926e604415ccbfa9664e27fd75f2925d0d949999df3a7b8b"
+    },
+    "sites-build-exact-01.log.gz": {
+      "bytes": 681,
+      "sha256": "c92fd069e958bbf788d334d0077fd9c1a772cd468dd8fbaf92c8fea117f560a4"
+    },
+    "current-clock-exact-01.json": {
+      "bytes": 528,
+      "sha256": "853fd0ad7a9eca5145bd0c5fa50ed30a4db3bb9f39dd5e07b7b054145f9b212f"
+    },
+    "current-clock-exact-01.log.gz": {
+      "bytes": 175,
+      "sha256": "2f014ac928cabb7339ae78493c8ea5da6b9a4b9d9d5741b78ad905a9f5275f43"
+    },
+    "web-full-exact-01.json": {
+      "bytes": 454,
+      "sha256": "e2c1ced2115537cb6c71bf2066cdeaac1afa697886a0fb9965d055a876c05fcd"
+    },
+    "web-full-exact-01.log.gz": {
+      "bytes": 37660,
+      "sha256": "cf12cafbd453c209487f0d78fd0b9bb97b77638d426c88417d5f04892327661b"
+    },
+    "source-tools-exact-01.json": {
+      "bytes": 1558,
+      "sha256": "1d32129c297f0cb41af5a8d0c053df3939473e8fecba5c53628b5897f45b2596"
+    },
+    "source-tools-exact-01.log.gz": {
+      "bytes": 435,
+      "sha256": "28d8081bba548b7ce52e64728231f0f7addb994800fde15fddf64713460c80e8"
+    },
+    "sites-full-exact-01.json": {
+      "bytes": 3107,
+      "sha256": "2c2c31fd3dcc89de751484240840f04bfd4d88197e1afc01d0ff5e363a0ed920"
+    },
+    "sites-full-exact-01.log.gz": {
+      "bytes": 13983,
+      "sha256": "c7d76cd8b8b4eadde05c33513099cad224412de4669e79b47ab7c151179e23ea"
+    },
+    "sites-full-exact-02.json": {
+      "bytes": 2735,
+      "sha256": "773d8d83fb0270f08264329d76052f50d6a2f83bb146f74df33b8e8fd00e17f5"
+    },
+    "sites-full-exact-02.log.gz": {
+      "bytes": 16880,
+      "sha256": "1559b83feec0f743e769cba003ee530b9fd78aee235e5b8d7a9e45943a5cd503"
+    },
+    "stage-source-ignore-01.json": {
+      "bytes": 505,
+      "sha256": "3e42f667adb1b7f8952d4a0593e16cd4cff943c14f4e5e1667a8e19e0b3f2805"
+    },
+    "stage-source-ignore-01.log.gz": {
+      "bytes": 536,
+      "sha256": "8e6d3e09ace1df440f045c1eec4eb61c2281b07fb7cd9fea6cdf45a44c407bb8"
+    },
+    "stage-source-ignore-02.json": {
+      "bytes": 508,
+      "sha256": "591c25da57654d6d1afbf2d706d9817849716634c11e885ea61c72b0dcb42e71"
+    },
+    "stage-source-ignore-02.log.gz": {
+      "bytes": 201,
+      "sha256": "3ca3aff2c8f9fcbf9c8ebef6aa9a83b7fc7bdfc4038f4655cb1bc31ce767338a"
+    },
+    "qa-preview-exact-01.json": {
+      "bytes": 465,
+      "sha256": "a13c1e7f5ced1732a1f038f842e85af947b6edccd168d0267505e6917756a4ab"
+    },
+    "qa-preview-exact-01.log.gz": {
+      "bytes": 212,
+      "sha256": "2e3a8332e5c58886b7b1fb9a88c99a8530f5ebb414021024fa7da1a32094fa09"
+    },
+    "qa-preview-exact-02.json": {
+      "bytes": 464,
+      "sha256": "9889cbd1cd96ec60a6bb32654669db4208d15b9c880bb21c04dcae75cdf8f955"
+    },
+    "qa-preview-exact-02.log.gz": {
+      "bytes": 313,
+      "sha256": "8ee4b40d733c101e95e5d43b911e3694906e81fe43a44dda9aa84c44c2fc5498"
+    },
+    "catalog-five-exact-01.json": {
+      "bytes": 529,
+      "sha256": "6c5e988df62cb4cfc9e96aec59b7a7609f0ca92f9fa6313baeca4943e142ae83"
+    },
+    "catalog-five-exact-01.log.gz": {
+      "bytes": 593,
+      "sha256": "5fdec5c3e74ee5eeed60e2e6b6920f506153d98fed51a8c1bbcd85e84d01e755"
+    },
+    "artifact-recovery-01.json": {
+      "bytes": 1338,
+      "sha256": "4c81a74dda01faa97e59db73724a4788251df245406074261b3743b4ec94d3c4"
+    },
+    "runtime-versions.json": {
+      "bytes": 135,
+      "sha256": "bd5559f3d60663bd7410d7b23c1a1327d6a441abc94a2e76e1868ebe983fe0a2"
+    },
+    "stage-ignore-git-verification.json": {
+      "bytes": 782,
+      "sha256": "cd20f64daa60cc334378ae1b923f6e9677b5613d204295157a495006b66d7882"
+    },
+    "publication-and-task-status.json": {
+      "bytes": 2126,
+      "sha256": "948dcf5014ed9d94f69a741d56e476df34086d6790c7cad0df77336f003964c3"
+    },
+    "shared-fixtures-binding.json": {
+      "bytes": 1250,
+      "sha256": "013b8236ca1ab65d9ae00ab200fc19bb6ceeb4b2f50055e7a2eef2e468c13858"
+    },
+    "check-qa-preview-01.py": {
+      "bytes": 1528,
+      "sha256": "28d55607502e6addc7c3ab4ae31c73cd232f5bde86266b67e4719fa2685b8676"
+    },
+    "run-command-01.py": {
+      "bytes": 2052,
+      "sha256": "97d07f5589b0fb8cc0a0349ea818c93ae2fcbe9b492c6fef52b4085be0ea23c3"
+    },
+    "run-command.py": {
+      "bytes": 2444,
+      "sha256": "11109c9f0c445bc4bb22d6a22ea133cee1f4e6a91ff2b753ccdd8c70ce410b99"
+    },
+    "check-qa-preview.py": {
+      "bytes": 1863,
+      "sha256": "3354f4363fb0ea9861b1de5f7ea56aa784abfc3001c32797c49500d3faec92ea"
+    }
+  }
+}

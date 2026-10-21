@@ -1,0 +1,13 @@
+{
+  "name": "qa-preview-exact-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/sites",
+  "command": [
+    "python3",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/check-qa-preview.py"
+  ],
+  "startedAt": "2026-10-21T19:09:28.833755+00:00",
+  "endedAt": "2026-10-21T19:09:59.290206+00:00",
+  "durationSeconds": 30.456,
+  "exitCode": 1,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/qa-preview-exact-01.log"
+}

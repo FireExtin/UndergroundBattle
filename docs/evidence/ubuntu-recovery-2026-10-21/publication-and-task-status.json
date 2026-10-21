@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-21T19:26:54.356Z",
+  "task": {
+    "environmentCwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+    "codeCwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle",
+    "id": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+    "modelConfigurationVerified": false,
+    "requestedModel": "sol 6.1 max fast",
+    "uiOpenConfirmed": false,
+    "uiDeferredToParentSeparateTask": true,
+    "newTaskCreated": false,
+    "privateSessionDatabaseRead": false
+  },
+  "ci": {
+    "sourceIgnoreFixCommit": "3b99ec9974ba2231f3165ac618e0c5167cdae4da",
+    "actionsRunsAfterPush": 0,
+    "noWorkflowFilesInProgressTree": true
+  },
+  "v74Deployment": {
+    "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+    "type": "publish",
+    "status": "pending",
+    "url": null,
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": null,
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-21T15:43:22.880209+00:00"
+  },
+  "recentVersions": [
+    {
+      "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_5d781a9867c881918c4342bb56b43e1d",
+      "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "number": 76,
+      "sourceCommit": "38d987de593faad4483128f3e3795b1a511aa30c",
+      "deploymentId": null
+    },
+    {
+      "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8e62ca2963c08191b23d86a9c57a3f6d",
+      "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "number": 75,
+      "sourceCommit": "cd32602ce1acd6d65a0bbed8d86f4b7d01885d82",
+      "deploymentId": null
+    },
+    {
+      "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+      "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "number": 74,
+      "sourceCommit": "fe182e656f35153be9225c0b17fbce708831b1ba",
+      "deploymentId": "appgdep_6ad8dd9acc1c8191912336351e022f25"
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 | 第一批后续 | 空秘社区P2修复通过最小源码独立补验；v74在持续授权后已创建部署，当前pending。v73已有一局8回合自然完局及终局刷新，不是20卡全机制验收。固定7f的Sites最终完整运行736通过、0失败 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
 | 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。固定9aa4fda独立复审的已验范围无新P0/P1；两项构建/测试P2已在677a7b1独立补验关闭。旧多核v75退出发布队列，ABI93单核仍未上线 |
-| 当前单核验证 | [清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)及[夹具迁移](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)：有效机制输入重新由当前Native生成；Rust workspace 1482项、Web 148文件1498项、来源工具57项及Native/WASM广域483场景全部通过。Sites全套仍在收取结果，已发现并修正HTTP目录宿主字段的预期遗漏，尚待补验；本轮迁移尚未独立复审 |
+| 当前单核验证 | [清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)及[夹具迁移](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)保留各固定身份的历史结果；[9950X Ubuntu恢复](docs/UBUNTU_RECOVERY_2026-10-21.md)在精确ABI93字节上重新完成Web148文件1498项、产品内Sites宿主58文件637项、来源工具27文件及原5项目录失败补验，均通过。中断轮单独留档；本机未重跑Rust1482项或广域Native/WASM483场景，未完成独立复审/线上批次验收 |
 
 [游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署，现已退出发布队列。
 

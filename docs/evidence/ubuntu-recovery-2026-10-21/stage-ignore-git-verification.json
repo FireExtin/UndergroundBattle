@@ -1,0 +1,17 @@
+{
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "sourceProvenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "3b99ec9974ba2231f3165ac618e0c5167cdae4da",
+    "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "gitIgnoreMatches": {
+    "node_modules": ".gitignore:1:node_modules\tnode_modules",
+    "web/node_modules": ".gitignore:1:node_modules\tweb/node_modules",
+    ".build-cache/verification-sentinel": ".gitignore:2:/.build-cache/\t.build-cache/verification-sentinel"
+  },
+  "ignoredPathsAbsentFromGitStatus": true,
+  "wasmModules": 1,
+  "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+  "newProbeRepositoryOnlyNoRemote": true
+}

@@ -1,0 +1,33 @@
+{
+  "siteSourceCommit": "38d987de593faad4483128f3e3795b1a511aa30c",
+  "sourceProvenance": {
+    "originalRepository": "https://github.com/FireExtin/UndergroundBattle.git",
+    "originalCommit": "058e921b8a571d27ce35dc082a868387a5a7e252",
+    "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "readMode": "git show of exact regular tracked blobs; no symlink targets followed",
+  "restoredFiles": {
+    "hegemony_wasm.js": {
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    "hegemony_wasm_bg.wasm": {
+      "bytes": 4315979,
+      "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+    },
+    "hegemony_wasm.d.ts": {
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    "hegemony_wasm_bg.wasm.d.ts": {
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    "package.json": {
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  },
+  "rebuildPreservedAt": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-build/rebuilt-a8b1ddba-pkg",
+  "rebuildWasmSha256": "a8b1ddba7737c7fee463c1630ea2ad9388f7df796811c0307452fa17d60b53da"
+}

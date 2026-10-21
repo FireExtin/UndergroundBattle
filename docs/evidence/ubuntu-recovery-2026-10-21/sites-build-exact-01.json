@@ -1,0 +1,14 @@
+{
+  "name": "sites-build-exact-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/sites",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "startedAt": "2026-10-21T19:06:22.144072+00:00",
+  "endedAt": "2026-10-21T19:06:28.069758+00:00",
+  "durationSeconds": 5.926,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/sites-build-exact-01.log"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "web-deck-regressions-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/web",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "src/game/V028DeckEntry.test.jsx",
+    "src/game/DeckLibrary.test.tsx",
+    "src/game/DeckBuilderGrid.test.tsx",
+    "src/game/DeckCollectionPage.test.tsx",
+    "src/game/deckLibrary.test.ts",
+    "src/game/MixedDeckConstruction.test.jsx",
+    "src/game/SocietyDeck.test.tsx",
+    "--maxWorkers=2"
+  ],
+  "startedAt": "2026-10-21T19:04:15.859880+00:00",
+  "endedAt": "2026-10-21T19:04:21.968225+00:00",
+  "durationSeconds": 6.108,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/web-deck-regressions-01.log"
+}

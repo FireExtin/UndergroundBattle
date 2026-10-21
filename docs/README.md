@@ -6,6 +6,7 @@
 
 - [ABI93单核清理](LATEST_KERNEL_ONLY_2026-10-21.md)：删除范围、注明边界的体积/启动/内存实测，以及固定677a7b1的独立补验结果。
 - [当前机制夹具迁移](CURRENT_FIXTURES_ABI93_2026-10-21.md)：重新生成的Native输入、共享夹具、构建闭包与本轮实际全套进度；未完成项单列。
+- [9950X Ubuntu恢复](UBUNTU_RECOVERY_2026-10-21.md)：精确GitHub/Sites源码与ABI93字节恢复、本机重新验证、源码忽略规则修复及发布/任务显示阻塞。
 - [2026-10-21本地审查后整改](LOCAL_CORRECTNESS_AUDIT_2026-10-21.md)：固定100161b基线及此前ABI90阶段的历史记录；其中原始ABI77–89输入不再是当前运行依赖，后续复审/发布状态以根README为准。
 - [卡牌研究与准入资料](factions/README.md)：研究索引和来源证据；不是运行时完整支持清单。
 - [完整机制设计资料](architecture/full-mechanics-design/README.md)：设计与研究范围，不能替代当前已实现能力。

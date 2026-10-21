@@ -1,0 +1,14 @@
+{
+  "name": "current-clock-exact-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle",
+  "command": [
+    "node",
+    "tools/build-current-clock-worker.mjs",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-build/exact-current-worker/server"
+  ],
+  "startedAt": "2026-10-21T19:06:58.322200+00:00",
+  "endedAt": "2026-10-21T19:06:58.357166+00:00",
+  "durationSeconds": 0.035,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/current-clock-exact-01.log"
+}

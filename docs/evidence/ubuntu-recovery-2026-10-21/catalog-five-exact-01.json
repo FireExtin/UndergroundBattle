@@ -1,0 +1,16 @@
+{
+  "name": "catalog-five-exact-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/sites",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "test/msjc09-society-integration.test.mjs",
+    "test/seven-card-integration.test.mjs"
+  ],
+  "startedAt": "2026-10-21T19:15:43.882551+00:00",
+  "endedAt": "2026-10-21T19:15:54.429154+00:00",
+  "durationSeconds": 10.547,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/catalog-five-exact-01.log"
+}

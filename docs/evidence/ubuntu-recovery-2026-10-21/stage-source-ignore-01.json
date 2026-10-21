@@ -1,0 +1,14 @@
+{
+  "name": "stage-source-ignore-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle",
+  "command": [
+    "node",
+    "sites/scripts/stage-source.mjs",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/stage-ignore-verification"
+  ],
+  "startedAt": "2026-10-21T19:08:29.843968+00:00",
+  "endedAt": "2026-10-21T19:08:29.956238+00:00",
+  "durationSeconds": 0.112,
+  "exitCode": 1,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/stage-source-ignore-01.log"
+}

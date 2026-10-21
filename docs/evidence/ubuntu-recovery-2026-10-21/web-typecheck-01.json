@@ -1,0 +1,14 @@
+{
+  "name": "web-typecheck-01",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle/web",
+  "command": [
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "startedAt": "2026-10-21T18:56:08.358279+00:00",
+  "endedAt": "2026-10-21T18:56:13.090525+00:00",
+  "durationSeconds": 4.732,
+  "exitCode": 0,
+  "log": "/home/ddd/Documents/Codex/2026-10-21/task-3/recovery-evidence/web-typecheck-01.log"
+}
