@@ -1,12 +1,12 @@
 // Actual Native-produced opaque inputs; production WASM restore entrypoints.
 // Never parse/reserialize a state: the regression producer uses u64::MAX.
 import assert from 'node:assert/strict';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
-const [bindingsPath = 'rust-game-wasm/pkg/hegemony_wasm.js', output] = process.argv.slice(2);
+const [bindingsPath = 'rust-game-wasm/pkg/hegemony_wasm.js', output, nativeDirectory] = process.argv.slice(2);
 const bindings = pathToFileURL(resolve(bindingsPath));
 const abi = await import(bindings.href);
 const wasm = readFileSync(new URL('./hegemony_wasm_bg.wasm', bindings));
@@ -17,7 +17,10 @@ const version = catalog.engineVersion.match(/^rust-v0\.2\.(\d+)-/)[1];
 const pool = JSON.parse(readFileSync(new URL('rust-game/data/cards.json',root)));
 assert.equal(catalog.engineVersion,pool.engineVersion);
 assert.equal(catalog.cardPoolVersion,pool.cardPoolVersion);
-const bytes = readFileSync(new URL(`sites/test/fixtures/xq24-container-invalid-v0${version}.json`, root));
+// The default verification entry produces these inputs with the current Native core.
+// Historical callers may still select their original versioned fixture files.
+const bytes = readFileSync(nativeDirectory ? resolve(nativeDirectory, 'invalid.json')
+  : new URL(`sites/test/fixtures/xq24-container-invalid-v0${version}.json`, root));
 const native = JSON.parse(bytes);
 assert.equal(native.producer, 'xq24_entry_frame_container_restore_rejects_response_bypass');
 assert.equal(native.cases.length, 4);
@@ -44,9 +47,13 @@ for (const c of native.cases) {
 }
 // Previously exported real Native Room commands retain exactly the same result.
 // Includes optional acceptance/decline, source movement/removal and lost regions.
-const legal = JSON.parse(readFileSync(new URL(`sites/test/fixtures/xq24-native-v0${version}.json`, root)));
+const scenarios = nativeDirectory ? readdirSync(resolve(nativeDirectory, 'room')).filter(name => name.endsWith('.json')).sort()
+  .map(name => JSON.parse(readFileSync(resolve(nativeDirectory, 'room', name)))) : null;
+const legal = scenarios ? { catalog: scenarios[0]?.catalog, scenarios }
+  : JSON.parse(readFileSync(new URL(`sites/test/fixtures/xq24-native-v0${version}.json`, root)));
 assert.deepEqual(JSON.parse(abi.catalog()), legal.catalog);
 for (const scenario of legal.scenarios) {
+  if (nativeDirectory) assert.deepEqual(scenario.catalog, legal.catalog);
   let previous;
   for (const s of scenario.steps) {
     if (previous !== undefined) assert.equal(s.state, previous);

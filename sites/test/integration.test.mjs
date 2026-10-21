@@ -22,7 +22,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const migration = readdirSync('drizzle').find(name => name.endsWith('.sql'));
   for (const sql of readFileSync('drizzle/' + migration, 'utf8').split('--> statement-breakpoint').filter(s => s.trim())) await db.prepare(sql).run();
   const pacedRooms = new Set();
-  const pacedVersions = new Set(['rust-v0.2.89-jc035-preparation-candidate', 'rust-v0.2.88-xq23-asset-return-candidate', 'rust-v0.2.87-jc041-water-hidden-candidate', 'rust-v0.2.86-jc066-sealed-icons-candidate', 'rust-v0.2.85-jc044-time-repress-candidate', 'rust-v0.2.84-jc057-live-inspection-candidate', 'rust-v0.2.82-response-source-preview-candidate', 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate', 'rust-v0.2.78-bq035-vampire-mobility-candidate', 'rust-v0.2.79-jz46-private-criminal-inspection-candidate', 'rust-v0.2.80-wm062-conceal-adjacent-move-candidate', 'rust-v0.2.81-jc054-complete-conceal-candidate', 'rust-v0.2.83-msjc04-msjc05-societies-candidate']);
+  const pacedVersions = new Set(['rust-v0.2.90-audit-correctness-candidate', 'rust-v0.2.89-jc035-preparation-candidate', 'rust-v0.2.88-xq23-asset-return-candidate', 'rust-v0.2.87-jc041-water-hidden-candidate', 'rust-v0.2.86-jc066-sealed-icons-candidate', 'rust-v0.2.85-jc044-time-repress-candidate', 'rust-v0.2.84-jc057-live-inspection-candidate', 'rust-v0.2.82-response-source-preview-candidate', 'rust-v0.2.77-jc046-mandatory-sacrifice-candidate', 'rust-v0.2.78-bq035-vampire-mobility-candidate', 'rust-v0.2.79-jz46-private-criminal-inspection-candidate', 'rust-v0.2.80-wm062-conceal-adjacent-move-candidate', 'rust-v0.2.81-jc054-complete-conceal-candidate', 'rust-v0.2.83-msjc04-msjc05-societies-candidate']);
   const durableView = value => pacedVersions.has(value?.versions?.engine) ? { ...value, serverNowMs: undefined } : value;
   const api = async (path, body, session) => {
     if (body?.action && pacedRooms.has(session?.roomId) && !['game','beginResponse','passResponse','cancelAndPass','submitResponse'].includes(body.action.kind)) {
@@ -46,7 +46,7 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
     const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 153); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37','JZ30','BQ028','BQ040','WM059','BQ078','JZ44','JZ45','WM062','JC054','JC044','JC066','JC041','XQ23','JC035']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true); assert(catalog.body.cards.some(c => c.id === 'XQ18')); assert(catalog.body.cards.some(c => c.id === 'XQ24'));
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.89-jc035-preparation-candidate');
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.90-audit-correctness-candidate');
     assert.equal(catalog.body.cardPoolVersion, 'limited-v2.81-jc035-preparation-candidate');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);

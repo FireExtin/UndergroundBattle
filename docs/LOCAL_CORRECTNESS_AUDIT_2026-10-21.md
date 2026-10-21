@@ -2,7 +2,7 @@
 
 审查基线为 `100161b628e56b9153041d952ac0f5d83428ca88`，产品 v71/ABI89。固定审查报告、5689文件/304目录清单、805普通代码文件逐段覆盖账本与原始失败证据保存在本任务独立审查目录；未把第三方归档、历史补丁、全部资料或浏览器场景称为全量验证。本文件记录后续修改，不替代固定版本报告。
 
-当前候选引擎标识是 `rust-v0.2.90-audit-correctness-candidate`；卡池仍为153普通卡/10秘社，牌面目录与预组没有新增。Sites沿既有版本分派保留ABI77–89，旧房间不改存档、不重新签名或转换到新内核。Native服务仍只有当前原生内核，不能把Sites历史内核路由视为原生数据库迁移支持。
+当前候选引擎标识是 `rust-v0.2.90-audit-correctness-candidate`；卡池仍为153普通卡/10秘社，牌面目录与预组没有新增。Sites沿既有版本分派保留ABI77–89，旧房间不改存档、不重新签名或转换到新内核。本次规则修复只适用于ABI90；保留的历史内核仍有其原版本缺陷。Native服务仍只有当前原生内核，不能把Sites历史内核路由视为原生数据库迁移支持。
 
 修改内容：合法时间标志与BQ028奖励来源的恢复；跨角色声望/荣耀准入；多组独有冲突连续处理；香港空检索私密确认；三处ID生成复用；旧结束步骤夹具；独立Site源码复制闭包；XQ25附属图标。合并重复的附属图标路径及冻结字节装载；删除重复XQ23校验；纠正过时说明、恢复检查点字段和回放哈希报告；删除没有生产调用的BQ030 preparation原型及其仅自测模块，当前编译见证移除对应文件；冻结ABI77–89原始来源见证不变。删除已无法生成当前166项图集的旧generate-card-scans入口，保留现有卡图注册与validate-admitted-scans校验。三个来源测试改用批准历史对象的固定语义哈希，执行时不再要求Git历史。
 
@@ -26,5 +26,7 @@ node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-w
 ```
 
 `build-jc035-clock-worker.mjs`沿用既有本地工具名，当前复制14个构建模块到新的本地目录，仅供测试。`sites`构建的wrangler命令固定为`deploy --dry-run`；上述命令均不是GitHub CI，不执行发布。独立Site输出用 `node sites/scripts/stage-source.mjs /ABSOLUTE/NEW/DESTINATION`，原始PDF、图像资料库、数据库和凭据不复制，外部冻结输入仍按上述方式供给。
+
+`verify.sh`用现有两个XQ24 Rust回归测试导出当前Native输入，再检查当前WASM的恢复入口；不要求手工复制一套v090历史夹具。导出的opaque状态直接作为字符串交给WASM，保留u64精度。单独运行`tools/cards/check-xq24-containers.mjs`时，第三参数可指定该导出目录（含`invalid.json`和`room/*.json`）；历史版本化夹具入口继续保留。
 
 验证结果另存整改记录，未运行的检查不得写为通过。新候选尚未独立复审、合并或部署。GitHub CI/Actions、push、PR、tag/release、自动合main与部署均暂停。

@@ -21,7 +21,7 @@ for(const societyId of ['MSJC03'])test(`JC041 in ${societyId} enters with a name
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.89-jc035-preparation-candidate');
+  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.90-audit-correctness-candidate');
   assert.equal(catalog.societies.length,10);
   const draft=(id,count=50)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'JC041',count:3}];
