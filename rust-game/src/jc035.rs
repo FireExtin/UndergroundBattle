@@ -43,7 +43,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::CQ08Prepare { .. } => true,
+        Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             uses(std::slice::from_ref(exhausted)) || uses(std::slice::from_ref(ready)),
@@ -74,18 +74,19 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "CQ08") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
 pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
-    [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
+    [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
 }}
 fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
     let mut a = if id == "JC035" { definition().abilities[1].clone() }
+        else if id == "JC055" { crate::next20_red::definition(id).unwrap().abilities[0].clone() }
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -127,7 +128,7 @@ impl Game {
             || actor >= self.players.len() || s.card.controller != actor || s.card.owner >= self.players.len()
             || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.play_source.is_some()
             || self.jc035_physical_cards().any(|c| c.id == s.card.id
-                && (c.definition != s.card.definition || c.owner != s.card.owner || c.face_down)) {
+                && (c.definition != s.card.definition || c.owner != s.card.owner || (c.face_down && s.card.definition != "JC055"))) {
             return Err("JC035冻结来源、拥有者或操控席位不符".into());
         }
         if prepared && s.card.definition == "JC068" {
@@ -139,7 +140,7 @@ impl Game {
             let r = s.region.filter(|r| *r < self.regions.len()).ok_or("JC035准备来源缺少原地区")?;
             let id = s.source_region_instance.as_deref().filter(|id| !id.is_empty() && *id != s.card.id)
                 .ok_or("JC035准备来源缺少原地区UID")?;
-            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "BQ085" | "CQ08") { None } else { Some(id) })
+            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "JC055" | "BQ085" | "CQ08") { None } else { Some(id) })
                 || self.regions.iter().enumerate().any(|(index, region)| region.card.id == id && index != r)
                 || self.jc035_physical_cards().any(|c| c.id == id && catalog::card(&c.definition).kind != "region") {
                 return Err("JC035必须绑定原结附地区实体，不能改成其他区域或替代地区".into());
@@ -276,11 +277,39 @@ impl Game {
             self.jc035_decline(&siblings);
             ds.retain(|other| other.source.card.definition != "CQ08" || other.actor != d.actor);
         }
+        if d.source.card.definition == "JC055" {
+            let options = self.binding_options(d.actor, &d.source, &d.ability.targets[0]);
+            if options.is_empty() {
+                self.jc035_decline(&[d]); if !ds.is_empty() { self.jc035_offer_order(ds); }
+            } else {
+                self.choice(d.actor, "jc055-preparation-target", "选择放置时间标志的角色或附属".into(), options, 1, 1, None,
+                    ChoiceResolution::JC055PreparationTarget { declaration: d, remaining: ds });
+            }
+            return Ok(());
+        }
         let frame = self.make_frame(d.actor, d.source.clone(), &d.ability, vec![], vec![], None);
         self.dispatch_frame(frame, format!("{}：{}", catalog::card(&d.source.card.definition).name, d.ability.label), None, ResponsePolicy::Respondable);
         let frame_id = self.stack.last().unwrap().id.clone();
         self.jc035_preparation.as_mut().unwrap().entries.iter_mut().find(|e| e.source.card.id == d.source.card.id)
             .unwrap().decision = Some(PreparationDecision::Accepted { frame_id });
+        if !ds.is_empty() { self.jc035_offer_order(ds); }
+        Ok(())
+    }
+    pub(crate) fn jc055_preparation_target(&mut self, d: Declaration, ds: Vec<Declaration>, a: &Action, selected: &[String]) -> RuleResult<()> {
+        self.jc035_declaration(&d)?;
+        for next in &ds { self.jc035_declaration(next)?; }
+        if d.source.card.definition != "JC055" || selected.len() != 1 || *a != (Action { choice_id: a.choice_id.clone(), selected: Some(selected.to_vec()), ..Action::new("choose") }) {
+            return Err("JC055准备目标不能夹带额外声明".into());
+        }
+        if let Some(id) = selected.first() {
+            let spec = &d.ability.targets[0];
+            if !self.valid_binding(d.actor, &d.source, spec, id) { return Err("JC055准备目标失效".into()); }
+            let target = BoundTarget { id: id.clone(), spec: spec.clone(), public: self.public_target(d.actor,&d.source,spec,id), region_instance: None };
+            let f = self.make_frame(d.actor,d.source.clone(),&d.ability,vec![target],vec![],None);
+            self.dispatch_frame(f,format!("{}：{}",catalog::card(&d.source.card.definition).name,d.ability.label),None,ResponsePolicy::Respondable);
+            let frame_id = self.stack.last().unwrap().id.clone();
+            self.jc035_preparation.as_mut().unwrap().entries.iter_mut().find(|e| e.source.card.id == d.source.card.id).unwrap().decision = Some(PreparationDecision::Accepted { frame_id });
+        } else { self.jc035_decline(&[d]); }
         if !ds.is_empty() { self.jc035_offer_order(ds); }
         Ok(())
     }
@@ -328,7 +357,11 @@ impl Game {
             _ => false,
         };
         if f.ability_key != expected.key || !same(&step.op, &expected.ops[0]) || f.actor != f.source.card.controller || step.context != f.actor
-            || !f.targets.is_empty() || !f.already_paid.is_empty() || f.chosen_region.is_some() || !accepted
+            || f.targets.len() != expected.targets.len() || f.targets.iter().zip(&expected.targets).any(|(t,s)|
+                !same(&t.spec,s) || t.id.is_empty() || t.public.instance_id != t.id || t.region_instance.is_some()
+                    || !t.public.valid || t.public.status != "valid" || t.public.invalid_reason.is_some()
+                    || !matches!(t.public.kind.as_str(), "character" | "attachment") || t.public.owner.is_none() || t.public.controller.is_none())
+            || !f.already_paid.is_empty() || f.chosen_region.is_some() || !accepted
             || f.cursor > 1 || (f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked))
             || (f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)) {
             return Err("JC035准备帧的来源、响应状态、游标或程序不符".into());
@@ -348,6 +381,7 @@ impl Game {
         entry.decision = Some(PreparationDecision::Resolved { frame_id: f.frame_id.clone() });
         if f.source.card.definition == "CQ08" { return Ok(()); }
         if f.source.card.definition == "BQ085" { return self.bq085_upkeep_start(f.clone()); }
+        if f.source.card.definition == "JC055" { self.jc055_prepare_time(f); return Ok(()); }
         if f.source.card.definition != "JC035" { return self.batch20_prepare_resolve(f); }
         if let Some(r) = f.source.region.filter(|r| self.regions.get(*r).is_some_and(|region|
             !region.vacant && f.source.source_region_instance.as_ref() == Some(&region.card.id))) {
@@ -439,6 +473,19 @@ impl Game {
                     if self.status != "playing" || p.seat >= self.players.len() || self.players[p.seat].eliminated
                         || p.choice.id.is_empty() || !same(&p.choice, &expected) {
                         return Err("JC035准备待选必须绑定原操控者与完整选项和数量".into());
+                    }
+                },
+                ChoiceResolution::JC055PreparationTarget { declaration: d, remaining: ds } => {
+                    for entry in std::iter::once(d).chain(ds) {
+                        self.jc035_declaration(entry)?; remember(&entry.source)?;
+                        if entry.actor != p.seat { return Err("准备目标续体不能跨操控席位".into()); }
+                    }
+                    let options = self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
+                    if d.source.card.definition != "JC055" || p.choice.id.is_empty() || p.choice.player_id != player_id(d.actor)
+                        || p.choice.kind != "jc055-preparation-target" || p.choice.title != "选择放置时间标志的角色或附属"
+                        || p.choice.min != Some(1) || p.choice.max != Some(1) || p.choice.allow_decline != Some(false)
+                        || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&p.choice.options,&options) {
+                        return Err("JC055准备目标待选错误".into());
                     }
                 },
                 ChoiceResolution::Declare { declaration: d, .. }

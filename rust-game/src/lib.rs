@@ -1,6 +1,9 @@
 mod attachment;
 mod region_destruction;
 mod batch20;
+mod next20_red;
+#[cfg(test)]
+mod next20_red_tests;
 mod jc065;
 mod extra_influence;
 mod batch20_observers;

@@ -460,10 +460,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17") {
+            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -676,6 +676,7 @@ impl Game {
                     self.region_live(r)
                         && (spec.predicate != Some(TargetPredicate::BQ077WaterRegion)
                             || (source.card.definition == "BQ077" && card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "水域")))
+                        && (spec.predicate != Some(TargetPredicate::JZ34DestroyedRegion) || (source.card.definition == "JZ34" && self.regions[r].destroyed))
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
                                 self.regions_adjacent(r, from)
@@ -734,6 +735,8 @@ impl Game {
                             .is_none_or(|predicate| match predicate {
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
+                                TargetPredicate::JZ34DestroyedRegion => false,
+                                TargetPredicate::JC055CharacterOrAttachment => source.card.definition == "JC055" && !c.face_down && matches!(d.kind.as_str(), "character" | "attachment"),
                                 TargetPredicate::JC043SocietyOrOriginalRegion => {
                                     source.card.definition == "JC043" && self.attachments.iter().find(|a| a.card.id == c.id)
                                         .is_some_and(|a| self.attachment_host_valid(a) && (self.society_host_seat(&a.host_id).is_some()
@@ -863,6 +866,8 @@ impl Game {
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
             && (matches!(source.card.definition.as_str(), "MSJC11" | "JC033" | "JC065")
+                || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
+                || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
                 // canonical granted mobility destination retains the shared
                 // slot contract, independently of the recipient's print.
@@ -943,6 +948,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::JC055RemoveTime => return Err("JC055须通过时间标志支付选择".into()),
                 Cost::SacrificeControlledSubtype(subtypes) => paid.push(self.pay_subtype_sacrifice(actor, subtypes, a)?),
                 Cost::RemoveOneTimeFromSource => paid.push(self.wm034_pay_time(source, a)?),                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
                 Cost::Assets(n) => {
@@ -1173,6 +1179,7 @@ impl Game {
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
+        self.validate_next20_red_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         if self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
@@ -1261,6 +1268,7 @@ impl Game {
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
+        self.validate_next20_red_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
@@ -1295,8 +1303,7 @@ impl Game {
                 let public =
                     self.public_target(declaration.actor, &declaration.source, &slot, selected);
                 vec![BoundTarget {
-                    region_instance: if slot.predicate == Some(TargetPredicate::BQ077WaterRegion) { selected.strip_prefix("region:")
-                        .and_then(|r| r.parse::<usize>().ok()).and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone()) } else { None },
+                    region_instance: Self::requires_region_instance(&declaration.source, &slot).then(|| selected.strip_prefix("region:").and_then(|s| s.parse::<usize>().ok()).and_then(|r| self.regions.get(r)).map(|r| r.card.id.clone())).flatten(),
                     id: selected.clone(),
                     spec: slot,
                     public,
@@ -1526,6 +1533,7 @@ impl Game {
         self.validate_jz35_frame(&frame)?;
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
+        self.validate_next20_red_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1556,6 +1564,12 @@ impl Game {
                 Op::BlackDeckToGraveyard { .. } => self.black_deck_recovery(&frame)?,
                 Op::BlackDeathRecovery { observation } => self.black_death_recovery(&frame, observation.as_ref().ok_or("黑色死亡事件缺少快照")?)?,
                 Op::XQ39GraveCharacterToDeckTop => self.xq39_grave_to_top(&frame)?,
+                Op::JC051Badge => return self.jc051_search(frame),
+                Op::JC055Discount => self.jc055_discount(&frame)?,
+                Op::JZ32Hourglass => return self.jz32_search(frame),
+                Op::JZ34SacrificeDestroy => return self.jz34_enter(frame),
+                Op::JZ34DeathInfluence { .. } => { if let Some(r) = frame.targets.first().filter(|t| self.valid_bound_target(frame.actor, &frame.source, t)).and_then(|t| t.id.strip_prefix("region:")).and_then(|s| s.parse::<usize>().ok()) { self.place_influence(frame.actor,r,1); } },
+                Op::JZ41DamageWound { .. } => self.jz41_wound(&frame),
                 Op::JC065SacrificeHidden => return self.jc065_sacrifice_start(frame),
                 Op::JC065RepressOne => return self.batch20_repress_start(frame),
                 Op::JZ29ReturnOnVampireReveal { .. } => {
@@ -1601,7 +1615,7 @@ impl Game {
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
                 Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
-                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::JC055PrepareTime { .. } | Op::BQ085Prepare { .. } => self.jc035_resolve(&frame)?,
                 Op::WM034AddOneTime => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
                 Op::WM034DestroyOtherCharacters => self.wm034_destroy_others(&frame),
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
@@ -2395,6 +2409,10 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::JC051Badge => return self.jc051_choose_badge(&frame,&selected),
+            FrameChoice::JC051Host { badge } => return self.jc051_finish_attach(&frame,&badge,selected.first().ok_or("请选择徽章宿主")?),
+            FrameChoice::JZ32Hourglass => return self.jz32_finish(&frame,&selected),
+            FrameChoice::JZ34Sacrifice => return self.jz34_finish_sacrifice(&frame,&selected),
             FrameChoice::JC065Sacrifice { seat, region, region_instance } => return self.jc065_sacrifice_complete(*frame, chooser, seat, region, &region_instance, &selected),
             FrameChoice::Batch20Repress { seat, regions } => return self.batch20_repress_complete(&frame, chooser, seat, &regions, &selected),
             FrameChoice::NextBlueGraySearch { inspected_ids } => return self.next_blue_gray_search_complete(&frame, chooser, &inspected_ids, &selected),

@@ -274,6 +274,7 @@ impl RoomEnvelope {
         room.game.validate_wm038_state()?;
         room.game.validate_jz35_state()?;
         room.game.validate_batch20_state()?;
+        room.game.validate_next20_red_state()?;
         room.game.validate_jc052_state()?;
         room.game.validate_jc046_state()?;
         room.game.validate_jc095_state()?;

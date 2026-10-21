@@ -581,6 +581,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JC055Time(Vec<TimeMarkerPayment>),
     SacrificedSubtype { card: Card, subtypes: Vec<String> },
     SourceRemovedTime(TimeMarkerPayment),
     RemovedTime(TimeMarkerPayment),
@@ -646,6 +647,10 @@ pub enum DeclareChoice {
 pub enum FrameChoice {
     NextBlueGraySearch { inspected_ids: Vec<String> },
     BQ085Upkeep,
+    JC051Badge,
+    JC051Host { badge: Card },
+    JZ32Hourglass,
+    JZ34Sacrifice,
     JC065Sacrifice { seat: usize, region: usize, region_instance: String },
     Batch20Repress { seat: usize, regions: Vec<(usize, String, u32)> },
     Batch20SearchEntry,
@@ -796,6 +801,8 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JC055TimePayment { source: SourceSnapshot },
+    JC055PreparationTarget { declaration: Declaration, remaining: Vec<Declaration> },
     JC035PreparationOrder {
         declarations: Vec<Declaration>,
     },
@@ -941,6 +948,7 @@ impl Game {
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
         game.validate_batch20_state()?;
+        game.validate_next20_red_state()?;
         game.validate_jc052_state()?;
         game.validate_jc046_state()?;
         game.validate_jc095_state()?;

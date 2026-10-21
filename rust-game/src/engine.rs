@@ -426,10 +426,12 @@ impl Game {
         permanent_result.combat = permanent_result
             .combat
             .saturating_add(self.jc060_friendly_sources(c));
+        permanent_result.influence += if self.jz32_destroyed(c) { 2 } else { 0 };
         let mut temporary_result = d.temporary_icons.add(sealed_temporary);
         let (black_permanent, black_temporary) = self.black_next20_icon_bonus(c, region);
         permanent_result = permanent_result.add(black_permanent);
         temporary_result = temporary_result.add(black_temporary);
+        temporary_result.influence += self.jc051_aura(c);
         let ordinary = self.turn_attribute_bonus(c).1;
         for modifier in &rules::definition(&c.definition).modifiers {
             if matches!(modifier, StaticModifier::JC037ControlledHiddenInvestigation) {
@@ -615,6 +617,7 @@ impl Game {
             return Err("无此座位".into());
         }
         self.validate_batch20_state()?;
+        self.validate_next20_red_state()?;
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
         self.validate_jc054_state()?;
@@ -631,6 +634,7 @@ impl Game {
         next.settle_deaths();
         next.drive()?;
         next.validate_batch20_state()?;
+        next.validate_next20_red_state()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
@@ -715,6 +719,7 @@ impl Game {
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
+                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -792,6 +797,7 @@ impl Game {
                 }
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
+                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -846,7 +852,9 @@ impl Game {
                 }
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
+                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
+                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
                 crate::wm038::validate_play_action(&c.definition, &a)?;
@@ -888,12 +896,14 @@ impl Game {
                 if c.controller != seat || (c.face_down && !crate::jc041::hidden_action(c, &a)) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
+                crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 self.jc041_check_activation(seat, region, c, &a)?;
                 let source = self.source_snapshot(c, region);
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
+                if source.card.definition == "JC055" { return self.jc055_begin_payment(source, &a); }
                 let paid = self.pay_ability_costs(seat, &source, &spec, &a)?;
                 let label = format!("{}：{}", card(&source.card.definition).name, spec.label);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
@@ -1131,6 +1141,7 @@ impl Game {
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
+        self.validate_next20_red_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1964,6 +1975,7 @@ impl Game {
                     c.damage += amount;
                 }
             }
+            if amount > 0 { self.jz41_observe_damage(&target); }
         }
         self.settle_deaths();
         Ok(())
@@ -2014,6 +2026,7 @@ impl Game {
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         self.validate_batch20_state()?;
+        self.validate_next20_red_state()?;
         self.validate_jc052_state()?;
         self.validate_jc046_state()?;
         self.validate_jc095_state()?;
@@ -2067,6 +2080,8 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
+            ChoiceResolution::JC055PreparationTarget { declaration, remaining } => self.jc055_preparation_target(declaration, remaining, &a, &selected)?,
             ChoiceResolution::JC035PreparationOrder { declarations } => self.jc035_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::JC054TriggerOrder { declarations } => self.jc054_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::Declare { declaration, stage } => {

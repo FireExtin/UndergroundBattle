@@ -23,6 +23,8 @@ pub enum ResponsePolicy {
 pub enum Event {
     BlackCharacterDeathObserved,
     DeckToGraveyardObserved,
+    JZ34OtherDeath,
+    JZ41HostDamage,
     VampireRevealed,
     DiscardObserved,
     VampireCombatWon,
@@ -48,6 +50,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    JC055RemoveTime,
     SacrificeControlledSubtype(Vec<String>),
     RemoveOneTimeFromSource,
     RemoveOneTimeFromSelectedControlledCard,
@@ -96,6 +99,8 @@ pub enum AttachmentHostCondition {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
     BQ077WaterRegion,
+    JC055CharacterOrAttachment,
+    JZ34DestroyedRegion,
     JC043SocietyOrOriginalRegion,
     JC039BlueCharacter,
     JC015NonHumanPrintedCostAtLeastThree,
@@ -179,6 +184,7 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    JC055Disaster,
     WM038BloodCard,
     NamedCharacter(String),
     PrintedColor(String),
@@ -200,6 +206,7 @@ pub enum CardFilter {
 impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
+            Self::JC055Disaster => definition.subtypes.iter().any(|s| s == "灾难"),
             Self::WM038BloodCard => definition.magic_icon == MagicIcon::Blood,
             Self::PrintedColor(color) => definition.color == *color,
             Self::Any => true,
@@ -244,6 +251,13 @@ pub enum Op {
     BlackDeathRecovery { observation: Option<crate::black_next20::BlackDeathObservation> },
     BQ085Prepare { event_id: Option<String> },
     XQ39GraveCharacterToDeckTop,
+    JC051Badge,
+    JC055PrepareTime { event_id: Option<String> },
+    JC055Discount,
+    JZ32Hourglass,
+    JZ34SacrificeDestroy,
+    JZ34DeathInfluence { observation: Option<crate::next20_red::RedObservation> },
+    JZ41DamageWound { observation: Option<crate::next20_red::RedObservation> },
     JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
     JC065SacrificeHidden,
     JC065RepressOne,
@@ -583,6 +597,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
     if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
     // The registry separately forbids static transplantation. At runtime the
     // shared mobility validator also requires the exact event-time source receipt.
@@ -1346,6 +1361,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
         crate::next20_blue_gray::validate_definition(card_id, definition)?;
         crate::batch20::validate_definition(card_id, definition)?;
+        crate::next20_red::validate_definition(card_id, definition)?;
         crate::bq035::validate_definition(card_id, definition)?;
         crate::mobility::validate_definition(card_id, definition)?;
         crate::red_time::validate_definition(card_id, definition)?;
@@ -2004,6 +2020,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::next20_blue_gray::CARDS {
             m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());
         }
+        for id in crate::next20_red::CARDS { m.insert((*id).into(), crate::next20_red::definition(id).unwrap()); }
         for id in crate::batch20::IMPLEMENTING {
             m.insert((*id).into(), crate::batch20::definition(id).unwrap());
         }

@@ -7292,6 +7292,215 @@
       },
       "unique": true,
       "society": "方碑序列"
+    },
+    {
+      "id": "JC051",
+      "name": "诺恩纳格斯塔",
+      "subtitle": "鸣钟人",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 红色 红色",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "领袖\n【现身触发】自你的牌库中寻找一张徽章附属牌，将该牌放置进场并结附于合理的目标，然后洗牌。\n【持续】所有其他本方鸣钟教派角色获得临时势力1。",
+      "keywords": [
+        "领袖"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC051",
+        "image": "resource/ymsj-fun.github.io/cards/JC051 诺恩纳格斯塔.jpg",
+        "sha256": "c71c143f2f4707bde5519974bea11b77ccc2def3f796261fcac6282acb464088"
+      },
+      "supported": true
+    },
+    {
+      "id": "JC055",
+      "name": "安妮斯朵拉",
+      "subtitle": "灾星",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "圣者"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 红色",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【准备步骤触发】在目标角色或附属上放置一个时间标志。\n【行动】自本方卡牌上移除X个时间标志：本回合中，你所打出的下一张灾难牌的所需费用减少X。",
+      "keywords": [],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC055",
+        "image": "resource/ymsj-fun.github.io/cards/JC055 安妮斯朵拉.jpg",
+        "sha256": "673cf3ff51067ba55547ab7a5b7122f6b789f7b778b819bd44a623ad3dc6cb32"
+      },
+      "supported": true
+    },
+    {
+      "id": "JZ32",
+      "name": "癫狂的先知",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "持续 若位于已毁灭的地区，则癫狂的先知获得永久势力2和声望。\n行动①，牺牲癫狂的先知：将一张名为诅咒沙漏的牌从本方墓地中放置进场，并结附于本地区。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ32",
+        "image": "resource/ymsj-fun.github.io/cards/JZ32 癫狂的先知.jpg",
+        "sha256": "5eed37c4052a4ffdccf2aac29239a92b513fcb4430f66e340e2ecc2fd2e62824"
+      },
+      "supported": true
+    },
+    {
+      "id": "JZ34",
+      "name": "主祭伊兹帕帕洛特",
+      "subtitle": "黑曜石蝴蝶",
+      "kind": "character",
+      "subtypes": [
+        "化身",
+        "法师",
+        "邪教徒"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色 红色 红色",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "领袖\n进场触发 牺牲另一个本地区的角色，然后毁灭本地区。\n触发 每当另一个角色死去时，在目标已毁灭的地区上放置一个本方势力标志。",
+      "keywords": [
+        "领袖"
+      ],
+      "unique": true,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ34",
+        "image": "resource/ymsj-fun.github.io/cards/JZ34 主祭伊兹帕帕洛特.jpg",
+        "sha256": "89fd4be09d4afdf9d953528319cf262c00afc7573f76f82b19fa117e15e39093"
+      },
+      "supported": true
+    },
+    {
+      "id": "JZ41",
+      "name": "衰败之环",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "法器"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n进场触发 预测2。\n触发 每当受此结附的角色受到伤害时，对该角色额外造成1点创伤。",
+      "keywords": [],
+      "unique": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ41",
+        "image": "resource/ymsj-fun.github.io/cards/JZ41 衰败之环.jpg",
+        "sha256": "2564cc22e52e2604588dc656ce682e9d30b950a695eb690a7d6a027c2f9d509a"
+      },
+      "supported": true
     }
   ],
   "decks": [

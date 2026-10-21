@@ -25,6 +25,7 @@ impl Game {
     }
     pub(crate) fn remove_death_batch_with_receipts(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) -> Vec<CharacterDeathReceipt> {
         let previous_effects = self.effects.len();
+        let red_observers = self.jz34_observers();
         let mut receipts = Vec::new();
         let mut observers = Vec::new();
         let black_sources = self.capture_black_death_sources();
@@ -56,6 +57,7 @@ impl Game {
             if let Some(receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source)) {
                 receipts.push(receipt);
                 if let Some(observation) = black_death { self.emit_black_death(&black_sources, observation); }
+                self.jz34_observe_death(&red_observers, &dead.card);
                 for observer in &observers {
                     if observer.card.definition != "JC045"
                         && (dead.card.controller != observer.card.controller
@@ -70,7 +72,7 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved)) =>
+                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });

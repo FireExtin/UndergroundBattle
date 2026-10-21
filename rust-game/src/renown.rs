@@ -45,7 +45,7 @@ impl Game {
     pub(crate) fn has_renown(&self, c: &Card) -> bool {
         !c.face_down
             && card(&c.definition).kind == "character"
-            && (rules::definition(&c.definition).traits.renown
+            && (self.jz32_destroyed(c) || rules::definition(&c.definition).traits.renown
                 || self.turn_attribute_modifiers.iter().any(|m| {
                     m.target_instance == c.id && m.expires_turn == self.turn && m.grants_renown
                 }))
