@@ -5891,7 +5891,6 @@ mod tests {
             ..Action::new("choose")
         };
         match p.resolution {
-            ChoiceResolution::Rumor { batch } => self.rumor_complete(batch, seat, &selected)?,
             ChoiceResolution::Forecast { .. }
             | ChoiceResolution::Frame {
                 choice: FrameChoice::Forecast { .. },

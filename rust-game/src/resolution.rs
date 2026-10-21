@@ -2521,7 +2521,9 @@ impl Game {
                         return Err("展示手牌实例已失效".into());
                     }
                     self.remove_dead(&frame.source.card.id, RemovalCause::Sacrifice);
+                    if frame.cursor < frame.steps.len() { self.effects.push_front(Effect::Frame { frame: frame.clone() }); }
                     self.discard_effect_cards(seat, std::slice::from_ref(id), &frame, false)?;
+                    return Ok(());
                 }
             }
             FrameChoice::OptionalShuffle { seat } => {

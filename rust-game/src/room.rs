@@ -242,6 +242,7 @@ impl RoomEnvelope {
         }) {
             return Err("暂停记录与房间状态/冻结时间不一致".into());
         }
+        room.game.validate_exposure_state()?;
         room.game.validate_mobility_state()?;
         room.game.validate_bq035_state()?;
         room.game.validate_vacant_regions()?;

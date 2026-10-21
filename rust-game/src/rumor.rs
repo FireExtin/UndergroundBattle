@@ -211,6 +211,18 @@ impl Game {
         }
         self.advance_graveyard_transfer(batch)
     }
+    // Only a real paused transfer may retain the unfinished original frame.
+    // The batch validator authenticates its whole program and exact queue count.
+    pub(crate) fn rumor_frame_continuation_valid(&self, f: &ResolutionFrame) -> bool {
+        f.cursor < f.steps.len()
+            && self.pending.as_ref().is_some_and(|p| match &p.resolution {
+                ChoiceResolution::Rumor { batch } => batch
+                    .cause
+                    .as_ref()
+                    .is_some_and(|cause| same(cause.as_ref(), f)),
+                _ => false,
+            })
+    }
     pub(crate) fn validate_rumor_state(&self) -> RuleResult<()> {
         let Some(p) = &self.pending else {
             return Ok(());
@@ -347,6 +359,37 @@ impl Game {
             || f.cursor > f.steps.len()
         {
             return Err("传闻原效应游标或行动者无效".into());
+        }
+        let continuations = self
+            .effects
+            .iter()
+            .filter_map(|e| match e {
+                Effect::Frame { frame } if frame.frame_id == f.frame_id => Some(frame),
+                _ => None,
+            })
+            .collect::<Vec<_>>();
+        let unfinished = usize::from(f.cursor < f.steps.len());
+        if continuations.len() != unfinished
+            || continuations
+                .iter()
+                .any(|frame| !same(frame.as_ref(), f.as_ref()))
+        {
+            return Err("传闻续体必须精确保留且只执行一次".into());
+        }
+        let after_mill = self
+            .effects
+            .iter()
+            .filter_map(|e| match e {
+                Effect::JZ57AfterMill { frame } if frame.frame_id == f.frame_id => Some(frame),
+                _ => None,
+            })
+            .collect::<Vec<_>>();
+        if after_mill.len() != usize::from(f.ability_key == "batch20-jz57-mill")
+            || after_mill
+                .iter()
+                .any(|frame| !same(frame.as_ref(), f.as_ref()))
+        {
+            return Err("骷髅抓牌续体必须精确保留且只执行一次".into());
         }
         self.validate_batch20_frame(f)?;
         self.validate_jc035_frame(f)?;

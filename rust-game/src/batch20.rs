@@ -703,7 +703,12 @@ impl Game {
         for e in &self.effects {
             match e {
                 Effect::Declare { declaration } => self.validate_batch20_declaration(declaration)?,
-                Effect::Frame { frame } if related(frame) => return Err("本批原子程序不能绕过响应堆叠保存".into()),
+                Effect::Frame { frame } if related(frame) => {
+                    if !self.rumor_frame_continuation_valid(frame) {
+                        return Err("本批原子程序不能绕过响应堆叠保存".into());
+                    }
+                    self.validate_batch20_frame(frame)?;
+                },
                 _ => {},
             }
         }

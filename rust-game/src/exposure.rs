@@ -106,7 +106,6 @@ fn programs(id: &str) -> Vec<AbilitySpec> {
     for a in d.abilities {
         for m in &a.modes {
             let mut selected = a.clone();
-            selected.label = format!("{}：{}", a.label, m.label);
             selected.targets = m.targets.clone();
             selected.ops = m.ops.clone();
             selected.modes.clear();
@@ -125,11 +124,27 @@ fn related(id: &str, key: &str, ops: &[Op]) -> bool {
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     if (related(id, &a.key, &a.ops) || a.modes.iter().any(|m| uses(&m.ops)))
         && !programs(id).iter().any(|p| same(a, p))
-        && !(definition(id).is_some() && crate::jz22::runtime_ability_is_admitted(a))
+        && !(matches!(id, "WM039" | "WM040")
+            && matches!(a.key.as_str(), "renown" | "jc089-combat-glory")
+            && crate::jz22::runtime_ability_is_admitted(a))
     {
         return Err("暴露牌仅准入完整印刷程序与完整所选模式".into());
     }
     Ok(())
+}
+fn granted_reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
+    if !matches!(source.card.definition.as_str(), "WM039" | "WM040") {
+        return None;
+    }
+    let region = source
+        .source_region_instance
+        .as_deref()
+        .filter(|r| !r.is_empty())?;
+    match key {
+        "renown" => Some(crate::renown::renown_ability(region)),
+        "jc089-combat-glory" => Some(rules::jc089_combat_glory_ability(region)),
+        _ => None,
+    }
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if definition(id).is_some_and(|p| !same(d, &p)) {
@@ -166,9 +181,10 @@ impl Game {
     }
     pub(crate) fn hand_limit(&self, seat: usize) -> usize {
         let z = &self.players[seat].society_zone;
-        7usize
-            .saturating_add(z.secrecy as usize)
-            .saturating_sub(z.exposure as usize)
+        // Bound the public count identically on native and wasm32.
+        (7u64 + u64::from(z.secrecy))
+            .saturating_sub(u64::from(z.exposure))
+            .min(u64::from(u32::MAX)) as usize
     }
     pub(crate) fn add_society_markers(&mut self, seat: usize, exposure: u32, secrecy: u32) {
         if self.players[seat].eliminated {
@@ -335,6 +351,7 @@ impl Game {
         }
         let a = programs(&c.definition)
             .into_iter()
+            .chain(granted_reward(&f.source, &f.ability_key))
             .find(|a| a.key == f.ability_key && a.modes.is_empty() && same(&a.ops, &ops))
             .ok_or("暴露牌完整程序无效")?;
         if c.face_down
@@ -388,7 +405,7 @@ impl Game {
             "wm040-heal" => {
                 matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)] if assets(ids, 1) && id == &c.id && !c.exhausted)
             }
-            "wm040-repress" => f.already_paid.is_empty(),
+            "wm040-repress" | "renown" | "jc089-combat-glory" => f.already_paid.is_empty(),
             "wm042-news" => {
                 matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && assets(ids, ids.len()))
                     && f.source.region.is_none()
@@ -427,8 +444,15 @@ impl Game {
             }
             if related(&d.source.card.definition, &d.ability.key, &d.ability.ops) {
                 validate_ability(&d.source.card.definition, &d.ability)?;
-                if d.source.card.definition != "WM040"
-                    || d.ability.key != "wm040-repress"
+                let expected = if d.ability.key == "wm040-repress"
+                    && d.source.card.definition == "WM040"
+                {
+                    definition("WM040")
+                        .and_then(|d| d.abilities.into_iter().find(|a| a.key == "wm040-repress"))
+                } else {
+                    granted_reward(&d.source, &d.ability.key)
+                };
+                if expected.as_ref().is_none_or(|a| !same(a, &d.ability))
                     || d.actor >= self.players.len()
                     || d.source.card.controller != d.actor
                     || d.source.card.face_down
@@ -443,9 +467,11 @@ impl Game {
                     || d.source.observed_death.is_some()
                     || d.source.observed_mobility_grant.is_some()
                     || d.source.observed_exposure.is_some()
+                    || d.source.attachment_host_instance.is_some()
                 {
-                    return Err("心理审察委员进场声明无效".into());
+                    return Err("暴露角色完整触发声明或冻结原地区无效".into());
                 }
+                self.mobility_immutable_identity(&d.source.card)?;
             }
             Ok(())
         };
@@ -517,10 +543,21 @@ impl Game {
                     stage,
                 } => {
                     declaration(d)?;
-                    if d.source.card.definition == "WM040" && d.ability.key == "wm040-repress" {
-                        let expected =
-                            self.binding_options(d.actor, &d.source, &d.ability.targets[0]);
-                        if !matches!(stage, DeclareChoice::Target)
+                    if definition(&d.source.card.definition).is_some()
+                        && !self.validated_cross_card_declaration(d)?
+                    {
+                        let targeted = !d.ability.targets.is_empty();
+                        let expected = if targeted {
+                            self.binding_options(d.actor, &d.source, &d.ability.targets[0])
+                        } else {
+                            vec![ChoiceOption {
+                                id: "accept".into(),
+                                label: "发动触发能力".into(),
+                                card: None,
+                            }]
+                        };
+                        if (targeted && !matches!(stage, DeclareChoice::Target))
+                            || (!targeted && !matches!(stage, DeclareChoice::Accept))
                             || p.seat != d.actor
                             || p.choice.player_id != player_id(d.actor)
                             || p.choice.kind != "trigger"
@@ -530,7 +567,11 @@ impl Game {
                             || p.choice.amount.is_some()
                             || !p.choice.preview_cards.is_empty()
                             || p.choice.title
-                                != format!("{}：{}", catalog::card("WM040").name, d.ability.label)
+                                != format!(
+                                    "{}：{}",
+                                    catalog::card(&d.source.card.definition).name,
+                                    d.ability.label
+                                )
                             || !same(&p.choice.options, &expected)
                         {
                             return Err("心理审察委员触发目标待选无效".into());

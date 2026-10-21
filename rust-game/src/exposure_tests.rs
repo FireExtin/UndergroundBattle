@@ -229,10 +229,10 @@ fn exposure_commissioner_actual_removal_repress_pending_restore_and_heal_wounds(
         },
     );
     pass_top(&mut g);
-    choose(&mut g, vec!["p1".into()]);
+    choose(&mut g, vec!["p2".into()]);
     pass_top(&mut g);
     let p = g.pending.clone().unwrap();
-    assert_eq!((p.seat, p.choice.min), (1, Some(3)));
+    assert_eq!((p.seat, p.choice.min), (2, Some(3)));
     assert!(g.players.iter().all(|p| p.society_zone.exposure == 0));
     assert_eq!(g.players[3].society_zone.secrecy, 2);
     let mut changed = g.clone();
@@ -254,7 +254,7 @@ fn exposure_commissioner_actual_removal_repress_pending_restore_and_heal_wounds(
     choose(&mut g, ids);
     assert_eq!(g.regions.iter().map(|r| r.influence[1]).sum::<u32>(), 1);
     let own = board(&mut g, "JC059", 0, 2);
-    let teammate = board(&mut g, "JC059", 2, 2);
+    let teammate = board(&mut g, "JC059", 1, 2);
     let away = board(&mut g, "JC059", 0, 1);
     g.board_mut(&own).unwrap().wounds = 1;
     g.board_mut(&teammate).unwrap().wounds = 1;
@@ -346,7 +346,7 @@ fn exposure_rumor_effect_discard_batches_count_only_actual_discard_and_continue_
     let observer = board(&mut g, "JC040", 0, 1);
     let source = board(&mut g, "JC038", 0, 2);
     let victim = board(&mut g, "JC029", 0, 2);
-    let rumor = held(&mut g, "WM042", 2, 1);
+    let rumor = held(&mut g, "WM042", 3, 2);
     let before = g.players[0].hand.len();
     apply(
         &mut g,
@@ -354,14 +354,14 @@ fn exposure_rumor_effect_discard_batches_count_only_actual_discard_and_continue_
         Action {
             card_id: Some(source),
             ability_id: Some("batch20-jc038-discard-draw".into()),
-            target_id: Some("p1".into()),
+            target_id: Some("p2".into()),
             cost_selected: Some(vec![victim]),
             ..Action::new("activate")
         },
     );
     pass_top(&mut g);
     choose(&mut g, vec![rumor]);
-    assert_eq!(g.pending.as_ref().unwrap().seat, 2);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 3);
     assert_eq!(g.players[0].hand.len(), before);
     choose(&mut g, vec![host]);
     assert_eq!(g.players[0].hand.len(), before + 1);
@@ -369,7 +369,7 @@ fn exposure_rumor_effect_discard_batches_count_only_actual_discard_and_continue_
         .effects
         .iter()
         .any(|e| matches!(e,Effect::Declare{declaration} if declaration.source.card.id==observer)));
-    assert!(g.players[2].graveyard.is_empty());
+    assert!(g.players[3].graveyard.is_empty());
 }
 #[test]
 fn exposure_normal_spell_burial_cleanup_and_cost_discard_do_not_trigger_rumor() {
@@ -576,4 +576,228 @@ fn exposure_analysis_source_departure_does_not_grant_a_new_instance() {
         .iter()
         .any(|c| c.definition == "WM039" && c.id != source));
     checkpoint(&g);
+}
+
+fn pass_once(g: &mut Game) {
+    let seat = (0..4)
+        .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
+        .expect("public pass");
+    apply(g, seat, Action::new("pass"));
+}
+
+#[test]
+fn exposure_rumor_mixed_discard_redraw_and_jc040_observe_actual_count_once() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 0, 2);
+    board(&mut g, "JC040", 0, 1);
+    let first = held(&mut g, "WM042", 2, 2);
+    let ordinary = held(&mut g, "JC125", 2, 2);
+    let second = held(&mut g, "WM042", 3, 2);
+    let draw = g.make_card("JC125", 2);
+    g.players[2].deck = vec![draw];
+    // Explicit region-win layout; all later discard/rumor decisions are public commands.
+    g.regions[2].card = g.make_card("DQJC112", 0);
+    let source = g.source_snapshot(&g.regions[2].card, Some(2));
+    g.emit_event(0, source, Event::RegionWon);
+    g.drive().unwrap();
+    choose(&mut g, vec!["accept".into()]);
+    pass_top(&mut g);
+    choose(&mut g, vec![first, ordinary, second]);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "rumor");
+    let mut removed = g.clone();
+    removed
+        .effects
+        .retain(|e| !matches!(e, Effect::Frame { .. }));
+    bad(&g, removed);
+    let mut doubled = g.clone();
+    let frame = doubled
+        .effects
+        .iter()
+        .find(|e| matches!(e, Effect::Frame { .. }))
+        .unwrap()
+        .clone();
+    doubled.effects.push_front(frame);
+    bad(&g, doubled);
+    choose(&mut g, vec![host.clone()]);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 3);
+    assert_eq!(g.players[2].graveyard.len(), 1);
+    assert_eq!(
+        g.players[2].deck.len(),
+        1,
+        "redraw waits until the whole batch completes"
+    );
+    choose(&mut g, vec![host]);
+    assert_eq!(
+        g.players[2].hand.len(),
+        1,
+        "only one actual discard redraws"
+    );
+    assert_eq!(g.sealed_cards.len(), 2);
+    let ChoiceResolution::Declare { declaration, .. } = &g.pending.as_ref().unwrap().resolution
+    else {
+        panic!("JC040 observation")
+    };
+    let [Op::JC040RepressDiscard {
+        observation: Some(o),
+    }] = declaration.ability.ops.as_slice()
+    else {
+        panic!("actual discard receipt")
+    };
+    assert_eq!(o.cards.len(), 1);
+    assert_eq!(o.cards[0].definition, "JC125");
+    choose(&mut g, vec![]);
+    assert!(g.pending.is_none());
+    assert!(!g.effects.iter().any(|e| matches!(e, Effect::Declare { declaration } if declaration.ability.key == "batch20-jc040-repress")));
+}
+
+#[test]
+fn exposure_rumor_jz57_optional_draw_follows_restored_replacement() {
+    let mut g = game(0);
+    let victim = board(&mut g, "JC125", 0, 2);
+    let host = board(&mut g, "JC125", 1, 2);
+    let tattoo = g.make_card("JZ57", 0);
+    let source = tattoo.id.clone();
+    g.attachments.push(Attachment {
+        card: tattoo,
+        host_id: victim.clone(),
+    });
+    let rumor = g.make_card("WM042", 2);
+    g.players[2].deck = vec![rumor];
+    g.players[0].deck = vec![g.make_card("JC125", 0)];
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(source),
+            ability_id: Some("batch20-jz57-mill".into()),
+            target_id: Some("p2".into()),
+            cost_selected: Some(vec![victim]),
+            ..Action::new("activate")
+        },
+    );
+    pass_top(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "rumor");
+    assert!(g.players[0].hand.is_empty());
+    let mut changed = g.clone();
+    changed
+        .effects
+        .retain(|e| !matches!(e, Effect::JZ57AfterMill { .. }));
+    bad(&g, changed);
+    choose(&mut g, vec![host]);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "trigger");
+    choose(&mut g, vec!["draw".into()]);
+    assert_eq!(g.players[0].hand.len(), 1);
+    assert!(g.players[2].graveyard.is_empty());
+    assert_eq!(g.sealed_cards.len(), 1);
+}
+
+#[test]
+fn exposure_rumor_bq091_preparation_cause_restores_without_repeating_mill() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 1, 2);
+    let shelter = g.make_card("BQ091", 0);
+    let source = shelter.id.clone();
+    g.attachments.push(Attachment {
+        card: shelter,
+        host_id: g.regions[2].card.id.clone(),
+    });
+    let rumor = g.make_card("WM042", 0);
+    g.players[0].deck = vec![rumor, g.make_card("JC125", 0)];
+    g.jc035_preparation = None;
+    g.begin_window(Window::Prepare);
+    g.drive().unwrap();
+    choose(&mut g, vec![source]);
+    pass_top(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "rumor");
+    choose(&mut g, vec![host]);
+    assert_eq!(g.players[0].deck.len(), 1);
+    assert_eq!(g.players[0].deck[0].definition, "JC125");
+    assert!(g.players[0].graveyard.is_empty());
+    assert_eq!(g.sealed_cards.len(), 1);
+}
+
+fn exposure_granted_reward_case(definition: &str, glory: bool) {
+    let mut g = game(0);
+    g.regions[2].card = g.make_card("DQJC115", 0);
+    g.regions[2].influence = [0, 0];
+    let host = board(&mut g, definition, 0, 2);
+    if glory {
+        let protector = board(&mut g, "LC12", 0, 2);
+        apply(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(protector),
+                ability_id: Some("protect-local-character".into()),
+                target_id: Some(host.clone()),
+                ..Action::new("activate")
+            },
+        );
+        pass_top(&mut g);
+        fund(&mut g, 0, "JC084", 2);
+    } else {
+        fund(&mut g, 0, "JC075", 2);
+    }
+    let grant = held(&mut g, if glory { "JC089" } else { "JC074" }, 0, 0);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(grant),
+            target_id: Some(host.clone()),
+            ..Action::new("play")
+        },
+    );
+    pass_top(&mut g);
+    assert!(g.board(&host).is_some());
+    g.begin_window(Window::Before(2, if glory { 1 } else { 2 }));
+    for _ in 0..8 {
+        if g.pending.is_some() {
+            break;
+        }
+        pass_once(&mut g);
+    }
+    let key = if glory {
+        "jc089-combat-glory"
+    } else {
+        "renown"
+    };
+    let ChoiceResolution::Declare { declaration, .. } = &g.pending.as_ref().unwrap().resolution
+    else {
+        panic!("granted reward")
+    };
+    assert_eq!(declaration.source.card.id, host);
+    assert_eq!(declaration.ability.key, key);
+    let mut changed = g.clone();
+    if let ChoiceResolution::Declare { declaration, .. } =
+        &mut changed.pending.as_mut().unwrap().resolution
+    {
+        declaration.source.source_region_instance = Some("foreign-region".into());
+    }
+    bad(&g, changed);
+    choose(&mut g, vec!["accept".into()]);
+    let mut changed = g.clone();
+    let f = changed.stack.last_mut().unwrap().frame.as_mut().unwrap();
+    if let Op::PlaceInfluence { amount, .. } = &mut f.steps[0].op {
+        *amount = 2;
+    }
+    bad(&g, changed);
+    let before = g.regions[2].influence[0];
+    pass_top(&mut g);
+    assert_eq!(g.regions[2].influence[0], before + 1);
+    checkpoint(&g);
+}
+
+#[test]
+fn exposure_actual_jc074_grants_renown_to_both_gray_characters() {
+    for definition in ["WM039", "WM040"] {
+        exposure_granted_reward_case(definition, false);
+    }
+}
+
+#[test]
+fn exposure_actual_lc12_protection_and_jc089_grant_glory_to_both_gray_characters() {
+    for definition in ["WM039", "WM040"] {
+        exposure_granted_reward_case(definition, true);
+    }
 }

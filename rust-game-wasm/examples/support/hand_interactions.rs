@@ -446,6 +446,7 @@ fn prepared_shuffle(accept: bool) -> Value {
     let mut g = initial("prepared-shuffle");
     let c = g.make_card("JZ67", 0);
     let source = SourceSnapshot {
+        observed_exposure: None,
         observed_death: None,
         observed_mobility_grant: None,
         source_region_instance: None,
