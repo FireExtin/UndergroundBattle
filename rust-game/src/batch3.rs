@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "BQ079" => Some(crate::batch3_ghoul::definition()),
         "JC062" => Some(crate::batch3_inspect::definition()),
         "XQ22" => Some(crate::batch3_politician::definition()),
         "JC064" => Some(crate::batch3_law::definition()),
@@ -148,7 +149,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    a.event == Some(Event::WM035HostDeath)
+    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave))
         || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
@@ -160,6 +161,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
         Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        | Op::BQ079CorpseIcons { .. }
         | Op::WM035HostDeathDraw { .. }
         | Op::BQ042DestroyAttachment
         | Op::WM033ReturnSpellOrDisaster
@@ -193,6 +195,9 @@ fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
         .abilities
         .into_iter()
         .find(|printed| printed.key == a.key)?;
+    if a.key == "batch3-bq079-corpse" {
+        if let [Op::BQ079CorpseIcons { observation }] = a.ops.as_slice() { expected.ops = vec![Op::BQ079CorpseIcons { observation: observation.clone() }]; }
+    }
     if a.key == "batch3-wm035-host-death" {
         if let [Op::WM035HostDeathDraw { observation }] = a.ops.as_slice() {
             expected.ops = vec![Op::WM035HostDeathDraw {
@@ -318,16 +323,16 @@ impl Game {
             self.batch3_source(d.actor, &d.source)?;
             let expected = canonical_ability(&d.source.card.definition, &d.ability)
                 .ok_or("第三批触发声明没有固定程序")?;
-            if d.source.card.definition != "WM035"
-                || d.ability.event != Some(Event::WM035HostDeath)
+            if !matches!((d.source.card.definition.as_str(),d.ability.event),("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)))
                 || d.source.card.face_down
                 || d.source.play_source.is_some()
                 || !same(&d.ability, &expected)
             {
                 return Err("第三批触发声明的来源、事件或程序不符".into());
             }
-            self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?
-                .ok_or("宿主触发缺少观察")?;
+            if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
+                self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?.ok_or("宿主触发缺少观察")?;
+            }
         }
         Ok(())
     }
@@ -369,6 +374,10 @@ impl Game {
         let mut a = definition(&f.source.card.definition)
             .and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
             .ok_or("非准入第三批执行帧")?;
+        if a.key == "batch3-bq079-corpse" {
+            if let [Step { op: Op::BQ079CorpseIcons { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::BQ079CorpseIcons { observation: observation.clone() }]; }
+            self.bq079_observation(f.actor,&f.source,&a.ops)?;
+        }
         if a.key == "batch3-wm035-host-death" {
             if let [Step {
                 op: Op::WM035HostDeathDraw { observation },
@@ -459,12 +468,16 @@ impl Game {
     }
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
         self.validate_attachment_barrier_modifiers()?;
+        self.validate_bq079_markers()?;
         let mut frames = BTreeSet::new();
         let mut observations = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
             if matches!(ops, [Op::JZ25SealRandomHand])
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
+            }
+            if let [Op::BQ079CorpseIcons { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(), o.event_id.clone())) { return Err("食尸鬼同一入墓事件不能重复执行".into()); }
             }
             if let [Op::WM035HostDeathDraw {
                 observation: Some(o),
@@ -537,6 +550,7 @@ impl Game {
                     self.validate_jc062_pending(p, frame, inspected)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::XQ22Orientation } => self.validate_xq22_pending(p, frame)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } => self.validate_jc064_pending(p, frame)?,
+                ChoiceResolution::Frame { frame, choice: FrameChoice::BQ079Upkeep } => self.validate_bq079_pending(p, frame)?,
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     if declaration.source.card.definition == "WM035"
@@ -544,6 +558,7 @@ impl Game {
                     {
                         self.validate_wm035_pending(p, declaration, stage)?;
                     }
+                    if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ25" {
                         self.validate_jz25_pending(p, declaration, stage)?;
                     }

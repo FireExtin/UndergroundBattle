@@ -191,7 +191,7 @@ impl Game {
                         self.note(format!("{name}：宿主离场，回收至拥有者手牌"));
                     }
                     HostLeaveDestination::OwnerGraveyard => {
-                        self.players[owner].graveyard.push(c);
+                        self.commit_owner_grave(c, None);
                         self.note(format!("{name}：宿主离场，附属进入拥有者墓地"));
                     }
                 }
@@ -231,7 +231,7 @@ impl Game {
                 ));
                 let c = self.reset_zone_card(attachment.card);
                 if !self.players[owner].eliminated {
-                    self.players[owner].graveyard.push(c);
+                    self.commit_owner_grave(c, None);
                 }
             }
         }

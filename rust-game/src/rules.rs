@@ -22,6 +22,7 @@ pub enum ResponsePolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
     WM035HostDeath,
+    BQ079CorpseGrave,
     BlackCharacterDeathObserved,
     DeckToGraveyardObserved,
     JZ34OtherDeath,
@@ -252,6 +253,7 @@ pub enum Op {
     XG28GraveReturn,
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
+    BQ079CorpseIcons { observation: Option<crate::batch3_ghoul::CorpseGraveObservation> },
     WM035HostDeathDraw { observation: Option<crate::black_next20::BlackDeathObservation> },
     XG26AttachmentBarrier,
     WM033ReturnSpellOrDisaster,

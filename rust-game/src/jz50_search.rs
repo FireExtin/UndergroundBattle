@@ -172,7 +172,6 @@ impl Game {
                 .position(|c| &c.id == id)
                 .unwrap();
             let c = self.players[actor].deck.remove(i);
-            let owner = c.owner;
             let c = self.reset_zone_card(c);
             self.note(format!(
                 "{} 将检索的 {} 置于其拥有者墓地",
@@ -181,7 +180,7 @@ impl Game {
             ));
             // Same zone reset/owner-graveyard path as mill. Deck -> graveyard is
             // not a death, so neither remove_dead nor Death event is involved.
-            self.players[owner].graveyard.push(c.clone());
+            self.commit_owner_grave(c.clone(), None);
             self.observe_black_deck_to_graveyard(actor, &[c]);
         }
         self.shuffle_player(actor);

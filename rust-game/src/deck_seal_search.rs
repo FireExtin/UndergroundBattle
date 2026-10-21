@@ -226,7 +226,7 @@ impl Game {
                 let owner = c.owner;
                 let c = self.reset_zone_card(c);
                 if !self.players[owner].eliminated {
-                    self.players[owner].graveyard.push(c);
+                    self.commit_owner_grave(c, None);
                 }
                 self.note("已选封印牌的原载体失效，置入拥有者墓地".into());
             }

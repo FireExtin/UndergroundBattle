@@ -81,6 +81,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_combat_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub permanent_defense_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_public: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_domains: Option<Vec<MagicDomainCount>>,
@@ -348,6 +350,8 @@ pub struct PrivateInspectionView {
 pub struct Card {
     #[serde(default, skip_serializing_if = "is_zero")]
     pub permanent_combat_markers: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub permanent_defense_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub time_markers: u32,
     pub id: String,
@@ -652,6 +656,7 @@ pub enum DeclareChoice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
     JC064Upkeep,
+    BQ079Upkeep,
     XQ22Orientation,
     JC062Inspection { inspected: Vec<Card> },
     WM033GraveSpell,

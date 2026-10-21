@@ -122,7 +122,7 @@ impl Game {
         let mut source = self.source_snapshot(&c, None);
         source.card.controller = batch.holder;
         let c = self.reset_zone_card(c);
-        self.players[c.owner].graveyard.push(c.clone());
+        self.commit_owner_grave(c.clone(), None);
         batch.outcomes.push(TransferOutcome::Grave(c));
         batch.cursor += 1;
         if !batch.from_deck {

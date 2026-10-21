@@ -136,6 +136,7 @@ impl Game {
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
         c.time_markers = 0;
         c.permanent_combat_markers = 0;
+        c.permanent_defense_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
@@ -149,6 +150,7 @@ impl Game {
         card(definition);
         Card {
             permanent_combat_markers: 0,
+            permanent_defense_markers: 0,
             time_markers: 0,
             id: self.id(),
             definition: definition.into(),
@@ -537,6 +539,7 @@ impl Game {
             + self.green_source_attribute_bonus(c, region).1
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
+            .saturating_add(c.permanent_defense_markers)
             .saturating_sub(self.jc089_host_curses(c) as u32)
             .saturating_sub(c.wounds)
     }
@@ -1895,9 +1898,8 @@ impl Game {
             Effect::JZ57AfterMill { frame } => self.jz57_after_mill(*frame)?,
             Effect::Bury { card: c } => {
                 if !self.players[c.owner].eliminated {
-                    let owner = c.owner;
                     let c = self.fresh(c);
-                    self.players[owner].graveyard.push(c);
+                    self.commit_owner_grave(c, None);
                 }
             }
             Effect::NextTurn => {
@@ -2270,6 +2272,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
             current_domains: if hidden || asset || c.face_down || region.is_none() {

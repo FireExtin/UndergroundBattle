@@ -1,4 +1,7 @@
 mod batch3;
+mod batch3_ghoul;
+#[cfg(test)]
+mod batch3_ghoul_tests;
 mod batch3_red;
 mod batch3_black;
 mod batch3_host;

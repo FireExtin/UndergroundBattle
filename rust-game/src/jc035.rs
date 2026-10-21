@@ -75,8 +75,8 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
-pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
+pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
     [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
@@ -87,7 +87,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if matches!(id, "XG28" | "JC064" | "BQ087") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -141,7 +141,7 @@ impl Game {
             let r = s.region.filter(|r| *r < self.regions.len()).ok_or("JC035准备来源缺少原地区")?;
             let id = s.source_region_instance.as_deref().filter(|id| !id.is_empty() && *id != s.card.id)
                 .ok_or("JC035准备来源缺少原地区UID")?;
-            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "JC055" | "BQ085" | "CQ08" | "BQ087") { None } else { Some(id) })
+            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "JC055" | "BQ085" | "CQ08" | "BQ087" | "BQ079") { None } else { Some(id) })
                 || self.regions.iter().enumerate().any(|(index, region)| region.card.id == id && index != r)
                 || self.jc035_physical_cards().any(|c| c.id == id && catalog::card(&c.definition).kind != "region") {
                 return Err("JC035必须绑定原结附地区实体，不能改成其他区域或替代地区".into());
@@ -392,6 +392,7 @@ impl Game {
         if f.source.card.definition == "CQ08" { return Ok(()); }
         if f.source.card.definition == "XG28" { return self.mill_cards_with_cause(f.actor, 1, Some(f)); }
         if f.source.card.definition == "JC064" { return self.jc064_upkeep_start(f); }
+        if f.source.card.definition == "BQ079" { return self.bq079_upkeep_start(f); }
         if f.source.card.definition == "BQ087" {
             let regions=self.regions.iter().enumerate().filter(|(_,r)|!r.vacant).map(|(i,_)|i).collect::<Vec<_>>();
             if !regions.is_empty() { let region=regions[self.random_below(regions.len())]; self.world_graveyard_entry(f.actor,region,&f.targets[0].id)?; }
@@ -522,6 +523,9 @@ impl Game {
                     self.validate_jc035_frame(frame)?;
                     self.validate_jc068_upkeep(p, frame)?;
                     remember(&frame.source)?;
+                },
+                ChoiceResolution::Frame { frame, choice: FrameChoice::BQ079Upkeep } if preparation_frame(frame) => {
+                    self.validate_bq079_pending(p, frame)?; remember(&frame.source)?;
                 },
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } if preparation_frame(frame) => {
                     self.validate_jc035_frame(frame)?; self.validate_jc064_pending(p, frame)?; remember(&frame.source)?;

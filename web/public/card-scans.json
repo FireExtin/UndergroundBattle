@@ -1083,5 +1083,10 @@
     "url": "/cards/BQ087.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
     "sha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76"
+  },
+  "BQ079": {
+    "url": "/cards/BQ079.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
+    "sha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48"
   }
 }

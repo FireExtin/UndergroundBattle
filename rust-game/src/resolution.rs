@@ -1394,7 +1394,7 @@ impl Game {
         let mut source = self.source_snapshot(&c, None);
         source.card.controller = holder;
         let c = self.reset_zone_card(c);
-        self.players[owner].graveyard.push(c);
+        self.commit_owner_grave(c, None);
         self.emit_event(holder, source, Event::HandDiscard);
         Ok(PaidCost::Discarded {
             old_instance,
@@ -1446,6 +1446,7 @@ impl Game {
         target: &str,
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
+        ghoul_sources: Option<&[SourceSnapshot]>,
     ) -> Option<crate::death_observers::CharacterDeathReceipt> {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
@@ -1459,7 +1460,7 @@ impl Game {
             let owner = c.owner;
             let c = self.reset_zone_card(c);
             let grave_instance = c.id.clone();
-            self.players[owner].graveyard.push(c);
+            self.commit_owner_grave(c, ghoul_sources);
             self.note(format!(
                 "{}：{}",
                 card(&snapshot.card.definition).name,
@@ -1606,6 +1607,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::BQ079CorpseIcons { .. } => self.bq079_reward(&frame.source),
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
                 Op::XQ22Orientation => return self.xq22_orientation_start(frame),
                 Op::JC062Inspect => { if self.jc062_inspect_start(frame.clone())? { return Ok(()); } },
@@ -2042,10 +2044,9 @@ impl Game {
                         .clone();
                     if let Some((s, i)) = self.asset_location(&id) {
                         let c = self.players[s].assets.remove(i);
-                        let owner = c.owner;
                         self.note(format!("资产{}：消灭", card(&c.definition).name));
                         let c = self.reset_zone_card(c);
-                        self.players[owner].graveyard.push(c);
+                        self.commit_owner_grave(c, None);
                     } else {
                         self.remove_dead(&id, RemovalCause::Destroy);
                     }
@@ -2433,6 +2434,7 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
             FrameChoice::JC062Inspection { inspected } => self.jc062_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,

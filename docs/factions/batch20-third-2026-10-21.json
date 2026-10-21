@@ -41,7 +41,9 @@
       "imageReviewedHere": true,
       "runtime": "notImplemented",
       "selectionEnabled": false,
-      "openQuestionIds": []
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ]
     },
     {
       "id": "WM030",
@@ -85,7 +87,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
       "sourceImageSha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -579,8 +581,8 @@
     "red cost-ring is a source geometry fact; no new speed rule is inferred",
     "TK008 full token program and disappearance rules required for CQ11",
     "BQ026 must preserve both roles, confrontation icons and lethal damage while attached; official FAQ5 analogous ruling found, implementation and card-specific checks pending",
-    "JC062: implement zero/one/two explicit target binding with existing whole-effect cancellation; original rules physical PDF9 and FAQ3 verified",
-    "All twenty runtime programs are not complete; zero new public admissions, no new WASM or deployment"
+    "All twenty runtime programs are not complete; zero new public admissions, no new WASM or deployment",
+    "CQ11 depends on TK008 generatedTokenLifecycle: exact transitions and reference limits in TK008_RULING_GAP_2026-10-21.md; no interpretation selected"
   ],
   "validation": {
     "nativePilot": {
@@ -597,7 +599,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 8,
+    "unreviewedRuntimeCards": 7,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -753,6 +755,35 @@
         "preparation": 15,
         "leader": 14,
         "rumor": 18
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "thirteenCardPilot": {
+      "passed": 70,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "BQ042",
+        "WM030",
+        "WM033",
+        "WM035",
+        "BQ079",
+        "BQ087",
+        "BQ089",
+        "XG26",
+        "XG28",
+        "JZ25",
+        "JC062",
+        "JC064",
+        "XQ22"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/thirteen-card-pilot.json",
+      "affectedFilters": {
+        "preparation": 15,
+        "deathObserver": 23,
+        "priorBlack": 21,
+        "rumor": 18,
+        "priorBlueGray": 13
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

@@ -8131,6 +8131,46 @@
       "society": "",
       "supported": false,
       "subtitle": "魔特之子"
+    },
+    {
+      "id": "BQ079",
+      "name": "亡嚎食尸鬼",
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "食尸鬼"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "准备步骤强制触发 将你墓地中的一张牌置于你的牌库底，否则牺牲亡嚎食尸鬼。；触发 每当一张名为无名尸体的牌进入你的墓地时，在亡嚎食尸鬼上放置一个永久战斗1和防御+1能力图标标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ079",
+        "image": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
+        "imageSha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [
