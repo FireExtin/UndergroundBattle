@@ -138,5 +138,14 @@
     "ABI92 was retained from the exact saved v74 originals; its publication remains unconfirmed.",
     "Postpublication full suites and browser acceptance remain pending; component and oracle tests are not browser play."
   ],
-  "officialWorkflow": "Sites 0.1.75 official helper; source prepare/push then native save; publish_on_push not enabled"
+  "officialWorkflow": "Sites 0.1.75 official helper; source prepare/push then native save; publish_on_push not enabled",
+  "archiveMaterialization": {
+    "action": "library_prepare_materialize",
+    "targetFileId": "file_00000000100481f9885d5fa6aab35b57",
+    "status": "denied",
+    "errorCode": "NOT_FOUND",
+    "message": "HTTP error prior to action invocation. HTTPException: 404: Library file ownership could not be verified.",
+    "retried": false,
+    "boundary": "Stopped this read. This is separate from v74 deployment pending and from successful creation of the review input Library item."
+  }
 }

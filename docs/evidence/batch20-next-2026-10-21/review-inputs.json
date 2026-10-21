@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "libraryFileId": "libfile_174c8bb745388191bd99bf32832f923a",
+  "fileId": "file_00000000aba081f8bd95b6a491e00b47",
+  "fileName": "HiddenWorld_v75_ABI77-89_91-93_review_inputs_34e51ce_20261021.zip",
+  "libraryVersion": 0,
+  "bytes": 14512561,
+  "sha256": "2101827479c173824a10e1f489f0c039281e448b9e957403f6f0d41b8e382249",
+  "manifestSha256": "8d164c26c2b773d3cd0ed31744de66dbcb9bdfd77552ca362610c19338dae60b",
+  "entries": 87,
+  "productCandidate": "34e51ce1aa3da5676569875156199b1dcebfa599",
+  "sourceCheckpoint": "6199c7a37489652830acc02863ff360ae749f482",
+  "runtimeSource": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "siteVersion": 75,
+  "siteSource": "cd32602ce1acd6d65a0bbed8d86f4b7d01885d82",
+  "contents": [
+    "15 exact JS/gzip pairs for ABI77–89,91,92",
+    "Current ABI93 tested JS/WASM and declarations",
+    "Identity/source manifests",
+    "35 mechanism and8 society-zone Native oracle inputs",
+    "Author-run evidence and selected logs"
+  ],
+  "verification": "ZIP readback and all per-file hashes verified locally before official Library create succeeded. Recipient materialization has not been tested.",
+  "boundaries": [
+    "Not a production deployment archive",
+    "ABI92 is the saved v74 original, with publication still pending",
+    "CurrentABI93 is the saved v75 candidate artifact, not a claimed deployed original",
+    "The included736-pass Sites log belongs only to first-batch7f4e6d63/ABI91",
+    "No database, credentials, compiler cache, browser or independent-review pass claim"
+  ],
+  "instructions": "Use the supported Library materialize flow and verify ZIP/manifests. Stop on any access denial; do not guess storage URLs."
+}
