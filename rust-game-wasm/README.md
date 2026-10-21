@@ -13,7 +13,7 @@ bash rust-game-wasm/verify.sh
 
 `build.sh`输出被Git忽略的`pkg/hegemony_wasm.js`、`hegemony_wasm_bg.wasm`及类型声明；`WASM_BINDGEN`可指定CLI路径。脚本通过现有[资源预检](../tools/build-storage.mjs)运行，不绕过磁盘/内存门禁。
 
-`verify.sh`依次构建当前核、由Native生成真实结果、在Node中实例化WASM并比较完整状态/各席位视图，再调用现有Rust测试导出当前XQ24输入检查恢复入口。它只清理自己创建的临时夹具目录。当前已记录433场景对照及XQ24检查，详细阶段差异保留在整改记录中；并非单次最终端到端命令全套结果，更不是浏览器试玩。
+`verify.sh`依次构建当前核、由Native生成真实结果、在Node中实例化WASM并比较完整状态/各席位视图，再调用现有Rust测试导出当前XQ24输入检查恢复入口。它只清理自己创建的临时夹具目录。当前ABI93验证状态见[夹具迁移记录](../docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)；历史433/440场景结果属于先前版本，不能充当当前版本通过证据。回放不是浏览器试玩。
 
 `--society-fixtures`只生成隔离的`pkg-society-fixtures`测试内核；不是公开准入牌或发布产物。
 
@@ -33,10 +33,10 @@ bash rust-game-wasm/verify.sh
 
 旧`apply`导出保留但直接拒绝：schema3必须使用`applyRoom`。客户端时钟不能替代可信服务端时间；decimal seed/time和完整opaque状态应保持原字符串，不经JavaScript Number重写u64。
 
-## 精确历史内核
+## 最新版本单核约定
 
-当前候选ABI90与原始ABI77–89分别装载。历史JS/WASM运行字节不在Git，身份与来源记录在[frozen](frozen/)，由[统一loader](../tools/frozen-kernels.mjs)校验JS、gzip、解压长度和WASM哈希。输入准备及v71原件来源见根README；不使用新源码重建结果替代旧字节。
+隐秘世界以后也不提供旧牌桌兼容。每次交付只打包、装载该版本的最新内核，优先降低包体、构建空间与运行开销。当前为ABI93；Sites与Native均明确拒绝旧规则/卡池/引擎身份，保留旧数据并要求新开，不迁移旧opaque状态、不引入旧核路由或运行保留包。
 
-`tests/current89-kernel.mjs`这个历史命名现在明确加载冻结v71 ABI89；当前新编译核的比较入口是`tests/current-kernel.mjs`。旧fixture保留原身份，不能改版本字符串后冒称新Native结果。缺失冻结输入会使相应测试初始化失败，应先补齐输入而不是放松哈希。
+当前比较入口是[tests/current-kernel.mjs](tests/current-kernel.mjs)。有效机制测试使用当前Rust真实导出的结果，并绑定当前源码清单与WASM哈希；旧原始状态只保留为拒绝边界和历史审查证据，不能改版本字符串后冒称新Native结果。旧内核loader和打包工具已移除，历史身份清单仍留作追溯。
 
-Sites负责旧桌的内核选择；单个WASM模块和Native服务都不提供任意历史状态迁移。
+当前版本的完整身份、schema/状态完整性、u64字符串精度、鉴权、费用和幂等保护不因清理而放松。性能结论必须注明实际测量边界；这一约定不适用于其他项目。

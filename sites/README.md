@@ -1,6 +1,6 @@
 # Sites Worker / D1宿主
 
-本目录为React客户端提供HTTP房间服务、D1事务和静态资源，并调用同一Rust WASM规则核。当前候选ABI93单核、旧桌失效边界及测试阶段见[根README](../README.md)；单核删除改动待独立检查、未发布。
+本目录为React客户端提供HTTP房间服务、D1事务和静态资源，并调用同一Rust WASM规则核。当前候选ABI93单核、旧桌失效边界及测试阶段见[根README](../README.md)；固定677a7b1的单核删除改动已独立补验，本轮夹具迁移尚未独立复审，未发布。
 
 ## 构建、本地运行与测试
 
@@ -13,11 +13,22 @@ npm --prefix sites run db:local
 npm --prefix sites run dev -- --ip 127.0.0.1
 ```
 
-`build`调用`wrangler deploy --dry-run`并输出`sites/dist/server`与`sites/dist/client`，不是部署。`db:local`使用本地D1，dev在8102本地运行。当前HTTP定向测试使用根README中的单核固定时钟wrapper及`HEGEMONY_CURRENT_WORKER_DIR`；wrapper不能发布。默认测试目录还保留未迁移的历史机制证据，不能把它们算作当前版本全套通过。
+`build`调用`wrangler deploy --dry-run`并输出`sites/dist/server`与`sites/dist/client`，不是部署。`db:local`使用本地D1，dev在8102本地运行。当前HTTP测试使用单核固定时钟wrapper；wrapper不能发布。先构建，再从仓库根目录运行：
+
+```sh
+node tools/build-current-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server"
+cd sites
+CURRENT_CLOCK_WORKER="$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server/worker.js" \
+  node --test --test-concurrency=1 test/*.test.mjs
+```
+
+wrapper目标必须是新目录；standalone Site在其根目录执行构建工具和测试，省略`cd sites`。测试只使用当前核及新导出的共享夹具，迁移后的最终全套状态见根README，不把未完成项称为通过。
 
 [src/http.mjs](src/http.mjs)处理路由与认证入口，[service.mjs](src/service.mjs)协调可信时间、请求意图与回执，[store.mjs](src/store.mjs)保存opaque状态、日志和命令回执。CAS失败的尝试不能旁写日志/回执；创建/加入同样提供requestId回执。数据库故障不应被确认为成功。
 
 [src/kernel.mjs](src/kernel.mjs)只导入当前ABI93内核；[kernel-router.mjs](src/kernel-router.mjs)在执行前检查当前完整身份及schema。旧身份返回410并要求新开；旧状态、回执留存但不再运行，不做迁移。HTTP / workerd / 本地D1 SQLite测试不是线上D1或浏览器验收。
+
+这是隐秘世界后续版本的持续约定：交付只含最新内核，以性能和体积优先；不要重新加入旧核路由、保留包或旧桌迁移。当前身份、u64精度、状态完整性、鉴权和幂等检查仍保留。
 
 ## 已有Site及官方发布流程
 
@@ -35,4 +46,4 @@ npm --prefix sites run dev -- --ip 127.0.0.1
 
 禁止GitHub CI的项目限制仍有效。推main前须确认成果范围、未知远端改动、Actions触发器与外部自动发布配置；应读取实际workflow/config；连接器某接口不受支持不等于存在CI或Git保存被拒。保持权限和账户设置不变，不通过绕过认证或强推消除阻塞。
 
-历史的`qa-preview.mjs`和版本专用wrapper不是本README的当前入口；目录中的历史发布证据只证明其记录版本。
+构建后也可用`node scripts/qa-preview.mjs`启动本地预览；它核对实际生成的当前catalog，不再硬编码ABI78。该预览与历史发布证据均不能代替线上验收。

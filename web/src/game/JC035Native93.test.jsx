@@ -14,11 +14,11 @@ expect(choices).toHaveLength(13);
 it.each(choices)('$name selects or declines the actual observed source and confirms the exact Native command',({row,views})=>{
  const view=views[row.seat],a=row.command.action.action,onAction=vi.fn();
  const m=render(<Table catalog={catalog} view={view} busy={false} connection='online' onAction={onAction}/>);
- expect(screen.getByText('传媒魔咒：选择下一项准备触发')).toBeInTheDocument();
+ expect(screen.getByRole('heading',{name:'选择下一项准备触发',exact:true})).toBeInTheDocument();
  expect(screen.getByText('触发 1')).toBeInTheDocument();
  expect(screen.getByRole('button',{name:'确认选择',exact:true})).toBeDisabled();
  for(const id of a.selected||[])fireEvent.click(m.container.querySelector(`[data-choice-option="${id}"]`));
- if(a.selected?.length)expect(screen.getByText(/^下一项入栈：地区/)).toBeInTheDocument();
+ if(a.selected?.length)expect(screen.getByText('下一项入栈：传媒魔咒：准备步骤触发：本地区放置1本方势力',{exact:true})).toBeInTheDocument();
  fireEvent.click(screen.getByRole('button',{name:a.selected?.length?'确认选择':'跳过此选择',exact:true}));
  expect(onAction).toHaveBeenCalledOnce();
  const command=JSON.parse(JSON.stringify(actionForRoom(view,onAction.mock.calls[0][0])));expect(command).toEqual(row.command.action);

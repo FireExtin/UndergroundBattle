@@ -6,12 +6,15 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
+import * as current from '../generated/hegemony_wasm.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const name = 'hegemony-qa78';
+current.initSync({module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url))});
+const expectedCatalog = JSON.parse(current.catalog());
+const name = 'hegemony-qa-current';
 const port = Number(process.env.PORT || 8113);
 assert(Number.isInteger(port) && port >= 0 && port <= 65535, 'PORT must be 0..65535');
-const stateDir = path.resolve(process.env.HEGEMONY_QA_STATE_DIR || path.join(tmpdir(), 'undergroundbattle-engine78-candidate-preview'));
+const stateDir = path.resolve(process.env.HEGEMONY_QA_STATE_DIR || path.join(tmpdir(), 'undergroundbattle-current-candidate-preview'));
 mkdirSync(stateDir, { recursive: true });
 const server = path.join(root, 'dist/server');
 const mf = new Miniflare(convertV4MiniflareOptions({
@@ -22,7 +25,7 @@ const mf = new Miniflare(convertV4MiniflareOptions({
     ...readdirSync(server).filter(file => file.endsWith('.wasm'))
       .map(file => ({ type: 'CompiledWasm', path: path.join(server, file) })),
   ],
-  d1Databases: { DB: 'hegemony-qa78-db' },
+  d1Databases: { DB: 'hegemony-qa-current-db' },
   assets: { directory: path.join(root, 'dist/client'), binding: 'ASSETS', run_worker_first: ['/api/*'],
     routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
 }));
@@ -41,14 +44,12 @@ try {
   const response = await fetch(new URL('/api/health', url));
   assert.equal(response.status, 200);
   const health = await response.json();
-  assert.equal(health.engineVersion, 'rust-v0.2.78-bq035-vampire-mobility-candidate');
+  assert.equal(health.engineVersion, expectedCatalog.engineVersion);
   const catalogResponse = await fetch(new URL('/api/catalog', url));
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.equal(catalog.cardPoolVersion, 'limited-v2.71-bq035-vampire-mobility-candidate');
+  assert.deepEqual(catalog, expectedCatalog);
   assert.equal(catalog.engineVersion, health.engineVersion);
-  assert.equal(catalog.cards.length, 144);
-  assert(catalog.cards.some(card => card.id === 'BQ035'));
   console.log(`READY ${url.href}`);
   console.log(`ENGINE ${health.engineVersion} | local workerd and persistent D1 SQLite`);
   console.log('Parent browser gameplay acceptance remains pending. Stop with Ctrl+C.');

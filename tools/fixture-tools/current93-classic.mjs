@@ -51,6 +51,7 @@ function records(group, kind, pattern) {
     return {...value, inputName: path.relative(directory(group, kind), file),
       inputSha256: sha256(readFileSync(file))};
   });
+}
 const raw = (group, kind, name) => read(path.join(directory(group, kind), name));
 const steps = group => records(group, 'trace', /^step-\d+\.json$/);
 const checkpoints = group => records(group, 'trace', /^checkpoint-\d+\.json$/);
@@ -80,7 +81,16 @@ function trace(value, label) {
     assert(step.transition?.state && Array.isArray(step.views), `${label}: hash-only export is insufficient`);
     if (step.state !== undefined) assert.equal(step.state, previous, label);
     assert.equal(step.transition.view.version, step.transition.version, label);
-    assert.deepEqual(step.transition.view, step.views[step.seat], label);
+    const returned = step.transition.view, snapshot = step.views[step.seat];
+    if (returned.serverNowMs !== snapshot.serverNowMs) {
+      // An unchanged request projects its supplied time; the Native checkpoint
+      // may project the last persisted time. Preserve both original projections.
+      assert.equal(step.transition.changed, false, `${label}: changed transition view time differs`);
+      assert.equal(returned.serverNowMs, Number(step.serverNowMs), `${label}: request view time differs`);
+      const saved = JSON.parse(step.transition.state);
+      assert.equal(snapshot.serverNowMs, saved.pacing.lastServerNowMs, `${label}: persisted view time differs`);
+      assert.deepEqual({...returned, serverNowMs: snapshot.serverNowMs}, snapshot, label);
+    } else assert.deepEqual(returned, snapshot, label);
     previous = step.transition.state;
   }
   if (value.terminalState) assert.equal(value.terminalState, previous, label);

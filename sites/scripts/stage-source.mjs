@@ -8,12 +8,22 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 
 const project = fileURLToPath(new URL('../', import.meta.url));
+if (existsSync(project + 'web/package.json')) throw new Error('Stage from the product Git checkout, not an already staged Site source.');
 const repository = fileURLToPath(new URL('../../', import.meta.url));
 const destination = process.argv[2];
 if (!destination || !path.isAbsolute(destination) || path.relative(repository, destination).startsWith('..') === false) {
   throw new Error('Use a separate absolute Site checkout outside the original repository.');
 }
 const manifest = JSON.parse(readFileSync(project + '.openai/hosting.json', 'utf8'));
+// Only inputs used by the current default tests travel with the standalone Site.
+// The untouched historical originals remain in the product repository.
+const testInputs = new Set(JSON.parse(readFileSync(project + 'scripts/test-inputs.json', 'utf8')));
+for (const file of testInputs) if (!existsSync(repository + file)) throw new Error('Missing current test input: ' + file);
+const include = source => {
+  const relative = path.relative(repository, source).split(path.sep).join('/');
+  if (relative.endsWith('.json') && (relative.startsWith('sites/test/fixtures/') || relative.startsWith('web/src/game/'))) return testInputs.has(relative);
+  return true;
+};
 if (existsSync(destination) && readdirSync(destination).length) {
   const prior = JSON.parse(readFileSync(path.join(destination, '.openai/hosting.json'), 'utf8'));
   if (prior.project_id !== manifest.project_id) throw new Error('Preserve this destination; it belongs to a different project.');
@@ -30,9 +40,16 @@ copy(repository + 'tools/build-current-clock-worker.mjs', 'tools/build-current-c
 for (const file of readdirSync(repository + 'tools').filter(name => name.endsWith('-oracle.mjs'))) copy(repository + 'tools/' + file, 'tools/' + file);
 for (const file of ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml']) copy(repository + file, file);
 copy(repository + 'rust-game-wasm/build.sh', 'rust-game-wasm/build.sh');
-copy(repository + 'rust-game-wasm/tests', 'rust-game-wasm/tests', true);
 copy(repository + 'web/src', 'web/src', true);
 copy(repository + 'web/public', 'web/public', true);
+// Exact originals read by the current card-face tests; keep the archive out.
+const scans = JSON.parse(readFileSync(repository + 'web/public/card-scans.json', 'utf8'));
+for (const id of ['JC037', 'JC046', 'JC052', 'JC060', 'JC061', 'JC087', 'JC094', 'JC095',
+  'JZ35', 'MSJC04', 'MSJC05', 'WM023', 'WM038', 'WM056', 'XQ25']) {
+  const original = scans[id].source;
+  if (!original.startsWith('resource/ymsj-fun.github.io/cards/') || original.includes('..')) throw new Error('Unexpected original card path: ' + id);
+  copy(repository + original, original);
+}
 for (const file of ['package.json', 'package-lock.json', 'index.html', 'vite.config.ts', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json']) copy(repository + 'web/' + file, 'web/' + file);
 for (const crate of ['rust-game', 'rust-game-wasm']) {
   copy(repository + crate + '/src', crate + '/src', true);
@@ -61,7 +78,7 @@ for (const { from, relative, directory } of copies) {
   const to = path.join(destination, relative);
   if (directory) rmSync(to, { recursive: true, force: true });
   mkdirSync(path.dirname(to), { recursive: true });
-  cpSync(from, to, { recursive: directory });
+  cpSync(from, to, { recursive: directory, filter: include });
 }
 writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 // Sites flattens the adapter by one directory. Relocate only literal links
@@ -73,7 +90,7 @@ for (const directory of ['test', 'scripts']) {
       if (entry.isDirectory()) relocate(file);
       else if (entry.name.endsWith('.mjs')) {
         const source = readFileSync(file, 'utf8');
-        const relocated = source.replace(/(['"])(\.\.\/)+(?=(?:tools|rust-game-wasm|rust-game)\/)/g,
+        const relocated = source.replace(/(['"])(\.\.\/)+(?=(?:tools|rust-game-wasm|rust-game|web)\/)/g,
           (match, quote) => match.split('../').length > 2 ? quote + match.slice(quote.length + 3) : match);
         if (relocated !== source) writeFileSync(file, relocated);
       }

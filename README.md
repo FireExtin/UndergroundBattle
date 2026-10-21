@@ -13,7 +13,8 @@
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
 | 第一批后续 | 空秘社区P2修复通过最小源码独立补验；v74在持续授权后已创建部署，当前pending。v73已有一局8回合自然完局及终局刷新，不是20卡全机制验收。固定7f的Sites最终完整运行736通过、0失败 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
-| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。Native定向129、UI180、构建/启动、35机制及8秘社区Native/WASM场景通过；旧多核v75已保存但退出发布队列；按16:30用户新指令准备仅ABI93的单核候选，待独立检查和验收 |
+| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。固定9aa4fda独立复审的已验范围无新P0/P1；两项构建/测试P2已在677a7b1独立补验关闭。旧多核v75退出发布队列，ABI93单核仍未上线 |
+| 当前单核验证 | [清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)及[夹具迁移](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)：有效机制输入重新由当前Native生成；最终Rust workspace 1482项、Web 148文件1498项全部通过，Sites/广域WASM最终轮仍在进行。本轮迁移尚未独立复审 |
 
 [游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署，现已退出发布队列。
 
@@ -49,7 +50,7 @@ Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go�
 | WASM边界 | 编译同一Rust规则核，供服务端JS宿主调用；不复制一套JS规则 | [rust-game-wasm](rust-game-wasm/README.md) |
 | Sites宿主 | Worker HTTP、D1、创建/加入回执、命令CAS事务、当前版本校验、静态资源 | [sites](sites/README.md) |
 | 玩家客户端 | React/TypeScript大厅、牌组与牌桌；提交服务端提供的动作并显示本人视图 | [web/src/game](web/src/game/README.md) |
-| 构建和研究工具 | 磁盘/内存预检、冻结输入校验、卡图与来源检查、历史证据工具 | [tools](tools/) |
+| 构建和研究工具 | 磁盘/内存预检、当前Native输入绑定、卡图与来源检查、历史证据工具 | [tools](tools/) |
 | 原始资料 / 文档 | 规则与卡图依据、历史设计和验收证据；不是自动生效的规则实现 | [resource](resource/)、[docs](docs/README.md) |
 
 当前React主路径通过HTTP轮询更新：前台正常间隔约1.5秒，后台降频，恢复可见时同步；已确认暂停后停止轮询并可手动刷新。它没有使用WebSocket，也没有通过 `streamEvents` 建立SSE主循环。
@@ -120,13 +121,15 @@ bash rust-game-wasm/build.sh
 
 用户于2026-10-21 16:30明确取消旧牌桌兼容。单核候选只接受当前 `hegemony-pdf-v1` / `limited-v2.83-batch20-next` / `rust-v0.2.93-batch20-next` 完整身份；旧房间与旧创建、加入、命令回执均返回410 `unsupported_room_version`，提示新建牌桌。旧数据保留，不迁移、不把旧opaque状态送入新核。Native服务同样只接受当前身份。
 
+**持续开发约定（用户于2026-10-21 17:53再次确认）：隐秘世界以后也不提供旧牌桌兼容。** 每次交付只含该版本最新内核，优先减少包体、构建空间和运行开销；不再增加旧内核路由、保留包或状态迁移层。历史源码与审查证据用于追溯，不是运行依赖。此约定仅适用于本项目；当前规则正确性、u64精度、schema/状态完整性、权限、付费与重复请求保护及旧身份明确拒绝仍必须保留。
+
 房间外层schema为3，内部Game schema为2；现有状态完整性验证仍保留。JS只读Rust导出的短身份，完整状态保持opaque字符串，避免损坏u64种子。移除的是旧版本执行分支，不是精度、付费回执、CAS或恢复校验。
 
-历史源码、身份清单和审查输入保留在Git及原证据目录中。[历史fixture工具](tools/frozen-kernels.mjs)仍供尚未迁到当前Native证据的旧机制回归使用；它已无旧核打包函数，不参与构建或运行。这些测试需要原始历史输入，不能通过改版本字段或重编替代原件，且不代表当前候选验收。
+历史源码、身份清单和审查输入保留在Git及原证据目录中。当前机制回归已移至实际ABI93 Native输入；无人引用的旧内核loader与仅比较ABI26/27的过期探针已删除。原始旧状态只用于拒绝边界，不能通过改版本字段或重编替代原件。迁移与验证状态见[当前夹具记录](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)。
 
 ## 本地测试与已知验证边界
 
-按改动范围选择运行，以下全部是本地命令，**不是GitHub CI**。先完成依赖和当前WASM构建。历史机制回归另需其精确原件；默认Web/Sites全套仍含这些历史用例，尚未全部迁到当前Native证据，不能把下面的当前定向测试称作全套。
+按改动范围选择运行，以下全部是本地命令，**不是GitHub CI**。先完成依赖和当前WASM构建。当前夹具迁移的最终全套仍在进行，不能把下面的定向测试称作全套。共享夹具绑定导出时的Rust输入和WASM哈希；修改这些输入后须重新真实导出，不能重签旧状态。
 
 ```sh
 # Rust默认workspace
@@ -138,7 +141,7 @@ bash rust-game-wasm/verify.sh
 # React组件与客户端测试
 npm --prefix web test -- --maxWorkers=2
 
-# 来源与工具检查（历史oracle另需其原始输入）
+# 来源与工具检查（完整checkout需包含测试引用的原始卡图与规则PDF）
 node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```
 
@@ -147,14 +150,14 @@ node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```sh
 node tools/build-current-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server"
 cd sites
-HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server" \
+CURRENT_CLOCK_WORKER="$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server/worker.js" \
   node --test --test-concurrency=1 test/kernel-binding.test.mjs test/kernel-routing.test.mjs \
   test/integration.test.mjs test/current-kernel-http.test.mjs test/storage-retry.test.mjs test/session-host.test.mjs
 ```
 
 wrapper只供本地测试，不能发布。当前单核的改动、实测体积/启动/内存、已通过项及未迁移历史测试边界见[清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)。此前旧版专用多核wrapper已删除；不要拿它的历史结果证明当前构建通过。
 
-此前候选整改的实际结果如下；本README更新没有为改写状态重复运行全套：
+下表是此前d98117d阶段的历史验证记录，当前ABI93结果另见上方迁移记录：
 
 | 检查 | 已记录结果与边界 |
 | --- | --- |
