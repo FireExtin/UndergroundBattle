@@ -48,7 +48,7 @@ try {
   const catalogResponse = await fetch(new URL('/api/catalog', url));
   assert.equal(catalogResponse.status, 200);
   const catalog = await catalogResponse.json();
-  assert.deepEqual(catalog, expectedCatalog);
+  assert.deepEqual(catalog, {...expectedCatalog, transport: 'polling', entryIdempotency: true});
   assert.equal(catalog.engineVersion, health.engineVersion);
   console.log(`READY ${url.href}`);
   console.log(`ENGINE ${health.engineVersion} | local workerd and persistent D1 SQLite`);

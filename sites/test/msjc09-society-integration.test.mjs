@@ -32,7 +32,7 @@ test('current real MSJC09 permits first/rear paid activation and restores four-s
     return {status:r.status,body:r.status===204?null:await r.json()};
   };
   const cat = (await api('/api/catalog')).body;
-  assert.deepEqual(cat,kernelCatalog,'HTTP catalog must be the current source-verified catalog');
+  assert.deepEqual(cat,{...kernelCatalog,transport:'polling',entryIdempotency:true},'HTTP catalog must include the current source-verified catalog and host capabilities');
   assert(cat.deckBuildRules.societySupported);
   const printedSociety=cat.societies.find(s=>s.id==='MSJC09'); assert(printedSociety);
   assert.equal(printedSociety.unique,true);

@@ -38,7 +38,7 @@ for (const fixture of fixtures) test(`seven93 BQ028 attachment=${fixture.attachm
   const health = await (await mf.dispatchFetch('http://localhost/api/health')).json();
   assert.equal(health.engineVersion,catalog.engineVersion);
   const roomCatalog = await (await mf.dispatchFetch(`http://localhost/api/rooms/${id}/catalog`, { headers: { Authorization: 'Bearer ' + tokens[0] } })).json();
-  assert.deepEqual(roomCatalog,catalog);
+  assert.deepEqual(roomCatalog,{...catalog,transport:'polling',entryIdempotency:true});
   assert.equal(roomCatalog.cards.length,193);assert.equal(roomCatalog.societies.length,10);
   assert(roomCatalog.cards.some(card=>card.id==='BQ035'));
   const httpViews = async expected => {
