@@ -5,6 +5,10 @@ use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct SocietyZone {
+    #[serde(default, skip_serializing_if = "crate::model::is_zero")]
+    pub exposure: u32,
+    #[serde(default, skip_serializing_if = "crate::model::is_zero")]
+    pub secrecy: u32,
     pub card: Option<Card>,
     // The stable per-seat source survives card instance changes and ready resets.
     // Only starting a new game replaces this zone and clears these ability keys.
@@ -15,6 +19,9 @@ pub struct SocietyZone {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SocietyZoneView {
+    pub exposure: u32,
+    pub secrecy: u32,
+    pub hand_limit: usize,
     pub id: String,
     pub player_id: String,
     pub card: Option<CardView>,
@@ -171,6 +178,9 @@ impl Game {
         self.players
             .iter()
             .map(|p| SocietyZoneView {
+                exposure: p.society_zone.exposure,
+                secrecy: p.society_zone.secrecy,
+                hand_limit: self.hand_limit(p.seat),
                 id: format!("society:{}", player_id(p.seat)),
                 player_id: player_id(p.seat),
                 card: p

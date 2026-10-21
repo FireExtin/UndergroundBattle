@@ -258,6 +258,10 @@ pub enum Op {
     JZ34SacrificeDestroy,
     JZ34DeathInfluence { observation: Option<crate::next20_red::RedObservation> },
     JZ41DamageWound { observation: Option<crate::next20_red::RedObservation> },
+    WM039Analysis,
+    WM040Heal,
+    WM040Repress,
+    WM042Exposure { add: bool },
     JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
     JC065SacrificeHidden,
     JC065RepressOne,
@@ -605,6 +609,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
     }
+    crate::exposure::validate_ability(card_id, ability)?;
     crate::black_next20::validate_ability(card_id, ability)?;
     if crate::next20_blue_gray::related_ability(card_id, ability) {
         return crate::next20_blue_gray::validate_ability(card_id, ability);
@@ -1139,7 +1144,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         let is_admitted_wm056_action = card_id == "WM056"
             && serde_json::to_value(ability).unwrap()
                 == serde_json::to_value(&crate::wm056::definition().abilities[0]).unwrap();
-        if !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant && !is_admitted_jc031_trigger && !is_admitted_wm056_action {
+        if !(card_id == "WM039" && crate::exposure::definition("WM039").is_some_and(|d| crate::exposure::same(ability, &d.abilities[0]))) && !is_admitted_jc032_action && !is_admitted_jc069_action && !is_admitted_host_grant && !is_admitted_jc031_trigger && !is_admitted_wm056_action {
             return Err(format!(
                 "{card_id}: only the admitted host grant, JC032/JC069 action or JC031 trigger limit is supported"
             ));
@@ -1360,6 +1365,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
     for (card_id, definition) in definitions {
         if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
         crate::next20_blue_gray::validate_definition(card_id, definition)?;
+        crate::exposure::validate_definition(card_id, definition)?;
         crate::batch20::validate_definition(card_id, definition)?;
         crate::next20_red::validate_definition(card_id, definition)?;
         crate::bq035::validate_definition(card_id, definition)?;
@@ -2021,6 +2027,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
             m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());
         }
         for id in crate::next20_red::CARDS { m.insert((*id).into(), crate::next20_red::definition(id).unwrap()); }
+        for id in ["WM039", "WM040", "WM042"] { m.insert(id.into(), crate::exposure::definition(id).unwrap()); }
         for id in crate::batch20::IMPLEMENTING {
             m.insert((*id).into(), crate::batch20::definition(id).unwrap());
         }

@@ -405,7 +405,11 @@ impl Game {
     }
     pub(crate) fn jz57_resolve(&mut self, f: ResolutionFrame) -> RuleResult<()> {
         let seat = f.targets[0].id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).filter(|s| *s < self.players.len()).ok_or("磨牌目标玩家无效")?;
-        self.mill_cards(seat, 2);
+        self.mill_cards_with_cause(seat, 2, Some(&f))?;
+        if self.pending.is_some() { self.effects.push_front(Effect::JZ57AfterMill { frame: Box::new(f) }); return Ok(()); }
+        self.jz57_after_mill(f)
+    }
+    pub(crate) fn jz57_after_mill(&mut self, f: ResolutionFrame) -> RuleResult<()> {
         if f.already_paid.iter().any(|p| matches!(p, PaidCost::SacrificedSubtype { subtypes, .. } if subtypes.iter().any(|s| s == "骷髅"))) {
             self.choice(f.actor, "trigger", "骷髅纹身：可以抓一张牌".into(), vec![ChoiceOption { id: "draw".into(), label: "抓一张牌".into(), card: None }],
                 0, 1, None, ChoiceResolution::Frame { frame: Box::new(f), choice: FrameChoice::Batch20OptionalDraw });
@@ -447,7 +451,7 @@ impl Game {
                     self.remove_dead(&f.source.card.id, RemovalCause::Sacrifice);
                 }
             }
-            "BQ091" => self.mill_cards(f.actor, 1),
+            "BQ091" => self.mill_cards_with_cause(f.actor, 1, Some(f))?,
             "JC068" => {
                 if self.resources(f.actor) == 0 { self.jc068_exhaust(&f.source.card.id); }
                 else {
@@ -460,14 +464,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
-        let mut actual = Vec::new();
-        for _ in 0..count.min(self.players[seat].deck.len()) {
-            let c = self.players[seat].deck.remove(0);
-            let c = self.reset_zone_card(c);
-            actual.push(c.clone());
-            self.players[c.owner].graveyard.push(c);
-        }
-        self.observe_black_deck_to_graveyard(seat, &actual);
+        self.mill_cards_with_cause(seat, count, None).expect("fixture mill without a resumable rumor");
     }
     fn jc068_exhaust(&mut self, id: &str) {
         if let Some(c) = self.board_mut(id) { c.exhausted = true; }

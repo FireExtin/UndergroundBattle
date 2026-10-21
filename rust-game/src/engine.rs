@@ -618,6 +618,7 @@ impl Game {
         }
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
+        self.validate_exposure_state()?;
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
         self.validate_jc054_state()?;
@@ -635,6 +636,7 @@ impl Game {
         next.drive()?;
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
+        next.validate_exposure_state()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
@@ -735,7 +737,7 @@ impl Game {
                 if a.kind == "conceal" {
                     if self.players[seat].conceal_used
                         || self.jc068_blocks_conceal(seat)
-                        || rules::definition(&c.definition).traits.public
+                        || self.current_public(&c, seat)
                     {
                         return Err("该角色不能秘密派遣或本回合已用".into());
                     }
@@ -1837,10 +1839,10 @@ impl Game {
                     .into_iter()
                     .chain(self.living(1 - self.first_team))
                 {
-                    if self.players[seat].hand.len() > 7 {
+                    if self.players[seat].hand.len() > self.hand_limit(seat) {
                         discards.push(Effect::Discard {
                             seat,
-                            amount: self.players[seat].hand.len() - 7,
+                            amount: self.players[seat].hand.len() - self.hand_limit(seat),
                             redraw: false,
                             optional: false,
                         });
@@ -1873,6 +1875,7 @@ impl Game {
                     self.effects.push_back(Effect::NextTurn);
                 }
             }
+            Effect::JZ57AfterMill { frame } => self.jz57_after_mill(*frame)?,
             Effect::Bury { card: c } => {
                 if !self.players[c.owner].eliminated {
                     let owner = c.owner;
@@ -2025,6 +2028,7 @@ impl Game {
         self.queue_leader_checks();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_exposure_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
         self.validate_jc052_state()?;
@@ -2082,6 +2086,7 @@ impl Game {
         match p.resolution {
             ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
             ChoiceResolution::JC055PreparationTarget { declaration, remaining } => self.jc055_preparation_target(declaration, remaining, &a, &selected)?,
+            ChoiceResolution::Rumor { batch } => self.rumor_complete(batch, seat, &selected)?,
             ChoiceResolution::JC035PreparationOrder { declarations } => self.jc035_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::JC054TriggerOrder { declarations } => self.jc054_choose_order(declarations, &a, &selected)?,
             ChoiceResolution::Declare { declaration, stage } => {
@@ -2247,6 +2252,7 @@ impl Game {
         let asset = kind == Some("asset");
         CardView {
             permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
+            current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
             current_domains: if hidden || asset || c.face_down || region.is_none() {
                 None
             } else {
@@ -5882,6 +5888,7 @@ mod tests {
             ..Action::new("choose")
         };
         match p.resolution {
+            ChoiceResolution::Rumor { batch } => self.rumor_complete(batch, seat, &selected)?,
             ChoiceResolution::Forecast { .. }
             | ChoiceResolution::Frame {
                 choice: FrameChoice::Forecast { .. },

@@ -1,3 +1,7 @@
+mod exposure;
+mod rumor;
+#[cfg(test)]
+mod exposure_tests;
 mod attachment;
 mod region_destruction;
 mod batch20;

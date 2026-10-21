@@ -65269,21 +65269,24 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "公开",
-          "机动"
+          "暴露条件：公开",
+          "暴露条件：机动"
         ],
         "printedRuleTextLines": [
-          "公开；机动",
+          "【暴露条件】公开；【暴露条件】机动",
           "进场触发 移除所有秘社上的所有暴露标志，然后遏制X，X等于以此效果移除的暴露标志数量。",
           "快速行动①，横置：在本方秘社上放置一个暴露标志，然后移除本地区上的所有本方角色上的创伤标志。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          "公开前太阳符号：操控者秘社有暴露时生效",
+          "机动前太阳符号：操控者秘社有暴露时生效"
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "公开；机动",
+          "printedText": "【暴露条件】公开；【暴露条件】机动",
           "notExecutable": true
         },
         {

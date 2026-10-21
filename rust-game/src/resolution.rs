@@ -451,6 +451,7 @@ impl Game {
     }
     pub(crate) fn source_snapshot(&self, c: &Card, region: Option<usize>) -> SourceSnapshot {
         SourceSnapshot {
+            observed_exposure: None,
             observed_death: None,
                                         observed_mobility_grant: None,            card: {
                 let mut snapshot = c.clone();
@@ -460,7 +461,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41") {
+            source_region_instance: if matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -1519,6 +1520,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_exposure_frame(&frame)?;
         self.validated_cross_card_frame(&frame)?;
         self.validate_red_time_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
@@ -1570,6 +1572,10 @@ impl Game {
                 Op::JZ34SacrificeDestroy => return self.jz34_enter(frame),
                 Op::JZ34DeathInfluence { .. } => { if let Some(r) = frame.targets.first().filter(|t| self.valid_bound_target(frame.actor, &frame.source, t)).and_then(|t| t.id.strip_prefix("region:")).and_then(|s| s.parse::<usize>().ok()) { self.place_influence(frame.actor,r,1); } },
                 Op::JZ41DamageWound { .. } => self.jz41_wound(&frame),
+                Op::WM039Analysis => self.wm039_analysis(&frame),
+                Op::WM040Heal => self.wm040_heal(&frame),
+                Op::WM040Repress => return self.wm040_repress_start(frame),
+                Op::WM042Exposure { add } => self.wm042_exposure(add),
                 Op::JC065SacrificeHidden => return self.jc065_sacrifice_start(frame),
                 Op::JC065RepressOne => return self.batch20_repress_start(frame),
                 Op::JZ29ReturnOnVampireReveal { .. } => {
@@ -1916,7 +1922,7 @@ impl Game {
                         if frame.source.observed_death.as_ref().is_some_and(|d| d.vampire) {
                             let i = self.random_below(self.players[seat].hand.len());
                             let id = self.players[seat].hand[i].id.clone();
-                            self.discard_hand_card(seat, &id)?;
+                            self.discard_effect_cards(seat, &[id], &frame, false)?;
                         } else {
                             let options = self.players[seat].hand.iter()
                                 .map(|c| self.option(c, seat, None, None)).collect();
@@ -2111,7 +2117,7 @@ impl Game {
                 }
                 Op::MoveDeckTopToGraveyard { player, count } => {
                     let seat = self.frame_player(&frame, step.context, player)?;
-                    self.mill_cards(seat, count);
+                    self.mill_cards_with_cause(seat, count, Some(&frame))?;
                 }
                 Op::OfferShuffleIfActorControlsDreamDemon { player } => {
                     if self.regions.iter().flat_map(|r| &r.cards).any(|c| {
@@ -2394,6 +2400,10 @@ impl Game {
                 }
             }
             self.settle_deaths();
+            if self.pending.is_some() {
+                if frame.cursor < frame.steps.len() { self.effects.push_front(Effect::Frame { frame: Box::new(frame) }); }
+                return Ok(());
+            }
         }
         Ok(())
     }
@@ -2413,6 +2423,7 @@ impl Game {
             FrameChoice::JC051Host { badge } => return self.jc051_finish_attach(&frame,&badge,selected.first().ok_or("请选择徽章宿主")?),
             FrameChoice::JZ32Hourglass => return self.jz32_finish(&frame,&selected),
             FrameChoice::JZ34Sacrifice => return self.jz34_finish_sacrifice(&frame,&selected),
+            FrameChoice::WM040Repress { seat, regions, .. } => return self.wm040_repress_complete(seat, &regions, &selected),
             FrameChoice::JC065Sacrifice { seat, region, region_instance } => return self.jc065_sacrifice_complete(*frame, chooser, seat, region, &region_instance, &selected),
             FrameChoice::Batch20Repress { seat, regions } => return self.batch20_repress_complete(&frame, chooser, seat, &regions, &selected),
             FrameChoice::NextBlueGraySearch { inspected_ids } => return self.next_blue_gray_search_complete(&frame, chooser, &inspected_ids, &selected),
@@ -2493,11 +2504,9 @@ impl Game {
             }
             FrameChoice::BQ085Upkeep => { self.bq085_upkeep_complete(&frame, &selected)?; return Ok(()); }
             FrameChoice::Discard { seat, redraw } => {
-                let count = selected.len();
-                self.discard_hand_cards(seat, &selected)?;
-                if redraw {
-                    self.draw(seat, count)?;
-                }
+                if frame.cursor < frame.steps.len() { self.effects.push_front(Effect::Frame { frame: frame.clone() }); }
+                self.discard_effect_cards(seat, &selected, &frame, redraw)?;
+                return Ok(());
             }
             FrameChoice::RevealedHandDiscard { seat, .. } => {
                 if let Some(id) = selected.first() {
@@ -2512,7 +2521,7 @@ impl Game {
                         return Err("展示手牌实例已失效".into());
                     }
                     self.remove_dead(&frame.source.card.id, RemovalCause::Sacrifice);
-                    self.discard_hand_card(seat, id)?;
+                    self.discard_effect_cards(seat, std::slice::from_ref(id), &frame, false)?;
                 }
             }
             FrameChoice::OptionalShuffle { seat } => {

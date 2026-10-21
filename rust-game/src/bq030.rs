@@ -138,6 +138,7 @@ fn runtime_ability(event: AttachmentEvent) -> AbilitySpec {
 
 fn plain_snapshot(card: &Card, region: usize) -> SourceSnapshot {
     SourceSnapshot {
+        observed_exposure: None,
         card: card.clone(),
         region: Some(region),
         observed_death: None,

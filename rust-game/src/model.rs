@@ -81,6 +81,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_combat_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_public: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_domains: Option<Vec<MagicDomainCount>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub time_markers: Option<u32>,
@@ -450,6 +452,7 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    JZ57AfterMill { frame: Box<ResolutionFrame> },
     RegionConfrontationsEnded {
         region: usize,
         region_instance: String,
@@ -532,6 +535,8 @@ pub struct StackItem {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SourceSnapshot {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub observed_exposure: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub observed_mobility_grant: Option<ObservedMobilityGrant>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -651,6 +656,7 @@ pub enum FrameChoice {
     JC051Host { badge: Card },
     JZ32Hourglass,
     JZ34Sacrifice,
+    WM040Repress { seat: usize, removed: Vec<(usize, u32)>, regions: Vec<(usize, String, u32)> },
     JC065Sacrifice { seat: usize, region: usize, region_instance: String },
     Batch20Repress { seat: usize, regions: Vec<(usize, String, u32)> },
     Batch20SearchEntry,
@@ -803,6 +809,7 @@ pub enum RemovalCause {
 pub enum ChoiceResolution {
     JC055TimePayment { source: SourceSnapshot },
     JC055PreparationTarget { declaration: Declaration, remaining: Vec<Declaration> },
+    Rumor { batch: crate::rumor::GraveyardTransfer },
     JC035PreparationOrder {
         declarations: Vec<Declaration>,
     },
@@ -915,6 +922,7 @@ impl Game {
             ));
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
+        game.validate_exposure_state()?;
         game.validate_mobility_state()?;
         game.validate_bq035_state()?;
         game.validate_vacant_regions()?;

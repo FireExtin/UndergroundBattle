@@ -11,7 +11,7 @@ use crate::{
 use std::collections::BTreeSet;
 
 pub(crate) fn printed(id: &str) -> bool {
-    matches!(id, "JC014" | "JZ45" | "JC061" | "BQ035")
+    matches!(id, "JC014" | "JZ45" | "JC061" | "BQ035" | "WM039")
 }
 pub(crate) fn ability() -> AbilitySpec {
     let mut a = rules::ability(
@@ -59,11 +59,12 @@ pub(crate) fn canonical_target(slot: &TargetSlotSpec) -> bool {
 pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
     f.ability_key == "mobility"
         || f.source.observed_mobility_grant.is_some()
+        || f.source.observed_exposure.is_some()
         || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op)))
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     for a in d.abilities.iter().filter(|a| related_ability(a)) {
-        if !printed(id) || !canonical(a) {
+        if !(printed(id) || id == "WM040") || !canonical(a) {
             return Err("机动只能静态印在完整准入的原牌上，授予不能移植定义".into());
         }
     }
@@ -74,13 +75,14 @@ impl Game {
         self.board(&c.id).is_some_and(|(_, live)| {
             !live.face_down
                 && catalog::card(&live.definition).kind == "character"
-                && (printed(&live.definition) || self.bq035_mobility_witness(&live.id).is_some())
+                && (printed(&live.definition) || (live.definition == "WM040" && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some())
         })
     }
     pub(crate) fn mobility_source(&self, c: &Card, region: usize) -> SourceSnapshot {
         SourceSnapshot {
+            observed_exposure: (c.definition == "WM040" && self.society_exposure(c.controller) > 0).then(|| self.society_exposure(c.controller)),
             observed_death: None,
-            observed_mobility_grant: (!printed(&c.definition))
+            observed_mobility_grant: (!(printed(&c.definition) || (c.definition == "WM040" && self.society_exposure(c.controller) > 0)))
                 .then(|| self.bq035_mobility_witness(&c.id))
                 .flatten(),
             card: c.clone(),
@@ -162,7 +164,8 @@ impl Game {
             return Err("机动事件的来源、阶段、行动者或无关观察无效".into());
         }
         self.mobility_immutable_identity(c)?;
-        if printed(&c.definition) {
+        if printed(&c.definition) || s.observed_exposure.is_some() {
+            if s.observed_exposure.is_some_and(|n| c.definition != "WM040" || n == 0) || (printed(&c.definition) && s.observed_exposure.is_some()) { return Err("条件机动仅准入心理审察委员的真实暴露观察".into()); }
             if s.observed_mobility_grant.is_some() {
                 return Err("印刷机动不能夹带授予观察".into());
             }
@@ -208,7 +211,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validated_mobility_declaration(&self, d: &Declaration) -> RuleResult<bool> {
-        if !related_ability(&d.ability) && d.source.observed_mobility_grant.is_none() {
+        if !related_ability(&d.ability) && d.source.observed_mobility_grant.is_none() && d.source.observed_exposure.is_none() {
             return Ok(false);
         }
         if !canonical(&d.ability) {

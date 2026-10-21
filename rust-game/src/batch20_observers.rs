@@ -144,11 +144,11 @@ impl Game {
             _ => Err("未知遏制数量来源".into()),
         }
     }
-    fn batch20_repress_regions(&self, seat: usize) -> Vec<(usize, String, u32)> {
+    pub(crate) fn batch20_repress_regions(&self, seat: usize) -> Vec<(usize, String, u32)> {
         self.regions.iter().enumerate().filter(|(_,r)| !r.vacant && r.influence[self.team(seat)] > 0)
             .map(|(r,reg)| (r, reg.card.id.clone(), reg.influence[self.team(seat)])).collect()
     }
-    fn batch20_repress_options(&self, regions: &[(usize,String,u32)], amount: usize) -> Vec<ChoiceOption> {
+    pub(crate) fn batch20_repress_options(&self, regions: &[(usize,String,u32)], amount: usize) -> Vec<ChoiceOption> {
         regions.iter().flat_map(|(r,_,count)| (0..(*count as usize).min(amount)).map(move |marker| ChoiceOption {
             id: format!("region:{r}:marker:{marker}"),
             label: format!("地区{}：{} · 本方势力标志{}（共{}）", r + 1, catalog::card(&self.regions[*r].card.definition).name, marker + 1, count), card: None,

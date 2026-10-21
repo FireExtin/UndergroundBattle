@@ -7501,6 +7501,131 @@
         "sha256": "2564cc22e52e2604588dc656ce682e9d30b950a695eb690a7d6a027c2f9d509a"
       },
       "supported": true
+    },
+    {
+      "id": "WM039",
+      "name": "P.S.C.精神分析师",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "特工"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "机动；行动①：从本方秘社上移除一个暴露标志，P.S.C.精神分析师获得永久调查1直到本回合结束。该能力每回合只能发动一次。",
+      "keywords": [
+        "机动"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM039",
+        "image": "resource/ymsj-fun.github.io/cards/WM039 P．S．C．精神分析师.jpg",
+        "imageSha256": "cdaad886511acf9dddab39bb9bf3c5b0bfe792fb19de523d35fa549c5cd74549"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "WM040",
+      "name": "心理审察委员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者",
+        "医疗员"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "【暴露条件】公开；【暴露条件】机动；进场触发 移除所有秘社上的所有暴露标志，然后遏制X，X等于以此效果移除的暴露标志数量。；快速行动①，横置：在本方秘社上放置一个暴露标志，然后移除本地区上的所有本方角色上的创伤标志。",
+      "keywords": [
+        "暴露条件：公开",
+        "暴露条件：机动"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM040",
+        "image": "resource/ymsj-fun.github.io/cards/WM040 心理审察委员.jpg",
+        "imageSha256": "ffa49271712453387a717d004196d96b232d672bb6bcc6ef7bce657c1a273062"
+      },
+      "unique": false,
+      "society": ""
+    },
+    {
+      "id": "WM042",
+      "name": "新闻管控",
+      "kind": "spell",
+      "subtypes": [
+        "策略",
+        "媒体"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "传闻；快速行动 选择一项：；在所有秘社上各放置一个暴露标志。；从所有秘社上各移除一个暴露标志。",
+      "keywords": [
+        "传闻"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM042",
+        "image": "resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg",
+        "imageSha256": "6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d"
+      },
+      "unique": false,
+      "society": ""
     }
   ],
   "decks": [
