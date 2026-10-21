@@ -1103,5 +1103,10 @@
     "url": "/cards/BQ037.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
     "sha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101"
+  },
+  "BQ029": {
+    "url": "/cards/BQ029.jpg",
+    "source": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+    "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e"
   }
 }

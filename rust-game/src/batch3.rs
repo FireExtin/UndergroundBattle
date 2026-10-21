@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037", "BQ029"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "BQ029" => Some(crate::batch3_blood::bq029_definition()),
         "BQ037" => Some(crate::batch3_blood::bq037_definition()),
         "XQ26" => Some(crate::batch3_warrant::definition()),
         "WM041" => Some(crate::batch3_alpha::definition()),
@@ -152,7 +153,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered | Event::BQ037OtherVampireEntered))
+    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered | Event::BQ037OtherVampireEntered | Event::BQ029QualifiedEntry))
         || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
@@ -164,6 +165,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
         Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        | Op::BQ029SelfFeed { .. }
         | Op::BQ037FeedPair { .. } | Op::BQ037RevealVampire
         | Op::XQ26Name | Op::XQ26Wanted { .. }
         | Op::WM041PublicPlay { .. }
@@ -191,7 +193,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     if a.event == Some(Event::Prepare) && IMPLEMENTING.contains(&id) {
         return crate::jc035::validate_ability(id, a);
     }
-    if related_ability(a) && canonical_ability(id, a).is_none_or(|expected| !same(&expected, a)) {
+    if (id=="BQ029" && a.key=="raid-1" || related_ability(a)) && canonical_ability(id, a).is_none_or(|expected| !same(&expected, a)) {
         return Err("第三批能力的来源、程序、费用或目标被修改".into());
     }
     Ok(())
@@ -201,6 +203,9 @@ fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
         .abilities
         .into_iter()
         .find(|printed| printed.key == a.key)?;
+    if a.key == "batch3-bq029-feed" {
+        if let [Op::BQ029SelfFeed { observation }] = a.ops.as_slice() { expected.ops = vec![Op::BQ029SelfFeed { observation: observation.clone() }]; }
+    }
     if a.key == "batch3-bq037-feed" {
         if let [Op::BQ037FeedPair { observation }] = a.ops.as_slice() { expected.ops = vec![Op::BQ037FeedPair { observation: observation.clone() }]; }
     }
@@ -226,7 +231,10 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if matches!(id, "XQ26" | "XG28" | "BQ089" | "JC064") { return crate::batch3_grave::validate_action(id, a); }
     if id == "JC062" { return crate::batch3_inspect::validate_action(a); }
     if id == "XQ22" && a.kind == "activate" { return crate::batch3_politician::validate_action(a); }
+    if id=="BQ029" && a.option.as_deref().is_some_and(|s|s!="pay-extra-1" || a.kind!="deploy") { return Err("赤鳞近卫只有正面打出可声明额外支付1".into()); }
     let expected = match a.kind.as_str() {
+        "asset" if id=="BQ029" => Action{card_id:a.card_id.clone(),..Action::new("asset")},
+        "deploy" | "conceal" if id=="BQ029" => Action{card_id:a.card_id.clone(),region:a.region,option:a.option.clone(),..Action::new(&a.kind)},
         "deploy" | "conceal" => Action {
             card_id: a.card_id.clone(),
             region: a.region,
@@ -338,14 +346,14 @@ impl Game {
             self.batch3_source(d.actor, &d.source)?;
             let expected = canonical_ability(&d.source.card.definition, &d.ability)
                 .ok_or("第三批触发声明没有固定程序")?;
-            if !matches!((d.source.card.definition.as_str(),d.ability.event),("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)) | ("WM041",Some(Event::WM041PublicCharacterPlayed)) | ("BQ037",Some(Event::BQ037OtherVampireEntered)))
+            if !matches!((d.source.card.definition.as_str(),d.ability.event),("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)) | ("WM041",Some(Event::WM041PublicCharacterPlayed)) | ("BQ037",Some(Event::BQ037OtherVampireEntered)) | ("BQ029",Some(Event::BQ029QualifiedEntry | Event::Reveal)))
                 || d.source.card.face_down
                 || d.source.play_source.is_some()
                 || !same(&d.ability, &expected)
             {
                 return Err("第三批触发声明的来源、事件或程序不符".into());
             }
-            if d.source.card.definition == "BQ037" { self.bq037_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "WM041" { self.wm041_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
+            if d.source.card.definition=="BQ029" { if d.ability.event!=Some(Event::Reveal) { self.bq029_observation(d.actor,&d.source,&d.ability.ops)?; } } else if d.source.card.definition == "BQ037" { self.bq037_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "WM041" { self.wm041_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
                 self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?.ok_or("宿主触发缺少观察")?;
             }
         }
@@ -371,8 +379,8 @@ impl Game {
             return Err("第三批帧身份、守卫或游标不符".into());
         }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
-            let paid = matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
-                && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
+            let paid = if f.source.card.definition=="BQ029" { self.bq029_printed_payment(f) } else { matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+                && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) };
             if !f.steps.is_empty()
                 || !f.targets.is_empty()
                 || !paid
@@ -389,6 +397,10 @@ impl Game {
         let mut a = definition(&f.source.card.definition)
             .and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
             .ok_or("非准入第三批执行帧")?;
+        if a.key == "batch3-bq029-feed" {
+            if let [Step { op: Op::BQ029SelfFeed { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::BQ029SelfFeed { observation: observation.clone() }]; }
+            self.bq029_observation(f.actor,&f.source,&a.ops)?;
+        }
         if a.key == "batch3-bq037-feed" {
             if let [Step { op: Op::BQ037FeedPair { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::BQ037FeedPair { observation: observation.clone() }]; }
             self.bq037_observation(f.actor,&f.source,&a.ops)?;
@@ -494,6 +506,7 @@ impl Game {
         self.mobility_immutable_identity(&p.carrier)
     }
     pub(crate) fn validate_batch3_state(&self) -> RuleResult<()> {
+        self.validate_entry_order_groups()?;
         self.validate_attachment_barrier_modifiers()?;
         self.validate_bq079_markers()?;
         self.validate_named_characters()?;
@@ -503,6 +516,9 @@ impl Game {
             if matches!(ops, [Op::JZ25SealRandomHand])
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
+            }
+            if let [Op::BQ029SelfFeed { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("赤鳞近卫同次进场不能重复饮血".into()); }
             }
             if let [Op::BQ037FeedPair { observation: Some(o) }] = ops {
                 if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("同一吸血鬼进场不能重复饮血".into()); }
@@ -602,7 +618,8 @@ impl Game {
                     {
                         self.validate_wm035_pending(p, declaration, stage)?;
                     }
-                    if declaration.source.card.definition == "BQ037" { self.validate_bq037_trigger_pending(p,declaration,stage)?; }
+                    if declaration.source.card.definition == "BQ037" || declaration.ability.key=="batch3-bq029-feed" { self.validate_blood_trigger_pending(p,declaration,stage)?; }
+                    if declaration.source.card.definition=="BQ029" && declaration.ability.key=="raid-1" { self.validate_bq029_raid_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "XQ26" { self.validate_xq26_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ25" {

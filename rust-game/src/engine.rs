@@ -58,6 +58,7 @@ impl Game {
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
             jc035_preparation: None,
+            entry_order_groups: vec![],
             influence_contests: vec![],
             control_effects: vec![],
             control_baselines: vec![],
@@ -712,7 +713,8 @@ impl Game {
                     return Err("本回合已建立资产".into());
                 }
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
-                if card(&c.definition).keywords.iter().any(|k| k == "非资产") { return Err("非资产牌不能建立资产".into()); }
+                if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
+                if self.current_non_asset(&c,seat) { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
                 self.players[seat].assets.push(c);
                 self.players[seat].asset_used = true;
@@ -776,7 +778,8 @@ impl Game {
                     if !self.loyalty(seat, &c.definition) {
                         return Err("忠诚不足".into());
                     }
-                    let paid = self.pay_printed(seat, &c, true)?;
+                    let mut paid = self.pay_printed(seat, &c, true)?;
+                    if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
                     let mut snapshot = self.source_snapshot(&c, Some(r));
                     snapshot.play_source = Some(play_source.clone());
                     let c = self.take_character_play_source(seat, id, play_source)?;
@@ -1090,6 +1093,7 @@ impl Game {
         }
         self.stack
             .retain(|s| s.controller != seat && s.card.as_ref().is_none_or(|c| c.owner != seat));
+        self.entry_order_groups.retain(|g|g.actor!=seat);
         self.effects.retain(|e| match e {
             Effect::Draw { seat: s, .. }
             | Effect::Mulligan { seat: s }
@@ -1121,6 +1125,7 @@ impl Game {
         self.winner_team = Some(team);
         self.pending = None;
         self.effects.clear();
+        self.entry_order_groups.clear();
         self.stack.clear();
         self.note(format!("团队 {} 获胜", team + 1));
         self.win_contexts.clear();
@@ -1196,7 +1201,8 @@ impl Game {
                 let id = c.id.clone();
                 let definition = c.definition.clone();
                 self.regions[region].cards.push(c);
-                self.enter_triggers(item.controller, &definition, &id, item.reveal);
+                let extra=if definition=="BQ029" && !item.reveal { frame.already_paid.iter().find_map(|p|if let PaidCost::BQ029ExtraAssets(ids)=p { Some(crate::batch3_blood::BQ029ExtraPayment{play_instance:frame.source.card.id.clone(),play_frame:frame.frame_id.clone(),assets:ids.clone()}) } else { None }) } else { None };
+                self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra);
             } else if card(&c.definition).kind == "attachment" {
                 if self.accept_frame_guard(&mut frame) {
                     let target = frame.targets.first().ok_or("附属缺少宿主目标")?;
@@ -1242,7 +1248,9 @@ impl Game {
         });
         Ok(())
     }
-    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) {
+    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None); }
+    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>) {
+        let previous=self.effects.len();
         self.batch3_entry_keywords(definition, id);
         // Intermezzo slow is an entry requirement, not an optional trigger or
         // an exhaust cost. Apply it before freezing the entry declaration.
@@ -1261,6 +1269,8 @@ impl Game {
         }
         self.xq26_observe_entry(id);
         self.bq037_observe_entry(id);
+        self.bq029_observe_entry(id,extra);
+        self.batch3_register_entry_order(id,previous);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
         }
@@ -2111,6 +2121,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::Batch3EntryOrder { entry_instance } => self.batch3_choose_entry_order(&entry_instance,seat,&a,&selected)?,
             ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
             ChoiceResolution::JC055PreparationTarget { declaration, remaining } => self.jc055_preparation_target(declaration, remaining, &a, &selected)?,
             ChoiceResolution::Rumor { batch } => self.rumor_complete(batch, seat, &selected)?,
@@ -2833,6 +2844,7 @@ impl Game {
                 candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
             }
         }
+        let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
         candidates
             .into_iter()
             .filter_map(|(action, label)| {

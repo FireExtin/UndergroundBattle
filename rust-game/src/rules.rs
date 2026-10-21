@@ -24,6 +24,7 @@ pub enum Event {
     WM035HostDeath,
     BQ079CorpseGrave,
     BQ037OtherVampireEntered,
+    BQ029QualifiedEntry,
     XQ26NamedCharacterEntered,
     WM041PublicCharacterPlayed,
     BlackCharacterDeathObserved,
@@ -257,6 +258,7 @@ pub enum Op {
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
     WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
+    BQ029SelfFeed { observation: Option<crate::batch3_blood::BQ029EntryObservation> },
     BQ037FeedPair { observation: Option<crate::batch3_blood::VampireEntryObservation> },
     BQ037RevealVampire,
     XQ26Name,
@@ -631,7 +633,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
-    if crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
+    if card_id=="BQ029" && ability.key=="raid-1" || crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
     if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
     if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
     // The registry separately forbids static transplantation. At runtime the

@@ -1180,7 +1180,11 @@ impl Game {
             });
         }
     }
-    pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
+    pub(crate) fn declare_trigger(&mut self,declaration:Declaration)->RuleResult<()> {
+        if self.batch3_entry_order_declare(&declaration)? { return Ok(()); }
+        self.declare_trigger_ordered(declaration)
+    }
+    pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
@@ -1608,6 +1612,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::BQ029SelfFeed { .. } => return self.bq029_feed_start(frame),
                 Op::BQ037FeedPair { .. } => return self.bq037_feed_start(frame),
                 Op::BQ037RevealVampire => return self.bq037_reveal_start(frame),
                 Op::XQ26Name => return self.xq26_name_start(frame),

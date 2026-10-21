@@ -21,7 +21,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> {
-    if matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. } if declaration.source.card.definition == "JZ25")
+    if matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. } if matches!(declaration.source.card.definition.as_str(),"JZ25"|"BQ029"))
         && *a != (Action { choice_id: a.choice_id.clone(), selected: a.selected.clone(), ..Action::new("choose") }) {
         return Err("猎杀者触发只选择玩家，不能附加手牌实例或其他载荷".into());
     }

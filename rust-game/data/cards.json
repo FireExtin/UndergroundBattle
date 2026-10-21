@@ -8299,6 +8299,50 @@
       "society": "",
       "supported": false,
       "subtitle": "“龙之子”"
+    },
+    {
+      "id": "BQ029",
+      "name": "赤鳞近卫",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "忍者"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "【暴露】非资产；袭击1；额外费用 你可以支付①。；进场触发 若已支付该牌的额外费用，或本方秘社上有隐秘标志，饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "keywords": [
+        "暴露条件：非资产",
+        "袭击1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ029",
+        "image": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+        "imageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

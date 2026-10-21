@@ -12,12 +12,47 @@ pub struct BloodFeedCursor{pub recipients:Vec<String>,pub cursor:usize,pub compl
 #[derive(Clone,Debug,Serialize,Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct BloodFeedStep{pub recipient:String,pub attached:Option<String>}
+#[derive(Clone,Debug,Serialize,Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BQ029ExtraPayment{pub play_instance:String,pub play_frame:String,pub assets:Vec<String>}
+#[derive(Clone,Debug,Serialize,Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BQ029EntryObservation{pub event_id:String,pub turn:u32,pub moon_at_entry:u32,pub extra:Option<BQ029ExtraPayment>}
 fn same<T:Serialize>(a:&T,b:&T)->bool{serde_json::to_value(a).unwrap()==serde_json::to_value(b).unwrap()}
 pub(crate) fn bq037_definition()->Definition{
     let mut a=ability("batch3-bq037-reveal","行动1：可令目标本方暗藏者的吸血鬼正面现身，每回合一次",Timing::Standard,vec![Cost::Assets(1)],vec![target(Zone::Board,EntityKind::Hidden,Relation::ControlledByActor,Range::Anywhere)],vec![Op::BQ037RevealVampire],None);a.activation_only=true;a.per_turn_limit=Some(1);
     with_abilities(vec![ability("batch3-bq037-feed","另一个本方吸血鬼进场：该角色和本来源分别饮血1",Timing::Fast,vec![],vec![],vec![Op::BQ037FeedPair{observation:None}],Some(Event::BQ037OtherVampireEntered)),a])
 }
+pub(crate) fn bq029_definition()->Definition{
+    with_abilities(vec![ability("raid-1","袭击1",Timing::Fast,vec![],vec![target(Zone::Board,EntityKind::Character,Relation::Any,Range::SourceRegion)],vec![Op::DamageTarget{slot:0,amount:1}],Some(Event::Reveal)),ability("batch3-bq029-feed","进场：已付额外1或本方隐秘时，饮血1",Timing::Fast,vec![],vec![],vec![Op::BQ029SelfFeed{observation:None}],Some(Event::BQ029QualifiedEntry))])
+}
 impl Game{
+    pub(crate) fn bq029_printed_payment(&self,f:&ResolutionFrame)->bool{
+        let (printed,extra)=match f.already_paid.as_slice(){[PaidCost::Assets(ids)]=>(ids.as_slice(),None),[PaidCost::Assets(ids),PaidCost::BQ029ExtraAssets(extra)] if f.ability_key=="deploy" && extra.len()==1=>(ids.as_slice(),Some(extra.as_slice())),_=>return false};
+        let all=printed.iter().chain(extra.into_iter().flatten()).map(String::as_str).collect::<Vec<_>>();printed.len()<=2 && all.iter().all(|id|!id.is_empty() && *id!=f.source.card.id.as_str()) && all.iter().collect::<BTreeSet<_>>().len()==all.len() && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|a|all.contains(&a.id.as_str())))
+    }
+    pub(crate) fn validate_bq029_raid_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
+        self.validate_batch3_declaration(d)?;let options=self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
+        if d.ability.key!="raid-1" || !matches!(stage,DeclareChoice::Target) || options.is_empty() || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card("BQ029").name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&options,&p.choice.options){return Err("赤鳞近卫袭击须保留原现身目标选择".into());}Ok(())
+    }
+    pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || c.definition=="BQ029" && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
+    pub(crate) fn bq029_pay_extra(&mut self,actor:usize)->RuleResult<PaidCost>{let ids=self.players[actor].assets.iter().filter(|a|!a.exhausted).take(1).map(|a|a.id.clone()).collect::<Vec<_>>();self.pay(actor,1)?;Ok(PaidCost::BQ029ExtraAssets(ids))}
+    pub(crate) fn bq029_observe_entry(&mut self,id:&str,extra:Option<BQ029ExtraPayment>){
+        let Some((r,c))=self.board(id).filter(|(_,c)|c.definition=="BQ029" && !c.face_down)else{return;};let actor=c.controller;let moon=self.players[actor].society_zone.secrecy;if extra.is_none() && moon==0{return;}
+        let source=self.source_snapshot(c,Some(r));let observation=BQ029EntryObservation{event_id:self.id(),turn:self.turn,moon_at_entry:moon,extra};let mut a=bq029_definition().abilities.remove(1);a.ops=vec![Op::BQ029SelfFeed{observation:Some(observation)}];self.effects.push_back(Effect::Declare{declaration:Declaration{actor,source,ability:a}});
+    }
+    pub(crate) fn bq029_observation(&self,actor:usize,s:&SourceSnapshot,ops:&[Op])->RuleResult<()> {
+        let [Op::BQ029SelfFeed{observation:Some(o)}]=ops else{return Err("赤鳞近卫缺少真实条件进场观察".into());};
+        let number=|id:&str|id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).filter(|n|*n>0 && *n<=self.sequence);
+        if s.card.definition!="BQ029" || s.card.face_down || s.card.controller!=actor || o.turn!=self.turn || number(&o.event_id).is_none() || o.event_id==s.card.id || o.extra.is_none() && o.moon_at_entry==0 {return Err("赤鳞近卫进场条件或事件身份不符".into());}
+        if let Some(p)=&o.extra{if p.assets.len()!=1 || number(&p.assets[0]).is_none() || number(&p.play_instance).is_none() || number(&p.play_frame).is_none() || number(&p.play_instance)>=number(&p.play_frame) || number(&p.play_frame)>=number(&s.card.id) || p.assets[0]==p.play_instance || p.assets[0]==s.card.id || self.batch3_physical_cards().any(|c|c.id==p.play_instance) || self.players.iter().enumerate().any(|(seat,player)|seat!=actor && player.assets.iter().any(|a|p.assets.contains(&a.id))){return Err("赤鳞近卫额外费用须保留原打出与独立支付1收据".into());}}
+        Ok(())
+    }
+    pub(crate) fn bq029_feed_start(&mut self,f:ResolutionFrame)->RuleResult<()> {
+        let [Step{op:Op::BQ029SelfFeed{observation:Some(o)},..}]=f.steps.as_slice()else{return Err("赤鳞近卫饮血程序不符".into());};
+        if o.extra.is_none() && self.players[f.actor].society_zone.secrecy==0{return Ok(());}
+        let recipients=self.blood_recipients(&f)?;self.blood_feed_start(f,BloodFeedCursor{recipients,cursor:0,completed:vec![]})
+    }
     pub(crate) fn bq037_observe_entry(&mut self,id:&str){
         let Some((r,c))=self.board(id).filter(|(_,c)|!c.face_down && catalog::card(&c.definition).kind=="character")else{return;};
         let subtypes=self.current_subtypes(c);if !subtypes.iter().any(|s|s=="吸血鬼"){return;}
@@ -32,17 +67,17 @@ impl Game{
             || !o.subtypes.iter().any(|t|t=="吸血鬼") || !(printed.subtypes.iter().any(|t|t=="吸血鬼" || t=="人类") || c.definition=="JC030") || o.subtypes.iter().collect::<BTreeSet<_>>().len()!=o.subtypes.len() || o.subtypes.iter().any(|t|!printed.subtypes.contains(t) && !matches!(t.as_str(),"吸血鬼"|"奴仆"|"邪教徒"|"宿主"|"不死生物"|"骷髅"))
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence){return Err("穿刺公观察的原操控者、当前类别或进场身份不符".into());}self.mobility_immutable_identity(c)
     }
-    pub(crate) fn validate_bq037_trigger_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
+    pub(crate) fn validate_blood_trigger_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
         self.validate_batch3_declaration(d)?;
-        if d.ability.key!="batch3-bq037-feed" || !matches!(stage,DeclareChoice::Accept) || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card("BQ037").name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&p.choice.options,&vec![ChoiceOption{id:"accept".into(),label:"发动触发能力".into(),card:None}]){return Err("穿刺公饮血须保留原可选进场声明".into());}Ok(())
+        if !matches!((d.source.card.definition.as_str(),d.ability.key.as_str()),("BQ037","batch3-bq037-feed")|("BQ029","batch3-bq029-feed")) || !matches!(stage,DeclareChoice::Accept) || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card(&d.source.card.definition).name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&p.choice.options,&vec![ChoiceOption{id:"accept".into(),label:"发动触发能力".into(),card:None}]){return Err("穿刺公饮血须保留原可选进场声明".into());}Ok(())
     }
     fn blood_recipients(&self,f:&ResolutionFrame)->RuleResult<Vec<String>>{
-        match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>Ok(vec![o.entered.card.id.clone(),f.source.card.id.clone()]),_=>Err("非准入饮血程序".into())}
+        match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>Ok(vec![o.entered.card.id.clone(),f.source.card.id.clone()]),[Step{op:Op::BQ029SelfFeed{..},..}]=>Ok(vec![f.source.card.id.clone()]),_=>Err("非准入饮血程序".into())}
     }
     fn blood_drinker(&self,id:&str)->Option<&Card>{self.board(id).map(|(_,c)|c).filter(|c|!c.face_down && catalog::card(&c.definition).kind=="character" && !self.players[c.controller].eliminated && self.current_subtypes(c).iter().any(|s|s=="吸血鬼"))}
     fn validate_blood_cursor(&self,f:&ResolutionFrame,state:&BloodFeedCursor)->RuleResult<()> {
         if state.recipients!=self.blood_recipients(f)? || state.cursor>state.recipients.len() || state.completed.len()!=state.cursor {return Err("饮血续体必须保留每个已处理收受者的收据".into());}
-        let event=match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).ok_or("饮血事件身份无效")?,_=>return Err("非准入饮血事件".into())};
+        let event_id=match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>&o.event_id,[Step{op:Op::BQ029SelfFeed{observation:Some(o)},..}]=>&o.event_id,_=>return Err("非准入饮血事件".into())};let event=event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).ok_or("饮血事件身份无效")?;
         let mut used=BTreeSet::new();
         for (i,done) in state.completed.iter().enumerate(){if done.recipient!=state.recipients[i]{return Err("饮血处理收据顺序不符".into());}
             if let Some(id)=&done.attached {if !used.insert(id) || id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n<=event || n>self.sequence) || !self.attachments.iter().any(|a|a.card.id==*id && a.host_id==done.recipient && catalog::card(&a.card.definition).name=="鲜血" && self.attachment_host_valid(a)){return Err("饮血收据缺少该次实际新结附鲜血".into());}}

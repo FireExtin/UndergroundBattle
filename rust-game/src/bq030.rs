@@ -243,7 +243,7 @@ impl Game {
             || !catalog::catalog()
                 .cards
                 .iter()
-                .any(|d| d.id == c.definition && d.supported && d.kind == kind)
+                .any(|d| d.id == c.definition && (d.supported || crate::batch3::IMPLEMENTING.contains(&d.id.as_str())) && d.kind == kind)
         {
             return Err("结附事件包含未知牌面、暗置对象或非法历史实例".into());
         }

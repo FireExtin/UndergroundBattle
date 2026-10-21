@@ -594,6 +594,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    BQ029ExtraAssets(Vec<String>),
     Batch3RemovedTime(TimeMarkerPayment),
     JC055Time(Vec<TimeMarkerPayment>),
     SacrificedSubtype { card: Card, subtypes: Vec<String> },
@@ -826,6 +827,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    Batch3EntryOrder { entry_instance:String },
     JC055TimePayment { source: SourceSnapshot },
     JC055PreparationTarget { declaration: Declaration, remaining: Vec<Declaration> },
     Rumor { batch: crate::rumor::GraveyardTransfer },
@@ -871,6 +873,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub entry_order_groups: Vec<crate::batch3_entry_order::EntryOrderGroup>,
     pub state_schema: u32,
     pub room_id: String,
     pub invite_code: String,

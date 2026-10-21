@@ -153,7 +153,7 @@
       "sourceImage": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
       "sourceImageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -599,7 +599,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 4,
+    "unreviewedRuntimeCards": 3,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -867,6 +867,36 @@
       "affectedFilters": {
         "sealing-27": 27,
         "existing-bq030-named-filter-2": 2
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "seventeenCardPilot": {
+      "passed": 114,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "BQ042",
+        "WM030",
+        "WM033",
+        "WM035",
+        "BQ079",
+        "BQ087",
+        "BQ089",
+        "XG26",
+        "XG28",
+        "BQ029",
+        "BQ037",
+        "JZ25",
+        "JC062",
+        "JC064",
+        "XQ22",
+        "XQ26",
+        "WM041"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/seventeen-card-pilot.json",
+      "affectedFilters": {
+        "raid-9": 9,
+        "jz22-18": 18
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

@@ -1,4 +1,7 @@
 mod batch3;
+mod batch3_entry_order;
+#[cfg(test)]
+mod batch3_guard_tests;
 mod batch3_blood;
 #[cfg(test)]
 mod batch3_blood_tests;
