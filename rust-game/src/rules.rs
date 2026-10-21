@@ -94,6 +94,7 @@ pub enum AttachmentHostCondition {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
     JC043SocietyOrOriginalRegion,
+    JC039BlueCharacter,
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
@@ -231,6 +232,11 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    NextBlueGraySearch,
+    JZ23RevealReward { observation: Option<crate::next20_blue_gray::LocalVampireReveal> },
+    JZ28DiscardSearch { observation: Option<crate::batch20_observers::DiscardObservation> },
+    CQ08Prepare { event_id: Option<String> },
+    BQ059EntryShield,
     JC034CombatDiscard { observation: Option<crate::batch20_observers::CombatWinObservation> },
     JC065SacrificeHidden,
     JC065RepressOne,
@@ -573,6 +579,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::mobility::related_ability(ability) {
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
+    }
+    if crate::next20_blue_gray::related_ability(card_id, ability) {
+        return crate::next20_blue_gray::validate_ability(card_id, ability);
     }
     crate::batch20::validate_ability(card_id, ability)?;
     crate::red_time::validate_ability(card_id, ability)?;
@@ -1324,6 +1333,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
         if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
+        crate::next20_blue_gray::validate_definition(card_id, definition)?;
         crate::batch20::validate_definition(card_id, definition)?;
         crate::bq035::validate_definition(card_id, definition)?;
         crate::mobility::validate_definition(card_id, definition)?;
@@ -1507,7 +1517,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1979,6 +1989,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::next20_blue_gray::CARDS {
+            m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());
+        }
         for id in crate::batch20::IMPLEMENTING {
             m.insert((*id).into(), crate::batch20::definition(id).unwrap());
         }

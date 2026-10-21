@@ -128,7 +128,7 @@ impl Game {
     pub(crate) fn has_retreat(&self, c: &Card) -> bool {
         !c.face_down
             && (crate::rules::definition(&c.definition).traits.retreat
-                || self.execution_turn_grants(c).1)
+                || self.execution_turn_grants(c).1 || self.next_blue_gray_retreat(c))
     }
     pub(crate) fn grant_execution_traits(
         &mut self,

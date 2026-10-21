@@ -134,7 +134,7 @@ pub fn catalog() -> &'static Catalog {
                     })
                     .unwrap_or_default();
                 // Preserve old definitions; expose only individually reviewed subtitles.
-                if !["JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52"]
+                if !["JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
                     .contains(&definition.id.as_str())
                 {
                     definition.subtitle = None;

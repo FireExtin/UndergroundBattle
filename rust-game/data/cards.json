@@ -6786,6 +6786,308 @@
       "unique": false,
       "society": "",
       "supported": true
+    },
+    {
+      "id": "JC039",
+      "name": "王座会徽记",
+      "subtitle": "至高王座前卑微的仆人",
+      "kind": "attachment",
+      "subtypes": [
+        "徽章"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n【快速行动】【横置】本回合中你下一张正面打出或翻面的王座会牌的所需费用减少1。\n【快速行动】3，【横置】：令目标本方王座会角色潜伏。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC039",
+        "image": "resource/ymsj-fun.github.io/cards/JC039 王座会徽记.jpg",
+        "imageSha256": "b18bc6ab425afd9f898841d69b106ed264ebf7391980f0e062c57a6426720146"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JZ23",
+      "name": "血宴召集人",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "触发 当另一个本方吸血鬼角色在本地区现身时，你可以支付①，然后在该角色上放置一个永久战斗1能力图标标志，然后目标玩家弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ23",
+        "image": "resource/ymsj-fun.github.io/cards/JZ23 血宴召集人.jpg",
+        "imageSha256": "df616c0913042a63979a64d57ea795f1157cd9b95a9f405912b872dd5e0854bd"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JZ28",
+      "name": "霍瓦特·爱弗罗德",
+      "subtitle": "血宴主人",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "罪犯"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色蓝色",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 3,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 2
+        }
+      },
+      "defense": 3,
+      "text": "领袖；袭击2\n触发 每当敌方玩家弃牌时，自你牌库顶的四张牌中寻找一张吸血鬼角色牌，将该牌展示后以暗藏者状态置于本地区，然后将其余的牌洗回牌库。",
+      "keywords": [
+        "领袖",
+        "袭击2"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ28",
+        "image": "resource/ymsj-fun.github.io/cards/JZ28 霍瓦特·爱弗罗德.jpg",
+        "imageSha256": "6ae88f3389f433bec0fce8e2d756d3f57728564b2eb2d91a8f72f3ed7a57ec02"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "XG10",
+      "name": "领地巡查使",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色蓝色",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "行动①，横置：自你的牌库中寻找一张名为鲜血的附属牌，将其结附在目标吸血鬼角色上，然后洗牌。\n行动⑤，横置：自你的牌库中寻找一张名为初拥的附属牌，将其结附在目标人类角色上，然后洗牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG10",
+        "image": "resource/ymsj-fun.github.io/cards/XG10 领地巡查使.jpg",
+        "imageSha256": "d5703bcd3a508ecf8266326b29b2bd4320f49557e9007c3b7302b537e5e337b9"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "CQ08",
+      "name": "诡异三姐妹",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝色",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身触发 从你的牌库中寻找一张名为诡异三姐妹的牌，展示后将该牌以暗藏者状态置于本地区，然后洗牌。\n准备步骤触发 若你操控三个名为诡异三姐妹的角色，你可以从你的牌库中寻找一张独有吸血鬼角色牌，将该牌放置进场并置于本地区，然后洗牌。同名角色能力每回合只能触发一次。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ08",
+        "image": "resource/ymsj-fun.github.io/cards/CQ08 诡异三姐妹.jpg",
+        "imageSha256": "5bca98e9ff8590ee41e92290a136ed41d38d0d25840239e565851ed34094e75d"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ059",
+      "name": "伊尔级战斗集群",
+      "subtitle": "泛用人型作战平台",
+      "kind": "character",
+      "subtypes": [
+        "机械",
+        "载具",
+        "人类",
+        "士兵"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 3,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 4,
+      "text": "公开；杀伤4；护卫4；护盾2\n快速行动X，横置：从你的牌库中寻找一张印刷费用为X的士兵、工程师或机械角色牌，将其放置进场并置于本地区，然后洗牌。X不能大于5。\n持续 本地区的所有本方角色获得撤回。",
+      "keywords": [
+        "公开",
+        "杀伤4",
+        "护卫4",
+        "护盾2"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ059",
+        "image": "resource/ymsj-fun.github.io/cards/BQ059 伊尔级战斗集群.jpg",
+        "imageSha256": "5c09efc50577e089596872d6ecb52e03a60dcfa8e51b695b2580970f47341bda"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "CQ17",
+      "name": "绍朗中尉",
+      "subtitle": "D9部队指挥官",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "士兵"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；护卫1\n持续 所有本地区的其他本方灰色角色获得永久战斗1和撤回。\n快速行动②，横置：从你的牌库中寻找一张印刷费用为②的士兵角色牌，将其放置进场并置于本地区，然后洗牌。",
+      "keywords": [
+        "公开",
+        "护卫1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ17",
+        "image": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg",
+        "imageSha256": "9a0ab08d27170670b44fdb0376bec00641683f68e250a89bcba87514d642432d"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

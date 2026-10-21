@@ -43,7 +43,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } => true,
+        Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::CQ08Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             uses(std::slice::from_ref(exhausted)) || uses(std::slice::from_ref(ready)),
@@ -74,17 +74,18 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC035" | "JC048" | "WM034" | "BQ091" | "JC068") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "CQ08") }
 pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "JC048" | "WM034" | "JC068") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
-    [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] => event_id.as_deref(), _ => None,
+    [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
 }}
 fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
     let mut a = if id == "JC035" { definition().abilities[1].clone() }
+        else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -138,7 +139,7 @@ impl Game {
             let r = s.region.filter(|r| *r < self.regions.len()).ok_or("JC035准备来源缺少原地区")?;
             let id = s.source_region_instance.as_deref().filter(|id| !id.is_empty() && *id != s.card.id)
                 .ok_or("JC035准备来源缺少原地区UID")?;
-            if s.attachment_host_instance.as_deref() != (if s.card.definition == "WM034" { None } else { Some(id) })
+            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "CQ08") { None } else { Some(id) })
                 || self.regions.iter().enumerate().any(|(index, region)| region.card.id == id && index != r)
                 || self.jc035_physical_cards().any(|c| c.id == id && catalog::card(&c.definition).kind != "region") {
                 return Err("JC035必须绑定原结附地区实体，不能改成其他区域或替代地区".into());
@@ -160,6 +161,7 @@ impl Game {
         }
         let mut sources = BTreeSet::new();
         let mut frames = BTreeSet::new();
+        let mut sisters_used = BTreeSet::new();
         for entry in &o.entries {
             let s = &entry.source; let actor = s.card.controller;
             self.jc035_source(s, actor, true)?;
@@ -168,7 +170,11 @@ impl Game {
                 || (preparation_forced(&s.card.definition) && !self.players[actor].eliminated && matches!(entry.decision, Some(PreparationDecision::Declined))) {
                 return Err("JC035准备资格只来自当时存活的敌方席位，不能重复来源".into());
             }
+            if s.card.definition == "CQ08" && o.entries.iter().filter(|e| e.source.card.definition == "CQ08" && e.source.card.controller == actor).count() < 3 {
+                return Err("三姐妹准备触发缺少当时同一操控者的三个公开同名来源".into());
+            }
             if let Some(PreparationDecision::Accepted { frame_id } | PreparationDecision::Resolved { frame_id }) = &entry.decision {
+                if s.card.definition == "CQ08" && !sisters_used.insert(actor) { return Err("三姐妹同名能力每操控者每回合只能发动一次".into()); }
                 if frame_id.is_empty() || frame_id == &s.card.id || o.event_id.as_ref() == Some(frame_id)
                     || !frames.insert(frame_id.clone()) {
                     return Err("JC035每项发动必须绑定独立且唯一的响应帧".into());
@@ -200,6 +206,7 @@ impl Game {
             .filter(|(_, c)| preparation_card(&c.definition) && !c.face_down && !self.players[c.controller].eliminated)
             .filter(|(_, c)| c.definition != "JC035" || hands.iter().any(|h|
                 !h.eliminated && self.team(h.seat) != self.team(c.controller) && h.count <= 3))
+            .filter(|(_, c)| c.definition != "CQ08" || self.cq08_count(c.controller) >= 3)
             .map(|(region, c)| self.source_snapshot(c, region)).collect::<Vec<_>>();
         // Seat ordering between teammates is the existing project contract;
         // each controller explicitly chooses its own simultaneous order.
@@ -264,6 +271,11 @@ impl Game {
         }
         let index = ds.iter().position(|d| d.source.card.id == selected[0]).ok_or("JC035准备来源不在待选列表")?;
         let d = ds.remove(index);
+        if d.source.card.definition == "CQ08" {
+            let siblings = ds.iter().filter(|other| other.source.card.definition == "CQ08" && other.actor == d.actor).cloned().collect::<Vec<_>>();
+            self.jc035_decline(&siblings);
+            ds.retain(|other| other.source.card.definition != "CQ08" || other.actor != d.actor);
+        }
         let frame = self.make_frame(d.actor, d.source.clone(), &d.ability, vec![], vec![], None);
         self.dispatch_frame(frame, format!("{}：{}", catalog::card(&d.source.card.definition).name, d.ability.label), None, ResponsePolicy::Respondable);
         let frame_id = self.stack.last().unwrap().id.clone();
@@ -334,6 +346,7 @@ impl Game {
             return Err("JC035准备效果不能重复执行".into());
         }
         entry.decision = Some(PreparationDecision::Resolved { frame_id: f.frame_id.clone() });
+        if f.source.card.definition == "CQ08" { return Ok(()); }
         if f.source.card.definition != "JC035" { return self.batch20_prepare_resolve(f); }
         if let Some(r) = f.source.region.filter(|r| self.regions.get(*r).is_some_and(|region|
             !region.vacant && f.source.source_region_instance.as_ref() == Some(&region.card.id))) {
@@ -430,6 +443,10 @@ impl Game {
                 ChoiceResolution::Declare { declaration: d, .. }
                     if d.source.card.definition == "JC035" || own(&d.ability) =>
                         return Err("JC035准备触发不能改成其他待选阶段".into()),
+                ChoiceResolution::Frame { frame, choice: FrameChoice::NextBlueGraySearch { inspected_ids } } if preparation_frame(frame) => {
+                    self.validate_next_blue_gray_search(p, frame, inspected_ids)?;
+                    remember(&frame.source)?;
+                },
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC068Upkeep } if preparation_frame(frame) => {
                     self.validate_jc035_frame(frame)?;
                     self.validate_jc068_upkeep(p, frame)?;

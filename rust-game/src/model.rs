@@ -79,6 +79,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub permanent_combat_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_domains: Option<Vec<MagicDomainCount>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub time_markers: Option<u32>,
@@ -342,6 +344,8 @@ pub struct PrivateInspectionView {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub permanent_combat_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub time_markers: u32,
     pub id: String,
@@ -640,6 +644,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    NextBlueGraySearch { inspected_ids: Vec<String> },
     JC065Sacrifice { seat: usize, region: usize, region_instance: String },
     Batch20Repress { seat: usize, regions: Vec<(usize, String, u32)> },
     Batch20SearchEntry,

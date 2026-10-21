@@ -75,15 +75,18 @@ impl Game {
     }
     pub(crate) fn capture_discard_observers(&self, holder: usize) -> Vec<SourceSnapshot> {
         self.regions.iter().enumerate().flat_map(|(r, reg)| reg.cards.iter().map(move |c| (r,c)))
-            .filter(|(_,c)| c.definition == "JC040" && !c.face_down && self.team(c.controller) != self.team(holder))
+            .filter(|(_,c)| matches!(c.definition.as_str(), "JC040" | "JZ28") && !c.face_down && self.team(c.controller) != self.team(holder))
             .map(|(r,c)| self.source_snapshot(c, Some(r))).collect()
     }
     pub(crate) fn emit_discard_observed(&mut self, holder: usize, cards: Vec<Card>, observers: Vec<SourceSnapshot>) {
         if cards.is_empty() || observers.is_empty() { return; }
         let observation = DiscardObservation { event_id: self.id(), turn: self.turn, holder, cards };
         for source in observers {
-            let mut ability = batch20::definition("JC040").unwrap().abilities[0].clone();
-            ability.ops = vec![Op::JC040RepressDiscard { observation: Some(observation.clone()) }];
+            let mut ability = if source.card.definition == "JZ28" {
+                crate::next20_blue_gray::definition("JZ28").unwrap().abilities[1].clone()
+            } else { batch20::definition("JC040").unwrap().abilities[0].clone() };
+            ability.ops = if source.card.definition == "JZ28" { vec![Op::JZ28DiscardSearch { observation: Some(observation.clone()) }] }
+                else { vec![Op::JC040RepressDiscard { observation: Some(observation.clone()) }] };
             self.effects.push_back(Effect::Declare { declaration: Declaration { actor: source.card.controller, source, ability } });
         }
     }

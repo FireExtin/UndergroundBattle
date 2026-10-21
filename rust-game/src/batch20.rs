@@ -386,7 +386,7 @@ impl Game {
         self.remove_dead(&ids[0], RemovalCause::Sacrifice);
         Ok(receipt)
     }
-    fn validate_batch20_payment(&self, f: &ResolutionFrame, expected: &[Cost]) -> RuleResult<()> {
+    pub(crate) fn validate_batch20_payment(&self, f: &ResolutionFrame, expected: &[Cost]) -> RuleResult<()> {
         if expected.len() != f.already_paid.len() { return Err("本批费用数量不符".into()); }
         for (cost, receipt) in expected.iter().zip(&f.already_paid) {
             match (cost, receipt) {
@@ -674,6 +674,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch20_state(&self) -> RuleResult<()> {
+        self.validate_next_blue_gray_state()?;
         self.validate_destruction_state()?;
         self.validate_influence_contests()?;
         self.validate_raid_state()?;

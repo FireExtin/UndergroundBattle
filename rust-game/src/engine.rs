@@ -135,6 +135,7 @@ impl Game {
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
         c.time_markers = 0;
+        c.permanent_combat_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
@@ -147,6 +148,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            permanent_combat_markers: 0,
             time_markers: 0,
             id: self.id(),
             definition: definition.into(),
@@ -411,6 +413,8 @@ impl Game {
         let d = card(&c.definition);
         let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
         let mut permanent_result = d.permanent_icons.add(sealed_permanent);
+        permanent_result.combat = permanent_result.combat.saturating_add(c.permanent_combat_markers)
+            .saturating_add(self.cq17_combat_bonus(c, region));
         if c.definition == "JC045" && !c.face_down
             && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
         {
@@ -1120,6 +1124,7 @@ impl Game {
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_batch20_frame(&frame)?;
+        self.validate_next_blue_gray_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -2216,6 +2221,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_domains: if hidden || asset || c.face_down || region.is_none() {
                 None
             } else {
@@ -2575,7 +2581,9 @@ impl Game {
                 .as_ref()
                 .filter(|p| p.seat == seat)
                 .map(|p| {
-                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
+                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::NextBlueGraySearch { .. }, .. }) {
+                        self.next_blue_gray_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
                         self.blue_expansion_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ46InspectHidden { .. }, .. }) {
                         self.jz46_private_choice(p, seat)

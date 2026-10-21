@@ -5,6 +5,9 @@ mod jc065;
 mod extra_influence;
 mod batch20_observers;
 mod raid;
+mod next20_blue_gray;
+#[cfg(test)]
+mod next20_blue_gray_tests;
 #[cfg(test)]
 mod batch20_tests;
 mod bq035;
