@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch20-next-2026-10-21",
+  "stage": "WIP-runtimeImplementation",
+  "baseCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
+  "branch": "progress/batch20-next-20261021",
+  "firstBatchSnapshotUnchanged": true,
+  "scope": {
+    "selectedNewCards": 20,
+    "fullyIntegratedNewCards": 0,
+    "selectionEnabledNewCards": 0,
+    "publishedNewCards": 0,
+    "neutralOrDualExpansion": "paused"
+  },
+  "cards": [
+    {
+      "id": "JC051",
+      "name": "诺恩纳格斯塔",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC051 诺恩纳格斯塔.jpg",
+        "sha256": "c71c143f2f4707bde5519974bea11b77ccc2def3f796261fcac6282acb464088",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JC055",
+      "name": "安妮斯朵拉",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC055 安妮斯朵拉.jpg",
+        "sha256": "673cf3ff51067ba55547ab7a5b7122f6b789f7b778b819bd44a623ad3dc6cb32",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JZ32",
+      "name": "癫狂的先知",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ32 癫狂的先知.jpg",
+        "sha256": "5eed37c4052a4ffdccf2aac29239a92b513fcb4430f66e340e2ecc2fd2e62824",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JZ34",
+      "name": "主祭伊兹帕帕洛特",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ34 主祭伊兹帕帕洛特.jpg",
+        "sha256": "89fd4be09d4afdf9d953528319cf262c00afc7573f76f82b19fa117e15e39093",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JZ41",
+      "name": "衰败之环",
+      "color": "红",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ41 衰败之环.jpg",
+        "sha256": "2564cc22e52e2604588dc656ce682e9d30b950a695eb690a7d6a027c2f9d509a",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "BQ077",
+      "name": "近海食人鱼",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ077 近海食人鱼.jpg",
+        "sha256": "e1a86f244d35599454a5eae84013cbdadec4535157a4b94ad7c8b588e9851043",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "BQ085",
+      "name": "三号骸堆",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ085 三号骸堆.jpg",
+        "sha256": "30fdec32ce8e636596509253fe4fa666c08672e4e2cdbf5932115a6454502816",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "CQ26",
+      "name": "暮天使莉芮尔",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/CQ26 暮天使莉芮尔.jpg",
+        "sha256": "7d6e38c0817d7740e680153ff5dbbdd13007f8743d15d654c36e1dcf29aa9b76",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "XG27",
+      "name": "悍狼的怨灵",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
+        "sha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "XQ39",
+      "name": "方碑印记",
+      "color": "黑",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg",
+        "sha256": "1be69fe1f9cdf2e99f5b46b28ddeceb97c921ee3cc44c63d4ff084c0ac04f2ae",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JC039",
+      "name": "王座会徽记",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JC039 王座会徽记.jpg",
+        "sha256": "b18bc6ab425afd9f898841d69b106ed264ebf7391980f0e062c57a6426720146",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JZ23",
+      "name": "血宴召集人",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ23 血宴召集人.jpg",
+        "sha256": "df616c0913042a63979a64d57ea795f1157cd9b95a9f405912b872dd5e0854bd",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "JZ28",
+      "name": "霍瓦特·爱弗罗德",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/JZ28 霍瓦特·爱弗罗德.jpg",
+        "sha256": "6ae88f3389f433bec0fce8e2d756d3f57728564b2eb2d91a8f72f3ed7a57ec02",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "XG10",
+      "name": "领地巡查使",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/XG10 领地巡查使.jpg",
+        "sha256": "d5703bcd3a508ecf8266326b29b2bd4320f49557e9007c3b7302b537e5e337b9",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "CQ08",
+      "name": "诡异三姐妹",
+      "color": "蓝",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/CQ08 诡异三姐妹.jpg",
+        "sha256": "5bca98e9ff8590ee41e92290a136ed41d38d0d25840239e565851ed34094e75d",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "BQ059",
+      "name": "伊尔级战斗集群",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ059 伊尔级战斗集群.jpg",
+        "sha256": "5c09efc50577e089596872d6ecb52e03a60dcfa8e51b695b2580970f47341bda",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "CQ17",
+      "name": "绍朗中尉",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg",
+        "sha256": "9a0ab08d27170670b44fdb0376bec00641683f68e250a89bcba87514d642432d",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "WM039",
+      "name": "P.S.C.精神分析师",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/WM039 P．S．C．精神分析师.jpg",
+        "sha256": "cdaad886511acf9dddab39bb9bf3c5b0bfe792fb19de523d35fa549c5cd74549",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "WM040",
+      "name": "心理审察委员",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/WM040 心理审察委员.jpg",
+        "sha256": "ffa49271712453387a717d004196d96b232d672bb6bcc6ef7bce657c1a273062",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    },
+    {
+      "id": "WM042",
+      "name": "新闻管控",
+      "color": "灰",
+      "source": {
+        "path": "resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg",
+        "sha256": "6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d",
+        "originalImageReviewedBy": "delegated source reviewers in this task",
+        "ownerByteHashVerified": true
+      },
+      "implementation": "inProgressInIndependentClone",
+      "selectionEnabled": false,
+      "release": "notReleased",
+      "localScopedTests": "notRun",
+      "independentReview": "notRun",
+      "realBrowserBattle": "notRun"
+    }
+  ],
+  "sourceCorrectionsPending": [
+    "WM040: original sun/exposure condition precedes both public and mobility; active specification and review summary currently omit it."
+  ],
+  "mechanisms": [
+    "search attachment then legal host, with resumable private choices",
+    "deck-to-grave actual movement batches and death-origin snapshots",
+    "persistent combat icon markers and same-name shared preparation limit",
+    "precise printed-cost search and local retreat auras",
+    "society exposure/secrecy immediate cancellation, dynamic hand limit, conditional keywords and rumor replacement"
+  ],
+  "reference": {
+    "repository": "https://github.com/RETORETO/UnderWorldPro",
+    "commit": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "reuseBasis": "User reports direct permission from code and illustration authors; preserve authorship and attribution. No claim that the public license changed.",
+    "ruleAuthority": "Our pinned original card images and manuals; external implementations must be checked and adapted."
+  },
+  "releaseOrder": [
+    "complete20Implementations",
+    "necessaryBuildStartupIdentity",
+    "officialSitesPublishPendingAcceptance",
+    "fullSuites",
+    "independentReview",
+    "realBrowserBattle"
+  ],
+  "githubCiAllowed": false,
+  "validation": {
+    "images": "20 exact byte copies verified against pinned SHA256; mappings added",
+    "runtime": "Implementation started; no completed admission or test pass claimed",
+    "browser": "notRun; coordinator owns real gameplay",
+    "existingSourceBoundaryTest": {
+      "command": "node --test tools/cards/batch20-source.test.mjs",
+      "passed": 4,
+      "failed": 0,
+      "scope": "Baseline 173-card registry and original scans; does not test new mechanisms"
+    },
+    "documentLinks": {
+      "checked": 39,
+      "invalid": 0
+    }
+  },
+  "recordedAt": "2026-10-21T13:50:17.361668+00:00"
+}

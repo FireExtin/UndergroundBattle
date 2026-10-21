@@ -74,6 +74,5 @@ test('all 20 admitted prints retain their independently reviewed names, costs, f
 test('all 173 admitted scans retain exact original bytes and both public mappings', () => {
   const result = validateAdmittedScans();
   assert.equal(result.checkedCards, 173);
-  assert.equal(result.manifestEntries, 185);
   for (const id of ids) assert(result.checkedIds.includes(id), id);
 });

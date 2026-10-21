@@ -923,5 +923,105 @@
     "url": "/cards/JC068.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC068 阿格斯IV.jpg",
     "sha256": "9b47581d3745bd5b9bbe7cd80cbaae75fc6d6aa7a1635e70e50319714044ee1c"
+  },
+  "JC051": {
+    "url": "/cards/JC051.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC051 诺恩纳格斯塔.jpg",
+    "sha256": "c71c143f2f4707bde5519974bea11b77ccc2def3f796261fcac6282acb464088"
+  },
+  "JC055": {
+    "url": "/cards/JC055.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC055 安妮斯朵拉.jpg",
+    "sha256": "673cf3ff51067ba55547ab7a5b7122f6b789f7b778b819bd44a623ad3dc6cb32"
+  },
+  "JZ32": {
+    "url": "/cards/JZ32.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ32 癫狂的先知.jpg",
+    "sha256": "5eed37c4052a4ffdccf2aac29239a92b513fcb4430f66e340e2ecc2fd2e62824"
+  },
+  "JZ34": {
+    "url": "/cards/JZ34.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ34 主祭伊兹帕帕洛特.jpg",
+    "sha256": "89fd4be09d4afdf9d953528319cf262c00afc7573f76f82b19fa117e15e39093"
+  },
+  "JZ41": {
+    "url": "/cards/JZ41.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ41 衰败之环.jpg",
+    "sha256": "2564cc22e52e2604588dc656ce682e9d30b950a695eb690a7d6a027c2f9d509a"
+  },
+  "BQ077": {
+    "url": "/cards/BQ077.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ077 近海食人鱼.jpg",
+    "sha256": "e1a86f244d35599454a5eae84013cbdadec4535157a4b94ad7c8b588e9851043"
+  },
+  "BQ085": {
+    "url": "/cards/BQ085.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ085 三号骸堆.jpg",
+    "sha256": "30fdec32ce8e636596509253fe4fa666c08672e4e2cdbf5932115a6454502816"
+  },
+  "CQ26": {
+    "url": "/cards/CQ26.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ26 暮天使莉芮尔.jpg",
+    "sha256": "7d6e38c0817d7740e680153ff5dbbdd13007f8743d15d654c36e1dcf29aa9b76"
+  },
+  "XG27": {
+    "url": "/cards/XG27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg",
+    "sha256": "9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0"
+  },
+  "XQ39": {
+    "url": "/cards/XQ39.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg",
+    "sha256": "1be69fe1f9cdf2e99f5b46b28ddeceb97c921ee3cc44c63d4ff084c0ac04f2ae"
+  },
+  "JC039": {
+    "url": "/cards/JC039.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC039 王座会徽记.jpg",
+    "sha256": "b18bc6ab425afd9f898841d69b106ed264ebf7391980f0e062c57a6426720146"
+  },
+  "JZ23": {
+    "url": "/cards/JZ23.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ23 血宴召集人.jpg",
+    "sha256": "df616c0913042a63979a64d57ea795f1157cd9b95a9f405912b872dd5e0854bd"
+  },
+  "JZ28": {
+    "url": "/cards/JZ28.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ28 霍瓦特·爱弗罗德.jpg",
+    "sha256": "6ae88f3389f433bec0fce8e2d756d3f57728564b2eb2d91a8f72f3ed7a57ec02"
+  },
+  "XG10": {
+    "url": "/cards/XG10.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG10 领地巡查使.jpg",
+    "sha256": "d5703bcd3a508ecf8266326b29b2bd4320f49557e9007c3b7302b537e5e337b9"
+  },
+  "CQ08": {
+    "url": "/cards/CQ08.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ08 诡异三姐妹.jpg",
+    "sha256": "5bca98e9ff8590ee41e92290a136ed41d38d0d25840239e565851ed34094e75d"
+  },
+  "BQ059": {
+    "url": "/cards/BQ059.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ059 伊尔级战斗集群.jpg",
+    "sha256": "5c09efc50577e089596872d6ecb52e03a60dcfa8e51b695b2580970f47341bda"
+  },
+  "CQ17": {
+    "url": "/cards/CQ17.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg",
+    "sha256": "9a0ab08d27170670b44fdb0376bec00641683f68e250a89bcba87514d642432d"
+  },
+  "WM039": {
+    "url": "/cards/WM039.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM039 P．S．C．精神分析师.jpg",
+    "sha256": "cdaad886511acf9dddab39bb9bf3c5b0bfe792fb19de523d35fa549c5cd74549"
+  },
+  "WM040": {
+    "url": "/cards/WM040.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM040 心理审察委员.jpg",
+    "sha256": "ffa49271712453387a717d004196d96b232d672bb6bcc6ef7bce657c1a273062"
+  },
+  "WM042": {
+    "url": "/cards/WM042.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg",
+    "sha256": "6c85542fa27932eac8261cb8e1a19f2bb8a8d1b7f562e44af526d97309f7ff3d"
   }
 }
