@@ -315,7 +315,7 @@
     "real browser battle of next20",
     "publication"
   ],
-  "publication": "not started for next20; v74 deployment pending; exact ABI92 retained and16module build/startup ready; do not submit a competing deployment",
+  "publication": "Official v75 saved with16kernel build; deployment not requested while existing v74 remains pending. See publication-v75.json.",
   "retainedInputs": [
     {
       "abi": 77,
@@ -440,7 +440,7 @@
     },
     "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32"
   },
-  "recordedAt": "2026-10-21T16:03:29.344062+00:00",
+  "recordedAt": "2026-10-21T16:15:57.231919+00:00",
   "historyBeforeRetained92": {
     "sitesBuild": {
       "status": "passed",

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21 16:14:43 UTC",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8e62ca2963c08191b23d86a9c57a3f6d",
+  "versionNumber": 75,
+  "sourceCommit": "cd32602ce1acd6d65a0bbed8d86f4b7d01885d82",
+  "productCandidate": "34e51ce1aa3da5676569875156199b1dcebfa599",
+  "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "rules": "hegemony-pdf-v1",
+  "engine": "rust-v0.2.93-batch20-next",
+  "cardPool": "limited-v2.83-batch20-next",
+  "ordinaryCards": 193,
+  "playerCards": 183,
+  "societies": 10,
+  "batchIds": [
+    "JC051",
+    "JC055",
+    "JZ32",
+    "JZ34",
+    "JZ41",
+    "BQ077",
+    "BQ085",
+    "CQ26",
+    "XG27",
+    "XQ39",
+    "JC039",
+    "JZ23",
+    "JZ28",
+    "XG10",
+    "CQ08",
+    "BQ059",
+    "CQ17",
+    "WM039",
+    "WM040",
+    "WM042"
+  ],
+  "wasm": {
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "savedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8e62ca2963c08191b23d86a9c57a3f6d",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 75,
+    "source": {
+      "commit_sha": "cd32602ce1acd6d65a0bbed8d86f4b7d01885d82"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000100481f9885d5fa6aab35b57",
+      "content_hash": "sha256:287c24029b17bac895fc774374ad95d81ea400c9de9d5763034e9e3393769564",
+      "size_bytes": 184719360,
+      "file_count": 232
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "localArchive": {
+    "format": "gzip-compressed tar",
+    "bytes": 105269760,
+    "sha256": "5610d69ab86b61c1441476a973bff1d8c3b3c36b230e0f6132d810c684399008",
+    "regularFiles": 232,
+    "directories": 8,
+    "decompressedTar": {
+      "bytes": 184719360,
+      "sha256": "201831b0c3df6c0e3f96b6f3ea15bb2bcddd295ab3efd92c4eb2e5bcadea2ae1"
+    }
+  },
+  "archiveBoundary": "The native save receipt records a different tar hash from the locally decompressed tar. Remote bytes have not been materialized for file-content comparison. Record both identities; no claim of whole-archive byte equality or confirmed reason for this difference.",
+  "deployment": {
+    "status": "notRequested",
+    "id": null,
+    "url": null,
+    "reason": "The existing v74 deployment is still pending. Avoid duplicate requests and competing deployments to the same site."
+  },
+  "precedingDeployment": {
+    "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+    "type": "publish",
+    "status": "pending",
+    "url": null,
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": null,
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-21T15:43:22.880209+00:00"
+  },
+  "publicationConfirmed": false,
+  "acceptance": "pending",
+  "validation": {
+    "evidence": "local-readiness.json",
+    "nativeTargeted": {
+      "passed": 129,
+      "failed": 0
+    },
+    "webTargeted": {
+      "passed": 180,
+      "failed": 0
+    },
+    "mechanismReplay": {
+      "passed": 35,
+      "transitions": 479,
+      "projections": 1916
+    },
+    "societyZoneReplay": {
+      "passed": 8,
+      "transitions": 74,
+      "projections": 296
+    },
+    "retainedKernelHttpD1": {
+      "kernels": 16,
+      "passed": 6,
+      "failed": 0
+    },
+    "frozenInputTools": {
+      "passed": 12,
+      "failed": 0
+    },
+    "officialBuild": {
+      "exitCode": 0,
+      "wasmModules": 16,
+      "sourcePushed": true
+    }
+  },
+  "notValidated": [
+    "Production runtime identity for v75",
+    "Full Native/WASM and Sites suites for next20",
+    "Independent review of next20",
+    "Real browser battle of next20"
+  ],
+  "unchangedBoundaries": [
+    "No GitHub CI, main merge, PR, tag or release.",
+    "Existing v73 rooms retain exact ABI91 and its known defects.",
+    "ABI92 was retained from the exact saved v74 originals; its publication remains unconfirmed.",
+    "Postpublication full suites and browser acceptance remain pending; component and oracle tests are not browser play."
+  ],
+  "officialWorkflow": "Sites 0.1.75 official helper; source prepare/push then native save; publish_on_push not enabled"
+}
