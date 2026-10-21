@@ -242,7 +242,9 @@ impl Game {
                 Effect::Declare { declaration: d } => self.jc041_declaration(d)?,
                 Effect::Frame { frame: f } => {
                     self.validate_jc041_frame(f)?;
-                    if related(f) && (!ids.insert(f.frame_id.clone()) || matches!(f.ability_key.as_str(), "deploy" | "reveal" | HIDDEN | REVEAL)) {
+                    if related(f) && (!ids.insert(f.frame_id.clone())
+                        || (matches!(f.ability_key.as_str(), "deploy" | "reveal" | HIDDEN | REVEAL)
+                            && !self.rumor_frame_continuation_valid(f))) {
                         return Err("JC041进场/水域行动/强制弃牌不能复制或绕过响应堆栈".into());
                     }
                 }

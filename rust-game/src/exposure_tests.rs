@@ -801,3 +801,120 @@ fn exposure_actual_lc12_protection_and_jc089_grant_glory_to_both_gray_characters
         exposure_granted_reward_case(definition, true);
     }
 }
+
+#[test]
+fn exposure_rumor_jc114_owner_replaces_after_real_effect_sacrifice() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 1, 2);
+    let source = board(&mut g, "JC114", 0, 2);
+    let rumor = held(&mut g, "WM042", 3, 2);
+    fund(&mut g, 0, "JC125", 1);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(source.clone()),
+            ability_id: Some("reveal-hand-discard".into()),
+            target_id: Some("p2".into()),
+            ..Action::new("activate")
+        },
+    );
+    pass_top(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 0);
+    choose(&mut g, vec![rumor]);
+    assert!(g.board(&source).is_none());
+    assert_eq!(g.pending.as_ref().unwrap().seat, 3);
+    choose(&mut g, vec![host]);
+    assert_eq!(
+        g.players[0]
+            .graveyard
+            .iter()
+            .filter(|c| c.definition == "JC114")
+            .count(),
+        1
+    );
+    assert!(g.players[3].graveyard.is_empty());
+    assert_eq!(g.sealed_cards.len(), 1);
+}
+
+#[test]
+fn exposure_rumor_jc041_continues_remaining_players_once() {
+    let mut g = game(0);
+    let host = board(&mut g, "JC125", 0, 2);
+    let source = board(&mut g, "JC041", 0, 2);
+    g.board_mut(&source).unwrap().face_down = true;
+    let rumor = held(&mut g, "WM042", 3, 0);
+    let ordinary = held(&mut g, "JC125", 2, 2);
+    fund(&mut g, 0, "JC125", 4);
+    apply(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(source),
+            ..Action::new("reveal")
+        },
+    );
+    for _ in 0..16 {
+        if g.pending.is_some() {
+            break;
+        }
+        pass_once(&mut g);
+    }
+    assert_eq!(g.pending.as_ref().unwrap().seat, 0);
+    choose(&mut g, vec![rumor]);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 3);
+    choose(&mut g, vec![host]);
+    assert_eq!(g.pending.as_ref().unwrap().seat, 2);
+    choose(&mut g, vec![ordinary]);
+    assert_eq!(g.players[2].graveyard.len(), 1);
+    assert!(g.players[3].graveyard.is_empty());
+    assert_eq!(g.sealed_cards.len(), 1);
+    assert!(g.pending.is_none());
+}
+
+#[test]
+fn exposure_rumor_jc031_random_and_selected_discards_preserve_real_death_receipt() {
+    for vampire in [false, true] {
+        let mut g = game(0);
+        let host = board(&mut g, "JC125", 1, 2);
+        board(&mut g, "JC031", 0, 2);
+        let victim = board(&mut g, if vampire { "JC029" } else { "JC125" }, 0, 1);
+        let rumor = held(&mut g, "WM042", 3, 2);
+        let destroy = held(&mut g, "JC091", 0, 0);
+        fund(&mut g, 0, "JC084", 3);
+        apply(
+            &mut g,
+            0,
+            Action {
+                card_id: Some(destroy),
+                target_id: Some(victim),
+                ..Action::new("play")
+            },
+        );
+        pass_top(&mut g);
+        choose(&mut g, vec!["p2".into()]);
+        pass_top(&mut g);
+        if !vampire {
+            choose(&mut g, vec![rumor]);
+        }
+        assert_eq!(g.pending.as_ref().unwrap().choice.kind, "rumor");
+        let mut changed = g.clone();
+        if let ChoiceResolution::Rumor { batch } = &mut changed.pending.as_mut().unwrap().resolution
+        {
+            batch
+                .cause
+                .as_mut()
+                .unwrap()
+                .source
+                .observed_death
+                .as_mut()
+                .unwrap()
+                .card
+                .definition = "WM042".into();
+        }
+        bad(&g, changed);
+        choose(&mut g, vec![host]);
+        assert!(g.players[3].graveyard.is_empty());
+        assert_eq!(g.sealed_cards.len(), 1);
+    }
+}

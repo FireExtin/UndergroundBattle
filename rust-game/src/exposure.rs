@@ -341,7 +341,12 @@ impl Game {
                 || !f.targets.is_empty()
                 || f.chosen_region != f.source.region
                 || f.source.region.is_none_or(|r| r >= self.regions.len())
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(_)])
+                || f.source
+                    .source_region_instance
+                    .as_ref()
+                    .is_none_or(|id| id.is_empty() || id == &c.id)
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&c.definition).cost as usize
+                    && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || (f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some()))
             {
@@ -361,9 +366,26 @@ impl Game {
                 &a.targets,
                 &f.targets.iter().map(|t| t.spec.clone()).collect::<Vec<_>>(),
             )
-            || f.targets
-                .iter()
-                .any(|t| t.public.instance_id != t.id || t.region_instance.is_some())
+            || f.targets.iter().any(|t| {
+                t.public.instance_id != t.id
+                    || t.region_instance.is_some()
+                    || !t.public.valid
+                    || t.public.status != "valid"
+                    || t.public.invalid_reason.is_some()
+                    || t.public.kind != "player"
+                    || t.public.region.is_some()
+                    || t.public.owner.is_some()
+                    || t.public.controller.as_ref() != Some(&t.id)
+                    || !t
+                        .id
+                        .strip_prefix('p')
+                        .and_then(|s| s.parse::<usize>().ok())
+                        .is_some_and(|seat| {
+                            seat < self.players.len()
+                                && t.id == player_id(seat)
+                                && t.public.label == self.players[seat].name
+                        })
+            })
             || (f.cursor != 0
                 && !(a.key == "wm040-repress"
                     && f.cursor == 1
@@ -409,6 +431,7 @@ impl Game {
             "wm042-news" => {
                 matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && assets(ids, ids.len()))
                     && f.source.region.is_none()
+                    && f.source.source_region_instance.is_none()
                     && f.source.play_source.is_none()
             }
             _ => false,

@@ -332,6 +332,8 @@ impl Game {
                 || c.damage > 0
                 || c.wounds > 0
                 || c.shield > 0
+                || c.lock_markers > 0
+                || c.time_markers > 0
                 || zone.iter().any(|live| live.id == old.id)
             {
                 return Err("传闻区域转移未重置身份".into());
@@ -353,6 +355,16 @@ impl Game {
             || f.source.card.controller != f.actor
             || f.source.card.owner >= self.players.len()
             || f.source.card.id.is_empty()
+            || f.source.card.face_down
+            || !catalog::catalog()
+                .cards
+                .iter()
+                .any(|c| c.id == f.source.card.definition)
+            || f.source.region.is_some_and(|r| r >= self.regions.len())
+            || f.source.play_source.is_some()
+            || f.source.observed_mobility_grant.is_some()
+            || f.source.observed_exposure.is_some()
+            || f.chosen_region.is_some()
             || f.frame_id.is_empty()
             || !matches!(f.guard, GuardState::Accepted)
             || f.cursor == 0
@@ -393,6 +405,16 @@ impl Game {
         }
         self.validate_batch20_frame(f)?;
         self.validate_jc035_frame(f)?;
+        self.validate_jc041_frame(f)?;
+        if f.source.observed_death.is_some() {
+            // The original observer was accepted before the random/nonrandom
+            // discard. Authenticate its captured death and paid-once limit at
+            // the original entry cursor without re-running its guard or RNG.
+            let mut original = (**f).clone();
+            original.cursor = 0;
+            original.guard = GuardState::Unchecked;
+            self.validate_observer_frame(&original, None)?;
+        }
         // Authenticate the full original program, including every later step.
         // Runtime batch observations keep their existing stricter validators.
         let dynamic = matches!(
@@ -424,7 +446,22 @@ impl Game {
                     f.already_paid.clone(),
                     f.chosen_region,
                 );
+                let payment = if a.event.is_some() {
+                    f.already_paid.is_empty()
+                } else if f.source.card.definition == "JC114" {
+                    matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
+                        if ids.len() == 1 && !ids[0].is_empty() && id == &f.source.card.id && !f.source.card.exhausted)
+                } else if a.costs.is_empty() {
+                    matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
+                        if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+                            && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                } else {
+                    // Existing nontrivial JC038 sacrifice is authenticated above
+                    // by validate_batch20_frame, including captured actual subtype.
+                    f.source.card.definition == "JC038"
+                };
                 a.key == f.ability_key
+                    && payment
                     && a.modes.is_empty()
                     && same(&expected.steps, &f.steps)
                     && same(
