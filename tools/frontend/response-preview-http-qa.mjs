@@ -1,4 +1,4 @@
-// Real production GameApp, listening HTTP/workerd, all six exact WASM modules,
+// Real production GameApp, listening HTTP/workerd, all one current WASM module,
 // and synthetic local D1. Client and server clocks are explicit test inputs.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
@@ -6,7 +6,7 @@ import { mkdir, mkdtemp, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadFixture, sha256 } from '../response-preview-oracle.mjs';
-import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current82-kernel.mjs';
+import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { RoomStore } from '../../sites/src/store.mjs';
 import { digest } from '../../sites/src/service.mjs';
 import { assertPublicView, assertSessionJournal } from '../../sites/test/assert-session-journal.mjs';
@@ -18,13 +18,12 @@ assert(process.argv[2],'Provide a new evidence directory');const output=resolve(
 const fixture=loadFixture();assert.equal(sha256(moduleBytes),fixture.wasmSha256);
 const initial=fixture.scenarios.find(s=>s.name==='preview-then-real-reveal').initial;
 const passReference=fixture.scenarios.find(s=>s.name==='preview-peer-pass-cancel').steps.find(s=>s.kind==='command');
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc054-worker/server');
+const worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(repo,'sites/dist/current-clock/worker.js'));
 const client=join(sites,'dist/client'),id=initial.views[0].roomId;
 const modules=await Promise.all((await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
-const oldHashes=await Promise.all([77,78,79,80,81].map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`),'utf8')).wasmSha256));
-assert.deepEqual(modules.map(m=>m.sha256).sort(),[fixture.wasmSha256,...oldHashes].sort());
-const report={passed:false,scope:'Native82 initial layout; four real production clients at each viewport; local trusted server clock 0 and controlled browser timers; not online play',engine:fixture.catalog.engineVersion,
-  wasmSha256:fixture.wasmSha256,fixtureSha256:sha256(await readFile(join(repo,'rust-game-wasm/tests/responsePreviewNative82.fixture.json.gz'))),
+assert.deepEqual(modules.map(m=>m.sha256).sort(),[fixture.wasmSha256]);
+const report={passed:false,scope:'Native93 initial layout; four real production clients at each viewport; local trusted server clock 0 and controlled browser timers; not online play',engine:fixture.catalog.engineVersion,
+  wasmSha256:fixture.wasmSha256,fixtureSha256:sha256(await readFile(join(repo,'rust-game-wasm/tests/responsePreviewNative93.fixture.json.gz'))),
   workerSha256:sha256(await readFile(join(worker,'worker.js'))),productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),
   clientIndexSha256:sha256(await readFile(join(client,'index.html'))),modules,viewports:[],pageErrors:[],screenshots:[]};
 let browser,mf,pages=[];
@@ -99,11 +98,11 @@ try {
       const expected=JSON.parse(abi.applyRoom(state,seat,JSON.stringify(body),'0'));assert.equal(expected.outcome,'accepted');assertPublicView(response,expected.view);
       assert.equal((await store.room(id)).state,expected.state);if(reference){assert.equal(expected.state,reference.expected.state);assertPublicView(response,reference.expected.view);}
       const journal=await db.prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(id,expected.version).first();assertSessionJournal(journal.entry,expected.journal);
-      await expect.poll(()=>run.posts[seat]).toBe(posts+1);run.commands.push({seat,kind,action:body.action,version:expected.version,stateSha256:sha256(expected.state),posts:run.posts[seat]-posts,reference:reference?'exact Native82 plus same-body WASM':'same-body fresh82 WASM'});
+      await expect.poll(()=>run.posts[seat]).toBe(posts+1);run.commands.push({seat,kind,action:body.action,version:expected.version,stateSha256:sha256(expected.state),posts:run.posts[seat]-posts,reference:reference?'exact Native93 plus same-body WASM':'same-body current93 WASM'});
       return {seat,body,response,state:expected.state};
     };
     await command(1,'passResponse',pages[1].getByRole('button',{name:'不连锁，让过',exact:true}),passReference);
-    await expect(pages[1].locator('.hg-response-window')).toHaveAttribute('data-response-state','passed');run.checks.push('manual Pass submits original payload exactly once, matching Native82 and D1 journal');
+    await expect(pages[1].locator('.hg-response-window')).toHaveAttribute('data-response-state','passed');run.checks.push('manual Pass submits original payload exactly once, matching Native93 and D1 journal');
     await pages[0].reload();await expect(tile(0,hidden)).toContainText('候选·快速');
     const begun=await command(0,'beginResponse',pages[0].getByRole('button',{name:'连锁',exact:true}));
     await expect(pages[0].locator('.hg-response-window')).toHaveAttribute('data-response-state','composing');

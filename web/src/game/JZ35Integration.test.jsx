@@ -1,20 +1,21 @@
-// Requires newly generated Native77 inputs and the matching production ABI.
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
+// Requires newly generated Native93 inputs and the matching production ABI.
 // Intentionally has no fallback to Native71 or synthetic state expectations.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { render,screen,fireEvent,act } from '@testing-library/react';
 import { it,expect,vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { Table } from './Table';
 import { actionForRoom } from './api';
-const wasm=frozen77Bytes;
+const wasm=currentBytes;
 abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
-const fixture=JSON.parse(readFileSync(resolve('src/game/jz35Native77.fixture.json'),'utf8'));
-it('uses the newly built JZ35 catalog and the exact matching Native77 ABI hash',()=>{
-  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.70-jc046-mandatory-sacrifice-candidate');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/jz35.json.gz');
+it('uses the newly built JZ35 catalog and the exact matching Native93 ABI hash',()=>{
+  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JZ35').abilities).toMatchObject([{key:'jz35-sacrifice-return-controlled-hosts',timing:'standard',triggered:false,costs:[]}]);
 });

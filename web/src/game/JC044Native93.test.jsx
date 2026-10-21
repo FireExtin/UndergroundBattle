@@ -1,8 +1,8 @@
-// Compiler-bound Native85 -> actual WASM -> production Table/choice controls.
+// Compiler-bound Native93 -> actual WASM -> production Table/choice controls.
 import {render,screen,fireEvent,within} from '@testing-library/react';
 import {beforeEach,afterEach,expect,it,vi} from 'vitest';
 import {loadFixture,sha256} from '../../../tools/jc044-oracle.mjs';
-import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current85-kernel.mjs';
+import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {actionForRoom} from './api';

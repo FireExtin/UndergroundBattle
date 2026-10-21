@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Actual terminal checkpoint produced by the fresh-lobby Native match, then
 // current WASM/RoomService/local D1 commands. Not a browser or online DB test.
 import { test } from 'node:test';
@@ -9,11 +10,11 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 
 test('fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt', async t => {
-  abi.initSync({ module: frozen77Bytes });
-  const trace = JSON.parse(readFileSync(new URL('./fixtures/sealed-restart-native-v077.json', import.meta.url), 'utf8'));
+  abi.initSync({ module: currentBytes });
+  const trace = loadCurrentFixture('rust-game-wasm/tests/current93/sealed-restart.json.gz');
   assert.equal(trace.scope, 'natural-fresh-match-terminal-state-then-real-restart-persist-next-choice');
   const kernel = routeKernels(abi);
   const persist = mkdtempSync(join(tmpdir(), 'sealed-restart-d1-'));

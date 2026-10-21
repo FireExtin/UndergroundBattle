@@ -1,4 +1,4 @@
-// Actual local HTTP/workerd/twelve-WASM/D1; explicit Native88 layouts, not live rooms.
+// Actual local HTTP/workerd/WASM/D1; explicit Native93 layouts, not live rooms.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
@@ -6,7 +6,7 @@ import {loadFixture} from '../../tools/xq23-oracle.mjs';
 import {harness} from './xq23-http-harness.mjs';
 const fixture=loadFixture();
 
-for(const scenario of fixture.scenarios)test(`XQ23 ABI88 HTTP ${scenario.name}`,async t=>{
+for(const scenario of fixture.scenarios)test(`XQ23 ABI93 HTTP ${scenario.name}`,async t=>{
   const h=await harness(t,scenario);let accepted=0,rejected=0,projections=0;
   const receipts=[];
   const viewAll=async views=>{for(let seat=0;seat<4;seat++){
@@ -40,7 +40,7 @@ for(const scenario of fixture.scenarios)test(`XQ23 ABI88 HTTP ${scenario.name}`,
     const retry=await h.api('commands',row.seat,row.command);assert.equal(retry.status,200);assert.deepEqual(retry.body,body);
     assert.deepEqual(await h.snapshot(),final);
   }
-  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native88',accepted,rejected,projections,
+  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native93',accepted,rejected,projections,
     originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true,localSyntheticDatabaseRetained:true}));
 });
 

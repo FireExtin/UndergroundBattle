@@ -29,7 +29,7 @@ fn fresh_entry_legal_decks_normal_commands_reach_both_printed_searches() {
         updated_at: "2026-10-07".into(),
     };
     let mut g = Game::new_with_deck(
-        "fresh-entry-50".into(),
+        "f00000000000000000000050".into(),
         "FRESH50".into(),
         "teams".into(),
         "P0".into(),
@@ -62,7 +62,8 @@ fn fresh_entry_legal_decks_normal_commands_reach_both_printed_searches() {
         );
         *room = RoomEnvelope::from_persisted(&transition.state).unwrap();
         steps.push(serde_json::json!({"seat":seat,"command":command,"serverNowMs":now.to_string(),"transitionSha256":hash(&serde_json::to_vec(&serde_json::to_value(&transition).unwrap()).unwrap()),"stateSha256":hash(transition.state.as_bytes()),
-            "viewSha256":(0..4).map(|s|hash(&serde_json::to_vec(&serde_json::to_value(room.view(s,now)).unwrap()).unwrap())).collect::<Vec<_>>() }));
+            "viewSha256":(0..4).map(|s|hash(&serde_json::to_vec(&serde_json::to_value(room.view(s,now)).unwrap()).unwrap())).collect::<Vec<_>>(),
+            "transition":transition,"views":(0..4).map(|s|room.view(s,now)).collect::<Vec<_>>() }));
     };
     for seat in 0..4 {
         record(

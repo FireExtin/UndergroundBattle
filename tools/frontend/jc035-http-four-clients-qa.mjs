@@ -1,12 +1,12 @@
-// Local production UI -> HTTP/workerd/thirteen exact WASMs -> persistent synthetic D1.
-// Start from an unchanged Native89 pending-choice state; never online gameplay.
+// Local production UI -> HTTP/workerd/one current WASM module -> persistent synthetic D1.
+// Start from an unchanged Native93 pending-choice state; never online gameplay.
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {mkdir,mkdtemp,readFile,readdir,writeFile} from 'node:fs/promises';
 import {dirname,join,resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {loadFixture,sha256} from '../jc035-oracle.mjs';
-import {kernel,moduleBytes} from '../../rust-game-wasm/tests/current89-kernel.mjs';
+import {kernel,moduleBytes} from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {RoomStore} from '../../sites/src/store.mjs';
 import {digest} from '../../sites/src/service.mjs';
 import {assertPublicView,assertSessionJournal} from '../../sites/test/assert-session-journal.mjs';
@@ -19,17 +19,16 @@ const f=loadFixture();assert.equal(sha256(moduleBytes),f.wasmSha256);
 const original=f.scenarios.find(s=>s.name==='same-controller-order');
 const offset=original.steps.findIndex(r=>r.command.action.action?.kind==='choose');assert(offset>0);
 const scenario={initial:{state:original.steps[offset].state,views:original.steps[offset-1].views},steps:original.steps.slice(offset)};
-const initial=scenario.initial.views[0],id=initial.roomId,worker=process.env.HEGEMONY_CURRENT_WORKER_DIR;assert(worker);
+const initial=scenario.initial.views[0],id=initial.roomId,worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(repo,'sites/dist/current-clock/worker.js'));
 const client=join(sites,'dist/client'),viewport={width:1366,height:768};
 const modules=await Promise.all((await readdir(worker)).filter(n=>n.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
-const retained=await Promise.all(Array.from({length:12},(_,i)=>77+i).map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`))).wasmSha256));
-assert.deepEqual(modules.map(m=>m.sha256).sort(),[f.wasmSha256,...retained].sort());
+assert.deepEqual(modules.map(m=>m.sha256).sort(),[f.wasmSha256]);
 const persist=await mkdtemp(join(process.env.TMPDIR,'jc035-browser-')),tokens=Array.from({length:4},(_,s)=>String(s+1).repeat(64));
 const options={name:'jc035-browser',rootPath:sites,modulesRoot:worker,host:'127.0.0.1',port:0,cf:false,compatibilityDate:'2026-10-02',resourcePersistencePath:persist,
  modules:[{type:'ESModule',path:join(worker,'worker.js')},...modules.map(m=>({type:'CompiledWasm',path:join(worker,m.file)}))],
  d1Databases:{DB:'jc035-browser'},bindings:{LOCAL_TEST_CLOCK_MS:'0'},assets:{directory:client,binding:'ASSETS',run_worker_first:['/api/*'],routerConfig:{has_user_worker:true},assetConfig:{not_found_handling:'single-page-application'}}};
 const report={passed:false,onlineGameplay:false,syntheticNativeInitialState:true,siteChanged:false,mainMerged:false,
- scope:'Actual local production UI, listening HTTP/workerd/thirteen original WASMs/D1 and four browser contexts; three ordered JC035 declarations.',
+ scope:'Actual local production UI, listening HTTP/workerd/one current WASM module/D1 and four browser contexts; three ordered JC035 declarations.',
  nativeInitialStateSha256:sha256(scenario.initial.state),nativeRawSha256:f.raw.sha256,nativeInputs:141,wasmSha256:f.wasmSha256,modules,viewport,persist,
  driverSha256:sha256(await readFile(fileURLToPath(import.meta.url))),workerSha256:sha256(await readFile(join(worker,'worker.js'))),productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),
  clientIndexSha256:sha256(await readFile(join(client,'index.html'))),commands:[],screenshots:[],posts:[0,0,0,0],pageErrors:[],reopened:0};

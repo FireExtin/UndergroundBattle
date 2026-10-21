@@ -1,17 +1,18 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { assertSessionJournal, assertPublicView } from './assert-session-journal.mjs';
-// Prepared actual Native77 cases; local workerd/D1, not browser or online play.
+// Prepared actual Native93 cases; local workerd/D1, not browser or online play.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-abi.initSync({module:frozen77Bytes});
-const fixture=JSON.parse(readFileSync(new URL('./fixtures/jc052-native-v077.json',import.meta.url)));
+abi.initSync({module:currentBytes});
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current93/jc052.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
 
 for(const row of fixture.cases) test(`JC052 ${row.name}: complete Native command, D1 reopen and original HTTP receipt`,async t=>{

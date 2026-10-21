@@ -1,26 +1,27 @@
-// Focused P2 qualification: exact old paid-state mutation and new bound Native trace.
+// P2 qualification from the current Native paid frame and current owner trace; historical bytes stay untouched.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {loadFixture} from '../../tools/xq23-oracle.mjs';
 import {loadP2Fixture,reviewSummaryCases} from '../../tools/xq23-p2-oracle.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 import {harness} from './xq23-http-harness.mjs';
-const original=loadFixture(),p2=loadP2Fixture(),boundary=reviewSummaryCases();
-const reference=original.scenarios.find(s=>s.name==='actor-0').steps[0].views;
+const p2=loadP2Fixture(),boundary=reviewSummaryCases();
+const reference=boundary.views;
 
-for(const bad of boundary.invalid)test('XQ23 P2 exact paid-state '+bad.name+' rejects HTTP read/command/reopen without writes',async t=>{
- const expectedError=original.invalid.find(x=>x.name===bad.name).roomError;
- const h=await harness(t,{initial:{state:bad.state,views:reference}}),before=await h.snapshot();
+for(const bad of boundary.invalid)test('XQ23 P2 current paid-state '+bad.name+' rejects HTTP read/command/reopen without writes',async t=>{
+ const expectedError=bad.roomError;
+ const views=reference.map(v=>({...v,roomId:bad.roomId,inviteCode:bad.inviteCode,version:bad.revision}));
+ const h=await harness(t,{initial:{state:bad.state,views}}),before=await h.snapshot();
+ assert.equal(before.room.state,bad.state);
  assert.equal(before.commands.length,0);assert.equal(before.journal.length,0);
  let rejected=0;
  for(let reopened=0;reopened<2;reopened++){
   if(reopened)await h.reopen();
   for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,400);assert.equal(r.body.message,expectedError);rejected++;}
-  const r=await h.api('commands',0,{commandId:'p2-exact-'+bad.name,expectedVersion:9,action:{kind:'pauseRoom'}});
+  const r=await h.api('commands',0,{commandId:'p2-exact-'+bad.name,expectedVersion:bad.revision,action:{kind:'pauseRoom'}});
   assert.equal(r.status,400);assert.equal(r.body.message,expectedError);rejected++;
   assert.deepEqual(await h.snapshot(),before);
  }
- t.diagnostic(JSON.stringify({exactOriginalPaidStateSha256:'76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65',singleField:bad.changedPath,http400:rejected,realD1Reopen:true,noRoomCommandOrJournalWrites:true}));
+ t.diagnostic(JSON.stringify({currentCoreNativeRawSha256:boundary.nativeRawSha256,currentNativeInvalidStateSha256:bad.nativeStateSha256,invalidField:bad.changedPath,http400:rejected,realD1Reopen:true,noRoomCommandOrJournalWrites:true}));
 });
 
 test('XQ23 P2 real borrowed-owner elimination keeps Native state, resources, score and live-owner receipts across HTTP/D1',async t=>{
@@ -52,5 +53,5 @@ test('XQ23 P2 real borrowed-owner elimination keeps Native state, resources, sco
  const game=JSON.parse(final.room.state).game;
  assert.equal(game.players[2].hand.length,0);assert(game.players[3].hand.some(c=>c.definition==='XQ23'));assert(game.players.flatMap(p=>p.assets).every(c=>c.owner!==2));
  assert.equal(accepted,165);assert.equal(rejected,1);
- t.diagnostic(JSON.stringify({source:'actual139-input Native88P2',accepted,rejected,projections,reopened,completeOpaqueStatesAndJournals:true,scorePreserved:'4+2',deadOwnerAssetsAndHandAbsent:true,liveOwnerReturnSucceeded:true,allOriginalReceiptsRetriedWithoutWrites:true,localSyntheticDatabaseRetained:true}));
+ t.diagnostic(JSON.stringify({source:'current-source Native93 P2',accepted,rejected,projections,reopened,completeOpaqueStatesAndJournals:true,scorePreserved:'4+2',deadOwnerAssetsAndHandAbsent:true,liveOwnerReturnSucceeded:true,allOriginalReceiptsRetriedWithoutWrites:true,localSyntheticDatabaseRetained:true}));
 });

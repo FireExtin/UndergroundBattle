@@ -1,5 +1,6 @@
 """Join current Native checkpoints with actual accepted commands, no state edits."""
 from pathlib import Path
+import subprocess
 import hashlib,json,sys
 
 root=Path(sys.argv[1]).resolve()
@@ -22,8 +23,8 @@ for p in sorted((root/'native').glob('*.json')):
 assert len(cases)==4,len(cases)
 wasm=Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()
 result={'scope':'Explicit offline Native layouts and actual accepted Room commands; no browser, saved-room migration or online injection.',
-        'sourceBaseline':'af77581af15a20949772f981f1ee29b62712b212',
+        'sourceBaseline':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'wasmSha256':hashlib.sha256(wasm).hexdigest(),'cases':cases}
-out=Path(f'web/src/game/jc087Native{suffix}.fixture.json')
-out.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+out=Path(f'web/src/game/jc087Native{suffix}.fixture.json') if len(sys.argv)<4 else Path(sys.argv[3])
+with out.open('x') as stream: stream.write(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
 print(json.dumps({'cases':len(cases),'path':str(out),'bytes':out.stat().st_size}))

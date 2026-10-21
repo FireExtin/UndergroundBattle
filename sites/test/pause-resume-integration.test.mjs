@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Explicit offline native layout; real current WASM, RoomService and local D1.
 // No production room, owner credential, capacity benchmark or UI draft recovery.
 import { test } from 'node:test';
@@ -9,11 +10,11 @@ import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 
-for (const [label,file] of [['saved paused table','pause-resume-native-v077.json'],['sealed choice/trigger/paid stack pause','sealing-room-native-v077.json'],['JZ50 trigger/stack/private search pause','jz50-room-native-v077.json']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
-  abi.initSync({ module: frozen77Bytes });
-  const trace = JSON.parse(readFileSync(new URL('./fixtures/'+file, import.meta.url), 'utf8'));
+for (const [label,file] of [['saved paused table','pause-resume.json.gz'],['sealed choice/trigger/paid stack pause','sealing-room.json.gz'],['JZ50 trigger/stack/private search pause','jz50-room.json.gz']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
+  abi.initSync({ module: currentBytes });
+  const trace = loadCurrentFixture('rust-game-wasm/tests/current93/'+file);
   const kernel = routeKernels(abi);
   const savedIndex=trace.steps.findIndex(step=>step.command?.action.kind==='pauseRoom' && step.transition.outcome!=='rejected');
   const resumeIndex=trace.steps.findIndex(step=>step.command?.action.kind==='resumeRoom' && step.transition.outcome!=='rejected');
@@ -78,8 +79,8 @@ for (const [label,file] of [['saved paused table','pause-resume-native-v077.json
   }
 });
 
-for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate'],['pause-resume-native-v049.json','rust-v0.2.49-sealed-restart-candidate']]) test('engine50 rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
-  abi.initSync({module:frozen77Bytes});
+for(const [file,engine] of [['pause-resume-native-v046.json','rust-v0.2.46-pause-resume-candidate'],['pause-resume-native-v047.json','rust-v0.2.47-sealed-cards-candidate'],['pause-resume-native-v048.json','rust-v0.2.48-jz50-death-search-candidate'],['pause-resume-native-v049.json','rust-v0.2.49-sealed-restart-candidate']]) test('current kernel rejects preserved actual '+engine+' paused room without relabelling its state',()=>{
+  abi.initSync({module:currentBytes});
   const old=JSON.parse(readFileSync(new URL('./fixtures/'+file,import.meta.url),'utf8'));
   const identity=JSON.parse(abi.stateIdentity(old.initialState));
   assert.equal(identity.versions.engine,engine);

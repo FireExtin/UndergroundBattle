@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Explicit Native invalid saves; actual built Worker HTTP/WASM and D1 SQLite.
 // Synthetic credentials and layouts only; this is no production room migration.
 import { test } from 'node:test';
@@ -8,11 +9,11 @@ import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 
 test('XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling', async t => {
-  abi.initSync({ module:frozen77Bytes });
-  const fixture=JSON.parse(readFileSync(new URL('./fixtures/xq24-container-invalid-v077.json', import.meta.url)));
+  abi.initSync({ module:currentBytes });
+  const fixture=loadCurrentFixture('rust-game-wasm/tests/current93/xq24-invalid.json.gz');
   const persist=mkdtempSync(join(tmpdir(), 'xq24-container-d1-'));
   const options=convertV4MiniflareOptions({ name:'xq24-container-restore', resourcePersistencePath:persist,
     modules:[{ type:'ESModule', path:resolve('dist/server/index.js') },

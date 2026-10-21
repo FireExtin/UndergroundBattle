@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
 import {digest} from '../src/service.mjs';
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','xq23-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 export async function harness(t,scenario) {
   const persist=mkdtempSync(path.join(tmpdir(),'xq23-http-'));
   const options={name:'xq23-http',resourcePersistencePath:persist,modulesRoot:worker,modules:[

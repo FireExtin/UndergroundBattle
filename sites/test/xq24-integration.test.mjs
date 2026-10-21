@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { assertSessionJournal } from './assert-session-journal.mjs';
 // Synthetic Native layouts; actual production WASM/RoomService/workerd/D1.
 import { test } from 'node:test';
@@ -6,13 +7,13 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module:frozen77Bytes });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/xq24-native-v077.json', import.meta.url)));
+abi.initSync({ module:currentBytes });
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/xq24.json.gz');
 for (const scenario of fixtures.scenarios) test(`XQ24 ${scenario.name}: Native journals, continuous D1 restore and original receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'xq24-d1-'));
   const options = convertV4MiniflareOptions({ name:'xq24-test', resourcePersistencePath:persist, modules:[

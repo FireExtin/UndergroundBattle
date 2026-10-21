@@ -590,6 +590,7 @@ fn jc052_frames_payment_regions_program_and_replay_tampering_reject_both_loaders
 #[test]
 fn jc052_four_ui_inputs_are_actual_deploy_accept_decline_and_leader_commands() {
     let mut g = game(0);
+    g.room_id = "f00000000000000000000052".into();
     fund(&mut g, 0, "JC042", 7);
     let id = held(&mut g, 0);
     let a = Action {

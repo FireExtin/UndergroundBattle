@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { assertSessionJournal } from './assert-session-journal.mjs';
 // Continuous prepared Native traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
@@ -7,15 +8,15 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module: frozen77Bytes });
+abi.initSync({ module: currentBytes });
 const fixtures = { scenarios: [
-  ...JSON.parse(readFileSync(new URL('./fixtures/win-flow-native-v077.json', import.meta.url), 'utf8')).scenarios,
-  ...JSON.parse(readFileSync(new URL('./fixtures/bq030-native-v077.json', import.meta.url), 'utf8')).scenarios
+  ...loadCurrentFixture('rust-game-wasm/tests/current93/win-flow.json.gz').scenarios,
+  ...loadCurrentFixture('rust-game-wasm/tests/current93/bq030-sites.json.gz').scenarios
     .map(s => ({ ...s, name: 'BQ030 ' + s.name })),
 ] };
 

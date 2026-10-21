@@ -1,17 +1,18 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 // Prepared Native room input through real React response controls and current WASM.
 import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import { kernel as wasm, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import native from './xq27Native77Test.fixture.json';
+import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/xq27.json.gz');
 import previous from './jc050Native55Test.fixture.json';
 import {ResponseWindow} from './ResponseWindow';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
 import {createDeckDraft,validateDeckDraft} from './deckLibrary';
-wasm.initSync({module:frozen77Bytes});
+wasm.initSync({module:currentBytes});
 const catalog=JSON.parse(wasm.catalog()),definition=catalog.cards.find(c=>c.id==='XQ27');
 afterEach(cleanup);
 it('pins complete gray original and opens the actual scan',()=>{

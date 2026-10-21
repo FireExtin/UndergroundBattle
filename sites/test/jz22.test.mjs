@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Prepared native states through actual workerd/D1, persistence and duplicate receipts.
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
@@ -5,12 +6,12 @@ import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-abi.initSync({module:frozen77Bytes});
-const cases=JSON.parse(readFileSync(new URL('./fixtures/jz22-native-v077.json',import.meta.url),'utf8'));
+abi.initSync({module:currentBytes});
+const cases=Object.entries(loadCurrentFixture('rust-game-wasm/tests/current93/jz22.json.gz')).map(([name, row]) => ({...row, name}));
 for(const c of cases)test(`jz22-blue54 ${c.name}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'jz22-blue54-d1-'));
  const options=convertV4MiniflareOptions({name:'jz22-blue54-test',resourcePersistencePath:persist,modules:[

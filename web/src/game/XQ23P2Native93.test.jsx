@@ -1,7 +1,7 @@
 // Actual new kernel/Native P2 data; component checks are not browser playtests.
 import {render} from '@testing-library/react';
 import {afterEach,beforeEach,expect,it,vi} from 'vitest';
-import {kernel as abi,catalog,moduleBytes} from '../../../rust-game-wasm/tests/current88-kernel.mjs';
+import {kernel as abi,catalog,moduleBytes} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {loadP2Fixture,reviewSummaryCases} from '../../../tools/xq23-p2-oracle.mjs';
 import {sha256} from '../../../tools/xq23-oracle.mjs';
 import {StackTargets} from './ResponseWindow';
@@ -12,10 +12,10 @@ beforeEach(()=>sessionStorage.clear());afterEach(()=>sessionStorage.clear());
 
 it.each([0,1,2,3])('seat%s binds the real paid target UID to the public target DOM',seat=>{
  const view=JSON.parse(abi.view(boundary.control,seat)),effect=view.stack[0];
- expect(effect.targetSummaries[0].instanceId).toBe('i243');
+ expect(effect.targetSummaries[0].instanceId).toBe(boundary.targetId);
  const mounted=render(<StackTargets effect={effect} view={view}/>);
- expect(mounted.container.querySelector('[data-target-instance="i243"]')).toHaveAttribute('data-target-valid','true');
- expect(mounted.container.querySelector('[data-target-instance="i241"]')).toBeNull();
+ expect(mounted.container.querySelector(`[data-target-instance="${boundary.targetId}"]`)).toHaveAttribute('data-target-valid','true');
+ expect(mounted.container.querySelector(`[data-target-instance="${boundary.otherAssetId}"]`)).toBeNull();
 });
 
 it.each(boundary.invalid)('$name cannot produce a view for a target DOM',bad=>{

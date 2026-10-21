@@ -1,11 +1,11 @@
-// Local browser rendering of exact Native78 projections. This is not online play.
+// Local browser rendering of exact Native93 projections. This is not online play.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadBq035Fixture, sha256 } from '../bq035-oracle.mjs';
-import { kernel as abi, moduleBytes, catalog } from '../../rust-game-wasm/tests/current78-kernel.mjs';
+import { kernel as abi, moduleBytes, catalog } from '../../rust-game-wasm/tests/current-kernel.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const web = join(root, 'web'), require = createRequire(join(web, 'package.json'));
 const { createServer } = await import(pathToFileURL(require.resolve('vite')).href);
@@ -21,7 +21,7 @@ assert(view.pendingChoice && view.pendingChoice.playerId === view.you, 'The brow
 const removed = fixture.scenarios.find(row => row.name === 'accepted-knight-real-bounce').steps.at(-1).views[0];
 const knight = view.regions.flatMap(region => region.characters).find(card => card.cardId === 'BQ035'); assert(knight);
 const temporary = await mkdtemp(join(web, '.bq035-browser-'));
-const report = { passed: false, scope: 'Local exact Native78 projections and UI; not a published Site or online gameplay',
+const report = { passed: false, scope: 'Local exact Native93 projections and UI; not a published Site or online gameplay',
   engine: catalog.engineVersion, wasmSha256: fixture.wasmSha256, apiCalls: 0, pageErrors: [], checks: [] };
 let server, browser;
 try {

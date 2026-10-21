@@ -1,18 +1,19 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 // Prepared Native room input through React controls and the real current WASM.
 import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import { kernel as wasm, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import native from './jc050Native77Test.fixture.json';
-import quote from './jc050Native77QuoteTest.fixture.json';
+import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/jc050.json.gz');
+const quote = loadCurrentFixture('rust-game-wasm/tests/current93/jc050-quote.json.gz');
 import previous from './jz22Native54Test.fixture.json';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
 import {createDeckDraft,validateDeckDraft} from './deckLibrary';
-wasm.initSync({module:frozen77Bytes});
+wasm.initSync({module:currentBytes});
 const catalog=JSON.parse(wasm.catalog()),definition=catalog.cards.find(c=>c.id==='JC050');
 afterEach(cleanup);
 it('pins the complete original red disaster and opens its real scan',()=>{

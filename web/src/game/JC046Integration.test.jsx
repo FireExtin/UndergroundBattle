@@ -1,17 +1,18 @@
-// Current source-built ABI77 only. Prepared Native layouts are not live gameplay.
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
+// Current source-built ABI93 only. Prepared Native layouts are not live gameplay.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { actionForRoom } from './api';
 import { Table } from './Table';
 
-const bytes = frozen77Bytes;
+const bytes = currentBytes;
 abi.initSync({ module: bytes });
 const catalog = JSON.parse(abi.catalog());
-const fixture = JSON.parse(readFileSync(resolve('src/game/jc046Native77.fixture.json'), 'utf8'));
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/jc046.json.gz');
 const props = { catalog, busy: false, connection: 'online' };
 const scenario = name => fixture.scenarios.find(row => row.name === name);
 const acceptedChoices = name => scenario(name).steps.filter(step =>
@@ -20,10 +21,10 @@ const acceptedChoices = name => scenario(name).steps.filter(step =>
 beforeEach(() => sessionStorage.clear());
 afterEach(() => { sessionStorage.clear(); vi.useRealTimers(); });
 
-it('binds the integrated chooser to the exact source-built JC046 ABI77 and unchanged Native traces', () => {
+it('binds the integrated chooser to the exact source-built JC046 ABI93 and unchanged Native traces', () => {
   expect(catalog).toEqual(fixture.catalog);
-  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.70-jc046-mandatory-sacrifice-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');
   expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
   expect(fixture.scenarios).toHaveLength(37);
 });

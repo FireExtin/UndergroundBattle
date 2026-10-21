@@ -1,18 +1,19 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 // Exact Native inputs through existing React entry controls and the current WASM.
 import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import { kernel as wasm, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import native from './xq37Native77Test.fixture.json';
+import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/xq37.json.gz');
 import prior56 from './xq27Native56Test.fixture.json';
 import {Table} from './Table';
 import {ResponseWindow} from './ResponseWindow';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
 import {createDeckDraft,validateDeckDraft} from './deckLibrary';
-wasm.initSync({module:frozen77Bytes});
+wasm.initSync({module:currentBytes});
 const catalog=JSON.parse(wasm.catalog()),definition=catalog.cards.find(c=>c.id==='XQ37');
 afterEach(cleanup);
 it('pins complete black original and opens its actual face',()=>{

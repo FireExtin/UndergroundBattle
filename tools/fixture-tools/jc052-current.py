@@ -10,19 +10,14 @@ import subprocess
 import sys
 
 root = Path(sys.argv[1]).resolve()
-versions = {'rust-v0.2.73-jc052-original-region-candidate':'limited-v2.66-jc052-original-region-candidate',
-            'rust-v0.2.74-jc037-hidden-investigation-candidate':'limited-v2.67-jc037-hidden-investigation-candidate',
-            'rust-v0.2.75-jc060-occult-adviser-candidate':'limited-v2.68-jc060-occult-adviser-candidate',
-            'rust-v0.2.76-jc095-influence-conversion-candidate':'limited-v2.69-jc095-influence-conversion-candidate',
-            'rust-v0.2.77-jc046-mandatory-sacrifice-candidate':'limited-v2.70-jc046-mandatory-sacrifice-candidate'}
 catalog = json.loads(subprocess.check_output([
     'node', '--input-type=module', '-e',
     "import {catalog} from './rust-game-wasm/tests/current-kernel.mjs';"
     "console.log(JSON.stringify({engineVersion:catalog.engineVersion,cardPoolVersion:catalog.cardPoolVersion}));"
 ], text=True))
 version=catalog['engineVersion']
-assert version in versions, 'Build an explicitly supported current ABI first.'
-assert catalog['cardPoolVersion'] == versions[version]
+source_catalog = json.loads(Path('rust-game/data/cards.json').read_text())
+assert all(catalog[key] == source_catalog[key] for key in ['engineVersion', 'cardPoolVersion'])
 steps = [(p, json.loads(p.read_text())) for p in sorted((root / 'trace').glob('step-*.json'))]
 cases = []
 for p in sorted((root / 'native').glob('*.json')):
@@ -51,7 +46,7 @@ suffix = version.split('-', 2)[1].removeprefix('v0.2.')
 out = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(f'web/src/game/jc052Native{suffix}.fixture.json')
 result = {
     'scope': 'Exact prepared Native layouts and accepted Room commands; not browser play or save migration.',
-    'sourceBaseline': '9890163a093621f814f9768712e2663de2fd5239',
+    'sourceBaseline': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
     'engineVersion': version,
     'wasmSha256': hashlib.sha256(Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()).hexdigest(),
     'cases': cases

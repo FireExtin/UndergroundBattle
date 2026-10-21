@@ -106,6 +106,7 @@ fn command(room: &mut RoomEnvelope, seat: usize, action: SessionAction) {
         action,
     };
     let before = serde_json::to_string(room).unwrap();
+    let before_views: Vec<_> = (0..4).map(|viewer| room.view(viewer, 0)).collect();
     let result = room.transition(seat, Some(request.clone()), 0).unwrap();
     assert!(result.error_code.is_none(), "{:?}", result.error_message);
     let replay = room.replay_events(&result.journal).unwrap();
@@ -136,7 +137,7 @@ fn command(room: &mut RoomEnvelope, seat: usize, action: SessionAction) {
             format!("{dir}/transition-{sequence:04}.json"),
             serde_json::to_vec(
                 &serde_json::json!({ "scope":"actual-bq030-native-room-regression",
-                "state":before,"seat":seat,"command":request,"expected":result,"views":views }),
+                "state":before,"seat":seat,"command":request,"expected":result,"views":views,"beforeViews":before_views }),
             )
             .unwrap(),
         )

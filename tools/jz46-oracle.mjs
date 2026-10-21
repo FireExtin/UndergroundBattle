@@ -1,24 +1,18 @@
-// Historical exact v61 ABI79 Native observations. Never relabel or rewrite opaque states.
+// Fresh ABI93 Native observations. Never relabel or rewrite opaque states.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256 } from './current-native-source.mjs';
 const moduleUrl = import.meta.url;
 const root = fileURLToPath(new URL('../', moduleUrl));
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
-export const identity = { rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.72-jz46-private-criminal-inspection-candidate', engineVersion: 'rust-v0.2.79-jz46-private-criminal-inspection-candidate' };
+export const identity = currentIdentity;
 export const positiveNames = ['criminal-seat0','criminal-seat1','criminal-seat2','criminal-seat3','noncriminal-unchanged','all-hidden-no-identity-leak','target-paid-reveal-cancels','pause-inspection-resume','repeat-lock-next-turn','attachment-alone-influence-reward','play-fresh-normalization'].sort();
 export const negativeNames = [...Array.from({length:22},(_,i)=>`pending-${String(i).padStart(2,'0')}`),...Array.from({length:8},(_,i)=>`response-${String(i).padStart(2,'0')}`),'effect-transplant','duplicate-pending-stack','unknown-front','attachment-front','play-stack-exhausted'].sort();
-export function assertSources(binding) {
-  assert.equal(binding.algorithm, 'sha256');
-  const saved = JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi79/native-source-binding.json'),'utf8'));
-  const files = Object.keys(saved.files).sort();
-  assert.equal(files.length,123,'Exact historical Native79 compiler inputs');
-  assert.deepEqual(Object.keys(binding.files).sort(),files,'Incomplete historical Native binding');
-  for(const file of files) assert.equal(binding.files[file],saved.files[file],`Historical Native79 source: ${file}`);
-}
+export const assertSources = assertCurrentSourceBindings;
 function decode(rows,names,binding) {
   assert.deepEqual(rows.map(r=>r.file).sort(),names.map(n=>n+'.json'),'Incomplete Native input set');
   return rows.map(row=>{
@@ -27,9 +21,10 @@ function decode(rows,names,binding) {
   });
 }
 export function validateBundle(bundle) {
-  assert.equal(bundle.format,'jz46-native79-raw-v1'); assertSources(bundle.sourceBindings);
-  for(const [k,v] of Object.entries(identity))assert.equal(bundle.catalog[k],v);
-  assert.equal(bundle.catalog.cards.length,145);
+  assert.equal(bundle.format,'jz46-native93-raw-v1'); assertSources(bundle.sourceBindings);
+  assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);
+  assert.equal(bundle.wasmSha256,currentWasmSha256);
+  assertCurrentCatalog(bundle.catalog);
   const scenarios=decode(bundle.positive,positiveNames,bundle.sourceBindings),invalid=decode(bundle.negative,negativeNames,bundle.sourceBindings);
   let commands=0,projections=0,rejected=0;
   for(const scenario of scenarios){
@@ -48,7 +43,7 @@ export function validateBundle(bundle) {
   assert.deepEqual(bundle.counts,counts,'Incomplete continuous Native command set');
   return {...bundle,scenarios,invalid};
 }
-export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jz46Native79.fixture.json.gz')))));}
+export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jz46Native93.fixture.json.gz')))));}
 export function compare(fixture,abi,bytes){
   assert.equal(sha256(bytes),fixture.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
   for(const s of fixture.scenarios){
@@ -72,10 +67,10 @@ function inputs(directory,names){
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   const [positiveDir,negativeDir,output]=process.argv.slice(2);assert(positiveDir&&negativeDir&&output,'Provide exact positive/negative directories and a new output');
-  const {kernel,moduleBytes,catalog}=await import('../rust-game-wasm/tests/current79-kernel.mjs');
+  const {kernel,moduleBytes,catalog}=await import('../rust-game-wasm/tests/current-kernel.mjs');
   const positive=inputs(positiveDir,positiveNames),negative=inputs(negativeDir,negativeNames);
   const parsed=positive.map(row=>JSON.parse(row.json));
-  const bundle={format:'jz46-native79-raw-v1',sourceBindings:parsed[0].sourceBindings,catalog,wasmSha256:sha256(moduleBytes),
+  const bundle={format:'jz46-native93-raw-v1',currentSourceManifestSha256,sourceBindings:parsed[0].sourceBindings,catalog,wasmSha256:sha256(moduleBytes),
     counts:{scenarios:parsed.length,commands:parsed.reduce((n,s)=>n+s.steps.length,0),projections:parsed.reduce((n,s)=>n+4+s.steps.length*4,0),rejected:parsed.reduce((n,s)=>n+s.steps.filter(r=>r.expected.errorCode).length,0),invalid:negative.length},positive,negative};
   const result=compare(validateBundle(bundle),kernel,moduleBytes);
   writeFileSync(output,gzipSync(JSON.stringify(bundle),{level:9}),{flag:'wx'});console.log(JSON.stringify(result));

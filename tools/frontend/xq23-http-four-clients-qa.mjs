@@ -1,4 +1,4 @@
-// Production UI -> listening local HTTP -> twelve exact WASM cores -> persistent D1.
+// Production UI -> listening local HTTP -> the exact current WASM core -> persistent D1.
 // Only the initial Native layout and trusted local clock are deterministic inputs.
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
@@ -6,7 +6,7 @@ import {mkdir,mkdtemp,readFile,readdir,writeFile} from 'node:fs/promises';
 import {dirname,join,resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {loadFixture,sha256} from '../xq23-oracle.mjs';
-import {kernel as abi,moduleBytes} from '../../rust-game-wasm/tests/current88-kernel.mjs';
+import {kernel as abi,moduleBytes} from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {RoomStore} from '../../sites/src/store.mjs';
 import {digest} from '../../sites/src/service.mjs';
 import {assertPublicView,assertSessionJournal} from '../../sites/test/assert-session-journal.mjs';
@@ -17,13 +17,12 @@ const {Miniflare,convertV4MiniflareOptions}=await import(pathToFileURL(requireSi
 assert(process.argv[2],'Provide a new evidence directory');const output=resolve(process.argv[2]);await mkdir(output);
 const fixture=loadFixture();assert.equal(sha256(moduleBytes),fixture.wasmSha256);
 const scenario=fixture.scenarios.find(s=>s.name===(process.env.XQ23_BROWSER_SCENARIO||'actor-0'));assert(scenario);assert(['actor-0','actor-3','ordinary-deploy'].includes(scenario.name),'Browser driver scope is explicit; response composition is checked separately');
-const initial=scenario.initial.views[0],id=initial.roomId,worker=process.env.HEGEMONY_CURRENT_WORKER_DIR;assert(worker);
+const initial=scenario.initial.views[0],id=initial.roomId,worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(sites,'dist/current-clock/worker.js'));
 const client=resolve(process.env.XQ23_CLIENT_DIRECTORY||join(sites,'dist/client'));
 const viewport={width:1366,height:Number(process.env.XQ23_BROWSER_HEIGHT||900)};
 assert([768,900].includes(viewport.height),'Check explicit desktop viewport heights');
 const wasmModules=await Promise.all((await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
-const previous=await Promise.all([77,78,79,80,81,82,83,84,85,86,87].map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`))).wasmSha256));
-assert.deepEqual(wasmModules.map(m=>m.sha256).sort(),[fixture.wasmSha256,...previous].sort());
+assert.deepEqual(wasmModules.map(m=>m.sha256),[fixture.wasmSha256],'Use only the exact current ABI93 module');
 const persist=await mkdtemp(join(process.env.TMPDIR,'xq23-real-http-'));
 const tokens=Array.from({length:4},(_,s)=>String(s+1).repeat(64)); // Synthetic local seats only.
 const options={name:'xq23-real-http',rootPath:sites,modulesRoot:worker,host:'127.0.0.1',port:0,cf:false,compatibilityDate:'2026-10-02',resourcePersistencePath:persist,
@@ -31,7 +30,7 @@ const options={name:'xq23-real-http',rootPath:sites,modulesRoot:worker,host:'127
  d1Databases:{DB:'xq23-real-http'},bindings:{LOCAL_TEST_CLOCK_MS:'0'},
  assets:{directory:client,binding:'ASSETS',run_worker_first:['/api/*'],routerConfig:{has_user_worker:true},assetConfig:{not_found_handling:'single-page-application'}}};
 const report={passed:false,onlineGameplay:false,siteChanged:false,mainMerged:false,syntheticInitialLayout:true,
- scope:'Native88 initial layout; actual production GameApp, listening local HTTP/workerd/twelve-WASM/D1 and four independent browser contexts.',
+ scope:'Native93 initial layout; actual production GameApp, listening local HTTP/workerd/current-WASM/D1 and four independent browser contexts.',
  driverSha256:sha256(await readFile(fileURLToPath(import.meta.url))),scenario:scenario.name,engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,wasmModules,persist,
  productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),workerSha256:sha256(await readFile(join(worker,'worker.js'))),
  clientIndexSha256:sha256(await readFile(join(client,'index.html'))),viewport,commands:[],clientPosts:[0,0,0,0],pageErrors:[],screenshots:[],reopened:0,targetGeometry:[]};
@@ -44,7 +43,7 @@ const hit=async control=>{await control.scrollIntoViewIfNeeded();assert(await co
 try{
  await start();
  for(const f of (await readdir(join(sites,'drizzle'))).filter(f=>f.endsWith('.sql')))for(const sql of (await readFile(join(sites,'drizzle',f),'utf8')).split('--> statement-breakpoint').filter(s=>s.trim()))await db.prepare(sql).run();
- await store().create({id,invite:initial.inviteCode,state:scenario.initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'offline-native88-xq23',response:'{}'});
+ await store().create({id,invite:initial.inviteCode,state:scenario.initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'offline-native93-xq23',response:'{}'});
  await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(initial.version,id).run();
  for(let seat=1;seat<4;seat++)await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id,seat,await digest(tokens[seat])).run();
  browser=await chromium.launch({headless:true,executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage']});report.browser=browser.version();

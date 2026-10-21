@@ -3,23 +3,25 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { published77Kernel } from './published77.mjs';
+import { kernel as abi } from '../../rust-game-wasm/tests/current-kernel.mjs';
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 import { passRecord } from '../src/pass-history.mjs';
 
-const abi = await published77Kernel();
-const native = JSON.parse(readFileSync(new URL('./fixtures/jc046-native-v077.json', import.meta.url), 'utf8'));
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/jc046.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()), native.catalog);
-const worker = path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'pass-history-worker/server');
+assert.equal(native.scenarios.length, 37);
+const worker = path.dirname(process.env.CURRENT_CLOCK_WORKER || fileURLToPath(new URL('../dist/current-clock/worker.js', import.meta.url)));
 async function harness(t, name) {
   const persist = mkdtempSync(path.join(tmpdir(), 'public-pass-'));
   const options = convertV4MiniflareOptions({ name, resourcePersistencePath: persist, modulesRoot: worker, modules: [
     { type: 'ESModule', path: path.join(worker, 'worker.js') },
     ...readdirSync(worker).filter(name => name.endsWith('.wasm')).map(name => ({ type: 'CompiledWasm', path: path.join(worker, name) })),
-  ], compatibilityDate: '2026-10-02', cf: false, d1Databases: { DB: name } });
+  ], compatibilityDate: '2026-10-02', cf: false, d1Databases: { DB: name }, bindings: { LOCAL_TEST_CLOCK_MS: '0' } });
   let mf = new Miniflare(options), db;
   t.after(async () => { await mf.dispose(); rmSync(persist, { recursive: true, force: true }); });
   db = await mf.getD1Database('DB');
@@ -33,7 +35,7 @@ async function harness(t, name) {
 async function seed(h, state) {
   const view = JSON.parse(abi.view(state, 0)), store = new RoomStore(h.db());
   const tokens = view.players.map((_, seat) => String(seat + 1).repeat(64));
-  await store.create({ id: view.roomId, invite: view.inviteCode, state, nonce: crypto.randomUUID(), tokenHash: await digest(tokens[0]), requestHash: crypto.randomUUID(), intentHash: 'explicit-native77-fixture', response: '{}' });
+  await store.create({ id: view.roomId, invite: view.inviteCode, state, nonce: crypto.randomUUID(), tokenHash: await digest(tokens[0]), requestHash: crypto.randomUUID(), intentHash: 'explicit-native93-fixture', response: '{}' });
   await h.db().prepare('UPDATE rooms SET version=? WHERE id=?').bind(view.version, view.roomId).run();
   for (let seat = 1; seat < tokens.length; seat++) await h.db().prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(view.roomId, seat, await digest(tokens[seat])).run();
   return { id: view.roomId, tokens };
@@ -45,8 +47,8 @@ const stripMetadata = entry => {
   return parsed;
 };
 
-test('all 37 original Native77 traces preserve opaque states, core views, journals and duplicate receipts while recording passes', async t => {
-  const h = await harness(t, 'pass-native77');
+test('all 37 current Native93 traces preserve opaque states, core views, journals and duplicate receipts while recording passes', async t => {
+  const h = await harness(t, 'pass-native93');
   let commands = 0, records = 0;
   for (const scenario of native.scenarios) {
     // Each source trace intentionally uses the same test-only room identity.

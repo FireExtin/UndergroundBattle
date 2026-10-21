@@ -1,9 +1,9 @@
-// Compiler-bound Native81 -> fresh WASM81 -> real Table. Local component QA only.
+// Compiler-bound Native93 -> fresh WASM93 -> real Table. Local component QA only.
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { useState } from 'react';
 import { loadFixture, sha256 } from '../../../tools/jc054-oracle.mjs';
-import { kernel as abi, catalog, moduleBytes } from '../../../rust-game-wasm/tests/current81-kernel.mjs';
+import { kernel as abi, catalog, moduleBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';
 import { actionForRoom } from './api';

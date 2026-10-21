@@ -1,5 +1,6 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { assertSessionJournal, assertPublicView } from './assert-session-journal.mjs';
-// JC046 continuous prepared Native77 traces through the production service and real D1.
+// JC046 continuous prepared Native93 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,18 +8,18 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module: frozen77Bytes });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/jc046-native-v077.json',import.meta.url),'utf8'));
+abi.initSync({ module: currentBytes });
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/jc046.json.gz');
 const catalog=JSON.parse(abi.catalog());
 assert.deepEqual(catalog,fixtures.catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
-assert.equal(catalog.cardPoolVersion,'limited-v2.70-jc046-mandatory-sacrifice-candidate');
-assert.equal(catalog.cards.length,143);
+assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
+assert.equal(catalog.cardPoolVersion,'limited-v2.83-batch20-next');
+assert.equal(catalog.cards.length,193);
 assert.equal(fixtures.scenarios.length,37);
 assert.equal(new Set(fixtures.scenarios.map(s=>s.name)).size,37);
 
@@ -28,7 +29,7 @@ function reopenCheckpoint(view) {
     : view.stack.length ? 'stack' : null;
 }
 
-for (const scenario of fixtures.scenarios) test(`JC046 ABI77 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
+for (const scenario of fixtures.scenarios) test(`JC046 ABI93 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'jc046-77-d1-'));
   const options = convertV4MiniflareOptions({ name: 'jc046-77', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },

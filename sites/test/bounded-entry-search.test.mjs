@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Explicit Native layouts through real WASM/RoomService/local workerd D1.
 // No production data, live Site, or natural-browser claim.
 import {test} from 'node:test';
@@ -6,12 +7,12 @@ import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-const fixtures=JSON.parse(readFileSync(new URL('./fixtures/bounded-entry-native-v077.json',import.meta.url),'utf8'));
-abi.initSync({module:frozen77Bytes});
+const fixtures=loadCurrentFixture('rust-game-wasm/tests/current93/bounded-entry.json.gz');
+abi.initSync({module:currentBytes});
 for(const [label,count] of [['employee',1],['employeeEmpty',0],['passers',0],['passers',3],['passersEmpty',0]]) test(`bounded ${label}/${count}: private candidates, pause/reopen, exact result and one receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'entry-search50-d1-'));
  const options=convertV4MiniflareOptions({name:'entry-search50',resourcePersistencePath:persist,modules:[
@@ -19,7 +20,7 @@ for(const [label,count] of [['employee',1],['employeeEmpty',0],['passers',0],['p
  ],compatibilityDate:'2026-10-02',cf:false,d1Databases:{DB:'entry-search50'}});
  let mf=new Miniflare(options);t.after(async()=>{await mf.dispose();rmSync(persist,{recursive:true,force:true});});
  let db=await mf.getD1Database('DB');for(const file of readdirSync('drizzle').filter(n=>n.endsWith('.sql')))for(const sql of readFileSync('drizzle/'+file,'utf8').split('--> statement-breakpoint').filter(s=>s.trim()))await db.prepare(sql).run();
- const initial=fixtures.states[label],view=JSON.parse(abi.view(initial,0)),id=view.roomId,tokens=['a','b','c','d'].map(x=>x.repeat(64));
+ const initial=fixtures.states[label].state,view=JSON.parse(abi.view(initial,0)),id=view.roomId,tokens=['a','b','c','d'].map(x=>x.repeat(64));
  let store=new RoomStore(db),now=0,service=new RoomService(db,routeKernels(abi),()=>now);
  await store.create({id,invite:view.inviteCode,state:initial,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'explicit-native-entry-search-layout',response:'{}'});
  await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(view.version,id).run();

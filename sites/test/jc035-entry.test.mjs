@@ -4,9 +4,10 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc035-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 for(const societyId of ['MSJC03'])test(`JC035 in ${societyId} enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`,async t=>{
   const persist=mkdtempSync(path.join(tmpdir(),'jc035-entry-'));
   const options=convertV4MiniflareOptions({name:'jc035-entry',resourcePersistencePath:persist,modulesRoot:worker,modules:[
@@ -20,8 +21,8 @@ for(const societyId of ['MSJC03'])test(`JC035 in ${societyId} enters with a name
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.91-batch20');
-  assert.equal(catalog.societies.length,10);
+  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
+  assert.equal(catalog.cards.length,193);assert.equal(catalog.societies.length,10);
   const draft=(id,count=50)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'JC035',count:3}];
     for(const card of catalog.cards.filter(c=>c.id!=='JC035'&&c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {

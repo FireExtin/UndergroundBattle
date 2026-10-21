@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Prepared native states through actual workerd/D1, persistence and duplicate receipts.
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
@@ -5,12 +6,12 @@ import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-abi.initSync({module:frozen77Bytes});
-const cases=[JSON.parse(readFileSync(new URL('./fixtures/xq27-native-v077.json',import.meta.url),'utf8'))];
+abi.initSync({module:currentBytes});
+const cases=[loadCurrentFixture('rust-game-wasm/tests/current93/xq27.json.gz')];
 for(const c of cases)test(`xq27-gray56 ${'final response'}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'xq27-gray56-d1-'));
  const options=convertV4MiniflareOptions({name:'xq27-gray56-test',resourcePersistencePath:persist,modules:[
@@ -36,7 +37,7 @@ for(const c of cases)test(`xq27-gray56 ${'final response'}: native transition, D
 
 // The exact Rust-produced corrupt state keeps u64 values as opaque bytes.
 test('XQ27-IR-01 rejects the hidden root flag in both production ABI entrypoints',()=>{
- const d=JSON.parse(readFileSync(new URL('./fixtures/xq27-invalid-rootface-v077.json',import.meta.url),'utf8'));
+ const d=loadCurrentFixture('rust-game-wasm/tests/current93/xq27-invalid-rootface.json.gz');
  assert.throws(()=>abi.view(d.state,0),/XQ27/);
  assert.throws(()=>abi.applyRoom(d.state,0,JSON.stringify({commandId:'xq27-rootface',expectedVersion:0,action:{kind:'game',action:{kind:'pass'}}}),'0'),/XQ27/);
 });

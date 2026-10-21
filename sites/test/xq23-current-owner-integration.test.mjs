@@ -1,4 +1,4 @@
-// Fresh Native141/current89 owner elimination in real local HTTP/workerd/D1.
+// Fresh Native93/current93 owner elimination in real local HTTP/workerd/D1.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {loadOwnerFixture} from '../../tools/xq23-current-owner-oracle.mjs';
@@ -7,7 +7,7 @@ import {harness} from './xq23-http-harness.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 const current=loadCurrentFixture(),summaryCases=current.invalid.filter(c=>c.name.startsWith('target-summary-'));
 assert.equal(summaryCases.length,4);
-for(const c of summaryCases)test('current89 fresh paid state '+c.name+' rejects reads and commands across D1 reopen',async t=>{
+for(const c of summaryCases)test('current93 fresh paid state '+c.name+' rejects reads and commands across D1 reopen',async t=>{
  const reference=current.scenarios[0].initial.views.map(v=>({...v,roomId:c.roomId,inviteCode:c.inviteCode,version:c.revision}));
  const h=await harness(t,{initial:{state:c.state,views:reference}}),before=await h.snapshot();let rejected=0;
  for(let reopened=0;reopened<2;reopened++){
@@ -16,9 +16,9 @@ for(const c of summaryCases)test('current89 fresh paid state '+c.name+' rejects 
   const r=await h.api('commands',0,{commandId:'current-'+c.name,expectedVersion:c.revision,action:{kind:'pauseRoom'}});assert.equal(r.status,400);assert.equal(r.body.message,c.roomError);rejected++;
   assert.deepEqual(await h.snapshot(),before);
  }
- t.diagnostic(JSON.stringify({source:'fresh Native141 current89 paid frame',http400:rejected,original88Untouched:true,noD1Writes:true}));
+ t.diagnostic(JSON.stringify({source:'fresh Native93 current93 paid frame',http400:rejected,original88Untouched:true,noD1Writes:true}));
 });
-test('current89 retains borrowed-owner cleanup, score and original receipts after real D1 reopen',async t=>{
+test('current93 retains borrowed-owner cleanup, score and original receipts after real D1 reopen',async t=>{
  const f=loadOwnerFixture(),h=await harness(t,f),receipts=[];let accepted=0,rejected=0,projections=0,reopened=0;
  const views=async expected=>{for(const[seat,v]of expected.entries()){const r=await h.api('state',seat);assert.equal(r.status,200);assertPublicView(r.body,v);projections++;}};
  await views(f.initial.views);
@@ -37,5 +37,5 @@ test('current89 retains borrowed-owner cleanup, score and original receipts afte
  for(const{row,body}of receipts){const r=await h.api('commands',row.seat,row.command);assert.equal(r.status,200);assert.deepEqual(r.body,body);assert.deepEqual(await h.snapshot(),final);}
  const game=JSON.parse(final.room.state).game;assert(game.players.flatMap(p=>p.assets).every(c=>c.owner!==2));assert.equal(game.players[2].hand.length,0);assert(game.players[3].hand.some(c=>c.definition==='XQ23'));
  assert.equal(accepted,165);assert.equal(rejected,1);assert.equal(f.steps.at(-1).views[0].players[2].score,4);assert.equal(f.steps.at(-1).views[0].players[3].score,2);
- t.diagnostic(JSON.stringify({source:'fresh actual141-input Native89',accepted,rejected,projections,reopened,allOriginalReceiptsUnchanged:true,syntheticDatabaseRetained:true}));
+ t.diagnostic(JSON.stringify({source:'fresh current-source Native93',accepted,rejected,projections,reopened,allOriginalReceiptsUnchanged:true,syntheticDatabaseRetained:true}));
 });

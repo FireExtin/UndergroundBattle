@@ -1,13 +1,14 @@
-// Actual Engine63 Native inputs and WASM projections, without edited view fields.
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
+// Actual current Native inputs and WASM projections, without edited view fields.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import fixtures from './fixedSlotsNative77.fixture.json';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/fixed-slots.json.gz');
 import { Table } from './Table';
 
-abi.initSync({ module: frozen77Bytes });
+abi.initSync({ module: currentBytes });
 const catalog = JSON.parse(abi.catalog());
 afterEach(cleanup);
 

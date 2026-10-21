@@ -170,8 +170,10 @@ pub(super) fn original(spec: &Spec) {
         spec.color_count
     );
     for id in spec.uniques {
-        let c = catalog::card(id);
-        assert!(c.unique && c.color == spec.color && c.society.is_empty());
+        // A printed affiliation is not a society card. The search accepts
+        // ordinary unique cards of this colour, including affiliated ones.
+        let c = catalog::catalog().cards.iter().find(|c| c.id == *id).unwrap();
+        assert!(c.unique && c.color == spec.color);
     }
 }
 pub(super) fn construction(spec: &Spec) {

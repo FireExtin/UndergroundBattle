@@ -4,9 +4,11 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','xq23-worker/server');
+import {catalog as currentCatalog} from '../../rust-game-wasm/tests/current-kernel.mjs';
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 for(const societyId of ['MSJC05'])test(`XQ23 in ${societyId} enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`,async t=>{
   const persist=mkdtempSync(path.join(tmpdir(),'xq23-entry-'));
   const options=convertV4MiniflareOptions({name:'xq23-entry',resourcePersistencePath:persist,modulesRoot:worker,modules:[
@@ -20,7 +22,8 @@ for(const societyId of ['MSJC05'])test(`XQ23 in ${societyId} enters with a named
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.91-batch20');
+  const catalog=(await api('/api/catalog')).body;for(const key of ['rulesVersion','cardPoolVersion','engineVersion'])assert.equal(catalog[key],currentCatalog[key]);
+  assert.equal(catalog.cards.length,currentCatalog.cards.length);
   assert.equal(catalog.societies.length,10);
   const draft=(id,count=50)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'XQ23',count:3}];

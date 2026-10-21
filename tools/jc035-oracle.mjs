@@ -1,25 +1,24 @@
-// Actual Native89 state strings and journals; old88 witnesses remain independent.
+// Fresh ABI93 Native observations; original raw bytes and opaque states stay unchanged.
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {currentIdentity,currentWasmSha256,currentSourceManifestSha256,assertCurrentCatalog,assertCurrentSourceBindings} from './current-native-source.mjs';
 const moduleUrl=import.meta.url,root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
-export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.81-jc035-preparation-candidate',engineVersion:'rust-v0.2.89-jc035-preparation-candidate'};
+export const identity=currentIdentity;
 export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','optional-decline','threshold-four','source-destroyed-response','hand-growth-response','late-shrink-no-retroactive-trigger','same-controller-order','won-original-region','ordinary-attach','duel-preparation'].sort();
 export const legalRestoreNames=['live-pending','live-queued-undecided','live-accepted','declined-without-container','resolved-without-container',
  'eliminated-actor-undecided','eliminated-actor-accepted','finished-undecided','finished-accepted','departed-source-accepted','changed-controller-accepted'].sort();
-export function assertSources(binding){
- const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi89/native-source-binding.json'),'utf8'));
- assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(binding.files).length,141);
- assert.deepEqual(binding,saved,'Exact original Native89 compiler binding; no current source substitution');
+export function assertSources(binding) {
+  assertCurrentSourceBindings(binding);
 }
 export function validateNative(raw){
  assert.equal(raw.format,'jc035-native89-v1');assertSources(raw.sourceBindings);
- for(const[k,v]of Object.entries(identity))assert.equal(raw.catalog[k],v);
- assert.equal(raw.catalog.cards.length,153);assert.equal(raw.catalog.societies.length,10);
+ assertCurrentCatalog(raw.catalog);
+ assert.equal(raw.catalog.cards.length,193);assert.equal(raw.catalog.societies.length,10);
  assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
  let commands=0,rejected=0,projections=0;
  for(const s of raw.scenarios){
@@ -49,13 +48,20 @@ export function validateNative(raw){
   legalRestores:raw.legalRestores.length,restoreContinuationCommands};assert.deepEqual(counts,raw.counts);
  return counts;
 }
-export function loadFixture(){
- const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jc035Native89.fixture.json.gz'))));
- assert.equal(bundle.format,'jc035-native89-raw-v1');assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
- const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);return {...bundle,...raw};
+export function loadFixture() {
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc035Native93.fixture.json.gz'));
+  const bundle=JSON.parse(gunzipSync(bytes));
+  assert.equal(bundle.format,'jc035-native93-raw-v1');
+  assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);
+  assert.equal(bundle.wasmSha256,currentWasmSha256);
+  assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
+  const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);
+  return {...bundle,...raw};
 }
 export function compare(f,abi,bytes){
- assert.equal(sha256(bytes),f.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),f.catalog);
+  assert.equal(sha256(bytes),currentWasmSha256);
+  assert.equal(f.currentSourceManifestSha256,currentSourceManifestSha256);
+  assert.equal(sha256(bytes),f.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),f.catalog);
  for(const s of f.scenarios){
   s.initial.views.forEach((v,seat)=>assert.deepEqual(JSON.parse(abi.view(s.initial.state,seat)),v,s.name+' initial view'));
   for(const row of s.steps){
@@ -76,12 +82,16 @@ export function compare(f,abi,bytes){
    assert.deepEqual(JSON.parse(abi.applyRoom(c.state,r.seat,JSON.stringify(r.command),r.serverNowMs)),r.expected,c.name+' real pending continuation');
    r.views.forEach((view,seat)=>assert.deepEqual(JSON.parse(abi.view(r.expected.state,seat)),view,c.name+' continued view'));}
  }
- return {...f.counts,nativeInputs:141,wasmSha256:f.wasmSha256,nativeRawSha256:f.raw.sha256,allOpaqueStatesJournalsAndActualSeatViewsEqual:true};
+ return {...f.counts,nativeInputs:Object.keys(f.sourceBindings.files).length,wasmSha256:f.wasmSha256,nativeRawSha256:f.raw.sha256,allOpaqueStatesJournalsAndActualSeatViewsEqual:true};
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(moduleUrl)){
- const[nativeFile,wasmFile,destination]=process.argv.slice(2);if(!destination)throw Error('Usage: jc035-oracle.mjs Native89.json current89.wasm NEW.fixture.json.gz');
- const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
- const bundle={format:'jc035-native89-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
- const{kernel,moduleBytes}=await import('../rust-game-wasm/tests/current89-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
- const result=compare({...bundle,...raw},kernel,bytes);writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9}),{flag:'wx'});console.log(JSON.stringify({destination,...result}));
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
+  const [nativeFile,wasmFile,destination]=process.argv.slice(2);
+  if(!destination)throw Error('Usage: jc035-oracle.mjs fresh-native.json current93.wasm NEW-Native93.fixture.json.gz');
+  const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
+  assert.equal(sha256(bytes),currentWasmSha256);
+  const bundle={format:'jc035-native93-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes),currentSourceManifestSha256};
+  const {kernel,moduleBytes}=await import('../rust-game-wasm/tests/current-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
+  const result=compare({...bundle,...raw},kernel,bytes);
+  writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9,mtime:0}),{flag:'wx'});
+  console.log(JSON.stringify({destination,...result,nativeInputs:Object.keys(raw.sourceBindings.files).length}));
 }

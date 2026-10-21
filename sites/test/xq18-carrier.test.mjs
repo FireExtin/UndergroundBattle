@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Explicit Native prepared layouts through current ABI and real local D1.
 // These IDs are Native test IDs, so commands use RoomService rather than HTTP.
 import { test } from 'node:test';
@@ -6,13 +7,13 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module: frozen77Bytes });
-const native = JSON.parse(readFileSync(new URL('../../web/src/game/xq18Native77Test.fixture.json', import.meta.url), 'utf8'));
+abi.initSync({ module: currentBytes });
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/xq18.json.gz');
 
 async function setup(t, state) {
   const persist = mkdtempSync(join(tmpdir(), 'xq18-60-d1-'));

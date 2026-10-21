@@ -7,7 +7,7 @@ import { mkdir, mkdtemp, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadBq035Fixture, sha256 } from '../bq035-oracle.mjs';
-import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current78-kernel.mjs';
+import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { RoomStore } from '../../sites/src/store.mjs';
 import { digest } from '../../sites/src/service.mjs';
 import { assertPublicView, assertSessionJournal } from '../../sites/test/assert-session-journal.mjs';
@@ -24,12 +24,11 @@ const initial = scenario.initial.views[0], id = initial.roomId;
 assert.equal(initial.players.length, 2);
 const host = initial.regions.flatMap(region => region.characters).find(card => card.cardId === 'WM023').instanceId;
 const tokens = ['1'.repeat(64), '2'.repeat(64)]; // Local fixture seats, never real credentials.
-const worker = join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'bq035-worker/server');
-const retainedIdentity = JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi77/identity.json'), 'utf8'));
+const worker = dirname(process.env.CURRENT_CLOCK_WORKER || join(sites, 'dist/current-clock/worker.js'));
 const wasmModules = await Promise.all((await readdir(worker)).filter(file => file.endsWith('.wasm')).map(async file => {
   const bytes = await readFile(join(worker, file)); return { file, bytes: bytes.length, sha256: sha256(bytes) };
 }));
-assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [sha256(await readFile(join(repo, 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm'))), fixture.wasmSha256, retainedIdentity.wasmSha256].sort());
+assert.deepEqual(wasmModules.map(row => row.sha256), [fixture.wasmSha256], 'Use only the exact current ABI93 module');
 const persist = await mkdtemp(join(process.env.TMPDIR, 'bq035-p2-real-http-'));
 const options = { name: 'bq035-p2-real-http', rootPath: sites, modulesRoot: worker, host: '127.0.0.1', port: 0,
   cf: false, compatibilityDate: '2026-10-02', resourcePersistencePath: persist,
@@ -43,7 +42,7 @@ const report = { passed: false, scope: 'Prepared existing WM023, followed by pai
   engine: fixture.catalog.engineVersion, wasmSha256: fixture.wasmSha256, workerSha256: sha256(await readFile(join(worker, 'worker.js'))),
   wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
   productionClientIndexSha256: sha256(await readFile(join(sites, 'dist/client/index.html'))),
-  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/bq035Native78.fixture.json.gz'))),
+  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/bq035Native93.fixture.json.gz'))),
   commands: [], clientRequests: [0, 0], clientPosts: [0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
 const start = async () => {

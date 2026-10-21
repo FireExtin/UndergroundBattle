@@ -1,0 +1,98 @@
+{
+  "scope": "Fresh current Rust Native exports for current93-classic.mjs; do not run the historical layout adapter.",
+  "directoryRule": "Paths are relative to evidence-root. If tests run in separate processes, replace {test} with the exact test name to prevent global sequence counters overwriting other exports. All trace directories are read recursively.",
+  "commands": {
+    "lib": "cargo test --locked -p hegemony-server --lib <exact-test> -- --exact --test-threads=1 (prefix the test with its module when using --exact)",
+    "integration": "cargo test --locked -p hegemony-server --test <target> <test> -- --exact --test-threads=1",
+    "assemble": "node tools/fixture-tools/current93-classic.mjs <evidence-root> [--groups=xq37,jz22] [--inputs=<absolute-directory-map.json>]"
+  },
+  "groups": {
+    "xq37": {
+      "module": "xq37_tests",
+      "env": {"GREEN_EVIDENCE_DIR": "xq37/trace/{test}", "XQ37_FRONTEND_DIR": "xq37/native", "XQ37_INVALID_DIR": "xq37/invalid"},
+      "tests": ["xq37_qualified_entry_rechecks_current_count_and_decline_is_noop", "xq37_final_room_command_and_duplicate_receipt_export", "xq37_invalid_entry_frame_and_root_hidden_flag_rejected_and_exported"]
+    },
+    "xq27": {
+      "module": "xq27_tests",
+      "env": {"XQ27_FRONTEND_DIR": "xq27/native", "XQ27_INVALID_DIR": "xq27/invalid"},
+      "tests": ["xq27_stack_restore_final_response_and_duplicate_receipts", "xq27_persisted_stack_mutants_rejected_by_game_and_room"]
+    },
+    "jc050": {
+      "module": "jc050_tests",
+      "env": {"JC050_FRONTEND_DIR": "jc050/native"},
+      "tests": ["jc050_original_region_choice_restores_and_duplicate_command_preserves_receipt", "jc050_predeclared_region_and_target_reject_before_payment_and_quote"],
+      "note": "Run choose export first or create native directory before quote export."
+    },
+    "jz22": {
+      "module": "jz22_tests",
+      "env": {"GREEN_EVIDENCE_DIR": "jz22/trace/{test}"},
+      "tests": ["jz22_decline_restore_wrong_actor_and_duplicate_choice", "jz22_paid_deploy_and_paid_reveal_emit_once_secret_entry_and_move_do_not", "jz22_paid_armor_and_curse_allow_existing_combat_glory_without_stalling", "jz22_real_paid_enemy_responses_cross_three_card_threshold"]
+    },
+    "death": {
+      "module": "death_observer_tests",
+      "env": {"GREEN_EVIDENCE_DIR": "death/trace/{test}", "DEATH_OBSERVER_FRONTEND_DIR": "death/native"},
+      "tests": ["death_observer_actual_vampire_conversion_is_frozen_before_control_source_leaves", "death_observer_normal_discard_private_choice_random_and_empty_hand", "death_observer_priest_exact_markers_move_control_exhaustion_and_leave_reset", "death_observer_contract_freezes_original_region_before_and_after_response", "death_observer_contract_threshold_runs_existing_win_window_and_team_victory", "death_observer_persisted_declarations_atomic_guards_and_discard_cursor_are_closed"]
+    },
+    "bounded-entry": {
+      "module": "bounded_search_tests",
+      "env": {"ENTRY_SEARCH_FRONTEND_DIR": "bounded-entry/native"},
+      "tests": ["bq104_accept_with_matches_forces_one_and_empty_search_completes_zero_shuffle", "bq104_borrowed_employee_reveals_then_enters_hidden_for_frozen_controller", "xq48_zero_one_three_real_instances_shuffle_once_and_have_original_owners", "xq48_empty_search_still_has_explicit_zero_completion"],
+      "note": "The preserved outer key replaced denotes xq48-choice-0-0, not a region replacement. Preserve that original case meaning."
+    },
+    "deck-seal": {
+      "module": "deck_seal_search_tests",
+      "env": {"DECK_SEAL_UI_FIXTURE_DIR": "deck-seal/native", "DECK_SEAL_STORE_TRACE_DIR": "deck-seal/room"},
+      "tests": ["deck_seal_one_is_required_with_hits_and_zero_is_explicit_without_hits", "deck_seal_jz02_original_self_gone_or_hidden_skips_search_shuffles_and_never_invents_a", "deck_seal_xq41_event_freezes_actor_and_owner_and_survives_actual_responsive_destruction", "deck_seal_actual_search_pause_sqlite_reopen_and_original_receipts_are_idempotent"],
+      "note": "The final Store test requires the existing native feature."
+    },
+    "gray-lock": {
+      "module": "gray_lock_tests",
+      "env": {"GRAY_LOCK_ROOM_TRACE_DIR": "gray-lock/room"},
+      "tests": ["gray_lock_continuous_room_protocol_pause_reopen_and_real_response_passes"]
+    },
+    "jz50": {
+      "module": "jz50_search_tests",
+      "env": {"JZ50_ROOM_TRACE_DIR": "jz50/room"},
+      "tests": ["jz50_optional_trigger_stack_and_private_search_pause_resume_real_room_chain"]
+    },
+    "pause": {
+      "integrationTarget": "room_pacing",
+      "env": {"PAUSE_PARITY_DIR": "pause/room"},
+      "tests": ["pause_native_full_transition_trace_for_actual_wasm_parity"]
+    },
+    "sealing": {
+      "module": "sealing_tests",
+      "env": {"SEALING_ROOM_TRACE_DIR": "sealing/room", "SEALING_FRESH_RESTART_TRACE_DIR": "sealing/restart"},
+      "tests": ["sealing_private_selection_trigger_and_paid_stack_pause_resume_actual_room_trace", "sealing_fresh_lobby_legal_match_terminal_restart_and_persisted_next_choice"],
+      "note": "The restart consumer requires the fresh legal-match terminal checkpoint. Read native-trace.json; preserve fresh-match.json as raw provenance. The prepared SEALING_RESTART_TRACE_DIR export is not a substitute."
+    },
+    "xq18": {
+      "module": "xq18_tests",
+      "env": {"GREEN_EVIDENCE_DIR": "xq18/trace/{test}", "XQ18_ROOM_EVIDENCE_DIR": "xq18/room"},
+      "tests": ["xq18_same_name_same_markers_carriers_have_public_stable_identity", "xq18_real_room_pause_persist_resume_choose_and_replay"]
+    },
+    "jc037": {"module": "jc037_tests", "env": {"JC037_NATIVE_DIR": "jc037/native"}, "filter": "jc037_tests::", "expectedScenarios": 8},
+    "jc060": {"module": "jc060_tests", "env": {"JC060_NATIVE_DIR": "jc060/native"}, "filter": "jc060_tests::", "expectedScenarios": 11},
+    "jc095": {
+      "module": "jc095_tests",
+      "env": {"JC095_NATIVE_DIR": "jc095/native", "JC095_INVALID_DIR": "jc095/invalid"},
+      "filter": "jc095_tests::",
+      "expectedScenarios": 11,
+      "note": "The optional jc095_compare.mjs invalid-directory argument must use this current export, never a preserved previous-version directory."
+    },
+    "jc046": {
+      "module": "jc046_tests",
+      "env": {"JC046_NATIVE_DIR": "jc046/native", "JC046_INVALID_DIR": "jc046/invalid"},
+      "filter": "jc046_tests::",
+      "expectedScenarios": 37,
+      "expectedInvalidStates": 55,
+      "invalidTests": [
+        {"name": "jc046_saved_stack_rejects_program_order_actor_cost_and_shell_forgeries", "states": 18},
+        {"name": "jc046_saved_sacrifice_pending_rejects_optional_metadata_and_wrong_continuations", "states": 20},
+        {"name": "jc046_saved_paid_entry_rejects_malformed_payment_and_source_identity", "states": 8},
+        {"name": "jc046_frame_identity_is_unique_across_pending_effects_and_stack", "states": 4},
+        {"name": "jc046_effect_containers_and_mandatory_trigger_shell_are_bound", "states": 5}
+      ]
+    }
+  }
+}

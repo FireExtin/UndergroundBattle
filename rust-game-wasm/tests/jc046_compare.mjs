@@ -1,39 +1,44 @@
-// Exact ABI77 comparison of original Native Room states and all seat views.
+// Exact current-ABI comparison of original Native Room states and all seat views.
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {kernel,catalog,moduleBytes} from './current-kernel.mjs';
-assert(process.argv[3]?.trim(), 'Usage: jc046_compare.mjs <fixture> <complete-55-invalid-directory> [frozen-manifest]');
+import {currentIdentity,loadCurrentFixture,sha256} from '../../tools/current-native-source.mjs';
+assert(process.argv[3]?.trim(), 'Usage: jc046_compare.mjs <repo-relative-fixture> <complete-55-invalid-directory> [current-manifest]');
 assert(process.argv.length <= 5, 'Unexpected JC046 comparison arguments.');
-const manifestBytes=readFileSync(process.argv[4] || new URL('../../docs/evidence/jc046-2026-10-15/native-evidence-manifest.json',import.meta.url));
-const manifestSha256=createHash('sha256').update(manifestBytes).digest('hex');
-assert.equal(manifestSha256,'bedea2a79fc7cc98a6c1d0ed98a5d166396d638dba07060a91b6436ea5698661',
-  'JC046 invalid-state manifest must match the frozen reviewed identity.');
-const manifest=JSON.parse(manifestBytes);
+const currentManifestPath=new URL('./current93/jc046-invalid.json.gz',import.meta.url);
+const manifestBytes=readFileSync(process.argv[4] || currentManifestPath);
+const manifestSha256=sha256(manifestBytes);
+assert.equal(manifestSha256,sha256(readFileSync(currentManifestPath)),
+  'JC046 invalid-state manifest must match the current source-bound identity.');
+const manifest=loadCurrentFixture('rust-game-wasm/tests/current93/jc046-invalid.json.gz');
 assert.equal(manifest.invalidRoomStates,55);
-const invalidPrefix='docs/evidence/jc046-2026-10-15/invalid-room/';
-const invalidFiles=manifest.files.filter(file=>file.path.startsWith(invalidPrefix));
-assert.equal(invalidFiles.length,55,'The frozen JC046 manifest must identify all 55 invalid states.');
-const expectedNames=invalidFiles.map(file=>file.path.slice(invalidPrefix.length)).sort();
+const invalidFiles=manifest.files;
+assert.equal(invalidFiles.length,55,'The current JC046 manifest must identify all 55 invalid states.');
+const expectedNames=invalidFiles.map(file=>file.name).sort();
 assert.equal(new Set(expectedNames).size,55);
 assert(expectedNames.every(name=>name.endsWith('.json')&&!name.includes('/')));
 assert.deepEqual(readdirSync(process.argv[3]).sort(),expectedNames,
-  'JC046 invalid-state directory must contain exactly the 55 frozen files; missing or extra entries are rejected.');
+  'JC046 invalid-state directory must contain exactly the 55 current Native files; missing or extra entries are rejected.');
 const invalidStatesInput=invalidFiles.map(file=>{
-  const name=file.path.slice(invalidPrefix.length);
+  const name=file.name;
   const bytes=readFileSync(`${process.argv[3]}/${name}`);
   assert.equal(bytes.length,file.bytes,`JC046 invalid-state byte length differs: ${name}`);
   assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256,
     `JC046 invalid-state SHA256 differs: ${name}`);
   const {state}=JSON.parse(bytes);
   assert.equal(typeof state,'string',name);
+  const saved=JSON.parse(state);
+  const versions={rules:currentIdentity.rulesVersion,cardPool:currentIdentity.cardPoolVersion,engine:currentIdentity.engineVersion};
+  assert.deepEqual(saved.versions,versions,`${name}: rejection must exercise a current Room`);
+  assert.deepEqual(saved.game.versions,versions,`${name}: rejection must exercise a current game`);
   return {name,state};
 });
-const fixture=JSON.parse(readFileSync(process.argv[2] || new URL('../../web/src/game/jc046Native77.fixture.json',import.meta.url)));
+const fixture=loadCurrentFixture(process.argv[2] || 'rust-game-wasm/tests/current93/jc046.json.gz');
 assert.deepEqual(fixture.catalog,catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
-assert.equal(catalog.cardPoolVersion,'limited-v2.70-jc046-mandatory-sacrifice-candidate');
-assert.equal(catalog.cards.length,143);
+assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
+assert.equal(catalog.cardPoolVersion,'limited-v2.83-batch20-next');
+assert.equal(catalog.cards.length,193);
 assert.equal(fixture.scenarios.length,37);
 assert.equal(new Set(fixture.scenarios.map(s=>s.name)).size,37);
 assert.equal(createHash('sha256').update(moduleBytes).digest('hex'),fixture.wasmSha256);

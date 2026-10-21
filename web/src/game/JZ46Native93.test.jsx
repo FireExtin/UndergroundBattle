@@ -1,8 +1,8 @@
-// Fresh Native79 -> real WASM -> actual Table choice; component QA, not online play.
+// Fresh Native93 -> real WASM -> actual Table choice; component QA, not online play.
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { loadFixture, sha256 } from '../../../tools/jz46-oracle.mjs';
-import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current79-kernel.mjs';
+import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';
 import { actionForRoom } from './api';

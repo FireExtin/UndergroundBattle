@@ -1,22 +1,19 @@
-// Actual compiler-bound Native88 Room commands; opaque state strings are never rewritten.
+// Current ABI93 compiler-bound Room commands; Native raw schemas and opaque strings are unchanged.
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {currentIdentity,assertCurrentSourceBindings,assertCurrentCatalog,currentWasmSha256,currentSourceManifestSha256} from './current-native-source.mjs';
 const moduleUrl=import.meta.url,root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
-export const identity={rulesVersion:'hegemony-pdf-v1',cardPoolVersion:'limited-v2.80-xq23-asset-return-candidate',engineVersion:'rust-v0.2.88-xq23-asset-return-candidate'};
+export const identity=currentIdentity;
 export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','ordinary-deploy','target-return-response','source-return-response','paid-target','exhausted-target'].sort();
-export function assertSources(binding){
- const saved=JSON.parse(readFileSync(path.join(root,'rust-game-wasm/frozen/abi88/native-source-binding.json'),'utf8'));
- assert.equal(binding.algorithm,'sha256');assert.equal(Object.keys(binding.files).length,139);assert.deepEqual(binding,saved,'Exact original Native88 compiler binding; no current89 source substitution');
-}
+export const assertSources=assertCurrentSourceBindings;
 export function validateNative(raw){
- assert.equal(raw.format,'xq23-native88-v1');assertSources(raw.sourceBindings);
- for(const[k,v]of Object.entries(identity))assert.equal(raw.catalog[k],v);
- assert.equal(raw.catalog.cards.length,152);assert.equal(raw.catalog.societies.length,10);
+ assert.equal(raw.format,'xq23-current-native89-v1');assertSources(raw.sourceBindings);
+ assertCurrentCatalog(raw.catalog);assert.equal(raw.catalog.societies.length,10);
  assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
  let commands=0,rejected=0,projections=0;
  for(const s of raw.scenarios){
@@ -35,8 +32,9 @@ export function validateNative(raw){
  assert.deepEqual(counts,raw.counts);assert.deepEqual(counts,{scenarios:9,commands:72,rejected:5,projections:324,invalidRestores:31});return counts;
 }
 export function loadFixture(){
- const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23Native88.fixture.json.gz'))));
- assert.equal(bundle.format,'xq23-native88-raw-v1');assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
+ const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23CoreNative93.fixture.json.gz'))));
+ assert.equal(bundle.format,'xq23-current-native93-raw-v1');assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
+ assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);assert.equal(bundle.wasmSha256,currentWasmSha256);
  const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);return {...bundle,...raw};
 }
 export function compare(f,abi,wasm){
@@ -56,11 +54,13 @@ export function compare(f,abi,wasm){
  }
  return {...f.counts,wasmSha256:f.wasmSha256,nativeRawSha256:f.raw.sha256,completeOpaqueStatesJournalsAndFourViews:true};
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(moduleUrl)){
- const[nativeFile,wasmFile,destination]=process.argv.slice(2);if(!destination)throw Error('Usage: xq23-oracle.mjs Native88.json current88.wasm NEW.fixture.json.gz');
+export async function packCoreFixture(nativeFile,wasmFile,destination){
+ if(!destination)throw Error('Usage: xq23-oracle.mjs NativeCurrent89.json current93.wasm NEW.fixture.json.gz');
  const json=readFileSync(nativeFile,'utf8'),raw=JSON.parse(json),bytes=readFileSync(wasmFile),counts=validateNative(raw);
- const bundle={format:'xq23-native88-raw-v1',raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
- const {kernel,moduleBytes}=await import('../rust-game-wasm/tests/current88-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
+ const bundle={format:'xq23-current-native93-raw-v1',currentSourceManifestSha256,raw:{json,bytes:Buffer.byteLength(json),sha256:sha256(json)},counts,wasmSha256:sha256(bytes)};
+ const {kernel,moduleBytes}=await import('../rust-game-wasm/tests/current-kernel.mjs');assert.deepEqual(bytes,moduleBytes);
  const result=compare({...bundle,...raw},kernel,bytes);writeFileSync(destination,gzipSync(JSON.stringify(bundle),{level:9,mtime:0}),{flag:'wx'});
  console.log(JSON.stringify({destination,...result,nativeInputs:Object.keys(raw.sourceBindings.files).length}));
 }
+
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(moduleUrl))await packCoreFixture(...process.argv.slice(2));

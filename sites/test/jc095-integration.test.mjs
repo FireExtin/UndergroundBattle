@@ -1,5 +1,6 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 import { assertSessionJournal, assertPublicView } from './assert-session-journal.mjs';
-// JC095 continuous prepared Native77 traces through the production service and real D1.
+// JC095 continuous prepared Native93 traces through the production service and real D1.
 // Native fixture IDs use RoomService; the ordinary HTTP suite covers routing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,16 +8,16 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
-abi.initSync({ module: frozen77Bytes });
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/jc095-native-v077.json',import.meta.url),'utf8'));
+abi.initSync({ module: currentBytes });
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/jc095.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()),fixtures.catalog);
 
-for (const scenario of fixtures.scenarios) test(`JC095 ABI77 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
+for (const scenario of fixtures.scenarios) test(`JC095 ABI93 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'jc095-75-d1-'));
   const options = convertV4MiniflareOptions({ name: 'jc095-75', resourcePersistencePath: persist, modules: [
     { type: 'ESModule', path: resolve('dist/server/index.js') },

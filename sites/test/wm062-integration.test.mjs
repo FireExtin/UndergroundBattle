@@ -13,7 +13,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadFixture } = await import(pathToFileURL(root + 'tools/wm062-oracle.mjs').href);
 const fixture = loadFixture();
-const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'wm062-http-'));
   const options = convertV4MiniflareOptions({ name: 'wm062-http', resourcePersistencePath: persist, modulesRoot: worker, modules: [
@@ -40,13 +40,13 @@ async function harness(t, scenario) {
     return { status: response.status, body: await response.json() };
   }, globalCatalog: async () => (await mf.dispatchFetch('http://localhost/api/catalog')).json() };
 }
-async function runScenario(t, scenario, expectedCards = 146) {
+async function runScenario(t, scenario, expectedCards = fixture.catalog.cards.length) {
   const h = await harness(t, scenario);
   const roomCatalog = await h.api('catalog', 0);
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
   assert.equal(roomCatalog.body.cards.length, expectedCards);
-  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.91-batch20');
+  assert.equal((await h.globalCatalog()).engineVersion, fixture.catalog.engineVersion);
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;
@@ -90,12 +90,12 @@ async function runScenario(t, scenario, expectedCards = 146) {
   t.diagnostic(JSON.stringify({ scenarioName: scenario.name, reference: scenario.reference || 'compiler-bound Native', expectedRoomCards: expectedCards, accepted, rejected, projections, reopened,
     completeHttpCoreViewsAndReferenceJournalsEqual: true, opaqueD1StatesEqual: true, originalReceiptsAfterReopen: true }));
 }
-for (const scenario of fixture.scenarios) test(`WM062 ABI80 HTTP ${scenario.name}`, t => runScenario(t, scenario));
+for (const scenario of fixture.scenarios) test(`WM062 ABI93 HTTP ${scenario.name}`, t => runScenario(t, scenario));
 
-for (const name of ['pending-04', 'response-00', 'pending-13']) test(`WM062 ABI80 corrupted ${name} rejects before D1 writes and after reopening`, async t => {
+for (const name of ['pending-04', 'response-00', 'pending-13']) test(`WM062 ABI93 corrupted ${name} rejects before D1 writes and after reopening`, async t => {
   const index=fixture.negative.findIndex(row=>row.file===name+'.json');
   const invalid=index<0?undefined:fixture.invalid[index];
-  // The raw Native input has a known80 tuple and an intentionally invalid
+  // The raw Native input has a known93 tuple and an intentionally invalid
   // continuation or paid play container. Keep the opaque bytes unchanged.
   assert(invalid, name);
   const outer=JSON.parse(invalid.state),reference=fixture.scenarios[0];
@@ -113,5 +113,5 @@ for (const name of ['pending-04', 'response-00', 'pending-13']) test(`WM062 ABI8
   await reject('state',0);await reject('state',3);
   await reject('commands',0,{commandId:'invalid-wm062-'+name,expectedVersion:outer.revision,action:{kind:'pauseRoom'}});
   await h.reopen();await reject('state',0);
-  t.diagnostic(JSON.stringify({invalidNativeName:name,known80Catalog:true,httpRestoreRejections:4,opaqueD1StateUnchanged:true,noCommandOrJournal:true,reopened:true}));
+  t.diagnostic(JSON.stringify({invalidNativeName:name,known93Catalog:true,httpRestoreRejections:4,opaqueD1StateUnchanged:true,noCommandOrJournal:true,reopened:true}));
 });

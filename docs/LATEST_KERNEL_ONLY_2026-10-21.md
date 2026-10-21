@@ -15,7 +15,7 @@
 
 ## 体积、启动与内存实测
 
-同一环境，旧候选先测3次，单核候选再测3次。每次创建新本地Miniflare/workerd进程与合成D1数据库，依次健康检查、执行数据库迁移、创建当前房间并读取状态；6次均成功。测量期间没有其他本任务测试或构建进程。
+同一环境，旧候选先测3次，单核候选再测3次。每次创建新本地Miniflare/workerd进程与合成D1数据库，依次健康检查、执行数据库迁移、创建当前房间并读取状态；6次均成功。测量期间没有其他本任务测试或构建进程。计时在 Node 已启动、Miniflare 模块已加载且 WASM 文件名已枚举之后、调用 `new Miniflare(...)` 之前开始；不包含 Node 进程启动和依赖模块加载，不能称为完整进程冷启动耗时。
 
 | 指标 | 9aa4fda多核 | 当前单核 |
 | --- | ---: | ---: |
@@ -23,8 +23,8 @@
 | WASM合计字节 | 53,262,284 | 4,315,979 |
 | generated输出字节 | 53,553,532 | 4,334,182 |
 | dist输出字节（含静态客户端） | 184,528,955 | 134,836,916 |
-| 进程启动到健康响应，中位数 | 1,120.84 ms | 278.96 ms |
-| 启动、迁移、新房可读，中位数 | 1,374.47 ms | 559.14 ms |
+| 创建 Miniflare 实例前至健康响应，中位数 | 1,120.84 ms | 278.96 ms |
+| 创建 Miniflare 实例前至迁移完成且新房可读，中位数 | 1,374.47 ms | 559.14 ms |
 | 创建请求耗时，中位数 | 31.00 ms | 24.87 ms |
 | Node进程最大RSS，中位数 | 424,892 KiB | 239,260 KiB |
 | 进程树采样峰值RSS，中位数 | 614,473,728 B | 360,513,536 B |
@@ -45,7 +45,7 @@ WASM减少48,946,305字节（91.9%），generated与dist合计减少98,911,389�
 
 B2-IR-01（旧身份断言/遗漏93 pacing）：集成测试改为ABI93/pool83，测试助手只用当前响应协议，删除版本白名单。保留并发、回执、回滚、重开和u64检查。完成协议简化后另运行该文件，结果在[integration-single-protocol-final.log](evidence/latest-kernel-only-2026-10-21/integration-single-protocol-final.log)。
 
-B2-IR-02（清空generated后缺92导入）：删除全部旧导入和旧模块准备，不补回92。正式及后端构建仅当前核，干净目录构建与实际启动日志分别为[backend-clean-build.log](evidence/latest-kernel-only-2026-10-21/backend-clean-build.log)、[backend-clean-start.log](evidence/latest-kernel-only-2026-10-21/backend-clean-start.log)。这是作者修复与复现结果，仍待协调任务独立补验。
+B2-IR-02（清空generated后缺92导入）：删除全部旧导入和旧模块准备，不补回92。正式及后端构建仅当前核，干净目录构建与实际启动日志分别为[backend-clean-build.log](evidence/latest-kernel-only-2026-10-21/backend-clean-build.log)、[backend-clean-start.log](evidence/latest-kernel-only-2026-10-21/backend-clean-start.log)。这是作者修复与复现结果。协调任务随后对固定 `677a7b1d60fb41221f54fa2aaa0e81012bce3010` 独立补验，已关闭 B2-IR-01/02；结论不覆盖后续夹具迁移。
 
 历史失败记录未抹除：前端首轮因Vitest重写动态import而未执行用例，改为Node加载同一当前绑定；来源首轮缺本地秘社原图，核验现有原件哈希后恢复输入；第二轮的MSJC07断言失败及修正保留在[完整日志](evidence/latest-kernel-only-2026-10-21/web-current-catalog.log)。未通过放宽名单、禁用测试或重贴版本字段消除失败。
 

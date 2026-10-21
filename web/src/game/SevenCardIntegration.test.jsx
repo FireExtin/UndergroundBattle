@@ -1,17 +1,18 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as kernel, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { actionForRoom } from './api';
 import { ChoicePanel } from './ChoicePanel';
 import { ReadModal } from './ReadModal';
 import { Table } from './Table';
 import { cardScanUrl } from './cardScans';
-kernel.initSync({ module: frozen77Bytes });
+kernel.initSync({ module: currentBytes });
 const catalog = JSON.parse(kernel.catalog());
-const fixtures = JSON.parse(readFileSync(resolve('src/game/sevenCardUIV077.fixture.json'), 'utf8'));
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/seven-card.json.gz');
 const definitions = new Map(catalog.cards.map(card => [card.id, card]));
 const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
 
@@ -24,9 +25,9 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
   expect(screen.getByRole('img', { name: `${definition.name}原始牌面` })).toHaveAttribute('src', registered.url);
 });
 it('uses the current candidate and retains the reviewed XQ18', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.70-jc046-mandatory-sacrifice-candidate');
-  expect(catalog.cards).toHaveLength(143); expect(definitions.has('XQ18')).toBe(true);
+  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');
+  expect(catalog.cards).toHaveLength(193); expect(definitions.has('XQ18')).toBe(true);
 });
 it('rejects the preserved engine57 opaque room without upgrading its state', () => {
   const previous = JSON.parse(readFileSync(resolve('src/game/xq37Native57Test.fixture.json'), 'utf8')).accept;

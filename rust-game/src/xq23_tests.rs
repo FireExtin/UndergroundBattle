@@ -214,16 +214,9 @@ fn xq23_rejects_unprinted_action_payload_fields_before_payment() {
     };u::reject(&mut g.clone(),0,a);}
 }
 #[test]
-fn xq23_exact_review_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind() {
-    use sha2::{Digest,Sha256};
-    let raw=std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"),"/../docs/evidence/xq23-p2-2026-10-19/paid-room-before.json")).unwrap();
-    assert_eq!(raw.len(),31_197);
-    assert_eq!(format!("{:x}",Sha256::digest(raw.as_bytes())),"76a47a29fb9d3b1d772ffdb6087e9180cac93f91fdd0c3af0d989fdc36b48c65");
-    let original:Value=serde_json::from_str(&raw).unwrap();
-    // The unchanged published88 control belongs only to the exact frozen88
-    // reducer. Never alter its version fields, UIDs or source bindings for89.
-    assert!(crate::room::RoomEnvelope::from_persisted(&raw).unwrap_err().contains("版本"));
-    assert!(Game::from_persisted(&serde_json::to_string(&original["game"]).unwrap()).unwrap_err().contains("版本"));
+fn xq23_current_paid_state_rejects_mismatched_summary_uid_and_nonasset_kind() {
+    // Reproduce the four reviewed corruptions after a real current paid action.
+    // Archived ABI88 bytes remain evidence; they are not a build/test input.
     let (mut g,source,target)=active(0);u::act(&mut g,0,action(&source,&target));
     let current=serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();
     let fresh=serde_json::to_string(&current).unwrap();

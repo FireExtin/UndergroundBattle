@@ -1,10 +1,11 @@
-// Complete, source-bound Native78 inputs. Opaque state strings are never rewritten.
+// Fresh ABI93 Native inputs; original raw bytes and opaque states are retained.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256 } from './current-native-source.mjs';
 
 const moduleUrl = import.meta.url;
 const repository = fileURLToPath(new URL('../', moduleUrl));
@@ -24,20 +25,9 @@ export const bq035NegativeNames = [
   'impossible-demon-vampire-history', 'duplicate-live-recipient-uid',
   'wm023-own-action-missing-region-uid', 'wm023-own-action-mobility-target-transplant',
 ].sort();
-export const bq035Identity = {
-  rulesVersion: 'hegemony-pdf-v1', cardPoolVersion: 'limited-v2.71-bq035-vampire-mobility-candidate',
-  engineVersion: 'rust-v0.2.78-bq035-vampire-mobility-candidate',
-};
+export const bq035Identity = currentIdentity;
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
-export function assertSourceBindings(binding) {
-  assert.equal(binding.algorithm, 'sha256');
-  // These are frozen v60 Native78 observations, not fresh candidate79 tests.
-  const saved = JSON.parse(readFileSync(path.join(repository, 'rust-game-wasm/frozen/abi78/native-source-binding.json'), 'utf8'));
-  const expected = Object.keys(saved.files).sort();
-  assert.equal(expected.length, 121);
-  assert.deepEqual(Object.keys(binding.files).sort(), expected, 'Incomplete Native source binding');
-  for (const name of expected) assert.equal(binding.files[name], saved.files[name], `Stale Native source: ${name}`);
-}
+export const assertSourceBindings = assertCurrentSourceBindings;
 function decodeInputs(entries, names, kind, binding) {
   assert.deepEqual(entries.map(entry => entry.file).sort(), names.map(name => `${name}.json`), `Incomplete ${kind} input set`);
   return entries.map(entry => {
@@ -50,8 +40,11 @@ function decodeInputs(entries, names, kind, binding) {
   });
 }
 export function validateBq035Bundle(bundle) {
-  assert.equal(bundle.format, 'bq035-native78-raw-v1');
+  assert.equal(bundle.format, 'bq035-native93-raw-v1');
   assertSourceBindings(bundle.sourceBindings);
+  assert.equal(bundle.currentSourceManifestSha256, currentSourceManifestSha256);
+  assert.equal(bundle.wasmSha256, currentWasmSha256);
+  assertCurrentCatalog(bundle.catalog);
   const scenarios = decodeInputs(bundle.positive, bq035PositiveNames, 'positive', bundle.sourceBindings);
   const invalid = decodeInputs(bundle.negative, bq035NegativeNames, 'negative', bundle.sourceBindings);
   let commands = 0, projections = 0, rejected = 0;
@@ -85,16 +78,14 @@ export function validateBq035Bundle(bundle) {
   assert.equal(commands, 378, 'Incomplete continuous Native command set');
   assert.equal(projections, 1510, 'Incomplete every-seat Native projections');
   assert.deepEqual(bundle.counts, { scenarios: scenarios.length, commands, projections, rejected, invalid: invalid.length });
-  for (const key of Object.keys(bq035Identity)) assert.equal(bundle.catalog[key], bq035Identity[key]);
-  assert.equal(bundle.catalog.cards.length, 144);
   assert.match(bundle.wasmSha256, /^[a-f0-9]{64}$/);
   return { ...bundle, scenarios, invalid };
 }
-export function loadBq035Fixture(filename = path.join(repository, 'rust-game-wasm/tests/bq035Native78.fixture.json.gz')) {
+export function loadBq035Fixture(filename = path.join(repository, 'rust-game-wasm/tests/bq035Native93.fixture.json.gz')) {
   return validateBq035Bundle(JSON.parse(gunzipSync(readFileSync(filename), { maxOutputLength: 128 * 1024 * 1024 }).toString('utf8')));
 }
 export function compareBq035Fixture(fixture, abi, wasm) {
-  assert.equal(sha256(wasm), fixture.wasmSha256, 'Native78 fixture WASM identity mismatch');
+  assert.equal(sha256(wasm), fixture.wasmSha256, 'Native93 fixture WASM identity mismatch');
   assert.deepEqual(JSON.parse(abi.catalog()), fixture.catalog);
   let commands = 0, projections = 0, rejected = 0;
   const checkViews = (state, views) => views.forEach((expected, seat) => {
@@ -135,8 +126,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (operation !== 'pack' || !output) throw Error('Usage: node tools/bq035-oracle.mjs pack <complete-positive-dir> <complete-negative-dir> <new-output.gz>');
   const positive = readInputs(positiveDir, bq035PositiveNames), negative = readInputs(negativeDir, bq035NegativeNames);
   const first = JSON.parse(positive[0].json), rows = positive.map(entry => JSON.parse(entry.json));
-  const { kernel, moduleBytes } = await import('../rust-game-wasm/tests/current78-kernel.mjs');
-  const bundle = { format: 'bq035-native78-raw-v1', sourceBindings: first.sourceBindings, catalog: first.catalog,
+  const { kernel, moduleBytes } = await import('../rust-game-wasm/tests/current-kernel.mjs');
+  const bundle = { format: 'bq035-native93-raw-v1', currentSourceManifestSha256, sourceBindings: first.sourceBindings, catalog: first.catalog,
     wasmSha256: sha256(moduleBytes), counts: { scenarios: rows.length, commands: rows.reduce((n, row) => n + row.steps.length, 0),
       projections: rows.reduce((n, row) => n + row.initial.views.length + row.steps.reduce((m, step) => m + step.views.length, 0), 0),
       rejected: rows.reduce((n, row) => n + row.steps.filter(step => step.expected.errorCode).length, 0), invalid: negative.length }, positive, negative };

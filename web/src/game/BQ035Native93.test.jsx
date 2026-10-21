@@ -1,8 +1,8 @@
-// Current ABI78 projections and exact Native commands; component QA only.
+// Current ABI93 projections and exact Native commands; component QA only.
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { loadBq035Fixture, sha256 } from '../../../tools/bq035-oracle.mjs';
-import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current78-kernel.mjs';
+import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { Table } from './Table';
 import { CardContent } from './CardTile';
 import { actionForRoom } from './api';

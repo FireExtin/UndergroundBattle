@@ -1,14 +1,15 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { actionForRoom } from './api';
 import { Table } from './Table';
 
-const wasm = frozen77Bytes;
-const fixture = JSON.parse(readFileSync(resolve('src/game/currentLifecycle77.fixture.json'), 'utf8'));
+const wasm = currentBytes;
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/lifecycle.json.gz');
 expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
 abi.initSync({ module: wasm });
 const catalog = JSON.parse(abi.catalog());

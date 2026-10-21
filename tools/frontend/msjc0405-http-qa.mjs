@@ -1,12 +1,12 @@
 // Production GameApp + actual local HTTP/workerd/WASM/D1. No live service writes.
-// Entry flows use only visible UI. Ability flows disclose Native83 initial layouts.
+// Entry flows use only visible UI. Ability flows disclose Native93 initial layouts.
 import assert from 'node:assert/strict';
 import {mkdir,mkdtemp,readFile,readdir,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {join,resolve} from 'node:path';
+import {dirname,join,resolve} from 'node:path';
 import {loadFixture,sha256} from '../msjc0405-oracle.mjs';
-import {kernel as abi,moduleBytes} from '../../rust-game-wasm/tests/current83-kernel.mjs';
+import {kernel as abi,moduleBytes} from '../../rust-game-wasm/tests/current-kernel.mjs';
 const moduleUrl=import.meta.url,repo=fileURLToPath(new URL('../../',moduleUrl));
 const webRequire=createRequire(join(repo,'web/package.json')),siteRequire=createRequire(join(repo,'sites/package.json'));
 const {chromium}=webRequire('playwright'),{expect}=webRequire('playwright/test');
@@ -17,14 +17,13 @@ const {assertPublicView,assertSessionJournal}=await import('../../sites/test/ass
 const output=resolve(process.argv[2]||'/workspace/msjc0405-evidence-20261017/browser-first');
 await mkdir(output); // Preserve previous browser evidence; use a fresh directory.
 const sites=join(repo,'sites'),client=join(sites,'dist/client');
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||'/workspace/msjc0405-evidence-20261017/worker83/server';
+const worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(repo,'sites/dist/current-clock/worker.js'));
 const fixture=loadFixture();assert.equal(sha256(moduleBytes),fixture.wasmSha256);
 const modules=await Promise.all((await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
-const oldHashes=await Promise.all([77,78,79,80,81,82].map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`),'utf8')).wasmSha256));
-assert.deepEqual(modules.map(m=>m.sha256).sort(),[fixture.wasmSha256,...oldHashes].sort());
+assert.deepEqual(modules.map(m=>m.sha256).sort(),[fixture.wasmSha256]);
 const report={passed:false,engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,modules,
   workerSha256:sha256(await readFile(join(worker,'worker.js'))),productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),
-  clientIndexSha256:sha256(await readFile(join(client,'index.html'))),scope:'Local production client. Natural UI deck construction/entry/start; separately disclosed Native83 ability layouts. No online gameplay.',
+  clientIndexSha256:sha256(await readFile(join(client,'index.html'))),scope:'Local production client. Natural UI deck construction/entry/start; separately disclosed Native93 ability layouts. No online gameplay.',
   natural:[],abilities:[],pageErrors:[],screenshots:[]};
 let browser,mf,pages=[];
 const capture=async(page,name)=>{const file=name+'.png';await page.screenshot({path:join(output,file),fullPage:true});report.screenshots.push(file);};
@@ -128,10 +127,10 @@ async function ability(viewport,societyId) {
   const scenario=fixture.scenarios.find(s=>s.name===societyId.toLowerCase()+'-search'),initial=scenario.initial;
   const {origin,db,store}=await startServer(`msjc0405-${societyId.toLowerCase()}-${viewport.height}`),id=initial.views[0].roomId;
   const tokens=Array.from({length:4},(_,i)=>String(i+1).repeat(64));
-  await store.create({id,invite:initial.views[0].inviteCode,state:initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'explicit-native83-browser-layout',response:'{}'});
+  await store.create({id,invite:initial.views[0].inviteCode,state:initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'explicit-native93-browser-layout',response:'{}'});
   await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(initial.views[0].version,id).run();
   for(let seat=1;seat<4;seat++)await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id,seat,await digest(tokens[seat])).run();
-  const run={viewport,societyId,scope:'explicit Native83 starting layout',posts:[0,0,0,0],commands:[],checks:[]};report.abilities.push(run);pages=[];
+  const run={viewport,societyId,scope:'explicit Native93 starting layout',posts:[0,0,0,0],commands:[],checks:[]};report.abilities.push(run);pages=[];
   for(let seat=0;seat<4;seat++) {const page=await context(viewport,{roomId:id,inviteCode:initial.views[0].inviteCode,seat,token:tokens[seat]});page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/')&&r.method()==='POST')run.posts[seat]++;});await page.goto(origin);await expect(page.locator('.hg-connection-online')).toBeVisible();}
   assert.equal((await store.room(id)).state,initial.state);assert.deepEqual(run.posts,[0,0,0,0]);
   const view=async seat=>JSON.parse(abi.view((await store.room(id)).state,seat));

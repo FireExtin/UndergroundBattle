@@ -1,8 +1,8 @@
-// Actual Native88/WASM views; component checks are not online gameplay.
+// Actual Native93/WASM views; component checks are not online gameplay.
 import {render,screen,fireEvent,within} from '@testing-library/react';
 import {beforeEach,afterEach,expect,it,vi} from 'vitest';
 import {loadFixture,sha256} from '../../../tools/xq23-oracle.mjs';
-import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current88-kernel.mjs';
+import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {actionForRoom} from './api';

@@ -1,8 +1,8 @@
-// Actual new Native141/WASM89 views. These component checks are local only.
+// Actual new Native93/WASM93 views. These component checks are local only.
 import {render,screen,fireEvent,within} from '@testing-library/react';
 import {beforeEach,afterEach,expect,it,vi} from 'vitest';
 import {loadFixture,sha256} from '../../../tools/jc035-oracle.mjs';
-import {kernel,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current89-kernel.mjs';
+import {kernel,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {actionForRoom} from './api';

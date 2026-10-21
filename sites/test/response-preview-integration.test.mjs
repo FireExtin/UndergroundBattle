@@ -1,16 +1,17 @@
-// Actual HTTP/workerd/six-WASM/D1 with synthetic Native82 layouts only.
+// Actual HTTP/workerd/single-WASM/D1 with synthetic Native93 layouts only.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 import { assertPublicView, assertSessionJournal } from './assert-session-journal.mjs';
 import { loadFixture } from '../../tools/response-preview-oracle.mjs';
 const fixture=loadFixture();
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc054-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 async function harness(t,scenario) {
   const persist=mkdtempSync(path.join(tmpdir(),'response-preview-http-'));
   const options={name:'response-preview-http',resourcePersistencePath:persist,modulesRoot:worker,modules:[
@@ -34,7 +35,7 @@ async function harness(t,scenario) {
       headers:{Authorization:'Bearer '+tokens[seat],...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
       return {status:response.status,body:response.status===204?null:await response.json()};}};
 }
-for(const scenario of fixture.scenarios)test(`response preview ABI82 HTTP ${scenario.name}`,async t=>{
+for(const scenario of fixture.scenarios)test(`response preview ABI93 HTTP ${scenario.name}`,async t=>{
   const h=await harness(t,scenario);let accepted=0,rejected=0,projections=0,pureQueries=0,quotes=0,reopens=0;
   const receipts=[];
   const viewAll=async views=>{for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,200);assertPublicView(r.body,views[seat]);projections++;}};
@@ -75,5 +76,5 @@ for(const scenario of fixture.scenarios)test(`response preview ABI82 HTTP ${scen
   const final=await h.snapshot();assert.equal(final.commands.length,accepted);
   await h.reopen();reopens++;
   for(const {row,body}of receipts){const repeated=await h.api('commands',row.seat,row.command);assert.equal(repeated.status,200);assert.deepEqual(repeated.body,body);assert.deepEqual(await h.snapshot(),final);}
-  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native82',accepted,rejected,quotes,projections,pureQueries,reopens,originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true}));
+  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native93',accepted,rejected,quotes,projections,pureQueries,reopens,originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true}));
 });

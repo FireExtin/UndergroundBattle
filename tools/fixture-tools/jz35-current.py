@@ -29,9 +29,9 @@ for p in sorted((root/'native').glob('*.json')):
                   'provenance':{'snapshotSha256':hashlib.sha256(p.read_bytes()).hexdigest(),
                                 'acceptedNativeStepSha256':hashlib.sha256(q.read_bytes()).hexdigest()}})
 assert len(cases)==4,len(cases)
-out=Path(f'web/src/game/jz35Native{suffix}.fixture.json')
+out=Path(f'web/src/game/jz35Native{suffix}.fixture.json') if len(sys.argv)<4 else Path(sys.argv[3])
 result={'scope':'Exact current Native prepared layouts and accepted Room commands; not browser play or save migration.',
-        'sourceBaseline':'d3035451f3a9375a53f2fd08fbbafd35858e3267',
+        'sourceBaseline':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'wasmSha256':hashlib.sha256(Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()).hexdigest(),'cases':cases}
-out.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+with out.open('x') as stream: stream.write(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
 print(json.dumps({'path':str(out),'cases':len(cases),'bytes':out.stat().st_size}))

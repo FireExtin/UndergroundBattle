@@ -1,8 +1,8 @@
-// Fresh Native80 -> source-built WASM -> production choice UI; local component QA.
+// Fresh Native93 -> source-built WASM -> production choice UI; local component QA.
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { loadFixture, sha256 } from '../../../tools/wm062-oracle.mjs';
-import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current80-kernel.mjs';
+import { kernel as abi, moduleBytes, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';
 import { actionForRoom } from './api';

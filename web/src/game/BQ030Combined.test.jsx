@@ -1,13 +1,14 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 // Actual current Native choices through React controls and the production WASM.
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import fixtures from './bq030Native77.fixture.json';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/bq030-web.json.gz');
 import { Table } from './Table';
 
-abi.initSync({ module: frozen77Bytes });
+abi.initSync({ module: currentBytes });
 const catalog = JSON.parse(abi.catalog());
 afterEach(cleanup);
 

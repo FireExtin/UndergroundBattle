@@ -1,24 +1,25 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { actionForRoom } from './api';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';
 import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
 
-const wasm=frozen77Bytes;
+const wasm=currentBytes;
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc094Native77.fixture.json'),'utf8'));
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/jc094.json.gz');
 const catalog=JSON.parse(abi.catalog());
 const definition=catalog.cards.find(c=>c.id==='JC094');
 
 it('reads the complete original JC094 face and standard local-other-sacrifice ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
   expect(definition).toMatchObject({name:'威达的汀巴巴迪',subtitle:'巫毒大师',color:'黑',unique:true,cost:6,
     loyalty:['黑色','黑色','黑色'],magic:'死亡',defense:3,subtypes:['人类','法师','罪犯'],
     permanentIcons:{investigation:0,combat:0,influence:2},temporaryIcons:{investigation:3,combat:0,influence:0},keywords:[]});

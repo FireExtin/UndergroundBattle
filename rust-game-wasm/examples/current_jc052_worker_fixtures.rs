@@ -10,17 +10,18 @@ fn main() {
     assert!(!output.exists(), "Preserve prior inputs; select a new output path");
     let input: Value = serde_json::from_slice(&fs::read(&args[1]).unwrap()).unwrap();
     let mut cases = vec![];
-    for (index, row) in input["cases"].as_array().unwrap().iter().enumerate() {
-        // Both the seed and prepared output use the actual current identity.
-        // Change only the layout's room identifier before executing Native.
-        let mut room = RoomEnvelope::from_persisted(row["before"].as_str().unwrap()).unwrap();
-        room.game.room_id = format!("5200000000000000000000{:02}", index + 1);
+    for row in input["cases"].as_array().unwrap() {
+        let room = RoomEnvelope::from_persisted(row["before"].as_str().unwrap()).unwrap();
+        assert_eq!(room.game.room_id.len(), 24);
+        assert!(room.game.room_id.bytes().all(|c| c.is_ascii_hexdigit()));
         let seat = row["seat"].as_u64().unwrap() as usize;
         let before = serde_json::to_string(&room).unwrap();
+        assert_eq!(before, row["before"].as_str().unwrap());
         let before_views = (0..room.game.players.len()).map(|s| room.view(s, 0)).collect::<Vec<_>>();
         let command: RoomCommand = serde_json::from_value(row["command"].clone()).unwrap();
         let transition = room.transition(seat, Some(command), 0).unwrap();
         assert_eq!(transition.outcome, "accepted");
+        assert_eq!(serde_json::to_value(&transition).unwrap(), row["expected"]);
         let next = RoomEnvelope::from_persisted(&transition.state).unwrap();
         let after_views = (0..next.game.players.len()).map(|s| next.view(s, 0)).collect::<Vec<_>>();
         cases.push(json!({"name":row["name"],"seat":seat,"before":before,

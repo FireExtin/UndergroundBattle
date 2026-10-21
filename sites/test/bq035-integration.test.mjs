@@ -13,7 +13,7 @@ const project = fileURLToPath(new URL('../', import.meta.url));
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
 const fixture = loadBq035Fixture();
-const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 async function harness(t, scenario) {
   const persist = mkdtempSync(path.join(tmpdir(), 'bq035-http-'));
   const options = convertV4MiniflareOptions({ name: 'bq035-http', resourcePersistencePath: persist, modulesRoot: worker, modules: [
@@ -40,13 +40,13 @@ async function harness(t, scenario) {
     return { status: response.status, body: await response.json() };
   }, globalCatalog: async () => (await mf.dispatchFetch('http://localhost/api/catalog')).json() };
 }
-async function runScenario(t, scenario, retained = false) {
+async function runScenario(t, scenario) {
   const h = await harness(t, scenario);
   const roomCatalog = await h.api('catalog', 0);
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
-  assert.equal(roomCatalog.body.cards.length, retained ? 143 : 144);
-  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.91-batch20');
+  assert.equal(roomCatalog.body.cards.length, fixture.catalog.cards.length);
+  assert.equal((await h.globalCatalog()).engineVersion, fixture.catalog.engineVersion);
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;
@@ -87,7 +87,7 @@ async function runScenario(t, scenario, retained = false) {
     const conflict = await h.api('commands', step.seat, { ...step.command, expectedVersion: step.command.expectedVersion + 1 });
     assert.equal(conflict.status, 409); assert.deepEqual(await h.store().room(h.id), saved);
   }
-  t.diagnostic(JSON.stringify({ nativeScenario: scenario.name, retained77: retained, accepted, rejected, projections, reopened,
+  t.diagnostic(JSON.stringify({ nativeScenario: scenario.name, currentAbi: 93, accepted, rejected, projections, reopened,
     completeHttpCoreViewsAndNativeJournalsEqual: true, opaqueD1StatesEqual: true, originalReceiptsAfterReopen: true }));
 }
-for (const scenario of fixture.scenarios) test(`BQ035 ABI78 HTTP ${scenario.name}`, t => runScenario(t, scenario));
+for (const scenario of fixture.scenarios) test(`BQ035 ABI93 HTTP ${scenario.name}`, t => runScenario(t, scenario));

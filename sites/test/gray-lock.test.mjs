@@ -1,3 +1,4 @@
+import { loadCurrentFixture } from '../../tools/current-native-source.mjs';
 // Explicit Native layouts through real workerd/D1; no natural-browser claim.
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
@@ -5,12 +6,12 @@ import {mkdtempSync,readFileSync,readdirSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
-import { kernel as abi, moduleBytes as frozen77Bytes } from './legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-const traces=JSON.parse(readFileSync(new URL('./fixtures/gray-lock-native-v077.json',import.meta.url),'utf8'));
-abi.initSync({module:frozen77Bytes});
+const traces=loadCurrentFixture('rust-game-wasm/tests/current93/gray-lock.json.gz');
+abi.initSync({module:currentBytes});
 for(const [caseIndex,trace] of traces.entries()) test(`gray lock52 Native/D1 ${caseIndex}: lock/chase, pause/reopen, real responses and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'gray-lock52-d1-'));
  const options=convertV4MiniflareOptions({name:'gray-lock52-test',resourcePersistencePath:persist,modules:[

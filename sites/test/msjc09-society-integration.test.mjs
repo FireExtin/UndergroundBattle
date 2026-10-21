@@ -3,18 +3,22 @@ import { assertSessionJournal } from './assert-session-journal.mjs';
 // no browser or remote natural-play claim. Persistence reopen is actual workerd/D1.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService } from '../src/service.mjs';
 import { routeKernels } from '../src/kernel-router.mjs';
 import * as abi from '../generated/hegemony_wasm.js';
+const project=fileURLToPath(new URL('../',import.meta.url));
+const root=existsSync(project+'web/package.json')?project:fileURLToPath(new URL('../../',import.meta.url));
 
 test('current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset', async t => {
   abi.initSync({ module: readFileSync(new URL('../generated/hegemony_wasm_bg.wasm', import.meta.url)) });
-  assert.equal(JSON.parse(abi.catalog()).engineVersion, 'rust-v0.2.91-batch20');
+  const kernelCatalog=JSON.parse(abi.catalog()),source=JSON.parse(readFileSync(root+'rust-game/data/cards.json','utf8'));
+  for(const key of ['rulesVersion','cardPoolVersion','engineVersion'])assert.equal(kernelCatalog[key],source[key],'Current WASM/source '+key);
   const kernel = routeKernels(abi);
   const dist = resolve('dist/server'), persist = mkdtempSync(join(tmpdir(), 'hegemony-msjc09-'));
   const options = convertV4MiniflareOptions({ name:'printed-msjc09-local', modulesRoot:dist, resourcePersistencePath:persist,
@@ -28,6 +32,7 @@ test('current real MSJC09 permits first/rear paid activation and restores four-s
     return {status:r.status,body:r.status===204?null:await r.json()};
   };
   const cat = (await api('/api/catalog')).body;
+  assert.deepEqual(cat,kernelCatalog,'HTTP catalog must be the current source-verified catalog');
   assert(cat.deckBuildRules.societySupported);
   const printedSociety=cat.societies.find(s=>s.id==='MSJC09'); assert(printedSociety);
   assert.equal(printedSociety.unique,true);

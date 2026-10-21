@@ -1,21 +1,22 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { act,fireEvent,render,screen,within } from '@testing-library/react';
 import { expect,it,vi } from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { actionForRoom } from './api';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';
 import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
-const wasm=frozen77Bytes;
+const wasm=currentBytes;
 abi.initSync({module:wasm});
-const fixture=JSON.parse(readFileSync(resolve('src/game/wm023Native77.fixture.json'),'utf8'));
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/wm023.json.gz');
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='WM023');
 it('reads the complete pinned public/slow unique WM023 face and paid exhaustion ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
+  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
   expect(definition).toMatchObject({name:'尽职的珍珠',subtitle:'庄园仆役',color:'蓝',cost:4,loyalty:['蓝色'],unique:true,defense:1,
     subtypes:['人类','奴仆'],magic:'',keywords:['公开','迟缓'],permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0}});
   expect(definition.abilities).toMatchObject([{key:'wm023-unique-hand-entry',timing:'standard',triggered:false}]);

@@ -1,18 +1,19 @@
-// Fresh source-produced ABI77 inputs only; old opaque states remain unchanged.
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
+// Fresh source-produced ABI93 inputs only; old opaque states remain unchanged.
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {act,fireEvent,render,screen,within} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import { kernel as abi, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
-const bytes=frozen77Bytes;abi.initSync({module:bytes});
-const fixture=JSON.parse(readFileSync(resolve('src/game/jc037Native77.fixture.json'))),catalog=JSON.parse(abi.catalog());
-it('binds the complete JC037 face and actual source-built ABI77',()=>{
- expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.77-jc046-mandatory-sacrifice-candidate');
- expect(catalog.cardPoolVersion).toBe('limited-v2.70-jc046-mandatory-sacrifice-candidate');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
+const bytes=currentBytes;abi.initSync({module:bytes});
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current93/jc037.json.gz'),catalog=JSON.parse(abi.catalog());
+it('binds the complete JC037 face and actual source-built ABI93',()=>{
+ expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
+ expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
  expect(catalog.cards.find(c=>c.id==='JC037')).toMatchObject({color:'蓝',subtitle:'寂静女士',keywords:['领袖'],permanentIcons:{investigation:0,combat:2,influence:2},abilities:[]});
 });
 it('rejects preserved Native73 states through both current ABI entrypoints',()=>{

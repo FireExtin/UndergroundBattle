@@ -1,13 +1,14 @@
-// Current ordinary entry regression; historical opaque room fixtures keep their original ABI.
+// Current ABI93 ordinary entry regression; no persisted room rewriting.
 // Real entry/ready/start requests, without initial state or room DB injection.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {RoomStore} from '../src/store.mjs';
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc054-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 for(const societyId of ['MSJC04','MSJC05'])test(`${societyId} enters with a named complete deck, exposes six-card start and preserves it after D1 reopen`,async t=>{
   const persist=mkdtempSync(path.join(tmpdir(),'msjc0405-entry-'));
   const options=convertV4MiniflareOptions({name:'msjc0405-entry',resourcePersistencePath:persist,modulesRoot:worker,modules:[
@@ -21,8 +22,8 @@ for(const societyId of ['MSJC04','MSJC05'])test(`${societyId} enters with a name
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.91-batch20');
-  assert.equal(catalog.societies.length,10);
+  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
+  assert.equal(catalog.cards.length,193);assert.equal(catalog.societies.length,10);
   const draft=(id,count=25)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count;const cards=[];
     for(const card of catalog.cards.filter(c=>c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {

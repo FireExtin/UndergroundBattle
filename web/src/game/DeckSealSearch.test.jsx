@@ -1,15 +1,16 @@
+import { loadCurrentFixture } from '../../../tools/current-native-source.mjs';
 import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import { kernel as wasm, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
-import native from './deckSealNative77Test.fixture.json';
+import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
+const native = loadCurrentFixture('rust-game-wasm/tests/current93/deck-seal.json.gz');
 import {Table} from './Table';
 import {ChoicePanel} from './ChoicePanel';
 import {ReadModal} from './ReadModal';
 import {cardScanUrl} from './cardScans';
-wasm.initSync({module:frozen77Bytes});
+wasm.initSync({module:currentBytes});
 const catalog=JSON.parse(wasm.catalog()),defs=new Map(catalog.cards.map(c=>[c.id,c]));
 afterEach(cleanup);
 it.each(['xq44Choice','jz02Choice'])('%s requires one and submits the selected actual instance into candidate WASM',name=>{

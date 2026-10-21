@@ -7,7 +7,7 @@ import { mkdir, mkdtemp, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadFixture, sha256 } from '../jc057-oracle.mjs';
-import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current84-kernel.mjs';
+import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { RoomStore } from '../../sites/src/store.mjs';
 import { digest } from '../../sites/src/service.mjs';
 import { assertPublicView, assertSessionJournal } from '../../sites/test/assert-session-journal.mjs';
@@ -23,16 +23,15 @@ const fixture = loadFixture(); assert.equal(sha256(moduleBytes), fixture.wasmSha
 const scenario=fixture.scenarios.find(s=>s.name===(process.env.JC057_BROWSER_SCENARIO||'reveal-p1'));assert(scenario);
 const initial=scenario.initial.views[0],id=initial.roomId;
 const tokens=Array.from({length:4},(_,s)=>String(s+1).repeat(64)); // Local synthetic seats only.
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR;assert(worker);
+const worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(repo,'sites/dist/current-clock/worker.js'));
 const wasmModules=await Promise.all((await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(async file=>({file,sha256:sha256(await readFile(join(worker,file)))})));
-const previous=await Promise.all([77,78,79,80,81,82,83].map(async n=>JSON.parse(await readFile(join(repo,`rust-game-wasm/frozen/abi${n}/identity.json`))).wasmSha256));
-assert.deepEqual(wasmModules.map(m=>m.sha256).sort(),[fixture.wasmSha256,...previous].sort());
+assert.deepEqual(wasmModules.map(m=>m.sha256).sort(),[fixture.wasmSha256]);
 const persist=await mkdtemp(join(process.env.TMPDIR,'jc057-real-http-'));
 const options={name:'jc057-real-http',rootPath:sites,modulesRoot:worker,host:'127.0.0.1',port:0,cf:false,compatibilityDate:'2026-10-02',resourcePersistencePath:persist,
   modules:[{type:'ESModule',path:join(worker,'worker.js')},...(await readdir(worker)).filter(f=>f.endsWith('.wasm')).map(f=>({type:'CompiledWasm',path:join(worker,f)}))],
   d1Databases:{DB:'jc057-real-http'},bindings:{LOCAL_TEST_CLOCK_MS:'0'},
   assets:{directory:clientDirectory,binding:'ASSETS',run_worker_first:['/api/*'],routerConfig:{has_user_worker:true},assetConfig:{not_found_handling:'single-page-application'}}};
-const report={passed:false,onlineGameplay:false,siteChanged:false,mainMerged:false,syntheticInitialLayout:true,scope:'Explicit Native84 initial layout; then real production GameApp/HTTP/workerd/eight-WASM/D1 commands and four browser contexts. Not online gameplay.',scenario:scenario.name,
+const report={passed:false,onlineGameplay:false,siteChanged:false,mainMerged:false,syntheticInitialLayout:true,scope:'Explicit Native93 initial layout; then real production GameApp/HTTP/workerd/single-WASM/D1 commands and four browser contexts. Not online gameplay.',scenario:scenario.name,
   engine:fixture.catalog.engineVersion,wasmSha256:fixture.wasmSha256,wasmModules,persist,
   productionWorkerSha256:sha256(await readFile(join(sites,'dist/server/index.js'))),workerSha256:sha256(await readFile(join(worker,'worker.js'))),
   clientIndexSha256:sha256(await readFile(join(clientDirectory,'index.html'))),commands:[],privateReads:[],clientPosts:[0,0,0,0],pageErrors:[],screenshots:[],reopened:0};
@@ -46,7 +45,7 @@ let heldReader=null,lastCommand,lastReceipt;
 try {
   await start();
   for(const f of (await readdir(join(sites,'drizzle'))).filter(f=>f.endsWith('.sql')))for(const sql of (await readFile(join(sites,'drizzle',f),'utf8')).split('--> statement-breakpoint').filter(s=>s.trim()))await db.prepare(sql).run();
-  await store().create({id,invite:initial.inviteCode,state:scenario.initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'explicit-offline-native84-jc057',response:'{}'});
+  await store().create({id,invite:initial.inviteCode,state:scenario.initial.state,nonce:crypto.randomUUID(),tokenHash:await digest(tokens[0]),requestHash:crypto.randomUUID(),intentHash:'explicit-offline-native93-jc057',response:'{}'});
   await db.prepare('UPDATE rooms SET version=? WHERE id=?').bind(initial.version,id).run();
   for(let seat=1;seat<4;seat++)await db.prepare('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,?,?)').bind(id,seat,await digest(tokens[seat])).run();
   browser=await chromium.launch({headless:true,executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage']});report.browser=browser.version();

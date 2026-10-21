@@ -1,5 +1,6 @@
 """Join exact unchanged Native WM023 snapshots and accepted Room commands."""
 from pathlib import Path
+import subprocess
 import json,hashlib,sys
 root=Path(sys.argv[1]).resolve()
 suffix=sys.argv[2] if len(sys.argv)>2 else '69'
@@ -17,9 +18,9 @@ for p in sorted((root/'native').glob('*.json')):
                   'provenance':{'snapshotSha256':hashlib.sha256(p.read_bytes()).hexdigest(),
                                 'acceptedNativeStepSha256':hashlib.sha256(q.read_bytes()).hexdigest()}})
 assert len(cases)==4,len(cases)
-out=Path(f'web/src/game/wm023Native{suffix}.fixture.json')
+out=Path(f'web/src/game/wm023Native{suffix}.fixture.json') if len(sys.argv)<4 else Path(sys.argv[3])
 result={'scope':'Explicit offline Native layouts and exact accepted Room commands; no browser play, online injection or save migration.',
-        'sourceBaseline':'a967e134a5473e2249142ddf4791691aba521051',
+        'sourceBaseline':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'wasmSha256':hashlib.sha256(Path('rust-game-wasm/pkg/hegemony_wasm_bg.wasm').read_bytes()).hexdigest(),'cases':cases}
-out.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
+with out.open('x') as stream: stream.write(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n')
 print(json.dumps({'path':str(out),'cases':len(cases),'bytes':out.stat().st_size}))

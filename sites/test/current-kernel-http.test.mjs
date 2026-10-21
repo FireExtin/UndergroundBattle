@@ -1,18 +1,20 @@
 // One current reducer in a real local workerd/D1 isolate. Retired identities only reject.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, mkdtempSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
-import { kernel as current } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 import { assertPublicView, assertSessionJournal } from './assert-session-journal.mjs';
 import { retiredIdentities } from './fixtures/historical-rooms.mjs';
 
-const worker = process.env.HEGEMONY_CURRENT_WORKER_DIR || path.join(
-  process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'current-worker/server');
+const project=fileURLToPath(new URL('../',import.meta.url));
+const root=existsSync(project+'web/package.json')?project:fileURLToPath(new URL('../../',import.meta.url));
+const {kernel:current}=await import(pathToFileURL(root+'rust-game-wasm/tests/current-kernel.mjs').href);
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||path.join(project,'dist/current-clock/worker.js'));
 test('current-only HTTP/D1 preserves u64, commands and receipts; retired versions return 410 without writes', async t => {
   const modules = readdirSync(worker).filter(f => f.endsWith('.wasm'));
   assert.equal(modules.length, 1);

@@ -7,7 +7,7 @@ import { mkdir, mkdtemp, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadFixture, sha256 } from '../jc054-oracle.mjs';
-import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current81-kernel.mjs';
+import { kernel as abi, moduleBytes } from '../../rust-game-wasm/tests/current-kernel.mjs';
 import { RoomStore } from '../../sites/src/store.mjs';
 import { digest } from '../../sites/src/service.mjs';
 import { assertPublicView, assertSessionJournal } from '../../sites/test/assert-session-journal.mjs';
@@ -25,12 +25,11 @@ const scenario=fixture.scenarios.find(row=>row.name===scenarioName);assert(scena
 const initial = scenario.initial.views[0], id = initial.roomId;
 assert.equal(initial.players.length, 4);
 const tokens = Array.from({length:4},(_,s)=>String(s+1).repeat(64)); // Local fixture seats, never real credentials.
-const worker = join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', 'jc054-worker/server');
-const retainedIdentity = JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi77/identity.json'), 'utf8'));
+const worker=dirname(process.env.CURRENT_CLOCK_WORKER||join(repo,'sites/dist/current-clock/worker.js'));
 const wasmModules = await Promise.all((await readdir(worker)).filter(file => file.endsWith('.wasm')).map(async file => {
   const bytes = await readFile(join(worker, file)); return { file, bytes: bytes.length, sha256: sha256(bytes) };
 }));
-assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [fixture.wasmSha256, JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi80/identity.json'), 'utf8')).wasmSha256, JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi79/identity.json'), 'utf8')).wasmSha256, JSON.parse(await readFile(join(repo, 'rust-game-wasm/frozen/abi78/identity.json'), 'utf8')).wasmSha256, retainedIdentity.wasmSha256].sort());
+assert.deepEqual(wasmModules.map(row => row.sha256).sort(), [fixture.wasmSha256]);
 const persist = await mkdtemp(join(process.env.TMPDIR, 'jc054-real-http-'));
 const options = { name: 'jc054-real-http', rootPath: sites, modulesRoot: worker, host: '127.0.0.1', port: 0,
   cf: false, compatibilityDate: '2026-10-02', resourcePersistencePath: persist,
@@ -40,11 +39,11 @@ const options = { name: 'jc054-real-http', rootPath: sites, modulesRoot: worker,
   assets: { directory: clientDirectory, binding: 'ASSETS', run_worker_first: ['/api/*'],
     routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
 };
-const report = { passed: false, scope: 'Explicit Native81 pending layout, four production browser clients, mandatory trigger order, original JC054 scan, pause/resume, draft/restart and duplicate confirmation; fixed local clock, not online gameplay', scenario: scenario.name,
+const report = { passed: false, scope: 'Explicit Native93 pending layout, four production browser clients, mandatory trigger order, original JC054 scan, pause/resume, draft/restart and duplicate confirmation; fixed local clock, not online gameplay', scenario: scenario.name,
   engine: fixture.catalog.engineVersion, wasmSha256: fixture.wasmSha256, workerSha256: sha256(await readFile(join(worker, 'worker.js'))),
   wasmModules, productionWorkerSha256: sha256(await readFile(join(sites, 'dist/server/index.js'))),
   productionClientIndexSha256: sha256(await readFile(join(clientDirectory, 'index.html'))), clientDirectory,
-  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/jc054Native81.fixture.json.gz'))),
+  fixtureSha256: sha256(await readFile(join(repo, 'rust-game-wasm/tests/jc054Native93.fixture.json.gz'))),
   commands: [], clientRequests: [0, 0, 0, 0], clientPosts: [0, 0, 0, 0], pageErrors: [], screenshots: [], choiceLayoutChecks: [], targetHitChecks: [], reopened: 0 };
 let mf, db, browser, pages = [], origin;
 const start = async () => {

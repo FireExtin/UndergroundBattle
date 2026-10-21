@@ -288,7 +288,7 @@ fn deck_seal_fresh_legal_four_seat_factory_reaches_both_actual_cards_without_lay
         updated_at: "2026-10-09".into(),
     };
     let mut g = Game::new_with_deck(
-        "fresh-deck-seal-51".into(),
+        "f00000000000000000000051".into(),
         "FRESH51".into(),
         "teams".into(),
         "P0".into(),
@@ -336,7 +336,8 @@ fn deck_seal_fresh_legal_four_seat_factory_reaches_both_actual_cards_without_lay
             assert_eq!(room.game.sealed_cards.len(), seals_before + count);
         }
         steps.push(serde_json::json!({"seat":seat,"command":command,"serverNowMs":now.to_string(),"completedSearch":search_kind,"transitionSha256":hash(&serde_json::to_vec(&serde_json::to_value(&transition).unwrap()).unwrap()),
-            "stateSha256":hash(transition.state.as_bytes()),"viewSha256":(0..4).map(|s|hash(&serde_json::to_vec(&serde_json::to_value(room.view(s,now)).unwrap()).unwrap())).collect::<Vec<_>>() }));
+            "stateSha256":hash(transition.state.as_bytes()),"viewSha256":(0..4).map(|s|hash(&serde_json::to_vec(&serde_json::to_value(room.view(s,now)).unwrap()).unwrap())).collect::<Vec<_>>(),
+            "transition":transition,"views":(0..4).map(|s|room.view(s,now)).collect::<Vec<_>>() }));
     };
     for seat in 0..4 {
         record(

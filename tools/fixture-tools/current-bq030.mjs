@@ -1,4 +1,4 @@
-// Select exact Native command records, then derive before views with real WASM.
+// Select exact Native commands and views, checking all of them with current WASM.
 // Usage: node tools/fixture-tools/current-bq030.mjs <evidenceRoot> <esmBindings>
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -46,14 +46,15 @@ const scenarios = starts.map(([name, predicate]) => {
   }
   for (const step of steps) {
     assert.deepEqual(JSON.parse(abi.applyRoom(step.state, step.seat, JSON.stringify(step.command), '0')), step.expected);
-    step.beforeViews = game(step).players.map((_, seat) => JSON.parse(abi.view(step.state, seat)));
+    assert.equal(step.beforeViews.length, game(step).players.length, 'Export Native before-views; never invent them');
+    step.beforeViews.forEach((view, seat) => assert.deepEqual(JSON.parse(abi.view(step.state, seat)), view));
     for (let seat = 0; seat < step.views.length; seat++) assert.deepEqual(JSON.parse(abi.view(step.expected.state, seat)), step.views[seat]);
   }
   return { name, steps };
 });
 const serial = JSON.stringify({ scenarios }) + '\n';
-if (!webOnly) writeFileSync(resolve(root, `sites/test/fixtures/bq030-native-v0${suffix}.json`), serial);
+if (!webOnly) writeFileSync(resolve(root, `sites/test/fixtures/bq030-native-v0${suffix}.json`), serial, {flag: 'wx'});
 writeFileSync(resolve(root, `web/src/game/bq030Native${suffix}.fixture.json`), JSON.stringify({
   choices: scenarios.filter(s => !['empty-deck-elimination', 'granted-renown-vacant'].includes(s.name))
-    .map(s => ({ name: s.name, step: s.steps[0] })) }) + '\n');
+    .map(s => ({ name: s.name, step: s.steps[0] })) }) + '\n', {flag: 'wx'});
 console.log(JSON.stringify({ scenarios: scenarios.length, steps: scenarios.map(s => ({ name: s.name, count: s.steps.length })) }));

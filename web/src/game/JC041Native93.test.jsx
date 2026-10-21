@@ -1,8 +1,8 @@
-// Actual Native87/WASM views through production Table/choice/read controls.
+// Actual Native93/WASM views through production Table/choice/read controls.
 import {render,screen,fireEvent,within} from '@testing-library/react';
 import {beforeEach,afterEach,expect,it,vi} from 'vitest';
 import {loadFixture,sha256} from '../../../tools/jc041-oracle.mjs';
-import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current87-kernel.mjs';
+import {kernel as abi,moduleBytes,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 import {ReadModal} from './ReadModal';
 import {actionForRoom} from './api';

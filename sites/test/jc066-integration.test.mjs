@@ -1,16 +1,17 @@
-// Actual local HTTP/workerd/ten-WASM/D1; explicit Native86 layouts, not live rooms.
+// Actual local HTTP/workerd/single-WASM/D1; explicit Native93 layouts, not live rooms.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import { Miniflare, convertV4MiniflareOptions } from 'miniflare';
 import { RoomStore } from '../src/store.mjs';
 import { digest } from '../src/service.mjs';
 import { assertPublicView, assertSessionJournal } from './assert-session-journal.mjs';
 import { loadFixture } from '../../tools/jc066-oracle.mjs';
 const fixture=loadFixture();
-const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc066-worker/server');
+const worker=path.dirname(process.env.CURRENT_CLOCK_WORKER||fileURLToPath(new URL('../dist/current-clock/worker.js',import.meta.url)));
 async function harness(t,scenario) {
   const persist=mkdtempSync(path.join(tmpdir(),'jc066-http-'));
   const options={name:'jc066-http',resourcePersistencePath:persist,modulesRoot:worker,modules:[
@@ -34,7 +35,7 @@ async function harness(t,scenario) {
       headers:{Authorization:'Bearer '+tokens[seat],...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
       return {status:response.status,body:response.status===204?null:await response.json()};}};
 }
-for(const scenario of fixture.scenarios)test(`JC066 ABI86 HTTP ${scenario.name}`,async t=>{
+for(const scenario of fixture.scenarios)test(`JC066 ABI93 HTTP ${scenario.name}`,async t=>{
   const h=await harness(t,scenario);let accepted=0,rejected=0,projections=0;
   const receipts=[];
   const viewAll=async views=>{for(let seat=0;seat<4;seat++){
@@ -68,7 +69,7 @@ for(const scenario of fixture.scenarios)test(`JC066 ABI86 HTTP ${scenario.name}`
     const retry=await h.api('commands',row.seat,row.command);assert.equal(retry.status,200);assert.deepEqual(retry.body,body);
     assert.deepEqual(await h.snapshot(),final);
   }
-  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native86',accepted,rejected,projections,
+  t.diagnostic(JSON.stringify({scenario:scenario.name,reference:'compiler-bound Native93',accepted,rejected,projections,
     originalReceiptsAfterReopen:true,opaqueStatesAndJournalsEqual:true,localSyntheticDatabaseRetained:true}));
 });
 
