@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "batch": "batch20-2026-10-21",
-  "stage": "v72 saved; deployment denied by automatic approval; local full acceptance WIP",
+  "stage": "fixed candidate local build/startup complete; production deployment approval pending",
   "baseCommit": "fce0a9bb07d89e80cbe2f47942a1e88e1031a8bb",
   "logRoot": "/workspace/audit-underground-100161b",
   "logs": [
@@ -350,10 +350,85 @@
         "{\"fixtureRegistry\":false,\"dist\":\"/workspace/audit-underground-100161b/build/batch20-reward-fixed-worker/candidate-worker/dist\",\"frontendBuilt\":false,\"deployed\":false}"
       ],
       "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-full-rust-02.log",
+      "sha256": "014103f90c9638bd3acf1ea931a1054e5633b7ca567fb75bc62b18fcbcc255ce",
+      "summary": [
+        "test result: ok. 1323 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 789.84s",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s",
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.77s",
+        "test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.37s",
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s",
+        "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s",
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s",
+        "test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s",
+        "test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-sites-failures-recheck.log",
+      "sha256": "9265ccb542e5d3d3252448e76e76f7389a87ab9ae8c075e35d79ca805820b432",
+      "summary": [
+        "ℹ tests 81",
+        "ℹ pass 13",
+        "ℹ fail 68",
+        "ℹ duration_ms 43118.825554"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-sites-failures-recheck-02.log",
+      "sha256": "e2451cbf720fc7c3638e1cb6ade8cddffcd96033b9f0d7ea0a255262218b5e93",
+      "summary": [
+        "ℹ tests 81",
+        "ℹ pass 81",
+        "ℹ fail 0",
+        "ℹ duration_ms 214152.837098"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-reward-fixed-site-stage.log",
+      "sha256": "a0fb7abd1c13f97c6507440cea7d2234bf7c5bdf73b88833b3d7b9d18a6a5405",
+      "summary": [
+        "{\"checkout_path\":\"/workspace/audit-underground-100161b/site-checkout-batch20-storage\",\"project_id\":\"appgprj_6abf7bf54a7481918a50e1ef1509ca68\",\"wasm_sha256\":\"b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376\"}"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-reward-fixed-site-build.log",
+      "sha256": "014b46558eed29a07c86a18ea7a49767d3179f8fe0229001b36d287d9797cd27",
+      "summary": [
+        "--dry-run: exiting now."
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-reward-fixed-startup-check.log",
+      "sha256": "6246c7b7094e438788ba0b2524307ab421497b74b322189d12b8db30fd0ae81c",
+      "summary": [
+        "{\"scope\":\"local WASM and Native HTTP startup/new room; no browser battle or full suite\",\"engine\":\"rust-v0.2.91-batch20\",\"pool\":\"limited-v2.82-batch20\",\"ordinaryCards\":173,\"societies\":10,\"batchIds\":[\"JC043\",\"JC048\",\"JZ33\",\"JZ37\",\"WM034\",\"BQ080\",\"BQ091\",\"BQ094\",\"JZ52\",\"JZ57\",\"JC033\",\"JC034\",\"JC038\",\"JC040\",\"JZ29\",\"BQ054\",\"JC065\",\"JC067\",\"CQ16\",\"JC068\"],\"wasmSha256\":\"b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376\",\"wasmBytes\":3796219,\"checks\":[\"all 20 supported\",\"all 20 accepted in custom deck\",\"WASM create/join/ready/start\",\"opaque max-u64 seed preserved\",\"Native HTTP create/join/ready/start\",\"Native catalog equals WASM\",\"new room catalog\",\"static index and 20 card images\"],\"result\":\"passed\"}"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
+    },
+    {
+      "file": "batch20-reward-fixed-repo-clock-build.log",
+      "sha256": "cd1bec3ca4e9087019674c50ed4654d30e9f92a5002fae3fd15661882b8098dd",
+      "summary": [
+        "{\"output\":\"/workspace/audit-underground-100161b/build/batch20-reward-fixed-repo-clock/server\",\"files\":17,\"exactWasmModules\":14,\"hardLinksOnlyNoDuplicateWasm\":true,\"productionUnmodified\":true}"
+      ],
+      "scope": "Completed local run; no browser or GitHub CI. Failed setup attempts preserved."
     }
   ],
   "fullSuite": {
-    "stage": "inProgress; production publish blocked",
+    "stage": "completed recorded local runs; deployment approval pending; artifact-specific limits retained",
     "rustLibraryInitial": {
       "passed": 1311,
       "failed": 12,
@@ -376,9 +451,9 @@
       "failed": 0,
       "log": "batch20-full-tools-03.log"
     },
-    "sites": "15 affected files rechecking fixed b6782cdf candidate",
-    "remainingNativeAndWasm": "native-binaries/wasm-crate/doctests passed; original replay433 passed; fixed scoped replay13 passed; final Rust workspace running",
-    "singleFinalWorkspaceAllPassClaimed": false,
+    "sites": "Initial full681/55; all15 affected files final81/0 on fixed candidate. Not a single final full Sites run.",
+    "remainingNativeAndWasm": "Rust workspace1395/0; original b3 full433 and fixed b678 scoped13 passed; fixed b678 full433 not run",
+    "singleFinalWorkspaceAllPassClaimed": true,
     "nativeIntegrationInitial": {
       "passedBeforeStop": 6,
       "failed": 2,
@@ -418,8 +493,72 @@
       },
       "workerBuild": "passed backend-only dry-run; no deployment",
       "savedVersion": null,
-      "fullRustWorkspace": "running; batch20-full-rust-02.log",
-      "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+      "fullRustWorkspace": {
+        "passed": 1395,
+        "failed": 0,
+        "libraryPassed": 1323,
+        "integrationPassed": 72,
+        "log": "batch20-full-rust-02.log"
+      },
+      "sitesAffectedFilesRecheck": {
+        "files": 15,
+        "passed": 81,
+        "failed": 0,
+        "log": "batch20-sites-failures-recheck-02.log",
+        "singleFinalFullSitesRun": false
+      },
+      "productCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+      "startup": {
+        "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+        "engine": "rust-v0.2.91-batch20",
+        "pool": "limited-v2.82-batch20",
+        "ordinaryCards": 173,
+        "societies": 10,
+        "batchIds": [
+          "JC043",
+          "JC048",
+          "JZ33",
+          "JZ37",
+          "WM034",
+          "BQ080",
+          "BQ091",
+          "BQ094",
+          "JZ52",
+          "JZ57",
+          "JC033",
+          "JC034",
+          "JC038",
+          "JC040",
+          "JZ29",
+          "BQ054",
+          "JC065",
+          "JC067",
+          "CQ16",
+          "JC068"
+        ],
+        "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+        "wasmBytes": 3796219,
+        "checks": [
+          "all 20 supported",
+          "all 20 accepted in custom deck",
+          "WASM create/join/ready/start",
+          "opaque max-u64 seed preserved",
+          "Native HTTP create/join/ready/start",
+          "Native catalog equals WASM",
+          "new room catalog",
+          "static index and 20 card images"
+        ],
+        "result": "passed"
+      },
+      "officialSiteBuild": {
+        "passed": true,
+        "log": "batch20-reward-fixed-site-build.log",
+        "distFiles": 207,
+        "wasmModules": 14
+      },
+      "siteSourcePreparedLocally": true,
+      "siteSourcePushed": false,
+      "productionDeploymentAttempted": false
     },
     "sitesInitial": {
       "passed": 681,
@@ -432,7 +571,22 @@
         "obsoleteCurrentIdentityTuple": 1,
         "approvedCurrentIconCorrections": 1
       }
-    }
+    },
+    "rustWorkspaceFinal": {
+      "passed": 1395,
+      "failed": 0,
+      "libraryPassed": 1323,
+      "integrationPassed": 72,
+      "log": "batch20-full-rust-02.log"
+    },
+    "sitesAffectedFilesFinal": {
+      "files": 15,
+      "passed": 81,
+      "failed": 0,
+      "log": "batch20-sites-failures-recheck-02.log",
+      "singleFinalFullSitesRun": false
+    },
+    "workspaceMeaning": "cargo --workspace only; Sites and distinct WASM artifacts retain their separate boundaries"
   },
   "independentReview": "notRunForBatch",
   "realBrowserBattle": "notRun",
@@ -505,7 +659,7 @@
     {
       "id": "B20-P1-01",
       "severity": "P1",
-      "status": "fixed in source; Native72 and WASM13 passed; final workspace and Sites checks in progress",
+      "status": "fixed; final Rust workspace1395 and Sites affected files81 passed; fixed WASM13 and new-room startup passed; not deployed",
       "source": "rust-game/src/resolution.rs:463",
       "consumer": "rust-game/src/batch20.rs:581",
       "affectedCards": [
@@ -539,12 +693,99 @@
     },
     "workerBuild": "passed backend-only dry-run; no deployment",
     "savedVersion": null,
-    "fullRustWorkspace": "running; batch20-full-rust-02.log",
-    "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+    "fullRustWorkspace": {
+      "passed": 1395,
+      "failed": 0,
+      "libraryPassed": 1323,
+      "integrationPassed": 72,
+      "log": "batch20-full-rust-02.log"
+    },
+    "sitesAffectedFilesRecheck": {
+      "files": 15,
+      "passed": 81,
+      "failed": 0,
+      "log": "batch20-sites-failures-recheck-02.log",
+      "singleFinalFullSitesRun": false
+    },
+    "productCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+    "startup": {
+      "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+      "engine": "rust-v0.2.91-batch20",
+      "pool": "limited-v2.82-batch20",
+      "ordinaryCards": 173,
+      "societies": 10,
+      "batchIds": [
+        "JC043",
+        "JC048",
+        "JZ33",
+        "JZ37",
+        "WM034",
+        "BQ080",
+        "BQ091",
+        "BQ094",
+        "JZ52",
+        "JZ57",
+        "JC033",
+        "JC034",
+        "JC038",
+        "JC040",
+        "JZ29",
+        "BQ054",
+        "JC065",
+        "JC067",
+        "CQ16",
+        "JC068"
+      ],
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "checks": [
+        "all 20 supported",
+        "all 20 accepted in custom deck",
+        "WASM create/join/ready/start",
+        "opaque max-u64 seed preserved",
+        "Native HTTP create/join/ready/start",
+        "Native catalog equals WASM",
+        "new room catalog",
+        "static index and 20 card images"
+      ],
+      "result": "passed"
+    },
+    "officialSiteBuild": {
+      "passed": true,
+      "log": "batch20-reward-fixed-site-build.log",
+      "distFiles": 207,
+      "wasmModules": 14
+    },
+    "siteSourcePreparedLocally": true,
+    "siteSourcePushed": false,
+    "productionDeploymentAttempted": false
   },
   "fixtureCorrectionHistory": [
     "First new reward fixture incorrectly assumed enemy influence remained positive for JC067; assertion fixed to cover removal or placement. No WASM comparison ran in that failed export.",
     "Second fixture tried the Action-only JC089 spell in the before-combat window; setup corrected to begin at the normal action window. No product behavior weakened.",
     "Third export and comparison passed all13 scenarios including7 new cross-card reward cases."
-  ]
+  ],
+  "sitesHarnessHistory": {
+    "firstAffectedFilesRun": {
+      "passed": 13,
+      "failed": 68,
+      "reason": "Pointed to production index.js directory while test harness expected local fixed-clock worker.js; ENOENT, no core failure established"
+    },
+    "correctedRun": {
+      "files": 15,
+      "passed": 81,
+      "failed": 0,
+      "log": "batch20-sites-failures-recheck-02.log",
+      "singleFinalFullSitesRun": false
+    },
+    "repositoryHelper": "tools/build-jc035-clock-worker.mjs",
+    "equivalence": {
+      "repositoryHelper": "tools/build-jc035-clock-worker.mjs",
+      "wrapperRuntimeBytesEqualExceptSourceMapComment": true,
+      "wasmModulesExactlyEqual": 14,
+      "alreadyPassedSitesTests": 81,
+      "noTestsRepeatedForEquivalentDebugComment": true
+    }
+  },
+  "fixedCandidateIdentitySha256": "eed30b3e223c0676ceb7b089144e2e9a1b3ceeafbcdf89d9f4a592d036350742"
 }

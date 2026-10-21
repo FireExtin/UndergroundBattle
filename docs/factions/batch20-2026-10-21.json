@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-2026-10-21",
-  "purpose": "20张已实现并准入，官方v72已保存；自动审批拒绝部署，待验收，不宣称已上线。",
+  "purpose": "20张已实现准入，奖励快照P1已修复并完成记录中的本地验证；修复版已在原Site工作区构建，等待实际部署拒绝的授权协调。",
   "baseCommit": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
-  "stage": "v72SavedDeploymentDenied; localAcceptanceWip",
+  "stage": "fixedCandidateLocallyPrepared; deploymentApprovalPending",
   "rulesVersion": "hegemony-pdf-v1",
   "releaseOrder": [
     "completeImplementation",
@@ -861,7 +861,7 @@
     "diffCheck": "passed",
     "documentLinks": "33 local links in current README and batch markdown checked at test/document checkpoint; source-image provenance checked separately",
     "newBatchFullSuites": {
-      "stage": "inProgress; production publish blocked",
+      "stage": "completed recorded local runs; deployment approval pending; artifact-specific limits retained",
       "rustLibraryInitial": {
         "passed": 1311,
         "failed": 12,
@@ -884,9 +884,9 @@
         "failed": 0,
         "log": "batch20-full-tools-03.log"
       },
-      "sites": "15 affected files rechecking fixed b6782cdf candidate",
-      "remainingNativeAndWasm": "native-binaries/wasm-crate/doctests passed; original replay433 passed; fixed scoped replay13 passed; final Rust workspace running",
-      "singleFinalWorkspaceAllPassClaimed": false,
+      "sites": "Initial full681/55; all15 affected files final81/0 on fixed candidate. Not a single final full Sites run.",
+      "remainingNativeAndWasm": "Rust workspace1395/0; original b3 full433 and fixed b678 scoped13 passed; fixed b678 full433 not run",
+      "singleFinalWorkspaceAllPassClaimed": true,
       "nativeIntegrationInitial": {
         "passedBeforeStop": 6,
         "failed": 2,
@@ -926,8 +926,72 @@
         },
         "workerBuild": "passed backend-only dry-run; no deployment",
         "savedVersion": null,
-        "fullRustWorkspace": "running; batch20-full-rust-02.log",
-        "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+        "fullRustWorkspace": {
+          "passed": 1395,
+          "failed": 0,
+          "libraryPassed": 1323,
+          "integrationPassed": 72,
+          "log": "batch20-full-rust-02.log"
+        },
+        "sitesAffectedFilesRecheck": {
+          "files": 15,
+          "passed": 81,
+          "failed": 0,
+          "log": "batch20-sites-failures-recheck-02.log",
+          "singleFinalFullSitesRun": false
+        },
+        "productCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+        "startup": {
+          "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+          "engine": "rust-v0.2.91-batch20",
+          "pool": "limited-v2.82-batch20",
+          "ordinaryCards": 173,
+          "societies": 10,
+          "batchIds": [
+            "JC043",
+            "JC048",
+            "JZ33",
+            "JZ37",
+            "WM034",
+            "BQ080",
+            "BQ091",
+            "BQ094",
+            "JZ52",
+            "JZ57",
+            "JC033",
+            "JC034",
+            "JC038",
+            "JC040",
+            "JZ29",
+            "BQ054",
+            "JC065",
+            "JC067",
+            "CQ16",
+            "JC068"
+          ],
+          "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+          "wasmBytes": 3796219,
+          "checks": [
+            "all 20 supported",
+            "all 20 accepted in custom deck",
+            "WASM create/join/ready/start",
+            "opaque max-u64 seed preserved",
+            "Native HTTP create/join/ready/start",
+            "Native catalog equals WASM",
+            "new room catalog",
+            "static index and 20 card images"
+          ],
+          "result": "passed"
+        },
+        "officialSiteBuild": {
+          "passed": true,
+          "log": "batch20-reward-fixed-site-build.log",
+          "distFiles": 207,
+          "wasmModules": 14
+        },
+        "siteSourcePreparedLocally": true,
+        "siteSourcePushed": false,
+        "productionDeploymentAttempted": false
       },
       "sitesInitial": {
         "passed": 681,
@@ -940,7 +1004,22 @@
           "obsoleteCurrentIdentityTuple": 1,
           "approvedCurrentIconCorrections": 1
         }
-      }
+      },
+      "rustWorkspaceFinal": {
+        "passed": 1395,
+        "failed": 0,
+        "libraryPassed": 1323,
+        "integrationPassed": 72,
+        "log": "batch20-full-rust-02.log"
+      },
+      "sitesAffectedFilesFinal": {
+        "files": 15,
+        "passed": 81,
+        "failed": 0,
+        "log": "batch20-sites-failures-recheck-02.log",
+        "singleFinalFullSitesRun": false
+      },
+      "workspaceMeaning": "cargo --workspace only; Sites and distinct WASM artifacts retain their separate boundaries"
     },
     "independentReview": "notRunForBatch",
     "realBrowserBattle": "notRun",
@@ -973,7 +1052,7 @@
       "log": "batch20-final-web-build.log",
       "includes": "TypeScript app/node checks and Vite production build"
     },
-    "nativeWasmParity": "original v72 full433 passed; fixed candidate scoped13 passed; do not combine artifact identities",
+    "nativeWasmParity": "Original b3 full433 passed; fixed b678 scoped13 passed; fixed b678 full433 not run",
     "runtimeStartupIdentity": {
       "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
       "engine": "rust-v0.2.91-batch20",
@@ -1127,7 +1206,15 @@
     "sourceCommit": "a7c6cd881c25427d4096024a3e7a4c807e5c23c8",
     "publication": "v72Saved; deployDeniedByAutomaticApproval",
     "liveVersion": 71,
-    "savedVersion": 72
+    "savedVersion": 72,
+    "replacementLocalBuild": {
+      "status": "passed",
+      "productCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+      "baseSiteCommit": "a7c6cd881c25427d4096024a3e7a4c807e5c23c8",
+      "sourcePushed": false,
+      "savedVersion": null,
+      "hostingManifestAndFixtureStorageUnchanged": true
+    }
   },
   "uwproIntegration": {
     "originalCommit": "ccc8037f5bdf515a138a08e1761ef2a4ee43ad73",
@@ -1159,7 +1246,7 @@
     {
       "id": "B20-P1-01",
       "severity": "P1",
-      "status": "fixed in source; Native72 and WASM13 passed; final workspace and Sites checks in progress",
+      "status": "fixed; final Rust workspace1395 and Sites affected files81 passed; fixed WASM13 and new-room startup passed; not deployed",
       "source": "rust-game/src/resolution.rs:463",
       "consumer": "rust-game/src/batch20.rs:581",
       "affectedCards": [
@@ -1193,7 +1280,71 @@
     },
     "workerBuild": "passed backend-only dry-run; no deployment",
     "savedVersion": null,
-    "fullRustWorkspace": "running; batch20-full-rust-02.log",
-    "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+    "fullRustWorkspace": {
+      "passed": 1395,
+      "failed": 0,
+      "libraryPassed": 1323,
+      "integrationPassed": 72,
+      "log": "batch20-full-rust-02.log"
+    },
+    "sitesAffectedFilesRecheck": {
+      "files": 15,
+      "passed": 81,
+      "failed": 0,
+      "log": "batch20-sites-failures-recheck-02.log",
+      "singleFinalFullSitesRun": false
+    },
+    "productCommit": "e859de13bcfb800c5cd3f8302086d2b2e951a56a",
+    "startup": {
+      "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
+      "engine": "rust-v0.2.91-batch20",
+      "pool": "limited-v2.82-batch20",
+      "ordinaryCards": 173,
+      "societies": 10,
+      "batchIds": [
+        "JC043",
+        "JC048",
+        "JZ33",
+        "JZ37",
+        "WM034",
+        "BQ080",
+        "BQ091",
+        "BQ094",
+        "JZ52",
+        "JZ57",
+        "JC033",
+        "JC034",
+        "JC038",
+        "JC040",
+        "JZ29",
+        "BQ054",
+        "JC065",
+        "JC067",
+        "CQ16",
+        "JC068"
+      ],
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "checks": [
+        "all 20 supported",
+        "all 20 accepted in custom deck",
+        "WASM create/join/ready/start",
+        "opaque max-u64 seed preserved",
+        "Native HTTP create/join/ready/start",
+        "Native catalog equals WASM",
+        "new room catalog",
+        "static index and 20 card images"
+      ],
+      "result": "passed"
+    },
+    "officialSiteBuild": {
+      "passed": true,
+      "log": "batch20-reward-fixed-site-build.log",
+      "distFiles": 207,
+      "wasmModules": 14
+    },
+    "siteSourcePreparedLocally": true,
+    "siteSourcePushed": false,
+    "productionDeploymentAttempted": false
   }
 }
