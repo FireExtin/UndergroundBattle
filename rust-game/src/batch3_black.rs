@@ -147,6 +147,16 @@ mod tests {
                     assert_eq!(c.current_barrier, active.then_some(true));
                     assert_eq!(g.targetable(2, g.in_play(&id).unwrap().1), !active);
                 }
+                if active {
+                    // Check privacy while the paid modifier still exists.
+                    let mut hidden = g.in_play(&id).unwrap().1.clone();
+                    hidden.face_down = true;
+                    assert!(g.turn_attribute_modifiers.iter().any(|m| m.target_instance == id && m.grants_barrier));
+                    for seat in 0..4 {
+                        assert_eq!(g.card_view(&hidden, seat, Some(0), Some("attachment")).current_barrier, None);
+                        assert_eq!(g.card_view(&hidden, seat, None, Some("asset")).current_barrier, None);
+                    }
+                }
                 restore(&mut g);
             }
             // A concealed print or face-down asset never exports keyword fields.

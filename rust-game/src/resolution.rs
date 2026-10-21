@@ -1561,6 +1561,7 @@ impl Game {
         self.validate_xq23_frame(&frame)?;
         self.validate_jc035_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
+            self.jc035_cancel_guarded_frame(&frame)?;
             return Ok(());
         }
         while frame.cursor < frame.steps.len() && self.status == "playing" {

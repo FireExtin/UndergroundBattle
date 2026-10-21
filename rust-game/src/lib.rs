@@ -7,6 +7,8 @@ mod batch3_inspect;
 mod batch3_politician;
 mod batch3_law;
 #[cfg(test)]
+mod batch3_serpent_tests;
+#[cfg(test)]
 mod batch3_inspect_tests;
 #[cfg(test)]
 mod batch3_grave_tests;

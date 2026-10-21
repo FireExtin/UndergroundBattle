@@ -21,6 +21,7 @@ pub enum PreparationDecision {
     Declined,
     Accepted { frame_id: String },
     Resolved { frame_id: String },
+    Cancelled { frame_id: String },
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -74,8 +75,8 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
-pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
+pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
     [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
@@ -86,7 +87,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if matches!(id, "XG28" | "JC064") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if matches!(id, "XG28" | "JC064" | "BQ087") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -140,7 +141,7 @@ impl Game {
             let r = s.region.filter(|r| *r < self.regions.len()).ok_or("JC035准备来源缺少原地区")?;
             let id = s.source_region_instance.as_deref().filter(|id| !id.is_empty() && *id != s.card.id)
                 .ok_or("JC035准备来源缺少原地区UID")?;
-            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "JC055" | "BQ085" | "CQ08") { None } else { Some(id) })
+            if s.attachment_host_instance.as_deref() != (if matches!(s.card.definition.as_str(), "WM034" | "JC055" | "BQ085" | "CQ08" | "BQ087") { None } else { Some(id) })
                 || self.regions.iter().enumerate().any(|(index, region)| region.card.id == id && index != r)
                 || self.jc035_physical_cards().any(|c| c.id == id && catalog::card(&c.definition).kind != "region") {
                 return Err("JC035必须绑定原结附地区实体，不能改成其他区域或替代地区".into());
@@ -174,7 +175,7 @@ impl Game {
             if s.card.definition == "CQ08" && o.entries.iter().filter(|e| e.source.card.definition == "CQ08" && e.source.card.controller == actor).count() < 3 {
                 return Err("三姐妹准备触发缺少当时同一操控者的三个公开同名来源".into());
             }
-            if let Some(PreparationDecision::Accepted { frame_id } | PreparationDecision::Resolved { frame_id }) = &entry.decision {
+            if let Some(PreparationDecision::Accepted { frame_id } | PreparationDecision::Resolved { frame_id } | PreparationDecision::Cancelled { frame_id }) = &entry.decision {
                 if s.card.definition == "CQ08" && !sisters_used.insert(actor) { return Err("三姐妹同名能力每操控者每回合只能发动一次".into()); }
                 if frame_id.is_empty() || frame_id == &s.card.id || o.event_id.as_ref() == Some(frame_id)
                     || !frames.insert(frame_id.clone()) {
@@ -208,6 +209,7 @@ impl Game {
             .filter(|(_, c)| c.definition != "JC035" || hands.iter().any(|h|
                 !h.eliminated && self.team(h.seat) != self.team(c.controller) && h.count <= 3))
             .filter(|(_, c)| c.definition != "CQ08" || self.cq08_count(c.controller) >= 3)
+            .filter(|(_, c)| c.definition != "BQ087" || self.players[c.controller].graveyard.iter().any(|grave| grave.owner==c.controller && catalog::catalog().cards.iter().any(|d|d.id==grave.definition && d.kind=="character")))
             .map(|(region, c)| self.source_snapshot(c, region)).collect::<Vec<_>>();
         // Seat ordering between teammates is the existing project contract;
         // each controller explicitly chooses its own simultaneous order.
@@ -277,12 +279,13 @@ impl Game {
             self.jc035_decline(&siblings);
             ds.retain(|other| other.source.card.definition != "CQ08" || other.actor != d.actor);
         }
-        if d.source.card.definition == "JC055" {
+        if matches!(d.source.card.definition.as_str(), "JC055" | "BQ087") {
             let options = self.binding_options(d.actor, &d.source, &d.ability.targets[0]);
             if options.is_empty() {
                 self.jc035_decline(&[d]); if !ds.is_empty() { self.jc035_offer_order(ds); }
             } else {
-                self.choice(d.actor, "jc055-preparation-target", "选择放置时间标志的角色或附属".into(), options, 1, 1, None,
+                let (kind,title)=if d.source.card.definition=="BQ087" {("batch3-bq087-target","选择本方墓地角色，结算时进入随机地区")} else {("jc055-preparation-target","选择放置时间标志的角色或附属")};
+                self.choice(d.actor, kind, title.into(), options, 1, 1, None,
                     ChoiceResolution::JC055PreparationTarget { declaration: d, remaining: ds });
             }
             return Ok(());
@@ -298,7 +301,7 @@ impl Game {
     pub(crate) fn jc055_preparation_target(&mut self, d: Declaration, ds: Vec<Declaration>, a: &Action, selected: &[String]) -> RuleResult<()> {
         self.jc035_declaration(&d)?;
         for next in &ds { self.jc035_declaration(next)?; }
-        if d.source.card.definition != "JC055" || selected.len() != 1 || *a != (Action { choice_id: a.choice_id.clone(), selected: Some(selected.to_vec()), ..Action::new("choose") }) {
+        if !matches!(d.source.card.definition.as_str(), "JC055" | "BQ087") || selected.len() != 1 || *a != (Action { choice_id: a.choice_id.clone(), selected: Some(selected.to_vec()), ..Action::new("choose") }) {
             return Err("JC055准备目标不能夹带额外声明".into());
         }
         if let Some(id) = selected.first() {
@@ -368,6 +371,13 @@ impl Game {
         }
         Ok(())
     }
+    pub(crate) fn jc035_cancel_guarded_frame(&mut self,f:&ResolutionFrame)->RuleResult<()> {
+        if !preparation_frame(f) { return Ok(()); }
+        if f.cursor!=0 || !matches!(f.guard,GuardState::Cancelled) { return Err("准备取消必须来自原目标守卫".into()); }
+        let entry=self.jc035_preparation.as_mut().and_then(|o|o.entries.iter_mut().find(|e|e.source.card.id==f.source.card.id)).ok_or("取消缺少原准备来源")?;
+        if !matches!(&entry.decision,Some(PreparationDecision::Accepted{frame_id}) if frame_id==&f.frame_id) { return Err("取消不能改写其他准备收据".into()); }
+        entry.decision=Some(PreparationDecision::Cancelled{frame_id:f.frame_id.clone()});Ok(())
+    }
     pub(crate) fn jc035_resolve(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
         self.validate_jc035_frame(f)?;
         if !preparation_frame(f) || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted) {
@@ -382,6 +392,11 @@ impl Game {
         if f.source.card.definition == "CQ08" { return Ok(()); }
         if f.source.card.definition == "XG28" { return self.mill_cards_with_cause(f.actor, 1, Some(f)); }
         if f.source.card.definition == "JC064" { return self.jc064_upkeep_start(f); }
+        if f.source.card.definition == "BQ087" {
+            let regions=self.regions.iter().enumerate().filter(|(_,r)|!r.vacant).map(|(i,_)|i).collect::<Vec<_>>();
+            if !regions.is_empty() { let region=regions[self.random_below(regions.len())]; self.world_graveyard_entry(f.actor,region,&f.targets[0].id)?; }
+            return Ok(());
+        }
         if f.source.card.definition == "BQ085" { return self.bq085_upkeep_start(f.clone()); }
         if f.source.card.definition == "JC055" { self.jc055_prepare_time(f); return Ok(()); }
         if f.source.card.definition != "JC035" { return self.batch20_prepare_resolve(f); }
@@ -483,8 +498,9 @@ impl Game {
                         if entry.actor != p.seat { return Err("准备目标续体不能跨操控席位".into()); }
                     }
                     let options = self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
-                    if d.source.card.definition != "JC055" || p.choice.id.is_empty() || p.choice.player_id != player_id(d.actor)
-                        || p.choice.kind != "jc055-preparation-target" || p.choice.title != "选择放置时间标志的角色或附属"
+                    let (kind,title)=if d.source.card.definition=="BQ087" {("batch3-bq087-target","选择本方墓地角色，结算时进入随机地区")} else {("jc055-preparation-target","选择放置时间标志的角色或附属")};
+                    if !matches!(d.source.card.definition.as_str(), "JC055" | "BQ087") || p.choice.id.is_empty() || p.choice.player_id != player_id(d.actor)
+                        || p.choice.kind != kind || p.choice.title != title
                         || p.choice.min != Some(1) || p.choice.max != Some(1) || p.choice.allow_decline != Some(false)
                         || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&p.choice.options,&options) {
                         return Err("JC055准备目标待选错误".into());

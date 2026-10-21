@@ -41,7 +41,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn batch3_own_grave_character(&self, actor: usize, source: &SourceSnapshot, c: &Card) -> bool {
-        matches!(source.card.definition.as_str(), "XG28" | "BQ089")
+        matches!(source.card.definition.as_str(), "XG28" | "BQ089" | "BQ087")
             && self.players.get(actor).is_some_and(|p| p.graveyard.iter().any(|live| live == c))
             && c.owner == actor && !c.face_down
             && catalog::card(&c.definition).kind == "character"

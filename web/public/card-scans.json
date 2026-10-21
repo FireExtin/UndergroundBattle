@@ -1078,5 +1078,10 @@
     "url": "/cards/JC064.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
     "sha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60"
+  },
+  "BQ087": {
+    "url": "/cards/BQ087.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
+    "sha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76"
   }
 }

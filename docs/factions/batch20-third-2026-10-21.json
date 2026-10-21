@@ -96,7 +96,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
       "sourceImageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": []
     },
@@ -597,7 +597,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 9,
+    "unreviewedRuntimeCards": 8,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -727,6 +727,32 @@
       "affectedFilters": {
         "preparation": 15,
         "mobility": 13
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "twelveCardPilot": {
+      "passed": 58,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "WM030",
+        "BQ042",
+        "WM033",
+        "XG26",
+        "WM035",
+        "JZ25",
+        "XG28",
+        "BQ089",
+        "JC062",
+        "XQ22",
+        "JC064",
+        "BQ087"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/twelve-card-pilot.json",
+      "affectedFilters": {
+        "preparation": 15,
+        "leader": 14,
+        "rumor": 18
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

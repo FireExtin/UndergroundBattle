@@ -25,7 +25,7 @@ pub enum TransferOutcome {
 impl Game {
     fn rumor_eligible(&self, c: &Card) -> bool {
         !c.face_down && (c.definition == "WM042"
-            || (c.definition == "WM033" && self.players.get(c.controller).is_some_and(|p| p.society_zone.secrecy > 0)))
+            || (matches!(c.definition.as_str(), "WM033" | "BQ087") && self.players.get(c.controller).is_some_and(|p| p.society_zone.secrecy > 0)))
     }
     fn rumor_title(c: &Card) -> String {
         format!("{}：可改为封印在目标角色上", catalog::card(&c.definition).name)
@@ -318,7 +318,7 @@ impl Game {
                     c
                 }
                 TransferOutcome::Sealed { card, host_id } => {
-                    if !matches!(old.definition.as_str(), "WM042" | "WM033")
+                    if !matches!(old.definition.as_str(), "WM042" | "WM033" | "BQ087")
                         || !self
                             .sealed_cards
                             .iter()

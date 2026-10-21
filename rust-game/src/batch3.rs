@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -19,6 +19,11 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
         "JC062" => Some(crate::batch3_inspect::definition()),
         "XQ22" => Some(crate::batch3_politician::definition()),
         "JC064" => Some(crate::batch3_law::definition()),
+        "BQ087" => {
+            let mut t=rules::target(Zone::Graveyard,EntityKind::Character,Relation::OwnedByActor,Range::Anywhere);
+            t.predicate=Some(TargetPredicate::Batch3OwnGraveCharacter);
+            Some(rules::with_abilities(vec![rules::ability("batch3-bq087-prepare", "准备强制触发：本方墓地目标角色进入随机地区", Timing::Fast,vec![],vec![t],vec![Op::Batch3Prepare{event_id:None}],Some(Event::Prepare))]))
+        },
         "JZ25" => Some(rules::with_abilities(vec![rules::ability(
             "batch3-jz25-seal", "进场：目标玩家随机封印一张手牌在本牌上", Timing::Fast,
             vec![], vec![rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
