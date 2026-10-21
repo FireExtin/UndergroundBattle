@@ -74,8 +74,8 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
-pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "JC048" | "WM034" | "JC068" | "BQ085") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
+pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
     [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
@@ -86,7 +86,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "XG28" { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if matches!(id, "XG28" | "JC064") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -381,6 +381,7 @@ impl Game {
         entry.decision = Some(PreparationDecision::Resolved { frame_id: f.frame_id.clone() });
         if f.source.card.definition == "CQ08" { return Ok(()); }
         if f.source.card.definition == "XG28" { return self.mill_cards_with_cause(f.actor, 1, Some(f)); }
+        if f.source.card.definition == "JC064" { return self.jc064_upkeep_start(f); }
         if f.source.card.definition == "BQ085" { return self.bq085_upkeep_start(f.clone()); }
         if f.source.card.definition == "JC055" { self.jc055_prepare_time(f); return Ok(()); }
         if f.source.card.definition != "JC035" { return self.batch20_prepare_resolve(f); }
@@ -505,6 +506,9 @@ impl Game {
                     self.validate_jc035_frame(frame)?;
                     self.validate_jc068_upkeep(p, frame)?;
                     remember(&frame.source)?;
+                },
+                ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } if preparation_frame(frame) => {
+                    self.validate_jc035_frame(frame)?; self.validate_jc064_pending(p, frame)?; remember(&frame.source)?;
                 },
                 ChoiceResolution::Frame { frame, .. } if related(frame) =>
                     return Err("固定准备效果没有其他额外待选".into()),

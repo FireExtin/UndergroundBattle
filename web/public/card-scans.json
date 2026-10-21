@@ -1073,5 +1073,10 @@
     "url": "/cards/XQ22.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
     "sha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840"
+  },
+  "JC064": {
+    "url": "/cards/JC064.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
+    "sha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60"
   }
 }

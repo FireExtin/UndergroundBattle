@@ -762,6 +762,7 @@ impl Game {
                     ));
                     self.reset_passes();
                 } else {
+                    if self.jc064_blocks_character(&c, r) { return Err("戒严地区不能正面打出非国家机构角色".into()); }
                     if rules::definition(&c.definition).traits.city_play_only
                         && !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市")
                     {
@@ -1175,6 +1176,7 @@ impl Game {
         if let Some(c) = item.card.take() {
             if let Some(region) = item.deploy_region {
                 if !self.region_live(region)
+                    || (!item.reveal && self.jc064_blocks_character(&c, region))
                     || (crate::next20_blue_gray::CARDS.contains(&c.definition.as_str())
                         && self.original_region(&frame.source) != Some(region))
                     || (c.definition == "JC052" && !self.jc052_original_region_live(&frame.source))

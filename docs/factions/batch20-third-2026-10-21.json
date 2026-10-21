@@ -212,7 +212,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
       "sourceImageSha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "selectionEnabled": false,
       "openQuestionIds": [
         "martialLawRedCostRing"
@@ -578,7 +578,7 @@
   "unresolved": [
     "red cost-ring is a source geometry fact; no new speed rule is inferred",
     "TK008 full token program and disappearance rules required for CQ11",
-    "BQ026 attachment role semantics must be confirmed before admission",
+    "BQ026 must preserve both roles, confrontation icons and lethal damage while attached; official FAQ5 analogous ruling found, implementation and card-specific checks pending",
     "JC062: implement zero/one/two explicit target binding with existing whole-effect cancellation; original rules physical PDF9 and FAQ3 verified",
     "All twenty runtime programs are not complete; zero new public admissions, no new WASM or deployment"
   ],
@@ -597,7 +597,7 @@
       "identity": "rust-v0.2.94-batch20-third"
     },
     "sourceRecordsPreserved": 193,
-    "unreviewedRuntimeCards": 10,
+    "unreviewedRuntimeCards": 9,
     "affectedPriorRegressions": {
       "spiritFilteredRun": {
         "passed": 13,
@@ -703,6 +703,30 @@
       "affectedFilters": {
         "jz46": 11,
         "genericClosedRules": 10
+      },
+      "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "elevenCardPilot": {
+      "passed": 49,
+      "failed": 0,
+      "sourceChecksPassed": 7,
+      "cards": [
+        "WM030",
+        "BQ042",
+        "WM033",
+        "XG26",
+        "WM035",
+        "JZ25",
+        "XG28",
+        "BQ089",
+        "JC062",
+        "XQ22",
+        "JC064"
+      ],
+      "evidence": "docs/evidence/batch20-third-2026-10-21/eleven-card-pilot.json",
+      "affectedFilters": {
+        "preparation": 15,
+        "mobility": 13
       },
       "countsNotAddedAcrossOverlappingRuns": true
     }

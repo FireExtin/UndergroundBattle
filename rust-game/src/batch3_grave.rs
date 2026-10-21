@@ -10,7 +10,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match (id, a.kind.as_str()) {
         ("BQ089", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
             target_id: a.target_id.clone(), region: a.region, ..Action::new("play") },
-        ("XG28", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
+        ("XG28" | "JC064", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
             region: a.region, ..Action::new("play") },
         ("XG28", "activate") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
             target_id: a.target_id.clone(), ..Action::new("activate") },

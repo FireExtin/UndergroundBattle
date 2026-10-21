@@ -1,6 +1,6 @@
 //! XQ22's printed ability may be activated by every player. The payer stays
 //! separate from the original controller and chooses orientation at resolution.
-use crate::{catalog,engine::RuleResult,model::*,rules::*};
+use crate::{engine::RuleResult,model::*,rules::*};
 use std::collections::BTreeSet;
 const KEY:&str="batch3-xq22-orient";
 const TITLE:&str="州议员：选择横置或重置原角色";

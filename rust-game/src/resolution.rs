@@ -12,7 +12,7 @@ impl Game {
     // existing entity and attachments, and emits EnterRegion only. Primitive
     // unit fixtures call this operation rather than inventing a legal ability.
     pub(crate) fn move_on_board_instance(&mut self, id: &str, region: usize) {
-        if self.board(id).is_some_and(|(from, _)| from != region) {
+        if self.board(id).is_some_and(|(from, c)| from != region && !self.jc064_blocks_character(c, region)) {
             if let Some((_, c)) = self.remove_board(id) {
                 let actor = c.controller;
                 let source = self.source_snapshot(&c, Some(region));
@@ -466,7 +466,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -682,7 +682,7 @@ impl Game {
                         && (spec.predicate != Some(TargetPredicate::JZ34DestroyedRegion) || (source.card.definition == "JZ34" && self.regions[r].destroyed))
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
-                                self.regions_adjacent(r, from)
+                                self.regions_adjacent(r, from) && !self.jc064_blocks_character(&source.card, r)
                             }))
                 }),
             Zone::Board | Zone::Graveyard => {
@@ -1823,11 +1823,7 @@ impl Game {
                     {
                         let id = c.id.clone();
                         if let Some(to) = destination.filter(|to| *to != from) {
-                            let (_, c) = self.remove_board(&id).unwrap();
-                            let actor = c.controller;
-                            let source = self.source_snapshot(&c, Some(to));
-                            self.regions[to].cards.push(c);
-                            self.emit_event(actor, source, Event::EnterRegion);
+                            self.move_on_board_instance(&id, to);
                         }
                         self.turn_attribute_modifiers.push(TurnAttributeModifier {
                             target_instance: id, defense_bonus: 0, kill_bonus: 0,
@@ -2436,6 +2432,7 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
             FrameChoice::JC062Inspection { inspected } => self.jc062_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::WM033GraveSpell => return self.wm033_finish(&frame, chooser, &a, &selected),

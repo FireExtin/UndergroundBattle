@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -18,6 +18,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
         "JC062" => Some(crate::batch3_inspect::definition()),
         "XQ22" => Some(crate::batch3_politician::definition()),
+        "JC064" => Some(crate::batch3_law::definition()),
         "JZ25" => Some(rules::with_abilities(vec![rules::ability(
             "batch3-jz25-seal", "进场：目标玩家随机封印一张手牌在本牌上", Timing::Fast,
             vec![], vec![rules::target(Zone::Player, EntityKind::Any, Relation::Any, Range::Anywhere)],
@@ -130,7 +131,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     } else if d.modifiers.iter().any(|m| {
         matches!(
             m,
-            StaticModifier::XQ22UnexhaustedSpellBan | StaticModifier::WM030CultistIcons
+            StaticModifier::JC064MartialLaw | StaticModifier::XQ22UnexhaustedSpellBan | StaticModifier::WM030CultistIcons
                 | StaticModifier::XG26InfluenceAndConditionalGuard
                 | StaticModifier::WM035HumansGainHost
         )
@@ -200,7 +201,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if !IMPLEMENTING.contains(&id) {
         return Ok(());
     }
-    if matches!(id, "XG28" | "BQ089") { return crate::batch3_grave::validate_action(id, a); }
+    if matches!(id, "XG28" | "BQ089" | "JC064") { return crate::batch3_grave::validate_action(id, a); }
     if id == "JC062" { return crate::batch3_inspect::validate_action(a); }
     if id == "XQ22" && a.kind == "activate" { return crate::batch3_politician::validate_action(a); }
     let expected = match a.kind.as_str() {
@@ -332,7 +333,7 @@ impl Game {
         if crate::jc035::preparation_frame(f) { return self.validate_jc035_frame(f); }
         if f.source.card.definition == "JC062" { return self.validate_jc062_frame(f); }
         if f.source.card.definition == "XQ22" && !matches!(f.ability_key.as_str(), "deploy" | "reveal") { return self.validate_xq22_frame(f); }
-        if matches!(f.source.card.definition.as_str(), "XG28" | "BQ089")
+        if matches!(f.source.card.definition.as_str(), "XG28" | "BQ089" | "JC064")
             || (f.source.card.definition == "JZ25" && !matches!(f.ability_key.as_str(), "deploy" | "reveal")) {
             return self.validate_batch3_grave_frame(f);
         }
@@ -480,7 +481,7 @@ impl Game {
                     remember(&f.source, std::slice::from_ref(op))?;
                 }
                 let deploy = matches!(f.ability_key.as_str(), "deploy" | "reveal");
-                let played = matches!(f.ability_key.as_str(), "batch3-xg28-attach" | "batch3-bq089-reanimate" | "batch3-jc062-investigate");
+                let played = matches!(f.ability_key.as_str(), "batch3-xg28-attach" | "batch3-bq089-reanimate" | "batch3-jc062-investigate" | "batch3-jc064-attach");
                 if !frames.insert(&f.frame_id)
                     || s.id != f.frame_id
                     || s.controller != f.actor
@@ -530,6 +531,7 @@ impl Game {
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC062Inspection { inspected } } =>
                     self.validate_jc062_pending(p, frame, inspected)?,
                 ChoiceResolution::Frame { frame, choice: FrameChoice::XQ22Orientation } => self.validate_xq22_pending(p, frame)?,
+                ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } => self.validate_jc064_pending(p, frame)?,
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     if declaration.source.card.definition == "WM035"

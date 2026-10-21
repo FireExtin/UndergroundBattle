@@ -8046,6 +8046,45 @@
       "society": "",
       "supported": false,
       "subtitle": "“处事圆滑”"
+    },
+    {
+      "id": "JC064",
+      "name": "戒严",
+      "kind": "attachment",
+      "subtypes": [
+        "局势"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区；【准备步骤强制触发】支付1，否则牺牲戒严。；【持续】所有非国家机构的角色牌不可正面打出在本地区，也不能移动进入本地区。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC064",
+        "image": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
+        "imageSha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

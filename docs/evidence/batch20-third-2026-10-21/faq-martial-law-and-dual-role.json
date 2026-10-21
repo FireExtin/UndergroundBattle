@@ -1,0 +1,19 @@
+{
+  "source": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+  "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+  "verifiedHere": true,
+  "facts": [
+    {
+      "physicalPage": 4,
+      "heading": "戒严（基础057）",
+      "rule": "Non-government characters may still be concealed or directly put into this region. The prohibition distinguishes playing from direct placement."
+    },
+    {
+      "physicalPage": 5,
+      "heading": "空鸣御守（先行牌，百鬼夜行01）",
+      "rule": "This printed character/attachment is affected by both character and attachment effects, participates in confrontations while attached, can die from lethal damage, cannot move while attached, and is destroyed when its host leaves.",
+      "inferenceForBQ026": "BQ026 prints the same dual type and its own cannot-move/cannot-be-equipped clauses. Preserve both roles; do not silently change the attached object into a plain attachment. Card-specific implementation/review remains."
+    }
+  ],
+  "unresolvedTokenInput": "No full generated-character-token departure/hidden/sealed/return lifecycle rule was found in the inspected base/FAQ sources; do not import another game's token lifecycle."
+}

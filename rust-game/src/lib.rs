@@ -5,6 +5,7 @@ mod batch3_host;
 mod batch3_grave;
 mod batch3_inspect;
 mod batch3_politician;
+mod batch3_law;
 #[cfg(test)]
 mod batch3_inspect_tests;
 #[cfg(test)]
