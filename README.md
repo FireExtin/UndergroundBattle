@@ -11,9 +11,9 @@
 | 规则 / 卡池 | `hegemony-pdf-v1` / `limited-v2.82-batch20` |
 | 最近已发布 Site | **v73 / ABI91**；2026-10-21 13:34 UTC官方部署回执为 `succeeded`；本环境读取线上 `/api/health` 返回403，尚未完成线上运行身份核对 |
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
-| 尚未完成 | 第一批Sites最终单轮全套正在固定快照上执行；本批独立复审和真实浏览器对战由协调任务分别安排，尚无完成结论；旧桌兼容未独立确认 |
+| 第一批后续 | 独审发现的空秘社区P2已修复并通过最小源码补验；v74修复版保存成功但部署被自动审批拒绝，网站仍为v73。v73已有一局8回合自然完局及终局刷新；不是20卡全机制验收。固定7f的Sites最终单轮全套仍在原进程执行 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
-| 第二批20张 | [独立开发清单](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/batch20-next-20261021`；红黑蓝灰20张运行机制开发中；蓝灰7张源码已接入候选，其最终源码和完整批次待验证，未发布 |
+| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/next20-combined-20261021`；20张源码及准入已整合，ABI93/pool83共193张，Native定向129、UI180、构建与本地新房启动通过，未发布 |
 
 [已发布的游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)的官方部署记录现指向v73，包含第一批20卡及此前整改。部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)。
 
@@ -21,7 +21,7 @@ Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go�
 
 ## 已发布v73的卡牌与玩法范围
 
-下表统计v73冻结版本；当前分支的第二批候选尚未发布。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，已有牌桌使用其自己的 `/api/rooms/{roomId}/catalog`。
+下表统计v73冻结版本；当前分支第二批ABI93候选为193张（角色121、事务34、附属28、地区10），另列秘社仍10张，尚未发布。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，已有牌桌使用其自己的 `/api/rooms/{roomId}/catalog`。
 
 | 目录类型 | 数量 |
 | --- | ---: |
@@ -129,9 +129,9 @@ $UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi89/…
 
 ABI77–88取自已核验迁移包；ABI89必须使用v71的P2修复后原件。旧5056迁移包中的ABI89不能替代它。v71 WASM为3471247字节，SHA256 `df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de`；输入包、运输压缩哈希及准备说明见[本地整改记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md)。
 
-候选Worker沿现有路由包含 **当前ABI91 + 原始ABI77–89，共14个内核**。按完整规则/卡池/引擎身份匹配；未保留的版本明确拒绝，不将旧opaque状态改写后送入新核。房间外层schema为3，内部Game schema为2。JS宿主将完整状态视为opaque字符串，避免破坏u64种子。
+本分支候选Worker沿现有路由包含 **当前ABI93 + 原始ABI77–89、91，共15个内核**。第一批P2候选ABI92已保存为v74但部署被拒，当前未建立其已发布冻结身份；它正式上线后，下一批发布前必须保留其精确原始字节。按完整规则/卡池/引擎身份匹配；未保留的版本明确拒绝，不将旧opaque状态改写后送入新核。房间外层schema为3，内部Game schema为2。JS宿主将完整状态视为opaque字符串，避免破坏u64种子。
 
-本批ABI91与前期整改只作用于新版本房间；保留历史内核也保留其原版缺陷。Native二进制仍只接受当前内核身份的数据库，不具有Sites的多内核兼容能力；不存在通用旧SQLite存档迁移。
+本分支ABI93与前期整改只作用于新版本房间；保留历史内核也保留其原版缺陷。Native二进制仍只接受当前内核身份的数据库，不具有Sites的多内核兼容能力；不存在通用旧SQLite存档迁移。
 
 ## 本地测试与已知验证边界
 
@@ -151,7 +151,7 @@ npm --prefix web test -- --maxWorkers=2
 node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```
 
-本分支Sites全套测试还需要已构建的15模块Worker（当前候选ABI92及原件77–89、91；v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
+本分支Sites全套测试还需要已构建的15模块Worker（当前候选ABI93及原件77–89、91；v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
 
 ```sh
 node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server"
@@ -177,7 +177,7 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 
 前期README更新核对了65个本地链接和13段shell示例语法；在上述候选源码上完成Native构建，并用新建本地数据库验证启动命令、`/api/health`、`/api/catalog`和既有前端构建的静态首页。没有因此重跑既有全套或浏览器对局。
 
-本批必要构建和新房间检查通过；集中检查中Web最终145文件1471项、来源/冻结工具84项全过；修复后的Rust workspace最终整轮1395/1395、Sites受影响15文件81/81通过。修复版WASM完整440场景全部通过，核对24582次迁移及97691个视图，末尾XQ24恢复检查也通过；对应源码、WASM及日志哈希见[本轮回放证据](docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json)。修复版官方本地Site构建和20卡新房检查通过。历史失败、原v72的433场景和修复版13场景定向结果分别保留于[批次记录](docs/factions/batch20-2026-10-21.md)。尚未完成Sites最终单轮全套、本批独立复审或真实浏览器完整对战。
+本批必要构建和新房间检查通过；集中检查中Web最终145文件1471项、来源/冻结工具84项全过；修复后的Rust workspace最终整轮1395/1395、Sites受影响15文件81/81通过。修复版WASM完整440场景全部通过，核对24582次迁移及97691个视图，末尾XQ24恢复检查也通过；对应源码、WASM及日志哈希见[本轮回放证据](docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json)。修复版官方本地Site构建和20卡新房检查通过。历史失败、原v72的433场景和修复版13场景定向结果分别保留于[批次记录](docs/factions/batch20-2026-10-21.md)。上述结果针对首批ABI91。首批Sites最终轮首次644通过/12失败，原因为本地运行目录缺少原ABI78–89输入；原件恢复核验后已在同一固定7f快照启动修正后的全套，结果仍待收取。独立复审已发现B20-IR-01；最小P2源码修复a0b1b3d补验通过，不能扩张为后续UX、WASM或第二批独立通过。协调任务反馈v73一局8回合A8:B6自然完局及终局刷新通过，不等于所有20张机制验收。
 
 ## Sites官方发布方式与当前限制
 
@@ -187,7 +187,7 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 
 **禁止运行GitHub CI的限制仍有效。** 用户已明确授权正常保存和推送相关源码；`d98117d`及其前三个相关提交已快进推入main，Git与GitHub只读接口核对一致。推送前后的实际树没有 `.github/workflows`，已知配置无push自动部署证据，推送后即时查询未新增Actions运行。连接器的workflow清单HTTP400表示该URL不受支持，不表示Git保存权限被拒绝；不能据此断言存在未知外部CI，也不承诺所有外部服务均已穷举。后续仍检查实际触发器，不强推、不改权限、不创建PR/tag/release或触发CI。
 
-Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均可能产生生产部署。本批通过原始官方Sites 0.1.75 helper完成源码同步和打包，未开启自动私有发布。v72保存后发现奖励快照缺陷，修复版另存为v73；旧版未部署。先前部署拒绝均保留记录，收到用户2026-10-21 13:32 UTC针对本次操作的“批准发布”后，仅重试同一官方部署一次并成功。没有更改站点受众或使用替代发布接口。本环境随后读取公开健康接口返回403，已停止该访问核对；部署回执不等同于浏览器验收。详见[批次记录](docs/factions/batch20-2026-10-21.md)。
+Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均可能产生生产部署。本批通过原始官方Sites 0.1.75 helper完成源码同步和打包，未开启自动私有发布。v72保存后发现奖励快照缺陷，修复版另存为v73；旧版未部署。先前部署拒绝均保留记录，收到用户2026-10-21 13:32 UTC针对本次操作的“批准发布”后，仅重试同一官方部署一次并成功。没有更改站点受众或使用替代发布接口。本环境随后读取公开健康接口返回403，已停止该访问核对；部署回执不等同于浏览器验收。随后P2修复独立保存为v74（Site源码fe182e656f35153be9225c0b17fbce708831b1ba），官方部署被自动审批以“未明确授权v74”拒绝；官方只读查询确认deployment_id=null，未执行。已停止发布，不经下一批或其他接口绕过；精确目标与独立补验范围见[修复记录](docs/factions/batch20-society-zone-fix-2026-10-21.md)。
 
 ## 资料与维护
 

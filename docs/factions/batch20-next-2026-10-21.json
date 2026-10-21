@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-next-2026-10-21",
-  "stage": "WIP-nativeCompositeTargetedPassed",
+  "stage": "WIP-buildStartupPassed-oraclePending-publicationBlocked",
   "baseCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
-  "branch": "progress/batch20-next-20261021",
+  "branch": "progress/next20-combined-20261021",
   "firstBatchSnapshotUnchanged": true,
   "scope": {
     "selectedNewCards": 20,
@@ -12,7 +12,7 @@
     "publishedNewCards": 0,
     "neutralOrDualExpansion": "paused",
     "sourceIntegratedNewCards": 20,
-    "integrationMeaning": "Source integration and Native targeted validation complete; artifact, release and browser validation pending"
+    "integrationMeaning": "20 sources integrated; Native129, UI180, Native/WASM/Web/Sites build and startup passed. Additional35 mechanism+8P2 oracle cases written, not run. Publication/independent review/browser pending."
   },
   "cards": [
     {
@@ -670,9 +670,7 @@
       }
     }
   ],
-  "sourceCorrectionsPending": [
-    "WM040: original sun/exposure condition precedes both public and mobility; active specification and review summary currently omit it."
-  ],
+  "sourceCorrectionsPending": [],
   "mechanisms": [
     "search attachment then legal host, with resumable private choices",
     "deck-to-grave actual movement batches and death-origin snapshots",
@@ -697,7 +695,7 @@
   "githubCiAllowed": false,
   "validation": {
     "images": "20 exact byte copies verified against pinned SHA256; mappings added",
-    "runtime": "20 cards integrated; combined Native lib targeted validation passed 129/129 with zero ignored at e15883946d8b9c519228c8d48fae6ea275a9aa32; full suite and runtime artifacts not validated here.",
+    "runtime": "Runtime source e158839: Native129/129, Web180/180, Native/WASM/Web/Sites build,193-card/20-card startup and8kernel checks passed; not full suites",
     "browser": "notRun; coordinator owns real gameplay",
     "existingSourceBoundaryTest": {
       "command": "node --test tools/cards/batch20-source.test.mjs",
@@ -708,9 +706,16 @@
     "documentLinks": {
       "checked": 39,
       "invalid": 0
+    },
+    "currentSourceAndScans": {
+      "passed": 7,
+      "failed": 0,
+      "sourceCards": 40,
+      "originalScans": 193,
+      "evidence": "docs/evidence/batch20-next-2026-10-21/local-readiness.json"
     }
   },
-  "recordedAt": "2026-10-21T15:04:54.161387+00:00",
+  "recordedAt": "2026-10-21T15:27:29.631375+00:00",
   "carriedFixes": [
     {
       "id": "B20-UX-JC065-target-roles",
@@ -742,7 +747,7 @@
     "rules": "hegemony-pdf-v1",
     "cardPool": "limited-v2.83-batch20-next",
     "engine": "rust-v0.2.93-batch20-next",
-    "status": "ABI93 source and Native lib tests validated; runtime artifact build and startup handed to owner; ABI92 belongs to first-batch P2",
+    "status": "ABI93 runtime artifact built and startup validated; not deployed",
     "retainedAbi": [
       77,
       78,
@@ -761,10 +766,12 @@
     ],
     "pendingRetainedP2": {
       "abi": 92,
-      "status": "v74 officially saved by owner; independent acceptance pending; not deployed; await owner formal original identity",
+      "status": "v74 saved; minimal P2 independent supplemental passed; official deployment denied for lack of explicit v74 authorization; no92published identity created",
       "frozenInputsCreated": false,
       "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba"
-    }
+    },
+    "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+    "wasmBytes": 4315979
   },
   "combinedIntegration": {
     "branch": "progress/next20-combined-20261021",
@@ -805,9 +812,9 @@
       "realBadgeVariants": 4
     },
     "remaining": [
-      "Owner ABI93 WASM/Native service artifact builds and startup",
-      "Exact formal P2 ABI92 original identity before retained92 route; v74 saved but not deployed",
-      "Current source/UI/Sites checks, full suite, browser acceptance and independent review; not claimed passed"
+      "Run additional35 mechanism+8P2 Native/WASM oracle cases once existing memory launch guard passes; do not interrupt fixed7f Sites run",
+      "If v74 is published after authorization, retain its exact ABI92 originals before next20 publication",
+      "Official publication, postpublication full suites, independent review and real browser acceptance; not claimed passed"
     ],
     "published": false,
     "githubCITriggered": false,
@@ -822,12 +829,17 @@
         "kind": "optional-trigger-context-UX",
         "sourceCommit": "4a722341f7d302300351bb15300d3a17cba1575d",
         "integratedCommit": "af325e5ce3877879ee5b559be701c0b3a89ba287",
-        "status": "imported; source diff only, UI verification owned by parent"
+        "status": "imported; final trigger5 and combinedUI180 passed"
       }
     ],
     "testedSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
     "targetedValidation": "docs/factions/next20-combined-native-20261021.json",
     "implementationAgentPushed": false,
-    "ownerPushedCheckpoint": "0bbfe1d722e41e77a86ebd9257a5fc25d7f74e2c"
-  }
+    "ownerPushedCheckpoint": "4f388a8dd318465e7ca1d12af38aec18aede286c"
+  },
+  "sourceCorrectionsCompleted": [
+    "WM040 original sun conditions before public and mobility; active specification corrected in exposure integration",
+    "XG27 original printed 灵体 and full text agree; add omitted printedKeywords entry without runtime rule change"
+  ],
+  "currentReadinessEvidence": "docs/evidence/batch20-next-2026-10-21/local-readiness.json"
 }

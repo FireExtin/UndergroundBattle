@@ -20,6 +20,13 @@ mod society_fixture;
 mod msjc09;
 
 #[cfg(not(feature = "society-fixtures"))]
+#[path = "support/society_zone.rs"]
+mod society_zone;
+#[cfg(not(feature = "society-fixtures"))]
+#[path = "support/next20.rs"]
+mod next20;
+
+#[cfg(not(feature = "society-fixtures"))]
 #[path = "support/control.rs"]
 mod control;
 #[cfg(not(feature = "society-fixtures"))]
@@ -2758,6 +2765,16 @@ fn main() {
         .nth(1)
         .expect("Usage: native_fixtures <output.json>");
     #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-society-zone") {
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), society_zone::cases());
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
+    if std::env::args().any(|a| a == "--slice-next20") {
+        write_fixture_cases(&output, json!({"catalog":catalog::catalog()}), next20::cases());
+        return;
+    }
+    #[cfg(not(feature = "society-fixtures"))]
     if std::env::args().any(|a| a == "--find-purple-region-natural-seed") {
         region_aura::find_natural_seed();
         return;
@@ -3150,6 +3167,8 @@ fn main() {
     }
     #[cfg(not(feature = "society-fixtures"))]
     for case in msjc01::cases()
+        .chain(society_zone::cases())
+        .chain(next20::cases())
         .chain(yellow_search::cases())
         .chain(control::cases())
         .chain(renown::cases())

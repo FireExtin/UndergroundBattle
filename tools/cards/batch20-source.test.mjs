@@ -23,15 +23,17 @@ const correctedIcons = {
   JC044: { permanent: { investigation: 1, combat: 1, influence: 1 }, temporary: { investigation: 0, combat: 0, influence: 0 } },
 };
 
-test('only the 13 explicitly reviewed source corrections differ from the d98117d specification baseline', () => {
-  const reviewed = ['JC029', 'JC034', 'JC038', 'JC044', 'JC048', 'JC055', 'JC065', 'JZ49', 'JZ52', 'LC16', 'WM033', 'XG12', 'WM040'];
+test('only the 14 explicitly reviewed source corrections differ from the d98117d specification baseline', () => {
+  const reviewed = ['JC029', 'JC034', 'JC038', 'JC044', 'JC048', 'JC055', 'JC065', 'JZ49', 'JZ52', 'LC16', 'WM033', 'XG12', 'WM040', 'XG27'];
   assert.equal(Object.keys(specs).length, 683);
   const unchanged = Object.fromEntries(Object.entries(specs).filter(([id]) => !reviewed.includes(id)));
   // Pin recomputed independently from d98117d after excluding the newly
-  // reviewed WM040 sun conditions; all other source records stay identical.
-  assert.equal(digest(unchanged), '93466e64ebbe679fc386f240ebdd1c8f54357cb47bb745800477037616d686c9');
+  // reviewed WM040 sun conditions and XG27's printed spirit keyword.
+  assert.equal(digest(unchanged), '94356bc104f520ae8d4e9c4c53ed65f24b024a8e9885cdfb7f93a779b06d2a01');
   assert.deepEqual(specs.WM040.fields.printedKeywords, ['暴露条件：公开', '暴露条件：机动']);
   assert.deepEqual(specs.WM040.fields.additionalPrintedSymbols, ['公开前太阳符号：操控者秘社有暴露时生效', '机动前太阳符号：操控者秘社有暴露时生效']);
+  assert.deepEqual(specs.XG27.fields.printedKeywords, ['灵体']);
+  assert.equal(specs.XG27.sourceVerification.imageSha256, '9a0f4b89f0de85cb58499463bc2a7e91c476cf449ac2475f581a1e4245b4ceb0');
 });
 
 test('next batch adds exactly twenty admissions while preserving all 173 published records', () => {
@@ -65,11 +67,14 @@ test('next batch adds exactly twenty admissions while preserving all 173 publish
   assert.equal(rust.match(/#\[cfg\(not\(feature = "society-fixtures"\)\)\]\s*pub const ENGINE_VERSION: &str = "([^"]+)";/)?.[1], engineVersion);
 });
 
-test('all 20 admitted prints retain their independently reviewed names, costs, factions, icons and keywords', () => {
+for (const [batch, batchIds] of [['first', ids], ['next', nextIds]]) {
+test(`all 20 ${batch} batch prints retain their independently reviewed names, costs, factions, icons and keywords`, () => {
   const colors = {};
-  for (const id of ids) {
+  for (const id of batchIds) {
     const card = data.cards.find(card => card.id === id), fields = specs[id].fields;
-    assert.equal(card.supported, true, id);
+    // CardDefinition defaults an omitted supported field to true; the startup
+    // check separately verifies the actual Native/WASM catalog admission.
+    assert.equal(card.supported ?? true, true, id);
     assert.equal(card.name, fields.name, id);
     assert.equal(card.cost, fields.printedCost, id);
     assert.equal(card.color, fields.colorKey, id);
@@ -80,6 +85,7 @@ test('all 20 admitted prints retain their independently reviewed names, costs, f
   }
   assert.deepEqual(colors, { 红: 5, 灰: 5, 黑: 5, 蓝: 5 });
 });
+}
 
 test('all 193 admitted scans retain exact original bytes and both public mappings', () => {
   const result = validateAdmittedScans();

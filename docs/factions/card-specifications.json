@@ -75686,7 +75686,9 @@
         "startingHand": null,
         "influenceThreshold": null,
         "points": null,
-        "printedKeywords": [],
+        "printedKeywords": [
+          "灵体"
+        ],
         "printedRuleTextLines": [
           "灵体",
           "持续 你所打出的诅咒牌其所需费用减少①。",

@@ -12,7 +12,7 @@ import {RoomStore} from '../src/store.mjs';
 import {digest} from '../src/service.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 const worker=process.env.HEGEMONY_CURRENT_WORKER_DIR||path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT||'/workspace/undergroundbattle-build','jc035-worker/server');
-test('one actual fifteen-kernel HTTP/D1 isolate preserves original77-89/91 and new92 state, commands, u64 and receipts',async t=>{
+test('one actual fifteen-kernel HTTP/D1 isolate preserves original77-89/91 and new93 state, commands, u64 and receipts',async t=>{
  const modules=readdirSync(worker).filter(f=>f.endsWith('.wasm'));assert.equal(modules.length,15);
  const options=convertV4MiniflareOptions({name:'jc035-retained-http',resourcePersistencePath:mkdtempSync(path.join(tmpdir(),'jc035-retained-http-')),modulesRoot:worker,
  modules:[{type:'ESModule',path:path.join(worker,'worker.js')},...modules.map(f=>({type:'CompiledWasm',path:path.join(worker,f)}))],compatibilityDate:'2026-10-02',cf:false,bindings:{LOCAL_TEST_CLOCK_MS:'0'},d1Databases:{DB:'jc035-retained-http'}});
@@ -34,5 +34,5 @@ test('one actual fifteen-kernel HTTP/D1 isolate preserves original77-89/91 and n
   const retry=await api(command);assert.deepEqual(retry,r);assert.equal((await store.room(id)).state,expected.state);
   assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM commands WHERE room_id=?').bind(id).first()).n,1);
  }
- t.diagnostic(JSON.stringify({actualHttpKernelVersions:[...retainedVersions,92],sameIsolate:true,rooms:15,accepted:15,originalReceipts:15,opaqueStatesExact:true,seedU64Exact:true,syntheticDatabaseRetained:true}));
+ t.diagnostic(JSON.stringify({actualHttpKernelVersions:[...retainedVersions,93],sameIsolate:true,rooms:15,accepted:15,originalReceipts:15,opaqueStatesExact:true,seedU64Exact:true,syntheticDatabaseRetained:true}));
 });
