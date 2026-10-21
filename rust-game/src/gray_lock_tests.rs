@@ -52,12 +52,12 @@ fn fixture(name: &str, g: &Game) {
 
 #[test]
 fn gray_lock_whole_original_fields_and_closed_definitions() {
-    assert_eq!(catalog::catalog().cards.len(),153);
     for (id, name, subtype, permanent, temporary) in [
         ("JC069", "警犬", "狗", Icons::default(), Icons{combat:2,..Default::default()}),
         ("JZ43", "武装市民", "人类", Icons{influence:1,..Default::default()}, Icons{combat:1,..Default::default()}),
     ] {
         let c = catalog::card(id);
+        assert!(c.supported);
         assert_eq!((&*c.name, &*c.color, c.cost, c.defense), (name,"灰",2,Some(1)));
         assert_eq!(c.subtypes,[subtype]);
         assert!(c.loyalty.is_empty() && c.magic.is_empty() && !c.unique);

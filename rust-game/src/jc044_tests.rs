@@ -17,7 +17,8 @@ fn jc044_complete_print_and_program_cannot_be_split_or_transplanted() {
     let c = catalog::card("JC044");
     assert_eq!((c.name.as_str(), c.cost, c.color.as_str(), c.magic.as_str(), c.defense), ("灾难使者",3,"红","死亡",Some(1)));
     assert_eq!(c.subtypes,["人类","法师","邪教徒"]); assert_eq!(c.loyalty,["红色"]); assert!(!c.unique);
-    assert_eq!((c.permanent_icons.investigation,c.permanent_icons.combat,c.temporary_icons.influence),(1,1,1));
+    assert_eq!((c.permanent_icons.investigation,c.permanent_icons.combat,c.permanent_icons.influence),(1,1,1));
+    assert_eq!(c.temporary_icons, Icons::default());
     assert_eq!(c.keywords,["时间标志1"]);
     let d = crate::jc044::definition(); assert_eq!(d.abilities.len(),2);
     crate::jc044::validate_definition("JC044", &d).unwrap();

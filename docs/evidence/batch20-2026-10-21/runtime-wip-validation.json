@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "batch": "batch20-2026-10-21",
-  "stage": "20 implemented and admitted; necessary builds/startup passed; official publication and post-release acceptance pending",
+  "stage": "v72 saved; deployment denied by automatic approval; local full acceptance WIP",
   "baseCommit": "fce0a9bb07d89e80cbe2f47942a1e88e1031a8bb",
   "logRoot": "/workspace/audit-underground-100161b",
   "logs": [
@@ -158,9 +158,155 @@
       "sha256": "542a9aa581c2522bdc0025eb2d2c36ccca9eca6e41e771baa1105d7f1bba5ae1",
       "summary": [],
       "scope": "local scoped verification; not full suite or real browser"
+    },
+    {
+      "file": "batch20-full-rust.log",
+      "sha256": "c48d5cd81cd64a773e7de05a249c74dd181385da09d5674867738c57ed975adc",
+      "summary": [
+        "test result: FAILED. 1311 passed; 12 failed; 0 ignored; 0 measured; 0 filtered out; finished in 966.40s"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-rust-failures-recheck.log",
+      "sha256": "6c53f78d7431069ed4231c68b5260e7b8683adfa8b89e590fc85cdbbe620f67b",
+      "summary": [
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1311 filtered out; finished in 0.20s"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-web.log",
+      "sha256": "614c127e84325b3f1823f10ab5744d097afc91bfcff60c1cdce2034f79fba315",
+      "summary": [
+        "Test Files  70 failed | 75 passed (145)",
+        "Tests  854 passed (854)"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-web-02.log",
+      "sha256": "a18516dcf90c5301fff59092556976380c184d2964e7b21ed9ed121371d531b4",
+      "summary": [
+        "Test Files  1 failed | 144 passed (145)",
+        "Tests  1 failed | 1470 passed (1471)"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-web-jz55-recheck.log",
+      "sha256": "776ca774b6c67c660b96e1db2dad0becc76e3605ba2f1029b09fbc5a0c86c3c6",
+      "summary": [
+        "Test Files  1 passed (1)",
+        "Tests  8 passed (8)"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-web-03.log",
+      "sha256": "d56e1fae88b3b1fe12fc03b6df79acb39bd1d49b71f07825390251d5eaadd192",
+      "summary": [
+        "Test Files  145 passed (145)",
+        "Tests  1471 passed (1471)"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-tools.log",
+      "sha256": "a806c2da88600fd463b7fb73152e00e77bdd5ec28adea1c948149b2a10a12bc7",
+      "summary": [
+        "ℹ tests 66",
+        "ℹ pass 38",
+        "ℹ fail 28",
+        "ℹ duration_ms 16029.931089"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-tools-02.log",
+      "sha256": "d139b8452b6cc93a7fedf5909231f36b35a689b6bc761d140740bbda75388048",
+      "summary": [
+        "ℹ tests 83",
+        "ℹ pass 82",
+        "ℹ fail 1",
+        "ℹ duration_ms 17345.615014"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-source-final-recheck.log",
+      "sha256": "a14c1698d6206fa4fd8b29a8d4e8bcc59a534f4c2c74017e7cae692138595f7b",
+      "summary": [
+        "ℹ tests 7",
+        "ℹ pass 7",
+        "ℹ fail 0",
+        "ℹ duration_ms 544.173301"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-full-tools-03.log",
+      "sha256": "4259f6c0a9c07e64edbd0439cfc0ed664b79887fc2c3d8fded8914c51838dde2",
+      "summary": [
+        "ℹ tests 84",
+        "ℹ pass 84",
+        "ℹ fail 0",
+        "ℹ duration_ms 20250.957811"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-official-workflow-first.log",
+      "sha256": "ec838776050199850f4d2c7a4fc21d4db2efe5aa50b315864ee6cdaa65c09a0c",
+      "summary": [
+        "remote: artifacts_git_receive_pack_object_too_large"
+      ],
+      "scope": "local recorded run; failures retained; no real browser or GitHub CI"
+    },
+    {
+      "file": "batch20-native-integration.log",
+      "sha256": "8aba956ca100c1b8b961add8c3e6ffa2e1d63c86d8f7aa6e528eb36cd551dcbf",
+      "summary": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s",
+        "test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.15s"
+      ],
+      "scope": "native integration stopped after two audit regression failures; further targets not run in this command"
     }
   ],
-  "fullSuite": "notRun",
+  "fullSuite": {
+    "stage": "inProgress; production publish blocked",
+    "rustLibraryInitial": {
+      "passed": 1311,
+      "failed": 12,
+      "log": "batch20-full-rust.log",
+      "note": "workspace stopped at library failures; all 12 obsolete current counts/icon expectations fixed and rechecked"
+    },
+    "rustFailureRecheck": {
+      "passed": 12,
+      "failed": 0,
+      "log": "batch20-rust-failures-recheck.log"
+    },
+    "webFinal": {
+      "files": 145,
+      "passed": 1471,
+      "failed": 0,
+      "log": "batch20-full-web-03.log"
+    },
+    "toolsFinal": {
+      "passed": 84,
+      "failed": 0,
+      "log": "batch20-full-tools-03.log"
+    },
+    "sites": "running; observed old current-ABI90 assertions, not yet all triaged",
+    "remainingNativeAndWasm": "native-binaries, wasm-crate-unit and rust-doctests passed; Native→WASM replay running",
+    "singleFinalWorkspaceAllPassClaimed": false,
+    "nativeIntegrationInitial": {
+      "passedBeforeStop": 6,
+      "failed": 2,
+      "log": "batch20-native-integration.log",
+      "note": "Stopped after audit_regressions; six further integration targets not yet run. Includes confirmed runtime failure B20-P1-01, not only old count assertions."
+    }
+  },
   "independentReview": "notRunForBatch",
   "realBrowserBattle": "notRun",
   "githubCi": "notRun",
@@ -206,5 +352,44 @@
       "static index and 20 card images"
     ],
     "result": "passed"
-  }
+  },
+  "publication": {
+    "productCommit": "1b57113f7b5ebe0dc3b3e6dac78320e8d8042a44",
+    "siteSourceCommit": "a7c6cd881c25427d4096024a3e7a4c807e5c23c8",
+    "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_e8627d974e38819191d81b9ff68d2583",
+    "versionNumber": 72,
+    "deploymentExecuted": false,
+    "automaticApprovalDenied": true
+  },
+  "currentTestConsolidation": {
+    "removedCumulativePerCardTests": 20,
+    "removedHelper": "tools/cards/historical-catalog.mjs",
+    "replacement": "tools/cards/batch20-source.test.mjs",
+    "baseline": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
+    "guarantees": [
+      "all 153 prior records and ordering unchanged except three explicitly checked icon fields",
+      "all 671 source records outside the 12 reviewed corrections unchanged",
+      "exactly 20 new admitted IDs",
+      "all173 image bytes and both mappings checked",
+      "per-card original/specification tests and frozen ABI hash checks retained"
+    ]
+  },
+  "knownRuntimeFindings": [
+    {
+      "id": "B20-P1-01",
+      "severity": "P1",
+      "status": "confirmed; fixPending",
+      "source": "rust-game/src/resolution.rs:463",
+      "consumer": "rust-game/src/batch20.rs:581",
+      "affectedCards": [
+        "JZ33",
+        "JZ52",
+        "JC040"
+      ],
+      "scenario": "Public JC074 renown grant or JC089 combat-glory grant followed by normal pass rejects with 奖励缺少原地区实例; transactional rollback can stall the confrontation.",
+      "minimalFix": "Include all three source definitions in existing source_region_instance snapshot allowlist; preserve reward validation.",
+      "reproductionLog": "batch20-native-integration.log",
+      "savedV72Affected": true
+    }
+  ]
 }

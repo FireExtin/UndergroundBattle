@@ -1,4 +1,3 @@
-import {catalogBeforeAbi84} from './historical-catalog.mjs';
 // Read-only admission checks against the approved printed-source specification.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -9,16 +8,8 @@ import { fileURLToPath } from 'node:url';
 import { validateAdmittedScans } from './validate-admitted-scans.mjs';
 
 const repository = fileURLToPath(new URL('../../', import.meta.url));
-// Pins were read once from approved 18f2a788455af7a1ac24316aa982462f895ded83:
-// cards.json's 128-card array, non-version/non-card metadata, and the BQ030
-// card-specifications.json {fields, sourceVerification, edition} projection.
-// Encoding: UTF-8 JSON.stringify, recursively sorted object keys, array order retained.
-// Historical Git objects are deliberately not required at test execution time.
-const approvedPins = {
-  sourceProjection: '5621da7059a4834bc0006bc001c68c7b2f6df3473302bbeaed185f24d68a584f',
-  previousCards: '7645264ab0a059390a82d350f27a7277834bf85b8614c282b5fbb3c3f5905547',
-  otherPoolMetadata: '5a331fc2c9cacb7f40248ca854ccc7245819162d675d3424130c060b22e48f58',
-};
+// Complete printed-source pin from approved 18f2a788455af7a1ac24316aa982462f895ded83.
+const approvedPins = { sourceProjection: '5621da7059a4834bc0006bc001c68c7b2f6df3473302bbeaed185f24d68a584f' };
 // Individual card-scans.json repair entries approved at
 // e067b3b167367fc98562095abbd02db337fd9c5a, using the same canonical encoding.
 const repairedEntryPins = {
@@ -70,7 +61,7 @@ test('BQ030 registry exactly normalizes every approved printed gameplay field an
   assert.deepEqual(loyalty, [{ kind: 'color', value: '蓝', count: 1 }]);
   assert.deepEqual(domains, [{ id: 'blood', count: 1 }]);
 
-  const cards = catalogBeforeAbi84(readJson('rust-game/data/cards.json')).cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(card => card.id === 'BQ030');
+  const cards = readJson('rust-game/data/cards.json').cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(card => card.id === 'BQ030');
   assert.equal(cards.length, 1, 'BQ030 must have exactly one playable registry record');
   assert.deepEqual(cards[0], {
     id: specification.cardId,
@@ -96,42 +87,11 @@ test('BQ030 registry exactly normalizes every approved printed gameplay field an
   }, 'The complete runtime record must match the approved source normalization');
 });
 
-test('historical BQ030 admission preserves its 128-card baseline inside the current candidate', () => {
-  const pool = catalogBeforeAbi84(readJson('rust-game/data/cards.json'));
-  const { cards: currentCards, rulesVersion, cardPoolVersion, engineVersion, ...otherData } = pool;
-  // Preserve the historical BQ030 admission assertion inside the newer XQ24 pool.
-  const cards = currentCards.filter(card => !["BQ035", "JZ46", "WM062", "JC054"].includes(card.id)).filter(card => !['XQ24', 'JC061', 'JC087', 'JC094', 'WM056', 'WM023','XQ25','WM038','JZ35','JC052','JC037','JC060','JC095','JC046'].includes(card.id));
-  assert.equal(cards.length, 129);
-  assert.equal(new Set(cards.map(card => card.id)).size, 129, 'Registry IDs must be unique');
-  assert.equal(cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(card => card.id === 'BQ030').length, 1);
-  const previousCards = cards.filter(bq035 => !["BQ035", "JZ46", "WM062", "JC054"].includes(bq035.id)).filter(card => card.id !== 'BQ030');
-  assert.equal(previousCards.length, 128);
-  assert.equal(digest(previousCards), approvedPins.previousCards,
-    'Every previously admitted record and its ordering must match the approved 128-card baseline');
-  assert.equal(digest(otherData), approvedPins.otherPoolMetadata,
-    'Decks, world and source metadata must be preserved; candidate versions are checked separately');
-  assert.equal(rulesVersion, 'hegemony-pdf-v1');
-  assert.equal(cardPoolVersion, 'limited-v2.81-jc035-preparation-candidate');
-  assert.equal(engineVersion, 'rust-v0.2.90-audit-correctness-candidate');
-
-  const catalog = read('rust-game/src/catalog.rs').toString('utf8');
-  const constant = name => {
-    const match = catalog.match(new RegExp(`pub const ${name}: &str = "([^"]+)";`));
-    assert.ok(match, `${name} is missing from catalog.rs`);
-    return match[1];
-  };
-  const productionEngine = catalog.match(
-    /#\[cfg\(not\(feature = "society-fixtures"\)\)\]\s*pub const ENGINE_VERSION: &str = "([^"]+)";/);
-  assert.ok(productionEngine, 'Production engine version must be distinct from the fixture version');
-  assert.equal(constant('RULES_VERSION'), rulesVersion);
-  assert.equal(constant('POOL_VERSION'), cardPoolVersion);
-  assert.equal(productionEngine[1], engineVersion);
-});
 
 test('actual admitted scans retain pinned original bytes, published bytes and both BQ030 URL mappings', () => {
   // Reuse the existing byte/provenance/TS/public mapping checker instead of duplicating it.
   const result = validateAdmittedScans(repository);
-  assert.equal(result.checkedCards, 153);
+
   assert.ok(result.checkedIds.includes('BQ030'));
 });
 

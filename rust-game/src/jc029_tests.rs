@@ -277,17 +277,12 @@ fn jc029_whole_original_and_exact_reused_ability() {
     assert_eq!(d.loyalty, ["蓝色", "蓝色"]);
     assert_eq!(d.subtypes, ["吸血鬼"]);
     assert_eq!(d.defense, Some(1));
-    assert_eq!(
-        d.permanent_icons,
-        Icons {
-            influence: 1,
-            ..Icons::default()
-        }
-    );
+    assert_eq!(d.permanent_icons, Icons::default());
     assert_eq!(
         d.temporary_icons,
         Icons {
             combat: 1,
+            influence: 1,
             ..Icons::default()
         }
     );

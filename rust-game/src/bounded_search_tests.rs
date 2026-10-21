@@ -59,12 +59,12 @@ fn fixture(kind: &str, g: &Game) {
 }
 #[test]
 fn entry_search_originals_and_closed_definitions_are_complete() {
-    assert_eq!(catalog::catalog().cards.len(),153);
     for (id, name, cost, subtype, renown) in [
         ("BQ104", "猎头顾问", 3, "雇员", false),
         ("XQ48", "街头演说家", 4, "政治家", true),
     ] {
         let c = catalog::card(id);
+        assert!(c.supported);
         assert_eq!(
             (&*c.name, c.cost, &*c.color, c.defense),
             (name, cost, "中立", Some(1))

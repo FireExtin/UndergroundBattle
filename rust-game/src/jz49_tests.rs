@@ -66,14 +66,8 @@ fn jz49_original_has_black_loyalty_two_death_domain_and_exact_slow_entry() {
     assert_eq!(c.loyalty, ["黑色", "黑色"]);
     assert_eq!(c.magic_icon, MagicIcon::Death);
     assert_eq!(c.subtypes, ["不死生物", "行尸"]);
-    assert_eq!(
-        c.permanent_icons,
-        Icons {
-            combat: 1,
-            ..Icons::default()
-        }
-    );
-    assert_eq!(c.temporary_icons, c.permanent_icons);
+    assert_eq!(c.permanent_icons, Icons::default());
+    assert_eq!(c.temporary_icons, Icons { combat: 2, ..Icons::default() });
     assert_eq!(c.keywords, ["迟缓"]);
     assert!(!c.unique);
     assert_eq!(deck::copy_limit(c), Some(3));
@@ -374,7 +368,10 @@ fn jz49_next_turn_resets_slow_character_without_retriggering_entry() {
     g.drive().unwrap();
     assert!(!g.board(&id).unwrap().1.exhausted);
     assert!(g.pending.is_none() && g.stack.is_empty());
-    assert_eq!(g.current_icons(g.board(&id).unwrap().1, 2).combat, 1);
+    // The next turn gives the other team initiative; both printed combat icons
+    // are temporary, so readying alone does not supply permanent combat.
+    assert_ne!(g.first_team, g.team(0));
+    assert_eq!(g.current_icons(g.board(&id).unwrap().1, 2).combat, 0);
     checkpoint(&g);
 }
 

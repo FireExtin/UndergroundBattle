@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-2026-10-21",
-  "purpose": "20张原图来源、运行时实现与发布账本；20张已准入，待官方Sites发布后集中验收。",
+  "purpose": "20张已实现并准入，官方v72已保存；自动审批拒绝部署，待验收，不宣称已上线。",
   "baseCommit": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
-  "stage": "readyForOfficialSitesBuildAndPendingAcceptancePublish",
+  "stage": "v72SavedDeploymentDenied; localAcceptanceWip",
   "rulesVersion": "hegemony-pdf-v1",
   "releaseOrder": [
     "completeImplementation",
@@ -811,22 +811,89 @@
     "credentialRequest": "succeeded",
     "publishOnPushAccepted": false,
     "sourceOpenedWithOfficialHelper": true,
-    "sourcePushed": false,
-    "saveVersionAttempted": false,
-    "deployAttempted": false,
-    "versionId": null,
+    "sourcePushed": true,
+    "saveVersionAttempted": true,
+    "deployAttempted": true,
+    "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_e8627d974e38819191d81b9ff68d2583",
     "deploymentId": null,
-    "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
-    "blocker": null,
-    "stage": "necessaryNativeWasmWebAndNewRoomChecksPassed; officialSitesBuildAndPublishNext"
+    "sourceCommit": "a7c6cd881c25427d4096024a3e7a4c807e5c23c8",
+    "blocker": {
+      "action": "sites_deploy_site_version",
+      "targetVersionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_e8627d974e38819191d81b9ff68d2583",
+      "reason": "自动审批引用先前只读/不部署/不操作线上站点限制，拒绝本次生产发布；后续20张先发布的授权需协调明确送达。",
+      "retryAttempted": false
+    },
+    "stage": "saved; deploymentDeniedByAutomaticApproval",
+    "deployExecuted": false,
+    "versionNumber": 72,
+    "productCommit": "1b57113f7b5ebe0dc3b3e6dac78320e8d8042a44",
+    "originalOpenedSourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
+    "archiveStorage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000fa8881f49aaa9c532c17bc3f",
+      "content_hash": "sha256:5810e39c6750b161fbb665157d38f7f4c30ddef2116b2bc46c15dc07e8c4c2af",
+      "size_bytes": 159027200,
+      "file_count": 210
+    },
+    "sourceStorageRepair": {
+      "retainedSiteStorageFiles": [
+        "scripts/restore-test-fixtures.mjs",
+        "scripts/test-fixture-storage.json",
+        "TEST_FIXTURE_STORAGE.md",
+        "test/fixtures/jc046-native-v077.json.gz",
+        ".gitignore"
+      ],
+      "retainedStorageBytesUnchanged": true,
+      "restoredFixtures": 2,
+      "bytesEach": 41911207,
+      "sha256": "a6e3bc6c1ca236d908912320471b51c231a6bc8067fbf9d05f87ea70ee963601",
+      "fixturesIgnoredByExistingContract": true,
+      "originalRefusedCheckoutPreserved": "/workspace/audit-underground-100161b/site-checkout",
+      "originalRefusedCommit": "d977c3e4b97171b4f6827541a10856dda0dc735a",
+      "remoteAfterRefusal": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
+      "noNewEnvironmentOrWorktree": true
+    }
   },
   "validation": {
     "sourceImages": "20/20 hash match; 19 newly shipped files and existing JZ52",
     "sourceSchema": "passed: validate_specifications; no engine/UI acceptance",
     "diffCheck": "passed",
     "documentLinks": "105 local paths exist",
-    "newBatchFullSuites": "notRun",
-    "independentReview": "notRun",
+    "newBatchFullSuites": {
+      "stage": "inProgress; production publish blocked",
+      "rustLibraryInitial": {
+        "passed": 1311,
+        "failed": 12,
+        "log": "batch20-full-rust.log",
+        "note": "workspace stopped at library failures; all 12 obsolete current counts/icon expectations fixed and rechecked"
+      },
+      "rustFailureRecheck": {
+        "passed": 12,
+        "failed": 0,
+        "log": "batch20-rust-failures-recheck.log"
+      },
+      "webFinal": {
+        "files": 145,
+        "passed": 1471,
+        "failed": 0,
+        "log": "batch20-full-web-03.log"
+      },
+      "toolsFinal": {
+        "passed": 84,
+        "failed": 0,
+        "log": "batch20-full-tools-03.log"
+      },
+      "sites": "running; observed old current-ABI90 assertions, not yet all triaged",
+      "remainingNativeAndWasm": "native-binaries, wasm-crate-unit and rust-doctests passed; Native→WASM replay running",
+      "singleFinalWorkspaceAllPassClaimed": false,
+      "nativeIntegrationInitial": {
+        "passedBeforeStop": 6,
+        "failed": 2,
+        "log": "batch20-native-integration.log",
+        "note": "Stopped after audit_regressions; six further integration targets not yet run. Includes confirmed runtime failure B20-P1-01, not only old count assertions."
+      }
+    },
+    "independentReview": "notRunForBatch",
     "realBrowserBattle": "notRun",
     "githubCi": "notRun",
     "onlyExpectedSourceRecordsChanged": [
@@ -857,7 +924,7 @@
       "log": "batch20-final-web-build.log",
       "includes": "TypeScript app/node checks and Vite production build"
     },
-    "nativeWasmParity": "catalog and new-room startup identity checked; full replay notRunForBatch",
+    "nativeWasmParity": "full replay running; earlier startup passed",
     "runtimeStartupIdentity": {
       "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
       "engine": "rust-v0.2.91-batch20",
@@ -1008,9 +1075,10 @@
     "bundleSha256": "7bfc90a2613fc215ee6b8f394030c8fafc256f132df24d8806f04dda4e24f72f",
     "verifiedFiles": 167,
     "sourceOpened": true,
-    "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
-    "publication": "notAttempted",
-    "liveVersion": 71
+    "sourceCommit": "a7c6cd881c25427d4096024a3e7a4c807e5c23c8",
+    "publication": "v72Saved; deployDeniedByAutomaticApproval",
+    "liveVersion": 71,
+    "savedVersion": 72
   },
   "uwproIntegration": {
     "originalCommit": "ccc8037f5bdf515a138a08e1761ef2a4ee43ad73",
@@ -1036,6 +1104,24 @@
       "id": "XG12",
       "decision": "同色替换为JZ29，配套隐秘标志工作后续处理",
       "basis": "父协调明确授权，未扩中立双色或额外依赖。"
+    }
+  ],
+  "knownRuntimeFindings": [
+    {
+      "id": "B20-P1-01",
+      "severity": "P1",
+      "status": "confirmed; fixPending",
+      "source": "rust-game/src/resolution.rs:463",
+      "consumer": "rust-game/src/batch20.rs:581",
+      "affectedCards": [
+        "JZ33",
+        "JZ52",
+        "JC040"
+      ],
+      "scenario": "Public JC074 renown grant or JC089 combat-glory grant followed by normal pass rejects with 奖励缺少原地区实例; transactional rollback can stall the confrontation.",
+      "minimalFix": "Include all three source definitions in existing source_region_instance snapshot allowlist; preserve reward validation.",
+      "reproductionLog": "batch20-native-integration.log",
+      "savedV72Affected": true
     }
   ]
 }
