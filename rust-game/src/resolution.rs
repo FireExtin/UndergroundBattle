@@ -130,6 +130,7 @@ impl Game {
     ) -> Vec<(Action, String)> {
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
+        if c.definition == "JC062" && kind == "play" { return self.jc062_action_candidates(actor, c); }
         let source = self.source_snapshot(c, region);
         let mut result = vec![];
         for ability in rules::definition(&c.definition)
@@ -890,6 +891,7 @@ impl Game {
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
+        if source.card.definition == "JC062" { return self.jc062_bind(actor, source, spec, a); }
         spec.targets
             .iter()
             .map(|slot| {
@@ -1604,6 +1606,8 @@ impl Game {
                     }
                 }
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
+                Op::XQ22Orientation => return self.xq22_orientation_start(frame),
+                Op::JC062Inspect => { if self.jc062_inspect_start(frame.clone())? { return Ok(()); } },
                 Op::JZ25SealRandomHand => self.jz25_seal_random_hand(&frame)?,
                 Op::XG28GraveReturn => self.xg28_return(&frame)?,
                 Op::BQ089GraveEntry => self.bq089_reanimate(&frame)?,
@@ -2432,6 +2436,8 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
+            FrameChoice::JC062Inspection { inspected } => self.jc062_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::WM033GraveSpell => return self.wm033_finish(&frame, chooser, &a, &selected),
             FrameChoice::JC051Badge => return self.jc051_choose_badge(&frame,&selected),
             FrameChoice::JC051Host { badge } => return self.jc051_finish_attach(&frame,&badge,selected.first().ok_or("请选择徽章宿主")?),

@@ -246,6 +246,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XQ22Orientation,
+    JC062Inspect,
     JZ25SealRandomHand,
     XG28GraveReturn,
     BQ089GraveEntry,
@@ -547,6 +549,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XQ22UnexhaustedSpellBan,
     WM035HumansGainHost,
     XG26InfluenceAndConditionalGuard,
     WM030CultistIcons,

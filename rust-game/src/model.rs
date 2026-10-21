@@ -651,6 +651,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XQ22Orientation,
+    JC062Inspection { inspected: Vec<Card> },
     WM033GraveSpell,
     NextBlueGraySearch { inspected_ids: Vec<String> },
     BQ085Upkeep,

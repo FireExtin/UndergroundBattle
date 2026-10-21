@@ -858,6 +858,7 @@ impl Game {
                     .ok_or("手牌引用已失效")?
                     .clone();
                 let d = card(&c.definition);
+                if d.kind == "spell" && self.xq22_spell_banned() { return Err("未横置的州议员禁止所有玩家打出事务牌".into()); }
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
@@ -905,7 +906,7 @@ impl Game {
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
-                if c.controller != seat || (c.face_down && !crate::jc041::hidden_action(c, &a)) {
+                if (c.controller != seat && c.definition != "XQ22") || (c.face_down && !crate::jc041::hidden_action(c, &a)) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -2632,6 +2633,8 @@ impl Game {
                         self.next_blue_gray_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
                         self.blue_expansion_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JC062Inspection { .. }, .. }) {
+                        self.jc062_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ46InspectHidden { .. }, .. }) {
                         self.jz46_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JC057InspectHand { .. }, .. }) {
@@ -2777,7 +2780,7 @@ impl Game {
                 }
             }
             for (r, c) in &board {
-                if c.controller != seat {
+                if c.controller != seat && !(c.definition == "XQ22" && !c.face_down) {
                     continue;
                 }
                 if c.face_down {

@@ -3,6 +3,10 @@ mod batch3_red;
 mod batch3_black;
 mod batch3_host;
 mod batch3_grave;
+mod batch3_inspect;
+mod batch3_politician;
+#[cfg(test)]
+mod batch3_inspect_tests;
 #[cfg(test)]
 mod batch3_grave_tests;
 mod exposure;

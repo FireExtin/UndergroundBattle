@@ -1063,5 +1063,15 @@
     "url": "/cards/BQ089.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
     "sha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0"
+  },
+  "JC062": {
+    "url": "/cards/JC062.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
+    "sha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03"
+  },
+  "XQ22": {
+    "url": "/cards/XQ22.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
+    "sha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840"
   }
 }
