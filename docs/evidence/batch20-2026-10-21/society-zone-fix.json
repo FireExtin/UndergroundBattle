@@ -67,6 +67,35 @@
     "cardSourceAfterRestoringTrackedInputImages": {
       "pass": 4,
       "fail": 0
+    },
+    "webTypecheckFinal": "passed in official Site build",
+    "kernelBindingAndRouting": {
+      "pass": 7,
+      "fail": 0
+    },
+    "actualHttpD1KernelRetention": {
+      "pass": 1,
+      "fail": 0,
+      "rooms": 15,
+      "versions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        92
+      ],
+      "opaqueStateAndOriginalReceiptsExact": true,
+      "scope": "local author-run HTTP/D1 test, not independent review or browser"
     }
   },
   "failedEvidence": {
@@ -80,7 +109,7 @@
     "JC065 labels sacrifice opponent, independent repression player and region without restricting original legality",
     "Optional trigger displays unique exact printed-name match from room catalog, source and card text; acceptance/decline unchanged"
   ],
-  "buildAndStartup": "WASM and Native bin builds passed; official Site build and local startup pending",
+  "buildAndStartup": "passed: official Site build,15 exact WASM modules, Native/WASM create join ready start,173-card catalog and20 images",
   "logs": [
     {
       "name": "batch20-society-zone-fix-native-before.log",
@@ -161,6 +190,31 @@
       "name": "society-fix-source-restored.log",
       "sha256": "d9efeddb49b7f8f263a8617d79962457a3fa4dbe7030933077c90a78f721d5e8",
       "bytes": 558
+    },
+    {
+      "name": "society-fix-startup-check.log",
+      "sha256": "b404e41b992734a405cf426be540f182ee64ac9801e01da910b2c09cbd06961b",
+      "bytes": 727
+    },
+    {
+      "name": "society-fix-kernel-routing.log",
+      "sha256": "ac828d637b31921737c92e3933d7b3db78466482a7ca42eb1c8d69e3f5b3cb51",
+      "bytes": 961
+    },
+    {
+      "name": "society-fix-fifteen-kernel-http.log",
+      "sha256": "95ccc5473d542f39c44e510874703d8d9dc28a5a81bb63baef4d0abc66435a2f",
+      "bytes": 473
+    },
+    {
+      "name": "society-fix-clock-worker-build.log",
+      "sha256": "5c038392a4069c3ba1d79c3a64ccff265274c568344f3d9f9bcbb27d38c03e34",
+      "bytes": 929
+    },
+    {
+      "name": "society-fix-clock-worker-build-02.log",
+      "sha256": "762d68e37a12aa9baa9ae809ffd0a652d583c0a4e2688c2fbba428ef80510beb",
+      "bytes": 200
     }
   ],
   "runtimeSourceCommit": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
@@ -181,5 +235,57 @@
     "opaqueState": true,
     "maximumU64SeedExact": true,
     "nativeWasmStateAndViewsMatch": true
-  }
+  },
+  "fixedCandidateSource": "eb64382604b4a6e1291247d31c6d185d0f3fb56c",
+  "sitePreparation": {
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "checkout_path": "/workspace/audit-underground-100161b/site-checkout-society-zone-fix",
+    "commit_sha": "fe182e656f35153be9225c0b17fbce708831b1ba",
+    "archive": "/workspace/audit-underground-100161b/society-zone-fix-abi92-site.tar.gz",
+    "githubSource": "eb64382604b4a6e1291247d31c6d185d0f3fb56c",
+    "runtimeSource": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
+    "archiveSha256": "a346c700cc58687d23e7608c77639c12e26f099118a3b6d7f9fb8bedcb4af350",
+    "archiveBytes": 93646575,
+    "wasmModules": 15,
+    "distFiles": 208,
+    "wasmHashes": [
+      "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed",
+      "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352",
+      "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472",
+      "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1",
+      "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd",
+      "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f",
+      "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3",
+      "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31",
+      "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c",
+      "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f",
+      "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583",
+      "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37",
+      "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de",
+      "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f",
+      "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+    ],
+    "buildExitCode": 0,
+    "webTypecheck": "passed by npm build",
+    "publication": "not saved/deployed yet"
+  },
+  "siteSavedVersion": {
+    "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "version_number": 74,
+    "source": {
+      "commit_sha": "fe182e656f35153be9225c0b17fbce708831b1ba"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000ca808206af76e918bfedbeeb",
+      "content_hash": "sha256:61329832d6724146c0feaa8be1da524848073e7acaae77f5ecfb7e9ddefe4bc4",
+      "size_bytes": 162877440,
+      "file_count": 211
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "siteDeployment": "not attempted; independent supplemental review coordination pending",
+  "buildPreflightBlockedAttempts": "Original WASM launch probe and first clock-wrapper launch stopped when memory headroom<1GiB. Resumed after active work completed and existing guard passed; no guard bypass, fallback or deletion."
 }
