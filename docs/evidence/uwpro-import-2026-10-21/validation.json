@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-21",
+  "sourceSHA": "0d60c78b68697867697f20f0c171e41445735cc4",
+  "implementationBase": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
+  "observedRemoteMain": "d1c068ea8c4162212cd19fa023841513c4c67e33",
+  "remoteChanges": [
+    "README.md",
+    "docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md",
+    "docs/factions/README.md",
+    "docs/factions/batch20-2026-10-21.json",
+    "docs/factions/batch20-2026-10-21.md",
+    "docs/factions/card-reviews.json",
+    "docs/factions/card-specifications.json",
+    "docs/factions/implementation-plan.md"
+  ],
+  "unchangedIntegrationInputs": {
+    "rust-game/data/cards.json": true,
+    "web/src/game/DeckLibraryPanel.tsx": true,
+    "web/src/game/deckLibrary.ts": true,
+    "web/src/game/api.ts": true,
+    "rust-game/src/deck.rs": true,
+    "rust-game/src/service.rs": true,
+    "rust-game-wasm/src/lib.rs": true
+  },
+  "typecheck": {
+    "passed": true,
+    "command": "npm --prefix web run typecheck"
+  },
+  "webBuild": {
+    "passed": true,
+    "command": "npm --prefix web run build",
+    "warning": "Vite prepare-out-dir timing warning; build exit 0"
+  },
+  "tests": {
+    "passed": true,
+    "files": 5,
+    "cases": 62,
+    "failed": 0,
+    "command": "npm --prefix web test -- --maxWorkers=1 --testTimeout=60000 src/game/uwDeckImport.test.ts src/game/UwDeckImportPanel.test.tsx src/game/DeckLibrary.test.tsx src/game/DeckAdmission.test.tsx src/game/deckLibrary.test.ts",
+    "results": [
+      {
+        "file": "DeckAdmission.test.tsx",
+        "status": "passed",
+        "cases": 4
+      },
+      {
+        "file": "DeckLibrary.test.tsx",
+        "status": "passed",
+        "cases": 10
+      },
+      {
+        "file": "UwDeckImportPanel.test.tsx",
+        "status": "passed",
+        "cases": 6
+      },
+      {
+        "file": "deckLibrary.test.ts",
+        "status": "passed",
+        "cases": 13
+      },
+      {
+        "file": "uwDeckImport.test.ts",
+        "status": "passed",
+        "cases": 29
+      }
+    ]
+  },
+  "browser": {
+    "method": "Local Chromium UI with /api/catalog fixture derived from actual print registry; no real backend, room, gameplay or Native/WASM verification",
+    "results": [
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "passed": true,
+        "geometry": {
+          "viewport": 1366,
+          "scroll": 1366
+        },
+        "pageErrors": [],
+        "unexpectedApiActions": [],
+        "checks": [
+          "normal collection entry",
+          "unknown path visible/whole import blocked",
+          "HTML escaped",
+          "valid 50-card preview",
+          "no horizontal overflow",
+          "fresh unsaved draft",
+          "manual save preserves previous draft",
+          "selection returns to entry without creating room"
+        ]
+      },
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "passed": true,
+        "geometry": {
+          "viewport": 1920,
+          "scroll": 1920
+        },
+        "pageErrors": [],
+        "unexpectedApiActions": [],
+        "checks": [
+          "normal collection entry",
+          "unknown path visible/whole import blocked",
+          "HTML escaped",
+          "valid 50-card preview",
+          "no horizontal overflow",
+          "fresh unsaved draft",
+          "manual save preserves previous draft",
+          "selection returns to entry without creating room"
+        ]
+      }
+    ]
+  },
+  "review": {
+    "agent": "Astra",
+    "scope": "static importer/panel/manifest audit and image/rules adjudication",
+    "finding": "P2 deep invalid JSON fields could throw during recursive display serialization",
+    "resolution": "bounded scalar/type display; 10,000-level nested regression; static follow-up confirmed closed"
+  },
+  "initialAttemptNotes": [
+    "Test fixture optional keywords field caused typecheck/test-load errors; fixed with optional access.",
+    "Existing UI tests exceeded default 5s under initial concurrent run; successful rerun used one worker and 60s CLI timeout without changing assertions or repository configuration.",
+    "Initial browser harness used wrong legacy envelope field and read only legacy storage; corrected harness to version=1 and actual readDeckLibrary; final browser pass succeeded."
+  ],
+  "limitations": [
+    "Catalog fixture marks existing registry cards supported and supplies public construction metadata; not a real server response or gameplay oracle.",
+    "No Native/WASM full verification, retained-kernel input download, live room creation, deployment, GitHub CI, push, or author contact.",
+    "Three card rule fixes and new-version regressions remain with main card task; importer quarantines them.",
+    "This local change is not merged into main; parent must coordinate with active 20-card task."
+  ]
+}

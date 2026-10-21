@@ -7,6 +7,7 @@ import { DeckCardPreview } from './DeckCardPreview';
 import { moveCardGridFocus } from './cardGridNavigation';
 import { useDialogFocus } from './useDialogFocus';
 import { defaultCollectionFilters, readDeckWorkspace, saveDeckWorkspace } from './deckWorkspace';
+import { UwDeckImportPanel } from './UwDeckImportPanel';
 import './deck-library.css';
 
 const kinds: Record<string, string> = { character: '角色', spell: '事务', event: '事务（旧目录）', attachment: '附属', region: '地区', society: '秘社' };
@@ -232,6 +233,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
     </details>
     {storageWarning && <p className="hg-library-warning" role="alert">{storageWarning}</p>}
     {workspaceWarning && <p className="hg-library-warning" role="status">{workspaceWarning}</p>}
+    <UwDeckImportPanel catalog={catalog} disabled={disabled} hasUnsavedChanges={dirty} onImport={next => { if (!disabled && !dirty) replace(next, true); }} />
     </div>
     <div className="hg-library-editor">
       <div className="hg-library-edit-panel">

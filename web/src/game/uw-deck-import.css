@@ -1,0 +1,14 @@
+.hg-uw-import { margin: 12px 0; padding: 12px; border: 1px solid #566374; border-radius: 8px; }
+.hg-uw-import summary { cursor: pointer; font-weight: 700; }
+.hg-uw-import p { line-height: 1.55; }
+.hg-uw-import textarea { box-sizing: border-box; width: 100%; resize: vertical; font: inherit; }
+.hg-uw-import .hg-field { display: block; margin: 12px 0 5px; }
+.hg-uw-import-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.hg-uw-import-rows { overflow: auto; max-height: 440px; margin: 12px 0; border: 1px solid #566374; }
+.hg-uw-import table { width: 100%; border-collapse: collapse; text-align: left; }
+.hg-uw-import th, .hg-uw-import td { padding: 10px; vertical-align: top; border-bottom: 1px solid #566374; }
+.hg-uw-import td:first-child { width: 42%; }
+.hg-uw-import td:nth-child(2) { width: 8%; overflow-wrap: anywhere; }
+.hg-uw-import code { display: block; margin-top: 6px; overflow-wrap: anywhere; font-size: .8em; }
+.hg-uw-import td p { margin: 6px 0 0; }
+.hg-uw-import :focus-visible { outline: 2px solid #93c5fd; outline-offset: 3px; }

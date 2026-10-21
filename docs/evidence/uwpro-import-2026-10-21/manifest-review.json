@@ -1,0 +1,811 @@
+{
+  "sourceRepository": "RETORETO/UnderWorldPro",
+  "sourceSHA": "0d60c78b68697867697f20f0c171e41445735cc4",
+  "reviewedTargetSHA": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
+  "permissionBasis": "User confirmed direct permission from code author and illustrators; public repository license unchanged; no additional terms inferred.",
+  "rulesEquivalenceVerified": false,
+  "mappingCount": 77,
+  "quarantined": [
+    "JC029",
+    "JZ49",
+    "JC044"
+  ],
+  "rows": [
+    {
+      "targetId": "BQ028",
+      "sourceUID": "BQ028_shuigoushuqunmitan",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ028_shuigoushuqunmitan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "BQ030",
+      "sourceUID": "BQ030_caidingguan",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ030_caidingguan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "BQ035",
+      "sourceUID": "BQ035_youmingqishi",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ035_youmingqishi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "BQ040",
+      "sourceUID": "BQ040_xianxue",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ040_xianxue.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": null,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "BQ078",
+      "sourceUID": "BQ078_zhuanyeqingliyuan",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ078_zhuanyeqingliyuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "BQ083",
+      "sourceUID": "BQ083_suomingkulou",
+      "sourcePath": "Cards/Data/PlayerCards/BQ/BQ083_suomingkulou.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC029",
+      "sourceUID": "JC029_xinshengxuezu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC029_xinshengxuezu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "permanent": {
+          "ours": [
+            0,
+            0,
+            1
+          ],
+          "uwpro": [
+            0,
+            0,
+            0
+          ]
+        },
+        "temporary": {
+          "ours": [
+            0,
+            1,
+            0
+          ],
+          "uwpro": [
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      "decision": "quarantined-current-catalog-conflict"
+    },
+    {
+      "targetId": "JC030",
+      "sourceUID": "JC030_juxingbianfu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC030_juxingbianfu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC031",
+      "sourceUID": "JC031_huanlingshi",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC031_huanlingshi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC032",
+      "sourceUID": "JC032_xuezuzhanglao",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC032_xuezuzhanglao.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC035",
+      "sourceUID": "JC035_chuanmeimozhou",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC035_chuanmeimozhou.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC036",
+      "sourceUID": "JC036_chuyong",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC036_chuyong.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": null,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC037",
+      "sourceUID": "JC037_kelisidinaaifuluode",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC037_kelisidinaaifuluode.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC041",
+      "sourceUID": "JC041_jinpo",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC041_jinpo.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC042",
+      "sourceUID": "JC042_morixintu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC042_morixintu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC044",
+      "sourceUID": "JC044_zainanshizhe",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC044_zainanshizhe.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "permanent": {
+          "ours": [
+            1,
+            1,
+            0
+          ],
+          "uwpro": [
+            1,
+            1,
+            1
+          ]
+        },
+        "temporary": {
+          "ours": [
+            0,
+            0,
+            1
+          ],
+          "uwpro": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "decision": "quarantined-current-catalog-conflict"
+    },
+    {
+      "targetId": "JC045",
+      "sourceUID": "JC045_zhongbaijisi",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC045_zhongbaijisi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC046",
+      "sourceUID": "JC046_wumiantuluzhe",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC046_wumiantuluzhe.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC047",
+      "sourceUID": "JC047_liehuozhongwei",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC047_liehuozhongwei.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": null,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC049",
+      "sourceUID": "JC049_shenyuanxiyu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC049_shenyuanxiyu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC050",
+      "sourceUID": "JC050_sangzhonghuixiang",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC050_sangzhonghuixiang.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC052",
+      "sourceUID": "JC052_zhongyandeshikoudi",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC052_zhongyandeshikoudi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC054",
+      "sourceUID": "JC054_menggusiwangruchong",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC054_menggusiwangruchong.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC056",
+      "sourceUID": "JC056_diqujingyuan",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC056_diqujingyuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC057",
+      "sourceUID": "JC057_jiankongyuan",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC057_jiankongyuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC058",
+      "sourceUID": "JC058_jianyidexingjing",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC058_jianyidexingjing.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC059",
+      "sourceUID": "JC059_anquanbaoweibumen",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC059_anquanbaoweibumen.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC060",
+      "sourceUID": "JC060_shenmixueguwen",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC060_shenmixueguwen.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC061",
+      "sourceUID": "JC061_weijichulitepaixiaozu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC061_weijichulitepaixiaozu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC063",
+      "sourceUID": "JC063_jingchezhuibu",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC063_jingchezhuibu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "subtypes": {
+          "ours": [
+            "事务-策略"
+          ],
+          "uwpro": [
+            "策略"
+          ]
+        },
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC066",
+      "sourceUID": "JC066_fengmopingselinna",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC066_fengmopingselinna.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC069",
+      "sourceUID": "JC069_jingquan",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC069_jingquan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC084",
+      "sourceUID": "JC084_jietouhunhun",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC084_jietouhunhun.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC085",
+      "sourceUID": "JC085_fushengxingshi",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC085_fushengxingshi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC086",
+      "sourceUID": "JC086_qieshiren",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC086_qieshiren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC087",
+      "sourceUID": "JC087_gelunidezousike",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC087_gelunidezousike.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC088",
+      "sourceUID": "JC088_zhiyeshashou",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC088_zhiyeshashou.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC089",
+      "sourceUID": "JC089_duxuezuzhou",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC089_duxuezuzhou.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC090",
+      "sourceUID": "JC090_linghunqiyue",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC090_linghunqiyue.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC091",
+      "sourceUID": "JC091_mousha",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC091_mousha.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC092",
+      "sourceUID": "JC092_silingzhaohuan",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC092_silingzhaohuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "subtypes": {
+          "ours": [
+            "事务-法术",
+            "召唤"
+          ],
+          "uwpro": [
+            "法术",
+            "召唤"
+          ]
+        },
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC093",
+      "sourceUID": "JC093_yuanlingzhouren",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC093_yuanlingzhouren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC094",
+      "sourceUID": "JC094_weidadetingbabadi",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC094_weidadetingbabadi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC095",
+      "sourceUID": "JC095_tanggeluni",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC095_tanggeluni.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JC096",
+      "sourceUID": "JC096_agelipazhiquan",
+      "sourcePath": "Cards/Data/PlayerCards/JC/JC096_agelipazhiquan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ22",
+      "sourceUID": "JZ022_anyeyoulvezhe",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ022_anyeyoulvezhe.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ24",
+      "sourceUID": "JZ024_kadinazhuijiren",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ024_kadinazhuijiren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ27",
+      "sourceUID": "JZ027_hadashaaifuluode",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ027_hadashaaifuluode.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ30",
+      "sourceUID": "JZ030_moshilunzhe",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ030_moshilunzhe.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ31",
+      "sourceUID": "JZ031_pojianzhemijiaoxianren",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ031_pojianzhemijiaoxianren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ35",
+      "sourceUID": "JZ035_siweiyanmie",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ035_siweiyanmie.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ43",
+      "sourceUID": "JZ043_wuzhuangshimin",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ043_wuzhuangshimin.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ44",
+      "sourceUID": "JZ044_luoshanjixunjing",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ044_luoshanjixunjing.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ45",
+      "sourceUID": "JZ045_jingyongzhishengji",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ045_jingyongzhishengji.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ46",
+      "sourceUID": "JZ046_biantongdiao",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ046_biantongdiao.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ48",
+      "sourceUID": "JZ048_jietoujiefei",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ048_jietoujiefei.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ49",
+      "sourceUID": "JZ049_panshanxingshi",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ049_panshanxingshi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "permanent": {
+          "ours": [
+            0,
+            1,
+            0
+          ],
+          "uwpro": [
+            0,
+            0,
+            0
+          ]
+        },
+        "temporary": {
+          "ours": [
+            0,
+            1,
+            0
+          ],
+          "uwpro": [
+            0,
+            2,
+            0
+          ]
+        }
+      },
+      "decision": "quarantined-current-catalog-conflict"
+    },
+    {
+      "targetId": "JZ50",
+      "sourceUID": "JZ050_muxueshishigui",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ050_muxueshishigui.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ54",
+      "sourceUID": "JZ054_atamasifengxianyishi",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ054_atamasifengxianyishi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "JZ55",
+      "sourceUID": "JZ055_chuanqiluomu",
+      "sourcePath": "Cards/Data/PlayerCards/JZ/JZ055_chuanqiluomu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "WM023",
+      "sourceUID": "WM023_jinzhidezhenzhu",
+      "sourcePath": "Cards/Data/PlayerCards/WM/WM023_jinzhidezhenzhu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "WM038",
+      "sourceUID": "WM038_xintulaoyin",
+      "sourcePath": "Cards/Data/PlayerCards/WM/WM038_xintulaoyin.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "WM056",
+      "sourceUID": "WM056_zangwufanzi",
+      "sourcePath": "Cards/Data/PlayerCards/WM/WM056_zangwufanzi.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "WM059",
+      "sourceUID": "WM059_yuyetufu",
+      "sourcePath": "Cards/Data/PlayerCards/WM/WM059_yuyetufu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "WM062",
+      "sourceUID": "WM062_paolu",
+      "sourcePath": "Cards/Data/PlayerCards/WM/WM062_paolu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ12",
+      "sourceUID": "XQ012_baozaoxuepu",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ012_baozaoxuepu.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ14",
+      "sourceUID": "XQ014_xianxue",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ014_xianxue.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": null,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ16",
+      "sourceUID": "XQ016_fawubulvshituan",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ016_fawubulvshituan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ17",
+      "sourceUID": "XQ017_jipin",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ017_jipin.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ18",
+      "sourceUID": "XQ018_jishiren",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ018_jishiren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ23",
+      "sourceUID": "XQ023_jinshendebanshiyuan",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ023_jinshendebanshiyuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ24",
+      "sourceUID": "XQ024_fangbaojingcha",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ024_fangbaojingcha.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ25",
+      "sourceUID": "XQ025_jiankongtantou",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ025_jiankongtantou.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ27",
+      "sourceUID": "XQ027_dingdianqingchuxingdong",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ027_dingdianqingchuxingdong.tres",
+      "nameMatch": true,
+      "sourceDifferences": {
+        "defense": {
+          "ours": 0,
+          "uwpro": -1
+        }
+      },
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ36",
+      "sourceUID": "XQ036_shengjiachongdeqingliyuan",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ036_shengjiachongdeqingliyuan.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ37",
+      "sourceUID": "XQ037_yezonghuikanmenren",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ037_yezonghuikanmenren.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    },
+    {
+      "targetId": "XQ38",
+      "sourceUID": "XQ038_jinteyibolaxin",
+      "sourcePath": "Cards/Data/PlayerCards/XQ/XQ038_jinteyibolaxin.tres",
+      "nameMatch": true,
+      "sourceDifferences": {},
+      "decision": "identity-mapped-use-current-catalog"
+    }
+  ],
+  "existingSocietyMappings": [
+    {
+      "sourcePath": "res://Cards/Data/CouncilCards/JC/MSJC003_wangzuohui.tres",
+      "targetId": "MSJC03",
+      "name": "王座会"
+    },
+    {
+      "sourcePath": "res://Cards/Data/CouncilCards/JC/MSJC004_mingzhongjiaopai.tres",
+      "targetId": "MSJC04",
+      "name": "鸣钟教派"
+    },
+    {
+      "sourcePath": "res://Cards/Data/CouncilCards/JC/MSJC005_guojiajigou.tres",
+      "targetId": "MSJC05",
+      "name": "国家机构"
+    },
+    {
+      "sourcePath": "res://Cards/Data/CouncilCards/JC/MSJC007_fangbeixulie.tres",
+      "targetId": "MSJC07",
+      "name": "方碑序列"
+    },
+    {
+      "sourcePath": "res://Cards/Data/CouncilCards/JC/MSJC009_mishe.tres",
+      "targetId": "MSJC09",
+      "name": "秘社"
+    }
+  ]
+}
