@@ -8,6 +8,7 @@ fn request(g: &Game, selected: Vec<String>) -> Action {
         ..Action::new("choose")
     }
 }
+#[track_caller]
 fn invalid(g: &Game, change: impl FnOnce(&mut Game)) {
     let mut bad = g.clone();
     change(&mut bad);
@@ -396,6 +397,16 @@ fn granted_reward(definition: &str, glory: bool, replace_region: bool) {
             &mut bad.pending.as_mut().unwrap().resolution
         {
             declaration.source.source_region_instance = None;
+        }
+    });
+    invalid(&g, |bad| {
+        if let ChoiceResolution::Declare { declaration, .. } =
+            &mut bad.pending.as_mut().unwrap().resolution
+        {
+            let Op::PlaceInfluence { amount, .. } = &mut declaration.ability.ops[0] else {
+                panic!("reward program")
+            };
+            *amount = 2;
         }
     });
     choose(&mut g, vec!["accept".into()]);

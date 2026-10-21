@@ -322,7 +322,8 @@ pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> 
     let own = match &p.resolution {
         ChoiceResolution::Frame { frame, .. } => related(frame),
         ChoiceResolution::Declare { declaration, .. } => {
-            related_ability(&declaration.source.card.definition, &declaration.ability)
+            CARDS.contains(&declaration.source.card.definition.as_str())
+                || related_ability(&declaration.source.card.definition, &declaration.ability)
         }
         _ => false,
     };
@@ -661,7 +662,8 @@ impl Game {
             || c.owner >= self.players.len()
             || c.controller != actor
             || s.observed_death.is_some()
-            || s.observed_mobility_grant.is_some() || s.observed_exposure.is_some()
+            || s.observed_mobility_grant.is_some()
+            || s.observed_exposure.is_some()
             || self
                 .in_play(&c.id)
                 .is_some_and(|(_, live)| live.definition != c.definition || live.owner != c.owner)
@@ -846,7 +848,8 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_next_blue_gray_declaration(&self, d: &Declaration) -> RuleResult<()> {
-        if !related_ability(&d.source.card.definition, &d.ability)
+        if (!CARDS.contains(&d.source.card.definition.as_str())
+            && !related_ability(&d.source.card.definition, &d.ability))
             || self.validated_cross_card_declaration(d)?
         {
             return Ok(());
@@ -855,6 +858,22 @@ impl Game {
             return crate::jc035::validate_ability(&d.source.card.definition, &d.ability);
         }
         self.next_blue_gray_source(d.actor, &d.source)?;
+        if crate::jz22::runtime_ability_is_admitted(&d.ability) {
+            let region = d
+                .source
+                .source_region_instance
+                .as_deref()
+                .ok_or("蓝灰奖励缺少原地区UID")?;
+            if catalog::card(&d.source.card.definition).kind != "character"
+                || d.source.card.face_down
+                || d.source.play_source.is_some()
+                || d.source.region.is_none()
+                || !matches!(d.ability.ops.as_slice(), [Op::PlaceInfluence { region_instance, amount: 1 }] if region_instance == region)
+            {
+                return Err("蓝灰授予奖励必须绑定原公开角色与原地区".into());
+            }
+            return Ok(());
+        }
         validate_ability(&d.source.card.definition, &d.ability)?;
         if d.ability.event.is_none() || d.source.card.face_down || d.source.play_source.is_some() {
             return Err("蓝灰声明不是公开来源的固定触发".into());
@@ -1026,7 +1045,10 @@ impl Game {
                 ChoiceResolution::Rumor { batch } => {
                     let f = batch.cause.as_ref().ok_or("传闻缺少蓝色观察原帧")?;
                     self.validate_next_blue_gray_frame(f)?;
-                    receipt(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
+                    receipt(
+                        &f.source,
+                        &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>(),
+                    )?;
                 }
                 ChoiceResolution::Frame {
                     frame: f,
@@ -1074,7 +1096,9 @@ impl Game {
                 ChoiceResolution::Declare {
                     declaration: d,
                     stage,
-                } if related_ability(&d.source.card.definition, &d.ability) => {
+                } if CARDS.contains(&d.source.card.definition.as_str())
+                    || related_ability(&d.source.card.definition, &d.ability) =>
+                {
                     self.validate_next_blue_gray_declaration(d)?;
                     receipt(&d.source, &d.ability.ops)?;
                     let targeted = !d.ability.targets.is_empty();
