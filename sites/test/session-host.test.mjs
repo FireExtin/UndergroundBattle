@@ -18,7 +18,7 @@ const expired = version => JSON.stringify({ state: `opaque-${version}`, version,
   view: actorView(version), changed: true, outcome: 'rejected', errorCode: 'window_expired',
   errorMessage: '原响应窗口已结束', journal: [{ Tick: { server_now_ms: 6000 } }] });
 function harness(kernel, now = () => 6000) {
-  const service = new RoomService({}, { supportsPacing: () => true, ...kernel }, now);
+  const service = new RoomService({}, { assertSupported() {}, ...kernel }, now);
   service.kernel.view ??= () => JSON.stringify({ ...actorView(4), turn: 1, phase: 'action', step: 'team:0', regions: [],
     players: [{ id: 'p0', seat: 0, name: '甲' }], serverNowMs: 1000,
     responseWindow: { id: 'response:1', members: [{ playerId: 'p0', status: 'undecided', deadlineMs: 5000 }] } });
@@ -40,7 +40,11 @@ function harness(kernel, now = () => 6000) {
 
 test('recovering a paid response receipt precedes all later clock evaluation', async () => {
   let applies = 0, clockReads = 0;
-  const h = harness({ applyRoom: () => { applies++; return accepted(5); } }, () => { clockReads++; return 1000; });
+  const h = harness({ applyRoom: (state, seat, raw, now) => {
+    assert.equal(state, 'opaque-4'); assert.equal(seat, 0); assert.equal(now, '1000');
+    assert.deepEqual(JSON.parse(raw), original);
+    applies++; return accepted(5);
+  } }, () => { clockReads++; return 1000; });
   const original = { commandId: 'paid-original', expectedVersion: 4,
     action: { kind: 'submitResponse', windowId: 'response:1', intentId: 'intent-1', action: { kind: 'reveal', cardId: 'private-own-card' } } };
   const first = await h.service.command('clock-room', authorization, original);
@@ -68,9 +72,14 @@ test('a matching-version GET persists an expired window before deciding to retur
 });
 
 test('an expired response commits only the system tick and never an accepted user receipt', async () => {
-  const h = harness({ applyRoom: () => expired(5) });
-  await assert.rejects(h.service.command('clock-room', authorization, { commandId: 'late-begin', expectedVersion: 4,
-    action: { kind: 'beginResponse', windowId: 'response:1', intentId: 'too-late' } }),
+  const original = { commandId: 'late-begin', expectedVersion: 4,
+    action: { kind: 'beginResponse', windowId: 'response:1', intentId: 'too-late' } };
+  const h = harness({ applyRoom: (state, seat, raw, now) => {
+    assert.equal(state, 'opaque-4'); assert.equal(seat, 0); assert.equal(now, '6000');
+    assert.deepEqual(JSON.parse(raw), original);
+    return expired(5);
+  } });
+  await assert.rejects(h.service.command('clock-room', authorization, original),
   error => error instanceof HttpError && error.status === 409 && error.code === 'window_expired' && error.view.version === 5);
   assert.equal(h.current.version, 5); assert.equal(h.ticks.length, 1); assert.equal(h.writes.length, 0);
   assert.equal(h.receipts.size, 0);

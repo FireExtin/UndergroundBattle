@@ -1,0 +1,16 @@
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (11357.658648ms)
+ℹ {"currentVersion":"rust-v0.2.93-batch20-next","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /workspace/audit-underground-100161b/single-kernel-build/tmp/hegemony-worker-d1-wLCqyn
+✔ production ships exactly the current ABI93 bytes and catalog identity (81.589944ms)
+✔ current ABI93 keeps the source bytes, reviewed prior definitions and exact new-room flow (46.570153ms)
+✔ every historical tuple and altered identity rejects before any current state operation (14.770762ms)
+ℹ {"historicalTuplesRejected":55,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ current93 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation (26.653399ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12388.351135

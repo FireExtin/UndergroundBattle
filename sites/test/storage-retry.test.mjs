@@ -6,11 +6,14 @@ const publicBeforePass = () => JSON.stringify({ players: [{ seat: 0, id: 'p0', n
 
 test('an ambiguous D1 commit retries the identical command and returns its receipt without applying twice', async () => {
   const response = { roomId: 'room', version: 2, you: 'p0' };
-  const token = 'a'.repeat(64), command = { commandId: 'original-id', expectedVersion: 1, action: { kind: 'pass' } };
+  const token = 'a'.repeat(64), command = { commandId: 'original-id', expectedVersion: 1, action: { kind: 'game', action: { kind: 'pass' } } };
   let receipt = null, applies = 0, writes = 0;
-  const service = new RoomService({}, { view: publicBeforePass, apply: () => {
-    applies++; return JSON.stringify({ state: 'new-opaque-state', version: 2, seat: 0, view: response });
-  } });
+  const service = new RoomService({}, { assertSupported() {}, view: publicBeforePass, applyRoom: (state, seat, raw, now) => {
+    assert.equal(state, 'old-opaque-state'); assert.equal(seat, 0); assert.equal(now, '1000');
+    assert.deepEqual(JSON.parse(raw), command);
+    applies++; return JSON.stringify({ state: 'new-opaque-state', version: 2, seat, view: response,
+      changed: true, outcome: 'accepted', journal: [{ Command: { seat, command: JSON.parse(raw), server_now_ms: 1000 } }] });
+  } }, () => 1000);
   service.store = {
     seat: async (_, hash) => { assert.equal(hash, await digest(token)); return { seat: 0 }; },
     receipt: async (_, id) => { assert.equal(id, command.commandId); return receipt; },
@@ -24,7 +27,7 @@ test('an ambiguous D1 commit retries the identical command and returns its recei
   assert.equal(applies, 1); assert.equal(writes, 1);
   assert.deepEqual(await service.command('room', 'Bearer ' + token, command), response);
   assert.equal(applies, 1); assert.equal(writes, 1);
-  await assert.rejects(service.command('room', 'Bearer ' + token, { ...command, action: { kind: 'ready' } }), error => error.status === 409);
+  await assert.rejects(service.command('room', 'Bearer ' + token, { ...command, action: { kind: 'game', action: { kind: 'ready' } } }), error => error.status === 409);
 });
 test('storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures', () => {
   assert.deepEqual(storageFailure(new Error('UNIQUE constraint failed: private data')), { code: 'unique_constraint', retryable: false });
@@ -33,9 +36,14 @@ test('storage diagnostics expose fixed labels and do not retry quota, constraint
   assert.deepEqual(storageFailure(new Error('unknown exception with a bearer value')), { code: 'unclassified', retryable: false });
 });
 test('a failure before commit retries the original identity, while an exhausted failure never returns success', async () => {
-  const token = 'c'.repeat(64), command = { commandId: 'unchanged-id', expectedVersion: 1, action: { kind: 'pass' } };
+  const token = 'c'.repeat(64), command = { commandId: 'unchanged-id', expectedVersion: 1, action: { kind: 'game', action: { kind: 'pass' } } };
   const view = { version: 2, you: 'p0' }; let receipt = null, calls = 0, commits = 0;
-  const service = new RoomService({}, { view: publicBeforePass, apply: () => JSON.stringify({ state: 'new', version: 2, seat: 0, view }) });
+  const service = new RoomService({}, { assertSupported() {}, view: publicBeforePass, applyRoom: (state, seat, raw, now) => {
+    assert.equal(state, 'old'); assert.equal(seat, 0); assert.equal(now, '1000');
+    assert.deepEqual(JSON.parse(raw), command);
+    return JSON.stringify({ state: 'new', version: 2, seat, view, changed: true, outcome: 'accepted',
+      journal: [{ Command: { seat, command: JSON.parse(raw), server_now_ms: 1000 } }] });
+  } }, () => 1000);
   service.store = {
     seat: async () => ({ seat: 0 }), receipt: async () => receipt,
     room: async () => ({ version: 1, state: 'old' }),

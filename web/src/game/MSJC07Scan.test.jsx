@@ -23,7 +23,7 @@ function localRoom(){
  for(const[seat,kind]of[[0,'ready'],[1,'ready'],[0,'start']])game(seat,{kind});return{view,game,advance};
 }
 it('retains actual MSJC07 original, metadata, two abilities and the admitted black unique cards',()=>{
- expect(definition).toMatchObject({name:'方碑序列',subtitle:'恐怖同盟',kind:'society',type:'秘社/法师结社',subtypes:['法师结社'],color:'黑',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'黑',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-black-unique']);expect(catalog.cards.filter(c=>c.color==='黑'&&c.unique).map(c=>c.id).sort()).toEqual(['JC094','JC095','JC096','WM059','XQ38']);
+ expect(definition).toMatchObject({name:'方碑序列',subtitle:'恐怖同盟',kind:'society',type:'秘社/法师结社',subtypes:['法师结社'],color:'黑',unique:true,startingHand:6,printedCost:null,deckConstraints:[{kind:'minimumColor',color:'黑',count:25}]});expect(definition.abilities.map(a=>a.key)).toEqual(['drawWithInitiative','search-black-unique']);expect(catalog.cards.filter(c=>c.color==='黑'&&c.unique).map(c=>c.id).sort()).toEqual(['BQ085','CQ26','JC094','JC095','JC096','JZ52','WM059','XG27','XQ38','XQ39']);
  const scans=JSON.parse(readFileSync(resolve('src/game/cardScansV032.fixture.json'),'utf8'));const hash='e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7';expect(Object.keys(scans)).toHaveLength(101);expect(scans.MSJC07).toEqual({url:'/cards/MSJC07.jpg',source:'resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg',sha256:hash});expect(createHash('sha256').update(readFileSync(resolve('public/cards/MSJC07.jpg'))).digest('hex')).toBe(hash);
 });
 it('agrees with actual WASM on 24/25/33 black and excludes the society from 50 cards',()=>{

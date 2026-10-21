@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {cleanup,fireEvent,render,screen,within} from '@testing-library/react';
-import {catalog} from '../../../rust-game-wasm/tests/current83-kernel.mjs';
+import {catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Lobby} from './Lobby';
 import {ReadModal} from './ReadModal';
 import {createDeckDraft,publicDeckDraft,readDeckLibrary,saveDeckDraft,validateDeckDraft} from './deckLibrary';

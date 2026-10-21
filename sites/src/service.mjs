@@ -1,6 +1,6 @@
 import { RoomStore } from './store.mjs';
 import { retryOriginalCommand } from './storage-errors.mjs';
-import { capturePasses, passRecord, publicPassRecord } from './pass-history.mjs';
+import { capturePasses, publicPassRecord } from './pass-history.mjs';
 
 export class HttpError extends Error {
   constructor(status, message, view, code) { super(message); this.status = status; this.view = view; this.code = code; }
@@ -85,7 +85,6 @@ export class RoomService {
     for (let attempt = 0; attempt < 5; attempt++) {
       const room = await this.store.room(id);
       if (!room) throw new HttpError(404, '房间不存在');
-      if (!this.kernel.supportsPacing?.(room.state)) return { room, view: null };
       const next = call(() => transition(this.kernel.pollRoom(room.state, seat, String(this.now()))));
       if (!next.changed) return { room, view: next.view };
       if (next.version !== room.version + 1) throw new Error('Unexpected clock revision');
@@ -96,14 +95,13 @@ export class RoomService {
     throw new HttpError(409, '牌桌正在变化，请重新同步');
   }
   async entryKey(body, values) {
-    // Old clients without a request key remain compatible, but cannot recover a lost lobby ACK.
-    const key = body.requestId ?? secure(32);
+    const key = body.requestId;
     if (typeof key !== 'string' || !/^[a-zA-Z0-9-]{32,128}$/.test(key)) bad('请求标识格式不正确');
     return { requestHash: await digest(key), intentHash: await intent(values) };
   }
   async recoverEntry(key) {
     const previous = recovered(await this.store.entryReceipt(key.requestHash), key.intentHash);
-    if (previous && this.kernel.assertSupported) {
+    if (previous) {
       const room = await this.store.room(previous.roomId);
       if (!room) throw new HttpError(404, '房间不存在');
       this.kernel.assertSupported(room.state);
@@ -174,7 +172,7 @@ export class RoomService {
     // A version poll must evaluate the persisted deadline even at an unchanged revision.
     const { room, view } = await this.refreshedRoom(id, seat);
     if (afterVersion !== null && afterVersion === String(room.version)) return null;
-    return view || this.view(room.state, seat);
+    return view;
   }
   async catalog(id, authorization) {
     await this.authenticated(id, authorization);
@@ -195,31 +193,10 @@ export class RoomService {
     const hash = await intent({ seat, expectedVersion: body.expectedVersion, action });
     const room = await this.store.room(id);
     if (!room) throw new HttpError(404, '房间不存在');
-    this.kernel.assertSupported?.(room.state);
+    this.kernel.assertSupported(room.state);
     const previous = recovered(await this.store.receipt(id, body.commandId), hash);
     if (previous) return previous;
-    if (this.kernel.supportsPacing?.(room.state)) {
-      return this.pacedCommand(id, seat, room, body, action, hash);
-    }
-    if (room.version !== body.expectedVersion) {
-      // A concurrent identical request may have committed after the first lookup.
-      const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
-      if (concurrent) return concurrent;
-      throw new HttpError(409, '牌桌版本已变化', this.view(room.state, seat));
-    }
-    const next = call(() => transition(this.kernel.apply(room.state, seat, JSON.stringify(action))));
-    if (next.version !== room.version + 1) throw new Error('Unexpected command version');
-    const command = { commandId: body.commandId, expectedVersion: body.expectedVersion, action };
-    const publicPasses = action.kind === 'pass'
-      ? [passRecord(this.view(room.state, seat), seat, next.version, 0, 'pass')] : [];
-    const committed = await this.store.command({ id, seat, commandId: body.commandId, intentHash: hash,
-      expectedVersion: body.expectedVersion, state: next.state, version: next.version, nonce: secure(16),
-      response: JSON.stringify(next.view), entry: JSON.stringify({ Command: { seat, command, ...(publicPasses.length ? { publicPasses } : {}) } }) });
-    if (committed) return next.view;
-    const concurrent = recovered(await this.store.receipt(id, body.commandId), hash);
-    if (concurrent) return concurrent;
-    const current = await this.store.room(id);
-    throw new HttpError(409, '牌桌版本已变化', this.view(current.state, seat));
+    return this.pacedCommand(id, seat, room, body, action, hash);
   }
   async pacedCommand(id, seat, initialRoom, body, action, hash) {
     let room = initialRoom;
@@ -265,7 +242,6 @@ export class RoomService {
     if (typeof body.windowId !== 'string' || typeof body.intentId !== 'string'
       || Object.keys(body).some(key => !['windowId', 'intentId', 'draft'].includes(key))) bad('响应报价格式不正确');
     const { room } = await this.refreshedRoom(id, seat);
-    if (!this.kernel.supportsPacing?.(room.state)) bad('旧牌桌保留原响应规则');
     const request = { windowId: body.windowId, intentId: body.intentId,
       ...(body.draft == null ? {} : { draft: normalizedAction(body.draft) }) };
     if (request.draft && Object.hasOwn(sessionFields, request.draft.kind)) bad('报价只接受游戏动作');

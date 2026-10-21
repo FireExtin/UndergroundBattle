@@ -1,0 +1,656 @@
+
+RUN web-catalog-01 2026-10-21T16:47:31.211310+00:00
+["node", "tools/build-storage.mjs", "--", "npm", "--prefix", "web", "test", "--", "--pool=forks", "--maxWorkers=1", "--no-file-parallelism", "--reporter=verbose", "src/game/ControlTypeBatch.test.jsx", "src/game/DefenceEquipmentBatch.test.jsx", "src/game/DreamRevealBatch.test.jsx", "src/game/EquipmentAbilitiesBatch.test.jsx", "src/game/HandDeckBatch.test.jsx", "src/game/HandInteractionsBatch.test.jsx", "src/game/IdentityOverlap.test.jsx", "src/game/MixedDeckConstruction.test.jsx", "src/game/ProtectionBatch.test.jsx", "src/game/PurpleToolsBatch.test.jsx", "src/game/RegionAura.test.jsx", "src/game/RenownBatch.test.jsx", "src/game/RepressAssetsBatch.test.jsx", "src/game/WhiteWoundBatch.test.jsx", "src/game/WoundDefenceBatch.test.jsx", "src/game/MSJC0405.test.jsx", "src/game/BlueMinimumScan.test.jsx", "src/game/GreenMinimumScan.test.jsx", "src/game/JC005Scan.test.jsx", "src/game/JC008Scan.test.jsx", "src/game/JC029Scan.test.jsx", "src/game/JC030Scan.test.jsx", "src/game/JC089Curse.test.jsx", "src/game/JZ31DeathInfluence.test.jsx", "src/game/JZ48Criminal.test.jsx", "src/game/JZ49Slow.test.jsx", "src/game/JZ55UniqueDestroy.test.jsx", "src/game/MSJC01Scan.test.jsx", "src/game/MSJC06Scan.test.jsx", "src/game/MSJC07Scan.test.jsx", "src/game/MSJC08Scan.test.jsx", "src/game/MSJC11Scan.test.jsx", "src/game/MillPublicBatch.test.jsx", "src/game/SocietyScan.test.jsx", "src/game/V028DeckEntry.test.jsx", "src/game/YellowSearchBatchScan.test.jsx"]
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --pool=forks --maxWorkers=1 --no-file-parallelism --reporter=verbose src/game/ControlTypeBatch.test.jsx src/game/DefenceEquipmentBatch.test.jsx src/game/DreamRevealBatch.test.jsx src/game/EquipmentAbilitiesBatch.test.jsx src/game/HandDeckBatch.test.jsx src/game/HandInteractionsBatch.test.jsx src/game/IdentityOverlap.test.jsx src/game/MixedDeckConstruction.test.jsx src/game/ProtectionBatch.test.jsx src/game/PurpleToolsBatch.test.jsx src/game/RegionAura.test.jsx src/game/RenownBatch.test.jsx src/game/RepressAssetsBatch.test.jsx src/game/WhiteWoundBatch.test.jsx src/game/WoundDefenceBatch.test.jsx src/game/MSJC0405.test.jsx src/game/BlueMinimumScan.test.jsx src/game/GreenMinimumScan.test.jsx src/game/JC005Scan.test.jsx src/game/JC008Scan.test.jsx src/game/JC029Scan.test.jsx src/game/JC030Scan.test.jsx src/game/JC089Curse.test.jsx src/game/JZ31DeathInfluence.test.jsx src/game/JZ48Criminal.test.jsx src/game/JZ49Slow.test.jsx src/game/JZ55UniqueDestroy.test.jsx src/game/MSJC01Scan.test.jsx src/game/MSJC06Scan.test.jsx src/game/MSJC07Scan.test.jsx src/game/MSJC08Scan.test.jsx src/game/MSJC11Scan.test.jsx src/game/MillPublicBatch.test.jsx src/game/SocietyScan.test.jsx src/game/V028DeckEntry.test.jsx src/game/YellowSearchBatchScan.test.jsx
+
+
+ RUN  v4.1.2 /workspace/audit-underground-100161b/next20-combined-dev/web
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 36 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/BlueMinimumScan.test.jsx [ src/game/BlueMinimumScan.test.jsx ]
+ FAIL  src/game/GreenMinimumScan.test.jsx [ src/game/GreenMinimumScan.test.jsx ]
+ FAIL  src/game/JC005Scan.test.jsx [ src/game/JC005Scan.test.jsx ]
+ FAIL  src/game/JC008Scan.test.jsx [ src/game/JC008Scan.test.jsx ]
+ FAIL  src/game/JC029Scan.test.jsx [ src/game/JC029Scan.test.jsx ]
+ FAIL  src/game/JC030Scan.test.jsx [ src/game/JC030Scan.test.jsx ]
+ FAIL  src/game/JC089Curse.test.jsx [ src/game/JC089Curse.test.jsx ]
+ FAIL  src/game/JZ31DeathInfluence.test.jsx [ src/game/JZ31DeathInfluence.test.jsx ]
+ FAIL  src/game/JZ48Criminal.test.jsx [ src/game/JZ48Criminal.test.jsx ]
+ FAIL  src/game/JZ49Slow.test.jsx [ src/game/JZ49Slow.test.jsx ]
+ FAIL  src/game/JZ55UniqueDestroy.test.jsx [ src/game/JZ55UniqueDestroy.test.jsx ]
+ FAIL  src/game/MSJC01Scan.test.jsx [ src/game/MSJC01Scan.test.jsx ]
+ FAIL  src/game/MSJC06Scan.test.jsx [ src/game/MSJC06Scan.test.jsx ]
+ FAIL  src/game/MSJC07Scan.test.jsx [ src/game/MSJC07Scan.test.jsx ]
+ FAIL  src/game/MSJC08Scan.test.jsx [ src/game/MSJC08Scan.test.jsx ]
+ FAIL  src/game/MSJC11Scan.test.jsx [ src/game/MSJC11Scan.test.jsx ]
+ FAIL  src/game/MillPublicBatch.test.jsx [ src/game/MillPublicBatch.test.jsx ]
+ FAIL  src/game/SocietyScan.test.jsx [ src/game/SocietyScan.test.jsx ]
+ FAIL  src/game/V028DeckEntry.test.jsx [ src/game/V028DeckEntry.test.jsx ]
+ FAIL  src/game/YellowSearchBatchScan.test.jsx [ src/game/YellowSearchBatchScan.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/testKernel.js:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/36]⎯
+
+ FAIL  src/game/ControlTypeBatch.test.jsx [ src/game/ControlTypeBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/ControlTypeBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/36]⎯
+
+ FAIL  src/game/DefenceEquipmentBatch.test.jsx [ src/game/DefenceEquipmentBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/DefenceEquipmentBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/36]⎯
+
+ FAIL  src/game/DreamRevealBatch.test.jsx [ src/game/DreamRevealBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/DreamRevealBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/36]⎯
+
+ FAIL  src/game/EquipmentAbilitiesBatch.test.jsx [ src/game/EquipmentAbilitiesBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/EquipmentAbilitiesBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/36]⎯
+
+ FAIL  src/game/HandDeckBatch.test.jsx [ src/game/HandDeckBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/HandDeckBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/36]⎯
+
+ FAIL  src/game/HandInteractionsBatch.test.jsx [ src/game/HandInteractionsBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/HandInteractionsBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/36]⎯
+
+ FAIL  src/game/IdentityOverlap.test.jsx [ src/game/IdentityOverlap.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/IdentityOverlap.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/36]⎯
+
+ FAIL  src/game/MSJC0405.test.jsx [ src/game/MSJC0405.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/MSJC0405.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/36]⎯
+
+ FAIL  src/game/MixedDeckConstruction.test.jsx [ src/game/MixedDeckConstruction.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/MixedDeckConstruction.test.jsx:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/36]⎯
+
+ FAIL  src/game/ProtectionBatch.test.jsx [ src/game/ProtectionBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/ProtectionBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/36]⎯
+
+ FAIL  src/game/PurpleToolsBatch.test.jsx [ src/game/PurpleToolsBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/PurpleToolsBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/36]⎯
+
+ FAIL  src/game/RegionAura.test.jsx [ src/game/RegionAura.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/RegionAura.test.jsx:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/36]⎯
+
+ FAIL  src/game/RenownBatch.test.jsx [ src/game/RenownBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/RenownBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/36]⎯
+
+ FAIL  src/game/RepressAssetsBatch.test.jsx [ src/game/RepressAssetsBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/RepressAssetsBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/36]⎯
+
+ FAIL  src/game/WhiteWoundBatch.test.jsx [ src/game/WhiteWoundBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/WhiteWoundBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/36]⎯
+
+ FAIL  src/game/WoundDefenceBatch.test.jsx [ src/game/WoundDefenceBatch.test.jsx ]
+Error: Cannot find module 'file:///workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/pkg/hegemony_wasm.js' imported from /workspace/audit-underground-100161b/next20-combined-dev/rust-game-wasm/tests/current-kernel.mjs
+ ❯ ../rust-game-wasm/tests/current-kernel.mjs:5:23
+      3| import { readFileSync } from 'node:fs';
+      4| const abi = new URL(process.env.HEGEMONY_WASM_TEST_ABI || '../pkg/hege…
+      5| export const kernel = await import(abi.href);
+       |                       ^
+      6| export const moduleBytes = readFileSync(new URL('./hegemony_wasm_bg.wa…
+      7| export const instance = kernel.initSync({ module: moduleBytes });
+ ❯ src/game/WoundDefenceBatch.test.jsx:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/36]⎯
+
+
+ Test Files  36 failed (36)
+      Tests  no tests
+   Start at  16:47:31
+   Duration  23.51s (transform 434ms, setup 3.25s, import 0ms, tests 0ms, environment 15.11s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+EXIT web-catalog-01 1
+
+RUN msjc0405-source-01 2026-10-21T16:48:35.131063+00:00
+["node", "tools/build-storage.mjs", "--", "node", "--test", "tools/cards/msjc0405-source.test.mjs"]
+✖ current MSJC04/MSJC05 use their complete pinned originals and immutable scans (2.888944ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.787
+
+✖ failing tests:
+
+test at tools/cards/msjc0405-source.test.mjs:13:1
+✖ current MSJC04/MSJC05 use their complete pinned originals and immutable scans (2.888944ms)
+  Error: ENOENT: no such file or directory, open '/workspace/audit-underground-100161b/next20-combined-dev/resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg'
+      at Object.openSync (node:fs:622:18)
+      at readFileSync (node:fs:488:35)
+      at read (file:///workspace/audit-underground-100161b/next20-combined-dev/tools/cards/msjc0405-source.test.mjs:10:15)
+      at TestContext.<anonymous> (file:///workspace/audit-underground-100161b/next20-combined-dev/tools/cards/msjc0405-source.test.mjs:27:23)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/workspace/audit-underground-100161b/next20-combined-dev/resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg'
+  }
+
+EXIT msjc0405-source-01 1
+
+RUN web-typecheck-01 2026-10-21T16:48:35.530873+00:00
+["node", "tools/build-storage.mjs", "--", "npm", "--prefix", "web", "run", "typecheck"]
+
+> undergroundbattle-web@0.1.0 typecheck
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+EXIT web-typecheck-01 0
+
+INPUTS restored-original-hardlinks {"count": 10, "files": {"resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC01 帷幕守望.jpg", "sha256": "c61c887558cb184a532758eac5db766234c32a3a3605162a38c0899993e7bdf2"}, "resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC02 猎魔人.jpg", "sha256": "915a723573028050980cb665d0de85f5e5fd5a6de1b54e3d7664e69882edc807"}, "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg", "sha256": "07463a18a5cc6726f098bedc10304ef6c4032929cff72535d5f9227338e45f29"}, "resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg", "sha256": "a6ba66c7fb73acdbe4cab001e6330d0f339c46e12b6d3e714307196e9fd23cf3"}, "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg", "sha256": "d71e7c3df37a7c857cfb74c9988261ad722c5f3012ca49c75151fd407dab59f3"}, "resource/ymsj-fun.github.io/cards/MSJC06 圣贤.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC06 圣贤.jpg", "sha256": "38b76c70bda5759a9963a05c398b845f5c7e22c7f12fe2507b9a1ac123cda2a7"}, "resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg", "sha256": "e9cd1af04560733f28e3bcfee4c687f6a2e5218b93862b5a74d4f35f6a8f3ed7"}, "resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC08 梦境行者.jpg", "sha256": "28c3f965daa40a83d081b03b6f0b72a0ac4006ebf465575ede3b221f633e72a1"}, "resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC09 秘社.jpg", "sha256": "41e478a3f38ead83477498fd88131831a5fd843be364c1c0daa3ba10153c2302"}, "resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg": {"source": "/workspace/UndergroundBattle/resource/ymsj-fun.github.io/cards/MSJC11 S．P．T执行部.jpg", "sha256": "df9964832e48bfef57bcaa0d5f4db67ce2ab9fe0e371ffecc2736c1728b1b853"}}}
+
+NOTE loader-smoke-01: Node require successfully loaded current ESM, then manual expected identity rust-v0.2.93-next20-candidate was incorrect; actual is rust-v0.2.93-batch20-next. Recheck below against repository cards.json and fixed SHA, without changing source or bytes.
+{"run":"loader-smoke-02","engine":"rust-v0.2.93-batch20-next","cards":193,"wasmBytes":4315979,"esmRequire":"ok"}
+
+RUN web-catalog-02 2026-10-21T16:50:31.405974+00:00
+["node", "tools/build-storage.mjs", "--", "npm", "--prefix", "web", "test", "--", "--pool=forks", "--maxWorkers=1", "--no-file-parallelism", "--reporter=verbose", "src/game/ControlTypeBatch.test.jsx", "src/game/DefenceEquipmentBatch.test.jsx", "src/game/DreamRevealBatch.test.jsx", "src/game/EquipmentAbilitiesBatch.test.jsx", "src/game/HandDeckBatch.test.jsx", "src/game/HandInteractionsBatch.test.jsx", "src/game/IdentityOverlap.test.jsx", "src/game/MixedDeckConstruction.test.jsx", "src/game/ProtectionBatch.test.jsx", "src/game/PurpleToolsBatch.test.jsx", "src/game/RegionAura.test.jsx", "src/game/RenownBatch.test.jsx", "src/game/RepressAssetsBatch.test.jsx", "src/game/WhiteWoundBatch.test.jsx", "src/game/WoundDefenceBatch.test.jsx", "src/game/MSJC0405.test.jsx", "src/game/BlueMinimumScan.test.jsx", "src/game/GreenMinimumScan.test.jsx", "src/game/JC005Scan.test.jsx", "src/game/JC008Scan.test.jsx", "src/game/JC029Scan.test.jsx", "src/game/JC030Scan.test.jsx", "src/game/JC089Curse.test.jsx", "src/game/JZ31DeathInfluence.test.jsx", "src/game/JZ48Criminal.test.jsx", "src/game/JZ49Slow.test.jsx", "src/game/JZ55UniqueDestroy.test.jsx", "src/game/MSJC01Scan.test.jsx", "src/game/MSJC06Scan.test.jsx", "src/game/MSJC07Scan.test.jsx", "src/game/MSJC08Scan.test.jsx", "src/game/MSJC11Scan.test.jsx", "src/game/MillPublicBatch.test.jsx", "src/game/SocietyScan.test.jsx", "src/game/V028DeckEntry.test.jsx", "src/game/YellowSearchBatchScan.test.jsx"]
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --pool=forks --maxWorkers=1 --no-file-parallelism --reporter=verbose src/game/ControlTypeBatch.test.jsx src/game/DefenceEquipmentBatch.test.jsx src/game/DreamRevealBatch.test.jsx src/game/EquipmentAbilitiesBatch.test.jsx src/game/HandDeckBatch.test.jsx src/game/HandInteractionsBatch.test.jsx src/game/IdentityOverlap.test.jsx src/game/MixedDeckConstruction.test.jsx src/game/ProtectionBatch.test.jsx src/game/PurpleToolsBatch.test.jsx src/game/RegionAura.test.jsx src/game/RenownBatch.test.jsx src/game/RepressAssetsBatch.test.jsx src/game/WhiteWoundBatch.test.jsx src/game/WoundDefenceBatch.test.jsx src/game/MSJC0405.test.jsx src/game/BlueMinimumScan.test.jsx src/game/GreenMinimumScan.test.jsx src/game/JC005Scan.test.jsx src/game/JC008Scan.test.jsx src/game/JC029Scan.test.jsx src/game/JC030Scan.test.jsx src/game/JC089Curse.test.jsx src/game/JZ31DeathInfluence.test.jsx src/game/JZ48Criminal.test.jsx src/game/JZ49Slow.test.jsx src/game/JZ55UniqueDestroy.test.jsx src/game/MSJC01Scan.test.jsx src/game/MSJC06Scan.test.jsx src/game/MSJC07Scan.test.jsx src/game/MSJC08Scan.test.jsx src/game/MSJC11Scan.test.jsx src/game/MillPublicBatch.test.jsx src/game/SocietyScan.test.jsx src/game/V028DeckEntry.test.jsx src/game/YellowSearchBatchScan.test.jsx
+
+
+ RUN  v4.1.2 /workspace/audit-underground-100161b/next20-combined-dev/web
+
+ ✓ src/game/BlueMinimumScan.test.jsx > checks the three blue printed definitions and their pinned original scans 7ms
+ ✓ src/game/BlueMinimumScan.test.jsx > JC032 privately previews all six including Bat and human, reads without choosing, and requires one printed Vampire 388ms
+ ✓ src/game/BlueMinimumScan.test.jsx > JC032 zero-hit view remains readable and submits explicit zero confirmation without a skip 34ms
+ ✓ src/game/BlueMinimumScan.test.jsx > JC032 publicly shows the selected name but only its current controller can read the new borrowed hidden instance 41ms
+ ✓ src/game/BlueMinimumScan.test.jsx > JZ24 makes the second enemy with four cards choose after BQ022 return and refresh resets the prior selection 113ms
+ ✓ src/game/BlueMinimumScan.test.jsx > blue minimum draft enforces the 24/25/27 boundary and ordinary copy limit 2ms
+ ✓ src/game/BlueMinimumScan.test.jsx > all three new cards open their actual original faces from complete projected views 69ms
+ ✓ src/game/ControlTypeBatch.test.jsx > shows authoritative current types while keeping printed types and original artwork unchanged 187ms
+ ✓ src/game/ControlTypeBatch.test.jsx > erases stale type overlays and print from every unauthorized concealed seat 26ms
+ ✓ src/game/ControlTypeBatch.test.jsx > preserves the character subtitle and its original permanent versus initiative icons 7ms
+ ✓ src/game/ControlTypeBatch.test.jsx > reads unchanged original JC129 artwork 33ms
+ ✓ src/game/ControlTypeBatch.test.jsx > reads unchanged original JC036 artwork 30ms
+ ✓ src/game/ControlTypeBatch.test.jsx > reads unchanged original JZ27 artwork 28ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > renders authoritative turn damage prevention, attached defense and combat to all four seats then clears expired grants 46ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > clears stale prevention from hidden unauthorized projections and renders no hidden prevention footer 111ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > preserves JC078 original image bytes and printed field interpretation 52ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > preserves XQ14 original image bytes and printed field interpretation 32ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > preserves XQ47 original image bytes and printed field interpretation 26ms
+ ✓ src/game/DefenceEquipmentBatch.test.jsx > preserves JC112 original image bytes and printed field interpretation 23ms
+ ✓ src/game/DreamRevealBatch.test.jsx > reads JZ58 unchanged original and actual compiled fields 197ms
+ ✓ src/game/DreamRevealBatch.test.jsx > reads JZ61 unchanged original and actual compiled fields 35ms
+ ✓ src/game/DreamRevealBatch.test.jsx > updates public spirit protection with the latest domain projection for p0 10ms
+ ✓ src/game/DreamRevealBatch.test.jsx > updates public spirit protection with the latest domain projection for p1 16ms
+ ✓ src/game/DreamRevealBatch.test.jsx > updates public spirit protection with the latest domain projection for p2 6ms
+ ✓ src/game/DreamRevealBatch.test.jsx > updates public spirit protection with the latest domain projection for p3 6ms
+ ✓ src/game/DreamRevealBatch.test.jsx > withholds stale spirit protection when the instance is concealed for p0 4ms
+ ✓ src/game/DreamRevealBatch.test.jsx > withholds stale spirit protection when the instance is concealed for p1 6ms
+ ✓ src/game/DreamRevealBatch.test.jsx > withholds stale spirit protection when the instance is concealed for p2 6ms
+ ✓ src/game/DreamRevealBatch.test.jsx > withholds stale spirit protection when the instance is concealed for p3 7ms
+ ✓ src/game/DreamRevealBatch.test.jsx > forwards opponent selection and the target player region selection as distinct exact choice payloads 193ms
+ ✓ src/game/DreamRevealBatch.test.jsx > does not show region-choice options to non-target projection p0 24ms
+ ✓ src/game/DreamRevealBatch.test.jsx > does not show region-choice options to non-target projection p1 24ms
+ ✓ src/game/DreamRevealBatch.test.jsx > does not show region-choice options to non-target projection p3 27ms
+ ✓ src/game/DreamRevealBatch.test.jsx > offers real Amnesia optional shuffle confirmation and decline without inventing additional costs 97ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > preserves original JC116 scan and complete printed interpretation 175ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > preserves original JC020 scan and complete printed interpretation 29ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > preserves original JC093 scan and complete printed interpretation 30ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > preserves original XQ07 scan and complete printed interpretation 24ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > renders overridden printed base alongside final defense and immutable original for all four seats, then clears it 17ms
+ ✓ src/game/EquipmentAbilitiesBatch.test.jsx > conceals a stale printed-defense grant from unauthorized hidden projections and all hidden card footers 9ms
+ ✓ src/game/GreenMinimumScan.test.jsx > admits only the three reviewed green roles and exact MSJC02 fields and whole original scans 8ms
+ ✓ src/game/GreenMinimumScan.test.jsx > matches the 24/25/27 printed-green boundary with ordinary copy and total limits 2ms
+ ✓ src/game/GreenMinimumScan.test.jsx > checks recorded four-seat views and current-controller privacy for all three borrowed backs 316ms
+ ✓ src/game/GreenMinimumScan.test.jsx > shows native current green stats separately from unchanged printed black icons and defense 11ms
+ ✓ src/game/HandDeckBatch.test.jsx > reads the unchanged original JC130 with reviewed printed fields 180ms
+ ✓ src/game/HandDeckBatch.test.jsx > reads the unchanged original JC131 with reviewed printed fields 31ms
+ ✓ src/game/HandDeckBatch.test.jsx > reads the unchanged original JC096 with reviewed printed fields 33ms
+ ✓ src/game/HandDeckBatch.test.jsx > reads the unchanged original XQ17 with reviewed printed fields 23ms
+ ✓ src/game/HandDeckBatch.test.jsx > exposes the admitted play and trigger summaries without adding an unprinted cost 1ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads the unchanged original JC114 and printed fields 184ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads the unchanged original XQ34 and printed fields 33ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads the unchanged original XQ38 and printed fields 35ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads the unchanged original JZ67 and printed fields 23ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads only the currently revealed hand for p0 and closes stale readers 121ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads only the currently revealed hand for p1 and closes stale readers 95ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads only the currently revealed hand for p2 and closes stale readers 98ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > reads only the currently revealed hand for p3 and closes stale readers 81ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > submits explicit accept or decline for revealed-hand-discard 39ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > submits explicit accept or decline for optional-shuffle 30ms
+ ✓ src/game/HandInteractionsBatch.test.jsx > keeps exact discarded hand costs separate when grouping recovery targets 8ms
+ ✓ src/game/IdentityOverlap.test.jsx > keeps four same-definition red tiles separate and submits only the exact controller-eligible target 423ms
+ ✓ src/game/IdentityOverlap.test.jsx > clears old confirmation when a same-name fresh red instance replaces the bound target 192ms
+ ✓ src/game/IdentityOverlap.test.jsx > allocates damage to one same-name red instance using its exact choice option id 56ms
+ ✓ src/game/IdentityOverlap.test.jsx > selects one of four same-definition societies by its instance and personal zone 71ms
+ ✓ src/game/JC005Scan.test.jsx > retains Site24 JC005 while adding the isolated JC008 candidate and retains the exact printed spell metadata and original bytes 5ms
+ ✓ src/game/JC005Scan.test.jsx > reads the current WASM own-hand spell view with no invented defense and opens its original 226ms
+ ✓ src/game/JC008Scan.test.jsx > admits only JC008 and retains its actual printed metadata and original JPG bytes 5ms
+ ✓ src/game/JC008Scan.test.jsx > reads the current WASM own-hand spell view and opens its original without inventing defense 263ms
+ ✓ src/game/JC008Scan.test.jsx > renders current versus printed stats from paid, resolved JC008 using normal Room commands and expires them normally 318ms
+ ✓ src/game/JC029Scan.test.jsx > keeps the whole original and exactly one existing reveal ability alongside the finite green admission 6ms
+ ✓ src/game/JC029Scan.test.jsx > renders the current WASM own-hand view and opens the original card without replacing the damage rule 223ms
+ ✓ src/game/JC030Scan.test.jsx > checks JC030 printed blue bat fields and pinned original 5ms
+ ✓ src/game/JC030Scan.test.jsx > renders the recorded JC030 effective subtype alongside its immutable original face 278ms
+ ✓ src/game/JC030Scan.test.jsx > JC030 authorizes hidden borrowed originals only for the current controller across four independent views 221ms
+ ✓ src/game/JC089Curse.test.jsx > checks the complete JC089 printed definition 3ms
+ ✓ src/game/JC089Curse.test.jsx > checks recorded stack, sacrifice, replacement and cascade results 1ms
+ ✓ src/game/JC089Curse.test.jsx > reads current defense and two curse combat bonuses alongside unchanged printed values 144ms
+ ✓ src/game/JC089Curse.test.jsx > shows permanent combat without initiative and continuous glory on an exhausted host 79ms
+ ✓ src/game/JC089Curse.test.jsx > keeps curse and stolen host controllers separate and clears glory with the last curse 1ms
+ ✓ src/game/JC089Curse.test.jsx > conceals the granted ability and attributes when an opponent reads a hidden card 12ms
+ ✓ src/game/JC089Curse.test.jsx > offers JC089 through the actual deck library controls 1006ms
+ ✓ src/game/JC089Curse.test.jsx > validates three curse copies and rejects four while unreviewed JZ51 stays unavailable 8ms
+ ✓ src/game/JC089Curse.test.jsx > merges a cursed printed glory while preserving separately granted true renown 22ms
+ ✓ src/game/JC089Curse.test.jsx > keeps printed glory after paid last-curse removal without a false renown reward 10ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx > checks the complete JZ31 printed definition without a magic requirement 3ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx > checks recorded death-controller choice privacy and influence for every seat 2ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx > offers both skip and one acceptance to the death controller using the existing choice UI 178ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx > opens the pinned original and does not confuse death trigger text with a magic requirement 51ms
+ ✓ src/game/JZ31DeathInfluence.test.jsx > accepts a real fifty-card red deck with three copies and rejects four 8ms
+ ✓ src/game/JZ48Criminal.test.jsx > checks the complete JZ48 printed definition 3ms
+ ✓ src/game/JZ48Criminal.test.jsx > checks recorded paid stack, cascade and victory results 1ms
+ ✓ src/game/JZ48Criminal.test.jsx > separates current permanent influence and defense from immutable printed values 194ms
+ ✓ src/game/JZ48Criminal.test.jsx > shows exhaustion without erasing the supported current defense 66ms
+ ✓ src/game/JZ48Criminal.test.jsx > keeps hidden JZ48 print and continuous bonus out of opponent readings 14ms
+ ✓ src/game/JZ48Criminal.test.jsx > uses current controller for borrowed copies and gives each side its own values 1ms
+ ✓ src/game/JZ48Criminal.test.jsx > offers the new gameplay definition in the real deck builder 1173ms
+ ✓ src/game/JZ48Criminal.test.jsx > validates fifty-card draft and rejects four same-name JZ48 copies 7ms
+ ✓ src/game/JZ49Slow.test.jsx > checks the complete JZ49 printed definition 3ms
+ ✓ src/game/JZ49Slow.test.jsx > checks recorded declaration, stack, composition and completion results 1ms
+ ✓ src/game/JZ49Slow.test.jsx > selects the actual optional player target p0 and submits one native choose action 220ms
+ ✓ src/game/JZ49Slow.test.jsx > selects the actual optional player target p1 and submits one native choose action 52ms
+ ✓ src/game/JZ49Slow.test.jsx > selects the actual optional player target p2 and submits one native choose action 61ms
+ ✓ src/game/JZ49Slow.test.jsx > selects the actual optional player target p3 and submits one native choose action 52ms
+ ✓ src/game/JZ49Slow.test.jsx > can decline the optional trigger without changing the mandatory exhausted state 24ms
+ ✓ src/game/JZ49Slow.test.jsx > shows entry exhaustion and keeps enemy hidden identity private 162ms
+ ✓ src/game/JZ49Slow.test.jsx > builds an actual fifty-card draft and rejects four JZ49 copies 9ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > checks the complete JZ55 printed definition 3ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > checks recorded immediate composition and subsequent death-trigger views 2ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > opens the exact original and displays cannot respond without inventing a magic requirement 178ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > selects only native face-up unique instances, including an owned hidden unique counterexample, for seat0 395ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > selects only native face-up unique instances, including an owned hidden unique counterexample, for seat2 330ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > keeps actual composing selection readable and immediately shows only the old underlying stack after submission 186ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > offers ordinary optional acceptance to the cascade death controller and leaves its effect respondable 25ms
+ ✓ src/game/JZ55UniqueDestroy.test.jsx > saves and restores a fifty-card JZ55 draft and rejects four copies with the actual ABI 8ms
+ ✓ src/game/MSJC01Scan.test.jsx > retains actual MSJC01 original, metadata, two abilities and the three admitted yellow unique cards 6ms
+ ✓ src/game/MSJC01Scan.test.jsx > agrees with actual WASM on 24/25/27 yellow and excludes the society from 50 cards 12ms
+ ✓ src/game/MSJC01Scan.test.jsx > uses normal paid empty search and shows the server usage fact after a normal next-turn reset 767ms
+ ✓ src/game/MSJC01Scan.test.jsx > omits game-use labels for older society projections with no new field 6ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC04 exposes its complete printed card and exact original scan 872ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC04 is selectable at initial entry, rejects24 and submits25 real color cards 415ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC04 persists named society decks and joins with the complete saved snapshot 115ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC05 exposes its complete printed card and exact original scan 552ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC05 is selectable at initial entry, rejects24 and submits25 real color cards 309ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > MSJC05 persists named society decks and joins with the complete saved snapshot 95ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > converts a preset to a session snapshot without silently saving and reports the real color deficit 118ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > locks society editing while entering and while restoring an existing seat 100ms
+ ✓ src/game/MSJC0405.test.jsx > complete real red and gray society entry > explicitly loads the entry snapshot into the existing editor and preserves unsaved edits before another load 4252ms
+ ✓ src/game/MSJC06Scan.test.jsx > retains actual MSJC06 original, metadata, two abilities and the real admitted white unique card 5ms
+ ✓ src/game/MSJC06Scan.test.jsx > agrees with actual WASM on 24/25/27 white and excludes the society from 50 cards 11ms
+ ✓ src/game/MSJC06Scan.test.jsx > uses normal paid real white unique search and displays stable server usage from restored views and next-turn reset 688ms
+ ✓ src/game/MSJC06Scan.test.jsx > omits game-use labels for older society projections with no new field 7ms
+ × src/game/MSJC07Scan.test.jsx > retains actual MSJC07 original, metadata, two abilities and the admitted black unique cards 9ms
+   → expected [ 'BQ085', 'CQ26', 'JC094', …(7) ] to deeply equal [ 'JC094', 'JC095', 'JC096', …(2) ]
+ ✓ src/game/MSJC07Scan.test.jsx > agrees with actual WASM on 24/25/33 black and excludes the society from 50 cards 11ms
+ ✓ src/game/MSJC07Scan.test.jsx > uses normal paid real black unique search and displays stable server usage from restored views and next-turn reset 749ms
+ ✓ src/game/MSJC07Scan.test.jsx > omits game-use labels for older society projections with no new field 10ms
+ ✓ src/game/MSJC08Scan.test.jsx > retains actual MSJC08 original, metadata, two abilities and the real admitted purple unique card 5ms
+ ✓ src/game/MSJC08Scan.test.jsx > agrees with actual WASM on 24/25/27 purple and excludes the society from 50 cards 12ms
+ ✓ src/game/MSJC08Scan.test.jsx > uses normal paid real purple unique search and displays stable server usage from restored views and next-turn reset 876ms
+ ✓ src/game/MSJC08Scan.test.jsx > omits game-use labels for older society projections with no new field 6ms
+ ✓ src/game/MSJC11Scan.test.jsx > reads the exact whole original society and finite two standard abilities 244ms
+ ✓ src/game/MSJC11Scan.test.jsx > matches printed mixed-deck exception instead of using runtime buffs or magic 3ms
+ ✓ src/game/MSJC11Scan.test.jsx > shows current granted kill and retreat but strips both from every concealed fallback 36ms
+ ✓ src/game/MillPublicBatch.test.jsx > checks the two mill/public printed definitions and pinned originals 7ms
+ ✓ src/game/MillPublicBatch.test.jsx > renders the recorded optional mill choice and sends an explicit decline 205ms
+ ✓ src/game/MillPublicBatch.test.jsx > opens both original faces and renders the current corpse defense separately from its printed zero 120ms
+ ✓ src/game/MillPublicBatch.test.jsx > accepts a real 50-card mixed gray-black-red draft and rejects four copies of either new card 9ms
+ ✓ src/game/MixedDeckConstruction.test.jsx > reports actual existing red/black and black/blue presets 3ms
+ ✓ src/game/MixedDeckConstruction.test.jsx > validates, saves, reloads and joins the real red/黑 50-card deck 1447ms
+ ✓ src/game/MixedDeckConstruction.test.jsx > validates, saves, reloads and joins the real red/蓝 50-card deck 1077ms
+ ✓ src/game/MixedDeckConstruction.test.jsx > rejects four copies of the shared red character in red/黑 871ms
+ ✓ src/game/MixedDeckConstruction.test.jsx > rejects four copies of the shared red character in red/蓝 905ms
+ ✓ src/game/ProtectionBatch.test.jsx > shows authoritative host barrier, temporary investigation and defense to four seats, then removes the lost grant 50ms
+ ✓ src/game/ProtectionBatch.test.jsx > concealment hides stale host barrier from all seats and print from every unauthorized seat 121ms
+ ✓ src/game/ProtectionBatch.test.jsx > preserves JC071 original bytes, corrected loyalty and readable printed text 63ms
+ ✓ src/game/ProtectionBatch.test.jsx > preserves JC073 original bytes, corrected loyalty and readable printed text 37ms
+ ✓ src/game/ProtectionBatch.test.jsx > preserves JC102 original bytes, corrected loyalty and readable printed text 25ms
+ ✓ src/game/ProtectionBatch.test.jsx > preserves JC132 original bytes, corrected loyalty and readable printed text 32ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > preserves original JC103 bytes and actual compiled printed fields 186ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > preserves original JC107 bytes and actual compiled printed fields 30ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > selects public assets in each holder mat and forwards the exact server action while keeping identities hidden 285ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > reads anonymized assets without reconstructing original scans for p0 127ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > reads anonymized assets without reconstructing original scans for p1 114ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > reads anonymized assets without reconstructing original scans for p2 100ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > reads anonymized assets without reconstructing original scans for p3 107ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > drops a removed asset target before confirmation even when a stale legal action remains 179ms
+ ✓ src/game/PurpleToolsBatch.test.jsx > selects the mounted attachment across regions without treating its host as an allowed target 127ms
+ ✓ src/game/RegionAura.test.jsx > reads the complete real XQ43 program and byte-identical original scan 187ms
+ ✓ src/game/RegionAura.test.jsx > mounts on the exact region instance, reads ownership separately, and exposes region inspector objects 242ms
+ ✓ src/game/RegionAura.test.jsx > forwards the exact server-authored region play and attachment destruction target 333ms
+ ✓ src/game/RegionAura.test.jsx > displays server conversion alongside immutable printed icons and clears it after departure 8ms
+ ✓ src/game/RegionAura.test.jsx > does not leak conversion or original identity through concealed or older projections 29ms
+ ✓ src/game/RenownBatch.test.jsx > shows granted renown and authoritative investigation to all public seats, then removes the expired grant 50ms
+ ✓ src/game/RenownBatch.test.jsx > concealed cards clear a stale grant for all seats and redact print for the three unauthorized seats 123ms
+ ✓ src/game/RenownBatch.test.jsx > keeps all reviewed JC070 original bytes and printed fields readable 51ms
+ ✓ src/game/RenownBatch.test.jsx > keeps all reviewed JC076 original bytes and printed fields readable 37ms
+ ✓ src/game/RenownBatch.test.jsx > keeps all reviewed JC074 original bytes and printed fields readable 27ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads JZ74 original and compiled whole-card fields 187ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads JC126 original and compiled whole-card fields 37ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads an expanded public asset without restoring printed character rules for p0 17ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads an expanded public asset without restoring printed character rules for p1 18ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads an expanded public asset without restoring printed character rules for p2 11ms
+ ✓ src/game/RepressAssetsBatch.test.jsx > reads an expanded public asset without restoring printed character rules for p3 12ms
+ ✓ src/game/SocietyScan.test.jsx > keeps the sole real society unchanged while the local JC008 candidate adds one ordinary card 4ms
+ ✓ src/game/SocietyScan.test.jsx > reads the actual four-seat public society projection and opens its original without character costs or stats 339ms
+ ✓ src/game/SocietyScan.test.jsx > maps the complete JC004 definition to the exact reviewed original and reader metadata 33ms
+ ✓ src/game/V028DeckEntry.test.jsx > edits all nine v028 cards through normal controls, saves/reloads, and enters four seats with the selected draft 2916ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > reads the actual full LC06 fields including its printed holy domain and exact original bytes 185ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > shows the public wounded character to p0 without mixing damage or enabling a manual trigger 14ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > shows the public wounded character to p1 without mixing damage or enabling a manual trigger 10ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > shows the public wounded character to p2 without mixing damage or enabling a manual trigger 11ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > shows the public wounded character to p3 without mixing damage or enabling a manual trigger 9ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > submits the optional source-controller trigger acceptance and decline using server choice IDs 122ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > keeps the source controller choice private from p0 including the owner 36ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > keeps the source controller choice private from p1 including the owner 26ms
+ ✓ src/game/WhiteWoundBatch.test.jsx > keeps the source controller choice private from p3 including the owner 20ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > reads unchanged JZ59 original bytes and actual compiled printed fields 175ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > reads unchanged LC12 original bytes and actual compiled printed fields 28ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > selects the current controller target from the server list and forwards exact exhaust-only activation 209ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > invalidates a selected target when a new server projection removes its legal action 161ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > shows current defense, printed defense and wounds separately then updates expiry for p0 10ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > shows current defense, printed defense and wounds separately then updates expiry for p1 6ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > shows current defense, printed defense and wounds separately then updates expiry for p2 6ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > shows current defense, printed defense and wounds separately then updates expiry for p3 5ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > submits the death source controller choice with its exact instance and permits free decline 184ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > renders only waiting status for the non-controller death-choice projection p1 51ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > renders only waiting status for the non-controller death-choice projection p2 46ms
+ ✓ src/game/WoundDefenceBatch.test.jsx > renders only waiting status for the non-controller death-choice projection p3 42ms
+ ✓ src/game/YellowSearchBatchScan.test.jsx > admits the three approved yellow unique cards and preserves the original printed numbers and loyalty 4ms
+ ✓ src/game/YellowSearchBatchScan.test.jsx > reads the actual unmodified WM003 artwork through the existing reader 184ms
+ ✓ src/game/YellowSearchBatchScan.test.jsx > reads the actual unmodified LC01 artwork through the existing reader 33ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/MSJC07Scan.test.jsx > retains actual MSJC07 original, metadata, two abilities and the admitted black unique cards
+AssertionError: expected [ 'BQ085', 'CQ26', 'JC094', …(7) ] to deeply equal [ 'JC094', 'JC095', 'JC096', …(2) ]
+
+- Expected
++ Received
+
+  [
++   "BQ085",
++   "CQ26",
+    "JC094",
+    "JC095",
+    "JC096",
++   "JZ52",
+    "WM059",
++   "XG27",
+    "XQ38",
++   "XQ39",
+  ]
+
+ ❯ src/game/MSJC07Scan.test.jsx:26:401
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 35 passed (36)
+      Tests  1 failed | 209 passed (210)
+   Start at  16:50:31
+   Duration  60.20s (transform 768ms, setup 3.27s, import 3.82s, tests 33.34s, environment 15.38s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+EXIT web-catalog-02 1
+
+RUN msjc0405-source-02 2026-10-21T16:51:32.256945+00:00
+["node", "tools/build-storage.mjs", "--", "node", "--test", "tools/cards/msjc0405-source.test.mjs"]
+✔ current MSJC04/MSJC05 use their complete pinned originals and immutable scans (266.257283ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 428.37812
+
+EXIT msjc0405-source-02 0
+
+RUN web-catalog-03-msjc07 2026-10-21T16:52:01.634776+00:00
+["node", "tools/build-storage.mjs", "--", "npm", "--prefix", "web", "test", "--", "--pool=forks", "--maxWorkers=1", "--no-file-parallelism", "--reporter=verbose", "src/game/MSJC07Scan.test.jsx"]
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --pool=forks --maxWorkers=1 --no-file-parallelism --reporter=verbose src/game/MSJC07Scan.test.jsx
+
+
+ RUN  v4.1.2 /workspace/audit-underground-100161b/next20-combined-dev/web
+
+ ✓ src/game/MSJC07Scan.test.jsx > retains actual MSJC07 original, metadata, two abilities and the admitted black unique cards 5ms
+ ✓ src/game/MSJC07Scan.test.jsx > agrees with actual WASM on 24/25/33 black and excludes the society from 50 cards 10ms
+ ✓ src/game/MSJC07Scan.test.jsx > uses normal paid real black unique search and displays stable server usage from restored views and next-turn reset 751ms
+ ✓ src/game/MSJC07Scan.test.jsx > omits game-use labels for older society projections with no new field 7ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  16:52:02
+   Duration  1.67s (transform 158ms, setup 108ms, import 209ms, tests 775ms, environment 466ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+EXIT web-catalog-03-msjc07 0
+
+FINAL {"recordedAt": "2026-10-21T16:52:58.039252+00:00", "ownedChangedFiles": 21, "insertions": 33, "deletions": 73, "web": {"selectedFiles": 36, "uniqueTests": 210, "run02": {"passed": 209, "failed": 1}, "run03Msjc07": {"passed": 4, "failed": 0}, "allUniqueTestsHavePassingFinalEvidence": true, "previouslyPassing35FilesNotRepeated": true}, "source": {"passed": 1, "failed": 0}, "typecheckExit": 0, "syntaxChecked": ["rust-game-wasm/tests/current-kernel.mjs", "web/src/game/testKernel.js", "tools/cards/msjc0405-source.test.mjs"], "syntaxAndScopedDiffCheckExit": 0, "changedAssertions": ["JC029 permanent/initiative icons from reviewed current source", "MSJC07 exact current admitted black unique card IDs"], "restoredPinnedOriginalHardlinks": 10, "copiedOriginalBytes": 0, "productionChanged": false, "opaqueHistoricalStatesChanged": false, "committed": false, "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"}

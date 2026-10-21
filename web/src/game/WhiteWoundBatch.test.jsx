@@ -3,13 +3,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { CardTile } from './CardTile';
 import { Table } from './Table';
 import { testView } from './testFixtures';
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 const definition = catalog.cards.find(c => c.id === 'LC06');
 const card = { ...definition, instanceId: 'lc06-controller2', cardId: 'LC06', owner: 'p3', controller: 'p2', region: 0, faceDown: false, exhausted: true, wounds: 1, damage: 0, defense: 1 };
 it('reads the actual full LC06 fields including its printed holy domain and exact original bytes', () => {

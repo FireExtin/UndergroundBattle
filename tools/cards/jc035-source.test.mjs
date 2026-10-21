@@ -18,8 +18,3 @@ test('JC035 binds the complete actual pinned blue attachment and leaves archival
  assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
  assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);assert.deepEqual(spec.openQuestionIds,[]);
 });
-test('JC035 retains the exact prior published kernel without adding the later card',async()=>{
- const old=await import('../../rust-game-wasm/tests/current88-kernel.mjs');
- assert.equal(old.catalog.cards.length,152);assert.equal(old.catalog.cards.some(c=>c.id==='JC035'),false);
- assert.equal(hash(old.moduleBytes),'5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3');
-});

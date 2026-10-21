@@ -19,9 +19,3 @@ test('XQ23 whole gray print and source artwork remain pinned without changing ar
  assert.equal(s.status,'completeGameplayFieldsForPinnedImage');assert.deepEqual(s.blockingFields,[]);assert.deepEqual(spec.openQuestionIds,[]);
  assert.equal(spec.selectionEnabled,false);assert.equal(spec.gameAcceptance,'notAccepted');assert.equal(spec.strategyUiPlaytest,'notRun');
 });
-test('XQ23 retains the exact prior published kernel without adding the later card',async()=>{
- const old=await import('../../rust-game-wasm/tests/current87-kernel.mjs');
- assert.equal(old.catalog.cards.length,151);assert.equal(old.catalog.cards.some(c=>c.id==='XQ23'),false);
- assert.equal(hash(old.moduleBytes),'f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed');
- assert.equal(old.catalog.engineVersion,'rust-v0.2.87-jc041-water-hidden-candidate');
-});

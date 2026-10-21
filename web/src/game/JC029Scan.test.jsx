@@ -9,7 +9,7 @@ import {validateDeckDraft} from './deckLibrary';
 const catalog=JSON.parse(k.catalog()),d=catalog.cards.find(c=>c.id==='JC029');
 const draft=(count=3,societyId=null)=>({id:'jc029-unit',name:'新生血族50',description:'',societyId,cards:[{cardId:'JC029',count},{cardId:'JC125',count:50-count}],rulesVersion:catalog.rulesVersion,cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:''});
 it('keeps the whole original and exactly one existing reveal ability alongside the finite green admission',()=>{
- expect(d).toMatchObject({name:'新生血族',kind:'character',subtypes:['吸血鬼'],cost:2,loyalty:['蓝色','蓝色'],color:'蓝',magic:'鲜血',defense:1,unique:false,deckCopyLimit:3,keywords:['袭击1'],permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:1,influence:0}});
+ expect(d).toMatchObject({name:'新生血族',kind:'character',subtypes:['吸血鬼'],cost:2,loyalty:['蓝色','蓝色'],color:'蓝',magic:'鲜血',defense:1,unique:false,deckCopyLimit:3,keywords:['袭击1'],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:0,combat:1,influence:1}});
  expect(d.abilities).toEqual([{key:'raid-1',label:'袭击1',timing:'fast',costs:[],triggered:true}]);
  for(const id of ['LC30','JC018','JC015'])expect(catalog.cards.some(c=>c.id===id)).toBe(true);expect(catalog.cards.some(c=>c.id==='XQ11')).toBe(false);
  const scan=JSON.parse(readFileSync(resolve('src/game/cardScansV034.fixture.json'),'utf8')).JC029;

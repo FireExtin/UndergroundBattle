@@ -91,9 +91,3 @@ async function runScenario(t, scenario, retained = false) {
     completeHttpCoreViewsAndNativeJournalsEqual: true, opaqueD1StatesEqual: true, originalReceiptsAfterReopen: true }));
 }
 for (const scenario of fixture.scenarios) test(`BQ035 ABI78 HTTP ${scenario.name}`, t => runScenario(t, scenario));
-
-test('retained published77 raw Native scenario keeps its old reducer, catalog, opaque D1 state and receipts through current79 Worker', async t => {
-  const old = JSON.parse(readFileSync(new URL('./fixtures/jc046-native-v077.json', import.meta.url), 'utf8')).scenarios.find(row => row.name === 'paid-seat0');
-  assert(old);
-  await runScenario(t, old, true);
-});

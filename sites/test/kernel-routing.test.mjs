@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import * as current from '../generated/hegemony_wasm.js';
 import { routeKernels } from '../src/kernel-router.mjs';
 import { historicalIdentities } from './fixtures/historical-rooms.mjs';
@@ -50,14 +50,14 @@ test('current ABI93 keeps the source bytes, reviewed prior definitions and exact
 });
 
 test('every historical tuple and altered identity rejects before any current state operation', async t => {
-  const stateOperations = ['view', 'apply', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
+  const stateOperations = ['view', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
   let interpreted = 0;
   const guarded = { ...current };
   for (const name of stateOperations) guarded[name] = () => { interpreted++; throw Error('A historical state must never reach the current reducer/projector'); };
   const routed = routeKernels(guarded);
-  assert.equal(historicalIdentities.length, 40);
+  assert.equal(historicalIdentities.length, 55);
   const reject = state => {
-    for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...stateOperations]) assert.throws(() => routed[name](state, 0, '{}', '1000'), isUnsupported);
+    for (const name of ['assertSupported', 'catalog', ...stateOperations]) assert.throws(() => routed[name](state, 0, '{}', '1000'), isUnsupported);
   };
   for (const { identity } of historicalIdentities) {
     // The router reads only this envelope. No legacy game is reduced/projected.
@@ -69,28 +69,7 @@ test('every historical tuple and altered identity rejects before any current sta
   t.diagnostic(JSON.stringify({ historicalTuplesRejected: historicalIdentities.length, alteredIdentityCases: 5, currentStateOperationsOnRejectedStates: interpreted }));
 });
 
-test('duplicate exact kernel identities reject instead of choosing an arbitrary reducer', () => {
-  const room = JSON.parse(current.newGame('ambiguous', 'LOCAL', 'duel', 'P0', 'watchers', '1'));
-  const ambiguous = routeKernels(current, [current]);
-  for (const operation of ['assertSupported', 'catalog', 'supportsPacing', 'view', 'applyRoom']) {
-    assert.throws(() => ambiguous[operation](room.state, 0, '{}', '0'), /Ambiguous frozen kernel identity/);
-  }
-});
-
-test('production Worker contains exactly current93 and all fifteen retained77-89/91/92 WASM modules', () => {
-  const retainedNames=[...Array.from({length:13},(_,i)=>'abi'+(77+i)), 'abi91', 'abi92'];
-  assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
-  const originals=retainedNames.map(name=>{
-    assert.deepEqual(readdirSync('generated/'+name).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
-    return readFileSync('generated/'+name+'/hegemony_wasm_bg.wasm');
-  });
-  const emitted=readdirSync('dist/server').filter(name=>name.endsWith('.wasm')).map(name=>readFileSync('dist/server/'+name));
-  assert.equal(emitted.length,16);
-  for(const original of [currentBytes,...originals])assert.equal(emitted.filter(bytes=>bytes.equals(original)).length,1,'Each exact module is emitted once');
-  assert(readFileSync('dist/server/index.js').length+emitted.reduce((n,b)=>n+b.length,0)<64*1024*1024);
-});
-
-test('engine83 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {
+test('current93 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation', () => {
   const original = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v057.json', import.meta.url), 'utf8')).accept.state;
   const prior59 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v059.json', import.meta.url), 'utf8')).accept.state;
   const prior60 = JSON.parse(readFileSync(new URL('./fixtures/xq37-native-v060.json', import.meta.url), 'utf8')).accept.state;
@@ -107,12 +86,12 @@ test('engine83 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and
     rules: 'hegemony-pdf-v1', cardPool: 'limited-v2.56-bq030-attachment-candidate', engine: 'rust-v0.2.61-bq030-attachment-candidate',
   } }); // Exact standalone BQ030 tuple, used only to exercise routing.
   let interpreted = 0;
-  const operations = ['view', 'apply', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
+  const operations = ['view', 'joinGame', 'joinGameWithDeck', 'applyRoom', 'pollRoom', 'quoteRoom'];
   const guarded = { ...current };
   for (const name of operations) guarded[name] = () => { interpreted++; throw Error('Historical room reached reducer'); };
   const routed = routeKernels(guarded);
   for (const state of [original, prior59, prior60, prior61, prior62, prior63, prior64, prior72, prior73, withdrawn, separateBQ030]) {
-    for (const name of ['assertSupported', 'catalog', 'supportsPacing', ...operations]) assert.throws(() => routed[name](state, 0, '{}', '0'), isUnsupported);
+    for (const name of ['assertSupported', 'catalog', ...operations]) assert.throws(() => routed[name](state, 0, '{}', '0'), isUnsupported);
   }
   assert.equal(interpreted, 0);
 });

@@ -3,11 +3,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { CardTile, visibleCard } from './CardTile';
 import { ReadModal } from './ReadModal';
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 const blank = catalog.cards.find(c => c.id === 'JC125');
 const card = { ...blank, cardId: blank.id, instanceId: 'protected', owner: 'p2', controller: 'p0', region: 2,
   exhausted: false, faceDown: false, currentDamagePrevention: true, defense: 2,

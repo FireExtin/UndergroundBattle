@@ -52,10 +52,9 @@ const copy = (from, relative, directory = false) => copies.push({ from, relative
 for (const file of ['package.json', 'package-lock.json', 'wrangler.jsonc', 'drizzle.config.ts', 'README.md', '.openai/hosting.json']) copy(project + file, file);
 for (const directory of ['src', 'db', 'drizzle', 'test', 'scripts']) copy(project + directory, directory, true);
 copy(repository + 'tools/build-storage.mjs', 'tools/build-storage.mjs');
-for (const file of readdirSync(repository + 'tools').filter(name => name === 'frozen-kernels.mjs' || name.endsWith('-oracle.mjs'))) copy(repository + 'tools/' + file, 'tools/' + file);
+for (const file of readdirSync(repository + 'tools').filter(name => name.endsWith('-oracle.mjs'))) copy(repository + 'tools/' + file, 'tools/' + file);
 for (const file of ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml']) copy(repository + file, file);
 copy(repository + 'rust-game-wasm/build.sh', 'rust-game-wasm/build.sh');
-copy(repository + 'rust-game-wasm/frozen', 'rust-game-wasm/frozen', true);
 copy(repository + 'rust-game-wasm/tests', 'rust-game-wasm/tests', true);
 copy(repository + 'web/src', 'web/src', true);
 copy(repository + 'web/public', 'web/public', true);
@@ -66,11 +65,10 @@ for (const crate of ['rust-game', 'rust-game-wasm']) {
 }
 // Only executable card definitions belong in the bounded Site source.
 // Research/evidence indexes can contain every archived record and stay private in the original repository.
-const removedDirectories = ['rust-game/data'];
+const removedDirectories = ['rust-game/data', 'rust-game-wasm/frozen', 'tools/frozen-kernels.mjs'];
 copy(repository + 'rust-game/data/cards.json', 'rust-game/data/cards.json');
 for (const file of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) copy(repository + 'rust-game-wasm/pkg/' + file, 'rust-game-wasm/pkg/' + file);
-// Unlisted old kernels are not part of a candidate build. The retained ABI77–89
-// and ABI91 identities are source; exact runtimes must be supplied externally to the build.
+// The standalone Site ships only the current core. Historical evidence stays in Git.
 const wasmDestination = path.join(destination, 'rust-game-wasm');
 if (existsSync(wasmDestination)) {
   for (const name of readdirSync(wasmDestination).filter(name => /^legacy-v0\.2\.\d+(?:-resource-policy)?$/.test(name))) removedDirectories.push('rust-game-wasm/' + name);

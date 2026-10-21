@@ -115,33 +115,3 @@ for (const name of ['pending-04', 'response-00', 'pending-13']) test(`WM062 ABI8
   await h.reopen();await reject('state',0);
   t.diagnostic(JSON.stringify({invalidNativeName:name,known80Catalog:true,httpRestoreRejections:4,opaqueD1StateUnchanged:true,noCommandOrJournal:true,reopened:true}));
 });
-
-test('published v60 ABI78 keeps its exact reducer, private view, D1 state and original receipts through candidate80 Worker', async t => {
-  const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
-  const scenario=loadBq035Fixture().scenarios.find(s=>s.name==='wm023-duel-paid-conversion-blood-knight-move');
-  assert(scenario); await runScenario(t,scenario,144);
-});
-
-test('published v61 ABI79 retains exact JZ46 reducer, opaque state and old receipts through candidate80 Worker',async t=>{
- const {loadFixture:load79}=await import(pathToFileURL(root+'tools/jz46-oracle.mjs').href);
- const scenario=load79().scenarios.find(s=>s.name==='play-fresh-normalization');
- assert(scenario);await runScenario(t,scenario,145);
-});
-test('published ABI77 kernel-created room retains opaque state and original receipts through candidate80 Worker',async t=>{
- const {kernel:old77}=await import(pathToFileURL(root+'rust-game-wasm/tests/legacy77-kernel.mjs').href);
- const created=JSON.parse(old77.newGame('770000000000000000000001','LOCAL77','duel','P0','watchers','18446744073709551615'));
- const joined=JSON.parse(old77.joinGame(created.state,'P1','hunters'));
- let state=joined.state;
- const initial={state,views:[0,1].map(seat=>JSON.parse(old77.view(state,seat)))};
- const steps=[];
- // The actual retained reducer generates every state; no room-ID or version
- // rewrite of a recorded old opaque state is permitted.
- for(const [seat,kind] of [[0,'ready'],[1,'ready'],[0,'start']]){
-  const command={commandId:'retained77-'+kind+'-'+seat,expectedVersion:JSON.parse(state).revision,action:{kind:'game',action:{kind}}};
-  const expected=JSON.parse(old77.applyRoom(state,seat,JSON.stringify(command),'0'));
-  assert.equal(expected.outcome,'accepted');
-  steps.push({state,seat,command,expected,views:[0,1].map(s=>JSON.parse(old77.view(expected.state,s)))});
-  state=expected.state;
- }
- await runScenario(t,{name:'retained77-actual-kernel-created-room',reference:'exact published77 WASM',initial,steps},143);
-});

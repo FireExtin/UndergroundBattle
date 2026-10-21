@@ -3,11 +3,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { CardTile, visibleCard } from './CardTile';
 import { ReadModal } from './ReadModal';
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC116', '5a314d56e3d6c660f381e45710dbf0964cf8560cfa170906b3d4e938abb90e16', { cost: 1, loyalty: [], magic: '', subtypes: ['装备', '武器'], ruleTraits: { retreat: true } }],
   ['JC020', '2edb40dfa18d2df22b5b397957d0a03642ade3cee1a10f965bb5e55b0c4f7223', { cost: 2, loyalty: ['绿色'], magic: '', subtypes: ['装备', '武器'] }],

@@ -1,34 +1,24 @@
-import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 const project = fileURLToPath(new URL('../', import.meta.url));
 // The private Site source is a bounded standalone checkout with web/core sources.
 const root = existsSync(project + 'web/package.json') ? project : fileURLToPath(new URL('../../', import.meta.url));
 const { buildEnvironment } = await import(pathToFileURL(root + 'tools/build-storage.mjs').href);
-const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79, stageFrozenAbi80, stageFrozenAbi81, stageFrozenAbi82, stageFrozenAbi83, stageFrozenAbi84, stageFrozenAbi85, stageFrozenAbi86, stageFrozenAbi87, stageFrozenAbi88, stageFrozenAbi89, stageFrozenAbi91, stageFrozenAbi92 } = await import(pathToFileURL(root + 'tools/frozen-kernels.mjs').href);
 const buildEnv = buildEnvironment(root, [root + 'web/dist', project + 'public', project + 'generated', project + 'dist', project + '.wrangler', project + '.wrangler/config']);
+const abi = await import(pathToFileURL(root + 'rust-game-wasm/pkg/hegemony_wasm.js'));
+abi.initSync({ module: readFileSync(root + 'rust-game-wasm/pkg/hegemony_wasm_bg.wasm') });
+const catalog = JSON.parse(abi.catalog()), definitions = JSON.parse(readFileSync(root + 'rust-game/data/cards.json', 'utf8'));
+for (const field of ['rulesVersion', 'cardPoolVersion', 'engineVersion']) {
+  if (catalog[field] !== definitions[field]) throw Error(`Current WASM ${field} differs from source; rebuild it before packaging.`);
+}
 execFileSync('npm', ['run', 'build'], { cwd: root + 'web', stdio: 'inherit', env: buildEnv });
 rmSync(project + 'public', { recursive: true, force: true });
 cpSync(root + 'web/dist', project + 'public', { recursive: true });
-// Remove stale deployment modules; frozen sources remain recoverable in Git.
+// Remove prior generated modules so the output contains only the current core.
 rmSync(project + 'generated', { recursive: true, force: true });
 mkdirSync(project + 'generated', { recursive: true });
 for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(root + 'rust-game-wasm/pkg/' + name, project + 'generated/' + name);
-stageFrozenAbi77(project + 'generated/abi77');
-stageFrozenAbi78(project + 'generated/abi78');
-stageFrozenAbi79(project + 'generated/abi79');
-stageFrozenAbi80(project + 'generated/abi80');
-stageFrozenAbi81(project + 'generated/abi81');
-stageFrozenAbi82(project + 'generated/abi82');
-stageFrozenAbi83(project + 'generated/abi83');
-stageFrozenAbi84(project + 'generated/abi84');
-stageFrozenAbi85(project + 'generated/abi85');
-stageFrozenAbi86(project + 'generated/abi86');
-stageFrozenAbi87(project + 'generated/abi87');
-stageFrozenAbi88(project + 'generated/abi88');
-stageFrozenAbi89(project + 'generated/abi89');
-stageFrozenAbi91(project + 'generated/abi91');
-stageFrozenAbi92(project + 'generated/abi92');
 rmSync(project + 'dist', { recursive: true, force: true });
 const config = project + '.wrangler/config';
 mkdirSync(config, { recursive: true });

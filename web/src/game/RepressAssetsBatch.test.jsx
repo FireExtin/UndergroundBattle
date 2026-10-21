@@ -3,12 +3,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { ReadModal } from './ReadModal';
 import { CardTile } from './CardTile';
 
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JZ74', '3915ef2565eff330862507076c052942322e59f47039f31f7c0ebe658181f085', { name: '意外事故', cost: 1, loyalty: [], subtypes: ['突发状况'], abilities: [{ key: 'repress-draw', timing: 'fast', costs: [], triggered: false }] }],
   ['JC126', '33ed0032c1e6983f25be998c66891f137f2f0975031493883f6cc1a9bb5e40e0', { name: '产业扩张', cost: 3, loyalty: ['蓝色'], subtypes: ['策略'], abilities: [{ key: 'expand-assets', timing: 'standard', costs: [], triggered: false }] }],

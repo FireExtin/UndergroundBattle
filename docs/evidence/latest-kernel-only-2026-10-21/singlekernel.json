@@ -1,0 +1,47 @@
+{
+  "scope": "Three sequential local Miniflare/workerd starts with identical health/create/read workload. Process-tree RSS sums may double-count shared pages; not production memory or guaranteed latency.",
+  "results": [
+    {
+      "label": "singlekernel-0",
+      "wasmModules": 1,
+      "healthMs": 271.76609099999996,
+      "createMs": 31.314862999999946,
+      "readyAndNewRoomMs": 538.5781020000001,
+      "nodeMaxRssKiB": 240288,
+      "nodeRssBytes": 246054912,
+      "currentRoomPassed": true,
+      "iteration": 0,
+      "processTreePeakRssBytes": 367136768,
+      "log": "/workspace/audit-underground-100161b/single-kernel-measurements/singlekernel-0.log",
+      "samplingIntervalMs": 20
+    },
+    {
+      "label": "singlekernel-1",
+      "wasmModules": 1,
+      "healthMs": 286.47865200000007,
+      "createMs": 24.874829999999974,
+      "readyAndNewRoomMs": 572.5771770000001,
+      "nodeMaxRssKiB": 238884,
+      "nodeRssBytes": 226193408,
+      "currentRoomPassed": true,
+      "iteration": 1,
+      "processTreePeakRssBytes": 359731200,
+      "log": "/workspace/audit-underground-100161b/single-kernel-measurements/singlekernel-1.log",
+      "samplingIntervalMs": 20
+    },
+    {
+      "label": "singlekernel-2",
+      "wasmModules": 1,
+      "healthMs": 278.959971,
+      "createMs": 24.817788999999948,
+      "readyAndNewRoomMs": 559.138448,
+      "nodeMaxRssKiB": 239260,
+      "nodeRssBytes": 226357248,
+      "currentRoomPassed": true,
+      "iteration": 2,
+      "processTreePeakRssBytes": 360513536,
+      "log": "/workspace/audit-underground-100161b/single-kernel-measurements/singlekernel-2.log",
+      "samplingIntervalMs": 20
+    }
+  ]
+}

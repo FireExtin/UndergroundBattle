@@ -2,12 +2,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { DeckLibrary } from './DeckLibraryPanel';
 import { createDeckDraft, validateDeckDraft, saveDeckLibrary, readDeckLibrary, DECK_LIBRARY_STORAGE_KEY } from './deckLibrary';
 
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 function draft(other) {
   // Keep the finite cards used by this original 50-card regression as the pool grows.
   const red = ['JC042', 'JC049', 'JC047', 'XQ17', 'JZ31'];

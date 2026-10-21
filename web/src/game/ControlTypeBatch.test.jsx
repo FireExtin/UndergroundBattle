@@ -3,11 +3,9 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {render,screen,fireEvent} from '@testing-library/react';
 import {expect,it,vi} from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {CardTile,visibleCard} from './CardTile';
 import {ReadModal} from './ReadModal';
-kernel.initSync({module:frozen77Bytes});
-const catalog=JSON.parse(kernel.catalog());
 const definition=catalog.cards.find(c=>c.id==='LC01');
 const card={...definition,cardId:'LC01',instanceId:'live-LC01',region:0,owner:'p2',controller:'p0',exhausted:false,faceDown:false,currentSubtypes:['法师','吸血鬼','奴仆']};
 it('shows authoritative current types while keeping printed types and original artwork unchanged',()=>{

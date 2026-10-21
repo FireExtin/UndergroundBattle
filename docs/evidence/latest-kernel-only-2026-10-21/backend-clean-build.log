@@ -1,0 +1,13 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+Total Upload: 4263.83 KiB / gzip: 1144.22 KiB
+Your Worker has access to the following bindings:
+Binding                     Resource         
+env.DB (hegemony-test)      D1 Database      
+
+--dry-run: exiting now.
+{"fixtureRegistry":false,"dist":"/workspace/audit-underground-100161b/single-kernel-build/backend-clean-output/candidate-worker/dist","frontendBuilt":false,"deployed":false}

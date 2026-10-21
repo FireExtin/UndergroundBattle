@@ -1,0 +1,18 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --pool=forks --maxWorkers=1 --no-file-parallelism src/game/api.test.ts src/game/useGame.test.tsx src/game/RecoveryReviewRegression.test.tsx src/game/QuotaRetirementReload.test.tsx
+
+
+ RUN  v4.1.2 /workspace/audit-underground-100161b/next20-combined-dev/web
+
+
+ Test Files  4 passed (4)
+      Tests  52 passed (52)
+   Start at  16:53:53
+   Duration  4.91s (transform 531ms, setup 353ms, import 662ms, tests 1.85s, environment 1.59s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

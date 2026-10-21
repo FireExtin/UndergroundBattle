@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T16:58:12.720376+00:00",
+  "baselineCommit": "9aa4fda499c25268a632fa578c31a04c70eac6e8",
+  "branch": "progress/latest-kernel-only-20261021",
+  "status": "WIP acceptance; current-only runtime built and targeted tests passed; fixed source hash recorded by enclosing Git commit and external checkpoint",
+  "runtimeSourceBeforeCleanup": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "rustOrCardRulesChanged": false,
+  "currentKernel": {
+    "engine": "rust-v0.2.93-batch20-next",
+    "cardPool": "limited-v2.83-batch20-next",
+    "rules": "hegemony-pdf-v1",
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "runtimeModules": {
+    "before": 16,
+    "after": 1,
+    "beforeWasmBytes": 53262284,
+    "afterWasmBytes": 4315979,
+    "removedWasmBytes": 48946305
+  },
+  "measurements": {
+    "healthMs": {
+      "beforeMedian": 1120.840675,
+      "beforeRange": [
+        1085.645422,
+        1216.444962
+      ],
+      "afterMedian": 278.959971,
+      "afterRange": [
+        271.76609099999996,
+        286.47865200000007
+      ],
+      "decreasePercent": 75.11154107607668
+    },
+    "createMs": {
+      "beforeMedian": 31.004159000000072,
+      "beforeRange": [
+        26.52725099999998,
+        37.13745000000017
+      ],
+      "afterMedian": 24.874829999999974,
+      "afterRange": [
+        24.817788999999948,
+        31.314862999999946
+      ],
+      "decreasePercent": 19.769376747165058
+    },
+    "readyAndNewRoomMs": {
+      "beforeMedian": 1374.4700120000002,
+      "beforeRange": [
+        1363.8779980000002,
+        1535.93473
+      ],
+      "afterMedian": 559.138448,
+      "afterRange": [
+        538.5781020000001,
+        572.5771770000001
+      ],
+      "decreasePercent": 59.31970555062209
+    },
+    "nodeMaxRssKiB": {
+      "beforeMedian": 424892,
+      "beforeRange": [
+        424248,
+        529404
+      ],
+      "afterMedian": 239260,
+      "afterRange": [
+        238884,
+        240288
+      ],
+      "decreasePercent": 43.689219848808634
+    },
+    "processTreePeakRssBytes": {
+      "beforeMedian": 614473728,
+      "beforeRange": [
+        558305280,
+        669061120
+      ],
+      "afterMedian": 360513536,
+      "afterRange": [
+        359731200,
+        367136768
+      ],
+      "decreasePercent": 41.32970710181445
+    }
+  },
+  "measurementScope": "Three sequential local Miniflare/workerd starts with identical health/create/read workload. Process-tree RSS sums may double-count shared pages; not production memory or guaranteed latency.",
+  "measurementConditions": "Three sequential starts per version, same local Node/Miniflare/workerd and health/migrate/create/state workload; no other task test/build process during either measurement set. Separate new synthetic D1 database each run. Not randomized production performance; process-tree RSS can double-count shared pages. Build footprint is output file size, not peak temporary disk consumption.",
+  "sourceFileSha256": {
+    "sites/src/http.mjs": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+    "sites/src/index.mjs": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401",
+    "sites/src/kernel-router.mjs": "78f0130912c7d5e5c1b0c1fbca12f886824594f440316cdb706873eeb5bf1f9c",
+    "sites/src/kernel.mjs": "595166e42bb9dd793af79eacfdbc691017670c33b01d8b50d91a8bdfd29cd01c",
+    "sites/src/pass-history.mjs": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8",
+    "sites/src/service.mjs": "340db1869bfbd11a8faa7d8feac5a0176c69845fb667083f3e0e4180f4e64cfe",
+    "sites/src/storage-errors.mjs": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+    "sites/src/store.mjs": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811",
+    "sites/scripts/build.mjs": "770727f1fe7251bfdf7d57b3304b7ad52160a9d250f7cfea0217b187b078a8ca",
+    "sites/scripts/build-backend-test.mjs": "d002124a664d05debbc30b141dfbd121b235f9787b7cf46f85796250226709a2",
+    "sites/scripts/stage-source.mjs": "eaed83941dffe4b4b8ddeb04246f0628556a622b0194afe97dba2d80e1c862ee",
+    "tools/build-current-clock-worker.mjs": "cfa32c9af6870dcfe52ca0192feafa4d4dd70b3661e146d7bc1d62783fce8fb9"
+  },
+  "tests": {
+    "productionBuild": "passed including current source/catalog identity check",
+    "currentGuardBindingHttpD1": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "rejectedIdentityTuples": 55,
+      "retiredIdentityHttpRejections": 60
+    },
+    "serviceHostAndStorageRetry": {
+      "passed": 12,
+      "failed": 0
+    },
+    "webCurrentCatalogAndNewRoom": {
+      "files": 36,
+      "uniqueTests": 210,
+      "initialRunAfterLoaderFix": {
+        "passed": 209,
+        "failed": 1
+      },
+      "correctedFileRerun": {
+        "file": "MSJC07Scan.test.jsx",
+        "passed": 4,
+        "failed": 0
+      },
+      "remaining35FilesNotRerun": true,
+      "oldViewsUsedOnlyAsComponentInputs": true
+    },
+    "webVersionRetirementRecovery": {
+      "files": 4,
+      "passed": 52,
+      "failed": 0
+    },
+    "currentSocietySource": {
+      "passed": 1,
+      "failed": 0
+    },
+    "webTypecheck": "passed",
+    "backendCleanBuild": "passed in new minimal directory with no generated/dist/frozen inputs; one current module; health/create/read passed",
+    "finalFullSuite": "not run; historical mechanism fixtures require native regeneration for current identity. Existing meaningful regression tests retained, not disabled to conceal failures.",
+    "newBrowserOrIndependentReview": "not performed by author",
+    "finalIntegrationAfterWhitelistDeletion": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "notAddedToUniqueTestCount": true
+    }
+  },
+  "reviewFindingsCovered": [
+    "B2-IR-01 current identity and one paced protocol; concurrent/receipt/reopen/u64 assertions retained",
+    "B2-IR-02 clean backend build uses only current input; no ABI92 import or staging"
+  ],
+  "retainedEvidenceBoundary": {
+    "runtimeOldKernels": false,
+    "packagingOldKernels": false,
+    "historicalOriginalBytesPreservedOutsideCurrentDelivery": true,
+    "historicalMechanismFixtureLoadersRemainTestOnly": true,
+    "historicalFixturesNotRelabelled": true,
+    "userDatabasesUntouched": true
+  },
+  "publication": {
+    "newDeploymentRequested": false,
+    "v75WithdrawnFromQueue": true,
+    "v74ExistingDeployment": {
+      "observedAt": "2026-10-21 16:56:41 UTC",
+      "result": {
+        "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+        "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+        "title": "隐秘世界 · 霸权",
+        "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+        "type": "publish",
+        "status": "pending",
+        "url": null,
+        "has_mcp": false,
+        "screenshot_asset_pointer": null,
+        "provider_deployment_id": null,
+        "failure_message": null,
+        "env_set_revision": 0,
+        "updated_at": "2026-10-21T15:43:22.880209+00:00"
+      }
+    }
+  },
+  "logs": {
+    "single-kernel-build-01.log": {
+      "bytes": 1734,
+      "sha256": "6c151dbb26478bf66dc3cde400ec00ce2aa5e08f673f6f90189aa54b35553c00"
+    },
+    "single-kernel-build-02.log": {
+      "bytes": 1734,
+      "sha256": "6c7c98dfdbe6c24efcdee23590614f11aea501462571a8fcc2f1734a691f4d35"
+    },
+    "single-kernel-build-final.log": {
+      "bytes": 1734,
+      "sha256": "cc6ae59e0897c05a6da6d97f0d78e1b9e0a90508c3040f58778025dea2d0f30b"
+    },
+    "single-kernel-guard-http-01.log": {
+      "bytes": 1234,
+      "sha256": "95bd34b5199ec6e321c1189b087ffd3f3bb1077d36e5912a4cb2ccd7a9ad9974"
+    },
+    "single-kernel-guard-http-02.log": {
+      "bytes": 1580,
+      "sha256": "ce13550bd3a946eb9f82997c841eccd5b5fb0ba12227c817f930c198cd388bc3"
+    },
+    "current-clock-build.log": {
+      "bytes": 187,
+      "sha256": "db04127e0212fa381b99492c44ee16fc1cae5839c5e967344e8e3a39159b200f"
+    },
+    "service-current-host.log": {
+      "bytes": 1697,
+      "sha256": "a6415ef99ba0c61308eea5d45565bfb5488947a3c79aada465436b17427d071b"
+    },
+    "web-current-catalog.log": {
+      "bytes": 60280,
+      "sha256": "9b7eeb8dec1025b25391d9f48fd11815ed56fc4b053658e9e3c123ffb7227a5d"
+    },
+    "web-retired-room.log": {
+      "bytes": 690,
+      "sha256": "0ef3bba4c24c5933cdabdb79e76cb85bccfabb94b6f5b34e51ea406b28388438"
+    },
+    "backend-clean-build.log": {
+      "bytes": 610,
+      "sha256": "8387eee09cbd5c2f37197edf8d7970370eebefc8e8021fc68b32c36b80275eaa"
+    },
+    "backend-clean-start.log": {
+      "bytes": 202,
+      "sha256": "06acf3e2782a5032c5bca4f398c5a69b06f073e3a8972d92640d1e2be926e8fc"
+    },
+    "integration-single-protocol-final.log": {
+      "bytes": 686,
+      "sha256": "6a981fd3985f56700efe005443469a11ac56d4d92876215d3c1be158fc71a917"
+    }
+  },
+  "cleanBackendFiles": [
+    {
+      "file": "a0bb357ffce798d549aef8ad867be6221809928b-hegemony_wasm_bg.wasm",
+      "bytes": 4315979,
+      "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+    }
+  ]
+}

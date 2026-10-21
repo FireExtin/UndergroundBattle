@@ -1,0 +1,34 @@
+{
+  "sourceBase": "9aa4fda499c25268a632fa578c31a04c70eac6e8",
+  "sourceStatus": "uncommitted single-kernel cleanup; Rust core unchanged",
+  "wasmModules": [
+    {
+      "file": "a0bb357ffce798d549aef8ad867be6221809928b-hegemony_wasm_bg.wasm",
+      "bytes": 4315979,
+      "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+    }
+  ],
+  "wasmBytes": 4315979,
+  "directories": {
+    "generated": {
+      "files": 2,
+      "apparentBytes": 4334182,
+      "allocatedBytes": 4337664
+    },
+    "dist": {
+      "files": 214,
+      "apparentBytes": 134836916,
+      "allocatedBytes": 135290880
+    },
+    "public": {
+      "files": 209,
+      "apparentBytes": 130386175,
+      "allocatedBytes": 130826240
+    },
+    "webDist": {
+      "files": 209,
+      "apparentBytes": 130386175,
+      "allocatedBytes": 130826240
+    }
+  }
+}

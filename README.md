@@ -13,15 +13,15 @@
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
 | 第一批后续 | 空秘社区P2修复通过最小源码独立补验；v74在持续授权后已创建部署，当前pending。v73已有一局8回合自然完局及终局刷新，不是20卡全机制验收。固定7f的Sites最终完整运行736通过、0失败 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
-| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。Native定向129、UI180、构建/启动、35机制及8秘社区Native/WASM场景通过；已保存v75，等待既有v74部署结束后发布，待验收 |
+| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。Native定向129、UI180、构建/启动、35机制及8秘社区Native/WASM场景通过；旧多核v75已保存但退出发布队列；按16:30用户新指令准备仅ABI93的单核候选，待独立检查和验收 |
 
-[游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署。
+[游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署，现已退出发布队列。
 
 Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go正式架构、WebSocket路线和计划目录不是当前实现；历史内容仍可从Git历史查看。
 
 ## 已发布v73的卡牌与玩法范围
 
-下表统计v73冻结版本；当前分支第二批ABI93候选为193张（角色121、事务34、附属28、地区10），另列秘社仍10张，尚未发布。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，已有牌桌使用其自己的 `/api/rooms/{roomId}/catalog`。
+下表统计v73冻结版本；当前分支第二批ABI93候选为193张（角色121、事务34、附属28、地区10），另列秘社仍10张，尚未发布。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，当前身份牌桌使用 `/api/rooms/{roomId}/catalog`；单核候选拒绝旧身份房间并提示新开。
 
 | 目录类型 | 数量 |
 | --- | ---: |
@@ -47,7 +47,7 @@ Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go�
 | 房间语义 | 带版本命令、可信服务端时钟、响应期限、暂停与恢复 | [room.rs](rust-game/src/room.rs) |
 | Native宿主 | Axum HTTP、席位令牌、SQLite状态/日志/命令回执；另有SSE接口 | [rust-game](rust-game/README.md) |
 | WASM边界 | 编译同一Rust规则核，供服务端JS宿主调用；不复制一套JS规则 | [rust-game-wasm](rust-game-wasm/README.md) |
-| Sites宿主 | Worker HTTP、D1、创建/加入回执、命令CAS事务、旧内核分派、静态资源 | [sites](sites/README.md) |
+| Sites宿主 | Worker HTTP、D1、创建/加入回执、命令CAS事务、当前版本校验、静态资源 | [sites](sites/README.md) |
 | 玩家客户端 | React/TypeScript大厅、牌组与牌桌；提交服务端提供的动作并显示本人视图 | [web/src/game](web/src/game/README.md) |
 | 构建和研究工具 | 磁盘/内存预检、冻结输入校验、卡图与来源检查、历史证据工具 | [tools](tools/) |
 | 原始资料 / 文档 | 规则与卡图依据、历史设计和验收证据；不是自动生效的规则实现 | [resource](resource/)、[docs](docs/README.md) |
@@ -116,26 +116,17 @@ node tools/build-storage.mjs -- cargo install wasm-bindgen-cli --version 0.2.104
 bash rust-game-wasm/build.sh
 ```
 
-当前输出为被Git忽略的 `rust-game-wasm/pkg/`。Sites及不少Web/工具测试还需要精确的历史运行输入：
+当前输出为被Git忽略的 `rust-game-wasm/pkg/`。**当前构建与运行只需要这一套ABI93内核**，不需要ABI77–92原件。构建清空旧的generated与dist产物，Worker只导入当前JS/WASM；Sites源码同步也删除先前副本中的冻结内核目录。
 
-```text
-$UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi77/…
-…
-$UNDERGROUNDBATTLE_BUILD_ROOT/frozen-kernels/abi89/…
-每个目录：hegemony_wasm.js、hegemony_wasm_bg.wasm.gz
-```
+用户于2026-10-21 16:30明确取消旧牌桌兼容。单核候选只接受当前 `hegemony-pdf-v1` / `limited-v2.83-batch20-next` / `rust-v0.2.93-batch20-next` 完整身份；旧房间与旧创建、加入、命令回执均返回410 `unsupported_room_version`，提示新建牌桌。旧数据保留，不迁移、不把旧opaque状态送入新核。Native服务同样只接受当前身份。
 
-也可用 `HEGEMONY_FROZEN_ABI77_DIR` 至 `HEGEMONY_FROZEN_ABI89_DIR`、`HEGEMONY_FROZEN_ABI91_DIR`、`HEGEMONY_FROZEN_ABI92_DIR` 分别指定目录；91/92也沿同一目录约定提供JS与gzip。Git中保存[身份与来源绑定](rust-game-wasm/frozen/)，运行字节是维护者提供的外部固定输入。**干净克隆并不自带这些旧二进制**；缺失时校验会停止，不能通过当前源码重编旧ABI来补齐。
+房间外层schema为3，内部Game schema为2；现有状态完整性验证仍保留。JS只读Rust导出的短身份，完整状态保持opaque字符串，避免损坏u64种子。移除的是旧版本执行分支，不是精度、付费回执、CAS或恢复校验。
 
-ABI77–88取自已核验迁移包；ABI89必须使用v71的P2修复后原件。旧5056迁移包中的ABI89不能替代它。v71 WASM为3471247字节，SHA256 `df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de`；输入包、运输压缩哈希及准备说明见[本地整改记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md)。
-
-本分支候选Worker包含 **当前ABI93 + 精确原始ABI77–89、91、92，共16个内核**。ABI92取自保存版v74，原字节已核验并接入，发布状态仍明确为pending；保存输入不等于已上线。按完整规则/卡池/引擎身份匹配；未保留的版本明确拒绝，不将旧opaque状态改写后送入新核。房间外层schema为3，内部Game schema为2。JS宿主将完整状态视为opaque字符串，避免破坏u64种子。
-
-本分支ABI93与前期整改只作用于新版本房间；保留历史内核也保留其原版缺陷。Native二进制仍只接受当前内核身份的数据库，不具有Sites的多内核兼容能力；不存在通用旧SQLite存档迁移。
+历史源码、身份清单和审查输入保留在Git及原证据目录中。[历史fixture工具](tools/frozen-kernels.mjs)仍供尚未迁到当前Native证据的旧机制回归使用；它已无旧核打包函数，不参与构建或运行。这些测试需要原始历史输入，不能通过改版本字段或重编替代原件，且不代表当前候选验收。
 
 ## 本地测试与已知验证边界
 
-按改动范围选择运行，以下全部是本地命令，**不是GitHub CI**。Web、Sites与冻结工具测试先完成上节依赖和原始输入准备。
+按改动范围选择运行，以下全部是本地命令，**不是GitHub CI**。先完成依赖和当前WASM构建。历史机制回归另需其精确原件；默认Web/Sites全套仍含这些历史用例，尚未全部迁到当前Native证据，不能把下面的当前定向测试称作全套。
 
 ```sh
 # Rust默认workspace
@@ -147,19 +138,21 @@ bash rust-game-wasm/verify.sh
 # React组件与客户端测试
 npm --prefix web test -- --maxWorkers=2
 
-# 来源与冻结输入工具检查
+# 来源与工具检查（历史oracle另需其原始输入）
 node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```
 
-本分支Sites全套测试还需要已构建的16模块Worker（当前候选ABI93及精确原件77–89、91、92；ABI92保存版的部署仍pending，v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
+当前单核的HTTP测试使用独立固定时钟wrapper，目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
 
 ```sh
-node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server"
-HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server" \
-  npm --prefix sites test
+node tools/build-current-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server"
+cd sites
+HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/current-worker/server" \
+  node --test --test-concurrency=1 test/kernel-binding.test.mjs test/kernel-routing.test.mjs \
+  test/integration.test.mjs test/current-kernel-http.test.mjs test/storage-retry.test.mjs test/session-host.test.mjs
 ```
 
-该包装器只供测试，不能发布。不要用旧版专用wrapper的模块数或陈旧脚本输出证明当前构建通过。
+wrapper只供本地测试，不能发布。当前单核的改动、实测体积/启动/内存、已通过项及未迁移历史测试边界见[清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)。此前旧版专用多核wrapper已删除；不要拿它的历史结果证明当前构建通过。
 
 此前候选整改的实际结果如下；本README更新没有为改写状态重复运行全套：
 
@@ -197,4 +190,4 @@ Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均�
 
 2026-10-21 15:41 UTC收到对现有公开站所有修复的明确持续授权后，同一v74官方部署重试一次。调用返回Internal error，但只读核对确认已创建部署 `appgdep_6ad8dd9acc1c8191912336351e022f25`；后端状态自15:43:22 UTC起仍为pending，未提供URL或失败原因。没有重复请求。见[发布记录](docs/evidence/batch20-2026-10-21/publication-v74.json)。
 
-第二批通过官方helper完成精确源码推送、Web/Worker构建及打包，已保存为v75，Site源码 `cd32602ce1acd6d65a0bbed8d86f4b7d01885d82`，对应产品候选 `34e51ce1aa3da5676569875156199b1dcebfa599`。已接入保存版v74的精确ABI92原件，16模块构建、冻结工具12项、路由5项及16内核HTTP/D1检查通过。v75未请求部署，避免与pending的v74并发覆盖。保存回执、本地与服务端归档哈希的比对边界见[版本记录](docs/evidence/batch20-next-2026-10-21/publication-v75.json)。全套、独立复审和真实浏览器对战仍待发布后集中进行。
+第二批通过官方helper完成精确源码推送、Web/Worker构建及打包，已保存为v75，Site源码 `cd32602ce1acd6d65a0bbed8d86f4b7d01885d82`，对应产品候选 `34e51ce1aa3da5676569875156199b1dcebfa599`。已接入保存版v74的精确ABI92原件，16模块构建、冻结工具12项、路由5项及16内核HTTP/D1检查通过。v75未请求部署，避免与pending的v74并发覆盖。保存回执、本地与服务端归档哈希的比对边界见[版本记录](docs/evidence/batch20-next-2026-10-21/publication-v75.json)。全套和真实浏览器对战仍未完成。2026-10-21 16:30用户明确取消旧桌兼容后，v75已退出发布队列，不再等待v74结束后自动发布；下一候选只含当前ABI93。固定9aa4fda第二批独立复审由协调任务负责，不覆盖后续单核清理。

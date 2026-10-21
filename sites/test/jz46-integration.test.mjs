@@ -116,9 +116,3 @@ for (const name of ['pending-00', 'unknown-front', 'play-stack-exhausted']) test
   await h.reopen();await reject('state',0);
   t.diagnostic(JSON.stringify({invalidNativeName:name,known79Catalog:true,httpRestoreRejections:4,opaqueD1StateUnchanged:true,noCommandOrJournal:true,reopened:true}));
 });
-
-test('published v60 ABI78 keeps its exact reducer, private view, D1 state and original receipts through candidate79 Worker', async t => {
-  const { loadBq035Fixture } = await import(pathToFileURL(root + 'tools/bq035-oracle.mjs').href);
-  const scenario=loadBq035Fixture().scenarios.find(s=>s.name==='wm023-duel-paid-conversion-blood-knight-move');
-  assert(scenario); await runScenario(t,scenario,144);
-});

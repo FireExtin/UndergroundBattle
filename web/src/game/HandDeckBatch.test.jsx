@@ -3,10 +3,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { kernel as kernel, moduleBytes as frozen77Bytes } from '../../../rust-game-wasm/tests/legacy77-kernel.mjs';
+import { kernel, catalog } from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import { ReadModal } from './ReadModal';
-kernel.initSync({ module: frozen77Bytes });
-const catalog = JSON.parse(kernel.catalog());
 for (const [id, sha, fields] of [
   ['JC130', 'be7d3ec07aea099829f0b01ea506999810091c7b7a202a6bfb0f8ec32eb3055f', { name: '深入研究', cost: 2, loyalty: ['白色'], color: '中立', kind: 'spell', magic: '', subtypes: ['事务', '研究'] }],
   ['JC131', '78b1cff75c50f96763ae2cfeb346524e9046f2e3a445a5e00268113365bc976f', { name: '空投物资', cost: 3, loyalty: ['绿色', '绿色'], color: '中立', kind: 'spell', magic: '', subtypes: ['事务', '策略'] }],

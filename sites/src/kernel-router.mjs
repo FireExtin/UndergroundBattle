@@ -4,23 +4,17 @@ const unsupported = () => new HttpError(410,
   '旧牌桌使用的规则已停止支持。请返回大厅新建牌桌；旧牌桌数据仍保留。',
   undefined, 'unsupported_room_version');
 
-// Routing reads only Rust's small identity envelope; private state stays opaque.
-export function routeKernels(current, retained = []) {
-  const catalog = current.catalogIdentity ?? JSON.parse(current.catalog());
+// Check only Rust's small identity envelope; private state stays opaque.
+export function routeKernels(current) {
+  const catalog = JSON.parse(current.catalog());
   const matches = (version, catalog) => version.rules === catalog.rulesVersion
     && version.cardPool === catalog.cardPoolVersion && version.engine === catalog.engineVersion;
   const select = state => {
     let identity;
     try { identity = JSON.parse(current.stateIdentity(state)); }
     catch (error) { if (error === 'Unsupported persisted state schema') throw unsupported(); throw error; }
-    if (![2, 3].includes(identity.state_schema)) throw unsupported();
-    if (identity.state_schema === 3) {
-      const candidates = [current, ...retained].filter(kernel =>
-        matches(identity.versions, kernel.catalogIdentity ?? JSON.parse(kernel.catalog())));
-      if (candidates.length > 1) throw Error('Ambiguous frozen kernel identity');
-      if (candidates.length === 1) return candidates[0];
-    }
-    throw unsupported();
+    if (identity.state_schema !== 3 || !matches(identity.versions, catalog)) throw unsupported();
+    return current;
   };
   return {
     assertSupported: state => { select(state); },
@@ -29,9 +23,7 @@ export function routeKernels(current, retained = []) {
     newGameWithDeck: (...args) => current.newGameWithDeck(...args),
     joinGame: (state, ...args) => select(state).joinGame(state, ...args),
     joinGameWithDeck: (state, ...args) => select(state).joinGameWithDeck(state, ...args),
-    apply: (state, ...args) => select(state).apply(state, ...args),
     view: (state, ...args) => select(state).view(state, ...args),
-    supportsPacing: state => !!select(state).pollRoom,
     applyRoom: (state, ...args) => select(state).applyRoom(state, ...args),
     pollRoom: (state, ...args) => select(state).pollRoom(state, ...args),
     quoteRoom: (state, ...args) => select(state).quoteRoom(state, ...args),

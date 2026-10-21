@@ -1,0 +1,2833 @@
+{
+  "source": "9aa4fda499c25268a632fa578c31a04c70eac6e8",
+  "currentWasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+  "outputs": {
+    "sites/generated": {
+      "files": 32,
+      "apparentBytes": 53553532,
+      "uniqueAllocatedBytes": 53616640,
+      "items": [
+        {
+          "path": "hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "hegemony_wasm_bg.wasm",
+          "bytes": 4315979
+        },
+        {
+          "path": "abi92/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi92/hegemony_wasm_bg.wasm",
+          "bytes": 3796247
+        },
+        {
+          "path": "abi81/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi81/hegemony_wasm_bg.wasm",
+          "bytes": 3154323
+        },
+        {
+          "path": "abi78/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi78/hegemony_wasm_bg.wasm",
+          "bytes": 2976205
+        },
+        {
+          "path": "abi77/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi77/hegemony_wasm_bg.wasm",
+          "bytes": 2909006
+        },
+        {
+          "path": "abi89/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi89/hegemony_wasm_bg.wasm",
+          "bytes": 3471247
+        },
+        {
+          "path": "abi82/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi82/hegemony_wasm_bg.wasm",
+          "bytes": 3165174
+        },
+        {
+          "path": "abi86/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi86/hegemony_wasm_bg.wasm",
+          "bytes": 3291234
+        },
+        {
+          "path": "abi91/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi91/hegemony_wasm_bg.wasm",
+          "bytes": 3796219
+        },
+        {
+          "path": "abi83/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi83/hegemony_wasm_bg.wasm",
+          "bytes": 3174213
+        },
+        {
+          "path": "abi85/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi85/hegemony_wasm_bg.wasm",
+          "bytes": 3263215
+        },
+        {
+          "path": "abi87/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi87/hegemony_wasm_bg.wasm",
+          "bytes": 3325174
+        },
+        {
+          "path": "abi79/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi79/hegemony_wasm_bg.wasm",
+          "bytes": 3005332
+        },
+        {
+          "path": "abi88/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi88/hegemony_wasm_bg.wasm",
+          "bytes": 3353559
+        },
+        {
+          "path": "abi80/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi80/hegemony_wasm_bg.wasm",
+          "bytes": 3047680
+        },
+        {
+          "path": "abi84/hegemony_wasm.js",
+          "bytes": 18203
+        },
+        {
+          "path": "abi84/hegemony_wasm_bg.wasm",
+          "bytes": 3217477
+        }
+      ]
+    },
+    "sites/dist": {
+      "files": 229,
+      "apparentBytes": 184528955,
+      "uniqueAllocatedBytes": 185008128,
+      "items": [
+        {
+          "path": ".openai/hosting.json",
+          "bytes": 91
+        },
+        {
+          "path": "server/26b3b25fc21298e8ab8f8de20d0b2895117d997f-hegemony_wasm_bg.wasm",
+          "bytes": 3325174
+        },
+        {
+          "path": "server/a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
+          "bytes": 3291234
+        },
+        {
+          "path": "server/2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+          "bytes": 3047680
+        },
+        {
+          "path": "server/daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+          "bytes": 3263215
+        },
+        {
+          "path": "server/6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+          "bytes": 3005332
+        },
+        {
+          "path": "server/index.js.map",
+          "bytes": 563033
+        },
+        {
+          "path": "server/bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+          "bytes": 3174213
+        },
+        {
+          "path": "server/4a17c8f1fa73ab5b8791af4eceea84d3e07a8e55-hegemony_wasm_bg.wasm",
+          "bytes": 3353559
+        },
+        {
+          "path": "server/1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+          "bytes": 3217477
+        },
+        {
+          "path": "server/9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+          "bytes": 2909006
+        },
+        {
+          "path": "server/4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+          "bytes": 2976205
+        },
+        {
+          "path": "server/511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+          "bytes": 3154323
+        },
+        {
+          "path": "server/a0bb357ffce798d549aef8ad867be6221809928b-hegemony_wasm_bg.wasm",
+          "bytes": 4315979
+        },
+        {
+          "path": "server/3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+          "bytes": 3165174
+        },
+        {
+          "path": "server/index.js",
+          "bytes": 317250
+        },
+        {
+          "path": "server/README.md",
+          "bytes": 122
+        },
+        {
+          "path": "server/7d287a59cf1a4b794765cc7eb05e3dc7f7b42702-hegemony_wasm_bg.wasm",
+          "bytes": 3471247
+        },
+        {
+          "path": "server/19ccb0072a22410b85589473abe407af4bc074c0-hegemony_wasm_bg.wasm",
+          "bytes": 3796247
+        },
+        {
+          "path": "server/97cd2966ff65b7e4144a8c8f426348167c6f112e-hegemony_wasm_bg.wasm",
+          "bytes": 3796219
+        },
+        {
+          "path": "client/index.html",
+          "bytes": 475
+        },
+        {
+          "path": "client/card-scans.json",
+          "bytes": 42004
+        },
+        {
+          "path": "client/assets/index-D6HwVQH4.js",
+          "bytes": 412111
+        },
+        {
+          "path": "client/assets/index-1asbQbnG.css",
+          "bytes": 201218
+        },
+        {
+          "path": "client/cards/LC20.jpg",
+          "bytes": 471968
+        },
+        {
+          "path": "client/cards/JC033.jpg",
+          "bytes": 337938
+        },
+        {
+          "path": "client/cards/JZ43.jpg",
+          "bytes": 495991
+        },
+        {
+          "path": "client/cards/JC018.jpg",
+          "bytes": 341242
+        },
+        {
+          "path": "client/cards/JC004.jpg",
+          "bytes": 322602
+        },
+        {
+          "path": "client/cards/XQ40.jpg",
+          "bytes": 1505785
+        },
+        {
+          "path": "client/cards/JC102.jpg",
+          "bytes": 346254
+        },
+        {
+          "path": "client/cards/JC070.jpg",
+          "bytes": 328410
+        },
+        {
+          "path": "client/cards/JC091.jpg",
+          "bytes": 314574
+        },
+        {
+          "path": "client/cards/XQ03.jpg",
+          "bytes": 1430068
+        },
+        {
+          "path": "client/cards/XQ48.jpg",
+          "bytes": 1363262
+        },
+        {
+          "path": "client/cards/JC089.jpg",
+          "bytes": 312412
+        },
+        {
+          "path": "client/cards/JC015.jpg",
+          "bytes": 322933
+        },
+        {
+          "path": "client/cards/JZ46.jpg",
+          "bytes": 499668
+        },
+        {
+          "path": "client/cards/WM040.jpg",
+          "bytes": 1285893
+        },
+        {
+          "path": "client/cards/LC22.jpg",
+          "bytes": 441940
+        },
+        {
+          "path": "client/cards/JC041.jpg",
+          "bytes": 326531
+        },
+        {
+          "path": "client/cards/CQ16.jpg",
+          "bytes": 1127646
+        },
+        {
+          "path": "client/cards/JC014.jpg",
+          "bytes": 304089
+        },
+        {
+          "path": "client/cards/JZ58.jpg",
+          "bytes": 548446
+        },
+        {
+          "path": "client/cards/JC001.jpg",
+          "bytes": 304832
+        },
+        {
+          "path": "client/cards/JC085.jpg",
+          "bytes": 337881
+        },
+        {
+          "path": "client/cards/JZ34.jpg",
+          "bytes": 590355
+        },
+        {
+          "path": "client/cards/WM062.jpg",
+          "bytes": 1188701
+        },
+        {
+          "path": "client/cards/JC096.jpg",
+          "bytes": 311787
+        },
+        {
+          "path": "client/cards/XQ27.jpg",
+          "bytes": 1342504
+        },
+        {
+          "path": "client/cards/BQ104.jpg",
+          "bytes": 1343044
+        },
+        {
+          "path": "client/cards/JZ59.jpg",
+          "bytes": 518313
+        },
+        {
+          "path": "client/cards/JZ67.jpg",
+          "bytes": 526684
+        },
+        {
+          "path": "client/cards/JC094.jpg",
+          "bytes": 322070
+        },
+        {
+          "path": "client/cards/BQ083.jpg",
+          "bytes": 1318007
+        },
+        {
+          "path": "client/cards/JZ44.jpg",
+          "bytes": 475293
+        },
+        {
+          "path": "client/cards/JC055.jpg",
+          "bytes": 344399
+        },
+        {
+          "path": "client/cards/MSJC02.jpg",
+          "bytes": 249225
+        },
+        {
+          "path": "client/cards/XQ45.jpg",
+          "bytes": 1476070
+        },
+        {
+          "path": "client/cards/XQ16.jpg",
+          "bytes": 1503073
+        },
+        {
+          "path": "client/cards/JC049.jpg",
+          "bytes": 331035
+        },
+        {
+          "path": "client/cards/XQ46.jpg",
+          "bytes": 1254286
+        },
+        {
+          "path": "client/cards/BQ080.jpg",
+          "bytes": 1302554
+        },
+        {
+          "path": "client/cards/JC060.jpg",
+          "bytes": 319369
+        },
+        {
+          "path": "client/cards/XQ07.jpg",
+          "bytes": 1401415
+        },
+        {
+          "path": "client/cards/XQ18.jpg",
+          "bytes": 1431760
+        },
+        {
+          "path": "client/cards/BQ091.jpg",
+          "bytes": 1316270
+        },
+        {
+          "path": "client/cards/JZ28.jpg",
+          "bytes": 569074
+        },
+        {
+          "path": "client/cards/JC116.jpg",
+          "bytes": 319810
+        },
+        {
+          "path": "client/cards/XQ49.jpg",
+          "bytes": 1336679
+        },
+        {
+          "path": "client/cards/XQ36.jpg",
+          "bytes": 1471604
+        },
+        {
+          "path": "client/cards/JC067.jpg",
+          "bytes": 291611
+        },
+        {
+          "path": "client/cards/JC073.jpg",
+          "bytes": 328192
+        },
+        {
+          "path": "client/cards/JC038.jpg",
+          "bytes": 355023
+        },
+        {
+          "path": "client/cards/JC058.jpg",
+          "bytes": 289748
+        },
+        {
+          "path": "client/cards/JZ45.jpg",
+          "bytes": 470410
+        },
+        {
+          "path": "client/cards/LC21.jpg",
+          "bytes": 437349
+        },
+        {
+          "path": "client/cards/JC032.jpg",
+          "bytes": 342051
+        },
+        {
+          "path": "client/cards/DQJC112.jpg",
+          "bytes": 45356
+        },
+        {
+          "path": "client/cards/JC114.jpg",
+          "bytes": 325963
+        },
+        {
+          "path": "client/cards/BQ035.jpg",
+          "bytes": 1355796
+        },
+        {
+          "path": "client/cards/BQ030.jpg",
+          "bytes": 1333870
+        },
+        {
+          "path": "client/cards/BQ078.jpg",
+          "bytes": 1324460
+        },
+        {
+          "path": "client/cards/JC056.jpg",
+          "bytes": 285784
+        },
+        {
+          "path": "client/cards/JZ57.jpg",
+          "bytes": 487327
+        },
+        {
+          "path": "client/cards/JC031.jpg",
+          "bytes": 357471
+        },
+        {
+          "path": "client/cards/JC036.jpg",
+          "bytes": 340194
+        },
+        {
+          "path": "client/cards/JZ55.jpg",
+          "bytes": 493536
+        },
+        {
+          "path": "client/cards/JZ29.jpg",
+          "bytes": 492699
+        },
+        {
+          "path": "client/cards/XQ25.jpg",
+          "bytes": 1406441
+        },
+        {
+          "path": "client/cards/JC002.jpg",
+          "bytes": 293615
+        },
+        {
+          "path": "client/cards/LC19.jpg",
+          "bytes": 469421
+        },
+        {
+          "path": "client/cards/DQJC116.jpg",
+          "bytes": 57210
+        },
+        {
+          "path": "client/cards/XQ12.jpg",
+          "bytes": 1381983
+        },
+        {
+          "path": "client/cards/JZ31.jpg",
+          "bytes": 507421
+        },
+        {
+          "path": "client/cards/XQ37.jpg",
+          "bytes": 1458533
+        },
+        {
+          "path": "client/cards/BQ022.jpg",
+          "bytes": 938512
+        },
+        {
+          "path": "client/cards/BQ040.jpg",
+          "bytes": 1316410
+        },
+        {
+          "path": "client/cards/JC061.jpg",
+          "bytes": 306855
+        },
+        {
+          "path": "client/cards/LC01.jpg",
+          "bytes": 467391
+        },
+        {
+          "path": "client/cards/XQ39.jpg",
+          "bytes": 1511016
+        },
+        {
+          "path": "client/cards/JC007.jpg",
+          "bytes": 310229
+        },
+        {
+          "path": "client/cards/JZ74.jpg",
+          "bytes": 500480
+        },
+        {
+          "path": "client/cards/JC054.jpg",
+          "bytes": 364015
+        },
+        {
+          "path": "client/cards/JC071.jpg",
+          "bytes": 325476
+        },
+        {
+          "path": "client/cards/DQJC108.jpg",
+          "bytes": 48006
+        },
+        {
+          "path": "client/cards/JZ49.jpg",
+          "bytes": 499091
+        },
+        {
+          "path": "client/cards/JC088.jpg",
+          "bytes": 314244
+        },
+        {
+          "path": "client/cards/JC104.jpg",
+          "bytes": 375404
+        },
+        {
+          "path": "client/cards/MSJC01.jpg",
+          "bytes": 263474
+        },
+        {
+          "path": "client/cards/JZ27.jpg",
+          "bytes": 528092
+        },
+        {
+          "path": "client/cards/XQ24.jpg",
+          "bytes": 1451251
+        },
+        {
+          "path": "client/cards/MSJC08.jpg",
+          "bytes": 266822
+        },
+        {
+          "path": "client/cards/JC074.jpg",
+          "bytes": 4706143
+        },
+        {
+          "path": "client/cards/JC008.jpg",
+          "bytes": 294187
+        },
+        {
+          "path": "client/cards/JC076.jpg",
+          "bytes": 326205
+        },
+        {
+          "path": "client/cards/WM056.jpg",
+          "bytes": 1302421
+        },
+        {
+          "path": "client/cards/JC029.jpg",
+          "bytes": 338285
+        },
+        {
+          "path": "client/cards/MSJC06.jpg",
+          "bytes": 229736
+        },
+        {
+          "path": "client/cards/JC047.jpg",
+          "bytes": 315262
+        },
+        {
+          "path": "client/cards/JC052.jpg",
+          "bytes": 339386
+        },
+        {
+          "path": "client/cards/MSJC09.jpg",
+          "bytes": 210792
+        },
+        {
+          "path": "client/cards/JZ37.jpg",
+          "bytes": 516719
+        },
+        {
+          "path": "client/cards/CQ17.jpg",
+          "bytes": 1159187
+        },
+        {
+          "path": "client/cards/JC107.jpg",
+          "bytes": 343826
+        },
+        {
+          "path": "client/cards/BQ059.jpg",
+          "bytes": 1334983
+        },
+        {
+          "path": "client/cards/JC078.jpg",
+          "bytes": 335412
+        },
+        {
+          "path": "client/cards/XG27.jpg",
+          "bytes": 488059
+        },
+        {
+          "path": "client/cards/LC06.jpg",
+          "bytes": 463742
+        },
+        {
+          "path": "client/cards/XQ34.jpg",
+          "bytes": 1292584
+        },
+        {
+          "path": "client/cards/JC065.jpg",
+          "bytes": 272915
+        },
+        {
+          "path": "client/cards/JC086.jpg",
+          "bytes": 321608
+        },
+        {
+          "path": "client/cards/DQJC107.jpg",
+          "bytes": 44451
+        },
+        {
+          "path": "client/cards/JZ51.jpg",
+          "bytes": 521395
+        },
+        {
+          "path": "client/cards/LC24.jpg",
+          "bytes": 464715
+        },
+        {
+          "path": "client/cards/JC016.jpg",
+          "bytes": 305023
+        },
+        {
+          "path": "client/cards/JZ53.jpg",
+          "bytes": 509401
+        },
+        {
+          "path": "client/cards/MSJC05.jpg",
+          "bytes": 232319
+        },
+        {
+          "path": "client/cards/JC118.jpg",
+          "bytes": 283116
+        },
+        {
+          "path": "client/cards/JC066.jpg",
+          "bytes": 306491
+        },
+        {
+          "path": "client/cards/JC006.jpg",
+          "bytes": 303268
+        },
+        {
+          "path": "client/cards/WM059.jpg",
+          "bytes": 1282461
+        },
+        {
+          "path": "client/cards/JC130.jpg",
+          "bytes": 289306
+        },
+        {
+          "path": "client/cards/JZ24.jpg",
+          "bytes": 515008
+        },
+        {
+          "path": "client/cards/CQ26.jpg",
+          "bytes": 1163962
+        },
+        {
+          "path": "client/cards/XQ14.jpg",
+          "bytes": 1373623
+        },
+        {
+          "path": "client/cards/CQ08.jpg",
+          "bytes": 785666
+        },
+        {
+          "path": "client/cards/BQ077.jpg",
+          "bytes": 1311524
+        },
+        {
+          "path": "client/cards/MSJC03.jpg",
+          "bytes": 238826
+        },
+        {
+          "path": "client/cards/JC112.jpg",
+          "bytes": 295767
+        },
+        {
+          "path": "client/cards/WM003.jpg",
+          "bytes": 1306943
+        },
+        {
+          "path": "client/cards/JC126.jpg",
+          "bytes": 302436
+        },
+        {
+          "path": "client/cards/JC131.jpg",
+          "bytes": 270928
+        },
+        {
+          "path": "client/cards/LC12.jpg",
+          "bytes": 484188
+        },
+        {
+          "path": "client/cards/XQ43.jpg",
+          "bytes": 1456234
+        },
+        {
+          "path": "client/cards/JZ48.jpg",
+          "bytes": 499021
+        },
+        {
+          "path": "client/cards/WM042.jpg",
+          "bytes": 1288051
+        },
+        {
+          "path": "client/cards/JC068.jpg",
+          "bytes": 301872
+        },
+        {
+          "path": "client/cards/JC095.jpg",
+          "bytes": 320210
+        },
+        {
+          "path": "client/cards/JC034.jpg",
+          "bytes": 366017
+        },
+        {
+          "path": "client/cards/JC044.jpg",
+          "bytes": 361527
+        },
+        {
+          "path": "client/cards/JC043.jpg",
+          "bytes": 350752
+        },
+        {
+          "path": "client/cards/JC125.jpg",
+          "bytes": 285153
+        },
+        {
+          "path": "client/cards/JC129.jpg",
+          "bytes": 294504
+        },
+        {
+          "path": "client/cards/JZ02.jpg",
+          "bytes": 518818
+        },
+        {
+          "path": "client/cards/WM039.jpg",
+          "bytes": 1273311
+        },
+        {
+          "path": "client/cards/MSJC11.jpg",
+          "bytes": 239506
+        },
+        {
+          "path": "client/cards/WM034.jpg",
+          "bytes": 1317128
+        },
+        {
+          "path": "client/cards/JC045.jpg",
+          "bytes": 336061
+        },
+        {
+          "path": "client/cards/WM038.jpg",
+          "bytes": 1240666
+        },
+        {
+          "path": "client/cards/JC075.jpg",
+          "bytes": 331174
+        },
+        {
+          "path": "client/cards/WM023.jpg",
+          "bytes": 1317198
+        },
+        {
+          "path": "client/cards/DQJC111.jpg",
+          "bytes": 54744
+        },
+        {
+          "path": "client/cards/JZ08.jpg",
+          "bytes": 497242
+        },
+        {
+          "path": "client/cards/JC003.jpg",
+          "bytes": 324904
+        },
+        {
+          "path": "client/cards/JZ33.jpg",
+          "bytes": 560587
+        },
+        {
+          "path": "client/cards/JC042.jpg",
+          "bytes": 342837
+        },
+        {
+          "path": "client/cards/JZ61.jpg",
+          "bytes": 493374
+        },
+        {
+          "path": "client/cards/XQ47.jpg",
+          "bytes": 1347172
+        },
+        {
+          "path": "client/cards/JC103.jpg",
+          "bytes": 336324
+        },
+        {
+          "path": "client/cards/XG10.jpg",
+          "bytes": 681879
+        },
+        {
+          "path": "client/cards/JC087.jpg",
+          "bytes": 339745
+        },
+        {
+          "path": "client/cards/JC039.jpg",
+          "bytes": 342440
+        },
+        {
+          "path": "client/cards/JZ32.jpg",
+          "bytes": 578760
+        },
+        {
+          "path": "client/cards/JC005.jpg",
+          "bytes": 327083
+        },
+        {
+          "path": "client/cards/JC037.jpg",
+          "bytes": 342598
+        },
+        {
+          "path": "client/cards/XQ44.jpg",
+          "bytes": 1474456
+        },
+        {
+          "path": "client/cards/JC059.jpg",
+          "bytes": 299356
+        },
+        {
+          "path": "client/cards/DQJC114.jpg",
+          "bytes": 53746
+        },
+        {
+          "path": "client/cards/BQ054.jpg",
+          "bytes": 1340172
+        },
+        {
+          "path": "client/cards/JC046.jpg",
+          "bytes": 359316
+        },
+        {
+          "path": "client/cards/JC093.jpg",
+          "bytes": 327300
+        },
+        {
+          "path": "client/cards/XQ17.jpg",
+          "bytes": 1375211
+        },
+        {
+          "path": "client/cards/JZ35.jpg",
+          "bytes": 524713
+        },
+        {
+          "path": "client/cards/JZ52.jpg",
+          "bytes": 521413
+        },
+        {
+          "path": "client/cards/JZ41.jpg",
+          "bytes": 546047
+        },
+        {
+          "path": "client/cards/DQJC109.jpg",
+          "bytes": 46185
+        },
+        {
+          "path": "client/cards/JC132.jpg",
+          "bytes": 295955
+        },
+        {
+          "path": "client/cards/XQ41.jpg",
+          "bytes": 1463646
+        },
+        {
+          "path": "client/cards/JC051.jpg",
+          "bytes": 339018
+        },
+        {
+          "path": "client/cards/DQJC113.jpg",
+          "bytes": 46632
+        },
+        {
+          "path": "client/cards/JZ54.jpg",
+          "bytes": 543412
+        },
+        {
+          "path": "client/cards/XQ38.jpg",
+          "bytes": 1487343
+        },
+        {
+          "path": "client/cards/JC048.jpg",
+          "bytes": 333525
+        },
+        {
+          "path": "client/cards/JC084.jpg",
+          "bytes": 316581
+        },
+        {
+          "path": "client/cards/BQ028.jpg",
+          "bytes": 336814
+        },
+        {
+          "path": "client/cards/LC23.jpg",
+          "bytes": 487166
+        },
+        {
+          "path": "client/cards/BQ085.jpg",
+          "bytes": 1323610
+        },
+        {
+          "path": "client/cards/JC030.jpg",
+          "bytes": 314592
+        },
+        {
+          "path": "client/cards/JC035.jpg",
+          "bytes": 341309
+        },
+        {
+          "path": "client/cards/BQ094.jpg",
+          "bytes": 1329247
+        },
+        {
+          "path": "client/cards/JC057.jpg",
+          "bytes": 324751
+        },
+        {
+          "path": "client/cards/JC063.jpg",
+          "bytes": 292803
+        },
+        {
+          "path": "client/cards/LC30.jpg",
+          "bytes": 1156537
+        },
+        {
+          "path": "client/cards/JC040.jpg",
+          "bytes": 317534
+        },
+        {
+          "path": "client/cards/JC090.jpg",
+          "bytes": 319864
+        },
+        {
+          "path": "client/cards/JZ23.jpg",
+          "bytes": 542405
+        },
+        {
+          "path": "client/cards/JZ22.jpg",
+          "bytes": 519522
+        },
+        {
+          "path": "client/cards/JC050.jpg",
+          "bytes": 313605
+        },
+        {
+          "path": "client/cards/XQ23.jpg",
+          "bytes": 1373311
+        },
+        {
+          "path": "client/cards/JZ50.jpg",
+          "bytes": 533019
+        },
+        {
+          "path": "client/cards/JC069.jpg",
+          "bytes": 304925
+        },
+        {
+          "path": "client/cards/MSJC04.jpg",
+          "bytes": 250371
+        },
+        {
+          "path": "client/cards/JZ30.jpg",
+          "bytes": 517039
+        },
+        {
+          "path": "client/cards/DQJC115.jpg",
+          "bytes": 53304
+        },
+        {
+          "path": "client/cards/MSJC07.jpg",
+          "bytes": 229888
+        },
+        {
+          "path": "client/cards/JC020.jpg",
+          "bytes": 283808
+        },
+        {
+          "path": "client/cards/DQJC110.jpg",
+          "bytes": 41958
+        },
+        {
+          "path": "client/cards/JC092.jpg",
+          "bytes": 327819
+        }
+      ]
+    },
+    "sites/public": {
+      "files": 209,
+      "apparentBytes": 130386175,
+      "uniqueAllocatedBytes": 130826240,
+      "items": [
+        {
+          "path": "index.html",
+          "bytes": 475
+        },
+        {
+          "path": "card-scans.json",
+          "bytes": 42004
+        },
+        {
+          "path": "assets/index-D6HwVQH4.js",
+          "bytes": 412111
+        },
+        {
+          "path": "assets/index-1asbQbnG.css",
+          "bytes": 201218
+        },
+        {
+          "path": "cards/LC20.jpg",
+          "bytes": 471968
+        },
+        {
+          "path": "cards/JC033.jpg",
+          "bytes": 337938
+        },
+        {
+          "path": "cards/JZ43.jpg",
+          "bytes": 495991
+        },
+        {
+          "path": "cards/JC018.jpg",
+          "bytes": 341242
+        },
+        {
+          "path": "cards/JC004.jpg",
+          "bytes": 322602
+        },
+        {
+          "path": "cards/XQ40.jpg",
+          "bytes": 1505785
+        },
+        {
+          "path": "cards/JC102.jpg",
+          "bytes": 346254
+        },
+        {
+          "path": "cards/JC070.jpg",
+          "bytes": 328410
+        },
+        {
+          "path": "cards/JC091.jpg",
+          "bytes": 314574
+        },
+        {
+          "path": "cards/XQ03.jpg",
+          "bytes": 1430068
+        },
+        {
+          "path": "cards/XQ48.jpg",
+          "bytes": 1363262
+        },
+        {
+          "path": "cards/JC089.jpg",
+          "bytes": 312412
+        },
+        {
+          "path": "cards/JC015.jpg",
+          "bytes": 322933
+        },
+        {
+          "path": "cards/JZ46.jpg",
+          "bytes": 499668
+        },
+        {
+          "path": "cards/WM040.jpg",
+          "bytes": 1285893
+        },
+        {
+          "path": "cards/LC22.jpg",
+          "bytes": 441940
+        },
+        {
+          "path": "cards/JC041.jpg",
+          "bytes": 326531
+        },
+        {
+          "path": "cards/CQ16.jpg",
+          "bytes": 1127646
+        },
+        {
+          "path": "cards/JC014.jpg",
+          "bytes": 304089
+        },
+        {
+          "path": "cards/JZ58.jpg",
+          "bytes": 548446
+        },
+        {
+          "path": "cards/JC001.jpg",
+          "bytes": 304832
+        },
+        {
+          "path": "cards/JC085.jpg",
+          "bytes": 337881
+        },
+        {
+          "path": "cards/JZ34.jpg",
+          "bytes": 590355
+        },
+        {
+          "path": "cards/WM062.jpg",
+          "bytes": 1188701
+        },
+        {
+          "path": "cards/JC096.jpg",
+          "bytes": 311787
+        },
+        {
+          "path": "cards/XQ27.jpg",
+          "bytes": 1342504
+        },
+        {
+          "path": "cards/BQ104.jpg",
+          "bytes": 1343044
+        },
+        {
+          "path": "cards/JZ59.jpg",
+          "bytes": 518313
+        },
+        {
+          "path": "cards/JZ67.jpg",
+          "bytes": 526684
+        },
+        {
+          "path": "cards/JC094.jpg",
+          "bytes": 322070
+        },
+        {
+          "path": "cards/BQ083.jpg",
+          "bytes": 1318007
+        },
+        {
+          "path": "cards/JZ44.jpg",
+          "bytes": 475293
+        },
+        {
+          "path": "cards/JC055.jpg",
+          "bytes": 344399
+        },
+        {
+          "path": "cards/MSJC02.jpg",
+          "bytes": 249225
+        },
+        {
+          "path": "cards/XQ45.jpg",
+          "bytes": 1476070
+        },
+        {
+          "path": "cards/XQ16.jpg",
+          "bytes": 1503073
+        },
+        {
+          "path": "cards/JC049.jpg",
+          "bytes": 331035
+        },
+        {
+          "path": "cards/XQ46.jpg",
+          "bytes": 1254286
+        },
+        {
+          "path": "cards/BQ080.jpg",
+          "bytes": 1302554
+        },
+        {
+          "path": "cards/JC060.jpg",
+          "bytes": 319369
+        },
+        {
+          "path": "cards/XQ07.jpg",
+          "bytes": 1401415
+        },
+        {
+          "path": "cards/XQ18.jpg",
+          "bytes": 1431760
+        },
+        {
+          "path": "cards/BQ091.jpg",
+          "bytes": 1316270
+        },
+        {
+          "path": "cards/JZ28.jpg",
+          "bytes": 569074
+        },
+        {
+          "path": "cards/JC116.jpg",
+          "bytes": 319810
+        },
+        {
+          "path": "cards/XQ49.jpg",
+          "bytes": 1336679
+        },
+        {
+          "path": "cards/XQ36.jpg",
+          "bytes": 1471604
+        },
+        {
+          "path": "cards/JC067.jpg",
+          "bytes": 291611
+        },
+        {
+          "path": "cards/JC073.jpg",
+          "bytes": 328192
+        },
+        {
+          "path": "cards/JC038.jpg",
+          "bytes": 355023
+        },
+        {
+          "path": "cards/JC058.jpg",
+          "bytes": 289748
+        },
+        {
+          "path": "cards/JZ45.jpg",
+          "bytes": 470410
+        },
+        {
+          "path": "cards/LC21.jpg",
+          "bytes": 437349
+        },
+        {
+          "path": "cards/JC032.jpg",
+          "bytes": 342051
+        },
+        {
+          "path": "cards/DQJC112.jpg",
+          "bytes": 45356
+        },
+        {
+          "path": "cards/JC114.jpg",
+          "bytes": 325963
+        },
+        {
+          "path": "cards/BQ035.jpg",
+          "bytes": 1355796
+        },
+        {
+          "path": "cards/BQ030.jpg",
+          "bytes": 1333870
+        },
+        {
+          "path": "cards/BQ078.jpg",
+          "bytes": 1324460
+        },
+        {
+          "path": "cards/JC056.jpg",
+          "bytes": 285784
+        },
+        {
+          "path": "cards/JZ57.jpg",
+          "bytes": 487327
+        },
+        {
+          "path": "cards/JC031.jpg",
+          "bytes": 357471
+        },
+        {
+          "path": "cards/JC036.jpg",
+          "bytes": 340194
+        },
+        {
+          "path": "cards/JZ55.jpg",
+          "bytes": 493536
+        },
+        {
+          "path": "cards/JZ29.jpg",
+          "bytes": 492699
+        },
+        {
+          "path": "cards/XQ25.jpg",
+          "bytes": 1406441
+        },
+        {
+          "path": "cards/JC002.jpg",
+          "bytes": 293615
+        },
+        {
+          "path": "cards/LC19.jpg",
+          "bytes": 469421
+        },
+        {
+          "path": "cards/DQJC116.jpg",
+          "bytes": 57210
+        },
+        {
+          "path": "cards/XQ12.jpg",
+          "bytes": 1381983
+        },
+        {
+          "path": "cards/JZ31.jpg",
+          "bytes": 507421
+        },
+        {
+          "path": "cards/XQ37.jpg",
+          "bytes": 1458533
+        },
+        {
+          "path": "cards/BQ022.jpg",
+          "bytes": 938512
+        },
+        {
+          "path": "cards/BQ040.jpg",
+          "bytes": 1316410
+        },
+        {
+          "path": "cards/JC061.jpg",
+          "bytes": 306855
+        },
+        {
+          "path": "cards/LC01.jpg",
+          "bytes": 467391
+        },
+        {
+          "path": "cards/XQ39.jpg",
+          "bytes": 1511016
+        },
+        {
+          "path": "cards/JC007.jpg",
+          "bytes": 310229
+        },
+        {
+          "path": "cards/JZ74.jpg",
+          "bytes": 500480
+        },
+        {
+          "path": "cards/JC054.jpg",
+          "bytes": 364015
+        },
+        {
+          "path": "cards/JC071.jpg",
+          "bytes": 325476
+        },
+        {
+          "path": "cards/DQJC108.jpg",
+          "bytes": 48006
+        },
+        {
+          "path": "cards/JZ49.jpg",
+          "bytes": 499091
+        },
+        {
+          "path": "cards/JC088.jpg",
+          "bytes": 314244
+        },
+        {
+          "path": "cards/JC104.jpg",
+          "bytes": 375404
+        },
+        {
+          "path": "cards/MSJC01.jpg",
+          "bytes": 263474
+        },
+        {
+          "path": "cards/JZ27.jpg",
+          "bytes": 528092
+        },
+        {
+          "path": "cards/XQ24.jpg",
+          "bytes": 1451251
+        },
+        {
+          "path": "cards/MSJC08.jpg",
+          "bytes": 266822
+        },
+        {
+          "path": "cards/JC074.jpg",
+          "bytes": 4706143
+        },
+        {
+          "path": "cards/JC008.jpg",
+          "bytes": 294187
+        },
+        {
+          "path": "cards/JC076.jpg",
+          "bytes": 326205
+        },
+        {
+          "path": "cards/WM056.jpg",
+          "bytes": 1302421
+        },
+        {
+          "path": "cards/JC029.jpg",
+          "bytes": 338285
+        },
+        {
+          "path": "cards/MSJC06.jpg",
+          "bytes": 229736
+        },
+        {
+          "path": "cards/JC047.jpg",
+          "bytes": 315262
+        },
+        {
+          "path": "cards/JC052.jpg",
+          "bytes": 339386
+        },
+        {
+          "path": "cards/MSJC09.jpg",
+          "bytes": 210792
+        },
+        {
+          "path": "cards/JZ37.jpg",
+          "bytes": 516719
+        },
+        {
+          "path": "cards/CQ17.jpg",
+          "bytes": 1159187
+        },
+        {
+          "path": "cards/JC107.jpg",
+          "bytes": 343826
+        },
+        {
+          "path": "cards/BQ059.jpg",
+          "bytes": 1334983
+        },
+        {
+          "path": "cards/JC078.jpg",
+          "bytes": 335412
+        },
+        {
+          "path": "cards/XG27.jpg",
+          "bytes": 488059
+        },
+        {
+          "path": "cards/LC06.jpg",
+          "bytes": 463742
+        },
+        {
+          "path": "cards/XQ34.jpg",
+          "bytes": 1292584
+        },
+        {
+          "path": "cards/JC065.jpg",
+          "bytes": 272915
+        },
+        {
+          "path": "cards/JC086.jpg",
+          "bytes": 321608
+        },
+        {
+          "path": "cards/DQJC107.jpg",
+          "bytes": 44451
+        },
+        {
+          "path": "cards/JZ51.jpg",
+          "bytes": 521395
+        },
+        {
+          "path": "cards/LC24.jpg",
+          "bytes": 464715
+        },
+        {
+          "path": "cards/JC016.jpg",
+          "bytes": 305023
+        },
+        {
+          "path": "cards/JZ53.jpg",
+          "bytes": 509401
+        },
+        {
+          "path": "cards/MSJC05.jpg",
+          "bytes": 232319
+        },
+        {
+          "path": "cards/JC118.jpg",
+          "bytes": 283116
+        },
+        {
+          "path": "cards/JC066.jpg",
+          "bytes": 306491
+        },
+        {
+          "path": "cards/JC006.jpg",
+          "bytes": 303268
+        },
+        {
+          "path": "cards/WM059.jpg",
+          "bytes": 1282461
+        },
+        {
+          "path": "cards/JC130.jpg",
+          "bytes": 289306
+        },
+        {
+          "path": "cards/JZ24.jpg",
+          "bytes": 515008
+        },
+        {
+          "path": "cards/CQ26.jpg",
+          "bytes": 1163962
+        },
+        {
+          "path": "cards/XQ14.jpg",
+          "bytes": 1373623
+        },
+        {
+          "path": "cards/CQ08.jpg",
+          "bytes": 785666
+        },
+        {
+          "path": "cards/BQ077.jpg",
+          "bytes": 1311524
+        },
+        {
+          "path": "cards/MSJC03.jpg",
+          "bytes": 238826
+        },
+        {
+          "path": "cards/JC112.jpg",
+          "bytes": 295767
+        },
+        {
+          "path": "cards/WM003.jpg",
+          "bytes": 1306943
+        },
+        {
+          "path": "cards/JC126.jpg",
+          "bytes": 302436
+        },
+        {
+          "path": "cards/JC131.jpg",
+          "bytes": 270928
+        },
+        {
+          "path": "cards/LC12.jpg",
+          "bytes": 484188
+        },
+        {
+          "path": "cards/XQ43.jpg",
+          "bytes": 1456234
+        },
+        {
+          "path": "cards/JZ48.jpg",
+          "bytes": 499021
+        },
+        {
+          "path": "cards/WM042.jpg",
+          "bytes": 1288051
+        },
+        {
+          "path": "cards/JC068.jpg",
+          "bytes": 301872
+        },
+        {
+          "path": "cards/JC095.jpg",
+          "bytes": 320210
+        },
+        {
+          "path": "cards/JC034.jpg",
+          "bytes": 366017
+        },
+        {
+          "path": "cards/JC044.jpg",
+          "bytes": 361527
+        },
+        {
+          "path": "cards/JC043.jpg",
+          "bytes": 350752
+        },
+        {
+          "path": "cards/JC125.jpg",
+          "bytes": 285153
+        },
+        {
+          "path": "cards/JC129.jpg",
+          "bytes": 294504
+        },
+        {
+          "path": "cards/JZ02.jpg",
+          "bytes": 518818
+        },
+        {
+          "path": "cards/WM039.jpg",
+          "bytes": 1273311
+        },
+        {
+          "path": "cards/MSJC11.jpg",
+          "bytes": 239506
+        },
+        {
+          "path": "cards/WM034.jpg",
+          "bytes": 1317128
+        },
+        {
+          "path": "cards/JC045.jpg",
+          "bytes": 336061
+        },
+        {
+          "path": "cards/WM038.jpg",
+          "bytes": 1240666
+        },
+        {
+          "path": "cards/JC075.jpg",
+          "bytes": 331174
+        },
+        {
+          "path": "cards/WM023.jpg",
+          "bytes": 1317198
+        },
+        {
+          "path": "cards/DQJC111.jpg",
+          "bytes": 54744
+        },
+        {
+          "path": "cards/JZ08.jpg",
+          "bytes": 497242
+        },
+        {
+          "path": "cards/JC003.jpg",
+          "bytes": 324904
+        },
+        {
+          "path": "cards/JZ33.jpg",
+          "bytes": 560587
+        },
+        {
+          "path": "cards/JC042.jpg",
+          "bytes": 342837
+        },
+        {
+          "path": "cards/JZ61.jpg",
+          "bytes": 493374
+        },
+        {
+          "path": "cards/XQ47.jpg",
+          "bytes": 1347172
+        },
+        {
+          "path": "cards/JC103.jpg",
+          "bytes": 336324
+        },
+        {
+          "path": "cards/XG10.jpg",
+          "bytes": 681879
+        },
+        {
+          "path": "cards/JC087.jpg",
+          "bytes": 339745
+        },
+        {
+          "path": "cards/JC039.jpg",
+          "bytes": 342440
+        },
+        {
+          "path": "cards/JZ32.jpg",
+          "bytes": 578760
+        },
+        {
+          "path": "cards/JC005.jpg",
+          "bytes": 327083
+        },
+        {
+          "path": "cards/JC037.jpg",
+          "bytes": 342598
+        },
+        {
+          "path": "cards/XQ44.jpg",
+          "bytes": 1474456
+        },
+        {
+          "path": "cards/JC059.jpg",
+          "bytes": 299356
+        },
+        {
+          "path": "cards/DQJC114.jpg",
+          "bytes": 53746
+        },
+        {
+          "path": "cards/BQ054.jpg",
+          "bytes": 1340172
+        },
+        {
+          "path": "cards/JC046.jpg",
+          "bytes": 359316
+        },
+        {
+          "path": "cards/JC093.jpg",
+          "bytes": 327300
+        },
+        {
+          "path": "cards/XQ17.jpg",
+          "bytes": 1375211
+        },
+        {
+          "path": "cards/JZ35.jpg",
+          "bytes": 524713
+        },
+        {
+          "path": "cards/JZ52.jpg",
+          "bytes": 521413
+        },
+        {
+          "path": "cards/JZ41.jpg",
+          "bytes": 546047
+        },
+        {
+          "path": "cards/DQJC109.jpg",
+          "bytes": 46185
+        },
+        {
+          "path": "cards/JC132.jpg",
+          "bytes": 295955
+        },
+        {
+          "path": "cards/XQ41.jpg",
+          "bytes": 1463646
+        },
+        {
+          "path": "cards/JC051.jpg",
+          "bytes": 339018
+        },
+        {
+          "path": "cards/DQJC113.jpg",
+          "bytes": 46632
+        },
+        {
+          "path": "cards/JZ54.jpg",
+          "bytes": 543412
+        },
+        {
+          "path": "cards/XQ38.jpg",
+          "bytes": 1487343
+        },
+        {
+          "path": "cards/JC048.jpg",
+          "bytes": 333525
+        },
+        {
+          "path": "cards/JC084.jpg",
+          "bytes": 316581
+        },
+        {
+          "path": "cards/BQ028.jpg",
+          "bytes": 336814
+        },
+        {
+          "path": "cards/LC23.jpg",
+          "bytes": 487166
+        },
+        {
+          "path": "cards/BQ085.jpg",
+          "bytes": 1323610
+        },
+        {
+          "path": "cards/JC030.jpg",
+          "bytes": 314592
+        },
+        {
+          "path": "cards/JC035.jpg",
+          "bytes": 341309
+        },
+        {
+          "path": "cards/BQ094.jpg",
+          "bytes": 1329247
+        },
+        {
+          "path": "cards/JC057.jpg",
+          "bytes": 324751
+        },
+        {
+          "path": "cards/JC063.jpg",
+          "bytes": 292803
+        },
+        {
+          "path": "cards/LC30.jpg",
+          "bytes": 1156537
+        },
+        {
+          "path": "cards/JC040.jpg",
+          "bytes": 317534
+        },
+        {
+          "path": "cards/JC090.jpg",
+          "bytes": 319864
+        },
+        {
+          "path": "cards/JZ23.jpg",
+          "bytes": 542405
+        },
+        {
+          "path": "cards/JZ22.jpg",
+          "bytes": 519522
+        },
+        {
+          "path": "cards/JC050.jpg",
+          "bytes": 313605
+        },
+        {
+          "path": "cards/XQ23.jpg",
+          "bytes": 1373311
+        },
+        {
+          "path": "cards/JZ50.jpg",
+          "bytes": 533019
+        },
+        {
+          "path": "cards/JC069.jpg",
+          "bytes": 304925
+        },
+        {
+          "path": "cards/MSJC04.jpg",
+          "bytes": 250371
+        },
+        {
+          "path": "cards/JZ30.jpg",
+          "bytes": 517039
+        },
+        {
+          "path": "cards/DQJC115.jpg",
+          "bytes": 53304
+        },
+        {
+          "path": "cards/MSJC07.jpg",
+          "bytes": 229888
+        },
+        {
+          "path": "cards/JC020.jpg",
+          "bytes": 283808
+        },
+        {
+          "path": "cards/DQJC110.jpg",
+          "bytes": 41958
+        },
+        {
+          "path": "cards/JC092.jpg",
+          "bytes": 327819
+        }
+      ]
+    },
+    "web/dist": {
+      "files": 209,
+      "apparentBytes": 130386175,
+      "uniqueAllocatedBytes": 130826240,
+      "items": [
+        {
+          "path": "index.html",
+          "bytes": 475
+        },
+        {
+          "path": "card-scans.json",
+          "bytes": 42004
+        },
+        {
+          "path": "assets/index-D6HwVQH4.js",
+          "bytes": 412111
+        },
+        {
+          "path": "assets/index-1asbQbnG.css",
+          "bytes": 201218
+        },
+        {
+          "path": "cards/LC20.jpg",
+          "bytes": 471968
+        },
+        {
+          "path": "cards/JC033.jpg",
+          "bytes": 337938
+        },
+        {
+          "path": "cards/JZ43.jpg",
+          "bytes": 495991
+        },
+        {
+          "path": "cards/JC018.jpg",
+          "bytes": 341242
+        },
+        {
+          "path": "cards/JC004.jpg",
+          "bytes": 322602
+        },
+        {
+          "path": "cards/XQ40.jpg",
+          "bytes": 1505785
+        },
+        {
+          "path": "cards/JC102.jpg",
+          "bytes": 346254
+        },
+        {
+          "path": "cards/JC070.jpg",
+          "bytes": 328410
+        },
+        {
+          "path": "cards/JC091.jpg",
+          "bytes": 314574
+        },
+        {
+          "path": "cards/XQ03.jpg",
+          "bytes": 1430068
+        },
+        {
+          "path": "cards/XQ48.jpg",
+          "bytes": 1363262
+        },
+        {
+          "path": "cards/JC089.jpg",
+          "bytes": 312412
+        },
+        {
+          "path": "cards/JC015.jpg",
+          "bytes": 322933
+        },
+        {
+          "path": "cards/JZ46.jpg",
+          "bytes": 499668
+        },
+        {
+          "path": "cards/WM040.jpg",
+          "bytes": 1285893
+        },
+        {
+          "path": "cards/LC22.jpg",
+          "bytes": 441940
+        },
+        {
+          "path": "cards/JC041.jpg",
+          "bytes": 326531
+        },
+        {
+          "path": "cards/CQ16.jpg",
+          "bytes": 1127646
+        },
+        {
+          "path": "cards/JC014.jpg",
+          "bytes": 304089
+        },
+        {
+          "path": "cards/JZ58.jpg",
+          "bytes": 548446
+        },
+        {
+          "path": "cards/JC001.jpg",
+          "bytes": 304832
+        },
+        {
+          "path": "cards/JC085.jpg",
+          "bytes": 337881
+        },
+        {
+          "path": "cards/JZ34.jpg",
+          "bytes": 590355
+        },
+        {
+          "path": "cards/WM062.jpg",
+          "bytes": 1188701
+        },
+        {
+          "path": "cards/JC096.jpg",
+          "bytes": 311787
+        },
+        {
+          "path": "cards/XQ27.jpg",
+          "bytes": 1342504
+        },
+        {
+          "path": "cards/BQ104.jpg",
+          "bytes": 1343044
+        },
+        {
+          "path": "cards/JZ59.jpg",
+          "bytes": 518313
+        },
+        {
+          "path": "cards/JZ67.jpg",
+          "bytes": 526684
+        },
+        {
+          "path": "cards/JC094.jpg",
+          "bytes": 322070
+        },
+        {
+          "path": "cards/BQ083.jpg",
+          "bytes": 1318007
+        },
+        {
+          "path": "cards/JZ44.jpg",
+          "bytes": 475293
+        },
+        {
+          "path": "cards/JC055.jpg",
+          "bytes": 344399
+        },
+        {
+          "path": "cards/MSJC02.jpg",
+          "bytes": 249225
+        },
+        {
+          "path": "cards/XQ45.jpg",
+          "bytes": 1476070
+        },
+        {
+          "path": "cards/XQ16.jpg",
+          "bytes": 1503073
+        },
+        {
+          "path": "cards/JC049.jpg",
+          "bytes": 331035
+        },
+        {
+          "path": "cards/XQ46.jpg",
+          "bytes": 1254286
+        },
+        {
+          "path": "cards/BQ080.jpg",
+          "bytes": 1302554
+        },
+        {
+          "path": "cards/JC060.jpg",
+          "bytes": 319369
+        },
+        {
+          "path": "cards/XQ07.jpg",
+          "bytes": 1401415
+        },
+        {
+          "path": "cards/XQ18.jpg",
+          "bytes": 1431760
+        },
+        {
+          "path": "cards/BQ091.jpg",
+          "bytes": 1316270
+        },
+        {
+          "path": "cards/JZ28.jpg",
+          "bytes": 569074
+        },
+        {
+          "path": "cards/JC116.jpg",
+          "bytes": 319810
+        },
+        {
+          "path": "cards/XQ49.jpg",
+          "bytes": 1336679
+        },
+        {
+          "path": "cards/XQ36.jpg",
+          "bytes": 1471604
+        },
+        {
+          "path": "cards/JC067.jpg",
+          "bytes": 291611
+        },
+        {
+          "path": "cards/JC073.jpg",
+          "bytes": 328192
+        },
+        {
+          "path": "cards/JC038.jpg",
+          "bytes": 355023
+        },
+        {
+          "path": "cards/JC058.jpg",
+          "bytes": 289748
+        },
+        {
+          "path": "cards/JZ45.jpg",
+          "bytes": 470410
+        },
+        {
+          "path": "cards/LC21.jpg",
+          "bytes": 437349
+        },
+        {
+          "path": "cards/JC032.jpg",
+          "bytes": 342051
+        },
+        {
+          "path": "cards/DQJC112.jpg",
+          "bytes": 45356
+        },
+        {
+          "path": "cards/JC114.jpg",
+          "bytes": 325963
+        },
+        {
+          "path": "cards/BQ035.jpg",
+          "bytes": 1355796
+        },
+        {
+          "path": "cards/BQ030.jpg",
+          "bytes": 1333870
+        },
+        {
+          "path": "cards/BQ078.jpg",
+          "bytes": 1324460
+        },
+        {
+          "path": "cards/JC056.jpg",
+          "bytes": 285784
+        },
+        {
+          "path": "cards/JZ57.jpg",
+          "bytes": 487327
+        },
+        {
+          "path": "cards/JC031.jpg",
+          "bytes": 357471
+        },
+        {
+          "path": "cards/JC036.jpg",
+          "bytes": 340194
+        },
+        {
+          "path": "cards/JZ55.jpg",
+          "bytes": 493536
+        },
+        {
+          "path": "cards/JZ29.jpg",
+          "bytes": 492699
+        },
+        {
+          "path": "cards/XQ25.jpg",
+          "bytes": 1406441
+        },
+        {
+          "path": "cards/JC002.jpg",
+          "bytes": 293615
+        },
+        {
+          "path": "cards/LC19.jpg",
+          "bytes": 469421
+        },
+        {
+          "path": "cards/DQJC116.jpg",
+          "bytes": 57210
+        },
+        {
+          "path": "cards/XQ12.jpg",
+          "bytes": 1381983
+        },
+        {
+          "path": "cards/JZ31.jpg",
+          "bytes": 507421
+        },
+        {
+          "path": "cards/XQ37.jpg",
+          "bytes": 1458533
+        },
+        {
+          "path": "cards/BQ022.jpg",
+          "bytes": 938512
+        },
+        {
+          "path": "cards/BQ040.jpg",
+          "bytes": 1316410
+        },
+        {
+          "path": "cards/JC061.jpg",
+          "bytes": 306855
+        },
+        {
+          "path": "cards/LC01.jpg",
+          "bytes": 467391
+        },
+        {
+          "path": "cards/XQ39.jpg",
+          "bytes": 1511016
+        },
+        {
+          "path": "cards/JC007.jpg",
+          "bytes": 310229
+        },
+        {
+          "path": "cards/JZ74.jpg",
+          "bytes": 500480
+        },
+        {
+          "path": "cards/JC054.jpg",
+          "bytes": 364015
+        },
+        {
+          "path": "cards/JC071.jpg",
+          "bytes": 325476
+        },
+        {
+          "path": "cards/DQJC108.jpg",
+          "bytes": 48006
+        },
+        {
+          "path": "cards/JZ49.jpg",
+          "bytes": 499091
+        },
+        {
+          "path": "cards/JC088.jpg",
+          "bytes": 314244
+        },
+        {
+          "path": "cards/JC104.jpg",
+          "bytes": 375404
+        },
+        {
+          "path": "cards/MSJC01.jpg",
+          "bytes": 263474
+        },
+        {
+          "path": "cards/JZ27.jpg",
+          "bytes": 528092
+        },
+        {
+          "path": "cards/XQ24.jpg",
+          "bytes": 1451251
+        },
+        {
+          "path": "cards/MSJC08.jpg",
+          "bytes": 266822
+        },
+        {
+          "path": "cards/JC074.jpg",
+          "bytes": 4706143
+        },
+        {
+          "path": "cards/JC008.jpg",
+          "bytes": 294187
+        },
+        {
+          "path": "cards/JC076.jpg",
+          "bytes": 326205
+        },
+        {
+          "path": "cards/WM056.jpg",
+          "bytes": 1302421
+        },
+        {
+          "path": "cards/JC029.jpg",
+          "bytes": 338285
+        },
+        {
+          "path": "cards/MSJC06.jpg",
+          "bytes": 229736
+        },
+        {
+          "path": "cards/JC047.jpg",
+          "bytes": 315262
+        },
+        {
+          "path": "cards/JC052.jpg",
+          "bytes": 339386
+        },
+        {
+          "path": "cards/MSJC09.jpg",
+          "bytes": 210792
+        },
+        {
+          "path": "cards/JZ37.jpg",
+          "bytes": 516719
+        },
+        {
+          "path": "cards/CQ17.jpg",
+          "bytes": 1159187
+        },
+        {
+          "path": "cards/JC107.jpg",
+          "bytes": 343826
+        },
+        {
+          "path": "cards/BQ059.jpg",
+          "bytes": 1334983
+        },
+        {
+          "path": "cards/JC078.jpg",
+          "bytes": 335412
+        },
+        {
+          "path": "cards/XG27.jpg",
+          "bytes": 488059
+        },
+        {
+          "path": "cards/LC06.jpg",
+          "bytes": 463742
+        },
+        {
+          "path": "cards/XQ34.jpg",
+          "bytes": 1292584
+        },
+        {
+          "path": "cards/JC065.jpg",
+          "bytes": 272915
+        },
+        {
+          "path": "cards/JC086.jpg",
+          "bytes": 321608
+        },
+        {
+          "path": "cards/DQJC107.jpg",
+          "bytes": 44451
+        },
+        {
+          "path": "cards/JZ51.jpg",
+          "bytes": 521395
+        },
+        {
+          "path": "cards/LC24.jpg",
+          "bytes": 464715
+        },
+        {
+          "path": "cards/JC016.jpg",
+          "bytes": 305023
+        },
+        {
+          "path": "cards/JZ53.jpg",
+          "bytes": 509401
+        },
+        {
+          "path": "cards/MSJC05.jpg",
+          "bytes": 232319
+        },
+        {
+          "path": "cards/JC118.jpg",
+          "bytes": 283116
+        },
+        {
+          "path": "cards/JC066.jpg",
+          "bytes": 306491
+        },
+        {
+          "path": "cards/JC006.jpg",
+          "bytes": 303268
+        },
+        {
+          "path": "cards/WM059.jpg",
+          "bytes": 1282461
+        },
+        {
+          "path": "cards/JC130.jpg",
+          "bytes": 289306
+        },
+        {
+          "path": "cards/JZ24.jpg",
+          "bytes": 515008
+        },
+        {
+          "path": "cards/CQ26.jpg",
+          "bytes": 1163962
+        },
+        {
+          "path": "cards/XQ14.jpg",
+          "bytes": 1373623
+        },
+        {
+          "path": "cards/CQ08.jpg",
+          "bytes": 785666
+        },
+        {
+          "path": "cards/BQ077.jpg",
+          "bytes": 1311524
+        },
+        {
+          "path": "cards/MSJC03.jpg",
+          "bytes": 238826
+        },
+        {
+          "path": "cards/JC112.jpg",
+          "bytes": 295767
+        },
+        {
+          "path": "cards/WM003.jpg",
+          "bytes": 1306943
+        },
+        {
+          "path": "cards/JC126.jpg",
+          "bytes": 302436
+        },
+        {
+          "path": "cards/JC131.jpg",
+          "bytes": 270928
+        },
+        {
+          "path": "cards/LC12.jpg",
+          "bytes": 484188
+        },
+        {
+          "path": "cards/XQ43.jpg",
+          "bytes": 1456234
+        },
+        {
+          "path": "cards/JZ48.jpg",
+          "bytes": 499021
+        },
+        {
+          "path": "cards/WM042.jpg",
+          "bytes": 1288051
+        },
+        {
+          "path": "cards/JC068.jpg",
+          "bytes": 301872
+        },
+        {
+          "path": "cards/JC095.jpg",
+          "bytes": 320210
+        },
+        {
+          "path": "cards/JC034.jpg",
+          "bytes": 366017
+        },
+        {
+          "path": "cards/JC044.jpg",
+          "bytes": 361527
+        },
+        {
+          "path": "cards/JC043.jpg",
+          "bytes": 350752
+        },
+        {
+          "path": "cards/JC125.jpg",
+          "bytes": 285153
+        },
+        {
+          "path": "cards/JC129.jpg",
+          "bytes": 294504
+        },
+        {
+          "path": "cards/JZ02.jpg",
+          "bytes": 518818
+        },
+        {
+          "path": "cards/WM039.jpg",
+          "bytes": 1273311
+        },
+        {
+          "path": "cards/MSJC11.jpg",
+          "bytes": 239506
+        },
+        {
+          "path": "cards/WM034.jpg",
+          "bytes": 1317128
+        },
+        {
+          "path": "cards/JC045.jpg",
+          "bytes": 336061
+        },
+        {
+          "path": "cards/WM038.jpg",
+          "bytes": 1240666
+        },
+        {
+          "path": "cards/JC075.jpg",
+          "bytes": 331174
+        },
+        {
+          "path": "cards/WM023.jpg",
+          "bytes": 1317198
+        },
+        {
+          "path": "cards/DQJC111.jpg",
+          "bytes": 54744
+        },
+        {
+          "path": "cards/JZ08.jpg",
+          "bytes": 497242
+        },
+        {
+          "path": "cards/JC003.jpg",
+          "bytes": 324904
+        },
+        {
+          "path": "cards/JZ33.jpg",
+          "bytes": 560587
+        },
+        {
+          "path": "cards/JC042.jpg",
+          "bytes": 342837
+        },
+        {
+          "path": "cards/JZ61.jpg",
+          "bytes": 493374
+        },
+        {
+          "path": "cards/XQ47.jpg",
+          "bytes": 1347172
+        },
+        {
+          "path": "cards/JC103.jpg",
+          "bytes": 336324
+        },
+        {
+          "path": "cards/XG10.jpg",
+          "bytes": 681879
+        },
+        {
+          "path": "cards/JC087.jpg",
+          "bytes": 339745
+        },
+        {
+          "path": "cards/JC039.jpg",
+          "bytes": 342440
+        },
+        {
+          "path": "cards/JZ32.jpg",
+          "bytes": 578760
+        },
+        {
+          "path": "cards/JC005.jpg",
+          "bytes": 327083
+        },
+        {
+          "path": "cards/JC037.jpg",
+          "bytes": 342598
+        },
+        {
+          "path": "cards/XQ44.jpg",
+          "bytes": 1474456
+        },
+        {
+          "path": "cards/JC059.jpg",
+          "bytes": 299356
+        },
+        {
+          "path": "cards/DQJC114.jpg",
+          "bytes": 53746
+        },
+        {
+          "path": "cards/BQ054.jpg",
+          "bytes": 1340172
+        },
+        {
+          "path": "cards/JC046.jpg",
+          "bytes": 359316
+        },
+        {
+          "path": "cards/JC093.jpg",
+          "bytes": 327300
+        },
+        {
+          "path": "cards/XQ17.jpg",
+          "bytes": 1375211
+        },
+        {
+          "path": "cards/JZ35.jpg",
+          "bytes": 524713
+        },
+        {
+          "path": "cards/JZ52.jpg",
+          "bytes": 521413
+        },
+        {
+          "path": "cards/JZ41.jpg",
+          "bytes": 546047
+        },
+        {
+          "path": "cards/DQJC109.jpg",
+          "bytes": 46185
+        },
+        {
+          "path": "cards/JC132.jpg",
+          "bytes": 295955
+        },
+        {
+          "path": "cards/XQ41.jpg",
+          "bytes": 1463646
+        },
+        {
+          "path": "cards/JC051.jpg",
+          "bytes": 339018
+        },
+        {
+          "path": "cards/DQJC113.jpg",
+          "bytes": 46632
+        },
+        {
+          "path": "cards/JZ54.jpg",
+          "bytes": 543412
+        },
+        {
+          "path": "cards/XQ38.jpg",
+          "bytes": 1487343
+        },
+        {
+          "path": "cards/JC048.jpg",
+          "bytes": 333525
+        },
+        {
+          "path": "cards/JC084.jpg",
+          "bytes": 316581
+        },
+        {
+          "path": "cards/BQ028.jpg",
+          "bytes": 336814
+        },
+        {
+          "path": "cards/LC23.jpg",
+          "bytes": 487166
+        },
+        {
+          "path": "cards/BQ085.jpg",
+          "bytes": 1323610
+        },
+        {
+          "path": "cards/JC030.jpg",
+          "bytes": 314592
+        },
+        {
+          "path": "cards/JC035.jpg",
+          "bytes": 341309
+        },
+        {
+          "path": "cards/BQ094.jpg",
+          "bytes": 1329247
+        },
+        {
+          "path": "cards/JC057.jpg",
+          "bytes": 324751
+        },
+        {
+          "path": "cards/JC063.jpg",
+          "bytes": 292803
+        },
+        {
+          "path": "cards/LC30.jpg",
+          "bytes": 1156537
+        },
+        {
+          "path": "cards/JC040.jpg",
+          "bytes": 317534
+        },
+        {
+          "path": "cards/JC090.jpg",
+          "bytes": 319864
+        },
+        {
+          "path": "cards/JZ23.jpg",
+          "bytes": 542405
+        },
+        {
+          "path": "cards/JZ22.jpg",
+          "bytes": 519522
+        },
+        {
+          "path": "cards/JC050.jpg",
+          "bytes": 313605
+        },
+        {
+          "path": "cards/XQ23.jpg",
+          "bytes": 1373311
+        },
+        {
+          "path": "cards/JZ50.jpg",
+          "bytes": 533019
+        },
+        {
+          "path": "cards/JC069.jpg",
+          "bytes": 304925
+        },
+        {
+          "path": "cards/MSJC04.jpg",
+          "bytes": 250371
+        },
+        {
+          "path": "cards/JZ30.jpg",
+          "bytes": 517039
+        },
+        {
+          "path": "cards/DQJC115.jpg",
+          "bytes": 53304
+        },
+        {
+          "path": "cards/MSJC07.jpg",
+          "bytes": 229888
+        },
+        {
+          "path": "cards/JC020.jpg",
+          "bytes": 283808
+        },
+        {
+          "path": "cards/DQJC110.jpg",
+          "bytes": 41958
+        },
+        {
+          "path": "cards/JC092.jpg",
+          "bytes": 327819
+        }
+      ]
+    }
+  },
+  "wasmModules": [
+    {
+      "name": "26b3b25fc21298e8ab8f8de20d0b2895117d997f-hegemony_wasm_bg.wasm",
+      "bytes": 3325174,
+      "sha256": "f2c1c2f38bf7eec1103c32afac955500d29ab875f4c9039e1a73a787dc6568ed"
+    },
+    {
+      "name": "a7e8e87862cdb2428e265aa82b832f5da351a91e-hegemony_wasm_bg.wasm",
+      "bytes": 3291234,
+      "sha256": "2c9b850eb5b9e5e0b2e5e137d5056154602e82ba05db7d33ad251209ba2c3352"
+    },
+    {
+      "name": "2da1c974e7ea31e2f3d0bbf28c6223a6245a34f0-hegemony_wasm_bg.wasm",
+      "bytes": 3047680,
+      "sha256": "0229f75b7af79035f2a4025fc11c6de6f3f0b895127cc8b537f829268d030472"
+    },
+    {
+      "name": "daf16d1184a1cdbe2e5be9def84fe46d1253b292-hegemony_wasm_bg.wasm",
+      "bytes": 3263215,
+      "sha256": "c02da9cbdfd99fcbfe3b4e0b82cc206ef8572edf2f58017ffd7a58bee2d0f9c1"
+    },
+    {
+      "name": "6a41e2ebca6ac15f296bc33e1d453569762402a7-hegemony_wasm_bg.wasm",
+      "bytes": 3005332,
+      "sha256": "8fdc829ab25d0eb5d68d973489fafff6b70e0da8b7837621a3ef86d52360f0fd"
+    },
+    {
+      "name": "bb9fcf1f14f7f6f7dd89162b0f884e4b6298af94-hegemony_wasm_bg.wasm",
+      "bytes": 3174213,
+      "sha256": "f66f6ab06d36ca86a03ff8370471332627fea3df217ea43b168c759575a2c89f"
+    },
+    {
+      "name": "4a17c8f1fa73ab5b8791af4eceea84d3e07a8e55-hegemony_wasm_bg.wasm",
+      "bytes": 3353559,
+      "sha256": "5834f38dcdb9952a2430e7eb08c44ee9c4a1c98bc4a8ab138c4aee3c343ccde3"
+    },
+    {
+      "name": "1354c65d29667745d112761063e746ff77ab332d-hegemony_wasm_bg.wasm",
+      "bytes": 3217477,
+      "sha256": "31d832d9f9873381f9cb6f4714fd800feef53c9993dd132f32eccdd72ca47b31"
+    },
+    {
+      "name": "9b2c4d3e4e9562fdb0bd7c078c66341ea6cdea39-hegemony_wasm_bg.wasm",
+      "bytes": 2909006,
+      "sha256": "b0e6e59864ca064338050fe47a4b5439c32aacfcb6d257840bbd49976327953c"
+    },
+    {
+      "name": "4cf83d3b22de527bb65740982a7f95e5f2f5275b-hegemony_wasm_bg.wasm",
+      "bytes": 2976205,
+      "sha256": "9511a72c960cf3e0fa249d62669724875d475ab245de4f9616615f38df43fd5f"
+    },
+    {
+      "name": "511f7e28ae333ef0ddcf7d13cefb4d30fb120005-hegemony_wasm_bg.wasm",
+      "bytes": 3154323,
+      "sha256": "669403d547a0ce451570e7953195315949a8ed8252ede34aa9269a607a4e0583"
+    },
+    {
+      "name": "a0bb357ffce798d549aef8ad867be6221809928b-hegemony_wasm_bg.wasm",
+      "bytes": 4315979,
+      "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+    },
+    {
+      "name": "3e08329eed4d66af9ae0f4b6406872f7493ca709-hegemony_wasm_bg.wasm",
+      "bytes": 3165174,
+      "sha256": "1479c3d2ac98fa0f3c0aefff4eba409f2f84a28f437833cbb0a654332b752d37"
+    },
+    {
+      "name": "7d287a59cf1a4b794765cc7eb05e3dc7f7b42702-hegemony_wasm_bg.wasm",
+      "bytes": 3471247,
+      "sha256": "df890ed0b596ca245a39bc8466270edc2e8f40f92ef8dd34359534342ccf24de"
+    },
+    {
+      "name": "19ccb0072a22410b85589473abe407af4bc074c0-hegemony_wasm_bg.wasm",
+      "bytes": 3796247,
+      "sha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f"
+    },
+    {
+      "name": "97cd2966ff65b7e4144a8c8f426348167c6f112e-hegemony_wasm_bg.wasm",
+      "bytes": 3796219,
+      "sha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
+    }
+  ],
+  "v75ArchiveBytes": 105269760
+}

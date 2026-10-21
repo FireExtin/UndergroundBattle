@@ -16,35 +16,20 @@ rmSync(base + '/generated', { recursive: true, force: true });
 mkdirSync(base + '/generated', { recursive: true });
 const current = repository + 'rust-game-wasm/' + (fixture ? 'pkg-society-fixtures/' : 'pkg/');
 for (const name of ['hegemony_wasm.js', 'hegemony_wasm_bg.wasm']) cpSync(current + name, base + '/generated/' + name);
-const { stageFrozenAbi77, stageFrozenAbi78, stageFrozenAbi79, stageFrozenAbi80, stageFrozenAbi81, stageFrozenAbi82, stageFrozenAbi83, stageFrozenAbi84, stageFrozenAbi85, stageFrozenAbi86, stageFrozenAbi87, stageFrozenAbi88, stageFrozenAbi89, stageFrozenAbi91 } = await import(pathToFileURL(repository + 'tools/frozen-kernels.mjs').href);
-stageFrozenAbi77(base + '/generated/abi77');
-stageFrozenAbi78(base + '/generated/abi78');
-stageFrozenAbi79(base + '/generated/abi79');
-stageFrozenAbi80(base + '/generated/abi80');
-stageFrozenAbi81(base + '/generated/abi81');
-stageFrozenAbi82(base + '/generated/abi82');
-stageFrozenAbi83(base + '/generated/abi83');
-stageFrozenAbi84(base + '/generated/abi84');
-stageFrozenAbi85(base + '/generated/abi85');
-stageFrozenAbi86(base + '/generated/abi86');
-stageFrozenAbi87(base + '/generated/abi87');
-stageFrozenAbi88(base + '/generated/abi88');
-stageFrozenAbi89(base + '/generated/abi89');
-stageFrozenAbi91(base + '/generated/abi91');
 writeFileSync(base + '/wrangler.json', JSON.stringify({ name: fixture ? 'hegemony-society-fixture-test' : 'hegemony-society-candidate-test', main: 'src/index.mjs', compatibility_date: '2026-10-02', d1_databases: [{ binding: 'DB', database_name: 'hegemony-test' }] }));
 writeFileSync(base + '/package.json', '{"type":"module","private":true}\n');
 // Only the isolated test copy selects a fixture-feature core.
 // The normal source, generated modules and production build retain their approved identity.
+const abi = await import(pathToFileURL(current + 'hegemony_wasm.js'));
+abi.initSync({ module: readFileSync(current + 'hegemony_wasm_bg.wasm') });
+const catalog = JSON.parse(abi.catalog());
 if (fixture) {
-  const abi = await import(pathToFileURL(current + 'hegemony_wasm.js'));
-  abi.initSync({ module: readFileSync(current + 'hegemony_wasm_bg.wasm') });
-  const catalog = JSON.parse(abi.catalog());
   if (!catalog.engineVersion.endsWith('-fixture') || !catalog.societies.every(s => s.id.startsWith('FIXTURE_'))) throw Error('Wrong isolated test core');
-  const identity = { rulesVersion: catalog.rulesVersion, cardPoolVersion: catalog.cardPoolVersion, engineVersion: catalog.engineVersion };
-  const source = readFileSync(base + '/src/kernel.mjs', 'utf8');
-  const declaration = /^const kernel0 = lazyKernel\(current, currentModule, \{[^\n]+\}\);$/m;
-  if (!declaration.test(source)) throw Error('Expected the existing current-core declaration');
-  writeFileSync(base + '/src/kernel.mjs', source.replace(declaration, `const kernel0 = lazyKernel(current, currentModule, ${JSON.stringify(identity)});`));
+} else {
+  const definitions = JSON.parse(readFileSync(repository + 'rust-game/data/cards.json', 'utf8'));
+  for (const field of ['rulesVersion', 'cardPoolVersion', 'engineVersion']) {
+    if (catalog[field] !== definitions[field]) throw Error(`Current WASM ${field} differs from source; rebuild it before packaging.`);
+  }
 }
 rmSync(base + '/dist', { recursive: true, force: true });
 execFileSync(root + 'node_modules/.bin/wrangler', ['deploy', '--dry-run', '--config', base + '/wrangler.json', '--outdir', base + '/dist'], { cwd: base, stdio: 'inherit', env: { ...process.env, XDG_CONFIG_HOME: base + '/.wrangler-config', WRANGLER_SEND_METRICS: 'false' } });
