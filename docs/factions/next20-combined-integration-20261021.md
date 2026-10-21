@@ -1,8 +1,8 @@
-# 下一批20张组合源码整合（待运行验收）
+# 下一批20张组合源码整合（Native定向通过，待构建与发布）
 
 普通独立克隆：`/workspace/audit-underground-100161b/next20-combined-dev`；分支 `progress/next20-combined-20261021`；固定基线 `d611b3269c48612c8e1500b349fb363915779b22`。未修改根目录或原分组克隆，未推送、部署或触发GitHub CI。
 
-本检查点完成源码合并及静态检查，**没有运行Cargo、Native/WASM构建或组合测试**。第一批P2优先占用编译槽，后续仅在owner明确分配后运行必要定向测试。本记录不是发布验收、独立复审或测试通过声明。
+组合源码及指定P2/UX差异已合并，Native lib定向回归最终为 **129通过、0失败、0忽略**，1281项未进入本次过滤范围。被测源码提交为 `e15883946d8b9c519228c8d48fae6ea275a9aa32`；完整命令、首次失败、修复和最终日志哈希见[运行证据](next20-combined-native-20261021.json)。本记录不代表全套、ABI93运行制品、浏览器对战、独立复审或发布验收通过。编译槽已交回owner，后续构建与启动由owner接手。
 
 ## 输入与目录
 
@@ -27,7 +27,7 @@
 6. JZ23/CQ26的传闻cause调用本模块完整帧验证，并仅接受两步原程序在Accepted/cursor=2的末步弃牌：JZ23目标玩家弃一、redraw=false；CQ26行动者弃一、redraw=true；两者必须是单张手牌转移。cause的来源/事件加入原观察去重集合，禁止与响应帧或声明重复。未放开普通`Effect::Frame`准入。原有余步唯一/不可丢失校验及JZ57独立续体均保留。
 7. 红、黑、蓝来源及准备观察拒绝移植灰色条件机动的`observed_exposure`收据；合法跨卡机动仍由原严格公共校验先行认证。Game和Room恢复、apply前后及聚合状态入口的各组检查全部保留。
 
-## 待运行的跨组验收
+## 已通过的跨组定向验收
 
 [next20_cross_tests.rs](../../rust-game/src/next20_cross_tests.rs)新增7个定向测试，所有客户命令经`Game::apply`和四席持久化往返；非法快照同时检查Game与Room拒绝。
 
@@ -38,14 +38,36 @@
 - JZ34/BQ085/XG27共用死亡批次，按来源分别核对事件数量并拒绝重复观察。
 - 四组角色通过真实JC074授予声望及真实LC12/JC089授予战功；原地区替换UID后不奖励替代地区。
 
-原红组 `next20_red_jc051_cross_package_badge_public_search_host_restore` 已解除ignore，使用真实JC039/XQ39定义及本方秘社宿主，检查原牌库UID离开、新附属UID、一次洗牌、重复提交拒绝和恢复。原独立红组的14通过/1忽略不计作此案例通过。
+原红组 `next20_red_jc051_cross_package_badge_public_search_host_restore` 已解除ignore并通过，使用真实JC039/XQ39定义，在已选秘社牌和空秘社区两种状态下共检查4种组合；覆盖原牌库UID离开、新附属UID、一次洗牌、重复提交拒绝和恢复。该结果来自当前组合源码，独立红组原有14通过/1忽略仅保留作历史记录。
 
-建议owner分配槽后依次运行 `next20_cross`、`next20_red`、`black_next20`、`next20_blue_gray`、`exposure` 及必要准备/第一批回归筛选，使用独立 `UNDERGROUNDBATTLE_BUILD_ROOT` 和 `tools/build-storage.mjs`；先修定向失败，未授权前不扩成全量。组合构建、类型检查、当前来源与Sites检查、真实浏览器对战和独立复审均尚未执行。
+使用独立 `UNDERGROUNDBATTLE_BUILD_ROOT=/workspace/audit-underground-100161b/next20-combined-build`，经 `tools/build-storage.mjs` 门禁运行 `cargo test --manifest-path rust-game/Cargo.toml --lib --offline --locked -- next20 exposure_ society_zone_ jc035_ batch20_ --nocapture`。默认Native特性，未启用society-fixtures；过滤词按libtest的OR子串规则匹配。
+
+| 模块 | 最终通过数 |
+| --- | ---: |
+| batch20_tests | 27 |
+| black_next20_tests | 21 |
+| exposure_tests | 22 |
+| jc035_tests | 15 |
+| next20_blue_gray_tests | 13 |
+| next20_cross_tests | 7 |
+| next20_red宿主夹具 | 1 |
+| next20_red_tests | 14 |
+| society_zone_tests | 9 |
+| 合计 | 129 |
+
+首轮为127通过、2失败，保留原始日志。两个跨组声望/战功用例发现蓝灰待响应声明误用印刷能力筛选，漏校验授予的奖励能力，导致移除原地区UID的快照被接受。`e158839` 将蓝灰正式来源纳入运行声明与选择校验，仅准入绑定原公开角色及原地区UID的精确奖励程序；没有放宽普通执行帧。补充奖励程序篡改及真实徽章空秘社区覆盖后，修复定向3/3通过，原129项范围再运行全部通过。所有日志及SHA-256见[运行证据](next20-combined-native-20261021.json)。未扩大全量测试范围。
 
 ## 身份与静态边界
 
 下一批未构建预留身份由92改为 `rust-v0.2.93-batch20-next`，pool仍为 `limited-v2.83-batch20-next`。ABI92留给第一批P2。本检查点保留已有77–89、91原件路由，未制造或冻结ABI92；等待owner提供P2正式原件身份和字节后再接入retained92。
 
-静态结果：29个变更Rust文件解析成功；变更JavaScript文件语法检查成功；`git diff --check`无错误；193/183和原173记录一致性已直接核对。语法检查没有进行类型检查或执行测试。旧冻核仍保留其173张目录断言。
+初始整合静态结果：29个变更Rust文件解析成功；变更JavaScript文件语法检查成功；`git diff --check`无错误；193/183和原173记录一致性已直接核对。随后当前组合源码已完成Native lib类型检查与上述129项定向执行。旧冻核仍保留其173张目录断言。
 
-owner后续带回P2源码与两项UX补丁。本任务未重复开发UX，也未改总README；基线README第154行仍描述“当前候选ABI92”，需由owner随最终P2/93构建说明统一更新。独立克隆为节约磁盘省略大型Web/Sites夹具和原图工作副本，完整检查应由owner提供原始输入或调整本克隆稀疏范围后执行，不能以缺少副本略过验收。
+P2源码和指定触发文字UX已导入，基线JC065 UX继续保留。本任务未重复开发UX，也未改总README；基线README第154行仍描述“当前候选ABI92”，需由owner随最终P2/93构建说明统一更新。独立克隆为节约磁盘省略大型Web/Sites夹具和原图工作副本，完整检查应由owner提供原始输入或调整本克隆稀疏范围后执行，不能以缺少副本略过验收。ABI93 WASM/Native服务制品、启动与Sites运行检查、当前UI验收、全量Rust测试、真实浏览器对战和独立复审不在本轮通过声明内。
+
+
+## 后续指定差异导入
+
+第一批最小P2修复 `a0b1b3da71887bde9aaed06f85dc74638d36d38c` 已导入为 `731269a`；触发文字UX `4a722341f7d302300351bb15300d3a17cba1575d` 已导入为 `af325e5`。P2只移除秘社附属宿主对已选秘社牌的要求，保留新增秘社标志和校验；Table的目标按钮允许空秘社区，同时保留暴露、隐秘和手牌上限显示。基线已含JC065 UX，没有重复导入。ABI93/pool83和既有ABI91路由不变，第一批ABI92尚未发布，仍未创建冻结输入。
+
+P2的9项秘社区Native回归及JC051真实徽章空秘社区组合已通过；触发UX的界面验证由owner负责。本轮编译槽已释放，未推送或部署。owner报告第一批P2 v74已官方保存，Site source为 `fe182e656f35153be9225c0b17fbce708831b1ba`，正在等待独立补验且尚未部署；本轮没有创建宣称已发布的ABI92冻结身份。owner接手ABI93构建和后续oracle/界面用例，本记录不预报它们通过。

@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-next-2026-10-21",
-  "stage": "WIP-sourceIntegratedPendingCompositeValidation",
+  "stage": "WIP-nativeCompositeTargetedPassed",
   "baseCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
   "branch": "progress/batch20-next-20261021",
   "firstBatchSnapshotUnchanged": true,
   "scope": {
     "selectedNewCards": 20,
-    "fullyIntegratedNewCards": 0,
+    "fullyIntegratedNewCards": 20,
     "selectionEnabledNewCards": 20,
     "publishedNewCards": 0,
     "neutralOrDualExpansion": "paused",
-    "sourceIntegratedNewCards": 20
+    "sourceIntegratedNewCards": 20,
+    "integrationMeaning": "Source integration and Native targeted validation complete; artifact, release and browser validation pending"
   },
   "cards": [
     {
@@ -24,7 +25,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -33,12 +34,18 @@
         "passed": 14,
         "failed": 0,
         "ignored": 1,
-        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "ignoredBoundary": "Historical red-only run omitted JC051 real JC039/XQ39; the current combined run enables and passes it (see compositeValidation).",
         "evidence": "Implementer handoff; command output retained in task history"
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JC055",
@@ -50,7 +57,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -59,12 +66,18 @@
         "passed": 14,
         "failed": 0,
         "ignored": 1,
-        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "ignoredBoundary": "Historical red-only run omitted JC051 real JC039/XQ39; the current combined run enables and passes it (see compositeValidation).",
         "evidence": "Implementer handoff; command output retained in task history"
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JZ32",
@@ -76,7 +89,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -85,12 +98,18 @@
         "passed": 14,
         "failed": 0,
         "ignored": 1,
-        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "ignoredBoundary": "Historical red-only run omitted JC051 real JC039/XQ39; the current combined run enables and passes it (see compositeValidation).",
         "evidence": "Implementer handoff; command output retained in task history"
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JZ34",
@@ -102,7 +121,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -111,12 +130,18 @@
         "passed": 14,
         "failed": 0,
         "ignored": 1,
-        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "ignoredBoundary": "Historical red-only run omitted JC051 real JC039/XQ39; the current combined run enables and passes it (see compositeValidation).",
         "evidence": "Implementer handoff; command output retained in task history"
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JZ41",
@@ -128,7 +153,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -137,12 +162,18 @@
         "passed": 14,
         "failed": 0,
         "ignored": 1,
-        "ignoredBoundary": "JC051 real JC039/XQ39 test; now enabled in combined source, not yet run",
+        "ignoredBoundary": "Historical red-only run omitted JC051 real JC039/XQ39; the current combined run enables and passes it (see compositeValidation).",
         "evidence": "Implementer handoff; command output retained in task history"
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "BQ077",
@@ -154,7 +185,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -168,7 +199,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "BQ085",
@@ -180,7 +217,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -194,7 +231,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "CQ26",
@@ -206,7 +249,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -220,7 +263,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "XG27",
@@ -232,7 +281,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -246,7 +295,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "XQ39",
@@ -258,7 +313,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -272,7 +327,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JC039",
@@ -284,7 +345,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -300,7 +361,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JZ23",
@@ -312,7 +379,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -328,7 +395,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "JZ28",
@@ -340,7 +413,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -356,7 +429,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "XG10",
@@ -368,7 +447,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -384,7 +463,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "CQ08",
@@ -396,7 +481,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -412,7 +497,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "BQ059",
@@ -424,7 +515,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -440,7 +531,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "CQ17",
@@ -452,7 +549,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -468,7 +565,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "WM039",
@@ -480,7 +583,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -494,7 +597,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "WM040",
@@ -506,7 +615,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -520,7 +629,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     },
     {
       "id": "WM042",
@@ -532,7 +647,7 @@
         "originalImageReviewedBy": "delegated source reviewers in this task",
         "ownerByteHashVerified": true
       },
-      "implementation": "integratedPendingCompositeValidation",
+      "implementation": "integratedNativeTargetedValidated",
       "selectionEnabled": true,
       "release": "notReleased",
       "localScopedTests": {
@@ -546,7 +661,13 @@
       },
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
-      "compositeValidation": "notRun; awaiting owner Cargo slot"
+      "compositeValidation": {
+        "status": "passedWithinTargetedNativeScope",
+        "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+        "evidence": "docs/factions/next20-combined-native-20261021.json",
+        "fullSuite": "notRun",
+        "release": "notReleased"
+      }
     }
   ],
   "sourceCorrectionsPending": [
@@ -576,7 +697,7 @@
   "githubCiAllowed": false,
   "validation": {
     "images": "20 exact byte copies verified against pinned SHA256; mappings added",
-    "runtime": "Implementation started; no completed admission or test pass claimed",
+    "runtime": "20 cards integrated; combined Native lib targeted validation passed 129/129 with zero ignored at e15883946d8b9c519228c8d48fae6ea275a9aa32; full suite and runtime artifacts not validated here.",
     "browser": "notRun; coordinator owns real gameplay",
     "existingSourceBoundaryTest": {
       "command": "node --test tools/cards/batch20-source.test.mjs",
@@ -589,7 +710,7 @@
       "invalid": 0
     }
   },
-  "recordedAt": "2026-10-21T13:50:17.361668+00:00",
+  "recordedAt": "2026-10-21T15:04:54.161387+00:00",
   "carriedFixes": [
     {
       "id": "B20-UX-JC065-target-roles",
@@ -621,7 +742,7 @@
     "rules": "hegemony-pdf-v1",
     "cardPool": "limited-v2.83-batch20-next",
     "engine": "rust-v0.2.93-batch20-next",
-    "status": "ABI93 reserved in source only; no WASM built; ABI92 reserved for first-batch P2",
+    "status": "ABI93 source and Native lib tests validated; runtime artifact build and startup handed to owner; ABI92 belongs to first-batch P2",
     "retainedAbi": [
       77,
       78,
@@ -640,8 +761,9 @@
     ],
     "pendingRetainedP2": {
       "abi": 92,
-      "status": "awaiting owner exact original identity and runtime bytes",
-      "frozenInputsCreated": false
+      "status": "v74 officially saved by owner; independent acceptance pending; not deployed; await owner formal original identity",
+      "frozenInputsCreated": false,
+      "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba"
     }
   },
   "combinedIntegration": {
@@ -671,24 +793,41 @@
     "staticValidation": {
       "diffCheck": "clean",
       "rustSyntaxFiles": 29,
-      "rustTypeCheck": "notRun",
+      "rustTypeCheck": "passed in Native lib test compilation",
       "javascriptSyntax": "parsed",
-      "cargoInvoked": false
+      "cargoInvoked": true
     },
     "crossTests": {
       "newTests": 7,
       "file": "rust-game/src/next20_cross_tests.rs",
       "realBadgeTestEnabled": "next20_red_tests::next20_red_jc051_cross_package_badge_public_search_host_restore",
-      "status": "notRun"
+      "status": "7 new cross tests plus real badge test passed, zero ignored",
+      "realBadgeVariants": 4
     },
     "remaining": [
-      "Owner-assigned guarded Cargo slot for targeted composite tests and failures",
-      "Owner P2 source plus two UX patches to be integrated later",
-      "Exact P2 ABI92 original identity before retained92 route",
-      "Combined WASM and Native builds, current tests, browser acceptance and independent review; not claimed passed"
+      "Owner ABI93 WASM/Native service artifact builds and startup",
+      "Exact formal P2 ABI92 original identity before retained92 route; v74 saved but not deployed",
+      "Current source/UI/Sites checks, full suite, browser acceptance and independent review; not claimed passed"
     ],
     "published": false,
-    "pushed": false,
-    "githubCITriggered": false
+    "githubCITriggered": false,
+    "followUpInputs": [
+      {
+        "kind": "first-batch-minimal-P2",
+        "sourceCommit": "a0b1b3da71887bde9aaed06f85dc74638d36d38c",
+        "integratedCommit": "731269a9f3a5d8341813ebc31fd3073225aeed4a",
+        "status": "imported; 9 society_zone Native regressions plus real badge empty-society integration passed"
+      },
+      {
+        "kind": "optional-trigger-context-UX",
+        "sourceCommit": "4a722341f7d302300351bb15300d3a17cba1575d",
+        "integratedCommit": "af325e5ce3877879ee5b559be701c0b3a89ba287",
+        "status": "imported; source diff only, UI verification owned by parent"
+      }
+    ],
+    "testedSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+    "targetedValidation": "docs/factions/next20-combined-native-20261021.json",
+    "implementationAgentPushed": false,
+    "ownerPushedCheckpoint": "0bbfe1d722e41e77a86ebd9257a5fc25d7f74e2c"
   }
 }

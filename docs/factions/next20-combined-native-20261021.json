@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch20-next-2026-10-21",
+  "testedSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "buildRoot": "/workspace/audit-underground-100161b/next20-combined-build",
+  "guard": "tools/build-storage.mjs",
+  "command": "cargo test --manifest-path rust-game/Cargo.toml --lib --offline --locked -- next20 exposure_ society_zone_ jc035_ batch20_ --nocapture",
+  "features": "default: native; society-fixtures disabled",
+  "filterSemantics": "libtest OR substring filters; targeted tests only",
+  "logs": {
+    "first": {
+      "path": "/workspace/audit-underground-100161b/next20-combined-build/logs/next20-combined-targeted-first.log",
+      "sha256": "61739b5d03ceea0a6e4a6afa0506cd2cfab8433aa4c54ba94897b3279b3910da",
+      "passed": 127,
+      "failed": 2,
+      "ignored": 0,
+      "filteredOut": 1281,
+      "seconds": 36.96,
+      "groups": {
+        "batch20_tests": 27,
+        "black_next20_tests": 21,
+        "exposure_tests": 22,
+        "jc035_tests": 15,
+        "next20_blue_gray_tests": 13,
+        "next20_cross_tests": 7,
+        "next20_red": 1,
+        "next20_red_tests": 14,
+        "society_zone_tests": 9
+      }
+    },
+    "repair": {
+      "path": "/workspace/audit-underground-100161b/next20-combined-build/logs/next20-combined-reward-fix.log",
+      "sha256": "d67edb04c6216a1332e3ede34c0700b9ea7fc99b8d4bf54e5d56f652cae3ddb9",
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "filteredOut": 1407,
+      "seconds": 6.84,
+      "groups": {
+        "next20_cross_tests": 2,
+        "next20_red_tests": 1
+      }
+    },
+    "final": {
+      "path": "/workspace/audit-underground-100161b/next20-combined-build/logs/next20-combined-targeted-final.log",
+      "sha256": "60c83e220e3e614ff86068116d0615ee69fe9e3df25603c57959d415021d3dc6",
+      "passed": 129,
+      "failed": 0,
+      "ignored": 0,
+      "filteredOut": 1281,
+      "seconds": 55.82,
+      "groups": {
+        "batch20_tests": 27,
+        "black_next20_tests": 21,
+        "exposure_tests": 22,
+        "jc035_tests": 15,
+        "next20_blue_gray_tests": 13,
+        "next20_cross_tests": 7,
+        "next20_red": 1,
+        "next20_red_tests": 14,
+        "society_zone_tests": 9
+      }
+    }
+  },
+  "failureAndRepair": {
+    "firstFailure": "Two cross-package renown/glory tests accepted a corrupted blue-gray pending declaration with the source region UID removed.",
+    "cause": "The printed-ability filter excludes granted reward keys, and the pending declaration state scanner reused that filter.",
+    "repairCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+    "repair": "Include admitted blue-gray sources in runtime declaration/choice validation; admit only the exact existing canonical reward bound to the original public character and original region UID. Ordinary execution frames remain rejected.",
+    "addedCoverage": "Pending reward program tampering; both real JC039/XQ39 badges on an empty or selected society zone."
+  },
+  "notValidatedHere": [
+    "ABI93 WASM and Native service artifacts",
+    "ABI93 startup and Sites routing/runtime tests",
+    "UI verification in this clone",
+    "full Rust suite (1281 filtered out)",
+    "real browser battle",
+    "independent review",
+    "publication or deployment"
+  ],
+  "p2": {
+    "importedSource": "a0b1b3da71887bde9aaed06f85dc74638d36d38c",
+    "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba",
+    "status": "v74 officially saved by owner; independent acceptance pending; not deployed",
+    "abi92FrozenIdentityCreated": false
+  },
+  "cargoSlotReleased": true,
+  "agentPushed": false,
+  "githubCITriggered": false
+}
