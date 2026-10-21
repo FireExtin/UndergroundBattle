@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T15:46:36.276Z",
+  "projectId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+  "versionId": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+  "versionNumber": 74,
+  "sourceCommit": "fe182e656f35153be9225c0b17fbce708831b1ba",
+  "productCandidate": "eb64382604b4a6e1291247d31c6d185d0f3fb56c",
+  "runtimeSourceCommit": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
+  "engine": "rust-v0.2.92-society-zone-fix",
+  "cardPool": "limited-v2.82-batch20",
+  "ordinaryCards": 173,
+  "wasm": {
+    "bytes": 3796247,
+    "sha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f"
+  },
+  "archive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000ca808206af76e918bfedbeeb",
+    "content_hash": "sha256:61329832d6724146c0feaa8be1da524848073e7acaae77f5ecfb7e9ddefe4bc4",
+    "size_bytes": 162877440,
+    "file_count": 211
+  },
+  "deployment": {
+    "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+    "type": "publish",
+    "status": "pending",
+    "url": null,
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": null,
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-21T15:43:22.880209+00:00"
+  },
+  "requestStatus": "One retry after new explicit continuing public-site authorization; native call Internal error reconciled to this pending deployment; no duplicate request.",
+  "initialRejectionEvidence": "publication-v74-denied.json",
+  "acceptance": "pending; minimal P2 independent source supplemental passed, not full artifact/UX/browser acceptance",
+  "publicHttpIdentity": "not checked; prior403 respected; native receipt is not a browser result",
+  "githubCI": "notRun"
+}

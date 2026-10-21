@@ -214,6 +214,8 @@ fn mixed_preparation() -> Value {
     let b = grave(&mut g, "JZ50", 0);
     let ids = deck(&mut g, 0, &["JC125", "JC125", "JC125", "JZ28"]);
     g.window = Some(Window::End);
+    // This initial checkpoint has entered End with no JC054 on the board.
+    g.jc054_end_step_turn = Some(g.turn);
     let (mut r, mut steps) = initial(g);
     until(&mut r, &mut steps, "jc035-preparation-order");
     assert_eq!(r.pending.as_ref().unwrap().choice.options.len(), 5);
@@ -297,6 +299,9 @@ fn reveal_rumor(sealed: bool) -> Value {
     let before = ready(&r, 0);
     choose(&mut r, &mut steps, vec!["p2".into()]);
     assert_eq!(ready(&r, 0), before - 1);
+    // The revealed JC029 also offers its independent optional raid.
+    assert_eq!(trigger_source(&r), "JC029");
+    choose(&mut r, &mut steps, vec![]);
     until(&mut r, &mut steps, "discard");
     private(&r, 2, &[news.clone()]);
     choose(&mut r, &mut steps, vec![news]);
@@ -355,7 +360,15 @@ fn mill_rumor_discard() -> Value {
     field(&mut g, "JZ28", 2, 0);
     let hand_news = held(&mut g, "WM042", 0);
     deck(&mut g, 0, &["JC125", "WM042", "JC125", "JC125", "JC084"]);
-    let inspected = deck(&mut g, 2, &["JC125", "JC029", "JC125", "JC125", "CQ08"]);
+    // XQ36 mills every player's top four before this later discard search.
+    let inspected = deck(
+        &mut g,
+        2,
+        &[
+            "JC125", "JC125", "JC125", "JC125", "JC125", "JC029", "JC125", "JC125", "CQ08",
+        ],
+    )[4..]
+        .to_vec();
     fund(&mut g, 0, "JC084", 1);
     let mill = held(&mut g, "XQ36", 0);
     let (mut r, mut steps) = initial(g);
@@ -1069,9 +1082,16 @@ fn ring_and_raid() -> Value {
     );
     until(&mut r, &mut steps, "trigger");
     choose(&mut r, &mut steps, vec!["accept".into()]);
-    until(&mut r, &mut steps, "forecast");
+    until(&mut r, &mut steps, "investigation");
     private(&r, 0, &ids);
     let p = r.pending.clone().unwrap();
+    assert!(matches!(
+        p.resolution,
+        ChoiceResolution::Frame {
+            choice: FrameChoice::Forecast { .. },
+            ..
+        }
+    ));
     apply_game(
         &mut r,
         &mut steps,

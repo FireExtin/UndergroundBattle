@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-next-2026-10-21",
-  "stage": "WIP-buildStartupPassed-oraclePending-publicationBlocked",
+  "stage": "WIP-localReadinessAndScopedOraclePassed-v74PublicationPending",
   "baseCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
   "branch": "progress/next20-combined-20261021",
   "firstBatchSnapshotUnchanged": true,
@@ -12,7 +12,7 @@
     "publishedNewCards": 0,
     "neutralOrDualExpansion": "paused",
     "sourceIntegratedNewCards": 20,
-    "integrationMeaning": "20 sources integrated; Native129, UI180, Native/WASM/Web/Sites build and startup passed. Additional35 mechanism+8P2 oracle cases written, not run. Publication/independent review/browser pending."
+    "integrationMeaning": "All20 integrated and admitted; Native129, UI180, builds/startup,15-kernel HTTP/D1 and35 mechanism+8P2 Native/WASM cases passed. Full suites, publication, independent review and browser acceptance remain pending."
   },
   "cards": [
     {
@@ -40,11 +40,18 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jc051-private-badge-JC039-empty-zone",
+          "next20-jc051-private-badge-XQ39-empty-zone",
+          "next20-JC051-granted-renown-original-region",
+          "next20-JC051-granted-renown-replacement-region-fizzle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -72,11 +79,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-shared-forced-preparation-and-cq08-once"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -104,11 +115,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jz32-real-sacrifice-hourglass-return",
+          "next20-jz32-paid-replacement-region-fizzle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -136,11 +152,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jz34-entry-personal-sacrifice-destruction-death-influence"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -168,11 +188,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jz41-private-forecast-jz28-raid-adds-real-wound"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -200,11 +224,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-bq077-real-deck-to-grave-water-entry"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -232,11 +260,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-shared-forced-preparation-and-cq08-once",
+          "next20-bq085-sacrifice-and-xg27-victim-region-recovery"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -264,11 +297,17 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-actual-mill-rumor-cq26-discard-jz28-top-four",
+          "next20-CQ26-granted-renown-original-region",
+          "next20-CQ26-granted-renown-replacement-region-fizzle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -296,11 +335,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-bq085-sacrifice-and-xg27-victim-region-recovery"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -328,11 +371,17 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-XQ39-empty-zone-discount-play",
+          "next20-XQ39-empty-zone-discount-paid-reveal",
+          "next20-xq39-own-grave-to-top-no-shuffle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -362,11 +411,17 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-JC039-empty-zone-discount-play",
+          "next20-JC039-empty-zone-discount-paid-reveal",
+          "next20-jc039-own-blue-hide-fresh-instance-clears-marker"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -396,11 +451,18 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jz23-paid-marker-rumor-declined",
+          "next20-jz23-paid-marker-rumor-sealed",
+          "next20-JZ23-granted-renown-original-region",
+          "next20-JZ23-granted-renown-replacement-region-fizzle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -430,11 +492,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-actual-mill-rumor-cq26-discard-jz28-top-four",
+          "next20-jz41-private-forecast-jz28-raid-adds-real-wound"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -464,11 +531,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-xg10-one-cost-blood-search",
+          "next20-xg10-five-cost-embrace-control"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -498,11 +570,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-shared-forced-preparation-and-cq08-once",
+          "next20-cq08-reveal-private-same-name-hidden-entry"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -532,11 +609,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-BQ059-exact-search-original-region"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -566,11 +647,16 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-CQ17-exact-search-original-region",
+          "next20-CQ17-exact-search-replacement-region-fizzles"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -598,11 +684,15 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-wm039-once-analysis-wm042-both-modes-cancellation"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -630,11 +720,18 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-wm040-real-exposure-removal-repress-and-local-heal",
+          "next20-wm040-frozen-conditional-mobility-survives-cover-response",
+          "next20-WM040-granted-renown-original-region",
+          "next20-WM040-granted-renown-replacement-region-fizzle"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     },
     {
@@ -662,11 +759,19 @@
       "independentReview": "notRun",
       "realBrowserBattle": "notRun",
       "compositeValidation": {
-        "status": "passedWithinTargetedNativeScope",
+        "status": "passedWithinTargetedNativeAndWasmScope",
         "sourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
         "evidence": "docs/factions/next20-combined-native-20261021.json",
         "fullSuite": "notRun",
-        "release": "notReleased"
+        "release": "notReleased",
+        "nativeWasmEffectCases": [
+          "next20-jz23-paid-marker-rumor-declined",
+          "next20-jz23-paid-marker-rumor-sealed",
+          "next20-actual-mill-rumor-cq26-discard-jz28-top-four",
+          "next20-wm039-once-analysis-wm042-both-modes-cancellation",
+          "next20-wm040-frozen-conditional-mobility-survives-cover-response"
+        ],
+        "nativeWasmEvidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json"
       }
     }
   ],
@@ -695,7 +800,7 @@
   "githubCiAllowed": false,
   "validation": {
     "images": "20 exact byte copies verified against pinned SHA256; mappings added",
-    "runtime": "Runtime source e158839: Native129/129, Web180/180, Native/WASM/Web/Sites build,193-card/20-card startup and8kernel checks passed; not full suites",
+    "runtime": "Runtimee158839: Native129, Web180, Native/WASM/Web/Sites builds,193-card/20-card startup,8kernel checks and35+8Native/WASM cases passed; not full suites.",
     "browser": "notRun; coordinator owns real gameplay",
     "existingSourceBoundaryTest": {
       "command": "node --test tools/cards/batch20-source.test.mjs",
@@ -713,9 +818,15 @@
       "sourceCards": 40,
       "originalScans": 193,
       "evidence": "docs/evidence/batch20-next-2026-10-21/local-readiness.json"
+    },
+    "nativeWasmOracle": {
+      "evidence": "docs/evidence/batch20-next-2026-10-21/native-wasm.json",
+      "mechanismCases": 35,
+      "p2Cases": 8,
+      "passed": true
     }
   },
-  "recordedAt": "2026-10-21T15:27:29.631375+00:00",
+  "recordedAt": "2026-10-21T15:42:46.610762+00:00",
   "carriedFixes": [
     {
       "id": "B20-UX-JC065-target-roles",
@@ -766,7 +877,7 @@
     ],
     "pendingRetainedP2": {
       "abi": 92,
-      "status": "v74 saved; minimal P2 independent supplemental passed; official deployment denied for lack of explicit v74 authorization; no92published identity created",
+      "status": "v74 official deployment pending after new continuing authorization; exact candidate bytes prepared, no published92 identity created yet",
       "frozenInputsCreated": false,
       "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba"
     },
@@ -812,9 +923,9 @@
       "realBadgeVariants": 4
     },
     "remaining": [
-      "Run additional35 mechanism+8P2 Native/WASM oracle cases once existing memory launch guard passes; do not interrupt fixed7f Sites run",
-      "If v74 is published after authorization, retain its exact ABI92 originals before next20 publication",
-      "Official publication, postpublication full suites, independent review and real browser acceptance; not claimed passed"
+      "Track the already accepted v74 deployment; no duplicate request. Publish next20 through the official workflow after exact92 retention if v74 succeeds.",
+      "If v74 is published after relevant authorization, retain its exact ABI92 original bytes and published identity before next20 publication.",
+      "Postpublication full suites, independent review and real browser acceptance; none claimed passed for next20."
     ],
     "published": false,
     "githubCITriggered": false,
@@ -835,7 +946,7 @@
     "testedSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
     "targetedValidation": "docs/factions/next20-combined-native-20261021.json",
     "implementationAgentPushed": false,
-    "ownerPushedCheckpoint": "4f388a8dd318465e7ca1d12af38aec18aede286c"
+    "ownerPushedCheckpoint": "072ab0bd695cf2d0d4355d7fa474647e7f35c66e"
   },
   "sourceCorrectionsCompleted": [
     "WM040 original sun conditions before public and mobility; active specification corrected in exposure integration",

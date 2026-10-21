@@ -1074,8 +1074,8 @@
         "completionEvidence": "All440 per-case success records, aggregate success and final XQ24 success; original process no longer exists."
       }
     },
-    "independentReview": "coordinatorAssigned; no completed result received for batch",
-    "realBrowserBattle": "coordinatorAssigned; no completed result received for batch",
+    "independentReview": "Completed for7f per coordinator; B20-IR-01 confirmed and separately fixed at a0b1b3d. Minimal fix independently supplemented; not full artifact/UX/next20 acceptance.",
+    "realBrowserBattle": "Per coordinator: v73 table2DC8C499E930 naturally finished8 rounds A8:B6 and final refresh passed; not all20 mechanisms or repairedABI92 acceptance.",
     "githubCi": "notRun",
     "onlyExpectedSourceRecordsChanged": [
       "JC034",
@@ -1482,11 +1482,19 @@
     "savedV72ReleaseDisposition": "Do not deploy known-defective v72. Replacement source/build validated locally; not yet saved or deployed."
   },
   "finalSitesRun": {
-    "status": "running",
+    "status": "passed",
     "sourceCommit": "7f4e6d63b2498ea2f47a3a6e5b1bf29dfd3dc762",
-    "sessionId": 38409,
-    "log": "batch20-final-full-sites-fixed.log",
+    "exitCode": 0,
+    "tests": 736,
+    "passed": 736,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 2244554.28068,
+    "evidence": "docs/evidence/batch20-2026-10-21/final-sites-suite.json",
     "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
-    "scope": "Single full local Sites suite; not browser gameplay"
+    "postpublication": true,
+    "notAbi92Or93": true
   }
 }

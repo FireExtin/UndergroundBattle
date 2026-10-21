@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-21T15:42:46.610762+00:00",
+  "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "oracleBaseCommit": "072ab0bd695cf2d0d4355d7fa474647e7f35c66e",
+  "oracleSourceMeaning": "Base072ab0b plus the four fixture-only corrections captured by the source hashes below; no production source changes.",
+  "sourceFiles": {
+    "rust-game-wasm/examples/native_fixtures.rs": {
+      "bytes": 110660,
+      "sha256": "cc3f36abce945e18f3e2cb412e8cfe0dbf9ec5bd4034028785e5c0b1b2c1bd2b"
+    },
+    "rust-game-wasm/examples/support/next20.rs": {
+      "bytes": 44098,
+      "sha256": "16f94037ab7e941549908c59ffdb9c196affca70b870f272c6a6d3f0391d3d34"
+    },
+    "rust-game-wasm/examples/support/society_zone.rs": {
+      "bytes": 6306,
+      "sha256": "ddc4aca067d364ab7d9be11ccef22f1b91b0c5cb6eef78ccf72a97686688be98"
+    }
+  },
+  "wasm": {
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "result": {
+    "ok": true,
+    "cases": 35,
+    "wasmBytes": 4315979,
+    "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+    "transitions": 479,
+    "projections": 1916,
+    "quotes": 0,
+    "rejectedCommands": 19,
+    "rejectedDeckCreations": 0,
+    "choiceKinds": [
+      "bq085-bottom",
+      "discard",
+      "graveyard",
+      "influence",
+      "investigation",
+      "jc035-preparation-order",
+      "jc055-preparation-target",
+      "next-blue-gray-search",
+      "rumor",
+      "sacrifice",
+      "search",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 25.04,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "manifest": {
+    "file": "next20-native-oracle-07.json",
+    "bytes": 198640,
+    "sha256": "d5a8a7218b54a90acf09eb663924540235818fcbb127ef24d30d6da70d70941e"
+  },
+  "effectCards": [
+    "BQ059",
+    "BQ077",
+    "BQ085",
+    "CQ08",
+    "CQ17",
+    "CQ26",
+    "JC039",
+    "JC051",
+    "JC055",
+    "JZ23",
+    "JZ28",
+    "JZ32",
+    "JZ34",
+    "JZ41",
+    "WM039",
+    "WM040",
+    "WM042",
+    "XG10",
+    "XG27",
+    "XQ39"
+  ],
+  "cases": [
+    {
+      "bytes": 1989998,
+      "fixtureFile": "next20-native-oracle-07.json.cases/000.json",
+      "name": "next20-shared-forced-preparation-and-cq08-once",
+      "projections": 100,
+      "seed": "9007199254740993",
+      "sha256": "939fb0f8de782021bbbcdbb2891caff2bb8e33b2c7766a38c7cb311e6e3cebbe",
+      "transitions": 25,
+      "effectCards": [
+        "JC055",
+        "BQ085",
+        "CQ08"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1150887,
+      "fixtureFile": "next20-native-oracle-07.json.cases/001.json",
+      "name": "next20-jz23-paid-marker-rumor-declined",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "8cd57d8fbe219023c4d0aeef2260ee007edf6e04f3b1bbc9b6ac5235093bb1fb",
+      "transitions": 15,
+      "effectCards": [
+        "JZ23",
+        "WM042"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1150529,
+      "fixtureFile": "next20-native-oracle-07.json.cases/002.json",
+      "name": "next20-jz23-paid-marker-rumor-sealed",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "40c6949c95685c5aaeafb9e0e2e8e6024b1cb3977552265860d672fc2a8d5aa0",
+      "transitions": 15,
+      "effectCards": [
+        "JZ23",
+        "WM042"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1999267,
+      "fixtureFile": "next20-native-oracle-07.json.cases/003.json",
+      "name": "next20-actual-mill-rumor-cq26-discard-jz28-top-four",
+      "projections": 104,
+      "seed": "9007199254740993",
+      "sha256": "04bfb1f6ad5298201c371dbe61c48820cc9bf18fae2f07b597745ec401a1b0ae",
+      "transitions": 26,
+      "effectCards": [
+        "CQ26",
+        "WM042",
+        "JZ28"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1133866,
+      "fixtureFile": "next20-native-oracle-07.json.cases/004.json",
+      "name": "next20-bq077-real-deck-to-grave-water-entry",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "a63b46818cff23252573dd25c22ffe0ec643d77133f0706d9b0240cc04ad676e",
+      "transitions": 17,
+      "effectCards": [
+        "BQ077"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1281746,
+      "fixtureFile": "next20-native-oracle-07.json.cases/005.json",
+      "name": "next20-bq085-sacrifice-and-xg27-victim-region-recovery",
+      "projections": 64,
+      "seed": "9007199254740993",
+      "sha256": "0efbadc50188613d2c621dd6bc23cea961ea405e3ebf32ae8b65271b83faa277",
+      "transitions": 16,
+      "effectCards": [
+        "BQ085",
+        "XG27"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1245268,
+      "fixtureFile": "next20-native-oracle-07.json.cases/006.json",
+      "name": "next20-JC039-empty-zone-discount-play",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "ea6625759dd45f2bad8127cebd91892d6258b7382ec7aa1ca9527887b25cdec3",
+      "transitions": 17,
+      "effectCards": [
+        "JC039"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1321433,
+      "fixtureFile": "next20-native-oracle-07.json.cases/007.json",
+      "name": "next20-JC039-empty-zone-discount-paid-reveal",
+      "projections": 72,
+      "seed": "9007199254740993",
+      "sha256": "b6c18bda99a6557975d6bbe67847bf609a3e612e078575d66ed948ca20712380",
+      "transitions": 18,
+      "effectCards": [
+        "JC039"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1242124,
+      "fixtureFile": "next20-native-oracle-07.json.cases/008.json",
+      "name": "next20-XQ39-empty-zone-discount-play",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "d56d3093eb376d6e82e2e44a40ef5c4eb5e843defe3b2db2585e028c01dc3adb",
+      "transitions": 17,
+      "effectCards": [
+        "XQ39"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1243335,
+      "fixtureFile": "next20-native-oracle-07.json.cases/009.json",
+      "name": "next20-XQ39-empty-zone-discount-paid-reveal",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "0a9633afb86351669b7335554daea7a9eb427fc528290275f81eb285ce9751d0",
+      "transitions": 17,
+      "effectCards": [
+        "XQ39"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 856907,
+      "fixtureFile": "next20-native-oracle-07.json.cases/010.json",
+      "name": "next20-xq39-own-grave-to-top-no-shuffle",
+      "projections": 48,
+      "seed": "9007199254740993",
+      "sha256": "c54b1b6bfcd572cbc3c90078f322d2c05ee5011791b67a3158b6c8a06aa279eb",
+      "transitions": 12,
+      "effectCards": [
+        "XQ39"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 907156,
+      "fixtureFile": "next20-native-oracle-07.json.cases/011.json",
+      "name": "next20-jc039-own-blue-hide-fresh-instance-clears-marker",
+      "projections": 48,
+      "seed": "9007199254740993",
+      "sha256": "5eab4421790b95ee921f2ff742c7463d01da20a47562a8c443662dce15a636ad",
+      "transitions": 12,
+      "effectCards": [
+        "JC039"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 622872,
+      "fixtureFile": "next20-native-oracle-07.json.cases/012.json",
+      "name": "next20-xg10-one-cost-blood-search",
+      "projections": 36,
+      "seed": "9007199254740993",
+      "sha256": "28377a844cbc23b91d13d033aab5474a50ad3d3bdf1abacad7845dc0b069dcba",
+      "transitions": 9,
+      "effectCards": [
+        "XG10"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 621071,
+      "fixtureFile": "next20-native-oracle-07.json.cases/013.json",
+      "name": "next20-xg10-five-cost-embrace-control",
+      "projections": 36,
+      "seed": "9007199254740993",
+      "sha256": "bd42b82de41d4cb88a402cfdd19edde9278ed5165be36e07d61056a6fa694041",
+      "transitions": 9,
+      "effectCards": [
+        "XG10"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1307325,
+      "fixtureFile": "next20-native-oracle-07.json.cases/014.json",
+      "name": "next20-BQ059-exact-search-original-region",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "05bd9eb0ca1fb7418de15f3d337913215f3bd8393472b60bf784ed39e18d80ce",
+      "transitions": 17,
+      "effectCards": [
+        "BQ059"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 644696,
+      "fixtureFile": "next20-native-oracle-07.json.cases/015.json",
+      "name": "next20-CQ17-exact-search-original-region",
+      "projections": 32,
+      "seed": "9007199254740993",
+      "sha256": "c721f95e9f6a54e59411c0014d9a7ccea8ae1eb0519294f96868be6d6d3bb104",
+      "transitions": 8,
+      "effectCards": [
+        "CQ17"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 484237,
+      "fixtureFile": "next20-native-oracle-07.json.cases/016.json",
+      "name": "next20-CQ17-exact-search-replacement-region-fizzles",
+      "projections": 24,
+      "seed": "9007199254740993",
+      "sha256": "e6863e2d293c0e3d3827e8f68935e24e3dab62ae5ad69de9e8ebb37f79d8b374",
+      "transitions": 6,
+      "effectCards": [
+        "CQ17"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    },
+    {
+      "bytes": 725670,
+      "fixtureFile": "next20-native-oracle-07.json.cases/017.json",
+      "name": "next20-cq08-reveal-private-same-name-hidden-entry",
+      "projections": 48,
+      "seed": "9007199254740993",
+      "sha256": "6adb71259d573cf317562af76007e7361753815527da985663460b8e15865de5",
+      "transitions": 12,
+      "effectCards": [
+        "CQ08"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 741330,
+      "fixtureFile": "next20-native-oracle-07.json.cases/018.json",
+      "name": "next20-jc051-private-badge-JC039-empty-zone",
+      "projections": 48,
+      "seed": "9007199254740993",
+      "sha256": "8028911d38c47235923c00dee655eb1b0608dd7c23fa64da3dbaa94c21930257",
+      "transitions": 12,
+      "effectCards": [
+        "JC051"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 741428,
+      "fixtureFile": "next20-native-oracle-07.json.cases/019.json",
+      "name": "next20-jc051-private-badge-XQ39-empty-zone",
+      "projections": 48,
+      "seed": "9007199254740993",
+      "sha256": "756176ddea86cb3d6bcfc62be99b1cb6ee303f01ae071f70ec20c86b20d53e44",
+      "transitions": 12,
+      "effectCards": [
+        "JC051"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 554662,
+      "fixtureFile": "next20-native-oracle-07.json.cases/020.json",
+      "name": "next20-jz32-real-sacrifice-hourglass-return",
+      "projections": 32,
+      "seed": "9007199254740993",
+      "sha256": "f52e2f19c3f3d47a43aca6a53f88d6f85e09de24256a02f419d2ff6eb158b928",
+      "transitions": 8,
+      "effectCards": [
+        "JZ32"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 362425,
+      "fixtureFile": "next20-native-oracle-07.json.cases/021.json",
+      "name": "next20-jz32-paid-replacement-region-fizzle",
+      "projections": 20,
+      "seed": "9007199254740993",
+      "sha256": "6554350366c7a4593da3b2ad71bdc4e47b1bcedbf761d44b55a190574a71f32a",
+      "transitions": 5,
+      "effectCards": [
+        "JZ32"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    },
+    {
+      "bytes": 1278878,
+      "fixtureFile": "next20-native-oracle-07.json.cases/022.json",
+      "name": "next20-jz34-entry-personal-sacrifice-destruction-death-influence",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "e05ab02aefdcb381182dfdb6ea10d9560713e906d1c6222ae7911f79f7bed922",
+      "transitions": 17,
+      "effectCards": [
+        "JZ34"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1828471,
+      "fixtureFile": "next20-native-oracle-07.json.cases/023.json",
+      "name": "next20-jz41-private-forecast-jz28-raid-adds-real-wound",
+      "projections": 108,
+      "seed": "9007199254740993",
+      "sha256": "fde59107a79561aaa8af93a039647b613872d822ce5b268f36a3ee776c46ee94",
+      "transitions": 27,
+      "effectCards": [
+        "JZ41",
+        "JZ28"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1168057,
+      "fixtureFile": "next20-native-oracle-07.json.cases/024.json",
+      "name": "next20-wm039-once-analysis-wm042-both-modes-cancellation",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "c6d10845a50b3de493fdbfc9b2c0846cd23ee991283ef7cf607b7d691c1d762d",
+      "transitions": 17,
+      "effectCards": [
+        "WM039",
+        "WM042"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1311938,
+      "fixtureFile": "next20-native-oracle-07.json.cases/025.json",
+      "name": "next20-wm040-real-exposure-removal-repress-and-local-heal",
+      "projections": 68,
+      "seed": "9007199254740993",
+      "sha256": "e6ab9816ad82c7f83e71955aee1ec4debeddf2be3526f34a9179845708b87260",
+      "transitions": 17,
+      "effectCards": [
+        "WM040"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1139565,
+      "fixtureFile": "next20-native-oracle-07.json.cases/026.json",
+      "name": "next20-wm040-frozen-conditional-mobility-survives-cover-response",
+      "projections": 64,
+      "seed": "9007199254740993",
+      "sha256": "1bcb14123e1c8b08e077d95e0c4818a947f920b9edeaa18bf498d295e5ac5484",
+      "transitions": 16,
+      "effectCards": [
+        "WM040",
+        "WM042"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 1000049,
+      "fixtureFile": "next20-native-oracle-07.json.cases/027.json",
+      "name": "next20-JC051-granted-renown-original-region",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "ba85169fffbe9e83dec14524939004ec58545a50230a0edc14d9ef17d2c0409f",
+      "transitions": 15,
+      "effectCards": [
+        "JC051"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 364997,
+      "fixtureFile": "next20-native-oracle-07.json.cases/028.json",
+      "name": "next20-JC051-granted-renown-replacement-region-fizzle",
+      "projections": 20,
+      "seed": "9007199254740993",
+      "sha256": "c7a8160683ec393a22bd21864db510b8060ffff230bf1ad844417d5ad4d826b8",
+      "transitions": 5,
+      "effectCards": [
+        "JC051"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    },
+    {
+      "bytes": 1002085,
+      "fixtureFile": "next20-native-oracle-07.json.cases/029.json",
+      "name": "next20-CQ26-granted-renown-original-region",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "252a58a7129e46e1ebd488f36e9c8609379d2d7f097c272eb94a432aaa910d60",
+      "transitions": 15,
+      "effectCards": [
+        "CQ26"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 365839,
+      "fixtureFile": "next20-native-oracle-07.json.cases/030.json",
+      "name": "next20-CQ26-granted-renown-replacement-region-fizzle",
+      "projections": 20,
+      "seed": "9007199254740993",
+      "sha256": "a940fc58d1863bee098679de32bcc545de9796d6d727294b08f491cb1a239ae3",
+      "transitions": 5,
+      "effectCards": [
+        "CQ26"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    },
+    {
+      "bytes": 997171,
+      "fixtureFile": "next20-native-oracle-07.json.cases/031.json",
+      "name": "next20-JZ23-granted-renown-original-region",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "70c9d0536e9aac705e112d8f2c64ed338c621284553eac73048cbb2d34f6f75a",
+      "transitions": 15,
+      "effectCards": [
+        "JZ23"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 364171,
+      "fixtureFile": "next20-native-oracle-07.json.cases/032.json",
+      "name": "next20-JZ23-granted-renown-replacement-region-fizzle",
+      "projections": 20,
+      "seed": "9007199254740993",
+      "sha256": "db3d6d23a908680505124e1bd1fb61b3468127008b1535d8d1f357ad027c4c01",
+      "transitions": 5,
+      "effectCards": [
+        "JZ23"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    },
+    {
+      "bytes": 1008085,
+      "fixtureFile": "next20-native-oracle-07.json.cases/033.json",
+      "name": "next20-WM040-granted-renown-original-region",
+      "projections": 60,
+      "seed": "9007199254740993",
+      "sha256": "bcfc9b15117129f2dd61304550445bb3fa6942697e2cc86e5561b699866d4897",
+      "transitions": 15,
+      "effectCards": [
+        "WM040"
+      ],
+      "syntheticPaidFrameCheckpoint": false
+    },
+    {
+      "bytes": 367497,
+      "fixtureFile": "next20-native-oracle-07.json.cases/034.json",
+      "name": "next20-WM040-granted-renown-replacement-region-fizzle",
+      "projections": 20,
+      "seed": "9007199254740993",
+      "sha256": "53c47817250d52638a2f0cd454bd74c8f678a49527b8f2d6176edc765355ad1d",
+      "transitions": 5,
+      "effectCards": [
+        "WM040"
+      ],
+      "syntheticPaidFrameCheckpoint": true
+    }
+  ],
+  "provenance": {
+    "syntheticInitialLayouts": 35,
+    "syntheticPaidFrameCheckpoints": 6,
+    "syntheticCardRegistries": 0,
+    "postInitialStateInjections": 0,
+    "naturalBrowserAcceptanceCases": 0,
+    "scope": "All20 cards have at least one effect execution chain. Not exhaustive combinations or a full workspace/WASM suite."
+  },
+  "fixtureCorrections": [
+    "Set the JC054 end-step watermark on the synthetic initial End checkpoint.",
+    "Resolve the revealed JC029 independent optional raid before the JZ23 discard choice.",
+    "Account for XQ36 milling every player before JZ28 inspects its next four cards.",
+    "Use the existing investigation choice UI kind and assert the Forecast resolution variant."
+  ],
+  "priorAttempts": [
+    "first: launch guard exit78 with510406656 bytes headroom; Cargo did not start; guard retained.",
+    "02: compiled generator rejected the invalid synthetic End checkpoint.",
+    "03: missing node in shell PATH, exit127; Cargo did not start.",
+    "04: fixture had not declined the independent JC029 trigger.",
+    "05: fixture omitted the preceding XQ36 all-player mill.",
+    "06: fixture expected forecast instead of the existing investigation UI kind.",
+    "07: all35 cases generated and compared successfully; no case removed."
+  ],
+  "logs": {
+    "next20-native-oracle-02.log": {
+      "bytes": 1652,
+      "sha256": "808a8de36121b4fad62dbfb12fe1f8093772eb4b4ad01a6f4337ee2f1537d7fa"
+    },
+    "next20-native-oracle-03.log": {
+      "bytes": 43,
+      "sha256": "a9de9722a3180391c59c3d4fcf6eae079855f41f1442c930c95b7c3787ac4e07"
+    },
+    "next20-native-oracle-04.log": {
+      "bytes": 1074,
+      "sha256": "60d6407bead1dc494d57258cf889c14720dc5bb9a77cc147e7d8dd4161d82142"
+    },
+    "next20-native-oracle-05.log": {
+      "bytes": 1273,
+      "sha256": "5477d70c1274b43cac4f5ca3344618a8f78adfdc3f648b02a264e3e613f83549"
+    },
+    "next20-native-oracle-06.log": {
+      "bytes": 3566,
+      "sha256": "75d75bc4435f429463614d82d84bf0464d450d3bf8b84f6436278f198e607d3e"
+    },
+    "next20-native-oracle-07.log": {
+      "bytes": 4780,
+      "sha256": "3c5d77db15b9101cd91251158cf722ce3a9d7a47c06b0ec42c47715592767e6a"
+    },
+    "next20-native-oracle-first.log": {
+      "bytes": 182,
+      "sha256": "0f08a8cbf39c47a56dde4b6d1f1e839fd53c5eccc6ea1a7a50d1ff4709e28f07"
+    },
+    "next20-abi93-oracle-07-compare.log": {
+      "bytes": 7099,
+      "sha256": "95ae3a32bc2ed5b7283feda4ac7f525066153128fa7b76fb34210c8f8ea56e8b"
+    },
+    "next20-society-zone-native-oracle.log": {
+      "bytes": 880,
+      "sha256": "b133c9e8e1aedef1dd4706ec5928878790656b800fd078474c7e9417641607c3"
+    },
+    "next20-society-zone-wasm-compare.log": {
+      "bytes": 1809,
+      "sha256": "de72c3198d1ef0476dd7af8851faa90e63f4318d176586ecb92ad2c1be4ce607"
+    }
+  },
+  "societyZoneSlice": {
+    "oracleSourceCommit": "072ab0bd695cf2d0d4355d7fa474647e7f35c66e",
+    "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+    "manifest": {
+      "file": "next20-society-zone-native-oracle.json",
+      "bytes": 191394,
+      "sha256": "6941afc46799b8db2afed3b66281a5ef4567d186d871094915e3ef684b506dbf"
+    },
+    "result": {
+      "ok": true,
+      "cases": 8,
+      "wasmBytes": 4315979,
+      "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "transitions": 74,
+      "projections": 296,
+      "quotes": 0,
+      "rejectedCommands": 24,
+      "rejectedDeckCreations": 0,
+      "choiceKinds": [
+        "trigger"
+      ],
+      "slowestFixtureStepMs": 26.73,
+      "opaqueState": true,
+      "maximumU64SeedExact": true,
+      "nativeWasmStateAndViewsMatch": true
+    },
+    "scope": "Author-run8 synthetic-start Room-command cases on ABI93; not independent review or browser acceptance."
+  },
+  "independentReview": "notRunForNext20",
+  "publication": "notStarted",
+  "githubCI": "notRun"
+}

@@ -130,6 +130,53 @@
       ],
       "opaqueStateAndOriginalReceiptChecks": "passed",
       "browser": false
+    },
+    "societyZoneNativeWasm": {
+      "ok": true,
+      "cases": 8,
+      "wasmBytes": 4315979,
+      "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "transitions": 74,
+      "projections": 296,
+      "quotes": 0,
+      "rejectedCommands": 24,
+      "rejectedDeckCreations": 0,
+      "choiceKinds": [
+        "trigger"
+      ],
+      "slowestFixtureStepMs": 26.73,
+      "opaqueState": true,
+      "maximumU64SeedExact": true,
+      "nativeWasmStateAndViewsMatch": true
+    },
+    "nativeWasmOracle": {
+      "ok": true,
+      "cases": 35,
+      "wasmBytes": 4315979,
+      "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
+      "transitions": 479,
+      "projections": 1916,
+      "quotes": 0,
+      "rejectedCommands": 19,
+      "rejectedDeckCreations": 0,
+      "choiceKinds": [
+        "bq085-bottom",
+        "discard",
+        "graveyard",
+        "influence",
+        "investigation",
+        "jc035-preparation-order",
+        "jc055-preparation-target",
+        "next-blue-gray-search",
+        "rumor",
+        "sacrifice",
+        "search",
+        "trigger"
+      ],
+      "slowestFixtureStepMs": 25.04,
+      "opaqueState": true,
+      "maximumU64SeedExact": true,
+      "nativeWasmStateAndViewsMatch": true
     }
   },
   "sourceCorrection": {
@@ -194,6 +241,42 @@
     "next20-native-oracle-first.log": {
       "bytes": 182,
       "sha256": "0f08a8cbf39c47a56dde4b6d1f1e839fd53c5eccc6ea1a7a50d1ff4709e28f07"
+    },
+    "next20-native-oracle-02.log": {
+      "bytes": 1652,
+      "sha256": "808a8de36121b4fad62dbfb12fe1f8093772eb4b4ad01a6f4337ee2f1537d7fa"
+    },
+    "next20-society-zone-native-oracle.log": {
+      "bytes": 880,
+      "sha256": "b133c9e8e1aedef1dd4706ec5928878790656b800fd078474c7e9417641607c3"
+    },
+    "next20-society-zone-wasm-compare.log": {
+      "bytes": 1809,
+      "sha256": "de72c3198d1ef0476dd7af8851faa90e63f4318d176586ecb92ad2c1be4ce607"
+    },
+    "next20-native-oracle-03.log": {
+      "bytes": 43,
+      "sha256": "a9de9722a3180391c59c3d4fcf6eae079855f41f1442c930c95b7c3787ac4e07"
+    },
+    "next20-native-oracle-04.log": {
+      "bytes": 1074,
+      "sha256": "60d6407bead1dc494d57258cf889c14720dc5bb9a77cc147e7d8dd4161d82142"
+    },
+    "next20-native-oracle-05.log": {
+      "bytes": 1273,
+      "sha256": "5477d70c1274b43cac4f5ca3344618a8f78adfdc3f648b02a264e3e613f83549"
+    },
+    "next20-native-oracle-06.log": {
+      "bytes": 3566,
+      "sha256": "75d75bc4435f429463614d82d84bf0464d450d3bf8b84f6436278f198e607d3e"
+    },
+    "next20-native-oracle-07.log": {
+      "bytes": 4780,
+      "sha256": "3c5d77db15b9101cd91251158cf722ce3a9d7a47c06b0ec42c47715592767e6a"
+    },
+    "next20-abi93-oracle-07-compare.log": {
+      "bytes": 7099,
+      "sha256": "95ae3a32bc2ed5b7283feda4ac7f525066153128fa7b76fb34210c8f8ea56e8b"
     }
   },
   "notValidated": [
@@ -203,7 +286,7 @@
     "real browser battle of next20",
     "publication"
   ],
-  "publication": "not started; v74 deployment denied, do not publish this candidate as an indirect retry",
+  "publication": "not started for next20; v74 official deployment now pending after relevant new continuing authorization; waiting its outcome to retain exact ABI92 if published",
   "retainedInputs": [
     {
       "abi": 77,
@@ -293,17 +376,33 @@
   "nativeWasmOracle": {
     "implementedCases": 35,
     "portedP2Cases": 8,
-    "status": "not run; compile launch stopped by existing cgroup headroom guard before Cargo started",
-    "guardExitCode": 78,
-    "requiredHeadroomBytes": 1073741824,
-    "observedHeadroomBytes": 510406656,
-    "sourceFiles": [
-      "rust-game-wasm/examples/native_fixtures.rs",
-      "rust-game-wasm/examples/support/next20.rs",
-      "rust-game-wasm/examples/support/society_zone.rs"
-    ],
+    "status": "35+8 passed on fixedABI93",
+    "evidence": "native-wasm.json",
+    "oracleBaseCommit": "072ab0bd695cf2d0d4355d7fa474647e7f35c66e",
+    "sourceFiles": {
+      "rust-game-wasm/examples/native_fixtures.rs": {
+        "bytes": 110660,
+        "sha256": "cc3f36abce945e18f3e2cb412e8cfe0dbf9ec5bd4034028785e5c0b1b2c1bd2b"
+      },
+      "rust-game-wasm/examples/support/next20.rs": {
+        "bytes": 44098,
+        "sha256": "16f94037ab7e941549908c59ffdb9c196affca70b870f272c6a6d3f0391d3d34"
+      },
+      "rust-game-wasm/examples/support/society_zone.rs": {
+        "bytes": 6306,
+        "sha256": "ddc4aca067d364ab7d9be11ccef22f1b91b0c5cb6eef78ccf72a97686688be98"
+      }
+    },
     "syntheticPaidFrameInitialLayouts": 6,
-    "naturalBrowserClaim": false
+    "naturalBrowserClaim": false,
+    "independentReviewClaim": false,
+    "initialGuard": {
+      "exitCode": 78,
+      "requiredHeadroomBytes": 1073741824,
+      "observedHeadroomBytes": 510406656,
+      "bypassed": false
+    },
+    "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32"
   },
-  "recordedAt": "2026-10-21T15:27:29.631375+00:00"
+  "recordedAt": "2026-10-21T15:42:46.610762+00:00"
 }

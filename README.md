@@ -11,9 +11,9 @@
 | 规则 / 卡池 | `hegemony-pdf-v1` / `limited-v2.82-batch20` |
 | 最近已发布 Site | **v73 / ABI91**；2026-10-21 13:34 UTC官方部署回执为 `succeeded`；本环境读取线上 `/api/health` 返回403，尚未完成线上运行身份核对 |
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
-| 第一批后续 | 独审发现的空秘社区P2已修复并通过最小源码补验；v74修复版保存成功但部署被自动审批拒绝，网站仍为v73。v73已有一局8回合自然完局及终局刷新；不是20卡全机制验收。固定7f的Sites最终单轮全套仍在原进程执行 |
+| 第一批后续 | 独审发现的空秘社区P2已修复并通过最小源码补验；v74此前部署被拒；新持续授权后同一动作已接收，当前pending，网站暂仍记v73。v73已有一局8回合自然完局及终局刷新；不是20卡全机制验收。固定7f的Sites最终完整运行736通过、0失败 |
 | 第一批20张 | [发布与验证记录](docs/factions/batch20-2026-10-21.md)：20张实现和准入完成；Web1471、工具84、Rust workspace1395项及修复版Native/WASM完整440场景通过 |
-| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/next20-combined-20261021`；20张源码及准入已整合，ABI93/pool83共193张，Native定向129、UI180、构建与本地新房启动通过，未发布 |
+| 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)，分支 `progress/next20-combined-20261021`；20张源码及准入已整合，ABI93/pool83共193张，Native定向129、UI180、构建与新房启动、35机制场景及8秘社区场景Native/WASM对照通过，未发布 |
 
 [已发布的游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)的官方部署记录现指向v73，包含第一批20卡及此前整改。部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)。
 
@@ -177,7 +177,7 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 
 前期README更新核对了65个本地链接和13段shell示例语法；在上述候选源码上完成Native构建，并用新建本地数据库验证启动命令、`/api/health`、`/api/catalog`和既有前端构建的静态首页。没有因此重跑既有全套或浏览器对局。
 
-本批必要构建和新房间检查通过；集中检查中Web最终145文件1471项、来源/冻结工具84项全过；修复后的Rust workspace最终整轮1395/1395、Sites受影响15文件81/81通过。修复版WASM完整440场景全部通过，核对24582次迁移及97691个视图，末尾XQ24恢复检查也通过；对应源码、WASM及日志哈希见[本轮回放证据](docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json)。修复版官方本地Site构建和20卡新房检查通过。历史失败、原v72的433场景和修复版13场景定向结果分别保留于[批次记录](docs/factions/batch20-2026-10-21.md)。上述结果针对首批ABI91。首批Sites最终轮首次644通过/12失败，原因为本地运行目录缺少原ABI78–89输入；原件恢复核验后已在同一固定7f快照启动修正后的全套，结果仍待收取。独立复审已发现B20-IR-01；最小P2源码修复a0b1b3d补验通过，不能扩张为后续UX、WASM或第二批独立通过。协调任务反馈v73一局8回合A8:B6自然完局及终局刷新通过，不等于所有20张机制验收。
+本批必要构建和新房间检查通过；集中检查中Web最终145文件1471项、来源/冻结工具84项全过；修复后的Rust workspace最终整轮1395/1395、Sites受影响15文件81/81通过。修复版WASM完整440场景全部通过，核对24582次迁移及97691个视图，末尾XQ24恢复检查也通过；对应源码、WASM及日志哈希见[本轮回放证据](docs/evidence/batch20-2026-10-21/fixed-wasm-replay.json)。修复版官方本地Site构建和20卡新房检查通过。历史失败、原v72的433场景和修复版13场景定向结果分别保留于[批次记录](docs/factions/batch20-2026-10-21.md)。上述结果针对首批ABI91。首批Sites最终轮首次644通过/12失败，原因为本地运行目录缺少原ABI78–89输入；原件恢复核验后，同一固定7f快照的最终全套736通过、0失败、0跳过，exit0；见[完整运行证据](docs/evidence/batch20-2026-10-21/final-sites-suite.json)。此结果不覆盖ABI92或ABI93。独立复审已发现B20-IR-01；最小P2源码修复a0b1b3d补验通过，不能扩张为后续UX、WASM或第二批独立通过。协调任务反馈v73一局8回合A8:B6自然完局及终局刷新通过，不等于所有20张机制验收。
 
 ## Sites官方发布方式与当前限制
 
@@ -194,3 +194,5 @@ Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均�
 规则与卡牌原文以 [原始资料](resource/) 中的卡图和PDF为依据，OCR/整理内容只用于定位。[研究与准入资料](docs/factions/README.md)和[历史设计](docs/architecture/full-mechanics-design/README.md)保留各自范围，不作为已实现能力承诺。代码许可见 [LICENSE](LICENSE)。
 
 维护时优先规则正确性、隐藏信息、重复操作与恢复边界；复用已有语义和校验，删除可证明无调用的冗余。行为变更以可复现命令链及适用测试说明，记录精确源码/运行字节身份；不为让测试变绿而重标旧状态、弱化哈希或跳过失败证据。
+
+2026-10-21 15:41 UTC收到对现有公开站所有修复的明确持续授权后，同一v74官方部署重试一次。调用返回Internal error，但只读核对确认已创建部署 `appgdep_6ad8dd9acc1c8191912336351e022f25`，当前pending；没有重复请求。见[实时发布记录](docs/evidence/batch20-2026-10-21/publication-v74.json)。
