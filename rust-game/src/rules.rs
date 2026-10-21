@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    AttachmentEntered,
     HandDiscard,
     Enter,
     EnterRegion,
@@ -42,6 +43,8 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    SacrificeControlledSubtype(Vec<String>),
+    RemoveOneTimeFromSource,
     RemoveOneTimeFromSelectedControlledCard,
     Assets(u32),
     ExhaustSource,
@@ -52,6 +55,7 @@ pub enum Cost {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Zone {
+    Society,
     AttachmentOrAsset,
     Board,
     Graveyard,
@@ -86,6 +90,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    JC043SocietyOrOriginalRegion,
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
@@ -223,6 +228,15 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ080HideForAttachment { observation: Option<crate::batch20::AttachmentEntryObservation> },
+    JZ57MillAndOptionalDraw,
+    Batch20Prepare { event_id: Option<String> },
+    WM034AddOneTime,
+    WM034DestroyOtherCharacters,
+    BQ054LockTarget,
+    JC043DestroyAttachment,
+    JZ33ScorchDestroyedRegions,
+    JZ37DestroyWorld,
     JC044AddOneTimeToOriginalSource,
     JC052DestroyOtherOriginalRegionCharacters,
     JC095ConvertEnemyInfluenceInOriginalRegion,
@@ -548,6 +562,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
     }
+    crate::batch20::validate_ability(card_id, ability)?;
     crate::red_time::validate_ability(card_id, ability)?;
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
@@ -768,7 +783,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         };
         if admitted.is_none_or(|d| !d.abilities.iter().any(|canonical|
             serde_json::to_value(ability).unwrap() == serde_json::to_value(canonical).unwrap())) {
-            return Err(format!("{card_id}: only the complete JC015, JZ55, JC069 or XQ23 target predicate ability is supported"));
+            if card_id != "JC043" || serde_json::to_value(ability).unwrap()
+                != serde_json::to_value(&crate::batch20::definition("JC043").unwrap().abilities[0]).unwrap() {
+                return Err(format!("{card_id}: only a complete admitted target predicate ability is supported"));
+            }
         }
     }
     let execution_op = |op: &Op| {
@@ -1012,7 +1030,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             _ => {}
         }
     }
-    if ability.event == Some(Event::HandDiscard)
+    if ability.event == Some(Event::HandDiscard) && card_id != "BQ054"
         && (card_id != "XQ34"
             || !matches!(ability.costs.as_slice(), [Cost::Assets(1)])
             || !matches!(
@@ -1291,6 +1309,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::batch20::validate_definition(card_id, definition)?;
         crate::bq035::validate_definition(card_id, definition)?;
         crate::mobility::validate_definition(card_id, definition)?;
         crate::red_time::validate_definition(card_id, definition)?;
@@ -1473,7 +1492,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035");
+            let admitted_region = matches!(card_id.as_str(), "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -1520,6 +1539,15 @@ pub(crate) fn target(zone: Zone, kind: EntityKind, relation: Relation, range: Ra
         min: 1,
         max: 1,
     }
+}
+pub(crate) fn attachment_definition(host: TargetSlotSpec) -> Definition {
+    let mut attach = ability("attach", "结附指定宿主", Timing::Standard, vec![], vec![host.clone()], vec![], None);
+    attach.play_only = true;
+    Definition { abilities: vec![attach], attachment: Some(AttachmentSpec {
+        controls_host: false, host_subtype_change: SubtypeChange::None, host,
+        host_icons: Icons::default(), host_temporary_icons: None, host_barrier: false,
+        host_defense_bonus: 0, host_leaves: HostLeaveDestination::OwnerGraveyard,
+    }), ..Default::default() }
 }
 fn xq43_definition() -> Definition {
     let host = target(
@@ -1723,7 +1751,7 @@ pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
     let (label, op) = match id {
         "JC045" => ("角色死亡：在原钟摆祭司上放置一个时间标志", Op::JC045AddOneTimeToOriginalSource),
         "JC031" => ("另一本方角色死亡：令目标玩家弃一张手牌（吸血鬼则随机弃牌，每回合一次）", Op::JC031DiscardForObservedDeath),
-        "JC090" => ("本方角色死亡：在原结附地区放置一个本方势力标志", Op::JC090PlaceOneInfluenceInOriginalAttachedRegion),
+        "JC090" | "BQ094" => ("本方角色死亡：在原结附地区放置一个本方势力标志", Op::JC090PlaceOneInfluenceInOriginalAttachedRegion),
         _ => return None,
     };
     let mut trigger = ability(&format!("death-observer-{id}"), label, Timing::Fast,
@@ -1733,7 +1761,7 @@ pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
     if id == "JC031" { trigger.per_turn_limit = Some(1); }
     let mut d = with_abilities(vec![trigger]);
     if id == "JC045" { d.modifiers = vec![StaticModifier::JC045TimeInfluence]; }
-    if id == "JC090" {
+    if matches!(id, "JC090" | "BQ094") {
         let host = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
         let mut attach = ability("attach", "结附目标地区", Timing::Standard,
             vec![], vec![host.clone()], vec![], None);
@@ -1936,6 +1964,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::batch20::IMPLEMENTING {
+            m.insert((*id).into(), crate::batch20::definition(id).unwrap());
+        }
         m.insert("WM038".into(), crate::wm038::definition());
         m.insert("JZ35".into(), crate::jz35::definition());
         m.insert("JC052".into(), crate::jc052::definition());

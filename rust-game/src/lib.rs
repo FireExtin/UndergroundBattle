@@ -1,4 +1,8 @@
 mod attachment;
+mod region_destruction;
+mod batch20;
+#[cfg(test)]
+mod batch20_tests;
 mod bq035;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq035_tests;

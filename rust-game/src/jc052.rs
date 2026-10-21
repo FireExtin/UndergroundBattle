@@ -102,7 +102,7 @@ impl Game {
         in_play
             .into_iter()
             .filter(|(_, c)| ids.contains(&c.id))
-            .map(|(r, c)| self.option(c, seat, Some(r), None))
+            .map(|(r, c)| self.option(c, seat, r, None))
             .collect()
     }
     pub(crate) fn queue_leader_checks(&mut self) {
@@ -229,7 +229,7 @@ impl Game {
             if !f.steps.is_empty()
                 || f.chosen_region != f.source.region
                 || (f.ability_key == "deploy"
-                    && (f.source.card.face_down || f.source.play_source != Some(PlaySource::Hand)))
+                    && (f.source.card.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal"
                     && (!f.source.card.face_down || f.source.play_source.is_some()))
                 || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]

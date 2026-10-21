@@ -265,7 +265,7 @@ impl Game {
         if f.frame_id.is_empty() || !f.targets.is_empty() { return Err("JC054帧身份或多余目标无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if f.cursor != 0 || !f.steps.is_empty() || f.chosen_region != f.source.region
-                || f.ability_key == "deploy" && (f.source.card.face_down || f.source.play_source != Some(PlaySource::Hand))
+                || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some())
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
                     if ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {

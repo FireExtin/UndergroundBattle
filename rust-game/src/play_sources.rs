@@ -2,11 +2,20 @@
 use crate::{
     catalog::card,
     engine::RuleResult,
-    model::{Card, Game, PlaySource},
+    model::{Card, Game, PlaySource, SourceSnapshot},
     rules,
 };
 
 impl Game {
+    pub(crate) fn jz52_grant(&self, actor: usize) -> Option<&Card> {
+        self.regions.iter().flat_map(|r| &r.cards).find(|c|
+            c.definition == "JZ52" && !c.face_down && c.controller == actor)
+    }
+    pub(crate) fn can_play_grave_character(&self, actor: usize, c: &Card) -> bool {
+        c.owner == actor && card(&c.definition).kind == "character"
+            && (rules::definition(&c.definition).graveyard_face_up
+                || (card(&c.definition).magic_icon == rules::MagicIcon::Death && self.jz52_grant(actor).is_some()))
+    }
     pub(crate) fn character_play_source(
         &self,
         actor: usize,
@@ -14,6 +23,9 @@ impl Game {
         concealed: bool,
     ) -> RuleResult<(Card, PlaySource)> {
         if let Some(c) = self.players[actor].hand.iter().find(|c| c.id == id) {
+            if !concealed && card(&c.definition).kind == "character" && self.jz52_grant(actor).is_some() {
+                return Err("大维齐尔迈哈穆德在场时不能从手牌正面打出角色".into());
+            }
             return Ok((c.clone(), PlaySource::Hand));
         }
         let c = self.players[actor]
@@ -23,11 +35,13 @@ impl Game {
             .ok_or("出牌来源引用已失效")?;
         if concealed
             || card(&c.definition).kind != "character"
-            || !rules::definition(&c.definition).graveyard_face_up
+            || !self.can_play_grave_character(actor, c)
         {
             return Err("此墓地牌没有当前正面出牌许可，不能秘密派遣或建立资产".into());
         }
-        Ok((c.clone(), PlaySource::Graveyard))
+        let source = if rules::definition(&c.definition).graveyard_face_up { PlaySource::Graveyard }
+            else { PlaySource::GraveyardByJZ52(Box::new(self.jz52_grant(actor).unwrap().clone())) };
+        Ok((c.clone(), source))
     }
     pub(crate) fn take_character_play_source(
         &mut self,
@@ -37,7 +51,7 @@ impl Game {
     ) -> RuleResult<Card> {
         match source {
             PlaySource::Hand => self.remove_hand(actor, id),
-            PlaySource::Graveyard => {
+            PlaySource::Graveyard | PlaySource::GraveyardByJZ52(_) => {
                 let index = self.players[actor]
                     .graveyard
                     .iter()
@@ -45,6 +59,21 @@ impl Game {
                     .ok_or("墓地出牌引用已失效")?;
                 Ok(self.players[actor].graveyard.remove(index))
             }
+        }
+    }
+}
+
+impl SourceSnapshot {
+    /// Frozen permission remains valid if the granting character leaves during responses.
+    pub(crate) fn valid_character_play(&self) -> bool {
+        match &self.play_source {
+            Some(PlaySource::Hand) => true,
+            Some(PlaySource::Graveyard) => rules::definition(&self.card.definition).graveyard_face_up,
+            Some(PlaySource::GraveyardByJZ52(grant)) => grant.definition == "JZ52" && !grant.face_down
+                && !grant.id.is_empty() && grant.id != self.card.id && grant.controller == self.card.controller
+                && self.card.owner == self.card.controller && card(&self.card.definition).kind == "character"
+                && card(&self.card.definition).magic_icon == rules::MagicIcon::Death,
+            None => false,
         }
     }
 }

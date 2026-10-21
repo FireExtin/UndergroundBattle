@@ -7,12 +7,12 @@
 | 范围 | 已核实状态 |
 | --- | --- |
 | 产品源码候选 | `a69793d77b887351ceabe291596854e45f732476`，引擎 `rust-v0.2.90-audit-correctness-candidate`；以下文档基于该候选核对 |
-| GitHub保存状态 | 上述整改与README已正常推入main，已确认提交为 `d98117d188cfc65f4e29fb757dfcf9accdd545e5`；这不是Sites发布 |
+| GitHub保存状态 | 上述整改与README已正常推入main，已确认main为 `d1c068ea8c4162212cd19fa023841513c4c67e33`（含来源准备文档）；这不是Sites发布 |
 | 规则 / 卡池 | `hegemony-pdf-v1` / `limited-v2.81-jc035-preparation-candidate` |
 | 最近已发布 Site | **v71 / ABI89**；2026-10-21通过官方Sites元数据确认既有发布成功，没有访问线上牌桌 |
 | 审查及整改 | 固定产品源码 `100161b628e56b9153041d952ac0f5d83428ca88` 的审查后，完成8项明确问题的本地修复及相关清理；见[整改与验证记录](docs/LOCAL_CORRECTNESS_AUDIT_2026-10-21.md) |
-| 尚未完成 | ABI90候选独立复审、该候选的浏览器完整对局和发布 |
-| 下一批20张 | [20张清单与进度](docs/factions/batch20-2026-10-21.md)：原图复核和规格修正完成；规则实现、准入及发布未完成，当前目录数量未增加 |
+| 尚未完成 | 最终全套、旧桌兼容独立验证、候选浏览器完整对局和发布；固定d98117d有限独立复审已完成，边界见批次记录 |
+| 下一批20张 | [20张清单与进度](docs/factions/batch20-2026-10-21.md)：原图复核和规格修正完成；12张运行程序WIP且禁选，8张已有定向测试；整批实现、UI、版本身份及发布未完成 |
 
 [已发布的游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)对应既有v71，并不包含本地ABI90修复。Sites保存的有限源码提交为 `8b44f0bcd1243fe4603e0dc5d96f7354376c8c07`，与GitHub产品仓库的提交号属于不同源码仓库，不应混用。
 
@@ -170,7 +170,7 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 | Web | 原全套1431通过/1陈旧文案断言失败；修正后该文件4/4通过 |
 | Sites | 原全套736项：708通过/28旧当前身份断言失败；四个文件31项定向补测覆盖全部28失败并通过 |
 | 构建 | 当前WASM、Web、Sites14模块dry-run通过；独立stage的冻结loader/backend dry-run通过，未重做该副本前端构建 |
-| 未运行/未通过的门槛 | 候选独立复审尚未完成；没有该候选浏览器完整对局、线上旧桌回归或全卡组合穷举 |
+| 未运行/未通过的门槛 | 固定d98117d有限独立复审已完成且已验证范围无新增P0–P2；没有最终全套、该候选浏览器完整对局、旧桌兼容独立确认或全卡组合穷举 |
 
 组件、Native回放、HTTP/workerd/D1仿真均不是浏览器试玩。原失败日志与补测结果分别保留；不要合写为“最终全套一次通过”。
 
@@ -184,7 +184,7 @@ HEGEMONY_CURRENT_WORKER_DIR="$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server
 
 **禁止运行GitHub CI的限制仍有效。** 用户已明确授权正常保存和推送相关源码；`d98117d`及其前三个相关提交已快进推入main，Git与GitHub只读接口核对一致。推送前后的实际树没有 `.github/workflows`，已知配置无push自动部署证据，推送后即时查询未新增Actions运行。连接器的workflow清单HTTP400表示该URL不受支持，不表示Git保存权限被拒绝；不能据此断言存在未知外部CI，也不承诺所有外部服务均已穷举。后续仍检查实际触发器，不强推、不改权限、不创建PR/tag/release或触发CI。
 
-Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均可能产生生产部署。本批读取站点并成功取得短期源码凭据，未开启自动私有发布；本环境尚缺官方 `site-workflow.mjs` 的可执行安装路径，无法完成规定的源码打开与打包流程。没有调用保存版本或部署，没有发布权限拒绝。精确状态、20张实现缺口和所需工具见[批次记录](docs/factions/batch20-2026-10-21.md)。
+Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均可能产生生产部署。本批读取站点并成功取得短期源码凭据，未开启自动私有发布；已从仓库保存的原始官方 Sites 0.1.75 包恢复 helper，验证全部167个清单文件，并按当前官方入口成功打开原Site源码 `8b44f0bcd1243fe4603e0dc5d96f7354376c8c07`。20张运行时实现继续进行，尚未打包发布。没有调用保存版本或部署，没有发布权限拒绝。精确状态、20张实现缺口和所需工具见[批次记录](docs/factions/batch20-2026-10-21.md)。
 
 ## 资料与维护
 

@@ -109,6 +109,11 @@ pub(crate) fn validate_construction(
 }
 
 impl Game {
+    pub(crate) fn society_host_seat(&self, id: &str) -> Option<usize> {
+        let seat = id.strip_prefix("society:p")?.parse::<usize>().ok()?;
+        self.players.get(seat).filter(|p| !p.eliminated && p.society_zone.card.is_some()
+            && id == format!("society:p{seat}")).map(|_| seat)
+    }
     pub(crate) fn society_usage(&self, source: &str) -> Option<&BTreeSet<String>> {
         self.players
             .iter()
@@ -138,8 +143,7 @@ impl Game {
 
     // Ability sources are deliberately broader than region-targetable board entities.
     pub(crate) fn ability_source(&self, id: &str) -> Option<(Option<usize>, &Card)> {
-        self.board(id)
-            .map(|(r, c)| (Some(r), c))
+        self.in_play(id)
             .or_else(|| self.society_card(id).map(|c| (None, c)))
     }
 
@@ -155,8 +159,12 @@ impl Game {
     }
 
     pub(crate) fn society_source_zone(&self, id: Option<&str>) -> Option<String> {
-        let c = self.society_card(id?)?;
-        Some(format!("society:{}", player_id(c.owner)))
+        let id = id?;
+        if let Some(c) = self.society_card(id) {
+            return Some(format!("society:{}", player_id(c.owner)));
+        }
+        self.attachments.iter().find(|a| a.card.id == id)
+            .and_then(|a| self.society_host_seat(&a.host_id).map(|_| a.host_id.clone()))
     }
 
     pub(crate) fn society_views(&self, viewer: usize) -> Vec<SocietyZoneView> {

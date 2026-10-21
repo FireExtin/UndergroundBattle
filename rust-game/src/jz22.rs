@@ -108,7 +108,7 @@ impl Game {
             }
             let origin_matches = if frame.ability_key == "deploy" {
                 !frame.source.card.face_down
-                    && (frame.source.play_source == Some(PlaySource::Hand)
+                    && (frame.source.valid_character_play()
                         || frame.source.play_source == Some(PlaySource::Graveyard)
                             && rules::definition("JZ22").graveyard_face_up)
             } else {

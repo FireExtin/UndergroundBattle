@@ -95,7 +95,7 @@ impl Game {
         };
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             let origin = if f.ability_key == "deploy" {
-                !c.face_down && f.source.play_source == Some(PlaySource::Hand)
+                !c.face_down && f.source.valid_character_play()
             } else {
                 c.face_down && f.source.play_source.is_none()
             };

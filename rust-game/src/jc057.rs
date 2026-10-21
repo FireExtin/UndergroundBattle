@@ -161,7 +161,7 @@ impl Game {
             let s = &f.source;
             if !f.steps.is_empty() || !f.targets.is_empty() || f.cursor != 0
                 || !matches!(f.guard, GuardState::Unchecked) || f.chosen_region != s.region
-                || (if f.ability_key == "deploy" { s.card.face_down || s.play_source != Some(PlaySource::Hand) }
+                || (if f.ability_key == "deploy" { s.card.face_down || !s.valid_character_play() }
                     else { !s.card.face_down || s.play_source.is_some() })
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC057派遣或现身空程序无效".into());

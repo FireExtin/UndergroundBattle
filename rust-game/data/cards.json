@@ -5958,6 +5958,501 @@
         "sha256": "e7f2cff71f3a511d5065ece513db9013d02e5685a7d7ee899de4afbc109fe319",
         "basis": "actual whole original face and pinned B10 fields checked"
       }
+    },
+    {
+      "id": "JZ33",
+      "name": "蚀日星魔",
+      "kind": "character",
+      "subtypes": [
+        "恶魔",
+        "法师",
+        "异界"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "额外费用 每有一个已毁灭的地区，正面打出蚀日星魔的所需费用减少②。\n进场强制触发 对已毁灭的地区上的所有角色造成1点伤害。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ33",
+        "image": "resource/ymsj-fun.github.io/cards/JZ33 蚀日星魔.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JZ37",
+      "name": "终焉",
+      "kind": "spell",
+      "subtypes": [
+        "灾难"
+      ],
+      "cost": 9,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红红红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "行动 消灭所有角色、暗藏者和附属，毁灭所有地区。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ37",
+        "image": "resource/ymsj-fun.github.io/cards/JZ37 终焉.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC043",
+      "name": "纵火狂",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯",
+        "邪教徒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "【进场触发】消灭目标结附于秘社或本地区上的附属。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC043",
+        "image": "resource/ymsj-fun.github.io/cards/JC043 纵火狂.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ054",
+      "name": "沙地特种兵",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "士兵"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 横置本地区的目标暗藏者。\n手牌触发 当你从手中弃掉沙地特种兵时，你可以在目标角色或暗藏者上放置一个锁定标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ054",
+        "image": "resource/ymsj-fun.github.io/cards/BQ054 沙地特种兵.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC048",
+      "name": "诅咒沙漏",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "法器"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n【准备步骤强制触发】在诅咒沙漏上放置一个时间标志。然后该地区每有一个时间标志，就对位于该地区的所有角色造成1点伤害。然后若该地区上有三个或更多时间标志，则牺牲诅咒沙漏。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC048",
+        "image": "resource/ymsj-fun.github.io/cards/JC048 诅咒沙漏.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM034",
+      "name": "消逝的乌尔德",
+      "subtitle": "葬送过往者",
+      "kind": "character",
+      "subtypes": [
+        "化身",
+        "灾难"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红色红色红色红色",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 3
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 2,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "领袖；时间标志1\n行动 横置，从消逝的乌尔德上移除一个时间标志：消灭所有其他角色。\n准备步骤强制触发 若消逝的乌尔德上没有时间标志，则牺牲之。",
+      "keywords": [
+        "领袖",
+        "时间标志1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM034",
+        "image": "resource/ymsj-fun.github.io/cards/WM034 消逝的乌尔德.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ091",
+      "name": "废弃收容所",
+      "subtitle": "圣甲虫产业",
+      "kind": "attachment",
+      "subtypes": [
+        "设施",
+        "研究"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n准备步骤触发 将你的牌库顶牌置于墓地。\n持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ091",
+        "image": "resource/ymsj-fun.github.io/cards/BQ091 废弃收容所.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JC068",
+      "name": "阿格斯IV",
+      "subtitle": "哨兵专用侦察卫星",
+      "kind": "attachment",
+      "subtypes": [
+        "机构"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n【准备步骤强制触发】支付1，否则横置阿格斯IV。\n【持续】只要阿格斯IV未横置，对手就不能进行秘密派遣行动。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JC068",
+        "image": "resource/ymsj-fun.github.io/cards/JC068 阿格斯IV.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ094",
+      "name": "费格马变量实验室",
+      "subtitle": "圣甲虫产业",
+      "kind": "attachment",
+      "subtypes": [
+        "设施",
+        "研究"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "非资产\n结附于目标地区\n强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ094",
+        "image": "resource/ymsj-fun.github.io/cards/BQ094 费格马变量实验室.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JZ52",
+      "name": "大维齐尔迈哈穆德",
+      "subtitle": "赛特之子",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "cost": 7,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色黑色黑色黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 3,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 5,
+      "text": "领袖\n持续 你不能从手中正面打出角色牌。\n持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。",
+      "keywords": [
+        "领袖"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ52",
+        "image": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ080",
+      "name": "回收专员",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "雇员",
+        "学者"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；撤回\n进场触发 将你墓地中的目标角色牌置于你的手中。\n触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。",
+      "keywords": [
+        "公开",
+        "撤回"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ080",
+        "image": "resource/ymsj-fun.github.io/cards/BQ080 回收专员.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "JZ57",
+      "name": "骷髅纹身",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "纹身"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标人类角色\n持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。\n行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ57",
+        "image": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

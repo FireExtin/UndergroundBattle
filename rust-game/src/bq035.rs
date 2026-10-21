@@ -101,7 +101,7 @@ impl Game {
                 || !assets
                 || f.chosen_region != f.source.region
                 || (f.ability_key == "deploy"
-                    && (f.source.card.face_down || f.source.play_source != Some(PlaySource::Hand)))
+                    && (f.source.card.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal"
                     && (!f.source.card.face_down || f.source.play_source.is_some()))
             {

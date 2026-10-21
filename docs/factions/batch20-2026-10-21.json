@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-2026-10-21",
-  "purpose": "第一批20张的来源与待实现清单，不是运行牌池或上线声明。",
+  "purpose": "20张原图来源、运行时实现WIP与发布账本；尚未开放选牌或发布。",
   "baseCommit": "d98117d188cfc65f4e29fb757dfcf9accdd545e5",
-  "stage": "sourcePreparationComplete",
+  "stage": "runtimeImplementationWip",
   "rulesVersion": "hegemony-pdf-v1",
   "releaseOrder": [
     "completeImplementation",
@@ -20,7 +20,8 @@
     "implementedNewCardCount": 0,
     "releasedNewCardCount": 0,
     "neutralOrDualExpansion": "paused",
-    "uwproImporter": "separateTaskNoSharedEdits"
+    "uwproImporter": "separateTaskNoSharedEdits",
+    "runtimeProgramsInProgress": 12
   },
   "inputs": [
     {
@@ -78,7 +79,7 @@
       "printedRules": [
         "【进场触发】消灭目标结附于秘社或本地区上的附属。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -110,7 +111,7 @@
         "结附于目标地区",
         "【准备步骤强制触发】在诅咒沙漏上放置一个时间标志。然后该地区每有一个时间标志，就对位于该地区的所有角色造成1点伤害。然后若该地区上有三个或更多时间标志，则牺牲诅咒沙漏。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -142,7 +143,7 @@
         "额外费用 每有一个已毁灭的地区，正面打出蚀日星魔的所需费用减少②。",
         "进场强制触发 对已毁灭的地区上的所有角色造成1点伤害。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -173,7 +174,7 @@
       "printedRules": [
         "行动 消灭所有角色、暗藏者和附属，毁灭所有地区。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -206,7 +207,7 @@
         "行动 横置，从消逝的乌尔德上移除一个时间标志：消灭所有其他角色。",
         "准备步骤强制触发 若消逝的乌尔德上没有时间标志，则牺牲之。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -239,7 +240,7 @@
         "进场触发 将你墓地中的目标角色牌置于你的手中。",
         "触发 当一个副名为圣甲虫产业的本方附属进场时，令回收专员潜伏。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -272,7 +273,7 @@
         "准备步骤触发 将你的牌库顶牌置于墓地。",
         "持续 若本方墓地中有七张或更多牌，废弃收容所获得永久调查1。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -305,7 +306,7 @@
         "结附于目标地区",
         "强制触发 每当一个本方角色死亡时，在受此结附的地区上放置一个本方势力标志。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -342,7 +343,7 @@
         "持续 你不能从手中正面打出角色牌。",
         "持续 你可以从墓地中正面打出死亡领域的角色牌，就如同其在你手中一样。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -379,7 +380,7 @@
         "持续 受此结附的角色获得防御力+1，且额外具有不死生物和骷髅类别。",
         "行动 横置，牺牲一个不死生物角色：将目标玩家牌库顶的两张牌置于其墓地。若所牺牲的是骷髅角色，则你可以抓一张牌。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -594,7 +595,7 @@
         "进场触发 横置本地区的目标暗藏者。",
         "手牌触发 当你从手中弃掉沙地特种兵时，你可以在目标角色或暗藏者上放置一个锁定标志。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -731,7 +732,7 @@
         "【准备步骤强制触发】支付1，否则横置阿格斯IV。",
         "【持续】只要阿格斯IV未横置，对手就不能进行秘密派遣行动。"
       ],
-      "implementation": "notStarted",
+      "implementation": "runtimeWip",
       "selectionEnabled": false,
       "release": "notReleased",
       "gameAcceptance": "notRun",
@@ -834,5 +835,57 @@
     ],
     "runtimeAndHistoricalSnapshotsUnchanged": true
   },
-  "historicalSnapshotWarning": "2026-10-03 research index and implementation matrix have stale source hashes/support labels. This batch does not rebuild or approve their 685 records."
+  "historicalSnapshotWarning": "2026-10-03 research index and implementation matrix have stale source hashes/support labels. This batch does not rebuild or approve their 685 records.",
+  "runtimeWorktree": {
+    "baseCommit": "d1c068ea8c4162212cd19fa023841513c4c67e33",
+    "ids": [
+      "JC043",
+      "JC048",
+      "JZ33",
+      "JZ37",
+      "WM034",
+      "BQ080",
+      "BQ091",
+      "BQ094",
+      "JZ52",
+      "JZ57",
+      "BQ054",
+      "JC068"
+    ],
+    "catalogDefinitions": 165,
+    "newDefinitionsSupported": false,
+    "finalVersionIdentityAssigned": false,
+    "scopedRustTests": {
+      "passed": 11,
+      "failed": 0,
+      "coversCards": [
+        "JZ33",
+        "JZ37",
+        "JC043",
+        "BQ054",
+        "JC048",
+        "WM034",
+        "BQ091",
+        "JC068"
+      ],
+      "log": "batch20-twelve-tests.log",
+      "fullSuite": false
+    },
+    "regionStateTests": {
+      "passed": 3,
+      "log": "batch20-region-test.log",
+      "stage": "before later card additions"
+    }
+  },
+  "sitesWorkflow": {
+    "helperRecovered": true,
+    "pluginVersion": "0.1.75",
+    "sourceBundle": "tools/handoff/sites-official-bundle-20261002.tar.gz",
+    "bundleSha256": "7bfc90a2613fc215ee6b8f394030c8fafc256f132df24d8806f04dda4e24f72f",
+    "verifiedFiles": 167,
+    "sourceOpened": true,
+    "sourceCommit": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
+    "publication": "notAttempted",
+    "liveVersion": 71
+  }
 }

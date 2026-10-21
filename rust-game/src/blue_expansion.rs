@@ -204,7 +204,7 @@ impl Game {
                 || f.cursor != 0
                 || !matches!(f.guard, GuardState::Unchecked)
                 || (if f.ability_key == "deploy" {
-                    s.card.face_down || s.play_source != Some(PlaySource::Hand)
+                    s.card.face_down || !s.valid_character_play()
                 } else {
                     !s.card.face_down || s.play_source.is_some()
                 })

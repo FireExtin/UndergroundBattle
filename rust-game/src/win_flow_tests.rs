@@ -936,6 +936,7 @@ fn world_empty_ten_region_conservation_last_refill_then_vacancy() {
     for definition in ["DQJC113", "DQJC107", "DQJC110", "DQJC112", "DQJC114"] {
         g.regions.push(Region {
             vacant: false,
+            destroyed: false,
             card: originals.remove(definition).unwrap(),
             influence: [0, 0],
             cards: vec![],

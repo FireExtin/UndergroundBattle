@@ -220,7 +220,7 @@ impl Game {
         }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             let origin_matches = if f.ability_key == "deploy" {
-                !f.source.card.face_down && f.source.play_source == Some(PlaySource::Hand)
+                !f.source.card.face_down && f.source.valid_character_play()
             } else {
                 f.source.card.face_down && f.source.play_source.is_none()
             };

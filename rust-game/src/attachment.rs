@@ -19,7 +19,9 @@ impl Game {
             return Icons::default();
         }
         let d = card(&c.definition);
-        d.permanent_icons.add(if self.team(c.controller) == self.first_team {
+        let mut permanent = d.permanent_icons;
+        if c.definition == "BQ091" && self.players[c.controller].graveyard.len() >= 7 { permanent.investigation += 1; }
+        permanent.add(if self.team(c.controller) == self.first_team {
             d.temporary_icons
         } else { Icons::default() })
     }
@@ -63,7 +65,7 @@ impl Game {
         // BQ PDF10: every in-play character, hidden card and attachment in
         // this region has a destination before any host is removed.
         for (r, c) in self.in_play_cards() {
-            if r != region {
+            if r != Some(region) {
                 continue;
             }
             if self.has_retreat(c) {
@@ -120,6 +122,15 @@ impl Game {
         };
         if spec.host.zone == Zone::Region {
             return self.attachment_region(attachment).is_some();
+        }
+        if spec.host.zone == Zone::Society {
+            return self.society_host_seat(&attachment.host_id).is_some_and(|seat|
+                match spec.host.relation {
+                    Relation::Any => true,
+                    Relation::ControlledByActor | Relation::OwnedByActor => seat == attachment.card.controller,
+                    Relation::FriendlyTeam => self.team(seat) == self.team(attachment.card.controller),
+                    Relation::EnemyTeam => self.team(seat) != self.team(attachment.card.controller),
+                });
         }
         let Some((_, host)) = self.board(&attachment.host_id) else {
             return false;
@@ -188,10 +199,14 @@ impl Game {
         }
     }
     pub(crate) fn leave_board(&mut self, id: &str) -> Option<(usize, Card)> {
-        if self.board(id).is_some() {
+        let region = self.board(id)?.0;
+        self.leave_in_play(id).map(|(_, c)| (region, c))
+    }
+    pub(crate) fn leave_in_play(&mut self, id: &str) -> Option<(Option<usize>, Card)> {
+        if self.in_play(id).is_some() {
             self.host_leaves(id);
         }
-        let removed = self.remove_board(id);
+        let removed = self.remove_in_play(id);
         // Removed snapshots retain their last controller for death triggers.
         // The old target/source identity cannot carry its effects into a new one.
         self.settle_controls();
@@ -221,16 +236,16 @@ impl Game {
             }
         }
     }
-    pub(crate) fn in_play_cards(&self) -> Vec<(usize, &Card)> {
+    pub(crate) fn in_play_cards(&self) -> Vec<(Option<usize>, &Card)> {
         let mut result = self
             .regions
             .iter()
             .enumerate()
-            .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
+            .flat_map(|(r, region)| region.cards.iter().map(move |c| (Some(r), c)))
             .collect::<Vec<_>>();
         for attachment in &self.attachments {
-            if let Some(r) = self.attachment_region(attachment) {
-                result.push((r, &attachment.card));
+            if self.attachment_host_valid(attachment) {
+                result.push((self.attachment_region(attachment), &attachment.card));
             }
         }
         result

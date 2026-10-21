@@ -264,7 +264,7 @@ impl Game {
             if !f.steps.is_empty() || !f.targets.is_empty() || f.cursor != 0
                 || !matches!(f.guard, GuardState::Unchecked) || f.chosen_region != f.source.region
                 || f.source.card.time_markers != 0
-                || (f.ability_key == "deploy" && f.source.play_source != Some(PlaySource::Hand))
+                || (f.ability_key == "deploy" && !f.source.valid_character_play())
                 || (f.ability_key == "reveal" && f.source.play_source.is_some())
             { return Err("红色时间角色仅准入真实手牌派遣或付费现身空程序".into()); }
             return Ok(());

@@ -260,15 +260,19 @@ impl Game {
         Ok(())
     }
     pub(crate) fn board(&self, id: &str) -> Option<(usize, &Card)> {
+        self.in_play(id).and_then(|(region, card)| region.map(|r| (r, card)))
+    }
+    /// Characters and attachments in play; a Society attachment has no region.
+    pub(crate) fn in_play(&self, id: &str) -> Option<(Option<usize>, &Card)> {
         self.regions
             .iter()
             .enumerate()
-            .find_map(|(i, r)| r.cards.iter().find(|c| c.id == id).map(|c| (i, c)))
+            .find_map(|(i, r)| r.cards.iter().find(|c| c.id == id).map(|c| (Some(i), c)))
             .or_else(|| {
                 self.attachments
                     .iter()
                     .find(|a| a.card.id == id)
-                    .and_then(|a| self.attachment_region(a).map(|r| (r, &a.card)))
+                    .map(|a| (self.attachment_region(a), &a.card))
             })
     }
     pub(crate) fn board_mut(&mut self, id: &str) -> Option<&mut Card> {
@@ -283,13 +287,17 @@ impl Game {
             })
     }
     pub(crate) fn remove_board(&mut self, id: &str) -> Option<(usize, Card)> {
+        let region = self.board(id)?.0;
+        self.remove_in_play(id).map(|(_, c)| (region, c))
+    }
+    pub(crate) fn remove_in_play(&mut self, id: &str) -> Option<(Option<usize>, Card)> {
         for (i, r) in self.regions.iter_mut().enumerate() {
             if let Some(p) = r.cards.iter().position(|c| c.id == id) {
-                return Some((i, r.cards.remove(p)));
+                return Some((Some(i), r.cards.remove(p)));
             }
         }
         if let Some(index) = self.attachments.iter().position(|a| a.card.id == id) {
-            let region = self.attachment_region(&self.attachments[index])?;
+            let region = self.attachment_region(&self.attachments[index]);
             return Some((region, self.attachments.remove(index).card));
         }
         None
@@ -597,6 +605,7 @@ impl Game {
         if seat >= self.players.len() {
             return Err("无此座位".into());
         }
+        self.validate_batch20_state()?;
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
         self.validate_jc054_state()?;
@@ -612,6 +621,7 @@ impl Game {
         next.apply_inner(seat, action)?;
         next.settle_deaths();
         next.drive()?;
+        next.validate_batch20_state()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
         next.validate_jz46_state()?;
@@ -677,6 +687,7 @@ impl Game {
                     return Err("本回合已建立资产".into());
                 }
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
+                if card(&c.definition).keywords.iter().any(|k| k == "非资产") { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
                 self.players[seat].assets.push(c);
                 self.players[seat].asset_used = true;
@@ -693,6 +704,7 @@ impl Game {
                     return Err("超出正常派遣距离".into());
                 }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                crate::batch20::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -707,6 +719,7 @@ impl Game {
                 }
                 if a.kind == "conceal" {
                     if self.players[seat].conceal_used
+                        || self.jc068_blocks_conceal(seat)
                         || rules::definition(&c.definition).traits.public
                     {
                         return Err("该角色不能秘密派遣或本回合已用".into());
@@ -735,7 +748,7 @@ impl Game {
                     }
                     let paid = self.pay_printed(seat, &c, true)?;
                     let mut snapshot = self.source_snapshot(&c, Some(r));
-                    snapshot.play_source = Some(play_source);
+                    snapshot.play_source = Some(play_source.clone());
                     let c = self.take_character_play_source(seat, id, play_source)?;
                     let c = self.fresh(c);
                     self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
@@ -767,6 +780,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                crate::batch20::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -819,6 +833,7 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                crate::batch20::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
@@ -910,6 +925,7 @@ impl Game {
             self.players[seat].assets.clear();
             self.players[seat].graveyard.clear();
             self.players[seat].score_cards.clear();
+            self.players[seat].destruction_markers = 0;
             self.players[seat].society_zone = Default::default();
             self.players[seat].eliminated = false;
             let snapshot = match self.players[seat].deck_snapshot.clone() {
@@ -949,6 +965,7 @@ impl Game {
         for _ in 0..count {
             self.regions.push(Region {
                 vacant: false,
+                destroyed: false,
                 card: world.remove(0),
                 influence: [0; 2],
                 cards: vec![],
@@ -1066,11 +1083,7 @@ impl Game {
     pub(crate) fn check_win(&mut self) {
         let mut scores = [0; 2];
         for p in &self.players {
-            scores[self.team(p.seat)] += p
-                .score_cards
-                .iter()
-                .map(|c| card(&c.definition).points.unwrap_or(0))
-                .sum::<u32>();
+            scores[self.team(p.seat)] += self.player_score(p.seat);
         }
         if scores[0] >= self.win_score() || scores[1] >= self.win_score() {
             if scores[0] > scores[1] {
@@ -1104,6 +1117,7 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
+        self.validate_batch20_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1184,8 +1198,8 @@ impl Game {
                 c.exhausted = true;
             }
         }
-        if let Some((r, c)) = self.board(id) {
-            let source = self.source_snapshot(c, Some(r));
+        if let Some((r, c)) = self.in_play(id) {
+            let source = self.source_snapshot(c, r);
             self.emit_event(seat, source.clone(), Event::Enter);
             self.emit_event(seat, source.clone(), Event::EnterRegion);
             if reveal {
@@ -1710,17 +1724,20 @@ impl Game {
                 scored.controller = seat;
                 scored = self.fresh(scored);
                 self.players[seat].score_cards.push(scored);
+                let destroyed = self.regions[region].destroyed;
+                if destroyed { self.players[seat].destruction_markers += 1; }
                 self.note(format!(
                     "{} 赢得 {}（{}分）",
                     self.players[seat].name,
                     card(&definition).name,
-                    card(&definition).points.unwrap_or(0)
+                    card(&definition).points.unwrap_or(0).saturating_sub(u32::from(destroyed))
                 ));
                 if !self.world.is_empty() {
                     let c = self.world.remove(0);
                     let c = self.fresh(c);
                     self.regions[region] = Region {
                         vacant: false,
+                        destroyed: false,
                         card: c,
                         influence: [0; 2],
                         cards: vec![],
@@ -1730,6 +1747,7 @@ impl Game {
                     // Keep the original slot. The retired card metadata is not
                     // part of the live world and is never projected as a card.
                     self.regions[region].vacant = true;
+                    self.regions[region].destroyed = false;
                     self.regions[region].influence = [0, 0];
                     self.regions[region].skip = false;
                 }
@@ -1760,7 +1778,7 @@ impl Game {
                             .count();
                         if count > 1 && group.as_ref().is_none_or(|n| n == name) {
                             group = Some(name.clone());
-                            options.push(self.option(c, seat, Some(*r), None));
+                            options.push(self.option(c, seat, *r, None));
                         }
                     }
                 }
@@ -1983,6 +2001,7 @@ impl Game {
         self.queue_leader_checks();
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_batch20_state()?;
         self.validate_jc052_state()?;
         self.validate_jc046_state()?;
         self.validate_jc095_state()?;
@@ -2206,7 +2225,7 @@ impl Game {
             } else {
                 self.jc060_current_domains(c)
             },
-            time_markers: (!asset && region.is_some() && c.time_markers > 0).then_some(c.time_markers),
+            time_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.time_markers > 0).then_some(c.time_markers),
             current_mobility: (!asset && !c.face_down && region.is_some() && self.has_mobility(c)).then_some(true),
             current_mobility_source: if !asset && !c.face_down && region.is_some()
                 && !crate::mobility::printed(&c.definition) {
@@ -2378,7 +2397,7 @@ impl Game {
                     return RegionView {
                         id: format!("empty-region:{index}"), index,
                         card_id: String::new(), name: "空位".into(),
-                        threshold: 0, points: 0, influence: [0, 0],
+                        threshold: 0, points: 0, destroyed: false, influence: [0, 0],
                         skip_confrontation: true, icons_by_team: [Icons::default(); 2],
                         characters: vec![],
                     };
@@ -2390,7 +2409,8 @@ impl Game {
                     card_id: d.id.clone(),
                     name: d.name.clone(),
                     threshold: d.threshold.unwrap_or(0),
-                    points: d.points.unwrap_or(0),
+                    points: d.points.unwrap_or(0).saturating_sub(u32::from(r.destroyed)),
+                    destroyed: r.destroyed,
                     influence: r.influence,
                     skip_confrontation: r.skip,
                     icons_by_team: {
@@ -2437,11 +2457,8 @@ impl Game {
                     eliminated: p.eliminated,
                     hand_count: p.hand.len(),
                     deck_count: p.deck.len(),
-                    score: p
-                        .score_cards
-                        .iter()
-                        .map(|c| card(&c.definition).points.unwrap_or(0))
-                        .sum(),
+                    score: self.player_score(p.seat),
+                    destruction_markers: p.destruction_markers,
                 })
                 .collect(),
             first_team: self.first_team,
@@ -2461,11 +2478,10 @@ impl Game {
             attachments: self
                 .attachments
                 .iter()
-                .filter_map(|a| {
-                    self.attachment_region(a).map(|r| AttachmentView {
-                        card: self.card_view(&a.card, seat, Some(r), Some("attachment")),
-                        host_id: a.host_id.clone(),
-                    })
+                .filter(|a| self.attachment_host_valid(a))
+                .map(|a| AttachmentView {
+                    card: self.card_view(&a.card, seat, self.attachment_region(a), Some("attachment")),
+                    host_id: a.host_id.clone(),
                 })
                 .collect(),
             private_deck_top: if self.status == "playing"
@@ -2688,7 +2704,7 @@ impl Game {
             if self.can_standard(seat) {
                 for c in &self.players[seat].graveyard {
                     if card(&c.definition).kind != "character"
-                        || !rules::definition(&c.definition).graveyard_face_up
+                        || !self.can_play_grave_character(seat, c)
                     {
                         continue;
                     }
@@ -2738,11 +2754,11 @@ impl Game {
                 {
                     continue;
                 }
-                if let Some((region, _)) = self.board(&c.id) {
+                if self.attachment_host_valid(attachment) {
                     candidates.extend(self.rule_action_candidates(
                         seat,
                         c,
-                        Some(region),
+                        self.attachment_region(attachment),
                         "activate",
                     ));
                 }

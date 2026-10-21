@@ -83,6 +83,12 @@ impl Game {
             && !result.iter().any(|s| s == "邪教徒") {
             result.push("邪教徒".into());
         }
+        // This grant adds types and never changes its own human-host condition.
+        // Do not recursively ask attachment_host_valid() while calculating that condition.
+        if result.iter().any(|s| s == "人类") && self.attachments.iter().any(|a|
+            a.card.definition == "JZ57" && !a.card.face_down && a.host_id == c.id) {
+            for subtype in ["不死生物", "骷髅"] { if !result.iter().any(|s| s == subtype) { result.push(subtype.into()); } }
+        }
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

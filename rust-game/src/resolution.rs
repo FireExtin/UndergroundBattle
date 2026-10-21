@@ -112,7 +112,7 @@ impl Game {
                 kind && relation
                     && selector
                         .region
-                        .is_none_or(|wanted| self.frame_region(frame, wanted) == Some(*r))
+                        .is_none_or(|wanted| self.frame_region(frame, wanted).is_some_and(|wanted| *r == Some(wanted)))
                     && selector
                         .subtype
                         .as_ref()
@@ -180,6 +180,12 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if let Some(required) = ability.costs.iter().find_map(|cost| if let Cost::SacrificeControlledSubtype(subtypes) = cost { Some(subtypes) } else { None }) {
+                    self.regions.iter().flat_map(|r| &r.cards).filter(|c| !c.face_down && c.controller == actor
+                        && card(&c.definition).kind == "character" && required.iter().any(|s| self.current_subtypes(c).contains(s)))
+                        .map(|c| Some(vec![c.id.clone()])).collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSource)) {
+                    self.wm034_time_payments(&source).into_iter().map(|p| Some(vec![p.carrier.id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard)) {
                     self.jc044_time_payments(actor).into_iter().map(|p| Some(vec![p.carrier.id])).collect()
                 } else if ability
@@ -289,7 +295,7 @@ impl Game {
             .flatten();
         let located = asset
             .map(|(s, i)| (None, &self.players[s].assets[i]))
-            .or_else(|| self.board(id).map(|(r, c)| (Some(r), c)))
+            .or_else(|| self.in_play(id))
             .or_else(|| {
                 self.players
                     .iter()
@@ -319,6 +325,9 @@ impl Game {
                 Some(player_id(c.controller)),
                 region,
             )
+        } else if let Some(seat) = self.society_host_seat(id) {
+            (format!("{}的秘社", self.players[seat].name), "society".into(),
+                Some(player_id(seat)), Some(player_id(seat)), None)
         } else if let Some(seat) = id
             .strip_prefix('p')
             .and_then(|s| s.parse::<usize>().ok())
@@ -366,7 +375,7 @@ impl Game {
         let mut summary = target.public.clone();
         if (target.spec.zone == Zone::AttachmentOrAsset
             && self.asset_location(&target.id).is_some())
-            || self.board(&target.id).is_some()
+            || self.in_play(&target.id).is_some()
             || self
                 .players
                 .iter()
@@ -393,7 +402,8 @@ impl Game {
                     self.asset_location(&target.id).is_some()
                         || self.attachments.iter().any(|a| a.card.id == target.id)
                 }
-                Zone::Board => self.board(&target.id).is_some(),
+                Zone::Board => self.in_play(&target.id).is_some(),
+                Zone::Society => self.society_host_seat(&target.id).is_some(),
                 Zone::Graveyard => self
                     .players
                     .iter()
@@ -449,10 +459,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035") {
+            source_region_instance: if matches!(c.definition.as_str(), "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -474,7 +484,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(
+        card(&c.definition).cost.saturating_sub(if c.definition == "JZ33" { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -614,6 +624,12 @@ impl Game {
         id: &str,
     ) -> bool {
         match spec.zone {
+            Zone::Society => self.society_host_seat(id).is_some_and(|seat| match spec.relation {
+                Relation::Any => true,
+                Relation::ControlledByActor | Relation::OwnedByActor => seat == actor,
+                Relation::FriendlyTeam => self.team(seat) == self.team(actor),
+                Relation::EnemyTeam => self.team(seat) != self.team(actor),
+            }),
             Zone::AttachmentOrAsset => {
                 if spec.predicate == Some(TargetPredicate::XQ23ActorAsset) {
                     return source.card.definition == "XQ23" && self.asset_location(id)
@@ -628,7 +644,7 @@ impl Game {
                         .find(|a| a.card.id == id)
                         .is_some_and(|a| {
                             !a.card.face_down
-                                && self.board(id).is_some()
+                                && self.attachment_host_valid(a)
                                 && self.targetable(actor, &a.card)
                         })
             }
@@ -657,7 +673,7 @@ impl Game {
                 }),
             Zone::Board | Zone::Graveyard => {
                 let located = if spec.zone == Zone::Board {
-                    self.board(id).map(|(r, c)| (Some(r), c))
+                    self.in_play(id)
                 } else {
                     self.players
                         .iter()
@@ -706,6 +722,13 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::JC043SocietyOrOriginalRegion => {
+                                    source.card.definition == "JC043" && self.attachments.iter().find(|a| a.card.id == c.id)
+                                        .is_some_and(|a| self.attachment_host_valid(a) && (self.society_host_seat(&a.host_id).is_some()
+                                            || source.region.and_then(|r| self.regions.get(r)).is_some_and(|r|
+                                                !r.vacant && source.source_region_instance.as_ref() == Some(&r.card.id)
+                                                    && a.host_id == r.card.id)))
+                                }
                                 rules::TargetPredicate::JC015NonHumanPrintedCostAtLeastThree => {
                                     source.card.definition == "JC015"
                                         && !c.face_down
@@ -728,7 +751,7 @@ impl Game {
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
-                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066" | "JC041") || spec.range != Range::SourceRegion
+                        && (!matches!(source.card.definition.as_str(), "JZ43" | "JZ44" | "JZ45" | "WM059" | "JC061" | "JC087" | "JZ46" | "JC066" | "JC041" | "BQ054") || spec.range != Range::SourceRegion
                             || source.region.and_then(|r| self.regions.get(r))
                                 .zip(source.source_region_instance.as_ref())
                                 .is_some_and(|(region, instance)| !region.vacant && region.card.id == *instance))
@@ -753,12 +776,15 @@ impl Game {
         spec: &TargetSlotSpec,
     ) -> Vec<ChoiceOption> {
         let options: Vec<ChoiceOption> = match spec.zone {
+            Zone::Society => self.players.iter().map(|p| ChoiceOption {
+                id: format!("society:p{}", p.seat), label: format!("{}的秘社", p.name), card: None,
+            }).collect(),
             Zone::AttachmentOrAsset => self
                 .attachments
                 .iter()
                 .filter_map(|a| {
-                    self.board(&a.card.id)
-                        .map(|(r, c)| self.option(c, actor, Some(r), None))
+                    self.in_play(&a.card.id)
+                        .map(|(r, c)| self.option(c, actor, r, Some("attachment")))
                 })
                 .chain(
                     self.players
@@ -770,7 +796,7 @@ impl Game {
             Zone::Board => self
                 .in_play_cards()
                 .into_iter()
-                .map(|(r, c)| self.option(c, actor, Some(r), None))
+                .map(|(r, c)| self.option(c, actor, r, None))
                 .collect(),
             Zone::Graveyard => self
                 .players
@@ -904,7 +930,8 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
-                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
+                Cost::SacrificeControlledSubtype(subtypes) => paid.push(self.pay_subtype_sacrifice(actor, subtypes, a)?),
+                Cost::RemoveOneTimeFromSource => paid.push(self.wm034_pay_time(source, a)?),                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
                 Cost::Assets(n) => {
                     let ids = self.players[actor]
                         .assets
@@ -942,12 +969,12 @@ impl Game {
                         ids[0].clone()
                     };
                     let (_, c) = self
-                        .board(&id)
+                        .in_play(&id)
                         .filter(|(r, c)| {
                             c.controller == actor
                                 && !c.face_down
                                 && (!matches!(cost, Cost::SacrificeSelectedOtherLocalControlledCharacter)
-                                    || (Some(*r) == source.region && c.id != source.card.id))
+                                    || (*r == source.region && c.id != source.card.id))
                                 && (card(&c.definition).kind == "character"
                                     || (matches!(cost, Cost::SacrificeSource)
                                         && card(&c.definition).kind == "attachment"
@@ -1098,6 +1125,7 @@ impl Game {
             && self.attachments.iter().any(|a| a.card.id == source.card.id)
         {
             self.observe_attachment_committed(&source.card.id);
+            self.observe_bq080_attachment_entry(&source.card.id);
         }
         for spec in rules::definition(&source.card.definition)
             .abilities
@@ -1126,7 +1154,9 @@ impl Game {
     }
     pub(crate) fn declare_trigger(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
+        self.validate_batch20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
+        if self.batch20_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1145,7 +1175,8 @@ impl Game {
         if self.death_observer_limit_reached(&declaration) {
             return Ok(());
         }
-        if spec.event == Some(Event::HandDiscard) && self.resources(actor) < 1 {
+        if spec.event == Some(Event::HandDiscard) && self.resources(actor) < spec.costs.iter().filter_map(|c|
+            if let Cost::Assets(n) = c { Some(*n) } else { None }).sum() {
             return Ok(());
         }
         if spec.requires_ready_source
@@ -1208,7 +1239,9 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_mobility_declaration(&declaration)?;
+        self.validate_batch20_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
+        self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
         self.jc035_reject_optional(&declaration)?;
@@ -1349,8 +1382,8 @@ impl Game {
         c
     }
     pub(crate) fn remove_dead(&mut self, target: &str, cause: RemovalCause) {
-        if let Some((region, c)) = self.board(target) {
-            self.remove_death_batch(vec![(target.into(), cause, self.source_snapshot(c, Some(region)))]);
+        if let Some((region, c)) = self.in_play(target) {
+            self.remove_death_batch(vec![(target.into(), cause, self.source_snapshot(c, region))]);
         }
     }
     fn asset_location(&self, id: &str) -> Option<(usize, usize)> {
@@ -1367,9 +1400,9 @@ impl Game {
     ) -> Option<crate::death_observers::CharacterDeathReceipt> {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
-        let snapshot = simultaneous_source.or_else(|| self.board(target)
-            .map(|(region, c)| self.source_snapshot(c, Some(region))));
-        if let Some((_, c)) = self.leave_board(target) {
+        let snapshot = simultaneous_source.or_else(|| self.in_play(target)
+            .map(|(region, c)| self.source_snapshot(c, region)));
+        if let Some((_, c)) = self.leave_in_play(target) {
             let snapshot = snapshot.expect("board departure has a pre-departure snapshot");
             let controller = snapshot.card.controller;
             let character =
@@ -1399,7 +1432,7 @@ impl Game {
         None
     }
     fn take_entity(&mut self, id: &str) -> Option<Card> {
-        if let Some((_, c)) = self.leave_board(id) {
+        if let Some((_, c)) = self.leave_in_play(id) {
             return Some(c);
         }
         for p in &mut self.players {
@@ -1456,6 +1489,7 @@ impl Game {
         self.validate_jz46_frame(&frame)?;
         self.validate_wm038_frame(&frame)?;
         self.validate_jz35_frame(&frame)?;
+        self.validate_batch20_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1479,6 +1513,18 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::BQ080HideForAttachment { .. } => { self.hide_in_place(&frame.source.card.id); }
+                Op::JZ57MillAndOptionalDraw => return self.jz57_resolve(frame),
+                Op::BQ054LockTarget => {
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) {
+                        c.lock_markers = c.lock_markers.saturating_add(1);
+                    }
+                }
+                Op::JC043DestroyAttachment => {
+                    if let Some(t) = frame.targets.first() { self.remove_dead(&t.id, RemovalCause::Destroy); }
+                }
+                Op::JZ33ScorchDestroyedRegions => self.jz33_scorch()?,
+                Op::JZ37DestroyWorld => self.jz37_destroy_world(),
                 Op::JC052DestroyOtherOriginalRegionCharacters => self.jc052_destroy_others(&frame),
                 Op::JC095ConvertEnemyInfluenceInOriginalRegion => self.jc095_convert_enemy_influence(&frame),
                 Op::JZ35SacrificeReturnControlledHosts => self.jz35_resolve(&frame)?,
@@ -1498,7 +1544,9 @@ impl Game {
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
                 Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
-                Op::JC035PreparedInfluence { .. } => self.jc035_resolve(&frame)?,
+                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::WM034AddOneTime => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
+                Op::WM034DestroyOtherCharacters => self.wm034_destroy_others(&frame),
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
                 Op::BQ078ReturnNamelessCorpse => return self.bq078_return_start(frame),
@@ -1992,15 +2040,7 @@ impl Game {
                 }
                 Op::MoveDeckTopToGraveyard { player, count } => {
                     let seat = self.frame_player(&frame, step.context, player)?;
-                    for _ in 0..count {
-                        if self.players[seat].deck.is_empty() {
-                            break;
-                        }
-                        let c = self.players[seat].deck.remove(0);
-                        let owner = c.owner;
-                        let c = self.reset_zone_card(c);
-                        self.players[owner].graveyard.push(c);
-                    }
+                    self.mill_cards(seat, count);
                 }
                 Op::OfferShuffleIfActorControlsDreamDemon { player } => {
                     if self.regions.iter().flat_map(|r| &r.cards).any(|c| {
@@ -2298,6 +2338,8 @@ impl Game {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         match choice {
+            FrameChoice::Batch20OptionalDraw => return self.batch20_optional_draw(&frame, chooser, &selected),
+            FrameChoice::JC068Upkeep => return self.jc068_upkeep_complete(&frame, chooser, &selected),
             FrameChoice::WM062AdjacentMove { before, hidden, baseline, region, region_instance, destinations } => {
                 self.wm062_complete(&frame, chooser, &a, &selected, &before, &hidden, baseline.as_ref(), region, &region_instance, &destinations)?;
             }

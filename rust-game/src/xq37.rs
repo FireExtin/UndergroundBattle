@@ -69,7 +69,7 @@ impl Game {
             if !f.steps.is_empty()
                 || f.chosen_region != f.source.region
                 || (f.ability_key == "deploy"
-                    && (c.face_down || f.source.play_source != Some(PlaySource::Hand)))
+                    && (c.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some()))
             {
                 return Err("XQ37仅准入真实手牌派遣或付费现身空程序".into());

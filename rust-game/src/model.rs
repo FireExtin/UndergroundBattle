@@ -206,6 +206,8 @@ pub struct PlayerView {
     pub hand_count: usize,
     pub deck_count: usize,
     pub score: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub destruction_markers: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -216,6 +218,8 @@ pub struct RegionView {
     pub name: String,
     pub threshold: u32,
     pub points: u32,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub destroyed: bool,
     pub influence: [u32; 2],
     #[serde(default)]
     pub icons_by_team: [Icons; 2],
@@ -336,7 +340,7 @@ pub struct PrivateInspectionView {
     pub region: usize,
     pub cards: Vec<CardView>,
 }
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
     #[serde(default, skip_serializing_if = "is_zero")]
     pub time_markers: u32,
@@ -374,6 +378,8 @@ pub struct Player {
     pub assets: Vec<Card>,
     pub graveyard: Vec<Card>,
     pub score_cards: Vec<Card>,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub destruction_markers: u32,
     pub asset_used: bool,
     pub conceal_used: bool,
 }
@@ -392,6 +398,7 @@ impl Player {
             assets: vec![],
             graveyard: vec![],
             score_cards: vec![],
+            destruction_markers: 0,
             asset_used: false,
             conceal_used: false,
         }
@@ -403,6 +410,8 @@ pub struct Region {
     /// persistence compatibility, never an in-play card or attachment host.
     #[serde(default, skip_serializing_if = "is_false")]
     pub vacant: bool,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub destroyed: bool,
     pub card: Card,
     pub influence: [u32; 2],
     pub cards: Vec<Card>,
@@ -550,10 +559,11 @@ pub struct ObservedMobilityGrant {
     pub knight_region: usize,
     pub blood: Attachment,
 }
-#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
     Hand,
     Graveyard,
+    GraveyardByJZ52(Box<Card>),
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BoundTarget {
@@ -567,6 +577,8 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    SacrificedSubtype { card: Card, subtypes: Vec<String> },
+    SourceRemovedTime(TimeMarkerPayment),
     RemovedTime(TimeMarkerPayment),
     Discarded {
         old_instance: String,
@@ -628,6 +640,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    Batch20OptionalDraw,
+    JC068Upkeep,
     WM062AdjacentMove {
         before: Card,
         hidden: Card,
@@ -886,6 +900,7 @@ impl Game {
         game.validate_mobility_state()?;
         game.validate_bq035_state()?;
         game.validate_vacant_regions()?;
+        game.validate_destruction_state()?;
         game.validate_win_contexts()?;
         game.validate_sealed_cards()?;
         game.validate_jz50_search_choice()?;
@@ -914,6 +929,7 @@ impl Game {
         game.validate_jc035_state()?;
         game.validate_wm038_state()?;
         game.validate_jz35_state()?;
+        game.validate_batch20_state()?;
         game.validate_jc052_state()?;
         game.validate_jc046_state()?;
         game.validate_jc095_state()?;

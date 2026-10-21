@@ -34,7 +34,7 @@ impl Game {
             }
         }
         for a in &self.attachments {
-            if a.card.definition == "JC090" && !a.card.face_down && self.attachment_host_valid(a) {
+            if matches!(a.card.definition.as_str(), "JC090" | "BQ094") && !a.card.face_down && self.attachment_host_valid(a) {
                 if let Some(r) = self.regions.iter().position(|r| !r.vacant && r.card.id == a.host_id) {
                     let mut source = self.source_snapshot(&a.card, Some(r));
                     source.source_region_instance = Some(a.host_id.clone());
@@ -92,7 +92,7 @@ impl Game {
             || (c.definition == "JC031" && c.id == dead.card.id)
             || (c.id == dead.card.id && (c.definition != "JC045" || !same(c, &dead.card)))
         { return Err("死亡旁观来源、死亡资格或冻结行动者无效".into()); }
-        if c.definition == "JC090" {
+        if matches!(c.definition.as_str(), "JC090" | "BQ094") {
             if !source.attachment_host_instance.as_ref().is_some_and(|id| !id.is_empty())
                 || source.attachment_host_instance != source.source_region_instance {
                 return Err("灵魂契约原地区实例无效".into());
@@ -102,7 +102,7 @@ impl Game {
         }
         Ok(())
     }
-    fn validate_observer_declaration(&self, d: &Declaration) -> RuleResult<()> {
+    pub(crate) fn validate_observer_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if self.validated_mobility_declaration(d)? { return Ok(()); }
         if !relevant_source(&d.source) && d.ability.event != Some(Event::CharacterDeathObserved)
             && !d.ability.key.starts_with("death-observer-") && !rules::death_observer_ops(&d.ability.ops)
@@ -114,7 +114,7 @@ impl Game {
         }
         Ok(())
     }
-    fn validate_observer_frame(&self, f: &ResolutionFrame, discard_seat: Option<usize>) -> RuleResult<()> {
+    pub(crate) fn validate_observer_frame(&self, f: &ResolutionFrame, discard_seat: Option<usize>) -> RuleResult<()> {
         if !relevant_frame(f) { return Ok(()); }
         self.validate_observer_source(f.actor, &f.source)?;
         let spec = rules::death_observer_definition(&f.source.card.definition).unwrap()
@@ -194,6 +194,7 @@ impl Game {
                 ChoiceResolution::Declare { declaration: d, stage } => {
                     self.validate_observer_declaration(d)?;
                     if relevant_source(&d.source) {
+                        if d.source.card.definition == "BQ094" { return Err("强制死亡观察不可改为可选待选".into()); }
                         let target = d.source.card.definition == "JC031";
                         if p.seat != d.actor || p.choice.player_id != format!("p{}", d.actor)
                             || p.choice.kind != "trigger" || p.choice.min != Some(0) || p.choice.max != Some(1)

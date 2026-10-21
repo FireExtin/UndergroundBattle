@@ -220,7 +220,7 @@ impl Game {
                 || !f.steps.is_empty()
                 || f.chosen_region != f.source.region
                 || (f.ability_key == "deploy"
-                    && (f.source.card.face_down || f.source.play_source != Some(PlaySource::Hand)))
+                    && (f.source.card.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal"
                     && (!f.source.card.face_down || f.source.play_source.is_some()))
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
@@ -384,7 +384,7 @@ impl Game {
                         && catalog::card(&c.definition).unique
                         && name == Some(&catalog::card(&c.definition).name)
                 })
-                .map(|(r, c)| self.option(c, p.seat, Some(*r), None))
+                .map(|(r, c)| self.option(c, p.seat, *r, None))
                 .collect::<Vec<_>>();
             let title = if options
                 .iter()

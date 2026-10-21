@@ -134,7 +134,7 @@ impl Game {
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if f.cursor != 0 || !f.steps.is_empty() || !matches!(f.guard, GuardState::Unchecked)
                 || f.chosen_region != f.source.region
-                || (f.ability_key == "deploy" && (f.source.card.face_down || f.source.play_source != Some(PlaySource::Hand)))
+                || (f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some()))
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 4 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC041普通付费派遣或现身空帧不符".into());
