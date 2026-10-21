@@ -59,6 +59,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const ordering = choice.kind === 'order' || choice.kind === 'investigation';
   const triggerOrder = choice.kind === 'jc054-trigger-order' || choice.kind === 'jc035-preparation-order';
   const damage = choice.kind === 'damage';
+  const timePayment = choice.kind === 'jc055-time-payment';
   const filterable = !ordering && !damage && choice.options.length > 6;
   const query = search.trim().toLocaleLowerCase();
   const visibleOptions = choice.options.map((option, index) => ({ option, index })).filter(({ option }) => {
@@ -80,12 +81,12 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const max = choice.max ?? choice.options.length;
   const jz50Search = choice.kind === 'jz50_death_search' && min === 0 && max === 1 && !choice.allowDecline;
   const entrySearchZero = !choice.allowDecline && min === 0 && (
-    (['bq104_employee_search', 'batch20_search'].includes(choice.kind) && max === 0 && choice.options.length === 0)
+    (['bq104_employee_search', 'batch20_search', 'next-blue-gray-search'].includes(choice.kind) && max === 0 && choice.options.length === 0)
     || (choice.kind === 'xq48_passer_search' && max <= 3));
   const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
     && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
   const privateInspectionZero = ['jz46-hidden-inspect', 'jc057-hand-inspect'].includes(choice.kind) && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
-  const zeroConfirmation = (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
+  const zeroConfirmation = (timePayment && min === 0) || (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
   const complete = (current: ChoiceDraft) => damage ? Object.values(current.allocations).reduce((total, n) => total + n, 0) === amount
     : ordering ? current.top.length + current.bottom.length === choice.options.length
       : current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline && !triggerOrder || zeroConfirmation);
@@ -204,14 +205,14 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
       </button>{option.card && onReadCard && <button type="button" className="hg-choice-read hg-small-read" aria-label={`放大阅读${viewerId ? visibleCard(option.card, viewerId).name : option.card.name}`} aria-describedby={contextId} onClick={() => readCard(option.card!)}>放大文字与图标 ↗</button>}</div>;
       })}</div>
       {filterable && visibleOptions.length === 0 && <p className="hg-choice-empty">没有符合筛选的选项。{selected.length > 0 ? `已选的 ${selected.length} 项仍会保留。` : '可重置筛选后继续选择。'}</p>}
-      {choice.kind === 'region_return' && selected.length > 1 && <div className="hg-return-order"><h3>置于牌库底的顺序</h3>{selected.map((id, index) => <div key={id} data-choice-order-option={id}><span>{index + 1}. {label(id)}</span><button disabled={index === 0 || busy} onClick={() => setSelected(current => move(current, id, -1))} aria-label={`${label(id)}上移`}>↑</button><button disabled={index === selected.length - 1 || busy} onClick={() => setSelected(current => move(current, id, 1))} aria-label={`${label(id)}下移`}>↓</button></div>)}</div>}
+      {['region_return', 'bq085-bottom'].includes(choice.kind) && selected.length > 1 && <div className="hg-return-order"><h3>置于牌库底的顺序</h3><p>自上而下排列，最后一张位于牌库最底。</p>{selected.map((id, index) => <div key={id} data-choice-order-option={id}><span>{index + 1}. {label(id)}</span><button disabled={index === 0 || busy} onClick={() => setSelected(current => move(current, id, -1))} aria-label={`${label(id)}上移`}>↑</button><button disabled={index === selected.length - 1 || busy} onClick={() => setSelected(current => move(current, id, 1))} aria-label={`${label(id)}下移`}>↓</button></div>)}</div>}
     </>}
     </div>
     <div className="hg-choice-footer"><span className="hg-choice-summary">{damage ? `共需分配 ${amount} 点，已分配 ${assigned} 点` : ordering ? '确认后按此顺序放回牌库。' : `请选择 ${min === max ? min : `${min}–${max}`} 项${choice.allowDecline ? '，或跳过' : ''}。`}
       {triggerOrder && selected.length === 1 && <small className="hg-trigger-order-selection" aria-live="polite">下一项入栈：{label(selected[0])}</small>}
       {!damage && !ordering && max > 0 && <small id={selectionHintId}>{selectionHint}</small>}</span>
-      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : choice.kind === 'wm062-adjacent-move' ? '不移动并确认' : '跳过此选择'}</button>}
-      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
+      <div>{canDecline && <button className="hg-button hg-button-quiet" disabled={busy || !action} onClick={() => submit(true)}>{timePayment ? '不移除标志（X=0）' : choice.kind === 'mulligan' ? '保留全部手牌' : choice.kind === 'bq028-hand-inspect' ? '不弃牌并确认' : choice.kind === 'wm062-adjacent-move' ? '不移动并确认' : '跳过此选择'}</button>}
+      <button className="hg-button hg-button-primary" disabled={busy || !valid || !action} onClick={() => submit()}>{busy ? '正在提交…' : timePayment ? `确认支付 ${selected.length} 枚时间标志` : (jz50Search || entrySearchZero || deckSealZero) && selected.length === 0 ? '不取牌并洗牌' : '确认选择'}</button></div>
     </div>
   </section>;
 }

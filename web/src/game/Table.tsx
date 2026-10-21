@@ -160,6 +160,9 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
       <div className="hg-mat-assets" aria-label={`${player.name}的资产`}><span className="hg-mat-zone-label">资产 · 费用与忠诚</span><div className="hg-assets" style={{ '--hg-card-count': Math.max(1, assets.length) } as CSSProperties}>{assets.map(renderCard)}{!assets.length && <span className="hg-table-empty">尚无资产</span>}</div></div>
       <section className="hg-society-zone" aria-label={`${player.name}的秘社区`} data-society-zone={societyZone?.id} data-society-player={player.id}>
         <strong>秘社区</strong>
+        {societyZone?.exposure !== undefined && <small>暴露 {societyZone.exposure}</small>}
+        {societyZone?.secrecy !== undefined && <small>隐秘 {societyZone.secrecy}</small>}
+        {societyZone?.handLimit !== undefined && <small>手牌上限 {societyZone.handLimit}</small>}
         {societyZone?.card && targetIds.has(societyZone.id) && <button type="button" className="hg-player-target" data-card-targeted="true" aria-pressed={selectedTarget === societyZone.id} onClick={() => onCard(societyZone.id)}>选择{player.name}的秘社</button>}
         {societyZone?.card ? <><div className="hg-society-piece">{renderCard(societyZone.card)}</div><small>{societyZone.card.exhausted ? '已横置' : '未横置'}</small></> : <><span aria-hidden="true">◈</span><small>{!societyZone ? '未开放' : view.status === 'lobby' ? '开局时公开' : '未选择'}</small></>}
         {societyAttachments.length > 0 && <div className="hg-society-attachments" aria-label={`${player.name}的秘社附属`}>{societyAttachments.map(renderCard)}</div>}

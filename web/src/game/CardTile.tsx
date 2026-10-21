@@ -5,11 +5,11 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
   if (!card.faceDown || card.controller === viewerId) {
-    return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined } : card;
+    return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
-    wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentDomains: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined };
+    wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentDomains: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined, currentPublic: undefined, permanentCombatMarkers: undefined };
 }
 
 /** Display-only short form of a server instance ID; never used to match, merge or infer objects. */
@@ -112,6 +112,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!card.faceDown && card.region !== undefined && card.currentCombatGlory && <span>威名</span>}
         {!card.faceDown && card.kind === 'character' && card.region !== undefined && card.currentMobility && <span title={card.currentMobilitySource ? `幽冥骑士 ${instanceTag(card.currentMobilitySource)} 与鲜血附属持续授予` : '对抗阶段开始时可发动机动'}>机动{card.currentMobilitySource ? ' · 幽冥骑士授予' : ''}</span>}
         {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
+        {!card.faceDown && card.kind === 'character' && card.region !== undefined && card.currentPublic && <span>公开</span>}
+        {!card.faceDown && card.kind === 'character' && card.region !== undefined && !!card.permanentCombatMarkers && <span>永久战斗图标标志 {card.permanentCombatMarkers}</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
         </span>)}

@@ -28,6 +28,7 @@ export type Card = {
   currentRenown?: boolean;
   currentCombatGlory?: boolean;
   currentMobility?: boolean;
+  currentPublic?: boolean;
   currentMobilitySource?: string;
   currentBarrier?: boolean;
   currentSubtypes?: string[];
@@ -36,6 +37,7 @@ export type Card = {
   cost?: number; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
   shield?: number; wounds?: number; timeMarkers?: number; color?: string; magic?: string;
   lockMarkers?: number;
+  permanentCombatMarkers?: number;
   usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };
@@ -100,7 +102,7 @@ export type View = {
   privateInspections?: { sourceInstanceId: string; region: number; cards: Card[] }[];
   attachments?: Attachment[];
   sealedCards?: SealedCard[];
-  societyZones?: { id: string; playerId: string; card: Card | null }[];
+  societyZones?: { id: string; playerId: string; card: Card | null; exposure?: number; secrecy?: number; handLimit?: number }[];
   stack: StackEffect[];
   pendingChoice: Choice | null;
   waitingChoice?: { playerId: string; title: string; kind: string } | null;

@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-10-21T14:11:14.061191+00:00",
+  "sourceBase": "4c083e3916ad122bfc05f1659a7a18f7f76e75aa",
+  "scope": "Next-batch UI contracts, separate from first-batch frozen review snapshot. No browser gameplay or deployed UI claim.",
+  "results": {
+    "targetedWeb": {
+      "files": 4,
+      "passed": 76,
+      "failed": 0,
+      "exitCode": 0,
+      "command": "npm test -- src/game/Next20Presentation.test.tsx src/game/ChoicePanel.test.tsx src/game/CardTile.test.tsx src/game/SocietyTable.test.tsx --maxWorkers=2"
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "command": "npm run typecheck"
+    }
+  },
+  "cases": [
+    "JC055 permits X=0 and partial per-carrier payment, restores exact selection",
+    "BQ085 chosen two-card bottom order survives remount and submits in chosen order",
+    "Empty blue/gray search can confirm and display authorized private preview",
+    "JC055 preparation requires a target; rumor replacement remains optional",
+    "Society exposure/secrecy/hand limit display server numbers and tolerate old projections",
+    "Public/current permanent combat marker fields are hidden when card turns face down"
+  ],
+  "sourceSha256": {
+    "web/src/game/ChoicePanel.tsx": "3339335b5bc6ce7570eb62e3535c071b20987e45ad6b07de25bdbc1a983b8781",
+    "web/src/game/CardTile.tsx": "3dc143b0b1e62bc66a5d23fb0f1c2ed6aa93dcf00ef230a7d6feeaa9af9c471a",
+    "web/src/game/Table.tsx": "7731560d4c5d1358dd86dd74591f6731702731ab932057d1988678ea5435cbca",
+    "web/src/game/types.ts": "57f0f6258f62130e071e7aa1fe0dcf4743ac25289ca364c8edb2ae3eb348b140",
+    "web/src/game/Next20Presentation.test.tsx": "40b23447927a09a3cfc1cc5a6f58c78f72819274b56f1e152d990ee1dd5db03a"
+  },
+  "logs": {
+    "next20-web-presentation.log": "83a697fe98e36d02c0175edb60897224efd521a3da7f121ab46bb6bffb8ec037",
+    "next20-web-typecheck.log": "59b887d884d1fbd4456a43e76a9bf4bcb96168ed75959ab8703975561f591aa5"
+  },
+  "status": "UI scoped checks passed; Rust integration, new-batch WASM/build/startup/publication/full suites/independent review/real browser pending"
+}
