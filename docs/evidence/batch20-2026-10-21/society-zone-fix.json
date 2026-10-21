@@ -42,7 +42,12 @@
     "typecheckBeforeUXIntegration": "passed",
     "fullSuite": "not run for this candidate",
     "browser": "owned by parent; this task did not perform browser gameplay",
-    "independentSupplementalReview": "pending",
+    "independentSupplementalReview": {
+      "source": "a0b1b3da71887bde9aaed06f85dc74638d36d38c",
+      "status": "passed per coordinator",
+      "scope": "16 valid combinations;192 invalid targets rejected;Native45;Web19;typecheck;not independent WASM or UX/next20",
+      "reportLibraryId": "libfile_c4a2a23fdc5481918eb3b1dbd9b1d8f7"
+    },
     "frozenOriginals": {
       "pass": 8,
       "fail": 0,
@@ -267,7 +272,7 @@
     ],
     "buildExitCode": 0,
     "webTypecheck": "passed by npm build",
-    "publication": "not saved/deployed yet"
+    "publication": "saved as v74; deployment denied; see siteDeployment"
   },
   "siteSavedVersion": {
     "id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
@@ -286,6 +291,11 @@
     "screenshot_url": null,
     "deployment_id": null
   },
-  "siteDeployment": "not attempted; independent supplemental review coordination pending",
+  "siteDeployment": {
+    "status": "denied",
+    "deployment_id": null,
+    "evidence": "publication-v74-denied.json",
+    "notExecutedConfirmedBy": "official get_site_version returned deployment_id null after rejection"
+  },
   "buildPreflightBlockedAttempts": "Original WASM launch probe and first clock-wrapper launch stopped when memory headroom<1GiB. Resumed after active work completed and existing guard passed; no guard bypass, fallback or deletion."
 }
