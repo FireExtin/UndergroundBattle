@@ -852,13 +852,14 @@
       "originalRefusedCommit": "d977c3e4b97171b4f6827541a10856dda0dc735a",
       "remoteAfterRefusal": "8b44f0bcd1243fe4603e0dc5d96f7354376c8c07",
       "noNewEnvironmentOrWorktree": true
-    }
+    },
+    "savedV72ReleaseDisposition": "Do not deploy known-defective v72. Replacement source/build validated locally; not yet saved or deployed."
   },
   "validation": {
     "sourceImages": "20/20 hash match; 19 newly shipped files and existing JZ52",
     "sourceSchema": "passed: validate_specifications; no engine/UI acceptance",
     "diffCheck": "passed",
-    "documentLinks": "105 local paths exist",
+    "documentLinks": "33 local links in current README and batch markdown checked at test/document checkpoint; source-image provenance checked separately",
     "newBatchFullSuites": {
       "stage": "inProgress; production publish blocked",
       "rustLibraryInitial": {
@@ -883,14 +884,62 @@
         "failed": 0,
         "log": "batch20-full-tools-03.log"
       },
-      "sites": "running; observed old current-ABI90 assertions, not yet all triaged",
-      "remainingNativeAndWasm": "native-binaries, wasm-crate-unit and rust-doctests passed; Native→WASM replay running",
+      "sites": "15 affected files rechecking fixed b6782cdf candidate",
+      "remainingNativeAndWasm": "native-binaries/wasm-crate/doctests passed; original replay433 passed; fixed scoped replay13 passed; final Rust workspace running",
       "singleFinalWorkspaceAllPassClaimed": false,
       "nativeIntegrationInitial": {
         "passedBeforeStop": 6,
         "failed": 2,
         "log": "batch20-native-integration.log",
         "note": "Stopped after audit_regressions; six further integration targets not yet run. Includes confirmed runtime failure B20-P1-01, not only old count assertions."
+      },
+      "nativeIntegrationFixed": {
+        "targets": 8,
+        "passed": 72,
+        "failed": 0,
+        "log": "batch20-native-integration-03.log"
+      },
+      "nativeWasmOriginal": {
+        "cases": 433,
+        "transitions": 24407,
+        "projections": 96991,
+        "wasmSha256": "b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4",
+        "log": "batch20-native-wasm-replay.log",
+        "passed": true,
+        "scope": "Original v72 artifact; does not cover later reward fix. XQ24 follow-up:2 Native tests,4 rejected states/12 restore entries,12 normal scenarios/117 commands/370 views passed with original WASM."
+      },
+      "fixedCandidate": {
+        "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+        "wasmBytes": 3796219,
+        "nativeIntegration": {
+          "targets": 8,
+          "passed": 72,
+          "failed": 0,
+          "log": "batch20-native-integration-03.log"
+        },
+        "wasmScoped": {
+          "cases": 13,
+          "transitions": 1038,
+          "projections": 4146,
+          "log": "batch20-reward-fixed-wasm-03.log",
+          "passed": true
+        },
+        "workerBuild": "passed backend-only dry-run; no deployment",
+        "savedVersion": null,
+        "fullRustWorkspace": "running; batch20-full-rust-02.log",
+        "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+      },
+      "sitesInitial": {
+        "passed": 681,
+        "failed": 55,
+        "total": 736,
+        "log": "batch20-full-sites.log",
+        "failureCauses": {
+          "obsoleteCurrentEngine": 52,
+          "obsoleteCurrentCount": 1,
+          "obsoleteCurrentIdentityTuple": 1,
+          "approvedCurrentIconCorrections": 1
+        }
       }
     },
     "independentReview": "notRunForBatch",
@@ -924,7 +973,7 @@
       "log": "batch20-final-web-build.log",
       "includes": "TypeScript app/node checks and Vite production build"
     },
-    "nativeWasmParity": "full replay running; earlier startup passed",
+    "nativeWasmParity": "original v72 full433 passed; fixed candidate scoped13 passed; do not combine artifact identities",
     "runtimeStartupIdentity": {
       "scope": "local WASM and Native HTTP startup/new room; no browser battle or full suite",
       "engine": "rust-v0.2.91-batch20",
@@ -1110,7 +1159,7 @@
     {
       "id": "B20-P1-01",
       "severity": "P1",
-      "status": "confirmed; fixPending",
+      "status": "fixed in source; Native72 and WASM13 passed; final workspace and Sites checks in progress",
       "source": "rust-game/src/resolution.rs:463",
       "consumer": "rust-game/src/batch20.rs:581",
       "affectedCards": [
@@ -1121,7 +1170,30 @@
       "scenario": "Public JC074 renown grant or JC089 combat-glory grant followed by normal pass rejects with 奖励缺少原地区实例; transactional rollback can stall the confrontation.",
       "minimalFix": "Include all three source definitions in existing source_region_instance snapshot allowlist; preserve reward validation.",
       "reproductionLog": "batch20-native-integration.log",
-      "savedV72Affected": true
+      "savedV72Affected": true,
+      "fix": "Existing snapshot allowlist now includes JZ33, JZ52, JC040; reward validators unchanged.",
+      "fixedWasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
     }
-  ]
+  ],
+  "replacementCandidate": {
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+    "wasmBytes": 3796219,
+    "nativeIntegration": {
+      "targets": 8,
+      "passed": 72,
+      "failed": 0,
+      "log": "batch20-native-integration-03.log"
+    },
+    "wasmScoped": {
+      "cases": 13,
+      "transitions": 1038,
+      "projections": 4146,
+      "log": "batch20-reward-fixed-wasm-03.log",
+      "passed": true
+    },
+    "workerBuild": "passed backend-only dry-run; no deployment",
+    "savedVersion": null,
+    "fullRustWorkspace": "running; batch20-full-rust-02.log",
+    "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+  }
 }

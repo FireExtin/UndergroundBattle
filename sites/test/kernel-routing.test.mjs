@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI90 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI91 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -19,7 +19,20 @@ test('current ABI90 keeps the source bytes, reviewed prior definitions and exact
   // Recorded catalog is a definition regression oracle, not a runnable old core.
   const prior = JSON.parse(readFileSync(new URL('./fixtures/reviewed-catalog-v044.json', import.meta.url), 'utf8'));
   const priorIds = new Set(prior.cards.map(card => card.id));
-  assert.deepEqual(latest.cards.filter(card => priorIds.has(card.id)), prior.cards.map(c=>{if(c.id!=='JC018')return c;const ruleTraits={...c.ruleTraits};delete ruleTraits.renown;return {...c,ruleTraits};}));
+  assert.deepEqual(latest.cards.filter(card => priorIds.has(card.id)), prior.cards.map(card => {
+    // Corrections independently verified against the original printed cards.
+    // The historical fixture stays unchanged; these are current-only exceptions.
+    if (card.id === 'JC029') return { ...card,
+      permanentIcons: { investigation: 0, combat: 0, influence: 0 },
+      temporaryIcons: { investigation: 0, combat: 1, influence: 1 } };
+    if (card.id === 'JZ49') return { ...card,
+      permanentIcons: { investigation: 0, combat: 0, influence: 0 },
+      temporaryIcons: { investigation: 0, combat: 2, influence: 0 } };
+    if (card.id !== 'JC018') return card;
+    const ruleTraits = { ...card.ruleTraits };
+    delete ruleTraits.renown;
+    return { ...card, ruleTraits };
+  }));
   assert.deepEqual(latest.societies.filter(s => !['MSJC04', 'MSJC05'].includes(s.id)), prior.societies);
   assert.deepEqual(latest.societies.filter(s => ['MSJC04', 'MSJC05'].includes(s.id)).map(s => s.id), ['MSJC04', 'MSJC05']);
   for (const field of ['decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
@@ -64,7 +77,7 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current90 and all thirteen original77-89 WASM modules', () => {
+test('production Worker contains exactly current91 and all thirteen original77-89 WASM modules', () => {
   const retainedNames=Array.from({length:13},(_,i)=>'abi'+(77+i));
   assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
   const originals=retainedNames.map(name=>{

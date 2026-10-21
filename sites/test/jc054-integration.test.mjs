@@ -46,7 +46,7 @@ async function runScenario(t, scenario, expectedCards = 147) {
   assert.equal(roomCatalog.status, 200);
   assert.equal(roomCatalog.body.engineVersion, scenario.initial.views[0].versions.engine);
   assert.equal(roomCatalog.body.cards.length, expectedCards);
-  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.90-audit-correctness-candidate');
+  assert.equal((await h.globalCatalog()).engineVersion, 'rust-v0.2.91-batch20');
   let accepted = 0, rejected = 0, reopened = 0, projections = 0;
   const checkpoints = new Set();
   let firstAccepted, lastAccepted, firstReceipt, lastReceipt;

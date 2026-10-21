@@ -271,6 +271,85 @@
         "test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.15s"
       ],
       "scope": "native integration stopped after two audit regression failures; further targets not run in this command"
+    },
+    {
+      "file": "batch20-native-integration-02.log",
+      "sha256": "eb476de708f8343ce8d4db95b073b2c7abc114c04cd9410d92031425024af023",
+      "summary": [
+        "Build preflight failed:",
+        "No build started; no storage fallback or cleanup was performed."
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-native-integration-03.log",
+      "sha256": "862f8bf3d8736e8d3fd80841a0c711983e05b0b3b5d9ac2e0dcf3c6cda1c664e",
+      "summary": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.47s",
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.18s",
+        "test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.73s",
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s",
+        "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s",
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s",
+        "test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.44s",
+        "test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-native-wasm-replay.log",
+      "sha256": "7009dda1b6fe2f94fde78b581adc0fd35864ab6e88ae2c690ea506c23bd6940c",
+      "summary": [
+        "{\"ok\":true,\"cases\":433,\"wasmBytes\":3796176,\"wasmSha256\":\"b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4\",\"transitions\":24407,\"projections\":96991,\"quotes\":1,\"rejectedCommands\":319,\"rejectedDeckCreations\":42,\"choiceKinds\":[\"damage\",\"discard\",\"investigation\",\"mulligan\",\"optional-shuffle\",\"recipient\",\"region_return\",\"revealed-hand-discard\",\"search\",\"target\",\"trigger\"],\"slowestFixtureStepMs\":135.14,\"opaqueState\":true,\"maximumU64SeedExact\":true,\"nativeWasmStateAndViewsMatch\":true}",
+        "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1321 filtered out; finished in 1.83s",
+        "{\"passed\":true,\"rejectedStates\":4,\"restoreEntrypoints\":12,\"normalScenarios\":12,\"normalCommands\":117,\"seatViews\":370,\"fixtureSha256\":\"04cf3f8f1b931259a4ae46c6ad523d5675b7db09acf753bf7109751d141810d0\",\"wasmBytes\":3796176,\"wasmSha256\":\"b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4\"}"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-full-sites.log",
+      "sha256": "1e380ea0144417a49c91a8bc0cb791178f549f33867943e53946e5033c2140b3",
+      "summary": [
+        "ℹ tests 736",
+        "ℹ pass 681",
+        "ℹ fail 55",
+        "ℹ duration_ms 2400885.676941"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-reward-fixed-wasm.log",
+      "sha256": "70800a11d4f89817c3b23e5a3e4037689ac526629f1021b4f44a528b99b21e0b",
+      "summary": [
+        "thread 'main' panicked at rust-game-wasm/examples/support/renown.rs:568:52:",
+        "attempt to subtract with overflow"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-reward-fixed-wasm-02.log",
+      "sha256": "6258f6bd894b017323ea4671a09fd8b019910d2a2c02f98e26b1fa9cbb27dd91",
+      "summary": [
+        "thread 'main' panicked at rust-game-wasm/examples/support/renown.rs:77:10:",
+        "called `Option::unwrap()` on a `None` value"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-reward-fixed-wasm-03.log",
+      "sha256": "37ce1ad845da7547d8c63a684fd6bf147e41490f82757ebdcdbd66280da9b5ad",
+      "summary": [
+        "{\"ok\":true,\"cases\":13,\"wasmBytes\":3796219,\"wasmSha256\":\"b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376\",\"transitions\":1038,\"projections\":4146,\"quotes\":0,\"rejectedCommands\":0,\"rejectedDeckCreations\":0,\"choiceKinds\":[\"investigation\",\"mulligan\",\"region_return\",\"target\",\"trigger\"],\"slowestFixtureStepMs\":64.47,\"opaqueState\":true,\"maximumU64SeedExact\":true,\"nativeWasmStateAndViewsMatch\":true}"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
+    },
+    {
+      "file": "batch20-reward-fixed-worker-build.log",
+      "sha256": "ea5066b1a49820e12df2effa9fe42fb6d38981ce5b4dc7740a4d531ef9850bc9",
+      "summary": [
+        "{\"fixtureRegistry\":false,\"dist\":\"/workspace/audit-underground-100161b/build/batch20-reward-fixed-worker/candidate-worker/dist\",\"frontendBuilt\":false,\"deployed\":false}"
+      ],
+      "scope": "Completed local run. Initial source fixture failures retained; no browser or GitHub CI."
     }
   ],
   "fullSuite": {
@@ -297,14 +376,62 @@
       "failed": 0,
       "log": "batch20-full-tools-03.log"
     },
-    "sites": "running; observed old current-ABI90 assertions, not yet all triaged",
-    "remainingNativeAndWasm": "native-binaries, wasm-crate-unit and rust-doctests passed; Native→WASM replay running",
+    "sites": "15 affected files rechecking fixed b6782cdf candidate",
+    "remainingNativeAndWasm": "native-binaries/wasm-crate/doctests passed; original replay433 passed; fixed scoped replay13 passed; final Rust workspace running",
     "singleFinalWorkspaceAllPassClaimed": false,
     "nativeIntegrationInitial": {
       "passedBeforeStop": 6,
       "failed": 2,
       "log": "batch20-native-integration.log",
       "note": "Stopped after audit_regressions; six further integration targets not yet run. Includes confirmed runtime failure B20-P1-01, not only old count assertions."
+    },
+    "nativeIntegrationFixed": {
+      "targets": 8,
+      "passed": 72,
+      "failed": 0,
+      "log": "batch20-native-integration-03.log"
+    },
+    "nativeWasmOriginal": {
+      "cases": 433,
+      "transitions": 24407,
+      "projections": 96991,
+      "wasmSha256": "b3ece039dbe2a9cb16ef8dd137c7c478234bd5898cc48214c7e5450b79734da4",
+      "log": "batch20-native-wasm-replay.log",
+      "passed": true,
+      "scope": "Original v72 artifact; does not cover later reward fix. XQ24 follow-up:2 Native tests,4 rejected states/12 restore entries,12 normal scenarios/117 commands/370 views passed with original WASM."
+    },
+    "fixedCandidate": {
+      "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+      "wasmBytes": 3796219,
+      "nativeIntegration": {
+        "targets": 8,
+        "passed": 72,
+        "failed": 0,
+        "log": "batch20-native-integration-03.log"
+      },
+      "wasmScoped": {
+        "cases": 13,
+        "transitions": 1038,
+        "projections": 4146,
+        "log": "batch20-reward-fixed-wasm-03.log",
+        "passed": true
+      },
+      "workerBuild": "passed backend-only dry-run; no deployment",
+      "savedVersion": null,
+      "fullRustWorkspace": "running; batch20-full-rust-02.log",
+      "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+    },
+    "sitesInitial": {
+      "passed": 681,
+      "failed": 55,
+      "total": 736,
+      "log": "batch20-full-sites.log",
+      "failureCauses": {
+        "obsoleteCurrentEngine": 52,
+        "obsoleteCurrentCount": 1,
+        "obsoleteCurrentIdentityTuple": 1,
+        "approvedCurrentIconCorrections": 1
+      }
     }
   },
   "independentReview": "notRunForBatch",
@@ -378,7 +505,7 @@
     {
       "id": "B20-P1-01",
       "severity": "P1",
-      "status": "confirmed; fixPending",
+      "status": "fixed in source; Native72 and WASM13 passed; final workspace and Sites checks in progress",
       "source": "rust-game/src/resolution.rs:463",
       "consumer": "rust-game/src/batch20.rs:581",
       "affectedCards": [
@@ -389,7 +516,35 @@
       "scenario": "Public JC074 renown grant or JC089 combat-glory grant followed by normal pass rejects with 奖励缺少原地区实例; transactional rollback can stall the confrontation.",
       "minimalFix": "Include all three source definitions in existing source_region_instance snapshot allowlist; preserve reward validation.",
       "reproductionLog": "batch20-native-integration.log",
-      "savedV72Affected": true
+      "savedV72Affected": true,
+      "fix": "Existing snapshot allowlist now includes JZ33, JZ52, JC040; reward validators unchanged.",
+      "fixedWasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376"
     }
+  ],
+  "replacementCandidate": {
+    "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
+    "wasmBytes": 3796219,
+    "nativeIntegration": {
+      "targets": 8,
+      "passed": 72,
+      "failed": 0,
+      "log": "batch20-native-integration-03.log"
+    },
+    "wasmScoped": {
+      "cases": 13,
+      "transitions": 1038,
+      "projections": 4146,
+      "log": "batch20-reward-fixed-wasm-03.log",
+      "passed": true
+    },
+    "workerBuild": "passed backend-only dry-run; no deployment",
+    "savedVersion": null,
+    "fullRustWorkspace": "running; batch20-full-rust-02.log",
+    "sitesAffectedFilesRecheck": "running; 15 files; batch20-sites-failures-recheck.log"
+  },
+  "fixtureCorrectionHistory": [
+    "First new reward fixture incorrectly assumed enemy influence remained positive for JC067; assertion fixed to cover removal or placement. No WASM comparison ran in that failed export.",
+    "Second fixture tried the Action-only JC089 spell in the before-combat window; setup corrected to begin at the normal action window. No product behavior weakened.",
+    "Third export and comparison passed all13 scenarios including7 new cross-card reward cases."
   ]
 }

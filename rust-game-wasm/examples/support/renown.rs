@@ -531,6 +531,47 @@ fn natural_case() -> Value {
     assert!(r.log.iter().any(|l| l.text.contains("声望")));
     json!({"name":"renown-natural-four-seat-paid-three-cards","seed":seed.to_string(),"syntheticInitialLayout":false,"syntheticInitialFunding":false,"postInitialStateInjection":false,"zeroNeutralFiftyCardDeck":true,"publicNaturalUiAcceptance":false,"finalTurn":r.turn,"milestones":milestones,"steps":steps})
 }
+fn batch20_granted_reward(definition: &str, glory: bool) -> Value {
+    let mut g = attachment_initial("teams", "888888888888888888880118");
+    g.regions[0].influence = [0, 3];
+    g.window = Some(if glory { Window::Action(0) } else { Window::Before(0, 2) });
+    let target = field(&mut g, definition, 0);
+    if glory {
+        // Keep even printed-defense-one recipients alive under the real curse.
+        field(&mut g, "JC059", 0);
+        field(&mut g, "JC059", 0);
+    }
+    let grant = if glory { "JC089" } else { "JC074" };
+    fund(&mut g, 0, if glory { "JC084" } else { "JC074" }, 2);
+    held(&mut g, 0, grant);
+    let region_instance = g.regions[0].card.id.clone();
+    let mut r = RoomEnvelope::from_game(g);
+    let mut steps = vec![step(
+        &r,
+        "initialFixture",
+        json!([serde_json::to_string(&r).unwrap()]),
+        0,
+    )];
+    cast(&mut r, &mut steps, 0, grant, &target);
+    let key = if glory { "jc089-combat-glory" } else { "renown" };
+    advance(&mut r, &mut steps, |r| {
+        matches!(r.pending.as_ref().map(|p| &p.resolution),
+            Some(ChoiceResolution::Declare { declaration, .. }) if declaration.ability.key == key)
+    });
+    let ChoiceResolution::Declare { declaration, .. } = &r.pending.as_ref().unwrap().resolution else { unreachable!() };
+    assert_eq!(declaration.source.card.definition, definition);
+    assert_eq!(declaration.source.source_region_instance.as_ref(), Some(&region_instance));
+    let before = r.regions[0].influence;
+    choose(&mut r, &mut steps, vec!["accept".into()]);
+    attachment_pass_top(&mut r, &mut steps);
+    assert_eq!(r.regions[0].card.id, region_instance);
+    let expected = if before[1] > 0 { [before[0], before[1] - 1] } else { [before[0] + 1, 0] };
+    assert_eq!(r.regions[0].influence, expected);
+    json!({"name":format!("batch20-{definition}-granted-{key}-restore"),
+        "seed":r.seed.to_string(),"syntheticInitialLayout":true,"syntheticInitialFunding":true,
+        "postInitialStateInjection":false,"publicNaturalUiAcceptance":false,"steps":steps})
+}
+
 pub fn cases() -> impl Iterator<Item = Value> {
     [
         "merged-decline",
@@ -542,4 +583,7 @@ pub fn cases() -> impl Iterator<Item = Value> {
     .into_iter()
     .map(boundary)
     .chain(std::iter::once_with(natural_case))
+    .chain([("JZ33", false), ("JZ52", false), ("JC040", false), ("JC067", false),
+        ("JZ33", true), ("JZ52", true), ("JC040", true)]
+        .into_iter().map(|(definition, glory)| batch20_granted_reward(definition, glory)))
 }

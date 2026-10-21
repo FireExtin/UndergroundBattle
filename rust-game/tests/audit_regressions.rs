@@ -253,11 +253,14 @@ mod renown {
         let mut passed = 0;
         let mut failed = 0;
         let mut skipped = 0;
+        let mut skipped_ids = Vec::new();
+        let mut checked = 0;
         for d in catalog::catalog()
             .cards
             .iter()
             .filter(|d| d.kind == "character" && d.supported)
         {
+            checked += 1;
             let mut g = base.clone();
             let c = g.make_card(&d.id, 0);
             let id = c.id.clone();
@@ -279,6 +282,7 @@ mod renown {
             if let Err(e) = g.apply(0, action) {
                 println!("SKIP {} grant rejected: {e}", d.id);
                 skipped += 1;
+                skipped_ids.push(d.id.clone());
                 continue;
             }
             while !g.stack.is_empty() {
@@ -291,10 +295,17 @@ mod renown {
             {
                 println!("SKIP {} no live granted renown", d.id);
                 skipped += 1;
+                skipped_ids.push(d.id.clone());
                 continue;
             }
             let mut failure = None;
-            for _ in 0..2 {
+            // JC067 adds a complete influence contest. Close its normal before/
+            // after windows until the region has really ended, without forging
+            // influence progress or bypassing any public command.
+            for _ in 0..12 {
+                if g.pending.is_some() {
+                    break;
+                }
                 let before = serde_json::to_string(&g).unwrap();
                 if let Err(e) = step_pass(&mut g) {
                     assert_eq!(before, serde_json::to_string(&g).unwrap());
@@ -309,9 +320,10 @@ mod renown {
             }
             if let Some(e)=failure{println!("FAIL {} {}: {e}",d.id,d.name);failed+=1;}
   else if g.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.ability.key=="renown")){passed+=1;}
-  else{println!("SKIP {} no renown pending window={:?}",d.id,g.window);skipped+=1;}
+  else{println!("SKIP {} no renown pending window={:?}",d.id,g.window);skipped+=1;skipped_ids.push(d.id.clone());}
         }
-        assert_eq!((passed, failed, skipped), (94, 0, 1));
+        assert_eq!(skipped_ids, ["XQ46"]);
+        assert_eq!((passed, failed, skipped), (checked - 1, 0, 1));
         println!("SUMMARY passed={passed} failed={failed} skipped={skipped}");
     }
 }
@@ -380,11 +392,13 @@ mod glory {
         base.team_passed = [false; 2];
         base.jc035_preparation = None;
         let mut counts = [0; 3];
+        let mut checked = 0;
         for d in catalog::catalog()
             .cards
             .iter()
             .filter(|d| d.kind == "character" && d.supported)
         {
+            checked += 1;
             let mut g = base.clone();
             let c = g.make_card(&d.id, 0);
             let id = c.id.clone();
@@ -517,7 +531,7 @@ mod glory {
                 counts[2] += 1;
             }
         }
-        assert_eq!(counts, [95, 0, 0]);
+        assert_eq!(counts, [checked, 0, 0]);
         println!(
             "SUMMARY passed={} failed={} skipped={}",
             counts[0], counts[1], counts[2]
