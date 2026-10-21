@@ -800,6 +800,7 @@ impl Game {
                         steps: vec![],
                         chosen_region: Some(r),
                     });
+                    self.wm041_observe_last_play();
                 }
             }
             "reveal" => {

@@ -8171,6 +8171,53 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM041",
+      "name": "阿尔法先生",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "特工",
+        "互联网"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰灰灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 3,
+          "combat": 1,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "领袖；【暴露】声望；持续 所有本方公开角色获得声望。所有敌方角色失去声望。；强制触发 当你打出一张公开角色牌时，在本方秘社上放置一个暴露标志，然后抓一张牌。",
+      "keywords": [
+        "领袖",
+        "暴露条件：声望"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM041",
+        "image": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
+        "imageSha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false,
+      "subtitle": "P.S.C.管理员"
     }
   ],
   "decks": [

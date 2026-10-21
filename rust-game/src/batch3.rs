@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "WM041" => Some(crate::batch3_alpha::definition()),
         "BQ079" => Some(crate::batch3_ghoul::definition()),
         "JC062" => Some(crate::batch3_inspect::definition()),
         "XQ22" => Some(crate::batch3_politician::definition()),
@@ -137,7 +138,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     } else if d.modifiers.iter().any(|m| {
         matches!(
             m,
-            StaticModifier::JC064MartialLaw | StaticModifier::XQ22UnexhaustedSpellBan | StaticModifier::WM030CultistIcons
+            StaticModifier::WM041RenownControl | StaticModifier::JC064MartialLaw | StaticModifier::XQ22UnexhaustedSpellBan | StaticModifier::WM030CultistIcons
                 | StaticModifier::XG26InfluenceAndConditionalGuard
                 | StaticModifier::WM035HumansGainHost
         )
@@ -149,7 +150,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave))
+    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed))
         || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
@@ -161,6 +162,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
         Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        | Op::WM041PublicPlay { .. }
         | Op::BQ079CorpseIcons { .. }
         | Op::WM035HostDeathDraw { .. }
         | Op::BQ042DestroyAttachment
@@ -195,6 +197,9 @@ fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
         .abilities
         .into_iter()
         .find(|printed| printed.key == a.key)?;
+    if a.key == "batch3-wm041-public-play" {
+        if let [Op::WM041PublicPlay { observation }] = a.ops.as_slice() { expected.ops = vec![Op::WM041PublicPlay { observation: observation.clone() }]; }
+    }
     if a.key == "batch3-bq079-corpse" {
         if let [Op::BQ079CorpseIcons { observation }] = a.ops.as_slice() { expected.ops = vec![Op::BQ079CorpseIcons { observation: observation.clone() }]; }
     }
@@ -323,14 +328,14 @@ impl Game {
             self.batch3_source(d.actor, &d.source)?;
             let expected = canonical_ability(&d.source.card.definition, &d.ability)
                 .ok_or("第三批触发声明没有固定程序")?;
-            if !matches!((d.source.card.definition.as_str(),d.ability.event),("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)))
+            if !matches!((d.source.card.definition.as_str(),d.ability.event),("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)) | ("WM041",Some(Event::WM041PublicCharacterPlayed)))
                 || d.source.card.face_down
                 || d.source.play_source.is_some()
                 || !same(&d.ability, &expected)
             {
                 return Err("第三批触发声明的来源、事件或程序不符".into());
             }
-            if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
+            if d.source.card.definition == "WM041" { self.wm041_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
                 self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?.ok_or("宿主触发缺少观察")?;
             }
         }
@@ -374,6 +379,10 @@ impl Game {
         let mut a = definition(&f.source.card.definition)
             .and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
             .ok_or("非准入第三批执行帧")?;
+        if a.key == "batch3-wm041-public-play" {
+            if let [Step { op: Op::WM041PublicPlay { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::WM041PublicPlay { observation: observation.clone() }]; }
+            self.wm041_observation(f.actor,&f.source,&a.ops)?;
+        }
         if a.key == "batch3-bq079-corpse" {
             if let [Step { op: Op::BQ079CorpseIcons { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::BQ079CorpseIcons { observation: observation.clone() }]; }
             self.bq079_observation(f.actor,&f.source,&a.ops)?;
@@ -476,6 +485,9 @@ impl Game {
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
             }
+            if let [Op::WM041PublicPlay { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(),o.event_id.clone())) { return Err("阿尔法先生同一公开打出不能重复奖励".into()); }
+            }
             if let [Op::BQ079CorpseIcons { observation: Some(o) }] = ops {
                 if !observations.insert((source.card.id.clone(), o.event_id.clone())) { return Err("食尸鬼同一入墓事件不能重复执行".into()); }
             }
@@ -553,6 +565,7 @@ impl Game {
                 ChoiceResolution::Frame { frame, choice: FrameChoice::BQ079Upkeep } => self.validate_bq079_pending(p, frame)?,
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
+                    self.batch3_reject_optional(declaration)?;
                     if declaration.source.card.definition == "WM035"
                         && declaration.ability.key == "batch3-wm035-host-death"
                     {

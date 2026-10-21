@@ -1188,7 +1188,7 @@ impl Game {
         self.validate_next20_red_declaration(&declaration)?;
         self.validate_batch3_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1278,6 +1278,7 @@ impl Game {
         self.validate_next20_red_declaration(&declaration)?;
         self.validate_batch3_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
+        self.batch3_reject_optional(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
@@ -1607,6 +1608,7 @@ impl Game {
                         c.lock_markers = c.lock_markers.saturating_add(1);
                     }
                 }
+                Op::WM041PublicPlay { .. } => { self.add_society_markers(frame.actor,1,0); self.draw(frame.actor,1)?; },
                 Op::BQ079CorpseIcons { .. } => self.bq079_reward(&frame.source),
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
                 Op::XQ22Orientation => return self.xq22_orientation_start(frame),

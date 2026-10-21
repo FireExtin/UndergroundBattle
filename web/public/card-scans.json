@@ -1088,5 +1088,10 @@
     "url": "/cards/BQ079.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
     "sha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48"
+  },
+  "WM041": {
+    "url": "/cards/WM041.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
+    "sha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090"
   }
 }

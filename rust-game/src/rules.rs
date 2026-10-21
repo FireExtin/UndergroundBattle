@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     WM035HostDeath,
     BQ079CorpseGrave,
+    WM041PublicCharacterPlayed,
     BlackCharacterDeathObserved,
     DeckToGraveyardObserved,
     JZ34OtherDeath,
@@ -253,6 +254,7 @@ pub enum Op {
     XG28GraveReturn,
     BQ089GraveEntry,
     Batch3Prepare { event_id: Option<String> },
+    WM041PublicPlay { observation: Option<crate::batch3_alpha::PublicPlayObservation> },
     BQ079CorpseIcons { observation: Option<crate::batch3_ghoul::CorpseGraveObservation> },
     WM035HostDeathDraw { observation: Option<crate::black_next20::BlackDeathObservation> },
     XG26AttachmentBarrier,
@@ -552,6 +554,7 @@ pub struct Traits {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
     JC064MartialLaw,
+    WM041RenownControl,
     XQ22UnexhaustedSpellBan,
     WM035HumansGainHost,
     XG26InfluenceAndConditionalGuard,
