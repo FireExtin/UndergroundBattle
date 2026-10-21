@@ -1,0 +1,23 @@
+{
+  "scope": "Retained exact JS/WASM bytes from saved v74 Site source fe182e656f35153be9225c0b17fbce708831b1ba. Official deployment is pending; v74 is not confirmed published. Transport gzip is not a kernel rebuild. Never migrate or re-sign these rooms.",
+  "providerSource": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
+  "evidenceCommit": "eb64382604b4a6e1291247d31c6d185d0f3fb56c",
+  "siteSource": "fe182e656f35153be9225c0b17fbce708831b1ba",
+  "siteVersion": 74,
+  "deploymentId": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+  "deploymentStatus": "pending",
+  "publicationConfirmed": false,
+  "catalogIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.82-batch20",
+    "engineVersion": "rust-v0.2.92-society-zone-fix"
+  },
+  "cardCount": 173,
+  "societyCount": 10,
+  "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+  "wasmSha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f",
+  "wasmBytes": 3796247,
+  "gzipSha256": "7823451d0a38d1037a54ef6df7c91ef2f3e6c60e6638358c512048e7aab58e96",
+  "publicationStatusAsOf": "2026-10-21T16:03:29.344062+00:00",
+  "publicationEvidence": "docs/evidence/batch20-2026-10-21/publication-v74.json"
+}

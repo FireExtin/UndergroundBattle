@@ -1,5 +1,5 @@
 // Exact retained runtime inputs live outside Git. Never rebuild, download or
-// silently substitute a historical kernel when its published bytes are absent.
+// silently substitute a historical kernel when its exact bytes are absent.
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -11,12 +11,13 @@ const repository = fileURLToPath(new URL('../', moduleUrl));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 function frozenAbi(version, options = {}) {
   const identity = JSON.parse(readFileSync(path.join(repository, `rust-game-wasm/frozen/abi${version}/identity.json`), 'utf8'));
+  const label = version === 92 ? 'Retained' : 'Published';
   const directory = path.resolve(options.directory || process.env[`HEGEMONY_FROZEN_ABI${version}_DIR`]
     || path.join(process.env.UNDERGROUNDBATTLE_BUILD_ROOT || '/workspace/undergroundbattle-build', `frozen-kernels/abi${version}`));
   let js, compressed;
   try { js = readFileSync(path.join(directory, 'hegemony_wasm.js')); compressed = readFileSync(path.join(directory, 'hegemony_wasm_bg.wasm.gz')); }
-  catch { throw Error(`Missing published ABI${version} inputs; set HEGEMONY_FROZEN_ABI${version}_DIR to the retained, hash-verified runtime. No old-room migration or substitute build is allowed.`); }
-  const mismatch = () => Error(`Published ABI${version} runtime hash mismatch; preserve the inputs and stop.`);
+  catch { throw Error(`Missing ${label.toLowerCase()} ABI${version} inputs; set HEGEMONY_FROZEN_ABI${version}_DIR to the retained, hash-verified runtime. No old-room migration or substitute build is allowed.`); }
+  const mismatch = () => Error(`${label} ABI${version} runtime hash mismatch; preserve the inputs and stop.`);
   if (digest(js) !== identity.jsSha256 || digest(compressed) !== identity.gzipSha256) throw mismatch();
   const size = version === 77 ? 2909006 : identity.wasmBytes;
   const wasm = gunzipSync(compressed, { maxOutputLength: size });
@@ -58,3 +59,5 @@ export const frozenAbi89 = (options = {}) => frozenAbi(89, options);
 export const stageFrozenAbi89 = (destination, options = {}) => stageFrozenAbi(89, destination, options);
 export const frozenAbi91 = (options = {}) => frozenAbi(91, options);
 export const stageFrozenAbi91 = (destination, options = {}) => stageFrozenAbi(91, destination, options);
+export const frozenAbi92 = (options = {}) => frozenAbi(92, options);
+export const stageFrozenAbi92 = (destination, options = {}) => stageFrozenAbi(92, destination, options);

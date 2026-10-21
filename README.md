@@ -151,7 +151,7 @@ npm --prefix web test -- --maxWorkers=2
 node --test tools/*.test.mjs tools/cards/*.test.mjs
 ```
 
-本分支Sites全套测试还需要已构建的15模块Worker（当前候选ABI93及原件77–89、91；v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
+本分支Sites全套测试还需要已构建的16模块Worker（当前候选ABI93及精确原件77–89、91、92；ABI92保存版的部署仍pending，v73固定源码使用14模块）和独立本地固定时钟包装目录；目标目录必须不存在，并与 `sites/dist/server` 位于可硬链接的同一文件系统：
 
 ```sh
 node tools/build-jc035-clock-worker.mjs "$UNDERGROUNDBATTLE_BUILD_ROOT/audit90-worker/server"
@@ -196,3 +196,5 @@ Sites的显式发布操作及凭据明确接受的限时 `publish_on_push` 均�
 维护时优先规则正确性、隐藏信息、重复操作与恢复边界；复用已有语义和校验，删除可证明无调用的冗余。行为变更以可复现命令链及适用测试说明，记录精确源码/运行字节身份；不为让测试变绿而重标旧状态、弱化哈希或跳过失败证据。
 
 2026-10-21 15:41 UTC收到对现有公开站所有修复的明确持续授权后，同一v74官方部署重试一次。调用返回Internal error，但只读核对确认已创建部署 `appgdep_6ad8dd9acc1c8191912336351e022f25`，当前pending；没有重复请求。见[实时发布记录](docs/evidence/batch20-2026-10-21/publication-v74.json)。
+
+下一批已接入保存版v74的精确ABI92原件，身份明确记录待部署；16模块构建、冻结工具12项、路由5项及16个内核的HTTP/D1回执检查通过。见[原件保留证据](docs/evidence/batch20-next-2026-10-21/retained92.json)。没有把pending记成已上线，也未重建旧内核。

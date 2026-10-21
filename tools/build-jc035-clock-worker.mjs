@@ -12,8 +12,8 @@ const output=path.resolve(destination),production=path.join(repo,'sites/dist/ser
 buildEnvironment(repo,[output]);if(existsSync(output))throw Error('Preserve existing output; choose a new directory');
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const modules=readdirSync(production).filter(n=>n.endsWith('.wasm')).map(name=>{const file=path.join(production,name),b=readFileSync(file);return{name,file,bytes:b.length,sha256:sha(b)};});
-if(modules.length!==15)throw Error('Exactly fifteen production WASM originals required');
-const byHash=new Map(modules.map(m=>[m.sha256,m]));if(byHash.size!==15)throw Error('Duplicate production module identity');
+if(modules.length!==16)throw Error('Exactly sixteen production WASM originals required');
+const byHash=new Map(modules.map(m=>[m.sha256,m]));if(byHash.size!==16)throw Error('Duplicate production module identity');
 const seen=new Set(),{build}=createRequire(path.join(repo,'sites/package.json'))('esbuild');
 const source=`import {kernel} from ${JSON.stringify(path.join(repo,'sites/src/kernel.mjs'))};
 import {createWorker} from ${JSON.stringify(path.join(repo,'sites/src/http.mjs'))};
@@ -21,7 +21,7 @@ export default {fetch(request,env){const now=Number(env.LOCAL_TEST_CLOCK_MS||'0'
 mkdirSync(output,{recursive:true});
 const result=await build({stdin:{contents:source,sourcefile:'jc035-local-clock.mjs',resolveDir:repo},outfile:path.join(output,'worker.js'),bundle:true,format:'esm',platform:'browser',target:'es2022',conditions:['workerd','worker','browser'],sourcemap:'external',metafile:true,
  plugins:[{name:'exact-production-wasm-links',setup(b){b.onResolve({filter:/\.wasm$/},args=>{const original=path.resolve(args.resolveDir,args.path),hash=sha(readFileSync(original)),m=byHash.get(hash);if(!m)throw Error('Source WASM not present in production manifest: '+original);seen.add(hash);return{path:'./'+m.name,external:true};});}}]});
-if(seen.size!==15)throw Error('All fifteen exact source modules must be linked');
+if(seen.size!==16)throw Error('All sixteen exact source modules must be linked');
 for(const m of modules)linkSync(m.file,path.join(output,m.name));
-writeFileSync(path.join(output,'local-inputs.json'),JSON.stringify({scope:'Local fixed-clock test only, never publish; no production bytes edited.',buildToolSha256:sha(readFileSync(fileURLToPath(import.meta.url))),wrapperSource:source,modules,fifteenRegularHardLinksToProduction:true,metafile:result.metafile},null,2)+'\n',{flag:'wx'});
-console.log(JSON.stringify({output,files:readdirSync(output).length,exactWasmModules:15,hardLinksOnlyNoDuplicateWasm:true,productionUnmodified:true}));
+writeFileSync(path.join(output,'local-inputs.json'),JSON.stringify({scope:'Local fixed-clock test only, never publish; no production bytes edited.',buildToolSha256:sha(readFileSync(fileURLToPath(import.meta.url))),wrapperSource:source,modules,sixteenRegularHardLinksToProduction:true,metafile:result.metafile},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({output,files:readdirSync(output).length,exactWasmModules:16,hardLinksOnlyNoDuplicateWasm:true,productionUnmodified:true}));

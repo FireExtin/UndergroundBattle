@@ -77,15 +77,15 @@ test('duplicate exact kernel identities reject instead of choosing an arbitrary 
   }
 });
 
-test('production Worker contains exactly current93 and all fourteen retained77-89/91 WASM modules', () => {
-  const retainedNames=[...Array.from({length:13},(_,i)=>'abi'+(77+i)), 'abi91'];
+test('production Worker contains exactly current93 and all fifteen retained77-89/91/92 WASM modules', () => {
+  const retainedNames=[...Array.from({length:13},(_,i)=>'abi'+(77+i)), 'abi91', 'abi92'];
   assert.deepEqual(readdirSync('generated').sort(),[...retainedNames,'hegemony_wasm.js','hegemony_wasm_bg.wasm']);
   const originals=retainedNames.map(name=>{
     assert.deepEqual(readdirSync('generated/'+name).sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);
     return readFileSync('generated/'+name+'/hegemony_wasm_bg.wasm');
   });
   const emitted=readdirSync('dist/server').filter(name=>name.endsWith('.wasm')).map(name=>readFileSync('dist/server/'+name));
-  assert.equal(emitted.length,15);
+  assert.equal(emitted.length,16);
   for(const original of [currentBytes,...originals])assert.equal(emitted.filter(bytes=>bytes.equals(original)).length,1,'Each exact module is emitted once');
   assert(readFileSync('dist/server/index.js').length+emitted.reduce((n,b)=>n+b.length,0)<64*1024*1024);
 });

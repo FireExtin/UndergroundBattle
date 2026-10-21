@@ -12,7 +12,7 @@
     "publishedNewCards": 0,
     "neutralOrDualExpansion": "paused",
     "sourceIntegratedNewCards": 20,
-    "integrationMeaning": "All20 integrated and admitted; Native129, UI180, builds/startup,15-kernel HTTP/D1 and35 mechanism+8P2 Native/WASM cases passed. Full suites, publication, independent review and browser acceptance remain pending."
+    "integrationMeaning": "20 integrated/admitted; Native129, UI180, builds/startup,16kernelHTTP/D1 and35 mechanism+8P2 Native/WASM passed. Savedv74 pending; next20publication/full suites/independent review/browser pending."
   },
   "cards": [
     {
@@ -824,9 +824,16 @@
       "mechanismCases": 35,
       "p2Cases": 8,
       "passed": true
+    },
+    "retained92": {
+      "evidence": "docs/evidence/batch20-next-2026-10-21/retained92.json",
+      "frozenToolsPassed": 12,
+      "kernelRoutingPassed": 5,
+      "httpD1Passed": 1,
+      "actualKernels": 16
     }
   },
-  "recordedAt": "2026-10-21T15:42:46.610762+00:00",
+  "recordedAt": "2026-10-21T16:03:29.344062+00:00",
   "carriedFixes": [
     {
       "id": "B20-UX-JC065-target-roles",
@@ -873,13 +880,15 @@
       87,
       88,
       89,
-      91
+      91,
+      92
     ],
     "pendingRetainedP2": {
       "abi": 92,
-      "status": "v74 official deployment pending after new continuing authorization; exact candidate bytes prepared, no published92 identity created yet",
-      "frozenInputsCreated": false,
-      "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba"
+      "status": "Exact saved v74 ABI92 inputs now retained;16module build and HTTP/D1 passed. Its deployment remains pending; publication unconfirmed.",
+      "frozenInputsCreated": true,
+      "officialSavedSiteSource": "fe182e656f35153be9225c0b17fbce708831b1ba",
+      "identityManifest": "rust-game-wasm/frozen/abi92/identity.json"
     },
     "wasmSha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e",
     "wasmBytes": 4315979
@@ -923,9 +932,9 @@
       "realBadgeVariants": 4
     },
     "remaining": [
-      "Track the already accepted v74 deployment; no duplicate request. Publish next20 through the official workflow after exact92 retention if v74 succeeds.",
-      "If v74 is published after relevant authorization, retain its exact ABI92 original bytes and published identity before next20 publication.",
-      "Postpublication full suites, independent review and real browser acceptance; none claimed passed for next20."
+      "Track the accepted v74 deployment to a terminal state; no duplicate or competing publish request.",
+      "Prepare/save next20 through official workflow with exact retainedABI92, then publish pending acceptance when deployment ordering is safe.",
+      "Postpublication full suites, independent review and real browser acceptance; not claimed passed for next20."
     ],
     "published": false,
     "githubCITriggered": false,

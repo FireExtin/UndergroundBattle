@@ -86,8 +86,7 @@
     },
     "sitesBuild": {
       "status": "passed",
-      "exitCode": 0,
-      "wasmModules": 15,
+      "wasmModules": 16,
       "versions": [
         77,
         78,
@@ -103,14 +102,17 @@
         88,
         89,
         91,
+        92,
         93
       ],
-      "publish": "not attempted; local wrangler dry-run only"
+      "publish": "local dry-run only",
+      "evidence": "retained92.json"
     },
     "sitesKernelStartup": {
-      "passed": 8,
+      "passed": 6,
       "failed": 0,
-      "actualHttpD1Rooms": 15,
+      "scope": "kernel-routing5+HTTP/D1one; binding2 previously passed unchanged",
+      "actualHttpD1Rooms": 16,
       "actualKernelVersions": [
         77,
         78,
@@ -126,10 +128,12 @@
         88,
         89,
         91,
+        92,
         93
       ],
       "opaqueStateAndOriginalReceiptChecks": "passed",
-      "browser": false
+      "browser": false,
+      "evidence": "retained92.json"
     },
     "societyZoneNativeWasm": {
       "ok": true,
@@ -177,6 +181,11 @@
       "opaqueState": true,
       "maximumU64SeedExact": true,
       "nativeWasmStateAndViewsMatch": true
+    },
+    "frozenTools": {
+      "passed": 12,
+      "failed": 0,
+      "evidence": "retained92.json"
     }
   },
   "sourceCorrection": {
@@ -277,6 +286,26 @@
     "next20-abi93-oracle-07-compare.log": {
       "bytes": 7099,
       "sha256": "95ae3a32bc2ed5b7283feda4ac7f525066153128fa7b76fb34210c8f8ea56e8b"
+    },
+    "abi92-retained-tools-01.log": {
+      "bytes": 1172,
+      "sha256": "c7ed93b27328fdaaf89febbb74df28c499ab8dec4ed745c34c9e995b5a8bbe57"
+    },
+    "abi92-retained-site-build-01.log": {
+      "bytes": 1493,
+      "sha256": "42fdcf6bd6e5b57fef3faa61820717783cd614cf0f0d671c4e14e800d0181e5e"
+    },
+    "abi92-retained-clock-build-01.log": {
+      "bytes": 202,
+      "sha256": "3684f5bf858b9c506420374fb622445e2cd37d7c5f1958a60448693250bd4215"
+    },
+    "abi92-retained-routing-http-01.log": {
+      "bytes": 1149,
+      "sha256": "b49ef11530fe09fdc03d4e36358f849021ccada3d84b3abf7218dc27b0bea31e"
+    },
+    "abi92-retained-commands-01.txt": {
+      "bytes": 1619,
+      "sha256": "1cd7276efa3cfe0c843d6667b4cbfc627aa90c1e493899ab1d95fb5a2ff2db00"
     }
   },
   "notValidated": [
@@ -286,7 +315,7 @@
     "real browser battle of next20",
     "publication"
   ],
-  "publication": "not started for next20; v74 official deployment now pending after relevant new continuing authorization; waiting its outcome to retain exact ABI92 if published",
+  "publication": "not started for next20; v74 deployment pending; exact ABI92 retained and16module build/startup ready; do not submit a competing deployment",
   "retainedInputs": [
     {
       "abi": 77,
@@ -371,6 +400,13 @@
       "wasmSha256": "b6782cdf002238f88ce4452a0864ed485abac05ea0f9ec791ee583e1b5818376",
       "wasmBytes": 3796219,
       "hashGate": "passed original gzip+JS+decompressed wasm"
+    },
+    {
+      "abi": 92,
+      "wasmSha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f",
+      "wasmBytes": 3796247,
+      "hashGate": "passed original saved JS+WASM and transport gzip",
+      "publicationStatus": "pending; not claimed published"
     }
   ],
   "nativeWasmOracle": {
@@ -404,5 +440,54 @@
     },
     "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32"
   },
-  "recordedAt": "2026-10-21T15:42:46.610762+00:00"
+  "recordedAt": "2026-10-21T16:03:29.344062+00:00",
+  "historyBeforeRetained92": {
+    "sitesBuild": {
+      "status": "passed",
+      "exitCode": 0,
+      "wasmModules": 15,
+      "versions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        93
+      ],
+      "publish": "not attempted; local wrangler dry-run only"
+    },
+    "sitesKernelStartup": {
+      "passed": 8,
+      "failed": 0,
+      "actualHttpD1Rooms": 15,
+      "actualKernelVersions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        93
+      ],
+      "opaqueStateAndOriginalReceiptChecks": "passed",
+      "browser": false
+    }
+  }
 }

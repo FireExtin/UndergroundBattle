@@ -28,9 +28,12 @@ import * as published89 from '../generated/abi89/hegemony_wasm.js';
 import published89Module from '../generated/abi89/hegemony_wasm_bg.wasm';
 import * as published91 from '../generated/abi91/hegemony_wasm.js';
 import published91Module from '../generated/abi91/hegemony_wasm_bg.wasm';
+import * as saved92 from '../generated/abi92/hegemony_wasm.js';
+import saved92Module from '../generated/abi92/hegemony_wasm_bg.wasm';
 import { routeKernels } from './kernel-router.mjs';
 import { lazyKernel } from './lazy-kernel.mjs';
 const kernel0 = lazyKernel(current, currentModule, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.83-batch20-next","engineVersion":"rust-v0.2.93-batch20-next"});
+const kernel92 = lazyKernel(saved92, saved92Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.82-batch20","engineVersion":"rust-v0.2.92-society-zone-fix"});
 const kernel91 = lazyKernel(published91, published91Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.82-batch20","engineVersion":"rust-v0.2.91-batch20"});
 const kernel89 = lazyKernel(published89, published89Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.81-jc035-preparation-candidate","engineVersion":"rust-v0.2.89-jc035-preparation-candidate"});
 const kernel88 = lazyKernel(published88, published88Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.80-xq23-asset-return-candidate","engineVersion":"rust-v0.2.88-xq23-asset-return-candidate"});
@@ -46,4 +49,5 @@ const kernel79 = lazyKernel(published79, published79Module, {"rulesVersion":"heg
 const kernel78 = lazyKernel(published78, published78Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.71-bq035-vampire-mobility-candidate","engineVersion":"rust-v0.2.78-bq035-vampire-mobility-candidate"});
 const kernel77 = lazyKernel(published77, published77Module, {"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.70-jc046-mandatory-sacrifice-candidate","engineVersion":"rust-v0.2.77-jc046-mandatory-sacrifice-candidate"});
 // Published v73/v71/v70/v69/v68/v67/v66/v65/v64/v63/v62/v61/v60/ABI77 rooms retain exact reducers, opaque state and receipts.
-export const kernel = routeKernels(kernel0, [kernel91, kernel89, kernel88, kernel87, kernel86, kernel85, kernel84, kernel83, kernel82, kernel81, kernel80, kernel79, kernel78, kernel77]);
+// Saved v74 ABI92 uses its exact originals; deployment is pending, publication unconfirmed.
+export const kernel = routeKernels(kernel0, [kernel92, kernel91, kernel89, kernel88, kernel87, kernel86, kernel85, kernel84, kernel83, kernel82, kernel81, kernel80, kernel79, kernel78, kernel77]);

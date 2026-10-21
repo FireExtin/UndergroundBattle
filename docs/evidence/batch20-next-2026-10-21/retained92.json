@@ -1,0 +1,133 @@
+{
+  "recordedAt": "2026-10-21T16:03:29.344062+00:00",
+  "baseCommit": "3fefc06e2e72d66a591bcb353b2679e07db6ba8c",
+  "runtimeSourceCommit": "e15883946d8b9c519228c8d48fae6ea275a9aa32",
+  "currentWasm": {
+    "bytes": 4315979,
+    "sha256": "098986aff958d97b5fb5f49339daf07586a200997bf49c179f424ea51dd04e7e"
+  },
+  "abi92": {
+    "scope": "Retained exact JS/WASM bytes from saved v74 Site source fe182e656f35153be9225c0b17fbce708831b1ba. Official deployment is pending; v74 is not confirmed published. Transport gzip is not a kernel rebuild. Never migrate or re-sign these rooms.",
+    "providerSource": "5d89673b64b76fd2dfe359b8467f7587d0d8d512",
+    "evidenceCommit": "eb64382604b4a6e1291247d31c6d185d0f3fb56c",
+    "siteSource": "fe182e656f35153be9225c0b17fbce708831b1ba",
+    "siteVersion": 74,
+    "deploymentId": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+    "deploymentStatus": "pending",
+    "publicationConfirmed": false,
+    "catalogIdentity": {
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.82-batch20",
+      "engineVersion": "rust-v0.2.92-society-zone-fix"
+    },
+    "cardCount": 173,
+    "societyCount": 10,
+    "jsSha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb",
+    "wasmSha256": "03c222b1da350af75ef3ba333771b57aeeb0c77a52c721490331f78ad6d9706f",
+    "wasmBytes": 3796247,
+    "gzipSha256": "7823451d0a38d1037a54ef6df7c91ef2f3e6c60e6638358c512048e7aab58e96",
+    "publicationStatusAsOf": "2026-10-21T16:03:29.344062+00:00",
+    "publicationEvidence": "docs/evidence/batch20-2026-10-21/publication-v74.json"
+  },
+  "tests": {
+    "frozenTools": {
+      "passed": 12,
+      "failed": 0
+    },
+    "siteBuild": "passed local dry-run",
+    "clockWrapper": "16 exact production WASM hardlinks; test-only",
+    "kernelRouting": {
+      "passed": 5,
+      "failed": 0
+    },
+    "httpD1": {
+      "passed": 1,
+      "failed": 0,
+      "actualKernelVersions": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        91,
+        92,
+        93
+      ],
+      "rooms": 16,
+      "accepted": 16,
+      "originalReceipts": 16,
+      "opaqueStatesExact": true,
+      "maximumU64SeedExact": true
+    }
+  },
+  "logs": {
+    "abi92-retained-tools-01.log": {
+      "bytes": 1172,
+      "sha256": "c7ed93b27328fdaaf89febbb74df28c499ab8dec4ed745c34c9e995b5a8bbe57"
+    },
+    "abi92-retained-site-build-01.log": {
+      "bytes": 1493,
+      "sha256": "42fdcf6bd6e5b57fef3faa61820717783cd614cf0f0d671c4e14e800d0181e5e"
+    },
+    "abi92-retained-clock-build-01.log": {
+      "bytes": 202,
+      "sha256": "3684f5bf858b9c506420374fb622445e2cd37d7c5f1958a60448693250bd4215"
+    },
+    "abi92-retained-routing-http-01.log": {
+      "bytes": 1149,
+      "sha256": "b49ef11530fe09fdc03d4e36358f849021ccada3d84b3abf7218dc27b0bea31e"
+    },
+    "abi92-retained-commands-01.txt": {
+      "bytes": 1619,
+      "sha256": "1cd7276efa3cfe0c843d6667b4cbfc627aa90c1e493899ab1d95fb5a2ff2db00"
+    }
+  },
+  "sourceFiles": {
+    "tools/frozen-kernels.mjs": {
+      "bytes": 4940,
+      "sha256": "de33f262716dcf6fccfe0dae37776a4a53f15c171ec375b1ec43602466ab5a74"
+    },
+    "tools/frozen-kernels.test.mjs": {
+      "bytes": 8075,
+      "sha256": "9407efdfc8a8d97ecf31d54bb3a961de84a9e94cd776a7a92265a94056c6ec57"
+    },
+    "tools/build-jc035-clock-worker.mjs": {
+      "bytes": 3090,
+      "sha256": "8a6693b7400b7078314b08f204b18c928ef17f5ca53d2c78f978866dbf0d29c1"
+    },
+    "sites/scripts/build.mjs": {
+      "bytes": 2891,
+      "sha256": "2bb3659cb2078bab22fe71ae25f9b57e87c095b9d70e22ec84453fe1a86d2914"
+    },
+    "sites/src/kernel.mjs": {
+      "bytes": 6254,
+      "sha256": "24045c6a719a38f41a90e7c894cbaa9a6b17eeffca00e135bbe1a702e498d184"
+    },
+    "sites/test/kernel-routing.test.mjs": {
+      "bytes": 8879,
+      "sha256": "b774f52d2835f60ef5bcf2eb858df32e10e965b706b581129535a568e58b1dab"
+    },
+    "sites/test/jc035-retained-http.test.mjs": {
+      "bytes": 4040,
+      "sha256": "4eedd7e01d9c64bb91cf839daad6e65318ebfca4e5455a42df8d5b6d972de417"
+    },
+    "rust-game-wasm/frozen/abi92/identity.json": {
+      "bytes": 1223,
+      "sha256": "71057ff9fab723f1d31b230901aebac19ff4ab0cc47e13643328493dc43433de"
+    },
+    "rust-game-wasm/frozen/abi92/native-source-binding.json": {
+      "bytes": 16106,
+      "sha256": "a779c58002d5c0e9ed9f4e5f58c6a1ab4c700b5a1293e1b1f10d4b710cf73100"
+    }
+  },
+  "scope": "Exact saved v74 originals retained while its official deployment remains pending. No publication claim, old core rebuild, migration or new browser/full-suite acceptance.35+8 mechanism cases not rerun; current ABI93 unchanged.",
+  "githubCI": "notRun"
+}
