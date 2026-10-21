@@ -12,8 +12,9 @@ export function groupObjectActions(actions: LegalAction[]): ObjectActionGroup[] 
       .sort(([a], [b]) => a.localeCompare(b)));
     const arrow = action.label.indexOf('→');
     const cost = action.label.indexOf('（费用：');
-    const label = arrow < 0 ? action.label
+    let label = arrow < 0 ? action.label
       : action.label.slice(0, arrow).trim() + (cost > arrow ? action.label.slice(cost) : '');
+    if (action.option === 'pay-extra-1' && !label.includes('额外支付1')) label += '（额外支付1）';
     const key = JSON.stringify([payload, action.targetId !== undefined, action.region !== undefined, label, action.description]);
     const group = groups.get(key);
     if (group) group.actions.push(action);

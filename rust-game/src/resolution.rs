@@ -438,13 +438,16 @@ impl Game {
         label: String,
         state: &str,
     ) -> StackView {
+        // A hidden-front trigger does not reveal its print through metadata.
+        let hidden_trap=frame.source.card.definition=="JZ26" && frame.source.card.face_down
+            && frame.ability_key=="batch3-jz26-trap";
         StackView {
             id: frame.frame_id.clone(),
             label,
             controller: player_id(frame.actor),
-            card_id: Some(frame.source.card.definition.clone()),
+            card_id: (!hidden_trap).then(||frame.source.card.definition.clone()),
             target_id: frame.targets.first().map(|t| t.id.clone()),
-            ability_id: Some(frame.ability_key.clone()),
+            ability_id: (!hidden_trap).then(||frame.ability_key.clone()),
             targets: frame.targets.iter().map(|t| t.id.clone()).collect(),
             target_summaries: frame
                 .targets

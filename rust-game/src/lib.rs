@@ -1,4 +1,6 @@
 mod batch3;
+#[cfg(test)]
+mod batch3_abi94_tests;
 mod batch3_bats;
 mod batch3_trap;
 #[cfg(test)]

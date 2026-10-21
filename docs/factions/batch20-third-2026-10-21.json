@@ -971,6 +971,24 @@
         "batch20": 30
       },
       "countsNotAddedAcrossOverlappingRuns": true
+    },
+    "abi94IntegrationPreparation": {
+      "evidence": "docs/evidence/batch20-third-2026-10-21/abi94-integration-preparation.json",
+      "nativeProgramRegressionCheckpoint": "e458ac1b39e15a468ebdc4f5c86f59f4b55a2800",
+      "currentHiddenPrivacyFilterPassed": 14,
+      "currentNativeSmokePassed": 1,
+      "nativeWasmCommands": 12,
+      "fourSeatViews": 48,
+      "webTargetedPassed": 69,
+      "sitesTargetedPassed": 10,
+      "publicAdmissions": 0,
+      "independentReview": "notRun",
+      "fullSuites": "notRerun",
+      "browserAcceptance": "notRun",
+      "remainingPrograms": [
+        "CQ11/TK008"
+      ],
+      "status": "authorNecessaryPreparationOnlyPendingCompleteTwenty"
     }
   },
   "developmentIdentity": {

@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-21T23:31:48.953877+00:00",
+  "baseCheckpoint": "e458ac1b39e15a468ebdc4f5c86f59f4b55a2800",
+  "nativePilotCards": 19,
+  "fullyIntegratedBatchCards": 0,
+  "publicAdmissions": 0,
+  "currentIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.84-batch20-third",
+    "engineVersion": "rust-v0.2.94-batch20-third"
+  },
+  "currentWasm": {
+    "bytes": 4973454,
+    "sha256": "d2946ef169d8655bb2c22c1e55010893c4a9cd9b1d1a62c94b66cfdfecfe1787"
+  },
+  "currentSourceManifestSha256": "e751171da18f81e6085970bda65ae6184af7d15c97ae67000037628b951f0d4d",
+  "freshNativeRawJson": {
+    "bytes": 1548748,
+    "sha256": "91ea35b0b69c2528c175e5895ff3e78b5fdc8a61391f6b4a04c11d15a4a50ab0"
+  },
+  "authorValidation": {
+    "nativeProgramRegressionAtBase": 148,
+    "currentNativeHiddenPrivacyFilter": 14,
+    "currentNativeIntegrationProducer": 1,
+    "nativeWasmCommands": 12,
+    "nativeWasmFourSeatViews": 48,
+    "fullNativeWasmCatalogDeepEqual": true,
+    "web": {
+      "passed": 69,
+      "files": [
+        "web/src/game/Batch3Integration.test.jsx",
+        "web/src/game/CardTile.test.tsx",
+        "web/src/game/JC057Inspection.test.tsx",
+        "web/src/game/ObjectActions.test.tsx",
+        "web/src/game/api.test.ts",
+        "web/src/game/objectActions.test.ts"
+      ]
+    },
+    "sites": {
+      "passed": 10,
+      "files": [
+        "kernel-binding",
+        "kernel-routing",
+        "current-kernel-http",
+        "batch3-abi94-integration",
+        "storage-retry"
+      ],
+      "historicalHeadersRejectedBeforeInterpretation": 56,
+      "retiredHeadersHttpCalls": 64,
+      "syntheticStoredDataUnchanged": true
+    },
+    "webTypes": true,
+    "webAndWorkerDryRunBuild": true,
+    "localStartup": {
+      "engineVersion": "rust-v0.2.94-batch20-third",
+      "localUrl": "http://127.0.0.1:42027/",
+      "healthAndExactCatalog": "passed by existing qa-preview.mjs",
+      "rootHtmlStatus": 200,
+      "singleCurrentKernel": true,
+      "syntheticD1": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../batch3-build/qa-abi94-start-20261021-03",
+      "publicAdmissions": 0,
+      "scope": "Local startup/identity/connectivity only; no public Site or browser gameplay acceptance",
+      "exitCode": 130,
+      "shutdown": "requestedSIGINT"
+    }
+  },
+  "projectionFix": {
+    "issue": "Hidden JZ26 trigger StackView exposed cardId/abilityId after optional acceptance although its label was generic",
+    "initialPublicStackLeakCheckpoints": 18,
+    "currentPublicStackLeakCheckpoints": 0,
+    "initialEvidencePreserved": "abi94-integration-smoke.current.json.gz",
+    "activeCurrentEvidence": "abi94-integration-smoke-privacy.current.json.gz",
+    "status": "Author fixed and directed regression passed; not independent review"
+  },
+  "buildRecipe": "abi94-wasm-build.json",
+  "buildInvocationSource": "abi94-build-invocation.py",
+  "logs": [
+    {
+      "scope": "native-privacy-14",
+      "file": "abi94-native-privacy-14.log.gz",
+      "rawBytes": 2220,
+      "rawSha256": "3f022fd5f9647970837dbe880df2de18eefb86bec3ab101f819e4401ad2085e6",
+      "gzipSha256": "4a96eab3ab2500d2194c97e60e8f527455184e1b0a7c54133f1ec2cff7373fb8",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "native-smoke-1",
+      "file": "abi94-native-smoke-1.log.gz",
+      "rawBytes": 383,
+      "rawSha256": "6e4f8ab726e8e5d791f2050be58246c5cfe0745ba7755fc051175ed10139c543",
+      "gzipSha256": "5ad65663ddf1d79d59fa63b23d35e48467bca3f24fd492967002d7cc85f89a0c",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "cross-smoke",
+      "file": "abi94-cross-smoke.log.gz",
+      "rawBytes": 885,
+      "rawSha256": "c73a9c0afee0444d8228f69bb2c87337becb4b3a963cf06666ca77242a127f97",
+      "gzipSha256": "541591ab22b15515a19411898de190006a5fba04e96e656513d31f5005b60013",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "cross-retained",
+      "file": "abi94-cross-retained.log.gz",
+      "rawBytes": 885,
+      "rawSha256": "c73a9c0afee0444d8228f69bb2c87337becb4b3a963cf06666ca77242a127f97",
+      "gzipSha256": "541591ab22b15515a19411898de190006a5fba04e96e656513d31f5005b60013",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "wasm-build",
+      "file": "abi94-wasm-build.log.gz",
+      "rawBytes": 673,
+      "rawSha256": "9fcdf60bcd73e7612e17cdd8a9f4475c850e54a0f79012aa33eadcf32e4b6454",
+      "gzipSha256": "e6d9ef57403a57bacd0cbf4841935437be4f510fee96e13f02d4d873a6593522",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "web-typecheck",
+      "file": "abi94-web-typecheck.log.gz",
+      "rawBytes": 116,
+      "rawSha256": "1d56b222d812575b916ca0744a9cc3fbe03e09309312af8a4135dc0e861fc98b",
+      "gzipSha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "web-targeted-69",
+      "file": "abi94-web-targeted-69.log.gz",
+      "rawBytes": 493,
+      "rawSha256": "235be12b307b351843230d9a7cbfe01acd3587b61dd5e85102be6a7475ddbaf7",
+      "gzipSha256": "e0b321253b9ab146b7b266d36a925cc92ac14f095b92841afcb8bfbc3eaca796",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "web-files",
+      "file": "abi94-web-files.log.gz",
+      "rawBytes": 205,
+      "rawSha256": "351ed884c32fcfca682376f07556bbb68d7edbb207f9232b21d8bdfec875b706",
+      "gzipSha256": "f5798af8a946cbccdc95d02536bf98f2602ff986d1c3a8e9733e1f13d5bf02ab",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "sites-build",
+      "file": "abi94-sites-build.log.gz",
+      "rawBytes": 1122,
+      "rawSha256": "02688b65c547df7b286eda4585560d768fbcb023ca758f7b3100950411408343",
+      "gzipSha256": "df198e890f49c1c9bf318617830ccda06af20c5f17fee62e5e60b5146d6ee7e1",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "clock-build",
+      "file": "abi94-clock-build.log.gz",
+      "rawBytes": 202,
+      "rawSha256": "3d48aeba985cf1f1d9bbb4100ceeaa0d79d7400a34b6b9d0f321bdc838649ff2",
+      "gzipSha256": "269f405b11d70371465c5b7b9f45c282290974c4d6784b90c53b2fd6983bd708",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "sites-targeted-10",
+      "file": "abi94-sites-targeted-10.log.gz",
+      "rawBytes": 2091,
+      "rawSha256": "54120a7454ab8560d3a6c83fe0698903a93d247c00344468accdaafd39865ef5",
+      "gzipSha256": "610bc8d5b032a15bf9298d6652dc7dfb9edfeb9717ecc72a2aa629a138d415d0",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "local-start",
+      "file": "abi94-local-start.log.gz",
+      "rawBytes": 175,
+      "rawSha256": "9b99295ce6c1e73098a0ffe17316f36a312ce4d3544b4e49a65eeeab69679e21",
+      "gzipSha256": "8f99eac71f8868e7d79f971d18a308fc11a328df15430e466a317de11cbbb7e1",
+      "supersededOrInitial": false
+    },
+    {
+      "scope": "initial-wasm-build",
+      "file": "abi94-initial-wasm-build.log.gz",
+      "rawBytes": 1382,
+      "rawSha256": "29f60687ee1b4e9f6be13f833e071b5cb2b0135c4bafb0385db19939639dbc59",
+      "gzipSha256": "3dd272234af2f659f1240ef1380c8436488c80fe0ecb0c59db283e00eca14b58",
+      "supersededOrInitial": true
+    },
+    {
+      "scope": "initial-cross",
+      "file": "abi94-initial-cross.log.gz",
+      "rawBytes": 877,
+      "rawSha256": "b9dc51145d19e419029a068d7f49c5d71955f24da2719161e256076b5fbb93f7",
+      "gzipSha256": "a64e31a354ded228be83885e7b3c9a82df1e67cd46a317a632b2bbca53fd648c",
+      "supersededOrInitial": true
+    },
+    {
+      "scope": "initial-sites-failures",
+      "file": "abi94-initial-sites-failures.log.gz",
+      "rawBytes": 4597,
+      "rawSha256": "37c32873032043b486aae8062d2f0d180c3afeeab30c775760f711fa165f0d87",
+      "gzipSha256": "e98a8dd4cf386311ef315355cd7402e3d95aec831ffdf69acd4cf9d41aae6601",
+      "supersededOrInitial": true
+    },
+    {
+      "scope": "initial-sites-before-privacy",
+      "file": "abi94-initial-sites-before-privacy.log.gz",
+      "rawBytes": 2091,
+      "rawSha256": "9af1fa8bbb40343c0675e1f44360f4bf97dce9eb046e12184963430163e9a7a5",
+      "gzipSha256": "3b730ba4087a5e5d1157e40bf115c1d58531c29be2e4ed79d91fc8d6e0ffe238",
+      "supersededOrInitial": true
+    },
+    {
+      "scope": "initial-local-start-buffering",
+      "file": "abi94-initial-local-start-buffering.log.gz",
+      "rawBytes": 30,
+      "rawSha256": "ae1d0de89580ad822e017936507ace38467d0dae037113141782b8546a32c2bd",
+      "gzipSha256": "b3d8b98501d41f480dfab12bfb644c1fe203b232c0082c379672ed01997bcd4e",
+      "supersededOrInitial": true
+    },
+    {
+      "scope": "initial-local-start-stop-classification",
+      "file": "abi94-initial-local-start-stop-classification.log.gz",
+      "rawBytes": 175,
+      "rawSha256": "c1d64eddbe45d636ec7986868afc8a0ea23a30da61ab8eaca659d6648a340a50",
+      "gzipSha256": "7e31d84dda4e4d8dda143bc5e39b08c8aa9d99acb277257d9f6cb50975526449",
+      "supersededOrInitial": true
+    }
+  ],
+  "remaining": [
+    "CQ11/TK008 authoritative lifecycle and printed-cost ruling; no invented token semantics",
+    "Original v74 deployment remains official pending; no duplicate publication or denied production-health retry",
+    "Complete twenty-card publication then consolidated fresh full-suite, independent review and real Dot browser acceptance",
+    "Standalone Sites source has not been synchronized in this work; before future sync verify actual index using the independent cleanup commit3103444"
+  ],
+  "limits": [
+    "Author tests only; no full-suite rerun, independent re-execution or browser gameplay acceptance",
+    "Nineteen third-batch definitions remain supported=false; 193 enabled definitions and212 total",
+    "Explicit local compiler recipe only; not an independent or arbitrary-default reproducibility claim",
+    "Initial local test failures were sandbox loopback denial, missing fixed-clock wrapper and stale ABI93 assertion; preserved",
+    "Local startup harness buffering and requested-SIGINT classification failures preserved; final checked startup exited130 by the requested signal",
+    "BuiltWASM/generated/dist/dependencies/databases stay ignored; source, exact hashes and bounded test evidence are saved"
+  ]
+}

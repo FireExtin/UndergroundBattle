@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI93 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI94 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -55,7 +55,7 @@ test('every historical tuple and altered identity rejects before any current sta
   const guarded = { ...current };
   for (const name of stateOperations) guarded[name] = () => { interpreted++; throw Error('A historical state must never reach the current reducer/projector'); };
   const routed = routeKernels(guarded);
-  assert.equal(historicalIdentities.length, 55);
+  assert.equal(historicalIdentities.length, 56);
   const reject = state => {
     for (const name of ['assertSupported', 'catalog', ...stateOperations]) assert.throws(() => routed[name](state, 0, '{}', '1000'), isUnsupported);
   };

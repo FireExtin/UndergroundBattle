@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-21T23:16:13.401652+00:00",
+  "exitCode": 0,
+  "seconds": 51.931,
+  "versions": {
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8",
+    "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+    "node": "v24.22.1",
+    "wasmBindgen": "wasm-bindgen 0.2.104"
+  },
+  "recipe": {
+    "command": [
+      "bash",
+      "rust-game-wasm/build.sh"
+    ],
+    "offline": true,
+    "pathNormalization": "--remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../.tools/cargo=/__undergroundbattle/cargo --remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3=/__undergroundbattle/source",
+    "wasmBindgen": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../.tools/wasm-bindgen-0.2.104-from-crate/bin/wasm-bindgen",
+    "buildRoot": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../batch3-build",
+    "guard": "tools/build-storage.mjs original jobs1 / minimum free space guard"
+  },
+  "outputs": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 4973243,
+      "sha256": "ab19e29e387557afb6796d218696c2d4519fedf9fd05275732e2d1f2e9865f62"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "limits": [
+    "Author local build only; not an independent reproducibility run",
+    "Nineteen pending cards remain construction-disabled; no publication or full batch acceptance"
+  ]
+}

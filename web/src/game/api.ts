@@ -340,7 +340,7 @@ export function actionForRoom(view: View, action: Action): Action {
   const payload = actionPayload(action);
   if (view.serverNowMs === undefined || sessionKinds.has(payload.kind)) return payload;
   const window = view.responseWindow;
-  if (!window || view.pendingChoice || view.waitingChoice) return { kind: 'game', action: payload };
+  if (!window || view.pendingChoice || view.waitingChoice || payload.kind === 'inspect-hidden') return { kind: 'game', action: payload };
   const member = window.members.find(item => item.playerId === view.you);
   if (payload.kind === 'pass') {
     if (member?.status === 'undecided') return { kind: 'passResponse', windowId: window.id };

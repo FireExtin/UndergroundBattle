@@ -1,0 +1,13 @@
+{
+  "abi": 93,
+  "sourceCheckpoint": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "sourceCardRegistrySha256": "a2c6b956a70b9da2515a2c7e9b9a2796d50b6bc1520f21e6310f9b1531ff9bc5",
+  "identity": {
+    "state_schema": 3,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.83-batch20-next",
+      "engine": "rust-v0.2.93-batch20-next"
+    }
+  }
+}

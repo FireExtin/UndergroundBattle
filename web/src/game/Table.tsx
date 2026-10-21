@@ -473,14 +473,15 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     : hints.types.length ? `${hints.preview ? '响应候选' : '当前候选'}：${hints.types.join('、')}${hints.preview ? '；先选择“连锁”再提交' : ''}`
     : responseWindow?.canBegin ? '先选择“连锁”，再查看响应候选'
     : '当前没有卡牌候选行动，可查看下方窗口操作';
-  const privateInspectionControls = (view.privateInspections || []).map(group => <section key={`${group.sourceInstanceId}:${group.region}`} className="hg-private-inspection" aria-label="监控员私密检视">
+  const inspectionActions = view.legalActions.filter(action => action.kind === 'inspect-hidden');
+  const privateInspectionControls = <>{!!inspectionActions.length && <section className="hg-private-inspection" aria-label="监控员检视动作"><strong>监控员 · 检视暗藏者</strong><p>可以随时检视，不消耗行动权。</p><ActionButtons actions={inspectionActions} busy={busy || uncertain || connection !== 'online' || !!view.pause} onAction={onAction} /></section>}{(view.privateInspections || []).map(group => <section key={`${group.sourceInstanceId}:${group.region}`} className="hg-private-inspection" aria-label="监控员私密检视">
     <strong>监控员 · 地区 {group.region + 1} · 仅你可见</strong><p>检视不会令暗藏者现身。</p>
     <div className="hg-private-inspection-buttons">{group.cards.map(front => <button key={front.instanceId} type="button" className="hg-small-read"
-      aria-label={`检视暗藏者 ${instanceTag(front.instanceId)}，监控员 ${instanceTag(group.sourceInstanceId)}`}
+      aria-label={`查看已检视暗藏者 ${instanceTag(front.instanceId)}，监控员 ${instanceTag(group.sourceInstanceId)}`}
       onClick={() => setReading({ instanceId: front.instanceId, roomId: view.roomId, viewerId: view.you, privateInspection: { sourceInstanceId: group.sourceInstanceId, region: group.region } })}>
-      检视暗藏者 #{instanceTag(front.instanceId)}
+      查看已检视正面 #{instanceTag(front.instanceId)}
     </button>)}</div>
-  </section>);
+  </section>)}</>;
   const renderMat = (player: Player) => <PlayerMat key={player.id} player={player} view={view} catalog={catalog} definitions={definitions} candidateHints={hints.cards} selectedCard={selectedCard} selectedTarget={selectedTarget} targetIds={targetIds} picking={!!activeGroup} tagFor={tagFor} onCard={selectCard} onPreview={setHoveredCard} onReadDeckTop={() => { if (view.privateDeckTop) setReading({ instanceId: view.privateDeckTop.instanceId, roomId: view.roomId, viewerId: view.you, privateDeckTop: true }); }} />;
   return <main ref={tableRoot} className={`hg-table hg-desktop-table hg-archive-table hg-lantern-table hg-desktop-${view.mode}`} data-table-layout="overhead" data-table-presentation="lamplit">
     <div className="hg-table-status"><div className="hg-round"><b>第 {view.turn} 回合</b><span>{phaseLabel(view.phase)} · {phaseLabel(view.step)}</span></div><div className="hg-table-tallies">{[yourTeam, 1 - yourTeam].map(team => <span key={team} className={`hg-team-tally hg-team-${team}`}>{team === yourTeam ? '我方' : '对方'} <b>{view.players.filter(player => player.team === team).reduce((total, player) => total + player.score, 0)}</b> / {view.winScore}</span>)}</div><div className="hg-phase-line"><span>先手 <b>{teamName(view.firstTeam, view)}</b></span><span>行动团队 <b>{teamName(view.activeTeam, view)}</b></span><span>优先权 <b>{teamName(view.priorityTeam, view)}</b></span><strong className={view.pendingChoice ? 'hg-your-choice' : ''}>{status}</strong></div>{!!sealedCards.length && <details className="hg-sealed-cards-menu"><summary>封印牌 · {sealedCards.length}</summary><SealedCards view={view} onRead={readCard} /></details>}<TableRecords view={view} /><LatestPass history={view.passHistory} /></div>

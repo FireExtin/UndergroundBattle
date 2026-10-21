@@ -10,7 +10,9 @@ fn accept(g:&mut Game){pending(g);assert!(matches!(&g.pending.as_ref().unwrap().
     let mut g=game();let trap=hidden(&mut g,0);fund(&mut g,0,"JC029",2);let monitor=field(&mut g,"JC057",2);let victim=field(&mut g,"JC125",2);g.board_mut(&victim).unwrap().shield=2;
     assert!(g.view(2).private_inspections.is_empty());let window=g.window.clone();let passed=g.passed.clone();assert!(g.legal_actions(2).iter().any(|a|a.action.kind=="inspect-hidden"));inspect(&mut g,2,&monitor,&trap);assert_eq!(g.window,window);assert_eq!(g.passed,passed);assert_eq!(g.view(2).private_inspections[0].cards[0].card_id.as_deref(),Some("JZ26"));
     for seat in [1,3]{let v=serde_json::to_string(&g.view(seat)).unwrap();assert!(!v.contains("JZ26"));assert!(!v.contains("袖中毒物"));}
-    accept(&mut g);assert!(g.stack.last().unwrap().label.starts_with("暗藏者："));top(&mut g);assert!(g.board(&victim).is_none());assert!(g.board(&trap).is_some());restore(&mut g);
+    accept(&mut g);assert!(g.stack.last().unwrap().label.starts_with("暗藏者："));
+    for seat in [1,3]{let v=g.view(seat);let text=serde_json::to_string(&v).unwrap().to_lowercase();assert!(!text.contains("jz26"));assert!(!text.contains("袖中毒物"));assert_eq!(v.stack.last().unwrap().card_id,None);assert_eq!(v.stack.last().unwrap().ability_id,None);}
+    top(&mut g);assert!(g.board(&victim).is_none());assert!(g.board(&trap).is_some());restore(&mut g);
 }
 #[test]fn batch3_jz26_repeated_views_and_rejected_inspections_never_advance_rng_or_create_events(){
     let mut g=game();let trap=hidden(&mut g,0);fund(&mut g,0,"JC029",2);let monitor=field(&mut g,"JC057",2);let before=serde_json::to_string(&g).unwrap();for _ in 0..4{for seat in 0..4{g.view(seat);}}assert_eq!(serde_json::to_string(&g).unwrap(),before);

@@ -18,7 +18,7 @@
   ],
   "implementationBoundary": [
     "An explicit free information command records actual monitor inspections; it does not add a cost, priority requirement or new player permission.",
-    "GET/view rendering never emits events or advances the random generator.",
+    "Inspection projections and view rendering never create inspection events or advance randomness; existing trusted-clock expiration processing is retained.",
     "A player-controlled destroying effect supplies its true actor; an automatic world frame placeholder does not.",
     "Condition gates retain the event-time two-blue-assets observation and recheck the original ability controllers assets on resolution, following the existing conditional-trigger implementation pattern."
   ],

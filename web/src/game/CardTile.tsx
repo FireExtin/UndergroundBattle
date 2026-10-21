@@ -4,6 +4,8 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, namedCharacter: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.faceDown) card = { ...card, namedCharacter: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
     return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
@@ -71,6 +73,8 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const region = card.kind === 'region';
   const attachment = card.kind === 'attachment';
   const society = card.kind === 'society';
+  const dualCharacter = !asset && definition?.kind === 'character' && !!definition.additionalKinds?.includes('attachment');
+  const character = card.kind === 'character' || (attachment && dualCharacter);
   const subtitle = definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
   const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
   const concealedCompact = compact && card.kind === 'hidden';
@@ -81,9 +85,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const permanent = printedIcons || card.icons;
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
-  const effectiveStats = !compact && !card.faceDown && card.kind === 'character' && card.region !== undefined;
+  const effectiveStats = !compact && !card.faceDown && character && card.region !== undefined;
   const defense = card.defense ?? definition?.defense;
-  const type = hidden ? '身份未公开' : archive && asset ? '资产' : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
+  const type = hidden ? '身份未公开' : archive && asset ? '资产' : dualCharacter ? `角色／附属 · ${definition?.subtypes?.join(' · ') || ''}` : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
@@ -110,10 +114,13 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!card.faceDown && card.region !== undefined && typeof card.currentPrintedDefense === 'number' && <span>本回合印刷防御 {card.currentPrintedDefense}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRenown && <span>声望</span>}
         {!card.faceDown && card.region !== undefined && card.currentCombatGlory && <span>威名</span>}
-        {!card.faceDown && card.kind === 'character' && card.region !== undefined && card.currentMobility && <span title={card.currentMobilitySource ? `幽冥骑士 ${instanceTag(card.currentMobilitySource)} 与鲜血附属持续授予` : '对抗阶段开始时可发动机动'}>机动{card.currentMobilitySource ? ' · 幽冥骑士授予' : ''}</span>}
-        {!card.faceDown && card.region !== undefined && card.currentBarrier && <span>屏障</span>}
-        {!card.faceDown && card.kind === 'character' && card.region !== undefined && card.currentPublic && <span>公开</span>}
-        {!card.faceDown && card.kind === 'character' && card.region !== undefined && !!card.permanentCombatMarkers && <span>永久战斗图标标志 {card.permanentCombatMarkers}</span>}
+        {!card.faceDown && character && card.region !== undefined && card.currentMobility && <span title={card.currentMobilitySource ? `幽冥骑士 ${instanceTag(card.currentMobilitySource)} 与鲜血附属持续授予` : '对抗阶段开始时可发动机动'}>机动{card.currentMobilitySource ? ' · 幽冥骑士授予' : ''}</span>}
+        {!card.faceDown && !asset && (card.region !== undefined || attachment) && card.currentBarrier && <span>屏障</span>}
+        {!card.faceDown && character && card.region !== undefined && card.currentPublic && <span>公开</span>}
+        {!card.faceDown && character && card.region !== undefined && !!card.permanentCombatMarkers && <span>永久战斗图标标志 {card.permanentCombatMarkers}</span>}
+        {!card.faceDown && !asset && card.namedCharacter && <span>通缉：{card.namedCharacter}</span>}
+        {!card.faceDown && !asset && card.region !== undefined && card.currentEnemySpellProtection && <span>不能成为敌方事务目标</span>}
+        {!card.faceDown && character && card.region !== undefined && !!card.permanentDefenseMarkers && <span>永久防御标志 {card.permanentDefenseMarkers}</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>
           {definition?.abilities?.find(ability => ability.key === key)?.label || '每局一次能力'} · 本局已使用
         </span>)}

@@ -1,7 +1,7 @@
 export type Icons = { investigation: number; combat: number; influence: number };
 export type CardDefinition = {
   subtitle?: string;
-  id: string; name: string; kind: string; type?: string; cost: number;
+  id: string; name: string; kind: string; additionalKinds?: string[]; type?: string; cost: number;
   loyalty?: string[]; loyaltyText?: string; subtypes?: string[]; color?: string; magic?: string; text: string;
   icons?: { permanent: Icons; temporary: Icons };
   permanentIcons?: Icons; temporaryIcons?: Icons; defense?: number;
@@ -18,6 +18,9 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  namedCharacter?: string;
+  permanentDefenseMarkers?: number;
+  currentEnemySpellProtection?: boolean;
   currentDomains?: { magic: string; count: number }[];
   currentKill?: number;
   currentRetreat?: boolean;

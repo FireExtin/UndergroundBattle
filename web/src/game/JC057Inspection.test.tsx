@@ -27,7 +27,7 @@ it('reads authorized print separately while keeping the table hidden, and never 
   const onAction = vi.fn(); render(<Table view={view} catalog={testCatalog} busy={false} onAction={onAction} />);
   expect(screen.queryByText(secret)).not.toBeInTheDocument();
   const hiddenTile = screen.getByRole('button', { name: /^查看暗藏者/ });
-  const button = screen.getByRole('button', { name: /检视暗藏者 .*监控员/ });
+  const button = screen.getByRole('button', { name: /查看已检视暗藏者 .*监控员/ });
   fireEvent.click(button);
   expect(within(screen.getByRole('dialog')).getByText(secret)).toBeInTheDocument();
   expect(within(screen.getByRole('dialog')).getByText('监控员检视 · 仅你可见 · 该牌仍为暗藏者')).toBeInTheDocument();
@@ -38,23 +38,23 @@ it('reads authorized print separately while keeping the table hidden, and never 
 it('closes the private reader when permission ends even if the same instance is in another visible zone', () => {
   const props = { catalog: testCatalog, busy: false, onAction: vi.fn() };
   const { rerender } = render(<Table {...props} view={view} />);
-  fireEvent.click(screen.getByRole('button', { name: /检视暗藏者 .*监控员/ }));
+  fireEvent.click(screen.getByRole('button', { name: /查看已检视暗藏者 .*监控员/ }));
   rerender(<Table {...props} view={{ ...view, version: 2, privateInspections: undefined, hand: [front] }} />);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  expect(screen.queryByRole('button', { name: /检视暗藏者 .*监控员/ })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: /查看已检视暗藏者 .*监控员/ })).not.toBeInTheDocument();
 });
 it('drops an open inspection when its source region, room or viewer changes', () => {
   const props = { catalog: testCatalog, busy: false, onAction: vi.fn() };
   const { rerender } = render(<Table {...props} view={view} />);
-  fireEvent.click(screen.getByRole('button', { name: /检视暗藏者 .*监控员/ }));
+  fireEvent.click(screen.getByRole('button', { name: /查看已检视暗藏者 .*监控员/ }));
   rerender(<Table {...props} view={{ ...view, privateInspections: [{ sourceInstanceId: monitor.instanceId, region: 1, cards: [front] }] }} />);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   rerender(<Table {...props} view={view} />);
-  fireEvent.click(screen.getByRole('button', { name: /检视暗藏者 .*监控员/ }));
+  fireEvent.click(screen.getByRole('button', { name: /查看已检视暗藏者 .*监控员/ }));
   rerender(<Table {...props} view={{ ...view, roomId: 'another-room' }} />);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   rerender(<Table {...props} view={view} />);
-  fireEvent.click(screen.getByRole('button', { name: /检视暗藏者 .*监控员/ }));
+  fireEvent.click(screen.getByRole('button', { name: /查看已检视暗藏者 .*监控员/ }));
   rerender(<Table {...props} view={{ ...view, you: 'p1', privateInspections: undefined }} />);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
@@ -65,7 +65,7 @@ it('keeps the read permission available inside the current choice without submit
   render(<Table view={{ ...view, pendingChoice: pending, legalActions: [{ ...choose, choiceId: pending.id }] }}
     catalog={testCatalog} busy={false} onAction={onAction} />);
   const choiceDialog = screen.getByRole('dialog');
-  fireEvent.click(within(choiceDialog).getByRole('button', { name: /检视暗藏者 .*监控员/ }));
+  fireEvent.click(within(choiceDialog).getByRole('button', { name: /查看已检视暗藏者 .*监控员/ }));
   expect(screen.getByText(secret)).toBeInTheDocument();
   expect(onAction).not.toHaveBeenCalled();
 });
