@@ -80,7 +80,7 @@ for (const { from, relative, directory } of copies) {
   mkdirSync(path.dirname(to), { recursive: true });
   cpSync(from, to, { recursive: directory, filter: include });
 }
-writeFileSync(path.join(destination, '.gitignore'), 'node_modules/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
+writeFileSync(path.join(destination, '.gitignore'), 'node_modules\n/.build-cache/\ndist/\n.wrangler/\ngenerated/\n/public/\nweb/dist/\nrust-game/target/\nrust-game-wasm/target/\n.env*\n.sites-runtime/\n');
 // Sites flattens the adapter by one directory. Relocate only literal links
 // from adapter tests/scripts to shared repository inputs; game code stays unchanged.
 for (const directory of ['test', 'scripts']) {
