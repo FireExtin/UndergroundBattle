@@ -1,17 +1,20 @@
 {
   "schemaVersion": 1,
-  "batchId": "batch20-fourth-20261022",
+  "batchId": "batch50-fourth-20261022",
   "status": "nativeDevelopmentWip",
   "baseCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
   "baseRegularDefinitions": 213,
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 15,
+    "nativePilots": 16,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
-    "accepted": 0
+    "accepted": 0,
+    "target": 50,
+    "unassignedSlots": 30,
+    "remainingNativePrograms": 34
   },
   "colorCounts": {
     "红": 5,
@@ -173,14 +176,14 @@
       "openQuestionIds": []
     },
     {
-      "id": "BQ033",
-      "name": "热夜之梦",
+      "id": "XQ15",
+      "name": "爱弗罗德庄园",
       "color": "蓝",
-      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
-      "sourceImageSha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
+      "sourceImageSha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 16,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -436,13 +439,14 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 15,
+      "nativeCards": 16,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
       "acceptedNewCards": 0,
       "clone": "UndergroundBattle-batch4",
-      "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt"
+      "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
+      "targetCards": 50
     }
   ],
   "ownershipCheck": {
@@ -493,13 +497,271 @@
     "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker.",
     "WM058: exact unique print and three Black loyalty; each distinct personal face-up Criminal targeted by an enemy card transaction emits optional pay1-or-counter, excluding activated/triggered abilities and non-targeting mass effects. Source/target/event frozen; turn-scoped declined/paid/countered/no-card receipts prevent repeat consumption. CQ07 and Chance observers may be ordered. Existing JZ55 Immediate order is preserved; the subsequent observer finds no stack card and charges nothing. Reveal removes only original region enemy influence.",
     "The hidden-shuffle marker loss is shared with existing DQJC110 London win. Fixed in this fourth branch; frozen ABI94 b4e does not include this change and must receive an isolated correction before any claim that its existing path is fixed.",
-    "BQ053 native13: paid entry, actual lethal/Hide/reveal/hidden return, original controller, movement excluded, marker cap/separation, zero, dynamic removal, choices/frames and four-seat restore. Explicit0..3 starting markers, not a public Shoggoth producer."
+    "BQ053 native13: paid entry, actual lethal/Hide/reveal/hidden return, original controller, movement excluded, marker cap/separation, zero, dynamic removal, choices/frames and four-seat restore. Explicit0..3 starting markers, not a public Shoggoth producer.",
+    "XQ15 owner-based Human→Vampire / nonhuman non-Vampire→Slave in every nonblank zone; assets, sealed and hidden cards retain blank rules. Private/public views, current-vs-printed targeting, real host invalidation, JC005, attached Bat and Warden16 directed cases. Scope stays16 native,0WASM/selection/public/acceptance."
   ],
   "next": [
-    "Continue remaining5 selected mechanisms/dependencies BQ084/BQ086/JZ56/BQ033/XQ13; investigate rules-clear same-priority replacement candidates without counting unknown mechanisms or partially admitting the batch.",
-    "Keep XQ13 overflow rule draft separate and uncounted; neutral/dual colors remain paused",
-    "Third-batch isolated ABI94 replacement b4e0388bb0ee1a2b106c247d11663ec7ee60b28d was independently reviewed and synchronized to Aliyun by the parent; no duplicate deployment here",
-    "Keep the frozenb80 package unchanged; no duplicate pending Sites deployment or source credential recreation"
+    "Continue rules-clear cards toward50; current16 native,20 sources selected,30 slots unassigned; do not count candidate registration as implementation",
+    "Await parent/task-8 approved third-reference specification and licensing boundary before absorbing code/assets",
+    "Keep BQ033 anchor dependency, JC097 RaidX timing, Trauma and pathway questions explicit; no assumed rulings",
+    "Implement Bot difficulty as an independent feature slice; no card-count credit or fair-mechanism acceptance from privileged matches",
+    "Preserve frozen third candidate and44cc review ownership; no duplicate Sites pending/403 operations, CI or main merge"
   ],
-  "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"
+  "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c",
+  "deferredCards": [
+    {
+      "id": "BQ033",
+      "name": "热夜之梦",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
+      "sourceImageSha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "deferredReason": "Requires absent named BQ009 Yellow Spirit Anchor. Retained as dependency work; no invented anchor or assumed Yellow batch admission.",
+      "replacedBy": "XQ15"
+    }
+  ],
+  "rosterRevisions": [
+    {
+      "fromCard": "BQ033",
+      "toCard": "XQ15",
+      "scope": "Blue-for-Blue replacement within the requested20-card batch and original priorities; no neutral/dual admission",
+      "reason": "Requires absent named BQ009 Yellow Spirit Anchor. Retained as dependency work; no invented anchor or assumed Yellow batch admission.",
+      "status": "XQ15 complete native16 directed cases; original BQ033 retained unimplemented and uncounted"
+    }
+  ],
+  "historicalBatchId": "batch20-fourth-20261022",
+  "batchSizeDecision": {
+    "recordedAt": "2026-10-22T05:32:42.869699+00:00",
+    "target": 50,
+    "basis": "Latest human authorization forwarded by parent:50 cards per batch supersedes20 default",
+    "preservedNativeCards": 16,
+    "selectedSourceCards": 20,
+    "unassignedSlots": 30,
+    "notClaimed": "No50-card selection, implementation, WASM integration, admission or acceptance claimed",
+    "identityBoundary": "Existing ABI95 native WIP tag and historical file/branch names retained until first consolidated current-kernel build; no compatibility loader added"
+  },
+  "mechanismClusters": [
+    {
+      "id": "region-chaos",
+      "cards": [
+        "XG14",
+        "XG15"
+      ],
+      "nativePassed": 2
+    },
+    {
+      "id": "live-attributes-and-owned-types",
+      "cards": [
+        "JZ39",
+        "XG12",
+        "XG17",
+        "WM029",
+        "XQ15"
+      ],
+      "nativePassed": 5
+    },
+    {
+      "id": "typed-observers-and-response",
+      "cards": [
+        "WM060",
+        "BQ041",
+        "JZ38",
+        "XG11",
+        "WM058"
+      ],
+      "nativePassed": 5
+    },
+    {
+      "id": "secret-plans",
+      "cards": [
+        "WM045",
+        "WM046",
+        "WM047"
+      ],
+      "nativePassed": 3
+    },
+    {
+      "id": "loss-control-removal",
+      "cards": [
+        "BQ053"
+      ],
+      "nativePassed": 1
+    },
+    {
+      "id": "anchor-dependency",
+      "cards": [
+        "BQ084"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "trauma-wording",
+      "cards": [
+        "BQ086",
+        "JZ56"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "pathway-capacity-rule",
+      "cards": [
+        "XQ13"
+      ],
+      "nativePassed": 0
+    }
+  ],
+  "expansionSlotPlan": [
+    {
+      "cluster": "existing-clear-mechanism-reuse",
+      "unassignedSlots": 14,
+      "status": "Planning capacity only; source/rule/ownership check before selection"
+    },
+    {
+      "cluster": "private-grave-seal-flow",
+      "unassignedSlots": 8,
+      "status": "Planning capacity only; source/rule/ownership check before selection"
+    },
+    {
+      "cluster": "optional-payment-and-control",
+      "unassignedSlots": 4,
+      "status": "Planning capacity only; source/rule/ownership check before selection"
+    },
+    {
+      "cluster": "mystic-contest-foundation",
+      "unassignedSlots": 4,
+      "status": "Planning capacity only; source/rule/ownership check before selection"
+    }
+  ],
+  "expansionCandidates": [
+    {
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "sourceImageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; optional pay/secrecy comparison, attachment control/rehosting engineering needed"
+    },
+    {
+      "id": "JZ51",
+      "name": "温迪戈",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+      "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; grave activation and destination semantics need primary cross-check"
+    },
+    {
+      "id": "CQ10",
+      "name": "朱苏德拉·纳匹什提姆",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg",
+      "sourceImageSha256": "034b75bf01c010c74474f8357d089862603cfe27fc537b0dd2f537e541e7e2bb",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Sun-conditioned leader source wording correction needed before implementation"
+    },
+    {
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "sourceImageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "selected": false,
+      "implemented": false,
+      "status": "Source record only; original image must be reviewed"
+    },
+    {
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "sourceImageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "selected": false,
+      "implemented": false,
+      "status": "Source record only; original image must be reviewed"
+    },
+    {
+      "id": "WM061",
+      "name": "土归土",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+      "sourceImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Mystic Contest shared foundation absent"
+    },
+    {
+      "id": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+      "sourceImageSha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Mystic Contest shared foundation absent"
+    },
+    {
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "sourceImageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; source after-contest mill count3 differs from original1; correction needed"
+    },
+    {
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "sourceImageSha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Mystic Contest shared foundation absent"
+    },
+    {
+      "id": "WM021",
+      "name": "秘闻记录官",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+      "sourceImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Mystic Contest shared foundation absent"
+    }
+  ],
+  "externalReferenceBoundary": {
+    "repository": "SuezKrish/Underworld",
+    "owner": "Parent task-8 independent inspection/test",
+    "absorptionApproval": "Awaiting reliable approved specifications/list from parent",
+    "copiedCode": false,
+    "copiedAssets": false,
+    "registeredCountNotCompletion": true
+  },
+  "independentFeatureSlices": [
+    {
+      "id": "bot-difficulty",
+      "status": "Base inspected; independent implementation slice planned, not enabled",
+      "scope": [
+        "User-selectable difficulty",
+        "Normal decision policy sees only bot legal player view",
+        "Hard advantage explicitly disclosed and restricted to server-validated Bot-only matches",
+        "Human/fair rooms reject advantage metadata; frontend hiding is insufficient",
+        "Preserve mode, difficulty and deterministic seed/counter through persistence/replay"
+      ],
+      "nativeCardsAdded": 0,
+      "thirdPartyCodeCopied": false
+    }
+  ]
 }

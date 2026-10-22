@@ -9112,6 +9112,46 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XQ15",
+      "name": "爱弗罗德庄园",
+      "kind": "attachment",
+      "subtypes": [
+        "领地"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n【持续】所有你所拥有的人类角色牌，其人类类别改为吸血鬼类别。所有你所拥有的非人类且非吸血鬼角色牌，额外具有奴仆类别。（“拥有”是指所有在游戏开始时位于你牌库中的牌）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ15",
+        "image": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
+        "imageSha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false,
+      "subtitle": "阴谋会聚之所"
     }
   ],
   "decks": [

@@ -16,12 +16,16 @@ const plan = JSON.parse(read('docs/factions/batch20-fourth-2026-10-22.json'));
 test('fourth roster preserves frozen213 and keeps native pilots separate from public admission', () => {
   assert.equal(plan.baseCommit, 'b80f12202799a632ee9d75f40da8352f2ca274f1');
   assert.equal(digest(pool.cards.slice(0, 213)), '5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324');
-  assert.equal(plan.cards.length, 20);
-  assert.equal(new Set(plan.cards.map(c => c.id)).size, 20);
+  assert.equal(plan.scope.target, 50);
+  assert.equal(plan.cards.length, plan.scope.selected);
+  assert(plan.scope.selected <= plan.scope.target);
+  assert.equal(plan.scope.unassignedSlots, plan.scope.target - plan.cards.length);
+  assert.equal(new Set(plan.cards.map(c => c.id)).size, plan.cards.length);
   const old = new Set(pool.cards.slice(0, 213).map(c => c.id));
   const colors = {};
   for (const c of plan.cards) {
     assert(!old.has(c.id), c.id);
+    assert(['红', '黑', '蓝', '灰'].includes(c.color), c.id);
     assert(!['CQ11', 'TK008'].includes(c.id));
     colors[c.color] = (colors[c.color] || 0) + 1;
     assert.equal(hash(read(c.sourceImage)), c.sourceImageSha256, c.id);
@@ -31,7 +35,11 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
     assert.equal(c.published, false, c.id);
     assert.equal(c.accepted, false, c.id);
   }
-  assert.deepEqual(colors, { 红: 5, 黑: 5, 蓝: 5, 灰: 5 });
+  assert.deepEqual(colors, plan.colorCounts);
+  assert.equal(Object.values(colors).reduce((a,b) => a+b, 0), plan.scope.selected);
+  assert.equal(plan.mechanismClusters.flatMap(c => c.cards).length, plan.scope.selected);
+  assert.equal(new Set(plan.mechanismClusters.flatMap(c => c.cards)).size, plan.scope.selected);
+  assert.equal(plan.expansionSlotPlan.reduce((n,c) => n+c.unassignedSlots, 0), plan.scope.unassignedSlots);
   const pilots = plan.cards.filter(c => c.runtime === 'nativePilotPassedPendingBatchIntegration');
   assert.equal(pilots.length, plan.scope.nativePilots);
   assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), pilots.map(c => c.id).sort());

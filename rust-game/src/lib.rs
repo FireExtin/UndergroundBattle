@@ -1,5 +1,8 @@
 mod chaos;
 mod batch4_warden;
+mod batch4_manor;
+#[cfg(test)]
+mod batch4_manor_tests;
 #[cfg(test)]
 mod batch4_warden_tests;
 mod batch4;

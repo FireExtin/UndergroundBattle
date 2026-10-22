@@ -2399,7 +2399,7 @@ impl Game {
             .then_some(true),
             current_renown: (!asset && !c.face_down && region.is_some() && self.has_renown(c))
                 .then_some(true),
-            current_subtypes: if hidden || asset || c.face_down || region.is_none() {
+            current_subtypes: if hidden || asset || c.face_down || region.is_none() && !self.xq15_owner_aura(c) {
                 None
             } else {
                 let current = self.current_subtypes(c);

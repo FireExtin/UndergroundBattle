@@ -1,0 +1,154 @@
+{
+  "recordedAt": "2026-10-22T05:33:54.010191+00:00",
+  "precedingCheckpoint": "dcc71c8541861642bb0457cf825696fa056a6f8c",
+  "newCard": "XQ15",
+  "replacesDeferredCard": "BQ033",
+  "targetBatchSize": 50,
+  "selectedSources": 20,
+  "unassignedSlots": 30,
+  "nativeCards": 16,
+  "definitions": 229,
+  "newDirectedCases": 16,
+  "relatedFilters": {
+    "batch4_tattoo": 13,
+    "batch4_shape": 12,
+    "batch3_wm035": 6,
+    "jc030": 11,
+    "sealing": 29
+  },
+  "emptyFiltersNotVerification": [
+    "control::tests"
+  ],
+  "filterOverlap": "Counts not added across filters",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 213,
+  "sourceInventorySha256": "64df40f7d0aea0400a540c127797d6e52c947d59a804d9edc417f59a529d9fbe",
+  "sourceInventoryFileSha256": "580a47153a4ca98aacfd7033509fc6d4fc6f638054011892ba97928336a1a949",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON in stored key order without trailing newline",
+  "ruleScope": "Direct original XQ15 image; ownership throughout nonblank character-card zones. Core manual assets name/type replacement and Hegemony sealing blank rule retained.",
+  "failureHistory": [
+    "Missing exact Society-host registry entry fixed",
+    "New stack guard corrected to distinguish pre-play hand UID from normal fresh stack UID; existing fresh procedure unchanged",
+    "Sandbox Node outputs reported only two files; real four assertions executed once with child-process access, both earlier file-only logs retained"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-01-batch4_manor.log.gz",
+      "rawSha256": "f650e9a601ced9e85a24a0dccefb0a147d46aa4c46389ce9f6204a2d2b7e12ef",
+      "gzipSha256": "122e39e7bfa9e4d1f38264ebcc141421117971cd6aa2d267ae5a1340298e3e40",
+      "status": "emptyFilterNotVerification",
+      "passed": 0,
+      "failed": 14
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-02-batch4_manor.log.gz",
+      "rawSha256": "18925386a3077738201f80b6926ad6fd3b882fbb889f5099358d45b674677d98",
+      "gzipSha256": "b580c930d8f5dab2927873c4e9ff06b6bb36f05efb89250fd0d6366e69b58a1b",
+      "status": "initialAuthorFailurePreservedNotPass",
+      "passed": 1,
+      "failed": 13
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-03-batch4_manor.log.gz",
+      "rawSha256": "ad15609f6de1c58a958d59b15e1291935a33470fd1b21eefab8e5c9a23e0d093",
+      "gzipSha256": "8c5ee590ab1f74fdb226cc7ea041758349543a3caf828b8cb0fc617c1ddc090a",
+      "status": "authorPass",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-batch4_manor.log.gz",
+      "rawSha256": "522428b61b8f4ee3500c69b46a973def14555829fff81753e09703e52f95d37b",
+      "gzipSha256": "fbc87d8bf3f914f62616588c4edb0ab78459567ae5f0b9dc30223c237d798649",
+      "status": "authorPass",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-control::tests.log.gz",
+      "rawSha256": "53c5f8ba2f23161cedf2a2369773f7ec83306a6c3c5c03cc0abe418a13c56b22",
+      "gzipSha256": "4940e95669e3b2a608cd4f7e7eed54ff2a452878364ec7674474af2710380b58",
+      "status": "emptyFilterNotVerification",
+      "passed": 0,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-batch4_tattoo.log.gz",
+      "rawSha256": "fb31747f9ff5091edfcc13883bd8bc241b0fc9e30437f4824fd168aa549e0053",
+      "gzipSha256": "46a255c7b322931b2f769b85726b8486de26499b2608c15fec182e35124bb88e",
+      "status": "authorPass",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-batch4_shape.log.gz",
+      "rawSha256": "0c317efd4bc768b473265ddca73ec7bc246ad01b77a81fba323712d04ba95fb4",
+      "gzipSha256": "8c66bb44754e834664fcc99e235d1ec9c44f783e5c7a0e62aae3fdabc6080bbd",
+      "status": "authorPass",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-batch3_wm035.log.gz",
+      "rawSha256": "feab81fe65403088ad63224f11dc6fe4fb274f785009e9de85d6895adf50f59a",
+      "gzipSha256": "7daf0ed003afb54861b52f9ccec8b5c240944be77da2f36df60ee3ef317cebdf",
+      "status": "authorPass",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-jc030.log.gz",
+      "rawSha256": "7cd574a6ee5cff075bd4e737efff044a35579ca56aea3dc88e426b23ca693434",
+      "gzipSha256": "9e466519e077acad0f7238f43b0def12484a426dee163dd199c2bb9c88dfa6b8",
+      "status": "authorPass",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-04-sealing.log.gz",
+      "rawSha256": "cb52ad5ceb97887b4ec31dc815c6606ea697586e9abf71d5caaa59a4f03bc059",
+      "gzipSha256": "f919290f5f32a4d1aee7727a1e09c4eaf6871d6299c3fb373f5be483d9093349",
+      "status": "authorPass",
+      "passed": 29,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-source-01.log.gz",
+      "rawSha256": "778d9d98afe61e6ab6f9c50b14c60722bf837ef499471d77555cba5f7ea682c2",
+      "gzipSha256": "1100701b9a4b31c5b4d353ef5bbce4e5cfde4fe41c30a3a00bdb7a23d87d7780",
+      "status": "fileSummaryOnlyNotFourAssertionProof",
+      "passed": null,
+      "failed": null
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-source-02.log.gz",
+      "rawSha256": "6855614c5bee7f2944ee4516c2e682a776fef85160f7eb2c7132b9df4c8646d6",
+      "gzipSha256": "281f5f73cddb789b2f31cfc8de1b186e6a746ff85053d7a672c27a431fab0d2a",
+      "status": "fileSummaryOnlyNotFourAssertionProof",
+      "passed": null,
+      "failed": null
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-manor-source-03.log.gz",
+      "rawSha256": "69404ceddcfa81fddb27ed6188979cece553bf42688b32b82d325976c519710c",
+      "gzipSha256": "4ee1e0655716c6acd3d407c4491ead43c5e6edf77251d98e05e722e7e16bb92c",
+      "status": "authorPass",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "botDifficulty": "Independent feature planned; no Bot runtime copied/enabled or counted as cards",
+  "externalReference": "SuezKrish/Underworld absorption pending parent task-8 review; no code/assets copied",
+  "notPerformed": [
+    "Full product rerun",
+    "Independent review/execution",
+    "ABI95 WASM/Web/Worker build",
+    "Site/Aliyun/production operation",
+    "Real browser or50-card acceptance",
+    "CI/main merge/force push"
+  ]
+}

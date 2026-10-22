@@ -79,6 +79,9 @@ impl Game {
                 }
             }
         }
+        // The Manor changes owned cards in every zone, independently of their
+        // current controller. Apply before Human/Vampire host-dependent grants.
+        self.xq15_owner_subtypes(c, &mut result);
         if result.iter().any(|s| s == "人类") && self.wm038_grants_cultist(c)
             && !result.iter().any(|s| s == "邪教徒") {
             result.push("邪教徒".into());

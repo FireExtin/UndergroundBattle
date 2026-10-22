@@ -1198,5 +1198,10 @@
     "url": "/cards/BQ053.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
     "sha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6"
+  },
+  "XQ15": {
+    "url": "/cards/XQ15.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
+    "sha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c"
   }
 }
