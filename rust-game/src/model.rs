@@ -985,6 +985,7 @@ impl Game {
         game.validate_batch20_state()?;
         game.validate_next20_red_state()?;
         game.validate_batch3_state()?;
+        game.validate_batch4_state()?;
         game.validate_jc052_state()?;
         game.validate_jc046_state()?;
         game.validate_jc095_state()?;

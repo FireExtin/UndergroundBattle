@@ -1123,5 +1123,10 @@
     "url": "/cards/CQ07.jpg",
     "source": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
     "sha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db"
+  },
+  "XG14": {
+    "url": "/cards/XG14.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
+    "sha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25"
   }
 }

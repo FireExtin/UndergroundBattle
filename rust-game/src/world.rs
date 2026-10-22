@@ -178,13 +178,9 @@ impl Game {
         let id = c.id.clone();
         let definition = c.definition.clone();
         self.regions[region].cards.push(c);
-        self.note(format!(
-            "{} 的 {} 从墓地进入地区{}",
-            self.players[seat].name,
-            card(&definition).name,
-            region + 1
-        ));
         self.enter_triggers(seat, &definition, &id, false);
+        let actual = self.board(&id).map_or(region, |(r, _)| r);
+        self.note(format!("{} 的 {} 从墓地进入地区{}", self.players[seat].name, card(&definition).name, actual + 1));
         Ok(())
     }
     pub(crate) fn world_hide(&mut self, except_subtype: Option<&str>, mix_hidden: bool) {

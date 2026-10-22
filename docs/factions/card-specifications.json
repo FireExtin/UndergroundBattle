@@ -65880,14 +65880,14 @@
     "WM045": {
       "cardId": "WM045",
       "batchId": "B20",
-      "reviewedAt": "2026-10-03",
+      "reviewedAt": "2026-10-22",
       "sourceVerification": {
         "status": "completeGameplayFieldsForPinnedImage",
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
         "imageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f",
-        "evidenceId": "card-WM045",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "evidenceId": "batch4-wm045-original-20261022",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 本轮重新逐图核对太阳/月亮与推进阈值；旧漏项按原图更正。",
         "blockingFields": []
       },
       "edition": {
@@ -65933,20 +65933,27 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "秘密计划",
+          "隐秘条件：秘密计划",
           "可推进"
         ],
         "printedRuleTextLines": [
-          "结附于本方秘社；秘密计划；可推进",
+          "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
           "强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "秘密计划前月形隐秘标志",
+            "interpretation": "秘密计划是个人秘社隐秘条件能力，不是无条件秘密打出许可。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "结附于本方秘社；秘密计划；可推进",
+          "printedText": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
           "notExecutable": true
         },
         {
@@ -65993,14 +66000,14 @@
     "WM046": {
       "cardId": "WM046",
       "batchId": "B20",
-      "reviewedAt": "2026-10-03",
+      "reviewedAt": "2026-10-22",
       "sourceVerification": {
         "status": "completeGameplayFieldsForPinnedImage",
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
         "imageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f",
-        "evidenceId": "card-WM046",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "evidenceId": "batch4-wm046-original-20261022",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 本轮重新逐图核对太阳/月亮与推进阈值；旧漏项按原图更正。",
         "blockingFields": []
       },
       "edition": {
@@ -66046,26 +66053,33 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "秘密计划",
+          "隐秘条件：秘密计划",
           "可推进"
         ],
         "printedRuleTextLines": [
-          "结附于本方秘社；秘密计划；可推进",
-          "强制触发 达成推进3时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
+          "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+          "强制触发 达成推进2时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "秘密计划前月形隐秘标志",
+            "interpretation": "秘密计划是个人秘社隐秘条件能力，不是无条件秘密打出许可。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "结附于本方秘社；秘密计划；可推进",
+          "printedText": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
           "notExecutable": true
         },
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "强制触发 达成推进3时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。",
+          "printedText": "强制触发 达成推进2时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。",
           "notExecutable": true
         }
       ],
@@ -66108,14 +66122,14 @@
     "WM047": {
       "cardId": "WM047",
       "batchId": "B20",
-      "reviewedAt": "2026-10-03",
+      "reviewedAt": "2026-10-22",
       "sourceVerification": {
         "status": "completeGameplayFieldsForPinnedImage",
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
         "imageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4",
-        "evidenceId": "card-WM047",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "evidenceId": "batch4-wm047-original-20261022",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 本轮重新逐图核对太阳/月亮与推进阈值；旧漏项按原图更正。",
         "blockingFields": []
       },
       "edition": {
@@ -66161,20 +66175,27 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "秘密计划",
+          "隐秘条件：秘密计划",
           "可推进"
         ],
         "printedRuleTextLines": [
-          "结附于本方秘社；秘密计划；可推进",
+          "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
           "强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-ability",
+            "status": "confirmed",
+            "printedText": "秘密计划前月形隐秘标志",
+            "interpretation": "秘密计划是个人秘社隐秘条件能力，不是无条件秘密打出许可。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "结附于本方秘社；秘密计划；可推进",
+          "printedText": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
           "notExecutable": true
         },
         {
@@ -67625,14 +67646,14 @@
     "WM060": {
       "cardId": "WM060",
       "batchId": "B20",
-      "reviewedAt": "2026-10-03",
+      "reviewedAt": "2026-10-22",
       "sourceVerification": {
         "status": "completeGameplayFieldsForPinnedImage",
         "basis": "directOriginalImageReview",
         "imagePath": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg",
         "imageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77",
-        "evidenceId": "card-WM060",
-        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。",
+        "evidenceId": "batch4-wm060-original-20261022",
+        "scope": "完整原图人工核对游戏字段；单独登记版次、模式、规则时序疑点。不从定位JSON转写规则。 本轮重新逐图核对太阳/月亮与推进阈值；旧漏项按原图更正。",
         "blockingFields": []
       },
       "edition": {
@@ -67678,10 +67699,10 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "公开"
+          "暴露条件：公开"
         ],
         "printedRuleTextLines": [
-          "公开",
+          "暴露〔日形〕公开",
           "现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。",
           "触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。"
         ],
@@ -67691,6 +67712,12 @@
             "status": "confirmed",
             "printedText": "黑色公共徽记右下额外空心三角细节",
             "interpretation": "保留观察徽记形态，不推断独立派系或额外忠诚。"
+          },
+          {
+            "id": "sun-ability",
+            "status": "confirmed",
+            "printedText": "公开前太阳暴露标志",
+            "interpretation": "公开是个人秘社暴露条件关键词，不是无条件公开。"
           }
         ]
       },
@@ -67698,7 +67725,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "公开",
+          "printedText": "暴露〔日形〕公开",
           "notExecutable": true
         },
         {

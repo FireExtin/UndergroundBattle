@@ -1,0 +1,128 @@
+{
+  "recordedAt": "2026-10-22T00:32:09.769870+00:00",
+  "baseCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "branch": "progress/batch20-fourth-20261022",
+  "nativeEngine": "rust-v0.2.95-batch20-fourth",
+  "nativePilotCards": [
+    "XG14"
+  ],
+  "nativeDirectedCurrentCases": 12,
+  "nativeSourceManifestSha256": "6a11162528cdec2c821582a9745327d83d8e644fb4a613e579ea51ebd17ef9cb",
+  "authorExecutionOnly": true,
+  "fullProductSuiteRun": false,
+  "wasmBuilt": false,
+  "webWorkerIntegrated": false,
+  "newPublicAdmissions": 0,
+  "accepted": 0,
+  "thirdCandidateUntouched": {
+    "commit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+    "wasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c"
+  },
+  "results": [
+    {
+      "log": "logs/batch4-xg14-first-batch4.log.gz",
+      "result": "compileFailure",
+      "passed": 0,
+      "failed": null,
+      "phase": "preservedFailure",
+      "rawSha256": "d441c8a3cab73e4248739ab95afb1c8d381377b4bdfceb85b85f5522539ace8a",
+      "sha256": "81ffa4afb32e01c5f057a7bc510562e0a6e0dae5dc38503dc5b5f7e8efb47673",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-second-batch4.log.gz",
+      "result": "ok",
+      "passed": 9,
+      "failed": 0,
+      "phase": "preRewardCorrection",
+      "rawSha256": "7d27abf399e968fdd71e545cc7848ca9d92dee3f177d5803db27b928cf0a3758",
+      "sha256": "cb1fde6470edad4916e7ae393ca31e155a3c9cd712709eac7374c5e3dd3c476b",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-regressions-batch3.log.gz",
+      "result": "ok",
+      "passed": 162,
+      "failed": 0,
+      "phase": "preRewardCorrection",
+      "rawSha256": "4b6d4510815d787ddb275d057a11cbe3dace103bda9cc10377c1ad3f28ddd6da",
+      "sha256": "1f1e1de981e525b6b6e742cf6efa0391f1c118209c153e2b8b1964a928b431a4",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-regressions-jc089.log.gz",
+      "result": "ok",
+      "passed": 27,
+      "failed": 0,
+      "phase": "preRewardCorrection",
+      "rawSha256": "050222d58e1b60ff39e5978c3b6fa5fcd5656d8540c5614e52867ea9fc2efc4a",
+      "sha256": "41ff9dbdd225402f0abd41273b0786ed3b37cb44eeb1bfc8b7e5a15cd6ed5de1",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-regressions-spirit.log.gz",
+      "result": "ok",
+      "passed": 15,
+      "failed": 0,
+      "phase": "preRewardCorrection",
+      "rawSha256": "4dd96fc477d8cc2b9f6de43e100ff9e295efd6adfa801a3c10b656bd8be3a923",
+      "sha256": "ff0c71ba03157398c1a3b15504025eedb25cde493951925ac1da9502e424f1f8",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-regressions-region_destruction.log.gz",
+      "result": "ok",
+      "passed": 3,
+      "failed": 0,
+      "phase": "preRewardCorrection",
+      "rawSha256": "51f5bd715f8a6a77c0de23f0e3de14dce274b2ee5974109350671da48056e91c",
+      "sha256": "2f13448fa94203d5ed534c7d7954e0c99bb0e85c51d4f245356fb57e110a3dda",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-extended-batch4.log.gz",
+      "result": "FAILED",
+      "passed": 10,
+      "failed": 2,
+      "phase": "preservedFailure",
+      "rawSha256": "28edfb62a5ded46c6f797c8b8655efacba6ab636b85191bf847d065fe45507c6",
+      "sha256": "1cdfee1e15fc81e36365f9cb77b79ef1b53a915a6958a0daa9f82f894a3fa338",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-extended-fixed-batch4.log.gz",
+      "result": "ok",
+      "passed": 12,
+      "failed": 0,
+      "phase": "finalXG14Source",
+      "rawSha256": "f2b04b0d68079531150848449fffcf8c1153d2776587905eeed9f1df904588a9",
+      "sha256": "05b169bc3eccda0e836883ec46ef2144eca60592bd240bcb4d2b63fa20e92148",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-source-detailed.log.gz",
+      "result": "sourcePass",
+      "passed": 4,
+      "failed": null,
+      "phase": "sourceChecks",
+      "rawSha256": "0021f456530b8cc1d17ce6db6d10aaf6378204acd83e22cdb9443fe16dc0116b",
+      "sha256": "323618ac1daa9ecdfec7e02f3f5eeb3b7ac94c8ef10f71602a07d7cc4d580a56",
+      "encoding": "gzip"
+    },
+    {
+      "log": "logs/batch4-xg14-final-related-jc089.log.gz",
+      "result": "ok",
+      "passed": 27,
+      "failed": 0,
+      "phase": "finalXG14Source",
+      "rawSha256": "4057862f51d75b22f249eea48d0c9d915b422befb2ce7949ea08dd8fe4e5e539",
+      "sha256": "e273ef41dfeea4936f9d1f32959b90ce4d85993dccd4e2ff2cb2b0bafd6b6984",
+      "encoding": "gzip"
+    }
+  ],
+  "limitations": [
+    "Earlier related regressions were run before the finite reward/pending correction; final current-source XG14 coverage is twelve passing cases, with related reward recheck recorded separately.",
+    "No independent test execution, complete fourth batch, WASM/Web/Worker integration, public deployment or real browser acceptance.",
+    "Existing-restriction Chaos sampling remains an explicit rules review boundary; fourth construction remains disabled."
+  ]
+}

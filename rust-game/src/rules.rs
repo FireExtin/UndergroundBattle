@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    DisasterPlayed,
     CQ07SpellTargeted,
     WM035HostDeath,
     BQ079CorpseGrave,
@@ -107,6 +108,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    Batch4DestroyedRegion,
     Batch3OwnGraveCharacter,
     BQ042SocietyOrOriginalRegion,
     BQ077WaterRegion,
@@ -253,6 +255,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG14DisasterInfluence { observation: Option<crate::batch4::DisasterPlay> },
     CQ07EnterMoon,
     CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
@@ -549,6 +552,8 @@ pub struct AbilitySpec {
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Traits {
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
+    pub chaos: bool,
+    #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub slow: bool,
     #[serde(default, skip_serializing_if = "crate::model::is_false")]
     pub stealth: bool,
@@ -641,6 +646,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::batch4::related(ability) { return crate::batch4::validate_ability(card_id, ability); }
     if card_id=="BQ029" && ability.key=="raid-1" || crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
     if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
     if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
@@ -1405,6 +1411,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
         crate::batch3::validate_definition(card_id, definition)?;
+        crate::batch4::validate_definition(card_id, definition)?;
         if definition.abilities.iter().any(crate::raid::related) { return Err("袭击授予观察不能移植为静态能力".into()); }
         crate::next20_blue_gray::validate_definition(card_id, definition)?;
         crate::exposure::validate_definition(card_id, definition)?;
@@ -2066,6 +2073,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }
         for id in crate::next20_blue_gray::CARDS {
             m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());

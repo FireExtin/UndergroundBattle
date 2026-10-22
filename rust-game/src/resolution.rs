@@ -469,7 +469,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (matches!(c.definition.as_str(), "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -494,7 +494,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if c.definition == "JZ33" { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
+        card(&c.definition).cost.saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -686,6 +686,7 @@ impl Game {
                     self.region_live(r)
                         && (spec.predicate != Some(TargetPredicate::BQ077WaterRegion)
                             || (source.card.definition == "BQ077" && card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "水域")))
+                        && (spec.predicate != Some(TargetPredicate::Batch4DestroyedRegion) || (source.card.definition == "XG14" && self.regions[r].destroyed))
                         && (spec.predicate != Some(TargetPredicate::JZ34DestroyedRegion) || (source.card.definition == "JZ34" && self.regions[r].destroyed))
                         && (spec.range != Range::Mobility
                             || source.region.is_some_and(|from| {
@@ -746,7 +747,7 @@ impl Game {
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
-                                TargetPredicate::JZ34DestroyedRegion => false,
+                                TargetPredicate::JZ34DestroyedRegion | TargetPredicate::Batch4DestroyedRegion => false,
                                 TargetPredicate::JC055CharacterOrAttachment => source.card.definition == "JC055" && !c.face_down && matches!(d.kind.as_str(), "character" | "attachment"),
                                 TargetPredicate::JC043SocietyOrOriginalRegion | TargetPredicate::BQ042SocietyOrOriginalRegion => {
                                     matches!(source.card.definition.as_str(), "JC043" | "BQ042") && self.attachments.iter().find(|a| a.card.id == c.id)
@@ -876,7 +877,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (matches!(source.card.definition.as_str(), "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1099,12 +1100,14 @@ impl Game {
         label: String,
         transaction: Option<Card>,
     ) {
+        let observe_disaster = transaction.is_some();
         let observe_spell = transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell");
         let target = frame.targets.first().map(|t| t.id.clone());
         let actor = frame.actor;
         self.push_stack(actor, label, transaction, None, false, target);
         frame.frame_id = self.stack.last().unwrap().id.clone();
         if observe_spell { self.cq07_observe_spell_targets(&frame); }
+        if observe_disaster { self.observe_batch4_disaster(&frame); }
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
     pub(crate) fn dispatch_frame(
@@ -1121,6 +1124,7 @@ impl Game {
                 // window. Independent events emitted by paying its costs remain
                 // queued and are declared after this immediate effect completes.
                 frame.frame_id = self.id();
+                if transaction.is_some() { self.observe_batch4_disaster(&frame); }
                 if transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell") {
                     self.cq07_observe_spell_targets(&frame);
                 }
@@ -1202,6 +1206,7 @@ impl Game {
         self.validate_black_next20_declaration(&declaration)?;
         self.validate_next20_red_declaration(&declaration)?;
         self.validate_batch3_declaration(&declaration)?;
+        self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         if self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
@@ -1292,6 +1297,7 @@ impl Game {
         self.validate_black_next20_declaration(&declaration)?;
         self.validate_next20_red_declaration(&declaration)?;
         self.validate_batch3_declaration(&declaration)?;
+        self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch3_reject_optional(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
@@ -1561,6 +1567,7 @@ impl Game {
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
         self.validate_batch3_frame(&frame)?;
+        self.validate_batch4_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1630,6 +1637,7 @@ impl Game {
                 Op::BQ037RevealVampire => return self.bq037_reveal_start(frame),
                 Op::XQ26Name => return self.xq26_name_start(frame),
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
+                Op::XG14DisasterInfluence { .. } => self.xg14_influence(&frame),
                 Op::CQ07EnterMoon => {
                     if self.players[frame.actor].society_zone.secrecy == 0 { self.add_society_markers(frame.actor,0,1); }
                 },

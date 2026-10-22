@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.84-batch20-third",
-  "engineVersion": "rust-v0.2.94-batch20-third",
+  "cardPoolVersion": "limited-v2.85-batch20-fourth",
+  "engineVersion": "rust-v0.2.95-batch20-fourth",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -8473,6 +8473,53 @@
       "society": "",
       "supported": true,
       "subtitle": "巡查使"
+    },
+    {
+      "id": "XG14",
+      "name": "朽灭者",
+      "kind": "character",
+      "subtypes": [
+        "熵",
+        "法师",
+        "灾难"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红红红",
+      "color": "红",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "混乱；【隐秘】灵体；时间标志1\n额外费用 每有一个已毁灭的地区，正面打出朽灭者的所需费用减少2。\n触发 当你打出一张灾难牌时，在目标已毁灭的地区上放置一个本方势力标志。",
+      "keywords": [
+        "混乱",
+        "隐秘条件：灵体",
+        "时间标志1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG14",
+        "image": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
+        "imageSha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

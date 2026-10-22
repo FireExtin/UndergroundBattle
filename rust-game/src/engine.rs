@@ -623,6 +623,7 @@ impl Game {
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
         self.validate_batch3_state()?;
+        self.validate_batch4_state()?;
         self.validate_exposure_state()?;
         self.validate_mobility_state()?;
         self.validate_wm062_state()?;
@@ -643,6 +644,7 @@ impl Game {
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
         next.validate_batch3_state()?;
+        next.validate_batch4_state()?;
         next.validate_exposure_state()?;
         next.validate_mobility_state()?;
         next.validate_bq035_state()?;
@@ -723,16 +725,23 @@ impl Game {
                     return Err("只可在己方行动步骤派遣".into());
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
-                let r = a.region.ok_or("请选择地区")?;
-                if !self.accessible(seat, r) {
-                    return Err("超出正常派遣距离".into());
-                }
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
+                let r = if chaos_play {
+                    if a.region.is_some() { return Err("混乱进场不能指定地区".into()); }
+                    if !(0..self.regions.len()).any(|r| self.region_live(r)) { return Err("没有可进场的地区".into()); }
+                    None
+                } else {
+                    let r = a.region.ok_or("请选择地区")?;
+                    if !self.accessible(seat, r) { return Err("超出正常派遣距离".into()); }
+                    Some(r)
+                };
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
+                crate::batch4::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -746,6 +755,7 @@ impl Game {
                     return Err("只有角色可派遣".into());
                 }
                 if a.kind == "conceal" {
+                    let r = r.ok_or("秘密派遣需要地区")?;
                     if self.players[seat].conceal_used
                         || self.jc068_blocks_conceal(seat)
                         || self.current_public(&c, seat)
@@ -767,9 +777,9 @@ impl Game {
                     self.reset_passes();
                 } else {
                     if rules::definition(&c.definition).traits.stealth {return Err("隐匿角色不能正面打出".into());}
-                    if self.jc064_blocks_character(&c, r) { return Err("戒严地区不能正面打出非国家机构角色".into()); }
+                    if r.is_some_and(|r| self.jc064_blocks_character(&c, r)) { return Err("戒严地区不能正面打出非国家机构角色".into()); }
                     if rules::definition(&c.definition).traits.city_play_only
-                        && !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市")
+                        && r.is_some_and(|r| !card(&self.regions[r].card.definition).subtypes.iter().any(|s| s == "城市"))
                     {
                         return Err("该角色只能打出在城市地区".into());
                     }
@@ -778,7 +788,7 @@ impl Game {
                     }
                     let mut paid = self.pay_printed(seat, &c, true)?;
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
-                    let mut snapshot = self.source_snapshot(&c, Some(r));
+                    let mut snapshot = self.source_snapshot(&c, r);
                     snapshot.play_source = Some(play_source.clone());
                     let c = self.take_character_play_source(seat, id, play_source)?;
                     let c = self.fresh(c);
@@ -787,7 +797,7 @@ impl Game {
                         seat,
                         format!("派遣 {}", d.name),
                         Some(c),
-                        Some(r),
+                        r,
                         false,
                         None,
                     );
@@ -801,9 +811,11 @@ impl Game {
                         guard: GuardState::Unchecked,
                         cursor: 0,
                         steps: vec![],
-                        chosen_region: Some(r),
+                        chosen_region: r,
                     });
                     self.wm041_observe_last_play();
+                    let paid_play = self.stack.last().unwrap().frame.as_ref().unwrap().clone();
+                    self.observe_batch4_disaster(&paid_play);
                 }
             }
             "reveal" => {
@@ -817,6 +829,7 @@ impl Game {
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
+                crate::batch4::validate_action(&c.definition, &a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -875,6 +888,7 @@ impl Game {
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
+                crate::batch4::validate_action(&c.definition, &a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
@@ -919,6 +933,7 @@ impl Game {
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
+                crate::batch4::validate_action(&c.definition, &a)?;
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 self.jc041_check_activation(seat, region, c, &a)?;
@@ -1171,6 +1186,7 @@ impl Game {
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
         self.validate_batch3_frame(&frame)?;
+        self.validate_batch4_frame(&frame)?;
         self.validate_jc052_frame(&frame)?;
         self.validate_jc046_frame(&frame)?;
         self.validate_jc054_frame(&frame)?;
@@ -1186,7 +1202,10 @@ impl Game {
         self.validate_wm062_frame(&frame)?;
         self.validate_black_next20_frame(&frame)?;
         if let Some(c) = item.card.take() {
-            if let Some(region) = item.deploy_region {
+            let chaos = card(&c.definition).kind == "character" && rules::definition(&c.definition).traits.chaos;
+            let destination = if chaos { self.chaos_region() } else { item.deploy_region };
+            if chaos && destination.is_none() { self.effects.push_front(Effect::Bury { card: c }); return Ok(()); }
+            if let Some(region) = destination {
                 if !self.region_live(region)
                     || (!item.reveal && self.jc064_blocks_character(&c, region))
                     || (crate::next20_blue_gray::CARDS.contains(&c.definition.as_str())
@@ -1202,7 +1221,7 @@ impl Game {
                 let definition = c.definition.clone();
                 self.regions[region].cards.push(c);
                 let extra=if definition=="BQ029" && !item.reveal { frame.already_paid.iter().find_map(|p|if let PaidCost::BQ029ExtraAssets(ids)=p { Some(crate::batch3_blood::BQ029ExtraPayment{play_instance:frame.source.card.id.clone(),play_frame:frame.frame_id.clone(),assets:ids.clone()}) } else { None }) } else { None };
-                self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra);
+                self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra,true);
             } else if card(&c.definition).kind == "attachment" {
                 if self.accept_frame_guard(&mut frame) {
                     let target = frame.targets.first().ok_or("附属缺少宿主目标")?;
@@ -1248,9 +1267,11 @@ impl Game {
         });
         Ok(())
     }
-    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None); }
-    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>) {
+    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None,false); }
+    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,final_region:bool) {
         let previous=self.effects.len();
+        if !final_region { self.route_chaos_entry(id); }
+        if definition == "XG14" { if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
         self.batch3_entry_keywords(definition, id);
         // Intermezzo slow is an entry requirement, not an optional trigger or
         // an exhaust cost. Apply it before freezing the entry declaration.
@@ -2070,6 +2091,7 @@ impl Game {
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
         self.validate_batch3_state()?;
+        self.validate_batch4_state()?;
         self.validate_jc052_state()?;
         self.validate_jc046_state()?;
         self.validate_jc095_state()?;
@@ -2754,9 +2776,13 @@ impl Game {
                     ));
                 }
                 if d.kind == "character" {
+                    if rules::definition(&d.id).traits.chaos {
+                        candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("派遣 {}（混乱：随机地区）", d.name)));
+                    }
                     for r in 0..self.regions.len() {
                         if !self.region_live(r) { continue; }
                         for kind in ["deploy", "conceal"] {
+                            if kind == "deploy" && rules::definition(&d.id).traits.chaos { continue; }
                             candidates.push((
                                 Action {
                                     card_id: Some(c.id.clone()),
@@ -2788,6 +2814,10 @@ impl Game {
                     if card(&c.definition).kind != "character"
                         || !self.can_play_grave_character(seat, c)
                     {
+                        continue;
+                    }
+                    if rules::definition(&c.definition).traits.chaos {
+                        candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("墓地正面打出 {}（混乱：随机地区）", card(&c.definition).name)));
                         continue;
                     }
                     for r in 0..self.regions.len() {

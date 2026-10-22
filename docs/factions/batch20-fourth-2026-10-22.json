@@ -1,0 +1,469 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch20-fourth-20261022",
+  "status": "nativeDevelopmentWip",
+  "baseCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "baseRegularDefinitions": 213,
+  "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
+  "scope": {
+    "selected": 20,
+    "nativePilots": 1,
+    "fullyIntegratedNewCards": 0,
+    "selectionEnabled": 0,
+    "published": 0,
+    "accepted": 0
+  },
+  "colorCounts": {
+    "红": 5,
+    "黑": 5,
+    "蓝": 5,
+    "灰": 5
+  },
+  "cards": [
+    {
+      "id": "XG14",
+      "name": "朽灭者",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
+      "sourceImageSha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 12,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG15",
+      "name": "雾涌海怪",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
+      "sourceImageSha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ38",
+      "name": "仪式雕像",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
+      "sourceImageSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ39",
+      "name": "恶魔刺青",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg",
+      "sourceImageSha256": "4bfac05a9d9f65d6d5c11fd69eded848bda7472c6b7940c735d6722ae3fb5a75",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "WM029",
+      "name": "被胁迫的政要",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
+      "sourceImageSha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ084",
+      "name": "战栗凶灵",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg",
+      "sourceImageSha256": "c6e661db496bbde8718a5af312ec64704f597d41bce424f9a0034132a16080af",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ086",
+      "name": "雅加达的萨迪金",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg",
+      "sourceImageSha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM058",
+      "name": "“弹簧刀”钱斯",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg",
+      "sourceImageSha256": "8df743099faf69b6a56cd546be5a572a3fb8505dc66083ea6e11b907592cc7c6",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM060",
+      "name": "多情达莉娅",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg",
+      "sourceImageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ56",
+      "name": "亡者之夜",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
+      "sourceImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ033",
+      "name": "热夜之梦",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
+      "sourceImageSha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ041",
+      "name": "欢宴",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
+      "sourceImageSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG11",
+      "name": "阴魂术士",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
+      "sourceImageSha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG12",
+      "name": "兽形变化",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
+      "sourceImageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XQ13",
+      "name": "焚血之道",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg",
+      "sourceImageSha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ053",
+      "name": "老看守",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
+      "sourceImageSha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM045",
+      "name": "计划：新秩序",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
+      "sourceImageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM046",
+      "name": "计划：天眼",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
+      "sourceImageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM047",
+      "name": "计划：贝奥武夫",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
+      "sourceImageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG17",
+      "name": "专家研讨会",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
+      "sourceImageSha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    }
+  ],
+  "sourceCorrections": [
+    {
+      "id": "WM060",
+      "priorKeywords": [
+        "公开"
+      ],
+      "currentKeywords": [
+        "暴露条件：公开"
+      ],
+      "priorRuleText": [
+        "公开",
+        "现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。",
+        "触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。"
+      ],
+      "currentRuleText": [
+        "暴露〔日形〕公开",
+        "现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。",
+        "触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。"
+      ],
+      "imageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77"
+    },
+    {
+      "id": "WM045",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
+      ],
+      "imageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f"
+    },
+    {
+      "id": "WM046",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进2时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
+      ],
+      "imageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f"
+    },
+    {
+      "id": "WM047",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。"
+      ],
+      "imageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4"
+    }
+  ],
+  "developmentIdentity": {
+    "native": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.85-batch20-fourth",
+    "wasmBuilt": false,
+    "publicIdentityChanged": false
+  },
+  "candidateComparison": [
+    {
+      "candidate": "frozen third batch",
+      "commit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+      "nativeCards": 20,
+      "wasmCards": 20,
+      "candidateAdmissions": 20,
+      "publicNewCards": 0,
+      "acceptedNewCards": 0,
+      "clone": "UndergroundBattle-batch3"
+    },
+    {
+      "candidate": "fourth batch native WIP",
+      "commit": null,
+      "nativeCards": 1,
+      "wasmCards": 0,
+      "candidateAdmissions": 0,
+      "publicNewCards": 0,
+      "acceptedNewCards": 0,
+      "clone": "UndergroundBattle-batch4",
+      "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt"
+    }
+  ],
+  "ownershipCheck": {
+    "knownOtherGameTask": "Parent-authorized incremental source review of frozen third candidate; no fourth-batch edits assigned there in visible instructions",
+    "repositoryDeduplication": "All20 absent from base213; no existing fourth branch at initial remote check; ordinary clone started clean with no active local game build",
+    "appInventoryLimit": "Earlier app task-list read did not return; no private session DB read and no claim of complete app-wide inventory"
+  },
+  "constraints": [
+    "red/black/blue/gray only; neutral/dual expansion paused",
+    "ordinary clone and separate progress branch; no worktree or changes to frozenb80 candidate/package",
+    "only current nativeABI95 under development; no older runtime or opaque migration",
+    "noGitHubCI/main merge/production403 retry/duplicatev74 deployment"
+  ],
+  "ruleEvidence": {
+    "chaos": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 19,
+      "printedPage": 18,
+      "rule": "Chaos entry replaces destination selection with a random in-play region; moving between regions is not entry into play."
+    }
+  },
+  "implementationNotes": [
+    "Chaos paid deploy has no player-selected region and rolls once at actual entry; direct face-up entries share routing before observers; conceal and movement do not reroll.",
+    "Reuses the existing post-response entry guard for a law attachment appearing during response; sampling eligibility with a pre-existing location restriction is an implementation review boundary, not a claimed extra FAQ ruling.",
+    "JZ39 red cost-ring remains a geometry annotation; do not infer a new speed rule.",
+    "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption."
+  ],
+  "next": [
+    "Run affected native character/target/region regressions underABI95 without touching frozenABI94",
+    "Implement next shared Chaos cardXG15, then related attachment/current-attribute mechanisms",
+    "Keep allfourth cards construction-disabled until twenty and required integration are ready; publish through officialSites flow by the established per20 cadence"
+  ],
+  "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"
+}

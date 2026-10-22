@@ -284,7 +284,7 @@ impl Game {
     pub(crate) fn current_spirit(&self, c: &Card) -> bool {
         !c.face_down
             && (rules::definition(&c.definition).traits.spirit
-                || (c.definition == "BQ042"
+                || (matches!(c.definition.as_str(), "BQ042" | "XG14")
                     && self
                         .players
                         .get(c.controller)

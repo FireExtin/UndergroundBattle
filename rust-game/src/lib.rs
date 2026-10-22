@@ -1,3 +1,7 @@
+mod chaos;
+mod batch4;
+#[cfg(test)]
+mod batch4_tests;
 mod batch3;
 mod batch3_phoebe;
 #[cfg(test)]

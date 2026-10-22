@@ -31,7 +31,7 @@ test('third batch excludes all 193 preceding definitions and preserves every pre
     assert.equal(card.sourceImageSha256, specs[card.id].sourceVerification.imageSha256, card.id);
   }
   assert.deepEqual(colors, { 红: 4, 黑: 5, 蓝: 6, 灰: 5 });
-  for (const card of pool.cards.slice(193)) {
+  for (const card of pool.cards.slice(193, 213)) {
     assert(plan.cards.some(c => c.id === card.id), card.id);
     assert.equal(card.supported, candidateAdmitted, card.id);
   }
