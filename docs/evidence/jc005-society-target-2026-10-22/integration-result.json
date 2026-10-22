@@ -1,0 +1,104 @@
+{
+  "format": "jc005-society-third-replacement-author-validation-v1",
+  "frozenThirdBase": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeFixCommit": "bf00141c6a634ce432568fb8bc40e336c3136573",
+  "runtimeSourceAtWasmBuild": "bf00141c6a634ce432568fb8bc40e336c3136573",
+  "addedAfterWasmBuild": "Only cfg(test) Room exporter and test/evidence tooling; no additional product Rust source changes",
+  "nativeFinalFilter": {
+    "name": "jc005",
+    "passed": 13,
+    "failed": 0
+  },
+  "previousRelatedSocietyZoneFilter": {
+    "passed": 9,
+    "executedAtNativeFixCommit": "bf00141c6a634ce432568fb8bc40e336c3136573",
+    "notRerunHere": true
+  },
+  "nativeWasm": {
+    "format": "jc005-society-abi94-author-parity-v1",
+    "identity": {
+      "rulesVersion": "hegemony-pdf-v1",
+      "cardPoolVersion": "limited-v2.84-batch20-third",
+      "engineVersion": "rust-v0.2.94-batch20-third"
+    },
+    "cases": 3,
+    "commands": 40,
+    "rejectedCommands": 3,
+    "acceptedResponseSubmits": 2,
+    "fourViews": 172,
+    "originalHighU64Seeds": true,
+    "wasmBytes": 5026235,
+    "wasmSha256": "4701932eca9e9389ba6c1efe55eaffdbbe30e725f83de8b45fe0b54d7b6a2edc",
+    "sourceManifestSha256": "65ffc6f5fe649083aa6fc31309595049d2528da75da010275444c1523a93b806",
+    "sourceManifestFiles": 229,
+    "nativeRawJsonBytes": 4239174,
+    "nativeRawJsonSha256": "8db2555b53a51d62a66595851bf37f2f90600c0173c98d6509959f1cbec675b3",
+    "output": "docs/evidence/jc005-society-target-2026-10-22/abi94-society.current.json.gz",
+    "scope": "Author targeted Native/WASM comparison only; no full-suite, independent, publication or browser acceptance"
+  },
+  "workerD1": {
+    "testsPassed": 3,
+    "commandsCompared": 40,
+    "acceptedReceipts": 37,
+    "rejectedReducerCommands": 3,
+    "responseRestarts": 4,
+    "fourSeatViewsEachNode": true,
+    "receiptRetriesAndJournalExactlyOnce": true,
+    "workerHealthAndCatalog": 200
+  },
+  "firstRoomFixtureFailure": "The hand instance UID changes on successful play; initial fixture wrongly expected the hand UID to remain the attached UID. Corrected fixture reads the actual resolved attachment UID. Failed log preserved; no product fix needed for that failure.",
+  "frozenB80PackageContainsJc005Correction": false,
+  "fourthBatchMixedIn": false,
+  "publicationPerformed": false,
+  "publicBatchAcceptance": 0,
+  "limits": [
+    "Author targeted validation only; not independent review, full-suite or real browser acceptance",
+    "Existing b80 current-fixture bundles remain byte-for-byte historical and are not reheadered or reused as current-source proof",
+    "Original Sites pending deployment not repeated; source credential absence remains a separate publication blocker",
+    "No Aliyun, GitHub CI, main merge, force push or credential changes"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/abi94-wasm-build.log.gz",
+      "originalBytes": 1404,
+      "originalSha256": "6680bc650f5a5f1c338dc07b99c925f6e2f68f99eb1eae2ac15eb28ee04dcf31",
+      "gzipSha256": "6b7596c7f799de29ed7bab3339bf3216bfe9e25c5ef6023384aa6a2f37333080"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/worker-build.log.gz",
+      "originalBytes": 1098,
+      "originalSha256": "c897878a82371c0f281399fdfa36813ff0b87b8e177cbb8f59d4115cb1ccf3a3",
+      "gzipSha256": "22b5c4870c7149fdd4d37c7eb9aa9306c9d83bc9a8fe368e2c749fc4c02ed63a"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/worker-d1.log.gz",
+      "originalBytes": 1301,
+      "originalSha256": "b8d4a3cba874bbc39d65bccb5bb25b6f2506a5c60989dab19c69fc22b97a4459",
+      "gzipSha256": "095beb90ab975467f201e7bc59f3fc690c3867ee50ae5ac8326e74d0f52af70a"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/local-start.log.gz",
+      "originalBytes": 175,
+      "originalSha256": "7508d775aa267102547187791e94e56149ec40bbdfcf4428df83a7210779431e",
+      "gzipSha256": "5a19eca63dd7f9c0f710cadb17def6ccbc50fb802937878d3d619614352e50f2"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/room-initial-fixture-failure.log.gz",
+      "originalBytes": 1038,
+      "originalSha256": "534f9971f0f92cc021cef81b6b97beb971a252c3cb2dbce6b0fa787c3c2b6ecb",
+      "gzipSha256": "161de31fa07193cf150042cde036ccaf764605c82636661b21f794c5c5184a30"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/room-native.log.gz",
+      "originalBytes": 550,
+      "originalSha256": "468af09706d3769693d73b142e78c64e9574f358b7010d7a52dd835fc1609247",
+      "gzipSha256": "66f7b5b568c5cd04f7cfe959a70c9d975920abb7740b853e0f5c0f221d327bb5"
+    },
+    {
+      "path": "docs/evidence/jc005-society-target-2026-10-22/jc005-final-native.log.gz",
+      "originalBytes": 1806,
+      "originalSha256": "e5dea02aea5e5db88a7b1eff2c9088351ab4362613919e485ee2b0ff4fb8cf19",
+      "gzipSha256": "e24ea8295dd1f8c9438117a9b782835bec11c69f18a7ca4dcc731d1762493e9e"
+    }
+  ]
+}
