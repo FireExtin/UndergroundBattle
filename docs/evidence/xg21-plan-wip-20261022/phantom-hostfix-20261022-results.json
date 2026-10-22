@@ -1,0 +1,8 @@
+[
+  {
+    "filter": "batch4_phantom",
+    "exitCode": 101,
+    "seconds": 25.291,
+    "log": "phantom-hostfix-20261022-batch4_phantom.log"
+  }
+]

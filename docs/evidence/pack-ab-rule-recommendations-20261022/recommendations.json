@@ -1,0 +1,74 @@
+{
+  "sourceCommit": "bfefbc2a3bde95c609970fec5034f5d2810bd9fb",
+  "readOnlyReviewers": [
+    "/root/remaining_clear_cards",
+    "/root/contest_identity_review"
+  ],
+  "integratorRehashedAllInputs": true,
+  "files": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "bytes": 516140,
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+      "bytes": 1336276,
+      "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ040 鲜血.jpg",
+      "bytes": 1316410,
+      "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+      "bytes": 1337590,
+      "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg",
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界玩家指南.pdf",
+      "bytes": 8417205,
+      "sha256": "19a69ed1b99aedf7f0077b4780d444a19c1c97e98314f7e1df78c0708e6b65d2"
+    }
+  ],
+  "runtimeRuleChanged": false,
+  "decisions": [
+    {
+      "id": "mystic-alive-empty-hand-and-deck",
+      "status": "projectRulingPending",
+      "directlyClosedByPrimaryRules": false,
+      "recommended": "At actual reveal readiness, if a living participant cannot show a card, end this contest layer without a winner or rewards. Preserve paid costs, start effects and already completed top-to-hand moves; do not shuffle unshown cards. Resume its parent continuation.",
+      "alternative": "Continue with a new no-card value of zero; requires additional bonus/reward/first-win rules.",
+      "questionZh": "建议规定：隐秘对抗到展示步骤时若仍有存活玩家无牌可展示，本次不产生胜负和奖励，保留已付费用、弃自身及已经完成的步骤，未展示牌不洗回；是否按此实现？"
+    },
+    {
+      "id": "bq038-non-vampire-feed",
+      "status": "projectRulingPending",
+      "directlyClosedByPrimaryRules": false,
+      "recommended": "Retain the blood card in its original graveyard or personal-society sealed zone; no entry/attach/destruction fact. Only feeding has no effect; original raid continues.",
+      "alternative": "Move blood into play and then destroy it for illegal host, producing additional zone changes and potential observers.",
+      "questionZh": "建议采用“不迁移”：BQ038令当前非吸血鬼饮血时，鲜血留在原墓地或秘社封印区，只有饮血部分不生效，袭击正常结算；可以按此裁定实现吗？"
+    }
+  ]
+}

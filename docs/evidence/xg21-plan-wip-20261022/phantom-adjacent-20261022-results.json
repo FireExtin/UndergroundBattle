@@ -1,0 +1,32 @@
+[
+  {
+    "filter": "batch4_plans",
+    "exitCode": 0,
+    "seconds": 3.717,
+    "log": "phantom-adjacent-20261022-batch4_plans.log"
+  },
+  {
+    "filter": "batch4_new_order",
+    "exitCode": 0,
+    "seconds": 2.15,
+    "log": "phantom-adjacent-20261022-batch4_new_order.log"
+  },
+  {
+    "filter": "batch4_conference",
+    "exitCode": 0,
+    "seconds": 3.767,
+    "log": "phantom-adjacent-20261022-batch4_conference.log"
+  },
+  {
+    "filter": "batch4_markers",
+    "exitCode": 0,
+    "seconds": 1.973,
+    "log": "phantom-adjacent-20261022-batch4_markers.log"
+  },
+  {
+    "filter": "pack_a_original_data_and_fixed_programs",
+    "exitCode": 0,
+    "seconds": 0.178,
+    "log": "phantom-adjacent-20261022-pack_a_original_data_and_fixed_programs.log"
+  }
+]

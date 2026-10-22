@@ -1,0 +1,8 @@
+[
+  {
+    "filter": "batch4_phantom",
+    "exitCode": 101,
+    "seconds": 26.606,
+    "log": "phantom-snapshotfix-20261022-batch4_phantom.log"
+  }
+]
