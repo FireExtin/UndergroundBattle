@@ -1,0 +1,377 @@
+{
+  "baseCommit": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+  "sourceCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+  "createdUtc": "2026-10-22T20:05:52.718420+00:00",
+  "finding": "P2-AB-01",
+  "authorStatus": "fixed; independent closure pending",
+  "priorFullCardReview": {
+    "candidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "closedCards": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082",
+      "BQ027",
+      "BQ031",
+      "BQ032",
+      "BQ038"
+    ],
+    "notClosedCards": [
+      "BQ036"
+    ],
+    "finding": "P2-AB-01",
+    "report": "docs/evidence/bq036-host-p2-20261022/prior-independent-review.txt",
+    "reportSha256": "4e5f3d908054e2259b00788771e3ddb7a2311bff50940194f20d122949a0f7af",
+    "independentTests": {
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0
+    },
+    "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
+    "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
+  },
+  "formalNativeComplete": 31,
+  "bq036NativeComplete": false,
+  "wholeBatchTarget": 50,
+  "publicAdmissionAdded": 0,
+  "wasmPackageAdded": 0,
+  "nativeTests": {
+    "before": {
+      "passed": 1,
+      "failed": 1
+    },
+    "after": {
+      "passed": 20,
+      "failed": 0,
+      "ignored": 0,
+      "totalCompiled": 2047,
+      "filtered": 2027,
+      "names": [
+        "batch4_vampire_contest_tests::a_b_three_layers_reject_lost_reordered_and_duplicate_ancestor_continuations",
+        "batch4_vampire_contest_tests::a_b_three_layers_restore_original_responses_and_consume_each_bonus_once",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_departure_keeps_original_paid_witness",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_foreign_cost_or_host_stays_illegal",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_forged_parent_cost_and_actor_reject",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_room_payment_replay_and_outcome",
+        "batch4_vampire_contest_tests::b_contest_bq036_payment_accepts_personal_attachment_on_personal_character_and_not_printed_cost",
+        "batch4_vampire_contest_tests::b_contest_bq036_rejects_foreign_cost_wrong_host_and_double_payment_restore",
+        "batch4_vampire_contest_tests::b_contest_bq038_decline_and_zero_are_distinct_and_bonus_tampering_is_rejected",
+        "batch4_vampire_contest_tests::b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+        "batch4_vampire_contest_tests::b_contest_bq038_start_is_respondable_counts_each_personal_host_once_and_freezes",
+        "batch4_vampire_contest_tests::b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_attached_dual_character_cost_must_work",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_unattached_dual_character_cost_control",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq038_nonqualifying_nested_ring_does_not_add_bonus",
+        "batch4_vampires_tests::batch4_vampires_bq036_actual_search_top_six_private_reveals_only_selected_and_shuffles",
+        "batch4_vampires_tests::batch4_vampires_bq036_source_departure_does_not_cancel_or_rebind_private_search",
+        "batch4_vampires_tests::batch4_vampires_bq036_wrong_seventh_duplicates_and_extra_payload_reject_atomically",
+        "batch4_vampires_tests::batch4_vampires_bq036_zero_all_short_and_empty_choices",
+        "batch4_vampires_tests::batch4_vampires_contract_bq036_cost_requires_personal_attachment_and_personal_character"
+      ]
+    }
+  },
+  "sourceChecks": {
+    "passed": 3,
+    "proof": "runs/ledger-fixed-source-05.log.gz"
+  },
+  "wasmTargetCheck": {
+    "passed": true,
+    "command": [
+      "node",
+      "tools/build-storage.mjs",
+      "--",
+      "cargo",
+      "check",
+      "--offline",
+      "--locked",
+      "-p",
+      "hegemony-wasm",
+      "--target",
+      "wasm32-unknown-unknown"
+    ],
+    "notPackageIntegration": true
+  },
+  "nativeTestLayoutsNotProductionData": true,
+  "fullSuite": false,
+  "browser": false,
+  "push": false,
+  "deploy": false,
+  "main": false,
+  "xg21Untouched": true,
+  "sourceInputs": [
+    {
+      "path": "Cargo.toml",
+      "bytes": 69,
+      "sha256": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 29338,
+      "sha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54"
+    },
+    {
+      "path": "rust-game/Cargo.toml",
+      "bytes": 1271,
+      "sha256": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178"
+    },
+    {
+      "path": "rust-game-wasm/Cargo.toml",
+      "bytes": 375,
+      "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "bytes": 274033,
+      "sha256": "ea453d2c3b25ba216b02b45c8b81e2e9550b6c12b2a721d385bbda3be86784b2"
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "bytes": 2815144,
+      "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c"
+    },
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "bytes": 67949,
+      "sha256": "75ae86ea0f78bf7d271b5c313f4178da46f6074a6d88db342ef130981fbf3bef"
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.json",
+      "bytes": 2515,
+      "sha256": "1cb4fa2aa7b79dbc4603773953661e427726d6298ed9436e9839f22d61b88ca9"
+    },
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "bytes": 7844,
+      "sha256": "aadff7f60ef2c05a74aeffc383fc61e997556d5d81c2582d1e7b6e9b00375681"
+    },
+    {
+      "path": "tools/build-storage.mjs",
+      "bytes": 4565,
+      "sha256": "f450bc9ac4f16d1ec4410284ef4bb57a4f6599dbdbe48af3d54a0f66f5701ca3"
+    }
+  ],
+  "runs": [
+    {
+      "run": "ledger-source-04",
+      "referenceCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+      "matchedRustFiles": 235,
+      "expectedTestOnlyChanges": [],
+      "logSha256": "80e7cc4b5479be92c3fa21be07c10c8970d507c1382f86e61b98585e64930673",
+      "sourceHead": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "state": "complete",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "startUtc": "2026-10-22T20:02:55.783469+00:00",
+      "seconds": 0.35
+    },
+    {
+      "run": "host-receipts-after-02",
+      "referenceCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+      "matchedRustFiles": 234,
+      "expectedTestOnlyChanges": [],
+      "logSha256": "fcfd6c5d0b7e6f2e1a3233a2d46db5d832ed7196b0fdd1e2ba6c2309ff411996",
+      "sourceHead": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "state": "complete",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "bq036_",
+        "b_contest_bq038_",
+        "independent_ab_ten_bq038_",
+        "a_b_three_layers_",
+        "--nocapture"
+      ],
+      "startUtc": "2026-10-22T20:01:46.052717+00:00",
+      "seconds": 36.084
+    },
+    {
+      "run": "attached-host-before-01",
+      "referenceCommit": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "matchedRustFiles": 232,
+      "expectedTestOnlyChanges": [
+        "rust-game/src/batch4_vampire_contest_tests.rs",
+        "rust-game/src/pack_a_contest_tests.rs"
+      ],
+      "logSha256": "8b2d1ac047244be2715f6f2a91457f11b0ea820256b990815a9e4c8169d47cbb",
+      "sourceHead": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "state": "complete",
+      "exitCode": 101,
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "independent_ab_ten_bq036_",
+        "--",
+        "--nocapture"
+      ],
+      "startUtc": "2026-10-22T19:58:40.162758+00:00",
+      "seconds": 27.969
+    },
+    {
+      "run": "wasm-target-check-03",
+      "referenceCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+      "matchedRustFiles": 235,
+      "expectedTestOnlyChanges": [],
+      "logSha256": "824c5b639bcf54b1c5e437d5390d2464c9f2870d4a1b7bf793eb5c69dfad6a64",
+      "sourceHead": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "state": "complete",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-wasm",
+        "--target",
+        "wasm32-unknown-unknown"
+      ],
+      "startUtc": "2026-10-22T20:02:54.371174+00:00",
+      "seconds": 12.477
+    },
+    {
+      "run": "ledger-fixed-source-05",
+      "referenceCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+      "matchedRustFiles": 235,
+      "expectedTestOnlyChanges": [],
+      "logSha256": "c5d80a1438ab9bde7771820a927cab46c325b1d4d1aa11ec2f9c2d5a2a71bb5d",
+      "sourceHead": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+      "state": "complete",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "startUtc": "2026-10-22T20:05:18.678494+00:00",
+      "seconds": 0.203
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "runs/attached-host-before-01-traces/bq036-attached-host-false.json.gz",
+      "uncompressedSha256": "e6571e4063e703b6a9782a41123dea87941ffe0b2a6fb45d1d1a35feac9796a7",
+      "sha256": "5b73795f916186b4fe3d88433c60ff3d248dad0d22b0011b11dc7ede27655ae3",
+      "bytes": 4582
+    },
+    {
+      "path": "runs/attached-host-before-01-traces/bq036-attached-host-true.json.gz",
+      "uncompressedSha256": "3c47ff8152f2299af5ae23b881a8fff35f9cb216590e1cc4caf1a0a964fcfea0",
+      "sha256": "d03145817c87925560ea26152d49b2e8ddc35ed2c925f8c8888b3bc83f39c02a",
+      "bytes": 4279
+    },
+    {
+      "path": "runs/attached-host-before-01.json.gz",
+      "uncompressedSha256": "62237240dd293ebc663fecae988978211d9678125fbcf04fe7884713bbf32598",
+      "sha256": "0ef5e88ec63f0aa44a0bdfab5729a0c71c6bcd5621171c88c44ffeb50dcd7f62",
+      "bytes": 11415
+    },
+    {
+      "path": "runs/attached-host-before-01.log.gz",
+      "uncompressedSha256": "8b2d1ac047244be2715f6f2a91457f11b0ea820256b990815a9e4c8169d47cbb",
+      "sha256": "f85a7c77dee53e02331ea39227c26d04c4eb07cef847bff5dd4e6373792011a1",
+      "bytes": 1163
+    },
+    {
+      "path": "runs/host-receipts-after-02-traces/bq036-attached-host-false.json.gz",
+      "uncompressedSha256": "e6571e4063e703b6a9782a41123dea87941ffe0b2a6fb45d1d1a35feac9796a7",
+      "sha256": "5b73795f916186b4fe3d88433c60ff3d248dad0d22b0011b11dc7ede27655ae3",
+      "bytes": 4582
+    },
+    {
+      "path": "runs/host-receipts-after-02-traces/bq036-attached-host-true.json.gz",
+      "uncompressedSha256": "801d8324ae19854ea2015bd2ab939b6b96fe3df0dadae7f167170659679f20b6",
+      "sha256": "0a8402d8c2898ed486be548d18569c8a332063ee5a69c22ada2e248ebd9f1bf9",
+      "bytes": 4672
+    },
+    {
+      "path": "runs/host-receipts-after-02.json.gz",
+      "uncompressedSha256": "a6f193792f9cd7040622a4767e7cd8f81aef738f4832fcde8367982f45065860",
+      "sha256": "4bf902f141c7f068a428e8851a8feaa4e891a8d5176329ea08f8f41988e20f93",
+      "bytes": 11446
+    },
+    {
+      "path": "runs/host-receipts-after-02.log.gz",
+      "uncompressedSha256": "fcfd6c5d0b7e6f2e1a3233a2d46db5d832ed7196b0fdd1e2ba6c2309ff411996",
+      "sha256": "f73368cd200185ade5b5ffc6e2c9337478d7730673020508557fb8dfb955dc16",
+      "bytes": 1282
+    },
+    {
+      "path": "runs/ledger-fixed-source-05.json.gz",
+      "uncompressedSha256": "64618cb5ce16a7de1a1b4e0469727694896cc7a88c2b3f33ab52f66ec0826e5f",
+      "sha256": "4306ce7c5b24dc3928a2150b469404383359d6be782e36cd4a10077f8a81c2e3",
+      "bytes": 11567
+    },
+    {
+      "path": "runs/ledger-fixed-source-05.log.gz",
+      "uncompressedSha256": "c5d80a1438ab9bde7771820a927cab46c325b1d4d1aa11ec2f9c2d5a2a71bb5d",
+      "sha256": "a3cce0d8e9da5bbb0dbd1e90a65b409e8574c56f4bc6dcdd2b74527effe6967e",
+      "bytes": 355
+    },
+    {
+      "path": "runs/ledger-source-04.json.gz",
+      "uncompressedSha256": "9f868682621891e62d7d492ab099c9c1af623d1d7e4ff8a467203b97494d4f69",
+      "sha256": "fec9964d3110c1349150a75f71db1162cc051a9963d1dc87e369dfbff36b6eb5",
+      "bytes": 11501
+    },
+    {
+      "path": "runs/ledger-source-04.log.gz",
+      "uncompressedSha256": "80e7cc4b5479be92c3fa21be07c10c8970d507c1382f86e61b98585e64930673",
+      "sha256": "5e53c52385e0c9172b4dfa91d6fd72bbed64d1d6e58504457d8828a31b5125b7",
+      "bytes": 358
+    },
+    {
+      "path": "runs/tool-versions.json.gz",
+      "uncompressedSha256": "190ef15eed99f6130d2c4aca1ca34d8430923eaf7aa3c0ca9a0cd42268d0a81b",
+      "sha256": "2524b273129976193bc1ecfa3a3b27636cf0f018a178139735631e60afb399d8",
+      "bytes": 211
+    },
+    {
+      "path": "runs/wasm-target-check-03.json.gz",
+      "uncompressedSha256": "75dd9842fe6082f5c4c6083cf5464c386942ceb5d9dc95084d5e08c20514bf21",
+      "sha256": "20c23ef093fc09caf3451818b0dcd29c669f77ef450d293f72a3a801ce231832",
+      "bytes": 11549
+    },
+    {
+      "path": "runs/wasm-target-check-03.log.gz",
+      "uncompressedSha256": "824c5b639bcf54b1c5e437d5390d2464c9f2870d4a1b7bf793eb5c69dfad6a64",
+      "sha256": "2474c84f219a38268e170b58398118d6bdb4035f8456176e21a830a916567576",
+      "bytes": 580
+    }
+  ],
+  "sourceCommitScope": "Runtime, tests and ledger at6497; final docs clarify only next[0] wording without changing counts or checks.",
+  "finalLedgerWordingCorrection": {
+    "path": "docs/factions/batch20-fourth-2026-10-22.json",
+    "field": "next[0]",
+    "countsUnchanged": true
+  }
+}
