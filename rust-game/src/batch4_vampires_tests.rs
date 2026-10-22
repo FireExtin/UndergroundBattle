@@ -325,3 +325,39 @@ fn batch4_vampires_search_room_pause_resume_replay_large_seed_and_four_private_v
     let duplicate=r.transition(0,Some(cmd),6001).unwrap();assert_eq!(duplicate.error_code.as_deref(),Some("version_conflict"));assert_eq!(duplicate.state,serde_json::to_string(&r).unwrap());
     assert_eq!(r.game.seed,u64::MAX-93);let restored=RoomEnvelope::from_persisted(&serde_json::to_string(&r).unwrap()).unwrap();for seat in 0..4{assert_eq!(serde_json::to_value(r.view(seat,7000)).unwrap(),serde_json::to_value(restored.view(seat,7000)).unwrap());}
 }
+
+// These fixtures cover only B-owned read-only inputs to the pending public
+// adapters. They do not claim that a contest action or hook has been enabled.
+fn contest_attachment(g: &mut Game, id: &str, controller: usize, host: &str) -> String {
+    let card=g.make_card(id,controller);let uid=card.id.clone();g.attachments.push(Attachment{card,host_id:host.into()});uid
+}
+#[test]
+fn batch4_vampires_contract_bq036_cost_requires_personal_attachment_and_personal_character() {
+    let mut g=game();let own=field(&mut g,"JC029",0);let ally=field(&mut g,"JC029",1);
+    let valid=contest_attachment(&mut g,"XQ14",0,&own);contest_attachment(&mut g,"BQ040",1,&own);contest_attachment(&mut g,"BQ040",0,&ally);
+    contest_attachment(&mut g,"BQ038",0,"society:p0");
+    assert_eq!(g.bq036_contest_cost_candidates(0),[valid.clone()]);
+    g.attachments.iter_mut().find(|a|a.card.id==valid).unwrap().card.owner=2;
+    assert_eq!(g.bq036_contest_cost_candidates(0),[valid]);
+    g.board_mut(&own).unwrap().face_down=true;assert!(g.bq036_contest_cost_candidates(0).is_empty());
+}
+#[test]
+fn batch4_vampires_contract_bq038_counts_characters_once_and_accepts_foreign_attachment_controller() {
+    let mut g=game();let human=field(&mut g,"JC125",0);let vampire=field(&mut g,"JC029",0);let ally=field(&mut g,"JC029",1);let bare=field(&mut g,"JC029",0);
+    let foreign=contest_attachment(&mut g,"BQ022",2,&human);contest_attachment(&mut g,"XQ47",0,&human);
+    contest_attachment(&mut g,"XQ14",0,&vampire);contest_attachment(&mut g,"XQ14",0,&ally);contest_attachment(&mut g,"BQ026",0,&bare);
+    let witnesses=g.bq038_contest_count_witnesses(0);assert_eq!(witnesses.len(),2);
+    assert_eq!(witnesses[0].character.card.id,human);assert_eq!(witnesses[0].attachment.card.id,foreign);
+    assert_eq!(witnesses[1].character.card.id,vampire);assert_eq!(witnesses[0].character.source_region_instance.as_ref(),Some(&g.regions[0].card.id));
+    g.board_mut(&human).unwrap().face_down=true;assert_eq!(g.bq038_contest_count_witnesses(0).len(),1);
+    g.players[0].eliminated=true;assert!(g.bq038_contest_count_witnesses(0).is_empty());
+}
+#[test]
+fn batch4_vampires_contract_bq032_authenticates_original_hand_without_paying_or_publishing_action() {
+    let mut g=game();let id=held(&mut g,"BQ032",0);let wrong=held(&mut g,"BQ027",0);let other=held(&mut g,"BQ032",1);let board=field(&mut g,"BQ032",0);
+    let before=serde_json::to_string(&g).unwrap();let source=g.bq032_hand_contest_source(0,&id).unwrap();
+    assert_eq!(source.card.id,id);assert!(source.region.is_none()&&source.play_source.is_none());
+    assert!(g.bq032_hand_contest_source(0,&wrong).is_err());assert!(g.bq032_hand_contest_source(0,&other).is_err());assert!(g.bq032_hand_contest_source(0,&board).is_err());
+    assert!(g.bq032_hand_contest_source(99,&id).is_err());assert_eq!(serde_json::to_string(&g).unwrap(),before);
+    assert!(!definition("BQ032").abilities.iter().any(|a|a.event.is_none()));
+}

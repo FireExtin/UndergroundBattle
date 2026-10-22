@@ -32,6 +32,16 @@ pub struct RaidObservation {
     pub raid: Box<ResolutionFrame>,
 }
 
+/// One qualifying attachment is enough for a counted character. This is
+/// BQ038's card-specific input to a future resolved start-bonus receipt, not a
+/// second contest protocol or an already admitted MysticBonus.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Bq038CharacterWitness {
+    pub character: SourceSnapshot,
+    pub attachment: Attachment,
+}
+
 fn same<T: Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
@@ -123,6 +133,51 @@ fn searchable(c: &Card) -> bool {
     catalog::has_kind(d, "attachment") && d.subtypes.iter().any(|s| matches!(s.as_str(), "装备" | "武器" | "状态"))
 }
 impl Game {
+    /// Read-only cost eligibility for the future BQ036 action adapter. The
+    /// existing source-character sacrifice cost cannot express this predicate.
+    #[allow(dead_code)] // Parent-owned Cost/dispatch integration is pending.
+    pub(crate) fn bq036_contest_cost_candidates(&self, actor: usize) -> Vec<String> {
+        if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }
+        self.attachments.iter().filter(|a| !a.card.face_down && a.card.controller == actor && self.attachment_host_valid(a))
+            .filter(|a| self.board(&a.host_id).is_some_and(|(_, host)| !host.face_down && host.controller == actor
+                && catalog::has_kind(catalog::card(&host.definition), "character")))
+            .map(|a| a.card.id.clone()).collect()
+    }
+
+    /// BQ032 is a hand action with an explicit pay2/discard-self cost, not a
+    /// printed-cost play. This helper only authenticates the pre-payment source.
+    #[allow(dead_code)] // Parent-owned hand-action dispatch is pending.
+    pub(crate) fn bq032_hand_contest_source(&self, actor: usize, id: &str) -> RuleResult<SourceSnapshot> {
+        let player = self.players.get(actor).filter(|p| !p.eliminated).ok_or("宴会司仪手牌行动的玩家无效")?;
+        let c = player.hand.iter().find(|c| c.id == id && c.definition == "BQ032" && !c.face_down
+            && c.controller == actor && c.owner < self.players.len()).ok_or("神秘学博弈必须从本人原宴会司仪手牌弃置")?;
+        if self.vampire_id(id).is_none() { return Err("宴会司仪手牌实例无效".into()); }
+        self.mobility_immutable_identity(c)?;
+        Ok(self.source_snapshot(c, None))
+    }
+
+    /// Evaluate at the BQ038 trigger's resolution, then retain these identities
+    /// in its B-owned operation when the parent adds typed bonus dispatch. A
+    /// foreign-controlled attachment qualifies; only its character is personal.
+    #[allow(dead_code)] // The empty public hook is deliberately not bypassed.
+    pub(crate) fn bq038_contest_count_witnesses(&self, actor: usize) -> Vec<Bq038CharacterWitness> {
+        if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }
+        let mut out = vec![];
+        for (r, region) in self.regions.iter().enumerate().filter(|(_, r)| !r.vacant) {
+            for character in region.cards.iter().filter(|c| !c.face_down && c.controller == actor
+                && catalog::has_kind(catalog::card(&c.definition), "character")) {
+                if let Some(attachment) = self.attachments.iter().find(|a| a.host_id == character.id && !a.card.face_down
+                    && self.attachment_host_valid(a) && catalog::has_kind(catalog::card(&a.card.definition), "attachment")
+                    && self.current_subtypes(&a.card).iter().any(|s| matches!(s.as_str(), "装备" | "武器" | "状态"))) {
+                    let mut source = self.source_snapshot(character, Some(r));
+                    source.source_region_instance = Some(region.card.id.clone());
+                    out.push(Bq038CharacterWitness { character: source, attachment: attachment.clone() });
+                }
+            }
+        }
+        out
+    }
+
     fn vampire_id(&self, id: &str) -> Option<u64> {
         id.strip_prefix('i').and_then(|x| x.parse::<u64>().ok()).filter(|n| *n > 0 && *n <= self.sequence && id == format!("i{n}"))
     }
