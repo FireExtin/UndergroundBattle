@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 5,
+    "nativePilots": 6,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -194,8 +194,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
       "sourceImageSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 15,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -425,7 +425,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 5,
+      "nativeCards": 6,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,

@@ -3,6 +3,9 @@ mod batch4;
 mod batch4_tattoo;
 mod batch4_shape;
 mod batch4_dahlia;
+mod batch4_feast;
+#[cfg(test)]
+mod batch4_feast_tests;
 #[cfg(test)]
 mod batch4_dahlia_tests;
 #[cfg(test)]

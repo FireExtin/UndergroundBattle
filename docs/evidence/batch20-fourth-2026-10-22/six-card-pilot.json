@@ -1,0 +1,98 @@
+{
+  "recordedAt": "2026-10-22T01:38:15.351440+00:00",
+  "precedingCheckpoint": "75b49b375e39b6488549aad2c5663003ec6d9d5b",
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ39",
+    "XG12",
+    "WM060",
+    "BQ041"
+  ],
+  "newCard": "BQ041",
+  "newDirectedCases": 15,
+  "affectedBQ030RoomCases": 27,
+  "sourceChecks": 4,
+  "sourceManifest": "native-source-manifest-six-cards.json",
+  "sourceManifestSha256": "a1e77bee5adcc2b16e464a886b60f6c8af3c17f839fdd1f29e547c33b0872368",
+  "results": [
+    {
+      "phase": "preservedCompileFailure",
+      "log": "logs/batch4-bq041-first-batch4_feast.log.gz",
+      "encoding": "gzip",
+      "sha256": "3e10181f35a5a4dc7907960ca94436f6aabbf4bf84a269298f8c193253fab295",
+      "rawSha256": "0a4274062fbe6015beacee32bc9a1213ced325b8e2653237ecf5c52b6f602d0e",
+      "result": "compileFailure",
+      "passed": null,
+      "failed": null
+    },
+    {
+      "phase": "preservedRegionHostFailure",
+      "log": "logs/batch4-bq041-second-batch4_feast.log.gz",
+      "encoding": "gzip",
+      "sha256": "ae73c12b976c2a85f6f3cc0fb70ac43c3ddd69b6f052c23b0394ab761de75d20",
+      "rawSha256": "a91fb6b5a64d609a75bc30607c95933d09152d6d9c9543be19ec3ebaf73e7316",
+      "result": "FAILED",
+      "passed": 0,
+      "failed": 11
+    },
+    {
+      "phase": "preservedFixtureAndDeclarationFailure",
+      "log": "logs/batch4-bq041-third-batch4_feast.log.gz",
+      "encoding": "gzip",
+      "sha256": "7c79de6e6c4cec6058e3786e7782045c120c55c83b5c2fdeaa48091628e52dd4",
+      "rawSha256": "1f9b506c5822d1fdaddd3a9b7d86065096f2922ea6c5c4622b49589749537707",
+      "result": "FAILED",
+      "passed": 9,
+      "failed": 2
+    },
+    {
+      "phase": "fifteenPassingCases",
+      "log": "logs/batch4-bq041-fourth-batch4_feast.log.gz",
+      "encoding": "gzip",
+      "sha256": "efdba89996e1fc5d4f41aeeb62949ae4b473667a3440ccd227e247492fcd5267",
+      "rawSha256": "3a4031b52b93f7df9859ca4e6a49d28b500286c7493209371d8104187d2c6ccf",
+      "result": "ok",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "phase": "affectedBQ030RoomRegressions",
+      "log": "logs/batch4-bq041-related-bq030-01.log.gz",
+      "encoding": "gzip",
+      "sha256": "fcc3ac2c32d8a53e24f6ca3de2cac7009a5f2be81a6af2e35677aed2e8b4b06c",
+      "rawSha256": "4ac8aa6a62fd6e6c78fef8281434c560fd260f3da0fb1a960e9ee8d608a72bb9",
+      "result": "ok",
+      "passed": 27,
+      "failed": 0
+    },
+    {
+      "phase": "sourceChecks",
+      "log": "logs/batch4-six-card-source.log.gz",
+      "encoding": "gzip",
+      "sha256": "f52211dc98c51ae0eef76865a8a420830df510101127a40f9278eaa99e62338f",
+      "rawSha256": "c2c1e8bff1af3a9e441f85447ffae85dbae15556b9bc4640006f5d43a3cbc953",
+      "result": "sourceTAP",
+      "passed": null,
+      "failed": null
+    }
+  ],
+  "scopeNote": "Author-run directed native lib and directly affected actual Room regression only. Earlier five pilot suites and full product tests were not repeated. No independent execution, WASM, public deployment or browser acceptance.",
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "nativeIdentity": {
+    "engineVersion": "rust-v0.2.95-batch20-fourth",
+    "cardPoolVersion": "limited-v2.85-batch20-fourth",
+    "definitions": 219
+  },
+  "mechanisms": [
+    "same-name XQ14/BQ040 actual Blood attachment; personal host and original region; any Blood controller",
+    "target enemy pays2 once or privately discards1; empty-hand and elimination guards",
+    "simultaneous BQ041/BQ030 optional order with disjoint immutable event subsets and bounded declined receipts",
+    "source/host departure, movement and region replacement after event preserve demand; attach response uses original region UID",
+    "retreat uses actual atomic region return; restored private views; stale, duplicate, omitted receipt and forged program rejection"
+  ]
+}

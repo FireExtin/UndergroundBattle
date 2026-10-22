@@ -31,6 +31,11 @@ pub struct AttachmentEvent {
     pub observers: Vec<SourceSnapshot>,
     pub remaining: Vec<String>,
 }
+/// A declined participant remains accounted for while sibling declarations or
+/// frames of the same event are active. It never executes a draw.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DeclinedObserver { pub turn: u32, pub event: AttachmentEvent }
 
 fn same<T: Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -152,6 +157,7 @@ impl Game {
     /// Successful actual attachment only. No targeting attempt, entry of the
     /// observer itself, host movement, or unchanged reattachment calls this.
     pub(crate) fn observe_attachment_committed(&mut self, attachment_id: &str) {
+        let mixed = self.bq041_observe_attachment(attachment_id) > 0;
         let Some(attachment) = self.attachments.iter().find(|a| a.card.id == attachment_id) else {
             return;
         };
@@ -195,6 +201,17 @@ impl Game {
             observers,
             remaining,
         };
+        if mixed {
+            // The entry-order queue can now interleave each optional draw with
+            // the other card's optional, targeted trigger. Full facts stay shared.
+            for source in &event.observers {
+                let mut part=event.clone();part.remaining=vec![source.card.id.clone()];
+                self.effects.push_back(Effect::Declare { declaration: Declaration {
+                    actor,source:source.clone(),ability:runtime_ability(part),
+                }});
+            }
+            return;
+        }
         self.effects.push_back(Effect::Declare {
             declaration: Declaration {
                 actor,
@@ -243,7 +260,7 @@ impl Game {
             || !catalog::catalog()
                 .cards
                 .iter()
-                .any(|d| d.id == c.definition && (d.supported || crate::batch3::IMPLEMENTING.contains(&d.id.as_str())) && catalog::has_kind(d, kind))
+                .any(|d| d.id == c.definition && catalog::runtime_implemented(d) && catalog::has_kind(d, kind))
         {
             return Err("结附事件包含未知牌面、暗置对象或非法历史实例".into());
         }
@@ -494,6 +511,10 @@ impl Game {
             return Err("裁定官结附触发排序阶段或选择数量无效".into());
         }
         let Some(selected) = selected.first() else {
+            for id in &event.remaining {
+                let mut part=event.clone();part.remaining=vec![id.clone()];
+                self.attachment_declines.push(DeclinedObserver {turn:self.turn,event:part});
+            }
             return Ok(());
         };
         let selected_id = if event.remaining.len() == 1 {
@@ -670,12 +691,10 @@ impl Game {
                 events.insert(event.event_id.clone(), event.clone());
             }
             if carrier {
-                if carriers
-                    .insert(event.event_id.clone(), event.clone())
-                    .is_some()
-                {
-                    return Err("同一结附事件不能有重复的剩余声明".into());
-                }
+                if let Some(prior)=carriers.get_mut(&event.event_id) {
+                    if event.remaining.iter().any(|id|prior.remaining.contains(id)) {return Err("同一结附事件不能有重叠的剩余声明".into());}
+                    prior.remaining.extend(event.remaining.iter().cloned());
+                } else {carriers.insert(event.event_id.clone(),event.clone());}
             } else {
                 let set = selected.entry(event.event_id.clone()).or_default();
                 if !set.insert(event.remaining[0].clone()) {
@@ -850,6 +869,13 @@ impl Game {
                 _ => {}
             }
         }
+        let active=self.bq030_active_event_ids();
+        for declined in &self.attachment_declines {
+            if declined.turn!=self.turn || declined.event.remaining.len()!=1 || !active.contains(&declined.event.event_id) {
+                return Err("放弃的结附观察者必须属于本回合仍活动的事件".into());
+            }
+            self.bq030_validate_event(&declined.event)?;register(&declined.event,false)?;
+        }
         drop(register);
         for event in events.values() {
             if events.contains_key(&event.attachment.id)
@@ -878,5 +904,17 @@ impl Game {
             }
         }
         Ok(())
+    }
+    fn bq030_active_event_ids(&self)->BTreeSet<String> {
+        self.stack.iter().filter_map(|s|s.frame.as_ref().and_then(|f|event_in_frame(f).ok()).map(|e|e.event_id.clone()))
+            .chain(self.effects.iter().filter_map(|e|match e {
+                Effect::Declare{declaration:d}=>event_in_ability(&d.ability).ok(),Effect::Frame{frame:f}=>event_in_frame(f).ok(),_=>None,
+            }).map(|e|e.event_id.clone()))
+            .chain(self.pending.iter().filter_map(|p|match &p.resolution {
+                ChoiceResolution::Declare{declaration:d,..}=>event_in_ability(&d.ability).ok(),ChoiceResolution::Frame{frame:f,..}=>event_in_frame(f).ok(),_=>None,
+            }).map(|e|e.event_id.clone())).collect()
+    }
+    pub(crate) fn prune_attachment_declines(&mut self) {
+        let active=self.bq030_active_event_ids();self.attachment_declines.retain(|d|active.contains(&d.event.event_id));
     }
 }

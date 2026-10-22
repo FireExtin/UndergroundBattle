@@ -59,6 +59,7 @@ impl Game {
             jc054_end_step_turn: None,
             jc035_preparation: None,
             entry_order_groups: vec![],
+            attachment_declines: vec![],
             influence_contests: vec![],
             control_effects: vec![],
             control_baselines: vec![],
@@ -641,6 +642,7 @@ impl Game {
         next.settle_deaths();
         next.drive()?;
         next.prune_inspection_receipts();
+        next.prune_attachment_declines();
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
         next.validate_batch3_state()?;
@@ -1108,6 +1110,7 @@ impl Game {
         self.stack
             .retain(|s| s.controller != seat && s.card.as_ref().is_none_or(|c| c.owner != seat));
         self.entry_order_groups.retain(|g|g.actor!=seat);
+        self.attachment_declines.retain(|d|d.event.host.card.controller!=seat);
         self.effects.retain(|e| match e {
             Effect::Draw { seat: s, .. }
             | Effect::Mulligan { seat: s }
@@ -1140,6 +1143,7 @@ impl Game {
         self.pending = None;
         self.effects.clear();
         self.entry_order_groups.clear();
+        self.attachment_declines.clear();
         self.inspection_receipts.clear();
         self.stack.clear();
         self.note(format!("团队 {} 获胜", team + 1));
@@ -2117,6 +2121,7 @@ impl Game {
         let p = self.pending.clone().ok_or("没有待选")?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
+        crate::batch4_feast::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

@@ -663,6 +663,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ041Payment,
     WM060Repress { regions: Vec<(usize,String,u32)> },
     JZ39EnemySacrifice,
     BloodFeed { state: crate::batch3_blood::BloodFeedCursor },
@@ -878,6 +879,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub attachment_declines: Vec<crate::bq030::DeclinedObserver>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub entry_order_groups: Vec<crate::batch3_entry_order::EntryOrderGroup>,
     pub state_schema: u32,

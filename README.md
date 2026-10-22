@@ -16,7 +16,7 @@
 | 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。固定9aa4fda独立复审的已验范围无新P0/P1；两项构建/测试P2已在677a7b1独立补验关闭。旧多核v75退出发布队列，ABI93单核仍未上线 |
 | 当前单核验证 | [清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)及[夹具迁移](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)保留各固定身份的历史结果；[9950X Ubuntu恢复](docs/UBUNTU_RECOVERY_2026-10-21.md)在精确ABI93字节上重新完成Web148文件1498项、产品内Sites宿主58文件637项、来源工具27文件及原5项目录失败补验，均通过。中断轮单独留档；本机未重跑Rust1482项或广域Native/WASM483场景，未完成独立复审/线上批次验收 |
 | 第三批进度分支 | [20张本机候选](docs/factions/batch20-third-2026-10-21.md)及[ABI94必要检查](docs/factions/ABI94_INTEGRATION_PREPARATION_2026-10-21.md)：CQ07替补待裁定的CQ11，红4/黑5/蓝6/灰5；单ABI94、213条定义，本机新增20张整体准入。原生本批162、Web70、Sites12及构建/启动身份检查通过，均为作者必要验证。原v74在00:03:57UTC仍pending，未新部署；本批公开准入及验收仍0/20 |
-| 第四批隔离研发 | [20张来源与进度](docs/factions/batch20-fourth-2026-10-22.md)：红黑蓝灰各5张，前213条逐字段保留。独立普通克隆/进度分支预留ABI95，已接入朽灭者、雾涌海怪、恶魔刺青、兽形变化、多情达莉娅及其共享机制；新增构筑准入、WASM、公开站与验收均为0/20。第三批b80f1220及其ABI94部署包冻结，不混入本批WIP |
+| 第四批隔离研发 | [20张来源与进度](docs/factions/batch20-fourth-2026-10-22.md)：红黑蓝灰各5张，前213条逐字段保留。独立普通克隆/进度分支预留ABI95，已接入朽灭者、雾涌海怪、恶魔刺青、兽形变化、多情达莉娅、欢宴及其共享机制；新增构筑准入、WASM、公开站与验收均为0/20。第三批b80f1220及其ABI94部署包冻结，不混入本批WIP |
 
 [游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署，现已退出发布队列。
 

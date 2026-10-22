@@ -8686,6 +8686,47 @@
       "unique": true,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "BQ041",
+      "name": "欢宴",
+      "kind": "attachment",
+      "subtypes": [
+        "仪式"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "撤回\n结附于目标地区\n触发 每当一个名为鲜血的附属结附于本地区的本方角色上时，除非目标敌方玩家支付②，否则令其弃一张手牌。",
+      "keywords": [
+        "撤回"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ041",
+        "image": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
+        "imageSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [
