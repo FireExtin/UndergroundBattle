@@ -1,0 +1,149 @@
+diff --git a/rust-game/src/batch4_vampire_contest_tests.rs b/rust-game/src/batch4_vampire_contest_tests.rs
+index dc6fef76..0c35c42b 100644
+--- a/rust-game/src/batch4_vampire_contest_tests.rs
++++ b/rust-game/src/batch4_vampire_contest_tests.rs
+@@ -12,6 +12,98 @@ fn layout() -> Game {
+     }
+     g
+ }
++
++// Independent review probes: all changes below are test-only in the review clone.
++fn independent_ab_ten_nested_cost_setup(on_host: bool) -> (Game, String, String, String) {
++    let mut g = layout();
++    let root = field(&mut g, "JC029", 0);
++    let phoenix = field(&mut g, "BQ036", 0);
++    fund(&mut g, 0, "JC029", 1);
++    let hand_bat = held(&mut g, "BQ026", 0);
++    act(&mut g, 0, Action { card_id: Some(hand_bat), region: Some(0), ..Action::new("deploy") });
++    pass_top(&mut g);
++    assert!(g.pending.is_some());
++    let bat = g.regions[0].cards.iter().find(|c| c.definition == "BQ026").unwrap().id.clone();
++    choose(&mut g, if on_host { vec![root] } else { vec![] });
++    if on_host { pass_top(&mut g); }
++    assert_eq!(g.attached_character(&bat), on_host);
++    fund(&mut g, 0, "JZ41", 1);
++    let ring = held(&mut g, "JZ41", 0);
++    act(&mut g, 0, Action { card_id: Some(ring), target_id: Some(bat.clone()), ..Action::new("play") });
++    pass_top(&mut g);
++    drain_optional(&mut g);
++    let ring = g.attachments.iter().find(|a| a.card.definition == "JZ41" && a.host_id == bat).unwrap().card.id.clone();
++    assert!(g.attachment_host_valid(g.attachments.iter().find(|a| a.card.id == ring).unwrap()));
++    fund(&mut g, 0, "JC125", 1);
++    checkpoint(&g);
++    (g, phoenix, bat, ring)
++}
++
++fn independent_ab_ten_probe_bq036_payment(on_host: bool) {
++    let (mut g, source, bat, cost) = independent_ab_ten_nested_cost_setup(on_host);
++    let action = sacrifice_action(&source, &cost);
++    assert!(g.bq036_contest_cost_candidates(0).contains(&cost));
++    let listed = g.legal_actions(0).iter().any(|a| a.action == action);
++    let before = serde_json::to_string(&g).unwrap();
++    let mut room = crate::room::RoomEnvelope::from_game(g.clone());
++    let command = crate::room::RoomCommand {
++        command_id: format!("independent-ab-ten-nested-cost-{on_host}"),
++        expected_version: room.revision,
++        action: crate::room::SessionAction::Game { action: action.clone() },
++    };
++    let room_result = room.transition(0, Some(command.clone()), 0).unwrap();
++    let result = g.apply(0, action.clone());
++    let after = serde_json::to_string(&g).unwrap();
++    println!("BQ036 attached_host={on_host} listed={listed} Game={result:?} Room={:?}", room_result.outcome);
++    if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
++        std::fs::create_dir_all(&dir).unwrap();
++        std::fs::write(format!("{dir}/bq036-attached-host-{on_host}.json"), serde_json::to_vec_pretty(&serde_json::json!({
++            "on_host":on_host,"listed":listed,"state_before":before,"command":command,
++            "action":action,"game_result":result,"state_after":after,"room_result":room_result
++        })).unwrap()).unwrap();
++    }
++    if result.is_err() { assert_eq!(before, after, "failed command must remain atomic"); }
++    assert!(result.is_ok(), "BQ036 must accept an own attachment on an own character, including an attached dual-type character: {result:?}");
++    assert_eq!(room_result.outcome, "accepted");
++    checkpoint(&g);
++    assert!(!g.attachments.iter().any(|a| a.card.id == cost));
++    assert!(g.board(&bat).is_some());
++    pass_top(&mut g);
++    commit(&mut g, ["JC125"; 4]);
++    assert_eq!(g.mystic_history[0].shown[0].value, 2);
++    rewards(&mut g);
++    checkpoint(&g);
++}
++
++#[test]
++fn independent_ab_ten_bq036_unattached_dual_character_cost_control() {
++    independent_ab_ten_probe_bq036_payment(false);
++}
++
++#[test]
++fn independent_ab_ten_bq036_attached_dual_character_cost_must_work() {
++    independent_ab_ten_probe_bq036_payment(true);
++}
++
++#[test]
++fn independent_ab_ten_bq038_nonqualifying_nested_ring_does_not_add_bonus() {
++    let (mut g, _, bat, _) = independent_ab_ten_nested_cost_setup(true);
++    // JZ41 is an Artifact, not Equipment, Weapon or Status. The current BQ026
++    // pool cannot wear Equipment and is neither a printed Human nor Vampire.
++    for definition in ["JC116", "XQ14", "BQ040", "JC036", "XG12"] {
++        fund(&mut g, 0, definition, crate::catalog::card(definition).cost as usize);
++        let id = held(&mut g, definition, 0);
++        reject(&mut g, 0, Action { card_id: Some(id), target_id: Some(bat.clone()), ..Action::new("play") });
++    }
++    attached(&mut g, "BQ038", 0, "society:p0");
++    start(&mut g);
++    trigger(&mut g, b::START, true);
++    pass_top(&mut g);
++    assert_eq!(g.mystic_contest.as_ref().unwrap().bonuses[0].amount, 0);
++    commit(&mut g, ["JC125"; 4]);
++    assert!(g.mystic_contest.is_none());
++    checkpoint(&g);
++}
+ fn grave(g: &mut Game, id: &str, seat: usize) -> String {
+     let c = g.make_card(id, seat);
+     let id = c.id.clone();
+diff --git a/rust-game/src/pack_a_contest_tests.rs b/rust-game/src/pack_a_contest_tests.rs
+index e473dfb4..b01fe29e 100644
+--- a/rust-game/src/pack_a_contest_tests.rs
++++ b/rust-game/src/pack_a_contest_tests.rs
+@@ -11,6 +11,41 @@ fn layout() -> Game {
+     for seat in 0..4 { deck(&mut g,seat,&["JC125","JC125","JC125"]); }
+     g
+ }
++
++#[test]
++fn independent_ab_ten_wm032_bonus_is_personal_and_or_not_sum() {
++    for (destroyed, personal, teammate, expected) in [(false,false,true,3), (true,true,false,6), (true,false,true,6)] {
++        let mut g=layout();
++        if destroyed { g.regions[1].destroyed=true; }
++        for seat in 0..2 {
++            if (seat==0 && personal) || (seat==1 && teammate) {
++                g.players[seat].destruction_markers=1;
++                let won=g.make_card("DQJC115",seat); g.players[seat].score_cards.push(won);
++            }
++        }
++        held(&mut g,"WM032",0);start(&mut g);commits(&mut g,["WM032","JC125","JC125","JC125"]);
++        assert_eq!(g.mystic_history[0].shown[0].value,expected);
++        rewards(&mut g);decline_triggers(&mut g);checkpoint(&g);
++    }
++}
++
++#[test]
++fn independent_ab_ten_wm021_hand_bat_and_manor_history_are_distinct() {
++    for with_manor in [false,true] {
++        let mut g=layout();field(&mut g,"WM021",0);fund(&mut g,0,"XQ14",2);
++        let manor=if with_manor {
++            fund(&mut g,0,"XQ15",2);let house=held(&mut g,"XQ15",0);
++            act(&mut g,0,Action{card_id:Some(house),target_id:Some("society:p0".into()),..Action::new("play")});pass_top(&mut g);
++            Some(g.attachments.iter().find(|a|a.card.definition=="XQ15").unwrap().card.id.clone())
++        } else {None};
++        let shown=if with_manor {"JC125"} else {"JC030"};held(&mut g,shown,0);
++        start(&mut g);commits(&mut g,[shown,"JC125","JC125","JC125"]);
++        assert_eq!(g.mystic_history[0].shown[0].value,if with_manor {2}else{3});
++        rewards(&mut g);decline_triggers(&mut g);
++        if let Some(id)=manor {g.remove_dead(&id,RemovalCause::Destroy);}
++        checkpoint(&g);assert_eq!(g.mystic_history[0].shown[0].value,if with_manor {2}else{3});
++    }
++}
+ fn start(g: &mut Game) {
+     fund(g,0,"WM022",3); let uid=field(g,"WM022",0);g.board_mut(&uid).unwrap().face_down=true;
+     act(g,0,Action { card_id:Some(uid),..Action::new("reveal") });

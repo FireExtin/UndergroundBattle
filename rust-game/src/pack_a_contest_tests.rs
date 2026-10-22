@@ -11,6 +11,41 @@ fn layout() -> Game {
     for seat in 0..4 { deck(&mut g,seat,&["JC125","JC125","JC125"]); }
     g
 }
+
+#[test]
+fn independent_ab_ten_wm032_bonus_is_personal_and_or_not_sum() {
+    for (destroyed, personal, teammate, expected) in [(false,false,true,3), (true,true,false,6), (true,false,true,6)] {
+        let mut g=layout();
+        if destroyed { g.regions[1].destroyed=true; }
+        for seat in 0..2 {
+            if (seat==0 && personal) || (seat==1 && teammate) {
+                g.players[seat].destruction_markers=1;
+                let won=g.make_card("DQJC115",seat); g.players[seat].score_cards.push(won);
+            }
+        }
+        held(&mut g,"WM032",0);start(&mut g);commits(&mut g,["WM032","JC125","JC125","JC125"]);
+        assert_eq!(g.mystic_history[0].shown[0].value,expected);
+        rewards(&mut g);decline_triggers(&mut g);checkpoint(&g);
+    }
+}
+
+#[test]
+fn independent_ab_ten_wm021_hand_bat_and_manor_history_are_distinct() {
+    for with_manor in [false,true] {
+        let mut g=layout();field(&mut g,"WM021",0);fund(&mut g,0,"XQ14",2);
+        let manor=if with_manor {
+            fund(&mut g,0,"XQ15",2);let house=held(&mut g,"XQ15",0);
+            act(&mut g,0,Action{card_id:Some(house),target_id:Some("society:p0".into()),..Action::new("play")});pass_top(&mut g);
+            Some(g.attachments.iter().find(|a|a.card.definition=="XQ15").unwrap().card.id.clone())
+        } else {None};
+        let shown=if with_manor {"JC125"} else {"JC030"};held(&mut g,shown,0);
+        start(&mut g);commits(&mut g,[shown,"JC125","JC125","JC125"]);
+        assert_eq!(g.mystic_history[0].shown[0].value,if with_manor {2}else{3});
+        rewards(&mut g);decline_triggers(&mut g);
+        if let Some(id)=manor {g.remove_dead(&id,RemovalCause::Destroy);}
+        checkpoint(&g);assert_eq!(g.mystic_history[0].shown[0].value,if with_manor {2}else{3});
+    }
+}
 fn start(g: &mut Game) {
     fund(g,0,"WM022",3); let uid=field(g,"WM022",0);g.board_mut(&uid).unwrap().face_down=true;
     act(g,0,Action { card_id:Some(uid),..Action::new("reveal") });

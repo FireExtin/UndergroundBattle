@@ -12,6 +12,245 @@ fn layout() -> Game {
     }
     g
 }
+
+// Independent review probes: all changes below are test-only in the review clone.
+fn independent_ab_ten_nested_cost_setup(on_host: bool) -> (Game, String, String, String) {
+    let mut g = layout();
+    let root = field(&mut g, "JC029", 0);
+    let phoenix = field(&mut g, "BQ036", 0);
+    fund(&mut g, 0, "JC029", 1);
+    let hand_bat = held(&mut g, "BQ026", 0);
+    act(&mut g, 0, Action { card_id: Some(hand_bat), region: Some(0), ..Action::new("deploy") });
+    pass_top(&mut g);
+    assert!(g.pending.is_some());
+    let bat = g.regions[0].cards.iter().find(|c| c.definition == "BQ026").unwrap().id.clone();
+    choose(&mut g, if on_host { vec![root] } else { vec![] });
+    if on_host { pass_top(&mut g); }
+    assert_eq!(g.attached_character(&bat), on_host);
+    fund(&mut g, 0, "JZ41", 1);
+    let ring = held(&mut g, "JZ41", 0);
+    act(&mut g, 0, Action { card_id: Some(ring), target_id: Some(bat.clone()), ..Action::new("play") });
+    pass_top(&mut g);
+    drain_optional(&mut g);
+    let ring = g.attachments.iter().find(|a| a.card.definition == "JZ41" && a.host_id == bat).unwrap().card.id.clone();
+    assert!(g.attachment_host_valid(g.attachments.iter().find(|a| a.card.id == ring).unwrap()));
+    fund(&mut g, 0, "JC125", 1);
+    checkpoint(&g);
+    (g, phoenix, bat, ring)
+}
+
+fn independent_ab_ten_probe_bq036_payment(on_host: bool) {
+    let (mut g, source, bat, cost) = independent_ab_ten_nested_cost_setup(on_host);
+    let action = sacrifice_action(&source, &cost);
+    assert!(g.bq036_contest_cost_candidates(0).contains(&cost));
+    let listed = g.legal_actions(0).iter().any(|a| a.action == action);
+    let before = serde_json::to_string(&g).unwrap();
+    let room = crate::room::RoomEnvelope::from_game(g.clone());
+    let command = crate::room::RoomCommand {
+        command_id: format!("independent-ab-ten-nested-cost-{on_host}"),
+        expected_version: room.revision,
+        action: crate::room::SessionAction::Game { action: action.clone() },
+    };
+    let room_result = room.transition(0, Some(command.clone()), 0).unwrap();
+    let result = g.apply(0, action.clone());
+    let after = serde_json::to_string(&g).unwrap();
+    println!("BQ036 attached_host={on_host} listed={listed} Game={result:?} Room={:?}", room_result.outcome);
+    if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(format!("{dir}/bq036-attached-host-{on_host}.json"), serde_json::to_vec_pretty(&serde_json::json!({
+            "on_host":on_host,"listed":listed,"state_before":before,"command":command,
+            "action":action,"game_result":result,"state_after":after,"room_result":room_result
+        })).unwrap()).unwrap();
+    }
+    if result.is_err() { assert_eq!(before, after, "failed command must remain atomic"); }
+    assert!(result.is_ok(), "BQ036 must accept an own attachment on an own character, including an attached dual-type character: {result:?}");
+    assert_eq!(room_result.outcome, "accepted");
+    checkpoint(&g);
+    assert!(!g.attachments.iter().any(|a| a.card.id == cost));
+    assert!(g.board(&bat).is_some());
+    pass_top(&mut g);
+    commit(&mut g, ["JC125"; 4]);
+    assert_eq!(g.mystic_history[0].shown[0].value, 2);
+    rewards(&mut g);
+    checkpoint(&g);
+}
+
+#[test]
+fn independent_ab_ten_bq036_unattached_dual_character_cost_control() {
+    independent_ab_ten_probe_bq036_payment(false);
+}
+
+#[test]
+fn independent_ab_ten_bq036_attached_dual_character_cost_must_work() {
+    independent_ab_ten_probe_bq036_payment(true);
+}
+
+#[test]
+fn b_contest_bq036_attached_host_room_payment_replay_and_outcome() {
+    use crate::room::{Decision, RoomCommand, RoomEnvelope, SessionAction};
+    let (g, source, bat, cost) = independent_ab_ten_nested_cost_setup(true);
+    let mut room = RoomEnvelope::from_game(g);
+    let first = RoomCommand {
+        command_id: "bq036-attached-payment".into(),
+        expected_version: room.revision,
+        action: SessionAction::Game { action: sacrifice_action(&source, &cost) },
+    };
+    let initial = room.transition(0, Some(first.clone()), 0).unwrap();
+    assert_eq!(initial.outcome, "accepted");
+    room = RoomEnvelope::from_persisted(&initial.state).unwrap();
+    let saved = serde_json::to_value(&room).unwrap();
+    let duplicate = room.transition(0, Some(first.clone()), 0).unwrap();
+    assert_eq!(duplicate.outcome, "rejected");
+    assert!(!duplicate.changed && duplicate.journal.is_empty());
+    assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&duplicate.state).unwrap()).unwrap(), saved);
+    for n in 0..80 {
+        if room.game.mystic_history.len() == 1 && room.game.pending.is_none()
+            && room.game.stack.is_empty() && room.game.effects.is_empty() { break; }
+        let (seat, action) = if let Some(p) = &room.game.pending {
+            let selected = match p.choice.kind.as_str() {
+                m::COMMIT_KIND => vec![room.game.players[p.seat].hand.iter()
+                    .find(|c| c.definition == "JC125").unwrap().id.clone()],
+                m::REWARD_KIND => vec![],
+                kind => panic!("unexpected room choice {kind}"),
+            };
+            (p.seat, SessionAction::Game { action: Action {
+                choice_id: Some(p.choice.id.clone()), selected: Some(selected), ..Action::new("choose")
+            } })
+        } else if let Some(w) = &room.pacing.window {
+            let seat = *w.members.iter().find(|(_, d)| matches!(d, Decision::Undecided { .. })).unwrap().0;
+            (seat, SessionAction::PassResponse { window_id: w.id.clone() })
+        } else {
+            let seat = (0..4).find(|seat| room.game.legal_actions(*seat).iter().any(|a| a.action.kind == "pass")).unwrap();
+            (seat, SessionAction::Game { action: Action::new("pass") })
+        };
+        let command = RoomCommand { command_id: format!("bq036-attached-step-{n}"), expected_version: room.revision, action };
+        let result = room.transition(seat, Some(command), 0).unwrap();
+        assert_eq!(result.outcome, "accepted");
+        let next = RoomEnvelope::from_persisted(&result.state).unwrap();
+        assert_eq!(serde_json::to_value(room.replay_events(&result.journal).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+        for viewer in 0..4 {
+            assert_eq!(serde_json::to_value(next.view(viewer, 0)).unwrap(),
+                serde_json::to_value(RoomEnvelope::from_persisted(&result.state).unwrap().view(viewer, 0)).unwrap());
+        }
+        checkpoint(&next.game);
+        room = next;
+    }
+    assert_eq!(room.game.mystic_history.len(), 1);
+    assert!(room.game.mystic_contest.is_none() && room.game.pending.is_none()
+        && room.game.stack.is_empty() && room.game.effects.is_empty());
+    assert_eq!(room.game.mystic_history[0].shown[0].value, 2);
+    assert_eq!(room.game.resources(0), 0);
+    assert!(room.game.board(&bat).is_some());
+    assert!(!room.game.attachments.iter().any(|a| a.card.id == cost));
+    assert_eq!(room.game.players[0].graveyard.iter().filter(|c| c.definition == "JZ41").count(), 1);
+    let duplicate = room.transition(0, Some(first), 0).unwrap();
+    assert_eq!(duplicate.outcome, "rejected");
+    assert!(!duplicate.changed && duplicate.journal.is_empty());
+}
+
+#[test]
+fn b_contest_bq036_attached_host_departure_keeps_original_paid_witness() {
+    for remove_root in [false, true] {
+        let (mut g, source, bat, cost) = independent_ab_ten_nested_cost_setup(true);
+        let root = g.attachments.iter().find(|a| a.card.id == bat).unwrap().host_id.clone();
+        act(&mut g, 0, sacrifice_action(&source, &cost));
+        // Explicit native removal boundary, after the real payment command.
+        g.remove_dead(if remove_root { &root } else { &bat }, RemovalCause::Destroy);
+        assert!(g.board(&bat).is_none());
+        let replacement = field(&mut g, "BQ026", 0);
+        assert_ne!(replacement, bat);
+        let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+        let PaidCost::BQ036Attachment(p) = &f.already_paid[1] else { panic!("payment") };
+        assert_eq!(p.host.card.id, bat);
+        assert_eq!(p.host.attachment_host_instance.as_deref(), Some(root.as_str()));
+        assert_eq!(p.attachment.card.id, cost);
+        checkpoint(&g);
+        pass_top(&mut g);
+        commit(&mut g, ["JC125"; 4]);
+        assert_eq!(g.mystic_history[0].shown[0].value, 2);
+        rewards(&mut g);
+        assert!(g.board(&replacement).is_some());
+        assert_eq!(g.resources(0), 0);
+        assert_eq!(g.players[0].graveyard.iter().filter(|c| c.definition == "JZ41").count(), 1);
+        checkpoint(&g);
+    }
+}
+
+#[test]
+fn b_contest_bq036_attached_host_forged_parent_cost_and_actor_reject() {
+    let (mut g, source, bat, cost) = independent_ab_ten_nested_cost_setup(true);
+    act(&mut g, 0, sacrifice_action(&source, &cost));
+    for mode in 0..12 {
+        let mut bad = g.clone();
+        let frame = bad.stack.last_mut().unwrap().frame.as_mut().unwrap();
+        let region = frame.source.source_region_instance.clone().unwrap();
+        let future = format!("i{}", g.sequence + 1);
+        let PaidCost::BQ036Attachment(p) = &mut frame.already_paid[1] else { panic!("payment") };
+        match mode {
+            0 => p.host.attachment_host_instance = Some("wrong".into()),
+            1 => p.host.attachment_host_instance = Some(future),
+            2 => p.host.attachment_host_instance = Some(bat.clone()),
+            3 => p.host.attachment_host_instance = Some(cost.clone()),
+            4 => p.host.attachment_host_instance = Some(region),
+            5 => p.host.card.definition = "JC029".into(),
+            6 => p.host.card.controller = 1,
+            7 => p.attachment.card.controller = 1,
+            8 => p.attachment.host_id = source.clone(),
+            9 => { p.host.card.id = cost.clone(); p.attachment.host_id = cost.clone(); },
+            10 => frame.already_paid.push(frame.already_paid[1].clone()),
+            11 => bad.attachments.push(p.attachment.clone()),
+            _ => unreachable!(),
+        }
+        invalid(&g, bad);
+    }
+}
+
+#[test]
+fn b_contest_bq036_attached_host_foreign_cost_or_host_stays_illegal() {
+    for foreign_cost in [false, true] {
+        let (mut g, source, bat, cost) = independent_ab_ten_nested_cost_setup(true);
+        if foreign_cost { g.board_mut(&cost).unwrap().controller = 1; }
+        else {
+            let root = g.attachments.iter().find(|a| a.card.id == bat).unwrap().host_id.clone();
+            g.board_mut(&root).unwrap().controller = 1;
+            g.board_mut(&bat).unwrap().controller = 1;
+        }
+        checkpoint(&g);
+        assert!(!g.bq036_contest_cost_candidates(0).contains(&cost));
+        let action = sacrifice_action(&source, &cost);
+        assert!(!g.legal_actions(0).iter().any(|a| a.action == action));
+        let room = crate::room::RoomEnvelope::from_game(g.clone());
+        let out = room.transition(0, Some(crate::room::RoomCommand {
+            command_id: format!("bq036-foreign-{foreign_cost}"), expected_version: room.revision,
+            action: crate::room::SessionAction::Game { action: action.clone() },
+        }), 0).unwrap();
+        assert_eq!(out.outcome, "rejected");
+        assert!(!out.changed && out.journal.is_empty());
+        reject(&mut g, 0, action);
+        assert_eq!(g.resources(0), 1);
+        assert!(g.attachments.iter().any(|a| a.card.id == cost));
+    }
+}
+
+#[test]
+fn independent_ab_ten_bq038_nonqualifying_nested_ring_does_not_add_bonus() {
+    let (mut g, _, bat, _) = independent_ab_ten_nested_cost_setup(true);
+    // JZ41 is an Artifact, not Equipment, Weapon or Status. The current BQ026
+    // pool cannot wear Equipment and is neither a printed Human nor Vampire.
+    for definition in ["JC116", "XQ14", "BQ040", "JC036", "XG12"] {
+        fund(&mut g, 0, definition, crate::catalog::card(definition).cost as usize);
+        let id = held(&mut g, definition, 0);
+        reject(&mut g, 0, Action { card_id: Some(id), target_id: Some(bat.clone()), ..Action::new("play") });
+    }
+    attached(&mut g, "BQ038", 0, "society:p0");
+    start(&mut g);
+    trigger(&mut g, b::START, true);
+    pass_top(&mut g);
+    assert_eq!(g.mystic_contest.as_ref().unwrap().bonuses[0].amount, 0);
+    commit(&mut g, ["JC125"; 4]);
+    assert!(g.mystic_contest.is_none());
+    checkpoint(&g);
+}
 fn grave(g: &mut Game, id: &str, seat: usize) -> String {
     let c = g.make_card(id, seat);
     let id = c.id.clone();

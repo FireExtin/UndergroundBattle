@@ -212,6 +212,7 @@ impl Game {
         s: &SourceSnapshot,
         attachment: &Attachment,
         before: &str,
+        allow_attached_character: bool,
     ) -> RuleResult<()> {
         self.b_contest_source_clean(actor, s)?;
         let Some(d) = catalog::catalog()
@@ -234,8 +235,22 @@ impl Game {
             || attachment.card.owner >= self.players.len()
             || attachment.card.controller >= self.players.len()
             || attachment.host_id != s.card.id
+            || attachment.card.id == s.card.id
             || s.region.is_none_or(|r| r >= self.regions.len())
-            || s.attachment_host_instance.is_some()
+            // BQ036 may pay an attachment on the admitted dual-type Bat.
+            // Authenticate its captured parent, not a later live host graph.
+            // BQ038 keeps its existing region-character-only witness contract.
+            || s.attachment_host_instance.as_ref().is_some_and(|host| {
+                !allow_attached_character
+                    || d.id != "BQ026"
+                    || !catalog::has_kind(d, "attachment")
+                    || host == &s.card.id
+                    || host == &attachment.card.id
+                    || Some(host) == s.source_region_instance.as_ref()
+                    || !self.mystic_instance_number(host)
+                        .zip(self.mystic_instance_number(before))
+                        .is_some_and(|(parent, frame)| parent < frame)
+            })
             || s.source_region_instance
                 .as_ref()
                 .is_none_or(|id| !self.mystic_instance_valid(id))
@@ -361,7 +376,7 @@ impl Game {
                 else {
                     return Err("菲尼克斯缺少付1及附属牺牲收据".into());
                 };
-                self.b_contest_host_witness(f.actor, &p.host, &p.attachment, &f.frame_id)?;
+                self.b_contest_host_witness(f.actor, &p.host, &p.attachment, &f.frame_id, true)?;
                 if !self.b_contest_assets(f, ids, 1)
                     || p.turn != self.turn
                     || p.attachment.card.controller != f.actor
@@ -416,6 +431,7 @@ impl Game {
                                     &w.character,
                                     &w.attachment,
                                     capture,
+                                    false,
                                 )?;
                                 if !hosts.insert(&w.character.card.id)
                                     || !attached.insert(&w.attachment.card.id)

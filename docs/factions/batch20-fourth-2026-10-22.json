@@ -7,15 +7,16 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 22,
+    "nativePilots": 31,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 28,
-    "nativeWipCards": 6
+    "remainingNativePrograms": 19,
+    "nativeWipCards": 1,
+    "nativePartialCards": 1
   },
   "colorCounts": {
     "红": 13,
@@ -344,17 +345,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
       "sourceImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 7,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
-      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 7,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "LC16",
@@ -435,17 +440,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
       "sourceImageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 3,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 6,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
-      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 3,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "BQ082",
@@ -454,17 +463,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
       "sourceImageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 6,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 7,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
-      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 6,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "XQ20",
@@ -545,17 +558,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
       "sourceImageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 2,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 3,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
-      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 2,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "WM036",
@@ -620,7 +637,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
       "sourceImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 4,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -628,9 +645,13 @@
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
-      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 4,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "BQ031",
@@ -639,16 +660,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
       "sourceImageSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 11,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "BQ027",
@@ -657,16 +683,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
       "sourceImageSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "BQ039",
@@ -711,16 +742,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
       "sourceImageSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "BQ036",
@@ -729,7 +765,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
       "sourceImageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
+      "runtime": "nativePartialBq036HostP2FixedPendingReview",
       "nativeDirectedCases": 0,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -737,8 +773,10 @@
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Both printed abilities integrated; P2-AB-01 attached dual-character cost witness fixed by author, pending independent closure. Not counted complete.",
+      "fullNativeCardComplete": false,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md"
     },
     {
       "id": "BQ038",
@@ -747,16 +785,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
       "sourceImageSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 10,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
     },
     {
       "id": "XG20",
@@ -989,7 +1032,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 22,
+      "nativeCards": 31,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -997,7 +1040,7 @@
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
       "targetCards": 50,
-      "nativeWipCards": 5
+      "nativeWipCards": 2
     }
   ],
   "ownershipCheck": {
@@ -1096,7 +1139,7 @@
     "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance."
   ],
   "next": [
-    "Continue rules-clear reusable-anchor programs;20/50 native,50 source-selected,0 WASM/admission/acceptance; common prerequisites are not all ready",
+    "Continue the same50-card batch:31 native independently closed, BQ036 P2 author fix awaiting closure, XG21 prior interrupted review excluded;0 new WASM/admission/acceptance.",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
@@ -1482,19 +1525,50 @@
     "nativeSuite": "rust-game/src/pack_a_contest_tests.rs",
     "nativeSuiteCases": 32,
     "nativeSuitePassed": true,
-    "integrationStatus": "nativeWipNotCountedComplete",
+    "integrationStatus": "nativeCompleteIndependentlyReviewedPendingBatchIntegration",
     "sourceCorrection": {
       "id": "BQ082",
       "field": "conditionalPublic",
       "basis": "original sun symbol before public; Hegemony manual printed19/22",
       "historicalSpecificationUnmodified": true
     },
-    "limits": [
+    "completionCountAdded": 5,
+    "historicalWipLimits": [
       "A participant with empty hand and empty deck needs a source ruling; no zero cost invented.",
       "Nested contests during the future pack B start-response hooks are not yet admitted.",
       "Pack B hooks are empty integration seams; no pack B card completion claimed.",
       "No WASM, browser acceptance, deck admission, publication or deployment."
     ],
-    "completionCountAdded": 0
+    "completionReviewCandidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "limits": [
+      "No WASM/Web/Worker, deck admission, publication or public acceptance in this closure."
+    ]
+  },
+  "nativeClosureReview": {
+    "candidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "closedCards": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082",
+      "BQ027",
+      "BQ031",
+      "BQ032",
+      "BQ038"
+    ],
+    "notClosedCards": [
+      "BQ036"
+    ],
+    "finding": "P2-AB-01",
+    "report": "docs/evidence/bq036-host-p2-20261022/prior-independent-review.txt",
+    "reportSha256": "4e5f3d908054e2259b00788771e3ddb7a2311bff50940194f20d122949a0f7af",
+    "independentTests": {
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0
+    },
+    "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
+    "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
   }
 }

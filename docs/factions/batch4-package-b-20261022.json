@@ -1,14 +1,10 @@
 {
   "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
-  "scope": "package B independent native slices only; all contest clauses pending package A",
+  "scope": "BQ027/BQ031/BQ032/BQ038 whole-card native closure independently accepted; BQ036 P2 author fix awaiting closure",
   "nativePartialCards": [
-    "BQ027",
-    "BQ031",
-    "BQ032",
-    "BQ036",
-    "BQ038"
+    "BQ036"
   ],
-  "completeCards": 0,
+  "completeCards": 4,
   "supportedCards": 0,
   "wasmCards": 0,
   "sourceCorrections": [
@@ -45,5 +41,45 @@
         11
       ]
     }
-  ]
+  ],
+  "historicalNativePartialCards": [
+    "BQ027",
+    "BQ031",
+    "BQ032",
+    "BQ036",
+    "BQ038"
+  ],
+  "nativeCompleteCards": [
+    "BQ027",
+    "BQ031",
+    "BQ032",
+    "BQ038"
+  ],
+  "independentClosureReview": {
+    "candidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "closedCards": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082",
+      "BQ027",
+      "BQ031",
+      "BQ032",
+      "BQ038"
+    ],
+    "notClosedCards": [
+      "BQ036"
+    ],
+    "finding": "P2-AB-01",
+    "report": "docs/evidence/bq036-host-p2-20261022/prior-independent-review.txt",
+    "reportSha256": "4e5f3d908054e2259b00788771e3ddb7a2311bff50940194f20d122949a0f7af",
+    "independentTests": {
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0
+    },
+    "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
+    "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
+  }
 }
