@@ -663,6 +663,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM060Repress { regions: Vec<(usize,String,u32)> },
     JZ39EnemySacrifice,
     BloodFeed { state: crate::batch3_blood::BloodFeedCursor },
     BQ037Reveal,

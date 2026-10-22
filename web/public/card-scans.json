@@ -1143,5 +1143,10 @@
     "url": "/cards/XG12.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
     "sha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd"
+  },
+  "WM060": {
+    "url": "/cards/WM060.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg",
+    "sha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77"
   }
 }

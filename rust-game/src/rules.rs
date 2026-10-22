@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    WM060CriminalEntered,
     DisasterPlayed,
     CQ07SpellTargeted,
     WM035HostDeath,
@@ -256,6 +257,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM060RevealInfluence,
+    WM060CriminalObservation { observation: Option<Box<crate::batch4_dahlia::CriminalEntry>> },
+    WM060RepressTwo,
     XG12Reattach,
     XG12GrantedMobility { proof: Box<crate::batch4_shape::ShapeMobility> },
     JZ39EnemySacrifice,
@@ -579,6 +583,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    WM060ConditionalPublic,
     XG12BatAndConditionalMobility,
     JZ39HostKillAndDemon,
     XG15WaterDoubleIcons,

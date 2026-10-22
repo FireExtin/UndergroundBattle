@@ -198,7 +198,7 @@ impl Game {
     }
     pub(crate) fn current_public(&self, c: &Card, actor: usize) -> bool {
         rules::definition(&c.definition).traits.public
-            || (c.definition == "WM040" && self.society_exposure(actor) > 0)
+            || (matches!(c.definition.as_str(),"WM040"|"WM060") && self.society_exposure(actor) > 0)
     }
     pub(crate) fn wm039_analysis(&mut self, f: &ResolutionFrame) {
         let z = &mut self.players[f.actor].society_zone;

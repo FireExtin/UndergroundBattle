@@ -1643,6 +1643,9 @@ impl Game {
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
                 Op::XG14DisasterInfluence { .. } => self.xg14_influence(&frame),
                 Op::XG15DestroyOriginalRegion => self.xg15_destroy_region(&frame),
+                Op::WM060RevealInfluence => self.wm060_reveal_influence(&frame),
+                Op::WM060CriminalObservation { .. } => {},
+                Op::WM060RepressTwo => return self.wm060_repress_start(frame),
                 Op::XG12Reattach => self.reattach_source(&frame.source.card.id, &frame.targets[0].id),
                 Op::XG12GrantedMobility { .. } => {
                     if let Some(region) = self.frame_region(&frame, RegionRef::Target(0)) {
@@ -2481,7 +2484,9 @@ impl Game {
     ) -> RuleResult<()> {
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
+        self.wm060_choice_payload(&frame, chooser, &a)?;
         match choice {
+            FrameChoice::WM060Repress { regions } => return self.wm060_repress_complete(&frame, chooser, &a, &regions, &selected),
             FrameChoice::JZ39EnemySacrifice => return self.jz39_finish_sacrifice(&frame, chooser, &a, &selected),
             FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),
             FrameChoice::BQ037Reveal => return self.bq037_reveal_complete(&frame,chooser,&a,&selected),

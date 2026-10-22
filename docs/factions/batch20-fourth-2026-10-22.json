@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 4,
+    "nativePilots": 5,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -149,8 +149,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg",
       "sourceImageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 14,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -425,7 +425,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 4,
+      "nativeCards": 5,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -462,7 +462,7 @@
   ],
   "next": [
     "Continue native mechanisms with source-bound targeted tests; keep WASM/Web/Worker unbuilt until integration is planned",
-    "Continue reviewed independent host-death, marker-condition and SecretPlan mechanisms; current four pilots remain construction-disabled",
+    "Continue BQ041 attachment/blood trigger and remaining independent mechanisms; do not stop the batch at a small checkpoint",
     "Keep allfourth cards construction-disabled until twenty and required integration are ready; publish through officialSites flow by the established per20 cadence"
   ],
   "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"

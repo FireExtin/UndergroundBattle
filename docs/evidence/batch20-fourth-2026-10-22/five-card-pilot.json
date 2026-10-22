@@ -1,0 +1,82 @@
+{
+  "recordedAt": "2026-10-22T01:14:59.977075+00:00",
+  "precedingCheckpoint": "b6f8540d828c9a6a03b5d7463cfd989ba443aef8",
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ39",
+    "XG12",
+    "WM060"
+  ],
+  "newCard": "WM060",
+  "newDirectedCases": 14,
+  "finalFixtureExpansionCases": 1,
+  "scopeNote": "The last single check overlaps the fourteen; only its test fixture/assertions changed to show distant-region entry, with production code unchanged. Earlier four pilots and full product suites were not repeated.",
+  "sourceChecks": 4,
+  "sourceManifest": "native-source-manifest-five-cards.json",
+  "sourceManifestSha256": "1612200b8b2865b7ae253e84a6988baf4ac32afb881c561e7d7818b5e8775e39",
+  "results": [
+    {
+      "log": "logs/batch4-wm060-first-batch4_dahlia.log.gz",
+      "encoding": "gzip",
+      "sha256": "b5944c8f680b57ad6692f5f98f8ef4463b2b42133583734a1f6c751827ebda80",
+      "rawSha256": "7c81b08b0e283e31557701685d2a4d9cbf7d2d710eb71e517d6f88ad117a5f3c",
+      "phase": "preservedFailure",
+      "result": "compileFailure",
+      "passed": 0,
+      "failed": null
+    },
+    {
+      "log": "logs/batch4-wm060-second-batch4_dahlia.log.gz",
+      "encoding": "gzip",
+      "sha256": "aafcee6575e6b868eadfbe95f7ae609356b1f0ad64784b1f52098402a71325cf",
+      "rawSha256": "e76d7abc9b5d41b2028a03dc2ac1963000f31d62e4fd4d9c820fd16a69fdfbff",
+      "phase": "preservedFailure",
+      "result": "FAILED",
+      "passed": 12,
+      "failed": 1
+    },
+    {
+      "log": "logs/batch4-wm060-final-batch4_dahlia.log.gz",
+      "encoding": "gzip",
+      "sha256": "57aab291d0fc6602c485ccf75198a54a5e7209bd454bf268523f6c84b9bbe158",
+      "rawSha256": "c650ae00b1d2e75e1cbaa446f2b3d346df2426ff3cbce4eb508a8023a0749823",
+      "phase": "fourteenPassingCases",
+      "result": "ok",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-wm060-global-entry-batch4_dahlia_direct_grave_entry.log.gz",
+      "encoding": "gzip",
+      "sha256": "4d8ce478d150ea688f698d8a9d074f564eddd8a85e2b81fb223ea0b784ef7eff",
+      "rawSha256": "9d5effd64a52e05cf3d07b87c8d283cbdfee63fc3557e017310bc3f288a35eeb",
+      "phase": "globalEntryFixtureExpansion",
+      "result": "ok",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-five-card-source.log.gz",
+      "encoding": "gzip",
+      "sha256": "62d1d687ad85295bfd3054e2ab24276e1f555ccd31a6822f09220e9cbed6129f",
+      "rawSha256": "ef3ee66b8e94be659343ff2ef19562254877031cedac81086a11e2f4f96322b2",
+      "phase": "sourceChecks",
+      "result": "sourcePass",
+      "passed": 4,
+      "failed": null
+    }
+  ],
+  "authorExecutionOnly": true,
+  "wasmBuilt": false,
+  "webWorkerIntegrated": false,
+  "newConstructionAdmissions": 0,
+  "published": 0,
+  "accepted": 0,
+  "limitations": [
+    "Not complete batch or independent/browser acceptance.",
+    "Chaos pre-existing-entry-restriction sampling and separate CQ11/TK008 remain independent pending questions."
+  ],
+  "frozenThirdWasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c"
+}
