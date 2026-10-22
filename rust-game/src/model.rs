@@ -937,6 +937,8 @@ pub struct Game {
     #[serde(default)]
     pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub politician_auras: Vec<crate::batch4_politician::PoliticianAura>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub turn_ability_usage: Vec<TurnAbilityUsage>,
     #[serde(default)]
     pub control_effects: Vec<ControlEffect>,

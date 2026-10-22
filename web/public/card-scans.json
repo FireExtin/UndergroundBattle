@@ -1178,5 +1178,10 @@
     "url": "/cards/XG11.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
     "sha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1"
+  },
+  "WM029": {
+    "url": "/cards/WM029.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
+    "sha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987"
   }
 }

@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 11,
+    "nativePilots": 12,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -89,8 +89,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
       "sourceImageSha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 17,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -435,7 +435,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 11,
+      "nativeCards": 12,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -481,10 +481,11 @@
     "JC060 real paid BQ026 entry regression confirms missing attached-character recipient; uses existing live board lookup instead of region vector only. Source patch included here; original frozen b80 and JC005-only820 do not include it.",
     "XG17: public with personal Sun conditional Renown; other personal current Renown characters globally gain defense1 per live source. Event-time Renown qualification uses typed printed/exposure/destroyed-region/Alpha/turn-grant receipts, with separate per-entry observer keys.",
     "XG17 targets personal live Plans including secret ones; reuses normal marker/forced-completion path. Additional advancement while completion waits adds a marker without a second completion declaration. Only declaration choice ID and selected options are accepted.",
-    "XG11: personal Moon Spirit; actual reveal freezes personal Moon tiers (max3) and live friendly JC038 grants into one cumulative Raid. Normal face-up entry and movement never emit it; generic granted-Raid path cannot bypass the conditional receipt."
+    "XG11: personal Moon Spirit; actual reveal freezes personal Moon tiers (max3) and live friendly JC038 grants into one cumulative Raid. Normal face-up entry and movement never emit it; generic granted-Raid path cannot bypass the conditional receipt.",
+    "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker."
   ],
   "next": [
-    "Continue remaining9 selected mechanisms and full-field Hide/shuffle design for WM045; no partial-batch construction admission",
+    "Continue remaining8 selected mechanisms and full-field Hide/shuffle design for WM045; no partial-batch construction admission",
     "Keep XQ13 overflow rule draft separate and uncounted; neutral/dual colors remain paused",
     "Third-batch isolated ABI94 replacement b4e0388bb0ee1a2b106c247d11663ec7ee60b28d was independently reviewed and synchronized to Aliyun by the parent; no duplicate deployment here",
     "Keep the frozenb80 package unchanged; no duplicate pending Sites deployment or source credential recreation"

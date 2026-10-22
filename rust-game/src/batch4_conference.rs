@@ -11,6 +11,7 @@ pub enum RenownBasis {
     DestroyedRegion { instance: String },
     Alpha { source: Box<SourceSnapshot>, exposure: u32 },
     TurnGrant { grant: TurnAttributeModifier },
+    Politician { proof: Box<crate::batch4_politician::MarkerRenown> },
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -56,6 +57,7 @@ impl Game {
         let exposure = self.society_exposure(c.controller);
         if matches!(c.definition.as_str(), "WM041" | "XG17") && exposure > 0 { return Some(RenownBasis::Exposure { count: exposure }); }
         if self.jz32_destroyed(c) { return Some(RenownBasis::DestroyedRegion { instance: self.regions[self.board(&c.id)?.0].card.id.clone() }); }
+        if let Some(proof) = self.wm029_renown_basis(c) { return Some(RenownBasis::Politician { proof: Box::new(proof) }); }
         if self.current_public(c, c.controller) {
             if let Some((r, s)) = self.regions.iter().enumerate().filter(|(_, r)| !r.vacant).flat_map(|(r, region)| region.cards.iter().map(move |s| (r, s)))
                 .find(|(_, s)| s.definition == "WM041" && !s.face_down && s.controller == c.controller && !self.players[s.controller].eliminated) {
@@ -112,6 +114,7 @@ impl Game {
                 if valid { self.mobility_immutable_identity(a)?; } valid
             },
             RenownBasis::TurnGrant { grant } => grant.target_instance == c.id && grant.expires_turn == o.turn && grant.grants_renown,
+            RenownBasis::Politician { proof } => { self.validate_marker_renown(c, proof)?; true },
         };
         if !valid { return Err("声望进场不能由事后条件或其他角色的领域/授予冒充".into()); } Ok(())
     }

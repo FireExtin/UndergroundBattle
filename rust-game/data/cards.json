@@ -8939,6 +8939,50 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM029",
+      "name": "被胁迫的政要",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "宿主",
+        "政治家",
+        "邪教徒"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开\n持续 若其上有指示物标志，被胁迫的政要获得声望。若有卡牌封印在其上，被胁迫的政要获得屏障。\n死亡触发 本回合中，所有其上有指示物标志的角色获得声望，所有有卡牌封印在其上的角色获得屏障。",
+      "keywords": [
+        "公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM029",
+        "image": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
+        "imageSha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

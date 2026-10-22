@@ -1609,6 +1609,7 @@ impl Game {
             frame.cursor += 1;
             match step.op {
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,
+                Op::WM029TurnAura => self.wm029_resolve(&frame)?,
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),

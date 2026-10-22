@@ -1,5 +1,8 @@
 mod chaos;
 mod batch4;
+mod batch4_politician;
+#[cfg(test)]
+mod batch4_politician_tests;
 mod batch4_spectral;
 #[cfg(test)]
 mod batch4_spectral_tests;

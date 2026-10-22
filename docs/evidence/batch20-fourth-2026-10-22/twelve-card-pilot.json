@@ -1,0 +1,145 @@
+{
+  "recordedAt": "2026-10-22T04:03:24.985921+00:00",
+  "precedingCheckpoint": "00f60ff0d2417d0407b50c869a78b502c0d91764",
+  "newCard": "WM029",
+  "nativeCards": 12,
+  "definitions": 225,
+  "newDirectedCases": 17,
+  "relatedFilters": {
+    "batch4_conference": 18,
+    "batch4_statue": 15,
+    "protection": 22,
+    "batch3_bq026": 19,
+    "renown": 49
+  },
+  "filterOverlap": "Renown includes conference/politician/other cases; not summed as unique scenes",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 206,
+  "sourceInventorySha256": "b311ea9a8e9ffc516ccabd24e3bf8ddce35ff124ba0e7f811ef0e22e2828e403",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON of stored object, preserving stored key order, no trailing newline",
+  "sourceInventoryFileSha256": "20ea3dec5e8516c3e9fda84bf715d1975079c4cda51336c5b8c837c32aaed7af",
+  "ruleScope": [
+    "Public cost1; current own markers grant Renown and own sealed cards grant Barrier",
+    "Wounds/shields/other native marker fields are indicators; damage is not",
+    "Attachment markers inherit through complete valid host paths, including dual-type attached character carrying a separate attachment",
+    "Optional respondable actual Death creates turn-wide dynamic conditional rule for all players and future characters; end cleanup expires it atomically",
+    "Existing WM041 enemy Renown denial remains authoritative",
+    "JZ38 may repeat this real Death ability; original/each echo has distinct once-only receipt",
+    "XG17 entry keeps typed marker/attachment-chain/aura witness; later source/condition loss never requalifies entry"
+  ],
+  "ruleSources": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPages": [
+        18,
+        19
+      ],
+      "review": "Actually viewed both page images: wound markers and shield markers"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "review": "Indicator-marker paragraph: markers on attachments also count on host; leave/flip removes markers"
+    }
+  ],
+  "fixtureDisclosure": "Prepared native layouts and explicitly identified primitives plus real paid deploy/WM038/JC102/JZ41, choice/pass and End cleanup. Every shared action restores full state and four views. Seven-field marker-classifier test is pure and does not assert all seven marker producers currently target WM029. Future paid XG14 entry is real; direct self/attachment marker entry is a disclosed primitive boundary fixture.",
+  "failureHistory": [
+    "First stage metadata-only1 pass not mechanism completion",
+    "Second stage compile failed because test guessed move_entity/Zone::Hand; replaced with existing return_hand primitive, no product-rule change",
+    "Third stage16 cases passed",
+    "Fourth stage16 pass/1 fail: nested-host fixture used JC089, whose defense-1 correctly kills the defense1 bat and its attachment. Replaced fixture with actual JZ41; did not change damage/death rules",
+    "Added marker ancestry paths so an attachment on a dual-type attached character also counts on the outer host; full captured paths and cycle/missing-link/private-source guards retained"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-01-batch4_politician.log.gz",
+      "rawBytes": 1159,
+      "rawSha256": "f637789250eab048e39db91b36d6701d6b1da8d35db4deee415a9f99e637bd12",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-02-batch4_politician.log.gz",
+      "rawBytes": 1369,
+      "rawSha256": "3112a77ae6de7945cba67e75d02f4472b9dcbd7008c7bbd90ffd64637962d753",
+      "passed": null,
+      "failed": null
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-03-batch4_politician.log.gz",
+      "rawBytes": 2609,
+      "rawSha256": "72cb51d03609e8517e208fa81c021341699f1ab0e8b6d8be5e42989fed2e716c",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-04-batch4_politician.log.gz",
+      "rawBytes": 3218,
+      "rawSha256": "5925dbe5ef32e4c13a37aa04e463c5be850d30cd7a55c042c88b465e9c4f887e",
+      "passed": 16,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-batch3_bq026.log.gz",
+      "rawBytes": 2905,
+      "rawSha256": "e0a85889d37927ce72861018c74a1e1ac89cbf536d37efaf5dc038a940c8b75d",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-batch4_conference.log.gz",
+      "rawBytes": 2750,
+      "rawSha256": "b126c176b01f89f4f88fc668e4c1976ee3fac37c7f5867a178c54145f39daab6",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-batch4_politician.log.gz",
+      "rawBytes": 2730,
+      "rawSha256": "868379c012c6f35526ebea1384b183195532ffedca617c140e8ca3c42d3a7261",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-batch4_statue.log.gz",
+      "rawBytes": 3486,
+      "rawSha256": "ed4648a3aca81706d92e428212351fabf177511c9665e54a4189fd291c30eb95",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-protection.log.gz",
+      "rawBytes": 2840,
+      "rawSha256": "d8481c1ff7ff45c1cd54958b307ffcd276a2e8429972389eec1cdd1e660c0a1e",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-05-renown.log.gz",
+      "rawBytes": 5627,
+      "rawSha256": "6a7a9d1bc68d2ee76e11a32b80f650ef6c7790eefab9e50bf96dc8fc571472a7",
+      "passed": 49,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-politician-source-01.log.gz",
+      "rawBytes": 540,
+      "rawSha256": "87937f5ec2912b2f6955f1be55d47359e4ffe41ed04f567cc879e48668a70a8a",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Full product rerun",
+    "Independent execution/review",
+    "ABI95 WASM/Web/Worker integration",
+    "Natural browser/public acceptance",
+    "Sites/Aliyun operations",
+    "GitHub CI/main merge/force push"
+  ]
+}

@@ -55,6 +55,7 @@ impl Game {
             state_schema: 2,
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
+            politician_auras: vec![],
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
             jc035_preparation: None,
@@ -322,7 +323,7 @@ impl Game {
     }
     pub(crate) fn has_barrier(&self, c: &Card) -> bool {
         !c.face_down
-            && (rules::definition(&c.definition).traits.barrier
+            && (self.wm029_barrier(c) || rules::definition(&c.definition).traits.barrier
                 || self.turn_attribute_modifiers.iter().any(|m| m.target_instance == c.id && m.expires_turn == self.turn && m.grants_barrier)
                 || self.attachments.iter().any(|a| {
                     a.host_id == c.id
@@ -976,6 +977,7 @@ impl Game {
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
+        self.politician_auras.clear();
         self.inspection_receipts.clear();
         self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
@@ -1937,6 +1939,7 @@ impl Game {
                     }
                 }
                 self.turn_attribute_modifiers.clear();
+                self.politician_auras.clear();
                 self.modifiers.clear();
                 self.control_effects
                     .retain(|effect| !matches!(effect.lifetime, ControlLifetime::TurnEnd { .. }));
@@ -2134,6 +2137,7 @@ impl Game {
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
+        crate::batch4_politician::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
