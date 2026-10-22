@@ -63,6 +63,9 @@ pub enum MysticPhase {
     /// The nested procedure and original frame have completed. Its emitted
     /// trigger/response chain must drain before the parent queue is released.
     Finishing { outcome: Box<ContestOutcome> },
+    /// No comparison took place. Keep the nested finish boundary while the
+    /// original paid frame completes; never manufacture a zero-value outcome.
+    FinishingUnshown { unable: Vec<usize> },
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -143,17 +146,12 @@ impl Game {
         }
     }
     pub(crate) fn mystic_contest_start(&mut self, frame: ResolutionFrame, actor_bonus: u32) -> RuleResult<()> {
-        if self.mystic_contest.as_ref().is_some_and(|s| !matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. }))
+        if self.mystic_contest.as_ref().is_some_and(|s| !matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. } | MysticPhase::FinishingUnshown { .. }))
             || Self::mystic_op_bonus(&frame) != Some(actor_bonus)
             || !matches!(frame.guard, GuardState::Accepted) {
             return Err("隐秘对抗必须来自同一已付费、已接纳的执行阶段".into());
         }
         let participants = self.players.iter().filter(|p| !p.eliminated).map(|p| p.seat).collect::<Vec<_>>();
-        // No source rule has yet settled the no-hand/no-deck participant. Keep
-        // this explicit boundary; never invent a zero-cost display card.
-        if participants.iter().any(|s| self.players[*s].hand.is_empty() && self.players[*s].deck.is_empty()) {
-            return Err("隐秘对抗参与者无手牌且牌库为空：原规则边界待裁定".into());
-        }
         let contest_id = self.id();
         let parent = self.mystic_contest.take().map(Box::new);
         self.mystic_contest = Some(MysticContest { contest_id: contest_id.clone(), turn: self.turn,
@@ -171,7 +169,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn mystic_responses_pending(&self) -> bool {
-        self.mystic_contest.as_ref().is_some_and(|s| matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. })
+        self.mystic_contest.as_ref().is_some_and(|s| matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. } | MysticPhase::FinishingUnshown { .. })
             && self.stack.iter().any(|f| !s.response_base.contains(&f.id)))
     }
     #[allow(dead_code)] // Integration endpoint consumed by pack B.
@@ -195,17 +193,29 @@ impl Game {
             return Err("隐秘对抗必须等待原开始触发与响应结束，且只移入顶牌一次".into());
         }
         let participants = state.participants.iter().copied().filter(|s| !self.players[*s].eliminated).collect::<Vec<_>>();
-        if participants.iter().any(|s| self.players[*s].hand.is_empty() && self.players[*s].deck.is_empty()) {
-            return Err("隐秘对抗参与者无手牌且牌库为空：原规则边界待裁定".into());
-        }
         self.mystic_contest.as_mut().unwrap().participants = participants.clone();
         self.mystic_contest.as_mut().unwrap().bonuses.retain(|b| participants.contains(&b.frame.actor));
-        for seat in participants {
+        for seat in &participants {
+            let seat = *seat;
             if !self.players[seat].deck.is_empty() {
                 let c = self.players[seat].deck.remove(0);
                 let c = self.fresh(c);
                 self.players[seat].hand.push(c);
             }
+        }
+        // Project ruling 2026-10-22: finish all top-to-hand steps, then an
+        // unavailable display ends only this contest, with no comparison,
+        // reward, display hooks or shuffle. Paid and completed steps remain.
+        let unable = participants.iter().copied().filter(|s| self.players[*s].hand.is_empty()).collect::<Vec<_>>();
+        if !unable.is_empty() {
+            let state = self.mystic_contest.as_ref().unwrap().clone();
+            if state.parent.is_some() {
+                self.mystic_contest.as_mut().unwrap().phase = MysticPhase::FinishingUnshown { unable };
+            } else { self.mystic_contest = None; }
+            self.note("隐秘对抗：有参与者无牌展示，本次无胜负、无奖励，未展示牌不洗回".into());
+            // Continue the original paid frame once. If nested, its emitted
+            // effects still precede the parent's existing continuation.
+            return self.resolve_frame(*state.frame);
         }
         self.mystic_contest.as_mut().unwrap().phase = MysticPhase::Selecting { committed: vec![] };
         self.mystic_next_commit()
@@ -381,7 +391,7 @@ impl Game {
     }
     pub(crate) fn mystic_finish_nested(&mut self, id: &str) -> RuleResult<()> {
         let state=self.mystic_contest.as_ref().ok_or("嵌套隐秘结束边界缺少原状态")?;
-        if state.contest_id != id || state.parent.is_none() || !matches!(state.phase,MysticPhase::Finishing { .. })
+        if state.contest_id != id || state.parent.is_none() || !matches!(state.phase,MysticPhase::Finishing { .. } | MysticPhase::FinishingUnshown { .. })
             || self.mystic_responses_pending() {
             return Err("嵌套隐秘对抗须完成本层后置及触发链后才能恢复父层".into());
         }
@@ -474,7 +484,7 @@ impl Game {
             if !ids.insert(state.contest_id.as_str()) || !ids.insert(state.frame.frame_id.as_str())
                 || !self.mystic_instance_number(&state.frame.frame_id).zip(self.mystic_instance_number(&state.contest_id))
                     .is_some_and(|(frame,contest)| frame < contest)
-                || index > 0 && (!matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. })
+                || index > 0 && (!matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. } | MysticPhase::FinishingUnshown { .. })
                     || !self.mystic_instance_number(&state.contest_id).zip(self.mystic_instance_number(&states[index-1].frame.frame_id))
                         .is_some_and(|(parent,child_frame)| parent < child_frame)) {
                 return Err("隐秘嵌套必须保留各层原帧、阶段及开始先后关系".into());
@@ -489,7 +499,7 @@ impl Game {
         if !self.mystic_instance_valid(&state.contest_id) || state.turn != self.turn || state.frame.actor >= self.players.len()
             || !matches!(state.frame.guard, GuardState::Accepted) || Self::mystic_op_bonus(&state.frame) != Some(state.actor_bonus)
             || state.participants.windows(2).any(|w| w[0] >= w[1]) || state.participants.iter().any(|s| *s >= self.players.len())
-            || if matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. }) {
+            || if matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. } | MysticPhase::Finishing { .. } | MysticPhase::FinishingUnshown { .. }) {
                 self.players.iter().any(|p| !p.eliminated && !state.participants.contains(&p.seat))
             } else { state.participants != self.players.iter().filter(|p| !p.eliminated).map(|p| p.seat).collect::<Vec<_>>() }
             || self.stack.iter().any(|s| s.id == state.frame.frame_id)
@@ -502,6 +512,15 @@ impl Game {
                 .is_some_and(|(base,frame)| base < frame))
             || state.response_base.iter().collect::<BTreeSet<_>>().len() != state.response_base.len() { return Err("隐秘开始响应基线被改写".into()); }
         match &state.phase {
+            MysticPhase::FinishingUnshown { unable } => {
+                if state.parent.is_none() || pending.is_some() || contests.contains(state.contest_id.as_str())
+                    || unable.is_empty() || unable.windows(2).any(|w|w[0]>=w[1])
+                    || unable.iter().any(|s| !state.participants.contains(s)
+                        || !self.players[*s].hand.is_empty() || !self.players[*s].deck.is_empty()) {
+                    return Err("无展示对抗的结束边界须保留原层及无法展示者，不能伪造结果".into());
+                }
+                return Ok(());
+            },
             MysticPhase::Finishing { outcome } => {
                 if state.parent.is_none() || pending.is_some()
                     || self.mystic_history.iter().find(|o|o.contest_id==state.contest_id).is_none_or(|o|!same(o,outcome.as_ref()))
@@ -529,6 +548,7 @@ impl Game {
             },
             MysticPhase::Selecting { committed } => {
                 if !active || contests.contains(state.contest_id.as_str()) || committed.len() >= state.participants.len()
+                    || state.participants.iter().any(|s| self.players[*s].hand.is_empty())
                     || committed.iter().zip(&state.participants).any(|((s,id),expected)| s != expected || !self.players[*s].hand.iter().any(|c| c.id == *id)) {
                     return Err("隐秘选牌必须保留私有承诺的原玩家与原手牌".into());
                 }

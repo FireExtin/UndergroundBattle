@@ -256,6 +256,48 @@ fn batch4_vampires_bq038_actual_personal_society_raid_accept_feeds_before_damage
 }
 
 #[test]
+fn batch4_vampires_ruling_nonvampire_keeps_both_blood_zones_and_paid_raid_continues() {
+    let mut g=game(); attachment(&mut g,"BQ038",0,"society:p0");
+    let blood=grave(&mut g,"XQ14",0);let c=g.make_card("BQ040",1);g.seal_card_on_valid_host(c,0,"society:p0");
+    let sealed=serde_json::to_value(&g.sealed_cards).unwrap();let grave_before=serde_json::to_value(&g.players[0].graveyard).unwrap();
+    // JC038 grants a real raid to blue non-vampire JC041. This avoids the
+    // incompatible JC030 premise: its paid reveal requires two blue loyalty.
+    field(&mut g,"JC038",0);let target=field(&mut g,"JC125",2);
+    let raider=actual_reveal(&mut g,"JC041");
+    assert!(!g.current_subtypes(g.board(&raider).unwrap().1).iter().any(|s|s=="吸血鬼"));
+    let paid=g.resources(0);accept(&mut g,"jc038-granted-raid",&target);crate::jc029_tests::checkpoint(&g);
+    let raid=g.stack.last().unwrap().id.clone();
+    accept(&mut g,v::RAID_FEED,"accept");crate::jc029_tests::checkpoint(&g);
+    skip_declarations(&mut g);
+    reject(&mut g,0,Action{choice_id:Some("not-a-blood-choice".into()),selected:Some(vec![blood]),..Action::new("choose")});
+    pass_top(&mut g);crate::jc029_tests::checkpoint(&g);
+    assert!(g.pending.is_none());assert!(g.board(&target).is_some(),"feeding precedes the paid raid");
+    assert_eq!(serde_json::to_value(&g.sealed_cards).unwrap(),sealed);
+    assert_eq!(serde_json::to_value(&g.players[0].graveyard).unwrap(),grave_before);
+    assert!(g.attachments.iter().all(|a|a.card.definition!="XQ14"&&a.card.definition!="BQ040"));
+    assert_eq!(g.resources(0),paid);
+    // Popping a stack item is not proof that its queued frame has resolved.
+    // Finish the mandatory reveal chain and original raid's complete effects.
+    for _ in 0..32 {
+        if g.stack.is_empty()&&g.effects.is_empty()&&g.pending.is_none(){break;}
+        assert!(g.pending.is_none());
+        if g.stack.is_empty(){pass(&mut g);}else{pass_top(&mut g);}
+        crate::jc029_tests::checkpoint(&g);
+    }
+    assert!(!g.stack.iter().any(|s|s.id==raid));
+    assert!(g.stack.is_empty()&&g.effects.is_empty()&&g.pending.is_none());
+    if let Ok(dir)=std::env::var("INDEPENDENT_HISTORY_OUT") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(format!("{dir}/nonvampire-final.json"),serde_json::to_vec(&g).unwrap()).unwrap();
+    }
+    assert!(g.board(&target).is_none(),"raid target left in play: {:?}",g.board(&target).map(|(r,c)|(c.damage,g.defense(c,r))));
+    assert!(g.board(&raider).is_some());
+    assert_eq!(serde_json::to_value(&g.sealed_cards).unwrap(),sealed);
+    assert_eq!(serde_json::to_value(&g.players[0].graveyard).unwrap(),grave_before);
+    assert_eq!(g.resources(0),paid);
+}
+
+#[test]
 fn batch4_vampires_bq038_revealing_or_declining_raid_does_not_feed() {
     let mut g=game();attachment(&mut g,"BQ038",0,"society:p0");grave(&mut g,"XQ14",0);actual_reveal(&mut g,"BQ032");skip_declarations(&mut g);
     assert!(g.pending.is_none());assert!(g.stack.is_empty());assert_eq!(g.attachments.len(),1);

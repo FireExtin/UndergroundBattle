@@ -50,6 +50,58 @@ fn start(g: &mut Game) {
     pass_top(g);
     checkpoint(g);
 }
+#[test]
+fn b_contest_ruling_empty_after_paid_last_hand_action_keeps_costs_and_unshown_hands() {
+    let mut g=layout(); g.players[0].deck.clear(); g.players[0].hand.clear();
+    fund(&mut g,0,"JC125",2); let id=held(&mut g,"BQ032",0);
+    let seed=g.seed; let random=g.random; let markers=g.players.iter().map(|p|(p.society_zone.exposure,p.society_zone.secrecy)).collect::<Vec<_>>();
+    act(&mut g,0,hand_action(&id)); checkpoint(&g);
+    assert_eq!(g.players[0].assets.iter().filter(|c|!c.exhausted).count(),0);
+    assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="BQ032").count(),1);
+    let paid=g.stack.last().unwrap().frame.as_ref().unwrap().already_paid.clone();
+    assert!(!paid.is_empty()); pass_top(&mut g); checkpoint(&g);
+    assert!(g.mystic_history.is_empty()&&g.mystic_contest.is_none()&&g.pending.is_none());
+    assert!(g.effects.is_empty()&&g.stack.is_empty()); assert_eq!(g.seed,seed);assert_eq!(g.random,random);
+    assert_eq!(g.players[0].assets.iter().filter(|c|!c.exhausted).count(),0);
+    assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="BQ032").count(),1);
+    for seat in 1..4 {assert_eq!(g.players[seat].hand.len(),1);assert_eq!(g.players[seat].deck.len(),2);}
+    assert_eq!(g.players.iter().map(|p|(p.society_zone.exposure,p.society_zone.secrecy)).collect::<Vec<_>>(),markers);
+    let before=serde_json::to_string(&g).unwrap();
+    assert!(g.apply(0,Action{choice_id:Some("retired-contest".into()),selected:Some(vec!["secrecy".into()]),..Action::new("choose")}).is_err());
+    assert_eq!(serde_json::to_string(&g).unwrap(),before);
+}
+
+#[test]
+fn b_contest_ruling_empty_room_response_reopen_and_journal_keep_payment_once() {
+    use crate::room::{Decision,RoomCommand,RoomEnvelope,SessionAction};
+    let mut g=layout();g.players[0].deck.clear();g.players[0].hand.clear();
+    fund(&mut g,0,"JC125",2);let id=held(&mut g,"BQ032",0);
+    let mut room=RoomEnvelope::from_game(g);let mut first=None;
+    for n in 0..80 {
+        let (seat,action)=if n==0 {(0,SessionAction::Game{action:hand_action(&id)})}
+        else if room.game.stack.is_empty()&&room.game.mystic_contest.is_none()&&room.game.pending.is_none(){break;}
+        else if let Some(w)=&room.pacing.window {
+            let seat=*w.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
+            (seat,SessionAction::PassResponse{window_id:w.id.clone()})
+        }else{
+            let seat=(0..4).find(|s|room.game.legal_actions(*s).iter().any(|a|a.action.kind=="pass")).unwrap();
+            (seat,SessionAction::Game{action:Action::new("pass")})
+        };
+        let command=RoomCommand{command_id:format!("ruling-empty-{n}"),expected_version:room.revision,action};
+        if n==0{first=Some(command.clone());}
+        let result=room.transition(seat,Some(command),0).unwrap();assert_eq!(result.outcome,"accepted");
+        let next=RoomEnvelope::from_persisted(&result.state).unwrap();
+        assert_eq!(serde_json::to_value(room.replay_events(&result.journal).unwrap()).unwrap(),serde_json::to_value(&next).unwrap());
+        for viewer in 0..4{assert_eq!(serde_json::to_value(next.view(viewer,0)).unwrap(),serde_json::to_value(RoomEnvelope::from_persisted(&result.state).unwrap().view(viewer,0)).unwrap());}
+        checkpoint(&next.game);room=next;
+    }
+    assert!(room.game.mystic_history.is_empty()&&room.game.mystic_contest.is_none()&&room.game.stack.is_empty());
+    assert_eq!(room.game.players[0].assets.iter().filter(|c|!c.exhausted).count(),0);
+    assert_eq!(room.game.players[0].graveyard.iter().filter(|c|c.definition=="BQ032").count(),1);
+    let saved=serde_json::to_value(&room).unwrap();let out=room.transition(0,first,0).unwrap();
+    assert_eq!(out.outcome,"rejected");assert!(!out.changed&&out.journal.is_empty());
+    assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&out.state).unwrap()).unwrap(),saved);
+}
 fn commit(g: &mut Game, ids: [&str; 4]) {
     for (seat, id) in ids.into_iter().enumerate() {
         assert_eq!(g.pending.as_ref().unwrap().seat, seat);

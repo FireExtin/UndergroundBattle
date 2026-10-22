@@ -1,0 +1,15 @@
+{
+  "scope": "Project card-rule decisions only; no CI/push authorization",
+  "parentThread": "01a1582e-316a-72e8-afef-6d076ef7c033",
+  "questionMessageId": "Sentinel_e76ae81312a8819181d6382cf9cfc363",
+  "question": "游戏这里有两条原文仍不明确，需要你定一下：\n1. 对抗时无牌可展示，是否按“无胜负、无奖励结束；已付费用不退，已完成步骤保留，没有展示的牌不洗回”？\n2. BQ038 让非吸血鬼饮血，是否按“鲜血留在原区、饮血不生效，但袭击继续”？",
+  "userReplyMessageId": "Sentinel_cadb1f3f09288191a84475349ea73220",
+  "userReply": "1. 可以 2.可以",
+  "meaning": [
+    "Only the unavailable-display contest ends; no winner/reward/display followup or shuffle; paid and completed steps remain",
+    "BQ038 non-vampire feeding moves no blood from graveyard or sealed society; original raid continues"
+  ],
+  "implementedNativeCountBeforeReview": 22,
+  "targetBatchSize": 50,
+  "countIncreasePendingIndependentReview": true
+}

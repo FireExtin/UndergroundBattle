@@ -225,14 +225,56 @@ fn mystic_lifecycle_post_nonterminal_elimination_preserves_history_and_finishes_
 }
 
 #[test]
-fn mystic_lifecycle_empty_response_result_rejects_atomically_without_zero_or_fence() {
+fn mystic_lifecycle_ruling_empty_after_responses_keeps_top_cards_without_zero_or_fence() {
     let mut g=before_selection(); g.players[2].deck.clear();
-    // The same unresolved source-rule boundary applies after start responses.
-    // Stop before drive using a real command; it must neither invent a value
-    // nor leave the transient append fence in the saved state on rollback.
-    let before=serde_json::to_string(&g).unwrap();
-    let error=g.apply(0,Action::new("pass")).unwrap_err();assert!(error.contains("无手牌且牌库为空"));
-    assert_eq!(serde_json::to_string(&g).unwrap(),before); checkpoint(&g);
+    let random=g.random; act(&mut g,0,Action::new("pass"));
+    assert!(g.mystic_contest.is_none()&&g.mystic_history.is_empty()&&g.pending.is_none());
+    assert!(!g.players[2].eliminated);assert_eq!(g.random,random);
+    for seat in [0,1,3] {assert_eq!(g.players[seat].hand.len(),1);assert_eq!(g.players[seat].deck.len(),7);}
+    assert!(g.effects.is_empty());checkpoint(&g);
+}
+
+#[test]
+fn mystic_lifecycle_ruling_empty_child_resumes_existing_after_stage_without_outcome() {
+    let mut g=after_boundary(); g.players[2].deck.clear();g.players[2].hand.clear();
+    let history=serde_json::to_value(&g.mystic_history).unwrap();let resources=g.resources(0);
+    reveal(&mut g);
+    for _ in 0..48 {
+        if g.mystic_contest.is_none()&&g.stack.is_empty()&&g.effects.is_empty(){break;}
+        assert!(g.pending.is_none(),"no selection or reward may be fabricated for the child");
+        pass(&mut g);checkpoint(&g);
+    }
+    assert!(g.mystic_contest.is_none()&&g.stack.is_empty()&&g.effects.is_empty());
+    assert_eq!(serde_json::to_value(&g.mystic_history).unwrap(),history);
+    assert!(!g.players[2].eliminated);assert_eq!(g.resources(0),resources-3);
+    checkpoint(&g);
+}
+
+#[test]
+fn mystic_lifecycle_ruling_unshown_finish_requires_original_empty_participant_and_boundary() {
+    let mut g=before_selection();start_child(&mut g);pause_before_selection(&mut g);
+    g.players[2].deck.clear();g.players[2].hand.clear();
+    let child=g.mystic_contest.as_ref().unwrap().contest_id.clone();
+    assert!(matches!(g.effects.pop_front(),Some(Effect::MysticContinue{contest_id}) if contest_id==child));
+    g.mystic_contest_resume(&child).unwrap();checkpoint(&g);
+    assert!(matches!(&g.mystic_contest.as_ref().unwrap().phase,MysticPhase::FinishingUnshown{unable} if unable==&vec![2]));
+    for seats in [vec![],vec![2,2],vec![0],vec![99]] {
+        let mut bad=g.clone();bad.mystic_contest.as_mut().unwrap().phase=MysticPhase::FinishingUnshown{unable:seats};
+        invalid(&g,serde_json::to_value(bad).unwrap());
+    }
+    let mut bad=g.clone();bad.effects.pop_front();invalid(&g,serde_json::to_value(bad).unwrap());
+    g.drive().unwrap();checkpoint(&g);
+    assert!(g.mystic_contest.is_none()&&g.mystic_history.is_empty()&&g.effects.is_empty());
+}
+
+#[test]
+fn mystic_lifecycle_ruling_start_response_can_leave_a_hand_with_an_empty_deck() {
+    let mut g=before_selection();g.players[2].deck.clear();held(&mut g,"JC125",2);
+    // Explicit restored end-of-start-response layout, not a synthetic Draw.
+    checkpoint(&g);act(&mut g,0,Action::new("pass"));
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,COMMIT_KIND);
+    choose_zeroes(&mut g);assert_eq!(g.mystic_history.len(),1);
+    assert!(!g.players[2].eliminated);checkpoint(&g);
 }
 
 #[test]

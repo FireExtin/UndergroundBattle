@@ -387,6 +387,9 @@ impl Game {
     pub(crate) fn vampire_feed_start(&mut self, f: ResolutionFrame) -> RuleResult<()> {
         self.validate_vampire_frame(&f)?;
         let (recipient, amount, optional) = self.vampire_feed_spec(&f)?;
+        // Project ruling 2026-10-22: BQ038 may observe any personal character's
+        // raid, but an ineligible non-vampire moves no blood from either zone.
+        // The original raid remains on the existing stack and continues.
         let Some(c) = self.blood_drinker(&recipient) else { return Ok(()); };
         let seat = c.controller; let title = format!("{}：饮血{amount}", catalog::card(&c.definition).name);
         let options = self.blood_options(seat); let max = amount.min(options.len());
