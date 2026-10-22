@@ -1,4 +1,6 @@
 #[cfg(test)]
+mod recovery_validation_tests;
+#[cfg(test)]
 mod jc060_attached_current_tests;
 mod batch3;
 mod batch3_phoebe;

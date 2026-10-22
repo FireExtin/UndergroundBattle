@@ -1,0 +1,87 @@
+{
+  "recordedAt": "2026-10-22T10:37:55.051705+00:00",
+  "baseCommit": "44cc35564eccc7f38bcfe5568556c3fa746d5d5f",
+  "branch": "progress/fix-abi94-recovery-validation-20261022",
+  "scope": "Independent ordinary-clone ABI94 recovery correction; no fourth-batch or Bot source changes, deployment or independent review. Native source candidate, WASM validation pending.",
+  "definitions": 213,
+  "catalogueRawUnchanged": true,
+  "rulesVersion": "hegemony-pdf-v1",
+  "cardPoolVersion": "limited-v2.84-batch20-third",
+  "engineVersion": "rust-v0.2.94-batch20-third",
+  "before": {
+    "nativeDirected": 3,
+    "passed": 2,
+    "failed": 1,
+    "confirmedMismatch": "damaged WM030 paid cursor: Game rejects, Room accepts",
+    "preservedBaselineCoverage": [
+      "destruction-score corruption already rejected transitively through batch20",
+      "honest JC062 paid frame with target changed by actual reveal accepted and whole effect fizzled without refund/draw"
+    ]
+  },
+  "after": {
+    "nativeDirected": 3,
+    "passed": 3,
+    "roomPacingIntegration": 12
+  },
+  "change": "Both recovery entrances share original40 explicit Game checks; Room keeps own envelope guards. Only batch3 is newly covered relative to original Room. Destruction explicit-list difference was already covered by batch20. Runtime stages and rule semantics unchanged.",
+  "sourceInputCount": 234,
+  "sourceManifestSha256": "30cfdc93cdaec07ae059eabbd1dd49a0c94c0d34766abc218a7eb6ae977675e3",
+  "fixtures": [
+    {
+      "file": "abi94-recovery-build/native-fixtures/case-0.json",
+      "sha256": "2127a10a7bf0c07ad6c5e5e8668ae13aa446a041db4cfae5229ab50449693d97",
+      "name": "recovery_validation_tests::recovery_validation_batch3_paid_frame_cursor_rejected_by_both_entries",
+      "shouldReject": true,
+      "validViews": 4
+    },
+    {
+      "file": "abi94-recovery-build/native-fixtures/case-1.json",
+      "sha256": "6eb2c58a9d3062228aad6c821bf0e109cf753e3932d9f52117612f823b00a65e",
+      "name": "recovery_validation_tests::recovery_validation_impossible_destruction_score_rejected_by_both_entries",
+      "shouldReject": true,
+      "validViews": 4
+    },
+    {
+      "file": "abi94-recovery-build/native-fixtures/case-2.json",
+      "sha256": "23e52ee2ed9997b5923baf9b69883a05aa27da9abc3123938d1477c851852712",
+      "name": "recovery_validation_tests::recovery_validation_honest_paid_multi_target_frame_restores_then_fizzles",
+      "shouldReject": false,
+      "validViews": 4
+    },
+    {
+      "file": "abi94-recovery-build/native-fixtures/case-3.json",
+      "sha256": "90253e946e7071b5195175e2e9f195dc202eff6e2a6e77956d3ee6d446d76891",
+      "name": "recovery_validation_tests::recovery_validation_honest_paid_multi_target_frame_restores_then_fizzles",
+      "shouldReject": false,
+      "validViews": 4
+    }
+  ],
+  "opaqueBoundary": "Native emits state strings; JS never parses/rewrites the private room or its u64 state. Positive target-loss fixture uses seed=u64::MAX-127.",
+  "nativeBinarySha256": "4a0ad74ce56cabbb826b09ac1d84170462d2270bbb0fa1c8c31685bfd8d5e8e3",
+  "logs": {
+    "abi94-recovery-before-01.log": {
+      "bytes": 4669,
+      "sha256": "4e219dd72f8cdc85414e6a76b94b16bd527b9583781db6246b3cc413b84dfb29",
+      "gzipSha256": "7f0e474db6a002cc7127afe57bad48262ca4d328ff5dc4a7bf1243992bff282b",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-before-01.log.gz"
+    },
+    "abi94-recovery-after-01.log": {
+      "bytes": 763,
+      "sha256": "e9ac2579207021e424390bed4a06e73ea2051a33bb2abed001cbfcb9e782a424",
+      "gzipSha256": "6d6717b4d59736cbed58da32292cd87760c5579a1b0c8fb45f5e6a8d2781abb6",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-after-01.log.gz"
+    },
+    "abi94-recovery-after-02.log": {
+      "bytes": 763,
+      "sha256": "d5db73537ec539f87ce6efec91debac8f84007daf587fc67b73aad42522ac48e",
+      "gzipSha256": "71f963d7c889feb168061ae07fecc384bb7000724d6b60f869169cc951db3d64",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-after-02.log.gz"
+    },
+    "abi94-recovery-room-pacing-01.log": {
+      "bytes": 1877,
+      "sha256": "0af0c24e20ff529a433f4cac2661534294c70ee58dad807612410ab16a2cb9fd",
+      "gzipSha256": "491be1a139d30abfdea23fc7145cc460b3827501dfa5045293288e6b27d2bab9",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-room-pacing-01.log.gz"
+    }
+  }
+}

@@ -949,47 +949,55 @@ impl Game {
             ));
         }
         let game: Self = serde_json::from_str(state).map_err(|_| "v2持久状态字段无效")?;
-        game.validate_exposure_state()?;
-        game.validate_mobility_state()?;
-        game.validate_bq035_state()?;
-        game.validate_vacant_regions()?;
-        game.validate_destruction_state()?;
-        game.validate_win_contexts()?;
-        game.validate_sealed_cards()?;
-        game.validate_jz50_search_choice()?;
-        game.validate_entry_search_choice()?;
-        game.validate_deck_seal_choice()?;
-        game.validate_death_observers()?;
-        game.validate_gray_lock_state()?;
-        game.validate_jz22_state()?;
-        game.validate_jc050_state()?;
-        game.validate_xq27_state()?;
-        game.validate_xq37_state()?;
-        game.validate_red_time_state()?;
-        game.validate_blue_expansion_state()?;
-        game.validate_black_expansion_state()?;
-        game.validate_wm056_state()?;
-        game.validate_wm062_state()?;
-        game.validate_jc054_state()?;
-        game.validate_wm023_state()?;
-        game.validate_xq25_state()?;
-        game.validate_jz46_state()?;
-        game.validate_jc057_state()?;
-        game.validate_jc044_state()?;
-        game.validate_jc066_state()?;
-        game.validate_jc041_state()?;
-        game.validate_xq23_state()?;
-        game.validate_jc035_state()?;
-        game.validate_wm038_state()?;
-        game.validate_jz35_state()?;
-        game.validate_batch20_state()?;
-        game.validate_next20_red_state()?;
-        game.validate_batch3_state()?;
-        game.validate_jc052_state()?;
-        game.validate_jc046_state()?;
-        game.validate_jc095_state()?;
-        game.validate_gray_expansion_state()?;
+        game.validate_restored_domain()?;
         Ok(game)
+    }
+
+    /// The original Game recovery checks are shared by both envelopes.
+    /// Room retains its own pacing/version checks, and runtime checks retain
+    /// their stage-specific contracts. Departed targets can be honest history.
+    pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_exposure_state()?;
+        self.validate_mobility_state()?;
+        self.validate_bq035_state()?;
+        self.validate_vacant_regions()?;
+        self.validate_destruction_state()?;
+        self.validate_win_contexts()?;
+        self.validate_sealed_cards()?;
+        self.validate_jz50_search_choice()?;
+        self.validate_entry_search_choice()?;
+        self.validate_deck_seal_choice()?;
+        self.validate_death_observers()?;
+        self.validate_gray_lock_state()?;
+        self.validate_jz22_state()?;
+        self.validate_jc050_state()?;
+        self.validate_xq27_state()?;
+        self.validate_xq37_state()?;
+        self.validate_red_time_state()?;
+        self.validate_blue_expansion_state()?;
+        self.validate_black_expansion_state()?;
+        self.validate_wm056_state()?;
+        self.validate_wm062_state()?;
+        self.validate_jc054_state()?;
+        self.validate_wm023_state()?;
+        self.validate_xq25_state()?;
+        self.validate_jz46_state()?;
+        self.validate_jc057_state()?;
+        self.validate_jc044_state()?;
+        self.validate_jc066_state()?;
+        self.validate_jc041_state()?;
+        self.validate_xq23_state()?;
+        self.validate_jc035_state()?;
+        self.validate_wm038_state()?;
+        self.validate_jz35_state()?;
+        self.validate_batch20_state()?;
+        self.validate_next20_red_state()?;
+        self.validate_batch3_state()?;
+        self.validate_jc052_state()?;
+        self.validate_jc046_state()?;
+        self.validate_jc095_state()?;
+        self.validate_gray_expansion_state()?;
+        Ok(())
     }
 
     pub(crate) fn region_live(&self, region: usize) -> bool {
