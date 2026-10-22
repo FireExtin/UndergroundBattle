@@ -361,3 +361,52 @@ fn pack_a_response_identity_cannot_reuse_retired_or_future_instance() {
       }
     }
 }
+
+#[test]
+fn ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate() {
+    use crate::deck::{DeckDraft,validate};
+    use crate::catalog::DeckEntry;
+    let control=DeckDraft{id:"ab-closure-control".into(),name:"AB closure".into(),description:String::new(),
+        society_id:None,cards:vec![DeckEntry{card_id:"JC125".into(),count:50}],
+        rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),
+        engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-22".into()};
+    assert!(validate(control.clone()).is_ok());
+    for id in ["WM021","WM022","WM032","WM061","BQ082","BQ027","BQ031","BQ032","BQ036","BQ038"] {
+        let d=catalog::card(id);assert!(catalog::runtime_implemented(d)&&!d.supported);
+        assert!(definitions().contains_key(id));
+        let mut blocked=control.clone();blocked.cards=vec![DeckEntry{card_id:"JC125".into(),count:49},DeckEntry{card_id:id.into(),count:1}];
+        assert!(validate(blocked).is_err(),"native entry must not open construction for {id}");
+        let mut g=layout();fund(&mut g,0,id,d.cost as usize);let hand=held(&mut g,id,0);
+        let action=match d.kind.as_str(){
+            "character"=>Action{card_id:Some(hand),region:Some(0),..Action::new("deploy")},
+            "attachment"=>Action{card_id:Some(hand),target_id:Some("society:p0".into()),..Action::new("play")},
+            "spell"=>Action{card_id:Some(hand),..Action::new("play")},_=>panic!("unexpected card kind")};
+        act(&mut g,0,action);assert_eq!(g.resources(0),0,"printed payment for {id}");checkpoint(&g);
+        pass_top(&mut g);checkpoint(&g);
+        assert!(g.stack.is_empty()&&g.effects.is_empty()&&g.pending.is_none(),"entry lifecycle for {id}");
+        let live=match d.kind.as_str(){
+            "character"=>g.regions[0].cards.iter().find(|c|c.definition==id).unwrap(),
+            "attachment"=>&g.attachments.iter().find(|a|a.card.definition==id).unwrap().card,
+            _=>g.players[0].graveyard.iter().find(|c|c.definition==id).unwrap()};
+        for viewer in 0..4 {
+            let v=g.card_view(live,viewer,(d.kind=="character").then_some(0),None);
+            assert_eq!(v.card_id.as_deref(),Some(id));assert_eq!(v.name,d.name);
+        }
+        println!("AB closure {id}: paid={}, actual {} entry, both restores, four views, construction rejected",d.cost,d.kind);
+    }
+}
+
+#[test]
+fn ab_card_closure_bq031_bq032_day_nonasset_never_grants_public() {
+    for id in ["BQ031","BQ032"] {for exposed in [false,true] {
+        let mut g=layout();fund(&mut g,0,id,4);let uid=held(&mut g,id,0);
+        if exposed{g.players[0].society_zone.exposure=1;}else{g.players[2].society_zone.exposure=1;}
+        assert!(!definition(id).traits.public);
+        act(&mut g,0,Action{card_id:Some(uid),region:Some(0),..Action::new("conceal")});checkpoint(&g);
+        let hidden=g.regions[0].cards.iter().find(|c|c.definition==id).unwrap();assert!(hidden.face_down);
+        for viewer in 0..4 {
+            let v=g.card_view(hidden,viewer,Some(0),None);
+            assert_eq!(v.card_id.is_some(),viewer==0,"{id}, exposure={exposed}");
+        }
+    }}
+}

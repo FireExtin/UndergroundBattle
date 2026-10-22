@@ -56,8 +56,7 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
     assert.deepEqual(c.icons.permanent, spec.fields.permanentIcons, c.id);
     assert.deepEqual(c.icons.temporary, spec.fields.temporaryIcons, c.id);
     assert.equal(c.source.imageSha256, spec.sourceVerification.imageSha256, c.id);
-    if (!partials.has(c.id)) assert.equal(hash(read(`web/public/cards/${c.id}.jpg`)), spec.sourceVerification.imageSha256, c.id);
-    else assert.equal(hash(read(c.source.image)), spec.sourceVerification.imageSha256, c.id);
+    assert.equal(hash(read(`web/public/cards/${c.id}.jpg`)), spec.sourceVerification.imageSha256, c.id);
   }
   for (const key of ['selectionEnabled', 'published', 'accepted', 'fullyIntegratedNewCards']) assert.equal(plan.scope[key], 0);
   assert.equal(plan.candidateComparison[0].nativeCards, 20);
@@ -98,7 +97,11 @@ test('package B partial programs preserve the exact prior catalogue and remain o
     assert.equal(hash(read(c.source.image)), packageB.originalCardImageSha256[id], id);
   }
   for (const id of ['BQ031', 'BQ032']) {
-    assert.match(specs[id].fields.printedRuleTextLines[0], /公开〔日形〕非资产/);
+    assert.match(specs[id].fields.printedRuleTextLines[0], /〔日形〕非资产/);
+    assert(!specs[id].fields.printedRuleTextLines[0].includes('公开'), id);
+    const c = pool.cards.find(c => c.id === id);
+    assert(c.keywords.includes('暴露条件：非资产'), id);
+    assert(!c.text.includes('公开'), id);
   }
   for (const id of ['BQ027', 'BQ036', 'BQ038']) {
     assert(!specs[id].fields.printedRuleTextLines.join('').includes('地区势力'));
