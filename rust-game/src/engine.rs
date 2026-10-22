@@ -1600,7 +1600,7 @@ impl Game {
             {
                 break;
             }
-            if matches!(self.effects.front(), Some(Effect::MysticContinue { .. })) && self.mystic_responses_pending() { break; }
+            if matches!(self.effects.front(), Some(Effect::MysticContinue { .. } | Effect::MysticFinish { .. })) && self.mystic_responses_pending() { break; }
             let Some(effect) = self.effects.pop_front() else {
                 break;
             };
@@ -1616,6 +1616,7 @@ impl Game {
         match e {
             Effect::MysticQueueFence { .. } => return Err("临时隐秘队列边界不得作为效果执行".into()),
             Effect::MysticContinue { contest_id } => self.mystic_contest_resume(&contest_id)?,
+            Effect::MysticFinish { contest_id } => self.mystic_finish_nested(&contest_id)?,
             Effect::RegionConfrontationsEnded {
                 region,
                 region_instance,

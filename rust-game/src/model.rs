@@ -473,6 +473,7 @@ pub enum Effect {
     #[serde(skip)]
     MysticQueueFence { depth: usize },
     MysticContinue { contest_id: String },
+    MysticFinish { contest_id: String },
     JZ57AfterMill { frame: Box<ResolutionFrame> },
     RegionConfrontationsEnded {
         region: usize,

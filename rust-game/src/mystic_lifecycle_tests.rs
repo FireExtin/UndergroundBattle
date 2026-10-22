@@ -180,14 +180,15 @@ fn mystic_lifecycle_response_search_private_choice_finishes_before_selection() {
 #[test]
 fn mystic_lifecycle_nested_win_triggers_finish_before_parent_commit() {
     let mut g=before_selection(); held(&mut g,"WM021",0); start_child(&mut g);
+    let child=g.mystic_contest.as_ref().unwrap().contest_id.clone();
     let parent=g.mystic_contest.as_ref().unwrap().parent.as_ref().unwrap().contest_id.clone();
     for seat in 0..4 {
         let id=g.players[seat].hand.iter().find(|c|c.definition==if seat==0 {"WM021"} else {"JC125"}).unwrap().id.clone();
         choose(&mut g,vec![id]);
     }
     while g.pending.as_ref().is_some_and(|p|p.choice.kind==REWARD_KIND) {choose(&mut g,vec![]);}
-    assert!(matches!(g.mystic_contest.as_ref().unwrap().phase,MysticPhase::BeforeSelection));
-    assert_eq!(g.mystic_contest.as_ref().unwrap().contest_id,parent);
+    assert!(matches!(g.mystic_contest.as_ref().unwrap().phase,MysticPhase::Finishing { .. }));
+    assert_eq!(g.mystic_contest.as_ref().unwrap().contest_id,child);
     assert_eq!(g.pending.as_ref().unwrap().choice.kind,"batch3-entry-order"); checkpoint(&g);
     let mut accepted=false;let mut discarded=false;
     for _ in 0..32 {
@@ -206,6 +207,7 @@ fn mystic_lifecycle_nested_win_triggers_finish_before_parent_commit() {
     }
     assert!(accepted&&discarded);
     assert_eq!(g.pending.as_ref().unwrap().choice.kind,COMMIT_KIND);
+    assert_eq!(g.mystic_contest.as_ref().unwrap().contest_id,parent);
     assert!(g.players.iter().all(|p|p.hand.len()==1));
     for _ in 0..4 {let id=g.pending.as_ref().unwrap().choice.options[0].id.clone();choose(&mut g,vec![id]);}
     assert_eq!(g.mystic_history[0].first_winners,[0,1]);
@@ -304,4 +306,77 @@ fn mystic_lifecycle_room_post_terminal_commits_and_replays_instead_of_rolling_ba
     room_step(&mut room,seat,crate::room::SessionAction::Game{action:Action::new("pass")});
     assert_eq!(room.game.status,"finished");assert_eq!(room.game.winner_team,Some(0));
     assert!(room.game.mystic_contest.is_none()&&room.game.effects.is_empty()&&room.pacing.window.is_none());
+}
+
+#[test]
+fn mystic_lifecycle_child_win_chain_precedes_older_parent_effects() {
+    let mut g=before_selection();held(&mut g,"WM021",0);reveal(&mut g);
+    for _ in 0..16 {
+        if g.stack.last().is_some_and(|s|s.frame.as_ref().is_some_and(|f|f.ability_key==pack_a_contest::SHADOW_REVEAL)){break;}
+        pass(&mut g);
+    }
+    // Explicit parent-work boundary, like the original B probes: resolve the
+    // genuine accepted child frame while an older parent Draw is still queued.
+    // The Draw is a layout, not an assertion that a B hook emitted it today.
+    g.effects.push_front(Effect::Draw{seat:2,count:1});
+    let item=g.stack.pop().unwrap();g.resolve_stack(item).unwrap();
+    let Effect::Frame{frame}=g.effects.pop_front().unwrap() else {panic!("accepted response frame");};
+    g.resolve_frame(*frame).unwrap();g.drive().unwrap();restore(&mut g);checkpoint(&g);
+    for seat in 0..4 {
+        let id=g.players[seat].hand.iter().find(|c|c.definition==if seat==0 {"WM021"} else {"JC125"}).unwrap().id.clone();
+        choose(&mut g,vec![id]);
+    }
+    while g.pending.as_ref().is_some_and(|p|p.choice.kind==REWARD_KIND){choose(&mut g,vec![]);}
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"batch3-entry-order");
+    assert!(g.players[2].hand.is_empty(),"the child's winning-trigger chain must finish before the older parent Draw");
+    for _ in 0..20 {
+        let p=g.pending.as_ref().unwrap();if p.choice.kind==COMMIT_KIND {break;}
+        let ids=if p.choice.kind=="batch3-entry-order"{vec![p.choice.options[0].id.clone()]}else{vec![]};
+        choose(&mut g,ids);
+    }
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,COMMIT_KIND);
+    assert_eq!(g.players[2].hand.len(),2);checkpoint(&g);
+}
+
+#[test]
+fn mystic_lifecycle_finishing_chain_authenticates_boundary_and_accepts_another_nested_response() {
+    let mut g=before_selection();let outer=g.mystic_contest.as_ref().unwrap().contest_id.clone();
+    held(&mut g,"WM021",0);start_child(&mut g);
+    for seat in 0..4 {
+        let id=g.players[seat].hand.iter().find(|c|c.definition==if seat==0 {"WM021"}else{"JC125"}).unwrap().id.clone();choose(&mut g,vec![id]);
+    }
+    while g.pending.as_ref().is_some_and(|p|p.choice.kind==REWARD_KIND){choose(&mut g,vec![]);}
+    assert!(matches!(g.mystic_contest.as_ref().unwrap().phase,MysticPhase::Finishing {..}));
+    let base=serde_json::to_value(&g).unwrap();
+    for case in 0..5 {
+        let mut v=base.clone();let end=v["effects"].as_array().unwrap().iter().position(|e|e.get("MysticFinish").is_some()).unwrap();
+        match case {
+            0=>{v["effects"].as_array_mut().unwrap().remove(end);},
+            1=>{let e=v["effects"][end].clone();v["effects"].as_array_mut().unwrap().insert(end,e);},
+            2=>v["effects"].as_array_mut().unwrap().swap(end,end+1),
+            3=>v["mystic_contest"]["phase"]["Finishing"]["outcome"]["totals"][0]=999.into(),
+            _=>v["effects"][end]["MysticFinish"]["contest_id"]=outer.clone().into(),
+        }
+        invalid(&g,v);
+    }
+    let mut accepted=false;
+    while let Some(p)=g.pending.as_ref() {
+        let ids=if p.choice.kind=="batch3-entry-order" {vec![p.choice.options[0].id.clone()]}
+            else if !accepted {accepted=true;vec![player_id(0)]}else{vec![]};
+        choose(&mut g,ids);
+    }
+    assert!(accepted&&!g.stack.is_empty());
+    while g.priority_team!=0 {pass(&mut g);}
+    start_child(&mut g);assert_eq!(g.mystic_states().count(),3);
+    assert!(matches!(g.mystic_contest.as_ref().unwrap().parent.as_ref().unwrap().phase,MysticPhase::Finishing {..}));
+    choose_zeroes(&mut g);
+    for _ in 0..20 {
+        if let Some(p)=g.pending.as_ref() {
+            if p.choice.kind==COMMIT_KIND {break;}
+            assert_eq!(p.choice.kind,"discard");let id=p.choice.options[0].id.clone();choose(&mut g,vec![id]);
+        }else{pass(&mut g);}
+    }
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,COMMIT_KIND);
+    assert_eq!(g.mystic_contest.as_ref().unwrap().contest_id,outer);
+    assert_eq!(g.mystic_history.len(),2);checkpoint(&g);
 }
