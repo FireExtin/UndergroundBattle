@@ -31,7 +31,7 @@ impl Game{
         let [Op::WM041PublicPlay{observation:Some(o)}]=ops else{return Err("阿尔法先生缺少实际公开打出观察".into());};let p=&o.played;let c=&p.card;
         if s.card.definition!="WM041" || s.card.controller!=actor || s.card.face_down || s.play_source.is_some() || actor>=self.players.len() || c.id.is_empty() || c.id==s.card.id || c.face_down || c.controller!=actor || c.owner>=self.players.len()
             || p.region.is_none_or(|r|r>=self.regions.len()) || p.attachment_host_instance.is_some() || p.observed_death.is_some() || p.observed_mobility_grant.is_some() || p.observed_exposure.is_some()
-            || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.kind=="character") || !p.valid_character_play() || !(crate::rules::definition(&c.definition).traits.public || (c.definition=="WM040" && o.exposure_at_play>0))
+            || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.kind=="character") || !p.valid_character_play() || !(crate::rules::definition(&c.definition).traits.public || (matches!(c.definition.as_str(),"WM040"|"BQ082") && o.exposure_at_play>0))
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence)
             || self.stack.iter().any(|item|item.id==o.event_id && item.frame.as_ref().is_none_or(|f|f.ability_key!="deploy" || f.actor!=actor || serde_json::to_value(&f.source).unwrap()!=serde_json::to_value(p).unwrap())){
             return Err("阿尔法先生观察须保留原玩家、公开条件和实际打出来源".into());}

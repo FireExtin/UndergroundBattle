@@ -416,6 +416,7 @@ impl Game {
         self.validate_black_next20_frame(f)?;
         self.validate_next_blue_gray_frame(f)?;
         self.validate_batch3_frame(f)?;
+        self.validate_pack_a_frame(f)?;
         if f.source.observed_death.is_some() {
             // The original observer was accepted before the random/nonrandom
             // discard. Authenticate its captured death and paid-once limit at
@@ -437,7 +438,7 @@ impl Game {
             },
             _ => false,
         };
-        let dynamic = observer_discard || matches!(
+        let dynamic = observer_discard || self.pack_a_rumor_frame(f)? || matches!(
             f.steps.get(f.cursor - 1).map(|s| &s.op),
             Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. } | Op::Batch3Prepare { .. })
         );

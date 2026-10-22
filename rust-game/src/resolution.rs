@@ -751,6 +751,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::PackAOwnGraveCharacter => self.pack_a_grave_target(actor, source, c),
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
@@ -1235,7 +1236,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1636,6 +1637,9 @@ impl Game {
                 Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
+                Op::MysticContest { actor_bonus } => return self.mystic_contest_start(frame, actor_bonus),
+                Op::MysticWin { .. } => {},
+                Op::MysticDestroyedInfluence => self.pack_a_destroyed_influence(&frame),
                 Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
@@ -2538,6 +2542,8 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::MysticCommit { contest_id } => return self.mystic_commit(&frame, &contest_id, chooser, &selected),
+            FrameChoice::MysticReward { contest_id } => return self.mystic_reward(&frame, &contest_id, chooser, &selected),
             FrameChoice::WM058Payment => return self.wm058_payment(*frame, chooser, &a, &selected),
             FrameChoice::BQ041Payment => return self.bq041_pay_complete(*frame, chooser, &a, &selected),
             FrameChoice::WM060Repress { regions } => return self.wm060_repress_complete(&frame, chooser, &a, &regions, &selected),

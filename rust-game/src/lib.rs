@@ -33,6 +33,11 @@ mod batch4_vampires;
 #[cfg(test)]
 mod batch4_vampires_tests;
 mod batch4;
+mod mystic_contest;
+mod mystic_hooks;
+mod pack_a_contest;
+#[cfg(test)]
+mod pack_a_contest_tests;
 mod batch4_chance;
 #[cfg(test)]
 mod batch4_chance_tests;

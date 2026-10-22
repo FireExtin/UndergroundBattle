@@ -53,6 +53,8 @@ impl Game {
         }
         Ok(Self {
             state_schema: 2,
+            mystic_contest: None,
+            mystic_history: vec![],
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
             politician_auras: vec![],
@@ -1002,6 +1004,8 @@ impl Game {
         self.pending = None;
         self.effects.clear();
         self.winner_team = None;
+        self.mystic_contest = None;
+        self.mystic_history.clear();
         self.turn = 0;
         for seat in 0..self.players.len() {
             self.players[seat].hand.clear();
@@ -1591,6 +1595,7 @@ impl Game {
             {
                 break;
             }
+            if matches!(self.effects.front(), Some(Effect::MysticContinue { .. })) && self.mystic_start_responses_pending() { break; }
             let Some(effect) = self.effects.pop_front() else {
                 break;
             };
@@ -1604,6 +1609,7 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::MysticContinue { contest_id } => self.mystic_contest_resume(&contest_id)?,
             Effect::RegionConfrontationsEnded {
                 region,
                 region_instance,
@@ -1974,6 +1980,7 @@ impl Game {
             }
             Effect::NextTurn => {
                 self.turn += 1;
+                self.mystic_history.clear();
                 self.influence_contests.clear();
                 self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
@@ -2144,6 +2151,8 @@ impl Game {
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
+        crate::mystic_contest::validate_choice_action(&p, &a)?;
+        crate::pack_a_contest::validate_choice_action(&p, &a)?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
@@ -2671,7 +2680,7 @@ impl Game {
                         .map(|c| self.card_view(c, seat, None, None))
                         .collect(),
                 }],
-                _ => vec![],
+                _ => self.mystic_revealed_hands(seat),
             },
             assets: self
                 .players

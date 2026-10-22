@@ -468,6 +468,7 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    MysticContinue { contest_id: String },
     JZ57AfterMill { frame: Box<ResolutionFrame> },
     RegionConfrontationsEnded {
         region: usize,
@@ -674,6 +675,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    MysticCommit { contest_id: String },
+    MysticReward { contest_id: String },
     XQ21Marker { kinds: Vec<crate::batch4_markers::MarkerKind> },
     JZ51TopEight { inspected_ids: Vec<String> },
     JZ51EntryRegion { regions: Vec<(usize, String)> },
@@ -899,6 +902,10 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub mystic_contest: Option<crate::mystic_contest::MysticContest>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub mystic_history: Vec<crate::mystic_contest::ContestOutcome>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub attachment_declines: Vec<crate::bq030::DeclinedObserver>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]

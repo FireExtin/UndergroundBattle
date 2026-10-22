@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     BQ031Attachment,
     BQ038Raid,
+    MysticContestWon,
     XG18RenownPlayed,
     WM058CardTargeted,
     XG17RenownEntered,
@@ -121,6 +122,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    PackAOwnGraveCharacter,
     XQ21MarkedCarrier,
     XG16CharacterOrAttachment,
     JZ36CharacterOrAttachment,
@@ -278,6 +280,9 @@ pub enum Op {
     BQ032RevealFeed,
     BQ036TopSix,
     BQ038RaidFeed { observation: Option<Box<crate::batch4_vampires::RaidObservation>> },
+    MysticContest { actor_bonus: u32 },
+    MysticWin { contest_id: Option<String> },
+    MysticDestroyedInfluence,
     XQ21CopyMarker,
     JZ51TopEightCorpses,
     JZ51GraveEntry,
@@ -703,6 +708,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::pack_a_contest::related(ability) { return crate::pack_a_contest::validate_ability(card_id, ability); }
     if crate::batch4::related(ability) { return crate::batch4::validate_ability(card_id, ability); }
     if card_id=="BQ029" && ability.key=="raid-1" || crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
     if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
