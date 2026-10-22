@@ -44,7 +44,9 @@ fn invalid(g: &Game, v: serde_json::Value) {
 }
 #[test]
 fn pack_a_original_data_and_fixed_programs() {
-    assert_eq!(crate::batch4::IMPLEMENTING.len(),22);
+    // Inventory is 22 complete native pilots plus XG21's explicitly closed-admission WIP.
+    assert_eq!(crate::batch4::IMPLEMENTING.len(),23);
+    assert!(crate::batch4::IMPLEMENTING.contains(&"XG21") && !catalog::card("XG21").supported);
     assert!(a::CARDS.iter().all(|id|!crate::batch4::IMPLEMENTING.contains(id)));
     for (id,cost,def) in [("WM021",1,Some(1)),("WM022",3,Some(1)),("WM032",3,Some(1)),("WM061",2,None),("BQ082",4,Some(1))] {
         let c=catalog::card(id);assert_eq!((c.cost,c.defense,c.supported),(cost,def,false));

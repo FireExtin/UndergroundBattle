@@ -9818,6 +9818,50 @@
       "society": "",
       "supported": false,
       "subtitle": "首席药剂师"
+    },
+    {
+      "id": "XG21",
+      "name": "计划：幻影英雄",
+      "kind": "attachment",
+      "subtypes": [
+        "策略",
+        "计划",
+        "演出"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进\n行动 牺牲计划：幻影英雄：自你的牌库中寻找一张印刷费用小于X的声望角色牌，将其放置进场，且置于地区一，然后洗牌。X等于本附属上的推进标志数量。",
+      "keywords": [
+        "隐秘〔月形〕秘密计划",
+        "可推进"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG21",
+        "image": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg",
+        "imageSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

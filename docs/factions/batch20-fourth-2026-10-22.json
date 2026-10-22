@@ -15,7 +15,7 @@
     "target": 50,
     "unassignedSlots": 0,
     "remainingNativePrograms": 28,
-    "nativeWipCards": 5
+    "nativeWipCards": 6
   },
   "colorCounts": {
     "红": 13,
@@ -837,8 +837,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg",
       "sourceImageSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 11,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -846,7 +846,9 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required",
+      "fullNativeCardComplete": false,
+      "implementationBoundary": "正面牺牲/无阈值推进/固定印刷声望检索先行；秘密状态牺牲及牌库自身条件声望未裁定，不计完整卡。"
     },
     {
       "id": "XG18",

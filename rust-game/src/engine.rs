@@ -969,6 +969,7 @@ impl Game {
                 self.check_timing(seat, &spec)?;
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
                 if source.card.definition == "JC055" { return self.jc055_begin_payment(source, &a); }
+                if source.card.definition == "XG21" && spec.key == crate::batch4_phantom::KEY { self.phantom_validate_activation(&source)?; }
                 let paid = self.pay_ability_costs(seat, &source, &spec, &a)?;
                 let label = format!("{}：{}", crate::batch4_plans::label(&source.card), spec.label);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
@@ -2173,6 +2174,7 @@ impl Game {
         crate::batch4_vampires::validate_choice_action(&p, &a)?;
         crate::batch4_wendigo::validate_choice_action(&p, &a)?;
         crate::batch4_markers::validate_choice_action(&p, &a)?;
+        crate::batch4_phantom::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

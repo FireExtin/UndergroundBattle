@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -60,7 +60,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 fn owns(ops: &[Op]) -> bool {
     if crate::batch4_vampires::owns(ops) { return true; }
     ops.iter().any(|op| match op {
-        Op::XQ21CopyMarker | Op::JZ51TopEightCorpses | Op::JZ51GraveEntry | Op::XG18RenownPlay { .. } | Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
+        Op::XQ21CopyMarker | Op::JZ51TopEightCorpses | Op::JZ51GraveEntry | Op::XG18RenownPlay { .. } | Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG21RenownSearch | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -351,7 +351,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058"|"XG21") && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

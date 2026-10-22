@@ -56,10 +56,13 @@ mod batch4_conference;
 #[cfg(test)]
 mod batch4_conference_tests;
 mod batch4_plans;
+mod batch4_phantom;
 #[cfg(test)]
 mod batch4_new_order_tests;
 #[cfg(test)]
 mod batch4_plans_tests;
+#[cfg(test)]
+mod batch4_phantom_tests;
 mod batch4_tattoo;
 mod batch4_shape;
 mod batch4_dahlia;

@@ -35,7 +35,7 @@ task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条
 |expansion-gray-plans-and-source|WM043 精准打击|共享前置待实现|
 |expansion-gray-plans-and-source|CQ18 任秋雨|共享前置待实现|
 |expansion-gray-plans-and-source|CQ19 达摩克里斯之剑|共享前置待实现|
-|expansion-gray-plans-and-source|XG21 计划：幻影英雄|已有，可进入本卡实现|
+|expansion-gray-plans-and-source|XG21 计划：幻影英雄|正面检索及无阈值推进11项定向通过；秘密牺牲、牌库自身条件声望待明确，仍WIP|
 |expansion-gray-plans-and-source|XG18 欧米伽小姐|原生先行19项通过，尚未WASM整合/准入|
 |expansion-gray-plans-and-source|WM044 情报分析中心|共享前置待实现|
 

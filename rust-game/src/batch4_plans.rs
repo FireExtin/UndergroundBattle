@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const CARDS: &[&str] = &["WM045", "WM046", "WM047"];
+pub(crate) const CARDS: &[&str] = &["WM045", "WM046", "WM047", "XG21"];
 pub(crate) const ADVANCE: &str = "batch4-plan-advance";
 const COMPLETE: &str = "batch4-plan-complete";
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -22,7 +22,14 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     let mut advance = ability(ADVANCE, "推进1", Timing::Standard, vec![Cost::Assets(1)], vec![], vec![Op::PlanAdvance], None);
     advance.activation_only = true;
     d.abilities.push(advance);
-    d.abilities.push(ability(COMPLETE, "达成推进：展示并牺牲计划，发动效果", Timing::Fast, vec![], vec![], vec![Op::PlanComplete], Some(Event::PlanReached)));
+    if id == "XG21" {
+        let mut search = ability(crate::batch4_phantom::KEY, "牺牲本计划：检索费用小于推进数的声望角色置于地区一并洗牌", Timing::Standard,
+            vec![Cost::SacrificeSource], vec![], vec![Op::XG21RenownSearch], None);
+        search.activation_only = true;
+        d.abilities.push(search);
+    } else {
+        d.abilities.push(ability(COMPLETE, "达成推进：展示并牺牲计划，发动效果", Timing::Fast, vec![], vec![], vec![Op::PlanComplete], Some(Event::PlanReached)));
+    }
     Some(d)
 }
 pub(crate) fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
@@ -37,7 +44,7 @@ pub(crate) fn validate_action(a: &Action) -> RuleResult<()> {
             if a.ability_id.as_deref().is_some_and(|v| v != "attach") { return Err("计划打出须使用完整结附程序".into()); }
             Action { card_id: a.card_id.clone(), target_id: a.target_id.clone(), option: a.option.clone(), ability_id: a.ability_id.clone(), ..Action::new("play") }
         },
-        "activate" if a.ability_id.as_deref() == Some(ADVANCE) => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), ..Action::new("activate") },
+        "activate" if matches!(a.ability_id.as_deref(), Some(ADVANCE | crate::batch4_phantom::KEY)) => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), ..Action::new("activate") },
         _ => return Err("计划只有结附和可推进标准能力".into()),
     };
     if *a != expected { return Err("计划操作不能带额外目标、支付或私有载荷".into()); } Ok(())
@@ -64,8 +71,9 @@ impl Game {
     pub(crate) fn validate_plan_declaration(&self, d: &Declaration) -> RuleResult<()> {
         self.validate_plan_source(d.actor, &d.source)?;
         let c = &d.source.card;
+        let limit = threshold(&c.definition).ok_or("无完成阈值的计划没有强制完成声明")?;
         let expected = definition(&c.definition).unwrap().abilities.pop().unwrap();
-        if c.face_down || c.advancement_markers < threshold(&c.definition).unwrap() || !same(&d.ability, &expected)
+        if c.face_down || c.advancement_markers < limit || !same(&d.ability, &expected)
             || d.source.attachment_host_instance.as_deref() != Some(format!("society:p{}", d.actor).as_str())
         { return Err("计划强制触发须保留实际达成阈值后的公开快照".into()); } Ok(())
     }
@@ -90,7 +98,13 @@ impl Game {
         } else {
             if f.source.attachment_host_instance.as_deref() != Some(format!("society:p{}", f.actor).as_str()) { return Err("计划推进与完成必须保留原秘社区".into()); }
             if f.ability_key == ADVANCE {
-                if c.advancement_markers >= threshold(&c.definition).unwrap() || !paid(1, false) { return Err("推进必须只支付一次1且未达阈值".into()); }
+                if threshold(&c.definition).is_some_and(|limit| c.advancement_markers >= limit) || !paid(1, false) { return Err("推进必须只支付一次1且未达阈值".into()); }
+            } else if f.ability_key == crate::batch4_phantom::KEY {
+                if c.definition != "XG21" || c.face_down
+                    || !matches!(f.already_paid.as_slice(), [PaidCost::Sacrificed { old_instance, controller, owner }]
+                        if *old_instance == c.id && *controller == f.actor && *owner == c.owner)
+                    || self.batch3_physical_cards().any(|live| live.id == c.id)
+                { return Err("幻影英雄须保留正面原计划与一次真实自身牺牲费用".into()); }
             } else {
                 if !f.already_paid.is_empty() { return Err("强制完成计划没有额外支付".into()); }
                 self.validate_plan_declaration(&Declaration { actor: f.actor, source: f.source.clone(), ability: a })?;
@@ -121,7 +135,7 @@ impl Game {
     pub(crate) fn observe_plan_advancement(&mut self, id: &str, before: u32) {
         let Some(index) = self.attachments.iter().position(|a| a.card.id == id && is_plan(&a.card)
             && a.host_id == format!("society:p{}", a.card.controller)) else { return; };
-        let limit = threshold(&self.attachments[index].card.definition).unwrap();
+        let Some(limit) = threshold(&self.attachments[index].card.definition) else { return; };
         let queued = self.stack.iter().any(|i| i.frame.as_ref().is_some_and(|f| f.source.card.id == id && f.ability_key == COMPLETE))
             || self.effects.iter().any(|e| matches!(e, Effect::Declare { declaration: d } if d.source.card.id == id && d.ability.key == COMPLETE));
         if before < limit && self.attachments[index].card.advancement_markers >= limit && !queued {
@@ -149,7 +163,7 @@ impl Game {
     }
     pub(crate) fn validate_plan_state(&self) -> RuleResult<()> {
         for c in self.batch3_physical_cards().filter(|c| c.advancement_markers > 0) {
-            if threshold(&c.definition).is_none() || !self.attachments.iter().any(|a| a.card.id == c.id) { return Err("推进标志只能属于有效在场计划".into()); }
+            if !is_plan(c) || !self.attachments.iter().any(|a| a.card.id == c.id) { return Err("推进标志只能属于有效在场计划".into()); }
         }
         let mut frames = BTreeSet::new(); let mut completed = BTreeSet::new();
         for a in self.attachments.iter().filter(|a| is_plan(&a.card)) {
@@ -166,9 +180,10 @@ impl Game {
         } } }
         for effect in &self.effects { if let Effect::Declare { declaration: d } = effect { if is_plan(&d.source.card) { self.validate_plan_declaration(d)?; completion(&d.source, &d.ability.key)?; } } }
         if self.pending.as_ref().is_some_and(|p| matches!(&p.resolution, ChoiceResolution::Declare { declaration: d, .. } if is_plan(&d.source.card))) { return Err("计划达成推进是强制触发，不能改成可选选择".into()); }
-        for a in self.attachments.iter().filter(|a| is_plan(&a.card) && a.card.advancement_markers >= threshold(&a.card.definition).unwrap()) {
+        for a in self.attachments.iter().filter(|a| is_plan(&a.card) && threshold(&a.card.definition).is_some_and(|limit| a.card.advancement_markers >= limit)) {
             if a.card.face_down || !completed.contains(&a.card.id) { return Err("已达阈值计划必须公开并保留唯一强制完成程序".into()); }
         }
+        self.validate_phantom_search_state()?;
         Ok(())
     }
 }
