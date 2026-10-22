@@ -1,0 +1,136 @@
+{
+  "recordedAt": "2026-10-22T04:37:39.044946+00:00",
+  "precedingCheckpoint": "263939f3ea5056300fd5b6b9b384ccfc4e89047f",
+  "codeCheckpoint": "7c32285a5e9ad301d2f6b8fb5e993e1e864e125b",
+  "newCard": "WM045",
+  "nativeCards": 14,
+  "definitions": 227,
+  "newDirectedCases": 10,
+  "relatedFilters": {
+    "batch4_plans": 18,
+    "jc054": 26,
+    "world": 30,
+    "batch3_bq026": 19
+  },
+  "filterOverlap": "Shared marker regression is also in batch4_plans; world/jc054 and other filters may overlap. No unique-scene sum",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 209,
+  "sourceInventorySha256": "6aba6dbde848e7ad855c3e03693a344dcb2a318d0e37be3d11f848f9fb0ba3ea",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON of stored object, preserving stored key order, no trailing newline",
+  "sourceInventoryFileSha256": "e65e8620cfe5bb7cf68acf4e251f744d4efa3ffee69c69b19ca878907975a69b",
+  "ruleScope": [
+    "Full personal Society Plan, printed1/Gray loyalty, personal Moon secret play and unlimited pay1 advancement",
+    "Forced respondable threshold3 reveal, sacrifice original then whole-field character Hide and per-controller/per-region multiple-hidden shuffle",
+    "Actual face-up Hide resets markers; already-hidden shuffle preserves markers/orientation while retiring old visible instance IDs",
+    "Preserve prior finite execution-grant cleanup at identity retirement; historical source observations not rewritten and old target bindings cannot follow shuffled cards",
+    "Attached dual-type characters hidden before host departure; seals return owner hand",
+    "JC054 mandatory hide observation/order restores after successors are mixed; large u64 seed stays exact and deterministic",
+    "Original plan can be disintegrated by real paid JC005 response after priority; captured forced completion still resolves under existing Plan semantics"
+  ],
+  "sharedExistingIssue": {
+    "card": "DQJC110",
+    "ability": "hide-and-mix-win",
+    "originalFourthWorldFileSha256": "4b13f94f85c71fb564866711d65e48986ea4e98f8fedd0c844c969be3afd3860",
+    "frozenAbi94WorldFileSha256": "6458a3596b59ee39b737872a9093a3581b954e751b9b0270d0480093b7271b06",
+    "sharedMethodSha256": "ab7a568de113d3a5f24cd3115d29ad64dc71ca5e6b3a6f64b387fa8235bb82eb",
+    "worldHideMethodAtFrozenAbi94B4eIsByteIdentical": true,
+    "wholeFilesIdentical": false,
+    "otherDifference": "Fourth grave-entry logging reports actual post-Chaos location; not part of shared Hide method",
+    "beforeFixExecution": "Explicit native helper regression at fourth checkpoint263939f3 plus test-only change; not an independent ABI94 run",
+    "frozenAbi94StillUnmodified": true
+  },
+  "fixtureDisclosure": "Prepared native layouts plus actual paid Plan/advance/pass, BQ026 deploy/attach, JC005 response and full-state/four-seat restoration. Target-identity test uses a real paid JC063 below a disclosed direct shuffle primitive; does not claim public fast Plan advancement. Sealing and marker preparation are explicit native primitives.",
+  "failureHistory": [
+    "Before fix: one existing-hidden lock marker became0 through original world_hide(None,true); native failure preserved",
+    "First and second new-order stages9 pass/1 fail: JC005 fixture first underfunded printedcost2, then still acted before enemy priority",
+    "Diagnostic cloned command returned no-action-priority with resources2/priority0. Corrected bounded normal pass schedule, no product timing change",
+    "Connection loss interrupted patch receipt. Recovered file showed cleanup patch already present; local/remote263939f3 matched, no active matching build and no03 output files. Started03 exactly once after checking outcomes",
+    "Final new-order10 and direct related filters pass",
+    "Archive assertion compared whole world.rs files rather than the shared method. It stopped summary generation but the shell continued checkpoint; code/logs/inventory were pushed as7c32285a. Added this missing summary via normal follow-up without rewriting Git history. Both whole-file hashes and matching method hash are explicitly recorded"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-01-batch4_new_order.log.gz",
+      "rawBytes": 2840,
+      "rawSha256": "cf28aa2fffdd087ca3a143748b51f7b560d28dbdc0ea2c77d3e4204b098eed9b",
+      "passed": 9,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-02-batch4_new_order.log.gz",
+      "rawBytes": 2520,
+      "rawSha256": "f5f730721313e168de079ecc709a95f572ae0bb376dcb7c0f1cab21b67df8f45",
+      "passed": 9,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-03-batch3_bq026.log.gz",
+      "rawBytes": 2905,
+      "rawSha256": "3694ba67a3f3c60c4d2fa9538433e896b7aab0d478684734bba4c1c13d6a4006",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-03-batch4_new_order.log.gz",
+      "rawBytes": 1889,
+      "rawSha256": "04542a266a9fbf6a047646df2a2ddc376d6741fcc5c9ab09b24e3c314fbc9434",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-03-batch4_plans.log.gz",
+      "rawBytes": 2692,
+      "rawSha256": "9e81e924df7a74090314949a9ffc1eb7d4e24a495884a57dc72b203fe444d9c2",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-03-jc054.log.gz",
+      "rawBytes": 3106,
+      "rawSha256": "667472941c7b659a882123521ad486b6bfe45fc1f6e7bf79669f69e882cd1809",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-03-world.log.gz",
+      "rawBytes": 3599,
+      "rawSha256": "4e646adda92e8808ca697243fa7fb76aec024523e72a8adbbcd9d975df26f4f9",
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-before-fix-batch4_new_order.log.gz",
+      "rawBytes": 1315,
+      "rawSha256": "50a2cd314c3551f696ae57ba4e46fb8631de1541ca84046c5c065ee45566f3c4",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-diagnostic-batch4_new_order_accepted_completion.log.gz",
+      "rawBytes": 1330,
+      "rawSha256": "417a4453638df130c887d505171af4589d3f2dcd5b17ac0e17f958a0b4ac37b6",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-new-order-source-01.log.gz",
+      "rawBytes": 539,
+      "rawSha256": "afa879fc70a42ef0fbc41df27d944ae67ef048cbaa1044d789df4407c86f77ba",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Independent review/execution",
+    "Full product rerun",
+    "ABI95 WASM/Web/Worker integration",
+    "Natural browser/public acceptance",
+    "Isolated ABI94 backport/build/deploy for shared London issue",
+    "Sites/Aliyun operations",
+    "CI/main merge/force push"
+  ]
+}
