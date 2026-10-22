@@ -468,6 +468,10 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    // A transient append fence used only while executing one command/effect.
+    // It is never a persisted operation and cannot be supplied by a client.
+    #[serde(skip)]
+    MysticQueueFence { depth: usize },
     MysticContinue { contest_id: String },
     JZ57AfterMill { frame: Box<ResolutionFrame> },
     RegionConfrontationsEnded {

@@ -160,7 +160,9 @@ impl Game {
             return Ok(());
         }
         if f.ability_key == EARTH_SHOWN {
-            let Some(crate::mystic_contest::MysticContest { phase: crate::mystic_contest::MysticPhase::After { outcome,next_shown,post_frame },.. }) = &self.mystic_contest else { return Err("土归土展示后置缺少原对抗".into()); };
+            let Some(crate::mystic_contest::MysticContest { phase: crate::mystic_contest::MysticPhase::After { outcome,next_shown,post_frame },.. }) = self.mystic_states().find(|s|
+                matches!(&s.phase, crate::mystic_contest::MysticPhase::After { post_frame:Some(p),.. } if p.frame_id == f.frame_id))
+                else { return Err("土归土展示后置缺少原对抗".into()); };
             let shown = next_shown.checked_sub(1).and_then(|i| outcome.shown.get(i)).ok_or("土归土展示后置游标无效")?;
             let expected = self.source_snapshot(&shown.card,None);
             if id != "WM061" || !same(&f.source,&expected) || f.actor != shown.seat || f.cursor != 1 || !matches!(f.guard,GuardState::Accepted)

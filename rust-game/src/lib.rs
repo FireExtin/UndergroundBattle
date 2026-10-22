@@ -41,6 +41,8 @@ mod mystic_hooks;
 mod pack_a_contest;
 #[cfg(test)]
 mod pack_a_contest_tests;
+#[cfg(test)]
+mod mystic_lifecycle_tests;
 mod batch4_chance;
 #[cfg(test)]
 mod batch4_chance_tests;

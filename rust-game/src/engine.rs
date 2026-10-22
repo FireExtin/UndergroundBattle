@@ -648,8 +648,11 @@ impl Game {
         self.validate_jc035_state()?;
         let mut next = self.clone();
         next.version = revision;
-        next.apply_inner(seat, action)?;
-        next.settle_deaths();
+        next.mystic_effect_scope(|g| {
+            g.apply_inner(seat, action)?;
+            g.settle_deaths();
+            Ok(())
+        })?;
         next.drive()?;
         next.prune_inspection_receipts();
         next.prune_attachment_declines();
@@ -1167,6 +1170,7 @@ impl Game {
         self.status = "finished".into();
         self.winner_team = Some(team);
         self.pending = None;
+        self.mystic_contest = None;
         self.effects.clear();
         self.entry_order_groups.clear();
         self.attachment_declines.clear();
@@ -1596,7 +1600,7 @@ impl Game {
             {
                 break;
             }
-            if matches!(self.effects.front(), Some(Effect::MysticContinue { .. })) && self.mystic_start_responses_pending() { break; }
+            if matches!(self.effects.front(), Some(Effect::MysticContinue { .. })) && self.mystic_responses_pending() { break; }
             let Some(effect) = self.effects.pop_front() else {
                 break;
             };
@@ -1604,12 +1608,13 @@ impl Game {
             if processed > 1000 {
                 return Err("效果步骤超过有界上限".into());
             }
-            self.effect(effect)?;
+            self.mystic_effect_scope(|g| g.effect(effect))?;
         }
         Ok(())
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::MysticQueueFence { .. } => return Err("临时隐秘队列边界不得作为效果执行".into()),
             Effect::MysticContinue { contest_id } => self.mystic_contest_resume(&contest_id)?,
             Effect::RegionConfrontationsEnded {
                 region,

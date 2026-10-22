@@ -65,6 +65,10 @@ pub enum MysticPhase {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct MysticContest {
+    /// An interrupted contest retains its original paid frame and continuation
+    /// in the same effects queue. Only the innermost contest can ask a choice.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parent: Option<Box<MysticContest>>,
     pub response_base: Vec<String>,
     pub bonuses: Vec<MysticBonus>,
     pub contest_id: String,
@@ -84,6 +88,40 @@ pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> 
 }
 
 impl Game {
+    pub(crate) fn mystic_states(&self) -> impl Iterator<Item = &MysticContest> {
+        std::iter::successors(self.mystic_contest.as_ref(), |s| s.parent.as_deref())
+    }
+    /// Existing card programs append emitted triggers. While a contest is
+    /// paused, those new effects belong before its continuation, not behind the
+    /// older queue tail. A non-serializable fence identifies only new appends;
+    /// removals (elimination), front inserts and entry-order references keep
+    /// their existing semantics. No paid frame or effect is copied/replayed.
+    pub(crate) fn mystic_effect_scope(&mut self, run: impl FnOnce(&mut Self) -> RuleResult<()>) -> RuleResult<()> {
+        if self.mystic_contest.is_none() { return run(self); }
+        let barrier = self.effects.iter().find_map(|e| match e {
+            Effect::MysticContinue { contest_id } if self.mystic_states().any(|s| s.contest_id == *contest_id) => Some(contest_id.clone()),
+            _ => None,
+        });
+        let Some(barrier) = barrier else { return run(self); };
+        let depth = self.effects.iter().filter(|e| matches!(e, Effect::MysticQueueFence { .. })).count();
+        self.effects.push_back(Effect::MysticQueueFence { depth });
+        let result = run(self);
+        if let Some(index) = self.effects.iter().position(|e| matches!(e, Effect::MysticQueueFence { depth:d } if *d == depth)) {
+            let mut appended = self.effects.split_off(index);
+            appended.pop_front();
+            let index = self.effects.iter().position(|e| matches!(e, Effect::MysticContinue { contest_id } if *contest_id == barrier));
+            if let Some(index) = index {
+                let tail = self.effects.split_off(index);
+                self.effects.extend(appended);
+                self.effects.extend(tail);
+            } else if self.status == "playing" {
+                return Err("隐秘效果队列丢失原续体边界".into());
+            }
+        } else if self.status == "playing" {
+            return Err("隐秘效果队列丢失临时边界".into());
+        }
+        result
+    }
     pub(crate) fn mystic_instance_valid(&self, id: &str) -> bool {
         self.mystic_instance_number(id).is_some()
     }
@@ -97,7 +135,8 @@ impl Game {
         }
     }
     pub(crate) fn mystic_contest_start(&mut self, frame: ResolutionFrame, actor_bonus: u32) -> RuleResult<()> {
-        if self.mystic_contest.is_some() || Self::mystic_op_bonus(&frame) != Some(actor_bonus)
+        if self.mystic_contest.as_ref().is_some_and(|s| !matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. }))
+            || Self::mystic_op_bonus(&frame) != Some(actor_bonus)
             || !matches!(frame.guard, GuardState::Accepted) {
             return Err("隐秘对抗必须来自同一已付费、已接纳的执行阶段".into());
         }
@@ -108,19 +147,20 @@ impl Game {
             return Err("隐秘对抗参与者无手牌且牌库为空：原规则边界待裁定".into());
         }
         let contest_id = self.id();
+        let parent = self.mystic_contest.take().map(Box::new);
         self.mystic_contest = Some(MysticContest { contest_id: contest_id.clone(), turn: self.turn,
             frame: Box::new(frame), actor_bonus, participants, phase: MysticPhase::BeforeSelection,
-            bonuses: vec![], response_base: self.stack.iter().map(|s| s.id.clone()).collect() });
-        // Existing lower stack items are not responses to this contest. Only
-        // frames introduced by the start hooks must finish before selection.
+            parent, bonuses: vec![], response_base: self.stack.iter().map(|s| s.id.clone()).collect() });
+        // Existing lower stack items are not responses to this contest. Start
+        // hooks, their responses and all resulting triggers finish first.
         let tail = std::mem::take(&mut self.effects);
         self.mystic_start_observers(&contest_id)?;
         self.effects.push_back(Effect::MysticContinue { contest_id });
         self.effects.extend(tail);
         Ok(())
     }
-    pub(crate) fn mystic_start_responses_pending(&self) -> bool {
-        self.mystic_contest.as_ref().is_some_and(|s| matches!(s.phase,MysticPhase::BeforeSelection)
+    pub(crate) fn mystic_responses_pending(&self) -> bool {
+        self.mystic_contest.as_ref().is_some_and(|s| matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. })
             && self.stack.iter().any(|f| !s.response_base.contains(&f.id)))
     }
     #[allow(dead_code)] // Integration endpoint consumed by pack B.
@@ -134,13 +174,19 @@ impl Game {
     }
     pub(crate) fn mystic_contest_resume(&mut self, id: &str) -> RuleResult<()> {
         let state = self.mystic_contest.as_ref().ok_or("隐秘对抗续体缺少原状态")?;
+        if state.contest_id != id || self.mystic_responses_pending() {
+            return Err("隐秘对抗必须等待原触发与响应结束".into());
+        }
         if state.contest_id == id && matches!(state.phase, MysticPhase::After { .. }) {
             return self.mystic_after_next();
         }
-        if state.contest_id != id || !matches!(state.phase, MysticPhase::BeforeSelection) || self.mystic_start_responses_pending() {
+        if !matches!(state.phase, MysticPhase::BeforeSelection) {
             return Err("隐秘对抗必须等待原开始触发与响应结束，且只移入顶牌一次".into());
         }
         let participants = state.participants.iter().copied().filter(|s| !self.players[*s].eliminated).collect::<Vec<_>>();
+        if participants.iter().any(|s| self.players[*s].hand.is_empty() && self.players[*s].deck.is_empty()) {
+            return Err("隐秘对抗参与者无手牌且牌库为空：原规则边界待裁定".into());
+        }
         self.mystic_contest.as_mut().unwrap().participants = participants.clone();
         self.mystic_contest.as_mut().unwrap().bonuses.retain(|b| participants.contains(&b.frame.actor));
         for seat in participants {
@@ -305,11 +351,16 @@ impl Game {
             });
             let MysticPhase::After { post_frame, .. } = &mut self.mystic_contest.as_mut().unwrap().phase else { unreachable!() };
             *post_frame = post.clone().map(Box::new);
-            if let Some(frame) = post { self.mill_cards_with_cause(shown.seat, 1, Some(&frame))?; }
-            else { self.mystic_shown_after(&outcome, next_shown)?; }
+            self.mystic_effect_scope(|g| {
+                if !g.players[shown.seat].eliminated {
+                    if let Some(frame) = post { g.mill_cards_with_cause(shown.seat, 1, Some(&frame))?; }
+                    else { g.mystic_shown_after(&outcome, next_shown)?; }
+                }
+                Ok(())
+            })?;
             return Ok(());
         }
-        self.mystic_contest = None;
+        self.mystic_contest = state.parent.map(|p| *p);
         self.pack_a_mystic_after(&state.frame, &outcome)?;
         self.resolve_frame(*state.frame)
     }
@@ -374,14 +425,36 @@ impl Game {
         for o in &self.mystic_history {
             self.validate_mystic_outcome(o)?;
             let first = o.participants.iter().copied().filter(|s| o.winner_team == Some(self.team(*s)) && !won.contains(s)).collect::<Vec<_>>();
-            if !contests.insert(&o.contest_id) || o.first_winners != first { return Err("隐秘对抗记录重复或首次获胜记录被改写".into()); }
+            if !contests.insert(o.contest_id.as_str()) || o.first_winners != first { return Err("隐秘对抗记录重复或首次获胜记录被改写".into()); }
             won.extend(o.participants.iter().copied().filter(|s| o.winner_team == Some(self.team(*s))));
         }
-        let continuations = self.effects.iter().filter_map(|e| if let Effect::MysticContinue { contest_id } = e { Some(contest_id) } else { None }).collect::<Vec<_>>();
+        let continuations = self.effects.iter().filter_map(|e| if let Effect::MysticContinue { contest_id } = e { Some(contest_id.as_str()) } else { None }).collect::<Vec<_>>();
         let pending = self.pending.as_ref().filter(|p| matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::MysticCommit { .. } | FrameChoice::MysticReward { .. }, .. }));
-        let Some(state) = &self.mystic_contest else {
+        let states = self.mystic_states().collect::<Vec<_>>();
+        if states.is_empty() {
             return if continuations.is_empty() && pending.is_none() { Ok(()) } else { Err("隐秘对抗待选或续体缺少原协议".into()) };
-        };
+        }
+        if self.status != "playing" { return Err("终局不得残留活动隐秘对抗".into()); }
+        let expected = states.iter().filter(|s| matches!(s.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. }))
+            .map(|s| s.contest_id.as_str()).collect::<Vec<_>>();
+        if continuations != expected { return Err("隐秘嵌套续体必须按内层到外层各保留一次".into()); }
+        let mut ids = BTreeSet::new();
+        for (index,state) in states.iter().enumerate() {
+            if !ids.insert(state.contest_id.as_str()) || !ids.insert(state.frame.frame_id.as_str())
+                || !self.mystic_instance_number(&state.frame.frame_id).zip(self.mystic_instance_number(&state.contest_id))
+                    .is_some_and(|(frame,contest)| frame < contest)
+                || index > 0 && (!matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. })
+                    || !self.mystic_instance_number(&state.contest_id).zip(self.mystic_instance_number(&states[index-1].frame.frame_id))
+                        .is_some_and(|(parent,child_frame)| parent < child_frame)) {
+                return Err("隐秘嵌套必须保留各层原帧、阶段及开始先后关系".into());
+            }
+            self.mystic_validate_contest(state,index==0,&contests)?;
+        }
+        Ok(())
+    }
+    fn mystic_validate_contest(&self, state: &MysticContest, active: bool, contests: &BTreeSet<&str>) -> RuleResult<()> {
+        let pending = self.pending.as_ref().filter(|p| active && matches!(p.resolution,
+            ChoiceResolution::Frame { choice: FrameChoice::MysticCommit { .. } | FrameChoice::MysticReward { .. }, .. }));
         if !self.mystic_instance_valid(&state.contest_id) || state.turn != self.turn || state.frame.actor >= self.players.len()
             || !matches!(state.frame.guard, GuardState::Accepted) || Self::mystic_op_bonus(&state.frame) != Some(state.actor_bonus)
             || state.participants.windows(2).any(|w| w[0] >= w[1]) || state.participants.iter().any(|s| *s >= self.players.len())
@@ -394,16 +467,19 @@ impl Game {
         }
         self.validate_pack_a_frame(&state.frame)?;
         self.mystic_validate_bonuses(&state.contest_id, &state.participants, &state.bonuses)?;
-        if state.response_base.iter().any(|id| !self.mystic_instance_valid(id) || *id == state.frame.frame_id)
+        if state.response_base.iter().any(|id| !self.mystic_instance_number(id).zip(self.mystic_instance_number(&state.frame.frame_id))
+                .is_some_and(|(base,frame)| base < frame))
             || state.response_base.iter().collect::<BTreeSet<_>>().len() != state.response_base.len() { return Err("隐秘开始响应基线被改写".into()); }
         match &state.phase {
             MysticPhase::BeforeSelection => {
-                if continuations != vec![&state.contest_id] || pending.is_some() || contests.contains(&state.contest_id) { return Err("隐秘开始续体重复或过早公开".into()); }
+                if pending.is_some() || contests.contains(state.contest_id.as_str()) { return Err("隐秘开始续体重复或过早公开".into()); }
                 return Ok(());
             },
             MysticPhase::After { outcome, next_shown, post_frame } => {
-                if continuations != vec![&state.contest_id] || pending.is_some() || *next_shown == 0 || *next_shown > outcome.shown.len()
-                    || self.mystic_history.last().is_none_or(|last| !same(last,outcome.as_ref())) || outcome.contest_id != state.contest_id
+                if pending.is_some() || *next_shown == 0 || *next_shown > outcome.shown.len()
+                    || self.mystic_history.iter().find(|o| o.contest_id == state.contest_id).is_none_or(|o| !same(o,outcome.as_ref()))
+                    || outcome.contest_id != state.contest_id || outcome.actor_bonus != state.actor_bonus
+                    || outcome.actor != state.frame.actor || outcome.ability_key != state.frame.ability_key || outcome.participants != state.participants
                     || outcome.frame_id != state.frame.frame_id || !same(&outcome.source,&state.frame.source) || !same(&outcome.bonuses,&state.bonuses) {
                     return Err("隐秘展示后置效果的原结果或消费游标被改写".into());
                 }
@@ -411,13 +487,13 @@ impl Game {
                 return Ok(());
             },
             MysticPhase::Selecting { committed } => {
-                if !continuations.is_empty() || contests.contains(&state.contest_id) || committed.len() >= state.participants.len()
+                if !active || contests.contains(state.contest_id.as_str()) || committed.len() >= state.participants.len()
                     || committed.iter().zip(&state.participants).any(|((s,id),expected)| s != expected || !self.players[*s].hand.iter().any(|c| c.id == *id)) {
                     return Err("隐秘选牌必须保留私有承诺的原玩家与原手牌".into());
                 }
             },
             MysticPhase::Rewards { outcome, awarded, society_before } => {
-                if !continuations.is_empty() || self.mystic_history.last().is_none_or(|last| !same(last,outcome.as_ref()))
+                if !active || self.mystic_history.last().is_none_or(|last| !same(last,outcome.as_ref()))
                     || outcome.contest_id != state.contest_id || outcome.frame_id != state.frame.frame_id || outcome.actor_bonus != state.actor_bonus
                     || !same(&outcome.source,&state.frame.source) || !same(&outcome.bonuses,&state.bonuses) || outcome.participants != state.participants
                     || society_before.len() != self.players.len() { return Err("隐秘奖励必须绑定本次完整结果与原帧".into()); }
