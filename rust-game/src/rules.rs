@@ -46,6 +46,7 @@ pub enum Event {
     AttachmentEntered,
     HandDiscard,
     Enter,
+    Leave,
     EnterRegion,
     Reveal,
     Death,
@@ -263,6 +264,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ053RemoveLossControl,
     XG11RevealRaid { observation: Option<crate::batch4_spectral::RevealRaid> },
     WM029TurnAura,
     WM058Tax { observation: Option<Box<crate::batch4_chance::TargetedCard>> },

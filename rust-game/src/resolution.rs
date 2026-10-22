@@ -1616,6 +1616,10 @@ impl Game {
             frame.cursor += 1;
             match step.op {
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,
+                Op::BQ053RemoveLossControl => {
+                    let n = &mut self.players[frame.actor].society_zone.loss_control;
+                    *n = n.saturating_sub(1);
+                },
                 Op::WM029TurnAura => self.wm029_resolve(&frame)?,
                 Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
                 Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),

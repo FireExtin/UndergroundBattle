@@ -1,0 +1,107 @@
+{
+  "recordedAt": "2026-10-22T05:15:20.691535+00:00",
+  "precedingCheckpoint": "c6ad63a10e7e5d09b6800ae27d99ad90e79fdff6",
+  "newCard": "BQ053",
+  "nativeCards": 15,
+  "definitions": 228,
+  "newDirectedCases": 13,
+  "relatedFilters": {
+    "attachment::tests": 7,
+    "world": 30,
+    "batch3_bq026": 19
+  },
+  "filterOverlap": "Counts not added across filters",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 211,
+  "sourceInventorySha256": "30c56e9ee0d20edad94f5d1d5d0508da8a84c07122bff0519f6314161d9d2ce1",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON in stored key order without trailing newline",
+  "sourceInventoryFileSha256": "15d68400358d5a04dea3108bd2c9ba7636c3777904dd964f60a9df8a1c00d24b",
+  "ruleScope": "Original BQ053 and Hegemony physical21/printed20 loss-control marker; cap3, distinct personal Society state. Shoggoth core/command/producer rules not implemented or admitted.",
+  "fixtureDisclosure": [
+    "Explicit0..3 starting loss-control markers; absent Shoggoth not invented or unlocked",
+    "Real paid deployment, JC102 lethal damage, JC063 Hide/hidden return and paid reveal; commands and all four private views restored after each step",
+    "Movement and end cleanup tested via disclosed native primitives",
+    "Legally backed destruction marker fixture uses two actual world cards as previous scored cards"
+  ],
+  "failureHistory": [
+    "Action field mode corrected to actual option before executing tests",
+    "Loyalty assets corrected to JC063; exposure/secrecy fixture normalized; destruction marker requires scored regions"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-04-batch4_warden.log.gz",
+      "rawSha256": "5605a513bac763524f8fcda69644f32f22e5e2c7b4a7ca44223c26a6b082db71",
+      "gzipSha256": "4e5d4a01e794600f3dd151fa267c1e4490496875b7d6995ac44bd103964270c3",
+      "passed": 13,
+      "failed": 0,
+      "status": "authorPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-related-01-attachment::tests.log.gz",
+      "rawSha256": "0d15e74e48c890760a537b29a939510882ef44998644a8b458f8b6468eba049a",
+      "gzipSha256": "0eb449e1638f7e928b2b637a1619b366565cea2ac3547865515719ac08e38f25",
+      "passed": 7,
+      "failed": 0,
+      "status": "authorPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-related-01-world.log.gz",
+      "rawSha256": "6e43128097b6644861018b1013c61b97d7cb74c1fc268c94bc33fcd3340b44bf",
+      "gzipSha256": "d47963985d2b12def2e95ed8e159587ee8e1d5120f0502e7f2c809f72230bb8a",
+      "passed": 30,
+      "failed": 0,
+      "status": "authorPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-related-01-batch3_bq026.log.gz",
+      "rawSha256": "35d637b7befb05e197e129fe6f4cfcb89dcb88a23b996b7c50e5c97abc71273d",
+      "gzipSha256": "a02b3304e4296811f4831a2bfe59c50eca13294da494f177912d5faff12b0fe5",
+      "passed": 19,
+      "failed": 0,
+      "status": "authorPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-source-01.log.gz",
+      "rawSha256": "6dac98db4913df596f87e0a9aa0f7edee0d87bf45695d3f19b62502af4943787",
+      "gzipSha256": "778e431972f7938e266098683c8f092ac604a914fe567d111b4759c6fb775b18",
+      "passed": 4,
+      "failed": null,
+      "status": "authorPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-01-batch4_warden.log.gz",
+      "rawSha256": "02ceed830c6a169e02afa8ede161319380e352b2b0d225530fd75b290465d1e0",
+      "gzipSha256": "7a4e48c3c66ffb375a8e6ffd5a6340140dfb09531c871d0d4fa28263bfb15cd6",
+      "passed": 0,
+      "failed": null,
+      "status": "initialAuthorFailurePreservedNotPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-02-batch4_warden.log.gz",
+      "rawSha256": "292cedfc2564e4217e83dfdc74f73c2512282b3906f17e513310fe577d4acd60",
+      "gzipSha256": "aad420250eff8a25ed1fd86cfe8a1faf46da48fdfb4676bdd4d9e545d9be5f76",
+      "passed": 9,
+      "failed": 4,
+      "status": "initialAuthorFailurePreservedNotPass"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-warden-03-batch4_warden.log.gz",
+      "rawSha256": "554b243c36df6a52609eefe06181111bdd649e7a8ecfabd9c57c3fffa1a56f1e",
+      "gzipSha256": "8790d8b151f63141b8b9c09d8c7d3d3f108e2e3091f75e8850cb0d9986d6c35e",
+      "passed": 12,
+      "failed": 1,
+      "status": "initialAuthorFailurePreservedNotPass"
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Full product suite",
+    "Independent execution/review",
+    "ABI95 WASM/Web/Worker build",
+    "Production/Sites/Aliyun operation or browser acceptance",
+    "CI/main merge/force push"
+  ]
+}

@@ -9,6 +9,9 @@ pub struct SocietyZone {
     pub exposure: u32,
     #[serde(default, skip_serializing_if = "crate::model::is_zero")]
     pub secrecy: u32,
+    /// Shoggoth's separate loss-of-control marker, not exposure or destruction.
+    #[serde(default, skip_serializing_if = "crate::model::is_zero")]
+    pub loss_control: u32,
     pub card: Option<Card>,
     // The stable per-seat source survives card instance changes and ready resets.
     // Only starting a new game replaces this zone and clears these ability keys.
@@ -21,6 +24,8 @@ pub struct SocietyZone {
 pub struct SocietyZoneView {
     pub exposure: u32,
     pub secrecy: u32,
+    #[serde(default, skip_serializing_if = "crate::model::is_zero")]
+    pub loss_control: u32,
     pub hand_limit: usize,
     pub id: String,
     pub player_id: String,
@@ -181,6 +186,7 @@ impl Game {
             .map(|p| SocietyZoneView {
                 exposure: p.society_zone.exposure,
                 secrecy: p.society_zone.secrecy,
+                loss_control: p.society_zone.loss_control,
                 hand_limit: self.hand_limit(p.seat),
                 id: format!("society:{}", player_id(p.seat)),
                 player_id: player_id(p.seat),

@@ -2142,6 +2142,7 @@ impl Game {
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
         crate::batch4_politician::validate_choice_action(&p, &a)?;
         crate::batch4_chance::validate_choice_action(&p, &a)?;
+        crate::batch4_warden::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

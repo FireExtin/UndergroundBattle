@@ -9069,6 +9069,49 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "BQ053",
+      "name": "老看守",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "公开；护卫1\n进场触发；离场触发 从本方秘社上移除一个失控标志。",
+      "keywords": [
+        "公开",
+        "护卫1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ053",
+        "image": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
+        "imageSha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

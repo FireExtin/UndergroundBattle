@@ -1,4 +1,7 @@
 mod chaos;
+mod batch4_warden;
+#[cfg(test)]
+mod batch4_warden_tests;
 mod batch4;
 mod batch4_chance;
 #[cfg(test)]

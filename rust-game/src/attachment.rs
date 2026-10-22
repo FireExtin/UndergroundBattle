@@ -218,6 +218,9 @@ impl Game {
         self.leave_in_play(id).map(|(_, c)| (region, c))
     }
     pub(crate) fn leave_in_play(&mut self, id: &str) -> Option<(Option<usize>, Card)> {
+        // Freeze the last controller before host departure removes control grants.
+        let warden = self.in_play(id).filter(|(_, c)| c.definition == "BQ053" && !c.face_down)
+            .map(|(r, c)| self.source_snapshot(c, r));
         if self.in_play(id).is_some() {
             self.host_leaves(id);
         }
@@ -225,6 +228,9 @@ impl Game {
         // Removed snapshots retain their last controller for death triggers.
         // The old target/source identity cannot carry its effects into a new one.
         self.settle_controls();
+        if removed.is_some() {
+            if let Some(source) = warden { self.emit_event(source.card.controller, source, crate::rules::Event::Leave); }
+        }
         removed
     }
     pub(crate) fn settle_attachments(&mut self) {

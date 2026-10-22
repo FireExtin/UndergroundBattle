@@ -1193,5 +1193,10 @@
     "url": "/cards/WM045.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
     "sha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f"
+  },
+  "BQ053": {
+    "url": "/cards/BQ053.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
+    "sha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6"
   }
 }

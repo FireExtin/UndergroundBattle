@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 14,
+    "nativePilots": 15,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -262,13 +262,14 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
       "sourceImageSha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
-      "openQuestionIds": []
+      "openQuestionIds": [],
+      "dependencyBoundary": "Distinct lossControl Society marker0..3 supported; producing Shoggoth Society/core/commands absent, marker fixture disclosed. No full Shoggoth support or admission claimed."
     },
     {
       "id": "WM045",
@@ -435,7 +436,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 14,
+      "nativeCards": 15,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -469,6 +470,13 @@
       "physicalPage": 20,
       "printedPage": 19,
       "basis": "Original page image reviewed again: personal Moon secret play, printed cost1/loyalty, standard pay1 advancement, no turn limit; WM046/047 exact thresholds from original cards"
+    },
+    "lossControl": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 21,
+      "printedPage": 20,
+      "scope": "Distinct marker on personal Society, maximum3; BQ053 removes1 on actual enter/leave. Core/commands and marker generation not implemented."
     }
   },
   "implementationNotes": [
@@ -484,10 +492,11 @@
     "XG11: personal Moon Spirit; actual reveal freezes personal Moon tiers (max3) and live friendly JC038 grants into one cumulative Raid. Normal face-up entry and movement never emit it; generic granted-Raid path cannot bypass the conditional receipt.",
     "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker.",
     "WM058: exact unique print and three Black loyalty; each distinct personal face-up Criminal targeted by an enemy card transaction emits optional pay1-or-counter, excluding activated/triggered abilities and non-targeting mass effects. Source/target/event frozen; turn-scoped declined/paid/countered/no-card receipts prevent repeat consumption. CQ07 and Chance observers may be ordered. Existing JZ55 Immediate order is preserved; the subsequent observer finds no stack card and charges nothing. Reveal removes only original region enemy influence.",
-    "The hidden-shuffle marker loss is shared with existing DQJC110 London win. Fixed in this fourth branch; frozen ABI94 b4e does not include this change and must receive an isolated correction before any claim that its existing path is fixed."
+    "The hidden-shuffle marker loss is shared with existing DQJC110 London win. Fixed in this fourth branch; frozen ABI94 b4e does not include this change and must receive an isolated correction before any claim that its existing path is fixed.",
+    "BQ053 native13: paid entry, actual lethal/Hide/reveal/hidden return, original controller, movement excluded, marker cap/separation, zero, dynamic removal, choices/frames and four-seat restore. Explicit0..3 starting markers, not a public Shoggoth producer."
   ],
   "next": [
-    "Continue remaining6 selected mechanisms/dependencies: BQ084, BQ086, JZ56, BQ033, XQ13, BQ053; no partial-batch construction admission",
+    "Continue remaining5 selected mechanisms/dependencies BQ084/BQ086/JZ56/BQ033/XQ13; investigate rules-clear same-priority replacement candidates without counting unknown mechanisms or partially admitting the batch.",
     "Keep XQ13 overflow rule draft separate and uncounted; neutral/dual colors remain paused",
     "Third-batch isolated ABI94 replacement b4e0388bb0ee1a2b106c247d11663ec7ee60b28d was independently reviewed and synchronized to Aliyun by the parent; no duplicate deployment here",
     "Keep the frozenb80 package unchanged; no duplicate pending Sites deployment or source credential recreation"
