@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-10-22T12:43:03.405361+00:00",
+  "sourceClone": "/home/ddd/Documents/Codex/2026-10-22/task-5/UndergroundBattle-packA",
+  "base": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+  "modulesWip": "b7b50eaec0ad52ac2256e575cbf4ab8cc749b5a7",
+  "wiringWip": "619a411715e49203ebde1795bef380f7b3341e11",
+  "branch": "wip/batch50-pack-a-hidden-contest-20261022",
+  "nativePassClaim": "9/10 first directed cases; remaining fixture repair ongoing by A",
+  "integrated": false,
+  "frozenFilesRead": [
+    {
+      "path": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md",
+      "sha256": "5e2c542413e48f7f5698879b342b7f5646d1cdf3699cd848bb3397263b6de7f1"
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "sha256": "4877e1171df61aed01a59e38858eb08865b321368095d1dcf2af72a3b577a554"
+    }
+  ],
+  "hooks": [
+    "mystic_start_observers(contest_id)->RuleResult<()>",
+    "mystic_win_observers(&ContestOutcome)->RuleResult<()>",
+    "mystic_shown_after(&ContestOutcome,index)->RuleResult<()>",
+    "mystic_extra_shown_bonus(&MysticShown)->RuleResult<u32>",
+    "mystic_validate_bonus(&MysticBonus)->RuleResult<()>"
+  ],
+  "bonus": "mystic_add_bonus(ResolutionFrame,u32); BeforeSelection only; full receipt with contest_id/frame/amount; default rejects unknown receipts",
+  "BReserved": [
+    "BQ027",
+    "BQ031",
+    "BQ032",
+    "BQ036",
+    "BQ038"
+  ],
+  "BDelivery": "No B thread endpoint returned in current supported task inventory; not forwarded, not spawned or claimed received",
+  "followup": "Parent can provide B endpoint or forward exact A docs; cards remain reserved",
+  "sourceReview": "interface preparation only, not independent fixed code review or new tests",
+  "runtimeBatchCount": 22,
+  "target": 50
+}

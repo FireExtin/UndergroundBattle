@@ -53,5 +53,17 @@
   "openRuleBoundaries": [
     "batched advancement addition passing the printed exact threshold",
     "moving advancement away and back while an earlier completion trigger remains pending; repeated completion and sacrifice ordering"
-  ]
+  ],
+  "ruleReviewUpdate": {
+    "recordedAt": "2026-10-22T12:47:10.055880+00:00",
+    "source": "task-2/xq20-review/findings.txt",
+    "sourceSha256": "5bb1b24890ad2d5d88cee22ff9789d4fa2002fa76c2953b59c3623a478201a61",
+    "fixedCode": "ce022d5c61c4a51bb8a3154856996da281addb97",
+    "reviewerRanTests": false,
+    "onlyCurrentRequiredRuling": "天眼1，贝奥武夫2；合法空堆叠XQ20一次将2移入天眼1→3，是否触发完成",
+    "conditionalOnly": "响应中移走再移回：两张标准行动XQ20不可达；未确认其他合法快链，不作为第二必答阻塞",
+    "alreadyTriggered": "合法完成独立于来源；后续降低计数不自行撤销",
+    "implementationBoundary": "不只替换比较符；真实计数、完成快照与恢复/状态校验必须一致",
+    "nativeCompletionCountUnchanged": 22
+  }
 }

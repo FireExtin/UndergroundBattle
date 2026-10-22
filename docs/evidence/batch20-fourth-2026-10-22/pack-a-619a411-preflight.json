@@ -1,0 +1,125 @@
+{
+  "recordedAt": "2026-10-22T12:57:16.896499+00:00",
+  "fixedInspectedCommit": "619a411715e49203ebde1795bef380f7b3341e11",
+  "scope": "integration-owner source preflight, no independent build/test execution",
+  "sourceManifest": [
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "sha256": "3347b97e7f2e58608d336413d20a10b901dc99e8d9dc101f75e60654c1aabbb0"
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "sha256": "4877e1171df61aed01a59e38858eb08865b321368095d1dcf2af72a3b577a554"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "sha256": "6a698fe310bf6c0400f57a6f8a2117c9318b7d6da7f2f91ee8310271d0fb660e"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest_tests.rs",
+      "sha256": "f6a07b2562ba203dda06f296d2017f8118e05839893f3cf0d143a3f895abf100"
+    },
+    {
+      "path": "rust-game/src/batch4.rs",
+      "sha256": "f453a9f239729f0341d34e84c9fc8b75c3285eefe1f38aba496516e8c27e19fa"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "4435936047af639aa952a862c1339d98e49aeee2197892a8a28230a598a1c781"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "52367ead99e47658c1ccc430840359f89e03b57f34861bb0877e1e0122e29f49"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "e8b7679fac52d12af3127d2a8721b78083903119edcee7c55ee57444a700b4f4"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "9bb8ae0272b42243140283f4cc30c91d66df785c0fe2a40f5b999662ee273ad2"
+    }
+  ],
+  "findings": [
+    {
+      "id": "A-PREFLIGHT-01",
+      "target": "pack_a_contest::validate_pack_a_frame WM061 branch",
+      "finding": "sorted proper subset of seat steps accepted by fixed WM061 predicate; truncated fixed program can omit players",
+      "authorResponse": "uncommitted fix: retain all fixed seat slots, eliminated seats skipped by original mill; five corruptions rejected by Game/Room; pre/post-payment elimination tested",
+      "status": "awaiting pinned fix source review; author22-case run reported, not rerun here"
+    },
+    {
+      "id": "A-PREFLIGHT-02",
+      "target": "validate_mystic_outcome after active contest finishes",
+      "finding": "remove living losing seat3 and matching shown from a completed history; recomputed totals/winner/first winners still satisfy local predicates",
+      "authorResponse": "author dynamically confirmed Game accepted original corruption, refusal test first red; now require currently living seats in each current-turn past outcome, preserve later eliminated participants; rerun pending",
+      "status": "confirmed by author reproduction; fix not yet pinned/reviewed"
+    },
+    {
+      "id": "A-PREFLIGHT-03",
+      "target": "related ability and validate_pack_a_frame ownership matching",
+      "finding": "static/direct matcher must cover modes and nested ForEach/FromActor/IfTargetExhausted; persisted foreign-source deployment frame carrying wrapped Mystic op must be rejected before runtime",
+      "authorResponse": "recursive static matcher added; first ForEach rejection green; complete3-op matrix and saved-frame boundary pending",
+      "status": "static concern; no independent dynamic reproduction claimed"
+    }
+  ],
+  "positiveChecks": [
+    "start continuation captures lower stack baseline and waits for newly introduced responses",
+    "commitment projection exposes no revealed hands before all submissions in scoped author tests",
+    "shared domain restore entry reaches pack A and mystic validators through batch4",
+    "no A edits to root XQ20/markers/plans",
+    "fixed619 old235 records deep-equal adf; all5 shipped images byte-equal original source"
+  ],
+  "nativeCount": 22,
+  "target": 50,
+  "integrationPerformed": false,
+  "remainingRuleBoundaries": [
+    "XQ20 batched threshold crossing only required question, user answer pending",
+    "A no-hand-and-no-deck participant and nested contest remain explicitly unadmitted"
+  ],
+  "BInterface": "immutable619 docs and hooks recorded in PACK_A_619A411_INTERFACE_RECEIPT_2026-10-22.json; current supported task inventory returned no B endpoint; not claimed forwarded",
+  "catalogAndImages": {
+    "baseRecordCount": 235,
+    "candidateRecordCount": 240,
+    "old235RecordsDeepEqual": true,
+    "newIds": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082"
+    ],
+    "images": [
+      {
+        "card": "WM021",
+        "bytes": 1367256,
+        "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+        "assetEqualsOriginal": true
+      },
+      {
+        "card": "WM022",
+        "bytes": 1297144,
+        "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+        "assetEqualsOriginal": true
+      },
+      {
+        "card": "WM032",
+        "bytes": 1327772,
+        "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+        "assetEqualsOriginal": true
+      },
+      {
+        "card": "WM061",
+        "bytes": 1322675,
+        "sha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+        "assetEqualsOriginal": true
+      },
+      {
+        "card": "BQ082",
+        "bytes": 1330270,
+        "sha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "assetEqualsOriginal": true
+      }
+    ]
+  }
+}
