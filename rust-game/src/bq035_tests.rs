@@ -1413,7 +1413,7 @@ fn abi94_platform_bq035_room_cross_card_mobility_traces() {
     ] {
         let mut g = u::game();
         g.seed = u64::MAX - 127;
-        g.random_state = u64::MAX - 127;
+        g.random = g.seed;
         let host = field(&mut g, print, 0, 0);
         field(&mut g, "BQ035", 0, 4);
         let blood = attach(&mut g, "XQ14", 0, &host);
@@ -1445,7 +1445,7 @@ fn abi94_platform_xq46_supported_renown_trace() {
     // separate supported layout: all three cards are really played, 3+0+2.
     let mut g = u::game();
     g.seed = u64::MAX - 127;
-    g.random_state = u64::MAX - 127;
+    g.random = g.seed;
     g.regions[0].influence = [0, 3];
     let support = u::held(&mut g, "JC059", 0);
     let corpse = u::held(&mut g, "XQ46", 0);
