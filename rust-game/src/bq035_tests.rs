@@ -1404,6 +1404,92 @@ struct Trace {
     initial: Value,
     steps: Vec<Value>,
 }
+
+#[test]
+fn abi94_platform_bq035_room_cross_card_mobility_traces() {
+    for (print, name) in [
+        ("BQ037", "abi94-repair-bq037-mobility"),
+        ("CQ07", "abi94-repair-cq07-mobility"),
+    ] {
+        let mut g = u::game();
+        g.seed = u64::MAX - 127;
+        g.random_state = u64::MAX - 127;
+        let host = field(&mut g, print, 0, 0);
+        field(&mut g, "BQ035", 0, 4);
+        let blood = attach(&mut g, "XQ14", 0, &host);
+        let mut t = Trace::new(name, g);
+        t.until(|g| matches!(&g.pending, Some(p) if matches!(&p.resolution,
+            ChoiceResolution::Declare { declaration, .. }
+                if declaration.ability.key == "mobility" && declaration.source.card.id == host)));
+        let choice = t.room.game.pending.as_ref().unwrap().choice.id.clone();
+        t.command(0, SessionAction::PauseRoom, false);
+        t.command(0, SessionAction::ResumeRoom, false);
+        let action = Action {
+            choice_id: Some(choice),
+            selected: Some(vec!["region:1".into()]),
+            ..Action::new("choose")
+        };
+        t.command(1, SessionAction::Game { action: action.clone() }, true);
+        t.action(0, action.clone());
+        t.finish();
+        assert_eq!(t.room.game.board(&host).unwrap().0, 1);
+        assert!(t.room.game.attachments.iter().any(|a| a.card.id == blood && a.host_id == host));
+        t.command(0, SessionAction::Game { action }, true);
+        t.export();
+    }
+}
+
+#[test]
+fn abi94_platform_xq46_supported_renown_trace() {
+    // Preserve the existing unassisted matrix and its unique skip. This is a
+    // separate supported layout: all three cards are really played, 3+0+2.
+    let mut g = u::game();
+    g.seed = u64::MAX - 127;
+    g.random_state = u64::MAX - 127;
+    g.regions[0].influence = [0, 3];
+    let support = u::held(&mut g, "JC059", 0);
+    let corpse = u::held(&mut g, "XQ46", 0);
+    let grant = u::held(&mut g, "JC074", 0);
+    u::fund(&mut g, 0, "JC125", 3);
+    u::fund(&mut g, 0, "JC074", 2);
+    let mut t = Trace::new("abi94-repair-xq46-supported-renown", g);
+    t.action(0, t.legal(0, "deploy", &support, None, Some(0)));
+    t.finish();
+    assert_eq!(t.room.game.players[0].assets.iter().filter(|c| c.exhausted).count(), 3);
+    t.action(0, t.legal(0, "deploy", &corpse, None, Some(0)));
+    t.finish();
+    let host = t.room.game.regions[0].cards.iter()
+        .find(|c| c.definition == "XQ46").unwrap().id.clone();
+    assert_ne!(host, corpse, "entry must retain the actual new board identity");
+    assert_eq!(t.room.game.defense(t.room.game.board(&host).unwrap().1, 0), 1);
+    assert_eq!(t.room.game.board(&host).unwrap().1.damage, 0);
+    t.until(|g| g.window == Some(Window::Before(0, 2)));
+    t.action(0, t.legal(0, "play", &grant, Some(&host), None));
+    t.finish();
+    let recipient = t.room.game.board(&host).unwrap().1;
+    assert!(!recipient.exhausted);
+    assert_eq!(t.room.game.defense(recipient, 0), 1);
+    assert!(t.room.game.has_renown(recipient));
+    assert_eq!(t.room.game.players[0].assets.iter().filter(|c| c.exhausted).count(), 5);
+    let support = t.room.game.regions[0].cards.iter().find(|c| c.definition == "JC059").unwrap();
+    assert!(!t.room.game.has_renown(support));
+    t.until(|g| matches!(&g.pending, Some(p) if matches!(&p.resolution,
+        ChoiceResolution::Declare { declaration, .. }
+            if declaration.ability.key == "renown" && declaration.source.card.id == host)));
+    assert_eq!(t.room.game.regions[0].influence, [0, 2]);
+    t.command(0, SessionAction::PauseRoom, false);
+    t.command(0, SessionAction::ResumeRoom, false);
+    let old_choice = t.room.game.pending.as_ref().unwrap().choice.id.clone();
+    t.choose(vec!["accept".into()]);
+    t.finish();
+    assert_eq!(t.room.game.regions[0].influence, [0, 1]);
+    assert!(t.room.game.board(&host).is_some());
+    t.command(0, SessionAction::Game { action: Action {
+        choice_id: Some(old_choice), selected: Some(vec!["accept".into()]),
+        ..Action::new("choose")
+    } }, true);
+    t.export();
+}
 impl Trace {
     fn new(name: &'static str, mut g: Game) -> Self {
         g.room_id = "350000000000000000000001".into();

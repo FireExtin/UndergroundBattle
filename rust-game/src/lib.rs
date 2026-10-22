@@ -1,4 +1,6 @@
 #[cfg(all(test, not(feature = "society-fixtures")))]
+mod independent_abi94_delta_tests;
+#[cfg(all(test, not(feature = "society-fixtures")))]
 mod independent_recovery_tests;
 #[cfg(test)]
 mod recovery_validation_tests;
