@@ -284,7 +284,11 @@ fn red_time_persisted_markers_accept_current_in_play_and_reject_non_play_and_hid
     let mut v = base.clone(); let i = g.players[0].hand.iter().position(|c| c.id == h).unwrap(); v["players"][0]["hand"][i]["time_markers"] = serde_json::json!(1); invalid(&g, v);
     let mut v = base.clone(); v["regions"][0]["cards"][0]["face_down"] = serde_json::json!(true); invalid(&g, v);
     let mut v = base.clone(); v["world"][0]["time_markers"] = serde_json::json!(1); invalid(&g, v);
-    let mut v = base.clone(); v["regions"][0]["card"]["time_markers"] = serde_json::json!(1); invalid(&g, v);
+    // JZ36 now produces time on the live region itself. Migrate this once-invalid
+    // fixture to the current kernel; off-board world cards remain invalid above.
+    let mut v = base.clone(); v["regions"][0]["card"]["time_markers"] = serde_json::json!(1);
+    let current = Game::from_persisted(&serde_json::to_string(&v).unwrap()).unwrap();
+    fixture("time-marker-current-live-region", &current);
     let mut v = base; v["attachments"][0]["hostId"] = serde_json::json!("missing"); invalid(&g, v);
 }
 

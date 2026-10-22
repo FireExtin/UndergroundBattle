@@ -895,3 +895,73 @@ fn xq18_region_attachment_is_a_legal_direct_target() {
     choose(&mut g, vec![a.clone()]);
     assert_eq!(g.board(&a).unwrap().1.time_markers, 1);
 }
+
+// Secret plan/hidden role layouts are explicit Native fixtures. Reveal, mode,
+// target, response and carrier selection use the real commands and checkpoints.
+fn secret_plan(g: &mut Game, owner: usize, marks: u32) -> String {
+    let id = attachment(g, "WM045", owner, &format!("society:p{owner}"), marks);
+    g.board_mut(&id).unwrap().face_down = true;
+    id
+}
+fn assert_secret_plan_views(g: &Game, id: &str, owner: usize, marks: u32) {
+    for seat in 0..4 {
+        let v = g.view(seat);
+        let card = &v.attachments.iter().find(|a| a.card.instance_id == id).unwrap().card;
+        assert_eq!(card.name, "秘密计划");
+        assert_eq!(card.kind, "attachment");
+        assert_eq!(card.time_markers, Some(marks).filter(|n| *n > 0));
+        assert_eq!(card.advancement_markers, Some(0));
+        assert!(card.face_down);
+        if seat != owner {
+            assert!(card.card_id.is_none() && card.text.is_none() && card.magic.is_none());
+        }
+        let log = serde_json::to_string(&v.log).unwrap();
+        assert!(!log.contains("WM045") && !log.contains(&catalog::card("WM045").name));
+    }
+    checkpoint(g);
+}
+
+#[test]
+fn xq18_secret_plan_can_receive_time_without_revealing_its_name_or_hidden_roles() {
+    for actor in 0..4 {
+        let mut g = initial(actor);
+        let owner = (actor + 2) % 4;
+        let plan = secret_plan(&mut g, owner, 0);
+        let hidden = board(&mut g, "JC125", owner, 0);
+        g.board_mut(&hidden).unwrap().face_down = true;
+        reveal(&mut g, actor);
+        choose(&mut g, vec!["add-time".into()]);
+        let options = &g.pending.as_ref().unwrap().choice.options;
+        let option = options.iter().find(|o| o.id == plan).expect("a secret plan remains an attachment");
+        assert!(option.label.contains("秘密计划"));
+        assert!(!option.label.contains(&catalog::card("WM045").name));
+        assert!(options.iter().all(|o| o.id != hidden));
+        choose(&mut g, vec![plan.clone()]);
+        pass_top(&mut g);
+        assert_secret_plan_views(&g, &plan, owner, 1);
+        assert_eq!(g.board(&hidden).unwrap().1.time_markers, 0);
+    }
+}
+
+#[test]
+fn xq18_secret_plan_carrier_choice_and_removal_log_preserve_hidden_identity() {
+    for actor in 0..4 {
+        let mut g = initial(actor);
+        let owner = (actor + 2) % 4;
+        let plan = secret_plan(&mut g, owner, 1);
+        declare(&mut g, actor, &plan, false);
+        pass_top(&mut g);
+        assert_eq!(carrier_ids(&g), BTreeSet::from([plan.clone()]));
+        let option = &g.pending.as_ref().unwrap().choice.options[0];
+        assert!(option.label.contains("秘密计划"));
+        assert!(!option.label.contains(&catalog::card("WM045").name));
+        assert_secret_plan_views(&g, &plan, owner, 1);
+        let mut forged = serde_json::to_value(&g).unwrap();
+        forged["pending"]["choice"]["options"][0]["label"] =
+            serde_json::json!(catalog::card("WM045").name);
+        bad(&g, forged);
+        choose(&mut g, vec![plan.clone()]);
+        assert_secret_plan_views(&g, &plan, owner, 0);
+        assert!(serde_json::to_string(&g.log).unwrap().contains("秘密计划"));
+    }
+}

@@ -7,14 +7,14 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 17,
+    "nativePilots": 18,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 33
+    "remainingNativePrograms": 32
   },
   "colorCounts": {
     "红": 13,
@@ -523,8 +523,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ36 血祭.jpg",
       "sourceImageSha256": "2eb242e21bbcd4e0a45037cfd5c85fed6e0fd0b59dcd67ca30d836a79896f054",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 16,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -981,7 +981,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 17,
+      "nativeCards": 18,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -995,7 +995,7 @@
     "knownOtherGameTask": "Parent-authorized incremental source review of frozen third candidate; no fourth-batch edits assigned there in visible instructions",
     "repositoryDeduplication": "All20 absent from base213; no existing fourth branch at initial remote check; ordinary clone started clean with no active local game build",
     "appInventoryLimit": "Earlier app task-list read did not return; no private session DB read and no claim of complete app-wide inventory",
-    "expansionOwnership": "Parent assigned the additional30 to this editor; task-8 finished read-only analysis. No other writer/process observed in this clone; Bot remains separate251129e8."
+    "expansionOwnership": "Parent assigned the additional30 to this editor; task-8 finished read-only analysis. No other writer/process observed in this clone; Bot remains separate2d8653c7 (integration251129e8)."
   },
   "constraints": [
     "red/black/blue/gray only; neutral/dual expansion paused",
@@ -1024,6 +1024,16 @@
       "physicalPage": 21,
       "printedPage": 20,
       "scope": "Distinct marker on personal Society, maximum3; BQ053 removes1 on actual enter/leave. Core/commands and marker generation not implemented."
+    },
+    "blood": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "physicalPages": [
+        4,
+        10,
+        11
+      ],
+      "scope": "Pay including X before a played card enters the stack; sacrifice of characters counts as death; choose X when paying. Printed JZ36 image supplies its specific two target kinds and threshold."
     }
   },
   "implementationNotes": [
@@ -1042,13 +1052,15 @@
     "The hidden-shuffle marker loss is shared with existing DQJC110 London win. Fixed in this fourth branch; frozen ABI94 b4e does not include this change and must receive an isolated correction before any claim that its existing path is fixed.",
     "BQ053 native13: paid entry, actual lethal/Hide/reveal/hidden return, original controller, movement excluded, marker cap/separation, zero, dynamic removal, choices/frames and four-seat restore. Explicit0..3 starting markers, not a public Shoggoth producer.",
     "XQ15 owner-based Human→Vampire / nonhuman non-Vampire→Slave in every nonblank zone; assets, sealed and hidden cards retain blank rules. Private/public views, current-vs-printed targeting, real host invalidation, JC005, attached Bat and Warden16 directed cases. Scope stays16 native,0WASM/selection/public/acceptance.",
-    "JZ40 native pilot12: exact printed region attachment4; self-sacrifice receipt and original host UID frozen; target character/attachment receives time1, original host physical region total>=4 destroys in place; source markers leave with payment. Marked secret plans remain attachments and keep private identity through restore; ordinary hidden characters/privates still reject. No region-card time-marker producer admitted by this pilot."
+    "JZ40 native pilot12: exact printed region attachment4; self-sacrifice receipt and original host UID frozen; target character/attachment receives time1, original host physical region total>=4 destroys in place; source markers leave with payment. Marked secret plans remain attachments and keep private identity through restore; ordinary hidden characters/privates still reject. No region-card time-marker producer admitted by this pilot.",
+    "JZ36 native16: printed1 plus sacrificeX personal face-up characters, including attached Bats, before responses. Unpaid private typed cost draft or explicit X0; a single simultaneous death wave with frozen original-region receipts. Fixed paid X survives JZ30 death Forecast continuation and exact high-u64 command replay. Carrier target or original-UID region receives X time, then only target current region is checked for in-place destruction at physical total>=4. Direct region-card time and four-seat projection now admitted only by this closed program; no generic configurable marker op.",
+    "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed."
   ],
   "next": [
-    "Continue rules-clear reusable-anchor programs;17/50 native,50 source-selected,0 WASM/admission/acceptance; common prerequisites are not all ready",
+    "Continue rules-clear reusable-anchor programs;18/50 native,50 source-selected,0 WASM/admission/acceptance; common prerequisites are not all ready",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
-    "Bot room/UI slice251129e8 stays independent, default off, awaiting incremental review; no card-count credit",
+    "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
     "Preserve frozen third/44cc candidates, no Sites pending/403 retry, CI, worktree or main merge"
   ],
   "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c",
@@ -1185,7 +1197,7 @@
         "WM037",
         "XG16"
       ],
-      "nativePassed": 1
+      "nativePassed": 2
     },
     {
       "id": "expansion-blood-and-contest",

@@ -1,0 +1,225 @@
+{
+  "recordedAt": "2026-10-22T07:29:25.456807+00:00",
+  "precedingCheckpoint": "bc4c4a824678ac8a19b8a67c8080f06ee1c16143",
+  "newCard": "JZ36",
+  "targetBatchSize": 50,
+  "selectedSources": 50,
+  "nativeCards": 18,
+  "definitions": 231,
+  "wasmCards": 0,
+  "selectionEnabled": 0,
+  "published": 0,
+  "accepted": 0,
+  "newDirectedCases": 16,
+  "relatedFilters": {
+    "batch4_skull": 12,
+    "xq18_tests": 28,
+    "red_time_tests": 14,
+    "batch3_bats_tests": 19,
+    "batch4_plans_tests": 18,
+    "region_destruction": 3
+  },
+  "filterOverlap": "Author filters not summed as independent or full-suite evidence",
+  "sourceChecks": 4,
+  "sourceInventory": "docs/evidence/batch20-fourth-2026-10-22/eighteen-card-source-inputs.json",
+  "sourceInventoryFiles": 228,
+  "sourceInventoryFileSha256": "02411eb47d4970932054d48d6070f13904cd387171d80913b8805c21d87b3bba",
+  "nativeBinarySha256": "a5a96ed018d4c178b01c7c69abeaf40a04e29e678c9720b412c24cbe2513498c",
+  "nativeRecipe": {
+    "toolchain": "Rust1.90.0; Zig0.15.2; Node24.22.1",
+    "cargoFeatures": "default/native",
+    "jobs": 1,
+    "testThreads": 2,
+    "cargoHome": "../.tools/cargo",
+    "rustupHome": "../.tools/rustup",
+    "targetDir": "../batch4-build/target",
+    "CC": "../.tools/batch3-zig-cc",
+    "linker": "../.tools/zig-cc",
+    "offline": true,
+    "locked": true,
+    "rustflags": []
+  },
+  "scope": "Author native directed checks and source assertions only; no ABI95 WASM/Web/Worker build, public admission, deployment, browser acceptance or independent review",
+  "testSourceBoundary": "Blood16, skull12 and XQ18:28 passed after the final production change. The only later Rust edit migrated red_time_tests.rs live-region fixture from invalid to accepted because JZ36 now produces it. Red_time14 and bats19/plans18/region3 ran from the final binary. No claim that every historical log used the identical final test binary.",
+  "behavior": "Unpaid typed private cost choice; printed1 and simultaneous actual sacrificeX paid once; fixed paid receipts survive actual JZ30 death Forecast while blood spell remains on stack. TimeX on a character/attachment or exact region UID, then current target region destroys in place at physical total>=4. Secret-plan XQ18 add/remove carriers retain anonymous labels/logs and four-seat privacy.",
+  "fixtureBoundaries": [
+    "Most layouts are explicit Native fixtures; play, reveal, declare, response passes, pay, choose and persistence use actual Game/Room APIs",
+    "Moving carrier and replacing target region are disclosed layout changes, not claimed opponent command chains",
+    "Four-seat restored views and a large-u64 exact original-command replay are Native only, not a new ABI95 WASM equivalence claim",
+    "No marker transfer/blood extraction/hidden contest foundations or remaining32 programs implemented by this checkpoint"
+  ],
+  "failureHistory": [
+    "Blood01 mode flattening expected the wrong canonical label",
+    "Blood02 test referenced DeckEntry.id; compile failed",
+    "Blood03:13 passed; later cases expanded coverage",
+    "Blood04 test wrongly expected JC054 death Hidden return; primary rules reaffirm sacrifice is death",
+    "Blood05 test searched UI forecast kind; real continuation is investigation/FrameChoice::Forecast",
+    "Blood06:16 passed; final related blood16 also passed",
+    "Plan-time-before:new2 failed because secret plans were excluded",
+    "Plan-time-after:27 passed1 failed; Society carrier used region-only board lookup",
+    "Plan-time-final:28 passed after in_play lookup and anonymous labels/logs",
+    "Plan-time-debug:exact filter matched zero; not counted",
+    "Related red-time13 passed1 failed:old fixture rejected all live-region markers",
+    "Final red-time14 passed after migrating valid current-kernel fixture; all original non-play/hidden invalid assertions retained"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-01.log.gz",
+      "rawBytes": 3777,
+      "rawSha256": "3837d1a3982cd5529e2eb70fa5abcbaf1523b8680fec34d60285171309de270a",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 1 passed; 5 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 0.18s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-02.log.gz",
+      "rawBytes": 681,
+      "rawSha256": "7e52d2bb7162e4c6c3edb2fcbb9d349d211bcdaf61540a01801ba1c59231b480",
+      "status": "compile/setup attempt; no passed test claim",
+      "testSummary": []
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-03.log.gz",
+      "rawBytes": 2066,
+      "rawSha256": "3ba839149c9d50a531dce3eeb656a608f14b091f76c64450adf0b0487d909081",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 0.78s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-04.log.gz",
+      "rawBytes": 3072,
+      "rawSha256": "bab8f7e4c708e87b1ffc242d5b9d14a4c5dbeffc636ea6002c3a1370971d3b71",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 15 passed; 1 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 1.01s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-05.log.gz",
+      "rawBytes": 2994,
+      "rawSha256": "ddba112dc221ee0ea9b5587ee37a3edb8b8d958614f869a37c7b7164c4809f17",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 15 passed; 1 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 1.02s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-06.log.gz",
+      "rawBytes": 2408,
+      "rawSha256": "c1aaa713e86a46510ba317fcfc85abb2d7da31ee78af02e25a360260e2c7b735",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 1.04s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plan-time-before.log.gz",
+      "rawBytes": 1817,
+      "rawSha256": "0e931df3fb03b553667d4c7c97bc86221a9eb25ea8c60a172a400e3f3a342402",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 1815 filtered out; finished in 0.10s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plan-time-after.log.gz",
+      "rawBytes": 3673,
+      "rawSha256": "f4c8d19eea2f6887694554a7b2e8656186cfb44850d50edff7e40db492c22e4a",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 27 passed; 1 failed; 0 ignored; 0 measured; 1789 filtered out; finished in 5.37s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plan-time-final.log.gz",
+      "rawBytes": 3108,
+      "rawSha256": "ef36afe746a29772105fb41a727568f3975a73449eda06324274b585b4e36687",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 1789 filtered out; finished in 5.59s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plan-time-debug.log.gz",
+      "rawBytes": 116,
+      "rawSha256": "b4875af42b45aa86bb646e0937ce59bcd6225d2d90fb5278268452df2a1dfb48",
+      "status": "empty filter; not validation",
+      "testSummary": [
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 0.00s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-related-batch4_blood.log.gz",
+      "rawBytes": 1851,
+      "rawSha256": "18783a0dfbae3567afb8abe893fc2525ca5cd1bfc92464e7270b5ff5385129cd",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 1801 filtered out; finished in 1.05s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-related-batch4_skull.log.gz",
+      "rawBytes": 1418,
+      "rawSha256": "923c02d66d07a2cae65d1699e76f5d33dabb1658c676dc643769360ed1f74c30",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1805 filtered out; finished in 0.94s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-related-red_time_tests.log.gz",
+      "rawBytes": 2091,
+      "rawSha256": "d64db00188b045adae0ff01d0037fa340fc8db3cb5631da71d11c415c427cf09",
+      "status": "retained failed attempt",
+      "testSummary": [
+        "test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 1803 filtered out; finished in 2.26s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-final-red-time.log.gz",
+      "rawBytes": 2081,
+      "rawSha256": "97fe1e1f1e837d42f46ca6a6a2a0714133260b91753d7ea22349f0eea0a643dd",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 1803 filtered out; finished in 2.27s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-final-batch3_bats_tests.log.gz",
+      "rawBytes": 2436,
+      "rawSha256": "6ef4eab5f1deeebc1ced74e60c21954e6d376b0ced483852a62ed3be46ff77a8",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 1798 filtered out; finished in 1.34s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-final-batch4_plans_tests.log.gz",
+      "rawBytes": 2223,
+      "rawSha256": "0e30f7d429e5a50a682b601d27772448d2fc3d1e6050d5cf1a6ff5908089ba68",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 1799 filtered out; finished in 1.99s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-final-region_destruction.log.gz",
+      "rawBytes": 426,
+      "rawSha256": "95eb5fddeb33a1b33d3ac4e51439c23b736d6d284d2306f20093910cf86698d0",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 1814 filtered out; finished in 0.12s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-blood-source-final.log.gz",
+      "rawBytes": 540,
+      "rawSha256": "571e9143235dbb84e8991b544b1d2bc9e3ce6185671c3927dcc1a7fc9bad87ac",
+      "status": "passed:4 source assertions",
+      "testSummary": []
+    }
+  ]
+}

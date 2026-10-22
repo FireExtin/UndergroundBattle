@@ -780,6 +780,7 @@ impl Game {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
                                 rules::TargetPredicate::XQ23ActorAsset => false,
+                                rules::TargetPredicate::JZ36CharacterOrAttachment => self.jz36_target(source, c),
                                 rules::TargetPredicate::JZ40CharacterOrAttachment => self.jz40_target(source, c),
                                 rules::TargetPredicate::XQ18CharacterOrAttachment => {
                                     self.xq18_character_or_attachment(source, c)
@@ -888,7 +889,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -972,6 +973,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::JZ36SacrificeBatch => paid.push(self.jz36_pay(actor, a)?),
                 Cost::JZ39SacrificeDemon => paid.push(self.pay_jz39_demon(actor, a)?),
                 Cost::JC055RemoveTime => return Err("JC055须通过时间标志支付选择".into()),
                 Cost::SacrificeControlledSubtype(subtypes) => paid.push(self.pay_subtype_sacrifice(actor, subtypes, a)?),
@@ -1625,6 +1627,7 @@ impl Game {
                 Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
                 Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
+                Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
                 Op::JZ40TimeAndDestroyHost => self.jz40_resolve(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),

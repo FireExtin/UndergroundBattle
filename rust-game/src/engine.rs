@@ -918,6 +918,7 @@ impl Game {
                 self.plan_play_spec(seat, &mut c, &a, &mut spec)?;
                 let source = self.source_snapshot(&c, None);
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
+                if c.definition == "JZ36" && a.cost_selected.is_none() { return self.jz36_begin_cost(seat,&c,&a,targets); }
                 if spec.ops.iter().any(|op| {
                     matches!(
                         op,
@@ -1842,6 +1843,7 @@ impl Game {
                 } else {
                     // Keep the original slot. The retired card metadata is not
                     // part of the live world and is never projected as a card.
+                    self.regions[region].card.time_markers = 0;
                     self.regions[region].vacant = true;
                     self.regions[region].destroyed = false;
                     self.regions[region].influence = [0, 0];
@@ -2143,6 +2145,7 @@ impl Game {
         crate::batch4_politician::validate_choice_action(&p, &a)?;
         crate::batch4_chance::validate_choice_action(&p, &a)?;
         crate::batch4_warden::validate_choice_action(&p, &a)?;
+        crate::batch4_blood::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
@@ -2173,6 +2176,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JZ36Payment { draft } => self.jz36_finish_cost(*draft,selected)?,
             ChoiceResolution::JZ38EchoTarget { declaration } => self.statue_echo_target(*declaration, seat, &a, selected)?,
             ChoiceResolution::Batch3EntryOrder { entry_instance } => self.batch3_choose_entry_order(&entry_instance,seat,&a,&selected)?,
             ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
@@ -2526,6 +2530,7 @@ impl Game {
             .map(|(index, r)| {
                 if r.vacant {
                     return RegionView {
+                        time_markers: 0,
                         id: format!("empty-region:{index}"), index,
                         card_id: String::new(), name: "空位".into(),
                         threshold: 0, points: 0, destroyed: false, influence: [0, 0],
@@ -2535,6 +2540,7 @@ impl Game {
                 }
                 let d = card(&r.card.definition);
                 RegionView {
+                    time_markers: r.card.time_markers,
                     id: r.card.id.clone(),
                     index,
                     card_id: d.id.clone(),

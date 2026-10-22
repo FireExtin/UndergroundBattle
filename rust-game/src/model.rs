@@ -224,6 +224,8 @@ pub struct PlayerView {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RegionView {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub time_markers: u32,
     pub id: String,
     pub index: usize,
     pub card_id: String,
@@ -602,6 +604,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JZ36Sacrificed(Vec<SourceSnapshot>),
     JZ39Demon(Box<crate::batch4_tattoo::DemonPayment>),
     BQ029ExtraAssets(Vec<String>),
     Batch3RemovedTime(TimeMarkerPayment),
@@ -840,6 +843,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JZ36Payment { draft: Box<crate::batch4_blood::BloodDraft> },
     JZ38EchoTarget { declaration: Box<Declaration> },
     Batch3EntryOrder { entry_instance:String },
     JC055TimePayment { source: SourceSnapshot },

@@ -166,6 +166,7 @@ impl Game {
                 return Err("时间标志的场内对象必须为明置角色".into());
             }
         }
+        if self.regions.iter().any(|r| r.card.time_markers > 0 && (r.vacant || !catalog::catalog().cards.iter().any(|d| d.id == r.card.definition && d.kind == "region"))) { return Err("时间标志只能属于仍在场的地区实体".into()); }
         for a in &self.attachments {
             if a.card.time_markers > 0 && (a.card.face_down && !crate::batch4_plans::secret(&a.card)
                 || catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
@@ -179,7 +180,7 @@ impl Game {
         for c in self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)
             .chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter()))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
-            .chain(self.regions.iter().map(|r| &r.card)).chain(&self.world)
+            .chain(&self.world)
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref())) {
             if c.time_markers != 0 { return Err("离场或非角色实例不能保留时间标志".into()); }
         }

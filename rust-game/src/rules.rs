@@ -66,6 +66,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    JZ36SacrificeBatch,
     JZ39SacrificeDemon,
     Batch3RemoveTime,
     JC055RemoveTime,
@@ -116,6 +117,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    JZ36CharacterOrAttachment,
     JZ40CharacterOrAttachment,
     XG17PersonalPlan,
     Batch4DestroyedRegion,
@@ -265,6 +267,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JZ36TimeAndDestroyTargetRegion,
     JZ40TimeAndDestroyHost,
     BQ053RemoveLossControl,
     XG11RevealRaid { observation: Option<crate::batch4_spectral::RevealRaid> },

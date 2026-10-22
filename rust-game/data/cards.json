@@ -9191,6 +9191,45 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "JZ36",
+      "name": "血祭",
+      "kind": "spell",
+      "subtypes": [
+        "仪式"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "额外费用 牺牲X个角色。\n行动 在目标角色、附属或地区上放置X个时间标志，然后若该地区有四个或更多时间标志，则毁灭该地区。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ36",
+        "image": "resource/ymsj-fun.github.io/cards/JZ36 血祭.jpg",
+        "imageSha256": "2eb242e21bbcd4e0a45037cfd5c85fed6e0fd0b59dcd67ca30d836a79896f054"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

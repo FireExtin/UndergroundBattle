@@ -1,6 +1,6 @@
 # 第四批追加30张：来源清单与前置机制
 
-当前20张来源保留，追加30张来源组成50张目标；原生仍17/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
+当前20张来源保留，追加30张来源组成50张目标；原生18/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
 
 task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条选30，另19条保留后批；不能把XQ15再次算作待开发第20条。
 
@@ -17,8 +17,8 @@ task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条
 |expansion-grave-search|BQ082 毒药专家塞巴斯蒂安|共享前置待实现|
 |expansion-time-and-cost|XQ20 灵魂通道|共享前置待实现|
 |expansion-time-and-cost|XQ21 臣服于命运|共享前置待实现|
-|expansion-time-and-cost|JZ40 蚀刻头骨|已有，可进入本卡实现|
-|expansion-time-and-cost|JZ36 血祭|已有，可进入本卡实现|
+|expansion-time-and-cost|JZ40 蚀刻头骨|原生先行12项通过，尚未WASM整合/准入|
+|expansion-time-and-cost|JZ36 血祭|原生先行16项通过，尚未WASM整合/准入|
 |expansion-time-and-cost|WM032 扭曲的布道者|共享前置待实现|
 |expansion-time-and-cost|WM036 烬归烬|共享前置待实现|
 |expansion-time-and-cost|WM037 戴森的计谋|共享前置待实现|

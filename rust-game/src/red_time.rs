@@ -168,7 +168,7 @@ impl Game {
     }
 
     pub(crate) fn xq18_character_or_attachment(&self, source: &SourceSnapshot, c: &Card) -> bool {
-        source.card.definition == "XQ18" && !c.face_down
+        source.card.definition == "XQ18" && (!c.face_down || crate::batch4_plans::secret(c))
             && (catalog::card(&c.definition).kind == "character"
                 || self.attachments.iter().find(|a| a.card.id == c.id)
                     .is_some_and(|a| catalog::card(&a.card.definition).kind == "attachment"
@@ -176,7 +176,8 @@ impl Game {
     }
 
     pub(crate) fn xq18_add_one_time(&mut self, f: &ResolutionFrame) {
-        if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id)).filter(|c| !c.face_down) {
+        if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id))
+            .filter(|c| !c.face_down || crate::batch4_plans::secret(c)) {
             c.time_markers = c.time_markers.saturating_add(1);
         }
     }
@@ -195,9 +196,11 @@ impl Game {
 
     fn xq18_carrier_options(&self, target_instance: &str) -> RuleResult<Vec<ChoiceOption>> {
         self.validate_red_time_catalogue()?;
-        let (_, target) = self.board(target_instance).ok_or("计时人的原目标已离场")?;
+        let (_, target) = self.in_play(target_instance).ok_or("计时人的原目标已离场")?;
         let mut carriers = vec![];
-        if !target.face_down && target.time_markers > 0 { carriers.push((target, "原目标")); }
+        if (!target.face_down || crate::batch4_plans::secret(target)) && target.time_markers > 0 {
+            carriers.push((target, "原目标"));
+        }
         if catalog::card(&target.definition).kind == "character" {
             carriers.extend(self.attachments.iter().filter(|a| a.host_id == target_instance
                 && !a.card.face_down && a.card.time_markers > 0 && self.attachment_host_valid(a))
@@ -207,7 +210,7 @@ impl Game {
         // No actor/team restriction or body-first automatic removal is added.
         Ok(carriers.into_iter().map(|(c, role)| ChoiceOption { id: c.id.clone(),
             label: format!("{}（{}，{}个时间标志，#{}，{}号席拥有）",
-                catalog::card(&c.definition).name, role, c.time_markers, c.id, c.owner.saturating_add(1)),
+                crate::batch4_plans::label(c), role, c.time_markers, c.id, c.owner.saturating_add(1)),
             card: None }).collect())
     }
 
@@ -229,7 +232,7 @@ impl Game {
             return Err("计时人的选择者或实际时间标志载体已失效".into());
         }
         let c = self.board_mut(&selected[0]).ok_or("实际时间标志载体已离场")?;
-        let name = catalog::card(&c.definition).name.clone();
+        let name = crate::batch4_plans::label(c).to_owned();
         c.time_markers = c.time_markers.checked_sub(1).ok_or("实际载体已无时间标志")?;
         self.note(format!("{} 从{}移除1个时间标志", self.players[chooser].name, name));
         Ok(())
