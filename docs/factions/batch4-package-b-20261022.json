@@ -1,0 +1,49 @@
+{
+  "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+  "scope": "package B independent native slices only; all contest clauses pending package A",
+  "nativePartialCards": [
+    "BQ027",
+    "BQ031",
+    "BQ032",
+    "BQ036",
+    "BQ038"
+  ],
+  "completeCards": 0,
+  "supportedCards": 0,
+  "wasmCards": 0,
+  "sourceCorrections": [
+    "BQ027",
+    "BQ031",
+    "BQ032",
+    "BQ036",
+    "BQ038"
+  ],
+  "baseCatalogCount": 235,
+  "baseCatalogSha256": "8eb72458497ba68e7130d4f52e0b6296a8b0c1a1a811f65f594306cf4bc3407b",
+  "baseSourceRecordsExceptPriorFourAndPackageBFiveSha256": "f5da02b1abdfe045d56fadbdfbdc2fb0f1350c108e5a139801d5fa6cacb661b0",
+  "originalCardImageSha256": {
+    "BQ027": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+    "BQ031": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+    "BQ032": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+    "BQ036": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+    "BQ038": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9"
+  },
+  "rulesRead": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPages": [
+        20,
+        22
+      ]
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "physicalPages": [
+        10,
+        11
+      ]
+    }
+  ]
+}
