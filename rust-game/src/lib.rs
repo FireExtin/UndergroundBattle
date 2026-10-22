@@ -14,6 +14,8 @@ mod batch4_conference;
 mod batch4_conference_tests;
 mod batch4_plans;
 #[cfg(test)]
+mod batch4_new_order_tests;
+#[cfg(test)]
 mod batch4_plans_tests;
 mod batch4_tattoo;
 mod batch4_shape;

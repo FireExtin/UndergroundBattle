@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const CARDS: &[&str] = &["WM046", "WM047"];
+pub(crate) const CARDS: &[&str] = &["WM045", "WM046", "WM047"];
 pub(crate) const ADVANCE: &str = "batch4-plan-advance";
 const COMPLETE: &str = "batch4-plan-complete";
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -124,6 +124,7 @@ impl Game {
     pub(crate) fn plan_complete(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
         self.remove_dead(&f.source.card.id, RemovalCause::Sacrifice);
         match f.source.card.definition.as_str() {
+            "WM045" => self.world_hide(None, true),
             "WM046" => {
                 let n = self.in_play_cards().into_iter().filter(|(_, c)| !is_plan(c) && c.lock_markers > 0 && (c.face_down || catalog::card(&c.definition).kind == "character")).count();
                 self.draw(f.actor, n)?;

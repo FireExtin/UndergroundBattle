@@ -1,5 +1,13 @@
 use crate::{catalog,model::*,rules::*,unit_support::*};
 const ADVANCE:&str=crate::batch4_plans::ADVANCE;
+#[test]
+fn batch4_new_order_shuffle_preserves_markers_on_cards_already_hidden(){
+    let mut g=game();let a=field(&mut g,"JC125",0);let b=field(&mut g,"JC032",0);let ally=field(&mut g,"JC125",1);
+    for id in [&a,&b,&ally]{g.board_mut(id).unwrap().face_down=true;}g.board_mut(&a).unwrap().lock_markers=1;g.board_mut(&ally).unwrap().lock_markers=2;restore(&mut g);
+    g.world_hide(None,true);
+    assert_eq!(g.regions[0].cards.iter().filter(|c|c.controller==0).map(|c|c.lock_markers).sum::<u32>(),1,"shuffling an already hidden card is not a new flip or zone departure");
+    assert_eq!(g.board(&ally).unwrap().1.lock_markers,2);restore(&mut g);
+}
 fn layout(secret:bool)->Game { let mut g=game();fund(&mut g,0,"WM046",12);if secret{g.add_society_markers(0,0,1);}g }
 fn start(g:&mut Game,id:&str,secret:bool){let id=held(g,id,0);act(g,0,Action{card_id:Some(id),target_id:Some("society:p0".into()),option:secret.then(||"secret-plan".into()),..Action::new("play")});}
 fn enter(g:&mut Game,id:&str,secret:bool)->String{start(g,id,secret);top(g);g.attachments.iter().find(|a|a.card.definition==id).unwrap().card.id.clone()}

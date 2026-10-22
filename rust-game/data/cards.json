@@ -9026,6 +9026,49 @@
       "society": "",
       "supported": false,
       "subtitle": "“清洁工”"
+    },
+    {
+      "id": "WM045",
+      "name": "计划：新秩序",
+      "kind": "attachment",
+      "subtypes": [
+        "策略",
+        "计划"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进\n强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。",
+      "keywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM045",
+        "image": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
+        "imageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

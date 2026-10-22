@@ -1188,5 +1188,10 @@
     "url": "/cards/WM058.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg",
     "sha256": "8df743099faf69b6a56cd546be5a572a3fb8505dc66083ea6e11b907592cc7c6"
+  },
+  "WM045": {
+    "url": "/cards/WM045.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
+    "sha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f"
   }
 }

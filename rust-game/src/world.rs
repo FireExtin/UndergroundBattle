@@ -219,8 +219,17 @@ impl Game {
                 for (_, mut cards) in groups {
                     if cards.len() > 1 {
                         self.shuffle(&mut cards);
-                        for c in cards {
-                            let c = self.fresh(c);
+                        for mut c in cards {
+                            // Shuffling hides the old public instance identity;
+                            // it is not another flip or zone departure. Already
+                            // hidden cards retain their markers and orientation.
+                            // Captured historical events keep their old IDs,
+                            // just as before; they must not follow a new target.
+                            // Keep fresh()'s retirement of the finite execution
+                            // grants, without applying its marker/name reset.
+                            self.turn_attribute_modifiers.retain(|m|
+                                m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
+                            c.id = self.id();
                             self.regions[r].cards.push(c);
                         }
                     } else {
