@@ -1,0 +1,86 @@
+{
+  "runs": [
+    {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "abi94_platform",
+        "independent_abi94_delta_tests",
+        "recovery_validation_tests",
+        "--test-threads=2",
+        "--nocapture"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "pid": 2,
+      "startUtc": "2026-10-22T15:29:26.001762+00:00",
+      "base": "a2756f50380d1b514a2fb4ece2b70539eee387d5",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "cargoBuildJobs": 1,
+      "rustTestThreads": 2,
+      "state": "complete",
+      "log": "abi94-platform-native-01.log.gz",
+      "exitCode": 101,
+      "seconds": 9.864,
+      "endUtc": "2026-10-22T15:29:35.866695+00:00",
+      "rawSha256": "215c62e4f87533b577830195d1d685f08606d471b24aa2ff2f7a456cb7771f99",
+      "gzipSha256": "0a1de7eb0ee57ec0811b586af442c35288e1218f902a6605f393658bb3218cd0"
+    },
+    {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "abi94_platform",
+        "independent_abi94_delta_tests",
+        "recovery_validation_tests",
+        "--test-threads=2",
+        "--nocapture"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "pid": 2,
+      "startUtc": "2026-10-22T15:30:24.104343+00:00",
+      "base": "e2ba524d880c097488f7b24f57e5aead43444f85",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "cargoBuildJobs": 1,
+      "rustTestThreads": 2,
+      "state": "complete",
+      "log": "abi94-platform-native-02.log.gz",
+      "exitCode": 0,
+      "seconds": 23.78,
+      "endUtc": "2026-10-22T15:30:47.885894+00:00",
+      "rawSha256": "5fbf4870408ec84dda943fe48f739c703c664a011df32dab6cee52b5702aa1d0",
+      "gzipSha256": "ca751be57b50197c22de0351cc227e67038e43d0c3fc1f3f81707bdb5a66731e"
+    }
+  ],
+  "completeNativeWorkspaceRerun": false,
+  "currentUniqueDirectedPassed": 7,
+  "firstAttempt": "compile failed: test-only RNG field name; full log retained",
+  "nativeRoomScenarios": 3,
+  "nativeRecoverySnapshots": 4,
+  "authorWorkspaceEvidence": "../../abi94-workspace-regressions-2026-10-22/results.json"
+}

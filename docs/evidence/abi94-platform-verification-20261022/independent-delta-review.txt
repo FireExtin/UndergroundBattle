@@ -1,0 +1,87 @@
+ABI94 恢复候选增量独立复审
+审阅范围：59ac43d0d6fa142577fd59c892e49302208f018b → 39ab0664efa62989573de0a1fc21b0f6e0df63d0
+固定运行源码：932de1da80809e5535688a7e0c7d7910b5de8862
+本报告及独立测试产物目录：/home/ddd/Documents/Codex/2026-10-22/task-2/abi94-delta-review
+独立普通 clone：/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-abi94-delta-review
+
+结论
+
+在这次增量及以下验证范围内，没有确认的 P0、P1 或 P2 缺陷。
+可以将该候选交给集成人员继续完成剩余平台验收。此结论不等于 main 放行、全卡正确性或真实试玩通过。
+我独立执行了两项新增定向回归，2/2 通过；作者的 1667 项通过是独立核验了日志与源码绑定的作者结果，没有伪称由我重跑。
+
+1. BQ035 修复纠正了错误分流，没有发现放宽普通命令授权
+
+运行代码实际只修改 batch3.rs。BQ037 的机动 Target 选择以前被卡名直接送入饮血 Accept 校验，CQ07 也有同类问题。
+现在 CQ07 只在 ENTER/TARGETED 键上走印刷能力校验；饮血只接纳 (BQ037, batch3-bq037-feed) 和 (BQ029, batch3-bq029-feed) 的完整配对。
+证据：固定源码 rust-game/src/batch3.rs:688–720；声明先执行 validated_cross_card_declaration 的位置是 :361–364。
+机动本身的规范程序、阶段、原控制者、BQ035/鲜血宿主见证没有变：rust-game/src/mobility.rs:132–222。
+唯一回合捕获、真实邻区选择及响应壳仍校验：mobility.rs:275–373。并非仅按一个 ability key 信任输入。
+普通 activate 仍从该牌印刷定义中检索 event.is_none() 的能力：resolution.rs:564–611；入口 engine.rs:914–934。
+
+独立反例：BQ037、CQ07、JZ26、BQ026 均没有相应授权事件时，直接提交 mobility、renown、jc089-combat-glory 三种 activate。
+12 种组合在 Game 恢复入口与 Room 恢复后 transition 均拒绝；完整状态、revision 及四座位视图保持一致，Room 没有写入 journal。
+作者另有真实机动事件、丢弃/篡改见证、错座位、旧选择 ID、非法目标与印刷饮血的测试；我静态检查并核验其日志，没有重复跑作者 30 项。
+
+2. 目录数字更新有实物集合约束，没有掩盖目录缺失
+
+独立读取 bb77eb8ad69738ebecad860d60df05a9276efd00、59ac43d、932de1d 的 rust-game/data/cards.json：
+  - bb77 的 193 条记录与现目录前 193 条逐项、逐字段、顺序完全一致。
+  - 59ac 与 932de 的整份目录完全相同；修复没有改卡牌记录。
+  - 现有 213 个不同 ID，203 张非地区牌、原 10 张地区；新增后缀恰好是第三批 20 个 ID。
+  - 红/灰/黑完整非地区集合为 29/32/41，独有牌集合为 6/6/11；20 张原图哈希全部匹配。
+前缀规范 JSON SHA256：0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e。
+证据：unit_support.rs:6–34 同时锁前缀哈希、精确新增集合、唯一 ID、完整地区集；msjc06_tests.rs:172–190 锁颜色与独有集合。
+next20_cross_tests.rs:41–61 仍锁第二批自身 20 张，社会构筑 fixture 的 full/cards 限制没有随计数扩大。
+因此五个旧计数断言的调整可接受。这里只核对 ABI94 这条恢复线；不把其他活动分支的卡池数混入本候选。
+
+3. 两个新增集成失败来自既有奖励漏校验；没有新增奖励规则
+
+作者第一次越过 lib 的 workspace 日志确实有 renown::public_commands_restore 与 glory::public_commands_restore 两项失败。
+新增识别仅覆盖第三批角色的 renown / jc089-combat-glory 两种完整规范奖励：batch3.rs:339–370、405–418。
+金额固定 1、费用与目标为空、原地区身份冻结、可选 Accept 形状完整；帧保持 cursor=0、Unchecked 及匹配 actor 的步骤。
+语义生成器 renown.rs、rules.rs、resolution.rs 均与 59ac 字节相同。团队声望合并、先赢区后声望与既有威名产生条件未改：renown.rs:9–28、32–43、73–111。
+实际放置仍核对冻结的原地区实例，原地区替换后不会把奖励转给同索引新地区：resolution.rs:1982–1992。
+恢复接受原来源离场后的规范奖励，不能反过来要求来源现在还满足曾经触发的条件；作者已针对原来源离场和同名替代做回归。
+
+独立补充的是作者新奖励测试未直接覆盖的拒绝分支：BQ037、CQ07 × 声望/威名，共四种待选。
+Game/Room 恢复后拒绝均正常完成且不加任何地区影响力；错座位、重复 accept 选项、拒绝后旧 ID 再拒绝或再接受均被拒绝，状态不变。
+这证明本轮明确补查的路径，没有宣称覆盖所有历史、任意人为 JSON 篡改或全部发奖前提。
+边界：持久快照校验是状态一致性与规范程序校验，不是能够反证全部对局历史的事件账本。本增量未改变存储/认证信任边界。
+
+4. XQ22 修的是测试场景；原禁令、支付和选择时机保留
+
+我查看了当前 clone 的原图 resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg。
+原图明确：未横置时双方不能打出事务牌；双方都能支付 2 发动快速行动，在结算时横置或重置该牌。
+batch3_politician.rs:8–22 的定义和事务牌禁令，与基线完全相同。
+集成 fixture 先证明非法 JC074 原子拒绝，然后支付 2 横置，支付 2 实际授予声望，再支付 2 重置，保持原对抗窗口。
+证据：rust-game/tests/audit_regressions.rs:209–223、287–318。没有跳过费用、没有直接篡改朝向、没有删除禁令。
+XQ46 的原零防御 fixture 仍会在授予后无法保持存活：同文件 :320–355 明确要求 skipped_ids 只能是 [XQ46]。
+作者报告的声望 135 + 1 fixture skip、威名 136 无 skip，应继续保留这个口径；Rust ignored=0 不能写成逐卡矩阵无遗漏。
+
+证据核验和独立执行
+
+independent-receipt-audit.json 由本目录 audit_receipts.py 重新生成，结果：
+  - 15 份 gzip/raw SHA256 均一致，含最初 6 失败、随后 2 集成失败及中间失败尝试，未抹掉失败历史。
+  - 14 次运行的摘要逐项与原日志 test result 一致；有单独 receipt 的条目与嵌入 invocation 相同。
+  - 378 个绑定文件同时匹配固定源码 Git blob、作者提交记录中的哈希以及当前磁盘；39ab 相对 932de 只增加文档/证据。
+  - 最终 workspace 日志独立解析为 17 个 target，1595 lib + 72 integration = 1667 passed，failed/ignored/filtered 均为 0。
+这些检查证明已保存证据内部一致，不能替代我实际执行作者全套，也不把未冻结的早期工作区尝试当成干净 commit 运行。
+
+我实际执行：
+  cargo test --offline --locked -j 1 -p hegemony-server --no-default-features --lib independent_abi94_delta_tests -- --test-threads=1
+  固定源码 932de1d，加且仅加两项独立测试模块；运行一次，2 passed / 0 failed / 0 ignored / 1579 filtered。
+  2026-10-22 15:15:26–15:15:47 UTC；总 21.194 秒，其中用例 0.88 秒。
+  CPU 31 单核，nice 19，idle I/O，Cargo jobs=1/test threads=1，单进程虚拟地址空间上限 8 GiB；最大子进程 RSS 1,597,736 KiB（约 1.52 GiB）。
+  全部可写缓存在 task-2；没有网络安装。既有 bounded_search_tests.rs 未使用 import 警告保留，没有替作者修改。
+详细日志 directed-1.log、执行回执 directed-1.json、输入绑定 independent-test-inputs.json。
+两项测试不冒充完整 no-default-features 矩阵；测试奖励授予/对抗初态是明确布局，后续使用真实原生奖励生成器和命令，不称为完整对局。
+
+下一步优先级及 main 资格
+
+优先一：将此原生候选与尚需验收的平台产物绑定到同一固定源码；不要将 1e9e679 的旧 guest 包标成含此次修复。
+优先二：由集成人员完成适用的 wasm32 构建、Native/WASM 恢复与命令一致性、Web/Worker 入口及真实浏览器关键链路；本线程没有启动这些工作，也没有浏览器完整对局证据。
+优先三：若验收要求声望“全 136 张”，为 XQ46 另建合法可存活的授予场景，或者继续明确保留这一个覆盖缺口；不能删 skip 断言让报告看起来全绿。
+可选 society-fixtures 和全量 no-default-features 尚无本轮完整矩阵，是否必需由既有平台门槛决定，不自行扩大为通用重构。
+当前结论是“新增原生运行代码未发现确定缺陷，可继续集成验收”，不是“已具备 main/发布资格”。
+没有修改作者工作区，没有提交/推送、触发 CI、部署或改 main；没有借用第三实现代码，也没有触碰登录资料。
