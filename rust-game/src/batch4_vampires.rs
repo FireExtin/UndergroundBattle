@@ -1,5 +1,5 @@
 //! Package B's independent native slices. These five cards remain unsupported:
-//! their occult-contest clauses belong to the separate contest implementation.
+//! their contest clauses use the shared protocol through B finite adapters.
 //! Blood uses the established grave/seal sources and normal attachment entry.
 use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
@@ -51,7 +51,7 @@ fn raid() -> AbilitySpec {
         vec![Op::DamageTarget { slot: 0, amount: 1 }], Some(Event::Reveal))
 }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
-    Some(match id {
+    let mut d = match id {
         "BQ027" => {
             let mut t = target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere);
             t.subtype = Some("吸血鬼".into());
@@ -78,9 +78,12 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
             d
         }
         _ => return None,
-    })
+    };
+    if let Some(a) = crate::batch4_vampire_contest::ability_for(id) { d.abilities.push(a); }
+    Some(d)
 }
 pub(crate) fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    if crate::batch4_vampire_contest::key(&a.key) { return crate::batch4_vampire_contest::canonical(id, a); }
     let mut expected = definition(id)?.abilities.into_iter().find(|x| x.key == a.key)?;
     match a.ops.as_slice() {
         [Op::BQ031AttachmentDiscard { observation }] if a.key == ATTACH_DISCARD =>
@@ -92,6 +95,7 @@ pub(crate) fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     Some(expected)
 }
 pub(crate) fn owns(ops: &[Op]) -> bool {
+    if crate::batch4_vampire_contest::owns(ops) { return true; }
     ops.iter().any(|op| match op {
         Op::BQ027FeedTarget | Op::BQ031AttachmentDiscard { .. } | Op::BQ032RevealFeed | Op::BQ036TopSix | Op::BQ038RaidFeed { .. } => true,
         Op::ForEachLivingPlayer(ops) | Op::ForEachLivingPlayerFromActor(ops) => owns(ops),
@@ -104,6 +108,10 @@ pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match (id, a.kind.as_str()) {
+        ("BQ032", "activate") if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) =>
+            Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), ..Action::new("activate") },
+        ("BQ036", "activate") if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::SACRIFICE) =>
+            Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), cost_selected: a.cost_selected.clone(), ..Action::new("activate") },
         ("BQ038", "play") if a.ability_id.as_deref().is_none_or(|k| k == "attach") =>
             Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(), target_id: a.target_id.clone(), ..Action::new("play") },
         ("BQ027", "activate") if a.ability_id.as_deref() == Some(FEED_TARGET) =>
@@ -135,7 +143,6 @@ fn searchable(c: &Card) -> bool {
 impl Game {
     /// Read-only cost eligibility for the future BQ036 action adapter. The
     /// existing source-character sacrifice cost cannot express this predicate.
-    #[allow(dead_code)] // Parent-owned Cost/dispatch integration is pending.
     pub(crate) fn bq036_contest_cost_candidates(&self, actor: usize) -> Vec<String> {
         if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }
         self.attachments.iter().filter(|a| !a.card.face_down && a.card.controller == actor && self.attachment_host_valid(a))
@@ -146,7 +153,6 @@ impl Game {
 
     /// BQ032 is a hand action with an explicit pay2/discard-self cost, not a
     /// printed-cost play. This helper only authenticates the pre-payment source.
-    #[allow(dead_code)] // Parent-owned hand-action dispatch is pending.
     pub(crate) fn bq032_hand_contest_source(&self, actor: usize, id: &str) -> RuleResult<SourceSnapshot> {
         let player = self.players.get(actor).filter(|p| !p.eliminated).ok_or("宴会司仪手牌行动的玩家无效")?;
         let c = player.hand.iter().find(|c| c.id == id && c.definition == "BQ032" && !c.face_down
@@ -159,7 +165,6 @@ impl Game {
     /// Evaluate at the BQ038 trigger's resolution, then retain these identities
     /// in its B-owned operation when the parent adds typed bonus dispatch. A
     /// foreign-controlled attachment qualifies; only its character is personal.
-    #[allow(dead_code)] // The empty public hook is deliberately not bypassed.
     pub(crate) fn bq038_contest_count_witnesses(&self, actor: usize) -> Vec<Bq038CharacterWitness> {
         if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }
         let mut out = vec![];
@@ -181,7 +186,7 @@ impl Game {
     fn vampire_id(&self, id: &str) -> Option<u64> {
         id.strip_prefix('i').and_then(|x| x.parse::<u64>().ok()).filter(|n| *n > 0 && *n <= self.sequence && id == format!("i{n}"))
     }
-    fn vampire_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
+    pub(crate) fn vampire_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
         let c = &s.card;
         if !CARDS.contains(&c.definition.as_str()) || actor >= self.players.len() || c.controller != actor || c.owner >= self.players.len()
             || self.vampire_id(&c.id).is_none() || c.face_down || s.play_source.is_some() || s.death_echo.is_some()
@@ -202,6 +207,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_vampire_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::batch4_vampire_contest::key(&d.ability.key) || crate::batch4_vampire_contest::owns(&d.ability.ops) { return self.validate_b_contest_declaration(d); }
         self.vampire_source(d.actor, &d.source)?;
         if d.ability.event.is_none() || canonical(&d.source.card.definition, &d.ability).is_none_or(|a| !same(&a, &d.ability)) {
             return Err("吸血鬼触发须保留固定原程序".into());
@@ -253,6 +259,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_vampire_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let c = &f.source.card;
         if !CARDS.contains(&c.definition.as_str()) || f.actor >= self.players.len() || c.controller != f.actor || c.owner >= self.players.len()
             || self.vampire_id(&c.id).is_none() || self.vampire_id(&f.frame_id).is_none_or(|n| n <= self.vampire_id(&c.id).unwrap_or(u64::MAX)) {
@@ -370,6 +377,8 @@ impl Game {
     }
     fn vampire_feed_spec(&self, f: &ResolutionFrame) -> RuleResult<(String, usize, bool)> {
         match f.steps.as_slice() {
+            [Step { op: Op::BQ027ShownFeed { .. }, .. }] => Ok((f.targets.first().ok_or("血畜展示后尚未绑定目标")?.id.clone(), 1, false)),
+            [Step { op: Op::BQ031WinFeed { .. }, .. }] => Ok((f.source.card.id.clone(), 1, false)),
             [Step { op: Op::BQ027FeedTarget, .. }] => Ok((f.targets[0].id.clone(), 1, false)),
             [Step { op: Op::BQ032RevealFeed, .. }] => Ok((f.source.card.id.clone(), 2, true)),
             [Step { op: Op::BQ038RaidFeed { observation: Some(o) }, .. }] => Ok((o.raid.source.card.id.clone(), 1, false)),
@@ -398,6 +407,9 @@ impl Game {
         let mut entered = vec![];
         for id in selected { entered.push(self.attach_selected_blood(chooser, &host, id)?); }
         for (definition, id) in &entered { self.enter_triggers(chooser, definition, id, false); }
+        if f.ability_key == crate::batch4_vampire_contest::SHOWN {
+            if let Some(crate::mystic_contest::MysticContest { phase: crate::mystic_contest::MysticPhase::After { post_frame, .. }, .. }) = &mut self.mystic_contest { *post_frame = None; }
+        }
         Ok(())
     }
     pub(crate) fn bq031_discard(&mut self, f: ResolutionFrame) -> RuleResult<()> {
@@ -444,13 +456,17 @@ impl Game {
         out
     }
     pub(crate) fn validate_vampire_state(&self) -> RuleResult<()> {
+        self.validate_b_contest_post_state()?;
         let mut frames = BTreeSet::new(); let mut events = BTreeSet::new();
         let mut accepted_discards = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
-            let event = match ops { [Op::BQ031AttachmentDiscard { observation: Some(o) }] => Some(&o.event_id), [Op::BQ038RaidFeed { observation: Some(o) }] => Some(&o.raid.frame_id), _ => None };
+            let event = match ops { [Op::BQ031AttachmentDiscard { observation: Some(o) }] => Some(&o.event_id), [Op::BQ038RaidFeed { observation: Some(o) }] => Some(&o.raid.frame_id), [Op::BQ031WinFeed { contest_id: Some(id) }] => Some(id), [Op::BQ038ContestBonus { observation: Some(o) }] => Some(&o.contest_id), _ => None };
             if event.is_some_and(|e| !events.insert((source.card.id.clone(), e.clone()))) { return Err("同次结附或袭击不能重复触发同一观察者".into()); }
             Ok(())
         };
+        if let Some(state) = &self.mystic_contest { for bonus in &state.bonuses {
+            remember(&bonus.frame.source, &bonus.frame.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
+        } }
         for item in &self.stack {
             let Some(f) = &item.frame else { if item.card.as_ref().is_some_and(|c| CARDS.contains(&c.definition.as_str())) { return Err("本包堆叠缺少完整帧".into()); } continue; };
             if !related_frame(f) || self.validated_cross_card_frame(f)? { continue; }
@@ -501,11 +517,20 @@ impl Game {
         }
         if let Some(f) = frame {
             self.validate_vampire_frame(f)?;
+            if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::MysticCommit { .. } | FrameChoice::MysticReward { .. }, .. }) {
+                if !crate::batch4_vampire_contest::admitted_start(&f.source.card.definition, &f.ability_key, Self::mystic_op_bonus(f).unwrap_or(u32::MAX)) { return Err("B对抗待选不是原起始程序".into()); }
+                return Ok(()); // Full shell/commit/reward checks belong to validate_mystic_state.
+            }
             if !frames.insert(f.frame_id.clone()) || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted) { return Err("本包结算中待选必须保留唯一原帧".into()); }
             if f.ability_key == ATTACH_DISCARD && !accepted_discards.insert(f.source.card.id.clone()) { return Err("雾羽千军每回合只能有一次已发动的触发".into()); }
             remember(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
             let ChoiceResolution::Frame { choice, .. } = &p.resolution else { unreachable!() };
             let (kind, title, seat, min, max, options) = match choice {
+                FrameChoice::BQ027ShownTarget if f.ability_key == crate::batch4_vampire_contest::SHOWN && f.targets.is_empty() => {
+                    let options = self.binding_options(f.actor, &f.source, &crate::batch4_vampire_contest::shown_target());
+                    if options.is_empty() { return Err("无目标不能保留血畜后置待选".into()); }
+                    (crate::batch4_vampire_contest::TARGET, crate::batch4_vampire_contest::TARGET_TITLE.into(), f.actor, 1, 1, options)
+                }
                 FrameChoice::VampireBlood => {
                     let (host, amount, optional) = self.vampire_feed_spec(f)?;
                     let c = self.blood_drinker(&host).ok_or("饮血待选原角色失效")?;
@@ -526,7 +551,7 @@ impl Game {
                 _ => return Err("本包不能移植其他待选程序".into()),
             };
             if p.seat != seat || self.players[seat].eliminated || p.choice.kind != kind || p.choice.title != title || p.choice.min != Some(min) || p.choice.max != Some(max) || p.choice.allow_decline != Some(min == 0) || !same(&p.choice.options, &options) { return Err("本包结算待选与原选项或当前操控者不符".into()); }
-        } else if matches!(p.choice.kind.as_str(), BLOOD_CHOICE | SEARCH) || matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::VampireBlood | FrameChoice::BQ036TopSix { .. }, .. }) { return Err("本包待选不能来自其他来源程序".into()); }
+        } else if matches!(p.choice.kind.as_str(), BLOOD_CHOICE | SEARCH) || matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ027ShownTarget | FrameChoice::VampireBlood | FrameChoice::BQ036TopSix { .. }, .. }) { return Err("本包待选不能来自其他来源程序".into()); }
         Ok(())
     }
 }

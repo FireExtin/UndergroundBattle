@@ -60,7 +60,7 @@ fn attachment(g: &mut Game, card: &str, actor: usize, host: &str) -> String {
 
 #[test]
 fn batch4_vampires_partial_sources_are_closed_and_not_deck_admitted() {
-    for (id, cost, unique, abilities) in [("BQ027",1,false,1),("BQ031",3,true,2),("BQ032",3,false,2),("BQ036",5,true,1),("BQ038",1,false,2)] {
+    for (id, cost, unique, abilities) in [("BQ027",1,false,1),("BQ031",3,true,3),("BQ032",3,false,3),("BQ036",5,true,2),("BQ038",1,false,3)] {
         let c = catalog::card(id); assert_eq!((c.cost,c.unique,c.supported),(cost,unique,false)); assert_eq!(c.color,"蓝");
         assert_eq!(definition(id).abilities.len(),abilities);
         let mut defs=definitions().clone();defs.get_mut(id).unwrap().abilities[0].timing=Timing::ActionFast;assert!(validate_definitions(&defs).is_err());
@@ -353,11 +353,11 @@ fn batch4_vampires_contract_bq038_counts_characters_once_and_accepts_foreign_att
     g.players[0].eliminated=true;assert!(g.bq038_contest_count_witnesses(0).is_empty());
 }
 #[test]
-fn batch4_vampires_contract_bq032_authenticates_original_hand_without_paying_or_publishing_action() {
+fn batch4_vampires_contract_bq032_authenticates_original_hand_without_mutation() {
     let mut g=game();let id=held(&mut g,"BQ032",0);let wrong=held(&mut g,"BQ027",0);let other=held(&mut g,"BQ032",1);let board=field(&mut g,"BQ032",0);
     let before=serde_json::to_string(&g).unwrap();let source=g.bq032_hand_contest_source(0,&id).unwrap();
     assert_eq!(source.card.id,id);assert!(source.region.is_none()&&source.play_source.is_none());
     assert!(g.bq032_hand_contest_source(0,&wrong).is_err());assert!(g.bq032_hand_contest_source(0,&other).is_err());assert!(g.bq032_hand_contest_source(0,&board).is_err());
     assert!(g.bq032_hand_contest_source(99,&id).is_err());assert_eq!(serde_json::to_string(&g).unwrap(),before);
-    assert!(!definition("BQ032").abilities.iter().any(|a|a.event.is_none()));
+    assert!(definition("BQ032").abilities.iter().any(|a|a.key==crate::batch4_vampire_contest::HAND));
 }
