@@ -494,7 +494,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
+        card(&c.definition).cost.saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14" | "XG15") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -1638,6 +1638,7 @@ impl Game {
                 Op::XQ26Name => return self.xq26_name_start(frame),
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
                 Op::XG14DisasterInfluence { .. } => self.xg14_influence(&frame),
+                Op::XG15DestroyOriginalRegion => self.xg15_destroy_region(&frame),
                 Op::CQ07EnterMoon => {
                     if self.players[frame.actor].society_zone.secrecy == 0 { self.add_society_markers(frame.actor,0,1); }
                 },

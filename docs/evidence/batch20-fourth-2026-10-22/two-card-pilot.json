@@ -1,0 +1,120 @@
+{
+  "recordedAt": "2026-10-22T00:38:56.736268+00:00",
+  "precedingCheckpoint": {
+    "recordedAt": "2026-10-22T00:34:03.363547+00:00",
+    "branch": "progress/batch20-fourth-20261022",
+    "commit": "a095f211e5425691728e46fc2b7ea67f448deb0c",
+    "remoteShaVerified": true,
+    "actionsRunsForCommit": 0,
+    "worktreeClean": true,
+    "nativePilots": 1,
+    "wasmPilots": 0,
+    "publicAdmissions": 0,
+    "accepted": 0,
+    "retryReason": "First TLS-failed push checked absent before one normal retry"
+  },
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15"
+  ],
+  "currentNativeCases": 21,
+  "relatedCurrentFilters": {
+    "msjc11": 12,
+    "jc066": 16,
+    "region_destruction": 3
+  },
+  "sourceChecks": 4,
+  "sourceManifest": "native-source-manifest-two-cards.json",
+  "sourceManifestSha256": "c14a25430a87e428e3c4cf8f654d7684d50704885fe1e9f6e216844a5ae7186e",
+  "results": [
+    {
+      "log": "logs/batch4-xg15-first-batch4.log.gz",
+      "encoding": "gzip",
+      "sha256": "414b297a6f31720b3c5adfd7e8fed9d4136b7b0302f8f4329cfb2ee20f150376",
+      "rawSha256": "c6b065722683367e2acd37f714c141765dec030535680ffd3691be1543f0257d",
+      "result": "compileFailure",
+      "passed": 0,
+      "failed": null,
+      "phase": "preservedTestFailure"
+    },
+    {
+      "log": "logs/batch4-xg15-second-batch4.log.gz",
+      "encoding": "gzip",
+      "sha256": "8237732e6cb5eac2b89ea01e6fa30baa5bad75d38bd7f737d7e07e91aca3a1a0",
+      "rawSha256": "44d4441402defc4a516428994c2ab9c7b836848ce18bea07b14b19efd8581f3f",
+      "result": "FAILED",
+      "passed": 20,
+      "failed": 1,
+      "phase": "preservedTestFailure"
+    },
+    {
+      "log": "logs/batch4-xg15-final-batch4.log.gz",
+      "encoding": "gzip",
+      "sha256": "f7907d6c3d05f2b954ec4a2803ac5992f085eefc1970420bf9c5dda9a0d2da99",
+      "rawSha256": "2b686715f4d77d0a5d34c8018e2881fcd9421b24b7b9e49ce76fee28d49f7388",
+      "result": "ok",
+      "passed": 21,
+      "failed": 0,
+      "phase": "currentTwoCardSource"
+    },
+    {
+      "log": "logs/batch4-xg15-final-msjc11.log.gz",
+      "encoding": "gzip",
+      "sha256": "f30cc0aae3fba8c9814254d561c2154feaccf0d9974d0af4c7859c11cb0397d2",
+      "rawSha256": "606341ea7095b6cfcdd2e3e694b5d2d29415e02ae8b64179d86633c2c9a274ae",
+      "result": "ok",
+      "passed": 12,
+      "failed": 0,
+      "phase": "currentTwoCardSource"
+    },
+    {
+      "log": "logs/batch4-xg15-final-jc066.log.gz",
+      "encoding": "gzip",
+      "sha256": "c72cdc6331ba4facb2f43f0f50f5757e28f1a301c8ca386df9447d6c38756b91",
+      "rawSha256": "c0534e839a3f47bc7d9adce37121633f5bc5256aafdad9782b19e3532c74c3ea",
+      "result": "ok",
+      "passed": 16,
+      "failed": 0,
+      "phase": "currentTwoCardSource"
+    },
+    {
+      "log": "logs/batch4-xg15-final-region_destruction.log.gz",
+      "encoding": "gzip",
+      "sha256": "2fbe8b4eefa5b4bd8ad14319be88169a956fba58f906ae624620b51a86a498b2",
+      "rawSha256": "14de7c71b956b72d5b6ef2ca56711368ef6d9ad152d8f1993eb8fa737179f4f3",
+      "result": "ok",
+      "passed": 3,
+      "failed": 0,
+      "phase": "currentTwoCardSource"
+    },
+    {
+      "log": "logs/batch4-two-card-source.log.gz",
+      "encoding": "gzip",
+      "sha256": "6252598d5f7f208ecdd4557e8c45144521617f82694de089f550226f06ad3277",
+      "rawSha256": "5ae333859f01104ff8f812617745035a1c3bcafc8f9267aea45258a66d77ea29",
+      "result": "sourcePass",
+      "passed": 4,
+      "failed": null,
+      "phase": "sourceChecks"
+    }
+  ],
+  "execution": "author; offline disclosed layouts and real apply command paths with full state and four-seat view round trips",
+  "resources": {
+    "buildRoot": "../batch4-build",
+    "cargoJobs": 1,
+    "testThreads": 2,
+    "minimumFreeDiskGiB": 1
+  },
+  "wasmBuilt": false,
+  "webWorkerIntegrated": false,
+  "newConstructionAdmissions": 0,
+  "published": 0,
+  "accepted": 0,
+  "frozenThirdWasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c",
+  "limitations": [
+    "No independent execution, full fourth batch, public publication or browser acceptance.",
+    "Chaos sampling with a pre-existing entry prohibition still needs precise rules review; native pilots remain construction-disabled.",
+    "Fourth source spec/deck additions are confined to the ordinary clone; the frozen third source and package remain untouched."
+  ]
+}

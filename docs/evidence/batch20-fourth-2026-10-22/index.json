@@ -124,5 +124,10 @@
     "Earlier related regressions were run before the finite reward/pending correction; final current-source XG14 coverage is twelve passing cases, with related reward recheck recorded separately.",
     "No independent test execution, complete fourth batch, WASM/Web/Worker integration, public deployment or real browser acceptance.",
     "Existing-restriction Chaos sampling remains an explicit rules review boundary; fourth construction remains disabled."
+  ],
+  "latestEvidence": "two-card-pilot.json",
+  "latestNativePilotCards": [
+    "XG14",
+    "XG15"
   ]
 }

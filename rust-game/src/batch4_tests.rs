@@ -185,3 +185,153 @@ fn batch4_xg14_authenticated_cross_card_glory_remains_resumable() {
     choose(&mut g, vec!["accept".into()]); top(&mut g);
     assert_eq!(g.regions[0].influence[0], 1); restore(&mut g);
 }
+
+fn water(g: &mut Game, region: usize, yes: bool) {
+    let id = catalog::catalog().cards.iter().find(|d| d.kind == "region" && d.subtypes.iter().any(|s| s == "水域") == yes).unwrap().id.clone();
+    g.regions[region].card = g.make_card(&id, 0);
+}
+fn reveal_kraken(g: &mut Game) -> String {
+    fund(g, 0, "XG15", 7); let old = held(g, "XG15", 0);
+    act(g, 0, Action { card_id: Some(old), region: Some(0), ..Action::new("conceal") });
+    let id = g.regions[0].cards.iter().find(|c| c.definition == "XG15").unwrap().id.clone();
+    act(g, 0, Action { card_id: Some(id), ..Action::new("reveal") });
+    pending(g);
+    let ChoiceResolution::Declare { declaration: d, .. } = &g.pending.as_ref().unwrap().resolution else { panic!() };
+    assert_eq!(d.ability.key, "batch4-xg15-destroy-region"); d.source.card.id.clone()
+}
+
+#[test]
+fn batch4_xg15_exact_print_and_complete_chaos_water_and_reveal_program_are_closed() {
+    let c = catalog::card("XG15"); assert_eq!((c.cost, c.defense, c.unique, c.supported), (6, Some(4), false, false));
+    assert_eq!(c.loyalty, ["红色"]); assert_eq!(c.magic, ""); assert_eq!(c.subtypes, ["海怪", "灾难"]);
+    assert_eq!(c.permanent_icons, Icons { combat: 2, ..Icons::default() });
+    assert_eq!(c.temporary_icons, Icons { investigation: 1, influence: 1, ..Icons::default() });
+    let d = definition("XG15"); assert!(d.traits.chaos && d.traits.cannot_be_equipped);
+    assert!(matches!(d.modifiers.as_slice(), [StaticModifier::XG15WaterDoubleIcons]));
+    for n in 0..4 {
+        let mut bad = d.clone(); match n {
+            0 => bad.traits.cannot_be_equipped = false, 1 => bad.traits.chaos = false,
+            2 => bad.modifiers.clear(), _ => bad.abilities[0].event = Some(Event::Enter),
+        }
+        assert!(crate::batch4::validate_definition("XG15", &bad).is_err());
+    }
+    let mut foreign = definition("JC125").clone(); foreign.modifiers.push(StaticModifier::XG15WaterDoubleIcons);
+    assert!(crate::batch4::validate_definition("JC125", &foreign).is_err());
+    let mut a = d.abilities[0].clone(); a.ops = vec![Op::ForEachLivingPlayer(vec![Op::XG15DestroyOriginalRegion])];
+    assert!(crate::rules::validate_ability("JC125", &a).is_err());
+    let mut cross = d.abilities[0].clone(); cross.ops = vec![Op::XG14DisasterInfluence { observation: None }];
+    assert!(crate::rules::validate_ability("XG15", &cross).is_err());
+}
+
+#[test]
+fn batch4_xg15_real_faceup_play_reduces_two_per_destroyed_region_and_never_fires_reveal() {
+    for destroyed in 0..=3 {
+        let mut g = game(); for r in 0..destroyed { g.regions[r].destroyed = true; }
+        let cost = 6usize.saturating_sub(2 * destroyed); fund(&mut g, 0, "XG15", cost.max(1)); let id = held(&mut g, "XG15", 0);
+        let random = g.random;
+        act(&mut g, 0, Action { card_id: Some(id), ..Action::new("deploy") });
+        assert_eq!(g.random, random); assert!(matches!(g.stack[0].frame.as_ref().unwrap().already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == cost));
+        let mut expected = g.clone(); let r = expected.chaos_region().unwrap(); top(&mut g);
+        let c = g.regions[r].cards.iter().find(|c| c.definition == "XG15").unwrap();
+        assert_eq!(c.time_markers, 0); assert_eq!(g.random, expected.random); assert!(g.pending.is_none());
+        assert_eq!(g.destroyed_region_count(), destroyed as u32); restore(&mut g);
+    }
+}
+
+#[test]
+fn batch4_xg15_actual_conceal_and_full_price_reveal_randomize_then_destroy_the_observed_region() {
+    let mut g = game(); g.regions[1].destroyed = true; let id = reveal_kraken(&mut g);
+    assert_eq!(g.resources(0), 0); let r = g.board(&id).unwrap().0; let original = g.regions[r].card.id.clone();
+    let random = g.random; choose(&mut g, vec!["accept".into()]);
+    assert_eq!(g.stack[0].frame.as_ref().unwrap().source.source_region_instance.as_deref(), Some(original.as_str()));
+    top(&mut g); assert!(g.regions[r].destroyed); assert_eq!(g.regions[r].card.id, original);
+    assert_eq!(g.random, random); assert!(g.board(&id).is_some()); restore(&mut g);
+}
+
+#[test]
+fn batch4_xg15_reveal_survives_source_move_or_leave_but_cannot_destroy_a_replacement_region() {
+    for mode in 0..3 {
+        let mut g = game(); let id = reveal_kraken(&mut g); let r = g.board(&id).unwrap().0; let other = (r + 1) % g.regions.len();
+        choose(&mut g, vec!["accept".into()]);
+        match mode {
+            0 => { g.move_on_board_instance(&id, other); },
+            1 => { g.remove_dead(&id, RemovalCause::Destroy); },
+            _ => { g.regions[r].card = g.make_card("DQJC115", 0); },
+        }
+        restore(&mut g); top(&mut g); assert_eq!(g.regions[r].destroyed, mode != 2);
+        assert!(!g.regions[other].destroyed); restore(&mut g);
+    }
+}
+
+#[test]
+fn batch4_xg15_water_doubles_all_current_categories_without_losing_temporary_or_ordinary_meaning() {
+    let mut g = game(); water(&mut g, 0, true); let id = field(&mut g, "XG15", 0);
+    let stats = |g: &Game| { let (r,c) = g.board(&id).unwrap(); (g.current_icons(c,r), g.current_permanent_combat(c,r)) };
+    assert_eq!(stats(&g), (Icons { investigation: 2, combat: 4, influence: 2 }, 4));
+    g.first_team = 1; assert_eq!(stats(&g), (Icons { combat: 4, ..Icons::default() }, 4));
+    g.board_mut(&id).unwrap().permanent_combat_markers = 1;
+    g.turn_attribute_modifiers.push(TurnAttributeModifier {
+        target_instance: id.clone(), defense_bonus: 0, kill_bonus: 0, grants_retreat: false,
+        printed_defense_override: None, grants_barrier: false, prevents_damage: false,
+        ordinary_icons: Icons { investigation: 1, combat: 1, influence: 1 }, grants_renown: false, expires_turn: g.turn,
+    });
+    assert_eq!(stats(&g), (Icons { investigation: 2, combat: 8, influence: 2 }, 8));
+    let curse = g.make_card("JC089", 0); g.attachments.push(Attachment { card: curse, host_id: id.clone() });
+    assert_eq!(stats(&g), (Icons { investigation: 2, combat: 10, influence: 2 }, 10));
+    g.first_team = 0; assert_eq!(stats(&g), (Icons { investigation: 4, combat: 12, influence: 4 }, 10));
+    water(&mut g, 0, false); assert_eq!(stats(&g), (Icons { investigation: 2, combat: 6, influence: 2 }, 5)); restore(&mut g);
+}
+
+#[test]
+fn batch4_xg15_water_projection_movement_hidden_and_exhaustion_remain_publicly_consistent() {
+    let mut g = game(); water(&mut g, 0, true); water(&mut g, 1, false); let id = field(&mut g, "XG15", 0);
+    for seat in 0..4 {
+        let v = g.view(seat); let c = v.regions[0].characters.iter().find(|c| c.instance_id == id).unwrap();
+        assert_eq!(c.icons, Some(Icons { investigation: 2, combat: 4, influence: 2 }));
+    }
+    let random = g.random; g.move_on_board_instance(&id, 1); assert_eq!(g.random, random);
+    assert_eq!(g.current_icons(g.board(&id).unwrap().1,1).combat,2); restore(&mut g);
+    g.board_mut(&id).unwrap().exhausted = true; assert_eq!(g.icons(g.board(&id).unwrap().1,1), Icons::default());
+    assert_eq!(g.current_icons(g.board(&id).unwrap().1,1).combat,2);
+    g.board_mut(&id).unwrap().face_down = true;
+    assert_eq!(g.current_icons(g.board(&id).unwrap().1,1), Icons { influence: 1, ..Icons::default() });
+    for seat in 1..4 { let v = g.view(seat); assert!(!serde_json::to_string(&v).unwrap().contains("雾涌海怪")); }
+    restore(&mut g);
+}
+
+#[test]
+fn batch4_xg15_rejects_equipment_without_spending_but_accepts_actual_non_equipment_curse() {
+    let mut g = game(); let id = field(&mut g, "XG15", 0); fund(&mut g, 0, "JC089", 4);
+    let gun = held(&mut g, "JC116", 0);
+    assert!(!g.legal_actions(0).iter().any(|a| a.action.card_id.as_deref() == Some(&gun) && a.action.target_id.as_deref() == Some(&id)));
+    reject(&mut g, 0, Action { card_id: Some(gun), target_id: Some(id.clone()), ..Action::new("play") }); assert_eq!(g.resources(0),4);
+    let curse = held(&mut g, "JC089", 0); play(&mut g, &curse, 0, &id);
+    let a = g.attachments.iter().find(|a| a.card.definition == "JC089").unwrap(); assert!(g.attachment_host_valid(a));
+    assert_eq!(g.defense(g.board(&id).unwrap().1,0),3); assert_eq!(g.resources(0),2); restore(&mut g);
+}
+
+#[test]
+fn batch4_xg15_is_an_actual_personal_disaster_for_xg14_and_has_no_extra_reveal_on_deploy() {
+    let mut g = game(); let source = field(&mut g, "XG14", 0); g.regions[1].destroyed = true;
+    fund(&mut g, 0, "XG15",4); let id = held(&mut g, "XG15",0);
+    act(&mut g, 0, Action { card_id: Some(id), ..Action::new("deploy") }); pending(&mut g);
+    let ChoiceResolution::Declare { declaration: d, .. } = &g.pending.as_ref().unwrap().resolution else { panic!() };
+    assert_eq!(d.source.card.id,source); choose(&mut g,vec!["region:1".into()]); top(&mut g); top(&mut g);
+    assert_eq!(g.destroyed_region_count(),1); assert_eq!(g.regions[1].influence,[1,0]); restore(&mut g);
+}
+
+#[test]
+fn batch4_xg15_reveal_recovery_rejects_changed_program_region_binding_and_pending_metadata() {
+    let mut g = game(); reveal_kraken(&mut g);
+    for mode in 0..3 {
+        let mut bad = g.clone(); match mode {
+            0 => if let ChoiceResolution::Declare { declaration: d, .. } = &mut bad.pending.as_mut().unwrap().resolution { d.ability.ops = vec![Op::XG14DisasterInfluence { observation: None }]; },
+            1 => if let ChoiceResolution::Declare { declaration: d, .. } = &mut bad.pending.as_mut().unwrap().resolution { d.source.source_region_instance = Some(g.regions[(d.source.region.unwrap()+1)%g.regions.len()].card.id.clone()); },
+            _ => bad.pending.as_mut().unwrap().choice.options[0].id = "foreign".into(),
+        }
+        assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
+    }
+    choose(&mut g, vec!["accept".into()]); let mut bad = g.clone();
+    bad.stack[0].frame.as_mut().unwrap().steps[0].context = 2;
+    assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err()); restore(&mut g);
+}

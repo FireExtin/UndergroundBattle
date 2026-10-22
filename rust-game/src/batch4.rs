@@ -4,8 +4,9 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
+const XG15_KEY: &str = "batch4-xg15-destroy-region";
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct DisasterPlay {
@@ -16,17 +17,28 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
-    if id != "XG14" { return None; }
-    let mut t = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
-    t.predicate = Some(TargetPredicate::Batch4DestroyedRegion);
-    let mut d = with_abilities(vec![ability(KEY, "打出灾难牌：目标已毁灭地区放置本方势力1", Timing::Fast,
-        vec![], vec![t], vec![Op::XG14DisasterInfluence { observation: None }], Some(Event::DisasterPlayed))]);
+    let mut d = match id {
+        "XG14" => {
+            let mut t = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
+            t.predicate = Some(TargetPredicate::Batch4DestroyedRegion);
+            with_abilities(vec![ability(KEY, "打出灾难牌：目标已毁灭地区放置本方势力1", Timing::Fast,
+                vec![], vec![t], vec![Op::XG14DisasterInfluence { observation: None }], Some(Event::DisasterPlayed))])
+        },
+        "XG15" => {
+            let mut d = with_abilities(vec![ability(XG15_KEY, "现身：毁灭本地区", Timing::Fast,
+                vec![], vec![], vec![Op::XG15DestroyOriginalRegion], Some(Event::Reveal))]);
+            d.traits.cannot_be_equipped = true;
+            d.modifiers.push(StaticModifier::XG15WaterDoubleIcons);
+            d
+        },
+        _ => return None,
+    };
     d.traits.chaos = true;
     Some(d)
 }
 fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::XG14DisasterInfluence { .. } => true,
+        Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
         _ => false,
@@ -43,7 +55,7 @@ fn frame_related(f: &ResolutionFrame) -> bool {
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     let mut expected = definition(id)?.abilities.into_iter().find(|p| p.key == a.key)?;
-    if let [Op::XG14DisasterInfluence { observation }] = a.ops.as_slice() {
+    if let ("XG14", [Op::XG14DisasterInfluence { observation }]) = (id, a.ops.as_slice()) {
         expected.ops = vec![Op::XG14DisasterInfluence { observation: observation.clone() }];
     }
     Some(expected)
@@ -59,7 +71,7 @@ fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.chaos || d.abilities.iter().any(related) {
+    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XG15WaterDoubleIcons)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -75,7 +87,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match a.kind.as_str() {
         "deploy" | "reveal" => Action { card_id: a.card_id.clone(), ..Action::new(&a.kind) },
         "conceal" => Action { card_id: a.card_id.clone(), region: a.region, ..Action::new("conceal") },
-        _ => return Err("朽灭者只有派遣、秘密派遣与现身操作".into()),
+        _ => return Err("本批混乱角色只有派遣、秘密派遣与现身操作".into()),
     };
     if *a != expected { return Err("混乱角色不能预选正面进场地区或附带其他载荷".into()); }
     Ok(())
@@ -102,6 +114,7 @@ impl Game {
             || s.attachment_host_instance.is_some() || s.observed_death.is_some() || s.observed_exposure.is_some() || s.observed_mobility_grant.is_some()
             || s.region.is_some_and(|r| r >= self.regions.len())
             || s.source_region_instance.as_ref().is_some_and(|id| id.is_empty() || *id == s.card.id)
+            || s.region.zip(s.source_region_instance.as_ref()).is_some_and(|(r, id)| self.regions.iter().enumerate().any(|(other, live)| live.card.id == *id && other != r))
             || self.batch3_physical_cards().any(|c| c.id == s.card.id && self.board(&c.id).is_none() && s.play_source.is_none())
         { return Err("第四批冻结来源或原地区身份无效".into()); }
         self.mobility_immutable_identity(&s.card)
@@ -146,7 +159,7 @@ impl Game {
             || (f.cursor > 0 && !matches!(f.guard, GuardState::Accepted)) { return Err("第四批执行帧身份、游标或守卫不符".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty()
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 4 && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play() || f.source.region.is_some() || f.chosen_region.is_some())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some() || f.source.region.is_none() || f.chosen_region != f.source.region)
             { return Err("混乱派遣或现身帧不能更改地区、类型或支付".into()); }
@@ -229,5 +242,16 @@ impl Game {
             let r = t.id.strip_prefix("region:").unwrap().parse::<usize>().unwrap();
             let team = self.team(f.actor); self.regions[r].influence[team] = self.regions[r].influence[team].saturating_add(1);
         }
+    }
+    pub(crate) fn xg15_destroy_region(&mut self, f: &ResolutionFrame) {
+        if let Some(r) = self.original_region(&f.source) { self.regions[r].destroyed = true; }
+    }
+    pub(crate) fn xg15_double_icons(&self, c: &Card, region: usize, parts: (Icons, Icons, Icons)) -> (Icons, Icons, Icons) {
+        if c.definition != "XG15" || c.face_down || !self.region_live(region)
+            || !self.board(&c.id).is_some_and(|(r,_)| r == region)
+            || !catalog::card(&self.regions[region].card.definition).subtypes.iter().any(|s| s == "水域")
+        { return parts; }
+        let double = |i: Icons| Icons { combat: i.combat.saturating_mul(2), investigation: i.investigation.saturating_mul(2), influence: i.influence.saturating_mul(2) };
+        (double(parts.0), double(parts.1), double(parts.2))
     }
 }

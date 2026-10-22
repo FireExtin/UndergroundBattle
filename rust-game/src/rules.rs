@@ -256,6 +256,7 @@ pub enum SearchVisibility {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     XG14DisasterInfluence { observation: Option<crate::batch4::DisasterPlay> },
+    XG15DestroyOriginalRegion,
     CQ07EnterMoon,
     CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
@@ -574,6 +575,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG15WaterDoubleIcons,
     JC064MartialLaw,
     WM041RenownControl,
     XQ22UnexhaustedSpellBan,

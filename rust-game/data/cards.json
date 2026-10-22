@@ -8520,6 +8520,49 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG15",
+      "name": "雾涌海怪",
+      "kind": "character",
+      "cost": 6,
+      "loyalty": [
+        "红色"
+      ],
+      "color": "红",
+      "magic": "",
+      "society": "",
+      "subtypes": [
+        "海怪",
+        "灾难"
+      ],
+      "text": "混乱；不能被装备结附。每有一个已毁灭地区，正面打出费用减少2。现身触发：毁灭本地区。持续：位于水域地区时能力图标数量增加一倍。",
+      "defense": 4,
+      "keywords": [
+        "混乱",
+        "不能被装备结附"
+      ],
+      "unique": false,
+      "supported": false,
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "loyaltyText": "红",
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG15",
+        "image": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
+        "imageSha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379"
+      }
     }
   ],
   "decks": [

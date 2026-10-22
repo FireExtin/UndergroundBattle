@@ -36,6 +36,15 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(pilots.length, plan.scope.nativePilots);
   assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), pilots.map(c => c.id).sort());
   assert(pool.cards.slice(213).every(c => c.supported === false));
+  for (const c of pool.cards.slice(213)) {
+    const spec = specs[c.id];
+    assert.equal(c.cost, spec.fields.printedCost, c.id);
+    assert.equal(c.defense, spec.fields.defense, c.id);
+    assert.deepEqual(c.icons.permanent, spec.fields.permanentIcons, c.id);
+    assert.deepEqual(c.icons.temporary, spec.fields.temporaryIcons, c.id);
+    assert.equal(c.source.imageSha256, spec.sourceVerification.imageSha256, c.id);
+    assert.equal(hash(read(`web/public/cards/${c.id}.jpg`)), spec.sourceVerification.imageSha256, c.id);
+  }
   for (const key of ['selectionEnabled', 'published', 'accepted', 'fullyIntegratedNewCards']) assert.equal(plan.scope[key], 0);
   assert.equal(plan.candidateComparison[0].nativeCards, 20);
   assert.equal(plan.candidateComparison[0].wasmCards, 20);

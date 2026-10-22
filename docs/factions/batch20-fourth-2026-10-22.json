@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 1,
+    "nativePilots": 2,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -42,8 +42,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
       "sourceImageSha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -425,7 +425,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 1,
+      "nativeCards": 2,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -461,8 +461,8 @@
     "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption."
   ],
   "next": [
-    "Run affected native character/target/region regressions underABI95 without touching frozenABI94",
-    "Implement next shared Chaos cardXG15, then related attachment/current-attribute mechanisms",
+    "Continue native mechanisms with source-bound targeted tests; keep WASM/Web/Worker unbuilt until integration is planned",
+    "Implement reviewed attachments and remaining personal conditional abilities; SecretPlan rule pages are recorded for later shared mechanism work",
     "Keep allfourth cards construction-disabled until twenty and required integration are ready; publish through officialSites flow by the established per20 cadence"
   ],
   "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"

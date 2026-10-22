@@ -1128,5 +1128,10 @@
     "url": "/cards/XG14.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
     "sha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25"
+  },
+  "XG15": {
+    "url": "/cards/XG15.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
+    "sha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379"
   }
 }
