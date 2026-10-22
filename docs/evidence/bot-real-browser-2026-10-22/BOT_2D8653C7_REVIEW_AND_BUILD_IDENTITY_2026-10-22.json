@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-10-22T08:32:02.016177+00:00",
+  "frozenGitCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "remoteBranch": "refs/heads/progress/bot-difficulty-20261022",
+  "scope": "Read-only inventory of existing local artifacts; no rebuild, browser rerun, source change, deployment or production enablement",
+  "artifactIdentity": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-bot-difficulty/web/dist/index.html",
+      "bytes": 475,
+      "sha256": "8e4e51a14703863a886efdbb7de87983da5817bf260cea0d704d606968549c0c"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-bot-difficulty/web/dist/assets/index-Bb2J_-ZO.css",
+      "bytes": 201581,
+      "sha256": "983876349c369b491bec6e4b2ff1e730b4fcbc9da1ea1f65850db34d91196724"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-bot-difficulty/web/dist/assets/index-BeWlxVya.js",
+      "bytes": 416371,
+      "sha256": "b5a60d84f0ab50d6c1a3166b60b78268c11d917e59875b87e98cdc01087382dd"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/bot-backend-build/candidate-worker/dist/index.js",
+      "bytes": 72766,
+      "sha256": "bbf17a9f0dfc39d985d40828520a3792600d715e58536e6fdb5d36948f82e20a"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/bot-backend-build/candidate-worker/dist/96691dc83422b2ac80414f255d524fb43111ac01-hegemony_wasm_bg.wasm",
+      "bytes": 5026361,
+      "sha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481"
+    }
+  ],
+  "authorEvidenceFiles": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-bot-difficulty/docs/evidence/bot-difficulty-2026-10-22/room-integration.json",
+      "sha256": "bc66efa5069f2e6874cfdcdcf950cc3b2779496f7b20e54cedd522dfccbcae69"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-bot-difficulty/docs/evidence/bot-difficulty-2026-10-22/genesis-lookup.json",
+      "sha256": "919da7320f972df63fcad0cd9d59b2b59d4b0ff36a8881bc1397fe9b84074de7"
+    }
+  ],
+  "browserCoverage": {
+    "surface": "real local IAB at127.0.0.1:8113",
+    "covered": [
+      "normal/hard selection and exact hand-peek disclosure",
+      "automatic Bot join/readiness",
+      "human ready/start/mulligan and Bot mulligan/pass",
+      "reload retains hard mode and original human seat",
+      "pause then reload retains pause, resume",
+      "active Bot room hides unusable invitation"
+    ],
+    "dedicatedRepeatClickAcceptance": false,
+    "browserFullGame": false,
+    "diskScreenshotOrVideo": false,
+    "screenshotLocation": "historical CUA conversation outputs only"
+  },
+  "scriptCoverage": {
+    "initialD1": {
+      "creation": 2,
+      "runtime": 6,
+      "parallelPollAndHostRestart": true,
+      "pauseAndReopen": true,
+      "terminalNormalMatch": {
+        "turn": 21,
+        "humanCommands": 563,
+        "botCommands": 633,
+        "humanPolicy": "keep/pass",
+        "fullD1JournalExactOpaqueReplay": true
+      }
+    },
+    "finalDelta2d8": {
+      "D1": 6,
+      "humanRegressions": 17,
+      "bundledWorker": 1,
+      "workerReopens": 2,
+      "fullMatchRepeated": false,
+      "browserRepeated": false
+    }
+  },
+  "buildCoverage": {
+    "initialWeb": "TypeScript/Vite passed; web unchanged in2d8",
+    "finalWorker": "local bundled Worker dry-run plus workerd/D1 check passed; no frontend rebuilt by backend script",
+    "wasm": "unchanged single ABI94 binary from44cc; not rebuilt"
+  },
+  "independentStaticReview": {
+    "source": "parent delegation message from01a1582e-316a-72e8-afef-6d076ef7c033",
+    "range": "58e5071..2d8653c",
+    "reportedResult": "no confirmed new P0/P1/P2",
+    "reviewerRanTests": false,
+    "separateFromAuthorResults": true
+  },
+  "notAccepted": [
+    "dedicated real-browser double-click scenario",
+    "real-browser terminal game",
+    "all card/choice combinations",
+    "Bot playing strength",
+    "public or fair-mechanism acceptance"
+  ]
+}

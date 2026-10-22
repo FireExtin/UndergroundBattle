@@ -1,0 +1,72 @@
+{
+  "recordedAt": "2026-10-22T10:31:36.927442+00:00",
+  "scope": "Selected real IAB observations from this task conversation; full in-memory AX trace could not be exported after CUA transport closed. No screenshot/video file or terminal game claimed.",
+  "frozenGitCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "localUrl": "http://127.0.0.1:8113/#play",
+  "tabId": "2",
+  "browser": "isolated IAB, new independent local QA player session; no user login browser used",
+  "loadedFrontendScriptObservedInBrowser": "/assets/index-BeWlxVya.js",
+  "artifactIdentityReceipt": "BOT_2D8653C7_REVIEW_AND_BUILD_IDENTITY_2026-10-22.json",
+  "realDoubleClickScenarios": [
+    {
+      "control": "创建Bot练习",
+      "input": "native clickCount2",
+      "observed": "one normal Bot lobby with one human and one ready Bot; SQLite metadata later confirms one room and one creation receipt"
+    },
+    {
+      "control": "准备",
+      "input": "Playwright dblclick",
+      "observed": "2/2 ready, button changed to cancel ready and start appeared"
+    },
+    {
+      "control": "开始游戏",
+      "input": "Playwright dblclick",
+      "observed": "one six-card human mulligan choice"
+    },
+    {
+      "control": "保留全部手牌",
+      "input": "Playwright dblclick",
+      "observed": "one round1 match, original seat1 displayed, Bot mulligan then regular priority"
+    },
+    {
+      "control": "让过",
+      "input": "Playwright dblclick",
+      "observed": "one human pass record advanced reset/preparation to draw; record count5 to6"
+    },
+    {
+      "control": "确认弃牌",
+      "input": "native clickCount2",
+      "observed": "required one-of-eight selection consumed, round3 began, human graveyard1 shown"
+    }
+  ],
+  "refreshRecoveryObserved": [
+    "after opening keep: normal mode and original human seat retained in same match",
+    "round2 required discard: same one-of-eight choice restored, then selected/confirmed through UI",
+    "round5 real witch forecast: same two cards and original ordering restored, then UI confirmed"
+  ],
+  "gameplayObserved": {
+    "mode": "normal duel",
+    "deck": "watchers/帷幕调查",
+    "lastVisibleTurn": 17,
+    "lastVisibleScore": [
+      0,
+      5
+    ],
+    "terminalObserved": false,
+    "humanActions": "keep opening hand, built-in UI pass-until-turn-end, required discards, forced world graveyard choice returning witch, accepted witch trigger, real forecast default-order confirmations",
+    "botActions": "observed Bot ready, mulligan, assets/characters, scoring and response/poll advancement",
+    "notClaimed": "Full game, all cards/choices, hard-mode full match, win strength, new recovery-patch browser acceptance, public Site acceptance"
+  },
+  "evidenceLocations": {
+    "originalScreenshot": "CUA conversation output after double-create only, no disk export",
+    "selectedAXObservations": "CUA tool outputs in this task conversation",
+    "storagePreservation": "bot-browser-qa-20261022/iab-disconnect-preservation.json",
+    "budgetContract": "BOT_2D8653C7_BUDGET_CONTRACT_2026-10-22.json"
+  },
+  "blocker": {
+    "action": "continue original real browser match and mark tab for handoff",
+    "target": "IAB tab2 at127.0.0.1:8113",
+    "reason": "CUA tool transport closed; subsequent troubleshooting documentation and handoff mark calls also failed before execution",
+    "outcome": "full game pending, handoff/tab survival uncertain, server and opaque QA database backup retained; no reset/recreate or API gameplay substitute"
+  }
+}

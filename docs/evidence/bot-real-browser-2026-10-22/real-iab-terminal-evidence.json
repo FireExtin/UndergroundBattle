@@ -1,0 +1,96 @@
+{
+  "recordedAt": "2026-10-22T12:15:49.118733+00:00",
+  "frozenGitCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "worktreeClean": true,
+  "browser": "original isolated IAB, tab 2, original independent QA human seat; no new match or database restore",
+  "url": "http://127.0.0.1:8113/#play",
+  "roomId": "7680663b07a79bbdff6f0295",
+  "mode": "normal",
+  "startingObservation": {
+    "turn": 30,
+    "phase": "end",
+    "pausedSaved": true,
+    "pending": "discard 2"
+  },
+  "steps": [
+    {
+      "input": "resume original saved table",
+      "observed": "same turn30 discard2 dialog"
+    },
+    {
+      "input": "select displayed candidates1,2 then confirm",
+      "observed": "turn31 start"
+    },
+    {
+      "input": "built-in continuous legal pass through end31",
+      "observed": "end31 discard1"
+    },
+    {
+      "input": "select displayed candidate1 then confirm",
+      "observed": "turn32 start"
+    },
+    {
+      "input": "built-in continuous legal pass in turn32",
+      "observed": "terminal at confrontation region1 investigation reward-after fast window"
+    },
+    {
+      "input": "reload original terminal tab",
+      "observed": "same normal mode, turn32, original seat1 eliminated, Bot victory restored"
+    }
+  ],
+  "terminalVisible": {
+    "turn": 32,
+    "phase": "对抗阶段 · 地区 1 · 调查 · 奖励后快速窗口",
+    "winner": "普通Bot 1",
+    "heading": "普通Bot 1赢得了霸权",
+    "gameEnded": "对局已结束",
+    "humanSeat": 1,
+    "humanEliminated": true,
+    "humanDeck": 0,
+    "botDeck": 13,
+    "humanPoints": 0,
+    "botPoints": 5,
+    "pointsTarget": 8
+  },
+  "loadedFrontendScriptObserved": "/assets/index-BeWlxVya.js",
+  "artifactFiles": [
+    {
+      "path": "UndergroundBattle-bot-difficulty/web/dist/index.html",
+      "bytes": 475,
+      "sha256": "8e4e51a14703863a886efdbb7de87983da5817bf260cea0d704d606968549c0c"
+    },
+    {
+      "path": "UndergroundBattle-bot-difficulty/web/dist/assets/index-Bb2J_-ZO.css",
+      "bytes": 201581,
+      "sha256": "983876349c369b491bec6e4b2ff1e730b4fcbc9da1ea1f65850db34d91196724"
+    },
+    {
+      "path": "UndergroundBattle-bot-difficulty/web/dist/assets/index-BeWlxVya.js",
+      "bytes": 416371,
+      "sha256": "b5a60d84f0ab50d6c1a3166b60b78268c11d917e59875b87e98cdc01087382dd"
+    },
+    {
+      "path": "bot-backend-build/candidate-worker/dist/index.js",
+      "bytes": 72766,
+      "sha256": "bbf17a9f0dfc39d985d40828520a3792600d715e58536e6fdb5d36948f82e20a"
+    }
+  ],
+  "earlierBrowserEvidence": [
+    "real-iab-partial-evidence.json",
+    "iab-reconnected-evidence.json",
+    "iab-round22-interruption.json"
+  ],
+  "scope": [
+    "one real normal-mode browser match from opening through terminal across preserved pauses/reconnects",
+    "six earlier dedicated double-click scenarios retained in partial receipt; no rerun claimed",
+    "turn28 witch-forecast reload observed equivalent choice UID/cards in prior in-memory trace; not an independent persisted screenshot",
+    "terminal refresh restored same winner/mode/round/seat"
+  ],
+  "limits": [
+    "author browser execution, not independent replay",
+    "normal-mode match only; hard-mode full game not run",
+    "human policy deliberately passed and chose first required discard options; no strategy-strength claim",
+    "terminal screenshot emitted in CUA tool output; no on-disk image file claimed",
+    "no deployment performed; local practice flag enabled only in isolated QA config"
+  ]
+}

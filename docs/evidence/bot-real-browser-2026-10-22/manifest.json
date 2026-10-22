@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-22T12:27:32.833723+00:00",
+  "frozenRuntimeCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "status": "normalModeRealBrowserTerminalObserved; hardModeFullGameNotRun",
+  "artifactIdentityChecked": 5,
+  "runtimeChanged": false,
+  "databaseIncluded": false,
+  "credentialsIncluded": false,
+  "reviewBoundary": "Author browser run and author synthetic budget tests; independent evidence audit separate, no independent browser replay claimed",
+  "archivedScript": "budget-contract.test.mjs retains exact original relative imports and hash; run from original QA fixture sibling layout described in source receipt, not a production test entry",
+  "files": [
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/BOT_2D8653C7_BUDGET_CONTRACT_2026-10-22.json",
+      "bytes": 1220,
+      "sha256": "f637881fca3a7f1cf7e63d12e4a300c05bcb78e408834264a816e8cb6c5e8630"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/BOT_2D8653C7_REVIEW_AND_BUILD_IDENTITY_2026-10-22.json",
+      "bytes": 4043,
+      "sha256": "15c18204f798ac6071875373e81064fff793bb71c8d5a16c1fce294f27153a76"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/budget-contract-01.log",
+      "bytes": 304,
+      "sha256": "c8cce161bc03c2a839e385205120c5d111863fab2fe2db42d230d893f9dfecbe"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/budget-contract.test.mjs",
+      "bytes": 3381,
+      "sha256": "99ebb3da87f029af8297c1869a61217a629bb07757e3e13e53c3fce338a99224"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/iab-reconnected-evidence.json",
+      "bytes": 1103,
+      "sha256": "a7ed77975756a104e9cf2fa1b6f73174c34ece2e8a13fcc271b9f3ac4b728169"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/iab-round22-interruption.json",
+      "bytes": 1151,
+      "sha256": "092c486089daf5dfe102f8e50d5e868b4813ec919f56e1c3ff39af777e1c7d03"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/real-iab-partial-evidence.json",
+      "bytes": 3524,
+      "sha256": "4cfb0b6a1779ac664797f81e48feee206927a671c1c0493b88869edebaba0572"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/real-iab-terminal-evidence.json",
+      "bytes": 3476,
+      "sha256": "d73ff2a3c94bd4b84b0e45ff462a0204eab80515d25211aaf5e3fd99f2409477"
+    }
+  ]
+}

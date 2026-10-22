@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-22T11:27:12.846971+00:00",
+  "frozenSource": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "originalTab": "iab:2 / browser-use:d246f265-1897-4a8a-9a49-c367ec1f70da",
+  "originalRoom": "7680663b07a79bbdff6f0295",
+  "sameConfigDbAndArtifacts": true,
+  "restoredServerSession": 10225,
+  "restoredServerLog": "server-resumed-02.log",
+  "lastConfirmedUi": {
+    "turn": 22,
+    "phase": "start/reset",
+    "normalMode": true,
+    "humanScore": 0,
+    "botScore": 5,
+    "humanDeck": 15,
+    "botDeck": 25,
+    "lastAction": "built-in UI pass until end enabled"
+  },
+  "selectedConfirmedSteps": [
+    "original i300 forecast confirmed at18",
+    "discard2 ->19",
+    "discard1 ->20",
+    "forecast at20",
+    "discard2 ->21",
+    "discard1 ->22"
+  ],
+  "nextCuaCall": "Transport closed; qaAdvanceLive result uncertain; may have observed or acted, so inspect fresh UI before continuing, never blindly repeat",
+  "terminalObserved": false,
+  "newMatchOrDbReset": false,
+  "scope": "Selected actual UI observations, not a complete AX trace or API-play substitute. Original partial double-click/refresh evidence remains unchanged."
+}

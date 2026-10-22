@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-10-22T10:10:44.057844+00:00",
+  "frozenBotCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "scope": "Two author synthetic admission-oracle/store scheduler tests, no Rust-card reproduction, D1 execution or real-browser claim; exact frozen source imported unchanged",
+  "cases": 2,
+  "results": {
+    "48RejectedPendingPair": "blocked=true; no extra pass; no commit; room and policy RNG unchanged",
+    "48RejectedOrdinaryActions": "blocked=true; valid pass outside budget not forced; no commit; opaque room and policy unchanged"
+  },
+  "notClaimed": "No observed real currently admitted card requires the excluded witness; no global choice completeness claim. Browser game is recorded separately.",
+  "policySha256": "6495cbf4e27eb8e332358a16b3f07f6b3a7dc323af3e5b2e0e205425b18a44e0",
+  "serviceSha256": "e015994f7d10d79bb15c974010b857d9d3552f7875f639b21aa1452b34f2f9af",
+  "script": "bot-browser-qa-20261022/budget-contract.test.mjs",
+  "scriptSha256": "99ebb3da87f029af8297c1869a61217a629bb07757e3e13e53c3fce338a99224",
+  "log": "bot-browser-qa-20261022/budget-contract-01.log",
+  "logSha256": "c8cce161bc03c2a839e385205120c5d111863fab2fe2db42d230d893f9dfecbe",
+  "sourceChanges": false
+}

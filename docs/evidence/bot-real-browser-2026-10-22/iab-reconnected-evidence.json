@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-10-22T10:36:21.871654+00:00",
+  "source": "parent reports10:31 host reconnected; verified original IAB inventory/tab and real UI continuation",
+  "originalTab": "iab:2",
+  "originalRoomId": "7680663b07a79bbdff6f0295",
+  "originalChoiceObservedAfterReconnect": "i295, discard1of8",
+  "handoffMark": "confirmed succeeded after reconnect",
+  "oldReplTrace": "lost after tool reconnection; selected prior observations preserved in partial receipt/conversation, no fabricated complete AX export",
+  "serverProbe": "127.0.0.1:8113 connection refused before restart; original server no longer listened",
+  "serverResumedWith": "same frozen2d8 artifacts, same config and persistent QA D1; no init/new match or gameplay API substitute",
+  "serverSession": 29088,
+  "serverLog": "bot-browser-qa-20261022/server-resumed-01.log",
+  "observedBrowserContinuation": "confirmed original required discard through UI, round18 normal mode, original human seat1 and score0:5 retained",
+  "terminalObserved": false,
+  "priorPreservation": "bot-browser-qa-20261022/iab-disconnect-preservation.json"
+}

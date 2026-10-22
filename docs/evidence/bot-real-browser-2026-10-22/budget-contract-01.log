@@ -1,0 +1,10 @@
+✔ 48 rejected candidates retain attention and never force pass (pending pair) (2.024067ms)
+✔ 48 rejected candidates retain attention and never force pass (ordinary actions) (1.419611ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31.974529
