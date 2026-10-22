@@ -1183,5 +1183,10 @@
     "url": "/cards/WM029.jpg",
     "source": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
     "sha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987"
+  },
+  "WM058": {
+    "url": "/cards/WM058.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg",
+    "sha256": "8df743099faf69b6a56cd546be5a572a3fb8505dc66083ea6e11b907592cc7c6"
   }
 }

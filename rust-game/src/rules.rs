@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    WM058CardTargeted,
     XG17RenownEntered,
     PlanReached,
     JZ38HostDied,
@@ -264,6 +265,8 @@ pub enum SearchVisibility {
 pub enum Op {
     XG11RevealRaid { observation: Option<crate::batch4_spectral::RevealRaid> },
     WM029TurnAura,
+    WM058Tax { observation: Option<Box<crate::batch4_chance::TargetedCard>> },
+    WM058RemoveEnemyInfluence,
     XG17AdvancePlan { observation: Option<Box<crate::batch4_conference::RenownEntry>> },
     PlanPlayed { secrecy: Option<crate::batch4_plans::SecretPlay> },
     PlanAdvance,

@@ -1,0 +1,132 @@
+{
+  "recordedAt": "2026-10-22T04:21:43.881471+00:00",
+  "precedingCheckpoint": "76794e41fdd52d06c69e09f28199be034a0b73cc",
+  "newCard": "WM058",
+  "nativeCards": 13,
+  "definitions": 226,
+  "newDirectedCases": 19,
+  "relatedFilters": {
+    "batch3_cq07": 11,
+    "jz55": 11,
+    "jc050": 16,
+    "batch4_dahlia": 14,
+    "batch4_conference": 18
+  },
+  "filterOverlap": "Filters can overlap; never sum them as unique scenes",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 208,
+  "sourceInventorySha256": "a6e96ed3535bea221041150d89c8eb5c964d76bc2fd6425f6380d7c272826dbc",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON of stored object, preserving stored key order, no trailing newline",
+  "sourceInventoryFileSha256": "6cf57b7f6d75047fa47be748a55beb1caaeb69bee1bfa00f55981fdad3df09ae",
+  "ruleScope": [
+    "Gold unique original with subtitle, cost3/three Black loyalty and exact icons",
+    "Observe actual enemy spell/attachment card transaction targeting each personal face-up Criminal; not abilities, teammates, friendly cards, hidden fronts or nontargeting group effects",
+    "Optional respondable trigger; original caster pays1 or original card transaction is countered, with no original-cost refund",
+    "Frozen source/target/event qualification survives departure; no extra payment after original card left stack",
+    "Turn-scoped declined/paid/countered/no-card receipts; exact choice/player/program guards and repeated event rejection",
+    "Countered card follows existing Bury owner/caster/fresh-instance path",
+    "Real nested two-card response chain: independent target events and fee receipts, one payment and one counter after target dies",
+    "CQ07/WM058 target observers retain controller ordering with event+target-qualified references",
+    "Preserve existing JZ55 Immediate ordering: original card completes without response item, observers declare afterward and charge no missing stack card",
+    "Reveal clears original region enemy influence only; source movement/departure does not redirect, replacement region cancels"
+  ],
+  "fixtureDisclosure": "Prepared native field/asset/hand/deck layouts then actual paid plays, choices, legal JC003 activation, nested enemy response and End cleanup, with full-state/four-view restoration. Source/target departures, already-removed-card and replacement-region boundary cases use named native primitives. No browser/WASM claim.",
+  "failureHistory": [
+    "Initial metadata test wrongly assumed all character-target card bodies are respondable; JZ55 is a real established Immediate exception. Added immediate target observation while preserving original execute-before-observers order and no-card payment behavior",
+    "Second-stage corruption test omitted required Draw enum field; replaced corruption payload with an existing complete unrelated Op. Compile-failure log retained",
+    "Third stage8 pass/8 fail: test fixtures assumed wrong JC102 cost and WM060 defense, selected nonexistent JC088 target activation, and predeclared JC050 region despite its established resolution-time choice. Corrected against actual catalog/rules with generic actual-cost funding, JC084 defense1 target, JC003 activation and actual JC050 continuation",
+    "Third stage also exposed catalog subtitle allowlist omission for newly reviewed WM058; added only this reviewed subtitle, preserving original213 definitions",
+    "Fourth stage16 cases passed; fifth stage19 passed including extra real nested-card chain/hidden qualification/End cleanup"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-01-batch4_chance.log.gz",
+      "rawBytes": 1618,
+      "rawSha256": "53732cd55b8ac069ae99bc275853be6007c64510afb9a810aa5729242500cc1c",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-02-batch4_chance.log.gz",
+      "rawBytes": 591,
+      "rawSha256": "b1d1e6fd78753bd63d906af56e2e6154def94e35bc042d9e88bd9feacc933965",
+      "passed": null,
+      "failed": null
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-03-batch4_chance.log.gz",
+      "rawBytes": 5352,
+      "rawSha256": "84fa34f98f6cfadd4fbfaa2f572999f81a93d1848009575b7690985251c09fe8",
+      "passed": 8,
+      "failed": 8
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-04-batch4_chance.log.gz",
+      "rawBytes": 2549,
+      "rawSha256": "a78b32fc50b33bfb383aac4b870dc27a685945201d55f3f04e40b2a597c16c40",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-batch3_cq07.log.gz",
+      "rawBytes": 1797,
+      "rawSha256": "b31f462d4b4b4004955927866cb2543e205da386af4803c5631adedef022f8a0",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-batch4_chance.log.gz",
+      "rawBytes": 2879,
+      "rawSha256": "17a111e28672a9f7fcd7382f33db03cfaa1a36031da7a4bdb3df83dd7a4393c6",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-batch4_conference.log.gz",
+      "rawBytes": 2750,
+      "rawSha256": "ae10a09959d5695c9582cb21cdd032df589aef4d46ca43b7420152f01cb85d4d",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-batch4_dahlia.log.gz",
+      "rawBytes": 2209,
+      "rawSha256": "b480d9857e4617f8f258124b664edb5fc85bdbed2a1bb406f3729c4c51cf2e80",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-jc050.log.gz",
+      "rawBytes": 2142,
+      "rawSha256": "9220d9fd621286372d2d33b4282a3731a03e7b5e1158e3096136bb9a24d6655d",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-05-jz55.log.gz",
+      "rawBytes": 1726,
+      "rawSha256": "decfa071bd3d0d62c325cd21084a50cf4f72cd5bbd36f141f04912604dc79615",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-chance-source-01.log.gz",
+      "rawBytes": 540,
+      "rawSha256": "377cc845e1851bc760054a2ec3db9ba6e441003263725649af5b34f39ab424c3",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Full product rerun",
+    "Independent execution/review",
+    "ABI95 WASM/Web/Worker integration",
+    "Natural browser/public acceptance",
+    "Sites/Aliyun operations",
+    "GitHub CI/main merge/force push"
+  ]
+}

@@ -56,6 +56,7 @@ impl Game {
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
             politician_auras: vec![],
+            wm058_receipts: vec![],
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
             jc035_preparation: None,
@@ -978,6 +979,7 @@ impl Game {
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
         self.politician_auras.clear();
+        self.wm058_receipts.clear();
         self.inspection_receipts.clear();
         self.turn_ability_usage.clear();
                 self.jc054_end_step_turn = None;
@@ -1940,6 +1942,7 @@ impl Game {
                 }
                 self.turn_attribute_modifiers.clear();
                 self.politician_auras.clear();
+                self.wm058_receipts.clear();
                 self.modifiers.clear();
                 self.control_effects
                     .retain(|effect| !matches!(effect.lifetime, ControlLifetime::TurnEnd { .. }));
@@ -2138,6 +2141,7 @@ impl Game {
         crate::batch4_conference::validate_choice_action(&p, &a)?;
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
         crate::batch4_politician::validate_choice_action(&p, &a)?;
+        crate::batch4_chance::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

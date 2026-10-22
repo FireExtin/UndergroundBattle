@@ -669,6 +669,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM058Payment,
     BQ041Payment,
     WM060Repress { regions: Vec<(usize,String,u32)> },
     JZ39EnemySacrifice,
@@ -938,6 +939,8 @@ pub struct Game {
     pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub politician_auras: Vec<crate::batch4_politician::PoliticianAura>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub wm058_receipts: Vec<crate::batch4_chance::TaxReceipt>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub turn_ability_usage: Vec<TurnAbilityUsage>,
     #[serde(default)]

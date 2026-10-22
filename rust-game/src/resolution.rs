@@ -1111,6 +1111,7 @@ impl Game {
         label: String,
         transaction: Option<Card>,
     ) {
+        let previous = self.effects.len();
         let observe_disaster = transaction.is_some();
         let observe_spell = transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell");
         let target = frame.targets.first().map(|t| t.id.clone());
@@ -1118,7 +1119,8 @@ impl Game {
         self.push_stack(actor, label, transaction, None, false, target);
         frame.frame_id = self.stack.last().unwrap().id.clone();
         if observe_spell { self.cq07_observe_spell_targets(&frame); }
-        if observe_disaster { self.observe_batch4_disaster(&frame); }
+        if observe_disaster { self.wm058_observe_card(&frame); self.observe_batch4_disaster(&frame); }
+        self.batch3_register_entry_order(&frame.frame_id, previous);
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
     pub(crate) fn dispatch_frame(
@@ -1135,6 +1137,10 @@ impl Game {
                 // window. Independent events emitted by paying its costs remain
                 // queued and are declared after this immediate effect completes.
                 frame.frame_id = self.id();
+                // Preserve the established immediate-card ordering: capture
+                // target events now, execute the card without a response item,
+                // then declare observers. A later tax finds no stack card.
+                if transaction.is_some() { self.wm058_observe_card(&frame); }
                 if transaction.is_some() { self.observe_batch4_disaster(&frame); }
                 if transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell") {
                     self.cq07_observe_spell_targets(&frame);
@@ -1326,6 +1332,7 @@ impl Game {
             return self.bq030_choose(declaration, stage, selected);
         }
         let Some(selected) = selected.first() else {
+            self.wm058_decline(&declaration)?;
             return Ok(());
         };
         let targets = match stage {
@@ -1610,6 +1617,8 @@ impl Game {
             match step.op {
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,
                 Op::WM029TurnAura => self.wm029_resolve(&frame)?,
+                Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
+                Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),
@@ -2508,6 +2517,7 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::WM058Payment => return self.wm058_payment(*frame, chooser, &a, &selected),
             FrameChoice::BQ041Payment => return self.bq041_pay_complete(*frame, chooser, &a, &selected),
             FrameChoice::WM060Repress { regions } => return self.wm060_repress_complete(&frame, chooser, &a, &regions, &selected),
             FrameChoice::JZ39EnemySacrifice => return self.jz39_finish_sacrifice(&frame, chooser, &a, &selected),

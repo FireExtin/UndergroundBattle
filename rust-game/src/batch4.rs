@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM046", "WM047", "XG17", "XG11", "WM029"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "WM058" { return Some(crate::batch4_chance::definition()); }
     if id == "WM029" { return Some(crate::batch4_politician::definition()); }
     if id == "XG11" { return Some(crate::batch4_spectral::definition()); }
     if id == "XG17" { return Some(crate::batch4_conference::definition()); }
@@ -48,7 +49,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
+        Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -67,6 +68,7 @@ fn frame_related(f: &ResolutionFrame) -> bool {
         || f.already_paid.iter().any(|p| matches!(p, PaidCost::JZ39Demon(_)))
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    if id == "WM058" { return crate::batch4_chance::canonical(a); }
     if id == "WM029" { return crate::batch4_politician::canonical(a); }
     if id == "XG11" { return crate::batch4_spectral::canonical(a); }
     if id == "XG17" { return crate::batch4_conference::canonical(a); }
@@ -103,6 +105,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "WM058" { return crate::batch4_chance::validate_action(a); }
     if id == "WM029" { return crate::batch4_politician::validate_action(a); }
     if id == "XG11" { return crate::batch4_spectral::validate_action(a); }
     if id == "XG17" { return crate::batch4_conference::validate_action(a); }
@@ -171,6 +174,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if d.source.card.definition == "WM058" && !self.validated_cross_card_declaration(d)? { return self.validate_wm058_declaration(d); }
         if d.source.card.definition == "WM029" && !self.validated_cross_card_declaration(d)? { return self.validate_wm029_declaration(d); }
         if d.source.card.definition == "XG11" && !self.validated_cross_card_declaration(d)? { return self.validate_xg11_declaration(d); }
         if d.source.card.definition == "XG17" && !self.validated_cross_card_declaration(d)? { return self.validate_xg17_declaration(d); }
@@ -190,6 +194,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition == "WM058" && !self.validated_cross_card_frame(f)? { return self.validate_wm058_frame(f); }
         if f.source.card.definition == "WM029" && !self.validated_cross_card_frame(f)? { return self.validate_wm029_frame(f); }
         if f.source.card.definition == "XG11" && !self.validated_cross_card_frame(f)? { return self.validate_xg11_frame(f); }
         if f.source.card.definition == "XG17" && !self.validated_cross_card_frame(f)? { return self.validate_xg17_frame(f); }
@@ -236,6 +241,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_wm058_state()?;
         self.validate_wm029_state()?;
         self.validate_xg11_state()?;
         self.validate_xg17_state()?;
@@ -288,7 +294,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"JZ39"|"WM060"|"BQ041") && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"JZ39"|"WM060"|"BQ041"|"WM058") && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

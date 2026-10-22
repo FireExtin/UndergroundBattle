@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 12,
+    "nativePilots": 13,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -134,8 +134,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg",
       "sourceImageSha256": "8df743099faf69b6a56cd546be5a572a3fb8505dc66083ea6e11b907592cc7c6",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 19,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -435,7 +435,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 12,
+      "nativeCards": 13,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -482,10 +482,11 @@
     "XG17: public with personal Sun conditional Renown; other personal current Renown characters globally gain defense1 per live source. Event-time Renown qualification uses typed printed/exposure/destroyed-region/Alpha/turn-grant receipts, with separate per-entry observer keys.",
     "XG17 targets personal live Plans including secret ones; reuses normal marker/forced-completion path. Additional advancement while completion waits adds a marker without a second completion declaration. Only declaration choice ID and selected options are accepted.",
     "XG11: personal Moon Spirit; actual reveal freezes personal Moon tiers (max3) and live friendly JC038 grants into one cumulative Raid. Normal face-up entry and movement never emit it; generic granted-Raid path cannot bypass the conditional receipt.",
-    "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker."
+    "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker.",
+    "WM058: exact unique print and three Black loyalty; each distinct personal face-up Criminal targeted by an enemy card transaction emits optional pay1-or-counter, excluding activated/triggered abilities and non-targeting mass effects. Source/target/event frozen; turn-scoped declined/paid/countered/no-card receipts prevent repeat consumption. CQ07 and Chance observers may be ordered. Existing JZ55 Immediate order is preserved; the subsequent observer finds no stack card and charges nothing. Reveal removes only original region enemy influence."
   ],
   "next": [
-    "Continue remaining8 selected mechanisms and full-field Hide/shuffle design for WM045; no partial-batch construction admission",
+    "Continue remaining7 selected mechanisms, starting full-field Hide/shuffle design for WM045; no partial-batch construction admission",
     "Keep XQ13 overflow rule draft separate and uncounted; neutral/dual colors remain paused",
     "Third-batch isolated ABI94 replacement b4e0388bb0ee1a2b106c247d11663ec7ee60b28d was independently reviewed and synchronized to Aliyun by the parent; no duplicate deployment here",
     "Keep the frozenb80 package unchanged; no duplicate pending Sites deployment or source credential recreation"
