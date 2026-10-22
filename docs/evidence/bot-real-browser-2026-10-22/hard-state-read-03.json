@@ -1,0 +1,19 @@
+{
+  "recordedAtUtc": "2026-10-22T13:34:42.209906+00:00",
+  "kind": "read-only QA database recovery check; not a browser assertion",
+  "roomId": "3d4632ea3f7eeb92b47c4a4d",
+  "roomVersion": 786,
+  "gameTurn": 15,
+  "gameVersion": 786,
+  "window": "End",
+  "pending": {
+    "seat": 0,
+    "kind": "discard"
+  },
+  "winner": null,
+  "paused": null,
+  "browserLastConfirmedTurn": 14,
+  "browserTerminalClaim": false,
+  "databaseMutated": false,
+  "credentialsRead": false
+}
