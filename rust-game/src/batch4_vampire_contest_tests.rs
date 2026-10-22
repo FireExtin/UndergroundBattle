@@ -617,3 +617,114 @@ fn b_contest_shown_bq027_blood_entry_observer_and_other_shown_keep_recovery() {
     assert_eq!(g.players[2].graveyard.len(), 1);
     checkpoint(&g);
 }
+
+#[test]
+fn b_contest_paid_sources_preserve_foreign_owners_and_hand_action_cannot_respond() {
+    let mut g = layout();
+    fund(&mut g, 0, "JC125", 2);
+    let mut c = g.make_card("BQ032", 1);
+    c.controller = 0;
+    let id = c.id.clone();
+    g.players[0].hand.push(c);
+    act(&mut g, 0, hand_action(&id));
+    assert!(g.players[1]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "BQ032" && c.controller == 1));
+    assert!(g.players[0].graveyard.is_empty());
+    fund(&mut g, 2, "JC125", 2);
+    let response = held(&mut g, "BQ032", 2);
+    reject(&mut g, 2, hand_action(&response));
+    checkpoint(&g);
+
+    let mut g = layout();
+    let source = field(&mut g, "BQ036", 0);
+    let host = field(&mut g, "JC029", 0);
+    let cost = attached(&mut g, "XQ14", 1, &host);
+    g.attachments.last_mut().unwrap().card.controller = 0;
+    fund(&mut g, 0, "JC125", 1);
+    act(&mut g, 0, sacrifice_action(&source, &cost));
+    assert!(g.players[1]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "XQ14" && c.controller == 1));
+    checkpoint(&g);
+}
+
+#[test]
+fn b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten() {
+    let mut g = layout();
+    attached(&mut g, "BQ038", 0, "society:p0");
+    let host = field(&mut g, "JC029", 0);
+    let blood = attached(&mut g, "XQ14", 2, &host);
+    start(&mut g);
+    trigger(&mut g, b::START, true);
+    pass_top(&mut g);
+    for mutation in 0..5 {
+        let mut bad = g.clone();
+        let bonus = &mut bad.mystic_contest.as_mut().unwrap().bonuses[0];
+        let Op::BQ038ContestBonus {
+            observation: Some(o),
+        } = &mut bonus.frame.steps[0].op
+        else {
+            unreachable!()
+        };
+        match mutation {
+            0 => {
+                let w = o.witnesses.as_ref().unwrap()[0].clone();
+                o.witnesses.as_mut().unwrap().push(w);
+                bonus.amount = 2;
+            }
+            1 => o.witnesses.as_mut().unwrap()[0].character.card.controller = 1,
+            2 => o.witnesses.as_mut().unwrap()[0].attachment.host_id = "i1".into(),
+            3 => o.resolved_id = Some(blood.clone()),
+            _ => o.resolved_id = None,
+        }
+        invalid(&g, bad);
+    }
+    commit(&mut g, ["JC125"; 4]);
+    rewards(&mut g);
+    let mut bad = g.clone();
+    let extra = bad.mystic_history[0].bonuses[0].clone();
+    bad.mystic_history[0].bonuses.push(extra);
+    invalid(&g, bad);
+    checkpoint(&g);
+}
+
+// This is a real B start + BQ038 start-trigger + paid WM022 response, not a
+// seeded public-hook fixture. A owns the protocol change. Keep the expected
+// behavior as an explicit ignored regression until that contract is delivered.
+#[test]
+#[ignore = "A-owned start response/nesting protocol is unresolved on baseline 47256d59"]
+fn b_contest_protocol_response_reveal_must_dispatch_before_outer_commit() {
+    let mut g = layout();
+    attached(&mut g, "BQ038", 0, "society:p0");
+    fund(&mut g, 2, "WM022", 3);
+    let reveal = field(&mut g, "WM022", 2);
+    g.board_mut(&reveal).unwrap().face_down = true;
+    start(&mut g);
+    trigger(&mut g, b::START, true);
+    for _ in 0..4 {
+        if g.priority_team == g.team(2) {
+            break;
+        }
+        pass(&mut g);
+    }
+    assert_eq!(g.priority_team, g.team(2));
+    act(
+        &mut g,
+        2,
+        Action {
+            card_id: Some(reveal),
+            ..Action::new("reveal")
+        },
+    );
+    pass_top(&mut g);
+    assert!(g
+        .pending
+        .as_ref()
+        .is_none_or(|p| p.choice.kind != m::COMMIT_KIND));
+    assert!(g.stack.last().is_some_and(|s| s.frame.as_ref().is_some_and(|f| f.ability_key == crate::pack_a_contest::SHADOW_REVEAL)),
+        "The response-generated forced reveal declaration must reach the stack before the outer start resumes; stack={:?}; effects={:?}", g.stack.iter().map(|s|s.frame.as_ref().map(|f|f.ability_key.as_str())).collect::<Vec<_>>(), g.effects.iter().map(|e|match e { Effect::Declare{declaration}=>declaration.ability.key.as_str(), Effect::MysticContinue{..}=>"MysticContinue", _=>"other" }).collect::<Vec<_>>());
+    checkpoint(&g);
+}
