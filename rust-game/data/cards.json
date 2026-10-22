@@ -9364,6 +9364,45 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XQ21",
+      "name": "臣服于命运",
+      "kind": "spell",
+      "subtypes": [
+        "仪式"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【额外费用】牺牲一个角色。\n【快速行动】选择目标具有指示物标志的角色、附属或暗藏者，在其上放置一个相同类别的指示物标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ21",
+        "image": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
+        "imageSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

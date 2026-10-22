@@ -1,0 +1,219 @@
+{
+  "recordedAt": "2026-10-22T11:30:25.723240+00:00",
+  "precedingCheckpoint": "2ea94506fd86bfd74ccf98704d37e8738aeaa6f3",
+  "newCard": "XQ21",
+  "targetBatchSize": 50,
+  "selectedSources": 50,
+  "nativeCards": 22,
+  "remainingNativePrograms": 28,
+  "definitions": 235,
+  "wasmCards": 0,
+  "selectionEnabled": 0,
+  "published": 0,
+  "accepted": 0,
+  "newDirectedCases": 18,
+  "sourceChecks": 4,
+  "relatedFiltersCompleted": [
+    {
+      "filter": "batch4_plans",
+      "exitCode": 0,
+      "seconds": 2.66,
+      "log": "batch4-markers-final-02-batch4_plans.log",
+      "passed": 18
+    },
+    {
+      "filter": "bottom_to_hand",
+      "exitCode": 0,
+      "seconds": 0.085,
+      "log": "batch4-markers-final-02-bottom_to_hand.log",
+      "passed": 1
+    },
+    {
+      "filter": "invalid_additional_sacrifice",
+      "exitCode": 0,
+      "seconds": 0.085,
+      "log": "batch4-markers-final-02-invalid_additional_sacrifice.log",
+      "passed": 1
+    },
+    {
+      "filter": "effect_sacrifice_private_choice",
+      "exitCode": 0,
+      "seconds": 0.086,
+      "log": "batch4-markers-final-02-effect_sacrifice_private_choice.log",
+      "passed": 1
+    },
+    {
+      "filter": "sacrifice_defense_aura",
+      "exitCode": 0,
+      "seconds": 0.085,
+      "log": "batch4-markers-final-02-sacrifice_defense_aura.log",
+      "passed": 1
+    }
+  ],
+  "filterOverlap": "Per-filter author results, not a unique full-suite total. Earlier repeated marker runs are retained as history, not extra unique cases.",
+  "scope": "Author native pilot only. No ABI95 WASM, Web/Worker integration, deployment, independent review or browser acceptance of the new card. Frozen ABI94 and Bot copies unchanged.",
+  "nativeRecipe": {
+    "runner": "../run-batch4-native.py",
+    "runnerSha256": "28d28af1961b7e6b91b53434f55f6b6d2d478ef4092d267a47aad5724725b982",
+    "prefix": "batch4-markers-final-02",
+    "commandFilters": [
+      "batch4_markers",
+      "batch4_plans",
+      "bottom_to_hand",
+      "invalid_additional_sacrifice",
+      "effect_sacrifice_private_choice",
+      "sacrifice_defense_aura"
+    ],
+    "jobs": 1,
+    "testThreads": 2,
+    "guard": "Original tools/build-storage.mjs; offline cargo test --lib; original isolated batch4-build cache"
+  },
+  "nativeInputs": "docs/evidence/batch20-fourth-2026-10-22/twenty-two-card-source-inputs.json",
+  "nativeInputCount": 272,
+  "nativeInputsSha256": "d745d8ea7934d103cc0b920304477c1d4ede95815def4e0c839b686f6a87c846",
+  "nativeBinarySha256": "4f5b26d5fb3a89cc650136bcddd3dda13dc113e42b65486c63233353879c2f01",
+  "sourceCheckedInputs": {
+    "docs/factions/batch20-fourth-2026-10-22.json": {
+      "bytes": 61372,
+      "sha256": "426467cdc169add8ae2f2ddec05e81acd0ded52ee2fdffc6ceef2e4c893ff153"
+    },
+    "docs/factions/card-specifications.json": {
+      "bytes": 2815110,
+      "sha256": "489c0dd9b6595a542db56642b30285ce43edf61e503f008f22a60176deb589be"
+    },
+    "tools/cards/batch3-source.test.mjs": {
+      "bytes": 3478,
+      "sha256": "789135d7f9b36dc944d0d0c51c928906a723bccf41d7450e975d0dbd6c021085"
+    },
+    "tools/cards/batch4-source.test.mjs": {
+      "bytes": 4758,
+      "sha256": "b76905872a4b067a4007e2622ab8a028f01227c3bdf4e6e890fda501226424c6"
+    },
+    "web/public/cards/XQ21.jpg": {
+      "bytes": 1453844,
+      "sha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d"
+    },
+    "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg": {
+      "bytes": 1453844,
+      "sha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d"
+    },
+    "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf": {
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    }
+  },
+  "behaviors": [
+    "Exact printed fee/red loyalty/fast ritual, one actual selected controlled character sacrifice",
+    "Physical marker categories only; damage and printed traits excluded",
+    "Valid attachment marker inheritance is read without moving physical carriers",
+    "Original target bound before payment; rescue/re-entry or sacrificing it cancels entire effect with fees retained",
+    "Current marker kinds chosen at resolution, fixed one-kind continuation and no repeat payment",
+    "Plan advancement uses existing disclosure/threshold and actual plan controller; enemy shield cancels effect normally",
+    "Attached dual-type character is included in shared legal sacrifice enumeration without relaxing control/locality",
+    "Both persistence entrances reject the same modified frame/receipt/choice cases; Room pause/resume, command replay/stale duplicate, four views and large native u64 seed"
+  ],
+  "fixtureBoundaries": [
+    "Native layouts and marker initial counts are fixtures, not browser production evidence",
+    "Last marker disappearance/current category substitution uses explicit response layout changes, not a fabricated second card program",
+    "Permanent defense fixture uses the existing admissible BQ079 carrier; no generic defense-marker domain relaxation",
+    "Only the seven marker categories already represented in this current native pool are covered. Future energy/other marker programs remain unimplemented."
+  ],
+  "failureHistory": [
+    {
+      "log": "batch4-markers-native-01-batch4_markers.log",
+      "result": "compile error: test used RegionView.cards instead of characters"
+    },
+    {
+      "log": "batch4-markers-native-02-batch4_markers.log",
+      "result": "6passed/10failed: new dedicated pending kind not yet wired to existing batch4 allowlist"
+    },
+    {
+      "log": "batch4-markers-native-03-batch4_markers.log",
+      "result": "13passed/3failed: invalid Room fixture constructor, illegal generic defense-marker carrier, Society attachment queried with region-only board accessor"
+    },
+    {
+      "log": "batch4-markers-native-04-batch4_markers.log",
+      "result": "16passed before adding two targeted ownership/shield concerns"
+    },
+    {
+      "log": "batch4-markers-final-01-batch4_markers.log",
+      "result": "17passed/1failed: new enemy-shield test used a teammate seat in teams mode; fixture corrected to actual enemy without changing shield rules"
+    }
+  ],
+  "connectionHistory": "Wiring command returned transport failure but file inspection showed it executed; it was not repeated. A later final-02 launch was verified not started (no edit/log/results) before one guarded launch. No unknown command was blindly restarted.",
+  "logs": {
+    "batch4-markers-final-01-batch4_markers.log": {
+      "bytes": 3355,
+      "sha256": "c86fa2b937e0c939d92128d5f77c68aef15f0023a26d3be4a6ac5df405ed16a6",
+      "gzipSha256": "f42eab5e1d739673124ed9274cd6af8516393dde0d94ec8a7b3e31c90a36f461",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-01-batch4_markers.log.gz"
+    },
+    "batch4-markers-final-02-batch4_markers.log": {
+      "bytes": 2930,
+      "sha256": "95c9619f8cf2261fde247f93f9618a5f42798ac8967273940f318fc46616c962",
+      "gzipSha256": "208b8b11e08debb42ffbddc4eb254d317f6288efede6fb22d4928cecedfa7e63",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-batch4_markers.log.gz"
+    },
+    "batch4-markers-final-02-batch4_plans.log": {
+      "bytes": 3064,
+      "sha256": "58663f918102f9a85600239e736079b15af4ae1f2eb413cdb1a2bffb7ce1b40c",
+      "gzipSha256": "1d4a8474bf15335b7491664f36e381d5d4bfb7e320507ae88b423ebca1faaf2d",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-batch4_plans.log.gz"
+    },
+    "batch4-markers-final-02-bottom_to_hand.log": {
+      "bytes": 1069,
+      "sha256": "88c07ea55275b5b6fbc38a5fcc0e3c839e2f5d0852afb41bd971f5587705db46",
+      "gzipSha256": "0518321e42522f9466444855e5c05d4f95c4a6b320ddf2ef95259343e2275531",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-bottom_to_hand.log.gz"
+    },
+    "batch4-markers-final-02-effect_sacrifice_private_choice.log": {
+      "bytes": 1059,
+      "sha256": "8f88ea34e48bbe2b440150a335149ee193f9fe09f5344053a750f938cd1c0844",
+      "gzipSha256": "6d4685d75c47878ab9419e02bfec5bcfa72b24f3a2b7b897327f6df2bcbc7621",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-effect_sacrifice_private_choice.log.gz"
+    },
+    "batch4-markers-final-02-invalid_additional_sacrifice.log": {
+      "bytes": 1061,
+      "sha256": "f406a054769e73d7c6124f9aca1d89fc07115936d3108af898485a9cf4e396e7",
+      "gzipSha256": "7cf6411041ba268193d8fd63599631907bb5cc067308367d9c9a3a00e440263c",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-invalid_additional_sacrifice.log.gz"
+    },
+    "batch4-markers-final-02-sacrifice_defense_aura.log": {
+      "bytes": 1063,
+      "sha256": "5f862a226b9a149828b097cf6663bf197fa477e1b7789857df108560b3647906",
+      "gzipSha256": "7ef0e7b6240fe4dfc537630aeea9249d78dfc21c4674e7310c38fa1c34898c03",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-final-02-sacrifice_defense_aura.log.gz"
+    },
+    "batch4-markers-native-01-batch4_markers.log": {
+      "bytes": 1161,
+      "sha256": "82ecd1614326bc9317e714bc0f121d00e9a8f8098305757582f8bb01ae734eb5",
+      "gzipSha256": "7f36b6570f2b7921bae104c54ae3dc89c51b9f5cf5729715a7f7dacf6df101c6",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-native-01-batch4_markers.log.gz"
+    },
+    "batch4-markers-native-02-batch4_markers.log": {
+      "bytes": 6325,
+      "sha256": "0b4ebc51f1c27a2ddbd752cde527c3166f5cf8965c2f522229615810a21a4d91",
+      "gzipSha256": "ac3398f6975a255df7b52c635eb0362d8761b53fc886f0ff87c7a36760c9bd2c",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-native-02-batch4_markers.log.gz"
+    },
+    "batch4-markers-native-03-batch4_markers.log": {
+      "bytes": 3939,
+      "sha256": "bf6988f1d7ef664bae5beeb84e40705b5c3f8ab9c58f1f03e1bea83a187af5de",
+      "gzipSha256": "5f6be7302944a42ad2cb0a778ee037b71a3dcc1dd1cad12fbc5daa5dff494d9e",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-native-03-batch4_markers.log.gz"
+    },
+    "batch4-markers-native-04-batch4_markers.log": {
+      "bytes": 2737,
+      "sha256": "7460f8003c13f4c9515866c1f58ff14f9858fb221f27fa25c8d0c2f9b724d7fc",
+      "gzipSha256": "650b09daefc9220d1a4289eba4a7c4a4f3e754a3d3e664fe555a467a0057deef",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-native-04-batch4_markers.log.gz"
+    },
+    "batch4-markers-source-01.log": {
+      "bytes": 541,
+      "sha256": "5bdbfb9620ee70a46ce7c31b2ef3f4b7594bbd16ac33f1d5c608401a65dba76f",
+      "gzipSha256": "3453663add44589cc101305f30cf94d0e40cb0be2bb9b0b340a57143318f0889",
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-markers-source-01.log.gz"
+    }
+  },
+  "sourceInventoryScope": "Rust/Cargo/current rust-game data and workspace toolchain inventory, including support/examples/tests as context; not a claim that all are compiled or that WASM was built. Historical WASM JSON fixtures are not native build inputs."
+}

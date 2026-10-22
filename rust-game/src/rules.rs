@@ -119,6 +119,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    XQ21MarkedCarrier,
     XG16CharacterOrAttachment,
     JZ36CharacterOrAttachment,
     JZ40CharacterOrAttachment,
@@ -270,6 +271,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XQ21CopyMarker,
     JZ51TopEightCorpses,
     JZ51GraveEntry,
     XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },

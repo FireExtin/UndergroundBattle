@@ -22,6 +22,9 @@ mod batch4_skull_tests;
 mod batch4_manor_tests;
 #[cfg(test)]
 mod batch4_warden_tests;
+mod batch4_markers;
+#[cfg(test)]
+mod batch4_markers_tests;
 mod batch4;
 mod batch4_chance;
 #[cfg(test)]

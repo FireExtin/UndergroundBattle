@@ -2155,6 +2155,7 @@ impl Game {
         crate::batch4_warden::validate_choice_action(&p, &a)?;
         crate::batch4_blood::validate_choice_action(&p, &a)?;
         crate::batch4_wendigo::validate_choice_action(&p, &a)?;
+        crate::batch4_markers::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

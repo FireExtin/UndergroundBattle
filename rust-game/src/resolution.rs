@@ -177,14 +177,12 @@ impl Game {
                     .any(|c| matches!(c, Cost::SacrificeSelectedControlledCharacter | Cost::SacrificeSelectedOtherLocalControlledCharacter))
                 {
                     let local_other = ability.costs.iter().any(|cost| matches!(cost, Cost::SacrificeSelectedOtherLocalControlledCharacter));
-                    self.regions
-                        .iter().enumerate()
-                        .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
+                    self.in_play_cards().into_iter()
                         .filter(|(r, c)| {
                             c.controller == actor
                                 && !c.face_down
                                 && card(&c.definition).kind == "character"
-                                && (!local_other || (Some(*r) == source.region && c.id != source.card.id))
+                                && (!local_other || (*r == source.region && c.id != source.card.id))
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
@@ -753,6 +751,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
@@ -1633,6 +1632,7 @@ impl Game {
                 Op::XG18RenownPlay { .. } => self.omega_resolve(&frame)?,
                 Op::XG16EntryTime => self.xg16_entry_time(&frame),
                 Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
+                Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
@@ -2598,6 +2598,7 @@ impl Game {
                 let id = selected.first().ok_or("必须选择一张手牌封印")?;
                 self.seal_hand_card(seat, id, &host_id)?;
             }
+            FrameChoice::XQ21Marker { kinds } => self.xq21_marker_finish(&frame, &kinds, &selected)?,
             FrameChoice::JZ51TopEight { inspected_ids } => self.jz51_search_finish(&frame,&inspected_ids,&selected)?,
             FrameChoice::JZ51EntryRegion { regions } => self.jz51_region_finish(&frame,&regions,&selected)?,
             FrameChoice::JC032TopSix { inspected_ids } => {

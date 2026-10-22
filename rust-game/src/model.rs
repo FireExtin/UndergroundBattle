@@ -674,6 +674,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XQ21Marker { kinds: Vec<crate::batch4_markers::MarkerKind> },
     JZ51TopEight { inspected_ids: Vec<String> },
     JZ51EntryRegion { regions: Vec<(usize, String)> },
     WM058Payment,

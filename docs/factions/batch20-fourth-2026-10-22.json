@@ -7,14 +7,14 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 21,
+    "nativePilots": 22,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 29
+    "remainingNativePrograms": 28
   },
   "colorCounts": {
     "红": 13,
@@ -487,8 +487,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
       "sourceImageSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 18,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -981,7 +981,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 21,
+      "nativeCards": 22,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
