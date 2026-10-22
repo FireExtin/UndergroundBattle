@@ -695,6 +695,9 @@ fn b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten() {
 // verification clone. Stop on the original frame identity: a forced trigger
 // may replace it without decreasing stack depth.
 fn a_b_paid_response() -> Game {
+    a_b_paid_response_layout(false)
+}
+fn a_b_paid_response_layout(second_reveal: bool) -> Game {
     let mut g = layout();
     attached(&mut g, "BQ038", 0, "society:p0");
     let host = field(&mut g, "JC029", 0);
@@ -702,6 +705,12 @@ fn a_b_paid_response() -> Game {
     fund(&mut g, 2, "WM022", 3);
     let reveal = field(&mut g, "WM022", 2);
     g.board_mut(&reveal).unwrap().face_down = true;
+    if second_reveal {
+        fund(&mut g, 3, "WM022", 3);
+        let mut c = g.make_card("WM022", 3);
+        c.face_down = true;
+        g.regions[2].cards.push(c);
+    }
     start(&mut g);
     trigger(&mut g, b::START, true);
     for _ in 0..4 {
@@ -1029,5 +1038,202 @@ fn a_b_nested_declining_child_bonus_preserves_outer_response_and_payment() {
     rewards(&mut g);
     assert_eq!(g.mystic_history[1].bonuses.len(), 1);
     assert_eq!(g.resources(0), 0);
+    checkpoint(&g);
+}
+
+// Both WM022s and their assets are laid out before the first command. Every
+// nesting step then uses a paid reveal and its actual forced response frame.
+fn a_b_three_layers() -> Game {
+    let mut g = a_b_paid_response_layout(true);
+    let child = g.stack.last().unwrap().id.clone();
+    a_b_resolve_original_frame(&mut g, &child);
+    assert_eq!(g.mystic_states().count(), 2);
+    trigger(&mut g, b::START, true);
+    let reveal = g.regions[2]
+        .cards
+        .iter()
+        .find(|c| c.definition == "WM022" && c.controller == 3 && c.face_down)
+        .unwrap()
+        .id
+        .clone();
+    for _ in 0..4 {
+        if g.priority_team == g.team(3) {
+            break;
+        }
+        pass(&mut g);
+    }
+    assert_eq!(g.priority_team, g.team(3));
+    act(
+        &mut g,
+        3,
+        Action {
+            card_id: Some(reveal),
+            ..Action::new("reveal")
+        },
+    );
+    let reveal_frame = g.stack.last().unwrap().id.clone();
+    a_b_resolve_original_frame(&mut g, &reveal_frame);
+    let forced = g.stack.last().unwrap();
+    assert_eq!(
+        forced.frame.as_ref().unwrap().ability_key,
+        crate::pack_a_contest::SHADOW_REVEAL
+    );
+    let forced_id = forced.id.clone();
+    a_b_resolve_original_frame(&mut g, &forced_id);
+    assert_eq!(g.mystic_states().count(), 3);
+    assert_eq!((g.resources(0), g.resources(2), g.resources(3)), (0, 0, 0));
+    checkpoint(&g);
+    g
+}
+
+#[test]
+fn a_b_three_layers_restore_original_responses_and_consume_each_bonus_once() {
+    let mut g = a_b_three_layers();
+    let layers = g
+        .mystic_states()
+        .map(|s| {
+            (
+                s.contest_id.clone(),
+                serde_json::to_value(&s.frame.already_paid).unwrap(),
+            )
+        })
+        .collect::<Vec<_>>();
+    let waiting = g
+        .stack
+        .iter()
+        .filter(|s| s.frame.as_ref().is_some_and(|f| f.ability_key == b::START))
+        .map(|s| s.id.clone())
+        .collect::<Vec<_>>();
+    assert_eq!(waiting.len(), 2);
+    trigger(&mut g, b::START, true);
+    let mut bonus = g.stack.last().unwrap().id.clone();
+    for (depth, (contest, paid)) in layers.iter().enumerate() {
+        let state = g.mystic_contest.as_ref().unwrap();
+        assert_eq!(&state.contest_id, contest);
+        assert_eq!(
+            &serde_json::to_value(&state.frame.already_paid).unwrap(),
+            paid
+        );
+        assert!(state.bonuses.is_empty());
+        assert_eq!(g.mystic_states().count(), 3 - depth);
+        a_b_resolve_original_frame(&mut g, &bonus);
+        let state = g.mystic_contest.as_ref().unwrap();
+        assert_eq!(state.bonuses.len(), 1);
+        assert_eq!(&state.bonuses[0].contest_id, contest);
+        assert_eq!(state.bonuses[0].amount, 1);
+        commit(&mut g, ["JC125"; 4]);
+        rewards(&mut g);
+        assert_eq!(g.mystic_history.len(), depth + 1);
+        assert_eq!(&g.mystic_history[depth].contest_id, contest);
+        if depth < 2 {
+            bonus = waiting[1 - depth].clone();
+            assert_eq!(g.stack.last().unwrap().id, bonus);
+        }
+    }
+    assert!(g.mystic_contest.is_none());
+    assert!(g.stack.is_empty() && g.effects.is_empty() && g.pending.is_none());
+    assert!(g.mystic_history.iter().all(|o| {
+        o.bonuses.len() == 1 && o.shown[0].value == 1 && o.winner_team == Some(g.team(0))
+    }));
+    assert_eq!((g.resources(0), g.resources(2), g.resources(3)), (0, 0, 0));
+    assert_eq!(
+        g.players[0]
+            .graveyard
+            .iter()
+            .filter(|c| c.definition == "BQ032")
+            .count(),
+        1
+    );
+    checkpoint(&g);
+}
+
+#[test]
+fn a_b_three_layers_reject_lost_reordered_and_duplicate_ancestor_continuations() {
+    let g = a_b_three_layers();
+    let oldest = g.mystic_states().last().unwrap().contest_id.clone();
+    let middle = g.mystic_states().nth(1).unwrap().contest_id.clone();
+    for mutation in 0..6 {
+        let mut bad = g.clone();
+        match mutation {
+            0 => {
+                let mut parent = bad.mystic_contest.as_mut().unwrap().parent.take().unwrap();
+                bad.mystic_contest.as_mut().unwrap().parent = parent.parent.take();
+            }
+            1 => {
+                let mut parent = bad.mystic_contest.as_mut().unwrap().parent.take().unwrap();
+                let mut ancestor = parent.parent.take().unwrap();
+                ancestor.parent = Some(parent);
+                bad.mystic_contest.as_mut().unwrap().parent = Some(ancestor);
+            }
+            2 => {
+                let duplicate = bad.mystic_contest.clone().unwrap();
+                bad.mystic_contest.as_mut().unwrap().parent = Some(Box::new(duplicate));
+            }
+            3 => bad.effects.retain(
+                |e| !matches!(e, Effect::MysticContinue { contest_id } if contest_id == &middle),
+            ),
+            4 => {
+                let i = bad.effects.iter().position(|e| {
+                    matches!(e, Effect::MysticContinue { contest_id } if contest_id == &oldest)
+                }).unwrap();
+                let duplicate = bad.effects[i].clone();
+                bad.effects.insert(i, duplicate);
+            }
+            _ => {
+                let oldest_frame = bad.stack.iter_mut().find_map(|s| {
+                    s.frame.as_mut().filter(|f| {
+                        matches!(&f.steps[0].op, Op::BQ038ContestBonus { observation: Some(o) } if o.contest_id == oldest)
+                    })
+                }).unwrap();
+                let Op::BQ038ContestBonus {
+                    observation: Some(o),
+                } = &mut oldest_frame.steps[0].op
+                else {
+                    unreachable!()
+                };
+                o.contest_id = middle.clone();
+            }
+        }
+        invalid(&g, bad);
+    }
+    // Lookup may authenticate a two-level ancestor, but may neither allocate
+    // an award there nor accept an invented resolved receipt beside its frame.
+    let outer = g.stack.iter().find_map(|s| s.frame.as_ref().filter(|f| {
+        matches!(&f.steps[0].op, Op::BQ038ContestBonus { observation: Some(o) } if o.contest_id == oldest)
+    })).unwrap().clone();
+    g.validate_b_contest_frame(&outer).unwrap();
+    let mut paid = outer;
+    paid.cursor = 1;
+    paid.guard = GuardState::Accepted;
+    let mut rejected = g.clone();
+    let before = serde_json::to_string(&rejected).unwrap();
+    assert!(rejected.bq038_resolve_bonus(paid.clone()).is_err());
+    assert_eq!(serde_json::to_string(&rejected).unwrap(), before);
+    let mut bad = g.clone();
+    let capture = bad.id();
+    let Op::BQ038ContestBonus {
+        observation: Some(o),
+    } = &mut paid.steps[0].op
+    else {
+        unreachable!()
+    };
+    o.witnesses = Some(vec![]);
+    o.resolved_id = Some(capture);
+    let ancestor = bad
+        .mystic_contest
+        .as_mut()
+        .unwrap()
+        .parent
+        .as_mut()
+        .unwrap()
+        .parent
+        .as_mut()
+        .unwrap();
+    ancestor.bonuses.push(m::MysticBonus {
+        contest_id: oldest,
+        frame: Box::new(paid),
+        amount: 0,
+    });
+    invalid(&g, bad);
     checkpoint(&g);
 }
