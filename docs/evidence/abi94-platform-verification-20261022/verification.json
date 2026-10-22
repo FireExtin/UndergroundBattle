@@ -1,0 +1,789 @@
+{
+  "runtimeReviewedSource": "932de1da80809e5535688a7e0c7d7910b5de8862",
+  "priorReviewedCheckpoint": "39ab0664efa62989573de0a1fc21b0f6e0df63d0",
+  "nativeTraceSource": "e2ba524d880c097488f7b24f57e5aead43444f85",
+  "platformSource": "fb2696a99d49cb078209d97171517b338290aca8",
+  "runtimeChangesThisRound": false,
+  "sourceInputsVerified": 235,
+  "currentSourceManifestSha256": "b6b910aacc504a5e8bcc6095cd586016ffe8289d793dd1edc6d27b2aca2d7a0f",
+  "wasmOutputs": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 5030399,
+      "sha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "runs": [
+    {
+      "command": [
+        "bash",
+        "rust-game-wasm/build.sh"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "",
+      "startUtc": "2026-10-22T15:34:36.961177+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-wasm-01.log.gz",
+      "phase": "wasm",
+      "recipe": {
+        "CARGO_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/cargo",
+        "RUSTUP_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/rustup",
+        "UNDERGROUNDBATTLE_BUILD_ROOT": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../abi94-recovery-build",
+        "WASM_BINDGEN": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/wasm-bindgen-0.2.104-from-crate/bin/wasm-bindgen",
+        "CC": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/batch3-zig-cc",
+        "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/zig-cc",
+        "RUSTFLAGS": "--remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/cargo=/__undergroundbattle/cargo --remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix=/__undergroundbattle/source"
+      },
+      "exitCode": 0,
+      "seconds": 49.633,
+      "endUtc": "2026-10-22T15:35:26.594572+00:00",
+      "logSha256": "6a4cb5d0b70f5e951b0a954dcaca9929db6c1a4165474be92aab565f5822f168",
+      "outputs": [
+        {
+          "path": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+          "bytes": 3921,
+          "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+        },
+        {
+          "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+          "bytes": 18203,
+          "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+        },
+        {
+          "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+          "bytes": 5030399,
+          "sha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f"
+        },
+        {
+          "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+          "bytes": 1944,
+          "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+        },
+        {
+          "path": "rust-game-wasm/pkg/package.json",
+          "bytes": 33,
+          "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+        }
+      ],
+      "logUncompressedSha256": "6a4cb5d0b70f5e951b0a954dcaca9929db6c1a4165474be92aab565f5822f168",
+      "logGzipSha256": "d32a1fbb25de4ae0fa283566c2b4aded2f552daa55a629ad44e191f1892c6829"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=2",
+        "src/game/ChoiceRecovery.test.tsx",
+        "src/game/PendingPauseRecovery.test.tsx",
+        "src/game/ContinuousPassRecovery.test.tsx",
+        "src/game/PlayerSessions.test.tsx",
+        "src/game/EntryReceiptRecovery.test.ts",
+        "src/game/ReadyReceiptRecovery.test.tsx",
+        "src/game/RecoveryReviewRegression.test.tsx"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "",
+      "startUtc": "2026-10-22T15:35:12.534503+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-web-01.log.gz",
+      "phase": "web",
+      "exitCode": 0,
+      "seconds": 6.767,
+      "endUtc": "2026-10-22T15:35:19.302142+00:00",
+      "logSha256": "ca0e49f38799b2b9daa665615c238203fec4a4266c06157e6b2b57171fdf96ee",
+      "logUncompressedSha256": "ca0e49f38799b2b9daa665615c238203fec4a4266c06157e6b2b57171fdf96ee",
+      "logGzipSha256": "1ab44448f13b6b0f8b54670a0d6caf7a03497a8383b1894136a13d9374b68a93"
+    },
+    {
+      "command": [
+        "node",
+        "scripts/build.mjs"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/sites",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "",
+      "startUtc": "2026-10-22T15:36:01.241734+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-package-01.log.gz",
+      "phase": "package",
+      "exitCode": 0,
+      "seconds": 7.712,
+      "endUtc": "2026-10-22T15:36:08.953981+00:00",
+      "logSha256": "9b659ed9ae076e92e68f29a2b563b1ba4c71f67379c332042a48a65a23e95a7e",
+      "logUncompressedSha256": "9b659ed9ae076e92e68f29a2b563b1ba4c71f67379c332042a48a65a23e95a7e",
+      "logGzipSha256": "4be6ec9ef418ac29433f233f04ca218815fb03bc24fccdfed9ecca4fbd9f3946"
+    },
+    {
+      "command": [
+        "node",
+        "tools/check-abi94-workspace-repair.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/native-room",
+        "docs/evidence/abi94-platform-verification-20261022/room.current.json.gz"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "",
+      "startUtc": "2026-10-22T15:36:01.241182+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-room-parity-01.log.gz",
+      "phase": "room-parity",
+      "exitCode": 0,
+      "seconds": 1.113,
+      "endUtc": "2026-10-22T15:36:02.354328+00:00",
+      "logSha256": "e30866a37b8620d550620068de69354043d755fedf55d8a0f17fc283ea7b37e7",
+      "logUncompressedSha256": "e30866a37b8620d550620068de69354043d755fedf55d8a0f17fc283ea7b37e7",
+      "logGzipSha256": "1b3b4716f91ad8e4b030347e9ec72160492e45a7cfd1f931dd7295c6d86fcdb8"
+    },
+    {
+      "command": [
+        "node",
+        "rust-game-wasm/tests/recovery-parity.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/native-recovery"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "",
+      "startUtc": "2026-10-22T15:36:01.519499+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-recovery-parity-01.log.gz",
+      "phase": "recovery-parity",
+      "exitCode": 0,
+      "seconds": 0.368,
+      "endUtc": "2026-10-22T15:36:01.887938+00:00",
+      "logSha256": "7426297a2dc650ba761a0bb3f9418533230886845a63c2b02ba9ae23b69ab6a1",
+      "logUncompressedSha256": "7426297a2dc650ba761a0bb3f9418533230886845a63c2b02ba9ae23b69ab6a1",
+      "logGzipSha256": "7d462fe87586fb8395919bab5fdb7387e5e0bdcee96e634122644b6ef1ca5e8d"
+    },
+    {
+      "command": [
+        "node",
+        "tools/build-current-clock-worker.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/current-clock-01"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:36:33.075040+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-clock-01.log.gz",
+      "phase": "clock",
+      "exitCode": 0,
+      "seconds": 0.051,
+      "endUtc": "2026-10-22T15:36:33.126680+00:00",
+      "logSha256": "342d59c72bb9486f0fbc62212ca30a987cc5c87fb1a9d12db2ab8f2ba2d12a17",
+      "logUncompressedSha256": "342d59c72bb9486f0fbc62212ca30a987cc5c87fb1a9d12db2ab8f2ba2d12a17",
+      "logGzipSha256": "28a69a368e4d7591a6f2f8bcf5117ad51046bbd807dceada6b0c6b5641ff601e"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "test/abi94-workspace-repair-integration.test.mjs",
+        "test/kernel-binding.test.mjs",
+        "test/kernel-routing.test.mjs",
+        "test/current-kernel-http.test.mjs",
+        "test/storage-retry.test.mjs",
+        "test/session-host.test.mjs"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/sites",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:36:52.047966+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-worker-01.log.gz",
+      "phase": "worker",
+      "exitCode": 0,
+      "seconds": 13.054,
+      "endUtc": "2026-10-22T15:37:05.101951+00:00",
+      "logSha256": "d758900447c021f9787ed6227bc4b4d7c765e5782767361943f14d1c10f5b93c",
+      "logUncompressedSha256": "d758900447c021f9787ed6227bc4b4d7c765e5782767361943f14d1c10f5b93c",
+      "logGzipSha256": "a5723325e9b7e1426656345532fb5322cdff6d0b602ed19fc2e4943d62695806"
+    },
+    {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "run",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-wasm",
+        "--example",
+        "native_fixtures",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/broad-native.json"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:36:25.796306+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-native-fixtures-01.log.gz",
+      "phase": "native-fixtures",
+      "exitCode": 0,
+      "seconds": 401.88,
+      "endUtc": "2026-10-22T15:43:07.676070+00:00",
+      "logSha256": "799c5d63b761f51e959f8a6b4a86e9f30ea2b22c47a3a335c81deac160e3707d",
+      "logUncompressedSha256": "799c5d63b761f51e959f8a6b4a86e9f30ea2b22c47a3a335c81deac160e3707d",
+      "logGzipSha256": "e4f32cc8a4441e7b61fe5d5d0e049affbf9a43f764c60938e16048f72d098d27"
+    },
+    {
+      "command": [
+        "node",
+        "--expose-gc",
+        "rust-game-wasm/tests/compare.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/broad-native.json"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:45:53.015438+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-broad-parity-01.log.gz",
+      "phase": "broad-parity",
+      "exitCode": 0,
+      "seconds": 69.848,
+      "endUtc": "2026-10-22T15:47:02.863502+00:00",
+      "logSha256": "e178d6cdfaf420e28d46e8c316f3e451298a1a73fada942cfc254216f8198079",
+      "logUncompressedSha256": "e178d6cdfaf420e28d46e8c316f3e451298a1a73fada942cfc254216f8198079",
+      "logGzipSha256": "b75baaff58d839b00d332b9e168b8b22deea7a3547cab514c9e671b998c2e410"
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/wrangler/bin/wrangler.js",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/browser-d1"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/sites",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:38:51.807949+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-db-local-01.log.gz",
+      "phase": "db-local",
+      "exitCode": 0,
+      "seconds": 14.473,
+      "endUtc": "2026-10-22T15:39:06.281588+00:00",
+      "logSha256": "381a87fe3d353a662fa8e0f98c5c1ebd8ed08b1ff8d03ac0e704815ce3170051",
+      "logUncompressedSha256": "381a87fe3d353a662fa8e0f98c5c1ebd8ed08b1ff8d03ac0e704815ce3170051",
+      "logGzipSha256": "1402641f6a2c1e21d59fb953d6f8fa9c66d6a82db589127ff4c2c8a3d7c76009"
+    },
+    {
+      "command": [
+        "node",
+        "tools/cards/check-xq24-containers.mjs",
+        "rust-game-wasm/pkg/hegemony_wasm.js",
+        "",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/xq24"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+      "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/browser-after-response.dom.txt\n?? docs/evidence/abi94-platform-verification-20261022/browser-final-paused.dom.txt\n?? docs/evidence/abi94-platform-verification-20261022/browser-final-paused.png\n?? docs/evidence/abi94-platform-verification-20261022/browser-paid-paused.dom.txt\n?? docs/evidence/abi94-platform-verification-20261022/browser-paid-paused.png\n?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+      "startUtc": "2026-10-22T15:52:02.064335+00:00",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "state": "complete",
+      "log": "abi94-platform-xq24-parity-01.log.gz",
+      "phase": "xq24-parity",
+      "exitCode": 0,
+      "seconds": 0.342,
+      "endUtc": "2026-10-22T15:52:02.406120+00:00",
+      "logSha256": "1f436e8b1a8b41ea2ca5dadde3f4e136093d27eb0956f97ddf017e42fafd7d94",
+      "logUncompressedSha256": "1f436e8b1a8b41ea2ca5dadde3f4e136093d27eb0956f97ddf017e42fafd7d94",
+      "logGzipSha256": "a247db445bfbbb1aadc287abb629ef828e3c1a87578a75d48972f8071ea99700"
+    },
+    {
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "xq24_entry_frame_container_restore_rejects_response_bypass",
+        "xq24_continuous_duel_teams_room_pause_restore_journal_and_receipt_inputs",
+        "--test-threads=2",
+        "--nocapture"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "pid": 2,
+      "startUtc": "2026-10-22T15:49:46.652338+00:00",
+      "base": "fb2696a99d49cb078209d97171517b338290aca8",
+      "affinity": [
+        30,
+        31
+      ],
+      "nice": 19,
+      "cargoBuildJobs": 1,
+      "rustTestThreads": 2,
+      "state": "complete",
+      "log": "abi94-platform-xq24-native-01.log.gz",
+      "exitCode": 0,
+      "seconds": 1.053,
+      "endUtc": "2026-10-22T15:49:47.706018+00:00",
+      "logUncompressedSha256": "5c2b412ab77c27e29bc5073b1f49e2aa0123ced57d293b091bbf4a97a3d15949",
+      "logGzipSha256": "3a6d2f516a7d516cb9bba7d522f9dd12b232aefecf4be5d71b962a62f1f0e047"
+    }
+  ],
+  "wasmBroad": {
+    "ok": true,
+    "cases": 483,
+    "wasmBytes": 5030399,
+    "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f",
+    "transitions": 25135,
+    "projections": 99903,
+    "quotes": 1,
+    "rejectedCommands": 362,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "bq085-bottom",
+      "damage",
+      "discard",
+      "graveyard",
+      "influence",
+      "investigation",
+      "jc035-preparation-order",
+      "jc055-preparation-target",
+      "mulligan",
+      "next-blue-gray-search",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "rumor",
+      "sacrifice",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 19.22,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "wasmRepairRoom": {
+    "ok": true,
+    "nativeScenarios": 3,
+    "commands": 89,
+    "views": 368,
+    "rejectedCommands": 5,
+    "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f",
+    "currentSourceManifestSha256": "b6b910aacc504a5e8bcc6095cd586016ffe8289d793dd1edc6d27b2aca2d7a0f",
+    "fullTransitionsEqual": true,
+    "opaqueStateUnchanged": true,
+    "inputs": [
+      {
+        "file": "abi94-repair-bq037-mobility.json",
+        "bytes": 2004936,
+        "sha256": "3e7897f1205be0d5eadf26e48381df442d2dfc5a332c519439cb19501d88724d"
+      },
+      {
+        "file": "abi94-repair-cq07-mobility.json",
+        "bytes": 1998086,
+        "sha256": "e28d25999e0e8bffc866e0fb3073e690be82a3479eb40b6373bc6c609fede88a"
+      },
+      {
+        "file": "abi94-repair-xq46-supported-renown.json",
+        "bytes": 5935314,
+        "sha256": "274a321cc669991a18f523de4c4d778dc06e36e9846e0f5a7b30856d60a4a545"
+      }
+    ],
+    "scope": "Fresh native prepared layouts and real Room commands, current WASM parity; not browser acceptance"
+  },
+  "workerRepairDiagnostics": [
+    {
+      "scenario": "abi94-repair-bq037-mobility",
+      "accepted": 15,
+      "rejected": 2,
+      "projections": 68,
+      "reopened": 3,
+      "opaqueD1StateEqual": true,
+      "journalEqual": true,
+      "originalReceiptsAfterReopen": true,
+      "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f",
+      "scope": "Local HTTP/D1, not browser or deployment"
+    },
+    {
+      "scenario": "abi94-repair-cq07-mobility",
+      "accepted": 15,
+      "rejected": 2,
+      "projections": 68,
+      "reopened": 3,
+      "opaqueD1StateEqual": true,
+      "journalEqual": true,
+      "originalReceiptsAfterReopen": true,
+      "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f",
+      "scope": "Local HTTP/D1, not browser or deployment"
+    },
+    {
+      "scenario": "abi94-repair-xq46-supported-renown",
+      "accepted": 54,
+      "rejected": 1,
+      "projections": 220,
+      "reopened": 3,
+      "opaqueD1StateEqual": true,
+      "journalEqual": true,
+      "originalReceiptsAfterReopen": true,
+      "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f",
+      "scope": "Local HTTP/D1, not browser or deployment"
+    }
+  ],
+  "xq24": {
+    "passed": true,
+    "rejectedStates": 4,
+    "restoreEntrypoints": 12,
+    "normalScenarios": 12,
+    "normalCommands": 117,
+    "seatViews": 370,
+    "fixtureSha256": "42c47ff5493074085a2db5a7ffc0a10ef332ea19028079442232708dbb8f6968",
+    "wasmBytes": 5030399,
+    "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f"
+  },
+  "nativeRecoveryFixtures": [
+    {
+      "file": "native-recovery/case-0.json.gz",
+      "bytes": 126893,
+      "sha256": "2127a10a7bf0c07ad6c5e5e8668ae13aa446a041db4cfae5229ab50449693d97",
+      "gzipSha256": "ba70c2d72f82ecb3844a5133dbb03a22a4cd6d35f85426c8f37a4cbeeb4b2af8"
+    },
+    {
+      "file": "native-recovery/case-1.json.gz",
+      "bytes": 132582,
+      "sha256": "23e52ee2ed9997b5923baf9b69883a05aa27da9abc3123938d1477c851852712",
+      "gzipSha256": "f1c43bfe3722293e414d0692c8215f9127470ee659483f36a21fe3d0b961f1b9"
+    },
+    {
+      "file": "native-recovery/case-2.json.gz",
+      "bytes": 127156,
+      "sha256": "90253e946e7071b5195175e2e9f195dc202eff6e2a6e77956d3ee6d446d76891",
+      "gzipSha256": "e6298d7b566b320a629f968502aeca8ea43adb2ef293c3e2aaabc097e92ae773"
+    },
+    {
+      "file": "native-recovery/case-3.json.gz",
+      "bytes": 118432,
+      "sha256": "6eb2c58a9d3062228aad6c821bf0e109cf753e3932d9f52117612f823b00a65e",
+      "gzipSha256": "dc923cb22d5e42fa16acb6660a162766448d8f610310f5a5ecc0829dd89b2178"
+    }
+  ],
+  "broadNative": {
+    "index": "broad-native-index.json.gz",
+    "indexUncompressedSha256": "c1a755c36a62d06241507f00f1ce832b152c999ccec163a58ded4575c425549b",
+    "casesDirectory": "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/broad-native.json.cases",
+    "replayLogsRetained": true
+  },
+  "packagedWorker": {
+    "file": "sites/dist/server/index.js",
+    "bytes": 50181,
+    "sha256": "f2e444597839f37a9eba0ab1f48d88921de900ba4b5c522fd2e4cb59b25261d6",
+    "wasmModules": 1,
+    "wasmSha256": "e3c1fde455782acd341e84464120b766d3567aa024793bcf30629b1deba3ee9f"
+  },
+  "web": {
+    "files": 7,
+    "passed": 69
+  },
+  "worker": {
+    "files": 6,
+    "passed": 20
+  },
+  "browser": {
+    "report": "browser-acceptance.md",
+    "databaseSummary": "browser-server-state.json",
+    "paidScreenshot": "browser-paid-paused.png",
+    "finalScreenshot": "browser-final-paused.png",
+    "newTabs": [
+      "4",
+      "5"
+    ],
+    "protectedOldTabs": [
+      "2",
+      "3"
+    ],
+    "candidatePort": 8124,
+    "protectedBotPort": 8113,
+    "completeMatch": false,
+    "manualResponsePassSelectorTimedOut": true,
+    "selectorActionSent": false,
+    "selectorTimeoutNote": "P2 post-resume no-chain pass locator expired with zero matches; no click sent; fresh DOM and D1 confirmed two timed system ticks and exactly one paid deployment. Not counted as a manual pass.",
+    "finalRevision": 19,
+    "newRoomId": "466f89579315ea612743832e",
+    "serverStart": "browser-server-start.json",
+    "serverLogSnapshot": "browser-server-log-snapshot.log.gz"
+  },
+  "scope": {
+    "defaultGuestOnly": true,
+    "societyFixturesGuest": false,
+    "fullNativeWorkspaceRepeated": false,
+    "fullWebRepeated": false,
+    "fullSitesRepeated": false,
+    "publicDeployment": false,
+    "mainPush": false
+  },
+  "artifacts": [
+    {
+      "file": "abi94-platform-broad-parity-01.log.gz",
+      "bytes": 28145,
+      "sha256": "b75baaff58d839b00d332b9e168b8b22deea7a3547cab514c9e671b998c2e410"
+    },
+    {
+      "file": "abi94-platform-clock-01.log.gz",
+      "bytes": 174,
+      "sha256": "28a69a368e4d7591a6f2f8bcf5117ad51046bbd807dceada6b0c6b5641ff601e"
+    },
+    {
+      "file": "abi94-platform-db-local-01.log.gz",
+      "bytes": 572,
+      "sha256": "1402641f6a2c1e21d59fb953d6f8fa9c66d6a82db589127ff4c2c8a3d7c76009"
+    },
+    {
+      "file": "abi94-platform-native-01.log.gz",
+      "bytes": 440,
+      "sha256": "0a1de7eb0ee57ec0811b586af442c35288e1218f902a6605f393658bb3218cd0"
+    },
+    {
+      "file": "abi94-platform-native-02.log.gz",
+      "bytes": 540,
+      "sha256": "ca751be57b50197c22de0351cc227e67038e43d0c3fc1f3f81707bdb5a66731e"
+    },
+    {
+      "file": "abi94-platform-native-fixtures-01.log.gz",
+      "bytes": 10327,
+      "sha256": "e4f32cc8a4441e7b61fe5d5d0e049affbf9a43f764c60938e16048f72d098d27"
+    },
+    {
+      "file": "abi94-platform-package-01.log.gz",
+      "bytes": 660,
+      "sha256": "4be6ec9ef418ac29433f233f04ca218815fb03bc24fccdfed9ecca4fbd9f3946"
+    },
+    {
+      "file": "abi94-platform-recovery-parity-01.log.gz",
+      "bytes": 814,
+      "sha256": "7d462fe87586fb8395919bab5fdb7387e5e0bdcee96e634122644b6ef1ca5e8d"
+    },
+    {
+      "file": "abi94-platform-room-parity-01.log.gz",
+      "bytes": 537,
+      "sha256": "1b3b4716f91ad8e4b030347e9ec72160492e45a7cfd1f931dd7295c6d86fcdb8"
+    },
+    {
+      "file": "abi94-platform-wasm-01.log.gz",
+      "bytes": 396,
+      "sha256": "d32a1fbb25de4ae0fa283566c2b4aded2f552daa55a629ad44e191f1892c6829"
+    },
+    {
+      "file": "abi94-platform-web-01.log.gz",
+      "bytes": 357,
+      "sha256": "1ab44448f13b6b0f8b54670a0d6caf7a03497a8383b1894136a13d9374b68a93"
+    },
+    {
+      "file": "abi94-platform-worker-01.log.gz",
+      "bytes": 1519,
+      "sha256": "a5723325e9b7e1426656345532fb5322cdff6d0b602ed19fc2e4943d62695806"
+    },
+    {
+      "file": "abi94-platform-xq24-native-01.log.gz",
+      "bytes": 347,
+      "sha256": "3a6d2f516a7d516cb9bba7d522f9dd12b232aefecf4be5d71b962a62f1f0e047"
+    },
+    {
+      "file": "abi94-platform-xq24-parity-01.log.gz",
+      "bytes": 234,
+      "sha256": "a247db445bfbbb1aadc287abb629ef828e3c1a87578a75d48972f8071ea99700"
+    },
+    {
+      "file": "broad-native-index.json.gz",
+      "bytes": 67689,
+      "sha256": "a94512d8a9de68ae4bd4707185dd3d8dac9d40971897c708eb5c31099a4b3f5f"
+    },
+    {
+      "file": "browser-acceptance.md",
+      "bytes": 3026,
+      "sha256": "0373d2c37bdd9fa86a9860d23b964702c548eea8ff58237b5416d93db6d39176"
+    },
+    {
+      "file": "browser-after-response.dom.txt",
+      "bytes": 10970,
+      "sha256": "bf6570bca4314fe206c0a4faf212b460186cff11abd2c18cccc4f6b860fc7e31"
+    },
+    {
+      "file": "browser-final-paused.dom.txt",
+      "bytes": 10981,
+      "sha256": "33a8980e2efc10e904f96d3e6c39b07f3c0f1e50abe3ceffd43461af1504df7d"
+    },
+    {
+      "file": "browser-final-paused.png",
+      "bytes": 154297,
+      "sha256": "229cc854fe40707bf381c443fdd56e25bc66049578c1ea7b0e3c0db32b4c3749"
+    },
+    {
+      "file": "browser-paid-paused.dom.txt",
+      "bytes": 11076,
+      "sha256": "98eb3b9d6c6e468d5bef0c7d156bc7b7146b0607217dc149f92d23d7b6c3f722"
+    },
+    {
+      "file": "browser-paid-paused.png",
+      "bytes": 160954,
+      "sha256": "222ac3d1cac84afd688d43f01e9026b31c4dcd3dd388cee8c5183763ce23896a"
+    },
+    {
+      "file": "browser-server-log-snapshot.log.gz",
+      "bytes": 2189,
+      "sha256": "fc67bd26d55bfea8c24f053cde2065083052165acfe5ef938d7588f35303f262"
+    },
+    {
+      "file": "browser-server-start.json",
+      "bytes": 960,
+      "sha256": "fba6bf1dd98631c955d8a95563f861758e5d7d579a4875fdda5cae055503f411"
+    },
+    {
+      "file": "browser-server-state-initial-reader.json",
+      "bytes": 1119,
+      "sha256": "ca6c710f070b814cd09b2bbc7ae272ee13882327eb4ed89f9bc5646bfea54b68"
+    },
+    {
+      "file": "browser-server-state.json",
+      "bytes": 1669,
+      "sha256": "416e1f7431c23a1687feaf968432179a2100f785f8c041cc5618b9b326111a97"
+    },
+    {
+      "file": "current-source-manifest.json",
+      "bytes": 25724,
+      "sha256": "b94166e4718ffae917eb77b861236a969d68ef8bf4ccc37d1fe259bd3a0851f1"
+    },
+    {
+      "file": "independent-delta-review.txt",
+      "bytes": 8732,
+      "sha256": "459b111d09d960f17063835e29cd500718cc00b4e2a29de233cddd75acf19ed0"
+    },
+    {
+      "file": "native-directed.json",
+      "bytes": 2530,
+      "sha256": "5713116bf82e9e1d124a90edb0d44959c0c49a5f82b21f343cf94e87bae39456"
+    },
+    {
+      "file": "native-recovery/case-0.json.gz",
+      "bytes": 7492,
+      "sha256": "ba70c2d72f82ecb3844a5133dbb03a22a4cd6d35f85426c8f37a4cbeeb4b2af8"
+    },
+    {
+      "file": "native-recovery/case-1.json.gz",
+      "bytes": 8692,
+      "sha256": "f1c43bfe3722293e414d0692c8215f9127470ee659483f36a21fe3d0b961f1b9"
+    },
+    {
+      "file": "native-recovery/case-2.json.gz",
+      "bytes": 7517,
+      "sha256": "e6298d7b566b320a629f968502aeca8ea43adb2ef293c3e2aaabc097e92ae773"
+    },
+    {
+      "file": "native-recovery/case-3.json.gz",
+      "bytes": 6337,
+      "sha256": "dc923cb22d5e42fa16acb6660a162766448d8f610310f5a5ecc0829dd89b2178"
+    },
+    {
+      "file": "platform-source-inputs.json",
+      "bytes": 105413,
+      "sha256": "22b7a4b77292647c37c79f16bba4d55d752965dd1b48ac0e78d4e9ed5a636eeb"
+    },
+    {
+      "file": "room.current.json.gz",
+      "bytes": 778045,
+      "sha256": "a53cc94dcfa44476ba1d1df64b87fdf036476dde263a51794ae50c8ecf539c72"
+    }
+  ],
+  "platformSourceInputs": "platform-source-inputs.json",
+  "platformSourceInputCount": 601,
+  "artifactManifestScope": "All other files in this evidence directory, excluding this self-referential verification.json"
+}

@@ -1,0 +1,65 @@
+{
+  "database": "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/browser-d1/v3/d1/miniflare-D1DatabaseObject/e7352547963de7050bd7d94658afc4fe78b61811b7815da12d90be8e863abf4d.sqlite",
+  "roomId": "466f89579315ea612743832e",
+  "revision": 19,
+  "roomCount": 1,
+  "seats": 2,
+  "commandReceipts": 16,
+  "entryReceipts": 2,
+  "journalEntries": 19,
+  "opaqueRoomSha256": "977a35e2e20441aac17743d72e28e5cde73da319d96279da903c84e5b48810bb",
+  "turn": 1,
+  "status": "playing",
+  "seedDecimal": "5990934343266081554",
+  "bodyguardInstances": [
+    "i130"
+  ],
+  "boardDefinitions": [
+    "LC21"
+  ],
+  "stackSize": 0,
+  "playerAssets": [
+    {
+      "count": 0,
+      "exhausted": 0
+    },
+    {
+      "count": 1,
+      "exhausted": 1
+    }
+  ],
+  "envelopeFields": [
+    "state_schema",
+    "revision",
+    "versions",
+    "game",
+    "pacing"
+  ],
+  "pause": {
+    "pausedAtMs": 1792684248825,
+    "pausedBy": 1
+  },
+  "identity": {
+    "rules": "hegemony-pdf-v1",
+    "cardPool": "limited-v2.84-batch20-third",
+    "engine": "rust-v0.2.94-batch20-third"
+  },
+  "health": {
+    "ok": true,
+    "service": "hegemony-worker",
+    "engineVersion": "rust-v0.2.94-batch20-third",
+    "transport": "polling"
+  },
+  "acceptedCommandKinds": {
+    "game:ready": 2,
+    "game:start": 1,
+    "pauseRoom": 3,
+    "resumeRoom": 2,
+    "game:choose": 2,
+    "game:pass": 4,
+    "game:asset": 1,
+    "game:deploy": 1
+  },
+  "systemTicks": 2,
+  "readerCorrection": "Initial summary used a wrong expected print ID, metadata locations, and assumed bare journal events; corrected against catalogue and Room/SessionEvents structs. Opaque state only read, never rewritten."
+}

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "node",
+    "node_modules/wrangler/bin/wrangler.js",
+    "dev",
+    "--local",
+    "--ip",
+    "127.0.0.1",
+    "--port",
+    "8124",
+    "--inspector-ip",
+    "127.0.0.1",
+    "--inspector-port",
+    "0",
+    "--persist-to",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/abi94-platform-20261022/browser-d1"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/sites",
+  "sourceHead": "fb2696a99d49cb078209d97171517b338290aca8",
+  "sourceWorktree": "?? docs/evidence/abi94-platform-verification-20261022/room.current.json.gz\n",
+  "startUtc": "2026-10-22T15:39:15.486703+00:00",
+  "affinity": [
+    30,
+    31
+  ],
+  "nice": 19,
+  "state": "running",
+  "log": "abi94-platform-browser-server-01.log",
+  "phase": "browser-server",
+  "outcome": "running local QA server; no exit claimed",
+  "protectedOtherQa": "8113 and its database unchanged",
+  "persistedQaState": "paused after acceptance"
+}

@@ -1,5 +1,9 @@
 # ABI94 平台补验 WIP
 
+后续实际补验已完成，结果与范围以
+[平台补验报告](ABI94_PLATFORM_VERIFICATION_2026-10-22.md)为准。
+以下保留15:36小时检查点的原始进度记录，不代表其列出的平台工作仍未执行。
+
 恢复候选运行代码仍为独立复审的 `932de1da80809e5535688a7e0c7d7910b5de8862`，
 文档检查点 `39ab0664efa62989573de0a1fc21b0f6e0df63d0`。只在既有独立分支
 `progress/fix-abi94-workspace-regressions-20261022` 继续，不混第四批/Bot，不推main或部署。

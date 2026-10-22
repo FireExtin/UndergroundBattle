@@ -82,5 +82,5 @@
   "firstAttempt": "compile failed: test-only RNG field name; full log retained",
   "nativeRoomScenarios": 3,
   "nativeRecoverySnapshots": 4,
-  "authorWorkspaceEvidence": "../../abi94-workspace-regressions-2026-10-22/results.json"
+  "authorWorkspaceEvidence": "../abi94-workspace-regressions-2026-10-22/results.json"
 }
