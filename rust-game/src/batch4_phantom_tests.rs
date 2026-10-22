@@ -215,3 +215,35 @@ fn batch4_phantom_real_search_entry_queues_original_printed_enter_trigger_withou
     assert_eq!(declaration.source.card.id, entrant.id);
     checkpoint(&mut g); choose(&mut g, vec![]); checkpoint(&mut g);
 }
+
+#[test]
+fn batch4_phantom_nonsearch_key_cannot_smuggle_discard_pending_through_source_allowlist() {
+    let (mut g, id) = plan(false, 2); library(&mut g, &["JC070", "JC076"]);
+    let hand = held(&mut g, "JC125", 0); activate(&mut g, &id); search(&mut g);
+    let mut bad = g.clone(); let p = bad.pending.as_mut().unwrap();
+    let ChoiceResolution::Frame { frame, choice } = &mut p.resolution else { panic!() };
+    frame.ability_key = ADVANCE.into(); *choice = FrameChoice::Discard { seat: 0, redraw: false };
+    p.choice.kind = "discard".into();
+    p.choice.options = vec![g.option(g.players[0].hand.iter().find(|c| c.id == hand).unwrap(), 0, None, None)];
+    invalid_both(&g, &bad);
+}
+
+#[test]
+fn batch4_phantom_foreign_pending_source_and_wrapped_search_ops_cannot_bypass_authentication() {
+    let (mut g, id) = plan(false, 2); library(&mut g, &["JC070", "JC076"]);
+    let hand = held(&mut g, "JC125", 0); activate(&mut g, &id); search(&mut g);
+    for source in ["XG21", "WM058", "JZ51", "JC125"] { for wrapper in 0..4 {
+        let mut bad = g.clone(); let p = bad.pending.as_mut().unwrap();
+        let ChoiceResolution::Frame { frame, choice } = &mut p.resolution else { panic!() };
+        frame.source.card.definition = source.into(); frame.ability_key = "unrelated".into();
+        *choice = FrameChoice::Discard { seat: 0, redraw: false }; p.choice.kind = "discard".into();
+        frame.steps[0].op = match wrapper {
+            0 => Op::XG21RenownSearch,
+            1 => Op::ForEachLivingPlayer(vec![Op::XG21RenownSearch]),
+            2 => Op::ForEachLivingPlayerFromActor(vec![Op::XG21RenownSearch]),
+            _ => Op::IfTargetExhausted { slot: 0, exhausted: Box::new(Op::XG21RenownSearch), ready: Box::new(Op::PlanAdvance) },
+        };
+        p.choice.options = vec![g.option(g.players[0].hand.iter().find(|c| c.id == hand).unwrap(), 0, None, None)];
+        invalid_both(&g, &bad);
+    } }
+}

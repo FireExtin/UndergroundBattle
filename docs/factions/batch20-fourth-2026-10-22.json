@@ -838,7 +838,7 @@
       "sourceImageSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
       "imageReviewedHere": true,
       "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 11,
+      "nativeDirectedCases": 13,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,

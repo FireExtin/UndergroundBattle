@@ -1,6 +1,6 @@
 //! XG21's printed, bounded library search. X is the paid source snapshot's
 //! advancement count, not a client parameter or a replacement plan's markers.
-use crate::{catalog, engine::RuleResult, model::*};
+use crate::{catalog, engine::RuleResult, model::*, rules::Op};
 use std::collections::BTreeSet;
 
 pub(crate) const KEY: &str = "batch4-xg21-renown-search";
@@ -13,6 +13,15 @@ pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> 
         return Err("幻影英雄检索只能选择原牌库实例，不能改写推进数、地区或费用".into());
     }
     Ok(())
+}
+
+fn search_op(op: &Op) -> bool {
+    match op {
+        Op::XG21RenownSearch => true,
+        Op::ForEachLivingPlayer(ops) | Op::ForEachLivingPlayerFromActor(ops) => ops.iter().any(search_op),
+        Op::IfTargetExhausted { exhausted, ready, .. } => search_op(exhausted) || search_op(ready),
+        _ => false,
+    }
 }
 
 impl Game {
@@ -68,7 +77,9 @@ impl Game {
         }
         let Some(p) = &self.pending else { return Ok(()); };
         let related = p.choice.kind == KIND || matches!(&p.resolution, ChoiceResolution::Frame { frame, choice }
-            if frame.ability_key == KEY || matches!(choice, FrameChoice::XG21RenownSearch));
+            if frame.source.card.definition == "XG21" || frame.ability_key == KEY
+                || frame.steps.iter().any(|s| search_op(&s.op))
+                || matches!(choice, FrameChoice::XG21RenownSearch));
         if !related { return Ok(()); }
         let ChoiceResolution::Frame { frame, choice: FrameChoice::XG21RenownSearch } = &p.resolution else {
             return Err("幻影英雄待选必须使用其固定续体".into());
