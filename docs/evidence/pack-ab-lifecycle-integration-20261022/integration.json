@@ -1,0 +1,196 @@
+{
+  "source_commit": "4189086d3f3c9a29f25fedc2718f6d058e4838f4",
+  "base": "ef9415e9e48de8b1a134f3e30e3b3f1e0e50b7fa",
+  "integrated_delivery_commit": "09009da48fe37aa29b2ac710bd2aabf8585b5aed",
+  "cherry_pick_map": [
+    {
+      "upstream": "3e702c333e2a6ba7b71634ae87fef2b576dab320",
+      "integrated": "1600d91227ef626186844bb5c748edd40a2a1a5b"
+    },
+    {
+      "upstream": "f4fa1744c652b7f2e69e4a114fcf484902bc3c4e",
+      "integrated": "bba4d71f181a78d26b73816cc0f746c46f48b221"
+    },
+    {
+      "upstream": "458a37c93f5f7c469bb2dd1626ac032424bc712d",
+      "integrated": "50ab3519af31d411feec69193ea41ea89db4a306"
+    },
+    {
+      "upstream": "99fc93c3150914a3fd3e489632efeb3824408579",
+      "integrated": "13994b8001f6830dc55c6d20ca4b34a9e46063e0"
+    },
+    {
+      "upstream": "b0fcab7201be5918933a51344ef66df2919671ce",
+      "integrated": "07d86b8c30162313c6494c90af1d4018329a9ed9"
+    },
+    {
+      "upstream": "fff3565beee30b7d1da05461b4a46135865286a5",
+      "integrated": "a81a2d3c9718e30365ee9ef5d9ff9c774e593ccf"
+    },
+    {
+      "upstream": "37986a8556c8dd3534dbd8a0afe73e864de49972",
+      "integrated": "5ae1bc66fd360419f908154793ac16c36a318b16"
+    },
+    {
+      "upstream": "7d3a84981c0f01cc7906d3e0e5a9c0d0c6a0867c",
+      "integrated": "5457d6e385ba7df90aea1b8760258da78d2d2a6d"
+    },
+    {
+      "upstream": "75254840244a882e4cac0dd870bbbca0b66601f7",
+      "integrated": "94108de5dcac38689ff02a1e246c264802d86764"
+    },
+    {
+      "upstream": "3f623ccaf44e0ddffef727f3e0dcc7f65cabfc58",
+      "integrated": "dfa45572bbbb8371d3e0ef1a116084447aec5114"
+    },
+    {
+      "upstream": "5d599798d6fa056463f9c3526efba58c9402f323",
+      "integrated": "bdcc263db55e25f646679ce1be69819e64661396"
+    },
+    {
+      "upstream": "baafa93504273f9fb35cb589c30db7436962a2aa",
+      "integrated": "09009da48fe37aa29b2ac710bd2aabf8585b5aed"
+    }
+  ],
+  "runs": [
+    {
+      "phase": "three-layers",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "rust-game/Cargo.toml",
+        "--lib",
+        "--",
+        "a_b_three_layers",
+        "--nocapture",
+        "--test-threads=2"
+      ],
+      "head": "4189086d3f3c9a29f25fedc2718f6d058e4838f4",
+      "exitCode": 0,
+      "seconds": 27.827,
+      "log": "ab-lifecycle-integration-20261022-three-layers.log.gz",
+      "logSha256": "7b9347719b1709f05ed350ca1bf2fb8c41474dd98d87f911ca095415a9bd6090",
+      "logUncompressedSha256": "7b9347719b1709f05ed350ca1bf2fb8c41474dd98d87f911ca095415a9bd6090",
+      "logCompressedSha256": "f34b3a58134ed97c862fb0446283937078096eb0456c5c05e628287532150579",
+      "passed": 2,
+      "modules": {
+        "batch4_vampire_contest_tests": 2
+      }
+    },
+    {
+      "phase": "adjacent",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "rust-game/Cargo.toml",
+        "--lib",
+        "--",
+        "pack_a",
+        "batch4_vampire",
+        "mystic_lifecycle",
+        "rumor",
+        "batch3_entry_order",
+        "win_flow",
+        "recovery_validation_tests",
+        "marker_transfer",
+        "batch4_plans_tests",
+        "--skip",
+        "a_b_three_layers",
+        "--nocapture",
+        "--test-threads=2"
+      ],
+      "head": "4189086d3f3c9a29f25fedc2718f6d058e4838f4",
+      "exitCode": 0,
+      "seconds": 33.089,
+      "log": "ab-lifecycle-integration-20261022-adjacent.log.gz",
+      "logSha256": "80cd32d551b0fb754df3a027d9ac1337b813fc676fb4041e2d80f0bc25b767d3",
+      "logUncompressedSha256": "80cd32d551b0fb754df3a027d9ac1337b813fc676fb4041e2d80f0bc25b767d3",
+      "logCompressedSha256": "f7f6cc2e454e66fb40250dd4a29b553b17fcde59f2f62b94e047614c5a16b103",
+      "passed": 180,
+      "modules": {
+        "batch3_grave_tests": 1,
+        "batch3_guard_tests": 3,
+        "batch3_red": 1,
+        "batch3_serpent_tests": 2,
+        "batch4_plans_tests": 20,
+        "batch4_vampire_contest_tests": 22,
+        "batch4_vampires_tests": 34,
+        "exposure_tests": 12,
+        "marker_transfer_tests": 10,
+        "mystic_lifecycle_tests": 15,
+        "next20_cross_tests": 2,
+        "pack_a_contest_tests": 33,
+        "recovery_validation_tests": 4,
+        "win_flow_tests": 20,
+        "xq25_tests": 1
+      }
+    },
+    {
+      "phase": "source",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "head": "4189086d3f3c9a29f25fedc2718f6d058e4838f4",
+      "exitCode": 0,
+      "seconds": 0.174,
+      "log": "ab-lifecycle-integration-20261022-source.log.gz",
+      "logSha256": "810596d6d8d3d88c040027dd343063ace3a523c5225d9b38530598a465e84a21",
+      "logUncompressedSha256": "810596d6d8d3d88c040027dd343063ace3a523c5225d9b38530598a465e84a21",
+      "logCompressedSha256": "af36d8c38d1d3b2d3b1d176cf6f23bbcde49e78f4bc96fedccff347bbd957675",
+      "passed": 3
+    }
+  ],
+  "uniqueNativePassed": 182,
+  "sourcePassed": 3,
+  "failed": 0,
+  "ignored": 0,
+  "sourceManifest": "source-manifest.json",
+  "upstreamInputs": "upstream-inputs.json",
+  "scope": {
+    "native": true,
+    "defaultFeatures": true,
+    "fullWorkspace": false,
+    "guestWasm": false,
+    "browser": false,
+    "newSqliteReceipt": false,
+    "performance": false,
+    "deploy": false,
+    "mainPush": false
+  },
+  "status": {
+    "batch4Complete": 22,
+    "batchTarget": 50,
+    "abFullNewCards": 0,
+    "abWip": 10,
+    "publicNewAdmitted": 0
+  },
+  "resourceLimit": {
+    "cpuAffinity": "30,31",
+    "nice": 19,
+    "cargoJobs": 2,
+    "testThreads": 2
+  },
+  "toolVersions": {
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+    "node": "v24.22.1",
+    "zig": "not queried at this optional path; see configured linker wrapper"
+  },
+  "linkerWrapper": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/batch3-zig-cc",
+  "ruleInputs": "rule-inputs.json"
+}

@@ -1,0 +1,47 @@
+{
+  "reader": "/root/remaining_clear_cards",
+  "integratorShaRecheck": true,
+  "files": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "bytes": 15174985,
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "bytes": 4538093,
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "bytes": 516140,
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+      "bytes": 1336276,
+      "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ040 鲜血.jpg",
+      "bytes": 1316410,
+      "sha256": "fb62686626c7bdaf7d9c9c9a255fbfb40dfd986f06347a9444efae65e6b875c6"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg",
+      "bytes": 1373623,
+      "sha256": "0baea888495adba62a7688be1b95c95b5ffa60d689c104b7ff3a26dd2340ffb2"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+      "bytes": 1337590,
+      "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg",
+      "bytes": 314592,
+      "sha256": "e0627c1eec97eab04d8cbafb54c0d25ce496ab89e10e19a81485d84ad2915542"
+    }
+  ],
+  "ruleChanges": false
+}

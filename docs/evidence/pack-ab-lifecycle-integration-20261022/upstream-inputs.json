@@ -1,0 +1,389 @@
+{
+  "b_delivery_manifest": {
+    "head": "baafa93504273f9fb35cb589c30db7436962a2aa",
+    "runtime_source": "5d599798d6fa056463f9c3526efba58c9402f323",
+    "b_only_base": "3f623ccaf44e0ddffef727f3e0dcc7f65cabfc58",
+    "b379_base": "37986a8556c8dd3534dbd8a0afe73e864de49972",
+    "common_base": "47256d59dea46750ea671b1f1257b657bb42a546",
+    "parent_index_compatibility_checked": "ef9415e9e48de8b1a134f3e30e3b3f1e0e50b7fa",
+    "commits_after_b379": [
+      "7d3a84981c0f01cc7906d3e0e5a9c0d0c6a0867c WIP: close mystic response nesting and terminal lifecycle [skip ci]",
+      "75254840244a882e4cac0dd870bbbca0b66601f7 WIP: drain nested contest trigger chains before releasing parent work [skip ci]",
+      "3f623ccaf44e0ddffef727f3e0dcc7f65cabfc58 docs: freeze contest lifecycle evidence and B nested receipt dependency [skip ci]",
+      "5d599798d6fa056463f9c3526efba58c9402f323 fix(package-b): authenticate suspended contest receipts without cross-layer awards [skip ci]",
+      "baafa93504273f9fb35cb589c30db7436962a2aa docs(package-b): freeze nested receipt closure and native evidence [skip ci]"
+    ],
+    "b_only_changed_paths": [
+      "docs/evidence/batch4-package-b-lifecycle-20261022/verification.json",
+      "docs/factions/batch4-package-b-lifecycle-20261022.md",
+      "rust-game/src/batch4_vampire_contest.rs",
+      "rust-game/src/batch4_vampire_contest_tests.rs",
+      "rust-game/src/batch4_vampires.rs"
+    ],
+    "inputs_reverified": 239,
+    "files": [
+      {
+        "path": "IMPLEMENTATION.md",
+        "sha256": "2f1b8c618a5e993aa097c83ccc633d2dd1cfeeae24f363d4d1e60f10692acf79",
+        "bytes": 4805
+      },
+      {
+        "path": "README.md",
+        "sha256": "1eeb361be0f64bebbff7365f5571fa29a0869189cd030ab0595c0e8609dd0a8d",
+        "bytes": 3694
+      },
+      {
+        "path": "apply-check.json",
+        "sha256": "d77ba6e1629039408dbf34bc19925706ad0e5ef5ee889d0c54fd922ddd885089",
+        "bytes": 460
+      },
+      {
+        "path": "logs/01-nested-before-fix.log",
+        "sha256": "dd96a1c8bc79172f8bfec70a7291dde718e09df311386fd65d8da427b31b5e23",
+        "bytes": 1826
+      },
+      {
+        "path": "logs/02-nested-fix.log",
+        "sha256": "8972bd3fdbac91b65a0233d328d87957488018641af7280b4523bd2d1512d698",
+        "bytes": 1144
+      },
+      {
+        "path": "logs/03-nested-end-to-end.log",
+        "sha256": "be311c904a71a05881cc4313fe58980145ed6446b0f233b684726c7f16a17ce0",
+        "bytes": 1479
+      },
+      {
+        "path": "logs/04-combined-default-native.log",
+        "sha256": "d7303807c387f01413cfd701e31ab0f7273af6c3cb459fb0080b4726712f3bbc",
+        "bytes": 17017
+      },
+      {
+        "path": "logs/05-nested-duplicate-parent.log",
+        "sha256": "db0d2d26b21cb6b7bd9cc8e391648390397fc6483c42f40f302a24f71363f478",
+        "bytes": 1479
+      },
+      {
+        "path": "logs/06-source.log",
+        "sha256": "8fde95a75d085eeffc42af82398dfa5786e3ebd1f9d6dad4e2dcb72685b4bb5f",
+        "bytes": 454
+      },
+      {
+        "path": "package-ab-from-47256.patch",
+        "sha256": "f852b6ab680cb07cd38a9bfccf22217d5dc632509fa70d4c068bf824963b9e35",
+        "bytes": 398383
+      },
+      {
+        "path": "package-b-only.patch",
+        "sha256": "060c4600897223a470baf2d586a0bc65db25d27b1612ba147416e89a306ac39a",
+        "bytes": 58909
+      },
+      {
+        "path": "package-b379-plus-a-lifecycle.patch",
+        "sha256": "42dbf595d1746019fb84bce8c9ab904e9944bd319fd9a361a242d36415e77ca1",
+        "bytes": 211545
+      },
+      {
+        "path": "patches-after-b379/0001-WIP-close-mystic-response-nesting-and-terminal-lifec.patch",
+        "sha256": "7bbe24b9e1fdc0df9e6f995abcf14e7bda6ecb7ed23ed431c6578a8cdda4f6b1",
+        "bytes": 37725
+      },
+      {
+        "path": "patches-after-b379/0002-WIP-drain-nested-contest-trigger-chains-before-relea.patch",
+        "sha256": "19ae23c5177d8abed19907f20813b1e17cbb779c6e8f2caa31e2e791e2537075",
+        "bytes": 19441
+      },
+      {
+        "path": "patches-after-b379/0003-docs-freeze-contest-lifecycle-evidence-and-B-nested-.patch",
+        "sha256": "49a3b0b644a99a9182434967acefb752f7b5fb3cfbea3ff42c5d76bd212ee9b3",
+        "bytes": 106731
+      },
+      {
+        "path": "patches-after-b379/0004-fix-package-b-authenticate-suspended-contest-receipt.patch",
+        "sha256": "31d9efd7fa38b975493f47a76ea25156427f8bad4f7175efa36754a54b97c4f5",
+        "bytes": 17787
+      },
+      {
+        "path": "patches-after-b379/0005-docs-package-b-freeze-nested-receipt-closure-and-nat.patch",
+        "sha256": "6d03ea6042f040c017b5ca0c45baf5f9aab88ebb77918fdb742692868457c402",
+        "bytes": 42340
+      },
+      {
+        "path": "patches-b-only/0001-fix-package-b-authenticate-suspended-contest-receipt.patch",
+        "sha256": "0420aca52ef68c2798542f7223dab7b63077647d0724cc1d84e54a3935a38ba5",
+        "bytes": 17787
+      },
+      {
+        "path": "patches-b-only/0002-docs-package-b-freeze-nested-receipt-closure-and-nat.patch",
+        "sha256": "0bce5564f23bc514f479e094bb4abe1c35cfac3e56a38d34f20554edaab3ea7c",
+        "bytes": 42340
+      },
+      {
+        "path": "verification.json",
+        "sha256": "9b90674316d885e0e190e73a2c9bc5bbc29b67cbcffa88574290d68ce665242b",
+        "bytes": 39390
+      }
+    ]
+  },
+  "author_b_logs": [
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/01-nested-before-fix.log",
+      "log": "author-b-01-nested-before-fix.log.gz",
+      "sha256": "dd96a1c8bc79172f8bfec70a7291dde718e09df311386fd65d8da427b31b5e23",
+      "compressedSha256": "ff3e40ae4578c1f18d7fe39ed4c4ee093f3454d950893c7e524ea560660d124c"
+    },
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/02-nested-fix.log",
+      "log": "author-b-02-nested-fix.log.gz",
+      "sha256": "8972bd3fdbac91b65a0233d328d87957488018641af7280b4523bd2d1512d698",
+      "compressedSha256": "53d00de75c9ba4ae1617a061cb2dd0085eddc1a656aa0d2a76ee1528a5c22cf4"
+    },
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/03-nested-end-to-end.log",
+      "log": "author-b-03-nested-end-to-end.log.gz",
+      "sha256": "be311c904a71a05881cc4313fe58980145ed6446b0f233b684726c7f16a17ce0",
+      "compressedSha256": "17194041f28629733d407f9e438a54e7410232b154ea9a43b14fb319850db78a"
+    },
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/04-combined-default-native.log",
+      "log": "author-b-04-combined-default-native.log.gz",
+      "sha256": "d7303807c387f01413cfd701e31ab0f7273af6c3cb459fb0080b4726712f3bbc",
+      "compressedSha256": "06aad592aea8651cafe96a147fb1bd69c8d642db701bd5ee6c668036f37f203e"
+    },
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/05-nested-duplicate-parent.log",
+      "log": "author-b-05-nested-duplicate-parent.log.gz",
+      "sha256": "db0d2d26b21cb6b7bd9cc8e391648390397fc6483c42f40f302a24f71363f478",
+      "compressedSha256": "1918ff78fbfb663ab42e254c1c4ca153adb9f374583f3e9e65ef74b4e9720281"
+    },
+    {
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-7/package-b-lifecycle-delivery/logs/06-source.log",
+      "log": "author-b-06-source.log.gz",
+      "sha256": "8fde95a75d085eeffc42af82398dfa5786e3ebd1f9d6dad4e2dcb72685b4bb5f",
+      "compressedSha256": "0012790bb66140cf08076855dd64bd751d370c40ccc54799bb33bcbbb89a98dd"
+    }
+  ],
+  "byte_comparison": [
+    {
+      "path": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md",
+      "upstreamSha256": "288f5fc61919552c252956a5b10ab9d6cefc5bb9d63fbf5aa9f582b73f47c84d",
+      "integratedSha256": "288f5fc61919552c252956a5b10ab9d6cefc5bb9d63fbf5aa9f582b73f47c84d",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/batch4-package-b-20261022/contest-followup.json",
+      "upstreamSha256": "9a140f9c2e59de55eb10ef752bf977ca55254920ebb3d8e50ba833a48e9d3a5e",
+      "integratedSha256": "9a140f9c2e59de55eb10ef752bf977ca55254920ebb3d8e50ba833a48e9d3a5e",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/batch4-package-b-20261022/interface-followup.json",
+      "upstreamSha256": "5e55814f83a0625c9a9beff1b09ae3e73868934832909232e8629b90dcdd4dfa",
+      "integratedSha256": "5e55814f83a0625c9a9beff1b09ae3e73868934832909232e8629b90dcdd4dfa",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/batch4-package-b-lifecycle-20261022/verification.json",
+      "upstreamSha256": "9b90674316d885e0e190e73a2c9bc5bbc29b67cbcffa88574290d68ce665242b",
+      "integratedSha256": "9b90674316d885e0e190e73a2c9bc5bbc29b67cbcffa88574290d68ce665242b",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/02-before-fix.log.gz",
+      "upstreamSha256": "e62a32441228a0621fe4c02191f6390b4ea0802c88517e9822bb5452431bb122",
+      "integratedSha256": "e62a32441228a0621fe4c02191f6390b4ea0802c88517e9822bb5452431bb122",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/12-child-tail-before-fix.log.gz",
+      "upstreamSha256": "a86d049e967c30d8d0c6ff1a2920b09a80db9a2ee2520a02ff1f30e892a5396f",
+      "integratedSha256": "a86d049e967c30d8d0c6ff1a2920b09a80db9a2ee2520a02ff1f30e892a5396f",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/17-ab-real-dispatch.log.gz",
+      "upstreamSha256": "4df06416422978b60762354890e900e8d2d6e9b259b7a5b10011b0e846c7bb02",
+      "integratedSha256": "4df06416422978b60762354890e900e8d2d6e9b259b7a5b10011b0e846c7bb02",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/18-ab-nested-receipt-blocker.log.gz",
+      "upstreamSha256": "9c2d4ff21269dcfe4a361aace59fc5d07720061584ae7857c986a67cec88bde3",
+      "integratedSha256": "9c2d4ff21269dcfe4a361aace59fc5d07720061584ae7857c986a67cec88bde3",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/19-ab-cross-regression.log.gz",
+      "upstreamSha256": "238ee9bee011037bae39ddc9d01fc5b8874d5854d72a3be796a781443207cabc",
+      "integratedSha256": "238ee9bee011037bae39ddc9d01fc5b8874d5854d72a3be796a781443207cabc",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/20-ab-source.log.gz",
+      "upstreamSha256": "83462b91ceb6db371093dee7da817f12574a9df4924bc5ce6208975ac87b519d",
+      "integratedSha256": "83462b91ceb6db371093dee7da817f12574a9df4924bc5ce6208975ac87b519d",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/21-a-final-lifecycle.log.gz",
+      "upstreamSha256": "45debb2c843caee8d0a2a857e0fd993cdc6ea9950871d2ae9214c78d8a0b0a51",
+      "integratedSha256": "45debb2c843caee8d0a2a857e0fd993cdc6ea9950871d2ae9214c78d8a0b0a51",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/22-a-final-adjacent.log.gz",
+      "upstreamSha256": "0df37c9a3edcfcc6af28208ad496f5236ba4fb140e1ad8312ec67d9c74d4373d",
+      "integratedSha256": "0df37c9a3edcfcc6af28208ad496f5236ba4fb140e1ad8312ec67d9c74d4373d",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/23-a-final-source.log.gz",
+      "upstreamSha256": "40f7895f5973a6d0a637c36374ca87f38ea48492464c11ddd805feda867f9004",
+      "integratedSha256": "40f7895f5973a6d0a637c36374ca87f38ea48492464c11ddd805feda867f9004",
+      "identical": true
+    },
+    {
+      "path": "docs/evidence/pack-a-lifecycle-20261022/verification.json",
+      "upstreamSha256": "2f538fd5169c9c54642f913b96f898e90f12b7b0b7b0941977a4ce7c69473b11",
+      "integratedSha256": "2f538fd5169c9c54642f913b96f898e90f12b7b0b7b0941977a4ce7c69473b11",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/PACK_A_LIFECYCLE_2026-10-22.md",
+      "upstreamSha256": "6d86f584ad8bcc108f98f2ac6dcaaf1022c5308c66a8a6d98e9a3ad2136d318b",
+      "integratedSha256": "6d86f584ad8bcc108f98f2ac6dcaaf1022c5308c66a8a6d98e9a3ad2136d318b",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.md",
+      "upstreamSha256": "88c18ab39b2b99bf0173f1e3b75cc0c97e6bafb4a680452a428453eaa21d0128",
+      "integratedSha256": "88c18ab39b2b99bf0173f1e3b75cc0c97e6bafb4a680452a428453eaa21d0128",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-contest-20261022.md",
+      "upstreamSha256": "ac0212bd5dfe9f78955f67badc4fbf8ca6fa9114381fb68e1b462bcbc04fe976",
+      "integratedSha256": "ac0212bd5dfe9f78955f67badc4fbf8ca6fa9114381fb68e1b462bcbc04fe976",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-hook-contract-20261022.md",
+      "upstreamSha256": "58e47c724ee942a860791031abfbf9f65877b916a2195abde22d52d998da8fac",
+      "integratedSha256": "58e47c724ee942a860791031abfbf9f65877b916a2195abde22d52d998da8fac",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-interface-followup-20261022.md",
+      "upstreamSha256": "59751fae353fece36080ccff5e40c9b7f16721575bf5009d5b6156cfccc02b98",
+      "integratedSha256": "59751fae353fece36080ccff5e40c9b7f16721575bf5009d5b6156cfccc02b98",
+      "identical": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-lifecycle-20261022.md",
+      "upstreamSha256": "2f1b8c618a5e993aa097c83ccc633d2dd1cfeeae24f363d4d1e60f10692acf79",
+      "integratedSha256": "2f1b8c618a5e993aa097c83ccc633d2dd1cfeeae24f363d4d1e60f10692acf79",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "upstreamSha256": "28be9c7cd4b8fb894f79ce71b11be8b7d6ac6e9a9f65cb2e001d622f2fb73cff",
+      "integratedSha256": "28be9c7cd4b8fb894f79ce71b11be8b7d6ac6e9a9f65cb2e001d622f2fb73cff",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/batch4.rs",
+      "upstreamSha256": "28e49d0de01fadd904ada3d70eb64c50c9305ff0fa9e46827597df1a03b27ebd",
+      "integratedSha256": "28e49d0de01fadd904ada3d70eb64c50c9305ff0fa9e46827597df1a03b27ebd",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest.rs",
+      "upstreamSha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e",
+      "integratedSha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+      "upstreamSha256": "adb7bbda588301fa59307bd12873cb8f53bc9fccb1ee1db7e55c010948a1f30f",
+      "integratedSha256": "f2cc8488514ad4f7ca00c7a14bd0c8b5b3446e6f9ae3bd4ca035a28b06f92620",
+      "identical": false
+    },
+    {
+      "path": "rust-game/src/batch4_vampires.rs",
+      "upstreamSha256": "d7c77d86691315178bf05c647a76e608cc0b17ec958af3c44096f729cc0dbf3b",
+      "integratedSha256": "d7c77d86691315178bf05c647a76e608cc0b17ec958af3c44096f729cc0dbf3b",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampires_tests.rs",
+      "upstreamSha256": "b74183844cda165f274b64c9e0ea08de282a7084c6ddbffdf10589e29cea3a91",
+      "integratedSha256": "b74183844cda165f274b64c9e0ea08de282a7084c6ddbffdf10589e29cea3a91",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "upstreamSha256": "bbeededa93ec3a38f9fda0207118dc01554fbf08ca6b4423624624f1d6a5c0c3",
+      "integratedSha256": "bbeededa93ec3a38f9fda0207118dc01554fbf08ca6b4423624624f1d6a5c0c3",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "upstreamSha256": "6df284895186a72a9dd3ae016a836fd789e608b0a1e6c5ddcf277f1b975b965e",
+      "integratedSha256": "6df284895186a72a9dd3ae016a836fd789e608b0a1e6c5ddcf277f1b975b965e",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "upstreamSha256": "a3c3e538dfa6fb4eadf05261b04ac720cfc88def8481d85529454cd4869845ed",
+      "integratedSha256": "a3c3e538dfa6fb4eadf05261b04ac720cfc88def8481d85529454cd4869845ed",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "upstreamSha256": "ada1fddacefcc67a4d8da05a64d00511173f776f3aefcdfaf3235febb9a1e7d3",
+      "integratedSha256": "ada1fddacefcc67a4d8da05a64d00511173f776f3aefcdfaf3235febb9a1e7d3",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "upstreamSha256": "b812ede6a0be749b065121cbb4732b515c6f3b1becb4c846c795869ed7bd05db",
+      "integratedSha256": "b812ede6a0be749b065121cbb4732b515c6f3b1becb4c846c795869ed7bd05db",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/mystic_lifecycle_tests.rs",
+      "upstreamSha256": "5915e76c86791e001af46cfd87b14b30bace9e2d41a184bb9c5818841e4e113e",
+      "integratedSha256": "5915e76c86791e001af46cfd87b14b30bace9e2d41a184bb9c5818841e4e113e",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "upstreamSha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6",
+      "integratedSha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "upstreamSha256": "e2ee392673e16ac9697747bd13ba912c43f1629e76df7d8917b7401091159a50",
+      "integratedSha256": "e2ee392673e16ac9697747bd13ba912c43f1629e76df7d8917b7401091159a50",
+      "identical": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "upstreamSha256": "532b3f44dcf66b2493da841738f7820d0c4a3ec11958dac57ab48714b65dbfbc",
+      "integratedSha256": "532b3f44dcf66b2493da841738f7820d0c4a3ec11958dac57ab48714b65dbfbc",
+      "identical": true
+    },
+    {
+      "path": "tools/cards/package-b-interface-probe.rs",
+      "upstreamSha256": "a235fa8931428e3e884cdd6088001b6511be1d7b3e9895428d67e22029a9003d",
+      "integratedSha256": "a235fa8931428e3e884cdd6088001b6511be1d7b3e9895428d67e22029a9003d",
+      "identical": true
+    }
+  ],
+  "xq20_paths_preserved": [
+    "rust-game/src/batch4_plans.rs",
+    "rust-game/src/batch4_plans_tests.rs",
+    "rust-game/src/marker_transfer.rs",
+    "docs/factions/XQ20_MARKER_TRANSFER_WIP_2026-10-22.md"
+  ]
+}
