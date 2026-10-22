@@ -328,12 +328,14 @@ fn pack_a_paid_response_cannot_be_moved_to_effect_queue_or_inject_transaction_at
 #[test]
 fn pack_a_response_identity_cannot_reuse_retired_or_future_instance() {
     for id in ["WM021", "WM022", "WM032", "BQ082", "WM061"] {
+      for retired_after_source in [true, false] {
         let mut g = layout();
+        let early_source = retired_after_source.then(|| held(&mut g, id, 0));
         let retired = held(&mut g, "JC125", 0);
         g.discard_hand_card(0, &retired).unwrap();
         assert!(!g.batch3_physical_cards().any(|c| c.id == retired));
         fund(&mut g, 0, id, catalog::card(id).cost as usize);
-        let uid = held(&mut g, id, 0);
+        let uid = early_source.unwrap_or_else(|| held(&mut g, id, 0));
         let action = if id == "WM061" {
             Action { card_id: Some(uid), ..Action::new("play") }
         } else {
@@ -351,8 +353,9 @@ fn pack_a_response_identity_cannot_reuse_retired_or_future_instance() {
             } else {
                 value["stack"][0]["card"]["id"] = wrong.into();
             }
-            assert!(Game::from_persisted(&serde_json::to_string(&value).unwrap()).is_err(), "{id} restored {case}");
+            assert!(Game::from_persisted(&serde_json::to_string(&value).unwrap()).is_err(), "{id} restored {case}; retired_after_source={retired_after_source}");
             invalid(&g, value);
         }
+      }
     }
 }

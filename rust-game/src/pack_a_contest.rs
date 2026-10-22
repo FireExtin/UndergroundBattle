@@ -247,11 +247,11 @@ impl Game {
         expected.time_markers = 0; expected.permanent_combat_markers = 0;
         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
         // fresh() allocates the transaction after its original source, and
-        // push_stack() allocates the frame after the transaction. A retired
-        // UID must never become a new response card, even if unused now.
+        // push_stack() allocates the immediately following frame UID. Checking
+        // only the interval would still admit a retired UID after the source.
         self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&c.id))
             .zip(self.mystic_instance_number(&f.frame_id))
-            .is_some_and(|((source, transaction), frame)| source < transaction && transaction < frame)
+            .is_some_and(|((source, transaction), frame)| source < transaction && transaction.checked_add(1) == Some(frame))
             && *c == expected
     }
     pub(crate) fn validate_pack_a_state(&self) -> RuleResult<()> {
