@@ -68,7 +68,7 @@ fn owns(ops: &[Op]) -> bool {
     })
 }
 pub(crate) fn related(a: &AbilitySpec) -> bool {
-    a.key.starts_with("batch4-") || matches!(a.event,Some(Event::BQ031Attachment|Event::BQ038Raid|Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
+    a.key.starts_with("batch4-") || matches!(a.event,Some(Event::BQ031Attachment|Event::BQ038Raid|Event::BQ038MysticStart|Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
         || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
         || a.costs.iter().any(|c| matches!(c, Cost::JZ51SealThreeCorpses | Cost::JZ39SacrificeDemon | Cost::JZ36SacrificeBatch))
         || a.targets.iter().any(|t| matches!(t.predicate, Some(TargetPredicate::XQ21MarkedCarrier | TargetPredicate::XG16CharacterOrAttachment | TargetPredicate::Batch4DestroyedRegion | TargetPredicate::JZ40CharacterOrAttachment | TargetPredicate::JZ36CharacterOrAttachment)))
