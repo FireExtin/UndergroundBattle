@@ -780,6 +780,7 @@ impl Game {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
                                 rules::TargetPredicate::XQ23ActorAsset => false,
+                                rules::TargetPredicate::XG16CharacterOrAttachment => self.xg16_time_target(source, c),
                                 rules::TargetPredicate::JZ36CharacterOrAttachment => self.jz36_target(source, c),
                                 rules::TargetPredicate::JZ40CharacterOrAttachment => self.jz40_target(source, c),
                                 rules::TargetPredicate::XQ18CharacterOrAttachment => {
@@ -1627,6 +1628,8 @@ impl Game {
                 Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
                 Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
+                Op::XG16EntryTime => self.xg16_entry_time(&frame),
+                Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
                 Op::JZ40TimeAndDestroyHost => self.jz40_resolve(&frame),
                 Op::PlanPlayed { .. } => {},

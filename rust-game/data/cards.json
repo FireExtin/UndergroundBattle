@@ -9230,6 +9230,53 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG16",
+      "name": "计时人戴森·帕佐",
+      "subtitle": "策划阴谋",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "超能力者",
+        "邪教徒"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "红色",
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红红红",
+      "color": "红",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "公开〔日形〕领袖；时间标志1\n准备步骤触发 在目标角色或附属上放置X个时间标志，X为已毁灭的地区数量。\n持续 在本方角色上每有一个时间标志，该本方角色就获得防御力+1。在敌方角色上每有一个时间标志，该敌方角色就获得防御力-1。",
+      "keywords": [
+        "公开〔日形〕领袖",
+        "时间标志1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG16",
+        "image": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg",
+        "imageSha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

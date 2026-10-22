@@ -89,7 +89,7 @@ pub(crate) fn leader_instances<'a>(
 }
 impl Game {
     pub(crate) fn current_leader(&self, c: &Card) -> bool {
-        !c.face_down && printed_leader(&c.definition) && (c.definition != "BQ087" || self.players.get(c.controller).is_some_and(|p|p.society_zone.exposure>0))
+        !c.face_down && printed_leader(&c.definition) && (!matches!(c.definition.as_str(), "BQ087" | "XG16") || self.players.get(c.controller).is_some_and(|p|p.society_zone.exposure>0))
     }
     pub(crate) fn leader_options(&self, seat: usize) -> Vec<ChoiceOption> {
         if seat >= self.players.len() {

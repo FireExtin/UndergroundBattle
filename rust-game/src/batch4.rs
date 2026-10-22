@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "XG16" { return Some(crate::batch4_timekeeper::definition()); }
     if id == "JZ36" { return Some(crate::batch4_blood::definition()); }
     if id == "JZ40" { return Some(crate::batch4_skull::definition()); }
     if id == "XQ15" { return Some(crate::batch4_manor::definition()); }
@@ -53,7 +54,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
+        Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -64,7 +65,7 @@ pub(crate) fn related(a: &AbilitySpec) -> bool {
     a.key.starts_with("batch4-") || matches!(a.event,Some(Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
         || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
         || a.costs.iter().any(|c| matches!(c, Cost::JZ39SacrificeDemon | Cost::JZ36SacrificeBatch))
-        || a.targets.iter().any(|t| matches!(t.predicate, Some(TargetPredicate::Batch4DestroyedRegion | TargetPredicate::JZ40CharacterOrAttachment | TargetPredicate::JZ36CharacterOrAttachment)))
+        || a.targets.iter().any(|t| matches!(t.predicate, Some(TargetPredicate::XG16CharacterOrAttachment | TargetPredicate::Batch4DestroyedRegion | TargetPredicate::JZ40CharacterOrAttachment | TargetPredicate::JZ36CharacterOrAttachment)))
 }
 fn frame_related(f: &ResolutionFrame) -> bool {
     f.source.death_echo.is_some() || IMPLEMENTING.contains(&f.source.card.definition.as_str()) || f.ability_key.starts_with("batch4-")
@@ -72,6 +73,7 @@ fn frame_related(f: &ResolutionFrame) -> bool {
         || f.already_paid.iter().any(|p| matches!(p, PaidCost::JZ39Demon(_)))
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    if id == "XG16" { return crate::batch4_timekeeper::canonical(a); }
     if id == "JZ36" { return crate::batch4_blood::canonical(a); }
     if id == "WM058" { return crate::batch4_chance::canonical(a); }
     if id == "WM029" { return crate::batch4_politician::canonical(a); }
@@ -98,7 +100,7 @@ fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
+    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -110,6 +112,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "XG16" { return crate::batch4_timekeeper::validate_action(a); }
     if id == "JZ36" { return crate::batch4_blood::validate_action(a); }
     if id == "JZ40" { return crate::batch4_skull::validate_action(a); }
     if id == "XQ15" { return crate::batch4_manor::validate_action(a); }
@@ -183,6 +186,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if d.source.card.definition == "XG16" && !self.validated_cross_card_declaration(d)? { return self.validate_xg16_declaration(d); }
         if d.source.card.definition == "JZ36" && !self.validated_cross_card_declaration(d)? { return Err("血祭没有触发程序".into()); }
         if d.source.card.definition == "JZ40" && !self.validated_cross_card_declaration(d)? { return Err("蚀刻头骨没有触发程序".into()); }
         if d.source.card.definition == "XQ15" { return Err("爱弗罗德庄园没有触发能力".into()); }
@@ -207,6 +211,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition == "XG16" && !self.validated_cross_card_frame(f)? { return self.validate_xg16_frame(f); }
         if f.source.card.definition == "JZ36" && !self.validated_cross_card_frame(f)? { return self.validate_jz36_frame(f); }
         if f.source.card.definition == "JZ40" && !self.validated_cross_card_frame(f)? { return self.validate_jz40_frame(f); }
         if f.source.card.definition == "XQ15" { return self.validate_xq15_frame(f); }
@@ -258,6 +263,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_xg16_state()?;
         self.validate_jz36_state()?;
         self.validate_jz40_state()?;
         self.validate_xq15_state()?;

@@ -1,0 +1,267 @@
+{
+  "recordedAt": "2026-10-22T08:07:59.239442+00:00",
+  "precedingCheckpoint": "8b5bb15181966b2d0e3ed65f367902484e21913b",
+  "newCard": "XG16",
+  "targetBatchSize": 50,
+  "selectedSources": 50,
+  "nativeCards": 19,
+  "definitions": 232,
+  "wasmCards": 0,
+  "selectionEnabled": 0,
+  "published": 0,
+  "accepted": 0,
+  "newDirectedCases": 22,
+  "relatedFilters": {
+    "jc035": 15,
+    "jc055": 5,
+    "jc052": 20,
+    "batch3_serpent": 9,
+    "batch4_conference": 18,
+    "batch3_bats": 19,
+    "jc089": 27,
+    "batch3_ghoul": 12
+  },
+  "sourceChecks": 4,
+  "filterOverlap": "Author scoped filters, not summed as unique/full-suite or independent evidence",
+  "sourceInventory": "docs/evidence/batch20-fourth-2026-10-22/nineteen-card-source-inputs.json",
+  "sourceInventoryFiles": 233,
+  "sourceInventoryFileSha256": "8dfb891d01695b8e1fd96d11d0a2e9f357eca5eb72cc52c8678af0548faccda4",
+  "nativeBinarySha256": "f097182fea9b264852638226576ac718e0a32b195b6c36066e24828efbf9c977",
+  "nativeRecipe": {
+    "toolchain": "Rust1.90.0; Zig0.15.2; Node24.22.1",
+    "cargoFeatures": "default/native",
+    "jobs": 1,
+    "testThreads": 2,
+    "cargoHome": "../.tools/cargo",
+    "rustupHome": "../.tools/rustup",
+    "targetDir": "../batch4-build/target",
+    "CC": "../.tools/batch3-zig-cc",
+    "linker": "../.tools/zig-cc",
+    "offline": true,
+    "locked": true,
+    "rustflags": []
+  },
+  "scope": "Author native pilot and source checks only. No ABI95 WASM, Web/Worker build, admission, deployment, browser acceptance or independent review. Bot remains a separate clone/branch.",
+  "behavior": "Public/unique Red3 cost6; personal Sun conditionally enables Leader; optional entry time1; typed Prepare observation/order/target/accepted-resolved-cancelled receipts; current destroyed-region count; personal defense+time, teammate unchanged, either enemy seat defense-time. All positive defense including Ghoul permanent counters precedes time penalty/curses/wounds.",
+  "primaryScopeEvidence": {
+    "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "physicalPagesViewedHere": [
+      17,
+      22
+    ],
+    "printedPages": [
+      16,
+      21
+    ]
+  },
+  "fixtureBoundaries": [
+    "Actual paid deploy/reveal declaration and actual JC075 pay2/exhaust response; rescuer placement is an explicit fixture, never a spell alias",
+    "Control, inherited-marker attachments, destroyed-count response change and accumulated Ghoul markers are explicit Native fixtures",
+    "Room pause/resume, original command replay, stale-version rejection, response passes and four-seat restored views use actual RoomEnvelope commands and a high-u64 seed",
+    "No source copy/assets from third implementation; source images are the locked own-repository inputs",
+    "XQ35 absent printed cost/grave-only activation and sealing receipt remain engineering prerequisites, unimplemented and uncounted"
+  ],
+  "testSourceBoundary": "jc035/jc055/jc052 passed with final fixed production order at attempt09, before correcting only the additional test fixture from non-Ghoul to Ghoul. The final production order was restored byte-for-byte after the isolated negative reproduction10. Remaining related filters and final22 ran with the final binary. No claim that every historical log used the identical final test binary. The final production change was an equivalent zero-time query short circuit; final22 was rerun after it, related filters were not repeated. The final source list additionally binds the tracked root Cargo.toml/Cargo.lock/rust-toolchain.toml.",
+  "failureHistory": [
+    "01:compile failed on incorrect test fixture/API fields; no tests ran",
+    "02:18 failed at initialization because a Batch20-owned opcode was transplanted; guard retained and dedicated XG16 finite preparation opcode added",
+    "03:12 passed6 failed; subtitle whitelist missing XG16, vest bonus omitted, invalid Blood attachment as Bat host, and rescuer incorrectly treated as a spell",
+    "04:18 passed after source whitelist and fixture corrections",
+    "05:additional Room fixture timestamp used i64 instead of u64; compile failed",
+    "06:20 passed1 failed; pure kernel correctly rejected stale command rather than providing storage-layer idempotency",
+    "07:21 passed after asserting existing version_conflict behavior",
+    "08:new arithmetic edge failed3 vs1 before penalty-order correction, but this initial non-Ghoul counter fixture was not a legal saved-state reproduction",
+    "09:21 passed1 failed after calculation fix because the added counter fixture still used a non-Ghoul role; restore guard retained",
+    "10:proper BQ079 paired permanent-counter fixture reproduced3 vs1 with only the new uncommitted penalty order temporarily reverted",
+    "11:22 passed after restoring all-positive-before-negative order and proper Ghoul fixture",
+    "Related-filter helper stopped after the valid20-case jc052 pass because its zero-test string guard accidentally matched20; guard changed to integer parsing and only the five not-yet-run filters continued",
+    "12:final22 passed after equivalent zero-time query fast path; normal marker-zero queries skip board/source scanning"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-01.log.gz",
+      "rawBytes": 2424,
+      "rawSha256": "38a9a9e84d65b5e4e32cf14ed9a17fa01213b8953d87c1c98ac69f7a099c9bc9",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": []
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-02.log.gz",
+      "rawBytes": 10837,
+      "rawSha256": "4ccf8743052538a570e0265ce6d3dda5893e392ecaf9a94cacf198d239cc8502",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 0 passed; 18 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 0.27s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-03.log.gz",
+      "rawBytes": 5394,
+      "rawSha256": "e22d3529280f6f48c30e83d78c92bbcf25fc49869d62faf0c62cc10f80fccdf1",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 12 passed; 6 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.08s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-04.log.gz",
+      "rawBytes": 2643,
+      "rawSha256": "2512205c22df83c30c990d120ad5c0af2c003488f1b2104d768bcef6b5dea332",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.29s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-05.log.gz",
+      "rawBytes": 1686,
+      "rawSha256": "25a0afe14a5521bde6b1b34c676d812bf204d96748eefbdffd0cf54e907d6f38",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": []
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-06.log.gz",
+      "rawBytes": 3588,
+      "rawSha256": "62fb755afa272cab4c6dd7410918a654a5f3d7ec29dd66fddfe2e3973f53e867",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 20 passed; 1 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.51s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-07.log.gz",
+      "rawBytes": 2976,
+      "rawSha256": "a49e2ea28de39a1fa9a0533c853cc18aee4d3251797233fb376a9f6c1552931a",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.54s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-09.log.gz",
+      "rawBytes": 3672,
+      "rawSha256": "6db919e4bee5d409b0be5690aa64946ab6f785c2562ba5683f3a5b8cf04eae7f",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 21 passed; 1 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.54s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-11.log.gz",
+      "rawBytes": 3074,
+      "rawSha256": "49c1b381db9aae3c3db196579ae32bb4bce243f4a116a68a191fca9fef82165e",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.57s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-08-before-clamp-fix.log.gz",
+      "rawBytes": 1324,
+      "rawSha256": "8be8d5f3f3ec9d8c795cad9918fe110cf6dbd4f940f0ab2e8d230b9ff8cecc5c",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1838 filtered out; finished in 0.06s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-10-ghoul-before-clamp-fix.log.gz",
+      "rawBytes": 1324,
+      "rawSha256": "cc3e92a2c68106c3f7856bf404517b0e1986ecc40c49b97c4de1f461484328ed",
+      "status": "retained failed/compile attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1838 filtered out; finished in 0.06s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-jc035.log.gz",
+      "rawBytes": 1523,
+      "rawSha256": "eaa71f49c038a1faed4e816fb0ca541af332d412fd1cbf2bd87a5580c3be6290",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 1824 filtered out; finished in 3.60s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-jc055.log.gz",
+      "rawBytes": 635,
+      "rawSha256": "9aabc4d7d028f959e9ce6738a93926034dee63a0804a15105d26999afda2951b",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 1834 filtered out; finished in 0.53s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-jc052.log.gz",
+      "rawBytes": 2164,
+      "rawSha256": "6c1e2e320ffa79967f3d46e6c6505161138e68b4eedec52771b2fb3c509050b3",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 1819 filtered out; finished in 1.87s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-batch3_serpent.log.gz",
+      "rawBytes": 1161,
+      "rawSha256": "e1d2fcaf7253f543bfd94769781c61b72e97549643f6e5ef66c506bec1741f02",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 1830 filtered out; finished in 0.55s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-batch4_conference.log.gz",
+      "rawBytes": 2281,
+      "rawSha256": "e804b2c03b2f24360facba00abb374adcb171286e31b46f0302a9a6d9d86efc6",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 1821 filtered out; finished in 3.23s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-batch3_bats.log.gz",
+      "rawBytes": 2436,
+      "rawSha256": "fdc6efe2a142752f35f1da959c823efe9285ba04bbdacdd3e14b20889ead6800",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 1820 filtered out; finished in 1.36s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-jc089.log.gz",
+      "rawBytes": 2837,
+      "rawSha256": "3614ce92131f3f61288ac4492542690ade25b34918074e821ccb99afabd5ef9e",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 1812 filtered out; finished in 7.54s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-related-batch3_ghoul.log.gz",
+      "rawBytes": 1483,
+      "rawSha256": "4fa1cd29a6aacd22c23a92367ea2362d19778c1bb2a77d6ba2e1482b58969193",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1827 filtered out; finished in 1.18s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-source-final.log.gz",
+      "rawBytes": 541,
+      "rawSha256": "139a3ef87f67ed871abe79f6b2f554b4fdcaa00264f768ecc931ee9104e3ec08",
+      "status": "passed:4 source assertions",
+      "testSummary": []
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-timekeeper-12-zero-marker-fastpath.log.gz",
+      "rawBytes": 3074,
+      "rawSha256": "2e2ca7c31ebf201412d63bca1fa26626c5dc93fb1dfb12dbf9f4cf508bd1a5f1",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 1817 filtered out; finished in 1.53s"
+      ]
+    }
+  ],
+  "sourceInventoryScope": "Previous tracked Rust/catalogue inputs plus new per-card modules and the actual root workspace manifest/lock/config when present. This is not a cross-machine byte-reproducibility claim."
+}

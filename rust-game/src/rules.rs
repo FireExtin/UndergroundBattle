@@ -117,6 +117,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    XG16CharacterOrAttachment,
     JZ36CharacterOrAttachment,
     JZ40CharacterOrAttachment,
     XG17PersonalPlan,
@@ -267,6 +268,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG16EntryTime,
+    XG16PrepareTime { event_id: Option<String> },
     JZ36TimeAndDestroyTargetRegion,
     JZ40TimeAndDestroyHost,
     BQ053RemoveLossControl,
@@ -606,6 +609,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG16TimeDefense,
     XQ15OwnerVampireSlave,
     XG17RenownDefense,
     WM060ConditionalPublic,

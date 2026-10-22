@@ -7,14 +7,14 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 18,
+    "nativePilots": 19,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 32
+    "remainingNativePrograms": 31
   },
   "colorCounts": {
     "红": 13,
@@ -388,7 +388,7 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+      "readinessScope": "Existing grave/seal anchors only; current catalogue still requires exact absent printed cost, grave-only activation source and sealed-cost receipt design. Not implemented or counted."
     },
     {
       "id": "JZ53",
@@ -597,8 +597,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg",
       "sourceImageSha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 22,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -981,7 +981,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 18,
+      "nativeCards": 19,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -1034,6 +1034,19 @@
         11
       ],
       "scope": "Pay including X before a played card enters the stack; sacrifice of characters counts as death; choose X when paying. Printed JZ36 image supplies its specific two target kinds and threshold."
+    },
+    "timekeeper": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPagesReviewedHere": [
+        17,
+        22
+      ],
+      "printedPages": [
+        16,
+        21
+      ],
+      "scope": "本方=controller personally; friendly includes teammate; enemy includes both opposing seats. Existing P11 attachment-marker inheritance retained via effective_time_markers."
     }
   },
   "implementationNotes": [
@@ -1054,10 +1067,11 @@
     "XQ15 owner-based Human→Vampire / nonhuman non-Vampire→Slave in every nonblank zone; assets, sealed and hidden cards retain blank rules. Private/public views, current-vs-printed targeting, real host invalidation, JC005, attached Bat and Warden16 directed cases. Scope stays16 native,0WASM/selection/public/acceptance.",
     "JZ40 native pilot12: exact printed region attachment4; self-sacrifice receipt and original host UID frozen; target character/attachment receives time1, original host physical region total>=4 destroys in place; source markers leave with payment. Marked secret plans remain attachments and keep private identity through restore; ordinary hidden characters/privates still reject. No region-card time-marker producer admitted by this pilot.",
     "JZ36 native16: printed1 plus sacrificeX personal face-up characters, including attached Bats, before responses. Unpaid private typed cost draft or explicit X0; a single simultaneous death wave with frozen original-region receipts. Fixed paid X survives JZ30 death Forecast continuation and exact high-u64 command replay. Carrier target or original-UID region receives X time, then only target current region is checked for in-place destruction at physical total>=4. Direct region-card time and four-seat projection now admitted only by this closed program; no generic configurable marker op.",
-    "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed."
+    "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed.",
+    "XG16 native22: printed6/Red3/unique/public; own Sun conditionally enables Leader. Optional entry time1 and Prepare time equal to current destroyed-region count. Uses its own finite Prepare opcode with shared typed observation/order/target/resolved-or-cancelled receipts. Effective time includes legal direct attachments; personal recipients gain defense per time, either opposing seat loses defense, ally is unchanged (primary Hegemony printed16/21). All positive defense including Ghoul permanent markers precedes negative time/curses/wounds. Real rescuer activation, aura death/cancellation, Room pause/restore/original-command replay and version-conflict rejection tested; no WASM/public admission."
   ],
   "next": [
-    "Continue rules-clear reusable-anchor programs;18/50 native,50 source-selected,0 WASM/admission/acceptance; common prerequisites are not all ready",
+    "Continue rules-clear reusable-anchor programs;19/50 native,50 source-selected,0 WASM/admission/acceptance; common prerequisites are not all ready",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
@@ -1197,7 +1211,7 @@
         "WM037",
         "XG16"
       ],
-      "nativePassed": 2
+      "nativePassed": 3
     },
     {
       "id": "expansion-blood-and-contest",

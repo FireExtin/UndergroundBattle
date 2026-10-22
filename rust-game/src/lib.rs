@@ -3,6 +3,9 @@ mod batch4_warden;
 mod batch4_manor;
 mod batch4_skull;
 mod batch4_blood;
+mod batch4_timekeeper;
+#[cfg(test)]
+mod batch4_timekeeper_tests;
 #[cfg(test)]
 mod batch4_blood_tests;
 #[cfg(test)]

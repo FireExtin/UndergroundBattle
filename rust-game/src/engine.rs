@@ -508,6 +508,7 @@ impl Game {
         permanent.combat + ordinary.combat + if convert { temporary.combat } else { 0 }
     }
     pub fn defense(&self, c: &Card, region: usize) -> u32 {
+        let (time_bonus, time_penalty) = self.xg16_time_defense(c);
         let bonus = self.regions[region]
             .cards
             .iter()
@@ -543,7 +544,9 @@ impl Game {
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
             .saturating_add(self.xg17_defense_bonus(c))
+            .saturating_add(time_bonus)
             .saturating_add(c.permanent_defense_markers)
+            .saturating_sub(time_penalty)
             .saturating_sub(self.jc089_host_curses(c) as u32)
             .saturating_sub(c.wounds)
     }
@@ -2142,6 +2145,7 @@ impl Game {
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
+        crate::batch4_timekeeper::validate_choice_action(&p, &a)?;
         crate::batch4_politician::validate_choice_action(&p, &a)?;
         crate::batch4_chance::validate_choice_action(&p, &a)?;
         crate::batch4_warden::validate_choice_action(&p, &a)?;
