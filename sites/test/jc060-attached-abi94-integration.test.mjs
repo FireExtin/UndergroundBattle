@@ -13,7 +13,7 @@ import {RoomService,digest} from '../src/service.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 for(const [label,fixture] of [['attached adviser domains and real Hide','abi94-adviser.current.json.gz']]){
-const native=loadCurrentFixture('docs/evidence/jc060-attached-character-2026-10-22/'+fixture);
+const native=loadCurrentFixture('docs/evidence/hidden-shuffle-markers-2026-10-22/'+fixture);
 test(`ABI94 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{
   const persist=mkdtempSync(join(tmpdir(),'batch3-abi94-d1-'));
   const options=convertV4MiniflareOptions({name:'batch3-abi94',resourcePersistencePath:persist,cf:false,

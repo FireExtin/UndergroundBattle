@@ -1,0 +1,7 @@
+{
+  "baseline": "b4e0388bb0ee1a2b106c247d11663ec7ee60b28d",
+  "temporaryOriginalWorldSha256": "6458a3596b59ee39b737872a9093a3581b954e751b9b0270d0480093b7271b06",
+  "fixedWorldRestoredSha256": "490fd3305b800a356dc8b4c766d64a00f983ad3c12456693e6f2179f2d6862e3",
+  "nativeRegressionExitCode": 101,
+  "uncommittedFixedSourcePreservedAndRestored": true
+}

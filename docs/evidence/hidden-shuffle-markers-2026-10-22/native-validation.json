@@ -1,0 +1,134 @@
+{
+  "recordedAt": "2026-10-22T04:51:02.427702+00:00",
+  "base": "b4e0388bb0ee1a2b106c247d11663ec7ee60b28d",
+  "definitions": 213,
+  "fourthBatchCards": 0,
+  "nativeNewCases": 5,
+  "relatedFilters": {
+    "world": 30,
+    "jc054": 26,
+    "gray_lock": 26,
+    "jc005_society": 3,
+    "jc060_attached_current": 1
+  },
+  "overlap": "No unique-scene sum; old-fix cases were re-executed to bind new current-source evidence",
+  "sourceInputFiles": 231,
+  "sourceInputsFileSha256": "471260d5ce2cfde7fd7589a63b6efbdd55085a55bf4fe0a1ac87321a2ad509f1",
+  "rawNative": [
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-london-declined.json.gz",
+      "bytes": 1121051,
+      "sha256": "cea6e84bf9fa6acfd22489239ec1dda4b011d92be56737286b1ddaf6a2d12145",
+      "cases": 1,
+      "commands": 9
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-london-flip-versus-mix.json.gz",
+      "bytes": 1538843,
+      "sha256": "3f4221215a80fdf790a238ffe2d4d24a6424d0bdceef49792f443be5d6cbba09",
+      "cases": 1,
+      "commands": 13
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-london-hidden-lock.json.gz",
+      "bytes": 1537561,
+      "sha256": "808b3d84a2bdeb52e668f887a27b079f5396f5f080ee5f21adf0a321906cea2d",
+      "cases": 1,
+      "commands": 13
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-london-worm-and-u64.json.gz",
+      "bytes": 1578179,
+      "sha256": "fb7af1a81b5316678181a13d9dc54984594e64bfefd0b97aec046f1853dfd3f5",
+      "cases": 1,
+      "commands": 13
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-shuffle-society-native.json.gz",
+      "bytes": 4239174,
+      "sha256": "8db2555b53a51d62a66595851bf37f2f90600c0173c98d6509959f1cbec675b3",
+      "cases": 3,
+      "commands": 40
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/raw-native-abi94-shuffle-adviser-native.json.gz",
+      "bytes": 1851373,
+      "sha256": "54fd17a6414448f5a08d91ac44bdc015531068674fdb2f037b00022d665a4bf6",
+      "cases": 1,
+      "commands": 15
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-before-fix-hidden_shuffle_existing_hidden_marker.log.gz",
+      "rawBytes": 1019,
+      "rawSha256": "86ee91f274874ef5306c6a9bfc55825a452a50db62ab15665c6b4cb0ab843f09",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-01-hidden_shuffle.log.gz",
+      "rawBytes": 2194,
+      "rawSha256": "5a7e01e5718c1adf57c613fad788e8dbe75fac93f56c6866f99caa6f2585e2a0",
+      "passed": 2,
+      "failed": 3
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-02-gray_lock.log.gz",
+      "rawBytes": 2962,
+      "rawSha256": "8e1a6f24a5a83da6b19e4ada75eac646610511cf1b2c9fd288f66843f35867e1",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-02-hidden_shuffle.log.gz",
+      "rawBytes": 1011,
+      "rawSha256": "08f073ee5508dfb7989ebb11749973120c330aee705772b5fc31edd515e22ecc",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-02-jc054.log.gz",
+      "rawBytes": 2842,
+      "rawSha256": "a335e4e1da1ff1c5581640a41335605375225ab7ce7dfd02cb11131bd74f7b96",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-02-world.log.gz",
+      "rawBytes": 3335,
+      "rawSha256": "8c0863a4312b83bb1d5f0908cb65477fa7208b44aced250c8e93c53a01150ea2",
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-prior-fixes-native-01-jc005_society.log.gz",
+      "rawBytes": 699,
+      "rawSha256": "bdd2b2565378ec5563f962fe8ed6e2a73cf8731cdbc42593e5485e998e8251c0",
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-prior-fixes-native-01-jc060_attached_current.log.gz",
+      "rawBytes": 559,
+      "rawSha256": "2022ebc5e593abc9221254006c8da90c870e020a3f74b1f76e3e64491ec9a2ea",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-real-before-fix-hidden_shuffle_actual_london_win_preserves_marked_hidden.log.gz",
+      "rawBytes": 1043,
+      "rawSha256": "096deadad77965decdd21f2a820fa7f4c5bfc78162b7db1fbc27611f355cba48",
+      "passed": 0,
+      "failed": 1
+    }
+  ],
+  "beforeFix": "Original b4e function and continuous real London Room command both lose lock1 to0; logs preserved",
+  "uncommittedFixedWorldPreservedDuringBeforeRun": true,
+  "fixtureCorrection": "First real-Win fixture stopped at score-card transfer before the optional World ability. Corrected to explicitly choose London and wait for its actual frame completion; no product timing change",
+  "wasmBuild": "pending",
+  "workerD1": "pending",
+  "localStartup": "pending",
+  "publicDeployment": "not attempted",
+  "scope": "Author targeted source/Native repair candidate, not independent or full batch acceptance"
+}

@@ -289,3 +289,5 @@ mod jc089_tests;
 mod black_next20;
 #[cfg(test)]
 mod black_next20_tests;
+#[cfg(test)]
+mod hidden_shuffle_tests;

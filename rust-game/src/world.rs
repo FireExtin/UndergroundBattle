@@ -223,8 +223,14 @@ impl Game {
                 for (_, mut cards) in groups {
                     if cards.len() > 1 {
                         self.shuffle(&mut cards);
-                        for c in cards {
-                            let c = self.fresh(c);
+                        for mut c in cards {
+                            // Mixing is not another flip or zone departure:
+                            // keep already-hidden markers and orientation.
+                            // Retire the old visible ID and finite execution
+                            // grants, preserving historical source snapshots.
+                            self.turn_attribute_modifiers.retain(|m|
+                                m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
+                            c.id = self.id();
                             self.regions[r].cards.push(c);
                         }
                     } else {
