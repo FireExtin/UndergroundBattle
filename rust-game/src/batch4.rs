@@ -4,7 +4,8 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39"];
+const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -17,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "JZ39" { return Some(crate::batch4_tattoo::definition()); }
     let mut d = match id {
         "XG14" => {
             let mut t = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
@@ -38,7 +40,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion => true,
+        Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
         _ => false,
@@ -47,11 +49,13 @@ fn owns(ops: &[Op]) -> bool {
 pub(crate) fn related(a: &AbilitySpec) -> bool {
     a.key.starts_with("batch4-") || a.event == Some(Event::DisasterPlayed)
         || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
+        || a.costs.iter().any(|c| matches!(c, Cost::JZ39SacrificeDemon))
         || a.targets.iter().any(|t| t.predicate == Some(TargetPredicate::Batch4DestroyedRegion))
 }
 fn frame_related(f: &ResolutionFrame) -> bool {
     IMPLEMENTING.contains(&f.source.card.definition.as_str()) || f.ability_key.starts_with("batch4-")
         || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
+        || f.already_paid.iter().any(|p| matches!(p, PaidCost::JZ39Demon(_)))
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     let mut expected = definition(id)?.abilities.into_iter().find(|p| p.key == a.key)?;
@@ -71,7 +75,7 @@ fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XG15WaterDoubleIcons)) {
+    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -83,6 +87,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "JZ39" { return crate::batch4_tattoo::validate_action(a); }
     if !IMPLEMENTING.contains(&id) { return Ok(()); }
     let expected = match a.kind.as_str() {
         "deploy" | "reveal" => Action { card_id: a.card_id.clone(), ..Action::new(&a.kind) },
@@ -109,7 +114,7 @@ impl Game {
         }
     }
     fn batch4_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
-        if !IMPLEMENTING.contains(&s.card.definition.as_str()) || s.card.id.is_empty()
+        if !CHAOS.contains(&s.card.definition.as_str()) || s.card.id.is_empty()
             || actor >= self.players.len() || s.card.controller != actor || s.card.owner >= self.players.len()
             || s.attachment_host_instance.is_some() || s.observed_death.is_some() || s.observed_exposure.is_some() || s.observed_mobility_grant.is_some()
             || s.region.is_some_and(|r| r >= self.regions.len())
@@ -153,6 +158,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition == "JZ39" { return self.validate_jz39_frame(f); }
         if self.validated_cross_card_frame(f)? || !frame_related(f) { return Ok(()); }
         self.batch4_source(f.actor, &f.source)?;
         if f.frame_id.is_empty() || f.cursor > f.steps.len() || (f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked))
@@ -189,6 +195,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_jz39_state()?;
         let mut seen = BTreeSet::new();
         let mut frames = BTreeSet::new();
         let mut remember = |s: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
@@ -200,7 +207,7 @@ impl Game {
         for item in &self.stack {
             if let Some(f) = &item.frame {
                 self.validate_batch4_frame(f)?;
-                if IMPLEMENTING.contains(&f.source.card.definition.as_str()) && !self.validated_cross_card_frame(f)? {
+                if CHAOS.contains(&f.source.card.definition.as_str()) && !self.validated_cross_card_frame(f)? {
                     if !frames.insert(&f.frame_id) || item.id != f.frame_id || item.controller != f.actor || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked)
                         || item.card.is_some() != matches!(f.ability_key.as_str(), "deploy" | "reveal")
                         || item.target != f.targets.first().map(|t| t.id.clone())
@@ -218,7 +225,7 @@ impl Game {
         } }
         if let Some(p) = &self.pending { if let ChoiceResolution::Declare { declaration: d, stage } = &p.resolution {
             self.validate_batch4_declaration(d)?;
-            if IMPLEMENTING.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? {
+            if CHAOS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? {
                 let expected = match (d.ability.targets.as_slice(), stage) {
                     ([slot], DeclareChoice::Target) => self.binding_options(d.actor, &d.source, slot),
                     ([], DeclareChoice::Accept) => vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }],
@@ -232,7 +239,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && frame.source.card.definition != "JZ39" && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

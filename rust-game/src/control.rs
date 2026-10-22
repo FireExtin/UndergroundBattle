@@ -93,6 +93,13 @@ impl Game {
             && !result.iter().any(|s| s == "宿主") {
             result.push("宿主".into());
         }
+        // A tattoo adds Demon while its current human-host requirement holds.
+        // Avoid attachment_host_valid() here: that predicate itself reads types.
+        if result.iter().any(|s| s == "人类") && self.attachments.iter().any(|a|
+            a.card.definition == "JZ39" && !a.card.face_down && a.host_id == c.id)
+            && !result.iter().any(|s| s == "恶魔") {
+            result.push("恶魔".into());
+        }
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

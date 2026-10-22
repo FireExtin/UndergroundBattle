@@ -8563,6 +8563,45 @@
         "image": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
         "imageSha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379"
       }
+    },
+    {
+      "id": "JZ39",
+      "name": "恶魔刺青",
+      "kind": "attachment",
+      "subtypes": [
+        "纹身"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标人类角色\n持续 受此结附的角色获得永久战斗1和杀伤1，且额外具有恶魔类别。\n行动①，横置，牺牲一个恶魔角色：目标敌方玩家牺牲一个角色。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ39",
+        "image": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg",
+        "imageSha256": "4bfac05a9d9f65d6d5c11fd69eded848bda7472c6b7940c735d6722ae3fb5a75"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

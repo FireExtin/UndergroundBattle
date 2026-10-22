@@ -2333,7 +2333,7 @@ impl Game {
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()
-                && self.execution_turn_grants(c).0 > 0)
+                && (self.execution_turn_grants(c).0 > 0 || self.jz39_host_kill(c) > 0))
                 .then(|| self.effective_kill(c)),
             current_retreat: (!asset
                 && !c.face_down

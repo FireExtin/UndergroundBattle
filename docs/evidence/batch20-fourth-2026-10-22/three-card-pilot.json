@@ -1,0 +1,120 @@
+{
+  "recordedAt": "2026-10-22T00:52:39.527684+00:00",
+  "precedingCheckpoint": "f5584d23fc1325b3b083d463f63ee49b017f10f4",
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ39"
+  ],
+  "newCard": "JZ39",
+  "newDirectedCasesBeforeFinalGuard": 13,
+  "currentFinalGuardCases": 3,
+  "scopeNote": "Final three checks overlap the preceding thirteen and cover saved-program mutation plus both legitimate source-presence states; do not add them as unique cases. Earlier two-card tests were not repeated.",
+  "sourceChecks": 4,
+  "sourceManifest": "native-source-manifest-three-cards.json",
+  "sourceManifestSha256": "f760f790e38a08c8470d07ca29d021967d0628dc2b2e031973041aba6f1a71f8",
+  "results": [
+    {
+      "log": "logs/batch4-jz39-first-batch4_tattoo.log.gz",
+      "encoding": "gzip",
+      "sha256": "8e2b28662a95fb02c84353e75017de32cd65a43d798fb446d532c3958a8271a2",
+      "rawSha256": "e0c7ba6aa729e947f028987dd755adb4b9a34a6b1b4799c8a2126d4bdc98941e",
+      "phase": "preservedFailure",
+      "result": "compileFailure",
+      "passed": 0,
+      "failed": null
+    },
+    {
+      "log": "logs/batch4-jz39-second-batch4_tattoo.log.gz",
+      "encoding": "gzip",
+      "sha256": "f1bb6c8f910ea57e2bdc4dd3ccb90558f92fc745ad8a5bb638764c7ad833fcb1",
+      "rawSha256": "651a6765ff1b371b7ce6b52b95afcc6e6a70bda9ed02956d2b9f17cc3c2d6058",
+      "phase": "preservedFailure",
+      "result": "FAILED",
+      "passed": 2,
+      "failed": 7
+    },
+    {
+      "log": "logs/batch4-jz39-third-batch4_tattoo.log.gz",
+      "encoding": "gzip",
+      "sha256": "aa2c5f6a0b9f00ad4471b072985c808d07bb2c58bd98c9dd9d1548f34487c2b9",
+      "rawSha256": "f5326b93d19acb0031aae516238fc65ab4e161f2d98ef2d0e793d7642385b999",
+      "phase": "preservedFailure",
+      "result": "FAILED",
+      "passed": 5,
+      "failed": 7
+    },
+    {
+      "log": "logs/batch4-jz39-fourth-batch4_tattoo.log.gz",
+      "encoding": "gzip",
+      "sha256": "6b63f70b9d03e7e404f739acc3e842c083997e4835fc46830c1be0a95e381035",
+      "rawSha256": "684d09073dc5e64ac465bedae04890c5f72f69aeba0fb2dc43b672d9f6e8d805",
+      "phase": "preservedFailure",
+      "result": "FAILED",
+      "passed": 11,
+      "failed": 1
+    },
+    {
+      "log": "logs/batch4-jz39-final-batch4_tattoo.log.gz",
+      "encoding": "gzip",
+      "sha256": "390a8782e4c3681e2bd234e737495a3763c0936c0eaa8fc0c16d90916183b07b",
+      "rawSha256": "0a1ba5bf6aa872372151753b8f44ab8c7a729a849e78fcbe6baf91fd5a730f79",
+      "phase": "preSourceGuard",
+      "result": "ok",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-jz39-source-guard-batch4_tattoo_saved.log.gz",
+      "encoding": "gzip",
+      "sha256": "ceb7acfa7f005255cac97abde964a92c1fec9a17ff48c74b871239b40f29ed52",
+      "rawSha256": "17fd9a3ebe2e5315baf254d81a72e5e75d9a5b6c1f05538b433af31edda6fae2",
+      "phase": "finalSourceGuard",
+      "result": "ok",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-jz39-source-guard-batch4_tattoo_paid_own_host.log.gz",
+      "encoding": "gzip",
+      "sha256": "e146be859bd34c8e04d51ed5dda60d739f255243083670f70667a5e70e0e44cd",
+      "rawSha256": "bf20f565fa859800b2212d29b55a9e4e20d3faa74f840762f3acb95043cc4834",
+      "phase": "finalSourceGuard",
+      "result": "ok",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-jz39-source-guard-batch4_tattoo_printed_demon.log.gz",
+      "encoding": "gzip",
+      "sha256": "989074258067a8efecd36693891ddb62760e9f0bc0d5118c0695fb5756ffe80d",
+      "rawSha256": "efd9b420597589fc27072dd6bb76dd818d5f760d77b2b41b53128b542b5a36d8",
+      "phase": "finalSourceGuard",
+      "result": "ok",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-three-card-source.log.gz",
+      "encoding": "gzip",
+      "sha256": "96297806000c08d22e71fa5e146d11a768a0952a9514fa515c0ed0bde55e24e9",
+      "rawSha256": "b2e968a996f537672046edae54ad20455463084917b18f686b4c40e757f50494",
+      "phase": "sourceChecks",
+      "result": "sourcePass",
+      "passed": 4,
+      "failed": null
+    }
+  ],
+  "authorExecutionOnly": true,
+  "wasmBuilt": false,
+  "webWorkerIntegrated": false,
+  "newConstructionAdmissions": 0,
+  "published": 0,
+  "accepted": 0,
+  "limitations": [
+    "No complete batch, full-product repeat, independent execution, real browser acceptance or public publication.",
+    "Chaos pre-existing-entry-restriction sampling and separate CQ11/TK008 remain outside this completed card."
+  ],
+  "frozenThirdWasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c"
+}

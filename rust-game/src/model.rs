@@ -596,6 +596,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JZ39Demon(Box<crate::batch4_tattoo::DemonPayment>),
     BQ029ExtraAssets(Vec<String>),
     Batch3RemovedTime(TimeMarkerPayment),
     JC055Time(Vec<TimeMarkerPayment>),
@@ -662,6 +663,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    JZ39EnemySacrifice,
     BloodFeed { state: crate::batch3_blood::BloodFeedCursor },
     BQ037Reveal,
     XQ26Name,

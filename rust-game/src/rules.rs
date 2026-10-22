@@ -59,6 +59,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    JZ39SacrificeDemon,
     Batch3RemoveTime,
     JC055RemoveTime,
     SacrificeControlledSubtype(Vec<String>),
@@ -255,6 +256,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JZ39EnemySacrifice,
     XG14DisasterInfluence { observation: Option<crate::batch4::DisasterPlay> },
     XG15DestroyOriginalRegion,
     CQ07EnterMoon,
@@ -575,6 +577,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    JZ39HostKillAndDemon,
     XG15WaterDoubleIcons,
     JC064MartialLaw,
     WM041RenownControl,

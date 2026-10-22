@@ -123,7 +123,7 @@ impl Game {
         if c.face_down || card(&c.definition).kind != "character" {
             return 0;
         }
-        crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0
+        crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0 + self.jz39_host_kill(c)
     }
     pub(crate) fn has_retreat(&self, c: &Card) -> bool {
         !c.face_down
