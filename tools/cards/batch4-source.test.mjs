@@ -44,7 +44,10 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(plan.expansionSlotPlan.reduce((n,c) => n+c.unassignedSlots, 0), plan.scope.unassignedSlots);
   const pilots = plan.cards.filter(c => c.runtime === 'nativePilotPassedPendingBatchIntegration');
   assert.equal(pilots.length, plan.scope.nativePilots);
-  assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), [...pilots.map(c => c.id), ...partials].sort());
+  const drafts = plan.cards.filter(c => c.runtime === 'nativeWipDirectedPassedPendingClosure');
+  assert.equal(drafts.length, plan.scope.nativeWipCards ?? 0);
+  assert.equal(plan.packAValidation?.completionCountAdded ?? 0, 0);
+  assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), [...pilots.map(c => c.id), ...drafts.map(c => c.id), ...partials].sort());
   assert(pool.cards.slice(213).every(c => c.supported === false));
   for (const c of pool.cards.slice(213)) {
     const spec = specs[c.id];

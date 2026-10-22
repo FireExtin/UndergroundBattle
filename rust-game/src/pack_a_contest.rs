@@ -48,9 +48,17 @@ pub(crate) fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     }
     Some(expected)
 }
+fn owns(ops: &[Op]) -> bool {
+    ops.iter().any(|op| match op {
+        Op::MysticContest { .. } | Op::MysticWin { .. } | Op::MysticDestroyedInfluence => true,
+        Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
+        Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
+        _ => false,
+    })
+}
 pub(crate) fn related(a: &AbilitySpec) -> bool {
     a.key.starts_with("pack-a-") || a.event == Some(Event::MysticContestWon)
-        || a.ops.iter().any(|op| matches!(op,Op::MysticContest { .. }|Op::MysticWin { .. }|Op::MysticDestroyedInfluence))
+        || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
         || a.targets.iter().any(|t| t.predicate == Some(TargetPredicate::PackAOwnGraveCharacter))
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -132,7 +140,7 @@ impl Game {
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         let id = f.source.card.definition.as_str();
-        if !CARDS.contains(&id) && !f.steps.iter().any(|s| matches!(s.op,Op::MysticContest { .. }|Op::MysticWin { .. }|Op::MysticDestroyedInfluence)) { return Ok(()); }
+        if !CARDS.contains(&id) && !f.ability_key.starts_with("pack-a-") && !f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op))) { return Ok(()); }
         if self.validated_cross_card_frame(f)? { return Ok(()); }
         self.pack_a_source(f.actor,&f.source)?;
         if !self.mystic_instance_valid(&f.frame_id) || f.frame_id == f.source.card.id || f.cursor > f.steps.len()
@@ -164,8 +172,8 @@ impl Game {
         }
         if id == "WM061" {
             if f.source.card.face_down || f.source.region.is_some() || f.source.source_region_instance.is_some() || f.source.play_source.is_some()
-                || f.chosen_region.is_some() || !f.targets.is_empty() || f.steps.is_empty() || f.steps.len() > self.players.len()
-                || f.steps.windows(2).any(|w| w[0].context >= w[1].context)
+                || f.chosen_region.is_some() || !f.targets.is_empty() || f.steps.len() != self.players.len()
+                || f.steps.iter().enumerate().any(|(seat, s)| s.context != seat)
                 || f.steps.iter().any(|s| s.context >= self.players.len() || !matches!(s.op,Op::MoveDeckTopToGraveyard { player:PlayerRef::Context,count:5 }))
                 || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len() <= 2 && ids.iter().all(|n| self.mystic_instance_valid(n) && *n != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("土归土只能保留实际费用与按席位执行的顶五张入墓程序".into());
@@ -206,14 +214,12 @@ impl Game {
                 }
             }
         }
-        let previous = self.effects.len();
         for source in sources {
             let key = if source.card.definition == "WM022" { SHADOW_WIN } else { PREACHER_WIN };
             let mut a = definition(&source.card.definition).unwrap().abilities.into_iter().find(|a| a.key == key).unwrap();
             a.ops[0] = Op::MysticWin { contest_id:Some(outcome.contest_id.clone()) };
             self.effects.push_back(Effect::Declare { declaration:Declaration { actor:source.card.controller,source,ability:a } });
         }
-        self.batch3_register_entry_order(&outcome.contest_id,previous);
     }
     pub(crate) fn pack_a_destroyed_influence(&mut self, f: &ResolutionFrame) {
         let regions = self.regions.iter().enumerate().filter(|(_,r)| !r.vacant && r.destroyed).map(|(r,_)| r).collect::<Vec<_>>();
@@ -231,7 +237,31 @@ impl Game {
         }
         Ok(())
     }
+    fn pack_a_transaction_matches(&self, f: &ResolutionFrame, c: &Card) -> bool {
+        let mut expected = f.source.card.clone();
+        // Mirror existing fresh() card fields without allocating identities or
+        // changing payment, RNG, modifiers, or the transaction itself.
+        expected.id = c.id.clone(); expected.face_down = false;
+        expected.advancement_markers = 0; expected.named_character = None;
+        expected.time_markers = 0; expected.permanent_combat_markers = 0;
+        expected.permanent_defense_markers = 0; expected.lock_markers = 0;
+        self.mystic_instance_valid(&c.id) && c.id != f.source.card.id && c.id != f.frame_id && *c == expected
+    }
     pub(crate) fn validate_pack_a_state(&self) -> RuleResult<()> {
+        // Check recursive ownership before source-specific early returns, in
+        // every persisted container, including forged foreign source frames.
+        for item in &self.stack { if let Some(f) = &item.frame { self.validate_pack_a_frame(f)?; }
+            else if item.card.as_ref().is_some_and(|c| CARDS.contains(&c.definition.as_str())) { return Err("隐秘卡响应对象缺少原程序帧".into()); } }
+        for e in &self.effects { match e {
+            Effect::Frame { frame } => self.validate_pack_a_frame(frame)?,
+            Effect::Declare { declaration } => self.validate_pack_a_declaration(declaration)?,
+            _ => (),
+        } }
+        if let Some(p) = &self.pending { match &p.resolution {
+            ChoiceResolution::Frame { frame,.. } => self.validate_pack_a_frame(frame)?,
+            ChoiceResolution::Declare { declaration,.. } => self.validate_pack_a_declaration(declaration)?,
+            _ => (),
+        } }
         let mut frames = BTreeSet::new(); let mut events = BTreeSet::new();
         let mut remember = |source:&SourceSnapshot,ops:&[Op]| -> RuleResult<()> {
             if let Some(Op::MysticWin { contest_id:Some(id) }) = ops.first() {
@@ -247,7 +277,7 @@ impl Game {
                 || !matches!(f.guard,GuardState::Unchecked) || item.card.is_some() != transaction || item.reveal != (f.ability_key == "reveal")
                 || item.target != f.targets.first().map(|t| t.id.clone())
                 || item.deploy_region != if matches!(f.ability_key.as_str(),"deploy"|"reveal") { f.chosen_region } else { None }
-                || item.card.as_ref().is_some_and(|c| c.definition != f.source.card.definition || c.owner != f.source.card.owner || c.controller != f.actor || c.face_down) {
+                || item.card.as_ref().is_some_and(|c| !self.pack_a_transaction_matches(f,c)) {
                 return Err("隐秘卡响应外壳与原执行帧不符".into());
             }
         } }
@@ -257,7 +287,7 @@ impl Game {
             },
             Effect::Frame { frame:f } if CARDS.contains(&f.source.card.definition.as_str()) && !self.validated_cross_card_frame(f)? => {
                 self.validate_pack_a_frame(f)?;
-                if !frames.insert(&f.frame_id) { return Err("隐秘卡执行续体重复".into()); }
+                if !self.rumor_frame_continuation_valid(f) || !frames.insert(&f.frame_id) { return Err("隐秘卡执行续体只能来自真实暂停的传闻，不能绕过响应".into()); }
             },
             _ => (),
         } }

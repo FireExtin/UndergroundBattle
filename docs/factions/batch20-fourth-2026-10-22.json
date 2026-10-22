@@ -14,7 +14,8 @@
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 28
+    "remainingNativePrograms": 28,
+    "nativeWipCards": 5
   },
   "colorCounts": {
     "红": 13,
@@ -343,8 +344,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
       "sourceImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 7,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -352,7 +353,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
+      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
     },
     {
       "id": "LC16",
@@ -433,8 +435,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
       "sourceImageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 3,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -442,7 +444,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
+      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
     },
     {
       "id": "BQ082",
@@ -451,8 +454,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
       "sourceImageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 6,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -460,7 +463,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
+      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
     },
     {
       "id": "XQ20",
@@ -541,8 +545,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
       "sourceImageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 2,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -550,7 +554,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
+      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
     },
     {
       "id": "WM036",
@@ -615,8 +620,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
       "sourceImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 4,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -624,7 +629,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Bounded native pilot in independent pack A clone; shared 32-case suite passed. Empty-hand-and-deck ruling, pack B start hooks/nesting, WASM/UI and integration review remain pending.",
+      "nativeEvidence": "docs/BATCH50_PACK_A_MYSTIC_CONTEST.md"
     },
     {
       "id": "BQ031",
@@ -988,7 +994,8 @@
       "acceptedNewCards": 0,
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
-      "targetCards": 50
+      "targetCards": 50,
+      "nativeWipCards": 5
     }
   ],
   "ownershipCheck": {
@@ -1460,5 +1467,32 @@
       "mechanism-first50.csv": "f300daaf9626028ddf73d21494d545dde031a19bff057e829308a6df34b0f313",
       "uwb-exact-card-crosswalk.csv": "d8f20936f5b333141c0f9bef722d9c3a786516b4727bb00cf99abd39e6d9689c"
     }
+  },
+  "packAValidation": {
+    "cards": [
+      "BQ082",
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061"
+    ],
+    "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+    "nativeSuite": "rust-game/src/pack_a_contest_tests.rs",
+    "nativeSuiteCases": 32,
+    "nativeSuitePassed": true,
+    "integrationStatus": "nativeWipNotCountedComplete",
+    "sourceCorrection": {
+      "id": "BQ082",
+      "field": "conditionalPublic",
+      "basis": "original sun symbol before public; Hegemony manual printed19/22",
+      "historicalSpecificationUnmodified": true
+    },
+    "limits": [
+      "A participant with empty hand and empty deck needs a source ruling; no zero cost invented.",
+      "Nested contests during the future pack B start-response hooks are not yet admitted.",
+      "Pack B hooks are empty integration seams; no pack B card completion claimed.",
+      "No WASM, browser acceptance, deck admission, publication or deployment."
+    ],
+    "completionCountAdded": 0
   }
 }

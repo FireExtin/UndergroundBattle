@@ -137,7 +137,9 @@ impl Game {
         if state.contest_id != id || !matches!(state.phase, MysticPhase::BeforeSelection) || self.mystic_start_responses_pending() {
             return Err("隐秘对抗必须等待原开始触发与响应结束，且只移入顶牌一次".into());
         }
-        let participants = state.participants.clone();
+        let participants = state.participants.iter().copied().filter(|s| !self.players[*s].eliminated).collect::<Vec<_>>();
+        self.mystic_contest.as_mut().unwrap().participants = participants.clone();
+        self.mystic_contest.as_mut().unwrap().bonuses.retain(|b| participants.contains(&b.frame.actor));
         for seat in participants {
             if !self.players[seat].deck.is_empty() {
                 let c = self.players[seat].deck.remove(0);
@@ -235,8 +237,10 @@ impl Game {
         }
         for owner in shuffled { self.shuffle_player(owner); }
         self.mystic_history.push(outcome.clone());
+        let previous = self.effects.len();
         self.pack_a_observe_mystic_win(&outcome);
         self.mystic_win_observers(&outcome)?;
+        self.batch3_register_entry_order(&outcome.contest_id, previous);
         let society_before = self.players.iter().map(|p| (p.society_zone.exposure,p.society_zone.secrecy)).collect();
         self.mystic_contest.as_mut().unwrap().phase = MysticPhase::Rewards { outcome: Box::new(outcome), awarded: vec![], society_before };
         self.mystic_next_reward()
@@ -314,6 +318,7 @@ impl Game {
         if !self.mystic_instance_valid(&o.contest_id) || !self.mystic_instance_valid(&o.frame_id) || o.turn != self.turn
             || o.actor >= self.players.len() || o.source.card.controller != o.actor || o.participants.is_empty()
             || o.participants.windows(2).any(|w| w[0] >= w[1]) || o.participants.iter().any(|s| *s >= self.players.len())
+            || self.players.iter().any(|p| !p.eliminated && !o.participants.contains(&p.seat))
             || o.shown.iter().map(|s| s.seat).collect::<Vec<_>>() != o.participants
             || !crate::pack_a_contest::admitted_start(&o.source.card.definition, &o.ability_key, o.actor_bonus) {
             return Err("隐秘对抗记录的来源、参与者或程序无效".into());
@@ -376,7 +381,10 @@ impl Game {
         };
         if !self.mystic_instance_valid(&state.contest_id) || state.turn != self.turn || state.frame.actor >= self.players.len()
             || !matches!(state.frame.guard, GuardState::Accepted) || Self::mystic_op_bonus(&state.frame) != Some(state.actor_bonus)
-            || state.participants != self.players.iter().filter(|p| !p.eliminated).map(|p| p.seat).collect::<Vec<_>>()
+            || state.participants.windows(2).any(|w| w[0] >= w[1]) || state.participants.iter().any(|s| *s >= self.players.len())
+            || if matches!(state.phase,MysticPhase::BeforeSelection | MysticPhase::After { .. }) {
+                self.players.iter().any(|p| !p.eliminated && !state.participants.contains(&p.seat))
+            } else { state.participants != self.players.iter().filter(|p| !p.eliminated).map(|p| p.seat).collect::<Vec<_>>() }
             || self.stack.iter().any(|s| s.id == state.frame.frame_id)
             || self.effects.iter().any(|e| matches!(e, Effect::Frame { frame } if frame.frame_id == state.frame.frame_id)) {
             return Err("隐秘对抗阶段、原执行帧或存活参与者无效".into());
