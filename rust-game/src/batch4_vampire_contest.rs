@@ -58,7 +58,11 @@ pub(crate) fn owns(ops: &[Op]) -> bool {
     })
 }
 pub(crate) fn related(f: &ResolutionFrame) -> bool {
-    key(&f.ability_key) || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
+    key(&f.ability_key)
+        || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
+        || f.already_paid
+            .iter()
+            .any(|p| matches!(p, PaidCost::BQ036Attachment(_)))
 }
 pub(crate) fn ability_for(id: &str) -> Option<AbilitySpec> {
     let mut a = match id {

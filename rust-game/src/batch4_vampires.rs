@@ -32,9 +32,8 @@ pub struct RaidObservation {
     pub raid: Box<ResolutionFrame>,
 }
 
-/// One qualifying attachment is enough for a counted character. This is
-/// BQ038's card-specific input to a future resolved start-bonus receipt, not a
-/// second contest protocol or an already admitted MysticBonus.
+/// One qualifying attachment is enough for a counted character. BQ038 freezes
+/// these identities in its finite resolved start-bonus receipt.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Bq038CharacterWitness {
@@ -104,7 +103,7 @@ pub(crate) fn owns(ops: &[Op]) -> bool {
     })
 }
 pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
-    CARDS.contains(&f.source.card.definition.as_str()) || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
+    CARDS.contains(&f.source.card.definition.as_str()) || crate::batch4_vampire_contest::related(f) || f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op)))
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match (id, a.kind.as_str()) {
@@ -141,7 +140,7 @@ fn searchable(c: &Card) -> bool {
     catalog::has_kind(d, "attachment") && d.subtypes.iter().any(|s| matches!(s.as_str(), "装备" | "武器" | "状态"))
 }
 impl Game {
-    /// Read-only cost eligibility for the future BQ036 action adapter. The
+    /// Read-only cost eligibility for the BQ036 action adapter. The
     /// existing source-character sacrifice cost cannot express this predicate.
     pub(crate) fn bq036_contest_cost_candidates(&self, actor: usize) -> Vec<String> {
         if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }
@@ -163,7 +162,7 @@ impl Game {
     }
 
     /// Evaluate at the BQ038 trigger's resolution, then retain these identities
-    /// in its B-owned operation when the parent adds typed bonus dispatch. A
+    /// in its B-owned resolved bonus operation. A
     /// foreign-controlled attachment qualifies; only its character is personal.
     pub(crate) fn bq038_contest_count_witnesses(&self, actor: usize) -> Vec<Bq038CharacterWitness> {
         if self.players.get(actor).is_none_or(|p| p.eliminated) { return vec![]; }

@@ -728,3 +728,69 @@ fn b_contest_protocol_response_reveal_must_dispatch_before_outer_commit() {
         "The response-generated forced reveal declaration must reach the stack before the outer start resumes; stack={:?}; effects={:?}", g.stack.iter().map(|s|s.frame.as_ref().map(|f|f.ability_key.as_str())).collect::<Vec<_>>(), g.effects.iter().map(|e|match e { Effect::Declare{declaration}=>declaration.ability.key.as_str(), Effect::MysticContinue{..}=>"MysticContinue", _=>"other" }).collect::<Vec<_>>());
     checkpoint(&g);
 }
+
+#[test]
+fn b_contest_typed_payment_and_start_event_cannot_hide_under_foreign_programs() {
+    let mut paid = layout();
+    let source = field(&mut paid, "BQ036", 0);
+    let host = field(&mut paid, "JC029", 0);
+    let cost = attached(&mut paid, "XQ14", 0, &host);
+    fund(&mut paid, 0, "JC125", 1);
+    act(&mut paid, 0, sacrifice_action(&source, &cost));
+    let receipt = paid
+        .stack
+        .last()
+        .unwrap()
+        .frame
+        .as_ref()
+        .unwrap()
+        .already_paid[1]
+        .clone();
+    let mut g = layout();
+    let id = held(&mut g, "JC125", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(id),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+    );
+    let mut bad = g.clone();
+    bad.stack
+        .last_mut()
+        .unwrap()
+        .frame
+        .as_mut()
+        .unwrap()
+        .already_paid
+        .push(receipt);
+    invalid(&g, bad);
+
+    let mut g = layout();
+    let id = field(&mut g, "JC125", 0);
+    let (_, c) = g.board(&id).unwrap();
+    let source = g.source_snapshot(c, Some(0));
+    let mut bad = g.clone();
+    bad.effects.push_back(Effect::Declare {
+        declaration: Declaration {
+            actor: 0,
+            source,
+            ability: ability(
+                "foreign-start",
+                "foreign",
+                Timing::Fast,
+                vec![],
+                vec![],
+                vec![Op::Draw {
+                    player: PlayerRef::Actor,
+                    count: 1,
+                    end: DeckEnd::Top,
+                }],
+                Some(Event::BQ038MysticStart),
+            ),
+        },
+    });
+    invalid(&g, bad);
+}
