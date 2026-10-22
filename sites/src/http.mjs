@@ -14,23 +14,25 @@ async function body(request) {
     return value;
   } catch { throw new HttpError(400, '请求格式不正确'); }
 }
-export function createWorker(kernel, now = Date.now) { return {
+export function createWorker(kernel, now = Date.now, options = {}) { return {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     let service;
     try {
+      const botEnabled = options.botEnabled === undefined ? env.BOT_PRACTICE_ENABLED === 'true' : options.botEnabled === true;
+      const botPractice = botEnabled ? {botPractice:{difficulties:['easy','normal','hard'],hardAdvantages:['peekHumanHands']}} : {};
       if (request.method === 'GET' && url.pathname === '/api/health') return json({ ok: true, service: 'hegemony-worker', engineVersion: JSON.parse(kernel.catalog()).engineVersion, transport: 'polling' });
-      if (request.method === 'GET' && url.pathname === '/api/catalog') return json({ ...JSON.parse(kernel.catalog()), transport: 'polling', entryIdempotency: true });
+      if (request.method === 'GET' && url.pathname === '/api/catalog') return json({ ...JSON.parse(kernel.catalog()), transport: 'polling', entryIdempotency: true, ...botPractice });
       // Ordinary DB binding queries go to the primary; no read-replica Sessions are used.
-      service = new RoomService(env.DB, kernel, now);
+      service = new RoomService(env.DB, kernel, now, {...options,botEnabled});
       const entry = async result => ({ ...result, view: await service.publicView(result.view) });
       if (request.method === 'POST' && url.pathname === '/api/rooms') return json(await entry(await service.create(await body(request))));
       if (request.method === 'POST' && url.pathname === '/api/rooms/join') return json(await entry(await service.join(await body(request))));
       const match = url.pathname.match(/^\/api\/rooms\/([a-f0-9]{24})\/(state|commands|events|catalog|quote)$/);
       if (!match) throw new HttpError(404, '接口不存在');
       const [, id, operation] = match;
-      if (operation === 'catalog' && request.method === 'GET') return json({ ...await service.catalog(id, request.headers.get('authorization')), transport: 'polling', entryIdempotency: true });
+      if (operation === 'catalog' && request.method === 'GET') return json({ ...await service.catalog(id, request.headers.get('authorization')), transport: 'polling', entryIdempotency: true, ...botPractice });
       if (operation === 'state' && request.method === 'GET') {
         const view = await service.state(id, request.headers.get('authorization'), url.searchParams.get('afterVersion'));
         return view ? json(await service.publicView(view)) : new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });

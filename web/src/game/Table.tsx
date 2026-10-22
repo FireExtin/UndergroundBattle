@@ -111,10 +111,10 @@ export function RoomLobby({ view, catalog, busy, onAction, selection }: { view: 
     </section>
     {selectionWarning && <p className="hg-library-warning" role="status">浏览器未能记住所选牌组；实际上桌牌组仍以上方同步结果为准。</p>}
     {differs && <section className="hg-room-selected-deck" aria-label="待应用的牌组"><p>已选择：<strong>{chosenDeck.name}</strong> · {chosenDeck.cards.reduce((total, card) => total + card.count, 0)} 张 · 尚未应用到此席位</p><p className="hg-muted">恢复原席保留原牌组。在准备阶段应用后会取消准备，请重新准备。</p><button type="button" className="hg-button hg-button-primary" disabled={busy || !canChangeDeck || !chosenAction} onClick={() => { if (!busy && canChangeDeck && chosenAction && selectedDeck) chooseDeck(selectedDeck, chosenAction); }}>应用所选牌组到此席位</button></section>}
-    <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
+    {!view.botMatch && <section className="hg-invite"><div><span className="hg-eyebrow">邀请伙伴入席</span><strong>{view.inviteCode}</strong><p>分享邀请码或邀请链接。伙伴使用自己的浏览器入席；本机再次加入会恢复原座位。</p></div><button className="hg-button hg-button-primary" onClick={async () => {
       try { await navigator.clipboard.writeText(`${location.origin}/?invite=${encodeURIComponent(view.inviteCode)}`); setCopied(true); setCopyError(false); }
       catch { setCopyError(true); }
-    }}>{copied ? '✓ 邀请链接已复制' : '复制邀请链接 ↗'}</button>{copyError && <p role="status">浏览器无法复制，请手动分享上方邀请码。</p>}</section>
+    }}>{copied ? '✓ 邀请链接已复制' : '复制邀请链接 ↗'}</button>{copyError && <p role="status">浏览器无法复制，请手动分享上方邀请码。</p>}</section>}
     <div className="hg-seats">{Array.from({ length: capacity }, (_, seat) => {
       const player = view.players.find(item => item.seat === seat);
       const team = player?.team ?? (view.mode === 'teams' ? (seat < 2 ? 0 : 1) : seat);

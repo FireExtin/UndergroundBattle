@@ -1,5 +1,5 @@
-// Independent server-side foundation. Not connected to RoomService or enabled
-// in production yet. Authority must come from persisted room metadata, never
+// Server-side practice policy; RoomService owns validation and atomic commits.
+// The Worker feature gate defaults off. Authority comes from persisted metadata, never
 // from the client's action. The opaque Rust room state is not accepted here.
 const MAX_U64 = (1n << 64n) - 1n;
 const difficultyNames = new Set(['easy', 'normal', 'hard']);
@@ -135,7 +135,8 @@ export function chooseBotCandidate(policy, authority, seat, getView) {
   }
   const step = randomStep(policy);
   if (!action) {
-    const candidates = view.legalActions.filter(a => a.kind !== 'inspect-hidden');
+    const candidates = view.legalActions.filter(a => a.kind !== 'inspect-hidden'
+      && (view.status !== 'lobby' || a.kind === 'ready' && view.players?.find(p => p.id === view.you)?.ready === false));
     if (!candidates.length) return null;
     const sorted = policy.difficulty === 'easy' ? candidates : [...candidates].sort((a,b) => score(b,context)-score(a,context));
     const eligible = policy.difficulty === 'easy' ? sorted : sorted.filter(a => score(a,context) === score(sorted[0],context));
@@ -154,5 +155,59 @@ export function chooseBotCandidate(policy, authority, seat, getView) {
     mustValidateInRust:true, peekedHumanHands:context.humanHands.length > 0 });
 }
 export function assertHumanBotCommandId(commandId) {
-  if (typeof commandId !== 'string' || !commandId || commandId.length > 64 || commandId.startsWith('bot:')) fail('Bot decision IDs are server-reserved');
+  if (typeof commandId !== 'string' || !commandId || commandId.length > 128 || commandId.startsWith('bot:')) fail('Bot decision IDs are server-reserved');
+}
+// Alternative payloads use displayed options only. They are proposed under the
+// same decision ID/RNG step; only the first Rust-accepted payload may be committed.
+export function botCandidateAlternatives(policy, authority, seat, getView, limit = 48) {
+  if (!Number.isInteger(limit) || limit < 1 || limit > 64) fail('bounded candidate budget required');
+  const first = chooseBotCandidate(policy, authority, seat, getView);
+  if (!first) return [];
+  const results = [], seen = new Set();
+  const add = action => {
+    const key = JSON.stringify(action);
+    if (results.length < limit && !seen.has(key)) { seen.add(key); results.push(freeze({ ...first, action })); }
+  };
+  add(first.action);
+  const context = botDecisionContext(policy, authority, seat, getView), view = context.view, window = view.responseWindow;
+  if (first.action.kind === 'beginResponse') { add({ kind:'passResponse', windowId:window.id }); return results; }
+  if (first.action.kind === 'passResponse') return results;
+  const wrap = action => window?.myIntentId && !view.pendingChoice
+    ? action.kind === 'pass' ? { kind:'cancelAndPass', windowId:window.id, intentId:window.myIntentId }
+      : { kind:'submitResponse', windowId:window.id, intentId:window.myIntentId, action }
+    : { kind:'game', action };
+  if (view.pendingChoice) {
+    const c = view.pendingChoice, ids = c.options.map(o => o.id), base = { kind:'choose', choiceId:c.id };
+    if (c.kind === 'damage') {
+      const amount = c.amount;
+      if (!Number.isSafeInteger(amount) || amount < 0 || amount > 10000) return results;
+      // Cover focus damage and balanced distributions before bounded general
+      // compositions. Rust remains the authority for current guard/prevention.
+      for (const id of ids) add(wrap({ ...base, allocations:{ [id]:amount } }));
+      for (let start=0; start<ids.length; start++) {
+        const allocations={}; for(let n=0;n<ids.length;n++) allocations[ids[(start+n)%ids.length]]=Math.floor(amount/ids.length)+(n<amount%ids.length?1:0);
+        add(wrap({ ...base, allocations }));
+      }
+      const distribute = (at, left, allocations) => {
+        if (results.length >= limit) return;
+        if (at === ids.length-1) { add(wrap({ ...base, allocations:{ ...allocations, [ids[at]]:left } })); return; }
+        for(let n=0;n<=left && results.length<limit;n++) distribute(at+1,left-n,{...allocations,[ids[at]]:n});
+      };
+      if (ids.length && ids.length <= 12 && amount <= 40) distribute(0,amount,{});
+    } else if (!['order','investigation'].includes(c.kind)) {
+      const min=c.min??0,max=Math.min(c.max??ids.length,ids.length);
+      const select = (at, left, selected) => {
+        if(results.length>=limit)return;
+        if(left===0){add(wrap({...base,selected}));return;}
+        for(let i=at;i<=ids.length-left&&results.length<limit;i++)select(i+1,left-1,[...selected,ids[i]]);
+      };
+      for(let n=min;n<=max&&n<=8&&results.length<limit;n++)select(0,n,[]);
+    }
+  } else {
+    const actions = view.legalActions.filter(a=>a.kind!=='inspect-hidden'
+      &&(view.status!=='lobby'||a.kind==='ready'&&view.players?.find(p=>p.id===view.you)?.ready===false));
+    actions.sort((a,b)=>score(b,context)-score(a,context));
+    for(const action of actions)add(wrap(commandAction(action)));
+  }
+  return results;
 }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createBotPolicy, restoreBotPolicy, assertBotAuthority, publicBotDisclosure, botDecisionContext, chooseBotCandidate, assertHumanBotCommandId } from '../src/bot-policy.mjs';
+import { createBotPolicy, restoreBotPolicy, assertBotAuthority, publicBotDisclosure, botDecisionContext, chooseBotCandidate, botCandidateAlternatives, assertHumanBotCommandId } from '../src/bot-policy.mjs';
 const roomId='0123456789abcdef01234567';
 const policy=(difficulty='normal',seed='9007199254740993')=>createBotPolicy({roomId,difficulty,botSeats:[1],seed});
 const authority=p=>({roomId:p.roomId,roomKind:'bot',difficulty:p.difficulty,humanSeats:[0],botSeats:[1]});
@@ -70,5 +70,14 @@ test('public disclosure names actual advantage and excludes seeds, counter and p
 });
 test('decision counter overflow fails without mutating input and server-reserved IDs cannot be supplied by humans',()=>{
  const p=restoreBotPolicy(JSON.stringify({...policy(),counter:'18446744073709551615'}));assert.throws(()=>chooseBotCandidate(p,authority(p),1,getter({})));assert.equal(p.counter,'18446744073709551615');assert.throws(()=>assertHumanBotCommandId('bot:reserved'));assert.doesNotThrow(()=>assertHumanBotCommandId('human-command'));
- assert.throws(()=>assertHumanBotCommandId(''));assert.throws(()=>assertHumanBotCommandId('x'.repeat(65)));
+ assert.throws(()=>assertHumanBotCommandId(''));assert.throws(()=>assertHumanBotCommandId('x'.repeat(129)));
+});
+test('ready Bots never toggle themselves unready while waiting for the host',()=>{
+ const p=policy();const lobby=ready=>view(1,{status:'lobby',players:[{id:'p1',ready}],legalActions:[{kind:'ready'}]});
+ assert.equal(chooseBotCandidate(p,authority(p),1,getter({1:lobby(true)})),null);assert.equal(chooseBotCandidate(p,authority(p),1,getter({1:lobby(false)})).action.action.kind,'ready');
+});
+test('bounded alternatives preserve the original decision ID/RNG and only displayed choice IDs',()=>{
+ const p=policy();const own=view(1,{pendingChoice:{id:'c',kind:'damage',amount:3,playerId:'p1',options:[{id:'a'},{id:'b'}]},legalActions:[{kind:'choose',choiceId:'c'}]});
+ const candidates=botCandidateAlternatives(p,authority(p),1,getter({1:own}),12);assert(candidates.length>1&&candidates.length<=12);
+ for(const c of candidates){assert.equal(c.commandId,candidates[0].commandId);assert.deepEqual(c.nextPolicy,candidates[0].nextPolicy);assert.equal(Object.values(c.action.action.allocations).reduce((a,b)=>a+b,0),3);assert(Object.keys(c.action.action.allocations).every(id=>['a','b'].includes(id)));}assert.equal(p.counter,'0');
 });

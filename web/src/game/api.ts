@@ -1,4 +1,4 @@
-import type { Action, Catalog, SavedSession, Session, View } from './types';
+import type { Action, BotEntry, Catalog, SavedSession, Session, View } from './types';
 import type { DeckDraft } from './deckLibrary';
 import { playerStorage } from './playerStorage';
 
@@ -284,6 +284,9 @@ async function enterRoom(path: string, values: Record<string, unknown>): Promise
   const attempt = async () => {
     const session = await request<unknown>(path, init);
     if (!isEntrySession(session)) throw new ApiError(0, '入桌回执格式不正确，结果尚未确认，请重试原请求。');
+    if (values.roomKind === 'bot' && (session.view.botMatch?.roomKind !== 'bot' || session.view.botMatch.difficulty !== values.difficulty)) {
+      throw new ApiError(0, '尚未收到所选Bot模式的确认，请保留原请求重试。');
+    }
     return session;
   };
   try {
@@ -312,9 +315,9 @@ async function enterRoom(path: string, values: Record<string, unknown>): Promise
     throw error; // Other failures retain the exact original key for recovery.
   }
 }
-export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string) => enterRoom('/api/rooms', { name, mode, deckId });
+export const createRoom = (name: string, mode: 'duel' | 'teams', deckId: string, bot?: BotEntry) => enterRoom('/api/rooms', { name, mode, deckId, ...bot });
 export const joinRoom = (inviteCode: string, name: string, deckId: string) => enterRoom('/api/rooms/join', { inviteCode, name, deckId });
-export const createRoomWithDeck = (name: string, mode: 'duel' | 'teams', deckDraft: DeckDraft) => enterRoom('/api/rooms', { name, mode, deckDraft });
+export const createRoomWithDeck = (name: string, mode: 'duel' | 'teams', deckDraft: DeckDraft, bot?: BotEntry) => enterRoom('/api/rooms', { name, mode, deckDraft, ...bot });
 export const joinRoomWithDeck = (inviteCode: string, name: string, deckDraft: DeckDraft) => enterRoom('/api/rooms/join', { inviteCode, name, deckDraft });
 
 /** One authenticated version poll. No token in URLs, no full hidden state. */

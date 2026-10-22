@@ -4,7 +4,7 @@ import { DeckLibrary } from './DeckLibraryPanel';
 import { createDeckDraft, publicDeckDraft, readDeckLibrary, selectableSocieties, validateDeckDraft } from './deckLibrary';
 import type { DeckDraft } from './deckLibrary';
 import { deckColors } from './factions';
-import type { CardDefinition, Catalog, Deck } from './types';
+import type { BotDifficulty, BotEntry, CardDefinition, Catalog, Deck } from './types';
 import { navigateLobby, useLobbyPage } from './lobbyNavigation';
 import { readLobbySelection, saveLobbySelection } from './deckWorkspace';
 import { readSavedSeats } from './api';
@@ -34,10 +34,10 @@ export function DeckPicker({ decks, cards, value, onChange, disabled = false, al
 
 export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, retry, onSelectDraft, onCreateDraft, onJoinDraft }: {
   independent?: boolean; catalog: Catalog | null; busy: boolean;
-  onCreate: (name: string, mode: 'duel' | 'teams', deckId: string) => void;
+  onCreate: (name: string, mode: 'duel' | 'teams', deckId: string, bot?: BotEntry) => void;
   onJoin: (invite: string, name: string, deckId: string) => void; retry: () => void;
   onSelectDraft?: (draft: DeckDraft) => void;
-  onCreateDraft?: (name: string, mode: 'duel' | 'teams', draft: DeckDraft) => void;
+  onCreateDraft?: (name: string, mode: 'duel' | 'teams', draft: DeckDraft, bot?: BotEntry) => void;
   onJoinDraft?: (invite: string, name: string, draft: DeckDraft) => void;
 }) {
   const invitation = new URL(location.href).searchParams;
@@ -52,6 +52,10 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   const [name, setName] = useState(readPlayerName);
   const submittedName = useRef<string | null>(null);
   const [mode, setMode] = useState<'duel' | 'teams'>('duel');
+  const [roomKind, setRoomKind] = useState<'human' | 'bot'>('human');
+  const [difficulty, setDifficulty] = useState<BotDifficulty>('normal');
+  const botDifficulties = catalog?.botPractice?.difficulties;
+  const botAvailable = Array.isArray(botDifficulties) && botDifficulties.includes(difficulty);
   const [invite, setInvite] = useState(initialInvite);
   const [tab, setTab] = useState<'create' | 'join'>(initialInvite ? 'join' : 'create');
   const [deckId, setDeckId] = useState(initialSelection?.kind === 'preset' ? initialSelection.deckId : '');
@@ -81,7 +85,8 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
   const societyId = selectedDraft?.societyId || '';
   const selectedSociety = societies.find(society => society.id === societyId);
   const draftEntryAvailable = joining ? !!onJoinDraft : !!onCreateDraft;
-  const entryAvailable = restoringSeat || (selectedDraft ? draftValid && draftEntryAvailable : !!deck);
+  const entryAvailable = (restoringSeat || (selectedDraft ? draftValid && draftEntryAvailable : !!deck))
+    && (joining || roomKind !== 'bot' || botAvailable);
   const selectedCount = selectedDraft?.cards.reduce((total, item) => total + item.count, 0) ?? deck?.cardCount;
   return <main className={`hg-lobby hg-lobby-${page}`}>
     <nav className="hg-lobby-navigation" aria-label="大厅导航">
@@ -108,11 +113,12 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
         event.preventDefault(); if (!catalog || !entryAvailable || busy || joining && !targetInvite.trim()) return;
         const entryName = submittedName.current ?? rememberPlayerName(name);
         submittedName.current = entryName; setName(entryName);
+        const bot: BotEntry | undefined = !joining && roomKind === 'bot' ? { roomKind:'bot', difficulty } : undefined;
         if (restoringSeat) onJoin(targetInvite.trim(), entryName, selected);
         else if (selectedDraft) {
-          if (!joining) onCreateDraft?.(entryName, mode, publicDeckDraft(selectedDraft));
+          if (!joining) { if (bot) onCreateDraft?.(entryName, mode, publicDeckDraft(selectedDraft), bot); else onCreateDraft?.(entryName, mode, publicDeckDraft(selectedDraft)); }
           else onJoinDraft?.(targetInvite.trim(), entryName, publicDeckDraft(selectedDraft));
-        } else if (!joining) onCreate(entryName, mode, selected); else onJoin(targetInvite.trim(), entryName, selected);
+        } else if (!joining) { if (bot) onCreate(entryName, mode, selected, bot); else onCreate(entryName, mode, selected); } else onJoin(targetInvite.trim(), entryName, selected);
       }}>
         <div className="hg-section-title"><span className="hg-eyebrow">01 / {invitationOnly ? '受邀加入' : '入席'}</span>{!invitationOnly && <div className="hg-tabs"><button type="button" className={tab === 'create' ? 'hg-tab-active' : ''} onClick={() => setTab('create')}>创建牌桌</button><button type="button" className={tab === 'join' ? 'hg-tab-active' : ''} onClick={() => setTab('join')}>邀请码加入</button></div>}</div>
         {invitationOnly && <p className="hg-muted">此邀请只加入下方牌桌。</p>}
@@ -134,11 +140,17 @@ export function Lobby({ independent = false, catalog, busy, onCreate, onJoin, re
         {selectedDraft && !restoringSeat && !draftValid && <div className="hg-library-warning" role="alert"><p>已选择草稿需要按当前卡池重新校验，暂不可入席。</p><ul>{draftValidation?.issues.map((issue, index) => <li key={`${issue.code}:${issue.cardId || index}`}>{issue.message}</li>)}</ul></div>}
         {!selectedDraft && !!deckId && !!catalog && !deck && <p className="hg-library-warning" role="alert">上次选择的预组已不在当前目录，请重新选择。</p>}
         <label className="hg-field">你的称呼<input value={name} onChange={event => { setName(event.target.value); submittedName.current = null; }} maxLength={24} placeholder="留空自动生成称呼" autoComplete="nickname" disabled={busy} /></label>
+        {!joining && (catalog?.botPractice || roomKind === 'bot') && <>
+          <label className="hg-field">对局类型<select value={roomKind} disabled={busy} onChange={event => setRoomKind(event.target.value as 'human' | 'bot')}><option value="human">真人邀请牌桌</option><option value="bot" disabled={!catalog?.botPractice}>Bot练习</option></select></label>
+          {roomKind === 'bot' && <><label className="hg-field">Bot难度<select value={difficulty} disabled={busy} onChange={event => setDifficulty(event.target.value as BotDifficulty)}><option value="easy">简单</option><option value="normal">普通</option><option value="hard">困难</option></select></label>
+            <p className="hg-bot-disclosure" role="note">{difficulty === 'hard' ? '困难Bot可以读取你的当前手牌，用于选择合法行动。' : 'Bot仅依据自己合法可见的玩家视图选择行动。'} 此房仅供你与Bot练习。</p>
+            {!botAvailable && <p role="status">Bot练习当前未开放，请重新选择对局类型。</p>}</>}
+        </>}
         {!joining ? <div className="hg-mode-select" role="group" aria-label="对战模式">
           <button type="button" className={mode === 'duel' ? 'hg-selected' : ''} onClick={() => setMode('duel')} disabled={busy}><strong>两人对决 <span>1 VS 1</span></strong><small>3 个地区 · 先获 8 分胜利</small></button>
           <button type="button" className={mode === 'teams' ? 'hg-selected' : ''} onClick={() => setMode('teams')} disabled={busy}><strong>四人协作 <span>2 VS 2</span></strong><small>5 个地区 · 团队先获 10 分胜利</small></button>
         </div> : <label className="hg-field">邀请码<input value={targetInvite} onChange={event => setInvite(event.target.value)} readOnly={invitationOnly} placeholder="粘贴伙伴发来的邀请码" required autoComplete="off" disabled={busy} /></label>}
-        <div className="hg-entry-bottom"><p>{joining ? '加入同一牌桌，所有玩家准备后由房主开始。' : '创建后分享邀请，所有玩家准备后由房主开始。'}<br />{independent ? '座位保存在当前标签，刷新即可继续。' : '座位保存在此浏览器，刷新即可继续。'}{joining && <><br />已有此房座位时恢复原席，保留原称呼、实际上桌牌组与准备状态。新选择的牌组须入席后显式应用。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || (joining && !targetInvite.trim())}>{busy ? '正在入席…' : !joining ? '创建牌桌 →' : '加入牌桌 →'}</button></div>
+        <div className="hg-entry-bottom"><p>{joining ? '加入同一牌桌，所有玩家准备后由房主开始。' : roomKind === 'bot' ? 'Bot会自动入席并准备，你准备后即可开始。' : '创建后分享邀请，所有玩家准备后由房主开始。'}<br />{independent ? '座位保存在当前标签，刷新即可继续。' : '座位保存在此浏览器，刷新即可继续。'}{joining && <><br />已有此房座位时恢复原席，保留原称呼、实际上桌牌组与准备状态。新选择的牌组须入席后显式应用。</>}</p><button className="hg-button hg-button-primary" type="submit" disabled={busy || !catalog || !entryAvailable || (joining && !targetInvite.trim())}>{busy ? '正在入席…' : !joining ? roomKind === 'bot' ? '创建Bot练习 →' : '创建牌桌 →' : '加入牌桌 →'}</button></div>
       </form>
       <div id="hegemony-decks" className="hg-section-title"><span className="hg-eyebrow">02 / 选择自组预组</span><span className="hg-pool-badge">受限真实卡池预组</span></div>
       <h2>{catalog ? `${catalog.decks.length} 套自组预组` : '自组预组'}</h2>

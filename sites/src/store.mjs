@@ -16,11 +16,17 @@ export class RoomStore {
     return rows.results.reverse().flatMap(row => JSON.parse(row.events).map(record => ({ record, version: row.version }))).slice(-50);
   }
   entryReceipt(requestHash) { return this.stmt('SELECT intent_hash,response FROM entry_receipts WHERE request_hash=?', requestHash).first(); }
-  async create({ id, invite, state, nonce, tokenHash, requestHash, intentHash, response }) {
+  async botState(id, version = Number.MAX_SAFE_INTEGER) {
+    // Immutable genesis authorizes Bot mode. Later policy checkpoints share the
+    // exact CAS transaction with the accepted Rust command; state stays opaque.
+    return this.stmt("SELECT (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version=0) AS genesis, (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version<=? AND json_type(entry,'$.SessionEvents.botState')='object' ORDER BY version DESC LIMIT 1) AS current", id, id, version).first();
+  }
+  async create({ id, invite, state, initialState = state, version = 0, entries = [], nonce, tokenHash, requestHash, intentHash, response }) {
     await this.db.batch([
-      this.stmt('INSERT INTO rooms(id,invite,initial_state,state,version,attempt_nonce) VALUES(?,?,?,?,0,?)', id, invite, state, state, nonce),
+      this.stmt('INSERT INTO rooms(id,invite,initial_state,state,version,attempt_nonce) VALUES(?,?,?,?,?,?)', id, invite, initialState, state, version, nonce),
       this.stmt('INSERT INTO seats(room_id,seat,token_hash) VALUES(?,0,?)', id, tokenHash),
       this.stmt('INSERT INTO entry_receipts(request_hash,intent_hash,response,room_id) VALUES(?,?,?,?)', requestHash, intentHash, response, id),
+      ...entries.map(e => this.stmt('INSERT INTO journal(room_id,version,entry) VALUES(?,?,?)', id, e.version, e.entry)),
     ]);
   }
   async join({ id, expectedVersion, state, version, nonce, seat, tokenHash, requestHash, intentHash, response, entry }) {

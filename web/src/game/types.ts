@@ -95,6 +95,8 @@ export type PassRecord = {
   responseWindowId?: string; reason: 'pass' | 'response' | 'cancelResponse' | 'timeout';
 };
 export type View = {
+  botMatch?: { roomKind: 'bot'; difficulty: BotDifficulty; advantages: ('peekHumanHands')[]; description: string; enabled: boolean };
+  botAttention?: string;
   revealedHands?: { playerId: string; cards: Card[] }[];
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
   status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];
@@ -121,7 +123,10 @@ export type View = {
 };
 export type Deck = { id: string; name: string; description: string; cardCount: number; cards: { cardId: string; count: number }[] };
 export type Catalog = { rulesVersion: string; cardPoolVersion: string; engineVersion: string; decks: Deck[]; cards: CardDefinition[];
+  botPractice?: { difficulties: BotDifficulty[]; hardAdvantages: ('peekHumanHands')[] };
   societies?: SocietyDefinition[];
   deckBuildRules?: { minimumCards: number; serviceCardCapacity: number; societySupported: boolean } };
 export type Session = { roomId: string; inviteCode: string; token: string; seat: number; view: View };
+export type BotDifficulty = 'easy' | 'normal' | 'hard';
+export type BotEntry = { roomKind: 'bot'; difficulty: BotDifficulty };
 export type SavedSession = Omit<Session, 'view'>;

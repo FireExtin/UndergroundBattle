@@ -156,4 +156,25 @@ describe('cloud table API', () => {
     await sendCommand(session, 7, { kind: 'deck', deckDraft: draft }, 'draft-command');
     expect(JSON.parse(fetchMock.mock.calls[3][1].body)).toEqual({ commandId: 'draft-command', expectedVersion: 7, action: { kind: 'deck', deckDraft: draft } });
   });
+  it('retains the exact Bot request after an unconfirmed mode and only saves the confirmed seat', async () => {
+    const confirmed = {...entrySession, view:{...entrySession.view,botMatch:{roomKind:'bot',difficulty:'hard',advantages:['peekHumanHands'],description:'读取当前手牌',enabled:true}}};
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response('{}', {status:200}))
+      .mockResolvedValueOnce(new Response(JSON.stringify(entrySession), {status:200}))
+      .mockResolvedValueOnce(new Response(JSON.stringify(confirmed), {status:200}));
+    vi.stubGlobal('fetch',fetchMock); await getCatalog();
+    await expect(createRoom('练习','duel','watchers',{roomKind:'bot',difficulty:'hard'})).rejects.toMatchObject({status:0});
+    expect(readSession()).toBeNull(); expect(localStorage.getItem('hegemony.entry.v1')).not.toBeNull();
+    await createRoom('练习','duel','watchers',{roomKind:'bot',difficulty:'hard'});
+    expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[2][1].body);
+    expect(JSON.parse(fetchMock.mock.calls[2][1].body)).toMatchObject({roomKind:'bot',difficulty:'hard'});
+    expect(readSession()?.roomId).toBe(confirmed.roomId); expect(localStorage.getItem('hegemony.entry.v1')).toBeNull();
+  });
+  it('keeps a custom deck and explicit normal Bot selection in one idempotent entry', async () => {
+    const draft = {id:'bot-draft',name:'练习牌组',description:'',societyId:null,cards:[{cardId:'JC125',count:50}],rulesVersion:'r',cardPoolVersion:'p',engineVersion:'e',updatedAt:'2026-10-22T00:00:00Z'};
+    const confirmed = {...entrySession,view:{...entrySession.view,botMatch:{roomKind:'bot',difficulty:'normal',advantages:[],description:'合法视图',enabled:true}}};
+    const fetchMock=vi.fn().mockResolvedValue(new Response(JSON.stringify(confirmed),{status:200}));vi.stubGlobal('fetch',fetchMock);
+    await createRoomWithDeck('练习','duel',draft,{roomKind:'bot',difficulty:'normal'});
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({deckDraft:draft,roomKind:'bot',difficulty:'normal'});
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).not.toHaveProperty('deckId');
+  });
 });

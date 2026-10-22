@@ -1,0 +1,187 @@
+{
+  "scope": "author local integration only; production feature flag remains unset; independent review pending",
+  "baseCommit": "58e507169ecbb45c67e90aab4e573991a9db3648",
+  "kernelBase": "44cc35564eccc7f38bcfe5568556c3fa746d5d5f",
+  "utc": "2026-10-22T06:14:48.612913+00:00",
+  "sources": [
+    {
+      "path": "sites/src/bot-policy.mjs",
+      "sha256": "6495cbf4e27eb8e332358a16b3f07f6b3a7dc323af3e5b2e0e205425b18a44e0"
+    },
+    {
+      "path": "sites/src/http.mjs",
+      "sha256": "5b6db26a9f79f30cae59b1c6172e7ce86e66b93683b9603208d54b6932f0ceea"
+    },
+    {
+      "path": "sites/src/service.mjs",
+      "sha256": "e015994f7d10d79bb15c974010b857d9d3552f7875f639b21aa1452b34f2f9af"
+    },
+    {
+      "path": "sites/src/store.mjs",
+      "sha256": "7be2a014af947c297fda3733985e070390972edef12dead917c80fed697e7565"
+    },
+    {
+      "path": "sites/test/bot-policy.test.mjs",
+      "sha256": "f4f62ab00c049488bcfa8b463cf9370d97daa450314bf9e3bbf1725dfc89bd20"
+    },
+    {
+      "path": "sites/test/bot-room-integration.test.mjs",
+      "sha256": "113aed49355d5fda61db708e09731c7457a543f4947cc1f959f50b8407b4e679"
+    },
+    {
+      "path": "sites/test/bot-worker.test.mjs",
+      "sha256": "a4386a7b52848c8a9be4044f48f5e6b6e823896890ad7a15354897ae539ffe8e"
+    },
+    {
+      "path": "sites/test/fixtures/bot-d1-worker.mjs",
+      "sha256": "a66498ebbc685b3c694cb0fda1bec7681d3b2da254a0c987ea4339590a4bf184"
+    },
+    {
+      "path": "web/src/game/GameApp.tsx",
+      "sha256": "cd8b72853ab26e612a6eccd1cb2e53b4a4c8fe6cfd09f42616355073fcdd1ada"
+    },
+    {
+      "path": "web/src/game/Lobby.tsx",
+      "sha256": "a8b3c0107f37dc01a40a85a580d8f7fa094eb7c82fdb6a139853f2cbf42773de"
+    },
+    {
+      "path": "web/src/game/RoomManagement.tsx",
+      "sha256": "2ef00efc127d21e9b6d7d892b27751c21a497a5145cedff08fc90e18936299bf"
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "sha256": "e17edd3df8ae2304ac616a8c5b70cd2085f58abeb88914fa2d76df2d48b286d8"
+    },
+    {
+      "path": "web/src/game/api.ts",
+      "sha256": "aaac4528849e5876b47a1fe94587470af588b163db2875ca7418f99575ffdf46"
+    },
+    {
+      "path": "web/src/game/api.test.ts",
+      "sha256": "78fcab25966d81fe45f9f992c664a36d18c78580abbb8e2c7bc174705e0063e0"
+    },
+    {
+      "path": "web/src/game/types.ts",
+      "sha256": "f43173e45392efca8233a96ec08add9feb43467bb448b290b5f854ec2061bfa0"
+    },
+    {
+      "path": "web/src/game/useGame.ts",
+      "sha256": "f524ccafce953d6d06bcee12d00442e6d332ab4dddf3090c7c3d06fc0971e224"
+    },
+    {
+      "path": "web/src/game/BotDifficulty.test.tsx",
+      "sha256": "1293be14e22e98583ebaf87b7473b6691fb0e3bfd49d68ac53294f7c52638271"
+    },
+    {
+      "path": "web/src/game/BotMatchNotice.tsx",
+      "sha256": "07e2690cead3dc0ed10d5b3570c701ec5027611ec54010a28efd8a048a584d73"
+    },
+    {
+      "path": "web/src/game/bot-match.css",
+      "sha256": "8158d115bab700b5ced824278347c0aeff4be22839f51daa9157147830eb1c3b"
+    }
+  ],
+  "logs": {
+    "bot-difficulty-policy-03.log": {
+      "sha256": "faf5d03773fc4a8e7bc38a40e0dd0630c3a02d1d5c4c926b18243470a13635c1",
+      "bytes": 1952,
+      "status": "passed"
+    },
+    "bot-room-init-01.log": {
+      "sha256": "9755516c8725e80c43ab72865a1740c52664b10939285d5a41c66867099b1ade",
+      "bytes": 344,
+      "status": "passed"
+    },
+    "bot-room-runtime-01.log": {
+      "sha256": "ba3dbb0fb27e78fd28e4ffdee36f6009c28468e49f7be701c42145bde9802892",
+      "bytes": 906,
+      "status": "passed"
+    },
+    "bot-room-default-gate-02.log": {
+      "sha256": "18ae1d71e984833baf8af48aec3e4dd595da1dedae1b160c9e9d60733ec2dad9",
+      "bytes": 221,
+      "status": "passed"
+    },
+    "bot-human-regressions-01.log": {
+      "sha256": "02fea07477abcb685f389013c6ea511d4c009b84c11cda616e23e83fd42a7235",
+      "bytes": 2208,
+      "status": "passed"
+    },
+    "bot-difficulty-web-01.log": {
+      "sha256": "0898304b89fabdf4fa4e1a8516f214cc5b71b40adb2e267a844689334fd914cb",
+      "bytes": 270,
+      "status": "passed"
+    },
+    "bot-api-02.log": {
+      "sha256": "22f9d59ea6e37e5113bc159c932220a0abf3696feb0f3899d42353fa9dc2dd7d",
+      "bytes": 266,
+      "status": "passed"
+    },
+    "bot-web-management-02.log": {
+      "sha256": "648104a198cc0254d3c7211d2ae2b4f7637ddd4499911a3292c5ed8b4b5bee14",
+      "bytes": 269,
+      "status": "passed"
+    },
+    "bot-backend-build-01.log": {
+      "sha256": "21821b5ff3d42c812095e5ffff3fcfda747ea108d90c8ded15c85585d4d6705e",
+      "bytes": 594,
+      "status": "passed"
+    },
+    "bot-worker-01.log": {
+      "sha256": "3af2836cc9612daf5f0b2a6116a65e4bb9d528f80618fc039116c5c54b2364a3",
+      "bytes": 1067,
+      "status": "test harness omitted required human mulligan; corrected in -02"
+    },
+    "bot-worker-02.log": {
+      "sha256": "c17c9b42679eba41fb7b61e9f9a373c8c0837808b722578bfcdc68da2d848333",
+      "bytes": 393,
+      "status": "passed"
+    },
+    "bot-web-build-01.log": {
+      "sha256": "71a7058c5fb4ca4ca429a7e13c734750cc6ab554609cac5769502deb8a974ad7",
+      "bytes": 481,
+      "status": "passed"
+    },
+    "bot-web-build-02.log": {
+      "sha256": "b08adfa21dbd5459e3208d8b0a61b4a4c7966cba3d07a84849349900057746e1",
+      "bytes": 481,
+      "status": "passed"
+    }
+  },
+  "wasm": {
+    "rebuilt": false,
+    "modules": 1,
+    "sha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481"
+  },
+  "normalSmoke": {
+    "humanPolicy": "keep mulligan then pass; not fairness/full-card acceptance",
+    "turn": 21,
+    "humanCommands": 563,
+    "botCommands": 633,
+    "journalReplay": "exact opaque state and Bot policy verified"
+  },
+  "browser": {
+    "kind": "real IAB on local loopback; no public-site acceptance",
+    "url": "http://127.0.0.1:8113/",
+    "checks": [
+      "explicit normal/hard choice and exact hand-peek disclosure",
+      "automatic Bot join and readiness",
+      "human ready/start/mulligan, Bot mulligan and pass",
+      "reload retains hard mode and original seat",
+      "pause, reload retains pause, resume",
+      "active Bot match no unusable invitation control"
+    ],
+    "screenshots": "observed in CUA tool output; no on-disk screenshot artifact claimed"
+  },
+  "unchanged": [
+    "Rust kernel and registry",
+    "fourth card-batch branch",
+    "production deployment and environment"
+  ],
+  "notVerified": [
+    "independent review",
+    "all deck/choice combinations",
+    "Bot playing strength",
+    "public batch acceptance"
+  ]
+}
