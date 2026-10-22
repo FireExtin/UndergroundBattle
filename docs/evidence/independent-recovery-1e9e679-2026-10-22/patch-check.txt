@@ -1,0 +1,1 @@
+PASS: git apply --cached --check --whitespace=error against independent temporary index at 1e9e679ad52798882108fcd99229e5bc00bcde18

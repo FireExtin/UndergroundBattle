@@ -1,0 +1,17 @@
+{
+  "time_utc": "2026-10-22T12:11:52.153212+00:00",
+  "read_only_source_checks": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4",
+      "head": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+      "status_porcelain": "",
+      "diff_names": ""
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+      "head": "1e9e679ad52798882108fcd99229e5bc00bcde18",
+      "status_porcelain": "",
+      "diff_names": ""
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "generated_utc": "2026-10-22T12:15:49.649385+00:00",
+  "baseline": "1e9e679ad52798882108fcd99229e5bc00bcde18",
+  "own_clone": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-recovery-regression",
+  "detached_head": true,
+  "independent_object_store": true,
+  "changed_files": [
+    {
+      "path": "docs/INDEPENDENT_RECOVERY_REGRESSION_2026-10-22.md",
+      "sha256": "f8d8464efcd446925ebfcedccf62466b044bf7420e82a59ef39260fb689da8da"
+    },
+    {
+      "path": "rust-game/src/independent_recovery_tests.rs",
+      "sha256": "059a5b87fa8ef0a089d8af23b2e6d44f3d606ff873ca4026325ef43723630522"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "5dfa262c48c54b665e4d42c76cb5de8c6baa6769c765f2ca1cf48a8c02cc00ca"
+    }
+  ],
+  "patch": {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/independent-recovery-1e9e679.patch",
+    "sha256": "d0d8f52a8996c848f2a18ca18e9ddd8a538580a7401955887f33b9be63bfabc8",
+    "apply_check": "passed against baseline temporary index"
+  },
+  "test_result": {
+    "passed": 5,
+    "failed": 0,
+    "ignored": 0,
+    "filtered_out": 1569,
+    "test_seconds": 0.69,
+    "executions": 1
+  },
+  "run": {
+    "started": "2026-10-22T12:11:31.999865+00:00",
+    "ended": "2026-10-22T12:12:04.808900+00:00",
+    "command": [
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "-j",
+      "1",
+      "-p",
+      "hegemony-server",
+      "--no-default-features",
+      "--lib",
+      "independent_recovery_tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "cwd": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-recovery-regression",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 32.809,
+    "children_user_seconds": 30.627799,
+    "children_system_seconds": 2.06829,
+    "max_child_rss_kib": 1596684,
+    "cpu": 31,
+    "nice": 19,
+    "address_space_cap_bytes_per_process": 8589934592,
+    "cargo_jobs": 1,
+    "test_threads": 1,
+    "io_class": "idle",
+    "log": "/home/ddd/Documents/Codex/2026-10-22/task-2/recovery-evidence/attempt-1.log"
+  },
+  "evidence_files": [
+    {
+      "path": "recovery-evidence/attempt-1.log",
+      "sha256": "10a1b23565284a2043076ce6d35e00dd83fb44b8f4d68243f9c90760a1bf5cf4"
+    },
+    {
+      "path": "recovery-evidence/attempt-1.json",
+      "sha256": "b3c79be760f2ced94523c081f4b70ff5ab3a8599417f7159c6bb6abe89ba9d4d"
+    },
+    {
+      "path": "recovery-evidence/source-check.json",
+      "sha256": "0045454e80750d7cf41c9c7144ad6ec9f1cabbea95231dc59e15322187ad6f52"
+    },
+    {
+      "path": "recovery-evidence/patch-check.txt",
+      "sha256": "8536d3a27c41f5cbaef758931cfd54c7ad4059d40238eed056dd49a12188de7c"
+    },
+    {
+      "path": "run-independent-recovery.py",
+      "sha256": "b24991b1a3dbacd92f48f3be5f7d08eddb9e300178170067a799a153c9abf436"
+    }
+  ],
+  "source_read_only": true,
+  "committed": false,
+  "pushed": false,
+  "ci_triggered": false,
+  "deployed": false,
+  "scope_exclusions": [
+    "author existing test groups",
+    "WASM/Worker",
+    "browser/full match",
+    "HTTP authentication/DB receipts",
+    "other current branches",
+    "third implementation source code"
+  ]
+}

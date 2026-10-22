@@ -1,0 +1,36 @@
+{
+  "integratedAt": "2026-10-22T12:20:35.491381+00:00",
+  "baseCommit": "1e9e679ad52798882108fcd99229e5bc00bcde18",
+  "sourceThread": "01a162fa-d80b-75d2-adf8-e03eb9369020",
+  "patchSha256": "d0d8f52a8996c848f2a18ca18e9ddd8a538580a7401955887f33b9be63bfabc8",
+  "testSourceSha256": "059a5b87fa8ef0a089d8af23b2e6d44f3d606ff873ca4026325ef43723630522",
+  "runtimeCodeChanged": false,
+  "testSourceByteEqualToReviewedPatch": true,
+  "libDifference": "cfg(test, not(society-fixtures)) registration only",
+  "independentExecution": "5 passed / 0 failed / 1569 filtered out; see attempt-1.log",
+  "integrationRerun": "not repeated on same exact runtime/test bytes; independent run retained as independent evidence, not author rerun",
+  "frozenCandidateBranch": "progress/fix-abi94-recovery-validation-20261022 remains1e9e679",
+  "publication": "not performed",
+  "files": [
+    {
+      "path": "docs/evidence/independent-recovery-1e9e679-2026-10-22/attempt-1.json",
+      "sha256": "b3c79be760f2ced94523c081f4b70ff5ab3a8599417f7159c6bb6abe89ba9d4d"
+    },
+    {
+      "path": "docs/evidence/independent-recovery-1e9e679-2026-10-22/attempt-1.log",
+      "sha256": "10a1b23565284a2043076ce6d35e00dd83fb44b8f4d68243f9c90760a1bf5cf4"
+    },
+    {
+      "path": "docs/evidence/independent-recovery-1e9e679-2026-10-22/manifest.json",
+      "sha256": "4b00a67fbefe3834e88357670ae4b61d2738f36d97188450d91b0100d7b3c2c7"
+    },
+    {
+      "path": "docs/evidence/independent-recovery-1e9e679-2026-10-22/patch-check.txt",
+      "sha256": "8536d3a27c41f5cbaef758931cfd54c7ad4059d40238eed056dd49a12188de7c"
+    },
+    {
+      "path": "docs/evidence/independent-recovery-1e9e679-2026-10-22/source-check.json",
+      "sha256": "0045454e80750d7cf41c9c7144ad6ec9f1cabbea95231dc59e15322187ad6f52"
+    }
+  ]
+}
