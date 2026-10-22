@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-22T12:18:39.756703+00:00",
+  "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+  "status": "prerequisiteWipNotCardImplementation",
+  "cardId": "XQ20",
+  "nativeBatchCompleted": 22,
+  "target": 50,
+  "xq20CountedAsComplete": false,
+  "noCommandOpOrCatalogEntryAdded": true,
+  "runtimeEntry": "none; private transient counter helper only",
+  "sourceImage": {
+    "path": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
+    "sha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204"
+  },
+  "sources": [
+    {
+      "path": "rust-game/src/marker_transfer.rs",
+      "sha256": "0b7b516362205644b4057fa3dd80520413b0c1bb5be06b8ac095535885bb692c"
+    },
+    {
+      "path": "rust-game/src/marker_transfer_tests.rs",
+      "sha256": "205dc04fded7a69b9d5d7b681f1a16b85deb0dd3df4e6708b829f734ef5d2395"
+    },
+    {
+      "path": "rust-game/src/batch4_markers.rs",
+      "sha256": "895524a51bb85a0f6ca90df0e3b4790ac0a49a8fb891867f62c943583bea2a1d"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "3def5c669a52ed8d22ea4f8d1d846272d0550d382d68d5732133c01ffd28ac37"
+    }
+  ],
+  "tests": [
+    {
+      "filter": "marker_transfer",
+      "result": "10 passed, 0 failed, 1899 filtered out",
+      "log": "docs/evidence/batch20-fourth-2026-10-22/xq20-prerequisite-native01-marker_transfer.log.gz",
+      "sha256": "76abd3be9f0ad59a08eea38dc595403d1939f9a84574695a3b903a051df2d700"
+    },
+    {
+      "filter": "batch4_markers",
+      "result": "18 passed, 0 failed, 1891 filtered out",
+      "log": "docs/evidence/batch20-fourth-2026-10-22/xq20-prerequisite-native01-batch4_markers.log.gz",
+      "sha256": "b381f683852d43141b0c0b350f320b7b8600fb013ba96b6928abfaf939e0de33"
+    }
+  ],
+  "limits": [
+    "seven-field matrix is explicitly a synthetic counter contract, not a valid game-save fixture",
+    "plan threshold dispatch and generalized advancement/defense marker invariants remain unimplemented",
+    "Game/Room recovery of full XQ20 command, response invalidation and multi-target UI are not tested",
+    "no WASM build, public admission, deployment or full-suite rerun"
+  ],
+  "openRuleBoundaries": [
+    "batched advancement addition passing the printed exact threshold",
+    "moving advancement away and back while an earlier completion trigger remains pending; repeated completion and sacrifice ordering"
+  ]
+}

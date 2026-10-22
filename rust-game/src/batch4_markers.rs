@@ -11,13 +11,13 @@ const TITLE: &str = "选择要增加一枚的已有指示物标志类别";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MarkerKind { Advancement, PermanentCombat, PermanentDefense, Time, Wound, Shield, Lock }
 impl MarkerKind {
-    const ALL: [Self; 7] = [Self::Advancement, Self::PermanentCombat, Self::PermanentDefense, Self::Time, Self::Wound, Self::Shield, Self::Lock];
-    fn count(self, c: &Card) -> u32 { match self {
+    pub(crate) const ALL: [Self; 7] = [Self::Advancement, Self::PermanentCombat, Self::PermanentDefense, Self::Time, Self::Wound, Self::Shield, Self::Lock];
+    pub(crate) fn count(self, c: &Card) -> u32 { match self {
         Self::Advancement => c.advancement_markers, Self::PermanentCombat => c.permanent_combat_markers,
         Self::PermanentDefense => c.permanent_defense_markers, Self::Time => c.time_markers,
         Self::Wound => c.wounds, Self::Shield => c.shield, Self::Lock => c.lock_markers,
     } }
-    fn field(self, c: &mut Card) -> &mut u32 { match self {
+    pub(crate) fn field(self, c: &mut Card) -> &mut u32 { match self {
         Self::Advancement => &mut c.advancement_markers, Self::PermanentCombat => &mut c.permanent_combat_markers,
         Self::PermanentDefense => &mut c.permanent_defense_markers, Self::Time => &mut c.time_markers,
         Self::Wound => &mut c.wounds, Self::Shield => &mut c.shield, Self::Lock => &mut c.lock_markers,
