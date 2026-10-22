@@ -1,0 +1,47 @@
+{
+  "recordedAt": "2026-10-22T05:41:31.260389+00:00",
+  "baseCommit": "44cc35564eccc7f38bcfe5568556c3fa746d5d5f",
+  "stage": "independentPolicyFoundationWip",
+  "manifest": {
+    "sites/src/bot-policy.mjs": "02a21ad5c7daa41bcce57f654593235f237b4c6c5240f5828d73f77f450b221b",
+    "sites/test/bot-policy.test.mjs": "772deb408653059eeae3a12c8e390157da72f934a15516229ed83d13dc403911"
+  },
+  "logs": [
+    {
+      "path": "docs/evidence/bot-difficulty-2026-10-22/bot-difficulty-policy-01.log.gz",
+      "rawSha256": "a67eb887c977815bfbd48e7c08b0ab9ea3c1cd5f996ea41db4b5ba0c551e26c9",
+      "gzipSha256": "b8af104082669d1c70f765ef47dc23d11ca58fdd3470878b62911cee11157c97",
+      "passed": 17,
+      "failed": 0,
+      "scope": "author pure-policy directed tests; no integration claimed"
+    },
+    {
+      "path": "docs/evidence/bot-difficulty-2026-10-22/bot-difficulty-policy-02.log.gz",
+      "rawSha256": "b21ea5e44211f81098fa84fc02decde527baacd3768e893dbf3b357ced49edc3",
+      "gzipSha256": "9f2932261b64d67cc16e8e7f55d44d711023e30d4e7086e5d48ca41d35c0b5e4",
+      "passed": 17,
+      "failed": 0,
+      "scope": "author pure-policy directed tests; no integration claimed"
+    }
+  ],
+  "policyCapabilities": [
+    "easy/normal only request Bot legal player view",
+    "hard may request same-room same-revision human hand only",
+    "persistent room-kind/difficulty/seat guard; human/fair rooms reject policy reuse",
+    "explicit public advantage disclosure; private seeds/hands excluded",
+    "decimal u64 seed/random/counter and deterministic candidate identity through reopen",
+    "normal response intent lifecycle and bounded choice candidate generation"
+  ],
+  "notImplemented": [
+    "RoomService/D1 mode persistence and transactional Bot scheduling",
+    "User-facing difficulty picker and disclosure placement",
+    "Rust validation/commit of these candidate actions",
+    "All complex-choice legal candidate coverage or complete Bot match",
+    "Native HTTP host support",
+    "Independent review, build, deployment or browser acceptance"
+  ],
+  "gate": "No production import or route/UI uses this module; feature remains closed",
+  "newCards": 0,
+  "copiedThirdPartyCode": false,
+  "copiedThirdPartyAssets": false
+}
