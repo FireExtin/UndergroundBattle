@@ -1,0 +1,132 @@
+{
+  "recordedAt": "2026-10-22T10:10:44.050460+00:00",
+  "baseCommit": "721c9a0004ecea130084e1be39b7bd46c7570d2c",
+  "scope": "Author local Native recovery correction. No deployment/WASM build, independent review or production corruption claim. Frozen Bot2d8 remains unchanged.",
+  "confirmedBeforeFix": {
+    "batch3PaidCursor": {
+      "Game": "rejected",
+      "RoomEnvelope": "accepted"
+    },
+    "batch4UnpaidDraft": {
+      "Game": "rejected",
+      "RoomEnvelope": "accepted"
+    },
+    "honestTargetDeparted": {
+      "Game": "accepted",
+      "RoomEnvelope": "accepted"
+    }
+  },
+  "originalCounts": {
+    "Game": 41,
+    "Room": 38
+  },
+  "omittedByRoom": [
+    "validate_batch3_state",
+    "validate_batch4_state",
+    "validate_destruction_state"
+  ],
+  "change": "One nonserialized Game::validate_restored_domain entry, identical original Game validator order used by both deserializers. Room keeps schema/revision/seat/pacing/pause checks; runtime pre/post staging unchanged.",
+  "directedAfterFix": 4,
+  "relatedAfterFix": [
+    {
+      "filter": "batch4_wendigo_tests::batch4_wendigo_room",
+      "exitCode": 0,
+      "seconds": 0.106,
+      "passed": 1,
+      "failed": 0,
+      "log": "recovery-validation-batch4_wendigo_tests_batch4_wendigo_room-02.log"
+    },
+    {
+      "filter": "batch4_timekeeper_tests::batch4_timekeeper_room",
+      "exitCode": 0,
+      "seconds": 0.123,
+      "passed": 1,
+      "failed": 0,
+      "log": "recovery-validation-batch4_timekeeper_tests_batch4_timekeeper_room-02.log"
+    },
+    {
+      "filter": "batch3_entry_order_",
+      "exitCode": 0,
+      "seconds": 0.783,
+      "passed": 3,
+      "failed": 0,
+      "log": "recovery-validation-batch3_entry_order-02.log"
+    },
+    {
+      "filter": "region_destruction::tests",
+      "exitCode": 0,
+      "seconds": 0.125,
+      "passed": 3,
+      "failed": 0,
+      "log": "recovery-validation-region_destruction_tests-02.log"
+    }
+  ],
+  "roomPacingIntegrationAfterFix": 12,
+  "sourceInputs": 238,
+  "sourceManifest": "native-source-inputs.json",
+  "sourceManifestSha256": "2067ada61696be09344114db57ce8333a07e9855f8727f4b63b9ab57da88edbd",
+  "failureHistory": [
+    "before-01:1 valid-target-loss case passed; two corrupt-domain snapshots exposed the Game/Room classification mismatch",
+    "after-01: not a changed implementation; automated edit guard found an additional destruction validator omission before writing, and original two mismatch cases remained failed",
+    "after-02: shared41 helper in place,4 directed cases passed including destruction-score corruption",
+    "related-01: room::tests empty0 filter, explicitly not validation; corrected to actual room_pacing integration12 and individual existing room/entry/destruction filters"
+  ],
+  "astraManifestSha256": "75a832f84168f2b1222d4abae616e7165658e29dc9df01063d8e389fe6c46d3b",
+  "astraFixedUBReferencesVerified": 29,
+  "logs": {
+    "recovery-validation-after-01.log": {
+      "sha256": "b3fec6975442dc8c9d90883d69cd565f42f4edf62fcd61eaacd5d89db22e9719",
+      "bytes": 2456,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-after-01.log.gz",
+      "gzipSha256": "97f81da2817303b7912c566e9c154ce2d6b8123f547101f8cad5674c3968b852"
+    },
+    "recovery-validation-after-02.log": {
+      "sha256": "c269ad059a291c3987647dc391ce095dd86414c71183c9215d79579078463b21",
+      "bytes": 1497,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-after-02.log.gz",
+      "gzipSha256": "9935e871103bc8efdae2348d0f8e38864c037a2e1a90c46b04354debc44062c2"
+    },
+    "recovery-validation-batch3_entry_order-02.log": {
+      "sha256": "399c3f313d6059da68860884c0b0e54b9b0c118fd60765b4c1cd302906ee67d6",
+      "bytes": 491,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-batch3_entry_order-02.log.gz",
+      "gzipSha256": "e2dabffc7e36a2c2ecd8abfcc494e193796e30596b78f653d13f9b7a5b560a76"
+    },
+    "recovery-validation-batch4_timekeeper_tests_batch4_timekeeper_room-02.log": {
+      "sha256": "bd616ff441d7fc22c571ecec9b1d972dcb83141c6383d7776ade3ed970341979",
+      "bytes": 233,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-batch4_timekeeper_tests_batch4_timekeeper_room-02.log.gz",
+      "gzipSha256": "f25651dabc2598ee52daa5851a535e89e5beaf60d42052a53b50478825d334b1"
+    },
+    "recovery-validation-batch4_wendigo_tests_batch4_wendigo_room-02.log": {
+      "sha256": "c298b95c30bb7fc78ca1939e5c6c9ea4b28780807ce472350f6ed8a959c08881",
+      "bytes": 217,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-batch4_wendigo_tests_batch4_wendigo_room-02.log.gz",
+      "gzipSha256": "d171515621b850b84fb3384674399648d091e3da537e286419d84ab06fe03aed"
+    },
+    "recovery-validation-before-01.log": {
+      "sha256": "3203804b722b00d9d3e849d3f325fe672ac79960fb5f7aab7953188c11ddae82",
+      "bytes": 2574,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-before-01.log.gz",
+      "gzipSha256": "ec46c0c58cdad82d0965157df7f38f2081197b91479a8642889b6321aada62e4"
+    },
+    "recovery-validation-region_destruction_tests-02.log": {
+      "sha256": "033a84847d1e235d572d0a6583ebaaf9f0018c12cf3f7b374e6ab51262a19cbc",
+      "bytes": 426,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-region_destruction_tests-02.log.gz",
+      "gzipSha256": "fc0d4b7d66d3fe7812d06526cb2f5f27c06ef93ea8bd4d2a22a8e955b2b9a32b"
+    },
+    "recovery-validation-room-pacing-01.log": {
+      "sha256": "8d3d5237a195e7fc13e53b3800f43d28d8e3ac8dc7b26654520fed989be127d0",
+      "bytes": 1857,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-room-pacing-01.log.gz",
+      "gzipSha256": "0d51f4889ac3e49405367116bf53d2b62f54c3a0b961bdfbc840bcc551b97f2e"
+    },
+    "recovery-validation-room_tests-01.log": {
+      "sha256": "4c3ec4ddc56162bc4cb734592600ad5fc59be7c87cba83853f40ecc4f741de69",
+      "bytes": 116,
+      "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-room_tests-01.log.gz",
+      "gzipSha256": "c4818ab4f907a8365893ebe92e87da49524ce317a2623212f369011e127df524"
+    }
+  }
+}

@@ -242,44 +242,7 @@ impl RoomEnvelope {
         }) {
             return Err("暂停记录与房间状态/冻结时间不一致".into());
         }
-        room.game.validate_exposure_state()?;
-        room.game.validate_mobility_state()?;
-        room.game.validate_bq035_state()?;
-        room.game.validate_vacant_regions()?;
-        room.game.validate_win_contexts()?;
-        room.game.validate_sealed_cards()?;
-        room.game.validate_jz50_search_choice()?;
-        room.game.validate_entry_search_choice()?;
-        room.game.validate_deck_seal_choice()?;
-        room.game.validate_death_observers()?;
-        room.game.validate_gray_lock_state()?;
-        room.game.validate_jz22_state()?;
-        room.game.validate_jc050_state()?;
-        room.game.validate_xq27_state()?;
-        room.game.validate_xq37_state()?;
-        room.game.validate_red_time_state()?;
-        room.game.validate_blue_expansion_state()?;
-        room.game.validate_black_expansion_state()?;
-        room.game.validate_wm056_state()?;
-        room.game.validate_wm062_state()?;
-        room.game.validate_jc054_state()?;
-        room.game.validate_wm023_state()?;
-        room.game.validate_xq25_state()?;
-        room.game.validate_jz46_state()?;
-        room.game.validate_jc057_state()?;
-        room.game.validate_jc044_state()?;
-        room.game.validate_jc066_state()?;
-        room.game.validate_jc041_state()?;
-        room.game.validate_xq23_state()?;
-        room.game.validate_jc035_state()?;
-        room.game.validate_wm038_state()?;
-        room.game.validate_jz35_state()?;
-        room.game.validate_batch20_state()?;
-        room.game.validate_next20_red_state()?;
-        room.game.validate_jc052_state()?;
-        room.game.validate_jc046_state()?;
-        room.game.validate_jc095_state()?;
-        room.game.validate_gray_expansion_state()?;
+        room.game.validate_restored_domain()?;
         if room.game.state_schema != 2
             || room.game.version != room.revision
             || room.game.versions.rules != room.versions.rules
