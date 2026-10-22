@@ -1,0 +1,88 @@
+{
+  "recordedAt": "2026-10-22T09:57:57.379938+00:00",
+  "sourceCheckpoint": "721c9a0004ecea130084e1be39b7bd46c7570d2c",
+  "scope": "Observed final results of the already started author scoped regressions. No re-run, independent execution, WASM build, admission, publication or Bot source change. Earlier pending observation retained in the pilot receipt.",
+  "nativeCards": 21,
+  "target": 50,
+  "definitions": 234,
+  "newDirectedCases": 19,
+  "sourceChecks": 4,
+  "relatedFilters": [
+    {
+      "filter": "play_sources::tests",
+      "exitCode": 0,
+      "seconds": 0.032,
+      "passed": 5,
+      "failed": 0,
+      "log": "batch4-wendigo-related-play_sources_tests-01.log"
+    },
+    {
+      "filter": "sealing_tests::",
+      "exitCode": 0,
+      "seconds": 127.685,
+      "passed": 27,
+      "failed": 0,
+      "log": "batch4-wendigo-related-sealing_tests-01.log"
+    },
+    {
+      "filter": "bounded_search_tests::",
+      "exitCode": 0,
+      "seconds": 3.7,
+      "passed": 19,
+      "failed": 0,
+      "log": "batch4-wendigo-related-bounded_search_tests-01.log"
+    },
+    {
+      "filter": "batch3_ghoul_tests::",
+      "exitCode": 0,
+      "seconds": 1.151,
+      "passed": 12,
+      "failed": 0,
+      "log": "batch4-wendigo-related-batch3_ghoul_tests-01.log"
+    },
+    {
+      "filter": "batch3_law::tests",
+      "exitCode": 0,
+      "seconds": 0.509,
+      "passed": 5,
+      "failed": 0,
+      "log": "batch4-wendigo-related-batch3_law_tests-01.log"
+    }
+  ],
+  "filterOverlap": "Not summed as a unique/full suite total",
+  "sourceInputs": 237,
+  "sourceInventorySha256": "2e4495a9b658b54a6aec541bcc4acd85094dd70c6cecc4c470c0fe4aa9700850",
+  "nativeBinarySha256": "c685600f4c9f00766783ced82aa9ef84d82275d2b478eb978608236f5fcdfecb",
+  "logs": {
+    "batch4-wendigo-related-play_sources_tests-01.log": {
+      "sha256": "c2176e40f2ca19274267d6c36852213b4355014d88063c75be0aee6aff21bdb3",
+      "bytes": 683,
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-wendigo-related-play_sources_tests-01.log.gz",
+      "gzipSha256": "7ed758c01573b21307f281749524526c6712740883471d3401c398943e74ba9a"
+    },
+    "batch4-wendigo-related-sealing_tests-01.log": {
+      "sha256": "167802aafc18e6884ab01e224da7f7a0279244a2b5644f44846038f3c1f9ac0d",
+      "bytes": 3057,
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-wendigo-related-sealing_tests-01.log.gz",
+      "gzipSha256": "36029855aa3f90018447e83493d9e46eb09122a452cc52f99f9ac3dff2ca5d87"
+    },
+    "batch4-wendigo-related-bounded_search_tests-01.log": {
+      "sha256": "e9b6ff022d4e4e0c038f2f0b8e8e8e607dea45d6146401a9b020a9c683c17590",
+      "bytes": 2225,
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-wendigo-related-bounded_search_tests-01.log.gz",
+      "gzipSha256": "7aa2bb9a70f0b295029c1e01ed356ca1c16cf0626f93dcdc67d38d08ffbcffc9"
+    },
+    "batch4-wendigo-related-batch3_ghoul_tests-01.log": {
+      "sha256": "b68833d31d5f29d92ac1e15e0ed733a9e737f4405ab62709041a8a39b8ef9fd3",
+      "bytes": 1483,
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-wendigo-related-batch3_ghoul_tests-01.log.gz",
+      "gzipSha256": "c399f00b28df604d4af48fa534ce880a77e7b0ce82c7cb21bb7b16f864d0d15e"
+    },
+    "batch4-wendigo-related-batch3_law_tests-01.log": {
+      "sha256": "fd1bbf5e128b83e5bd023e13c1cbd393940c9542825ed1a001150b7d8f52a374",
+      "bytes": 723,
+      "file": "docs/evidence/batch20-fourth-2026-10-22/batch4-wendigo-related-batch3_law_tests-01.log.gz",
+      "gzipSha256": "8da472d8c27b07910db4e9087346982f308cf73fec3fc51b8c8574ca34d799cc"
+    }
+  }
+}
