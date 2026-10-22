@@ -1,0 +1,145 @@
+{
+  "recordedAt": "2026-10-22T10:52:16.373851+00:00",
+  "sourceCodeCommit": "d9e9fe114265eecd54c9a6c6e3c8d15a4eb4ad23",
+  "sourceManifest": "native-source-inputs.json",
+  "sourceManifestSha256": "30cfdc93cdaec07ae059eabbd1dd49a0c94c0d34766abc218a7eb6ae977675e3",
+  "scope": "Author local build and package evidence, not independent reproducibility or deployment. No fourth-batch or Bot source.",
+  "versions": {
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8",
+    "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)",
+    "node": "v24.22.1",
+    "wasmBindgen": "wasm-bindgen 0.2.104"
+  },
+  "recipe": {
+    "command": [
+      "bash",
+      "rust-game-wasm/build.sh"
+    ],
+    "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+    "offline": true,
+    "CARGO_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/cargo",
+    "RUSTUP_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/rustup",
+    "UNDERGROUNDBATTLE_BUILD_ROOT": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../abi94-recovery-build",
+    "WASM_BINDGEN": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/wasm-bindgen-0.2.104-from-crate/bin/wasm-bindgen",
+    "CC": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/batch3-zig-cc",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/zig-cc",
+    "RUSTFLAGS": "--remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix/../.tools/cargo=/__undergroundbattle/cargo --remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix=/__undergroundbattle/source",
+    "guard": "Original tools/build-storage.mjs, jobs1 / on-disk and memory launch guards / release codegen-units256"
+  },
+  "attempts": [
+    {
+      "log": "abi94-recovery-wasm-build-01.log",
+      "outcome": "failed: missing system cc for host proc-macro2 build script"
+    },
+    {
+      "log": "abi94-recovery-wasm-build-02.log",
+      "outcome": "successful standard-script output and parity; bytes preserved in abi94-recovery-build/unmapped-first-output, not final package"
+    },
+    {
+      "log": "abi94-recovery-wasm-build-03.log",
+      "outcome": "successful final path-normalized output using established ABI94 recipe"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 5025395,
+      "sha256": "42eae329151880f2136c0341d4a67e3aa90f105faa2bac16b564fa7bb5c7add1"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "package": {
+    "command": [
+      "node",
+      "scripts/build.mjs"
+    ],
+    "exitCode": 0,
+    "scope": "Web typecheck/build and official Worker deploy --dry-run; no deployment",
+    "workerBundleSha256": "296c5c9fc7c773d5e31f01dd96595b37d25c4a0328288219f70131a7d306d935",
+    "wasmModules": 1,
+    "wasmSha256": "42eae329151880f2136c0341d4a67e3aa90f105faa2bac16b564fa7bb5c7add1"
+  },
+  "fixtures": [
+    {
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/native-fixtures/case-0.json.gz",
+      "bytes": 126893,
+      "sha256": "2127a10a7bf0c07ad6c5e5e8668ae13aa446a041db4cfae5229ab50449693d97",
+      "gzipSha256": "ba70c2d72f82ecb3844a5133dbb03a22a4cd6d35f85426c8f37a4cbeeb4b2af8"
+    },
+    {
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/native-fixtures/case-1.json.gz",
+      "bytes": 118432,
+      "sha256": "6eb2c58a9d3062228aad6c821bf0e109cf753e3932d9f52117612f823b00a65e",
+      "gzipSha256": "dc923cb22d5e42fa16acb6660a162766448d8f610310f5a5ecc0829dd89b2178"
+    },
+    {
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/native-fixtures/case-2.json.gz",
+      "bytes": 132582,
+      "sha256": "23e52ee2ed9997b5923baf9b69883a05aa27da9abc3123938d1477c851852712",
+      "gzipSha256": "f1c43bfe3722293e414d0692c8215f9127470ee659483f36a21fe3d0b961f1b9"
+    },
+    {
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/native-fixtures/case-3.json.gz",
+      "bytes": 127156,
+      "sha256": "90253e946e7071b5195175e2e9f195dc202eff6e2a6e77956d3ee6d446d76891",
+      "gzipSha256": "e6298d7b566b320a629f968502aeca8ea43adb2ef293c3e2aaabc097e92ae773"
+    }
+  ],
+  "logs": {
+    "abi94-recovery-wasm-build-01.log": {
+      "sha256": "72ce67a6b8bcc6311e2e3c84dc254df3fafa75711f9efc5f439760ace141f3d2",
+      "gzipSha256": "75bd57def5f52994021b0a7603e1cae49ef789b4d0c996dc8c68b04ff3abe245",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-build-01.log.gz"
+    },
+    "abi94-recovery-wasm-build-02.log": {
+      "sha256": "72d3697809f14303119b7bf2ee4250a157c6d4b477e69f6312ce31b64080a46a",
+      "gzipSha256": "727627fe55b7b8a9943676ecde4b8fa00b4dc4fe1d99e4ee5418f7636621f4b2",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-build-02.log.gz"
+    },
+    "abi94-recovery-wasm-build-03.log": {
+      "sha256": "28aeb43a7f74bfe8bc50d2b0666739d1a5cd8c5ebcb96fa813907602ef0cb237",
+      "gzipSha256": "2388ed0fefa28c11499f2ede94fe58fda3fd366ae5a54f3e17e13206f5fd3401",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-build-03.log.gz"
+    },
+    "abi94-recovery-wasm-parity-01.log": {
+      "sha256": "8c29e2b187e0d49a9a22593344f8893c9ffc879f160943d1bd0114975570b1df",
+      "gzipSha256": "cdae1e7a4deb85a4cc2c8aa7325e24336dcb3d09c30dfc4fbf1ab0409fd0945e",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-parity-01.log.gz"
+    },
+    "abi94-recovery-wasm-parity-02.log": {
+      "sha256": "1c5f36507614be13b20cf049d43184c49d603039a13828f023a3da2ce9196791",
+      "gzipSha256": "e44999f65c3a77f37485b6ced295bd22b6375b7054ceabcf7eda116c9335edc5",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-parity-02.log.gz"
+    },
+    "abi94-recovery-sites-build-01.log": {
+      "sha256": "efccbaa6d85027158964afd720f8b8af65daba96c80c46fc7ca888d556871bad",
+      "gzipSha256": "01adc7f4ccd3d40c423e7c29e5a02d77da7958e51c1cf0100fde0da1eafa63ae",
+      "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-sites-build-01.log.gz"
+    }
+  },
+  "limits": [
+    "No independent review or reproduction run",
+    "No full-suite or D1 gameplay rerun",
+    "No real-browser acceptance of this correction",
+    "Frozen2d8 browser match remains separate and unfinished"
+  ]
+}

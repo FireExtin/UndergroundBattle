@@ -1,0 +1,7 @@
+{
+  "recordedAt": "2026-10-22T10:50:09.083500+00:00",
+  "outcome": "test-assertion-failed",
+  "check": "raw source cards deepEqual public runtime catalogue",
+  "reason": "Source records include source/icons/loyaltyText; the public catalogue intentionally normalizes these and adds abilities/ruleTraits and other fields. All three initial GETs returned200, but no complete identity receipt was produced. This is a test expectation error, not a reproduced recovery/runtime failure.",
+  "next": "Compare exact full HTTP card catalogue with the freshly built WASM catalogue and shared source fields/IDs; preserve original failed attempt."
+}

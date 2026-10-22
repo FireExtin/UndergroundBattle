@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-22T10:51:00.560187+00:00",
+  "sourceCodeCommit": "d9e9fe114265eecd54c9a6c6e3c8d15a4eb4ad23",
+  "scope": "Author isolated loopback Worker startup/version/catalogue/static asset identity only; no deployment, D1 gameplay, browser play or independent review.",
+  "health": {
+    "ok": true,
+    "service": "hegemony-worker",
+    "engineVersion": "rust-v0.2.94-batch20-third",
+    "transport": "polling"
+  },
+  "definitions": 213,
+  "httpCatalogueDeepEqualFreshWasmCatalogue": true,
+  "rawSourceCardsUnchangedFrom44cc": true,
+  "exactCurrentWorkerWasmModules": 1,
+  "wasmSha256": "42eae329151880f2136c0341d4a67e3aa90f105faa2bac16b564fa7bb5c7add1",
+  "responses": {
+    "/api/health": {
+      "status": 200,
+      "bytes": 106,
+      "sha256": "340c91b05c6fadb459cb56c63692b4fb1552f14eb8b481e06752a181668a3b3a"
+    },
+    "/api/catalog": {
+      "status": 200,
+      "bytes": 209659,
+      "sha256": "ac57052eed5a3192e8ac27035fff23cb69c2cb8e27a2839319e9acdc6e1ffa8c"
+    },
+    "/": {
+      "status": 200,
+      "bytes": 475,
+      "sha256": "319cf946dd02db332df0b9b036b3cc8f4e8040d79ad4fc8bee620ec13742b124"
+    },
+    "/assets/index-CXrAgvyl.js": {
+      "status": 200,
+      "bytes": 413847,
+      "sha256": "70659610fb70872c6c73c1e63e17743551cbea7e0598c3ffbc7dd6bddeea3c57"
+    }
+  },
+  "localOnly": true,
+  "failedTestAssertionsPreserved": [
+    "startup-attempt-01.json",
+    "startup-attempt-02.json"
+  ]
+}

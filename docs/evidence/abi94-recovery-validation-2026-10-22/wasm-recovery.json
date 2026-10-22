@@ -1,0 +1,65 @@
+{
+  "scope": "WASM Room decoder: four native fixtures, 16 valid seat views, two same-error rejections, two honest target-loss snapshots accepted in all four seats. Native tests separately exercise Game and Room entrances. No browser, D1 or full-match claim.",
+  "stateIdentity": {
+    "state_schema": 3,
+    "versions": {
+      "rules": "hegemony-pdf-v1",
+      "cardPool": "limited-v2.84-batch20-third",
+      "engine": "rust-v0.2.94-batch20-third"
+    }
+  },
+  "wasmSha256": "42eae329151880f2136c0341d4a67e3aa90f105faa2bac16b564fa7bb5c7add1",
+  "fixtureCount": 4,
+  "validSeatViews": 16,
+  "malformedRoomRejections": 2,
+  "honestTargetLossSnapshots": 2,
+  "cases": [
+    {
+      "file": "case-0.json.gz",
+      "name": "recovery_validation_tests::recovery_validation_batch3_paid_frame_cursor_rejected_by_both_entries",
+      "shouldReject": true,
+      "sha256": "2127a10a7bf0c07ad6c5e5e8668ae13aa446a041db4cfae5229ab50449693d97",
+      "inputSha256": "ba70c2d72f82ecb3844a5133dbb03a22a4cd6d35f85426c8f37a4cbeeb4b2af8"
+    },
+    {
+      "file": "case-1.json.gz",
+      "name": "recovery_validation_tests::recovery_validation_impossible_destruction_score_rejected_by_both_entries",
+      "shouldReject": true,
+      "sha256": "6eb2c58a9d3062228aad6c821bf0e109cf753e3932d9f52117612f823b00a65e",
+      "inputSha256": "dc923cb22d5e42fa16acb6660a162766448d8f610310f5a5ecc0829dd89b2178"
+    },
+    {
+      "file": "case-2.json.gz",
+      "name": "recovery_validation_tests::recovery_validation_honest_paid_multi_target_frame_restores_then_fizzles",
+      "shouldReject": false,
+      "sha256": "23e52ee2ed9997b5923baf9b69883a05aa27da9abc3123938d1477c851852712",
+      "inputSha256": "f1c43bfe3722293e414d0692c8215f9127470ee659483f36a21fe3d0b961f1b9"
+    },
+    {
+      "file": "case-3.json.gz",
+      "name": "recovery_validation_tests::recovery_validation_honest_paid_multi_target_frame_restores_then_fizzles",
+      "shouldReject": false,
+      "sha256": "90253e946e7071b5195175e2e9f195dc202eff6e2a6e77956d3ee6d446d76891",
+      "inputSha256": "e6298d7b566b320a629f968502aeca8ea43adb2ef293c3e2aaabc097e92ae773"
+    }
+  ],
+  "recordedAt": "2026-10-22T10:52:37.931535+00:00",
+  "sourceCodeCommit": "d9e9fe114265eecd54c9a6c6e3c8d15a4eb4ad23",
+  "command": [
+    "../.tools/node-v24.22.1-linux-x64/bin/node",
+    "rust-game-wasm/tests/recovery-parity.mjs",
+    "docs/evidence/abi94-recovery-validation-2026-10-22/native-fixtures"
+  ],
+  "testScriptSha256": "cf99bd5fc5a8453e0de0e8caa6098f773b978e3027a2c64b7520877d029527a8",
+  "log": {
+    "file": "docs/evidence/abi94-recovery-validation-2026-10-22/abi94-recovery-wasm-parity-03.log.gz",
+    "sha256": "14dd2c6722ddc688c2ec8929d3916f63d0067356fa8294226a9cefdca6746eaa",
+    "gzipSha256": "d629dd930ab1d0ee47421e6b0a502cdd3b5e4b10aa79ab103d7a1596b52650da"
+  },
+  "limits": [
+    "Author execution; not independent review",
+    "Four snapshots of three native cases; positive before/after snapshots are not additional unique rules tests",
+    "WASM exposes Room decode only; Game/Room entry parity was checked by native tests",
+    "No full-game or browser acceptance for this patch"
+  ]
+}

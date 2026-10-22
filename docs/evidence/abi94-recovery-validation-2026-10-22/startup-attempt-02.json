@@ -1,0 +1,10 @@
+{
+  "outcome": "test-assertion-failed",
+  "check": "generic all shared raw-source fields must equal public runtime fields",
+  "firstDifference": [
+    "DQJC108",
+    "abilities"
+  ],
+  "scope": "Exact HTTP vs fresh WASM catalogue and version checks succeeded before this additional inappropriate raw-field assertion. No complete startup receipt yet.",
+  "correction": "Only assert catalogue equivalence at its actual public contract; retain raw source byte identity against base separately."
+}
