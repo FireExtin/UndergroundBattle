@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-10-22T01:50:12.355023+00:00",
+  "basedOn": "04acc99766a54dea2e1f372eb6358b62a60d3695",
+  "completedNativePilots": 6,
+  "experimentalCard": "XQ13",
+  "experimentalDirectedTests": 12,
+  "ruleAccepted": false,
+  "scope": "Author-run native prototype tests. Conversion, actual Embrace/control, loyalty, empty society, restoration and prospective Pathway limit choices. Not a completed seventh card.",
+  "openQuestion": {
+    "id": "XQ13-PATHWAY-OVERFLOW-01",
+    "cardText": "你只能操控至多一个道途。",
+    "gap": "Does entering/controlling an additional Pathway get prohibited, or cause an immediate choice and sacrifice? The prototype uses the existing Leader/Unique sacrifice mechanism. The card and searched primary PDFs do not explicitly establish that consequence for Pathways.",
+    "neededInput": "A primary FAQ/rule clause or user ruling covering excess Pathways, including play versus forced entry/control, and whether the player chooses a sacrifice."
+  },
+  "sourceHashes": {
+    "rust-game/data/cards.json": "0a642704536f585d8f6cf5e354cf8c22a9f7374b7344a1e928bdadcb44b272be",
+    "rust-game/src/batch4.rs": "8a5f93244f0277f8667cac015e8250f62e6faefe8d63462bcaa70694dc667f9b",
+    "rust-game/src/engine.rs": "93bf084ac3a9859e81dbb2258350230cb231eab2dd58cbf9c2e05a40bd074f10",
+    "rust-game/src/lib.rs": "b9955437d63e79bbb5d1cb004d3f1ad61cd60ce1fb3f76e093dbdd7cd7d400a2",
+    "rust-game/src/rules.rs": "65398bf36e74c4632e70442c25dd17a1524f520e08f44f846ef93a2f5d1059be",
+    "web/public/card-scans.json": "050e3c5810bec6647213dcb08809932ce2be74fd6fdd4985527826de10f297e2",
+    "rust-game/src/batch4_pathway.rs": "a6d303c4a7d6cb7f07aa5e86f2761b28a4fa9cc2b38e6dfeba7eeb1465c70357",
+    "rust-game/src/batch4_pathway_tests.rs": "a696262026ac4933a4e3456f692fd10be12bdaa294f4a4b93533acc2c9160912",
+    "web/public/cards/XQ13.jpg": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"
+  },
+  "logs": [
+    {
+      "log": "logs/batch4-xq13-first-batch4_pathway.log.gz",
+      "rawSha256": "2b39e2d0021f57e5b0ead9b31636ca48d49c29db42fcbc6ba842c051e81835e7",
+      "gzipSha256": "63d26b20b39f2b0522c829506730884ef78f61885ccb30ab186bedbfcbcb9622"
+    },
+    {
+      "log": "logs/batch4-xq13-second-batch4_pathway.log.gz",
+      "rawSha256": "fec9d9e79f4e0bb5aa8359c5bd70bd709f339647830a13a5644e4e03aee06868",
+      "gzipSha256": "5e91a76ee052d9faf53a4f3d5333846a19851e54c4e9c57ec63d8f8fc1e58e2a"
+    },
+    {
+      "log": "logs/batch4-xq13-third-batch4_pathway.log.gz",
+      "rawSha256": "ecfec81974d159c2833b76bc7186194954830aa07aa597887c20af348d6f8dab",
+      "gzipSha256": "5fad64754c3c1f848ee1a4b590104a8ffee4c04bf026f04cb367c66bc4b9d9b7"
+    }
+  ],
+  "sourceChecks": "not run on prototype; source plan still describes six completed pilots",
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "published": false,
+  "accepted": false
+}

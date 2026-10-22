@@ -477,7 +477,7 @@ impl Game {
                     temporary_result.add(spec.host_temporary_icons.unwrap_or_default());
             }
         }
-        self.xg15_double_icons(c, region, (permanent_result, temporary_result, ordinary))
+        self.xg15_double_icons(c, region, self.xq13_convert_icons(c, (permanent_result, temporary_result, ordinary)))
     }
     // MSJC11 black-bottom eligibility: duration does not change icon category.
     pub(crate) fn current_permanent_combat(&self, c: &Card, region: usize) -> u32 {
@@ -1844,6 +1844,7 @@ impl Game {
             }
             Effect::Unique { seat } => {
                 if self.offer_leader_choice(seat) { return Ok(()); }
+                if self.offer_pathway_choice(seat) { return Ok(()); }
                 let mut options = vec![];
                 let mut group = None;
                 let in_play = self.in_play_cards();
@@ -2052,6 +2053,7 @@ impl Game {
         self.prune_turn_attribute_modifiers();
         self.settle_attachments();
         self.settle_controls();
+        self.queue_pathway_checks();
         let previous_effects = self.effects.len();
         // Loss of a defense aura is checked again after the simultaneous lethal set.
         loop {
@@ -2122,6 +2124,7 @@ impl Game {
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
+        self.pathway_choice_payload(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

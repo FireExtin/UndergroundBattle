@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "XQ13"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "XQ13" { return Some(crate::batch4_pathway::definition()); }
     if id == "BQ041" { return Some(crate::batch4_feast::definition()); }
     if id == "WM060" { return Some(crate::batch4_dahlia::definition()); }
     if id == "XG12" { return Some(crate::batch4_shape::definition()); }
@@ -81,7 +82,7 @@ fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
+    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::XQ13VampireIconConversion | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -93,6 +94,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "XQ13" { return crate::batch4_pathway::validate_action(a); }
     if id == "BQ041" { return crate::batch4_feast::validate_action(a); }
     if id == "WM060" { return crate::batch4_dahlia::validate_action(a); }
     if id == "XG12" { return crate::batch4_shape::validate_action(a); }
@@ -169,6 +171,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition == "XQ13" { return self.validate_xq13_frame(f); }
         if f.source.card.definition == "BQ041" { return self.validate_bq041_frame(f); }
         if f.source.card.definition == "XG12" { return self.validate_xg12_frame(f); }
         if f.source.card.definition == "JZ39" { return self.validate_jz39_frame(f); }
@@ -209,6 +212,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_xq13_state()?;
         self.validate_bq041_state()?;
         self.validate_wm060_state()?;
         self.validate_xg12_state()?;
