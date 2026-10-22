@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 9,
+    "nativePilots": 10,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -324,8 +324,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
       "sourceImageSha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 18,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -435,7 +435,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 9,
+      "nativeCards": 10,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -478,7 +478,9 @@
     "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption.",
     "WM046/047 share personal Society secret play and standard unlimited pay1 advancement; secret identity remains private but type, printed cost1 and advancement counters stay public. Completion is forced and respondable.",
     "WM045 is not implemented or counted: full-field Hide and hidden-group shuffle must preserve marker/sealed-card and target/source relations; speculative identity reset removed from executable admission, draft retained outside runtime.",
-    "JC060 real paid BQ026 entry regression confirms missing attached-character recipient; uses existing live board lookup instead of region vector only. Source patch included here; original frozen b80 and JC005-only820 do not include it."
+    "JC060 real paid BQ026 entry regression confirms missing attached-character recipient; uses existing live board lookup instead of region vector only. Source patch included here; original frozen b80 and JC005-only820 do not include it.",
+    "XG17: public with personal Sun conditional Renown; other personal current Renown characters globally gain defense1 per live source. Event-time Renown qualification uses typed printed/exposure/destroyed-region/Alpha/turn-grant receipts, with separate per-entry observer keys.",
+    "XG17 targets personal live Plans including secret ones; reuses normal marker/forced-completion path. Additional advancement while completion waits adds a marker without a second completion declaration. Only declaration choice ID and selected options are accepted."
   ],
   "next": [
     "Continue remaining11 clear-card mechanisms and complete full-field Hide/shuffle design for WM045; no partial-batch construction admission",

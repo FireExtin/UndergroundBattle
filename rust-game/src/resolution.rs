@@ -753,6 +753,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
@@ -1603,6 +1604,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),
                 Op::PlanComplete => self.plan_complete(&frame)?,

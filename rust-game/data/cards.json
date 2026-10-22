@@ -8852,6 +8852,50 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG17",
+      "name": "专家研讨会",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "学者"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 2,
+      "text": "公开；公开〔日形〕声望\n持续 所有其他本方声望角色获得防御力+1。\n触发 每当一个本方声望角色进场时，目标本方计划推进1。",
+      "keywords": [
+        "公开",
+        "公开〔日形〕声望"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG17",
+        "image": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
+        "imageSha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

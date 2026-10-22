@@ -1,0 +1,117 @@
+{
+  "recordedAt": "2026-10-22T03:33:08.032047+00:00",
+  "precedingCheckpoint": "7de2428fa0d40d88e35e8a587f031b7f0c2b9fd4",
+  "frozenThirdReplacement": "b4e0388bb0ee1a2b106c247d11663ec7ee60b28d",
+  "newCard": "XG17",
+  "nativeCards": 10,
+  "definitions": 223,
+  "newDirectedCases": 18,
+  "relatedFilters": {
+    "batch4_plans": 17,
+    "renown": 46
+  },
+  "filterOverlap": "Some conference and Plan cases also occur under renown; never sum as unique scenes",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 202,
+  "sourceInventorySha256": "42169e0f87c1ee908c9db498eb93d22b0a711302da36591ee471050e9df7b463",
+  "ruleScope": [
+    "Public; personal Sun conditional Renown; global other personal current Renown defense1 per source",
+    "Actual entry condition frozen in typed printed/exposure/destroyed-region/Alpha/turn-modifier receipt; later condition/source loss does not requalify",
+    "Targets only original personal live Plan, including secret Plans without public-front leakage; no additional payment",
+    "Real paid attached bat receives Renown aura and only one entry observation",
+    "Per-source per-entry references stay disjoint for two entries before queue drains",
+    "Optional choice payload and actor checks; reject duplicate receipts/frames and tampered programs/targets",
+    "Standard advancement and event advancement share marker/forced-completion path. During completion response another accepted advance adds its marker, retains one original completion carrier"
+  ],
+  "fixtureDisclosure": "Prepared native layouts plus real paid play/choice/pass commands and full restoration/four-seat checks; source-loss and multiple-entry-during-pending boundary cases explicitly use native primitives, not fabricated public commands",
+  "failureHistory": [
+    "Initial unexecuted-mechanism stage metadata test passed; not counted as final mechanism completion",
+    "Printed JC070 has two White loyalty despite cost1; fixed test funding rather than loyalty rule",
+    "Normal deployment access depends on seat parity; fixture home regions corrected without changing rules",
+    "Extra choice cost payload was silently ignored; added source-specific exact payload check",
+    "Initial four-observer test incorrectly expected all four to advance before completion. Real queue reaches2 then removes Plan. Corrected expected schedule and added separate explicit entry-during-open-completion witness reaching3 with one completion"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-01-batch4_conference.log.gz",
+      "rawBytes": 948,
+      "rawSha256": "636f32cbb1ec5634cf87d70c79cc871a33f9955dd5823cb38ba6e43e7aff61fc",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-02-batch4_conference.log.gz",
+      "rawBytes": 5193,
+      "rawSha256": "9f7d2dc2c05f0ba2892d1e28845cffbdf7c9783b58169b6faccba71eebea085f",
+      "passed": 9,
+      "failed": 7
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-03-batch4_conference.log.gz",
+      "rawBytes": 3914,
+      "rawSha256": "0982ab0cf7b792d8f8db713106982b2ad65a0325fd8ce3e657ce1160eba1fe21",
+      "passed": 13,
+      "failed": 3
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-04-batch4_conference.log.gz",
+      "rawBytes": 2745,
+      "rawSha256": "5861ebb9b6b01dace367b5766f27292344878ee878f97b63a9f0411f47b8a465",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-04-batch4_plans.log.gz",
+      "rawBytes": 2593,
+      "rawSha256": "e4383da913418b4b2cd131079d254a426f182aea288511cfb2dadd643b507151",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-04-renown.log.gz",
+      "rawBytes": 5162,
+      "rawSha256": "7022f001e49cbabf7171d5101ee1afd652fca26c3816a6528a2707629ad6e68b",
+      "passed": 45,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-05-batch4_conference.log.gz",
+      "rawBytes": 2868,
+      "rawSha256": "40aa3e78b8aaef4e5c0a60ae589536a52b8e8370c1b9e36a9017fffdaab6203a",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-final-related-batch4_plans.log.gz",
+      "rawBytes": 2593,
+      "rawSha256": "00b0c13f7d53d6c24f73b463eb5f716d67dbe2051508d24bfae86c50d855fe24",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-final-related-renown.log.gz",
+      "rawBytes": 5285,
+      "rawSha256": "924b009e8746d06a7430ceb8999c5f1ea92439c2244d4fbf19ec19427ad7100e",
+      "passed": 46,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-conference-source-01.log.gz",
+      "rawBytes": 167,
+      "rawSha256": "21d3506198aeb420ccf396a8adaacbc89a3dcb0f99c3c9ab1245c05e81771602",
+      "passed": null,
+      "failed": null
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Full product rerun",
+    "Independent execution/review",
+    "Public or natural browser acceptance",
+    "Site/Aliyun operations",
+    "CI/main merge/force push"
+  ]
+}

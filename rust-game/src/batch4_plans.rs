@@ -108,15 +108,17 @@ impl Game {
         } Ok(true)
     }
     pub(crate) fn plan_advance(&mut self, f: &ResolutionFrame) {
-        let Some(index) = self.attachments.iter().position(|a| a.card.id == f.source.card.id && a.card.controller == f.actor && Some(&a.host_id) == f.source.attachment_host_instance.as_ref()) else { return; };
+        if self.attachments.iter().any(|a| a.card.id == f.source.card.id && a.card.controller == f.actor && Some(&a.host_id) == f.source.attachment_host_instance.as_ref()) { self.advance_plan_instance(f.actor, &f.source.card.id); }
+    }
+    pub(crate) fn advance_plan_instance(&mut self, actor: usize, id: &str) {
+        let Some(index) = self.attachments.iter().position(|a| a.card.id == id && a.card.controller == actor && a.host_id == format!("society:p{actor}") && is_plan(&a.card)) else { return; };
         let limit = threshold(&self.attachments[index].card.definition).unwrap();
-        if self.attachments[index].card.advancement_markers >= limit { return; }
-        self.attachments[index].card.advancement_markers += 1;
+        self.attachments[index].card.advancement_markers = self.attachments[index].card.advancement_markers.saturating_add(1);
         if self.attachments[index].card.advancement_markers == limit {
             self.attachments[index].card.face_down = false;
             let source = self.source_snapshot(&self.attachments[index].card, None);
             self.note(format!("{} 达成推进{}，展示计划", label(&source.card), limit));
-            self.emit_event(f.actor, source, Event::PlanReached);
+            self.emit_event(actor, source, Event::PlanReached);
         }
     }
     pub(crate) fn plan_complete(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
@@ -136,7 +138,7 @@ impl Game {
     }
     pub(crate) fn validate_plan_state(&self) -> RuleResult<()> {
         for c in self.batch3_physical_cards().filter(|c| c.advancement_markers > 0) {
-            if threshold(&c.definition).is_none_or(|n| c.advancement_markers > n) || !self.attachments.iter().any(|a| a.card.id == c.id) { return Err("推进标志只能属于有效在场计划".into()); }
+            if threshold(&c.definition).is_none() || !self.attachments.iter().any(|a| a.card.id == c.id) { return Err("推进标志只能属于有效在场计划".into()); }
         }
         let mut frames = BTreeSet::new(); let mut completed = BTreeSet::new();
         for a in self.attachments.iter().filter(|a| is_plan(&a.card)) {
@@ -153,7 +155,7 @@ impl Game {
         } } }
         for effect in &self.effects { if let Effect::Declare { declaration: d } = effect { if is_plan(&d.source.card) { self.validate_plan_declaration(d)?; completion(&d.source, &d.ability.key)?; } } }
         if self.pending.as_ref().is_some_and(|p| matches!(&p.resolution, ChoiceResolution::Declare { declaration: d, .. } if is_plan(&d.source.card))) { return Err("计划达成推进是强制触发，不能改成可选选择".into()); }
-        for a in self.attachments.iter().filter(|a| is_plan(&a.card) && a.card.advancement_markers == threshold(&a.card.definition).unwrap()) {
+        for a in self.attachments.iter().filter(|a| is_plan(&a.card) && a.card.advancement_markers >= threshold(&a.card.definition).unwrap()) {
             if a.card.face_down || !completed.contains(&a.card.id) { return Err("已达阈值计划必须公开并保留唯一强制完成程序".into()); }
         }
         Ok(())

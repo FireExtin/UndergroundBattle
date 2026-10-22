@@ -540,6 +540,7 @@ impl Game {
             + self.green_source_attribute_bonus(c, region).1
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
+            .saturating_add(self.xg17_defense_bonus(c))
             .saturating_add(c.permanent_defense_markers)
             .saturating_sub(self.jc089_host_curses(c) as u32)
             .saturating_sub(c.wounds)
@@ -1304,6 +1305,7 @@ impl Game {
         self.bq037_observe_entry(id);
         self.bq029_observe_entry(id,extra);
         self.wm060_observe_entry(id);
+        self.xg17_observe_entry(id);
         self.batch3_register_entry_order(id,previous);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
@@ -2130,6 +2132,7 @@ impl Game {
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
+        crate::batch4_conference::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

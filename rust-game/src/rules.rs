@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    XG17RenownEntered,
     PlanReached,
     JZ38HostDied,
     BQ041BloodAttached,
@@ -113,6 +114,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    XG17PersonalPlan,
     Batch4DestroyedRegion,
     Batch3OwnGraveCharacter,
     BQ042SocietyOrOriginalRegion,
@@ -260,6 +262,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG17AdvancePlan { observation: Option<Box<crate::batch4_conference::RenownEntry>> },
     PlanPlayed { secrecy: Option<crate::batch4_plans::SecretPlay> },
     PlanAdvance,
     PlanComplete,
@@ -591,6 +594,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG17RenownDefense,
     WM060ConditionalPublic,
     XG12BatAndConditionalMobility,
     JZ39HostKillAndDemon,
