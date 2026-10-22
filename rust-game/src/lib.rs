@@ -5,6 +5,8 @@ mod recovery_validation_tests;
 #[cfg(test)]
 mod jc060_attached_current_tests;
 mod batch3;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod batch3_reward_tests;
 mod batch3_phoebe;
 #[cfg(test)]
 mod batch3_phoebe_tests;

@@ -336,8 +336,37 @@ impl Game {
         }
         self.mobility_immutable_identity(c)
     }
+    fn batch3_reward(&self, source: &SourceSnapshot, key: &str) -> RuleResult<Option<AbilitySpec>> {
+        if !IMPLEMENTING.contains(&source.card.definition.as_str())
+            || !matches!(key, "renown" | "jc089-combat-glory") { return Ok(None); }
+        if catalog::card(&source.card.definition).kind != "character" {
+            return Err("第三批跨卡奖励的来源必须是角色".into());
+        }
+        let region = source.source_region_instance.as_deref().filter(|id| !id.is_empty())
+            .ok_or("第三批跨卡奖励缺少原地区身份")?;
+        Ok(Some(if key == "renown" { crate::renown::renown_ability(region) }
+            else { rules::jc089_combat_glory_ability(region) }))
+    }
+    fn validate_batch3_reward_pending(&self, p: &Pending, d: &Declaration, stage: &DeclareChoice) -> RuleResult<()> {
+        let options = vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }];
+        if !matches!(stage, DeclareChoice::Accept) || p.seat != d.actor || p.choice.player_id != player_id(d.actor)
+            || p.choice.id.is_empty() || p.choice.kind != "trigger" || p.choice.min != Some(0) || p.choice.max != Some(1)
+            || p.choice.allow_decline != Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty()
+            || p.choice.title != format!("{}：{}", catalog::card(&d.source.card.definition).name, d.ability.label)
+            || p.choice.description != "选择符合数量限制的选项，然后确认。" || !same(&p.choice.options, &options) {
+            return Err("第三批跨卡奖励须保留原操控者的完整可选声明".into());
+        }
+        Ok(())
+    }
     pub(crate) fn validate_batch3_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if self.validated_cross_card_declaration(d)? {
+            return Ok(());
+        }
+        if let Some(expected) = self.batch3_reward(&d.source, &d.ability.key)? {
+            self.batch3_source(d.actor, &d.source)?;
+            if d.source.card.face_down || d.source.play_source.is_some() || !same(&d.ability, &expected) {
+                return Err("第三批跨卡奖励必须保留精确原地区和完整规范程序".into());
+            }
             return Ok(());
         }
         if d.ability.event == Some(Event::Prepare) && IMPLEMENTING.contains(&d.source.card.definition.as_str()) {
@@ -374,6 +403,16 @@ impl Game {
     }
     pub(crate) fn validate_batch3_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if self.validated_cross_card_frame(f)? || !related(f) {
+            return Ok(());
+        }
+        if let Some(a) = self.batch3_reward(&f.source, &f.ability_key)? {
+            self.batch3_source(f.actor, &f.source)?;
+            let steps = a.ops.into_iter().map(|op| Step { context: f.actor, op }).collect::<Vec<_>>();
+            if f.frame_id.is_empty() || f.frame_id == f.source.card.id || f.source.card.face_down
+                || f.source.play_source.is_some() || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked)
+                || f.chosen_region.is_some() || !f.targets.is_empty() || !f.already_paid.is_empty() || !same(&f.steps, &steps) {
+                return Err("第三批跨卡奖励帧不能改变原地区、原子程序或消费阶段".into());
+            }
             return Ok(());
         }
         if f.source.card.definition=="JZ26" && !matches!(f.ability_key.as_str(),"deploy"|"reveal") {return self.validate_jz26_frame(f);}
@@ -649,26 +688,30 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     self.batch3_reject_optional(declaration)?;
-                    if declaration.source.card.definition == "CQ07"
-                        && matches!(declaration.ability.key.as_str(), crate::batch3_phoebe::ENTER | crate::batch3_phoebe::TARGETED)
-                    { self.validate_cq07_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
-                    if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition == "WM035"
-                        && declaration.ability.key == "batch3-wm035-host-death"
-                    {
-                        self.validate_wm035_pending(p, declaration, stage)?;
-                    }
-                    // A vampire may also receive authenticated cross-card mobility.
-                    // Only its printed feeding declaration uses the Accept stage.
-                    if matches!((declaration.source.card.definition.as_str(), declaration.ability.key.as_str()),
-                        ("BQ037", "batch3-bq037-feed") | ("BQ029", "batch3-bq029-feed"))
-                    { self.validate_blood_trigger_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition=="BQ029" && declaration.ability.key=="raid-1" { self.validate_bq029_raid_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition == "XQ26" { self.validate_xq26_trigger_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
-                    if declaration.source.card.definition == "JZ25" {
-                        self.validate_jz25_pending(p, declaration, stage)?;
+                    if self.batch3_reward(&declaration.source, &declaration.ability.key)?.is_some() {
+                        self.validate_batch3_reward_pending(p, declaration, stage)?;
+                    } else {
+                        if declaration.source.card.definition == "CQ07"
+                            && matches!(declaration.ability.key.as_str(), crate::batch3_phoebe::ENTER | crate::batch3_phoebe::TARGETED)
+                        { self.validate_cq07_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
+                        if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition == "WM035"
+                            && declaration.ability.key == "batch3-wm035-host-death"
+                        {
+                            self.validate_wm035_pending(p, declaration, stage)?;
+                        }
+                        // A vampire may also receive authenticated cross-card mobility.
+                        // Only its printed feeding declaration uses the Accept stage.
+                        if matches!((declaration.source.card.definition.as_str(), declaration.ability.key.as_str()),
+                            ("BQ037", "batch3-bq037-feed") | ("BQ029", "batch3-bq029-feed"))
+                        { self.validate_blood_trigger_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition=="BQ029" && declaration.ability.key=="raid-1" { self.validate_bq029_raid_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition == "XQ26" { self.validate_xq26_trigger_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
+                        if declaration.source.card.definition == "JZ25" {
+                            self.validate_jz25_pending(p, declaration, stage)?;
+                        }
                     }
                     remember(&declaration.source, &declaration.ability.ops)?;
                 }

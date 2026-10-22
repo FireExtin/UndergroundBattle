@@ -206,6 +206,22 @@ mod renown {
             .ok_or("no pass")?;
         g.apply(s, Action::new("pass"))
     }
+    fn orient_senator(g: &mut Game, id: &str, orientation: &str) {
+        let window = g.window.clone();
+        g.apply(0, Action { card_id: Some(id.into()), ability_id: Some("batch3-xq22-orient".into()), ..Action::new("activate") }).unwrap();
+        for _ in 0..16 {
+            if g.pending.is_some() { break; }
+            assert!(!g.stack.is_empty(), "orientation must not close the confrontation window");
+            step_pass(g).unwrap();
+            *g = Game::from_persisted(&serde_json::to_string(g).unwrap()).unwrap();
+        }
+        let p = g.pending.clone().expect("senator orientation choice");
+        assert_eq!(p.choice.kind, "xq22-orientation");
+        g.apply(p.seat, Action { choice_id: Some(p.choice.id), selected: Some(vec![orientation.into()]), ..Action::new("choose") }).unwrap();
+        *g = Game::from_persisted(&serde_json::to_string(g).unwrap()).unwrap();
+        assert_eq!(g.window, window);
+        assert_eq!(g.regions[0].cards.iter().find(|c| c.id == id).unwrap().exhausted, orientation == "exhaust");
+    }
     #[test]
     fn public_commands_restore() {
         let mut base = Game::new(
@@ -268,7 +284,7 @@ mod renown {
             let spell = g.make_card("JC074", 0);
             let spell_id = spell.id.clone();
             g.players[0].hand.push(spell);
-            for _ in 0..2 {
+            for _ in 0..if d.id == "XQ22" { 6 } else { 2 } {
                 let c = g.make_card("JC074", 0);
                 g.players[0].assets.push(c);
             }
@@ -279,6 +295,13 @@ mod renown {
                 target_id: Some(id.clone()),
                 ..Action::new("play")
             };
+            if d.id == "XQ22" {
+                let before = serde_json::to_string(&g).unwrap();
+                assert!(g.apply(0, action.clone()).unwrap_err().contains("未横置的州议员"));
+                assert_eq!(serde_json::to_string(&g).unwrap(), before);
+                orient_senator(&mut g, &id, "exhaust");
+                assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), 2);
+            }
             if let Err(e) = g.apply(0, action) {
                 println!("SKIP {} grant rejected: {e}", d.id);
                 skipped += 1;
@@ -287,6 +310,12 @@ mod renown {
             }
             while !g.stack.is_empty() {
                 step_pass(&mut g).expect("resolve grant");
+            }
+            if d.id == "XQ22" {
+                assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), 4);
+                orient_senator(&mut g, &id, "ready");
+                assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), 6);
+                assert_eq!(g.window, Some(Window::Before(0, 2)));
             }
             if !g.view(0).regions[0]
                 .characters
