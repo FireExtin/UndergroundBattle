@@ -7,7 +7,7 @@ const RED: Spec = Spec {
     name: ("鸣钟教派", "末日钟的侍奉者"), subtypes: &["秘密教派"],
     cards: &["JC042", "JC049", "JC047", "XQ17", "JZ31", "JC045", "JC050", "XQ18",
         "JZ30", "WM038", "JZ35", "JC052", "JC046", "JC054", "JC044"],
-    full: 45, color_count: 25, uniques: &["JC052", "WM034", "JC051", "JC055", "JZ34"],
+    full: 45, color_count: 29, uniques: &["JC052", "WM034", "JC051", "JC055", "JZ34", "WM035"],
     hits: ["JC052", "JC052", "JC042", "LC23"],
 };
 const GRAY: Spec = Spec {
@@ -15,7 +15,7 @@ const GRAY: Spec = Spec {
     name: ("国家机构", "政府权力"), subtypes: &["机构"],
     cards: &["JC056", "JC058", "JC059", "JC063", "JC069", "JZ43", "XQ27", "JZ44",
         "JZ45", "XQ24", "JC061", "XQ25", "JC060", "JZ46", "JC057"],
-    full: 45, color_count: 27, uniques: &["JC066", "JC067", "JC068", "CQ17"],
+    full: 45, color_count: 32, uniques: &["JC066", "JC067", "JC068", "CQ17", "WM041", "XQ22"],
     hits: ["JC060", "JZ46", "JC056", "LC23"],
 };
 #[test] fn msjc04_whole_original_and_real_red_unique_program() { original(&RED); }

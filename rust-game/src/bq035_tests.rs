@@ -889,6 +889,133 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
 }
 
 #[test]
+fn bq035_bq037_granted_mobility_keeps_authorization_and_rejects_forged_choices() {
+    let mut g = u::game();
+    let host = field(&mut g, "BQ037", 0, 0);
+    let knight = field(&mut g, "BQ035", 0, 4);
+    let blood = attach(&mut g, "XQ14", 0, &host);
+    assert!(!crate::mobility::printed("BQ037"));
+    start_mobility(&mut g);
+    let d = pending_declaration(&mut g);
+    assert_eq!(d.source.card.id, host);
+    assert_eq!(d.ability.key, "mobility");
+    let grant = d.source.observed_mobility_grant.as_ref().unwrap();
+    assert_eq!(grant.knight.id, knight);
+    assert_eq!(grant.blood.card.id, blood);
+    u::restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+
+    for variant in 0..6 {
+        let mut bad = g.clone();
+        let d = pending_declaration(&mut bad);
+        match variant {
+            0 => d.source.observed_mobility_grant = None,
+            1 => d.source.observed_mobility_grant.as_mut().unwrap().knight.definition = "JC125".into(),
+            2 => d.source.observed_mobility_grant.as_mut().unwrap().blood.host_id = "other".into(),
+            3 => d.ability.key = "batch3-bq037-feed".into(),
+            4 => d.ability.ops.clear(),
+            _ => {
+                if let ChoiceResolution::Declare { stage, .. } = &mut bad.pending.as_mut().unwrap().resolution {
+                    *stage = DeclareChoice::Accept;
+                }
+            }
+        }
+        invalid(&bad, &format!("bq037-mobility-forgery-{variant}"));
+    }
+    let p = g.pending.clone().unwrap();
+    for (seat, choice_id, selected) in [
+        (1, p.choice.id.clone(), vec!["region:1".into()]),
+        (0, "stale-choice".into(), vec!["region:1".into()]),
+        (0, p.choice.id.clone(), vec!["region:4".into()]),
+        (0, p.choice.id.clone(), vec!["region:1".into(), "region:7".into()]),
+    ] {
+        u::reject(&mut g, seat, Action { choice_id: Some(choice_id), selected: Some(selected), ..Action::new("choose") });
+    }
+    u::choose(&mut g, vec!["region:1".into()]);
+    u::reject(&mut g, 0, Action { choice_id: Some(p.choice.id), selected: Some(vec!["region:1".into()]), ..Action::new("choose") });
+    crate::jc029_tests::checkpoint(&g);
+    u::top(&mut g);
+    assert_eq!(g.board(&host).unwrap().0, 1);
+    assert!(g.attachments.iter().any(|a| a.card.id == blood && a.host_id == host));
+    u::restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+}
+
+#[test]
+fn bq035_cq07_granted_mobility_uses_the_authenticated_target_choice() {
+    let mut g = u::game();
+    let host = field(&mut g, "CQ07", 0, 0);
+    field(&mut g, "BQ035", 0, 4);
+    attach(&mut g, "XQ14", 0, &host);
+    start_mobility(&mut g);
+    let d = pending_declaration(&mut g);
+    assert_eq!((d.source.card.id.as_str(), d.ability.key.as_str()), (host.as_str(), "mobility"));
+    u::restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+    for variant in 0..3 {
+        let mut bad = g.clone();
+        match variant {
+            0 => pending_declaration(&mut bad).source.observed_mobility_grant = None,
+            1 => pending_declaration(&mut bad).ability.key = crate::batch3_phoebe::ENTER.into(),
+            _ => {
+                if let ChoiceResolution::Declare { stage, .. } = &mut bad.pending.as_mut().unwrap().resolution {
+                    *stage = DeclareChoice::Accept;
+                }
+            }
+        }
+        invalid(&bad, &format!("cq07-mobility-forgery-{variant}"));
+    }
+    u::choose(&mut g, vec!["region:1".into()]);
+    u::top(&mut g);
+    assert_eq!(g.board(&host).unwrap().0, 1);
+    crate::jc029_tests::checkpoint(&g);
+}
+
+#[test]
+fn bq035_bq037_real_feed_still_requires_its_original_optional_entry_declaration() {
+    let mut g = u::game();
+    let host = field(&mut g, "BQ037", 0, 0);
+    field(&mut g, "BQ035", 0, 4);
+    attach(&mut g, "XQ14", 0, &host);
+    u::fund(&mut g, 0, "JC029", 2);
+    let incoming = u::held(&mut g, "JC029", 0);
+    u::act(&mut g, 0, Action { card_id: Some(incoming), region: Some(0), ..Action::new("deploy") });
+    for _ in 0..16 {
+        if g.pending.is_some() { break; }
+        u::pass(&mut g);
+    }
+    let d = pending_declaration(&mut g);
+    assert_eq!(d.source.card.id, host);
+    assert_eq!(d.ability.key, "batch3-bq037-feed");
+    assert!(matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { stage: DeclareChoice::Accept, .. }));
+    u::restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+    for variant in 0..5 {
+        let mut bad = g.clone();
+        let p = bad.pending.as_mut().unwrap();
+        match variant {
+            0 => {
+                if let ChoiceResolution::Declare { stage, .. } = &mut p.resolution { *stage = DeclareChoice::Target; }
+            }
+            1 => p.choice.options.clear(),
+            2 => p.choice.allow_decline = Some(false),
+            3 => pending_declaration(&mut bad).ability.key = "mobility".into(),
+            _ => pending_declaration(&mut bad).ability.ops = vec![Op::BQ037FeedPair { observation: None }],
+        }
+        invalid(&bad, &format!("bq037-feed-forgery-{variant}"));
+    }
+    let mut declined = g.clone();
+    u::choose(&mut declined, vec![]);
+    assert!(declined.stack.is_empty());
+    crate::jc029_tests::checkpoint(&declined);
+    u::choose(&mut g, vec!["accept".into()]);
+    assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().ability_key, "batch3-bq037-feed");
+    u::top(&mut g);
+    u::restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+}
+
+#[test]
 fn bq035_pending_observation_and_program_tampering_reject_both_storage_entries() {
     let (mut g, _, _, _) = granted();
     start_mobility(&mut g);

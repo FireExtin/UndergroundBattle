@@ -3,6 +3,37 @@
 #![allow(dead_code)]
 use crate::{catalog, model::*};
 
+/// ABI94 admission boundary, independently pinned before batch three at bb77.
+/// Counts alone must not admit a replacement, duplicate, or future WIP card.
+pub(crate) fn assert_abi94_catalog_pool() {
+    use sha2::{Digest, Sha256};
+    use std::collections::BTreeSet;
+    let raw: serde_json::Value = serde_json::from_str(include_str!("../data/cards.json")).unwrap();
+    let records = raw["cards"].as_array().unwrap();
+    assert_eq!(records.len(), 213);
+    assert_eq!(
+        format!("{:x}", Sha256::digest(serde_json::to_vec(&records[..193]).unwrap())),
+        "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e",
+        "the preceding 193 printed records must remain unchanged"
+    );
+    let third = [
+        "BQ026", "BQ029", "BQ037", "BQ042", "BQ079", "BQ087", "BQ089", "CQ07",
+        "JC062", "JC064", "JZ25", "JZ26", "WM030", "WM033", "WM035", "WM041",
+        "XG26", "XG28", "XQ22", "XQ26",
+    ].into_iter().collect::<BTreeSet<_>>();
+    assert_eq!(records[193..].iter().map(|r| r["id"].as_str().unwrap()).collect::<BTreeSet<_>>(), third);
+    let raw_ids = records.iter().map(|r| r["id"].as_str().unwrap()).collect::<BTreeSet<_>>();
+    assert_eq!(raw_ids.len(), 213);
+    let c = catalog::catalog();
+    assert_eq!(c.cards.len(), 213);
+    assert_eq!(c.cards.iter().map(|c| c.id.as_str()).collect::<BTreeSet<_>>(), raw_ids);
+    assert_eq!(c.cards.iter().filter(|c| c.kind != "region").count(), 203);
+    assert_eq!(
+        c.cards.iter().filter(|c| c.kind == "region").map(|c| c.id.as_str()).collect::<BTreeSet<_>>(),
+        ["DQJC107", "DQJC108", "DQJC109", "DQJC110", "DQJC111", "DQJC112", "DQJC113", "DQJC114", "DQJC115", "DQJC116"].into_iter().collect()
+    );
+}
+
 pub(crate) fn game() -> Game {
     let mut g = Game::new(
         "unit".into(),

@@ -44,9 +44,9 @@ fn next20_cross_registry_contains_exact_twenty_complete_prints() {
         "JC051", "JC055", "JZ32", "JZ34", "JZ41", "BQ077", "BQ085", "CQ26", "XG27", "XQ39",
         "JC039", "JZ23", "JZ28", "XG10", "CQ08", "BQ059", "CQ17", "WM039", "WM040", "WM042",
     ];
-    let c = catalog::catalog();
-    assert_eq!(c.cards.len(), 193);
-    assert_eq!(c.cards.iter().filter(|c| c.kind != "region").count(), 183);
+    // This test's twenty IDs remain the second batch; the current complete
+    // catalogue also contains the independently pinned third batch.
+    crate::unit_support::assert_abi94_catalog_pool();
     crate::rules::validate_definitions(crate::rules::definitions()).unwrap();
     assert_eq!(ids.iter().filter(|id| catalog::card(id).unique).count(), 10);
     for id in ids {

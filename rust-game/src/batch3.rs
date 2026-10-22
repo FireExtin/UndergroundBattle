@@ -649,7 +649,9 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     self.batch3_reject_optional(declaration)?;
-                    if declaration.source.card.definition == "CQ07" { self.validate_cq07_pending(p,declaration,stage)?; }
+                    if declaration.source.card.definition == "CQ07"
+                        && matches!(declaration.ability.key.as_str(), crate::batch3_phoebe::ENTER | crate::batch3_phoebe::TARGETED)
+                    { self.validate_cq07_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
                     if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "WM035"
@@ -657,7 +659,11 @@ impl Game {
                     {
                         self.validate_wm035_pending(p, declaration, stage)?;
                     }
-                    if declaration.source.card.definition == "BQ037" || declaration.ability.key=="batch3-bq029-feed" { self.validate_blood_trigger_pending(p,declaration,stage)?; }
+                    // A vampire may also receive authenticated cross-card mobility.
+                    // Only its printed feeding declaration uses the Accept stage.
+                    if matches!((declaration.source.card.definition.as_str(), declaration.ability.key.as_str()),
+                        ("BQ037", "batch3-bq037-feed") | ("BQ029", "batch3-bq029-feed"))
+                    { self.validate_blood_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition=="BQ029" && declaration.ability.key=="raid-1" { self.validate_bq029_raid_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "XQ26" { self.validate_xq26_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }

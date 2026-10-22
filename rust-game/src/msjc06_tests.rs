@@ -169,6 +169,20 @@ pub(super) fn original(spec: &Spec) {
             .count(),
         spec.color_count
     );
+    // These are complete admitted colour pools, not the smaller construction
+    // fixtures in Spec.cards/full. Keep the newly admitted gold names in scope.
+    let expected_pool = match spec.color {
+        "红" => Some("BQ042 JC042 JC043 JC044 JC045 JC046 JC047 JC048 JC049 JC050 JC051 JC052 JC054 JC055 JZ30 JZ31 JZ32 JZ33 JZ34 JZ35 JZ37 JZ41 WM030 WM033 WM034 WM035 WM038 XQ17 XQ18"),
+        "灰" => Some("BQ054 BQ059 CQ16 CQ17 JC056 JC057 JC058 JC059 JC060 JC061 JC062 JC063 JC064 JC065 JC066 JC067 JC068 JC069 JZ43 JZ44 JZ45 JZ46 WM039 WM040 WM041 WM042 XQ22 XQ23 XQ24 XQ25 XQ26 XQ27"),
+        "黑" => Some("BQ077 BQ078 BQ079 BQ080 BQ083 BQ085 BQ087 BQ089 BQ091 BQ094 CQ26 JC084 JC085 JC086 JC087 JC088 JC089 JC090 JC091 JC092 JC093 JC094 JC095 JC096 JZ48 JZ49 JZ50 JZ52 JZ54 JZ55 JZ57 WM056 WM059 WM062 XG26 XG27 XG28 XQ36 XQ37 XQ38 XQ39"),
+        _ => None,
+    };
+    if let Some(expected_pool) = expected_pool {
+        use std::collections::BTreeSet;
+        let pool = catalog::catalog().cards.iter().filter(|c| c.color == spec.color && c.kind != "region");
+        assert_eq!(pool.clone().map(|c| c.id.as_str()).collect::<BTreeSet<_>>(), expected_pool.split_whitespace().collect());
+        assert_eq!(pool.filter(|c| c.unique).map(|c| c.id.as_str()).collect::<BTreeSet<_>>(), spec.uniques.iter().copied().collect());
+    }
     for id in spec.uniques {
         // A printed affiliation is not a society card. The search accepts
         // ordinary unique cards of this colour, including affiliated ones.

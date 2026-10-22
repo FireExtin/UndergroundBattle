@@ -2982,7 +2982,7 @@ mod tests {
     #[test]
     fn catalog_is_restricted_real_complete_and_decks_are_legal() {
         let c = catalog::catalog();
-        assert_eq!(c.cards.len(), 193);
+        crate::unit_support::assert_abi94_catalog_pool();
         let active = c
             .cards
             .iter()
@@ -2997,7 +2997,7 @@ mod tests {
                 .collect::<BTreeSet<_>>()
         );
         assert!(active.contains("DQJC116"));
-        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 183);
+        assert_eq!(c.cards.iter().filter(|d| d.kind != "region").count(), 203);
         assert!(c.cards.iter().all(|card| card.supported));
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
