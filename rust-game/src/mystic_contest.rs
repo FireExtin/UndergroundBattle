@@ -85,8 +85,11 @@ pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> 
 
 impl Game {
     pub(crate) fn mystic_instance_valid(&self, id: &str) -> bool {
+        self.mystic_instance_number(id).is_some()
+    }
+    pub(crate) fn mystic_instance_number(&self, id: &str) -> Option<u64> {
         id.strip_prefix('i').and_then(|v| v.parse::<u64>().ok())
-            .is_some_and(|n| n > 0 && n <= self.sequence && id == format!("i{n}"))
+            .filter(|n| *n > 0 && *n <= self.sequence && id == format!("i{n}"))
     }
     pub(crate) fn mystic_op_bonus(frame: &ResolutionFrame) -> Option<u32> {
         match frame.cursor.checked_sub(1).and_then(|i| frame.steps.get(i)).map(|s| &s.op) {

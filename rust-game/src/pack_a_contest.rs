@@ -143,7 +143,8 @@ impl Game {
         if !CARDS.contains(&id) && !f.ability_key.starts_with("pack-a-") && !f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op))) { return Ok(()); }
         if self.validated_cross_card_frame(f)? { return Ok(()); }
         self.pack_a_source(f.actor,&f.source)?;
-        if !self.mystic_instance_valid(&f.frame_id) || f.frame_id == f.source.card.id || f.cursor > f.steps.len()
+        if !self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&f.frame_id))
+                .is_some_and(|(source, frame)| source < frame) || f.cursor > f.steps.len()
             || f.cursor == 0 && !matches!(f.guard,GuardState::Unchecked) || f.cursor > 0 && !matches!(f.guard,GuardState::Accepted) {
             return Err("隐秘卡执行帧身份、阶段或守卫无效".into());
         }
@@ -245,7 +246,13 @@ impl Game {
         expected.advancement_markers = 0; expected.named_character = None;
         expected.time_markers = 0; expected.permanent_combat_markers = 0;
         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
-        self.mystic_instance_valid(&c.id) && c.id != f.source.card.id && c.id != f.frame_id && *c == expected
+        // fresh() allocates the transaction after its original source, and
+        // push_stack() allocates the frame after the transaction. A retired
+        // UID must never become a new response card, even if unused now.
+        self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&c.id))
+            .zip(self.mystic_instance_number(&f.frame_id))
+            .is_some_and(|((source, transaction), frame)| source < transaction && transaction < frame)
+            && *c == expected
     }
     pub(crate) fn validate_pack_a_state(&self) -> RuleResult<()> {
         // Check recursive ownership before source-specific early returns, in

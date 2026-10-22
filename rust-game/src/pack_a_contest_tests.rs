@@ -324,3 +324,35 @@ fn pack_a_paid_response_cannot_be_moved_to_effect_queue_or_inject_transaction_at
         for n in 0..5 {let mut v=base.clone();match n {0=>v["stack"][0]["card"]["time_markers"]=9.into(),1=>v["stack"][0]["card"]["damage"]=9.into(),2=>v["stack"][0]["card"]["id"]=v["stack"][0]["frame"]["source"]["card"]["id"].clone(),3=>v["stack"][0]["card"]["owner"]=1.into(),_=>v["stack"][0]["frame"]=serde_json::Value::Null};invalid(&g,v);}
     }
 }
+
+#[test]
+fn pack_a_response_identity_cannot_reuse_retired_or_future_instance() {
+    for id in ["WM021", "WM022", "WM032", "BQ082", "WM061"] {
+        let mut g = layout();
+        let retired = held(&mut g, "JC125", 0);
+        g.discard_hand_card(0, &retired).unwrap();
+        assert!(!g.batch3_physical_cards().any(|c| c.id == retired));
+        fund(&mut g, 0, id, catalog::card(id).cost as usize);
+        let uid = held(&mut g, id, 0);
+        let action = if id == "WM061" {
+            Action { card_id: Some(uid), ..Action::new("play") }
+        } else {
+            Action { card_id: Some(uid), region: Some(0), ..Action::new("deploy") }
+        };
+        act(&mut g, 0, action);
+        let future = g.id();
+        checkpoint(&g);
+        let base = serde_json::to_value(&g).unwrap();
+        for (case, wrong) in [("retired shell", retired.clone()), ("future shell", future), ("retired frame", retired)] {
+            let mut value = base.clone();
+            if case == "retired frame" {
+                value["stack"][0]["id"] = wrong.clone().into();
+                value["stack"][0]["frame"]["frame_id"] = wrong.into();
+            } else {
+                value["stack"][0]["card"]["id"] = wrong.into();
+            }
+            assert!(Game::from_persisted(&serde_json::to_string(&value).unwrap()).is_err(), "{id} restored {case}");
+            invalid(&g, value);
+        }
+    }
+}
