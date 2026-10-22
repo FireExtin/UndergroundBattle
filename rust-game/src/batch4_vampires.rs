@@ -159,11 +159,14 @@ impl Game {
                 let h = &o.host; let a = &o.attachment;
                 let Some(event) = self.vampire_id(&o.event_id) else { return Err("雾羽千军结附事件身份无效".into()); };
                 let printed = catalog::catalog().cards.iter().find(|d| d.id == h.card.definition && catalog::runtime_implemented(d)).ok_or("结附宿主不是准入牌面")?;
+                let attached = catalog::catalog().cards.iter().find(|d| d.id == a.card.definition && catalog::runtime_implemented(d)).ok_or("结附观察不是准入附属")?;
                 if source.card.definition != "BQ031" || o.turn != self.turn || h.card.controller != actor || h.card.face_down
+                    || h.card.owner >= self.players.len() || a.card.owner >= self.players.len() || a.card.controller >= self.players.len()
+                    || self.batch3_physical_cards().any(|c| c.id == o.event_id) || self.stack.iter().any(|s| s.id == o.event_id)
                     || h.region.is_none_or(|r| r >= self.regions.len()) || h.play_source.is_some() || h.death_echo.is_some()
                     || h.observed_death.is_some() || h.observed_exposure.is_some() || h.observed_mobility_grant.is_some()
                     || !catalog::has_kind(printed, "character")
-                    || !catalog::has_kind(catalog::card(&a.card.definition), "attachment") || a.card.face_down || a.host_id != h.card.id
+                    || !catalog::has_kind(attached, "attachment") || a.card.face_down || a.host_id != h.card.id
                     || a.card.id == h.card.id || a.card.id == source.card.id
                     || !o.subtypes.iter().any(|s| matches!(s.as_str(), "吸血鬼" | "忍者"))
                     || o.subtypes.iter().collect::<BTreeSet<_>>().len() != o.subtypes.len()
@@ -280,7 +283,8 @@ impl Game {
         count
     }
     fn vampire_is_raid(&self, f: &ResolutionFrame) -> RuleResult<bool> {
-        if f.actor >= self.players.len() || f.source.card.controller != f.actor || f.source.card.face_down || !catalog::has_kind(catalog::card(&f.source.card.definition), "character")
+        let printed = catalog::catalog().cards.iter().find(|d| d.id == f.source.card.definition && catalog::runtime_implemented(d));
+        if f.actor >= self.players.len() || f.source.card.controller != f.actor || f.source.card.face_down || printed.is_none_or(|d| !catalog::has_kind(d, "character"))
             || f.source.card.owner >= self.players.len() || self.vampire_id(&f.source.card.id).is_none()
             || self.vampire_id(&f.frame_id).is_none_or(|n| n <= self.vampire_id(&f.source.card.id).unwrap_or(u64::MAX))
             || f.source.region.is_none_or(|r| r >= self.regions.len()) || f.source.play_source.is_some() || f.source.death_echo.is_some()
@@ -386,6 +390,7 @@ impl Game {
     }
     pub(crate) fn validate_vampire_state(&self) -> RuleResult<()> {
         let mut frames = BTreeSet::new(); let mut events = BTreeSet::new();
+        let mut accepted_discards = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
             let event = match ops { [Op::BQ031AttachmentDiscard { observation: Some(o) }] => Some(&o.event_id), [Op::BQ038RaidFeed { observation: Some(o) }] => Some(&o.raid.frame_id), _ => None };
             if event.is_some_and(|e| !events.insert((source.card.id.clone(), e.clone()))) { return Err("同次结附或袭击不能重复触发同一观察者".into()); }
@@ -395,16 +400,28 @@ impl Game {
             let Some(f) = &item.frame else { if item.card.as_ref().is_some_and(|c| CARDS.contains(&c.definition.as_str())) { return Err("本包堆叠缺少完整帧".into()); } continue; };
             if !related_frame(f) || self.validated_cross_card_frame(f)? { continue; }
             self.validate_vampire_frame(f)?;
+            if f.ability_key == ATTACH_DISCARD && !accepted_discards.insert(f.source.card.id.clone()) { return Err("雾羽千军每回合只能有一次已发动的触发".into()); }
             let play = matches!(f.ability_key.as_str(), "deploy" | "reveal" | "attach");
             if !frames.insert(f.frame_id.clone()) || item.id != f.frame_id || item.controller != f.actor || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked)
                 || item.card.is_some() != play || item.target != f.targets.first().map(|t| t.id.clone()) || item.reveal != (f.ability_key == "reveal")
                 || item.deploy_region != if matches!(f.ability_key.as_str(), "deploy" | "reveal") { f.source.region } else { None }
-                || item.card.as_ref().is_some_and(|c| c.definition != f.source.card.definition || c.owner != f.source.card.owner || c.controller != f.actor || c.face_down) { return Err("本包堆叠外壳与原帧不符".into()); }
+                || item.card.as_ref().is_some_and(|c| {
+                    let mut expected = f.source.card.clone();
+                    expected.id = c.id.clone(); expected.face_down = false;
+                    expected.advancement_markers = 0; expected.named_character = None;
+                    expected.time_markers = 0; expected.lock_markers = 0;
+                    expected.permanent_combat_markers = 0; expected.permanent_defense_markers = 0;
+                    self.vampire_id(&c.id).is_none_or(|n| n <= self.vampire_id(&f.source.card.id).unwrap() || n >= self.vampire_id(&f.frame_id).unwrap())
+                        || !same(c, &expected)
+                }) { return Err("本包堆叠外壳与原帧不符".into()); }
             remember(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
         }
         for e in &self.effects { match e {
             Effect::Declare { declaration: d } if CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? => { self.validate_vampire_declaration(d)?; remember(&d.source, &d.ability.ops)?; }
-            Effect::Frame { frame: f } if related_frame(f) && !self.validated_cross_card_frame(f)? => { self.validate_vampire_frame(f)?; if !frames.insert(f.frame_id.clone()) { return Err("本包不能重复恢复同一帧".into()); } remember(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?; }
+            // All implemented programs either resolve atomically or pause in
+            // their typed Pending. A queued frame is only transient within a
+            // command, never a legitimate persisted response bypass.
+            Effect::Frame { frame: f } if related_frame(f) && !self.validated_cross_card_frame(f)? => return Err("本包不能保存绕过响应堆叠的效果帧".into()),
             _ => (),
         } }
         let Some(p) = &self.pending else { return Ok(()); };
@@ -430,6 +447,7 @@ impl Game {
         if let Some(f) = frame {
             self.validate_vampire_frame(f)?;
             if !frames.insert(f.frame_id.clone()) || f.cursor != 1 || !matches!(f.guard, GuardState::Accepted) { return Err("本包结算中待选必须保留唯一原帧".into()); }
+            if f.ability_key == ATTACH_DISCARD && !accepted_discards.insert(f.source.card.id.clone()) { return Err("雾羽千军每回合只能有一次已发动的触发".into()); }
             remember(&f.source, &f.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
             let ChoiceResolution::Frame { choice, .. } = &p.resolution else { unreachable!() };
             let (kind, title, seat, min, max, options) = match choice {

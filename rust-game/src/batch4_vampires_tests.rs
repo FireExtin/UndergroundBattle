@@ -282,6 +282,32 @@ fn batch4_vampires_frames_receipts_pending_and_duplicate_events_reject_both_reco
     for n in 0..6 {let mut bad=g.clone();let f=bad.stack.last_mut().unwrap().frame.as_mut().unwrap();match n{0=>f.already_paid.clear(),1=>f.source.card.controller=1,2=>f.steps[0].op=Op::BQ036TopSix,3=>f.targets[0].spec.subtype=None,4=>f.cursor=1,_=>f.frame_id=f.source.card.id.clone()};rejected_both(&g,&bad);}
     pending_feed(&mut g);for n in 0..4{let mut bad=g.clone();let p=bad.pending.as_mut().unwrap();match n{0=>p.seat=1,1=>p.choice.min=Some(0),2=>p.choice.options.clear(),_=>if let ChoiceResolution::Frame{choice,..}=&mut p.resolution{*choice=FrameChoice::BQ036TopSix{inspected_ids:vec![]};}}rejected_both(&g,&bad);}
     let mut g=game();field(&mut g,"BQ031",0);let host=field(&mut g,"JC029",0);attachment(&mut g,"XQ14",0,&host);let mut bad=g.clone();let ChoiceResolution::Declare{declaration,..}=&bad.pending.as_ref().unwrap().resolution else{panic!()};bad.effects.push_back(Effect::Declare{declaration:declaration.clone()});rejected_both(&g,&bad);
+    accept(&mut g,v::ATTACH_DISCARD,"p2");let mut bad=g.clone();let mut extra=bad.stack.last().unwrap().clone();
+    let event=bad.id();let id=bad.id();let f=extra.frame.as_mut().unwrap();let Op::BQ031AttachmentDiscard{observation:Some(o)}=&mut f.steps[0].op else{panic!()};o.event_id=event;f.frame_id=id.clone();extra.id=id;bad.stack.push(extra);rejected_both(&g,&bad);
+}
+
+#[test]
+fn batch4_vampires_atomic_programs_cannot_recover_as_effect_queue_frames() {
+    let mut g=game();let source=field(&mut g,"BQ027",0);let target=field(&mut g,"JC029",0);grave(&mut g,"XQ14",0);act(&mut g,0,feed(&source,&target));
+    let mut bad=g.clone();let frame=bad.stack.pop().unwrap().frame.unwrap();bad.effects.push_front(Effect::Frame{frame:Box::new(frame)});rejected_both(&g,&bad);
+    pending_feed(&mut g);let mut bad=g.clone();let ChoiceResolution::Frame{frame,..}=bad.pending.take().unwrap().resolution else{panic!()};bad.effects.push_front(Effect::Frame{frame});rejected_both(&g,&bad);
+    let mut g=game();actual_reveal(&mut g,"BQ036");accept(&mut g,v::SEARCH,"accept");let mut bad=g.clone();let frame=bad.stack.pop().unwrap().frame.unwrap();bad.effects.push_front(Effect::Frame{frame:Box::new(frame)});rejected_both(&g,&bad);
+}
+
+#[test]
+fn batch4_vampires_unknown_or_out_of_range_attachment_history_rejects_without_panics() {
+    let mut g=game();field(&mut g,"BQ031",0);let host=field(&mut g,"JC029",0);attachment(&mut g,"XQ14",0,&host);
+    for n in 0..5 {let mut bad=g.clone();let ChoiceResolution::Declare{declaration,..}=&mut bad.pending.as_mut().unwrap().resolution else{panic!()};let Op::BQ031AttachmentDiscard{observation:Some(o)}=&mut declaration.ability.ops[0] else{panic!()};
+        match n{0=>o.attachment.card.definition="unknown".into(),1=>o.attachment.card.owner=99,2=>o.attachment.card.controller=99,3=>o.host.card.owner=99,_=>o.event_id=bad.regions[0].card.id.clone()};rejected_both(&g,&bad);}
+}
+
+#[test]
+fn batch4_vampires_response_shell_cannot_inject_markers_or_alias_source_uid() {
+    for id in ["BQ027","BQ032","BQ036","BQ038"] {
+        let mut g=game();fund(&mut g,0,id,catalog::card(id).cost as usize);let held=held(&mut g,id,0);
+        let a=if id=="BQ038"{Action{card_id:Some(held),target_id:Some("society:p0".into()),..Action::new("play")}}else{Action{card_id:Some(held),region:Some(0),..Action::new("deploy")}};act(&mut g,0,a);
+        for n in 0..3 {let mut bad=g.clone();let item=bad.stack.last_mut().unwrap();let c=item.card.as_mut().unwrap();match n{0=>c.permanent_combat_markers+=1,1=>c.id=item.frame.as_ref().unwrap().source.card.id.clone(),_=>c.exhausted=true};rejected_both(&g,&bad);}
+    }
 }
 
 fn room_step(r:&mut crate::room::RoomEnvelope,seat:usize,action:crate::room::SessionAction,now:u64)->crate::room::RoomCommand {

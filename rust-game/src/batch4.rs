@@ -324,7 +324,7 @@ impl Game {
         }
         for e in &self.effects { match e {
             Effect::Declare { declaration } => { self.validate_batch4_declaration(declaration)?; remember(&declaration.source, &declaration.ability.ops)?; },
-            Effect::Frame { frame } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
+            Effect::Frame { frame } if frame_related(frame) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
             _ => {},
         } }
         if let Some(p) = &self.pending { if let ChoiceResolution::Declare { declaration: d, stage } = &p.resolution {
