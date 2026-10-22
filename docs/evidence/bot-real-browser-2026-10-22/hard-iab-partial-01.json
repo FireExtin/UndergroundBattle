@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-22T12:39:18.370449+00:00",
+  "runtime": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "docsOnlyHead": "42c10463edbe86f04a190219ab00da257ec06c6d",
+  "url": "http://127.0.0.1:8113/#play",
+  "tabId": "3",
+  "mode": "hard",
+  "roomId": "3d4632ea3f7eeb92b47c4a4d",
+  "newTest": true,
+  "independentPlayerSession": "explicit UI new independent player session before room creation",
+  "humanName": "困难Bot浏览器终局QA",
+  "humanSeat": 1,
+  "disclosureBeforeCreation": "困难Bot可以读取你的当前手牌，用于选择合法行动。 此房仅供你与Bot练习。",
+  "disclosureDuringGame": "困难Bot可以读取你的当前手牌，用于选择合法行动。",
+  "normalGamePreserved": {
+    "roomId": "7680663b07a79bbdff6f0295",
+    "tabId": "2",
+    "terminalEvidenceSha256": "d73ff2a3c94bd4b84b0e45ff462a0204eab80515d25211aaf5e3fd99f2409477",
+    "noNewCommandsToNormalTable": true
+  },
+  "observedSteps": [
+    "create hard room; Bot automatically joins ready",
+    "human ready/start/keep all; round1",
+    "built-in legal continuous pass until end1 -> round2",
+    "end2 required discard completed -> round3",
+    "round3 region1 influence reward-after fast window: private all-player search, zero options, optional0..1",
+    "pause and save at original private pending, reload, same difficulty/disclosure/seat/round3/continuation preserved",
+    "resume; same private dialog restored; choose explicit optional skip"
+  ],
+  "lastKnownUi": {
+    "turn": 3,
+    "phase": "对抗阶段 · 地区1 · 势力 · 奖励后快速窗口",
+    "next": "让过，推进当前窗口"
+  },
+  "terminalObserved": false,
+  "limits": [
+    "real UI partial only, not terminal yet",
+    "no gameplay API substitute",
+    "no full AX trace export or disk screenshot claimed",
+    "not an independent browser replay; execution by integration author"
+  ]
+}

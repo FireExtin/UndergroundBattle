@@ -1,0 +1,20 @@
+{
+  "recordedAtUtc": "2026-10-22T13:14:11.491806+00:00",
+  "frozenRuntimeCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
+  "browser": "IAB browser2 tab3",
+  "roomId": "3d4632ea3f7eeb92b47c4a4d",
+  "mode": "hard",
+  "lastConfirmed": {
+    "turn": 14,
+    "phase": "对抗阶段 · 地区 1 · 调查 · 奖励前快速窗口",
+    "continuousPass": "enabled"
+  },
+  "nextAction": {
+    "kind": "UI continue and fulfill required choices",
+    "result": "uncertain",
+    "toolError": "Transport closed",
+    "repeated": false
+  },
+  "status": "partial; no terminal claim; original QA table preserved",
+  "normalTerminalEvidenceUnchanged": true
+}

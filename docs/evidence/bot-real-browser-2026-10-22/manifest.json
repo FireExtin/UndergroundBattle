@@ -1,7 +1,7 @@
 {
   "recordedAt": "2026-10-22T12:27:32.833723+00:00",
   "frozenRuntimeCommit": "2d8653c7b391a2d30f3bb759e58e82eed1106d3a",
-  "status": "normalModeRealBrowserTerminalObserved; hardModeFullGameNotRun",
+  "status": "normalModeRealBrowserTerminalObserved; hardModeNewGamePartialTransportInterrupted",
   "artifactIdentityChecked": 5,
   "runtimeChanged": false,
   "databaseIncluded": false,
@@ -48,6 +48,17 @@
       "path": "docs/evidence/bot-real-browser-2026-10-22/real-iab-terminal-evidence.json",
       "bytes": 3476,
       "sha256": "d73ff2a3c94bd4b84b0e45ff462a0204eab80515d25211aaf5e3fd99f2409477"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/hard-iab-partial-01.json",
+      "bytes": 1882,
+      "sha256": "08c315cbe55d37505a85ab8d686d8ddb68880aa5cc664c989bbcc3d2d37f7084"
+    },
+    {
+      "path": "docs/evidence/bot-real-browser-2026-10-22/hard-iab-partial-02.json",
+      "bytes": 648,
+      "sha256": "24b4cd678a136e2ccaf0f8855ca5f28bdba8dc2adffa1fe5317b777a6a96dafb"
     }
-  ]
+  ],
+  "updatedAt": "2026-10-22T13:18:48.376805+00:00"
 }
