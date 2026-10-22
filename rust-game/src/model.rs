@@ -79,6 +79,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub advancement_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_enemy_spell_protection: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
@@ -352,6 +354,8 @@ pub struct PrivateInspectionView {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub advancement_markers: u32,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
     #[serde(default, skip_serializing_if = "is_zero")]

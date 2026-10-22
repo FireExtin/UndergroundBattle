@@ -1,5 +1,8 @@
 mod chaos;
 mod batch4;
+mod batch4_plans;
+#[cfg(test)]
+mod batch4_plans_tests;
 mod batch4_tattoo;
 mod batch4_shape;
 mod batch4_dahlia;

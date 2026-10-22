@@ -1158,5 +1158,15 @@
     "url": "/cards/JZ38.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
     "sha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0"
+  },
+  "WM046": {
+    "url": "/cards/WM046.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
+    "sha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f"
+  },
+  "WM047": {
+    "url": "/cards/WM047.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
+    "sha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4"
   }
 }

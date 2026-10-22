@@ -8766,6 +8766,92 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM046",
+      "name": "计划：天眼",
+      "kind": "attachment",
+      "subtypes": [
+        "策略",
+        "计划"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进\n强制触发 达成推进2时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。",
+      "keywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM046",
+        "image": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
+        "imageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM047",
+      "name": "计划：贝奥武夫",
+      "kind": "attachment",
+      "subtypes": [
+        "策略",
+        "计划"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社；隐秘〔月形〕秘密计划；可推进\n强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。",
+      "keywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM047",
+        "image": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
+        "imageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

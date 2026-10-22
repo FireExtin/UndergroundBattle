@@ -16,7 +16,7 @@ pub struct HiddenObservation {pub event_id:String,pub turn:u32,pub by:usize,pub 
 pub struct InspectionReceipt {pub event_id:String,pub source:String,pub hidden:String,pub inspector:usize,pub region_instance:String}
 fn same<T:Serialize>(a:&T,b:&T)->bool{serde_json::to_value(a).unwrap()==serde_json::to_value(b).unwrap()}
 pub(crate) fn source_label(s:&SourceSnapshot)->&str {
-    if s.card.definition=="JZ26" && s.card.face_down {"暗藏者"}else{&catalog::card(&s.card.definition).name}
+    if s.card.definition=="JZ26" && s.card.face_down {"暗藏者"}else{crate::batch4_plans::label(&s.card)}
 }
 pub(crate) fn definition()->Definition {
     let mut d=with_abilities(vec![ability(KEY,LABEL,Timing::Fast,vec![],vec![],vec![Op::JZ26Trap{observation:None}],Some(Event::JZ26HiddenObserved))]);

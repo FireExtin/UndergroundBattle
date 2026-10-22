@@ -1,0 +1,17 @@
+diff --git a/rust-game/src/jc060.rs b/rust-game/src/jc060.rs
+index a063ffec..346189f3 100644
+--- a/rust-game/src/jc060.rs
++++ b/rust-game/src/jc060.rs
+@@ -38,11 +38,7 @@ impl Game {
+         if c.face_down || printed.kind != "character" || printed.magic_icon != MagicIcon::None {
+             return 0;
+         }
+-        let Some(live) = self
+-            .regions
+-            .iter()
+-            .flat_map(|r| &r.cards)
+-            .find(|live| live.id == c.id)
++        let Some((_, live)) = self.board(&c.id)
+         else {
+             return 0;
+         };

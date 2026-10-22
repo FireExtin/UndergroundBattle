@@ -1,0 +1,135 @@
+{
+  "recordedAt": "2026-10-22T02:54:38.116699+00:00",
+  "precedingCheckpoint": "1c33651d8bcea25b49a9b1ecf2d93f829de63516",
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ38",
+    "JZ39",
+    "WM060",
+    "BQ041",
+    "XG12",
+    "WM046",
+    "WM047"
+  ],
+  "newCards": [
+    "WM046",
+    "WM047"
+  ],
+  "newPlanUniqueCases": 16,
+  "moduleFilter": {
+    "name": "batch4_plans",
+    "passed": 17,
+    "includes": "16 Plan cases plus separate JC060 actual-paid-attached-character regression"
+  },
+  "relatedFilters": {
+    "jc060": 22,
+    "jc005": 13
+  },
+  "filterOverlap": "The new JC060 and secret-Plan JC005 cases also occur in related filters; do not sum as unique scenarios",
+  "sourceChecks": 4,
+  "nativeSourceInventorySha256": "36110fbd7fdd53a03ce9dcb699ccb7e03d77977629306988b77adc2e942a1d0c",
+  "nativeSourceInventoryFiles": 200,
+  "nativeIdentity": {
+    "engineVersion": "rust-v0.2.95-batch20-fourth",
+    "cardPoolVersion": "limited-v2.85-batch20-fourth",
+    "definitions": 222
+  },
+  "separateExistingCorrectnessFix": {
+    "card": "JC060",
+    "confirmedBefore": {
+      "actualPaidBatEntry": true,
+      "expectedDomain": 1,
+      "actualDomain": 0
+    },
+    "fix": "Resolve the existing live region-character-or-attached-character lookup with board(), retaining identity/team/type guards",
+    "currentSourceFixIncluded": true,
+    "frozenB80IncludesFix": false,
+    "jc005Only820847fdIncludesFix": false,
+    "standalonePatch": "jc060-attached-recipient.patch",
+    "primaryOriginalImage": "resource/ymsj-fun.github.io/cards/JC060 神秘学顾问.jpg"
+  },
+  "wm045": {
+    "implemented": false,
+    "counted": false,
+    "printedThreshold": 3,
+    "pendingWork": "Atomic global Hide and actual hidden-group shuffle preserving markers/sealed cards/pending identity; speculative raw ID rewrite was removed from executable admission",
+    "draftRetainedOutsideRuntime": true
+  },
+  "failureHistory": [
+    "Initial full Plan scaffold metadata check was an earlier source stage, not final-card completion",
+    "Missing original Society-host snapshot fixed; failed log preserved",
+    "First Beowulf test wrongly assumed bats printed a magic domain; corrected to actual adviser grant, then confirmed a real missing attached-character recipient through paid entry before fixing lookup"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-01-batch4_plans.log.gz",
+      "rawBytes": 939,
+      "rawSha256": "47362e143c088526712a8eda6769d301bb62040d6c820ff22939d7c7f1d0a9c1",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-02-batch4_plans.log.gz",
+      "rawBytes": 3610,
+      "rawSha256": "f26f10455d8e50df06229e7f683fcff2ba19e621d3cd3b5ff999b8e3f8e239b1",
+      "passed": 4,
+      "failed": 5
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-03-batch4_plans.log.gz",
+      "rawBytes": 2389,
+      "rawSha256": "66c8215ac77b55a38e33d9560ff350511d1964c5b1ff70d83b554c9d039f4508",
+      "passed": 11,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-04-batch4_plans.log.gz",
+      "rawBytes": 2743,
+      "rawSha256": "822d654b447ffacf593a77995a32871b5b297055c00fcc60466ab09d90432089",
+      "passed": 14,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-jc060-attached-before-jc060_attached_bat.log.gz",
+      "rawBytes": 1125,
+      "rawSha256": "f515bf23de6ca585afa4a234dc332d2162de2f2300e40f1d94ec4e63354ca616",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-05-batch4_plans.log.gz",
+      "rawBytes": 2447,
+      "rawSha256": "327b3fe01ed7e0652e8214d85192356325887b5862f4c49c0d26475358fdcd2c",
+      "passed": 17,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-05-jc060.log.gz",
+      "rawBytes": 2401,
+      "rawSha256": "8aa2e31035d3bffff1efe96b61a4b4cf07ba59e915cc96055263d50847fe832d",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-05-jc005.log.gz",
+      "rawBytes": 1827,
+      "rawSha256": "1915ba053a281f43b819c6416be1f6c98c8716a2d1a9293d6f2be4169304efad",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-plans-source-01.log.gz",
+      "rawBytes": 166,
+      "rawSha256": "fbc6f84c04cb24616774f614575a7a81f3cc5146713108682f479e52eefcda9e",
+      "passed": null,
+      "failed": null
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "scopeNote": "Author bounded native rules and directly affected filters only; disclosed prepared layouts and real apply commands with full restoration/four-seat checks. Source-loss primitives are offline boundary fixtures, not natural browser games. No full product rerun or independent execution."
+}

@@ -103,9 +103,9 @@ impl Game {
                 let kind = match selector.kind {
                     EntityKind::Any => true,
                     EntityKind::Character => !c.face_down && d.kind == "character",
-                    EntityKind::Attachment => !c.face_down && crate::catalog::has_kind(d, "attachment"),
-                    EntityKind::Hidden => c.face_down,
-                    EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
+                    EntityKind::Attachment => (!c.face_down || crate::batch4_plans::secret(c)) && crate::catalog::has_kind(d, "attachment"),
+                    EntityKind::Hidden => c.face_down && !crate::batch4_plans::is_plan(c),
+                    EntityKind::CharacterOrHidden => !crate::batch4_plans::is_plan(c) && (c.face_down || d.kind == "character"),
                 };
                 let relation = match selector.relation {
                     Relation::Any => true,
@@ -316,6 +316,8 @@ impl Game {
         let (label, kind, owner, controller, region) = if let Some((region, c)) = located {
             let label = if asset.is_some() {
                 "资产".into()
+            } else if crate::batch4_plans::secret(c) {
+                "秘密计划".into()
             } else if c.face_down {
                 format!("暗藏者·{}", self.players[c.controller].name)
             } else {
@@ -325,6 +327,8 @@ impl Game {
                 label,
                 if asset.is_some() {
                     "asset"
+                } else if crate::batch4_plans::secret(c) {
+                    "attachment"
                 } else if c.face_down {
                     "hidden"
                 } else {
@@ -443,8 +447,8 @@ impl Game {
         state: &str,
     ) -> StackView {
         // A hidden-front trigger does not reveal its print through metadata.
-        let hidden_trap=frame.source.card.definition=="JZ26" && frame.source.card.face_down
-            && frame.ability_key=="batch3-jz26-trap";
+        let hidden_trap=(frame.source.card.definition=="JZ26" && frame.source.card.face_down
+            && frame.ability_key=="batch3-jz26-trap") || crate::batch4_plans::secret(&frame.source.card);
         StackView {
             id: frame.frame_id.clone(),
             label,
@@ -477,7 +481,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "WM046" | "WM047" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -666,7 +670,7 @@ impl Game {
                         .iter()
                         .find(|a| a.card.id == id)
                         .is_some_and(|a| {
-                            !a.card.face_down
+                            (!a.card.face_down || crate::batch4_plans::secret(&a.card))
                                 && self.attachment_host_valid(a)
                                 && self.targetable(actor, &a.card) && self.bq026_spell_targetable(actor, source, &a.card)
                         })
@@ -713,9 +717,9 @@ impl Game {
                     let kind = match spec.kind {
                         EntityKind::Any => true,
                         EntityKind::Character => !c.face_down && d.kind == "character",
-                        EntityKind::Attachment => !c.face_down && crate::catalog::has_kind(d, "attachment"),
-                        EntityKind::Hidden => c.face_down,
-                        EntityKind::CharacterOrHidden => c.face_down || d.kind == "character",
+                        EntityKind::Attachment => (!c.face_down || crate::batch4_plans::secret(c)) && crate::catalog::has_kind(d, "attachment"),
+                        EntityKind::Hidden => c.face_down && !crate::batch4_plans::is_plan(c),
+                        EntityKind::CharacterOrHidden => !crate::batch4_plans::is_plan(c) && (c.face_down || d.kind == "character"),
                     };
                     let relation = match spec.relation {
                         Relation::Any => true,
@@ -1215,7 +1219,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1599,6 +1603,9 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::PlanPlayed { .. } => {},
+                Op::PlanAdvance => self.plan_advance(&frame),
+                Op::PlanComplete => self.plan_complete(&frame)?,
                 Op::NextBlueGraySearch | Op::JZ28DiscardSearch { .. } => return self.next_blue_gray_search_start(frame),
                 Op::JZ23RevealReward { observation } => self.jz23_reward(observation.as_ref().ok_or("缺少现身观察")?),
                 Op::CQ08Prepare { .. } => { self.jc035_resolve(&frame)?; return self.next_blue_gray_search_start(frame); },

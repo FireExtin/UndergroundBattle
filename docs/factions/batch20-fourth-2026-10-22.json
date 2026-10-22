@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 7,
+    "nativePilots": 9,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -292,13 +292,14 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
       "sourceImageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
-      "openQuestionIds": []
+      "openQuestionIds": [],
+      "nativeCaseGroup": "batch4_plans:16 unique Plan cases; one shared threshold/admission case; separate existing-JC060 regression also in module filter"
     },
     {
       "id": "WM047",
@@ -307,13 +308,14 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
       "sourceImageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
-      "openQuestionIds": []
+      "openQuestionIds": [],
+      "nativeCaseGroup": "batch4_plans:16 unique Plan cases; one shared threshold/admission case; separate existing-JC060 regression also in module filter"
     },
     {
       "id": "XG17",
@@ -433,7 +435,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 7,
+      "nativeCards": 9,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -460,18 +462,29 @@
       "physicalPage": 19,
       "printedPage": 18,
       "rule": "Chaos entry replaces destination selection with a random in-play region; moving between regions is not entry into play."
+    },
+    "plans": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 20,
+      "printedPage": 19,
+      "basis": "Original page image reviewed again: personal Moon secret play, printed cost1/loyalty, standard pay1 advancement, no turn limit; WM046/047 exact thresholds from original cards"
     }
   },
   "implementationNotes": [
     "Chaos paid deploy has no player-selected region and rolls once at actual entry; direct face-up entries share routing before observers; conceal and movement do not reroll.",
     "Reuses the existing post-response entry guard for a law attachment appearing during response; sampling eligibility with a pre-existing location restriction is an implementation review boundary, not a claimed extra FAQ ruling.",
     "JZ39 red cost-ring remains a geometry annotation; do not infer a new speed rule.",
-    "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption."
+    "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption.",
+    "WM046/047 share personal Society secret play and standard unlimited pay1 advancement; secret identity remains private but type, printed cost1 and advancement counters stay public. Completion is forced and respondable.",
+    "WM045 is not implemented or counted: full-field Hide and hidden-group shuffle must preserve marker/sealed-card and target/source relations; speculative identity reset removed from executable admission, draft retained outside runtime.",
+    "JC060 real paid BQ026 entry regression confirms missing attached-character recipient; uses existing live board lookup instead of region vector only. Source patch included here; original frozen b80 and JC005-only820 do not include it."
   ],
   "next": [
-    "Continue native mechanisms with source-bound targeted tests; keep WASM/Web/Worker unbuilt until integration is planned",
-    "Continue BQ041 attachment/blood trigger and remaining independent mechanisms; do not stop the batch at a small checkpoint",
-    "Keep allfourth cards construction-disabled until twenty and required integration are ready; publish through officialSites flow by the established per20 cadence"
+    "Continue remaining11 clear-card mechanisms and complete full-field Hide/shuffle design for WM045; no partial-batch construction admission",
+    "Keep XQ13 overflow rule draft separate and uncounted; neutral/dual colors remain paused",
+    "Carry separately confirmed JC060 correction into an isolated ABI94 third-batch replacement without fourth-card programs",
+    "Keep the frozenb80 package unchanged; no duplicate pending Sites deployment or source credential recreation"
   ],
   "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"
 }

@@ -137,6 +137,7 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        c.advancement_markers = 0;
         c.named_character = None;
         c.time_markers = 0;
         c.permanent_combat_markers = 0;
@@ -153,6 +154,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            advancement_markers: 0,
             named_character: None,
             permanent_combat_markers: 0,
             permanent_defense_markers: 0,
@@ -908,6 +910,9 @@ impl Game {
                 if !self.loyalty(seat, &c.definition) {
                     return Err("忠诚不足".into());
                 }
+                let mut c = c;
+                let mut spec = spec;
+                self.plan_play_spec(seat, &mut c, &a, &mut spec)?;
                 let source = self.source_snapshot(&c, None);
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
                 if spec.ops.iter().any(|op| {
@@ -923,14 +928,17 @@ impl Game {
                 paid.extend(self.pay_ability_costs(seat, &source, &spec, &a)?);
                 let c = self.remove_hand(seat, id)?;
                 let c = self.fresh(c);
+                let mut c = c;
+                c.face_down = crate::batch4_plans::secret(&source.card);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
-                self.note(format!("{} 打出 {}", self.players[seat].name, d.name));
-                self.dispatch_frame(frame, d.name.clone(), Some(c), spec.response_policy);
+                let label = if crate::batch4_plans::secret(&c) { "秘密计划".to_string() } else { d.name.clone() };
+                self.note(format!("{} 打出 {}", self.players[seat].name, label));
+                self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
-                if (c.controller != seat && c.definition != "XQ22") || (c.face_down && !crate::jc041::hidden_action(c, &a)) {
+                if (c.controller != seat && c.definition != "XQ22") || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -945,7 +953,7 @@ impl Game {
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
                 if source.card.definition == "JC055" { return self.jc055_begin_payment(source, &a); }
                 let paid = self.pay_ability_costs(seat, &source, &spec, &a)?;
-                let label = format!("{}：{}", card(&source.card.definition).name, spec.label);
+                let label = format!("{}：{}", crate::batch4_plans::label(&source.card), spec.label);
                 let frame = self.make_frame(seat, source, &spec, targets, paid, a.region);
                 self.note(format!("{} 发动 {}", self.players[seat].name, label));
                 self.dispatch_frame(frame, label, None, spec.response_policy);
@@ -1235,7 +1243,7 @@ impl Game {
                         .unwrap_or(&target.id)
                         .clone();
                     let mut c = self.fresh(c);
-                    c.face_down = false;
+                    c.face_down = crate::batch4_plans::secret(&c);
                     c.controller = item.controller;
                     let id = c.id.clone();
                     let definition = c.definition.clone();
@@ -2319,6 +2327,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            advancement_markers: (!asset && kind == Some("attachment") && crate::batch4_plans::is_plan(c)).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
             permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
@@ -2391,6 +2400,8 @@ impl Game {
             },
             name: if asset {
                 "资产".into()
+            } else if crate::batch4_plans::secret(c) {
+                "秘密计划".into()
             } else if hidden {
                 "暗藏者".into()
             } else {
@@ -2404,7 +2415,7 @@ impl Game {
             region,
             exhausted: c.exhausted,
             face_down: c.face_down,
-            cost: if hidden || asset || d.kind == "society" {
+            cost: if !asset && kind == Some("attachment") && crate::batch4_plans::secret(c) { Some(1) } else if hidden || asset || d.kind == "society" {
                 None
             } else {
                 Some(d.cost)
@@ -2817,6 +2828,9 @@ impl Game {
                     }
                 } else if d.kind == "spell" || d.kind == "attachment" {
                     candidates.extend(self.rule_action_candidates(seat, c, None, "play"));
+                    if crate::batch4_plans::is_plan(c) {
+                        candidates.push((Action { card_id: Some(c.id.clone()), target_id: Some(format!("society:p{seat}")), option: Some("secret-plan".into()), ..Action::new("play") }, format!("秘密打出 {}", d.name)));
+                    }
                 }
             }
             if self.can_standard(seat) {
