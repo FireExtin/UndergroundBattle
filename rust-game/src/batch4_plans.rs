@@ -65,7 +65,7 @@ impl Game {
         self.validate_plan_source(d.actor, &d.source)?;
         let c = &d.source.card;
         let expected = definition(&c.definition).unwrap().abilities.pop().unwrap();
-        if c.face_down || c.advancement_markers != threshold(&c.definition).unwrap() || !same(&d.ability, &expected)
+        if c.face_down || c.advancement_markers < threshold(&c.definition).unwrap() || !same(&d.ability, &expected)
             || d.source.attachment_host_instance.as_deref() != Some(format!("society:p{}", d.actor).as_str())
         { return Err("计划强制触发须保留实际达成阈值后的公开快照".into()); } Ok(())
     }
@@ -112,13 +112,23 @@ impl Game {
     }
     pub(crate) fn advance_plan_instance(&mut self, actor: usize, id: &str) {
         let Some(index) = self.attachments.iter().position(|a| a.card.id == id && a.card.controller == actor && a.host_id == format!("society:p{actor}") && is_plan(&a.card)) else { return; };
+        let before = self.attachments[index].card.advancement_markers;
+        self.attachments[index].card.advancement_markers = before.saturating_add(1);
+        self.observe_plan_advancement(id, before);
+    }
+    /// Project ruling 2026-10-22: one atomic 1 -> 3 move crosses Tianyan's
+    /// threshold once. Retain its actual counter value in the event snapshot.
+    pub(crate) fn observe_plan_advancement(&mut self, id: &str, before: u32) {
+        let Some(index) = self.attachments.iter().position(|a| a.card.id == id && is_plan(&a.card)
+            && a.host_id == format!("society:p{}", a.card.controller)) else { return; };
         let limit = threshold(&self.attachments[index].card.definition).unwrap();
-        self.attachments[index].card.advancement_markers = self.attachments[index].card.advancement_markers.saturating_add(1);
-        if self.attachments[index].card.advancement_markers == limit {
+        let queued = self.stack.iter().any(|i| i.frame.as_ref().is_some_and(|f| f.source.card.id == id && f.ability_key == COMPLETE))
+            || self.effects.iter().any(|e| matches!(e, Effect::Declare { declaration: d } if d.source.card.id == id && d.ability.key == COMPLETE));
+        if before < limit && self.attachments[index].card.advancement_markers >= limit && !queued {
             self.attachments[index].card.face_down = false;
             let source = self.source_snapshot(&self.attachments[index].card, None);
             self.note(format!("{} 达成推进{}，展示计划", label(&source.card), limit));
-            self.emit_event(actor, source, Event::PlanReached);
+            self.emit_event(source.card.controller, source, Event::PlanReached);
         }
     }
     pub(crate) fn plan_complete(&mut self, f: &ResolutionFrame) -> RuleResult<()> {

@@ -76,6 +76,91 @@ fn batch4_plans_tianyan_zero_draw_does_not_eliminate_and_completion_survives_ori
 }
 fn enter_fixture(g:&mut Game,id:&str)->String{let c=g.make_card(id,0);let id=c.id.clone();g.attachments.push(Attachment{card:c,host_id:"society:p0".into()});id}
 
+fn transfer_plan_fixture(secret: bool, before: u32) -> (Game, String, String) {
+    let mut g = layout(secret);
+    let from = enter(&mut g, "WM047", false);
+    let to = enter(&mut g, "WM046", secret);
+    for _ in 0..2 { advance(&mut g, &from); top(&mut g); }
+    for _ in 0..before { advance(&mut g, &to); top(&mut g); }
+    let locked = field(&mut g, "JC125", 2);
+    g.board_mut(&locked).unwrap().lock_markers = 1;
+    restore(&mut g);
+    (g, from, to)
+}
+fn invalid_plan_storage(g: &Game) {
+    assert!(Game::from_persisted(&serde_json::to_string(g).unwrap()).is_err());
+    let room = crate::room::RoomEnvelope::from_game(g.clone());
+    assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_err());
+}
+
+#[test]
+fn batch4_plans_atomic_marker_move_reaches_or_crosses_threshold_once_with_actual_snapshot() {
+    // Paid plan commands establish the legal 0/1 and 2 layout. The transfer
+    // itself is the internal atomic prerequisite, not an admitted XQ20 play.
+    for secret in [false, true] { for before in [0, 1] {
+        let (mut g, from, to) = transfer_plan_fixture(secret, before);
+        let p = g.prepare_marker_move(&from, &to).unwrap();
+        g.commit_marker_move_counters(p).unwrap();
+        assert_eq!(g.in_play(&from).unwrap().1.advancement_markers, 0);
+        assert_eq!(g.in_play(&to).unwrap().1.advancement_markers, before + 2);
+        assert!(!g.in_play(&to).unwrap().1.face_down);
+        assert_eq!(g.effects.len(), 1);
+        let declaration = match &g.effects[0] { Effect::Declare { declaration: d } => d.clone(), _ => panic!("completion declaration") };
+        assert_eq!(declaration.source.card.advancement_markers, before + 2);
+        g.observe_plan_advancement(&to, before);
+        assert_eq!(g.effects.len(), 1, "the same atomic crossing cannot queue completion twice");
+        restore(&mut g);
+        crate::jc029_tests::checkpoint(&g);
+        for seat in 0..4 {
+            let view = g.view(seat);
+            let c = &view.attachments.iter().find(|a| a.card.instance_id == to).unwrap().card;
+            assert_eq!(c.card_id.as_deref(), Some("WM046"));
+            assert_eq!(c.advancement_markers, Some(before + 2));
+        }
+        g.drive().unwrap();
+        assert_eq!(g.stack.len(), 1);
+        assert_eq!(g.stack[0].frame.as_ref().unwrap().source.card.advancement_markers, before + 2);
+        crate::jc029_tests::checkpoint(&g);
+        for mutation in 0..3 {
+            let mut bad = g.clone();
+            match mutation {
+                0 => bad.stack[0].frame.as_mut().unwrap().source.card.advancement_markers = 1,
+                1 => bad.stack.push(bad.stack[0].clone()),
+                _ => bad.effects.push_back(Effect::Declare { declaration: declaration.clone() }),
+            }
+            invalid_plan_storage(&bad);
+        }
+        let hand = g.players[0].hand.len();
+        top(&mut g);
+        assert_eq!(g.players[0].hand.len(), hand + 1);
+        assert!(g.in_play(&to).is_none());
+        assert_eq!(g.in_play(&from).unwrap().1.advancement_markers, 0);
+        assert!(g.effects.is_empty() && g.stack.is_empty());
+        restore(&mut g);
+        crate::jc029_tests::checkpoint(&g);
+    } }
+}
+
+#[test]
+fn batch4_plans_crossed_completion_keeps_original_uid_after_source_loss() {
+    let (mut g, from, to) = transfer_plan_fixture(false, 1);
+    let p = g.prepare_marker_move(&from, &to).unwrap();
+    g.commit_marker_move_counters(p).unwrap();
+    g.drive().unwrap();
+    assert_eq!(g.stack[0].frame.as_ref().unwrap().source.card.advancement_markers, 3);
+    g.remove_dead(&to, RemovalCause::Destroy);
+    let replacement = enter_fixture(&mut g, "WM046");
+    crate::jc029_tests::checkpoint(&g);
+    let hand = g.players[0].hand.len();
+    top(&mut g);
+    assert_eq!(g.players[0].hand.len(), hand + 1);
+    assert!(g.in_play(&replacement).is_some());
+    assert_eq!(g.in_play(&replacement).unwrap().1.advancement_markers, 0);
+    assert_eq!(g.players[0].graveyard.iter().filter(|c| c.definition == "WM046").count(), 1);
+    restore(&mut g);
+    crate::jc029_tests::checkpoint(&g);
+}
+
 #[test]
 fn batch4_plans_secret_target_remains_attachment_for_strengthened_jc005_not_hidden_character(){
     let mut g=layout(true);let id=enter(&mut g,"WM047",true);fund(&mut g,0,"JC005",2);let spell=held(&mut g,"JC005",0);

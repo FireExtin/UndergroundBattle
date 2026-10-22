@@ -1,0 +1,41 @@
+{
+  "base": "47256d59dea46750ea671b1f1257b657bb42a546",
+  "projectRuling": "An atomic 1 -> 3 transfer crosses Tianyan threshold 2 once; retain actual 3 in completion snapshot",
+  "scope": "Threshold observation prerequisite, not complete XQ20 card admission",
+  "nativeComplete": 22,
+  "batchTarget": 50,
+  "selectionEnabled": 0,
+  "wasmIntegrated": 0,
+  "publicAccepted": 0,
+  "authorTests": [
+    {
+      "filter": "batch4_plans_tests",
+      "exitCode": 0,
+      "seconds": 32.837,
+      "log": "xq20-crossing-native-01-batch4_plans_tests.log",
+      "passed": 20,
+      "rawSha256": "e8b0c39d5aad2b9109d365414ec6310fe60d5d3b5284f468de180325bf0d8802",
+      "gzip": "xq20-crossing-native-01-batch4_plans_tests.log.gz",
+      "gzipSha256": "d1685bce65f6d599bf66a1fe4453d2f8da6cdb20a1ad980009decc7216b5af83"
+    },
+    {
+      "filter": "marker_transfer",
+      "exitCode": 0,
+      "seconds": 0.677,
+      "log": "xq20-crossing-native-01-marker_transfer.log",
+      "passed": 10,
+      "rawSha256": "82ea6a3d297ad84d3ebb9c51886867058395345a22fc54ce74fdbc99d0079655",
+      "gzip": "xq20-crossing-native-01-marker_transfer.log.gz",
+      "gzipSha256": "aa9c7f836197a74df6cc3a47396de72c45acb17e471a74325a46d8a61866ba4b"
+    }
+  ],
+  "sourceBindings": {
+    "rust-game/src/batch4_plans.rs": "88084c4455289547edefcd3357f515536d533687ac12d3828196a98ebb4f884d",
+    "rust-game/src/batch4_plans_tests.rs": "a5a18553eb8d8411b207cd2ec2bc106f7372c1b9b68f71394a3e7ee3c4dfdca2",
+    "rust-game/src/marker_transfer.rs": "d79b02d80c2d81413ba2ece1a8d7e4bff156fa44ebac95a841b6998def249868"
+  },
+  "independentReview": "pending",
+  "wasm": "not run",
+  "browser": "not run",
+  "noMainOrDeployment": true
+}

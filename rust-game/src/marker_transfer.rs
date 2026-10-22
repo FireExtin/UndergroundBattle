@@ -1,7 +1,8 @@
 //! XQ20 prerequisite, deliberately unreachable from admitted commands.
 //! This transient plan has no Deserialize/Serialize implementation. It freezes
 //! physical carriers, checks every addition, then writes one counter batch.
-//! Callers must integrate plan threshold observations before enabling XQ20.
+//! Plan crossings are observed after the complete atomic counter batch. XQ20
+//! still requires its own command, payment and target admission integration.
 use crate::{batch4_markers::MarkerKind, catalog, engine::RuleResult, model::*};
 use std::collections::BTreeSet;
 
@@ -73,10 +74,12 @@ impl Game {
         if self.prepare_marker_move(&prepared.from, &prepared.to)? != prepared {
             return Err("标志移动的当前目标或物理承载者已改变".into());
         }
+        let plan_changes = prepared.rows.iter().map(|r| (r.before.id.clone(), r.before.advancement_markers)).collect::<Vec<_>>();
         for row in prepared.rows {
             let c = self.board_mut(&row.before.id).expect("validated in-play physical carrier");
             for (k, n) in MarkerKind::ALL.into_iter().zip(row.after) { *k.field(c) = n; }
         }
+        for (id, before) in plan_changes { self.observe_plan_advancement(&id, before); }
         Ok(())
     }
 }
