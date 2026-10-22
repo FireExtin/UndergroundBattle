@@ -8896,6 +8896,49 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG11",
+      "name": "阴魂术士",
+      "kind": "character",
+      "subtypes": [
+        "阴魂",
+        "法师",
+        "诅咒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐秘〔月形〕灵体\n现身触发 若本方秘社上有一个隐秘〔月形〕标志，袭击1。若本方秘社上有两个，则再袭击1。若本方秘社上有三个，则再袭击1。",
+      "keywords": [
+        "隐秘〔月形〕灵体"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG11",
+        "image": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
+        "imageSha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

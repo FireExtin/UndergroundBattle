@@ -262,6 +262,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG11RevealRaid { observation: Option<crate::batch4_spectral::RevealRaid> },
     XG17AdvancePlan { observation: Option<Box<crate::batch4_conference::RenownEntry>> },
     PlanPlayed { secrecy: Option<crate::batch4_plans::SecretPlay> },
     PlanAdvance,

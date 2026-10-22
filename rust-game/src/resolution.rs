@@ -1186,6 +1186,10 @@ impl Game {
         let specs = rules::definition(&source.card.definition).abilities.iter()
             .filter(|s| s.event == Some(event) && !(granted_raid && s.key.starts_with("raid-"))).cloned().collect::<Vec<_>>();
         for mut spec in specs {
+            if source.card.definition == "XG11" && spec.key == crate::batch4_spectral::KEY {
+                let Some(captured) = self.xg11_reveal_ability(&source) else { continue; };
+                spec = captured;
+            }
             if spec.key == "batch3-bq026-attach" { spec.ops = vec![Op::BQ026Attach { observation: Some(crate::batch3_bats::RegionEntry { event_id: self.id(), turn: self.turn }) }]; }
             // XQ37's printed if-condition must hold at the actual entry event.
             // Do not defer this gate to declaration processing: earlier queued
@@ -1604,6 +1608,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),

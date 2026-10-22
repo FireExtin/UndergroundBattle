@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-22T03:48:35.885750+00:00",
+  "precedingCheckpoint": "f51864ba9581318ec1f8f91c8315e8991b0fde6f",
+  "frozenThirdReplacement": "b4e0388bb0ee1a2b106c247d11663ec7ee60b28d",
+  "newCard": "XG11",
+  "nativeCards": 11,
+  "definitions": 224,
+  "newDirectedCases": 13,
+  "relatedFilters": {
+    "raid": 13,
+    "spirit": 16
+  },
+  "filterOverlap": "Some new cases occur under raid/spirit; not summed as independent scenes",
+  "sourceChecks": 4,
+  "sourceInventoryFiles": 204,
+  "sourceInventorySha256": "2f1aa5e0862850451cfd9337e092d8df6cdcf6ade73adeb9575b3a58e3759810",
+  "sourceInventoryDigestEncoding": "UTF-8 compact JSON of the stored object, preserving stored key order, no trailing newline",
+  "sourceInventoryFileSha256": "8665c6dff7368869c07956dc514a2b07335c2d9aafaa6511927d899909816422",
+  "ruleScope": [
+    "Personal Moon conditional Spirit; hidden card has no public Spirit field",
+    "Actual reveal only; real conceal1/reveal4 paid commands and restore",
+    "Freeze own Moon tiers (maximum3) and actual live friendly JC038 sources; one cumulative Raid per rule manual",
+    "Source/condition loss after target selection preserves captured amount; original region entity and target identity guarded",
+    "Zero Moon can retain actual granted Raid; teammate Moon never satisfies own condition",
+    "Generic granted-Raid entry excluded for XG11, preventing conditional receipt omission and duplicate event program",
+    "Optional decline, current priority, exact choice payload, repeated command/frame and mutated observations rejected"
+  ],
+  "fixtureDisclosure": "Prepared native layouts including a reinforced BQ079 target, plus real paid conceal/reveal/choose/pass and JC063 response commands. Source departure/region replacement and grant/condition changes use explicit native primitives after target selection. Four-seat/full-state restoration through shared helpers.",
+  "failureHistory": [
+    "Metadata-only first stage1 pass was not counted as mechanism completion",
+    "Second stage10 pass/3 fail: test attempted actor2 fast response before priority; corrected bounded pass schedule",
+    "Second-stage static baseline wrongly used unadmitted JC023; corrected to admitted JC038 without changing product admission",
+    "Second-stage source departure mutated available options while a target declaration was pending (no response window); moved condition/source loss after actual target selection, while response frame is open"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-01-batch4_spectral.log.gz",
+      "rawBytes": 1151,
+      "rawSha256": "017d553faea94ed44158965a99807b911b8b314f74bddbd5727576a97d30b80c",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-02-batch4_spectral.log.gz",
+      "rawBytes": 3467,
+      "rawSha256": "726b95a5e3b5c87343b787c1c2573781370fff7e51b164fd016eeabd761e5842",
+      "passed": 10,
+      "failed": 3
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-03-batch4_spectral.log.gz",
+      "rawBytes": 2227,
+      "rawSha256": "01a7160127e35a0ba1025e60649e0636c11a481853fc3991fb20f5e346521aa9",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-03-raid.log.gz",
+      "rawBytes": 1974,
+      "rawSha256": "958fa52c4d997e93fecd7cc1262562ac28553b2388838db8da3f9a204e11da1c",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-03-spirit.log.gz",
+      "rawBytes": 2292,
+      "rawSha256": "5c3ff3e5a47a299f8d3ccf651a2caa8754aec2b71be9ec7a5d0ff04b12c9c99f",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-spectral-source-01.log.gz",
+      "rawBytes": 539,
+      "rawSha256": "0e9c7a9d15f33121712a5d2d55bd0b222117b55824097a614531eb0b24e4d984",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0,
+  "notPerformed": [
+    "Full product rerun",
+    "Independent execution/review",
+    "WASM/Web/Worker integration for this batch",
+    "Natural browser/public batch acceptance",
+    "Site/Aliyun operations",
+    "CI/main merge/force push"
+  ]
+}

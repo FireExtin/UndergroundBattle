@@ -1,5 +1,8 @@
 mod chaos;
 mod batch4;
+mod batch4_spectral;
+#[cfg(test)]
+mod batch4_spectral_tests;
 mod batch4_conference;
 #[cfg(test)]
 mod batch4_conference_tests;

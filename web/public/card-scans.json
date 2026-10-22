@@ -1173,5 +1173,10 @@
     "url": "/cards/XG17.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
     "sha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8"
+  },
+  "XG11": {
+    "url": "/cards/XG11.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
+    "sha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1"
   }
 }

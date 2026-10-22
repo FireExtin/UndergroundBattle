@@ -2133,6 +2133,7 @@ impl Game {
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
+        crate::batch4_spectral::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }

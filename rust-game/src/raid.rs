@@ -20,6 +20,7 @@ fn printed_amount(id: &str) -> u32 {
         .filter_map(|a| match a.ops.as_slice() { [Op::DamageTarget { slot: 0, amount }] => Some(*amount), _ => None }).sum()
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
+    if id == "XG11" { return Err("阴魂术士袭击必须保留隐秘门槛与授予的完整观察".into()); }
     let [Op::JC038GrantedRaid { grants }] = a.ops.as_slice() else { return Err("授予袭击程序无效".into()); };
     if grants.is_empty() || !same(a, &ability(grants.clone(), printed_amount(id))) { return Err("授予袭击须合并完整印刷袭击及真实授予".into()); }
     Ok(())
@@ -27,6 +28,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
 impl Game {
     pub(crate) fn emit_jc038_raid(&mut self, source: &SourceSnapshot) -> bool {
         let c = &source.card;
+        if c.definition == "XG11" { return false; }
         if c.face_down || catalog::card(&c.definition).kind != "character" || catalog::card(&c.definition).color != "蓝" { return false; }
         let grants = self.regions.iter().flat_map(|r| &r.cards).filter(|g| g.definition == "JC038"
             && !g.face_down && g.id != c.id && self.team(g.controller) == self.team(c.controller)).cloned().collect::<Vec<_>>();
@@ -39,7 +41,7 @@ impl Game {
     }
     fn validate_raid_source(&self, actor: usize, s: &SourceSnapshot, grants: &[Card]) -> RuleResult<()> {
         let c = &s.card; let mut seen = BTreeSet::new();
-        if actor >= self.players.len() || c.controller != actor || c.owner >= self.players.len() || c.id.is_empty()
+        if c.definition == "XG11" || actor >= self.players.len() || c.controller != actor || c.owner >= self.players.len() || c.id.is_empty()
             || c.face_down || catalog::card(&c.definition).kind != "character" || catalog::card(&c.definition).color != "蓝"
             || s.region.is_none_or(|r| r >= self.regions.len()) || s.source_region_instance.as_ref().is_none_or(|s| s.is_empty())
             || s.observed_death.is_some() || s.observed_mobility_grant.is_some() || s.attachment_host_instance.is_some() || s.play_source.is_some()
