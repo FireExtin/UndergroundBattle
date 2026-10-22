@@ -8,7 +8,7 @@ use crate::{
 };
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037", "BQ029", "BQ026", "JZ26"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM030", "BQ042", "WM033", "XG26", "WM035", "JZ25", "XG28", "BQ089", "JC062", "XQ22", "JC064", "BQ087", "BQ079", "WM041", "XQ26", "BQ037", "BQ029", "BQ026", "JZ26", "CQ07"];
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -16,6 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     match id {
+        "CQ07" => Some(crate::batch3_phoebe::definition()),
         "JZ26" => Some(crate::batch3_trap::definition()),
         "BQ026" => Some(crate::batch3_bats::definition()),
         "BQ029" => Some(crate::batch3_blood::bq029_definition()),
@@ -155,7 +156,7 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
 }
 
 pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
-    matches!(a.event, Some(Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered | Event::BQ037OtherVampireEntered | Event::BQ029QualifiedEntry))
+    matches!(a.event, Some(Event::CQ07SpellTargeted | Event::WM035HostDeath | Event::BQ079CorpseGrave | Event::WM041PublicCharacterPlayed | Event::XQ26NamedCharacterEntered | Event::BQ037OtherVampireEntered | Event::BQ029QualifiedEntry))
         || a.key.starts_with("batch3-")
         || uses(&a.ops)
         || a.modes.iter().any(|m| uses(&m.ops))
@@ -166,7 +167,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::JZ26Trap { .. } | Op::BQ026Attach { .. } | Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
+        Op::CQ07EnterMoon | Op::CQ07SpellTargeted { .. } | Op::JZ26Trap { .. } | Op::BQ026Attach { .. } | Op::JC062Inspect | Op::XQ22Orientation | Op::JZ25SealRandomHand | Op::XG28GraveReturn | Op::BQ089GraveEntry | Op::Batch3Prepare { .. }
         | Op::BQ029SelfFeed { .. }
         | Op::BQ037FeedPair { .. } | Op::BQ037RevealVampire
         | Op::XQ26Name | Op::XQ26Wanted { .. }
@@ -205,6 +206,9 @@ fn canonical_ability(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
         .abilities
         .into_iter()
         .find(|printed| printed.key == a.key)?;
+    if a.key == crate::batch3_phoebe::TARGETED {
+        if let [Op::CQ07SpellTargeted { observation }] = a.ops.as_slice() { expected.ops = vec![Op::CQ07SpellTargeted { observation: observation.clone() }]; }
+    }
     if a.key == "batch3-jz26-trap" {
         if let [Op::JZ26Trap { observation }] = a.ops.as_slice() { expected.ops=vec![Op::JZ26Trap { observation:observation.clone() }]; }
     }
@@ -355,14 +359,14 @@ impl Game {
             self.batch3_source(d.actor, &d.source)?;
             let expected = canonical_ability(&d.source.card.definition, &d.ability)
                 .ok_or("第三批触发声明没有固定程序")?;
-            if !matches!((d.source.card.definition.as_str(),d.ability.event),("BQ026",Some(Event::EnterRegion)) | ("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)) | ("WM041",Some(Event::WM041PublicCharacterPlayed)) | ("BQ037",Some(Event::BQ037OtherVampireEntered)) | ("BQ029",Some(Event::BQ029QualifiedEntry | Event::Reveal)))
+            if !matches!((d.source.card.definition.as_str(),d.ability.event),("CQ07",Some(Event::Enter | Event::CQ07SpellTargeted)) | ("BQ026",Some(Event::EnterRegion)) | ("WM035",Some(Event::WM035HostDeath)) | ("BQ079",Some(Event::BQ079CorpseGrave)) | ("WM041",Some(Event::WM041PublicCharacterPlayed)) | ("BQ037",Some(Event::BQ037OtherVampireEntered)) | ("BQ029",Some(Event::BQ029QualifiedEntry | Event::Reveal)))
                 || d.source.card.face_down
                 || d.source.play_source.is_some()
                 || !same(&d.ability, &expected)
             {
                 return Err("第三批触发声明的来源、事件或程序不符".into());
             }
-            if d.source.card.definition=="BQ026" { self.bq026_observation(&d.source,&d.ability.ops)?; } else if d.source.card.definition=="BQ029" { if d.ability.event!=Some(Event::Reveal) { self.bq029_observation(d.actor,&d.source,&d.ability.ops)?; } } else if d.source.card.definition == "BQ037" { self.bq037_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "WM041" { self.wm041_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
+            if d.source.card.definition=="CQ07" { self.cq07_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition=="BQ026" { self.bq026_observation(&d.source,&d.ability.ops)?; } else if d.source.card.definition=="BQ029" { if d.ability.event!=Some(Event::Reveal) { self.bq029_observation(d.actor,&d.source,&d.ability.ops)?; } } else if d.source.card.definition == "BQ037" { self.bq037_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "WM041" { self.wm041_observation(d.actor,&d.source,&d.ability.ops)?; } else if d.source.card.definition == "BQ079" { self.bq079_observation(d.actor,&d.source,&d.ability.ops)?; } else {
                 self.wm035_observation_key(d.actor, &d.source, &d.ability.ops)?.ok_or("宿主触发缺少观察")?;
             }
         }
@@ -407,6 +411,12 @@ impl Game {
         let mut a = definition(&f.source.card.definition)
             .and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
             .ok_or("非准入第三批执行帧")?;
+        if f.source.card.definition == "CQ07" {
+            if a.key == crate::batch3_phoebe::TARGETED {
+                if let [Step { op: Op::CQ07SpellTargeted { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::CQ07SpellTargeted { observation: observation.clone() }]; }
+            }
+            self.cq07_observation(f.actor,&f.source,&a.ops)?;
+        }
         if a.key == "batch3-bq026-attach" {
             if let [Step { op: Op::BQ026Attach { observation }, .. }] = f.steps.as_slice() { a.ops = vec![Op::BQ026Attach { observation: observation.clone() }]; }
             self.bq026_observation(&f.source,&a.ops)?;
@@ -529,6 +539,10 @@ impl Game {
         let mut frames = BTreeSet::new();
         let mut observations = BTreeSet::new();
         let mut remember = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {
+            if matches!(ops, [Op::CQ07EnterMoon]) && !observations.insert((source.card.id.clone(), "CQ07-enter".into())) { return Err("菲碧同次进场不能重复补隐秘标志".into()); }
+            if let [Op::CQ07SpellTargeted { observation: Some(o) }] = ops {
+                if !observations.insert((source.card.id.clone(),format!("{}:{}",o.event_id,o.target.card.id))) { return Err("菲碧同次事务指定同一角色不能重复抓牌".into()); }
+            }
             if matches!(ops, [Op::JZ25SealRandomHand])
                 && !observations.insert((source.card.id.clone(), "JZ25-enter".into())) {
                 return Err("同一猎杀者进场不能重复封印".into());
@@ -635,6 +649,7 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     self.batch3_reject_optional(declaration)?;
+                    if declaration.source.card.definition == "CQ07" { self.validate_cq07_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
                     if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "WM035"

@@ -1,0 +1,21 @@
+{
+  "queriedAtUtc": "2026-10-22 00:03:57 UTC",
+  "action": "Official read-only check of the original v74 deployment",
+  "result": {
+    "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+    "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+    "title": "隐秘世界 · 霸权",
+    "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+    "type": "publish",
+    "status": "pending",
+    "url": null,
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": null,
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-21T15:43:22.880209+00:00"
+  },
+  "publicationAttempted": false,
+  "productionHealth403Retried": false
+}

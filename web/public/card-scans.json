@@ -1118,5 +1118,10 @@
     "url": "/cards/JZ26.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
     "sha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9"
+  },
+  "CQ07": {
+    "url": "/cards/CQ07.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
+    "sha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db"
   }
 }

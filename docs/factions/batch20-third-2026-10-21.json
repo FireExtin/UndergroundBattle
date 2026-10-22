@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "batchId": "batch20-third-20261021",
-  "status": "sourceReviewAndImplementationWip",
+  "status": "localTwentyCandidateReadyForPublicationPendingAcceptance",
   "baseCommit": "bb77eb8ad69738ebecad860d60df05a9276efd00",
   "baseRegularDefinitions": 193,
   "baseRegularRecordsSha256": "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e",
@@ -16,9 +16,11 @@
   },
   "scope": {
     "selected": 20,
-    "fullyIntegratedNewCards": 0,
-    "selectionEnabled": 0,
-    "published": 0
+    "fullyIntegratedNewCards": 20,
+    "selectionEnabled": 20,
+    "published": 0,
+    "candidateAdmissions": 20,
+    "acceptedNewCards": 0
   },
   "cards": [
     {
@@ -28,22 +30,21 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
       "sourceImageSha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
-      "id": "CQ11",
-      "name": "暴乱煽动者",
-      "color": "红",
-      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg",
-      "sourceImageSha256": "8906b607ea300248c417f346a7d5fee0b3bb215e525f06a5862bdfe04adaa2c4",
+      "id": "CQ07",
+      "name": "菲碧·π",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
+      "sourceImageSha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "selectionEnabled": false,
-      "openQuestionIds": [
-        "generatedTokenLifecycle"
-      ]
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
+      "openQuestionIds": [],
+      "replaces": "CQ11"
     },
     {
       "id": "WM030",
@@ -52,8 +53,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
       "sourceImageSha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -63,8 +64,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
       "sourceImageSha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -74,8 +75,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
       "sourceImageSha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -87,8 +88,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
       "sourceImageSha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -98,8 +99,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
       "sourceImageSha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -109,8 +110,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
       "sourceImageSha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -120,8 +121,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
       "sourceImageSha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -131,8 +132,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
       "sourceImageSha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -142,8 +143,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
       "sourceImageSha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -153,8 +154,8 @@
       "sourceImage": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
       "sourceImageSha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -164,8 +165,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
       "sourceImageSha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     },
     {
@@ -175,8 +176,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
       "sourceImageSha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -188,8 +189,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
       "sourceImageSha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -201,8 +202,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
       "sourceImageSha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "multiTargetInvalidation"
       ]
@@ -214,8 +215,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
       "sourceImageSha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -227,8 +228,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
       "sourceImageSha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -240,8 +241,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
       "sourceImageSha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": [
         "martialLawRedCostRing"
       ]
@@ -253,8 +254,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
       "sourceImageSha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090",
       "imageReviewedHere": true,
-      "runtime": "nativePilotPassedPendingBatchIntegration",
-      "selectionEnabled": false,
+      "runtime": "batchIntegratedPendingPublication",
+      "selectionEnabled": true,
       "openQuestionIds": []
     }
   ],
@@ -578,11 +579,9 @@
     }
   ],
   "unresolved": [
-    "red cost-ring is a source geometry fact; no new speed rule is inferred",
-    "TK008 full token program and disappearance rules required for CQ11",
-    "BQ026 must preserve both roles, confrontation icons and lethal damage while attached; official FAQ5 analogous ruling found, implementation and card-specific checks pending",
-    "All twenty runtime programs are not complete; zero new public admissions, no new WASM or deployment",
-    "CQ11 depends on TK008 generatedTokenLifecycle: exact transitions and reference limits in TK008_RULING_GAP_2026-10-21.md; no interpretation selected"
+    "CQ11/TK008 is deferred outside this batch; lifecycle and printed-cost ruling unchanged and still missing.",
+    "Originalv74 appgdep_6ad8dd9acc1c8191912336351e022f25 still officialpending at2026-10-22 00:03:57UTC; no duplicate/concurrent deployment.",
+    "Complete20 local candidate is ready but not published or accepted; follow publication with consolidated applicable full suites, independent review and real browser gameplay."
   ],
   "validation": {
     "nativePilot": {
@@ -1008,18 +1007,89 @@
       "sitesTargetedPassed": 11,
       "wasmSha256": "92d4f815159e3ea28695bb10c3b3f891962398fa4faa206582eeb55581868da9",
       "publicAdmissions": 0,
-      "independentClosure": "pendingParentVerification",
+      "independentClosure": "parentSourceReviewClosedNoIndependentTests",
       "fullSuites": "notRerun",
       "browserAcceptance": "notRun",
-      "status": "authorDirectedFixVerifiedPendingCompleteTwenty"
+      "status": "authorDirectedFixVerifiedPendingCompleteTwenty",
+      "supersededCandidateEvidence": "twentyCandidate"
+    },
+    "cq07ReplacementNativePilot": {
+      "passed": 11,
+      "failed": 0,
+      "log": "docs/evidence/batch20-third-2026-10-21/abi94-twenty-cq07-directed-11.log.gz",
+      "meaning": "Author directed pilot; not full acceptance",
+      "previousFailuresPreserved": true
+    },
+    "twentyCandidate": {
+      "evidence": "docs/evidence/batch20-third-2026-10-21/abi94-twenty-candidate.json",
+      "nativeBatchPassed": 162,
+      "relatedNativeFilters": {
+        "spirit": 14,
+        "next20_red": 15,
+        "jc008": 13
+      },
+      "sourceFactsPassed": 2,
+      "nativeWasmCommands": 23,
+      "fourSeatViews": 92,
+      "webTargetedFiles": 6,
+      "webTargetedPassed": 70,
+      "sitesTargetedFiles": 5,
+      "sitesTargetedPassed": 12,
+      "wasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c",
+      "candidateAdmissions": 20,
+      "publicAdmissions": 0,
+      "acceptedNewCards": 0,
+      "independentFullBatchReview": "pendingAfterPublication",
+      "fullSuites": "notRerun",
+      "browserAcceptance": "notRun",
+      "originalV74Status": "pending",
+      "originalV74CheckedAtUtc": "2026-10-22 00:03:57 UTC"
     }
   },
   "developmentIdentity": {
     "engine": "rust-v0.2.94-batch20-third",
     "pool": "limited-v2.84-batch20-third",
-    "status": "unreleasedNecessaryIntegrationPreparation",
+    "status": "unreleasedCompleteTwentyCandidate",
     "wasmBuilt": true,
     "publicAdmissions": 0,
-    "requires": "Complete20 and current-only Worker integration; necessary build/start/identity checks, then publish as pending acceptance; consolidated fresh current fixtures/full suites, independent review and real browser acceptance follow publication."
+    "requires": "Originalv74 may proceed only through the existing official Sites flow; publish this fixed commit as pending acceptance, then consolidate fresh current fixtures/full suites, independent review and real browser acceptance."
+  },
+  "deferredCards": [
+    {
+      "id": "CQ11",
+      "name": "暴乱煽动者",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg",
+      "sourceImageSha256": "8906b607ea300248c417f346a7d5fee0b3bb215e525f06a5862bdfe04adaa2c4",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "selectionEnabled": false,
+      "openQuestionIds": [
+        "generatedTokenLifecycle"
+      ],
+      "status": "deferredPendingAuthoritativeRuling",
+      "rulingGap": "TK008_RULING_GAP_2026-10-21.md",
+      "replacement": "CQ07",
+      "reason": "Authoritative lifecycle/cost ruling missing; parent authorized a same-priority replacement without changing CQ11/TK008 rules."
+    }
+  ],
+  "replacementDecision": {
+    "removedFromThisBatch": "CQ11",
+    "replacement": "CQ07",
+    "samePriorityColorsOnly": true,
+    "colorCounts": {
+      "红": 4,
+      "黑": 5,
+      "蓝": 6,
+      "灰": 5
+    },
+    "sourceReviewedHere": true,
+    "ownershipEvidence": "Not present in current runtime or other batch20 plans; no active local game edits/processes at starting clean8f9fcef. App task list read did not return; no claim of a complete app-wide task inventory.",
+    "otherCandidatesDeferred": {
+      "WM032": "Requires the full mystic-contest path, not a partial modifier",
+      "XG14": "Needs a complete chaos entry path; not represented as already available",
+      "JZ40": "Region referred to after adding a time marker needs careful source/host interpretation"
+    },
+    "authorization": "Parent explicitly authorized replacing deferred CQ11 with an unimplemented red/black/blue/gray card whose rules are definite."
   }
 }

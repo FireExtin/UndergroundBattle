@@ -13,8 +13,9 @@ import {RoomService,digest} from '../src/service.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 for(const [label,fixture] of [
-  ['inspections and random traps','abi94-integration-smoke-cleanup.current.json.gz'],
-  ['attached-character atomic cleanup','abi94-bq026-cleanup.current.json.gz']
+  ['inspections and random traps','abi94-twenty-inspections.current.json.gz'],
+  ['attached-character atomic cleanup','abi94-twenty-cleanup.current.json.gz'],
+  ['Phoebe targeted-spell rewards','abi94-twenty-cq07.current.json.gz']
 ]){
 const native=loadCurrentFixture('docs/evidence/batch20-third-2026-10-21/'+fixture);
 test(`ABI94 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{

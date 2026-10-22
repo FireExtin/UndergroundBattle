@@ -1099,10 +1099,12 @@ impl Game {
         label: String,
         transaction: Option<Card>,
     ) {
+        let observe_spell = transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell");
         let target = frame.targets.first().map(|t| t.id.clone());
         let actor = frame.actor;
         self.push_stack(actor, label, transaction, None, false, target);
         frame.frame_id = self.stack.last().unwrap().id.clone();
+        if observe_spell { self.cq07_observe_spell_targets(&frame); }
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
     pub(crate) fn dispatch_frame(
@@ -1119,6 +1121,9 @@ impl Game {
                 // window. Independent events emitted by paying its costs remain
                 // queued and are declared after this immediate effect completes.
                 frame.frame_id = self.id();
+                if transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell") {
+                    self.cq07_observe_spell_targets(&frame);
+                }
                 self.reset_passes();
                 self.note(format!("立即结算（不可响应）：{label}"));
                 if let Some(card) = transaction {
@@ -1625,6 +1630,10 @@ impl Game {
                 Op::BQ037RevealVampire => return self.bq037_reveal_start(frame),
                 Op::XQ26Name => return self.xq26_name_start(frame),
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
+                Op::CQ07EnterMoon => {
+                    if self.players[frame.actor].society_zone.secrecy == 0 { self.add_society_markers(frame.actor,0,1); }
+                },
+                Op::CQ07SpellTargeted { .. } => self.draw(frame.actor,1)?,
                 Op::WM041PublicPlay { .. } => { self.add_society_markers(frame.actor,1,0); self.draw(frame.actor,1)?; },
                 Op::BQ079CorpseIcons { .. } => self.bq079_reward(&frame.source),
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,

@@ -1,4 +1,7 @@
 mod batch3;
+mod batch3_phoebe;
+#[cfg(test)]
+mod batch3_phoebe_tests;
 #[cfg(test)]
 mod batch3_abi94_tests;
 mod batch3_bats;

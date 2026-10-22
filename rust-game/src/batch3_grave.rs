@@ -21,7 +21,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> {
-    if matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. } if matches!(declaration.source.card.definition.as_str(),"JZ25"|"BQ029"|"BQ026"|"JZ26"))
+    if matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. } if matches!(declaration.source.card.definition.as_str(),"JZ25"|"BQ029"|"BQ026"|"JZ26"|"CQ07"))
         && *a != (Action { choice_id: a.choice_id.clone(), selected: a.selected.clone(), ..Action::new("choose") }) {
         return Err("第三批声明只接受原待选选择，不能附加其他载荷".into());
     }

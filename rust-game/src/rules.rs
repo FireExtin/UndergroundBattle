@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    CQ07SpellTargeted,
     WM035HostDeath,
     BQ079CorpseGrave,
     BQ037OtherVampireEntered,
@@ -252,6 +253,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    CQ07EnterMoon,
+    CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
     JC062Inspect,
     JZ25SealRandomHand,

@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-22T00:05:35.531343+00:00",
+  "baseCheckpoint": "8f9fcef34ab1d9debed19bdaa7751318c43a93f2",
+  "status": "completeLocalTwentyCandidateReadyForPublicationPendingAcceptance",
+  "replacement": {
+    "from": "CQ11",
+    "to": "CQ07",
+    "name": "菲碧·π",
+    "subtitle": "巡查使",
+    "color": "蓝",
+    "originalImageSha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db",
+    "directImageReview": true,
+    "runtimeAbsentBeforeThisWork": true,
+    "otherBatchPlansDidNotAssignThisCard": true,
+    "ownershipCheckLimit": "Not present in current runtime or other batch20 plans; no active local game edits/processes at starting clean8f9fcef. App task list read did not return; no claim of a complete app-wide task inventory.",
+    "deferredRuleGap": "docs/factions/TK008_RULING_GAP_2026-10-21.md",
+    "deferredStillUnimplemented": [
+      "CQ11",
+      "TK008"
+    ]
+  },
+  "cards": [
+    {
+      "id": "BQ042",
+      "name": "矛盾体",
+      "color": "红"
+    },
+    {
+      "id": "CQ07",
+      "name": "菲碧·π",
+      "color": "蓝"
+    },
+    {
+      "id": "WM030",
+      "name": "狂热信众",
+      "color": "红"
+    },
+    {
+      "id": "WM033",
+      "name": "钟楼怪客",
+      "color": "红"
+    },
+    {
+      "id": "WM035",
+      "name": "安东尼·布洛克",
+      "color": "红"
+    },
+    {
+      "id": "BQ079",
+      "name": "亡嚎食尸鬼",
+      "color": "黑"
+    },
+    {
+      "id": "BQ087",
+      "name": "赫雀瑟，黄金之蛇",
+      "color": "黑"
+    },
+    {
+      "id": "BQ089",
+      "name": "生化改造手术",
+      "color": "黑"
+    },
+    {
+      "id": "XG26",
+      "name": "看场打手",
+      "color": "黑"
+    },
+    {
+      "id": "XG28",
+      "name": "违禁品临时收容所",
+      "color": "黑"
+    },
+    {
+      "id": "BQ026",
+      "name": "吸血蝙蝠群",
+      "color": "蓝"
+    },
+    {
+      "id": "BQ029",
+      "name": "赤鳞近卫",
+      "color": "蓝"
+    },
+    {
+      "id": "BQ037",
+      "name": "穿刺公弗拉德三世",
+      "color": "蓝"
+    },
+    {
+      "id": "JZ25",
+      "name": "卡迪纳猎杀者",
+      "color": "蓝"
+    },
+    {
+      "id": "JZ26",
+      "name": "袖中毒物",
+      "color": "蓝"
+    },
+    {
+      "id": "JC062",
+      "name": "调查档案",
+      "color": "灰"
+    },
+    {
+      "id": "JC064",
+      "name": "戒严",
+      "color": "灰"
+    },
+    {
+      "id": "XQ22",
+      "name": "州议员贝伦·希恩斯",
+      "color": "灰"
+    },
+    {
+      "id": "XQ26",
+      "name": "通缉令",
+      "color": "灰"
+    },
+    {
+      "id": "WM041",
+      "name": "阿尔法先生",
+      "color": "灰"
+    }
+  ],
+  "colorCounts": {
+    "红": 4,
+    "黑": 5,
+    "蓝": 6,
+    "灰": 5
+  },
+  "construction": {
+    "totalDefinitions": 213,
+    "supportedDefinitions": 213,
+    "newCandidateAdmissions": 20,
+    "publicNewAdmissions": 0,
+    "acceptedNewCards": 0
+  },
+  "sourceRecordsPreserved": {
+    "count": 193,
+    "canonicalSha256": "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e"
+  },
+  "cq07Mechanism": {
+    "entry": "Optional responsive entry adds one personal moon only if none exists at resolution; normal sun/moon cancellation",
+    "targeted": "Each distinct face-up personal Vampire or Mage targeted by a paid enemy spell yields one optional responsive draw; freeze spell frame, target, effective subtypes and original actor",
+    "negativeBoundaries": [
+      "teammate target",
+      "allied/self spell",
+      "region damage without character targets",
+      "character ability",
+      "attachment play",
+      "hidden front even after actual inspection",
+      "duplicate observation",
+      "forged event/player",
+      "polluted optional-choice payload"
+    ],
+    "lifecycle": [
+      "real paid deploy",
+      "real control conversion before targeting",
+      "source and target departure after trigger",
+      "Native Room transition and replay",
+      "D1 reopen and identical receipt"
+    ]
+  },
+  "authorValidation": {
+    "nativeFilters": {
+      "batch3": 162,
+      "spirit": 14,
+      "next20_red": 15,
+      "jc008": 13
+    },
+    "nativeFilterCountsOverlapNotAdded": true,
+    "cq07DirectedPilot": 11,
+    "realCandidateDeckSaveAndDeferredRefusal": true,
+    "sourceFacts": 2,
+    "nativeWasmWitnesses": [
+      {
+        "identity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.84-batch20-third",
+          "engineVersion": "rust-v0.2.94-batch20-third"
+        },
+        "nativeCommands": 12,
+        "fourPrivateViewsPerStep": true,
+        "wasmBytes": 5025896,
+        "wasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c",
+        "currentSourceManifestSha256": "38a25c4119cdd3f4b7ec9c6fdf05a4516a2a204de190422da9143d54022d9092",
+        "nativeRawJsonBytes": 1549806,
+        "nativeRawJsonSha256": "1384338ef428da275c05011cac96d1a590d8f26590667818cddd6948d6a3b33e",
+        "catalogDefinitions": 213,
+        "constructionSupported": 213,
+        "pendingDisabled": 0,
+        "candidateBatchAdmissions": 20,
+        "publicBatchAdmissions": 0,
+        "output": "docs/evidence/batch20-third-2026-10-21/abi94-twenty-inspections.current.json.gz",
+        "scope": "Author necessary twenty-card candidate integration; no publication, full-suite, independent or browser acceptance"
+      },
+      {
+        "identity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.84-batch20-third",
+          "engineVersion": "rust-v0.2.94-batch20-third"
+        },
+        "nativeCommands": 1,
+        "fourPrivateViewsPerStep": true,
+        "wasmBytes": 5025896,
+        "wasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c",
+        "currentSourceManifestSha256": "38a25c4119cdd3f4b7ec9c6fdf05a4516a2a204de190422da9143d54022d9092",
+        "nativeRawJsonBytes": 397307,
+        "nativeRawJsonSha256": "092ec07224a79737e1088f36bc48ba569041403b3f0bbc476ba42201edb0c1d5",
+        "catalogDefinitions": 213,
+        "constructionSupported": 213,
+        "pendingDisabled": 0,
+        "candidateBatchAdmissions": 20,
+        "publicBatchAdmissions": 0,
+        "output": "docs/evidence/batch20-third-2026-10-21/abi94-twenty-cleanup.current.json.gz",
+        "scope": "Author necessary twenty-card candidate integration; no publication, full-suite, independent or browser acceptance"
+      },
+      {
+        "identity": {
+          "rulesVersion": "hegemony-pdf-v1",
+          "cardPoolVersion": "limited-v2.84-batch20-third",
+          "engineVersion": "rust-v0.2.94-batch20-third"
+        },
+        "nativeCommands": 10,
+        "fourPrivateViewsPerStep": true,
+        "wasmBytes": 5025896,
+        "wasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c",
+        "currentSourceManifestSha256": "38a25c4119cdd3f4b7ec9c6fdf05a4516a2a204de190422da9143d54022d9092",
+        "nativeRawJsonBytes": 1171258,
+        "nativeRawJsonSha256": "5bc3e665bce3f1457324bf7891a1b486a008d5621675ad81fe1cacdc97539c39",
+        "catalogDefinitions": 213,
+        "constructionSupported": 213,
+        "pendingDisabled": 0,
+        "candidateBatchAdmissions": 20,
+        "publicBatchAdmissions": 0,
+        "output": "docs/evidence/batch20-third-2026-10-21/abi94-twenty-cq07.current.json.gz",
+        "scope": "Author necessary twenty-card candidate integration; no publication, full-suite, independent or browser acceptance"
+      }
+    ],
+    "nativeWasmCommands": 23,
+    "nativeWasmFourSeatViews": 92,
+    "fullNativeWasmCatalogDeepEqual": true,
+    "web": {
+      "files": 6,
+      "passed": 70
+    },
+    "sites": {
+      "files": 5,
+      "passed": 12,
+      "d1ReopenThenRetryAndFourViews": true,
+      "historicalIdentitiesRejectedBeforeStateOps": 56,
+      "retiredHeaderHttp410Calls": 64
+    },
+    "webWorkerBuildDryRun": true,
+    "onlyOneCurrentWasmModule": true,
+    "startup": {
+      "engineVersion": "rust-v0.2.94-batch20-third",
+      "localUrl": "http://127.0.0.1:41469/",
+      "healthAndExactCatalog": "passed by existing qa-preview.mjs",
+      "rootHtmlStatus": 200,
+      "singleCurrentKernel": true,
+      "syntheticD1": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch3/../batch3-build/qa-abi94-start-20261021-05",
+      "publicAdmissions": 0,
+      "scope": "Local startup/identity/connectivity only; no public Site or browser gameplay acceptance",
+      "exitCode": 130,
+      "shutdown": "requestedSIGINT"
+    },
+    "finalCandidateSourceMetadataChecked": true
+  },
+  "currentIdentity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.84-batch20-third",
+    "engineVersion": "rust-v0.2.94-batch20-third"
+  },
+  "currentWasm": {
+    "bytes": 5025896,
+    "sha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c"
+  },
+  "currentSourceManifestSha256": "38a25c4119cdd3f4b7ec9c6fdf05a4516a2a204de190422da9143d54022d9092",
+  "currentSourceManifestFiles": 228,
+  "buildRecipe": "abi94-twenty-wasm-build.json",
+  "buildInvocation": "abi94-twenty-build-invocation.py",
+  "validationInvocation": "abi94-twenty-validation-invocation.py",
+  "logs": [
+    {
+      "scope": "cq07-initial-compile",
+      "file": "abi94-twenty-cq07-initial-compile.log.gz",
+      "rawBytes": 1197,
+      "rawSha256": "f338d06cfcbde374ea06ea50cc6b2a76a17e8dccb5b85440b9ea375ba40285b0",
+      "gzipSha256": "f67a3586842a320d5bca85432cebca342aa0634d9830ca1603d174ce20a51ce3"
+    },
+    {
+      "scope": "cq07-fixture-subtype-failure",
+      "file": "abi94-twenty-cq07-fixture-subtype-failure.log.gz",
+      "rawBytes": 2750,
+      "rawSha256": "7f4098e97b762c4579833860d763e4ab0e22219089fef490e41b4236cd19871a",
+      "gzipSha256": "f49f8cdc29ae343624e2486681fd78aa5ad625dba11b49bed370a958ae88d7e2"
+    },
+    {
+      "scope": "cq07-payment-and-payload-failure",
+      "file": "abi94-twenty-cq07-payment-and-payload-failure.log.gz",
+      "rawBytes": 2330,
+      "rawSha256": "d59d0d282d306e67379ff42c9c86ffbf476acf7df8869182c37bd48756dccf3b",
+      "gzipSha256": "fd487974fb25176f6426d82abc5f60f8cf01778b2a64cc9dda767d437a245e92"
+    },
+    {
+      "scope": "cq07-directed-11",
+      "file": "abi94-twenty-cq07-directed-11.log.gz",
+      "rawBytes": 1651,
+      "rawSha256": "fd6a81bf83e4d0646061e96050221781d5f1d93a49f4c13d890b5392943097d7",
+      "gzipSha256": "4644b09e7bfd589ece4d978a67a7aa64e21c37163c8a1e0ce1705cad8cee92ce"
+    },
+    {
+      "scope": "initial-candidate-admission-assertions",
+      "file": "abi94-twenty-initial-candidate-admission-assertions.log.gz",
+      "rawBytes": 20206,
+      "rawSha256": "12bda9fe0d60e23b75f5a73a8ba2fbbb007a3770a6ef9f8e612763b3e6930105",
+      "gzipSha256": "404be3568295ada748ae90909bc771de07ea8d7fe8863f04d2d9f8c23ab46ffb"
+    },
+    {
+      "scope": "native-batch3",
+      "file": "abi94-twenty-native-batch3.log.gz",
+      "rawBytes": 19364,
+      "rawSha256": "b6ad6caa609486336af34ff72e210f2b167b6a30d4920d16d2657e6c787e11bb",
+      "gzipSha256": "279d8308d26a3b953734cfe28f323e044da0adc360849e51e50b2ccc3539ee08"
+    },
+    {
+      "scope": "native-spirit",
+      "file": "abi94-twenty-native-spirit.log.gz",
+      "rawBytes": 1805,
+      "rawSha256": "68d61cf2fa966aa18c8ed7667c5da348b2c83076df7a89aa02cab8b24e9d7a4e",
+      "gzipSha256": "a5806535b5eefe0a0f32c9098b5d5a141b568aa0e7433933a5e127b4a724b6fb"
+    },
+    {
+      "scope": "native-next20_red",
+      "file": "abi94-twenty-native-next20_red.log.gz",
+      "rawBytes": 1816,
+      "rawSha256": "cc6924856e7c4164f61600ef431dc23c847e924b8d79aee509fe520c5a0f6e4c",
+      "gzipSha256": "c6a7817be042b840d08beff724b94e483fea41d9324e041aa2b3361b302ca4cf"
+    },
+    {
+      "scope": "native-jc008",
+      "file": "abi94-twenty-native-jc008.log.gz",
+      "rawBytes": 1612,
+      "rawSha256": "d76efa942dd4993c545b9ad75caab0a4c70ec3116c6ad1a6d5b4d2c02bbbe422",
+      "gzipSha256": "c9998e59f4f2915f9757175e2497275e07d343705ec4e3b632e20a96fb5d072b"
+    },
+    {
+      "scope": "source-facts",
+      "file": "abi94-twenty-source-facts.log.gz",
+      "rawBytes": 313,
+      "rawSha256": "3ed38ca41df30270f378ce221ce65dee7f8e4cd266842cf158a99787781827c5",
+      "gzipSha256": "e1ed97bdd9c181bd77230524a64d2c877405cd7148667dfcb3623410c115468e"
+    },
+    {
+      "scope": "wasm-build",
+      "file": "abi94-twenty-wasm-build.log.gz",
+      "rawBytes": 673,
+      "rawSha256": "d5a0cb1a7f08ce06df8d04e70f2defbb4e69c039bb97466d72a85c88c7d7281b",
+      "gzipSha256": "bb0a0c21f695a16e38963b2875ecc12d67e116ced6059494848fa330a5010295"
+    },
+    {
+      "scope": "cross-inspections",
+      "file": "abi94-twenty-cross-inspections.log.gz",
+      "rawBytes": 933,
+      "rawSha256": "d1571301e6e5e1fcd8efa0a09313fb6fbf7887c0f7c067835dd06ea0f4584862",
+      "gzipSha256": "952877e0ea1f48472ee90fabe64a796487dbba36a1758fe4a2e4fb5c3b0c9b84"
+    },
+    {
+      "scope": "cross-cleanup",
+      "file": "abi94-twenty-cross-cleanup.log.gz",
+      "rawBytes": 927,
+      "rawSha256": "f0d247121af169137cab4e76a66fb0271bea7cdf9916ec05cfe5ee546228e76f",
+      "gzipSha256": "891ecabe250e02d0811590568fbf430ea446f0ee461fb05882b6e4bb603fd5cf"
+    },
+    {
+      "scope": "cross-cq07",
+      "file": "abi94-twenty-cross-cq07.log.gz",
+      "rawBytes": 926,
+      "rawSha256": "54edf37f407db09ac681aa193b3885159a18b37a09f482bea403c45b4a86393c",
+      "gzipSha256": "a3111fac70caf0307a560212b5f3060ab146de4572239d36a8fa1770f27c3193"
+    },
+    {
+      "scope": "web-targeted",
+      "file": "abi94-twenty-web-targeted.log.gz",
+      "rawBytes": 525,
+      "rawSha256": "17c3ebbd55917a5b7e2cde1fb05673c74bda209e159e2d350fe66e7d0c308988",
+      "gzipSha256": "2b9861c70e9fd53019616eb1ca90c7e67072cc00b9cf985d91cc91e1aa793047"
+    },
+    {
+      "scope": "sites-build",
+      "file": "abi94-twenty-sites-build.log.gz",
+      "rawBytes": 1122,
+      "rawSha256": "0f4919237463369587900ccdfc946fbfc158bc1b1c4d77f2625060b90a710138",
+      "gzipSha256": "5440eb760ae59f3da37ff87c0bd9f113e40cd5ce8a57e640ce75f9049f093b68"
+    },
+    {
+      "scope": "clock-build",
+      "file": "abi94-twenty-clock-build.log.gz",
+      "rawBytes": 202,
+      "rawSha256": "3d48aeba985cf1f1d9bbb4100ceeaa0d79d7400a34b6b9d0f321bdc838649ff2",
+      "gzipSha256": "269f405b11d70371465c5b7b9f45c282290974c4d6784b90c53b2fd6983bd708"
+    },
+    {
+      "scope": "sites-targeted",
+      "file": "abi94-twenty-sites-targeted.log.gz",
+      "rawBytes": 2675,
+      "rawSha256": "ec62d95beccd06ea6b657273f72954669cb4869ff9631f0790ea1adf5a9182ec",
+      "gzipSha256": "fceae0ccd082b99d6eadb7f74bee1c954f651620b448d04ffc692a4479b961f9"
+    },
+    {
+      "scope": "local-start",
+      "file": "abi94-twenty-local-start.log.gz",
+      "rawBytes": 175,
+      "rawSha256": "5088762dab446326be9e77877377662d54f0a954c154862ebecc9f4e81d28fc9",
+      "gzipSha256": "f4ea8fa75e465a8869e46ffcaa2334fe1f746c9d919402cdf5befc37b8eeede8"
+    },
+    {
+      "scope": "source-final-current-metadata",
+      "file": "abi94-twenty-source-final.log.gz",
+      "rawBytes": 313,
+      "rawSha256": "2e992b3f1206dc1c02d38236f797894338c2194c1b0988676844b4f09dff370e",
+      "gzipSha256": "a9fc5b5347971ba9aa7974e6860c19fb93058fdce92061a1b9d89056a0ebd5b9"
+    }
+  ],
+  "reviewBoundary": {
+    "attachedBatP2At8f9fcef": "Parent independently reviewed source and closed it; no independent test execution claimed",
+    "newTwentyCandidate": "Author necessary checks only; independent full-batch review and real browser acceptance pending"
+  },
+  "publication": {
+    "queriedAtUtc": "2026-10-22 00:03:57 UTC",
+    "action": "Official read-only check of the original v74 deployment",
+    "result": {
+      "id": "appgdep_6ad8dd9acc1c8191912336351e022f25",
+      "project_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68",
+      "title": "隐秘世界 · 霸权",
+      "version_id": "appgprj_6abf7bf54a7481918a50e1ef1509ca68~appgver_8232ec4183fc8191aadb9fe2cf599b8d",
+      "type": "publish",
+      "status": "pending",
+      "url": null,
+      "has_mcp": false,
+      "screenshot_asset_pointer": null,
+      "provider_deployment_id": null,
+      "failure_message": null,
+      "env_set_revision": 0,
+      "updated_at": "2026-10-21T15:43:22.880209+00:00"
+    },
+    "publicationAttempted": false,
+    "productionHealth403Retried": false
+  },
+  "firstFailuresPreserved": [
+    "Ambiguous test import caused compile failure",
+    "Test fixture incorrectly treated JC018 as a Mage; corrected to actual JC003",
+    "JC036 fixture funded3 instead of printed5; corrected",
+    "New CQ07 optional choice initially accepted extraneous target payload; added to existing typed choice allowlist",
+    "Initial whole-batch run160passed/2failed only at former disabled-admission assertions; preserved mechanism assertions and migrated admission expectation"
+  ],
+  "limits": [
+    "No new deployment or standalone Sites source sync while originalv74 pending; productionhealth403 not retried",
+    "No full-product test-suite rerun, independent test execution or real-browser acceptance",
+    "Explicit author-local build recipe, not independent/default reproducibility proof",
+    "Old nineteen-card/private fixtures and evidence retained; active tests use three fresh current-source/WASM-bound witnesses",
+    "Only current ABI94 runs; no legacy kernel import, opaque version relabel/migration, lostu64 seed, new account/friend system, CI or main merge",
+    "CQ11/TK008 remains a separate unresolved request, not counted among the completed twenty",
+    "Before future official Sites sync inspect its actual index and preserve the independent3103444 cleanup; this work did not overwrite that clone"
+  ]
+}

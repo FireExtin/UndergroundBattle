@@ -19,21 +19,26 @@ test('third batch excludes all 193 preceding definitions and preserves every pre
   assert.equal(plan.cards.length, 20);
   assert.equal(new Set(plan.cards.map(c => c.id)).size, 20);
   const prior = new Set(pool.cards.slice(0, 193).map(c => c.id));
+  const candidateAdmitted = plan.scope.selectionEnabled === 20;
+  assert([0,20].includes(plan.scope.selectionEnabled),'Admit the entire batch together');
+  if(candidateAdmitted) assert(plan.cards.every(c=>c.runtime==='batchIntegratedPendingPublication'),'A whole local candidate needs every card integrated');
   const colors = {};
   for (const card of plan.cards) {
     assert(!prior.has(card.id), card.id);
     colors[card.color] = (colors[card.color] || 0) + 1;
-    assert.equal(card.selectionEnabled, false, card.id);
+    assert.equal(card.selectionEnabled, candidateAdmitted, card.id);
     assert.equal(hash(read(card.sourceImage)), card.sourceImageSha256, card.id);
     assert.equal(card.sourceImageSha256, specs[card.id].sourceVerification.imageSha256, card.id);
   }
-  assert.deepEqual(colors, { 红: 5, 黑: 5, 蓝: 5, 灰: 5 });
+  assert.deepEqual(colors, { 红: 4, 黑: 5, 蓝: 6, 灰: 5 });
   for (const card of pool.cards.slice(193)) {
     assert(plan.cards.some(c => c.id === card.id), card.id);
-    assert.equal(card.supported, false, card.id);
+    assert.equal(card.supported, candidateAdmitted, card.id);
   }
-  assert.equal(plan.scope.selectionEnabled, 0);
   assert.equal(plan.scope.published, 0);
+  assert(!plan.cards.some(c=>c.id==='CQ11'));
+  assert(plan.deferredCards.some(c=>c.id==='CQ11'&&c.runtime==='notImplemented'));
+  assert(!pool.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
 });
 
 test('new original-image corrections retain sun and moon gates and exact tap cost', () => {

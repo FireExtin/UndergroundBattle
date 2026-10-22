@@ -146,7 +146,7 @@ fn batch3_bq026_real_damage_and_end_cleanup_remove_damage_before_temporary_defen
 }
 #[test] fn batch3_bq026_forged_cycles_duplicate_events_and_nonreviewed_dual_definitions_are_rejected() {
     let mut g=game();let a=field(&mut g,"BQ026",0);g.emit_event(0,source(&g,&a),Event::EnterRegion);let e=g.effects.front().unwrap().clone();g.effects.push_back(e);assert!(Game::from_persisted(&serde_json::to_string(&g).unwrap()).is_err());
-    let mut g=game();let c=g.make_card("BQ026",0);let id=c.id.clone();g.attachments.push(Attachment{card:c,host_id:id});assert_eq!(g.attachment_region(&g.attachments[0]),None);assert!(Game::from_persisted(&serde_json::to_string(&g).unwrap()).is_err());assert_eq!(catalog::card("BQ026").additional_kinds,vec!["attachment"]);assert!(!catalog::card("BQ026").supported);
+    let mut g=game();let c=g.make_card("BQ026",0);let id=c.id.clone();g.attachments.push(Attachment{card:c,host_id:id});assert_eq!(g.attachment_region(&g.attachments[0]),None);assert!(Game::from_persisted(&serde_json::to_string(&g).unwrap()).is_err());assert_eq!(catalog::card("BQ026").additional_kinds,vec!["attachment"]);assert!(catalog::card("BQ026").supported);
 }
 #[test] fn batch3_bq026_printed_public_mobility_and_equipment_restriction_are_live_and_not_just_catalog_words() {
     let mut g=game();let bat=field(&mut g,"BQ026",0);assert!(g.current_public(g.board(&bat).unwrap().1,0));assert!(g.has_mobility(g.board(&bat).unwrap().1));

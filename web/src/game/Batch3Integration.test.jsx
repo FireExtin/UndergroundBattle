@@ -7,11 +7,20 @@ import {groupObjectActions} from './objectActions';
 import {testCard,testView} from './testFixtures';
 import {catalog as testCatalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 const definition=(id)=>testCatalog.cards.find(c=>c.id===id);
-it('keeps all nineteen pending cards disabled in the actual current catalog',()=>{
+it('admits the complete twenty-card local candidate and excludes deferred cards',()=>{
   expect(testCatalog.engineVersion).toBe('rust-v0.2.94-batch20-third');
-  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(19);
-  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(193);
+  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(0);
+  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(213);
+  expect(definition('CQ07').supported).toBe(true);
+  expect(definition('CQ11')).toBeUndefined();expect(definition('TK008')).toBeUndefined();
   expect(definition('BQ026').additionalKinds).toEqual(['attachment']);
+});
+it('renders the replacement Phoebe with her actual subtitle and whole printed rule text',()=>{
+  const d=definition('CQ07');
+  expect(d.unique).toBe(true);expect(d.subtitle).toBe('巡查使');
+  render(<CardTile card={{...testCard,instanceId:'phoebe',cardId:d.id,name:d.name,kind:'character',faceDown:false,region:0,text:d.text,icons:d.temporaryIcons,defense:1}} definition={d} viewerId="p0" />);
+  expect(screen.getAllByText(/菲碧·π/).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/本方吸血鬼或法师角色/).length).toBeGreaterThan(0);
 });
 it('renders attached bats as both printed types with current character stats and markers',()=>{
   const d=definition('BQ026');const card={...testCard,instanceId:'bat',cardId:d.id,name:d.name,kind:'attachment',faceDown:false,region:0,icons:{investigation:0,combat:2,influence:0},defense:2,permanentCombatMarkers:1};

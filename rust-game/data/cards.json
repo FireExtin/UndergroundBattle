@@ -7668,7 +7668,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ042",
@@ -7712,7 +7712,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "WM033",
@@ -7755,7 +7755,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XG26",
@@ -7797,7 +7797,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "WM035",
@@ -7841,7 +7841,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "JZ25",
@@ -7880,7 +7880,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XG28",
@@ -7921,7 +7921,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ089",
@@ -7963,7 +7963,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "JC062",
@@ -8002,7 +8002,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XQ22",
@@ -8044,7 +8044,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "“处事圆滑”"
     },
     {
@@ -8084,7 +8084,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ087",
@@ -8129,7 +8129,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "魔特之子"
     },
     {
@@ -8170,7 +8170,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "WM041",
@@ -8216,7 +8216,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "P.S.C.管理员"
     },
     {
@@ -8257,7 +8257,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ037",
@@ -8297,7 +8297,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "“龙之子”"
     },
     {
@@ -8342,7 +8342,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ026",
@@ -8388,7 +8388,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "JZ26",
@@ -8431,7 +8431,48 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
+    },
+    {
+      "id": "CQ07",
+      "name": "菲碧·π",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "进场触发 若本方秘社上没有隐秘标志，则放置一个隐秘标志。\n触发 当一个本方吸血鬼或法师角色成为敌方事务牌的目标时，抓一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ07",
+        "image": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
+        "imageSha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db"
+      },
+      "unique": true,
+      "society": "",
+      "supported": true,
+      "subtitle": "巡查使"
     }
   ],
   "decks": [
