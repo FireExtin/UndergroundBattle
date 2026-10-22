@@ -1,0 +1,555 @@
+{
+  "sourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+  "baseCommit": "c5c39467763a197aa7266c0473f44da133d0e843",
+  "createdUtc": "2026-10-22T19:39:14.145062+00:00",
+  "authorEvidence": true,
+  "wholeCardIndependentReview": "pending",
+  "scope": "Ten A/B native candidate cards. No current Web/WASM/Worker/full-suite/browser evidence.",
+  "sourceChanges": [
+    "docs/factions/card-specifications.json",
+    "rust-game/data/cards.json",
+    "rust-game/src/pack_a_contest_tests.rs",
+    "tools/cards/batch4-source.test.mjs",
+    "web/public/cards/BQ027.jpg",
+    "web/public/cards/BQ031.jpg",
+    "web/public/cards/BQ032.jpg",
+    "web/public/cards/BQ036.jpg",
+    "web/public/cards/BQ038.jpg"
+  ],
+  "runtimeRustChanges": [],
+  "currentNativeDistinctPassed": 21,
+  "currentNativeFilters": 21,
+  "totalNativeTests": 2038,
+  "nativeNotRunThisRound": 2017,
+  "sourceToolChecksPassed": 3,
+  "sourceToolProof": "runs/source-inprocess-08.log.gz",
+  "priorC5cAuthor112Reused": true,
+  "overlapWithPrior": 19,
+  "noCrossStageSumming": true,
+  "formalConfirmedNative": 22,
+  "authorAdditionalReady": 10,
+  "publicAdmissionAdded": 0,
+  "wasmAdded": 0,
+  "gitPushPerformed": false,
+  "receipts": [
+    {
+      "path": "runs/asset-after-05.json.gz",
+      "uncompressedSha256": "83865dba12a8258a8ae7d5908f64b28b8a6b56bf87c526ca0341dbdecc4932a0",
+      "sha256": "508e0b400e27dcdf70a7487b0a28b4c911acea168298a8e7cf36128e72e9b145",
+      "bytes": 11421
+    },
+    {
+      "path": "runs/asset-after-05.log.gz",
+      "uncompressedSha256": "ae8ea0e81e832365de5d76f701bc27390f5a7e80eca1a9254d9742cf0980e811",
+      "sha256": "7ad625a0864f0ca97646d4ca5060a13f864570b11975d9db20ebce41ff7a5a92",
+      "bytes": 147
+    },
+    {
+      "path": "runs/asset-before-04.json.gz",
+      "uncompressedSha256": "8598cd15f18712f7f0f831907f51ad938b4413fa7e17d86c34b2f5dad2e46182",
+      "sha256": "3a45e9f851e0ad288cd4644b7dc9c986e43e03bf3d082ddb4887c01e91375c6a",
+      "bytes": 11382
+    },
+    {
+      "path": "runs/asset-before-04.log.gz",
+      "uncompressedSha256": "ff7054c789a4fc7e3b893664f0b25bf5311d17caeff7f71bf9bec865c1555d07",
+      "sha256": "95f1eb43dc87b6e102db82b6372c00677779c7790781921e1ec5bcfdce9dfbb9",
+      "bytes": 183
+    },
+    {
+      "path": "runs/bq031-bq032-affected-native-06.json.gz",
+      "uncompressedSha256": "5a647ab686b432dbb93b8497bf9c4e2a30829c5ae5e3d356b883b5c5d43194ed",
+      "sha256": "cb4e4ba9b13b2c63e573cfbae59617b9e48d76710f92af92e04ce0bff4875894",
+      "bytes": 11431
+    },
+    {
+      "path": "runs/bq031-bq032-affected-native-06.log.gz",
+      "uncompressedSha256": "a9415905747d7b8f00aa63a3cdc87da5f571c7fc351e3360ed46f571033a8330",
+      "sha256": "f817281a45d339fb07c8bbd7318e58289102ccdac4e737b03f62b076f89848be",
+      "bytes": 1209
+    },
+    {
+      "path": "runs/card-entry-native-03.json.gz",
+      "uncompressedSha256": "fd5e6ca47df9957c788d0b10b57964f514ea9d8b186f2b42f5d03bed8ad19935",
+      "sha256": "2efe778db24f7b99a75db0a21964f9ad989e091aaffc869c82af7745de166359",
+      "bytes": 11462
+    },
+    {
+      "path": "runs/card-entry-native-03.log.gz",
+      "uncompressedSha256": "95bcbf52c0517f2f547e01f51b41f043b34700e15e43417c434152d68f7fafde",
+      "sha256": "55118da03c575bee933bf94fd6c047919e3fba9259b3970d6db1eee801aa953c",
+      "bytes": 863
+    },
+    {
+      "path": "runs/printed-nonasset-after-02.json.gz",
+      "uncompressedSha256": "5e2823aef914a3d525ece23d3c24fa8a60a86c86cf3b925148973372beee827a",
+      "sha256": "9ed5802263eb402e4e88fc587349d8bcfe0b34fd39c4be7f6bb01beba772d791",
+      "bytes": 11380
+    },
+    {
+      "path": "runs/printed-nonasset-after-02.log.gz",
+      "uncompressedSha256": "3e38ecf2108564967b3a1df511f7b3d12ae0a7120de7754c237baa060d53f162",
+      "sha256": "3ce161760183583db081625c6bd33383642a1d607308a750b0cbd2808468f09e",
+      "bytes": 146
+    },
+    {
+      "path": "runs/printed-nonasset-before-01.json.gz",
+      "uncompressedSha256": "d37caefa094fec21465bed7cd3aee6e4ee28caa0eaa40daace61c6ef2e24557e",
+      "sha256": "146c8cf0fb50f0c585ba58712009d03344ded028c070c4fd4fb69e843361622e",
+      "bytes": 11320
+    },
+    {
+      "path": "runs/printed-nonasset-before-01.log.gz",
+      "uncompressedSha256": "fe6591760c7e1e219c94aa203e5063cb6e89889d32a816a2d3ffc280006ce80a",
+      "sha256": "3a08b4664983515f74ba27d2c89694c8d769d8f4807302886bccb3b1b800963a",
+      "bytes": 183
+    },
+    {
+      "path": "runs/source-detailed-07.json.gz",
+      "uncompressedSha256": "35c38ada26303bc82303ec84c898836d723bafea195dbee832607677528d8c78",
+      "sha256": "c73710fc6436b6a1011901e80bd6baf51f10312962233bb294309e1a3ede2f9c",
+      "bytes": 11377
+    },
+    {
+      "path": "runs/source-detailed-07.log.gz",
+      "uncompressedSha256": "2e2e4508e4f6ab89196fa0a30235413a53a01b7d128e5ec994d7e5dbdacfcd56",
+      "sha256": "568ff3e7c246ef0191e1a49fc37cfbf829eb7448c5319f813c4d13cce915ba18",
+      "bytes": 186
+    },
+    {
+      "path": "runs/source-inprocess-08.json.gz",
+      "uncompressedSha256": "3eb0e3b86611773c8a1ba1c793c6183e30e2c5790a8f4a07f8ae4b88c153c74b",
+      "sha256": "3e9e9ecc3b116749e3a9406d94dafe5f60ac89b16c294a94f3cd0af28078b6ee",
+      "bytes": 11377
+    },
+    {
+      "path": "runs/source-inprocess-08.log.gz",
+      "uncompressedSha256": "5d1aaf475a1e879f1719508adafb184dcb39b566bcd688017d3691af2604acab",
+      "sha256": "f38b2cfabf55274275b8592bb44a931d2171c08d5a3aedcd57910e1e4a567eec",
+      "bytes": 355
+    }
+  ],
+  "sourceIdentity": [
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "bytes": 63493,
+      "sha256": "068a2d5c8a3504672e138e45cea6e131343e79315d45ef4b5ebfce6f87282e9e",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.json",
+      "bytes": 1584,
+      "sha256": "f7440943dc149e43cc6f34d8338bfdcc4a1b5e9c380f21ed18a7e0143d9955c7",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "bytes": 2815144,
+      "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+      "bytes": 1342695,
+      "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+      "bytes": 1356120,
+      "sha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+      "bytes": 1337590,
+      "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+      "bytes": 1354419,
+      "sha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+      "bytes": 1336276,
+      "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+      "bytes": 1330270,
+      "sha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+      "bytes": 1367256,
+      "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+      "bytes": 1297144,
+      "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+      "bytes": 1327772,
+      "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+      "bytes": 1322675,
+      "sha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "bytes": 274033,
+      "sha256": "ea453d2c3b25ba216b02b45c8b81e2e9550b6c12b2a721d385bbda3be86784b2",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch3_blood.rs",
+      "bytes": 19074,
+      "sha256": "99250800369ef759e853cbb613ae7c4e0f60cddc08bf97e89efe3bc564eca089",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch4.rs",
+      "bytes": 29503,
+      "sha256": "3851f00b5c5d07f80e0dc07c715a356619767988640fb6a51640e6289d6519bf",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest.rs",
+      "bytes": 29429,
+      "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+      "bytes": 45220,
+      "sha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampires.rs",
+      "bytes": 43912,
+      "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampires_tests.rs",
+      "bytes": 33275,
+      "sha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "bytes": 9319,
+      "sha256": "f2d62e85a418399f2f6ac450bc87a7398fd1babffdfc919c6f59f0d64bba1284",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "bytes": 284709,
+      "sha256": "ed2981e3ea4e3ddabdcb23162c84e97fcfc9aa172ff73e0be889b2621907d814",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/exposure.rs",
+      "bytes": 27865,
+      "sha256": "6b3bad403aea10eddb4ba49d20933481144ef927248a6c7f4336a69f67a345f8",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "bytes": 41190,
+      "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "bytes": 843,
+      "sha256": "b812ede6a0be749b065121cbb4732b515c6f3b1becb4c846c795869ed7bd05db",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/mystic_lifecycle_tests.rs",
+      "bytes": 23885,
+      "sha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "bytes": 24728,
+      "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/pack_a_contest_tests.rs",
+      "bytes": 32582,
+      "sha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "bytes": 143859,
+      "sha256": "2ab791e78fb2390b2566a08c65b55e42ff920030bea519af869a91698ac45e9b",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "bytes": 176058,
+      "sha256": "97638b3073cdd27bd9635cc8d772f6cabc2c79946e72671b1c17f173e07d8fd4",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "bytes": 6761,
+      "sha256": "421769ee3e7d332d8a10ef88d7a405422f8872bef36dc61b54d3acdff059c2cf",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ027.jpg",
+      "bytes": 1342695,
+      "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ031.jpg",
+      "bytes": 1356120,
+      "sha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ032.jpg",
+      "bytes": 1337590,
+      "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ036.jpg",
+      "bytes": 1354419,
+      "sha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ038.jpg",
+      "bytes": 1336276,
+      "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/BQ082.jpg",
+      "bytes": 1330270,
+      "sha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/WM021.jpg",
+      "bytes": 1367256,
+      "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/WM022.jpg",
+      "bytes": 1297144,
+      "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/WM032.jpg",
+      "bytes": 1327772,
+      "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+      "sameAsSourceCommit": true
+    },
+    {
+      "path": "web/public/cards/WM061.jpg",
+      "bytes": 1322675,
+      "sha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+      "sameAsSourceCommit": true
+    }
+  ],
+  "runs": [
+    {
+      "name": "asset-after-05",
+      "sourceHead": "c5c39467763a197aa7266c0473f44da133d0e843",
+      "worktree": " M docs/factions/card-specifications.json\n M rust-game/data/cards.json\n M rust-game/src/pack_a_contest_tests.rs\n M tools/cards/batch4-source.test.mjs\n?? web/public/cards/BQ027.jpg\n?? web/public/cards/BQ031.jpg\n?? web/public/cards/BQ032.jpg\n?? web/public/cards/BQ036.jpg\n?? web/public/cards/BQ038.jpg\n",
+      "command": [
+        "node",
+        "--test",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.204,
+      "startUtc": "2026-10-22T19:28:56.200683+00:00",
+      "logSha256": "ae8ea0e81e832365de5d76f701bc27390f5a7e80eca1a9254d9742cf0980e811",
+      "counterScope": "whole file only; no internal case count asserted",
+      "rustSnapshotCheckedAgainstSourceCommit": false,
+      "rustSnapshotMatchesSourceCommit": null
+    },
+    {
+      "name": "asset-before-04",
+      "sourceHead": "c5c39467763a197aa7266c0473f44da133d0e843",
+      "worktree": " M docs/factions/card-specifications.json\n M rust-game/data/cards.json\n M rust-game/src/pack_a_contest_tests.rs\n M tools/cards/batch4-source.test.mjs\n",
+      "command": [
+        "node",
+        "--test",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 1,
+      "seconds": 0.19,
+      "startUtc": "2026-10-22T19:28:44.847046+00:00",
+      "logSha256": "ff7054c789a4fc7e3b893664f0b25bf5311d17caeff7f71bf9bec865c1555d07",
+      "counterScope": "whole file only; no internal case count asserted",
+      "rustSnapshotCheckedAgainstSourceCommit": false,
+      "rustSnapshotMatchesSourceCommit": null
+    },
+    {
+      "name": "bq031-bq032-affected-native-06",
+      "sourceHead": "a2bd4081b4196271947c55836667722909062c68",
+      "worktree": "",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "batch4_vampires_tests::batch4_vampires_bq031_",
+        "batch4_vampires_tests::batch4_vampires_bq032_",
+        "batch4_vampires_tests::batch4_vampires_conditional_nonasset",
+        "b_contest_hand_",
+        "b_contest_bq031_",
+        "b_contest_ruling_empty",
+        "--nocapture"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 6.668,
+      "startUtc": "2026-10-22T19:30:46.038586+00:00",
+      "logSha256": "a9415905747d7b8f00aa63a3cdc87da5f571c7fc351e3360ed46f571033a8330",
+      "counterScope": "native test cases",
+      "rustSnapshotCheckedAgainstSourceCommit": true,
+      "rustSnapshotMatchesSourceCommit": true
+    },
+    {
+      "name": "card-entry-native-03",
+      "sourceHead": "c5c39467763a197aa7266c0473f44da133d0e843",
+      "worktree": " M docs/factions/card-specifications.json\n M rust-game/data/cards.json\n M rust-game/src/pack_a_contest_tests.rs\n M tools/cards/batch4-source.test.mjs\n",
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "ab_card_closure_",
+        "--",
+        "--nocapture"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 26.851,
+      "startUtc": "2026-10-22T19:25:33.260908+00:00",
+      "logSha256": "95bcbf52c0517f2f547e01f51b41f043b34700e15e43417c434152d68f7fafde",
+      "counterScope": "native test cases",
+      "rustSnapshotCheckedAgainstSourceCommit": true,
+      "rustSnapshotMatchesSourceCommit": true
+    },
+    {
+      "name": "printed-nonasset-after-02",
+      "sourceHead": "c5c39467763a197aa7266c0473f44da133d0e843",
+      "worktree": " M docs/factions/card-specifications.json\n M rust-game/data/cards.json\n M rust-game/src/pack_a_contest_tests.rs\n M tools/cards/batch4-source.test.mjs\n",
+      "command": [
+        "node",
+        "--test",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.407,
+      "startUtc": "2026-10-22T19:25:33.256656+00:00",
+      "logSha256": "3e38ecf2108564967b3a1df511f7b3d12ae0a7120de7754c237baa060d53f162",
+      "counterScope": "whole file only; no internal case count asserted",
+      "rustSnapshotCheckedAgainstSourceCommit": false,
+      "rustSnapshotMatchesSourceCommit": null
+    },
+    {
+      "name": "printed-nonasset-before-01",
+      "sourceHead": "c5c39467763a197aa7266c0473f44da133d0e843",
+      "worktree": " M tools/cards/batch4-source.test.mjs\n",
+      "command": [
+        "node",
+        "--test",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 1,
+      "seconds": 0.202,
+      "startUtc": "2026-10-22T19:24:22.327171+00:00",
+      "logSha256": "fe6591760c7e1e219c94aa203e5063cb6e89889d32a816a2d3ffc280006ce80a",
+      "counterScope": "whole file only; no internal case count asserted",
+      "rustSnapshotCheckedAgainstSourceCommit": false,
+      "rustSnapshotMatchesSourceCommit": null
+    },
+    {
+      "name": "source-detailed-07",
+      "sourceHead": "a2bd4081b4196271947c55836667722909062c68",
+      "worktree": "?? docs/evidence/ab-card-closure-20261022/\n",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.211,
+      "startUtc": "2026-10-22T19:37:17.158956+00:00",
+      "logSha256": "2e2e4508e4f6ab89196fa0a30235413a53a01b7d128e5ec994d7e5dbdacfcd56",
+      "counterScope": "whole file only; no internal case count asserted",
+      "rustSnapshotCheckedAgainstSourceCommit": false,
+      "rustSnapshotMatchesSourceCommit": null
+    },
+    {
+      "name": "source-inprocess-08",
+      "sourceHead": "a2bd4081b4196271947c55836667722909062c68",
+      "worktree": "?? docs/evidence/ab-card-closure-20261022/\n",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.172,
+      "startUtc": "2026-10-22T19:37:30.728023+00:00",
+      "logSha256": "5d1aaf475a1e879f1719508adafb184dcb39b566bcd688017d3691af2604acab",
+      "counterScope": "three internal cases",
+      "rustSnapshotCheckedAgainstSourceCommit": true,
+      "rustSnapshotMatchesSourceCommit": true
+    }
+  ]
+}

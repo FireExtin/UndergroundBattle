@@ -1,0 +1,1871 @@
+{
+  "sourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+  "priorRuleReviewCommit": "c5c39467763a197aa7266c0473f44da133d0e843",
+  "scope": "Author per-card native closure matrix; not a whole-card independent review or public acceptance",
+  "cards": [
+    {
+      "cardId": "WM021",
+      "name": "秘闻记录官",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+        "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/WM021.jpg",
+        "sha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "WM021",
+        "name": "秘闻记录官",
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼",
+          "学者"
+        ],
+        "cost": 1,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "鲜血",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 1
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": 1,
+        "text": "隐秘+5\n持续 在进行隐秘对抗时，你所展示的吸血鬼牌获得+2。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "WM021",
+          "image": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+          "imageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "隐秘+5，个人展示吸血鬼+2；本人、队友、暗藏与当前类别区分",
+          "implementation": [
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 245,
+              "symbol": "mystic_printed_bonus",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            },
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 266,
+              "symbol": "mystic_reveal_all",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            },
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 253,
+              "symbol": "mystic_value",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 82,
+              "name": "pack_a_personal_vampire_bonus_excludes_teammate_and_hidden_observer",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 260,
+              "name": "pack_a_owner_manor_aura_changes_human_display_and_preserves_witness",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 127,
+              "name": "pack_a_private_pending_and_result_tampering_rejected_by_both_restore_envelopes",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "WM022",
+      "name": "阴影之子",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+        "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/WM022.jpg",
+        "sha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "WM022",
+        "name": "阴影之子",
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼"
+        ],
+        "cost": 3,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "死亡",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 1
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 1,
+            "influence": 0
+          }
+        },
+        "defense": 1,
+        "text": "现身强制触发 进行一次隐秘对抗。\n触发 当你每回合首次赢得隐秘对抗时，目标玩家弃一张手牌。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "WM022",
+          "image": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+          "imageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "仅现身强制进行隐秘对抗，费用不重付、私有提交后同时公开",
+          "implementation": [
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 133,
+              "symbol": "pack_a_forced_declare",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 148,
+              "symbol": "mystic_contest_start",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 62,
+              "name": "pack_a_actual_reveal_paid_once_and_four_private_commitments",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/mystic_lifecycle_tests.rs",
+              "line": 69,
+              "name": "mystic_lifecycle_response_generated_trigger_precedes_secret_selection",
+              "wholeFileSha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/mystic_lifecycle_tests.rs",
+              "line": 321,
+              "name": "mystic_lifecycle_room_commands_and_journal_replay_complete_nested_response",
+              "wholeFileSha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "个人每回合首次胜利，目标玩家自行私有弃牌；不因再次进场重置",
+          "implementation": [
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 111,
+              "symbol": "pack_a_win_record",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 211,
+              "symbol": "pack_a_observe_mystic_win",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 173,
+              "name": "pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/mystic_lifecycle_tests.rs",
+              "line": 354,
+              "name": "mystic_lifecycle_child_win_chain_precedes_older_parent_effects",
+              "wholeFileSha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "WM032",
+      "name": "扭曲的布道者",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+        "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/WM032.jpg",
+        "sha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "WM032",
+        "name": "扭曲的布道者",
+        "kind": "character",
+        "subtypes": [
+          "人类",
+          "邪教徒"
+        ],
+        "cost": 3,
+        "loyalty": [
+          "红色"
+        ],
+        "loyaltyText": "红",
+        "color": "红",
+        "magic": "",
+        "icons": {
+          "permanent": {
+            "investigation": 1,
+            "combat": 0,
+            "influence": 1
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": 1,
+        "text": "隐秘：若场上有已毁灭的地区，或你的计分区中有毁灭标志，+3。\n触发 当你赢得一次隐秘对抗时，在所有已毁灭的地区上放置一个本方势力标志。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "WM032",
+          "image": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+          "imageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "毁灭地区或本人毁灭计分标志满足任一条件时隐秘+3",
+          "implementation": [
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 245,
+              "symbol": "mystic_printed_bonus",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 98,
+              "name": "pack_a_preacher_conditional_printed_bonus",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "每次本人获胜时在结算时全部已毁灭地区放本方势力；多来源及离场不重复",
+          "implementation": [
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 211,
+              "symbol": "pack_a_observe_mystic_win",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 229,
+              "symbol": "pack_a_destroyed_influence",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 185,
+              "name": "pack_a_preacher_win_queues_multiple_sources_and_resolves_current_destroyed_regions",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "WM061",
+      "name": "土归土",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+        "sha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/WM061.jpg",
+        "sha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "WM061",
+        "name": "土归土",
+        "kind": "spell",
+        "subtypes": [
+          "仪式",
+          "灾难"
+        ],
+        "cost": 2,
+        "loyalty": [
+          "黑色"
+        ],
+        "loyaltyText": "黑",
+        "color": "黑",
+        "magic": "死亡",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": null,
+        "text": "隐秘+2：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。\n非资产\n行动 将每位玩家牌库顶的五张牌置于其墓地。",
+        "keywords": [
+          "非资产"
+        ],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "WM061",
+          "image": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+          "imageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "非资产；真实付2打出，完整每席顶五入墓，短库不等于抓牌淘汰",
+          "implementation": [
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 18,
+              "symbol": "definition",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 142,
+              "symbol": "validate_pack_a_frame",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/batch3_blood.rs",
+              "line": 38,
+              "symbol": "current_non_asset",
+              "sha256": "99250800369ef759e853cbb613ae7c4e0f60cddc08bf97e89efe3bc564eca089"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 46,
+              "name": "pack_a_original_data_and_fixed_programs",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 106,
+              "name": "pack_a_earth_normal_action_mills_each_player_and_short_deck",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 234,
+              "name": "pack_a_earth_player_elimination_before_and_after_payment_keeps_fixed_slots_without_milling_dead_seat",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "隐秘+2，展示牌洗回后本人顶一入墓；传闻暂停、原因及游标恢复",
+          "implementation": [
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 245,
+              "symbol": "mystic_printed_bonus",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            },
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 359,
+              "symbol": "mystic_after_next",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 207,
+              "symbol": "pack_a_rumor_frame",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 113,
+              "name": "pack_a_earth_shown_shuffles_before_post_mill",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 204,
+              "name": "pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 211,
+              "name": "pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 227,
+              "name": "pack_a_earth_restored_program_cannot_drop_reorder_duplicate_or_replace_player_slots",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ082",
+      "name": "毒药专家塞巴斯蒂安",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+        "sha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ082.jpg",
+        "sha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ082",
+        "name": "毒药专家塞巴斯蒂安",
+        "kind": "character",
+        "subtypes": [
+          "人类",
+          "罪犯",
+          "学者"
+        ],
+        "cost": 4,
+        "loyalty": [
+          "黑色",
+          "黑色"
+        ],
+        "loyaltyText": "黑黑",
+        "color": "黑",
+        "magic": "",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 1
+          },
+          "temporary": {
+            "investigation": 1,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": 1,
+        "text": "暴露〔日形〕公开\n进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得+2。若你赢得本次隐秘对抗，将你墓地中的目标角色牌横置放置进场，并置于本地区。",
+        "keywords": [
+          "暴露条件：公开"
+        ],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ082",
+          "image": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+          "imageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750"
+        },
+        "unique": true,
+        "society": "",
+        "supported": false,
+        "subtitle": "首席药剂师"
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "仅本人暴露条件公开；双黑忠诚、进场前绑定本人墓地角色",
+          "implementation": [
+            {
+              "path": "rust-game/src/exposure.rs",
+              "line": 199,
+              "symbol": "current_public",
+              "sha256": "6b3bad403aea10eddb4ba49d20933481144ef927248a6c7f4336a69f67a345f8"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 94,
+              "symbol": "pack_a_grave_target",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 18,
+              "symbol": "definition",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 119,
+              "name": "pack_a_public_requires_personal_exposure",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 167,
+              "name": "pack_a_poison_cannot_target_teammate_or_spell_and_obeys_double_black_loyalty",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 279,
+              "name": "pack_a_poison_conditional_public_is_seen_by_alpha_only_when_personally_exposed",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "对抗本人+2，赢后原目标横置进原地区；合法目标/地区失效保持原UID与费用语义",
+          "implementation": [
+            {
+              "path": "rust-game/src/pack_a_contest.rs",
+              "line": 233,
+              "symbol": "pack_a_mystic_after",
+              "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6"
+            },
+            {
+              "path": "rust-game/src/mystic_contest.rs",
+              "line": 253,
+              "symbol": "mystic_value",
+              "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 144,
+              "name": "pack_a_poison_actual_paid_entry_target_before_responses_bonus_and_exhausted_reentry",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 152,
+              "name": "pack_a_poison_source_departure_keeps_paid_trigger_but_original_region_replacement_fizzles_entry",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 161,
+              "name": "pack_a_poison_departed_target_cancels_whole_trigger_without_starting_contest",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ027",
+      "name": "血畜",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+        "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ027.jpg",
+        "sha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ027",
+        "name": "血畜",
+        "subtitle": null,
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼",
+          "奴仆"
+        ],
+        "cost": 1,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "血",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 1,
+            "influence": 0
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": 1,
+        "text": "隐秘+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。\n快速行动 牺牲血畜：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ027",
+          "image": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+          "imageSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "隐秘+2；展示后本人目标本方吸血鬼饮血，不因无目标阻塞其他展示",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 562,
+              "symbol": "b_mystic_extra",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 569,
+              "symbol": "b_mystic_shown",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 675,
+              "symbol": "bq027_choose_shown_target",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 332,
+              "name": "b_contest_shown_bq027_adds_two_after_shuffle_targets_only_personal_vampire_and_feeds",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 372,
+              "name": "b_contest_shown_bq027_no_target_or_no_blood_finishes_and_two_shown_keep_cursor",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 412,
+              "name": "b_contest_shown_bq027_rejects_post_frame_target_and_cursor_forgery",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "快速牺牲自身，目标任意吸血鬼由其当前操控者选墓地/秘社鲜血；失效不退费用",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 52,
+              "symbol": "definition",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 387,
+              "symbol": "vampire_feed_start",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 401,
+              "symbol": "vampire_feed_finish",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 77,
+              "name": "batch4_vampires_bq027_actual_deploy_sacrifices_once_and_current_recipient_controls_blood",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 97,
+              "name": "batch4_vampires_bq027_invalid_payload_or_nonvampire_never_pays",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 90,
+              "name": "batch4_vampires_bq027_targeting_self_cancels_after_sacrifice_without_refund",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 104,
+              "name": "batch4_vampires_bq027_departure_and_control_response_keep_original_target",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ031",
+      "name": "雾羽千军",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+        "sha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ031.jpg",
+        "sha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ031",
+        "name": "雾羽千军",
+        "subtitle": "红色獠牙",
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼",
+          "忍者"
+        ],
+        "cost": 3,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "血",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 1,
+            "influence": 0
+          },
+          "temporary": {
+            "investigation": 1,
+            "combat": 0,
+            "influence": 1
+          }
+        },
+        "defense": 1,
+        "text": "暴露条件：非资产；袭击1\n触发 当一个附属结附于本方吸血鬼或忍者上时，目标敌方玩家弃一张手牌。该能力每回合只能发动一次。\n触发 当你赢得一次隐秘对抗时，饮血1。",
+        "keywords": [
+          "暴露条件：非资产",
+          "袭击1"
+        ],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ031",
+          "image": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+          "imageSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1"
+        },
+        "unique": true,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": true,
+      "obligations": [
+        {
+          "printedObligation": "唯一；日形条件仅非资产，可暗藏；仅现身袭击1",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch3_blood.rs",
+              "line": 38,
+              "symbol": "current_non_asset",
+              "sha256": "99250800369ef759e853cbb613ae7c4e0f60cddc08bf97e89efe3bc564eca089"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 52,
+              "symbol": "definition",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 62,
+              "name": "batch4_vampires_partial_sources_are_closed_and_not_deck_admitted",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 146,
+              "name": "batch4_vampires_conditional_nonasset_requires_personal_sun",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 400,
+              "name": "ab_card_closure_bq031_bq032_day_nonasset_never_grants_public",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-current-entry-2"
+              ],
+              "priorTestBodyPreserved": false
+            }
+          ]
+        },
+        {
+          "printedObligation": "本方吸血鬼/忍者被结附后，目标敌方私有弃牌；每回合一次与裁定官共享排序",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 327,
+              "symbol": "bq031_observe_attachment",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 324,
+              "symbol": "vampire_trigger_available",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 417,
+              "symbol": "bq031_discard",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 183,
+              "name": "batch4_vampires_bq031_attachment_trigger_enemy_discards_privately_once_per_turn",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 192,
+              "name": "batch4_vampires_bq031_decline_does_not_consume_and_empty_enemy_hand_still_consumes",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 206,
+              "name": "batch4_vampires_bq031_current_subtype_from_manor_qualifies_but_plain_human_does_not",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 212,
+              "name": "batch4_vampires_bq031_and_multiple_arbiters_share_original_ordering_without_lost_declines",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 229,
+              "name": "batch4_vampires_bq032_two_blood_entries_cannot_activate_bq031_twice",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "每次个人赢对抗饮血1，引用冻结结果，原实例离场不重绑",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 531,
+              "symbol": "b_mystic_win",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 387,
+              "symbol": "vampire_feed_start",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 441,
+              "name": "b_contest_bq031_win_is_personal_each_contest_and_shares_victory_order_with_a",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 501,
+              "name": "b_contest_bq031_departure_does_not_feed_replacement_and_win_receipt_is_required",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ032",
+      "name": "宴会司仪",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+        "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ032.jpg",
+        "sha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ032",
+        "name": "宴会司仪",
+        "subtitle": null,
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼"
+        ],
+        "cost": 3,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "血",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          },
+          "temporary": {
+            "investigation": 1,
+            "combat": 0,
+            "influence": 1
+          }
+        },
+        "defense": 1,
+        "text": "暴露条件：非资产；袭击1\n现身触发 饮血2（将至多两张本方墓地中和/或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。\n神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+        "keywords": [
+          "暴露条件：非资产",
+          "袭击1"
+        ],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ032",
+          "image": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+          "imageSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": true,
+      "obligations": [
+        {
+          "printedObligation": "日形条件仅非资产，可暗藏；现身袭击1与至多两张饮血，自墓地/秘社同时进入后触发",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch3_blood.rs",
+              "line": 38,
+              "symbol": "current_non_asset",
+              "sha256": "99250800369ef759e853cbb613ae7c4e0f60cddc08bf97e89efe3bc564eca089"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 52,
+              "symbol": "definition",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 401,
+              "symbol": "vampire_feed_finish",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/pack_a_contest_tests.rs",
+              "line": 400,
+              "name": "ab_card_closure_bq031_bq032_day_nonasset_never_grants_public",
+              "wholeFileSha256": "1fb029bbbb55704976d79e54b3622a036d264e8606e1f700b10d3837bb4768ea",
+              "passingEvidenceStages": [
+                "author-current-entry-2"
+              ],
+              "priorTestBodyPreserved": false
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 112,
+              "name": "batch4_vampires_bq032_reveal_feeds_zero_one_or_two_mixed_sources_simultaneously",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 122,
+              "name": "batch4_vampires_bq032_normal_faceup_entry_does_not_feed_or_raid",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 137,
+              "name": "batch4_vampires_bq032_only_personal_grave_or_personal_society_blood_is_available",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "本人原手牌行动付2弃自身进行对抗；非响应动作，费用与私有待选恢复一次",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 155,
+              "symbol": "bq032_hand_contest_source",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 147,
+              "symbol": "bq032_begin_hand",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 198,
+              "name": "b_contest_hand_action_pays_two_discards_self_once_and_private_restore",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 231,
+              "name": "b_contest_hand_invalid_cost_extra_payload_board_and_enemy_are_atomic",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 54,
+              "name": "b_contest_ruling_empty_after_paid_last_hand_action_keeps_costs_and_unshown_hands",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-directed-7",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 75,
+              "name": "b_contest_ruling_empty_room_response_reopen_and_journal_keep_payment_once",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-directed-7",
+                "author-current-bq031-bq032-19"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ036",
+      "name": "菲尼克斯",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+        "sha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ036.jpg",
+        "sha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ036",
+        "name": "菲尼克斯",
+        "subtitle": "大判官",
+        "kind": "character",
+        "subtypes": [
+          "吸血鬼"
+        ],
+        "cost": 5,
+        "loyalty": [
+          "蓝色",
+          "蓝色"
+        ],
+        "loyaltyText": "蓝蓝",
+        "color": "蓝",
+        "magic": "血",
+        "icons": {
+          "permanent": {
+            "investigation": 2,
+            "combat": 1,
+            "influence": 1
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": 3,
+        "text": "现身触发 自你牌库顶的六张牌中寻找任意数量的装备、武器或状态附属牌，将这些牌展示后置于你的手中，将其余牌洗回牌库。\n行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘对抗加值+2。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ036",
+          "image": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+          "imageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555"
+        },
+        "unique": true,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "唯一、双蓝忠诚；现身私有顶六选任意数量装备/武器/状态，展示所选，其余洗回",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 426,
+              "symbol": "bq036_search_start",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 435,
+              "symbol": "bq036_search_finish",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 152,
+              "name": "batch4_vampires_bq036_actual_search_top_six_private_reveals_only_selected_and_shuffles",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 161,
+              "name": "batch4_vampires_bq036_zero_all_short_and_empty_choices",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 169,
+              "name": "batch4_vampires_bq036_wrong_seventh_duplicates_and_extra_payload_reject_atomically",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 177,
+              "name": "batch4_vampires_bq036_source_departure_does_not_cancel_or_rebind_private_search",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 360,
+              "name": "batch4_vampires_search_room_pause_resume_replay_large_seed_and_four_private_views",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "行动付1并牺牲本方角色上的本方附属，对抗本人+2；完整类型费用收据和宿主身份",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 163,
+              "symbol": "bq036_pay_attachment",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 44,
+              "symbol": "admitted_start",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 274,
+              "name": "b_contest_bq036_payment_accepts_personal_attachment_on_personal_character_and_not_printed_cost",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 300,
+              "name": "b_contest_bq036_rejects_foreign_cost_wrong_host_and_double_payment_restore",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 674,
+              "name": "b_contest_paid_sources_preserve_foreign_owners_and_hand_action_cannot_respond",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    },
+    {
+      "cardId": "BQ038",
+      "name": "掠食时刻",
+      "nativeAuthorReady": true,
+      "wholeCardIndependentReview": "pending",
+      "wasmIntegratedThisRound": false,
+      "deckAdmission": false,
+      "publicAcceptance": false,
+      "nativeSourceCommit": "a2bd4081b4196271947c55836667722909062c68",
+      "sourceImage": {
+        "path": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+        "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+        "visuallyReadThisRound": true
+      },
+      "webImage": {
+        "path": "web/public/cards/BQ038.jpg",
+        "sha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+        "byteEqualToOriginal": true
+      },
+      "rawDefinition": {
+        "id": "BQ038",
+        "name": "掠食时刻",
+        "subtitle": null,
+        "kind": "attachment",
+        "subtypes": [
+          "战术"
+        ],
+        "cost": 1,
+        "loyalty": [
+          "蓝色"
+        ],
+        "loyaltyText": "蓝",
+        "color": "蓝",
+        "magic": "血",
+        "icons": {
+          "permanent": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          },
+          "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+          }
+        },
+        "defense": null,
+        "text": "结附于本方秘社\n触发 每当一个本方角色袭击时，你可以令其饮血1。\n触发 在进行隐秘对抗时，你所展示的牌获得隐秘对抗加值+X，X等于结附有装备、武器或状态附属牌的本方角色数量。",
+        "keywords": [],
+        "source": {
+          "file": "docs/factions/card-specifications.json",
+          "record": "BQ038",
+          "image": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+          "imageSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9"
+        },
+        "unique": false,
+        "society": "",
+        "supported": false
+      },
+      "sourceStatsMatched": true,
+      "metadataChangesThisRound": false,
+      "obligations": [
+        {
+          "printedObligation": "结附本人秘社；本方角色袭击时可饮血1，含合格/不合格当前吸血鬼、原袭击继续",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 52,
+              "symbol": "definition",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 365,
+              "symbol": "bq038_observe_raid",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            },
+            {
+              "path": "rust-game/src/batch4_vampires.rs",
+              "line": 387,
+              "symbol": "vampire_feed_start",
+              "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 252,
+              "name": "batch4_vampires_bq038_actual_personal_society_raid_accept_feeds_before_damage",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 259,
+              "name": "batch4_vampires_ruling_nonvampire_keeps_both_blood_zones_and_paid_raid_continues",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-directed-7"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 307,
+              "name": "batch4_vampires_bq038_personal_only_and_source_departure_keep_accepted_raid_receipt",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampires_tests.rs",
+              "line": 315,
+              "name": "batch4_vampires_bq038_granted_raid_combines_once_not_each_point",
+              "wholeFileSha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        },
+        {
+          "printedObligation": "对抗本人加X；每个被合格附属结附的本方角色只计一次，响应后冻结见证及祖先一次性收据",
+          "implementation": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 443,
+              "symbol": "b_mystic_start",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 485,
+              "symbol": "bq038_resolve_bonus",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest.rs",
+              "line": 509,
+              "symbol": "b_mystic_validate_bonus",
+              "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e"
+            },
+            {
+              "path": "rust-game/src/mystic_hooks.rs",
+              "line": 8,
+              "symbol": "mystic_validate_bonus",
+              "sha256": "b812ede6a0be749b065121cbb4732b515c6f3b1becb4c846c795869ed7bd05db"
+            }
+          ],
+          "tests": [
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 524,
+              "name": "b_contest_bq038_start_is_respondable_counts_each_personal_host_once_and_freezes",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 613,
+              "name": "b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 556,
+              "name": "b_contest_bq038_decline_and_zero_are_distinct_and_bonus_tampering_is_rejected",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 1142,
+              "name": "a_b_three_layers_restore_original_responses_and_consume_each_bonus_once",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            },
+            {
+              "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+              "line": 1203,
+              "name": "a_b_three_layers_reject_lost_reordered_and_duplicate_ancestor_continuations",
+              "wholeFileSha256": "62bc829e0be911add78b3a6732f6e6211a353af5e7c1e0eb540dcf6a5742dc2c",
+              "passingEvidenceStages": [
+                "author-c5c-adjacent-105"
+              ],
+              "priorTestBodyPreserved": true
+            }
+          ]
+        }
+      ],
+      "commonEntryTest": "ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate"
+    }
+  ],
+  "routingModules": [
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "f2d62e85a418399f2f6ac450bc87a7398fd1babffdfc919c6f59f0d64bba1284",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "97638b3073cdd27bd9635cc8d772f6cabc2c79946e72671b1c17f173e07d8fd4",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/batch4.rs",
+      "sha256": "3851f00b5c5d07f80e0dc07c715a356619767988640fb6a51640e6289d6519bf",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "ed2981e3ea4e3ddabdcb23162c84e97fcfc9aa172ff73e0be889b2621907d814",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "2ab791e78fb2390b2566a08c65b55e42ff920030bea519af869a91698ac45e9b",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "sha256": "ee37d18de7786d7b3d6d084a4e437b6d462ef61e132f2390c8ebef6ae26ec8a6",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "sha256": "6a883079a97c9b141f58de4319c642664158e1bae8f14e438865f6c19efb35e0",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "sha256": "b812ede6a0be749b065121cbb4732b515c6f3b1becb4c846c795869ed7bd05db",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampires.rs",
+      "sha256": "8723de267ab24376841a576d6e9ee94a1163c5dbdd27dc223e4f776ffad6e687",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest.rs",
+      "sha256": "f39f02e5218a29becba7613ad0ea9e595a82b86ff22ae8a9c202329b5a76a86e",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/batch3_blood.rs",
+      "sha256": "99250800369ef759e853cbb613ae7c4e0f60cddc08bf97e89efe3bc564eca089",
+      "sameBlobAsC5c": true
+    },
+    {
+      "path": "rust-game/src/exposure.rs",
+      "sha256": "6b3bad403aea10eddb4ba49d20933481144ef927248a6c7f4336a69f67a345f8",
+      "sameBlobAsC5c": true
+    }
+  ],
+  "runtimeRuleCodeChanged": false,
+  "runtimeDataChanges": [
+    "BQ031",
+    "BQ032"
+  ],
+  "changes": "Remove spurious public keyword from two day-conditioned non-asset prints, copy five B original images, add paid native entry and conceal gate regressions",
+  "counts": {
+    "priorConfirmedNative": 22,
+    "authorReadyAdditionalNative": 10,
+    "authorReadyTotalNative": 32,
+    "independentlyConfirmedTotalStill": 22,
+    "batchTarget": 50,
+    "publicAdded": 0,
+    "wasmAdditional": 0,
+    "wholeCardReviewPending": 10
+  },
+  "execution": {
+    "currentNative": 21,
+    "currentSourceTools": 3,
+    "currentSourceDetailedLog": "runs/source-inprocess-08.log.gz",
+    "priorAuthor112ReusedAtC5c": 112,
+    "ofPriorCasesRerunForChangedMetadata": 19,
+    "doNotSumAcrossStages": true,
+    "fullSuite": false,
+    "browser": false
+  },
+  "sharedRulesIndependentReview": {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/ab-rulings-review/review.txt",
+    "scope": "two rulings accepted, 11 independent cases, not whole-card approval"
+  },
+  "xg21CloseReviewExcluded": true,
+  "pushApprovalNotExpanded": true
+}
