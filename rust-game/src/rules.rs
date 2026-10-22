@@ -67,6 +67,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    JZ51SealThreeCorpses,
     JZ36SacrificeBatch,
     JZ39SacrificeDemon,
     Batch3RemoveTime,
@@ -269,6 +270,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JZ51TopEightCorpses,
+    JZ51GraveEntry,
     XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },
     XG16EntryTime,
     XG16PrepareTime { event_id: Option<String> },

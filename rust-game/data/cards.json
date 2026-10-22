@@ -9323,6 +9323,47 @@
       "unique": true,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "JZ51",
+      "name": "温迪戈",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "不死生物",
+        "食尸鬼"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "进场触发 从你牌库顶的八张牌中寻找任意数量名为无名尸体的牌，将这些牌放置于本地区，然后将其余的牌洗回牌库。\n墓地行动 将本方墓地中三张名为无名尸体的牌封印在本方秘社上：将温迪戈从墓地中放置进场。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ51",
+        "image": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+        "imageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

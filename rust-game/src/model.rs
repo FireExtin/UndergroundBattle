@@ -605,6 +605,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JZ51Corpses(crate::batch4_wendigo::CorpsePayment),
     JZ36Sacrificed(Vec<SourceSnapshot>),
     JZ39Demon(Box<crate::batch4_tattoo::DemonPayment>),
     BQ029ExtraAssets(Vec<String>),
@@ -673,6 +674,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    JZ51TopEight { inspected_ids: Vec<String> },
+    JZ51EntryRegion { regions: Vec<(usize, String)> },
     WM058Payment,
     BQ041Payment,
     WM060Repress { regions: Vec<(usize,String,u32)> },
@@ -844,6 +847,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JZ51Payment { draft: Box<crate::batch4_wendigo::GraveDraft> },
     JZ36Payment { draft: Box<crate::batch4_blood::BloodDraft> },
     JZ38EchoTarget { declaration: Box<Declaration> },
     Batch3EntryOrder { entry_instance:String },

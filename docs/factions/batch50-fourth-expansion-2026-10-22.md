@@ -1,6 +1,6 @@
 # 第四批追加30张：来源清单与前置机制
 
-当前20张来源保留，追加30张来源组成50张目标；原生20/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
+当前20张来源保留，追加30张来源组成50张目标；原生21/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
 
 task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条选30，另19条保留后批；不能把XQ15再次算作待开发第20条。
 
@@ -12,7 +12,7 @@ task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条
 |expansion-grave-search|LC16 江月|已有，可进入本卡实现|
 |expansion-grave-search|XQ35 白骨仆人|已有，可进入本卡实现|
 |expansion-grave-search|JZ53 尸舞舒拉密兹|共享前置待实现|
-|expansion-grave-search|JZ51 温迪戈|已有，可进入本卡实现|
+|expansion-grave-search|JZ51 温迪戈|原生先行19项通过，尚未WASM整合/准入|
 |expansion-grave-search|WM022 阴影之子|共享前置待实现|
 |expansion-grave-search|BQ082 毒药专家塞巴斯蒂安|共享前置待实现|
 |expansion-time-and-cost|XQ20 灵魂通道|共享前置待实现|

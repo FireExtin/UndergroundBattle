@@ -946,6 +946,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
                 if (c.controller != seat && c.definition != "XQ22") || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
@@ -2153,6 +2154,7 @@ impl Game {
         crate::batch4_chance::validate_choice_action(&p, &a)?;
         crate::batch4_warden::validate_choice_action(&p, &a)?;
         crate::batch4_blood::validate_choice_action(&p, &a)?;
+        crate::batch4_wendigo::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
@@ -2183,6 +2185,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JZ51Payment { draft } => self.jz51_finish_payment(*draft,&selected)?,
             ChoiceResolution::JZ36Payment { draft } => self.jz36_finish_cost(*draft,selected)?,
             ChoiceResolution::JZ38EchoTarget { declaration } => self.statue_echo_target(*declaration, seat, &a, selected)?,
             ChoiceResolution::Batch3EntryOrder { entry_instance } => self.batch3_choose_entry_order(&entry_instance,seat,&a,&selected)?,
@@ -2723,7 +2726,9 @@ impl Game {
                 .as_ref()
                 .filter(|p| p.seat == seat)
                 .map(|p| {
-                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::NextBlueGraySearch { .. }, .. }) {
+                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ51TopEight { .. }, .. }) {
+                        self.jz51_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::NextBlueGraySearch { .. }, .. }) {
                         self.next_blue_gray_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
                         self.blue_expansion_private_choice(p, seat)
@@ -2870,6 +2875,7 @@ impl Game {
                 }
                 }
                 for c in &self.players[seat].graveyard {
+                    if c.definition == "JZ51" { candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")},"温迪戈墓地行动：封印三张无名尸体".into())); }
                     if card(&c.definition).kind != "character"
                         || !self.can_play_grave_character(seat, c)
                     {

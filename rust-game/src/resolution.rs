@@ -974,6 +974,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::JZ51SealThreeCorpses => return Err("温迪戈封印费用必须通过墓地专属待选支付".into()),
                 Cost::JZ36SacrificeBatch => paid.push(self.jz36_pay(actor, a)?),
                 Cost::JZ39SacrificeDemon => paid.push(self.pay_jz39_demon(actor, a)?),
                 Cost::JC055RemoveTime => return Err("JC055须通过时间标志支付选择".into()),
@@ -1632,6 +1633,8 @@ impl Game {
                 Op::XG18RenownPlay { .. } => self.omega_resolve(&frame)?,
                 Op::XG16EntryTime => self.xg16_entry_time(&frame),
                 Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
+                Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
+                Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
                 Op::JZ40TimeAndDestroyHost => self.jz40_resolve(&frame),
                 Op::PlanPlayed { .. } => {},
@@ -2595,6 +2598,8 @@ impl Game {
                 let id = selected.first().ok_or("必须选择一张手牌封印")?;
                 self.seal_hand_card(seat, id, &host_id)?;
             }
+            FrameChoice::JZ51TopEight { inspected_ids } => self.jz51_search_finish(&frame,&inspected_ids,&selected)?,
+            FrameChoice::JZ51EntryRegion { regions } => self.jz51_region_finish(&frame,&regions,&selected)?,
             FrameChoice::JC032TopSix { inspected_ids } => {
                 self.jc032_complete(&frame, inspected_ids, &selected)?;
             }

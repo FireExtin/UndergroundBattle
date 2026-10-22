@@ -7,14 +7,14 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 20,
+    "nativePilots": 21,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 30
+    "remainingNativePrograms": 29
   },
   "colorCounts": {
     "红": 13,
@@ -415,8 +415,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
       "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 19,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -424,7 +424,7 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+      "readinessScope": "Closed Native grave-seal payment/top-eight entry program passed19 directed cases; no WASM or admission"
     },
     {
       "id": "WM022",
@@ -981,7 +981,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 20,
+      "nativeCards": 21,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -1054,6 +1054,14 @@
       "jz52Source": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
       "jz52SourceSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
       "scope": "Both original images re-viewed. JZ52 explicitly forbids Hand origin but allows Graveyard origin as-if-hand, so as-if-hand does not relabel the physical asset origin. Costs/loyalty remain ordinary; no no-cost-card normalization."
+    },
+    "wendigo": {
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+      "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "faqPdf": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "faqSha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "faqPhysicalPage": 4,
+      "meaning": "Existing Martial Law distinction: direct placement is allowed; printed play restrictions are unchanged. Personal Society zone exists without selecting a Society card."
     }
   },
   "implementationNotes": [
