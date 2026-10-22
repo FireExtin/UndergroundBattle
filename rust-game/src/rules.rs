@@ -2138,6 +2138,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         let mut m = BTreeMap::new();
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
+        for id in crate::pack_a_contest::CARDS { m.insert((*id).into(), crate::pack_a_contest::definition(id).unwrap()); }
         for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }
         for id in crate::next20_blue_gray::CARDS {
             m.insert((*id).into(), crate::next20_blue_gray::definition(id).unwrap());

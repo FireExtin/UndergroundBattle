@@ -241,5 +241,5 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
-    d.supported || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str())
+    d.supported || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str()) || crate::pack_a_contest::CARDS.contains(&d.id.as_str())
 }
