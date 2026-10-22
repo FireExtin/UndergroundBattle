@@ -1,0 +1,179 @@
+{
+  "recordedAt": "2026-10-22T09:06:38.130963+00:00",
+  "precedingCheckpoint": "081089af168d83509662bc9c398eddf10037d4b7",
+  "newCard": "XG18",
+  "targetBatchSize": 50,
+  "selectedSources": 50,
+  "nativeCards": 20,
+  "definitions": 233,
+  "wasmCards": 0,
+  "selectionEnabled": 0,
+  "published": 0,
+  "accepted": 0,
+  "newDirectedCases": 19,
+  "relatedFilters": {
+    "play_sources::tests": 5,
+    "batch3_alpha_tests": 9,
+    "batch4_conference_tests": 18,
+    "mobility": 21,
+    "exposure": 22,
+    "batch3_entry_order_": 3
+  },
+  "sourceChecks": 4,
+  "filterOverlap": "Author scoped filters, overlapping matches not summed as unique or full-suite tests",
+  "sourceInventory": "docs/evidence/batch20-fourth-2026-10-22/twenty-card-source-inputs.json",
+  "sourceInventoryFiles": 235,
+  "sourceInventoryFileSha256": "df70ccd9fefe430798ff3b87b553225eb50ca18d1d150087e8c293060d16430f",
+  "sourceInventoryScope": "Tracked Rust/catalogue inputs plus current root workspace manifest/lock/toolchain and new module/test; no cross-machine byte-reproducibility claim",
+  "nativeBinarySha256": "ff5c4556cf86159390eaf3f56eb28e94171b9a6fec6f4b286003e51fc41a9772",
+  "nativeRecipe": {
+    "toolchain": "Rust1.90.0; Zig0.15.2; Node24.22.1",
+    "cargoFeatures": "default/native",
+    "jobs": 1,
+    "testThreads": 2,
+    "cargoHome": "../.tools/cargo",
+    "rustupHome": "../.tools/rustup",
+    "targetDir": "../batch4-build/target",
+    "CC": "../.tools/batch3-zig-cc",
+    "linker": "../.tools/zig-cc",
+    "offline": true,
+    "locked": true,
+    "rustflags": []
+  },
+  "scope": "Author Native pilot/source checks only; no ABI95 WASM/Web/Worker build, deck admission, deployment, browser acceptance or independent card review. Bot2d8 stays frozen and separate.",
+  "behavior": "Own live Omega grants Renown character asset play through ordinary payment/loyalty/region pipeline. Typed frozen asset/grant/qualification receipt permits unexhausted source to pay for itself, preserves originally exhausted state for cost guard, and enters normal ready. Actual source remains Asset, so JZ52 Hand-only restriction does not relabel it. Actual Renown plays trigger forced once-per-source/event Sun on living Societies with normal cancellation and controller order with Alpha. Shared canonical Sun-gated mobility and u64 command replay retained.",
+  "fixtureBoundaries": [
+    "Initial source/funding/asset layouts are explicit Native fixtures; actual pay/play/activate/target/pass/persist commands are used",
+    "Source removal fixture and actual paid/exhausting JC075 rescue are separate cases",
+    "Mobility phase/source event are explicitly initiated via existing production mobility event API, then real target/response/move commands; not a natural full-game/browser claim",
+    "All seven currently available printed/personal-Sun Renown cards exercise existing interactions, including already-released neutralXQ48; no new neutral/dual card added",
+    "Concurrent duplicate queued reward rejected; historical receipts establish bounded consistency, not cryptographic integrity of arbitrary coherent rewrites",
+    "No no-cost-card0 normalization, general arbitrary-zone play flag or compatibility kernel"
+  ],
+  "failureHistory": [
+    "01:9 passed3 failed; transferred asset retained exhausted state, XG17 payment guard rejected lawful source-asset payment, mobility fixture outside its required window",
+    "02:12 passed after normalization/payment helper/phase fixture; initial extra JZ52 restriction was later corrected from primary JZ52 image (its grave permission itself says as-if-hand)",
+    "03:17 passed1 failed; real mobility fixture omitted the explicit production event after opening the window",
+    "04:new duplicate queued reward test failed because different frame IDs could repeat one source/play receipt",
+    "05:19 passed after event fixture plus source/event duplicate guard, response-phase operation guard and exact wrapper checks",
+    "Initial related command lost transport; process and all six expected logs were absent, then execution began once after recovery",
+    "An incorrect batch3_entry_order_tests filter matched0 and is retained uncounted; actual batch3_entry_order_ regressions3 passed separately"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-01.log.gz",
+      "rawBytes": 3833,
+      "rawSha256": "ab5ad3f342853f7a871c9f57afa49fd36abc3829ace905837747dc7dc06027df",
+      "status": "retained failed attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 9 passed; 3 failed; 0 ignored; 0 measured; 1839 filtered out; finished in 0.90s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-02.log.gz",
+      "rawBytes": 2279,
+      "rawSha256": "b7f228bf17432012a9137f4bfacc7020c3a9cd388373f391033c979729b9c93a",
+      "status": "passed; preliminary02 includes a later-corrected JZ52 expectation",
+      "testSummary": [
+        "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 1839 filtered out; finished in 0.99s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-03.log.gz",
+      "rawBytes": 3488,
+      "rawSha256": "6544f04a46594a31f3f2578d6fc0c46a18ef10872992cae785ff2dccb2b2fcf0",
+      "status": "retained failed attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 17 passed; 1 failed; 0 ignored; 0 measured; 1839 filtered out; finished in 1.92s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-04-duplicate-before.log.gz",
+      "rawBytes": 1694,
+      "rawSha256": "af29afb4159d221b8e8bf2b6eafafccde7a299cd6031c592f7c318af23921ae4",
+      "status": "retained failed attempt; see failureHistory",
+      "testSummary": [
+        "test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1857 filtered out; finished in 0.09s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-05.log.gz",
+      "rawBytes": 3016,
+      "rawSha256": "1747123eee2564d087f85c57189c42e649e0ad816b5e73d7e84c79d3a72c0652",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 1839 filtered out; finished in 2.06s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-play_sources-tests.log.gz",
+      "rawBytes": 683,
+      "rawSha256": "b6c17a897825be2bdfb16d9e6a1ab7c19fed76292ca4fd8ae58ff9aa1027753c",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 1853 filtered out; finished in 0.03s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-batch3_alpha_tests.log.gz",
+      "rawBytes": 1179,
+      "rawSha256": "c6696bddc99cc2afa91ce8cc65af4e7250595a0150e1b6693ca1d41c9b982884",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 1849 filtered out; finished in 0.49s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-batch3_entry_order_tests.log.gz",
+      "rawBytes": 116,
+      "rawSha256": "0330871934fe855dba1aaaf4b699f8941a37300e34b30fb6b253aa00833f9b2d",
+      "status": "empty filter; not validation",
+      "testSummary": [
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1858 filtered out; finished in 0.00s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-batch4_conference_tests.log.gz",
+      "rawBytes": 2281,
+      "rawSha256": "fc2d2059a7bb89bdd0b6b1d42f9329c1c16612f4944d3b47ab453701ae6e7100",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 1840 filtered out; finished in 3.22s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-mobility.log.gz",
+      "rawBytes": 2381,
+      "rawSha256": "c512cc2ddc6be00239f864bfdc09a014c3ac5469bad3fe26e543e1f15cc21345",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 1837 filtered out; finished in 2.81s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-exposure.log.gz",
+      "rawBytes": 2223,
+      "rawSha256": "25fc3973ef2f6fb0e7dd182b974254db9a05ac55b7b49fd705d81621e977cd37",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 1836 filtered out; finished in 1.96s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-related-entry-order.log.gz",
+      "rawBytes": 491,
+      "rawSha256": "c68493300a7bf6d249ba56bd1d6bc2a988dbe671699c1e7cb4e57ebcd97b1a15",
+      "status": "passed",
+      "testSummary": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 1855 filtered out; finished in 0.80s"
+      ]
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-omega-source-final.log.gz",
+      "rawBytes": 541,
+      "rawSha256": "075de8594e1b48ee590fd746fc711069e756d20b416487ed18b4572e35b91aeb",
+      "status": "passed:4 source assertions",
+      "testSummary": []
+    }
+  ]
+}

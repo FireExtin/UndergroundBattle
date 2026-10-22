@@ -1234,7 +1234,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1326,6 +1326,7 @@ impl Game {
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
         self.batch3_reject_optional(&declaration)?;
+        self.omega_reject_optional(&declaration)?;
         self.batch20_reject_optional(&declaration)?;
         self.jc046_reject_optional_declaration(&declaration)?;
         self.jc041_reject_optional(&declaration)?;
@@ -1628,6 +1629,7 @@ impl Game {
                 Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
                 Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
+                Op::XG18RenownPlay { .. } => self.omega_resolve(&frame)?,
                 Op::XG16EntryTime => self.xg16_entry_time(&frame),
                 Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,

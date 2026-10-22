@@ -588,6 +588,7 @@ pub struct ObservedMobilityGrant {
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
+    AssetByXG18(Box<crate::batch4_omega::OmegaAssetPlay>),
     Hand,
     Graveyard,
     GraveyardByJZ52(Box<Card>),

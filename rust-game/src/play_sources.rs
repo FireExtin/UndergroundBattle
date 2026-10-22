@@ -28,6 +28,10 @@ impl Game {
             }
             return Ok((c.clone(), PlaySource::Hand));
         }
+        if let Some(c) = self.players[actor].assets.iter().find(|c| c.id == id) {
+            if concealed { return Err("欧米伽仅许可资产中的声望角色正面打出".into()); }
+            return self.omega_asset_play(actor, c).ok_or("资产没有当前本方欧米伽声望出牌许可".into());
+        }
         let c = self.players[actor]
             .graveyard
             .iter()
@@ -51,6 +55,12 @@ impl Game {
     ) -> RuleResult<Card> {
         match source {
             PlaySource::Hand => self.remove_hand(actor, id),
+            PlaySource::AssetByXG18(_) => {
+                let i = self.players[actor].assets.iter().position(|c| c.id == id).ok_or("资产出牌引用已失效")?;
+                let mut c = self.players[actor].assets.remove(i);
+                c.exhausted = false; c.face_down = false;
+                Ok(c)
+            },
             PlaySource::Graveyard | PlaySource::GraveyardByJZ52(_) => {
                 let index = self.players[actor]
                     .graveyard
@@ -64,10 +74,18 @@ impl Game {
 }
 
 impl SourceSnapshot {
+    /// An asset played through XG18 may itself be one of the paid assets.
+    /// Other origins retain the old nonempty, non-source reference contract.
+    pub(crate) fn valid_printed_payment_id(&self, id: &str) -> bool {
+        !id.is_empty() && (id != self.card.id || matches!(&self.play_source,
+            Some(PlaySource::AssetByXG18(g)) if !g.original_asset.exhausted
+                && crate::batch4_omega::valid_asset_play(self, g)))
+    }
     /// Frozen permission remains valid if the granting character leaves during responses.
     pub(crate) fn valid_character_play(&self) -> bool {
         match &self.play_source {
             Some(PlaySource::Hand) => true,
+            Some(PlaySource::AssetByXG18(grant)) => crate::batch4_omega::valid_asset_play(self, grant),
             Some(PlaySource::Graveyard) => rules::definition(&self.card.definition).graveyard_face_up,
             Some(PlaySource::GraveyardByJZ52(grant)) => grant.definition == "JZ52" && !grant.face_down
                 && !grant.id.is_empty() && grant.id != self.card.id && grant.controller == self.card.controller

@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    XG18RenownPlayed,
     WM058CardTargeted,
     XG17RenownEntered,
     PlanReached,
@@ -268,6 +269,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },
     XG16EntryTime,
     XG16PrepareTime { event_id: Option<String> },
     JZ36TimeAndDestroyTargetRegion,
@@ -609,6 +611,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG18RenownAssetPlay,
     XG16TimeDefense,
     XQ15OwnerVampireSlave,
     XG17RenownDefense,

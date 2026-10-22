@@ -9277,6 +9277,52 @@
       "unique": true,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG18",
+      "name": "欧米伽小姐",
+      "subtitle": "P.S.C.管理员",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "工程师",
+        "互联网"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰灰灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 0,
+          "influence": 2
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "公开〔日形〕机动\n持续 你可以从本方资产区中打出声望角色牌，就如同其在你手中一样。\n强制触发 当你打出一张声望角色牌时，在双方秘社上各放置一个公开〔日形〕标志。",
+      "keywords": [
+        "公开〔日形〕机动"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG18",
+        "image": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg",
+        "imageSha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

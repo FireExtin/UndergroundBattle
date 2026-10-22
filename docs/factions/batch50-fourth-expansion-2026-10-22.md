@@ -1,6 +1,6 @@
 # 第四批追加30张：来源清单与前置机制
 
-当前20张来源保留，追加30张来源组成50张目标；原生19/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
+当前20张来源保留，追加30张来源组成50张目标；原生20/50，WASM、构筑准入、公开站验收仍0/50。30张原图已逐张复看，SHA与现有固定规格相符，未复制第三方代码或素材。
 
 task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条选30，另19条保留后批；不能把XQ15再次算作待开发第20条。
 
@@ -36,7 +36,7 @@ task-8候选50中的XQ15已在c59实现，本轮排除该重复项。其余49条
 |expansion-gray-plans-and-source|CQ18 任秋雨|共享前置待实现|
 |expansion-gray-plans-and-source|CQ19 达摩克里斯之剑|共享前置待实现|
 |expansion-gray-plans-and-source|XG21 计划：幻影英雄|已有，可进入本卡实现|
-|expansion-gray-plans-and-source|XG18 欧米伽小姐|已有，可进入本卡实现|
+|expansion-gray-plans-and-source|XG18 欧米伽小姐|原生先行19项通过，尚未WASM整合/准入|
 |expansion-gray-plans-and-source|WM044 情报分析中心|共享前置待实现|
 
 后批19条：BQ061, BQ081, WM063, JC053, WM031, JC028, BQ056, BQ066, XG19, JC097, BQ093, BQ090, CQ24, BQ092, WM064, WM025, WM024, CQ09, CQ10。

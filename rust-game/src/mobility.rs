@@ -64,7 +64,7 @@ pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     for a in d.abilities.iter().filter(|a| related_ability(a)) {
-        if !(printed(id) || id == "WM040") || !same(a, &ability()) {
+        if !(printed(id) || matches!(id, "WM040" | "XG18")) || !same(a, &ability()) {
             return Err("机动只能静态印在完整准入的原牌上，授予不能移植定义".into());
         }
     }
@@ -75,15 +75,15 @@ impl Game {
         self.board(&c.id).is_some_and(|(_, live)| {
             !live.face_down && !self.attached_character(&live.id)
                 && catalog::card(&live.definition).kind == "character"
-                && (printed(&live.definition) || (live.definition == "WM040" && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some() || self.xg12_mobility_grant(live).is_some())
+                && (printed(&live.definition) || (matches!(live.definition.as_str(), "WM040" | "XG18") && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some() || self.xg12_mobility_grant(live).is_some())
         })
     }
     pub(crate) fn mobility_source(&self, c: &Card, region: usize) -> SourceSnapshot {
         SourceSnapshot {
             death_echo: None,
-            observed_exposure: (c.definition == "WM040" && self.society_exposure(c.controller) > 0).then(|| self.society_exposure(c.controller)),
+            observed_exposure: (matches!(c.definition.as_str(), "WM040" | "XG18") && self.society_exposure(c.controller) > 0).then(|| self.society_exposure(c.controller)),
             observed_death: None,
-            observed_mobility_grant: (!(printed(&c.definition) || (c.definition == "WM040" && self.society_exposure(c.controller) > 0)))
+            observed_mobility_grant: (!(printed(&c.definition) || (matches!(c.definition.as_str(), "WM040" | "XG18") && self.society_exposure(c.controller) > 0)))
                 .then(|| self.bq035_mobility_witness(&c.id))
                 .flatten(),
             card: c.clone(),
@@ -172,7 +172,7 @@ impl Game {
         let c = &s.card;
         let admitted = |c: &Card, kind: &str| catalog::catalog().cards.iter().any(|d|d.id==c.definition&&d.kind==kind);
         if printed(&c.definition) || s.observed_exposure.is_some() {
-            if s.observed_exposure.is_some_and(|n| c.definition != "WM040" || n == 0) || (printed(&c.definition) && s.observed_exposure.is_some()) { return Err("条件机动仅准入心理审察委员的真实暴露观察".into()); }
+            if s.observed_exposure.is_some_and(|n| !matches!(c.definition.as_str(), "WM040" | "XG18") || n == 0) || (printed(&c.definition) && s.observed_exposure.is_some()) { return Err("条件机动必须保留已准入日形角色的实际暴露观察".into()); }
             if s.observed_mobility_grant.is_some() {
                 return Err("印刷机动不能夹带授予观察".into());
             }

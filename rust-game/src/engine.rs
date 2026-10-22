@@ -823,9 +823,12 @@ impl Game {
                         steps: vec![],
                         chosen_region: r,
                     });
+                    let play_observers = self.effects.len();
                     self.wm041_observe_last_play();
+                    self.omega_observe_last_play();
                     let paid_play = self.stack.last().unwrap().frame.as_ref().unwrap().clone();
                     self.observe_batch4_disaster(&paid_play);
+                    self.batch3_register_entry_order(&paid_play.frame_id, play_observers);
                 }
             }
             "reveal" => {
@@ -2857,6 +2860,15 @@ impl Game {
                 }
             }
             if self.can_standard(seat) {
+                if self.omega_can_play_assets(seat) { for c in &self.players[seat].assets {
+                    if self.omega_asset_play(seat, c).is_none() { continue; }
+                    if rules::definition(&c.definition).traits.chaos {
+                        candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("资产正面打出 {}（混乱）", card(&c.definition).name)));
+                    } else { for r in 0..self.regions.len() { if self.region_live(r) {
+                        candidates.push((Action { card_id: Some(c.id.clone()), region: Some(r), ..Action::new("deploy") }, format!("资产正面打出 {} → 地区{}", card(&c.definition).name,r+1)));
+                    } } }
+                }
+                }
                 for c in &self.players[seat].graveyard {
                     if card(&c.definition).kind != "character"
                         || !self.can_play_grave_character(seat, c)
