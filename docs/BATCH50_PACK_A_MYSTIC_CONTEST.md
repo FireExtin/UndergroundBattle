@@ -1,5 +1,10 @@
 # Pack A: hidden contest native handoff (WIP, not counted complete)
 
+Lifecycle follow-up from integrated baseline `47256d59…` is documented in
+[PACK_A_LIFECYCLE_2026-10-22.md](factions/PACK_A_LIFECYCLE_2026-10-22.md).
+It supersedes this historical handoff's nesting/response-order/terminal-state
+limitations only. B hooks, costs and end-to-end admission remain incomplete.
+
 2026-10-22. Independent ordinary clone `UndergroundBattle-packA`, branch
 `wip/batch50-pack-a-hidden-contest-20261022`, base
 `adf0a1c080e21b75e971bd650a61f22e47f42e91`. No author worktree writes,
