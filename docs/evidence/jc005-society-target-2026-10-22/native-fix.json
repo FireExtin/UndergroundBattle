@@ -1,0 +1,51 @@
+{
+  "recordedAt": "2026-10-22T02:17:44.505390+00:00",
+  "baseline": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "scope": "Independent source fix for strengthened JC005 targeting current playable Society attachments; exact frozen third remains untouched",
+  "ruleSource": {
+    "file": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+    "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+    "page": 1,
+    "basis": "Read original FAQ: strengthened target includes character, region, Society and other-area attachments."
+  },
+  "change": "Keep existing region/character predicate; additionally admit a live Society attachment with the actual registered Society host specification. Mind domain is still the casting actor asset domain, including exhausted assets.",
+  "tests": [
+    {
+      "phase": "beforeFix",
+      "log": "jc005-society-before-jc005_society.log.gz",
+      "rawSha256": "b763b41d9cb881a1a14dcc09d60e5123db92a52431771d768c443ad579d99d1d",
+      "gzipSha256": "cb170010175711916838d5d7187606c6f10966ae60883a398c5b41056152e477",
+      "result": "FAILED",
+      "passed": 0,
+      "failed": 2
+    },
+    {
+      "phase": "currentJC005Boundary",
+      "log": "jc005-society-after-jc005.log.gz",
+      "rawSha256": "e217b3f2dca3a20137099283d7bbe760f9145c69a6a3fbaec2205556b86acb54",
+      "gzipSha256": "24bd8eccd4489d7cf15d4d6d4c45a99be0277039a2aa78b8a1c60e31160a8634",
+      "result": "ok",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "phase": "currentSocietyZoneBoundary",
+      "log": "jc005-society-after-society_zone.log.gz",
+      "rawSha256": "32467e09195a7357e2b6f1b97622f44b253612d4977a5ca7c200c23ea574d641",
+      "gzipSha256": "0976a64ae0721a35353431ea538a2f83c5d7c2c078f8ef7d8c2663a9cb72806c",
+      "result": "ok",
+      "passed": 9,
+      "failed": 0
+    }
+  ],
+  "sourceInventory": "source-inventory.json",
+  "sourceInventorySha256": "07e6932813bd4edf2630aea264cbc642f0768f41dc577d976ec58c39bd35ff25",
+  "sourceTestNote": "The unused-import warning was removed after baseline failure; no test assertions changed. Both baseline tests failed at the first live-Society target assertion.",
+  "constructionOrCatalogChanged": false,
+  "stateSchemaChanged": false,
+  "wasmRebuilt": false,
+  "nativeWasmCompared": false,
+  "publicDeployed": false,
+  "independentReview": "not run by this author",
+  "remaining": "Rebuild current ABI94 WASM and validate updated Native/WASM behavior before treating this source-only branch as a deployable candidate. Original v74 remains pending; do not start parallel deployment."
+}

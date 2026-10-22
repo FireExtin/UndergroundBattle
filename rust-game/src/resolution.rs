@@ -69,7 +69,9 @@ impl Game {
         let Some(attachment) = self.attachments.iter().find(|a| a.card.id == id) else {
             return false;
         };
-        if self.attachment_region(attachment).is_none() {
+        let live_society = rules::definition(&attachment.card.definition).attachment.as_ref()
+            .is_some_and(|spec| spec.host.zone == Zone::Society) && self.attachment_host_valid(attachment);
+        if self.attachment_region(attachment).is_none() && !live_society {
             return false;
         }
         match condition {

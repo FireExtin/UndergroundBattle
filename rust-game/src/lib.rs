@@ -173,6 +173,8 @@ mod jc004_tests;
 #[cfg(test)]
 mod jc005_tests;
 #[cfg(test)]
+mod jc005_society_regression_tests;
+#[cfg(test)]
 mod jc008_tests;
 pub mod model;
 #[cfg(all(test, not(feature = "society-fixtures")))]
