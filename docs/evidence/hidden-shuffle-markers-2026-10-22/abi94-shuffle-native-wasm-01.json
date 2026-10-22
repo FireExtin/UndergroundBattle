@@ -1,0 +1,33 @@
+{
+  "engineVersion": "rust-v0.2.94-batch20-third",
+  "definitions": 213,
+  "sourceInventoryFiles": 231,
+  "currentSourceManifestSha256": "56191e3c195e9397dac21f9e9f5eaae36b131ff8aeae59117b264ef68b82ead3",
+  "wasmSha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481",
+  "cases": [
+    {
+      "name": "abi94-london-declined",
+      "commands": 9,
+      "seedDecimal": "8"
+    },
+    {
+      "name": "abi94-london-flip-versus-mix",
+      "commands": 13,
+      "seedDecimal": "8"
+    },
+    {
+      "name": "abi94-london-hidden-lock",
+      "commands": 13,
+      "seedDecimal": "8"
+    },
+    {
+      "name": "abi94-london-worm-and-u64",
+      "commands": 13,
+      "seedDecimal": "9007199254740993"
+    }
+  ],
+  "commands": 48,
+  "views": 208,
+  "exactStateStrings": true,
+  "scope": "Author fresh ABI94 Native/WASM comparison, no browser or public acceptance"
+}

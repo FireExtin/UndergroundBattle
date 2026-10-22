@@ -1,0 +1,12 @@
+{
+  "engineVersion": "rust-v0.2.94-batch20-third",
+  "localUrl": "http://127.0.0.1:35891/",
+  "healthAndExactCatalog": "passed by existing qa-preview.mjs",
+  "rootHtmlStatus": 200,
+  "singleCurrentKernel": true,
+  "syntheticD1": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-hidden-shuffle-fix/../abi94-shuffle-build/qa-abi94-start-20261022-01",
+  "publicAdmissions": 0,
+  "scope": "Local startup/identity/connectivity only; no public Site or browser gameplay acceptance",
+  "exitCode": 130,
+  "shutdown": "requestedSIGINT"
+}

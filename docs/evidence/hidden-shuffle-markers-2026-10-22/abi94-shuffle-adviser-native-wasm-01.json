@@ -1,0 +1,21 @@
+{
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.84-batch20-third",
+    "engineVersion": "rust-v0.2.94-batch20-third"
+  },
+  "nativeCommands": 15,
+  "fourPrivateViewsPerStep": true,
+  "wasmBytes": 5026361,
+  "wasmSha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481",
+  "currentSourceManifestSha256": "56191e3c195e9397dac21f9e9f5eaae36b131ff8aeae59117b264ef68b82ead3",
+  "nativeRawJsonBytes": 1851373,
+  "nativeRawJsonSha256": "54fd17a6414448f5a08d91ac44bdc015531068674fdb2f037b00022d665a4bf6",
+  "catalogDefinitions": 213,
+  "constructionSupported": 213,
+  "pendingDisabled": 0,
+  "candidateBatchAdmissions": 20,
+  "publicBatchAdmissions": 0,
+  "output": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-adviser.current.json.gz",
+  "scope": "Author necessary twenty-card candidate integration; no publication, full-suite, independent or browser acceptance"
+}

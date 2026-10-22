@@ -1,0 +1,157 @@
+{
+  "recordedAt": "2026-10-22T04:58:55.840459+00:00",
+  "base": "b4e0388bb0ee1a2b106c247d11663ec7ee60b28d",
+  "buildCodeCommit": "0e027999d233ff27f8c5374fe9cb0f383e3fb0ec",
+  "containingCandidateCommit": "Exact final Git SHA recorded in verified checkpoint receipt; source files identical to buildCodeCommit",
+  "engineVersion": "rust-v0.2.94-batch20-third",
+  "definitions": 213,
+  "fourthBatchCards": 0,
+  "newNativeCases": 5,
+  "relatedNativeFilters": {
+    "world": 30,
+    "jc054": 26,
+    "gray_lock": 26,
+    "jc005_society": 3,
+    "jc060_attached_current": 1
+  },
+  "nativeWasm": {
+    "cases": 8,
+    "commands": 103,
+    "views": 444,
+    "exactStateStrings": true,
+    "currentSourceManifestSha256": "56191e3c195e9397dac21f9e9f5eaae36b131ff8aeae59117b264ef68b82ead3",
+    "sourceInventoryFiles": 231
+  },
+  "workerD1": {
+    "tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "acceptedReceipts": 100,
+    "reopens": 5,
+    "duplicateCommandsReturnOriginalReceipt": true
+  },
+  "wasm": {
+    "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "bytes": 5026361,
+    "sha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481"
+  },
+  "fiveOutputs": [
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+      "bytes": 5026361,
+      "sha256": "5ad7e479413a80e27fb57b06cfab87af7ac266bbb9c1a5e76a7410d742f5d481"
+    },
+    {
+      "path": "rust-game-wasm/pkg/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "rust-game-wasm/pkg/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "localBuild": {
+    "exitCode": 0,
+    "seconds": 14.654,
+    "command": [
+      "node",
+      "scripts/build.mjs"
+    ],
+    "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-hidden-shuffle-fix/sites",
+    "log": "abi94-shuffle-worker-build-01.log",
+    "scope": "Author corrected candidate Web typecheck/build and Worker dry-run only; no publication or same-old-package rebuild"
+  },
+  "localStartup": {
+    "engineVersion": "rust-v0.2.94-batch20-third",
+    "localUrl": "http://127.0.0.1:35891/",
+    "healthAndExactCatalog": "passed by existing qa-preview.mjs",
+    "rootHtmlStatus": 200,
+    "singleCurrentKernel": true,
+    "syntheticD1": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-hidden-shuffle-fix/../abi94-shuffle-build/qa-abi94-start-20261022-01",
+    "publicAdmissions": 0,
+    "scope": "Local startup/identity/connectivity only; no public Site or browser gameplay acceptance",
+    "exitCode": 130,
+    "shutdown": "requestedSIGINT"
+  },
+  "rawReports": {
+    "abi94-shuffle-wasm-build-01.json": {
+      "bytes": 2397,
+      "sha256": "e1d988d2d425c007c664be418b674932055c699a40e2984b0725394c2d1731de"
+    },
+    "abi94-shuffle-worker-build-01.json": {
+      "bytes": 377,
+      "sha256": "06ce8d6b4dc75221a59c691d1a34f1107cc64b7c2ffb68db9323bbabbb18f47f"
+    },
+    "abi94-shuffle-local-start-01.json": {
+      "bytes": 549,
+      "sha256": "9cbcbd916e537240a3a259cff47c4fb3f49a0f2712cf7b1adb88659646571db5"
+    },
+    "abi94-shuffle-native-wasm-01.json": {
+      "bytes": 883,
+      "sha256": "06c83aea2b143ee4f2a4eea958375b351c1d0665ecdb62d01e6049f2f76a5a17"
+    },
+    "abi94-shuffle-society-native-wasm-01.json": {
+      "bytes": 932,
+      "sha256": "e2143c011d6fc3766b3cab6e9b5f542d4d3e48ee2aacb222578f52a68cce96ed"
+    },
+    "abi94-shuffle-adviser-native-wasm-01.json": {
+      "bytes": 931,
+      "sha256": "0dbd6336e0f7dfd90ae5639546e734f99e223a1af5bd10759ba8b78153ae15bc"
+    }
+  },
+  "newLogs": [
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-adviser-native-wasm-01.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-local-start-01.log.gz",
+      "bytes": 175,
+      "sha256": "907cbdb37d06cb5f6ad1baa3740b45f7f37ff93713d05f360586e94991ac55ea"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-native-wasm-01.log.gz",
+      "bytes": 703,
+      "sha256": "14001c63e0ba1a5fdeff9b4490c8df9a3bd0fc0cd44114c3ca9b9c1e1a47a9cc"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-society-native-wasm-01.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-wasm-build-01.log.gz",
+      "bytes": 1418,
+      "sha256": "59f9375dc7357442b69662b38515fb39e580208a335211af0800a1990000f752"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-worker-build-01.log.gz",
+      "bytes": 1105,
+      "sha256": "a97e97224235add59f8483ad68402832f519c365b9e6fdcf62df69e9de024220"
+    },
+    {
+      "path": "docs/evidence/hidden-shuffle-markers-2026-10-22/abi94-shuffle-worker-d1-01.log.gz",
+      "bytes": 3162,
+      "sha256": "67fc4a16ea802909349c40ae2acbc4e693f7b353b3afdce9b13a735264bfa667"
+    }
+  ],
+  "publicDeployment": "not attempted",
+  "independentReview": "not performed by author",
+  "fullProductRerun": "not performed",
+  "browserAcceptance": "not performed",
+  "ci": "not triggered; checked at each normal progress push",
+  "opaqueStatePolicy": "Fresh current Native exports replayed exactly; old evidence bytes retained without relabel or migration; u64 decimal text preserved"
+}

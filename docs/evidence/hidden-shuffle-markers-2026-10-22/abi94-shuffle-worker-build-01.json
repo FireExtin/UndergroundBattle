@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "seconds": 14.654,
+  "command": [
+    "node",
+    "scripts/build.mjs"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-hidden-shuffle-fix/sites",
+  "log": "abi94-shuffle-worker-build-01.log",
+  "scope": "Author corrected candidate Web typecheck/build and Worker dry-run only; no publication or same-old-package rebuild"
+}
