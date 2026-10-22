@@ -606,6 +606,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    BQ036Attachment(Box<crate::batch4_vampire_contest::AttachmentPayment>),
     JZ51Corpses(crate::batch4_wendigo::CorpsePayment),
     JZ36Sacrificed(Vec<SourceSnapshot>),
     JZ39Demon(Box<crate::batch4_tattoo::DemonPayment>),
@@ -675,6 +676,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ027ShownTarget,
     MysticCommit { contest_id: String },
     MysticReward { contest_id: String },
     XQ21Marker { kinds: Vec<crate::batch4_markers::MarkerKind> },

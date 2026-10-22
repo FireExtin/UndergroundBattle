@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     BQ031Attachment,
     BQ038Raid,
+    BQ038MysticStart,
     MysticContestWon,
     XG18RenownPlayed,
     WM058CardTargeted,
@@ -70,6 +71,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    BQ036SacrificeAttachment,
     JZ51SealThreeCorpses,
     JZ36SacrificeBatch,
     JZ39SacrificeDemon,
@@ -275,6 +277,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ027ShownFeed { contest_id: String, index: usize },
+    BQ031WinFeed { contest_id: Option<String> },
+    BQ038ContestBonus { observation: Option<Box<crate::batch4_vampire_contest::StartObservation>> },
     BQ027FeedTarget,
     BQ031AttachmentDiscard { observation: Option<Box<crate::batch4_vampires::AttachmentObservation>> },
     BQ032RevealFeed,
@@ -708,6 +713,12 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::batch4_vampire_contest::key(&ability.key) || crate::batch4_vampire_contest::owns(&ability.ops)
+        || ability.modes.iter().any(|m| crate::batch4_vampire_contest::owns(&m.ops))
+        || ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment))
+        || ability.event == Some(Event::BQ038MysticStart) {
+        return crate::batch4_vampire_contest::validate_ability(card_id, ability);
+    }
     if crate::pack_a_contest::related(ability) { return crate::pack_a_contest::validate_ability(card_id, ability); }
     if crate::batch4::related(ability) { return crate::batch4::validate_ability(card_id, ability); }
     if card_id=="BQ029" && ability.key=="raid-1" || crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }

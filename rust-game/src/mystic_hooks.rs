@@ -1,11 +1,9 @@
-//! Integration seam for pack B. Empty hooks have no gameplay effect. Card
-//! implementations must validate the entire original program and receipts;
-//! this module never admits arbitrary numerical bonuses or copied operations.
+//! Finite B adapters; shared protocol scheduling remains in mystic_contest.
 use crate::{engine::RuleResult, model::Game, mystic_contest::{ContestOutcome, MysticShown, MysticBonus}};
 impl Game {
-    pub(crate) fn mystic_start_observers(&mut self, _contest_id: &str) -> RuleResult<()> { Ok(()) }
-    pub(crate) fn mystic_win_observers(&mut self, _outcome: &ContestOutcome) -> RuleResult<()> { Ok(()) }
-    pub(crate) fn mystic_shown_after(&mut self, _outcome: &ContestOutcome, _index: usize) -> RuleResult<()> { Ok(()) }
-    pub(crate) fn mystic_extra_shown_bonus(&self, _shown: &MysticShown) -> RuleResult<u32> { Ok(0) }
-    pub(crate) fn mystic_validate_bonus(&self, _bonus: &MysticBonus) -> RuleResult<()> { Err("尚无登记的隐秘开始加值收据程序".into()) }
+    pub(crate) fn mystic_start_observers(&mut self, contest_id: &str) -> RuleResult<()> { self.b_mystic_start(contest_id) }
+    pub(crate) fn mystic_win_observers(&mut self, outcome: &ContestOutcome) -> RuleResult<()> { self.b_mystic_win(outcome) }
+    pub(crate) fn mystic_shown_after(&mut self, outcome: &ContestOutcome, index: usize) -> RuleResult<()> { self.b_mystic_shown(outcome, index) }
+    pub(crate) fn mystic_extra_shown_bonus(&self, shown: &MysticShown) -> RuleResult<u32> { Ok(self.b_mystic_extra(shown)) }
+    pub(crate) fn mystic_validate_bonus(&self, bonus: &MysticBonus) -> RuleResult<()> { self.b_mystic_validate_bonus(bonus) }
 }

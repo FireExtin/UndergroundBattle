@@ -16,7 +16,8 @@ fn key(d:&Declaration)->String{
     let event=match d.ability.ops.as_slice(){
         [crate::rules::Op::BQ031AttachmentDiscard{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::BQ038RaidFeed{observation:Some(o)}]=>Some(o.raid.frame_id.as_str()),
-        [crate::rules::Op::MysticWin{contest_id:Some(id)},..]=>Some(id.as_str()),
+        [crate::rules::Op::MysticWin{contest_id:Some(id)},..] | [crate::rules::Op::BQ031WinFeed{contest_id:Some(id)}]=>Some(id.as_str()),
+        [crate::rules::Op::BQ038ContestBonus{observation:Some(o)}]=>Some(o.contest_id.as_str()),
         [crate::rules::Op::XG18RenownPlay{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::WM041PublicPlay{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::XG17AdvancePlan{observation:Some(o)}]=>Some(o.event_id.as_str()),

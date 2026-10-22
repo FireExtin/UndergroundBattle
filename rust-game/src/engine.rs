@@ -948,6 +948,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) { return self.bq032_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
@@ -2831,6 +2832,9 @@ impl Game {
                 .collect::<Vec<_>>();
             for c in &self.players[seat].hand {
                 let d = card(&c.definition);
+                if c.definition == "BQ032" && self.can_standard(seat) {
+                    candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(crate::batch4_vampire_contest::HAND.into()), ..Action::new("activate") }, "宴会司仪手牌行动：支付2并弃自身".into()));
+                }
                 if self.can_standard(seat) {
                     candidates.push((
                         Action {

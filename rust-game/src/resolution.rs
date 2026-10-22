@@ -186,6 +186,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment)) {
+                    self.bq036_contest_cost_candidates(actor).into_iter().map(|id| Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::JZ39SacrificeDemon)) {
                     self.jz39_demons(actor).into_iter().map(|id| Some(vec![id])).collect()
                 } else if let Some(required) = ability.costs.iter().find_map(|cost| if let Cost::SacrificeControlledSubtype(subtypes) = cost { Some(subtypes) } else { None }) {
@@ -974,6 +976,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::BQ036SacrificeAttachment => paid.push(self.bq036_pay_attachment(actor, a)?),
                 Cost::JZ51SealThreeCorpses => return Err("温迪戈封印费用必须通过墓地专属待选支付".into()),
                 Cost::JZ36SacrificeBatch => paid.push(self.jz36_pay(actor, a)?),
                 Cost::JZ39SacrificeDemon => paid.push(self.pay_jz39_demon(actor, a)?),
@@ -1638,7 +1641,8 @@ impl Game {
                 Op::XG18RenownPlay { .. } => self.omega_resolve(&frame)?,
                 Op::XG16EntryTime => self.xg16_entry_time(&frame),
                 Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
-                Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
+                Op::BQ038ContestBonus { .. } => return self.bq038_resolve_bonus(frame),
+                Op::BQ027ShownFeed { .. } | Op::BQ031WinFeed { .. } | Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::MysticContest { actor_bonus } => return self.mystic_contest_start(frame, actor_bonus),
@@ -2552,6 +2556,7 @@ impl Game {
             FrameChoice::BQ041Payment => return self.bq041_pay_complete(*frame, chooser, &a, &selected),
             FrameChoice::WM060Repress { regions } => return self.wm060_repress_complete(&frame, chooser, &a, &regions, &selected),
             FrameChoice::JZ39EnemySacrifice => return self.jz39_finish_sacrifice(&frame, chooser, &a, &selected),
+            FrameChoice::BQ027ShownTarget => return self.bq027_choose_shown_target(*frame, chooser, &selected),
             FrameChoice::VampireBlood => return self.vampire_feed_finish(&frame, chooser, &selected),
             FrameChoice::BQ036TopSix { inspected_ids } => return self.bq036_search_finish(&frame, &inspected_ids, &selected),
             FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),

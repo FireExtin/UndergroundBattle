@@ -30,6 +30,9 @@ mod marker_transfer_tests;
 #[cfg(test)]
 mod batch4_markers_tests;
 mod batch4_vampires;
+mod batch4_vampire_contest;
+#[cfg(test)]
+mod batch4_vampire_contest_tests;
 #[cfg(test)]
 mod batch4_vampires_tests;
 mod batch4;
