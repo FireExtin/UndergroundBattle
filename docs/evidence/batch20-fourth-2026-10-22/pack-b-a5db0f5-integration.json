@@ -1,0 +1,69 @@
+{
+  "recordedAtUtc": "2026-10-22T13:16:30.640621+00:00",
+  "integrationBase": "988910afc3f5e313d8d457078c2c99b18549131e",
+  "testedIntegrationHead": "55d1633ddd6f2a2cab91c96faec2541e510c38a2",
+  "packageBSource": "a5db0f5ebc28cdb5e76299f34ad4f7c7e61a2379",
+  "cherryPicks": [
+    "1a4cf0067ce4ecc2c896635fea27b99fedfd6286",
+    "156186de0115cb779c3570fb755cc3d73b5393b2",
+    "55d1633ddd6f2a2cab91c96faec2541e510c38a2"
+  ],
+  "native": [
+    {
+      "filter": "batch4_vampires",
+      "passed": 31,
+      "failed": 0,
+      "filteredOut": 1909,
+      "rawLogSha256": "da3b60d286f153ac76e14bb5fef22f9db7bffe73f9fdd77e446cb77c5db32fa4",
+      "log": "batch4-pack-b-integration-01-batch4_vampires.log.gz",
+      "gzipSha256": "8732dc80fc275a371bfea2044ac84a9c38f1cb6e3e3dfbc13558949832ec250a"
+    },
+    {
+      "filter": "marker_transfer",
+      "passed": 10,
+      "failed": 0,
+      "filteredOut": 1930,
+      "rawLogSha256": "b47ef6f26cbb960d8f2eae7a5a3126710221a94bed7d3d873750474faea2ce4d",
+      "log": "batch4-pack-b-integration-01-marker_transfer.log.gz",
+      "gzipSha256": "a0c881cbbc258c27c55d512484f00d978a52965521a2d8f4f767570a4c99a877"
+    },
+    {
+      "filter": "batch3_entry_order",
+      "passed": 3,
+      "failed": 0,
+      "filteredOut": 1937,
+      "rawLogSha256": "3a5f3fbc7734d7324d0a2f200e615a2de9808a14d1a96a7bfd11f37932e9734e",
+      "log": "batch4-pack-b-integration-01-batch3_entry_order.log.gz",
+      "gzipSha256": "b56abdc5397398ab22d9aa79e6f3049e1904ca5b52bf2dceec5e2cba10c19b4c"
+    }
+  ],
+  "nativeCommand": "CARGO_BUILD_JOBS=1 nice -n15; two CPU affinity slots; run-batch4-native.py batch4-pack-b-integration-01 batch4_vampires marker_transfer batch3_entry_order",
+  "sourceGate": {
+    "command": "node --test --test-isolation=none tools/cards/batch4-source.test.mjs",
+    "result": "3 passed, 0 failed",
+    "evidence": "exec_command tool output; no raw stdout file claimed"
+  },
+  "authorDeliveryHashRecheck": {
+    "inputFiles": 238,
+    "patchFiles": 4,
+    "logFiles": 27,
+    "mismatches": 0
+  },
+  "counts": {
+    "completeNativeFourthBatch": 22,
+    "batchTarget": 50,
+    "packageBCompleteCards": 0,
+    "packageBPartialCards": 5,
+    "admission": 0,
+    "wasm": 0,
+    "published": 0,
+    "accepted": 0
+  },
+  "notRun": [
+    "full suite",
+    "WASM",
+    "real browser for new cards",
+    "performance benchmark"
+  ],
+  "preservedXQ20Prerequisite": true
+}
