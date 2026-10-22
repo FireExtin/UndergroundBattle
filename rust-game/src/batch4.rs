@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15"];
+pub(crate) const IMPLEMENTING: &[&str] = &["XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "JZ40" { return Some(crate::batch4_skull::definition()); }
     if id == "XQ15" { return Some(crate::batch4_manor::definition()); }
     if id == "BQ053" { return Some(crate::batch4_warden::definition()); }
     if id == "WM058" { return Some(crate::batch4_chance::definition()); }
@@ -51,7 +52,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
+        Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -62,7 +63,7 @@ pub(crate) fn related(a: &AbilitySpec) -> bool {
     a.key.starts_with("batch4-") || matches!(a.event,Some(Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
         || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
         || a.costs.iter().any(|c| matches!(c, Cost::JZ39SacrificeDemon))
-        || a.targets.iter().any(|t| t.predicate == Some(TargetPredicate::Batch4DestroyedRegion))
+        || a.targets.iter().any(|t| matches!(t.predicate, Some(TargetPredicate::Batch4DestroyedRegion | TargetPredicate::JZ40CharacterOrAttachment)))
 }
 fn frame_related(f: &ResolutionFrame) -> bool {
     f.source.death_echo.is_some() || IMPLEMENTING.contains(&f.source.card.definition.as_str()) || f.ability_key.starts_with("batch4-")
@@ -107,6 +108,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "JZ40" { return crate::batch4_skull::validate_action(a); }
     if id == "XQ15" { return crate::batch4_manor::validate_action(a); }
     if id == "BQ053" { return crate::batch4_warden::validate_action(a); }
     if id == "WM058" { return crate::batch4_chance::validate_action(a); }
@@ -178,6 +180,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if d.source.card.definition == "JZ40" && !self.validated_cross_card_declaration(d)? { return Err("蚀刻头骨没有触发程序".into()); }
         if d.source.card.definition == "XQ15" { return Err("爱弗罗德庄园没有触发能力".into()); }
         if d.source.card.definition == "BQ053" && !self.validated_cross_card_declaration(d)? { return self.validate_bq053_declaration(d); }
         if d.source.card.definition == "WM058" && !self.validated_cross_card_declaration(d)? { return self.validate_wm058_declaration(d); }
@@ -200,6 +203,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition == "JZ40" && !self.validated_cross_card_frame(f)? { return self.validate_jz40_frame(f); }
         if f.source.card.definition == "XQ15" { return self.validate_xq15_frame(f); }
         if f.source.card.definition == "BQ053" && !self.validated_cross_card_frame(f)? { return self.validate_bq053_frame(f); }
         if f.source.card.definition == "WM058" && !self.validated_cross_card_frame(f)? { return self.validate_wm058_frame(f); }
@@ -249,6 +253,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_jz40_state()?;
         self.validate_xq15_state()?;
         self.validate_bq053_state()?;
         self.validate_wm058_state()?;

@@ -2,6 +2,13 @@
 use crate::{catalog, engine::RuleResult, model::*};
 
 impl Game {
+    // Read-only physical carriers: nested attachments are included once, while
+    // a Society attachment, an asset and a sealed card are outside this region.
+    pub(crate) fn physical_region_time_markers(&self, r: usize) -> u32 {
+        let Some(region) = self.regions.get(r).filter(|r| !r.vacant) else { return 0; };
+        std::iter::once(&region.card).chain(&region.cards).chain(self.region_attachment_cards(r))
+            .map(|c| c.time_markers).fold(0, u32::saturating_add)
+    }
     pub(crate) fn destroy_all_regions(&mut self) {
         for region in &mut self.regions {
             if !region.vacant { region.destroyed = true; }

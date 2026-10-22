@@ -9152,6 +9152,45 @@
       "society": "",
       "supported": false,
       "subtitle": "阴谋会聚之所"
+    },
+    {
+      "id": "JZ40",
+      "name": "蚀刻头骨",
+      "kind": "attachment",
+      "subtypes": [
+        "法器"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n行动 牺牲蚀刻头骨：在目标角色或附属上放置一个时间标志，然后若该地区有四个或更多时间标志，则毁灭该地区。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ40",
+        "image": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg",
+        "imageSha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

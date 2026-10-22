@@ -481,7 +481,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "JZ40" | "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -780,6 +780,7 @@ impl Game {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
                                 rules::TargetPredicate::XQ23ActorAsset => false,
+                                rules::TargetPredicate::JZ40CharacterOrAttachment => self.jz40_target(source, c),
                                 rules::TargetPredicate::XQ18CharacterOrAttachment => {
                                     self.xq18_character_or_attachment(source, c)
                                 }
@@ -1624,6 +1625,7 @@ impl Game {
                 Op::WM058Tax { .. } => { self.wm058_demand(frame)?; return Ok(()); },
                 Op::WM058RemoveEnemyInfluence => self.wm058_reveal(&frame),
                 Op::XG17AdvancePlan { .. } => self.xg17_advance_target(&frame),
+                Op::JZ40TimeAndDestroyHost => self.jz40_resolve(&frame),
                 Op::PlanPlayed { .. } => {},
                 Op::PlanAdvance => self.plan_advance(&frame),
                 Op::PlanComplete => self.plan_complete(&frame)?,

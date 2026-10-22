@@ -1,0 +1,130 @@
+{
+  "recordedAt": "2026-10-22T06:43:32.321818+00:00",
+  "precedingCheckpoint": "c59da605d9bd0bca54f7d22a8f0901a9d7b79c6e",
+  "newCard": "JZ40",
+  "targetBatchSize": 50,
+  "selectedSources": 50,
+  "nativeCards": 17,
+  "definitions": 230,
+  "wasmCards": 0,
+  "selectionEnabled": 0,
+  "published": 0,
+  "accepted": 0,
+  "newDirectedCases": 12,
+  "relatedFilters": {
+    "red_time_tests": 14,
+    "batch3_bats_tests": 19,
+    "batch4_plans_tests": 18,
+    "region_destruction": 3
+  },
+  "filterOverlap": "counts not summed as independent cases",
+  "sourceChecks": 4,
+  "sourceInventory": "docs/evidence/batch20-fourth-2026-10-22/seventeen-card-source-inputs.json",
+  "sourceInventoryFiles": 226,
+  "sourceInventoryFileSha256": "7c3b6b844172f9c38690aaeabcd9b13724794136480c179c48c4386143281e8b",
+  "nativeBinarySha256": "d2f07b4a50d41fc49753fa69bb2de004aeec135036434c6059339f90cc1e6a0f",
+  "nativeRecipe": {
+    "toolchain": "Rust1.90.0; Zig0.15.2; Node24.22.1",
+    "cargoFeatures": "default/native",
+    "jobs": 1,
+    "testThreads": 2,
+    "cargoHome": "../.tools/cargo",
+    "rustupHome": "../.tools/rustup",
+    "targetDir": "../batch4-build/target",
+    "CC": "../.tools/batch3-zig-cc",
+    "linker": "../.tools/zig-cc",
+    "offline": true,
+    "locked": true,
+    "rustflags": []
+  },
+  "scope": "author current-native only; no WASM build, public admission, deployment or independent review",
+  "behavior": "Printed4-cost regional attachment; actual self-sacrifice before responses; one time on a character/attachment; destroy only original host UID when its physical region total>=4. Self-target invalidated by payment cancels the whole effect. Secret plans remain attachments with marker visibility but private identity.",
+  "fixtureBoundaries": [
+    "Actual command/pay/resolve/persist round trips through unit_support",
+    "Host replacement and mixed physical marker carriers are explicit disclosed fixtures, not claimed opponent command chains",
+    "No region-card time-marker producer or general marker-transfer mechanism admitted"
+  ],
+  "failureHistory": [
+    "01: default cc absent; no tests ran",
+    "02: new mutation test used incomplete Draw initializer; no tests ran",
+    "03: missing exact region-host registry; initialized declarations rejected",
+    "04: new card/test used targetId for a region instead of existing region field",
+    "05: new frame guard incorrectly rejected chosenRegion on attach",
+    "06: missing host-snapshot registry and fixtures using a currently unsupported direct region-card marker; new secret-plan time carrier needed explicit restore support",
+    "07:12 directed passed; directly related54 executions and source4 passed separately"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-01.log.gz",
+      "rawBytes": 232,
+      "rawSha256": "29311ba5d2bbae5cd5f033af7f9a967e49ba540fd2b2322f7e7d060b57f62efa",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-02.log.gz",
+      "rawBytes": 3853,
+      "rawSha256": "50e7473e14e4a4e0fd4d384d83baddc27ecc7d6c3748a8240c4f7ec06a8c999d",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-03.log.gz",
+      "rawBytes": 7037,
+      "rawSha256": "7c6413fa07e4fc2f3de26c2e0243f4331ed5fe515dff89db6a30abb1dab77caa",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-04.log.gz",
+      "rawBytes": 6969,
+      "rawSha256": "7fed1a5befd7742c2325170ac8442b5e1212251df7b613eab1bc211bf68f68ef",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-05.log.gz",
+      "rawBytes": 7464,
+      "rawSha256": "1421bc81791b4868b221a614b1d3f0c8ccd736e4ac59b78894bc24be5e427781",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-06.log.gz",
+      "rawBytes": 6474,
+      "rawSha256": "a9954e3b2ef017871cec81c701287af75ef9addfc779f8b18fef926905955761",
+      "status": "retained failed attempt; see failureHistory"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-07.log.gz",
+      "rawBytes": 1975,
+      "rawSha256": "3a285b072ede92cef8b6cd8217988e5366cc6104d00d49f9a4287b61a0f06232",
+      "status": "passed"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-related-red_time_tests.log.gz",
+      "rawBytes": 1964,
+      "rawSha256": "b380c88663f02ec55610e63a7ab1a3b7473d2b1795be763d7656a811f28cca84",
+      "status": "passed"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-related-batch3_bats_tests.log.gz",
+      "rawBytes": 2876,
+      "rawSha256": "944bf7057058e9e720e369fe0f912dbe282e57ae44466c3b6c480f816962f82f",
+      "status": "passed"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-related-batch4_plans_tests.log.gz",
+      "rawBytes": 2663,
+      "rawSha256": "8be98c866965b387ba711f790b6eb18ea5432c385adcf1434d89d71945182155",
+      "status": "passed"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-related-region_destruction.log.gz",
+      "rawBytes": 866,
+      "rawSha256": "835ec548797b2add34e356dad977d8a89c15781963dda6f5d6aecd76d584501e",
+      "status": "passed"
+    },
+    {
+      "path": "docs/evidence/batch20-fourth-2026-10-22/batch4-skull-source-01.log.gz",
+      "rawBytes": 541,
+      "rawSha256": "afb7e00e94928555fb2d98fb240c9b3db53df696e45381fe5651f9ecb658ef1a",
+      "status": "passed"
+    }
+  ]
+}

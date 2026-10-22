@@ -167,7 +167,7 @@ impl Game {
             }
         }
         for a in &self.attachments {
-            if a.card.time_markers > 0 && (a.card.face_down
+            if a.card.time_markers > 0 && (a.card.face_down && !crate::batch4_plans::secret(&a.card)
                 || catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
                     .is_none_or(|d| !catalog::has_kind(d,"attachment"))
                 || self.board(&a.host_id).is_some_and(|(_, host)| !catalog::catalog().cards.iter()
