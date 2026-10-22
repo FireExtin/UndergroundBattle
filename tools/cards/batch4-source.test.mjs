@@ -48,7 +48,7 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(drafts.length, plan.scope.nativeWipCards ?? 0);
   const reviewed = ['WM021', 'WM022', 'WM032', 'WM061', 'BQ082', 'BQ027', 'BQ031', 'BQ032', 'BQ038'];
   assert.equal(plan.packAValidation.completionCountAdded, 5);
-  assert.equal(plan.scope.nativePilots, 31);
+  assert.equal(plan.scope.nativePilots, 32);
   assert.equal(plan.scope.remainingNativePrograms, plan.scope.target - pilots.length);
   assert.equal(plan.scope.nativePartialCards, partials.size);
   assert.deepEqual(plan.nativeClosureReview.closedCards, reviewed);
@@ -56,7 +56,12 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(plan.nativeClosureReview.candidate, 'e5ccb050f91222838b79d33001f00ae97c1fb69e');
   assert.equal(hash(read(plan.nativeClosureReview.report)), plan.nativeClosureReview.reportSha256);
   for (const id of reviewed) assert(pilots.some(c => c.id === id), id);
-  assert(!pilots.some(c => c.id === 'BQ036' || c.id === 'XG21'));
+  assert(pilots.some(c => c.id === 'BQ036'));
+  assert(!pilots.some(c => c.id === 'XG21'));
+  assert.equal(plan.bq036ClosureReview.candidate, '8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022');
+  assert.equal(plan.bq036ClosureReview.status, 'closed');
+  assert.equal(plan.bq036ClosureReview.nativeWholeCardComplete, true);
+  assert.equal(hash(read(plan.bq036ClosureReview.report)), plan.bq036ClosureReview.reportSha256);
   assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), [...pilots.map(c => c.id), ...drafts.map(c => c.id), ...partials].sort());
   assert(pool.cards.slice(213).every(c => c.supported === false));
   for (const c of pool.cards.slice(213)) {
@@ -91,17 +96,17 @@ test('fourth original corrections preserve conditional public, conditional secre
 });
 
 
-test('package B reviewed cards preserve prior catalogue and keep BQ036 outside complete counts', () => {
+test('package B independently closed native cards preserve prior catalogue and public gate', () => {
   assert.equal(packageB.baseCommit, 'adf0a1c080e21b75e971bd650a61f22e47f42e91');
   assert.equal(packageB.baseCatalogCount, 235);
   assert.equal(digest(pool.cards.slice(0, packageB.baseCatalogCount)), packageB.baseCatalogSha256);
   const packageCards = ['BQ027', 'BQ031', 'BQ032', 'BQ036', 'BQ038'];
-  assert.deepEqual([...partials], ['BQ036']);
+  assert.deepEqual([...partials], []);
   assert.deepEqual(packageB.historicalNativePartialCards, packageCards);
-  assert.deepEqual(packageB.nativeCompleteCards, ['BQ027', 'BQ031', 'BQ032', 'BQ038']);
+  assert.deepEqual(packageB.nativeCompleteCards, packageCards);
   assert.deepEqual(packageB.sourceCorrections, packageCards);
   assert.equal(packageB.completeCards, packageB.nativeCompleteCards.length);
-  assert.equal(packageB.completeCards, 4);
+  assert.equal(packageB.completeCards, 5);
   assert.equal(packageB.supportedCards, 0);
   assert.equal(packageB.wasmCards, 0);
   for (const id of packageCards) {

@@ -7,16 +7,16 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 31,
+    "nativePilots": 32,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 19,
+    "remainingNativePrograms": 18,
     "nativeWipCards": 1,
-    "nativePartialCards": 1
+    "nativePartialCards": 0
   },
   "colorCounts": {
     "红": 13,
@@ -765,8 +765,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
       "sourceImageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
       "imageReviewedHere": true,
-      "runtime": "nativePartialBq036HostP2FixedPendingReview",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -774,9 +774,11 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "Both printed abilities integrated; P2-AB-01 attached dual-character cost witness fixed by author, pending independent closure. Not counted complete.",
-      "fullNativeCardComplete": false,
-      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md"
+      "readinessScope": "P2-AB-01 independently closed and whole-card native accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+      "nativeDirectedCaseBasis": "BQ036-named cases within the author20; independent11 closure reported separately, not summed."
     },
     {
       "id": "BQ038",
@@ -1032,7 +1034,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 31,
+      "nativeCards": 32,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -1040,7 +1042,7 @@
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
       "targetCards": 50,
-      "nativeWipCards": 2
+      "nativeWipCards": 1
     }
   ],
   "ownershipCheck": {
@@ -1139,7 +1141,7 @@
     "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance."
   ],
   "next": [
-    "Continue the same50-card batch:31 native complete, including nine A/B cards independently accepted, BQ036 P2 author fix awaiting closure, XG21 prior interrupted review excluded;0 new WASM/admission/acceptance.",
+    "Continue the same50-card batch:32 native complete including all ten A/B cards; XG21 prior interrupted review remains excluded;0 new WASM/admission/acceptance.",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
@@ -1570,5 +1572,17 @@
     },
     "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
     "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
+  },
+  "bq036ClosureReview": {
+    "candidate": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+    "runtimeFixCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+    "card": "BQ036",
+    "finding": "P2-AB-01",
+    "status": "closed",
+    "nativeWholeCardComplete": true,
+    "independentTestsPassed": 11,
+    "report": "docs/evidence/bq036-host-p2-close-20261022/review.txt",
+    "reportSha256": "cd0d76fd9d3f9404009ffcd877e73334dc12c87165301044dc4627ddb9b6dc5d",
+    "scope": "Native whole-card closure only; no new WASM, admission, public acceptance or main qualification"
   }
 }

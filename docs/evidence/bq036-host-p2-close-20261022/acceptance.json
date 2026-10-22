@@ -1,0 +1,51 @@
+{
+  "reviewCandidate": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+  "status": "P2-AB-01 independently closed; BQ036 native whole-card accepted",
+  "reportSha256": "cd0d76fd9d3f9404009ffcd877e73334dc12c87165301044dc4627ddb9b6dc5d",
+  "independentTestsPassed": 11,
+  "authorNativeRerun": false,
+  "formalNativeBefore": 31,
+  "formalNativeAfter": 32,
+  "batchTarget": 50,
+  "wasmAdded": 0,
+  "deckAdmissionAdded": 0,
+  "publicAcceptedAdded": 0,
+  "runtimeUnchanged": true,
+  "c811UiFixIncluded": false,
+  "sourceChecksPassed": 3,
+  "sourceCheckArtifacts": [
+    {
+      "path": "native32-ledger-06.json.gz",
+      "sha256": "7e067ea8fafc7114587b6c7fdf535fbb47e13e45a3b380f2f24e61a7bd61245a",
+      "uncompressedSha256": "2b5520dc15949a9d12639cecf60c281d6716c0b8864e6f3e9609ffb5f99c9f16"
+    },
+    {
+      "path": "native32-ledger-06.log.gz",
+      "sha256": "e449a5b807f5f27d1a4e86659b0ccd810500fc7bfdddf120d20aa5e973fd8bd7",
+      "uncompressedSha256": "a55f4249b676b071b664ba2462578786e671cab7be54dba70ca26f462aacf3e3"
+    }
+  ],
+  "ledgerInputs": [
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "68d19f788ce4d9faf9dbcb0861bda17e9514fb9635dd1a1616c0d8da3778b063"
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.json",
+      "sha256": "aa9de668174b0f5ac31f743b97e28efda12869abb2349e1ff65f0bd1d14c044e"
+    },
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "d670d4d1c1df370695f6e5fa571cffc22f8bbb64a425107b74c95ea5f589039e"
+    }
+  ],
+  "independentBoundaryPatch": "archived only, not applied; independent execution evidence remains in the review report",
+  "noPushCiDeployMain": true,
+  "xg21Untouched": true,
+  "boundaryPatch": {
+    "path": "independent-boundaries.patch.gz",
+    "sha256": "475be8d436205591ba4beaf5b4f57ab76a566df954dc6065c0fc350891cf7d5f",
+    "uncompressedSha256": "efa73e7ec09af9b364d6550aae73ac9cbabd2f1e91a62bd93b6b723d83739fc1",
+    "preservedVerbatim": true
+  }
+}

@@ -1,10 +1,8 @@
 {
   "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
-  "scope": "BQ027/BQ031/BQ032/BQ038 whole-card native closure independently accepted; BQ036 P2 author fix awaiting closure",
-  "nativePartialCards": [
-    "BQ036"
-  ],
-  "completeCards": 4,
+  "scope": "All five B cards have native whole-card closure; no WASM, admission or public acceptance",
+  "nativePartialCards": [],
+  "completeCards": 5,
   "supportedCards": 0,
   "wasmCards": 0,
   "sourceCorrections": [
@@ -53,6 +51,7 @@
     "BQ027",
     "BQ031",
     "BQ032",
+    "BQ036",
     "BQ038"
   ],
   "independentClosureReview": {
@@ -81,5 +80,17 @@
     },
     "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
     "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
+  },
+  "bq036ClosureReview": {
+    "candidate": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+    "runtimeFixCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+    "card": "BQ036",
+    "finding": "P2-AB-01",
+    "status": "closed",
+    "nativeWholeCardComplete": true,
+    "independentTestsPassed": 11,
+    "report": "docs/evidence/bq036-host-p2-close-20261022/review.txt",
+    "reportSha256": "cd0d76fd9d3f9404009ffcd877e73334dc12c87165301044dc4627ddb9b6dc5d",
+    "scope": "Native whole-card closure only; no new WASM, admission, public acceptance or main qualification"
   }
 }
