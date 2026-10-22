@@ -691,14 +691,14 @@ fn b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten() {
     checkpoint(&g);
 }
 
-// This is a real B start + BQ038 start-trigger + paid WM022 response, not a
-// seeded public-hook fixture. A owns the protocol change. Keep the expected
-// behavior as an explicit ignored regression until that contract is delivered.
-#[test]
-#[ignore = "A-owned start response/nesting protocol is unresolved on baseline 47256d59"]
-fn b_contest_protocol_response_reveal_must_dispatch_before_outer_commit() {
+// Actual paid BQ032 -> BQ038 -> WM022 response, extended by the A/B
+// verification clone. Stop on the original frame identity: a forced trigger
+// may replace it without decreasing stack depth.
+fn a_b_paid_response() -> Game {
     let mut g = layout();
     attached(&mut g, "BQ038", 0, "society:p0");
+    let host = field(&mut g, "JC029", 0);
+    attached(&mut g, "XQ14", 0, &host);
     fund(&mut g, 2, "WM022", 3);
     let reveal = field(&mut g, "WM022", 2);
     g.board_mut(&reveal).unwrap().face_down = true;
@@ -719,13 +719,56 @@ fn b_contest_protocol_response_reveal_must_dispatch_before_outer_commit() {
             ..Action::new("reveal")
         },
     );
-    pass_top(&mut g);
+    let original = g.stack.last().unwrap().id.clone();
+    for _ in 0..16 {
+        if !g.stack.iter().any(|s| s.id == original) {
+            break;
+        }
+        pass(&mut g);
+    }
+    assert!(!g.stack.iter().any(|s| s.id == original));
+    g
+}
+#[test]
+fn b_contest_protocol_response_reveal_must_dispatch_before_outer_commit() {
+    let g = a_b_paid_response();
     assert!(g
         .pending
         .as_ref()
         .is_none_or(|p| p.choice.kind != m::COMMIT_KIND));
-    assert!(g.stack.last().is_some_and(|s| s.frame.as_ref().is_some_and(|f| f.ability_key == crate::pack_a_contest::SHADOW_REVEAL)),
-        "The response-generated forced reveal declaration must reach the stack before the outer start resumes; stack={:?}; effects={:?}", g.stack.iter().map(|s|s.frame.as_ref().map(|f|f.ability_key.as_str())).collect::<Vec<_>>(), g.effects.iter().map(|e|match e { Effect::Declare{declaration}=>declaration.ability.key.as_str(), Effect::MysticContinue{..}=>"MysticContinue", _=>"other" }).collect::<Vec<_>>());
+    assert!(g.stack.last().is_some_and(|s| s
+        .frame
+        .as_ref()
+        .is_some_and(|f| f.ability_key == crate::pack_a_contest::SHADOW_REVEAL)));
+    checkpoint(&g);
+}
+
+#[test]
+fn a_b_nested_start_receipt_must_keep_outer_bq038_while_child_is_active() {
+    let mut g = a_b_paid_response();
+    let child_frame = g.stack.last().unwrap().id.clone();
+    for _ in 0..16 {
+        if !g.stack.iter().any(|s| s.id == child_frame) {
+            break;
+        }
+        let seat = (0..4)
+            .find(|s| g.legal_actions(*s).iter().any(|a| a.action.kind == "pass"))
+            .unwrap();
+        let before = serde_json::to_string(&g).unwrap();
+        let result = g.apply(seat, Action::new("pass"));
+        assert!(
+            result.is_ok(),
+            "outer BQ038 must remain valid during child start: {:?}; rejected command unchanged={}",
+            result.err(),
+            before == serde_json::to_string(&g).unwrap()
+        );
+        checkpoint(&g);
+    }
+    assert!(g.mystic_contest.as_ref().unwrap().parent.is_some());
+    assert!(g
+        .stack
+        .iter()
+        .any(|s| s.frame.as_ref().is_some_and(|f| f.ability_key == b::START)));
     checkpoint(&g);
 }
 
@@ -793,4 +836,198 @@ fn b_contest_typed_payment_and_start_event_cannot_hide_under_foreign_programs() 
         },
     });
     invalid(&g, bad);
+}
+
+fn a_b_resolve_original_frame(g: &mut Game, id: &str) {
+    for _ in 0..24 {
+        if !g.stack.iter().any(|s| s.id == id) {
+            checkpoint(g);
+            return;
+        }
+        assert!(
+            g.pending.is_none(),
+            "original frame still waits behind a private choice"
+        );
+        pass(g);
+    }
+    panic!("original response frame did not finish");
+}
+fn a_b_active_child() -> Game {
+    let mut g = a_b_paid_response();
+    let child = g.stack.last().unwrap().id.clone();
+    a_b_resolve_original_frame(&mut g, &child);
+    assert_eq!(g.mystic_states().count(), 2);
+    g
+}
+#[test]
+fn a_b_nested_bq038_awards_each_original_layer_once_without_repaying() {
+    let mut g = a_b_active_child();
+    let state = g.mystic_contest.as_ref().unwrap();
+    let child_id = state.contest_id.clone();
+    let parent = state.parent.as_ref().unwrap();
+    let parent_id = parent.contest_id.clone();
+    let parent_paid = serde_json::to_value(&parent.frame.already_paid).unwrap();
+    let outer_bonus = g
+        .stack
+        .iter()
+        .find(|s| s.frame.as_ref().is_some_and(|f| f.ability_key == b::START))
+        .unwrap()
+        .id
+        .clone();
+    assert!(parent.bonuses.is_empty());
+    assert_eq!((g.resources(0), g.resources(2)), (0, 0));
+    trigger(&mut g, b::START, true);
+    let inner_bonus = g.stack.last().unwrap().id.clone();
+    a_b_resolve_original_frame(&mut g, &inner_bonus);
+    let state = g.mystic_contest.as_ref().unwrap();
+    assert_eq!(state.bonuses.len(), 1);
+    assert_eq!(state.bonuses[0].contest_id, child_id);
+    assert_eq!(state.bonuses[0].amount, 1);
+    assert!(state.parent.as_ref().unwrap().bonuses.is_empty());
+    commit(&mut g, ["JC125"; 4]);
+    rewards(&mut g);
+    assert_eq!(g.mystic_history.len(), 1);
+    assert_eq!(g.mystic_history[0].contest_id, child_id);
+    let state = g.mystic_contest.as_ref().unwrap();
+    assert_eq!(state.contest_id, parent_id);
+    assert!(state.parent.is_none());
+    assert_eq!(
+        serde_json::to_value(&state.frame.already_paid).unwrap(),
+        parent_paid
+    );
+    assert_eq!(g.stack.last().unwrap().id, outer_bonus);
+    assert!(g.players.iter().all(|p| p.hand.is_empty()));
+    a_b_resolve_original_frame(&mut g, &outer_bonus);
+    assert_eq!(
+        g.mystic_contest.as_ref().unwrap().bonuses[0].contest_id,
+        parent_id
+    );
+    assert_eq!(g.mystic_contest.as_ref().unwrap().bonuses[0].amount, 1);
+    commit(&mut g, ["JC125"; 4]);
+    rewards(&mut g);
+    assert!(g.mystic_contest.is_none());
+    assert!(g.stack.is_empty() && g.effects.is_empty() && g.pending.is_none());
+    assert_eq!(
+        g.mystic_history
+            .iter()
+            .map(|o| o.contest_id.as_str())
+            .collect::<Vec<_>>(),
+        vec![child_id.as_str(), parent_id.as_str()]
+    );
+    assert!(g
+        .mystic_history
+        .iter()
+        .all(|o| o.bonuses.len() == 1 && o.shown[0].value == 1));
+    assert_eq!((g.resources(0), g.resources(2)), (0, 0));
+    assert_eq!(
+        g.players[0]
+            .graveyard
+            .iter()
+            .filter(|c| c.definition == "BQ032")
+            .count(),
+        1
+    );
+    checkpoint(&g);
+}
+#[test]
+fn a_b_nested_receipt_lookup_does_not_authorize_awarding_a_suspended_layer() {
+    let g = a_b_active_child();
+    let outer = g
+        .stack
+        .iter()
+        .find_map(|s| s.frame.as_ref().filter(|f| f.ability_key == b::START))
+        .unwrap()
+        .clone();
+    g.validate_b_contest_frame(&outer).unwrap();
+    let mut paid = outer.clone();
+    paid.cursor = 1;
+    paid.guard = GuardState::Accepted;
+    let mut bad_award = g.clone();
+    let before = serde_json::to_string(&bad_award).unwrap();
+    assert!(bad_award
+        .bq038_resolve_bonus(paid)
+        .unwrap_err()
+        .contains("当前活动"));
+    assert_eq!(
+        serde_json::to_string(&bad_award).unwrap(),
+        before,
+        "even internal rejected award must not allocate an ID"
+    );
+    let child_id = g.mystic_contest.as_ref().unwrap().contest_id.clone();
+    for mutation in 0..4 {
+        let mut bad = g.clone();
+        let f = bad
+            .stack
+            .iter_mut()
+            .find_map(|s| s.frame.as_mut().filter(|f| f.frame_id == outer.frame_id))
+            .unwrap();
+        let Op::BQ038ContestBonus {
+            observation: Some(o),
+        } = &mut f.steps[0].op
+        else {
+            unreachable!()
+        };
+        match mutation {
+            0 => o.contest_id = child_id.clone(),
+            1 => o.contest_id = "i1".into(),
+            2 => o.turn += 1,
+            _ => f.source.card.controller = 1,
+        }
+        invalid(&g, bad);
+    }
+    // A forged resolved receipt in the parent must not coexist with its
+    // original still-waiting response frame, even while the child is active.
+    let mut bad = g.clone();
+    let capture = bad.id();
+    let mut receipt = outer;
+    receipt.cursor = 1;
+    receipt.guard = GuardState::Accepted;
+    let Op::BQ038ContestBonus {
+        observation: Some(o),
+    } = &mut receipt.steps[0].op
+    else {
+        unreachable!()
+    };
+    o.witnesses = Some(vec![]);
+    o.resolved_id = Some(capture);
+    let parent = bad
+        .mystic_contest
+        .as_mut()
+        .unwrap()
+        .parent
+        .as_mut()
+        .unwrap();
+    parent.bonuses.push(m::MysticBonus {
+        contest_id: parent.contest_id.clone(),
+        frame: Box::new(receipt),
+        amount: 0,
+    });
+    invalid(&g, bad);
+    checkpoint(&g);
+}
+#[test]
+fn a_b_nested_declining_child_bonus_preserves_outer_response_and_payment() {
+    let mut g = a_b_active_child();
+    let parent_id = g
+        .mystic_contest
+        .as_ref()
+        .unwrap()
+        .parent
+        .as_ref()
+        .unwrap()
+        .contest_id
+        .clone();
+    let outer = g.stack.last().unwrap().id.clone();
+    trigger(&mut g, b::START, false);
+    commit(&mut g, ["JC125"; 4]);
+    assert_eq!(g.mystic_history.len(), 1);
+    assert!(g.mystic_history[0].bonuses.is_empty());
+    assert_eq!(g.mystic_contest.as_ref().unwrap().contest_id, parent_id);
+    assert_eq!(g.stack.last().unwrap().id, outer);
+    a_b_resolve_original_frame(&mut g, &outer);
+    commit(&mut g, ["JC125"; 4]);
+    rewards(&mut g);
+    assert_eq!(g.mystic_history[1].bonuses.len(), 1);
+    assert_eq!(g.resources(0), 0);
+    checkpoint(&g);
 }

@@ -296,9 +296,13 @@ impl Game {
         source: &SourceSnapshot,
         o: &StartObservation,
     ) -> RuleResult<()> {
-        let state = self.mystic_contest.as_ref().ok_or("掠食时刻缺少原对抗")?;
-        if state.contest_id != o.contest_id
-            || state.turn != o.turn
+        // Suspended outer receipts remain valid while an inner contest runs.
+        // This is read-only authentication, not permission to award that layer.
+        let state = self
+            .mystic_states()
+            .find(|s| s.contest_id == o.contest_id)
+            .ok_or("掠食时刻缺少原对抗层")?;
+        if state.turn != o.turn
             || o.turn != self.turn
             || !matches!(state.phase, MysticPhase::BeforeSelection)
             || !state.participants.contains(&actor)
@@ -488,6 +492,13 @@ impl Game {
         };
         if o.witnesses.is_some() {
             return Err("加值收据不可再次结算".into());
+        }
+        // Finding a suspended layer for validation must never permit paying
+        // its bonus into the child or mutating its frozen receipt out of order.
+        if self.mystic_contest.as_ref().is_none_or(|s| {
+            s.contest_id != o.contest_id || !matches!(s.phase, MysticPhase::BeforeSelection)
+        }) {
+            return Err("掠食时刻只能结算当前活动的原对抗层".into());
         }
         let witnesses = self.bq038_contest_count_witnesses(f.actor);
         let amount = u32::try_from(witnesses.len()).map_err(|_| "掠食时刻计数溢出")?;

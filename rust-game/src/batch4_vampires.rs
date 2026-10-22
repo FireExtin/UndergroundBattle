@@ -463,7 +463,7 @@ impl Game {
             if event.is_some_and(|e| !events.insert((source.card.id.clone(), e.clone()))) { return Err("同次结附或袭击不能重复触发同一观察者".into()); }
             Ok(())
         };
-        if let Some(state) = &self.mystic_contest { for bonus in &state.bonuses {
+        for state in self.mystic_states() { for bonus in &state.bonuses {
             remember(&bonus.frame.source, &bonus.frame.steps.iter().map(|s| s.op.clone()).collect::<Vec<_>>())?;
         } }
         for item in &self.stack {
