@@ -4,6 +4,9 @@ mod batch4_tattoo;
 mod batch4_shape;
 mod batch4_dahlia;
 mod batch4_feast;
+mod batch4_statue;
+#[cfg(test)]
+mod batch4_statue_tests;
 #[cfg(test)]
 mod batch4_feast_tests;
 #[cfg(test)]
@@ -188,6 +191,8 @@ pub mod engine;
 mod jc004_tests;
 #[cfg(test)]
 mod jc005_tests;
+#[cfg(test)]
+mod jc005_society_regression_tests;
 #[cfg(test)]
 mod jc008_tests;
 pub mod model;

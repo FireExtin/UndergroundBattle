@@ -125,7 +125,7 @@
     "No independent test execution, complete fourth batch, WASM/Web/Worker integration, public deployment or real browser acceptance.",
     "Existing-restriction Chaos sampling remains an explicit rules review boundary; fourth construction remains disabled."
   ],
-  "latestEvidence": "six-card-pilot.json",
+  "latestEvidence": "seven-card-pilot.json",
   "latestNativePilotCards": [
     "XG14",
     "XG15",
@@ -133,5 +133,11 @@
     "XG12",
     "WM060"
   ],
-  "latestNativePilotCount": 6
+  "latestNativePilotCount": 7,
+  "sourceInventoryAddenda": [
+    {
+      "evidence": "six-card-pilot.json",
+      "addendum": "native-source-manifest-six-cards-catalog-supplement.json"
+    }
+  ]
 }

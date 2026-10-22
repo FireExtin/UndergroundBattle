@@ -546,6 +546,8 @@ pub struct StackItem {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct SourceSnapshot {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub death_echo: Option<Box<crate::batch4_statue::EchoProof>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub observed_exposure: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub observed_mobility_grant: Option<ObservedMobilityGrant>,
@@ -833,6 +835,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JZ38EchoTarget { declaration: Box<Declaration> },
     Batch3EntryOrder { entry_instance:String },
     JC055TimePayment { source: SourceSnapshot },
     JC055PreparationTarget { declaration: Declaration, remaining: Vec<Declaration> },

@@ -8727,6 +8727,45 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "JZ38",
+      "name": "仪式雕像",
+      "kind": "attachment",
+      "subtypes": [
+        "法器"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n触发 每当一个本方宿主角色死亡时，其死亡触发能力额外发动一次。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "JZ38",
+        "image": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
+        "imageSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

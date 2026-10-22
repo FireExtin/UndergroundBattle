@@ -80,6 +80,7 @@ impl Game {
     }
     pub(crate) fn mobility_source(&self, c: &Card, region: usize) -> SourceSnapshot {
         SourceSnapshot {
+            death_echo: None,
             observed_exposure: (c.definition == "WM040" && self.society_exposure(c.controller) > 0).then(|| self.society_exposure(c.controller)),
             observed_death: None,
             observed_mobility_grant: (!(printed(&c.definition) || (c.definition == "WM040" && self.society_exposure(c.controller) > 0)))

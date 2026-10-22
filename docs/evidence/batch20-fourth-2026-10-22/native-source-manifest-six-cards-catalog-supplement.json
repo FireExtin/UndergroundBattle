@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "04acc99766a54dea2e1f372eb6358b62a60d3695",
+  "originalInventory": "native-source-manifest-six-cards.json",
+  "originalInventorySha256": "a1e77bee5adcc2b16e464a886b60f6c8af3c17f839fdd1f29e547c33b0872368",
+  "catalogEntry": {
+    "path": "rust-game/data/cards.json",
+    "bytes": 241392,
+    "sha256": "80be04352e5702d2cef4efb9ec296b999ae41f02194d4332472be6b139b33666",
+    "definitions": 219
+  },
+  "reason": "The six-card source inventory omitted catalog input. Bind its exact already-pushed bytes here; retain the original inventory and execution logs. This inventory is not a complete external-fixture/reproducible-build claim."
+}

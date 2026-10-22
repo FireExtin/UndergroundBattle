@@ -1153,5 +1153,10 @@
     "url": "/cards/BQ041.jpg",
     "source": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
     "sha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270"
+  },
+  "JZ38": {
+    "url": "/cards/JZ38.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
+    "sha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0"
   }
 }

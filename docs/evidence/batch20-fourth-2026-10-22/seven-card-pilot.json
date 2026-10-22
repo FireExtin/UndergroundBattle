@@ -1,0 +1,166 @@
+{
+  "recordedAt": "2026-10-22T02:20:41.894582+00:00",
+  "precedingCheckpoint": "04acc99766a54dea2e1f372eb6358b62a60d3695",
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ39",
+    "XG12",
+    "WM060",
+    "BQ041",
+    "JZ38"
+  ],
+  "newCard": "JZ38",
+  "newDirectedCases": 15,
+  "relatedFilters": {
+    "batch4_statue": 15,
+    "red_time": 14,
+    "jz31": 15,
+    "death_observer": 23,
+    "batch4_feast_mixed": 2,
+    "society_zone": 9,
+    "jc005": 12
+  },
+  "sourceChecks": 4,
+  "sourceInventory": "native-source-manifest-seven-cards.json",
+  "sourceInventorySha256": "5ac519b3926aaa119ddc928cf8f38d0fe357e861faf9396840b447f1c47d2dc0",
+  "sourceInventoryCount": 200,
+  "sixCardInventoryAddendum": "native-source-manifest-six-cards-catalog-supplement.json",
+  "results": [
+    {
+      "phase": "preservedContinuationGuardFailure",
+      "log": "logs/batch4-jz38-first-batch4_statue.log.gz",
+      "rawSha256": "eafdeb810c2a86e6f95e3caaebb8b475b3a1205c0e7d704a72fe4a9a1c8a6ed0",
+      "gzipSha256": "0e86125f04b3e516dbe8bc7711f4a94172339b50d4f58b81cf29c974eb163bf4",
+      "result": "FAILED",
+      "passed": 7,
+      "failed": 3
+    },
+    {
+      "phase": "preservedForecastFixtureFailure",
+      "log": "logs/batch4-jz38-second-batch4_statue.log.gz",
+      "rawSha256": "0f0d97c401361a896c72d546d3655750fc8603a48fbb1a4ea80b0106d54f06a6",
+      "gzipSha256": "4fd676015bbc0ae2ede9507e32d7436002c54ce837d0adbaed972b7cf6d7116c",
+      "result": "FAILED",
+      "passed": 9,
+      "failed": 1
+    },
+    {
+      "phase": "preservedStandardActionResponseFixtureFailure",
+      "log": "logs/batch4-jz38-third-batch4_statue.log.gz",
+      "rawSha256": "4a19f7ac5752be8756f6fea485b15ecb9e8bcfa11d70429976d83d19e49b57e1",
+      "gzipSha256": "9bb0e2616bc5ca1d45ec8bc8102e22e616695c4311830f136862d664c7887f45",
+      "result": "FAILED",
+      "passed": 13,
+      "failed": 1
+    },
+    {
+      "phase": "preservedExistingJC005SocietyTargetFailure",
+      "log": "logs/batch4-jz38-fourth-batch4_statue.log.gz",
+      "rawSha256": "a355592607dbc3a349483ef45fdf13fc237f67644372d2561b2e0d65b9ed60bd",
+      "gzipSha256": "38b10a1809981f4e3ccce65689c9b3793ae8624cd423758d26e75edbdb685d28",
+      "result": "FAILED",
+      "passed": 14,
+      "failed": 1
+    },
+    {
+      "phase": "final-batch4_statue",
+      "log": "logs/batch4-jz38-final-batch4_statue.log.gz",
+      "rawSha256": "f02497a81d1699b85f4ff8ad4ecc523a6c30ffe9caac08b95ba45eabe5e5c350",
+      "gzipSha256": "04134f062d2a72c568581741cf344c29e0627b5e66a55e7ebdfc88954b6b0115",
+      "result": "ok",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "phase": "final-red_time",
+      "log": "logs/batch4-jz38-final-red_time.log.gz",
+      "rawSha256": "362fd8fc760881c1e55a7eb00474e628fe1b60ada62e1f7f7b6b884fd76b96d1",
+      "gzipSha256": "1a8e276c9206fa957055883f49aa41bb4129d5dd603675d317ac74afbf3e9b4f",
+      "result": "ok",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "phase": "final-jz31",
+      "log": "logs/batch4-jz38-final-jz31.log.gz",
+      "rawSha256": "a036403417ddd28abaef882fc3373c0c791ef629c13285a1749bea37b55ab126",
+      "gzipSha256": "7a88f7d8a82b141f946f5ecdf466baf9b82ffc3918d85720fa83d96d18586ba9",
+      "result": "ok",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "phase": "final-death_observer",
+      "log": "logs/batch4-jz38-final-death_observer.log.gz",
+      "rawSha256": "0797d493f91f02ff394cfa5900c73f9d7f375f402c6e1e61ed3d44dc933925c2",
+      "gzipSha256": "a2752c5e8fd6e7c4447e1c70724426436e42a234f11fb2b005843a162d7b3591",
+      "result": "ok",
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "phase": "final-batch4_feast_mixed",
+      "log": "logs/batch4-jz38-final-batch4_feast_mixed.log.gz",
+      "rawSha256": "e3eaa2a0107ea46a1a6e6d41fde9d507c7905cc2a3365139250e2c783948ff3c",
+      "gzipSha256": "bcdd2402963b4cbdc31d401bd63d41f995b979be5a88cbcda796de5d6ef8cfc5",
+      "result": "ok",
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "phase": "final-society_zone",
+      "log": "logs/batch4-jz38-final-society_zone.log.gz",
+      "rawSha256": "588247ad44a567f1c280714c3a249e9304a9eef67c505b44d0e77361d84555c4",
+      "gzipSha256": "68a991f2ee39aacf6f63d18864d465668e2dd2d5775ce59cb11383eb3c9fd0ef",
+      "result": "ok",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "phase": "final-jc005",
+      "log": "logs/batch4-jz38-final-jc005.log.gz",
+      "rawSha256": "86df220558e87ed5930d8d66cdadfa427ca5df76c4aca9b120aaee3b242246a7",
+      "gzipSha256": "897733de02aed5b9b89fe5e7153ebe93bc45eff0568a58ee3c1b0cdde4bb8171",
+      "result": "ok",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "phase": "sourceChecks",
+      "log": "logs/batch4-seven-card-source.log.gz",
+      "rawSha256": "95adb13ff088f5e5087d4a4b55fa0531fc9bd18529ffcd75fca46c042d8f42c4",
+      "gzipSha256": "c593a8eabfae714e0f0bf2b526b410fad0a2b15cf1e8c81ea1744883dbc67baa",
+      "result": "sourceTAP",
+      "passed": null,
+      "failed": null
+    }
+  ],
+  "scopeNote": "Author-run finite native tests and directly affected filters, which may overlap; not an independent execution or full product repeat. Initial layouts disclosed in tests; apply/restore/four-seat checks throughout.",
+  "ruleClarification": "Host is subtype宿主. WM035 adds that subtype to personal Humans and separately observes Host death; JZ38 repeats the dead character own Event::Death program, not WM035 observer draw.",
+  "currentDeathRegistry": [
+    "BQ078",
+    "JZ30",
+    "JZ31",
+    "JZ59",
+    "JZ61",
+    "XQ12",
+    "XQ17"
+  ],
+  "jc005IndependentSourceFix": "bf00141c6a634ce432568fb8bc40e336c3136573",
+  "nativeIdentity": {
+    "engineVersion": "rust-v0.2.95-batch20-fourth",
+    "cardPoolVersion": "limited-v2.85-batch20-fourth",
+    "definitions": 220
+  },
+  "isolatedXQ13Draft": {
+    "commit": "94391d440bc2e35d52cd59116ef7bcf900b4aea9",
+    "ruleAccepted": false,
+    "notIncludedHere": true
+  },
+  "wasmCards": 0,
+  "constructionAdmissions": 0,
+  "publicAdmissions": 0,
+  "accepted": 0
+}

@@ -50,15 +50,18 @@ impl Game {
         }
         // Capture actual subtypes before host departure can remove conversion.
         let deaths = deaths.into_iter().map(|(id, cause, source)| {
+            let statue_deaths = self.jz38_capture_death(&source);
             let vampire = self.board(&id).is_some_and(|(_, c)|
                 self.current_subtypes(c).iter().any(|s| s == "吸血鬼"));
             let black_death = self.capture_black_death(&id);
-            (id, cause, source, vampire, black_death)
+            (id, cause, source, vampire, black_death, statue_deaths)
         }).collect::<Vec<_>>();
-        for (id, cause, source, vampire, black_death) in deaths {
+        let group_instance = deaths.first().map(|(id,..)|id.clone());
+        for (id, cause, source, vampire, black_death, statue_deaths) in deaths {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
             if let Some(receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source), Some(&ghoul_sources)) {
                 receipts.push(receipt);
+                self.jz38_emit_death(statue_deaths);
                 if let Some(observation) = black_death {
                     let observation = self.emit_black_death(&black_sources, observation);
                     self.wm035_emit_host_death(&host_sources, &observation);
@@ -78,11 +81,12 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
+                Some(Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });
         self.effects.extend(simultaneous);
+        if let Some(id)=group_instance {self.batch3_register_entry_order(&id,previous_effects);}
         receipts
     }
     pub(crate) fn death_observer_limit_reached(&self, d: &Declaration) -> bool {

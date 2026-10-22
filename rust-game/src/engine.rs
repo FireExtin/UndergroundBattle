@@ -2081,7 +2081,7 @@ impl Game {
             .collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Death | Event::CharacterDeathObserved)) => (
+                Some(Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved)) => (
                 self.team(declaration.actor) != self.first_team,
                 declaration.actor,
             ),
@@ -2152,6 +2152,7 @@ impl Game {
         }
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::JZ38EchoTarget { declaration } => self.statue_echo_target(*declaration, seat, &a, selected)?,
             ChoiceResolution::Batch3EntryOrder { entry_instance } => self.batch3_choose_entry_order(&entry_instance,seat,&a,&selected)?,
             ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
             ChoiceResolution::JC055PreparationTarget { declaration, remaining } => self.jc055_preparation_target(declaration, remaining, &a, &selected)?,

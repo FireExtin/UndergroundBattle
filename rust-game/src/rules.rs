@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    JZ38HostDied,
     BQ041BloodAttached,
     WM060CriminalEntered,
     DisasterPlayed,
@@ -258,6 +259,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JZ38RepeatDeath { observation: Option<Box<crate::batch4_statue::HostDeath>> },
     BQ041BloodDemand { observation: Option<Box<crate::batch4_feast::BloodAttachment>> },
     WM060RevealInfluence,
     WM060CriminalObservation { observation: Option<Box<crate::batch4_dahlia::CriminalEntry>> },
@@ -1616,7 +1618,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character

@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 6,
+    "nativePilots": 7,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -57,8 +57,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
       "sourceImageSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 15,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -245,7 +245,15 @@
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
-      "openQuestionIds": []
+      "openQuestionIds": [],
+      "isolatedDraft": {
+        "branch": "progress/batch4-pathway-rule-draft-20261022",
+        "commit": "94391d440bc2e35d52cd59116ef7bcf900b4aea9",
+        "directedPrototypeTests": 12,
+        "completedCard": false,
+        "ruleQuestion": "XQ13-PATHWAY-OVERFLOW-01",
+        "question": "Does excess Pathway control prohibit entry/play or force a sacrifice? Primary consequence/timing ruling still needed; prototype is separate."
+      }
     },
     {
       "id": "BQ053",
@@ -425,7 +433,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 6,
+      "nativeCards": 7,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
