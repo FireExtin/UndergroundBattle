@@ -1,0 +1,97 @@
+[
+  {
+    "path": "nonvampire-final.json.gz",
+    "bytes": 2454,
+    "sha256": "be0ccb29c91d4e8d84b8481ad0fe88db1713dac87e59ac7780d4b6298f592a26"
+  },
+  {
+    "path": "rulings.json",
+    "bytes": 1019,
+    "sha256": "7c808ef34c0f091c6545bb274a489e6a4d6c2d12583700fd2c10b66295b12a65"
+  },
+  {
+    "path": "runner.py",
+    "bytes": 3372,
+    "sha256": "38dbf33574046a2b3c1a8dec77f07fd17389f382b93e22667e80437f56c63fe6"
+  },
+  {
+    "path": "runs/empty-after-01.json.gz",
+    "bytes": 11428,
+    "sha256": "2dcb43fdafdd17bf7e03395a0ea3352e9e381bae2b2990d46f177239378dfeb5"
+  },
+  {
+    "path": "runs/empty-after-01.log.gz",
+    "bytes": 1017,
+    "sha256": "60faa8b10658d8623e0754ba0bcb85b01bbb00735b4ae2abd34ade833b28c9c2"
+  },
+  {
+    "path": "runs/empty-before-01.json.gz",
+    "bytes": 11430,
+    "sha256": "b7d65ad2466ebfb2d71ac81daaf0c158a542ae40a12f362a67611980af469e0c"
+  },
+  {
+    "path": "runs/empty-before-01.log.gz",
+    "bytes": 972,
+    "sha256": "90868f7a3784d3400e634101791df929247a5c16a5b3e6b133b14d051b871550"
+  },
+  {
+    "path": "runs/ruling-adjacent-06.json.gz",
+    "bytes": 11411,
+    "sha256": "01fe1b5f42cc0d89236e0acd1e30862d569c2ab7777fa57d9484ba6bb5372f92"
+  },
+  {
+    "path": "runs/ruling-adjacent-06.log.gz",
+    "bytes": 3379,
+    "sha256": "cacb21df664e85484448bcffe3245a0ed804ead484e31b38580107c8827c989d"
+  },
+  {
+    "path": "runs/ruling-directed-02.json.gz",
+    "bytes": 11426,
+    "sha256": "c7837de23b875975c7ae13505e97ced9d8810a66bd1ec5dfb8d4f3ba69765939"
+  },
+  {
+    "path": "runs/ruling-directed-02.log.gz",
+    "bytes": 1016,
+    "sha256": "d0e6e0e72873d7355eab5214b72fe1fdae43a44f01da9719a1e0d06563db7805"
+  },
+  {
+    "path": "runs/ruling-directed-03.json.gz",
+    "bytes": 11421,
+    "sha256": "166d66b3e8c4ebcd932cd50700024ebbca83c29fc48c91855e50cc1cea39b00d"
+  },
+  {
+    "path": "runs/ruling-directed-03.log.gz",
+    "bytes": 1067,
+    "sha256": "08b1c5ac5995ae9258aee7531509091a7ee0f9c7e5be22f21057040dd9103de0"
+  },
+  {
+    "path": "runs/ruling-directed-04.json.gz",
+    "bytes": 11423,
+    "sha256": "345b3fc66e07ead2a9c638e9258b2fdc87a73c7e20aef2f11c45c541aafb856e"
+  },
+  {
+    "path": "runs/ruling-directed-04.log.gz",
+    "bytes": 1067,
+    "sha256": "57ad16d09cace399c6dc1a5b894646abf11a373be5ff5131e749e3f6ac94896d"
+  },
+  {
+    "path": "runs/ruling-directed-05.json.gz",
+    "bytes": 11417,
+    "sha256": "3261f7a1fba2a6f13b916e00484c3d7a743367795374c17aa19d7a9e45523573"
+  },
+  {
+    "path": "runs/ruling-directed-05.log.gz",
+    "bytes": 904,
+    "sha256": "29a2ea4d646ff5735a3b6273d8ec7cab11f82507c72d72b3e1c3a85a09a47a6b"
+  },
+  {
+    "path": "validated-rust-inputs.json",
+    "bytes": 31862,
+    "sha256": "88f3f4364ff7c4aad7fccda398c1ab2bb2dbd87294d35ef780d1207f74eabe33"
+  },
+  {
+    "path": "verification.json",
+    "bytes": 3748,
+    "sha256": "3b9380417f01b01f070d626f772a2d0bbd6f9fe10ae49852b132496065cb419e"
+  }
+]

@@ -1,0 +1,109 @@
+{
+  "baseline": "08319094a113717a1a80041fbe94ca8c139429be",
+  "ruleImplementationCommit": "cb335b5ce9c6d392782afa19b5f0dd65e4160485",
+  "runtimeChanges": [
+    "rust-game/src/mystic_contest.rs"
+  ],
+  "commentOnlyRuntimePath": "rust-game/src/batch4_vampires.rs",
+  "nativeIdentity": {
+    "engine": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.85-batch20-fourth",
+    "definitions": 246
+  },
+  "rulings": "rulings.json",
+  "native": {
+    "rulingDirected": 7,
+    "adjacentExcludingRuling": 105,
+    "uniquePassing": 112,
+    "totalLibCases": 2036,
+    "notRun": 1924,
+    "fullSuite": false
+  },
+  "validatedRustFiles": 234,
+  "originalFailure": {
+    "empty-before-01": "one new paid-last-card scenario fails at unresolved rule guard"
+  },
+  "executionHistory": [
+    {
+      "run": "empty-after-01",
+      "result": "2/3 pass; nested early removal lost original finish barrier, fixed with finite FinishingUnshown stage"
+    },
+    {
+      "run": "ruling-directed-02",
+      "result": "3/4 pass; JC030 under-two-blue premise rejects loyalty, replaced by legal JC038 granted JC041 raid"
+    },
+    {
+      "run": "ruling-directed-03",
+      "result": "6/7 pass; test assumed a popped raid had already resolved its remaining queued frame"
+    },
+    {
+      "run": "ruling-directed-04",
+      "result": "6/7 pass; bounded stack-ID-only finish still insufficient, changed test to complete full effects/stack chain"
+    },
+    {
+      "run": "ruling-directed-05",
+      "result": "7/7 pass including complete non-vampire raid and unchanged blood zones"
+    },
+    {
+      "run": "ruling-adjacent-06",
+      "result": "105 pass, ruling_7 excluded; no duplicates counted"
+    }
+  ],
+  "runs": [
+    {
+      "run": "empty-after-01",
+      "exitCode": 101,
+      "logSha256": "6fdd1eff2e96ec3300bd0c7f964db1d076f017c78681849ee27c01704d23acfe",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    },
+    {
+      "run": "empty-before-01",
+      "exitCode": 101,
+      "logSha256": "4d9a3a99a56894471713df936e09a18327b04a134de5e4ba6a273b8c879bdf9b",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    },
+    {
+      "run": "ruling-adjacent-06",
+      "exitCode": 0,
+      "logSha256": "419339baa53ec3051d7a743387f4710a9cd3f67f5e6fc81a15c3d809c7937699",
+      "sourceHead": "cb335b5ce9c6d392782afa19b5f0dd65e4160485"
+    },
+    {
+      "run": "ruling-directed-02",
+      "exitCode": 101,
+      "logSha256": "8069f4a0dfd979b3fb1c5b69b356a13b5d9585b9c25e4d360e9d331227572553",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    },
+    {
+      "run": "ruling-directed-03",
+      "exitCode": 101,
+      "logSha256": "8fa4dd8fe97a8322961d7200399f00dc1f92d3792927a4a442682d0164c81600",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    },
+    {
+      "run": "ruling-directed-04",
+      "exitCode": 101,
+      "logSha256": "5336429bf653d86f84e5509a4898c5997ff6699b66284999fb560b84bb43cf13",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    },
+    {
+      "run": "ruling-directed-05",
+      "exitCode": 0,
+      "logSha256": "4bc8a3978fd6b98ea44aaa518fd6853e69c5fedff12f99e48ff985ab259d09c3",
+      "sourceHead": "08319094a113717a1a80041fbe94ca8c139429be"
+    }
+  ],
+  "independentRuleImplementationReview": "pending; no existing local review agent available and no new thread opened",
+  "nativeCompleteCount": 22,
+  "targetBatchSize": 50,
+  "abTenNotCountedCompleteYet": true,
+  "publicAdmissionAdded": 0,
+  "wasmWebWorkerForFourthBatchRun": false,
+  "fullGameRun": false,
+  "recoveryC811Touched": false,
+  "newRuleCommitsPushed": false,
+  "mainMerged": false,
+  "deployed": false,
+  "ciDispatchedOrRerun": false,
+  "xg21CloseReview": "excluded; not retried or replaced"
+}
