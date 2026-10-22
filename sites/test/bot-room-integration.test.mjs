@@ -11,7 +11,7 @@ import { routeKernels } from '../src/kernel-router.mjs';
 import { createWorker } from '../src/http.mjs';
 import { RoomStore } from '../src/store.mjs';
 import { RoomService } from '../src/service.mjs';
-import { restoreBotPolicy, botCandidateAlternatives } from '../src/bot-policy.mjs';
+import { createBotPolicy, restoreBotPolicy, botCandidateAlternatives } from '../src/bot-policy.mjs';
 const kernel=routeKernels(raw),project=fileURLToPath(new URL('../',import.meta.url));
 const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const seed='9007199254740993';
@@ -98,6 +98,17 @@ test('Bot creation atomically fills and readies server seats, keeps one human cr
   const room=await f.store().room(s.roomId),p=await f.service().botPolicy(s.roomId,room.version);assert.equal(p.seed,seed);assert(room.initial_state.includes('"seed":9007199254740993'));assert.equal(p.counter,'0');
   await replay(f,s);
  }
+});
+test('an orphan checkpoint cannot authorize Bots or expose their mode in a human room',async t=>{
+ const f=await fixture(t),r=await f.api('/api/rooms',{requestId:crypto.randomUUID(),name:'真人房',mode:'duel',deckId:'watchers'});assert.equal(r.status,200);const s=r.body;
+ const ready=await f.command(s,'human-only-ready',s.view.version,{kind:'game',action:{kind:'ready'}});assert.equal(ready.status,200);
+ // Deliberately corrupt only this synthetic journal: it has no version0 root.
+ const orphan=createBotPolicy({roomId:s.roomId,difficulty:'hard',botSeats:[1],seed});
+ await f.store().stmt("UPDATE journal SET entry=json_set(entry,'$.SessionEvents.botState',json(?)) WHERE room_id=? AND version=?",JSON.stringify(orphan),s.roomId,ready.body.version).run();
+ const metadata=await f.store().botState(s.roomId,ready.body.version);assert.equal(metadata.genesis,null);assert.equal(metadata.current,null);
+ assert.equal(await f.service().botPolicy(s.roomId,ready.body.version),null);
+ const view=await f.state(s);assert.equal(view.status,200);assert(!view.body.botMatch);assert.equal(view.body.players.length,1);
+ assert(f.accesses.length===0);assert.equal(await f.count('commands',s.roomId),1);
 });
 test('Bot invitations, forged server decision IDs and mode changes reject without writes',async t=>{
  const f=await fixture(t),{session:s}=await f.create('hard');const before=await f.snapshot(s.roomId);

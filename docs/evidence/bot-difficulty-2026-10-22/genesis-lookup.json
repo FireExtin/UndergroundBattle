@@ -1,0 +1,39 @@
+{
+  "baseCommit": "251129e878d607606a4b20719307e2d8f65e1bc8",
+  "scope": "author local incremental performance/authority check; no deployment",
+  "behavior": "Bot checkpoint lookup is conditional on indexed version0 genesis. Human rooms skip the current-checkpoint history scan. Orphan metadata cannot authorize Bots.",
+  "sources": {
+    "sites/src/store.mjs": "cb411104c2ed6ea6597b9fbde83601e2ad2c35a225eb5f2d92c2cc6b540261e1",
+    "sites/test/bot-room-integration.test.mjs": "f5f0c68a8ad581d8a9d5ea2767da1efd23c3b91aaeea9ef0000ddafc10f4b92e"
+  },
+  "logs": {
+    "bot-genesis-shortcut-01.log": {
+      "sha256": "e34677ae3d04ade4688ae7df78436200c67f02ecfee394a7b42657342f8aa0e7",
+      "bytes": 750,
+      "status": "passed"
+    },
+    "bot-human-regressions-02.log": {
+      "sha256": "818f1ef4982a3bbd2f8c0d887b6d8a1b354fd8b59bd91aae0224d0da9aafa836",
+      "bytes": 2208,
+      "status": "passed"
+    },
+    "bot-backend-build-02.log": {
+      "sha256": "c9c2f06d1a55cf98eee72f90ce617355e14c36ce25ae1ce2bd7f66c5533d06dd",
+      "bytes": 702,
+      "status": "passed"
+    },
+    "bot-worker-03.log": {
+      "sha256": "ea99d101bef029d5858cc456c22375a09e8ad9e8c49e322e45f841977252a747",
+      "bytes": 393,
+      "status": "passed"
+    }
+  },
+  "directedD1Cases": 6,
+  "existingHumanRegressions": 17,
+  "bundledWorkerCases": 1,
+  "webChanged": false,
+  "kernelChanged": false,
+  "fullMatchRepeated": false,
+  "priorFullMatchEvidence": "room-integration.json at preceding251129e8; not re-labelled as a fresh match",
+  "independentReview": "pending"
+}

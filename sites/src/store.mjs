@@ -19,7 +19,10 @@ export class RoomStore {
   async botState(id, version = Number.MAX_SAFE_INTEGER) {
     // Immutable genesis authorizes Bot mode. Later policy checkpoints share the
     // exact CAS transaction with the accepted Rust command; state stays opaque.
-    return this.stmt("SELECT (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version=0) AS genesis, (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version<=? AND json_type(entry,'$.SessionEvents.botState')='object' ORDER BY version DESC LIMIT 1) AS current", id, id, version).first();
+    // Human rooms have no Bot genesis. CASE avoids scanning their whole command
+    // history for a checkpoint, including when practice is globally enabled.
+    // An orphan checkpoint can never grant authority without that genesis.
+    return this.stmt("WITH bot_root AS (SELECT (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version=0) AS genesis) SELECT genesis, CASE WHEN genesis IS NULL THEN NULL ELSE (SELECT json_extract(entry,'$.SessionEvents.botState') FROM journal WHERE room_id=? AND version<=? AND json_type(entry,'$.SessionEvents.botState')='object' ORDER BY version DESC LIMIT 1) END AS current FROM bot_root", id, id, version).first();
   }
   async create({ id, invite, state, initialState = state, version = 0, entries = [], nonce, tokenHash, requestHash, intentHash, response }) {
     await this.db.batch([
