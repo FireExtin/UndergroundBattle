@@ -1,5 +1,11 @@
 # A/B隐秘对抗集成检查点
 
+当前状态以 [生命周期整合报告](PACK_AB_LIFECYCLE_INTEGRATION_2026-10-22.md) 为准：
+A/B公共层与五挂钩已实际接通，三层嵌套、BQ038祖先收据及两恢复入口已有定向证据。
+下方各“待交付／空hooks／未支持嵌套／待阈值裁定”段落均是保留的历史检查点，不能作当前阻塞。
+仍未闭合的是 [两个规则场景及建议](PACK_AB_RULE_BOUNDARIES_2026-10-22.md)，并未改写成0费或非法结附。
+XQ20阈值已按用户裁定保留原事件快照和一次完成；XQ20整卡仍不是已验收实现。
+
 集成树固定在ce022d5c，仍原生22/50。A在独立普通克隆编写共享核和WM021/WM022/WM032/WM061/BQ082；B的BQ027/BQ031/BQ032/BQ036/BQ038保留归属，未在本树复制代码。此文是接线准备清单，不是源码审查结论或测试通过证据。
 
 A报告拟固定类型`mystic_contest::{MysticContest, ContestOutcome, MysticShown}`，入口`Game::mystic_contest_start(frame: ResolutionFrame, actor_bonus: u32) -> RuleResult<()>`。提交和奖励继续使用`ChoiceResolution::Frame`。结果保留contest_id/turn/frame_id/actor/source/ability_key/participants/shown/totals/winner_team/first_winners，展示项保存原卡和当次加值来源见证。现有费用、响应、续体、恢复与四席视图入口继续复用。
