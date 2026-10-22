@@ -1,0 +1,398 @@
+{
+  "before": "bb77eb8ad69738ebecad860d60df05a9276efd00",
+  "base": "59ac43d0d6fa142577fd59c892e49302208f018b",
+  "runtimeFix": "66bc75f09b1cb403bebfff4654b134858a7eb376",
+  "oldCount": 193,
+  "currentCount": 213,
+  "nonRegionCount": 203,
+  "unchangedPrecedingRecords": true,
+  "precedingCanonicalSha256": "0e85e0784acef129cea818f4c2fb694912070fbb17bde53b61d52d2fb2def01e",
+  "added": [
+    {
+      "id": "WM030",
+      "color": "红",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "BQ042",
+      "color": "红",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "WM033",
+      "color": "红",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "XG26",
+      "color": "黑",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "WM035",
+      "color": "红",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    },
+    {
+      "id": "JZ25",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "XG28",
+      "color": "黑",
+      "kind": "attachment",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "BQ089",
+      "color": "黑",
+      "kind": "spell",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "JC062",
+      "color": "灰",
+      "kind": "spell",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "XQ22",
+      "color": "灰",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    },
+    {
+      "id": "JC064",
+      "color": "灰",
+      "kind": "attachment",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "BQ087",
+      "color": "黑",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    },
+    {
+      "id": "BQ079",
+      "color": "黑",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "WM041",
+      "color": "灰",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    },
+    {
+      "id": "XQ26",
+      "color": "灰",
+      "kind": "attachment",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "BQ037",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    },
+    {
+      "id": "BQ029",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "BQ026",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": [
+        "attachment"
+      ],
+      "unique": false
+    },
+    {
+      "id": "JZ26",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": false
+    },
+    {
+      "id": "CQ07",
+      "color": "蓝",
+      "kind": "character",
+      "additionalKinds": null,
+      "unique": true
+    }
+  ],
+  "colorPools": {
+    "红": [
+      "BQ042",
+      "JC042",
+      "JC043",
+      "JC044",
+      "JC045",
+      "JC046",
+      "JC047",
+      "JC048",
+      "JC049",
+      "JC050",
+      "JC051",
+      "JC052",
+      "JC054",
+      "JC055",
+      "JZ30",
+      "JZ31",
+      "JZ32",
+      "JZ33",
+      "JZ34",
+      "JZ35",
+      "JZ37",
+      "JZ41",
+      "WM030",
+      "WM033",
+      "WM034",
+      "WM035",
+      "WM038",
+      "XQ17",
+      "XQ18"
+    ],
+    "灰": [
+      "BQ054",
+      "BQ059",
+      "CQ16",
+      "CQ17",
+      "JC056",
+      "JC057",
+      "JC058",
+      "JC059",
+      "JC060",
+      "JC061",
+      "JC062",
+      "JC063",
+      "JC064",
+      "JC065",
+      "JC066",
+      "JC067",
+      "JC068",
+      "JC069",
+      "JZ43",
+      "JZ44",
+      "JZ45",
+      "JZ46",
+      "WM039",
+      "WM040",
+      "WM041",
+      "WM042",
+      "XQ22",
+      "XQ23",
+      "XQ24",
+      "XQ25",
+      "XQ26",
+      "XQ27"
+    ],
+    "黑": [
+      "BQ077",
+      "BQ078",
+      "BQ079",
+      "BQ080",
+      "BQ083",
+      "BQ085",
+      "BQ087",
+      "BQ089",
+      "BQ091",
+      "BQ094",
+      "CQ26",
+      "JC084",
+      "JC085",
+      "JC086",
+      "JC087",
+      "JC088",
+      "JC089",
+      "JC090",
+      "JC091",
+      "JC092",
+      "JC093",
+      "JC094",
+      "JC095",
+      "JC096",
+      "JZ48",
+      "JZ49",
+      "JZ50",
+      "JZ52",
+      "JZ54",
+      "JZ55",
+      "JZ57",
+      "WM056",
+      "WM059",
+      "WM062",
+      "XG26",
+      "XG27",
+      "XG28",
+      "XQ36",
+      "XQ37",
+      "XQ38",
+      "XQ39"
+    ]
+  },
+  "colorUniques": {
+    "红": [
+      "JC051",
+      "JC052",
+      "JC055",
+      "JZ34",
+      "WM034",
+      "WM035"
+    ],
+    "灰": [
+      "CQ17",
+      "JC066",
+      "JC067",
+      "JC068",
+      "WM041",
+      "XQ22"
+    ],
+    "黑": [
+      "BQ085",
+      "BQ087",
+      "CQ26",
+      "JC094",
+      "JC095",
+      "JC096",
+      "JZ52",
+      "WM059",
+      "XG27",
+      "XQ38",
+      "XQ39"
+    ]
+  },
+  "sourceImages": [
+    {
+      "id": "BQ042",
+      "image": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg",
+      "sha256": "001730fa1a7a31e37a46199eafddf1552301e963ba6f71cb643bbd3b9524b77b"
+    },
+    {
+      "id": "CQ07",
+      "image": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg",
+      "sha256": "984f31d092e4af4c4b7c5379fdbbf8d8da2899b36d34df7d18f2d660696551db"
+    },
+    {
+      "id": "WM030",
+      "image": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg",
+      "sha256": "f9280a0ed2be33c2af400aadc9a7200da10ed080cf5efff91913a970cc6db2c4"
+    },
+    {
+      "id": "WM033",
+      "image": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg",
+      "sha256": "0c0162afcfb414e9cd339b6daf84d1649a28da7e1621fbd41bb8d742edc21b5f"
+    },
+    {
+      "id": "WM035",
+      "image": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg",
+      "sha256": "d4c8fc49f6d4b5548ae4d9e6c12210ed818ef590d9e4042d0669e3bbca1d475a"
+    },
+    {
+      "id": "BQ079",
+      "image": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg",
+      "sha256": "fcde5f7ff03c98b8dd35c4ba5a0bf65a626fe502d60935a7a7c649434694cb48"
+    },
+    {
+      "id": "BQ087",
+      "image": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg",
+      "sha256": "1ff416b5daa1cce35093529702d28f4319c197a46e9001cd54cde4b9dd73ef76"
+    },
+    {
+      "id": "BQ089",
+      "image": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg",
+      "sha256": "8cb7a6a1a1b605847e36d3419811576c36f482f5e762eb79e0ea0429188970e0"
+    },
+    {
+      "id": "XG26",
+      "image": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg",
+      "sha256": "cf75fa86f3bd93896b7bc948c10f4899a851b51d83bfd144237db225539bc2b0"
+    },
+    {
+      "id": "XG28",
+      "image": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg",
+      "sha256": "068de04ce0996eacf8d65744093c3abb84bb4282a520e8664f01ec719fa2c87a"
+    },
+    {
+      "id": "BQ026",
+      "image": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg",
+      "sha256": "4c5760661d57f4e4038f2f73f71aeaa8155dcf7430bfe06141315b66e18e7d59"
+    },
+    {
+      "id": "BQ029",
+      "image": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg",
+      "sha256": "849e95431dec1efb484059dd0f4b7074d91081b5d49179fd7ec1495aadd94a6e"
+    },
+    {
+      "id": "BQ037",
+      "image": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg",
+      "sha256": "c01ec903a562e241d0300be9c12e875aa8d2fac473654703aaaa694979554101"
+    },
+    {
+      "id": "JZ25",
+      "image": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg",
+      "sha256": "c2167c5a7c43e9e703d1cc38f59b722e7f96890cfd02d507819a0e9d3acfa8a9"
+    },
+    {
+      "id": "JZ26",
+      "image": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg",
+      "sha256": "915b3adfa1aea56b6f5807ec89fb0412c16bd7bb225357621ae84a730a0751c9"
+    },
+    {
+      "id": "JC062",
+      "image": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg",
+      "sha256": "7a66629a3059ff47d0707b267d165ea933b43caf95dcd92545655504361bde03"
+    },
+    {
+      "id": "JC064",
+      "image": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg",
+      "sha256": "c4a1a79eba67f836cf148b7e4a8ee7064070d5749fb5eb0bb808ac33ef19bd60"
+    },
+    {
+      "id": "XQ22",
+      "image": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg",
+      "sha256": "a28fdc6056637aff8e569249285cff04de76cc117cc9c7967e180e99890a2840"
+    },
+    {
+      "id": "XQ26",
+      "image": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg",
+      "sha256": "a4bb056437eb09c9fe2edc549a9416ecdd4488e4faf436714294f212de10c854"
+    },
+    {
+      "id": "WM041",
+      "image": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg",
+      "sha256": "cb3b5bbb4bd97289146f646d3a56d51e668a9e54b10750c591273fa9ddd73090"
+    }
+  ],
+  "scope": "Read-only catalogue/source audit; no independent dynamic test claim"
+}

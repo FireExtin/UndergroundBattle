@@ -1,0 +1,28 @@
+{
+  "candidate": "59ac43d0d6fa142577fd59c892e49302208f018b",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "--test-threads=2"
+  ],
+  "pid": 3,
+  "startedAtUtc": "2026-10-22T14:02:52.176308+00:00",
+  "cpuAffinity": [
+    30,
+    31
+  ],
+  "cargoJobs": 1,
+  "status": "finished",
+  "exitCode": 101,
+  "seconds": 415.866,
+  "finishedAtUtc": "2026-10-22T14:09:48.042120+00:00"
+}

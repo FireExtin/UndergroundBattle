@@ -1,0 +1,31 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--doc",
+    "--",
+    "--test-threads=2"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+  "pid": 2,
+  "startUtc": "2026-10-22T14:53:25.869173+00:00",
+  "base": "932de1da80809e5535688a7e0c7d7910b5de8862",
+  "affinity": [
+    30,
+    31
+  ],
+  "nice": 19,
+  "cargoBuildJobs": 1,
+  "rustTestThreads": 2,
+  "state": "complete",
+  "log": "abi94-regressions-doc-01.log",
+  "exitCode": 0,
+  "seconds": 0.866,
+  "endUtc": "2026-10-22T14:53:26.737816+00:00"
+}

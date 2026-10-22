@@ -1,0 +1,33 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--package",
+    "hegemony-server",
+    "--lib",
+    "batch3_reward_tests",
+    "--",
+    "--test-threads=2"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-abi94-recovery-fix",
+  "pid": 2,
+  "startUtc": "2026-10-22T14:39:18.947782+00:00",
+  "base": "66bc75f09b1cb403bebfff4654b134858a7eb376",
+  "affinity": [
+    30,
+    31
+  ],
+  "nice": 19,
+  "cargoBuildJobs": 1,
+  "rustTestThreads": 2,
+  "state": "complete",
+  "log": "abi94-regressions-rewards-red-01.log",
+  "exitCode": 101,
+  "seconds": 22.439,
+  "endUtc": "2026-10-22T14:39:41.387331+00:00"
+}
