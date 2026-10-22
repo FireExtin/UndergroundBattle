@@ -1,0 +1,110 @@
+{
+  "format": "abi94-jc005-jc060-targeted-author-candidate-v1",
+  "recordedAt": "2026-10-22T03:03:05.476451+00:00",
+  "baseCommit": "820847fd9614dc9bf5287739897daa2007f2a62a",
+  "frozenThirdCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "scope": "Only existing third-batch JC005 and JC060 corrections; no fourth-batch cards/programs",
+  "sourceDifferences": "Runtime delta from820 is only rust-game/src/jc060.rs live-recipient lookup; test module/lib test registration and tooling/evidence added",
+  "originalHelperCodeSha256": "0090a80f02c19137634632e45adb03b8073270cd1a1a7e426cf4245f8c2dec41",
+  "beforeProof": "Actual paid BQ026 deployment/attachment executed on fourth development source with byte-identical old JC060 helper; expected1/actual0. Failed trace retained here. Not mislabelled as an ABI94 pre-fix execution.",
+  "nativeFilters": {
+    "jc005": 13,
+    "jc060": 23
+  },
+  "freshExportCommands": [
+    "JC005_SOCIETY_NATIVE_OUT=<new02path> JC060_ATTACHED_NATIVE_OUT=<new02path> python3 ../run-batch4-native.py abi94-adviser-native-02 jc005 jc060"
+  ],
+  "nativeExportsActuallyRerun": true,
+  "societyRawMatchesPriorExport": "Expected: scenario unaffected by adviser source change. A fresh Native exporter was executed; no old opaque JSON or bundle header was edited.",
+  "nativeWasm": {
+    "commands": 55,
+    "cases": 4,
+    "fourViewComparisons": 236,
+    "sourceManifestFiles": 230,
+    "sourceManifestSha256": "260390f0887726b92a86085da3affa92f5bee2c7972a177f83be05657dd88fdf",
+    "wasmSha256": "2c91b4ce169c57fa1a7cf179ac4ce0ed29c2c175404df11719ff94f047097c31",
+    "wasmBytes": 5026336
+  },
+  "workerD1": {
+    "passed": 4,
+    "failed": 0,
+    "acceptedReceipts": 52,
+    "originalReceiptOnRetry": true,
+    "restores": 5,
+    "fourSeatsEveryStep": true,
+    "embeddedWasmHashVerified": true
+  },
+  "localStartup": {
+    "rootStatus": 200,
+    "healthStatus": 200,
+    "catalogStatus": 200,
+    "fullCatalogCompared": true,
+    "ownedServerStopped": true
+  },
+  "catalog": {
+    "definitions": 213,
+    "constructionSupported": 213,
+    "engineVersion": "rust-v0.2.94-batch20-third",
+    "cardPoolVersion": "limited-v2.84-batch20-third"
+  },
+  "preserved": [
+    "Frozenb80 and JC005-only820 clones/packages untouched",
+    "Earlier source/WASM/opaque evidence retained at their original paths",
+    "Initial RoomView borrow compile failure log preserved; no production change needed for that test error"
+  ],
+  "logs": [
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-native-01-jc005.log.gz",
+      "rawBytes": 3306,
+      "rawSha256": "cb72032a538c880894f770d513ff85caa5b7ebea7064ff0e53d153aa9fbcaf7e"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-native-02-jc005.log.gz",
+      "rawBytes": 1935,
+      "rawSha256": "1ad0a2b41b8d709bfa123b6feb232dbee03ddc25c8f4f94b23e82ee524decfb3"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-native-02-jc060.log.gz",
+      "rawBytes": 2517,
+      "rawSha256": "4612a77a18ab0862aa96bfd193e853dd55ab4d2c16e79af33d397b4a21018620"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-wasm-build-01.log.gz",
+      "rawBytes": 1404,
+      "rawSha256": "59d1270beae15356df4b88323c571f4be005ebfc7b295e11294ca74e75eaa3be"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-worker-build-01.log.gz",
+      "rawBytes": 1098,
+      "rawSha256": "f5ee36e67b1d2bd46b28b29bd51ea2bd50fc6210a2592b44689de795565333d0"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-worker-d1-01.log.gz",
+      "rawBytes": 1596,
+      "rawSha256": "30b2427104b8e0ef56a460bc603eb10548f755899ed73badf7bb47cae67e0f57"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/abi94-adviser-local-start-01.log.gz",
+      "rawBytes": 175,
+      "rawSha256": "4d67de860811edcc040e6b6fea9a6d5c3f07340dc2aa15bdf3a24e53f402a95b"
+    },
+    {
+      "path": "docs/evidence/jc060-attached-character-2026-10-22/batch4-jc060-attached-before-jc060_attached_bat.log.gz",
+      "rawBytes": 1125,
+      "rawSha256": "f515bf23de6ca585afa4a234dc332d2162de2f2300e40f1d94ec4e63354ca616"
+    }
+  ],
+  "notPerformed": [
+    "Full product rerun",
+    "Independent source or execution review of new JC060 change",
+    "Natural browser battle",
+    "Publication or production403 retry",
+    "Aliyun operation",
+    "CI dispatch/rerun, main merge or force push"
+  ],
+  "publication": {
+    "performed": false,
+    "acceptedThirdBatch": 0,
+    "blocker": "Existing Sites deployment last confirmed pending and source sync credential absent; parent coordinates authorization. Not missing general user publishing approval."
+  }
+}

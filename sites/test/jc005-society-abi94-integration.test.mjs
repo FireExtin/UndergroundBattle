@@ -12,7 +12,7 @@ import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
-const native=loadCurrentFixture('docs/evidence/jc005-society-target-2026-10-22/abi94-society.current.json.gz');
+const native=loadCurrentFixture('docs/evidence/jc060-attached-character-2026-10-22/abi94-society.current.json.gz');
 const modules=[{type:'ESModule',path:resolve('dist/server/index.js')},...readdirSync('dist/server').filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:resolve('dist/server',n)}))];
 assert.equal(modules.filter(m=>m.type==='CompiledWasm').length,1,'Package only the current kernel');
 assert.equal(sha256(readFileSync(modules[1].path)),currentWasmSha256,'Worker embeds corrected current bytes');

@@ -29,10 +29,10 @@ for(const c of native.cases){
   }
 }
 assert.equal(rejections,3);assert.equal(responses,2);
-const output='docs/evidence/jc005-society-target-2026-10-22/abi94-society.current.json.gz';
+const output='docs/evidence/jc060-attached-character-2026-10-22/abi94-society.current.json.gz';
 if(existsSync(output))assert.deepEqual(loadCurrentFixture(output),native,'Never overwrite or relabel old evidence');
 else writeCurrentFixture(output,native);
-const inventory='docs/evidence/jc005-society-target-2026-10-22/abi94-source-inventory.json';
+const inventory='docs/evidence/jc060-attached-character-2026-10-22/abi94-source-inventory.json';
 if(existsSync(inventory))assert.deepEqual(JSON.parse(readFileSync(inventory)),currentSourceManifest);
 else writeFileSync(inventory,JSON.stringify(currentSourceManifest,null,2)+'\n',{flag:'wx'});
 process.stdout.write(JSON.stringify({format:'jc005-society-abi94-author-parity-v1',identity:Object.fromEntries(['rulesVersion','cardPoolVersion','engineVersion'].map(k=>[k,catalog[k]])),cases:3,commands,rejectedCommands:rejections,acceptedResponseSubmits:responses,fourViews:4*(commands+3),originalHighU64Seeds:true,wasmBytes:moduleBytes.length,wasmSha256:currentWasmSha256,sourceManifestSha256:currentSourceManifestSha256,sourceManifestFiles:Object.keys(currentSourceManifest.files).length,nativeRawJsonBytes:nativeBytes.length,nativeRawJsonSha256:sha256(nativeBytes),output,scope:'Author targeted Native/WASM comparison only; no full-suite, independent, publication or browser acceptance'},null,2)+'\n');

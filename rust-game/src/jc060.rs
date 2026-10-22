@@ -38,11 +38,7 @@ impl Game {
         if c.face_down || printed.kind != "character" || printed.magic_icon != MagicIcon::None {
             return 0;
         }
-        let Some(live) = self
-            .regions
-            .iter()
-            .flat_map(|r| &r.cards)
-            .find(|live| live.id == c.id)
+        let Some((_, live)) = self.board(&c.id)
         else {
             return 0;
         };

@@ -1,0 +1,22 @@
+{
+  "format": "jc005-society-abi94-author-parity-v1",
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.84-batch20-third",
+    "engineVersion": "rust-v0.2.94-batch20-third"
+  },
+  "cases": 3,
+  "commands": 40,
+  "rejectedCommands": 3,
+  "acceptedResponseSubmits": 2,
+  "fourViews": 172,
+  "originalHighU64Seeds": true,
+  "wasmBytes": 5026336,
+  "wasmSha256": "2c91b4ce169c57fa1a7cf179ac4ce0ed29c2c175404df11719ff94f047097c31",
+  "sourceManifestSha256": "260390f0887726b92a86085da3affa92f5bee2c7972a177f83be05657dd88fdf",
+  "sourceManifestFiles": 230,
+  "nativeRawJsonBytes": 4239174,
+  "nativeRawJsonSha256": "8db2555b53a51d62a66595851bf37f2f90600c0173c98d6509959f1cbec675b3",
+  "output": "docs/evidence/jc060-attached-character-2026-10-22/abi94-society.current.json.gz",
+  "scope": "Author targeted Native/WASM comparison only; no full-suite, independent, publication or browser acceptance"
+}

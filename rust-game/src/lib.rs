@@ -1,3 +1,5 @@
+#[cfg(test)]
+mod jc060_attached_current_tests;
 mod batch3;
 mod batch3_phoebe;
 #[cfg(test)]
