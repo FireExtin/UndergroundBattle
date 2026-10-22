@@ -158,7 +158,8 @@ impl Game {
     /// Successful actual attachment only. No targeting attempt, entry of the
     /// observer itself, host movement, or unchanged reattachment calls this.
     pub(crate) fn observe_attachment_committed(&mut self, attachment_id: &str) {
-        let mixed = self.bq041_observe_attachment(attachment_id) > 0;
+        let feast = self.bq041_observe_attachment(attachment_id);
+        let mixed = self.bq031_observe_attachment(attachment_id) + feast > 0;
         let Some(attachment) = self.attachments.iter().find(|a| a.card.id == attachment_id) else {
             return;
         };

@@ -35,7 +35,7 @@ impl Game{
         self.validate_batch3_declaration(d)?;let options=self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
         if d.ability.key!="raid-1" || !matches!(stage,DeclareChoice::Target) || options.is_empty() || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card("BQ029").name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&options,&p.choice.options){return Err("赤鳞近卫袭击须保留原现身目标选择".into());}Ok(())
     }
-    pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || c.definition=="BQ029" && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
+    pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || matches!(c.definition.as_str(),"BQ029"|"BQ031"|"BQ032") && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
     pub(crate) fn bq029_pay_extra(&mut self,actor:usize)->RuleResult<PaidCost>{let ids=self.players[actor].assets.iter().filter(|a|!a.exhausted).take(1).map(|a|a.id.clone()).collect::<Vec<_>>();self.pay(actor,1)?;Ok(PaidCost::BQ029ExtraAssets(ids))}
     pub(crate) fn bq029_observe_entry(&mut self,id:&str,extra:Option<BQ029ExtraPayment>){
         let Some((r,c))=self.board(id).filter(|(_,c)|c.definition=="BQ029" && !c.face_down)else{return;};let actor=c.controller;let moon=self.players[actor].society_zone.secrecy;if extra.is_none() && moon==0{return;}
@@ -74,7 +74,7 @@ impl Game{
     fn blood_recipients(&self,f:&ResolutionFrame)->RuleResult<Vec<String>>{
         match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>Ok(vec![o.entered.card.id.clone(),f.source.card.id.clone()]),[Step{op:Op::BQ029SelfFeed{..},..}]=>Ok(vec![f.source.card.id.clone()]),_=>Err("非准入饮血程序".into())}
     }
-    fn blood_drinker(&self,id:&str)->Option<&Card>{self.board(id).map(|(_,c)|c).filter(|c|!c.face_down && catalog::card(&c.definition).kind=="character" && !self.players[c.controller].eliminated && self.current_subtypes(c).iter().any(|s|s=="吸血鬼"))}
+    pub(crate) fn blood_drinker(&self,id:&str)->Option<&Card>{self.board(id).map(|(_,c)|c).filter(|c|!c.face_down && catalog::card(&c.definition).kind=="character" && !self.players[c.controller].eliminated && self.current_subtypes(c).iter().any(|s|s=="吸血鬼"))}
     fn validate_blood_cursor(&self,f:&ResolutionFrame,state:&BloodFeedCursor)->RuleResult<()> {
         if state.recipients!=self.blood_recipients(f)? || state.cursor>state.recipients.len() || state.completed.len()!=state.cursor {return Err("饮血续体必须保留每个已处理收受者的收据".into());}
         let event_id=match f.steps.as_slice(){[Step{op:Op::BQ037FeedPair{observation:Some(o)},..}]=>&o.event_id,[Step{op:Op::BQ029SelfFeed{observation:Some(o)},..}]=>&o.event_id,_=>return Err("非准入饮血事件".into())};let event=event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).ok_or("饮血事件身份无效")?;
@@ -84,7 +84,7 @@ impl Game{
             else if self.blood_drinker(&done.recipient).is_some_and(|c|!self.blood_options(c.controller).is_empty()){return Err("有可用鲜血的原收受者不能被续体跳过".into());}
         }Ok(())
     }
-    fn blood_options(&self,seat:usize)->Vec<ChoiceOption>{
+    pub(crate) fn blood_options(&self,seat:usize)->Vec<ChoiceOption>{
         let mut out=self.players[seat].graveyard.iter().filter(|c|c.owner==seat && catalog::card(&c.definition).name=="鲜血" && catalog::card(&c.definition).kind=="attachment").map(|c|self.option(c,seat,None,Some(&format!("{}（墓地）",catalog::card(&c.definition).name)))).collect::<Vec<_>>();
         out.extend(self.sealed_cards.iter().filter(|s|s.host_id==format!("society:p{seat}") && catalog::card(&s.card.definition).name=="鲜血" && catalog::card(&s.card.definition).kind=="attachment").map(|s|ChoiceOption{id:s.card.id.clone(),label:"鲜血（本方秘社封印）".into(),card:Some(self.sealed_card_view(&s.card,seat))}));out
     }
@@ -101,8 +101,13 @@ impl Game{
     pub(crate) fn blood_feed_complete(&mut self,f:&ResolutionFrame,mut state:BloodFeedCursor,chooser:usize,a:&Action,selected:&[String])->RuleResult<()> {
         self.validate_batch3_frame(f)?;self.validate_blood_cursor(f,&state)?;let host=state.recipients.get(state.cursor).ok_or("饮血续体越界")?.clone();let c=self.blood_drinker(&host).ok_or("饮血原角色已失效")?;
         if f.cursor!=1 || !matches!(f.guard,GuardState::Accepted) || state.recipients!=self.blood_recipients(f)? || chooser!=c.controller || selected.len()!=1 || !self.blood_options(chooser).iter().any(|o|o.id==selected[0]) || *a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("饮血确认来源、操控者或鲜血选择不符".into());}
-        let c=if let Some(i)=self.players[chooser].graveyard.iter().position(|c|c.id==selected[0]){self.players[chooser].graveyard.remove(i)}else{let i=self.sealed_cards.iter().position(|s|s.card.id==selected[0] && s.host_id==format!("society:p{chooser}")).ok_or("原秘社封印鲜血失效")?;self.sealed_cards.remove(i).card};
-        let mut c=self.reset_zone_card(c);c.controller=chooser;let id=c.id.clone();let definition=c.definition.clone();self.attachments.push(Attachment{card:c,host_id:host.clone()});self.enter_triggers(chooser,&definition,&id,false);state.completed.push(BloodFeedStep{recipient:host,attached:Some(id)});state.cursor+=1;self.blood_feed_start(f.clone(),state)
+        let (definition,id)=self.attach_selected_blood(chooser,&host,&selected[0])?;
+        self.enter_triggers(chooser,&definition,&id,false);state.completed.push(BloodFeedStep{recipient:host,attached:Some(id)});state.cursor+=1;self.blood_feed_start(f.clone(),state)
+    }
+    pub(crate) fn attach_selected_blood(&mut self,chooser:usize,host:&str,selected:&str)->RuleResult<(String,String)> {
+        if self.blood_drinker(host).is_none_or(|c|c.controller!=chooser) || !self.blood_options(chooser).iter().any(|o|o.id==selected) {return Err("实际饮血来源或收受者已失效".into());}
+        let c=if let Some(i)=self.players[chooser].graveyard.iter().position(|c|c.id==selected){self.players[chooser].graveyard.remove(i)}else{let i=self.sealed_cards.iter().position(|s|s.card.id==selected && s.host_id==format!("society:p{chooser}")).ok_or("原秘社封印鲜血失效")?;self.sealed_cards.remove(i).card};
+        let mut c=self.reset_zone_card(c);c.controller=chooser;let id=c.id.clone();let definition=c.definition.clone();self.attachments.push(Attachment{card:c,host_id:host.into()});Ok((definition,id))
     }
     fn bq037_front_vampire(&self,f:&ResolutionFrame)->bool{f.targets.first().and_then(|t|self.board(&t.id)).is_some_and(|(_,c)|c.face_down && c.controller==f.actor && catalog::card(&c.definition).kind=="character" && catalog::card(&c.definition).subtypes.iter().any(|s|s=="吸血鬼"))}
     fn bq037_reveal_options(&self,f:&ResolutionFrame)->Vec<ChoiceOption>{f.targets.first().and_then(|t|self.board(&t.id)).map(|(r,c)|vec![self.option(c,f.actor,Some(r),Some("令该吸血鬼现身"))]).unwrap_or_default()}

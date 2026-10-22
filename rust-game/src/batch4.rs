@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if let Some(d) = crate::batch4_vampires::definition(id) { return Some(d); }
     if id == "XQ21" { return Some(crate::batch4_markers::definition()); }
     if id == "JZ51" { return Some(crate::batch4_wendigo::definition()); }
     if id == "XG18" { return Some(crate::batch4_omega::definition()); }
@@ -56,6 +57,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     Some(d)
 }
 fn owns(ops: &[Op]) -> bool {
+    if crate::batch4_vampires::owns(ops) { return true; }
     ops.iter().any(|op| match op {
         Op::XQ21CopyMarker | Op::JZ51TopEightCorpses | Op::JZ51GraveEntry | Op::XG18RenownPlay { .. } | Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
@@ -65,7 +67,7 @@ fn owns(ops: &[Op]) -> bool {
     })
 }
 pub(crate) fn related(a: &AbilitySpec) -> bool {
-    a.key.starts_with("batch4-") || matches!(a.event,Some(Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
+    a.key.starts_with("batch4-") || matches!(a.event,Some(Event::BQ031Attachment|Event::BQ038Raid|Event::DisasterPlayed|Event::WM060CriminalEntered|Event::BQ041BloodAttached|Event::JZ38HostDied))
         || owns(&a.ops) || a.modes.iter().any(|m| owns(&m.ops))
         || a.costs.iter().any(|c| matches!(c, Cost::JZ51SealThreeCorpses | Cost::JZ39SacrificeDemon | Cost::JZ36SacrificeBatch))
         || a.targets.iter().any(|t| matches!(t.predicate, Some(TargetPredicate::XQ21MarkedCarrier | TargetPredicate::XG16CharacterOrAttachment | TargetPredicate::Batch4DestroyedRegion | TargetPredicate::JZ40CharacterOrAttachment | TargetPredicate::JZ36CharacterOrAttachment)))
@@ -76,6 +78,7 @@ fn frame_related(f: &ResolutionFrame) -> bool {
         || f.already_paid.iter().any(|p| matches!(p, PaidCost::JZ39Demon(_)))
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    if crate::batch4_vampires::CARDS.contains(&id) { return crate::batch4_vampires::canonical(id, a); }
     if id == "XG18" { return crate::batch4_omega::canonical(a); }
     if id == "XG16" { return crate::batch4_timekeeper::canonical(a); }
     if id == "JZ36" { return crate::batch4_blood::canonical(a); }
@@ -116,6 +119,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if crate::batch4_vampires::CARDS.contains(&id) { return crate::batch4_vampires::validate_action(id, a); }
     if id == "XQ21" { return crate::batch4_markers::validate_action(a); }
     if id == "JZ51" { return crate::batch4_wendigo::validate_action(a); }
     if id == "XG18" { return crate::batch4_omega::validate_action(a); }
@@ -193,6 +197,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::batch4_vampires::CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? { return self.validate_vampire_declaration(d); }
         if d.source.card.definition == "JZ51" && !self.validated_cross_card_declaration(d)? { return self.validate_jz51_declaration(d); }
         if d.source.card.definition == "XG18" && !self.validated_cross_card_declaration(d)? { return self.validate_omega_declaration(d); }
         if d.source.card.definition == "XG16" && !self.validated_cross_card_declaration(d)? { return self.validate_xg16_declaration(d); }
@@ -220,6 +225,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::batch4_vampires::related_frame(f) && !self.validated_cross_card_frame(f)? { return self.validate_vampire_frame(f); }
         if f.source.card.definition == "XQ21" { return self.validate_xq21_frame(f); }
         if f.source.card.definition == "JZ51" && !self.validated_cross_card_frame(f)? { return self.validate_jz51_frame(f); }
         if f.source.card.definition == "XG18" && !self.validated_cross_card_frame(f)? { return self.validate_omega_frame(f); }
@@ -275,6 +281,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_vampire_state()?;
         self.validate_xq21_state()?;
         self.validate_jz51_state()?;
         self.validate_omega_state()?;
@@ -317,7 +324,7 @@ impl Game {
         }
         for e in &self.effects { match e {
             Effect::Declare { declaration } => { self.validate_batch4_declaration(declaration)?; remember(&declaration.source, &declaration.ability.ops)?; },
-            Effect::Frame { frame } if frame_related(frame) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
+            Effect::Frame { frame } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
             _ => {},
         } }
         if let Some(p) = &self.pending { if let ChoiceResolution::Declare { declaration: d, stage } = &p.resolution {
@@ -336,7 +343,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

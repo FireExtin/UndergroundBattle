@@ -5469,7 +5469,7 @@
         "points": null,
         "printedKeywords": [],
         "printedRuleTextLines": [
-          "隐秘地区势力+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。",
+          "隐秘+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。",
           "快速行动 牺牲血畜：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。"
         ],
         "additionalPrintedSymbols": [
@@ -5477,7 +5477,7 @@
             "id": "hidden-contest-bonus",
             "status": "confirmed",
             "printedText": "隐秘 +2",
-            "interpretation": "隐秘地区势力+2，对抗后目标本方吸血鬼饮血。"
+            "interpretation": "隐秘对抗展示牌印刷费用加值+2；对抗后目标本方吸血鬼饮血1。"
           }
         ]
       },
@@ -5485,7 +5485,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "隐秘地区势力+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。",
+          "printedText": "隐秘+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。",
           "notExecutable": true
         },
         {
@@ -5944,11 +5944,11 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "非资产",
+          "公开〔日形〕非资产",
           "袭击1"
         ],
         "printedRuleTextLines": [
-          "非资产；袭击1",
+          "公开〔日形〕非资产；袭击1",
           "触发 当一个附属结附于本方吸血鬼或忍者上时，目标敌方玩家弃一张手牌。该能力每回合只能发动一次。",
           "触发 当你赢得一次隐秘对抗时，饮血1。"
         ],
@@ -5958,7 +5958,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "非资产；袭击1",
+          "printedText": "公开〔日形〕非资产；袭击1",
           "notExecutable": true
         },
         {
@@ -6071,11 +6071,11 @@
         "influenceThreshold": null,
         "points": null,
         "printedKeywords": [
-          "非资产",
+          "公开〔日形〕非资产",
           "袭击1"
         ],
         "printedRuleTextLines": [
-          "非资产；袭击1",
+          "公开〔日形〕非资产；袭击1",
           "现身触发 饮血2（将至多两张本方墓地中和/或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
           "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）"
         ],
@@ -6085,7 +6085,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "非资产；袭击1",
+          "printedText": "公开〔日形〕非资产；袭击1",
           "notExecutable": true
         },
         {
@@ -6592,7 +6592,7 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "现身触发 自你牌库顶的六张牌中寻找任意数量的装备、武器或状态附属牌，将这些牌展示后置于你的手中，将其余牌洗回牌库。",
-          "行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得地区势力+2。"
+          "行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘对抗加值+2。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -6606,7 +6606,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得地区势力+2。",
+          "printedText": "行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘对抗加值+2。",
           "notExecutable": true
         }
       ],
@@ -6616,7 +6616,6 @@
         "attachment",
         "sacrifice",
         "mysticContest",
-        "starlightInfluence",
         "uniqueInPlay"
       ],
       "rulesEvidenceIds": [
@@ -6823,7 +6822,7 @@
         "printedRuleTextLines": [
           "结附于本方秘社",
           "触发 每当一个本方角色袭击时，你可以令其饮血1。",
-          "触发 在进行隐秘对抗时，你所展示的牌获得地区势力+X，X等于结附有装备、武器或状态附属牌的本方角色数量。"
+          "触发 在进行隐秘对抗时，你所展示的牌获得隐秘对抗加值+X，X等于结附有装备、武器或状态附属牌的本方角色数量。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -6843,7 +6842,7 @@
         {
           "id": "printed-3",
           "kind": "sourceTextOnly",
-          "printedText": "触发 在进行隐秘对抗时，你所展示的牌获得地区势力+X，X等于结附有装备、武器或状态附属牌的本方角色数量。",
+          "printedText": "触发 在进行隐秘对抗时，你所展示的牌获得隐秘对抗加值+X，X等于结附有装备、武器或状态附属牌的本方角色数量。",
           "notExecutable": true
         }
       ],
@@ -6851,8 +6850,7 @@
         "attachment",
         "combatKeywords",
         "blood",
-        "mysticContest",
-        "starlightInfluence"
+        "mysticContest"
       ],
       "rulesEvidenceIds": [
         "manual-trigger-reset",

@@ -9403,6 +9403,215 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "BQ027",
+      "name": "血畜",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "奴仆"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐秘+2；在本次隐秘对抗后，目标本方吸血鬼饮血1。\n快速行动 牺牲血畜：目标吸血鬼饮血1（将一张本方墓地中或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ027",
+        "image": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+        "imageSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ031",
+      "name": "雾羽千军",
+      "subtitle": "红色獠牙",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "忍者"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开〔日形〕非资产；袭击1\n触发 当一个附属结附于本方吸血鬼或忍者上时，目标敌方玩家弃一张手牌。该能力每回合只能发动一次。\n触发 当你赢得一次隐秘对抗时，饮血1。",
+      "keywords": [
+        "公开〔日形〕非资产",
+        "袭击1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ031",
+        "image": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+        "imageSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ032",
+      "name": "宴会司仪",
+      "subtitle": null,
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开〔日形〕非资产；袭击1\n现身触发 饮血2（将至多两张本方墓地中和/或封印在本方秘社上，名为鲜血的牌放置进场并结附于该角色上）。\n神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "keywords": [
+        "公开〔日形〕非资产",
+        "袭击1"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ032",
+        "image": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+        "imageSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ036",
+      "name": "菲尼克斯",
+      "subtitle": "大判官",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "loyaltyText": "蓝蓝",
+      "color": "蓝",
+      "magic": "血",
+      "icons": {
+        "permanent": {
+          "investigation": 2,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 3,
+      "text": "现身触发 自你牌库顶的六张牌中寻找任意数量的装备、武器或状态附属牌，将这些牌展示后置于你的手中，将其余牌洗回牌库。\n行动①，牺牲一个结附于本方角色上的本方附属：进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得隐秘对抗加值+2。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ036",
+        "image": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+        "imageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ038",
+      "name": "掠食时刻",
+      "subtitle": null,
+      "kind": "attachment",
+      "subtypes": [
+        "战术"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n触发 每当一个本方角色袭击时，你可以令其饮血1。\n触发 在进行隐秘对抗时，你所展示的牌获得隐秘对抗加值+X，X等于结附有装备、武器或状态附属牌的本方角色数量。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ038",
+        "image": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+        "imageSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

@@ -29,6 +29,9 @@ mod marker_transfer;
 mod marker_transfer_tests;
 #[cfg(test)]
 mod batch4_markers_tests;
+mod batch4_vampires;
+#[cfg(test)]
+mod batch4_vampires_tests;
 mod batch4;
 mod batch4_chance;
 #[cfg(test)]

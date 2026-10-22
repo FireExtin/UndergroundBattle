@@ -681,6 +681,8 @@ pub enum FrameChoice {
     BQ041Payment,
     WM060Repress { regions: Vec<(usize,String,u32)> },
     JZ39EnemySacrifice,
+    VampireBlood,
+    BQ036TopSix { inspected_ids: Vec<String> },
     BloodFeed { state: crate::batch3_blood::BloodFeedCursor },
     BQ037Reveal,
     XQ26Name,

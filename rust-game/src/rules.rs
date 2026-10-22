@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    BQ031Attachment,
+    BQ038Raid,
     XG18RenownPlayed,
     WM058CardTargeted,
     XG17RenownEntered,
@@ -271,6 +273,11 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ027FeedTarget,
+    BQ031AttachmentDiscard { observation: Option<Box<crate::batch4_vampires::AttachmentObservation>> },
+    BQ032RevealFeed,
+    BQ036TopSix,
+    BQ038RaidFeed { observation: Option<Box<crate::batch4_vampires::RaidObservation>> },
     XQ21CopyMarker,
     JZ51TopEightCorpses,
     JZ51GraveEntry,
@@ -1651,7 +1658,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "JZ40" | "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "BQ038" | "JZ40" | "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2123,6 +2130,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }
         for id in crate::next20_blue_gray::CARDS {

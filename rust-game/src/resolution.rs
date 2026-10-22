@@ -476,10 +476,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JZ40" | "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "BQ038" | "JZ40" | "XQ15" | "WM045" | "WM046" | "WM047" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -1124,6 +1124,7 @@ impl Game {
         frame.frame_id = self.stack.last().unwrap().id.clone();
         if observe_spell { self.cq07_observe_spell_targets(&frame); }
         if observe_disaster { self.wm058_observe_card(&frame); self.observe_batch4_disaster(&frame); }
+        self.bq038_observe_raid(&frame);
         self.batch3_register_entry_order(&frame.frame_id, previous);
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
@@ -1264,7 +1265,7 @@ impl Game {
         {
             return Ok(());
         }
-        if !self.black_next20_trigger_available(&declaration) { return Ok(()); }
+        if !self.black_next20_trigger_available(&declaration) || !self.vampire_trigger_available(&declaration) { return Ok(()); }
         let title = format!(
             "{}：{}",
             crate::batch3_trap::source_label(&declaration.source),
@@ -1391,7 +1392,7 @@ impl Game {
             crate::batch3_trap::source_label(&declaration.source),
             declaration.ability.label
         );
-        let paid = if declaration.source.card.definition == "JZ23" || (declaration.source.card.definition == "XG27" && declaration.ability.event == Some(Event::BlackCharacterDeathObserved))
+        let paid = if declaration.ability.key == crate::batch4_vampires::ATTACH_DISCARD || declaration.source.card.definition == "JZ23" || (declaration.source.card.definition == "XG27" && declaration.ability.event == Some(Event::BlackCharacterDeathObserved))
             || declaration.ability.event == Some(Event::HandDiscard)
             || (declaration.source.card.definition == "JC031"
                 && declaration.ability.event == Some(Event::CharacterDeathObserved))
@@ -1632,6 +1633,9 @@ impl Game {
                 Op::XG18RenownPlay { .. } => self.omega_resolve(&frame)?,
                 Op::XG16EntryTime => self.xg16_entry_time(&frame),
                 Op::XG16PrepareTime { .. } => self.jc035_resolve(&frame)?,
+                Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
+                Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
+                Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
@@ -2538,6 +2542,8 @@ impl Game {
             FrameChoice::BQ041Payment => return self.bq041_pay_complete(*frame, chooser, &a, &selected),
             FrameChoice::WM060Repress { regions } => return self.wm060_repress_complete(&frame, chooser, &a, &regions, &selected),
             FrameChoice::JZ39EnemySacrifice => return self.jz39_finish_sacrifice(&frame, chooser, &a, &selected),
+            FrameChoice::VampireBlood => return self.vampire_feed_finish(&frame, chooser, &selected),
+            FrameChoice::BQ036TopSix { inspected_ids } => return self.bq036_search_finish(&frame, &inspected_ids, &selected),
             FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),
             FrameChoice::BQ037Reveal => return self.bq037_reveal_complete(&frame,chooser,&a,&selected),
             FrameChoice::XQ26Name => return self.xq26_name_complete(&frame, chooser, &a, &selected),

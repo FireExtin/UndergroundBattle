@@ -56,7 +56,9 @@ impl Game {
         ));
         if changed_host {
             // Capture this successful new attachment before subsequent deaths.
+            let previous = self.effects.len();
             self.observe_attachment_committed(source_id);
+            self.batch3_register_entry_order(source_id, previous);
         }
         self.settle_deaths();
     }

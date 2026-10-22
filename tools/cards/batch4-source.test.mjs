@@ -12,6 +12,8 @@ const digest = value => hash(JSON.stringify(canonical(value)));
 const pool = JSON.parse(read('rust-game/data/cards.json'));
 const specs = JSON.parse(read('docs/factions/card-specifications.json')).cards;
 const plan = JSON.parse(read('docs/factions/batch20-fourth-2026-10-22.json'));
+const packageB = JSON.parse(read('docs/factions/batch4-package-b-20261022.json'));
+const partials = new Set(packageB.nativePartialCards);
 
 test('fourth roster preserves frozen213 and keeps native pilots separate from public admission', () => {
   assert.equal(plan.baseCommit, 'b80f12202799a632ee9d75f40da8352f2ca274f1');
@@ -42,7 +44,7 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(plan.expansionSlotPlan.reduce((n,c) => n+c.unassignedSlots, 0), plan.scope.unassignedSlots);
   const pilots = plan.cards.filter(c => c.runtime === 'nativePilotPassedPendingBatchIntegration');
   assert.equal(pilots.length, plan.scope.nativePilots);
-  assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), pilots.map(c => c.id).sort());
+  assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), [...pilots.map(c => c.id), ...partials].sort());
   assert(pool.cards.slice(213).every(c => c.supported === false));
   for (const c of pool.cards.slice(213)) {
     const spec = specs[c.id];
@@ -51,7 +53,8 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
     assert.deepEqual(c.icons.permanent, spec.fields.permanentIcons, c.id);
     assert.deepEqual(c.icons.temporary, spec.fields.temporaryIcons, c.id);
     assert.equal(c.source.imageSha256, spec.sourceVerification.imageSha256, c.id);
-    assert.equal(hash(read(`web/public/cards/${c.id}.jpg`)), spec.sourceVerification.imageSha256, c.id);
+    if (!partials.has(c.id)) assert.equal(hash(read(`web/public/cards/${c.id}.jpg`)), spec.sourceVerification.imageSha256, c.id);
+    else assert.equal(hash(read(c.source.image)), spec.sourceVerification.imageSha256, c.id);
   }
   for (const key of ['selectionEnabled', 'published', 'accepted', 'fullyIntegratedNewCards']) assert.equal(plan.scope[key], 0);
   assert.equal(plan.candidateComparison[0].nativeCards, 20);
@@ -70,7 +73,32 @@ test('fourth original corrections preserve conditional public, conditional secre
   assert.match(specs.WM046.fields.printedRuleTextLines[1], /达成推进2时/);
   assert(!specs.WM046.fields.printedRuleTextLines.join('').includes('达成推进3'));
   assert.equal(plan.sourceCorrections.length, 4);
-  const corrected = new Set(plan.sourceCorrections.map(c => c.id));
+  const corrected = new Set([...plan.sourceCorrections.map(c => c.id), ...packageB.sourceCorrections]);
   const untouched = Object.fromEntries(Object.entries(specs).filter(([id]) => !corrected.has(id)));
-  assert.equal(digest(untouched), plan.baseSourceRecordsExceptFourCorrectionsSha256);
+  assert.equal(digest(untouched), packageB.baseSourceRecordsExceptPriorFourAndPackageBFiveSha256);
+});
+
+
+test('package B partial programs preserve the exact prior catalogue and remain outside pilot counts', () => {
+  assert.equal(packageB.baseCommit, 'adf0a1c080e21b75e971bd650a61f22e47f42e91');
+  assert.equal(packageB.baseCatalogCount, 235);
+  assert.equal(digest(pool.cards.slice(0, packageB.baseCatalogCount)), packageB.baseCatalogSha256);
+  assert.deepEqual([...partials], ['BQ027', 'BQ031', 'BQ032', 'BQ036', 'BQ038']);
+  assert.deepEqual(packageB.sourceCorrections, [...partials]);
+  assert.equal(packageB.completeCards, 0);
+  assert.equal(packageB.supportedCards, 0);
+  assert.equal(packageB.wasmCards, 0);
+  for (const id of partials) {
+    const c = pool.cards.find(c => c.id === id);
+    assert.equal(c.supported, false, id);
+    assert.notEqual(plan.cards.find(c => c.id === id).runtime, 'nativePilotPassedPendingBatchIntegration', id);
+    assert.equal(hash(read(c.source.image)), packageB.originalCardImageSha256[id], id);
+  }
+  for (const id of ['BQ031', 'BQ032']) {
+    assert.match(specs[id].fields.printedRuleTextLines[0], /公开〔日形〕非资产/);
+  }
+  for (const id of ['BQ027', 'BQ036', 'BQ038']) {
+    assert(!specs[id].fields.printedRuleTextLines.join('').includes('地区势力'));
+  }
+  for (const source of packageB.rulesRead) assert.equal(hash(read(source.path)), source.sha256);
 });

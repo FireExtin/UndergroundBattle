@@ -2154,6 +2154,7 @@ impl Game {
         crate::batch4_chance::validate_choice_action(&p, &a)?;
         crate::batch4_warden::validate_choice_action(&p, &a)?;
         crate::batch4_blood::validate_choice_action(&p, &a)?;
+        crate::batch4_vampires::validate_choice_action(&p, &a)?;
         crate::batch4_wendigo::validate_choice_action(&p, &a)?;
         crate::batch4_markers::validate_choice_action(&p, &a)?;
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
@@ -2727,7 +2728,9 @@ impl Game {
                 .as_ref()
                 .filter(|p| p.seat == seat)
                 .map(|p| {
-                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ51TopEight { .. }, .. }) {
+                    if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ036TopSix { .. }, .. }) {
+                        self.bq036_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ51TopEight { .. }, .. }) {
                         self.jz51_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::NextBlueGraySearch { .. }, .. }) {
                         self.next_blue_gray_private_choice(p, seat)
