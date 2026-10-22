@@ -1,0 +1,179 @@
+{
+  "recordedAtUtc": "2026-10-22T13:29:51.465662+00:00",
+  "runtimeCommit": "0aa2985dd573338f52d8723a6e460c5af7103660",
+  "integrationBeforeIdentityFix": "5e49b58e4bf2cf7092c7c0f24db860c1dd83a61f",
+  "sourceCommits": {
+    "A": "c5104f19d0d31433a50b80e1af61c78158f90dfe",
+    "B": "a5db0f5ebc28cdb5e76299f34ad4f7c7e61a2379"
+  },
+  "counts": {
+    "nativeComplete": 22,
+    "target": 50,
+    "nativeWipAdditional": 10,
+    "catalogueRecords": 245,
+    "admission": 0,
+    "WASM": 0,
+    "published": 0,
+    "accepted": 0
+  },
+  "otherLogs": [
+    {
+      "log": "batch4-ab-identity-before-01-pack_a_response_identity_cannot_reuse_retired_or_future_instance.log.gz",
+      "rawSha256": "2b8a0177345f7c4095f90ca655a4c02fc4b183702564bce6a7fd96fb0c438f4d",
+      "gzipSha256": "81b6d3a9e08ffce41c306045df254a18a068139f3302e40fe6e1061bf6ee3ae1"
+    },
+    {
+      "log": "batch4-ab-identity-before-02-pack_a_response_identity_cannot_reuse_retired_or_future_instance.log.gz",
+      "rawSha256": "4e14e558fb8a011adad80cb37da36f98bfd08499e11b6d9d14ded3d2fbdf3a30",
+      "gzipSha256": "6b7c883492732aa8a66e04bd8ebbdca296c3409b501a4fb1509750de891163c0"
+    },
+    {
+      "log": "batch4-ab-integration-01-source.log.gz",
+      "rawSha256": "a4e4e4e842fef9724bcf17e8db2327b9daef61f8784801da7c9ab20fa94174e8",
+      "gzipSha256": "c5dd9c8d4e05f59ff916c7a680de4688fee5245e052d4ca09ffc9c85e05968ba"
+    },
+    {
+      "log": "batch4-ab-identity-before-03-pack_a_response_identity_cannot_reuse_retired_or_future_instance.log.gz",
+      "rawSha256": "2055aadf84a467f4e663ec1cebb33fefc38ed87b3941df7518f40e427d3e0d8f",
+      "gzipSha256": "064e9253c4ddcf809ece3c7484b5b2c9d60adafd75c4f1231a4e23a3116d70b3"
+    }
+  ],
+  "sourceGate": {
+    "passed": 3,
+    "failed": 0,
+    "command": "node --test --test-isolation=none tools/cards/batch4-source.test.mjs",
+    "scope": "Run at initial repair with3passes; all source-gate inputs unchanged by final identity-only correction. Not rerun solely for runtime predicate changes."
+  },
+  "failureEvidence": {
+    "before01": "0 passed, 1 failed; first new regression version",
+    "before02": "0 passed, 1 failed; explicit WM021 restored retired shell diagnostic",
+    "before02Reconstruction": "Runtime5e49b58e plus pack_a_contest_tests.rs exactly at729789fd; test file unchanged during initial runtime repair.",
+    "after": "Final0aa A33 includes 5 cards x two retirement orderings x retired shell/future shell/retired frame; Game and Room reject. Transaction must immediately precede original frame.",
+    "before03": "0 passed, 1 failed at interval-only729: explicit WM021 restored retired shell; retired_after_source=true; source/test reconstruction uses729 runtime and0aa test file."
+  },
+  "staticReview": {
+    "earlyAF1F2F3": "fixed-source checks completed; author execution distinct",
+    "AFileHashChecks": {
+      "inputs": 236,
+      "deliveryFiles": 13,
+      "mismatches": 0
+    },
+    "newIdentityFixIndependentReview": {
+      "firstReviewAt": "729789fd6f416d22efa9426bb71f521a069f5d06",
+      "firstResult": "P2: interval check still accepts retired UID allocated after source",
+      "closureAt": "0aa2985dd573338f52d8723a6e460c5af7103660",
+      "closureResult": "previousP2closed; no confirmed defect or false rejection in inspected normal paths",
+      "testExecution": "not independently run",
+      "report": "pack-ab-identity-independent-review.md"
+    }
+  },
+  "inputSha256": {
+    "rust-game/src/mystic_contest.rs": "13a52e4635ed8241412c3619d7f940b06642fb29548463b82683195da3b85d7b",
+    "rust-game/src/pack_a_contest.rs": "3aa6d6d2570f150ca01713ac38642a7c9c22a31ed3eac8b7747e8f669b4d3e73",
+    "rust-game/src/pack_a_contest_tests.rs": "c91a6996ab1e18add07029186fed0d96ea32e4a98783a202ce0ab307fbd44455",
+    "rust-game/src/batch4_vampires.rs": "4a51b80905b65b7a9ee660c1d6505e09c93d330e4074c6d57f48f4eab9b0e46b",
+    "rust-game/src/batch4.rs": "32cd3f7622179c47a9b383819a92b35a5e093cd5470910aa81203fbe46b548c4",
+    "rust-game/src/catalog.rs": "f2d62e85a418399f2f6ac450bc87a7398fd1babffdfc919c6f59f0d64bba1284",
+    "rust-game/src/model.rs": "607ace638c0d1888298ed9bba0e54208c49aa4e8dae1e10c0c8309cddaf49607",
+    "rust-game/src/resolution.rs": "e0a31b25beb8a4d2400c2b3da5e8f20c03be3a8d821757c99367032e35f2f387",
+    "rust-game/src/rules.rs": "9bf8e1596edee6f3f9e299ae2c2fe60204c6bf58717dde1a2e770173c817640f",
+    "rust-game/src/batch3_entry_order.rs": "89b5a2232f0dbfd7e6f60719fd9c19374287833a918921541549c610d5f6bc6b",
+    "rust-game/data/cards.json": "905aa71ae7708d418552366fd80e84f28e5a94136c4d941a094259dfe59b0ede",
+    "tools/cards/batch4-source.test.mjs": "5ad8dcf17eedaf8c57225236c29b7f5c6f7160306de8ab62e6857de6c74b8ae8",
+    "rust-game/src/marker_transfer.rs": "0b7b516362205644b4057fa3dd80520413b0c1bb5be06b8ac095535885bb692c",
+    "rust-game/src/batch4_markers.rs": "895524a51bb85a0f6ca90df0e3b4790ac0a49a8fb891867f62c943583bea2a1d",
+    "rust-game/src/batch4_plans.rs": "35cc805098225a113b828f11a51e50efe44a8acbf0b1fc67c4d9963c3c26943c"
+  },
+  "notRun": [
+    "full suite",
+    "WASM",
+    "browser for A/B cards",
+    "new SQLite transaction tests",
+    "production deployment",
+    "performance benchmark"
+  ],
+  "unchangedMarkerPrerequisite": true,
+  "initialIdentityRepairCommit": "729789fd6f416d22efa9426bb71f521a069f5d06",
+  "initialInputSha256": {
+    "rust-game/src/mystic_contest.rs": "13a52e4635ed8241412c3619d7f940b06642fb29548463b82683195da3b85d7b",
+    "rust-game/src/pack_a_contest.rs": "3ad8059304a1d67afed6de024159c844724b3472a665979d2368aeb9c0d05459",
+    "rust-game/src/pack_a_contest_tests.rs": "f601532ff3cdeab34f25a1c0caab513c03864d59dfc455801801944091d2a789",
+    "rust-game/src/batch4_vampires.rs": "4a51b80905b65b7a9ee660c1d6505e09c93d330e4074c6d57f48f4eab9b0e46b",
+    "rust-game/src/batch4.rs": "32cd3f7622179c47a9b383819a92b35a5e093cd5470910aa81203fbe46b548c4",
+    "rust-game/src/catalog.rs": "f2d62e85a418399f2f6ac450bc87a7398fd1babffdfc919c6f59f0d64bba1284",
+    "rust-game/src/model.rs": "607ace638c0d1888298ed9bba0e54208c49aa4e8dae1e10c0c8309cddaf49607",
+    "rust-game/src/resolution.rs": "e0a31b25beb8a4d2400c2b3da5e8f20c03be3a8d821757c99367032e35f2f387",
+    "rust-game/src/rules.rs": "9bf8e1596edee6f3f9e299ae2c2fe60204c6bf58717dde1a2e770173c817640f",
+    "rust-game/src/batch3_entry_order.rs": "89b5a2232f0dbfd7e6f60719fd9c19374287833a918921541549c610d5f6bc6b",
+    "rust-game/data/cards.json": "905aa71ae7708d418552366fd80e84f28e5a94136c4d941a094259dfe59b0ede",
+    "tools/cards/batch4-source.test.mjs": "5ad8dcf17eedaf8c57225236c29b7f5c6f7160306de8ab62e6857de6c74b8ae8",
+    "rust-game/src/marker_transfer.rs": "0b7b516362205644b4057fa3dd80520413b0c1bb5be06b8ac095535885bb692c",
+    "rust-game/src/batch4_markers.rs": "895524a51bb85a0f6ca90df0e3b4790ac0a49a8fb891867f62c943583bea2a1d",
+    "rust-game/src/batch4_plans.rs": "35cc805098225a113b828f11a51e50efe44a8acbf0b1fc67c4d9963c3c26943c"
+  },
+  "earlierIntegrationRuns": [
+    {
+      "filter": "pack_a",
+      "passed": 33,
+      "failed": 0,
+      "filteredOut": 1940,
+      "log": "batch4-ab-integration-01-pack_a.log.gz",
+      "rawSha256": "c0fcbb0e191ef03e4c98e59150e95fff5c05b19705a5890820ad406118c5243c",
+      "gzipSha256": "12b5349629146c4e375ff44c256faff2356df1cba107dbaacfbe1e131a087c7f",
+      "sourceCommit": "729789fd6f416d22efa9426bb71f521a069f5d06"
+    },
+    {
+      "filter": "batch4_vampires",
+      "passed": 31,
+      "failed": 0,
+      "filteredOut": 1942,
+      "log": "batch4-ab-integration-01-batch4_vampires.log.gz",
+      "rawSha256": "b3b6559886e845cede4df8a06181dd76c93b74a497f112e1ad5b86d56d78f67d",
+      "gzipSha256": "8280b94f439f565683cb003e7f9c20c8224ca139ce31d9fdd94ddff1595a0588",
+      "sourceCommit": "729789fd6f416d22efa9426bb71f521a069f5d06"
+    },
+    {
+      "filter": "marker_transfer",
+      "passed": 10,
+      "failed": 0,
+      "filteredOut": 1963,
+      "log": "batch4-ab-integration-01-marker_transfer.log.gz",
+      "rawSha256": "d01b39ce6a274119d9838d16c11cd75570de4430a5df2b161d6a17a4e41d83ae",
+      "gzipSha256": "83cb16d3899af9dc0f3f6d1a7782e0e842f0909dddb480ec830891c22a97dd7e",
+      "sourceCommit": "729789fd6f416d22efa9426bb71f521a069f5d06"
+    },
+    {
+      "filter": "batch3_entry_order",
+      "passed": 3,
+      "failed": 0,
+      "filteredOut": 1970,
+      "log": "batch4-ab-integration-01-batch3_entry_order.log.gz",
+      "rawSha256": "27ffaf84862d8cc60bb42f51c404e6a3bcdeccc3dae7631b0442e3ab49743789",
+      "gzipSha256": "15e2247c0ba21111fd00d354367629b61bd7c1c4531267c0f2d16ac6d672ce44",
+      "sourceCommit": "729789fd6f416d22efa9426bb71f521a069f5d06"
+    }
+  ],
+  "nativeRuns": [
+    {
+      "sourceCommit": "0aa2985dd573338f52d8723a6e460c5af7103660",
+      "filter": "pack_a",
+      "passed": 33,
+      "failed": 0,
+      "filteredOut": 1940,
+      "log": "batch4-ab-integration-02-pack_a.log.gz",
+      "rawSha256": "53a4ff84032b60569daf5e1ef41e58ec8e03f61a6e0ed0e371f87397e0f827dc",
+      "gzipSha256": "ecfbfabae8554ca535ed901c0acff9a6086fa05df3fc647cc419bc592d6513e2"
+    },
+    {
+      "sourceCommit": "0aa2985dd573338f52d8723a6e460c5af7103660",
+      "filter": "batch4_vampires",
+      "passed": 31,
+      "failed": 0,
+      "filteredOut": 1942,
+      "log": "batch4-ab-integration-02-batch4_vampires.log.gz",
+      "rawSha256": "b3b6559886e845cede4df8a06181dd76c93b74a497f112e1ad5b86d56d78f67d",
+      "gzipSha256": "8280b94f439f565683cb003e7f9c20c8224ca139ce31d9fdd94ddff1595a0588"
+    }
+  ],
+  "updatedAtUtc": "2026-10-22T13:35:55.486832+00:00"
+}
