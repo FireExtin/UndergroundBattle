@@ -9612,6 +9612,212 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM021",
+      "name": "秘闻记录官",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼",
+        "学者"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐秘+5\n持续 在进行隐秘对抗时，你所展示的吸血鬼牌获得+2。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM021",
+        "image": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+        "imageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM022",
+      "name": "阴影之子",
+      "kind": "character",
+      "subtypes": [
+        "吸血鬼"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "蓝色"
+      ],
+      "loyaltyText": "蓝",
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "现身强制触发 进行一次隐秘对抗。\n触发 当你每回合首次赢得隐秘对抗时，目标玩家弃一张手牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM022",
+        "image": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+        "imageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM032",
+      "name": "扭曲的布道者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "隐秘：若场上有已毁灭的地区，或你的计分区中有毁灭标志，+3。\n触发 当你赢得一次隐秘对抗时，在所有已毁灭的地区上放置一个本方势力标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM032",
+        "image": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+        "imageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM061",
+      "name": "土归土",
+      "kind": "spell",
+      "subtypes": [
+        "仪式",
+        "灾难"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑",
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "隐秘+2：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。\n非资产\n行动 将每位玩家牌库顶的五张牌置于其墓地。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM061",
+        "image": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+        "imageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ082",
+      "name": "毒药专家塞巴斯蒂安",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "罪犯",
+        "学者"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑黑",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "暴露〔日形〕公开\n进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的牌获得+2。若你赢得本次隐秘对抗，将你墓地中的目标角色牌横置放置进场，并置于本地区。",
+      "keywords": [
+        "暴露条件：公开"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ082",
+        "image": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+        "imageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false,
+      "subtitle": "首席药剂师"
     }
   ],
   "decks": [
