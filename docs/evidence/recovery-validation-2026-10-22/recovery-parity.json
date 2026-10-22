@@ -17,14 +17,9 @@
     }
   },
   "originalCounts": {
-    "Game": 41,
-    "Room": 38
+    "explicitTopLevelGameCalls": 41,
+    "explicitTopLevelRoomCalls": 38
   },
-  "omittedByRoom": [
-    "validate_batch3_state",
-    "validate_batch4_state",
-    "validate_destruction_state"
-  ],
   "change": "One nonserialized Game::validate_restored_domain entry, identical original Game validator order used by both deserializers. Room keeps schema/revision/seat/pacing/pause checks; runtime pre/post staging unchanged.",
   "directedAfterFix": 4,
   "relatedAfterFix": [
@@ -128,5 +123,18 @@
       "file": "docs/evidence/recovery-validation-2026-10-22/recovery-validation-room_tests-01.log.gz",
       "gzipSha256": "c4818ab4f907a8365893ebe92e87da49524ce317a2623212f369011e127df524"
     }
-  }
+  },
+  "explicitCallsAbsentFromRoom": [
+    "validate_batch3_state",
+    "validate_batch4_state",
+    "validate_destruction_state"
+  ],
+  "actualMissingCoverage": [
+    "validate_batch3_state",
+    "validate_batch4_state"
+  ],
+  "preservedTransitiveCoverage": {
+    "validate_destruction_state": "Already called unconditionally by validate_batch20_state in both original entrances; explicit-list difference was not an uncovered validator or an additional corruption reproduction."
+  },
+  "clarification": "Initial evidence used omittedByRoom for a top-level call-list difference; corrected to distinguish transitive coverage. The two original before-fix mismatch cases and minimal shared helper are unchanged."
 }
