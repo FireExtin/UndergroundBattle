@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-22T01:00:28.471545+00:00",
+  "precedingCheckpoint": {
+    "recordedAt": "2026-10-22T00:52:52.285359+00:00",
+    "branch": "progress/batch20-fourth-20261022",
+    "commit": "a73dcab9805523af820fd3fd27651a5c7af0fa08",
+    "remoteShaVerified": true,
+    "actionsRunsForCommit": 0,
+    "worktreeClean": true,
+    "nativePilots": 3,
+    "wasmPilots": 0,
+    "publicAdmissions": 0,
+    "accepted": 0,
+    "frozenThirdCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1"
+  },
+  "baseFrozenThird": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "nativeCards": [
+    "XG14",
+    "XG15",
+    "JZ39",
+    "XG12"
+  ],
+  "newCard": "XG12",
+  "currentNewDirectedCases": 12,
+  "relatedCurrentMobilityFilter": {
+    "passed": 19,
+    "includesNewXG12Cases": 5,
+    "scope": "Affected shared mobility flow; do not add overlapping counts"
+  },
+  "sourceChecks": 4,
+  "sourceManifest": "native-source-manifest-four-cards.json",
+  "sourceManifestSha256": "45af7fc6c00496bc89a5494b9eef2c6ce1a3b1f618806edd939ad6320faffaf6",
+  "results": [
+    {
+      "log": "logs/batch4-xg12-first-batch4_shape.log.gz",
+      "encoding": "gzip",
+      "sha256": "5f75a5ab2d255f6d3c4ad5a41926ff2be1d74f7b83a3fb8295b7701853b21b8e",
+      "rawSha256": "08a56c6d41e8942ce21b83c0b0e4feddfea11374516f6d77b91daadca453ca55",
+      "phase": "preservedFixtureFailure",
+      "result": "FAILED",
+      "passed": 10,
+      "failed": 1
+    },
+    {
+      "log": "logs/batch4-xg12-final-batch4_shape.log.gz",
+      "encoding": "gzip",
+      "sha256": "b0975c5430fd23bc3f4f2a5adf8c905f328a44f1bcaedf0a9551c3e66db6b337",
+      "rawSha256": "4a62b502d79d6e7364e83d490cbe6cfd8f64516624685f432308aba1aa20dc2d",
+      "phase": "currentFourCardSource",
+      "result": "ok",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-xg12-final-mobility.log.gz",
+      "encoding": "gzip",
+      "sha256": "b0e0bdc21d338b6b667018d55a607122debac5c3939178ea5fd5c2bd8459e3a0",
+      "rawSha256": "6c6229fb08af2b6e38dcf0d42e133cd397d1640084e3438f75f9c7aa05c2558e",
+      "phase": "currentFourCardSource",
+      "result": "ok",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "log": "logs/batch4-four-card-source.log.gz",
+      "encoding": "gzip",
+      "sha256": "0119ceb7f3d88a24fad20eaa9a15c3c9ad660eac4960e5183be03350c2dadf74",
+      "rawSha256": "82a85a0a302f2fd7a1c5860e675fb112b21854bb6a16c159599d9bb49bc581ea",
+      "phase": "sourceChecks",
+      "result": "sourcePass",
+      "passed": 4,
+      "failed": null
+    }
+  ],
+  "earlierEvidence": [
+    "two-card-pilot.json",
+    "three-card-pilot.json"
+  ],
+  "authorExecutionOnly": true,
+  "wasmBuilt": false,
+  "webWorkerIntegrated": false,
+  "newConstructionAdmissions": 0,
+  "published": 0,
+  "accepted": 0,
+  "limitations": [
+    "Earlier pilot evidence belongs to its recorded checkpoints; no full batch or product-suite repeat.",
+    "No independent execution, public deployment or real browser acceptance.",
+    "Chaos pre-existing-entry-restriction sampling and separate CQ11/TK008 remain pending independently."
+  ],
+  "frozenThirdWasmSha256": "d1f9dbc3c362fd9f1b08c143dab6290a5fae973ca196043e94a4eb4d41db581c"
+}

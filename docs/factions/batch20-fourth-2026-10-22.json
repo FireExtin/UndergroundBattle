@@ -7,7 +7,7 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 20,
-    "nativePilots": 3,
+    "nativePilots": 4,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
@@ -224,8 +224,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
       "sourceImageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 12,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -425,7 +425,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 3,
+      "nativeCards": 4,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -462,7 +462,7 @@
   ],
   "next": [
     "Continue native mechanisms with source-bound targeted tests; keep WASM/Web/Worker unbuilt until integration is planned",
-    "Implement XG12 conditional granted mobility and transfer, then reviewed host-death, marker-condition and SecretPlan mechanisms",
+    "Continue reviewed independent host-death, marker-condition and SecretPlan mechanisms; current four pilots remain construction-disabled",
     "Keep allfourth cards construction-disabled until twenty and required integration are ready; publish through officialSites flow by the established per20 cadence"
   ],
   "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c"

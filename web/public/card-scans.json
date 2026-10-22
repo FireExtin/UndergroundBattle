@@ -1138,5 +1138,10 @@
     "url": "/cards/JZ39.jpg",
     "source": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg",
     "sha256": "4bfac05a9d9f65d6d5c11fd69eded848bda7472c6b7940c735d6722ae3fb5a75"
+  },
+  "XG12": {
+    "url": "/cards/XG12.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
+    "sha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd"
   }
 }

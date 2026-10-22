@@ -256,6 +256,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG12Reattach,
+    XG12GrantedMobility { proof: Box<crate::batch4_shape::ShapeMobility> },
     JZ39EnemySacrifice,
     XG14DisasterInfluence { observation: Option<crate::batch4::DisasterPlay> },
     XG15DestroyOriginalRegion,
@@ -577,6 +579,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    XG12BatAndConditionalMobility,
     JZ39HostKillAndDemon,
     XG15WaterDoubleIcons,
     JC064MartialLaw,

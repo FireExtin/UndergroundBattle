@@ -125,10 +125,11 @@
     "No independent test execution, complete fourth batch, WASM/Web/Worker integration, public deployment or real browser acceptance.",
     "Existing-restriction Chaos sampling remains an explicit rules review boundary; fourth construction remains disabled."
   ],
-  "latestEvidence": "three-card-pilot.json",
+  "latestEvidence": "four-card-pilot.json",
   "latestNativePilotCards": [
     "XG14",
     "XG15",
-    "JZ39"
+    "JZ39",
+    "XG12"
   ]
 }

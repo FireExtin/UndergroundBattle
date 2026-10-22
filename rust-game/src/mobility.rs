@@ -36,7 +36,7 @@ pub(crate) fn ability() -> AbilitySpec {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::MoveOnBoard { .. } => true,
+        Op::MoveOnBoard { .. } | Op::XG12GrantedMobility { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted {
             exhausted, ready, ..
@@ -51,7 +51,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
         || a.modes.iter().any(|m| uses(&m.ops))
 }
 pub(crate) fn canonical(a: &AbilitySpec) -> bool {
-    same(a, &ability())
+    same(a, &ability()) || crate::batch4_shape::canonical_mobility(a)
 }
 pub(crate) fn canonical_target(slot: &TargetSlotSpec) -> bool {
     slot.range == Range::Mobility && same(slot, &ability().targets[0])
@@ -64,7 +64,7 @@ pub(crate) fn related_frame(f: &ResolutionFrame) -> bool {
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     for a in d.abilities.iter().filter(|a| related_ability(a)) {
-        if !(printed(id) || id == "WM040") || !canonical(a) {
+        if !(printed(id) || id == "WM040") || !same(a, &ability()) {
             return Err("机动只能静态印在完整准入的原牌上，授予不能移植定义".into());
         }
     }
@@ -75,7 +75,7 @@ impl Game {
         self.board(&c.id).is_some_and(|(_, live)| {
             !live.face_down && !self.attached_character(&live.id)
                 && catalog::card(&live.definition).kind == "character"
-                && (printed(&live.definition) || (live.definition == "WM040" && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some())
+                && (printed(&live.definition) || (live.definition == "WM040" && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some() || self.xg12_mobility_grant(live).is_some())
         })
     }
     pub(crate) fn mobility_source(&self, c: &Card, region: usize) -> SourceSnapshot {
@@ -129,11 +129,7 @@ impl Game {
         }
         Ok(())
     }
-    pub(crate) fn validate_mobility_source(
-        &self,
-        actor: usize,
-        s: &SourceSnapshot,
-    ) -> RuleResult<()> {
+    pub(crate) fn validate_mobility_recipient(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
         let c = &s.card;
         let admitted = |c: &Card, kind: &str| {
             catalog::catalog()
@@ -164,6 +160,16 @@ impl Game {
             return Err("机动事件的来源、阶段、行动者或无关观察无效".into());
         }
         self.mobility_immutable_identity(c)?;
+        Ok(())
+    }
+    pub(crate) fn validate_mobility_source(
+        &self,
+        actor: usize,
+        s: &SourceSnapshot,
+    ) -> RuleResult<()> {
+        self.validate_mobility_recipient(actor,s)?;
+        let c = &s.card;
+        let admitted = |c: &Card, kind: &str| catalog::catalog().cards.iter().any(|d|d.id==c.definition&&d.kind==kind);
         if printed(&c.definition) || s.observed_exposure.is_some() {
             if s.observed_exposure.is_some_and(|n| c.definition != "WM040" || n == 0) || (printed(&c.definition) && s.observed_exposure.is_some()) { return Err("条件机动仅准入心理审察委员的真实暴露观察".into()); }
             if s.observed_mobility_grant.is_some() {
@@ -210,6 +216,12 @@ impl Game {
         }
         Ok(())
     }
+    pub(crate) fn validate_mobility_event_source(&self, d: &Declaration) -> RuleResult<()> {
+        if !canonical(&d.ability) { return Err("机动事件必须保留完整规范程序".into()); }
+        if let Some(p) = crate::batch4_shape::mobility_proof(&d.ability) {
+            self.validate_xg12_mobility_source(d.actor,&d.source,p)
+        } else { self.validate_mobility_source(d.actor,&d.source) }
+    }
     pub(crate) fn validated_mobility_declaration(&self, d: &Declaration) -> RuleResult<bool> {
         if !related_ability(&d.ability) && d.source.observed_mobility_grant.is_none() && d.source.observed_exposure.is_none() {
             return Ok(false);
@@ -217,7 +229,7 @@ impl Game {
         if !canonical(&d.ability) {
             return Err("机动只准入完整原始事件、费用、目标和自身移动程序".into());
         }
-        self.validate_mobility_source(d.actor, &d.source)?;
+        self.validate_mobility_event_source(d)?;
         self.validate_mobility_capture(&d.source.card.id)?;
         Ok(true)
     }
@@ -225,9 +237,11 @@ impl Game {
         if !related_frame(f) {
             return Ok(false);
         }
-        self.validate_mobility_source(f.actor, &f.source)?;
+        let a = if let [Step { op: Op::XG12GrantedMobility { proof }, .. }] = f.steps.as_slice() {
+            crate::batch4_shape::mobility_ability((**proof).clone())
+        } else { ability() };
+        self.validate_mobility_event_source(&Declaration { actor:f.actor,source:f.source.clone(),ability:a.clone() })?;
         self.validate_mobility_capture(&f.source.card.id)?;
-        let a = ability();
         if f.ability_key != a.key
             || f.frame_id.is_empty()
             || f.cursor != 0

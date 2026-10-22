@@ -1,6 +1,9 @@
 mod chaos;
 mod batch4;
 mod batch4_tattoo;
+mod batch4_shape;
+#[cfg(test)]
+mod batch4_shape_tests;
 #[cfg(test)]
 mod batch4_tattoo_tests;
 #[cfg(test)]

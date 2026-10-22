@@ -100,6 +100,11 @@ impl Game {
             && !result.iter().any(|s| s == "恶魔") {
             result.push("恶魔".into());
         }
+        // XG12 adds Bat while its Vampire host remains eligible; its moon
+        // condition applies only to mobility, not the subtype or combat icons.
+        if result.iter().any(|s| s == "吸血鬼") && self.attachments.iter().any(|a|
+            a.card.definition == "XG12" && !a.card.face_down && a.host_id == c.id)
+            && !result.iter().any(|s| s == "蝙蝠") { result.push("蝙蝠".into()); }
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

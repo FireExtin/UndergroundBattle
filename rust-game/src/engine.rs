@@ -2326,7 +2326,10 @@ impl Game {
             current_mobility: (!asset && !c.face_down && region.is_some() && self.has_mobility(c)).then_some(true),
             current_mobility_source: if !asset && !c.face_down && region.is_some()
                 && !crate::mobility::printed(&c.definition) {
-                self.bq035_mobility_witness(&c.id).map(|w| w.knight.id)
+                self.bq035_mobility_witness(&c.id).map(|w| w.knight.id).or_else(|| {
+                    if c.definition == "WM040" && self.society_exposure(c.controller) > 0 { None }
+                    else { self.xg12_mobility_grant(c).map(|p|p.attachment.card.id) }
+                })
             } else { None },
             current_combat_glory: (!asset && !c.face_down && region.is_some()
                 && self.has_combat_glory(c)).then_some(true),

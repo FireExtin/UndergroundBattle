@@ -474,7 +474,7 @@ impl Game {
             source_region_instance: if crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -1144,8 +1144,9 @@ impl Game {
     }
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
         if event == Event::ConfrontationStart {
-            let declaration = Declaration { actor, source, ability: crate::mobility::ability() };
-            if self.validate_mobility_source(actor, &declaration.source).is_ok()
+            let ability = self.xg12_event_ability(actor,&source).unwrap_or_else(crate::mobility::ability);
+            let declaration = Declaration { actor, source, ability };
+            if self.validate_mobility_event_source(&declaration).is_ok()
                 && !self.turn_ability_usage.iter().any(|u| u.ability_key == "mobility"
                     && u.source_instance == declaration.source.card.id && u.turn == self.turn)
                 && !self.effects.iter().any(|e| matches!(e, Effect::Declare { declaration: d }
@@ -1642,6 +1643,12 @@ impl Game {
                 Op::XQ26Wanted { observation } => self.xq26_wanted_resolve(&frame,observation.as_ref().ok_or("缺少通缉进场观察")?),
                 Op::XG14DisasterInfluence { .. } => self.xg14_influence(&frame),
                 Op::XG15DestroyOriginalRegion => self.xg15_destroy_region(&frame),
+                Op::XG12Reattach => self.reattach_source(&frame.source.card.id, &frame.targets[0].id),
+                Op::XG12GrantedMobility { .. } => {
+                    if let Some(region) = self.frame_region(&frame, RegionRef::Target(0)) {
+                        self.move_on_board_instance(&frame.source.card.id, region);
+                    }
+                },
                 Op::JZ39EnemySacrifice => return self.jz39_enemy_sacrifice(frame),
                 Op::CQ07EnterMoon => {
                     if self.players[frame.actor].society_zone.secrecy == 0 { self.add_society_markers(frame.actor,0,1); }
