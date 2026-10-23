@@ -16,7 +16,7 @@
 | 第二批20张 | [组合候选](docs/factions/batch20-next-2026-10-21.md)：20张实现及准入完成；ABI93/pool83共193张。固定9aa4fda独立复审的已验范围无新P0/P1；两项构建/测试P2已在677a7b1独立补验关闭。旧多核v75退出发布队列，ABI93单核仍未上线 |
 | 当前单核验证 | [清理记录](docs/LATEST_KERNEL_ONLY_2026-10-21.md)及[夹具迁移](docs/CURRENT_FIXTURES_ABI93_2026-10-21.md)保留各固定身份的历史结果；[9950X Ubuntu恢复](docs/UBUNTU_RECOVERY_2026-10-21.md)在精确ABI93字节上重新完成Web148文件1498项、产品内Sites宿主58文件637项、来源工具27文件及原5项目录失败补验，均通过。中断轮单独留档；本机未重跑Rust1482项或广域Native/WASM483场景，未完成独立复审/线上批次验收 |
 | 第三批进度分支 | [20张本机候选](docs/factions/batch20-third-2026-10-21.md)及[ABI94必要检查](docs/factions/ABI94_INTEGRATION_PREPARATION_2026-10-21.md)：CQ07替补待裁定的CQ11，红4/黑5/蓝6/灰5；单ABI94、213条定义，本机新增20张整体准入。原生本批162、Web70、Sites12及构建/启动身份检查通过，均为作者必要验证。原v74在00:03:57UTC仍pending，未新部署；本批公开准入及验收仍0/20 |
-| 第四批隔离研发 | [50张批次目标与进度](docs/factions/batch20-fourth-2026-10-22.md)：已选定红黑蓝灰50张、原生完整32/50；A/B十张原生整卡已接收，BQ036合法宿主费用P2已独审关闭，XG21仍为原WIP且中止复核不重试。单ABI95、246条定义，前213条保留；新增构筑准入、WASM、公开站与验收均为0/50。第三批冻结候选不混入本批WIP |
+| 第四批隔离研发 | [50张批次目标与进度](docs/factions/batch20-fourth-2026-10-22.md)：已选定红黑蓝灰50张、原生完整32/50；A/B十张原生整卡已接收，BQ036合法宿主费用P2已独审关闭，XG21仍为原WIP且中止复核不重试。JZ56新增原生与卡面候选待独审；单ABI95/pool86、247条定义，前213条保留；新增构筑准入、WASM、公开站与验收均为0/50。第三批冻结候选不混入本批WIP |
 
 [游戏入口](https://hidden-world-hegemony-20261002.chengliang1984286.chatgpt.site)最近确认成功的官方部署为v73，包含第一批20卡及此前整改。该成功部署ID为 `appgdep_6ad8bf5fa23081918eca730d2b96e3bb`；Site源码提交为 `e1969c3ded2ffa44ce429be87c0005d928d5ef38`，与GitHub产品仓库属于不同源码仓库，不应混用。精确版本、产物及访问核对边界见[发布证据](docs/evidence/batch20-2026-10-21/publication-v73.json)；v74仍pending，v75只保存未请求部署，现已退出发布队列。
 
@@ -24,7 +24,7 @@ Go服务、旧调试器和 `/legacy-debugger` 已退役。此前README中的Go�
 
 ## 已发布v73的卡牌与玩法范围
 
-下表统计v73冻结版本；第二批冻结验收基线bb77的ABI93候选为193张（角色121、事务34、附属28、地区10），尚未发布。第三批冻结b80f1220使用单ABI94：213条定义，本机候选新增20张整体准入。本第四批分支预留单ABI95，目前246条目录记录，原生完整32/50另XG21一张WIP，新增仍禁止构筑；尚无本批WASM产物。CQ11/TK008不在运行目录。这些状态不代表公开站已更新或整批验收通过。另列秘社仍10张。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，当前身份牌桌使用 `/api/rooms/{roomId}/catalog`；单核候选拒绝旧身份房间并提示新开。
+下表统计v73冻结版本；第二批冻结验收基线bb77的ABI93候选为193张（角色121、事务34、附属28、地区10），尚未发布。第三批冻结b80f1220使用单ABI94：213条定义，本机候选新增20张整体准入。本第四批分支预留单ABI95，目前247条目录记录，原生完整32/50另JZ56候选与XG21原WIP，新增仍禁止构筑；本卡Web构建与WASM目标检查已过，尚无本批WASM整合产物。CQ11/TK008不在运行目录。这些状态不代表公开站已更新或整批验收通过。另列秘社仍10张。运行目录由 [cards.json](rust-game/data/cards.json)、[catalog.rs](rust-game/src/catalog.rs) 与 [society.rs](rust-game/src/society.rs) 共同提供；以实际 `/api/catalog` 为准，当前身份牌桌使用 `/api/rooms/{roomId}/catalog`；单核候选拒绝旧身份房间并提示新开。
 
 | 目录类型 | 数量 |
 | --- | ---: |

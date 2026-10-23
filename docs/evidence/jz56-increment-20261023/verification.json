@@ -1,0 +1,618 @@
+{
+  "baseCommit": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+  "sourceCommit": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+  "createdUtc": "2026-10-23T11:07:59.620058+00:00",
+  "card": "JZ56",
+  "status": "Author native and presentation candidate; independent review pending",
+  "identities": {
+    "engine": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.86-batch20-fourth",
+    "registeredDefinitions": 247
+  },
+  "formalCompleteNative": 32,
+  "additionalAuthorCandidate": 1,
+  "publicAdmissionAdded": 0,
+  "old246RecordsPreserved": true,
+  "supportedChanged": false,
+  "native": {
+    "directedPassed": 12,
+    "adjacentPassed": 75,
+    "distinctFinalPassingCases": 87,
+    "compiled": 2059,
+    "notRun": 1972,
+    "notSingleAllGreenRun": true,
+    "directedNames": [
+      "batch4_night_tests::batch4_night_both_restore_entries_reject_corrupt_pending_frames_and_moved_choices",
+      "batch4_night_tests::batch4_night_choice_rejects_wrong_actor_bad_payload_duplicates_and_replay",
+      "batch4_night_tests::batch4_night_current_controller_not_owner_or_teammate_and_hidden_blank_boundaries",
+      "batch4_night_tests::batch4_night_decline_entry_and_source_departure_do_not_rebind_replacement",
+      "batch4_night_tests::batch4_night_enhanced_kill_uses_real_combat_damage_pipeline",
+      "batch4_night_tests::batch4_night_finite_program_and_choice_cannot_be_transplanted",
+      "batch4_night_tests::batch4_night_illegal_host_and_loyalty_never_pay",
+      "batch4_night_tests::batch4_night_original_cost_loyalty_full_program_and_closed_deck_gate",
+      "batch4_night_tests::batch4_night_room_commands_choice_restore_four_views_and_duplicate_receipt",
+      "batch4_night_tests::batch4_night_source_loss_removes_defense_before_existing_death_cleanup",
+      "batch4_night_tests::batch4_night_sources_stack_and_exhaustion_preserves_categories_not_participation",
+      "batch4_night_tests::batch4_night_three_subtypes_global_personal_bonuses_and_live_grave_threshold"
+    ],
+    "adjacentNames": [
+      "batch3_warrant_tests::batch3_xq26_actual_enemy_entry_has_no_targets_and_destroys_even_with_shield",
+      "batch3_warrant_tests::batch3_xq26_entry_instance_hidden_in_response_is_not_replaced_by_its_new_hidden_identity",
+      "batch3_warrant_tests::batch3_xq26_hidden_deploy_has_no_named_trigger_until_real_paid_reveal",
+      "batch3_warrant_tests::batch3_xq26_named_instance_private_zone_and_duplicate_or_altered_observation_are_rejected",
+      "batch3_warrant_tests::batch3_xq26_naming_pending_is_exact_and_optional_entry_can_be_declined_without_a_named_effect",
+      "batch3_warrant_tests::batch3_xq26_non_targeted_forced_destruction_ignores_barrier_and_cannot_be_declined",
+      "batch3_warrant_tests::batch3_xq26_original_warrant_departure_does_not_cancel_frozen_kill_or_sacrifice_an_identical_replacement",
+      "batch3_warrant_tests::batch3_xq26_paid_society_attachment_without_society_card_names_publicly_and_rejects_polluted_confirmation",
+      "batch3_warrant_tests::batch3_xq26_same_name_friendly_direct_entry_also_triggers",
+      "batch4_manor_tests::batch4_manor_actual_dual_type_bat_attachment_keeps_owned_slave_type_visible_to_four_seats",
+      "batch4_manor_tests::batch4_manor_actual_paid_attachment_changes_owned_human_not_printed_definition",
+      "batch4_manor_tests::batch4_manor_current_subtype_targeting_and_explicit_printed_subtype_targeting_stay_distinct",
+      "batch4_manor_tests::batch4_manor_each_seat_uses_its_own_society_and_preserves_u64_seed",
+      "batch4_manor_tests::batch4_manor_exhaustion_keeps_aura_and_source_departure_reverts_in_all_owned_zones",
+      "batch4_manor_tests::batch4_manor_hidden_identity_and_private_projection_stay_hidden_until_real_paid_reveal",
+      "batch4_manor_tests::batch4_manor_live_bat_blood_domain_conversion_precedes_nonhuman_slave_test",
+      "batch4_manor_tests::batch4_manor_losing_human_invalidates_real_human_host_attachment_without_recursion",
+      "batch4_manor_tests::batch4_manor_nonhuman_becomes_slave_but_vampire_is_unchanged_without_duplicate_types",
+      "batch4_manor_tests::batch4_manor_original_unique_subtitle_and_personal_society_registry_are_closed",
+      "batch4_manor_tests::batch4_manor_owned_warden_still_emits_original_leave_after_becoming_vampire",
+      "batch4_manor_tests::batch4_manor_ownership_differs_from_current_controller_and_teammate",
+      "batch4_manor_tests::batch4_manor_personal_binding_and_extra_action_payloads_reject_atomically",
+      "batch4_manor_tests::batch4_manor_real_jc005_society_attachment_removal_reverts_without_changing_owners",
+      "batch4_manor_tests::batch4_manor_same_gold_name_uses_existing_uniqueness_and_never_stacks_conversion_into_slave",
+      "batch4_manor_tests::batch4_manor_works_in_hand_deck_and_grave_while_assets_and_seals_stay_blank",
+      "batch4_tattoo_tests::batch4_tattoo_actual_attach_adds_permanent_combat_kill_and_demon_to_human_with_four_seat_projection",
+      "batch4_tattoo_tests::batch4_tattoo_actual_human_to_vampire_change_removes_ineligible_tattoo_and_all_its_grants",
+      "batch4_tattoo_tests::batch4_tattoo_cost_rejects_ally_non_demon_hidden_duplicates_and_forged_payload_atomically",
+      "batch4_tattoo_tests::batch4_tattoo_enemy_may_sacrifice_an_attached_dual_kind_character_without_its_host",
+      "batch4_tattoo_tests::batch4_tattoo_enemy_without_characters_still_resolves_paid_cost_without_a_choice",
+      "batch4_tattoo_tests::batch4_tattoo_exact_print_whole_definition_and_nested_cost_program_cannot_be_transplanted",
+      "batch4_tattoo_tests::batch4_tattoo_legal_commands_enumerate_personal_demon_cost_and_only_enemy_players",
+      "batch4_tattoo_tests::batch4_tattoo_nonhuman_hidden_and_unknown_payloads_cannot_attach_or_spend",
+      "batch4_tattoo_tests::batch4_tattoo_paid_own_host_death_keeps_the_ability_and_enemy_chooses_once_after_restore",
+      "batch4_tattoo_tests::batch4_tattoo_pending_victim_choice_metadata_and_continuation_are_closed",
+      "batch4_tattoo_tests::batch4_tattoo_printed_demon_payment_keeps_the_tattoo_but_its_exhaustion_blocks_reuse",
+      "batch4_tattoo_tests::batch4_tattoo_real_hide_ends_combat_kill_and_demon_and_does_not_leak_the_hidden_successor",
+      "batch4_tattoo_tests::batch4_tattoo_saved_payment_program_and_source_cannot_be_rewritten_or_reused",
+      "batch4_timekeeper_tests::batch4_timekeeper_actual_time_increase_settles_enemy_zero_defense_death",
+      "batch4_timekeeper_tests::batch4_timekeeper_all_positive_defense_precedes_time_penalty",
+      "batch4_timekeeper_tests::batch4_timekeeper_attached_bat_is_a_character_and_host_inherits_time_once",
+      "batch4_timekeeper_tests::batch4_timekeeper_defense_personal_ally_and_both_enemy_seats_across_regions",
+      "batch4_timekeeper_tests::batch4_timekeeper_entry_decline_and_public_conceal_and_payload_rejection",
+      "batch4_timekeeper_tests::batch4_timekeeper_exact_source_and_closed_definition",
+      "batch4_timekeeper_tests::batch4_timekeeper_inherited_attachment_time_follows_its_actual_host",
+      "batch4_timekeeper_tests::batch4_timekeeper_leader_uses_personal_sun_not_ally_sun_and_follows_control",
+      "batch4_timekeeper_tests::batch4_timekeeper_prepare_can_be_declined_without_markers_or_rng_consumption",
+      "batch4_timekeeper_tests::batch4_timekeeper_prepare_frame_and_observation_mutations_reject_restore",
+      "batch4_timekeeper_tests::batch4_timekeeper_prepare_order_with_jc055_resolves_each_receipt_once",
+      "batch4_timekeeper_tests::batch4_timekeeper_prepare_target_current_destroyed_count_and_receipt_once",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_aura_entry_settles_preexisting_enemy_time_death",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_entry_source_rescued_before_time_does_not_mark_replacement",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_paid_entry_optional_time_and_four_seat_projection",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_prepare_source_rescue_keeps_declared_effect",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_prepare_target_rescue_cancels_and_does_not_mark_new_uid",
+      "batch4_timekeeper_tests::batch4_timekeeper_real_source_rescue_settles_recipient_losing_defense",
+      "batch4_timekeeper_tests::batch4_timekeeper_room_pause_target_resume_replay_and_response_receipt_large_u64",
+      "batch4_timekeeper_tests::batch4_timekeeper_secret_plan_target_keeps_time_and_advance_and_identity_separate",
+      "batch4_timekeeper_tests::batch4_timekeeper_time_bonus_precedes_wound_clamp",
+      "batch4_timekeeper_tests::batch4_timekeeper_two_opposing_sources_combine_positive_and_negative_before_wounds",
+      "wound_defence_tests::wound_defence_cleanup_damage_clears_atomically_but_wound_causes_real_death_at_expiry",
+      "wound_defence_tests::wound_defence_death_last_controller_not_owner_and_target_shield_still_applies",
+      "wound_defence_tests::wound_defence_hermit_current_controller_not_owner",
+      "wound_defence_tests::wound_defence_hermit_exhaust_only_no_assets_and_exact_defense_only",
+      "wound_defence_tests::wound_defence_hermit_rejects_self_teammate_enemy_other_region_and_noncharacters",
+      "wound_defence_tests::wound_defence_hermit_response_to_real_wound_saves_until_expiry",
+      "wound_defence_tests::wound_defence_hermit_two_sources_stack_and_preserve_icons",
+      "wound_defence_tests::wound_defence_original_fields_and_narrow_wound_program",
+      "wound_defence_tests::wound_defence_real_murder_death_targets_old_region_wound_persists_without_damage",
+      "wound_defence_tests::wound_defence_real_sacrificed_cost_declares_independent_death_wound_without_second_fee",
+      "wound_defence_tests::wound_defence_source_real_rescue_does_not_cancel_declared_grant",
+      "wound_defence_tests::wound_defence_target_move_or_control_response_checkpoint_cancels_but_resolved_bonus_follows_instance",
+      "wound_defence_tests::wound_defence_target_real_rescue_stales_frame_and_fresh_deploy_gets_no_bonus",
+      "wound_defence_tests::wound_defence_trigger_decline_and_no_target_are_free",
+      "wound_defence_tests::wound_defence_wound_bypasses_real_damage_prevention_and_defense_zero_kills"
+    ]
+  },
+  "web": {
+    "distinctCasesPassed": 26,
+    "directSixRerunAfterTypeImportFix": true,
+    "notSummedTo32": true
+  },
+  "sourceChecksPassed": 3,
+  "webProductionBuild": true,
+  "wasmTargetCheck": true,
+  "wasmExecution": false,
+  "wasmPackageBuilt": false,
+  "browser": false,
+  "fullSuite": false,
+  "independentReview": false,
+  "push": false,
+  "ciTriggered": false,
+  "deploy": false,
+  "main": false,
+  "xg21Untouched": true,
+  "sourceImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
+  "sourceImageVisuallyRead": true,
+  "runs": [
+    {
+      "family": "native",
+      "name": "night-and-adjacent-05",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "rust-game/src/batch4_night_tests.rs"
+      ],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--",
+        "batch4_night_",
+        "batch3_xq26_",
+        "batch4_manor_",
+        "batch4_timekeeper_",
+        "wound_defence_",
+        "batch4_tattoo_",
+        "--nocapture"
+      ],
+      "exitCode": 101,
+      "seconds": 43.396,
+      "logSha256": "ec354579d4fe1c232c7fc2ecf6df8f1e599440f53043a7588f744e4eb9eb72bc"
+    },
+    {
+      "family": "native",
+      "name": "night-directed-02",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "rust-game/src/batch4.rs",
+        "rust-game/src/batch4_night.rs",
+        "rust-game/src/batch4_night_tests.rs",
+        "rust-game/src/engine.rs"
+      ],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "batch4_night_",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 101,
+      "seconds": 27.495,
+      "logSha256": "885fdb43b34e78b36a8a97210eb35bbdb4fae4177fceddac5d66521e7f61c132"
+    },
+    {
+      "family": "native",
+      "name": "night-directed-03",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "rust-game/src/batch4.rs",
+        "rust-game/src/batch4_night.rs",
+        "rust-game/src/batch4_night_tests.rs",
+        "rust-game/src/engine.rs"
+      ],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "batch4_night_",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 101,
+      "seconds": 29.137,
+      "logSha256": "8639cd0e76bdf8720d9622dc036c224b9751465fd12f5777bb9149a6c6817e24"
+    },
+    {
+      "family": "native",
+      "name": "night-directed-04",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "rust-game/src/batch4_night_tests.rs",
+        "rust-game/src/engine.rs"
+      ],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "batch4_night_",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 101,
+      "seconds": 32.57,
+      "logSha256": "f678b80cf5093c2fe3fc725774a5f64d42d93c597f22ca0ea33f913c5dc15fe0"
+    },
+    {
+      "family": "native",
+      "name": "night-directed-final-06",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "batch4_night_",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 0,
+      "seconds": 31.207,
+      "logSha256": "2a6b9b2290e73183a512168a0685c307cfc99bd45d9a24a08777636797eb98d3"
+    },
+    {
+      "family": "native",
+      "name": "night-first-01",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "rust-game/src/batch4.rs",
+        "rust-game/src/batch4_night.rs",
+        "rust-game/src/batch4_night_tests.rs",
+        "rust-game/src/engine.rs",
+        "rust-game/src/rules.rs"
+      ],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "batch4_night_",
+        "--",
+        "--nocapture"
+      ],
+      "exitCode": 101,
+      "seconds": 26.079,
+      "logSha256": "74460ac688de66127dc79f4c8cd3d333a2358e30f6866a6b71fd6e9be00cc2c3"
+    },
+    {
+      "family": "native",
+      "name": "source-fixed-09",
+      "sourceHeadAtExecution": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.17,
+      "logSha256": "6e0dcb371530d7ddbd45a147bd2690e387ebb3b48cc79bcfe21a4f16071889fe"
+    },
+    {
+      "family": "native",
+      "name": "source-ledger-08",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "tools/cards/batch4-source.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.472,
+      "logSha256": "3ae664592b8f33b271b45faf0e3db8c73544ab890a2d62093ed20cb540b9de4b"
+    },
+    {
+      "family": "native",
+      "name": "wasm-target-check-07",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "node",
+        "tools/build-storage.mjs",
+        "--",
+        "cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-wasm",
+        "--target",
+        "wasm32-unknown-unknown"
+      ],
+      "exitCode": 0,
+      "seconds": 14.093,
+      "logSha256": "58eb22d9f04d6aed29b4b379c1c0762326e1d6bf324f14eb287b225e029b4299"
+    },
+    {
+      "family": "web",
+      "name": "presentation-01",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "web/src/game/JZ56Presentation.test.tsx"
+      ],
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/game/JZ56Presentation.test.tsx",
+        "src/game/CardTile.test.tsx",
+        "src/game/ReadModal.test.tsx",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "seconds": 3.449,
+      "logSha256": "0623c5bc2230b74beec04d7550d2f188d6552458d46df3eb20194e78f415c434"
+    },
+    {
+      "family": "web",
+      "name": "presentation-final-04",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/game/JZ56Presentation.test.tsx",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "exitCode": 0,
+      "seconds": 0.675,
+      "logSha256": "8fac085d9d1a7eb5fbc17ea4954e8fbda390b5742518b7729982682782fd208e"
+    },
+    {
+      "family": "web",
+      "name": "production-build-02",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [
+        "web/src/game/JZ56Presentation.test.tsx"
+      ],
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 2,
+      "seconds": 12.377,
+      "logSha256": "0fd645cc2d78e0acc0e12d308e6b1205cf10c20cf4af0463d24457ea5fa85446"
+    },
+    {
+      "family": "web",
+      "name": "production-build-03",
+      "sourceHeadAtExecution": "4a43ae87b50295ca77e504bc481584bd8a5d49e2",
+      "sourceCommitCompared": "ec814b1b37025d0453e2f4f9bbf6899c46343d21",
+      "differingInputPaths": [],
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 8.533,
+      "logSha256": "dd68f33be57f1cb43d61be6c2706464796bc3b83d3b73de262d9919d1f773c64"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "runs/native/night-and-adjacent-05.json.gz",
+      "sha256": "69ff37b1235e9d5161a38ead0101520cf9e4ab2bc9872cecd47da4e12f998954",
+      "uncompressedSha256": "26c59dcf9a0a22540d829192bae6b079525119f517e14fff0b5350e7e8f21bff",
+      "bytes": 11746
+    },
+    {
+      "path": "runs/native/night-and-adjacent-05.log.gz",
+      "sha256": "fc8a498172638fc69a9c6b6264cfd54980b68bbe11ddfc8aaf78fe05bb1a9298",
+      "uncompressedSha256": "ec354579d4fe1c232c7fc2ecf6df8f1e599440f53043a7588f744e4eb9eb72bc",
+      "bytes": 3350
+    },
+    {
+      "path": "runs/native/night-directed-02.json.gz",
+      "sha256": "0b67520ef79d6c415147b5e72de31463a2d3406eef7e959c25ef467610114ccf",
+      "uncompressedSha256": "fe2c173257b5c86377ff507c2c0eb95706cbfbffe9905f6cd549ddebdde5654d",
+      "bytes": 11692
+    },
+    {
+      "path": "runs/native/night-directed-02.log.gz",
+      "sha256": "b6b7bb801ba3cc505a2e648ebdc45395b6a275431ad0f4f144d0e25489d5d2e7",
+      "uncompressedSha256": "885fdb43b34e78b36a8a97210eb35bbdb4fae4177fceddac5d66521e7f61c132",
+      "bytes": 1276
+    },
+    {
+      "path": "runs/native/night-directed-03.json.gz",
+      "sha256": "0d53355dd0f16ae3afd1dbd252e824c351e9577b54baac8170e9e8fcfb2698c5",
+      "uncompressedSha256": "2559b4be7a75dbc7b2d929c7663dd2407788791a8e5d3db92fe27a09305a75e9",
+      "bytes": 11695
+    },
+    {
+      "path": "runs/native/night-directed-03.log.gz",
+      "sha256": "13d07df807680ce216d483afa91b667f0d57e7c654b03e54073da865f702107c",
+      "uncompressedSha256": "8639cd0e76bdf8720d9622dc036c224b9751465fd12f5777bb9149a6c6817e24",
+      "bytes": 1498
+    },
+    {
+      "path": "runs/native/night-directed-04.json.gz",
+      "sha256": "85f73e492f0da0e7ee5f5c72ecf194a5ce0131fd60c45e502466fc6905da053d",
+      "uncompressedSha256": "ff72b21eeb33f081d63879009d4435515c1d7be57cbc8a42d3d25d54c21d5ddd",
+      "bytes": 11712
+    },
+    {
+      "path": "runs/native/night-directed-04.log.gz",
+      "sha256": "c754918157109770fe08503b50335fb9a160fe1336d875329bbe36c71b2b3402",
+      "uncompressedSha256": "f678b80cf5093c2fe3fc725774a5f64d42d93c597f22ca0ea33f913c5dc15fe0",
+      "bytes": 1267
+    },
+    {
+      "path": "runs/native/night-directed-final-06.json.gz",
+      "sha256": "d7524594e0256588947fec979d7a428562e1c44e9cc8049b4d8587bd06ebb4c2",
+      "uncompressedSha256": "f72d2ce15acc9730213b104688ef2a676ca0b9f8997b44008e6ace8042a84a0f",
+      "bytes": 11708
+    },
+    {
+      "path": "runs/native/night-directed-final-06.log.gz",
+      "sha256": "6676174b35cef2ffde77f24afe0bc52bb19ecee9fac270b7873dee90cdb8b643",
+      "uncompressedSha256": "2a6b9b2290e73183a512168a0685c307cfc99bd45d9a24a08777636797eb98d3",
+      "bytes": 1059
+    },
+    {
+      "path": "runs/native/night-first-01.json.gz",
+      "sha256": "3379b02942fb1ca1b0418160cb20d7a2702279640168e3affd3d02cfa099072b",
+      "uncompressedSha256": "1a18b3c707b3eec50c44585c8b7925dbf2b579ddca7d39624b3326f4c1d29af8",
+      "bytes": 11696
+    },
+    {
+      "path": "runs/native/night-first-01.log.gz",
+      "sha256": "3bb05f05b2e71e44eb65b07c8c60e693a8aa46272c41134c76165dcde3c1224e",
+      "uncompressedSha256": "74460ac688de66127dc79f4c8cd3d333a2358e30f6866a6b71fd6e9be00cc2c3",
+      "bytes": 982
+    },
+    {
+      "path": "runs/native/source-fixed-09.json.gz",
+      "sha256": "407001a335d349d39aaf718c1813c17b7ae31d43f3f4657e5ee4985f6b3e3a41",
+      "uncompressedSha256": "31a538e160e0020c69f00acc90ed2a2d9b6f9cab07a6a3a01c8cd8387d40d5a1",
+      "bytes": 11812
+    },
+    {
+      "path": "runs/native/source-fixed-09.log.gz",
+      "sha256": "42033a277c3daded9e444faae7a4775f7d28122d13fc8af459d3b82218757ece",
+      "uncompressedSha256": "6e0dcb371530d7ddbd45a147bd2690e387ebb3b48cc79bcfe21a4f16071889fe",
+      "bytes": 350
+    },
+    {
+      "path": "runs/native/source-ledger-08.json.gz",
+      "sha256": "ce7961b7518f76ba98b468cd084206aa1f9af627990cefb99555b2b8ea71601e",
+      "uncompressedSha256": "66a59c24b40ab3b5443d6afcd9308dceacf1f20e71c5ef7465ea879cd828d657",
+      "bytes": 11695
+    },
+    {
+      "path": "runs/native/source-ledger-08.log.gz",
+      "sha256": "eee736c8b5b3e9e4a41dba29fb3779405aaef8f7ff652cc9bf88279b21fd90e5",
+      "uncompressedSha256": "3ae664592b8f33b271b45faf0e3db8c73544ab890a2d62093ed20cb540b9de4b",
+      "bytes": 353
+    },
+    {
+      "path": "runs/native/wasm-target-check-07.json.gz",
+      "sha256": "50422daaa08f71fe703e164e07fdb8c38b0ed1f9b9326ffad2aa7a2cdbcc0378",
+      "uncompressedSha256": "8f451e3dfe9396c5ae9d5599725b162e02a79fd10fcf5ecebd42711874709bc9",
+      "bytes": 11731
+    },
+    {
+      "path": "runs/native/wasm-target-check-07.log.gz",
+      "sha256": "d98d64dfb0c5c45dd14750dd924b8c7b9dd17125e6798a161d06b74fff2e58b9",
+      "uncompressedSha256": "58eb22d9f04d6aed29b4b379c1c0762326e1d6bf324f14eb287b225e029b4299",
+      "bytes": 385
+    },
+    {
+      "path": "runs/web/presentation-01.json.gz",
+      "sha256": "7a282828ba49b7dc86ed72e5988e40841b34a22527ce2095531138e6a47e0f66",
+      "uncompressedSha256": "aa5efd5eb53183955047cb23d09589d0bb2d5db0334a1ae76e2998847b8bb749",
+      "bytes": 27970
+    },
+    {
+      "path": "runs/web/presentation-01.log.gz",
+      "sha256": "1cee4f16c1d40dba47d1de7d996ca72f5da407e219d88219be4862aaa7abb82d",
+      "uncompressedSha256": "0623c5bc2230b74beec04d7550d2f188d6552458d46df3eb20194e78f415c434",
+      "bytes": 217
+    },
+    {
+      "path": "runs/web/presentation-final-04.json.gz",
+      "sha256": "ea1078901e06483c5cc6f562e50abadb9b35391bff56b3cd20e88ea0fe0d982f",
+      "uncompressedSha256": "56ef6bf2b913060fe578612674c63e247509ae04c7cea73dad3ae06a268f8a6b",
+      "bytes": 27981
+    },
+    {
+      "path": "runs/web/presentation-final-04.log.gz",
+      "sha256": "8852e29c3ab667202f23ed9ee31e6d5c29d56508062bebb0b02a207abd0a9593",
+      "uncompressedSha256": "8fac085d9d1a7eb5fbc17ea4954e8fbda390b5742518b7729982682782fd208e",
+      "bytes": 213
+    },
+    {
+      "path": "runs/web/production-build-02.json.gz",
+      "sha256": "4fa966ad0b83de3690218ccc6c1b4e51afa559bd5097dad856726633104b253f",
+      "uncompressedSha256": "86667df5ff6dc92ab59b3eca2b55cc4ed2a8276caad221c17953851add88aaf1",
+      "bytes": 27924
+    },
+    {
+      "path": "runs/web/production-build-02.log.gz",
+      "sha256": "9079ac42a0d4bf5b42e84c2790e1ce8d95ae2d87cab64c6446bc59ba9cc67095",
+      "uncompressedSha256": "0fd645cc2d78e0acc0e12d308e6b1205cf10c20cf4af0463d24457ea5fa85446",
+      "bytes": 197
+    },
+    {
+      "path": "runs/web/production-build-03.json.gz",
+      "sha256": "5de8386fa52c19888a12441fc952de1d5067cd8cdd06bb65a3b5b354a5cc9e46",
+      "uncompressedSha256": "8cf85cc20b3f609c7c5bbd05b129a4506f6a6143c9946080bb06e8be17cb78d2",
+      "bytes": 27922
+    },
+    {
+      "path": "runs/web/production-build-03.log.gz",
+      "sha256": "fd6477f981ac8152100dacce9b92569385cb7fecf158766d9653019f9e4a1ac2",
+      "uncompressedSha256": "dd68f33be57f1cb43d61be6c2706464796bc3b83d3b73de262d9919d1f773c64",
+      "bytes": 309
+    }
+  ],
+  "builtWebAssets": [
+    {
+      "path": "web/dist/index.html",
+      "bytes": 475,
+      "sha256": "8d8acadeb2313477dd0e41856a4fbb6dbf97315cb356d7eb1f818bf3e73befe2"
+    },
+    {
+      "path": "web/dist/assets/index-1asbQbnG.css",
+      "bytes": 201218,
+      "sha256": "074f064efd2c2aa6896068376744ca4c6f3229ae607183c14acbacc552089604"
+    },
+    {
+      "path": "web/dist/assets/index-DJHO85l2.js",
+      "bytes": 414325,
+      "sha256": "a1d1b47651d8255669efc57963ff8b3e65d187ee3bdc652e18f5e8a6907459cb"
+    }
+  ]
+}
