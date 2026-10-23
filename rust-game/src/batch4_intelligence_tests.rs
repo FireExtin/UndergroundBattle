@@ -348,3 +348,59 @@ fn wm044_sentinel_entry_decline_and_response_target_loss() {
         restore(&mut g);
     }
 }
+
+// Independent normal-command response checks; explicit layouts are not full matches.
+#[test]
+fn independent_wm044_paid_response_destruction_changes_later_hidden_entry() {
+    let mut g=game(); let source=center(&mut g,0); g.begin_window(Window::Action(0));
+    fund(&mut g,0,"JC084",2); fund(&mut g,2,"JC005",2);
+    let dead=g.make_card("JC125",0); let target=dead.id.clone(); g.players[0].graveyard.push(dead);
+    let summon=held(&mut g,"JC092",0); let destroy=held(&mut g,"JC005",2);
+    let a=g.legal_actions(0).into_iter().find(|a|a.action.kind=="play" && a.action.card_id.as_deref()==Some(&summon)
+        && a.action.target_id.as_deref()==Some(&target) && a.action.region==Some(0)).unwrap().action;
+    act(&mut g,0,a);
+    // A declaration retains priority; pass the acting team before its opponent responds.
+    for _ in 0..4 {if g.can_fast(2){break;} pass(&mut g);}
+    let a=g.legal_actions(2).into_iter().find(|a|a.action.kind=="play" && a.action.card_id.as_deref()==Some(&destroy)
+        && a.action.target_id.as_deref()==Some(&source)).expect("paid fast destruction with mind assets").action;
+    act(&mut g,2,a); top(&mut g); assert!(g.in_play(&source).is_none()); assert_eq!(g.resources(2),0);
+    top(&mut g); let c=g.regions[0].cards.last().unwrap(); assert_eq!(c.definition,"JC125"); assert!(c.face_down && !c.exhausted);
+}
+
+#[test]
+fn independent_wm044_real_target_reveal_cancels_old_inspection() {
+    let mut g=game(); center(&mut g,0); let target=hidden(&mut g,"JC125",2);
+    wm044_contest(&mut g,Some(0)); wm044_target(&mut g,&target);
+    for _ in 0..4 {if g.can_fast(2){break;} pass(&mut g);}
+    let a=g.legal_actions(2).into_iter().find(|a|a.action.kind=="reveal" && a.action.card_id.as_deref()==Some(&target)).unwrap().action;
+    act(&mut g,2,a); crate::jc029_tests::pass_top(&mut g);
+    assert!(g.regions[0].cards.iter().any(|c|c.controller==2 && c.definition=="JC125" && !c.face_down));
+    crate::jc029_tests::pass_top(&mut g); assert!(g.pending.is_none());
+    assert!(g.stack.is_empty()); for s in 0..4 {assert!(g.view(s).pending_choice.is_none());}
+}
+
+#[test]
+fn independent_wm044_mixed_contest_sources_order_and_private_completion() {
+    let mut g=game(); center(&mut g,0); center(&mut g,0); field(&mut g,"BQ031",0);
+    let target=hidden(&mut g,"JC125",2); wm044_contest(&mut g,Some(0));
+    let p=g.pending.as_ref().unwrap(); assert_eq!(p.choice.kind,"batch3-entry-order");
+    // The actual WM022 contest starter also observes the win.
+    assert_eq!(p.choice.options.len(),4);
+    assert_eq!(p.choice.options.iter().filter(|o|o.label.contains("情报分析中心")).count(),2);
+    let feed=p.choice.options.iter().find(|o|o.label.contains("雾羽千军")).unwrap().id.clone();
+    choose(&mut g,vec![feed]); assert_eq!(g.pending.as_ref().unwrap().choice.min,Some(0)); choose(&mut g,vec![]);
+    let mut sources=std::collections::BTreeSet::new();
+    for _ in 0..2 {
+        assert!(wm044_reach_trigger(&mut g));
+        let ChoiceResolution::Declare{declaration,..}=&g.pending.as_ref().unwrap().resolution else{panic!()};
+        assert!(sources.insert(declaration.source.card.id.clone())); choose(&mut g,vec![target.clone()]);
+    }
+    for _ in 0..2 {
+        crate::jc029_tests::pass_top(&mut g); assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm044-private-inspection");
+        assert_eq!(g.view(0).pending_choice.unwrap().preview_cards[0].card_id.as_deref(),Some("JC125"));
+        for s in [1,2,3] {assert!(g.view(s).pending_choice.is_none());}
+        choose(&mut g,vec![]);
+    }
+    assert!(g.stack.is_empty() && g.pending.is_none() && g.entry_order_groups.is_empty());
+    assert!(g.board(&target).unwrap().1.face_down);
+}

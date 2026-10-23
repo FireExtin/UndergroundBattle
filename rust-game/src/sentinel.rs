@@ -44,6 +44,25 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     else { Err("哨兵仅准入完整印刷行动、费用及双目标程序".into()) }
 }
 impl Game {
+    // Manual printed p11: attachment markers also count on their host.
+    // Query only the current legal descendant chain, never copy counters or
+    // inherit a parent's/sibling's markers back down onto an attachment.
+    pub(crate) fn sentinel_has_effective_lock(&self, card: &Card) -> bool {
+        let mut pending = vec![card.id.clone()];
+        let mut seen = std::collections::BTreeSet::new();
+        while let Some(id) = pending.pop() {
+            if !seen.insert(id.clone()) { continue; }
+            if self.in_play(&id).is_some_and(|(_, c)| c.lock_markers > 0) { return true; }
+            for a in &self.attachments {
+                if a.host_id == id && self.attachment_host_valid(a)
+                    && (!a.card.face_down || crate::batch4_plans::secret(&a.card)) {
+                    pending.push(a.card.id.clone());
+                }
+            }
+        }
+        false
+    }
+
     pub(crate) fn sentinel_candidates(&self, actor: usize, c: &Card) -> Vec<(Action,String)> {
         let source = self.source_snapshot(c,None);
         let mut result = vec![];

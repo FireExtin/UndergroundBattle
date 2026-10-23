@@ -780,7 +780,7 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
-                                TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && c.lock_markers > 0 && self.board(&c.id).is_some(),
+                                TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && self.board(&c.id).is_some() && self.sentinel_has_effective_lock(c),
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
