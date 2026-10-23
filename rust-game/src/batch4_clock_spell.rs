@@ -39,7 +39,10 @@ impl Game {
     fn wm037_has_four_time(&self)->bool {
         // Physical markers are counted once. A host's inherited projection must
         // not count the same attached counter again toward the global threshold.
-        self.in_play_cards().into_iter().map(|(_,c)|u64::from(c.time_markers)).sum::<u64>()>=4
+        self.in_play_cards().into_iter().map(|(_,c)|u64::from(c.time_markers))
+            .chain(self.regions.iter().filter(|r|!r.vacant).map(|r|u64::from(r.card.time_markers)))
+            .chain(self.players.iter().filter(|p|!p.eliminated).filter_map(|p|p.society_zone.card.as_ref()).map(|c|u64::from(c.time_markers)))
+            .sum::<u64>()>=4
     }
     pub(crate) fn wm037_offer_contest(&mut self,f:ResolutionFrame)->RuleResult<()> {
         self.validate_wm037_frame(&f)?;

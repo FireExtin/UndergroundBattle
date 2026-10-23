@@ -352,6 +352,7 @@ impl Game {
         }
         for e in &self.effects { match e {
             Effect::Declare { declaration } => { self.validate_batch4_declaration(declaration)?; remember(&declaration.source, &declaration.ability.ops)?; },
+            Effect::Frame { frame } if frame.source.card.definition=="WM037" => self.validate_wm037_frame(frame)?,
             Effect::Frame { frame } if frame_related(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
             _ => {},
         } }
@@ -371,7 +372,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"LC16"|"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"WM037"|"LC16"|"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

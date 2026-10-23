@@ -79,8 +79,8 @@ fn invalid(g: &Game, v: serde_json::Value) {
 }
 #[test]
 fn pack_a_original_data_and_fixed_programs() {
-    // Inventory is 22 complete native pilots plus XG21's explicitly closed-admission WIP.
-    assert_eq!(crate::batch4::IMPLEMENTING.len(),23);
+    // This registry is the fixed core batch4 slice, not all reviewed cards or the50-card roster.
+    assert_eq!(crate::batch4::IMPLEMENTING, &["WM037", "LC16", "XQ20", "XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21", "JZ56"]);
     assert!(crate::batch4::IMPLEMENTING.contains(&"XG21") && !catalog::card("XG21").supported);
     assert!(a::CARDS.iter().all(|id|!crate::batch4::IMPLEMENTING.contains(id)));
     for (id,cost,def) in [("WM021",1,Some(1)),("WM022",3,Some(1)),("WM032",3,Some(1)),("WM061",2,None),("BQ082",4,Some(1))] {

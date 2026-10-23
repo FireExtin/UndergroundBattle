@@ -86,8 +86,7 @@ impl Game {
     pub(crate) fn clock_sweep(&mut self, f:&ResolutionFrame) -> RuleResult<()> {
         // Freeze qualifying physical instances before any host leaves. Only
         // qualifying objects count; an unqualified collateral child does not.
-        let deaths=self.in_play_cards().into_iter().filter(|(_,c)| !c.face_down
-            && self.marker_move_carrier(&c.id) && self.effective_time_markers(c)>=3)
+        let deaths=self.in_play_cards().into_iter().filter(|(_,c)| self.marker_move_carrier(&c.id) && self.effective_time_markers(c)>=3)
             .map(|(r,c)|(c.id.clone(),RemovalCause::Destroy,self.source_snapshot(c,r))).collect::<Vec<_>>();
         let ids=deaths.iter().map(|(id,_,_)|id.clone()).collect::<BTreeSet<_>>();
         self.destroy_wave_as(f.actor,deaths);

@@ -79,7 +79,7 @@ fn batch4_clock_target_shield_stops_time_but_sweep_is_not_targeted() {
 #[test]
 fn batch4_clock_sweep_counts_direct_qualifiers_not_unqualified_collateral() {
     for attachment_time in [0,3] {
-        let(mut g,s)=layout();let host=field(&mut g,"JC029",2);let child=attach(&mut g,"BQ036",&host,2);
+        let(mut g,s)=layout();let host=field(&mut g,"JC029",2);let child=attach(&mut g,"BQ022",&host,2);
         g.board_mut(&host).unwrap().time_markers=if attachment_time==0{3}else{0};g.board_mut(&child).unwrap().time_markers=attachment_time;
         let hidden=field(&mut g,"JC029",3);g.board_mut(&hidden).unwrap().face_down=true;g.board_mut(&hidden).unwrap().time_markers=0;
         let low=field(&mut g,"JC029",1);g.board_mut(&low).unwrap().time_markers=2;
@@ -90,10 +90,12 @@ fn batch4_clock_sweep_counts_direct_qualifiers_not_unqualified_collateral() {
 }
 #[test]
 fn batch4_clock_sweep_includes_attached_bats_as_their_own_qualifying_role() {
-    let(mut g,s)=layout();let host=field(&mut g,"JC029",2);let bat=attach(&mut g,"BQ026",&host,2);
-    g.board_mut(&bat).unwrap().time_markers=3;fund(&mut g,0,"JC125",3);
-    act(&mut g,0,activate(&s,c::SWEEP,None));pass_top(&mut g);assert!(g.in_play(&host).is_none()&&g.in_play(&bat).is_none());
-    assert_eq!(g.players[0].hand.len(),2);assert_eq!(g.players[2].graveyard.len(),2);
+    for bat_time in [0,3] {
+        let(mut g,s)=layout();let host=field(&mut g,"JC029",2);let bat=attach(&mut g,"BQ026",&host,2);
+        g.board_mut(&host).unwrap().time_markers=if bat_time==0{3}else{0};g.board_mut(&bat).unwrap().time_markers=bat_time;fund(&mut g,0,"JC125",3);
+        act(&mut g,0,activate(&s,c::SWEEP,None));pass_top(&mut g);assert!(g.in_play(&host).is_none()&&g.in_play(&bat).is_none());
+        assert_eq!(g.players[0].hand.len(),if bat_time==0{1}else{2});assert_eq!(g.players[2].graveyard.len(),2);
+    }
 }
 #[test]
 fn batch4_clock_sweep_empty_set_draws_none_but_still_pays_and_exhausts() {
@@ -127,6 +129,15 @@ fn commits(g:&mut Game,ids:[&str;4]) {
 fn rewards(g:&mut Game) {
     for _ in 0..4 {if g.pending.as_ref().is_some_and(|p|p.choice.kind==crate::mystic_contest::REWARD_KIND){choose(g,vec![]);}else{break;}}
 }
+fn decline_triggers(g:&mut Game) {
+    for _ in 0..16 {
+        if let Some(p)=g.pending.as_ref() {
+            if p.choice.kind=="batch3-entry-order" {let id=p.choice.options[0].id.clone();choose(g,vec![id]);}
+            else {assert_eq!(p.choice.min,Some(0),"unexpected {}",p.choice.kind);choose(g,vec![]);}
+        }else if !g.stack.is_empty(){pass(g);}else{break;}
+    }
+}
+
 #[test]
 fn batch4_clock_wm037_pinned_fields_and_canonical_standard_program() {
     let d=catalog::card("WM037");assert_eq!((&*d.name,d.cost,&*d.color,&*d.kind),("戴森的计谋",2,"红","spell"));
@@ -156,7 +167,7 @@ fn batch4_clock_wm037_no_hand_to_discard_still_continues_bottom_movement() {
 }
 #[test]
 fn batch4_clock_wm037_threshold_counts_physical_markers_once_and_decline_preserves_steps() {
-    for n in [3,4] {let(mut g,_)=layout();let host=field(&mut g,"JC029",2);let child=attach(&mut g,"BQ036",&host,2);
+    for n in [3,4] {let(mut g,_)=layout();let host=field(&mut g,"JC029",2);let child=attach(&mut g,"BQ022",&host,2);
         g.board_mut(&child).unwrap().time_markers=n;assert_eq!(g.effective_time_markers(g.board(&host).unwrap().1),n);
         let discard=wm_hand(&mut g,&["JC125"])[0].clone();wm_play(&mut g);choose(&mut g,vec![discard]);
         if n==3 {assert!(g.pending.is_none());}else{assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm037-optional-contest");room_checkpoint(&g);choose(&mut g,vec![]);}
@@ -187,7 +198,7 @@ fn batch4_clock_wm037_shown_bonus_is_unconditional_but_time_requires_personal_cl
         held(&mut g,"WM037",0);start_other_contest(&mut g);commits(&mut g,["WM037","JC125","JC125","JC125"]);
         assert_eq!(g.mystic_history[0].shown[0].value,3);rewards(&mut g);
         if own {assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm037-shown-time-target");let target=g.pending.as_ref().unwrap().choice.options[0].id.clone();choose(&mut g,vec![target]);}
-        assert!(g.pending.is_none()&&g.mystic_contest.is_none());
+        decline_triggers(&mut g);assert!(g.pending.is_none()&&g.mystic_contest.is_none());
     }
 }
 #[test]
@@ -204,4 +215,52 @@ fn batch4_clock_wm037_shown_target_is_mandatory_personal_private_and_shielded() 
     assert!(!p.choice.options.iter().any(|o|o.id==hidden));for seat in 1..4{assert!(g.view(seat).pending_choice.is_none());}room_checkpoint(&g);
     for selected in [vec![],vec![hidden],vec!["society:p0".into()]]{reject(&mut g,0,Action{choice_id:Some(p.choice.id.clone()),selected:Some(selected),..Action::new("choose")});}
     choose(&mut g,vec![t.clone()]);assert_eq!(g.board(&t).unwrap().1.time_markers,0);assert_eq!(g.board(&t).unwrap().1.shield,0);assert!(g.mystic_contest.is_none());
+}
+
+#[test]
+fn batch4_clock_time_add_and_sweep_include_secret_attachment_without_revealing_identity() {
+    let(mut g,s)=layout();let id=attach(&mut g,"WM046","society:p2",2);g.board_mut(&id).unwrap().face_down=true;
+    fund(&mut g,0,"JC125",2);act(&mut g,0,activate(&s,c::ADD,Some(id.clone())));pass_top(&mut g);
+    assert_eq!(g.in_play(&id).unwrap().1.time_markers,1);
+    for seat in [0,1,3]{let v=g.view(seat);let a=v.attachments.iter().find(|a|a.card.instance_id==id).unwrap();assert!(a.card.card_id.is_none());}
+    g.board_mut(&id).unwrap().time_markers=3;g.players[0].society_zone.card.as_mut().unwrap().exhausted=false;
+    fund(&mut g,0,"JC125",3);act(&mut g,0,activate(&s,c::SWEEP,None));pass_top(&mut g);
+    assert!(g.in_play(&id).is_none());assert_eq!(g.players[0].hand.len(),1);assert_eq!(g.players[2].graveyard[0].definition,"WM046");
+}
+
+#[test]
+fn batch4_clock_wm037_room_command_private_choice_retry_and_u64_use_normal_envelope() {
+    let(mut g,_)=layout();g.random=(1u64<<63)+77;let t=field(&mut g,"JC029",2);g.board_mut(&t).unwrap().time_markers=4;
+    let discard=wm_hand(&mut g,&["JC125"])[0].clone();wm_play(&mut g);choose(&mut g,vec![discard]);
+    let room=envelope(&g);let command=crate::room::RoomCommand{command_id:"wm037-accept-once".into(),expected_version:room.revision,
+        action:Action{choice_id:Some(g.pending.as_ref().unwrap().choice.id.clone()),selected:Some(vec!["contest".into()]),..Action::new("choose")}.into()};
+    let out=room.transition(0,Some(command.clone()),1).unwrap();assert!(out.changed&&out.error_code.is_none(),"{:?}",out.error_message);
+    assert_eq!(serde_json::to_string(&room.replay_events(&out.journal).unwrap()).unwrap(),out.state);
+    let restored=crate::room::RoomEnvelope::from_persisted(&out.state).unwrap();
+    assert_eq!(serde_json::to_string(&restored).unwrap(),out.state);assert_eq!(restored.game.resources(0),0);
+    assert_eq!(restored.game.pending.as_ref().unwrap().choice.kind,crate::mystic_contest::COMMIT_KIND);
+    for seat in 1..4{assert!(restored.game.view(seat).pending_choice.is_none());}
+    let duplicate=restored.transition(0,Some(command),2).unwrap();assert!(!duplicate.changed);assert_eq!(duplicate.error_code.as_deref(),Some("version_conflict"));assert_eq!(duplicate.state,out.state);
+}
+
+#[test]
+fn batch4_clock_sweep_includes_own_ally_and_enemy_and_draws_after_the_whole_wave() {
+    let(mut g,s)=layout();let mut ids=vec![];
+    for seat in [0,1,2]{let id=field(&mut g,"JC029",seat);g.board_mut(&id).unwrap().time_markers=3;ids.push(id);}
+    fund(&mut g,0,"JC125",3);act(&mut g,0,activate(&s,c::SWEEP,None));
+    assert!(g.players[0].hand.is_empty());pass_top(&mut g);
+    assert!(ids.iter().all(|id|g.in_play(id).is_none()));assert_eq!(g.players[0].hand.len(),3);
+    for seat in [0,1,2]{assert_eq!(g.players[seat].graveyard.len(),1);}
+}
+
+#[test]
+fn batch4_clock_wm037_and_bq027_shown_continuations_preserve_both_adapters_in_order() {
+    let(mut g,_)=layout();let vampire=field(&mut g,"JC029",1);held(&mut g,"WM037",0);held(&mut g,"BQ027",1);
+    start_other_contest(&mut g);commits(&mut g,["WM037","BQ027","JC125","JC125"]);rewards(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm037-shown-time-target");choose(&mut g,vec![vampire.clone()]);
+    assert_eq!(g.board(&vampire).unwrap().1.time_markers,1);
+    let p=g.pending.as_ref().unwrap();assert_eq!(p.seat,1);assert_eq!(p.choice.kind,crate::batch4_vampire_contest::TARGET);room_checkpoint(&g);
+    choose(&mut g,vec![vampire.clone()]);decline_triggers(&mut g);
+    assert_eq!(g.board(&vampire).unwrap().1.time_markers,1);assert!(g.mystic_contest.is_none()&&g.pending.is_none());
+    assert_eq!(g.mystic_history[0].shown[0].value,3);assert_eq!(g.mystic_history[0].shown[1].value,3);
 }
