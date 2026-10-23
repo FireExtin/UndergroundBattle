@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["LC16", "XQ20", "XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21", "JZ56"];
+pub(crate) const IMPLEMENTING: &[&str] = &["WM037", "LC16", "XQ20", "XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21", "JZ56"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -22,6 +22,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     if let Some(d) = crate::pack_a_contest::definition(id) { return Some(d); }
     if id == "JZ56" { return Some(crate::batch4_night::definition()); }
     if id == "XQ20" { return Some(crate::batch4_soul_channel::definition()); }
+    if id == "WM037" { return Some(crate::batch4_clock_spell::definition()); }
     if id == "LC16" { return Some(crate::batch4_jiangyue::definition()); }
     if id == "XQ21" { return Some(crate::batch4_markers::definition()); }
     if id == "JZ51" { return Some(crate::batch4_wendigo::definition()); }
@@ -124,6 +125,8 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    crate::batch4_clock::validate_action(id,a)?;
+    if id=="WM037" {return crate::batch4_clock_spell::validate_action(a);}
     if crate::batch4_vampires::CARDS.contains(&id) { return crate::batch4_vampires::validate_action(id, a); }
     if crate::pack_a_contest::CARDS.contains(&id) { return crate::pack_a_contest::validate_action(id, a); }
     if id == "JZ56" { return crate::batch4_night::validate_action(a); }
@@ -206,6 +209,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if d.source.card.definition=="WM037" { return Err("戴森的计谋没有场内触发声明".into()); }
         if d.source.card.definition == "JZ56" { return self.validate_jz56_declaration(d); }
         if d.source.card.definition == "LC16" && !self.validated_cross_card_declaration(d)? { return self.validate_lc16_declaration(d); }
         if crate::batch4_vampires::CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? { return self.validate_vampire_declaration(d); }
@@ -238,6 +242,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }
         if f.source.card.definition == "LC16" && !self.validated_cross_card_frame(f)? { return self.validate_lc16_frame(f); }
         if crate::batch4_vampires::related_frame(f) && !self.validated_cross_card_frame(f)? { return self.validate_vampire_frame(f); }
@@ -347,6 +352,7 @@ impl Game {
         }
         for e in &self.effects { match e {
             Effect::Declare { declaration } => { self.validate_batch4_declaration(declaration)?; remember(&declaration.source, &declaration.ability.ops)?; },
+            Effect::Frame { frame } if frame.source.card.definition=="WM037" => self.validate_wm037_frame(frame)?,
             Effect::Frame { frame } if frame_related(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && !self.validated_cross_card_frame(frame)? => return Err("第四批不能绕过响应堆叠".into()),
             _ => {},
         } }
@@ -366,7 +372,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"LC16"|"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"WM037"|"LC16"|"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

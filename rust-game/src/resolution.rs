@@ -787,6 +787,7 @@ impl Game {
                                 rules::TargetPredicate::XG16CharacterOrAttachment => self.xg16_time_target(source, c),
                                 rules::TargetPredicate::JZ36CharacterOrAttachment => self.jz36_target(source, c),
                                 rules::TargetPredicate::JZ40CharacterOrAttachment => self.jz40_target(source, c),
+                                rules::TargetPredicate::ClockCharacterOrAttachment => self.clock_time_target(source,c),
                                 rules::TargetPredicate::XQ18CharacterOrAttachment => {
                                     self.xq18_character_or_attachment(source, c)
                                 }
@@ -1594,6 +1595,7 @@ impl Game {
         self.validate_exposure_frame(&frame)?;
         self.validated_cross_card_frame(&frame)?;
         self.validate_red_time_frame(&frame)?;
+        self.validate_clock_frame(&frame)?;
         self.validate_blue_expansion_frame(&frame)?;
         self.validate_black_expansion_frame(&frame)?;
         self.validate_black_next20_frame(&frame)?;
@@ -1650,7 +1652,11 @@ impl Game {
                 Op::BQ027ShownFeed { .. } | Op::BQ031WinFeed { .. } | Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
-                Op::MysticContest { actor_bonus } => return self.mystic_contest_start(frame, actor_bonus),
+                Op::MysticContest { actor_bonus } => {
+                    if frame.source.card.definition=="WM037" {return self.wm037_offer_contest(frame);}
+                    return self.mystic_contest_start(frame,actor_bonus);
+                },
+                Op::WM037ShownTime { .. } => return Err("戴森展示后置只能经原对抗待选执行".into()),
                 Op::MysticWin { .. } => {},
                 Op::MysticDestroyedInfluence => self.pack_a_destroyed_influence(&frame),
                 Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
@@ -1751,6 +1757,8 @@ impl Game {
                 Op::WM056MoveOneAdjacentInfluence => return self.wm056_start(frame),
                 Op::WM062HideCriminalThenOptionalAdjacentMove => return self.wm062_start(frame),
                 ref op @ (Op::JC054ConcealBurst { .. } | Op::JC054EndHide { .. }) => self.jc054_resolve(&frame, op)?,
+                Op::ClockAddTime => self.clock_add_time(&frame),
+                Op::ClockSweep => self.clock_sweep(&frame)?,
                 Op::XQ18AddOneTimeToTarget => self.xq18_add_one_time(&frame),
                 Op::XQ18ChooseTimeCarrier => return self.xq18_choose_carrier(frame),
                 Op::JZ30AddOneTimeToOriginalSource => self.jz30_add_one_time(&frame),
@@ -2548,6 +2556,8 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::WM037Contest => return self.wm037_choose_contest(*frame,chooser,&a,&selected),
+            FrameChoice::WM037TimeTarget => return self.wm037_choose_time(&frame,chooser,&a,&selected),
             FrameChoice::MysticCommit { contest_id } => return self.mystic_commit(&frame, &contest_id, chooser, &selected),
             FrameChoice::MysticReward { contest_id } => return self.mystic_reward(&frame, &contest_id, chooser, &selected),
             FrameChoice::WM058Payment => return self.wm058_payment(*frame, chooser, &a, &selected),

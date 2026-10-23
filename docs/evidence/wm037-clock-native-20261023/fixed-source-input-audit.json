@@ -1,0 +1,43 @@
+{
+  "candidateSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "runs": {
+    "native-clock-wm037-07": {
+      "exitCode": 0,
+      "snapshotHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "inputMismatches": [
+        {
+          "path": "rust-game/src/batch4_clock_tests.rs",
+          "testedSha256": "b3e1db80af0611d1bae6d9bed7a89b596e1d01c7e5bd986a29fe354cb353f9da",
+          "currentSha256": "89b44d085f03434eda2ff4050db8b6c863b989f43d52fdb8bb4fae5daa632135"
+        },
+        {
+          "path": "tools/cards/clockmakers-source.test.mjs",
+          "testedSha256": "729ba7d5fba417a15d0f573d6cf77379d7789d8066a6033b6b3d47ff358b5201",
+          "currentSha256": "b20ccc2fedd67620616564d54a3b7f39f55dc4b12c8554852815e8016dc7a9fa"
+        }
+      ]
+    },
+    "native-normal-adjacent-08": {
+      "exitCode": 0,
+      "snapshotHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "inputMismatches": []
+    },
+    "source-clock-02": {
+      "exitCode": 0,
+      "snapshotHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "inputMismatches": []
+    }
+  },
+  "explanation": "Run07 runtime/card inputs unchanged. Only the existing printed-fields test gained actual runtime250/213 assertions (executed08) and the unrelated Node source checker adopted the established serde supported default (executedsource02).",
+  "finalEvidenceRuntimeChangedSinceSource": false,
+  "finalMetadataSourceRuns": {
+    "source-clock-final-03": {
+      "exitCode": 0,
+      "inputMismatches": []
+    },
+    "source-roster-final-03": {
+      "exitCode": 0,
+      "inputMismatches": []
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.88-batch20-fourth",
-  "engineVersion": "rust-v0.2.97-batch20-fourth",
+  "cardPoolVersion": "limited-v2.89-batch20-fourth",
+  "engineVersion": "rust-v0.2.98-batch20-fourth",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -9984,6 +9984,45 @@
         "imageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882"
       },
       "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "WM037",
+      "name": "戴森的计谋",
+      "kind": "spell",
+      "subtypes": [
+        "阴谋"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "隐秘+1：在本次隐秘对抗后，若本方秘社为计时者，在目标角色或附属上放置一个时间标志。\n行动 弃一张牌，然后将你牌库底的两张牌置于手中。若场上有四个或更多时间标志，你可以进行一次隐秘对抗。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM037",
+        "image": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg",
+        "imageSha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b"
+      },
+      "unique": false,
       "society": "",
       "supported": false
     }

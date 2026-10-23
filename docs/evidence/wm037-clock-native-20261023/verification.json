@@ -1,0 +1,275 @@
+{
+  "recordedAtUtc": "2026-10-23T17:05:47.770666+00:00",
+  "status": "authorNativeCompletePendingIndependentReview",
+  "fixedProductSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "identity": {
+    "engine": "rust-v0.2.98-batch20-fourth",
+    "cardPool": "limited-v2.89-batch20-fourth",
+    "regularDefinitions": 250,
+    "regularSupported": 213,
+    "societies": 11,
+    "societiesSupported": 10
+  },
+  "cards": [
+    "WM037"
+  ],
+  "completeDependencySocieties": [
+    "MSJC13"
+  ],
+  "authorExecution": true,
+  "directed": {
+    "casesPassed": 24,
+    "tests": [
+      "batch4_clock_tests::batch4_clock_add_rejects_hidden_asset_society_and_extra_payload_before_payment",
+      "batch4_clock_tests::batch4_clock_add_time_pays_two_and_exhausts_once_then_resolves_on_enemy",
+      "batch4_clock_tests::batch4_clock_construction_counts_all_off_colors_together_at_twelve_boundary",
+      "batch4_clock_tests::batch4_clock_full_program_and_target_predicate_cannot_be_transplanted",
+      "batch4_clock_tests::batch4_clock_paid_target_departure_cancels_without_rebinding_or_refund",
+      "batch4_clock_tests::batch4_clock_society_is_complete_red_dependency_but_public_construction_stays_closed",
+      "batch4_clock_tests::batch4_clock_sweep_counts_direct_qualifiers_not_unqualified_collateral",
+      "batch4_clock_tests::batch4_clock_sweep_empty_set_draws_none_but_still_pays_and_exhausts",
+      "batch4_clock_tests::batch4_clock_sweep_includes_attached_bats_as_their_own_qualifying_role",
+      "batch4_clock_tests::batch4_clock_sweep_includes_own_ally_and_enemy_and_draws_after_the_whole_wave",
+      "batch4_clock_tests::batch4_clock_target_shield_stops_time_but_sweep_is_not_targeted",
+      "batch4_clock_tests::batch4_clock_time_add_and_sweep_include_secret_attachment_without_revealing_identity",
+      "batch4_clock_tests::batch4_clock_wm037_accept_reuses_private_shared_contest_and_all_seats_restore",
+      "batch4_clock_tests::batch4_clock_wm037_and_bq027_shown_continuations_preserve_both_adapters_in_order",
+      "batch4_clock_tests::batch4_clock_wm037_illegal_play_or_optional_payload_is_atomic",
+      "batch4_clock_tests::batch4_clock_wm037_losing_shown_card_still_places_time_after_rewards",
+      "batch4_clock_tests::batch4_clock_wm037_no_hand_to_discard_still_continues_bottom_movement",
+      "batch4_clock_tests::batch4_clock_wm037_pays_before_discard_then_takes_bottom_two_in_order",
+      "batch4_clock_tests::batch4_clock_wm037_pinned_fields_and_canonical_standard_program",
+      "batch4_clock_tests::batch4_clock_wm037_room_command_private_choice_retry_and_u64_use_normal_envelope",
+      "batch4_clock_tests::batch4_clock_wm037_short_or_empty_bottom_is_not_a_draw_and_does_not_eliminate",
+      "batch4_clock_tests::batch4_clock_wm037_shown_bonus_is_unconditional_but_time_requires_personal_clockmakers",
+      "batch4_clock_tests::batch4_clock_wm037_shown_target_is_mandatory_personal_private_and_shielded",
+      "batch4_clock_tests::batch4_clock_wm037_threshold_counts_physical_markers_once_and_decline_preserves_steps"
+    ],
+    "failed": 0,
+    "ignored": 0,
+    "run": "native-clock-wm037-07"
+  },
+  "adjacent": {
+    "casesPassed": 35,
+    "overlapWithDirected": 1,
+    "newDistinctAdjacent": 34,
+    "tests": [
+      "batch4_clock_tests::batch4_clock_wm037_pinned_fields_and_canonical_standard_program",
+      "batch4_vampire_contest_tests::b_contest_bq031_win_is_personal_each_contest_and_shares_victory_order_with_a",
+      "batch4_vampire_contest_tests::b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+      "batch4_vampire_contest_tests::b_contest_bq038_start_is_respondable_counts_each_personal_host_once_and_freezes",
+      "batch4_vampire_contest_tests::b_contest_protocol_response_reveal_must_dispatch_before_outer_commit",
+      "batch4_vampire_contest_tests::b_contest_ruling_empty_after_paid_last_hand_action_keeps_costs_and_unshown_hands",
+      "batch4_vampire_contest_tests::b_contest_ruling_empty_room_response_reopen_and_journal_keep_payment_once",
+      "batch4_vampire_contest_tests::b_contest_shown_bq027_adds_two_after_shuffle_targets_only_personal_vampire_and_feeds",
+      "batch4_vampire_contest_tests::b_contest_shown_bq027_blood_entry_observer_and_other_shown_keep_recovery",
+      "batch4_vampire_contest_tests::b_contest_shown_bq027_no_target_or_no_blood_finishes_and_two_shown_keep_cursor",
+      "pack_a_contest_tests::pack_a_actual_reveal_paid_once_and_four_private_commitments",
+      "pack_a_contest_tests::pack_a_duel_uses_two_individual_values_and_opposite_enemy_reward",
+      "pack_a_contest_tests::pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+      "pack_a_contest_tests::pack_a_earth_normal_action_mills_each_player_and_short_deck",
+      "pack_a_contest_tests::pack_a_earth_player_elimination_before_and_after_payment_keeps_fixed_slots_without_milling_dead_seat",
+      "pack_a_contest_tests::pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+      "pack_a_contest_tests::pack_a_earth_shown_shuffles_before_post_mill",
+      "pack_a_contest_tests::pack_a_empty_deck_with_hand_is_not_draw_elimination",
+      "pack_a_contest_tests::pack_a_lower_response_stack_does_not_block_contest_selection",
+      "pack_a_contest_tests::pack_a_marker_rewards_are_personal_opposite_and_cancel",
+      "pack_a_contest_tests::pack_a_original_data_and_fixed_programs",
+      "pack_a_contest_tests::pack_a_owner_manor_aura_changes_human_display_and_preserves_witness",
+      "pack_a_contest_tests::pack_a_personal_vampire_bonus_excludes_teammate_and_hidden_observer",
+      "pack_a_contest_tests::pack_a_poison_actual_paid_entry_target_before_responses_bonus_and_exhausted_reentry",
+      "pack_a_contest_tests::pack_a_poison_conditional_public_is_seen_by_alpha_only_when_personally_exposed",
+      "pack_a_contest_tests::pack_a_poison_departed_target_cancels_whole_trigger_without_starting_contest",
+      "pack_a_contest_tests::pack_a_poison_source_departure_keeps_paid_trigger_but_original_region_replacement_fizzles_entry",
+      "pack_a_contest_tests::pack_a_preacher_conditional_printed_bonus",
+      "pack_a_contest_tests::pack_a_preacher_win_queues_multiple_sources_and_resolves_current_destroyed_regions",
+      "pack_a_contest_tests::pack_a_public_requires_personal_exposure",
+      "pack_a_contest_tests::pack_a_rng_above_js_safe_integer_and_room_revision_survive_each_choice",
+      "pack_a_contest_tests::pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+      "pack_a_contest_tests::pack_a_start_response_elimination_keeps_receipt_then_excludes_dead_participant",
+      "pack_a_contest_tests::pack_a_team_sum_tie_has_no_winners_or_rewards",
+      "society::tests::every_seat_has_an_empty_non_region_zone_and_registry_matches_support_flag"
+    ],
+    "failed": 0,
+    "ignored": 0,
+    "run": "native-normal-adjacent-08"
+  },
+  "uniqueNativePassed": 58,
+  "sourceChecks": {
+    "passed": 6,
+    "runs": [
+      "source-roster-final-03",
+      "source-clock-final-03"
+    ],
+    "initialFailure": "source-clock-01 used truthy supported and counted89 explicittrue records; actual serde default yes means213 supported, frozen249 digest already matched; test corrected and runtime213 asserted in08",
+    "note": "Final3+3 repeated only after updating the ledger candidate/evidence status; unique source-check count remains6."
+  },
+  "normalCoverage": [
+    "MSJC13 combined off-color12/13 construction boundary; no public admission",
+    "Both MSJC13 paid actions and source exhaustion",
+    "Foreign/hidden/asset/extra payload rejects before costs",
+    "Original target departure keeps spent cost and does not bind a reentry",
+    "Target shield versus non-target sweep",
+    "Physical marker threshold versus inherited query; ordinary/dual-character/secret attachments",
+    "Own/ally/enemy simultaneous sweep; no collateral overdraw",
+    "WM037 normal standard payment, effect discard, bottom-two order, short/empty bottom not Draw",
+    "Three versus four physical time; optional decline retains effects/costs",
+    "Existing private commit/reward protocol with WM037 starter",
+    "Personal Society condition, unconditional+1, loss still gets shown post",
+    "Mandatory private shown target and existing shield semantics",
+    "WM037+BQ027 sequential shown adapters",
+    "Real Room command/journal/reopen/version-conflict retry; no second payment; u64 exact roundtrips"
+  ],
+  "inputAudit": "fixed-source-input-audit.json",
+  "progress": {
+    "projectNativeClosed": 36,
+    "localIntegratedNativeClosed": 35,
+    "target": 50,
+    "externallyClosedNotMerged": [
+      "WM044"
+    ],
+    "candidateWM037NotCounted": true,
+    "dependencySocietyNotCountedAsCard": true,
+    "publicAccepted": 0
+  },
+  "independentReview": "pending",
+  "notRun": [
+    "full historical lib/workspace suite",
+    "WASM build or execution",
+    "Worker",
+    "Web build/browser",
+    "public game",
+    "new corrupt-save matrix"
+  ],
+  "resourceWindow": {
+    "parentConfirmedReleasedUtc": "2026-10-23T16:55:36Z",
+    "completedAllOwnTests": true
+  },
+  "pushAttempted": false,
+  "runs": [
+    {
+      "name": "native-clock-01",
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:32:55.455891+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 46.298,
+      "logSha256": "7bc09a719da60268f42187b24b9fdc0df7a05438af24394748c9cecc6c117a57"
+    },
+    {
+      "name": "native-clock-02",
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:34:15.420662+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 28.144,
+      "logSha256": "2897bcd1103ed0ad36f847eb67cd5f860d99ab6b3c327442a7932559f5bf0e0a"
+    },
+    {
+      "name": "native-clock-03",
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:35:17.713862+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 36.611,
+      "logSha256": "b6c27d8a936f707748ccac8feccddeee8d70e1d0762b00b71ad330a71ba7cf05"
+    },
+    {
+      "name": "native-clock-04",
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:38:09.640769+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 42.439,
+      "logSha256": "3d3a3bf0c2ab73342ef29b748e009d2dfb1dde66b755a4d5d394bb50aa7fa0c0"
+    },
+    {
+      "name": "native-clock-wm037-05",
+      "sourceHead": "571201343da81e832285dd40b3361c6f44dfd108",
+      "startUtc": "2026-10-23T16:41:41.983596+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 44.453,
+      "logSha256": "1c4c76be75eb3fa155ec12e57afe2ab5e3bde9162efcb933ce29b1571b492d58"
+    },
+    {
+      "name": "native-clock-wm037-06",
+      "sourceHead": "571201343da81e832285dd40b3361c6f44dfd108",
+      "startUtc": "2026-10-23T16:44:13.089330+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 29.892,
+      "logSha256": "592a7761a1001b183c01b8e70829c33600c87df6f83e3dbe6ac6ccc8d02153bf"
+    },
+    {
+      "name": "native-clock-wm037-07",
+      "sourceHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "startUtc": "2026-10-23T17:01:33.442115+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 31.702,
+      "logSha256": "3f6d2c4772ce7989c0b62e88dca9b4c97dc38ffdac973539bfa543b161c2ae2c"
+    },
+    {
+      "name": "native-normal-adjacent-08",
+      "sourceHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "startUtc": "2026-10-23T17:02:53.563638+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 37.564,
+      "logSha256": "6dd9f11278933567361a45447eb2dafd87134441a6acc4108f870450a6ccdd0c"
+    },
+    {
+      "name": "source-roster-01",
+      "sourceHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "startUtc": "2026-10-23T17:01:47.902279+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.441,
+      "logSha256": "8470548250da28bcaedfd0bce5e5741870c99720128851c8e996b462bb3fdca2"
+    },
+    {
+      "name": "source-clock-01",
+      "sourceHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "startUtc": "2026-10-23T17:01:47.904579+00:00",
+      "state": "complete",
+      "exitCode": 1,
+      "seconds": 0.146,
+      "logSha256": "6f7ea81f5c5e9f8debe9be1aa259f487634833669e63fed4b63b5fce1c8cc804"
+    },
+    {
+      "name": "source-clock-02",
+      "sourceHead": "5bab1286c5aba266e8c698cf7fc31c2acfc66ec4",
+      "startUtc": "2026-10-23T17:02:55.035181+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.102,
+      "logSha256": "c0aebf0443786697d537b678505c1433162c9afcdf69a0c8c46501e7ec26ef07"
+    },
+    {
+      "name": "source-clock-final-03",
+      "sourceHead": "495e392db463df04d66a0e2bcdda7496bfce6120",
+      "startUtc": "2026-10-23T17:06:20.749244+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.111,
+      "logSha256": "6e54dc251a025529eb4a30384cd353c85c3beb86df12685ea4f3c0486b36f9f9"
+    },
+    {
+      "name": "source-roster-final-03",
+      "sourceHead": "495e392db463df04d66a0e2bcdda7496bfce6120",
+      "startUtc": "2026-10-23T17:06:20.745454+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.281,
+      "logSha256": "76eefdf096935692984da8635893ffc7aa3e7cefc254169946bf664b54b0901c"
+    }
+  ],
+  "frozenPriorCandidates": {
+    "abi95Head": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+    "lc16Head": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "xq20Head": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+    "allCleanAtHandoff": true
+  }
+}

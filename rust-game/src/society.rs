@@ -37,6 +37,7 @@ pub struct SocietyZoneView {
 pub enum SocietyDeckConstraint {
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
+    ClockmakersOffColorMaximum,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -83,6 +84,12 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::ClockmakersOffColorMaximum => {
+                if society.card.id != "MSJC13" { return Err("计时者构筑限制不能移植".into()); }
+                let off: usize = entries.iter().filter(|e| cards.iter().any(|c| c.id == e.card_id
+                    && !["红", "中立"].contains(&c.color.as_str()))).map(|e|e.count).sum();
+                if off > 12 { return Err(format!("计时者非红且非中立牌合计不能超过12张，当前{off}张")); }
+            }
             SocietyDeckConstraint::GreenNeutralOrPrintedHumanCombat => {
                 if society.card.id != "MSJC11" {
                     return Err("此有限混搭构筑条件仅开放给S.P.T.执行部".into());
@@ -426,6 +433,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.extend([
             red_gray_society("MSJC04", "鸣钟教派", "末日钟的侍奉者", "红", "秘密教派"),
             red_gray_society("MSJC05", "国家机构", "政府权力", "灰", "机构"),
+            crate::batch4_clock::society(),
         ]);
         societies
     }
@@ -498,7 +506,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13"]
             );
         }
         assert_eq!(

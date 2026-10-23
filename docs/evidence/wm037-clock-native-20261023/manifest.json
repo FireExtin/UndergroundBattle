@@ -1,0 +1,157 @@
+[
+  {
+    "path": "fixed-source-input-audit.json",
+    "bytes": 1598,
+    "sha256": "375e1331fec06135ec5c749b3fc2781f5f41c12eb41609c993d56e69f01b8fd5"
+  },
+  {
+    "path": "normal-adjacent-selection.json",
+    "bytes": 5434,
+    "sha256": "ebb5fede707d66f2bbd1b99b8517bdc6dc673a876bcba7f846756e1314a7ab18"
+  },
+  {
+    "path": "run-wm037-adjacent.py",
+    "bytes": 322,
+    "sha256": "01c3ad7d8e5cf97e66374876ee6cc37d0a8fa9945a8bb1d02c66379824d27f47"
+  },
+  {
+    "path": "run-wm037-clock.py",
+    "bytes": 4274,
+    "sha256": "41e3aaccc67e0b97d3cf05a0e77ef1995965c6668e86b3d01df16bdc980ebc16"
+  },
+  {
+    "path": "runs/native-clock-01.json.gz",
+    "bytes": 12316,
+    "sha256": "d30acc153c1dd851191ab477d7373413d8dc18d7a9e003140f9274251b197436"
+  },
+  {
+    "path": "runs/native-clock-01.log.gz",
+    "bytes": 1497,
+    "sha256": "0dbc74ef2965cb2ed8352f3ea60d74ae27513d55de763368ea46b25ef152396e"
+  },
+  {
+    "path": "runs/native-clock-02.json.gz",
+    "bytes": 12317,
+    "sha256": "6a8dfc0b1c8c957ae49fe0b5cf3b584030135a6744ba2617ac9061c3782a1fff"
+  },
+  {
+    "path": "runs/native-clock-02.log.gz",
+    "bytes": 1454,
+    "sha256": "9cc438350d09a591055491cea93a3f05fa183c896a4c66b0ff523adcc8d4d913"
+  },
+  {
+    "path": "runs/native-clock-03.json.gz",
+    "bytes": 12312,
+    "sha256": "885036bf109fa028c069c93ad31ee0f3a4d73737c7277eae5b5e0323b5058ba9"
+  },
+  {
+    "path": "runs/native-clock-03.log.gz",
+    "bytes": 1393,
+    "sha256": "4288728a0224a963fcac6997b793588c6f49e90cde81a8f8306de306feed7894"
+  },
+  {
+    "path": "runs/native-clock-04.json.gz",
+    "bytes": 12417,
+    "sha256": "40c9537e6714f60aef3af12ed74d5f6135d118c2c54e3012ec7b0532930d4cf1"
+  },
+  {
+    "path": "runs/native-clock-04.log.gz",
+    "bytes": 1515,
+    "sha256": "92e6b1e87bb9b039b52afec82caf0e1cce058767bb6cf93052d5267f9a406575"
+  },
+  {
+    "path": "runs/native-clock-wm037-05.json.gz",
+    "bytes": 12259,
+    "sha256": "522264281b2d764a71cae91c910008001b5587b338544361de4473300004121c"
+  },
+  {
+    "path": "runs/native-clock-wm037-05.log.gz",
+    "bytes": 2075,
+    "sha256": "c4ce2fc7e29fba5fc824044995294f8a1cd68e2ba3d5636079032a44b8258674"
+  },
+  {
+    "path": "runs/native-clock-wm037-06.json.gz",
+    "bytes": 12299,
+    "sha256": "39104c01e1e04ff58bbd52f0c1dae036ba4231541d4d060c3d88a267632f7c5c"
+  },
+  {
+    "path": "runs/native-clock-wm037-06.log.gz",
+    "bytes": 1562,
+    "sha256": "d0de0d50e74a2fe319147dc6899e191fcc085a843d91828bb9fdba88f60cc99c"
+  },
+  {
+    "path": "runs/native-clock-wm037-07.json.gz",
+    "bytes": 12430,
+    "sha256": "6d3701c5701a149cbc67601f96d1e30c5c80c7f5a1fca44e2bc426c4d8932916"
+  },
+  {
+    "path": "runs/native-clock-wm037-07.log.gz",
+    "bytes": 1657,
+    "sha256": "34b320575b5ce45887e8efe36c0d8ed9d81d3bcf02f659bd86eb8bb48169ffc3"
+  },
+  {
+    "path": "runs/native-normal-adjacent-08.json.gz",
+    "bytes": 13614,
+    "sha256": "7063dad2183f79f6509f6baed4882d050951130c0312911669d9a335e3c648f1"
+  },
+  {
+    "path": "runs/native-normal-adjacent-08.log.gz",
+    "bytes": 1992,
+    "sha256": "b07b2f9b11156e6bdcf61d482bcec9a428660628952539db6d79690834f6f0ae"
+  },
+  {
+    "path": "runs/source-clock-01.json.gz",
+    "bytes": 12396,
+    "sha256": "f6974d61db86701f53fd41b29de070a76de8b64bc50ca96043cefde5ecd58546"
+  },
+  {
+    "path": "runs/source-clock-01.log.gz",
+    "bytes": 708,
+    "sha256": "a59c7dda552cc9ce90b5830c6732e1ea01dfd29578c05b01ea68d61a66c6827f"
+  },
+  {
+    "path": "runs/source-clock-02.json.gz",
+    "bytes": 12430,
+    "sha256": "1cdf8e3e3d6a28f7bdc23666fb8cc916c4a62d96c3e32caeeb078ae6c9e44878"
+  },
+  {
+    "path": "runs/source-clock-02.log.gz",
+    "bytes": 285,
+    "sha256": "1c0dbef85287a4d4570d6060e84cf3a7561ef808b52f5e1a0666a996feeef745"
+  },
+  {
+    "path": "runs/source-clock-final-03.json.gz",
+    "bytes": 12664,
+    "sha256": "1e72a02a062c3bccf3efc3679124091bfa57911e9c50a41046205f965d79f08b"
+  },
+  {
+    "path": "runs/source-clock-final-03.log.gz",
+    "bytes": 285,
+    "sha256": "f4d9ac5793c9abd1c27a66f7d9f72d680d7b0b7c5ce5023e61bec6db7bcf2df7"
+  },
+  {
+    "path": "runs/source-roster-01.json.gz",
+    "bytes": 12389,
+    "sha256": "95a9f7a1dce3b1c49c155fef278b9ead55d871b059ecc98384d00d533afe5e71"
+  },
+  {
+    "path": "runs/source-roster-01.log.gz",
+    "bytes": 292,
+    "sha256": "bea03bb5bb9474b5fe29fb860a49996d64c67704653ba2c7371e1b3039ced86b"
+  },
+  {
+    "path": "runs/source-roster-final-03.json.gz",
+    "bytes": 12662,
+    "sha256": "9074933301cf109a6882ce0c757deebcb2c2732d20f6a1f95f6e2c117b6f7e93"
+  },
+  {
+    "path": "runs/source-roster-final-03.log.gz",
+    "bytes": 294,
+    "sha256": "6136a8627cdbd8b97a73b4ed4280a60b42cb96c450b5dede30b663c0d95e9567"
+  },
+  {
+    "path": "verification.json",
+    "bytes": 13692,
+    "sha256": "d25a734bd1d4f96cb23fb67350c44897f20a4e8e119e8233778facb415849a66"
+  }
+]

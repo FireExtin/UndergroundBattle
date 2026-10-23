@@ -1,0 +1,11 @@
+Review-only local handoff: WM037_MSJC13
+Product base: d7c884a81c6f4b6590e9d1357824911d35358228
+Product source: 495e392db463df04d66a0e2bcdda7496bfce6120
+Reviewed delivery: 7a739d6a66505faad5f4077b0110dd85f98c21dc
+Status: Native review passed; Q1 withdrawn from existing specific FAQ; qualifies37/50
+This commit contains independent tests and review documentation only; it does not implement a product fix.
+No new tests were run while creating this commit. The tested file bytes are unchanged from the recorded execution.
+Original full evidence, including failed attempts and source input hashes, remains at:
+/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review
+Do not bulk merge historical review fixtures from other baselines. Keep the product and dependency SHAs explicit.
+No credentials, databases, caches, generated build trees or login state were added by this handoff.

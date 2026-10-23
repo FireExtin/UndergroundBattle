@@ -1,0 +1,16 @@
+{
+  "productSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "delivery": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+  "review": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/review.txt",
+  "reviewSha256": "631f88de258de3dcb72a07bdcbd926369c25b23984f1e08659b22947cda129df",
+  "result": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/result.json",
+  "patch": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/independent-tests.patch",
+  "patchSha256": "46d0feed862d3eb8a5c475101f73878ee2057341083f664d6c40da106284dc34",
+  "archive": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/evidence.tar.gz",
+  "archiveSha256": "76f9d2fdcfa9fdc20733b4e204c1f73861f77ddb7e0a518b6c4e0b51cca7811e",
+  "archiveBytes": 4525322,
+  "verifiedArchiveMembers": 43,
+  "outcome": "No confirmed P0/P1/P2 within reviewed normal Native scope. MSJC13 dependency passes. WM037 remains pending one specific normal-play rules clarification; do not count it as closed yet.",
+  "pendingRule": "WM037-Q1-EMPTY-DISCARD-THEN",
+  "nativeClosedCount": 36
+}
