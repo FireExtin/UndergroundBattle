@@ -404,3 +404,39 @@ fn independent_wm044_mixed_contest_sources_order_and_private_completion() {
     assert!(g.stack.is_empty() && g.pending.is_none() && g.entry_order_groups.is_empty());
     assert!(g.board(&target).unwrap().1.face_down);
 }
+
+// Optional local Native/WASM witness; runtime identity and release artifacts stay frozen.
+#[test]
+fn wm044_local_platform_room_witness() {
+    use crate::room::{RoomEnvelope,RoomCommand,SessionAction};
+    let Some(path)=std::env::var_os("SENTINEL_PLATFORM_WITNESS") else {return;};
+    let mut cases=vec![];
+    for inspection in [false,true] {
+        let mut g=if inspection {game()} else {crate::sentinel_tests::sentinel_game()};
+        let target=hidden(&mut g,"JC125",2);center(&mut g,0);
+        if inspection {wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);crate::jc029_tests::pass_top(&mut g);}
+        let mut room=RoomEnvelope::from_game(g);let initial=serde_json::to_string(&room).unwrap();let initial_views=(0..4).map(|s|room.view(s,0)).collect::<Vec<_>>();let mut steps=vec![];
+        for n in 0..32u64 {
+            if room.game.pending.is_none() && room.game.stack.is_empty(){break;}
+            let (seat,action)=if let Some(p)=room.game.pending.clone() {
+                let selected=if p.choice.kind=="wm044-private-inspection" {vec![]} else {vec![target.clone()]};
+                (p.seat,SessionAction::Game{action:Action{choice_id:Some(p.choice.id),selected:Some(selected),..Action::new("choose")}})
+            } else {
+                let seat=(0..4).find(|s|room.game.legal_actions(*s).iter().any(|a|a.action.kind=="pass")).unwrap();
+                (seat,SessionAction::PassResponse{window_id:room.pacing.window.as_ref().unwrap().id.clone()})
+            };
+            let command=RoomCommand{command_id:format!("platform-{inspection}-{n}"),expected_version:room.revision,action};
+            let before=serde_json::to_string(&room).unwrap();
+            let out=room.transition(seat,Some(command.clone()),n).unwrap();assert!(out.error_code.is_none(),"{:?}",out.error_message);
+            room=RoomEnvelope::from_persisted(&out.state).unwrap();
+            let views=(0..4).map(|s|room.view(s,n)).collect::<Vec<_>>();
+            let duplicate=room.transition(seat,Some(command.clone()),n).unwrap();
+            assert_eq!(duplicate.state,out.state);assert_eq!(duplicate.outcome,"rejected");
+            steps.push(serde_json::json!({"before":before,"seat":seat,"command":command,"now":n.to_string(),"expected":out,"duplicate":duplicate,"views":views}));
+        }
+        assert!(room.game.pending.is_none() && room.game.stack.is_empty());
+        assert_eq!(room.game.board(&target).unwrap().1.lock_markers,if inspection {0}else{1});
+        cases.push(serde_json::json!({"name":if inspection {"wm044-private-confirm"}else{"wm044-sentinel-entry-lock"},"initial":initial,"initialViews":initial_views,"steps":steps}));
+    }
+    std::fs::write(path,serde_json::to_vec_pretty(&cases).unwrap()).unwrap();
+}
