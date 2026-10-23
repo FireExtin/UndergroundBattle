@@ -1,0 +1,63 @@
+WM037「戴森的计谋」及 MSJC13「计时者」独立原生复审
+2026-10-23 UTC
+
+更正后结论：本轮未发现确定 P0/P1/P2。原 31 项独立 Native 与 6 项来源检查全部通过，源码和执行证据未变。Q1 已依据项目既有 WM037 专卡 FAQ 撤回，不再等待用户新裁定；WM037 可计为本批第 37 张完整原生卡，项目原生闭合资格更正为 37/50。MSJC13 完整原生依赖通过，独立列账，不占 50 张名额。此结论不表示公开构筑、WASM、Worker、Web 或真实浏览器验收通过。
+
+固定身份与范围
+
+基线：d7c884a81c6f4b6590e9d1357824911d35358228。
+产品：495e392db463df04d66a0e2bcdda7496bfce6120。
+交付：7a739d6a66505faad5f4077b0110dd85f98c21dc；产品到交付无 rust-game 修改。
+本次普通独立克隆：/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm037-clock-review。
+ABI98 rust-v0.2.98-batch20-fourth，pool89 limited-v2.89-batch20-fourth；普通定义 250 / supported 213，秘社 11 / supported 10。
+固定 bundle SHA256：b4eccb8ddefb79ec53365ec7de097101a908ca4709566e8bf6483bb1eea8d914；git bundle verify 成功。
+未修改任何作者工作区或产品源码；只在本克隆追加 4 个独立测试及辅助函数，导出 independent-tests.patch。没有 worktree、push、CI、main 或部署；未触及 XG21 中止复核。
+
+Q1 更正历史与来源等级（2026-10-23T17:46:51.112686+00:00）
+
+原判断：17:35:59 UTC 的首次报告因未找到通用“然后”定义，提出 WM037 空手时取底牌需新裁定，暂留 36/50。该判断当时没有定性为 P2。原报告、result、delivery、manifest、说明和完整 evidence.tar.gz 均已逐字节保存在 history/before-q1-faq-correction/；旧报告 SHA256 631f88de258de3dcb72a07bdcbd926369c25b23984f1e08659b22947cda129df，旧归档 SHA256 76f9d2fdcfa9fdc20733b4e204c1f73861f77ddb7e0a518b6c4e0b51cca7811e。不删除旧判断或原始运行记录。
+
+更正原因：首次复审漏查了项目自初始提交即随附的 WM037 专卡 FAQ。固定交付 resource/ymsj-fun.github.io/cards/cards.json:11960 原文为：
+“◆若玩家没有手牌，则发动戴森的计谋的行动能力无需弃置手牌。”
+同文件 :11965 的完整行动文字是：“行动：弃一张牌，然后将你牌库底的两张牌置于手中。若场上有四个或更多时间标志，你可以进行一次隐秘对抗。”原图费用为 2、红色忠诚 1；弃牌处于效果段，没有被印为额外费用。q1-faq-source-excerpt.txt 保留固定 Git 对象及行号；q1-faq-correction.json 保留来源、哈希和更正历史。
+
+来源等级：这是“资料站卡库收录的专卡 FAQ”，不是本轮发现官方签发新文件，也不是用户作出的新规则裁定。已只读核对资料站 ymsj-fun/ymsj-fun.github.io@5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7 的 cards/cards.json 同条 FAQ。没有查明其官方原始签发页，不把第三方资料升级为官方原件。
+
+参考对照：SuezKrish/Underworld@a8586caccd9be0cad9957e78b918245f0ddd6f85 的 data/Card.xml:14883 收录同句，静态程序空手跳过弃牌，随后底牌入手并检查可选对抗。UnderWorldPro@0d60c78b68697867697f20f0c171e41445735cc4 的 WM037 模板 :31 也收录同句，但未发现该卡专属执行注册，不能声称第二份运行验证。三处可能同源，不构成三份独立官方背书；未复制第三实现程序。
+
+通用“然后”的定义仍未在本次已读正式规则与 V1.1 勘误中找到，但缺少通用定义不能推翻该卡已有明确 FAQ。项目 JZ50 已裁定“搜索选择零张仍洗牌”可作局部对照，不泛化为所有卡的统一规则；MSJC10 的未决条目也不能自动扩展成 WM037 的阻塞。
+
+当前结论：撤回 WM037-Q1-EMPTY-DISCARD-THEN 及此前的二选一请求；采用现有专卡 FAQ，空手时跳过弃牌，继续取库底两张，之后照常检查独立的可选对抗条件。有手牌时仍须弃一张，费用和已完成步骤不变。保持现有实现，不修改源码。原 native-01 已执行 batch4_clock_wm037_no_hand_to_discard_still_continues_bottom_movement 并通过，本次只是证据解释和资格更正，不重复运行 31+6，不新增实测数量。
+
+已核实的语义与代码证据（以下行号均取固定交付；完整编号摘录见 source-excerpts.txt）
+
+1. WM037 标准行动与展示后置：原图费用 2、红忠诚 1、事务·阴谋、心灵；隐秘 +1 不受计时者条件限制，之后放时间要求本人的计时者，不要求获胜。batch4_clock_spell.rs:13、:37、:59、:77 与 mystic_contest.rs 中 WM037 加值相符。弃牌后取底牌的顺序、库底不足不按抓牌判败、对抗 0..1 可选、展示放时间 1..1 必选、个人选择私密、失败方照常后置和 WM037/BQ027 多展示续体均执行通过。原图和 public 图片逐字节相等。
+
+2. 时间查询与响应：batch4_clock_spell.rs:37 按场上物理时间标志只计一次，避免把附属给宿主的投影重复累计；batch4_clock.rs:90 扫场使用结算时每个角色/附属的有效时间。marker_transfer.rs:25 / :42、red_time.rs:145 保留已审的合法附属继承与类别契约。独立实际响应证明时间 3→4 会出现可选对抗、4→3 不出现。独立 XQ20 标准行动先转移时间，然后发动计时者并以 XQ18 实际付费现身响应再减时间，扫场按最终阈值选集。XQ20 本身不是快速响应，本报告没有把它当响应使用。
+
+3. MSJC13 完整依赖：batch4_clock.rs:16–43 登记红色、唯一、起手 6、无印刷费用、两个标准行动及横置来源。society.rs:87 合计非红且非中立的牌张数，12 允许、13 拒绝；不会给每种外色各 12。两项行动的费用 2/3、横置一次、拒绝隐藏角色/资产/秘社和额外载荷、原目标离场不重新绑定或退费均执行通过。deck.rs:75 继续拒绝 supported=false 秘社，现有十个公开秘社不受此门改变；测试使用明确披露的 MSJC13 布局，不声称从公开构筑界面选入。
+
+4. 扫场与抓牌：batch4_clock.rs:90 冻结直接符合阈值的角色/附属集合，经 batch3_trap.rs:50、death_observers.rs:26 的既有同时离场波次处理，再按直接消灭数量抓牌。普通附属、兼具角色身份的巨型蝙蝠、秘密计划、自方/队友/敌方、零对象、随宿主清理但自己未达阈值的附属都在定向范围。只给直接符合集合且离场的实体计数，未将附带清理多算。独立 Room 命令执行到抽牌不足，分别确认单座淘汰后继续游戏，以及队友已淘汰时真实进入 finished，清空待选/堆叠，四席视图可生成；没有正常路径 panic 或事务回滚。
+
+5. 护盾与私密：普通放时间使用共享目标守卫；展示后放时间在 batch4_clock_spell.rs:87–90 显式调用 shield_stops，正确区别于本轮另一个 WM043 缺陷。独立用敌方实际付费部署的 BQ059 获得两护盾，展示后选择它只消耗一个护盾，不增加时间。非指定目标的扫场不被此护盾阻止。秘密计划可作为有效附属携带时间，其他玩家视图不泄露其原卡名。未扩大损坏存档测试。
+
+独立执行与作者证据分列
+
+独立 native-01：2026-10-23 17:22:01.166744 至 17:22:34.664545 UTC，31 passed / 0 failed / 0 ignored，2102 filtered，退出 0。实际命令、环境限制、日志、252 项输入哈希见 native-01.json / native-01.log / native-01-inputs.json。源码输入除自加测试文件外全部等于固定交付；测试文件全文已保存 tested-batch4_clock_tests.rs。
+31 个不同测试 = 作者卡模块现有 24 + 本次新增 4 + 必要相邻 3（XQ20 标准时机、XQ18 秘密计划私密性、隐秘对抗淘汰后的续体终止）。新增 4 个测试含多分支，仍只算 4 个测试，不把循环场景加成测试个数。共保存六份实际结束状态/Room 命令轨迹。
+  - independent_clock_wm037_response_crosses_threshold_in_both_directions，测试文件:300。
+  - independent_clock_sweep_uses_real_transfer_then_current_response_markers，:329。
+  - independent_clock_wm037_shown_time_consumes_real_enemy_entry_shield，:362。
+  - independent_clock_room_sweep_short_draw_commits_elimination_and_terminal，:385。
+独立 source-01：6 passed / 0 failed / 0 skipped，退出 0，17:28:52–17:28:53 UTC；精确原图、旧 249 条记录、250/213 数量、ABI98/pool89、公开门与计数台账检查，日志/命令/输入哈希另存。该检查的 openQuestionIds=[] 只描述规格元数据；Q1 的撤回依据上述专卡 FAQ，不是这项元数据检查本身。
+资源：CPU30 单核、nice19、I/O idle、cargo jobs1/test threads1、每进程虚拟地址上限 8GiB；native 峰值子进程 RSS 1,974,172 KiB，约 33.5 秒。没有抢占或结束其他任务进程。
+
+作者报告的 58 个不同 Native 和 6 来源检查，作为证据审查，绝不算成本人又执行的 64 项。独立核对 31 项归档文件大小/哈希、四份最终原始收据和日志、58 个去重测试名；作者归档 SHA256 aa25944c5b6b8aaada1991dcfd7820d941cb769085662ebd37a256bb3523e33d，179606 bytes。native07 之后只有一个测试增加 250/213 断言，以及 Node 检查器纠正 supported 的省略默认值；前者已在作者08及本人 native-01 执行。产品运行代码和卡数据未变。交付再修改台账证据字段，最终来源03所有输入与交付相符。差异及原始失败日志入口全部保留，没有拿较旧 HEAD 名称代替实际输入哈希。
+
+资格与集成提示
+
+MSJC13：本次所审的完整原生依赖通过；独立列账，不给 50 卡多加一张。
+WM037：已执行路径通过，Q1 因补核既有专卡 FAQ 撤回；固定源码可计为第 37 张完整原生卡，无需额外实现或重复测试。
+项目原生闭合资格为 37/50（此前 36 加本次 WM037）；本克隆包含此前已审 35 张及本次 WM037，外部 WM044 已审但未合入。WM043 此轮另有确定 P2，不能用本包结果关闭，见 ../wm043-native-review/review.txt。
+该分支的 mystic_hooks.rs:6 在 B 展示适配器之后接入 WM037；蓝灰分支已有自己的展示适配器。合并时保留两侧调用并用一项混合展示续体校验，不是要求在本候选预先重跑未合入分支。
+未运行 ABI98 WASM 构建/运行、Worker、Web 构建、真实浏览器或完整公开对局；不借用 ABI95 或其他分支的平台证据。因此上述原生结论不是公开构筑、跨端或浏览器验收通过。本审查没有扩展损坏存档范围，也不把暂停项当通过。

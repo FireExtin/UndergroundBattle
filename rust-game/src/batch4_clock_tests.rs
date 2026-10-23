@@ -265,3 +265,160 @@ fn batch4_clock_wm037_and_bq027_shown_continuations_preserve_both_adapters_in_or
     assert_eq!(g.board(&vampire).unwrap().1.time_markers,1);assert!(g.mystic_contest.is_none()&&g.pending.is_none());
     assert_eq!(g.mystic_history[0].shown[0].value,3);assert_eq!(g.mystic_history[0].shown[1].value,3);
 }
+
+// Independent normal-play boundaries. The existing WIP layout supplies the
+// unadmitted society and accumulated counters; interleavings use paid commands.
+fn independent_clock_record(name: &str, value: serde_json::Value) {
+    if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+        std::fs::create_dir_all(&dir).unwrap();
+        std::fs::write(std::path::Path::new(&dir).join(format!("{name}.json")),
+            serde_json::to_vec_pretty(&value).unwrap()).unwrap();
+    }
+}
+fn independent_clock_hidden_timer(g: &mut Game) -> String {
+    let id = field(g, "XQ18", 2);
+    g.board_mut(&id).unwrap().face_down = true;
+    fund(g, 2, "XQ18", 2);
+    id
+}
+fn independent_clock_time_response(g: &mut Game, hidden: &str, target: &str, add: bool) {
+    for _ in 0..4 { if g.can_fast(2) { break; } pass(g); }
+    assert!(g.can_fast(2));
+    act(g, 2, Action { card_id: Some(hidden.into()), ..Action::new("reveal") });
+    pass_top(g);
+    choose(g, vec![if add { "add-time".into() } else { "remove-time".into() }]);
+    choose(g, vec![target.into()]);
+    pass_top(g);
+    if !add {
+        assert_eq!(g.pending.as_ref().unwrap().choice.kind, "xq18-time-carrier");
+        choose(g, vec![target.into()]);
+    }
+    assert!(g.pending.is_none());
+}
+
+#[test]
+fn independent_clock_wm037_response_crosses_threshold_in_both_directions() {
+    for add in [false, true] {
+        let (mut g, _) = layout();
+        let target = field(&mut g, "JC125", 2);
+        g.board_mut(&target).unwrap().time_markers = if add { 3 } else { 4 };
+        let timer = independent_clock_hidden_timer(&mut g);
+        let discard = held(&mut g, "JC125", 0);
+        fund(&mut g, 0, "JC049", 2);
+        let source = held(&mut g, "WM037", 0);
+        act(&mut g, 0, Action { card_id: Some(source), ..Action::new("play") });
+        independent_clock_time_response(&mut g, &timer, &target, add);
+        assert_eq!(g.board(&target).unwrap().1.time_markers, if add { 4 } else { 3 });
+        pass_top(&mut g);
+        assert_eq!(g.pending.as_ref().unwrap().choice.kind, "discard");
+        choose(&mut g, vec![discard]);
+        if add {
+            assert_eq!(g.pending.as_ref().unwrap().choice.kind, "wm037-optional-contest");
+            choose(&mut g, vec![]);
+        } else { assert!(g.pending.is_none()); }
+        assert!(g.mystic_contest.is_none() && g.mystic_history.is_empty());
+        assert_eq!(g.players[0].hand.len(), 2);
+        assert_eq!(g.resources(0), 0);
+        assert_eq!(g.resources(2), 0);
+        independent_clock_record(if add { "threshold-up" } else { "threshold-down" },
+            serde_json::json!({"after": &g, "target": target, "optionalContestOffered": add}));
+    }
+}
+
+#[test]
+fn independent_clock_sweep_uses_real_transfer_then_current_response_markers() {
+    let (mut g, society) = layout();
+    let from = field(&mut g, "JC125", 2);
+    let to = field(&mut g, "JC125", 2);
+    let victim = field(&mut g, "JC125", 3);
+    g.board_mut(&from).unwrap().time_markers = 3;
+    g.board_mut(&victim).unwrap().time_markers = 3;
+    let timer = independent_clock_hidden_timer(&mut g);
+    fund(&mut g, 0, "XQ20", 2);
+    fund(&mut g, 0, "JC125", 3);
+    let transfer = held(&mut g, "XQ20", 0);
+    // XQ20 is a standard action. It resolves BEFORE the separate society action.
+    act(&mut g, 0, Action { card_id: Some(transfer),
+        ability_id: Some(crate::batch4_soul_channel::KEY.into()),
+        selected: Some(vec![from.clone(), to.clone()]), ..Action::new("play") });
+    pass_top(&mut g);
+    assert_eq!(g.board(&from).unwrap().1.time_markers, 0);
+    assert_eq!(g.board(&to).unwrap().1.time_markers, 3);
+    act(&mut g, 0, activate(&society, c::SWEEP, None));
+    independent_clock_time_response(&mut g, &timer, &to, false);
+    assert_eq!(g.board(&to).unwrap().1.time_markers, 2);
+    pass_top(&mut g);
+    assert!(g.board(&from).is_some() && g.board(&to).is_some());
+    assert!(g.board(&victim).is_none());
+    assert_eq!(g.players[0].hand.len(), 1);
+    assert_eq!(g.resources(0), 0);
+    assert!(g.players[0].society_zone.card.as_ref().unwrap().exhausted);
+    independent_clock_record("transfer-response-sweep", serde_json::json!({
+        "after": &g, "from": from, "to": to, "destroyed": victim, "cardsDrawn": 1
+    }));
+}
+
+#[test]
+fn independent_clock_wm037_shown_time_consumes_real_enemy_entry_shield() {
+    let (mut g, _) = layout();
+    g.begin_window(Window::Action(1));
+    fund(&mut g, 2, "CQ17", 7);
+    let id = held(&mut g, "BQ059", 2);
+    play_card(&mut g, 2, &id);
+    drain(&mut g);
+    let target = g.regions[0].cards.iter().find(|c| c.definition == "BQ059").unwrap().id.clone();
+    assert_eq!(g.board(&target).unwrap().1.shield, 2);
+    g.begin_window(Window::Action(0));
+    held(&mut g, "WM037", 0);
+    start_other_contest(&mut g);
+    commits(&mut g, ["WM037", "JC125", "JC125", "JC125"]);
+    rewards(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "wm037-shown-time-target");
+    choose(&mut g, vec![target.clone()]);
+    decline_triggers(&mut g);
+    assert_eq!((g.board(&target).unwrap().1.shield, g.board(&target).unwrap().1.time_markers), (1, 0));
+    assert!(g.pending.is_none() && g.mystic_contest.is_none());
+    independent_clock_record("shown-real-shield", serde_json::json!({"after": &g, "target": target}));
+}
+
+#[test]
+fn independent_clock_room_sweep_short_draw_commits_elimination_and_terminal() {
+    use crate::room::{Decision, RoomCommand, RoomEnvelope, SessionAction};
+    for terminal in [false, true] {
+        let (mut g, society) = layout();
+        if terminal {
+            g.players[1].deck.clear();
+            g.draw(1, 1).unwrap();
+            assert!(g.players[1].eliminated);
+        }
+        wm_deck(&mut g, &["JC125"]);
+        let a = field(&mut g, "JC125", 2);
+        let b = field(&mut g, "JC125", 3);
+        for id in [&a, &b] { g.board_mut(id).unwrap().time_markers = 3; }
+        fund(&mut g, 0, "JC125", 3);
+        act(&mut g, 0, activate(&society, c::SWEEP, None));
+        let mut room = envelope(&g);
+        let mut transitions = vec![];
+        for n in 0..16 {
+            if room.game.stack.is_empty() || room.game.status == "finished" { break; }
+            let w = room.pacing.window.clone().expect("normal response window");
+            let seat = *w.members.iter().find(|(_, d)| !matches!(d, Decision::Passed)).unwrap().0;
+            let cmd = RoomCommand { command_id: format!("independent-clock-sweep-{terminal}-{n}"),
+                expected_version: room.revision,
+                action: SessionAction::PassResponse { window_id: w.id },
+            };
+            let out = room.transition(seat, Some(cmd.clone()), 0).unwrap();
+            assert_eq!(out.outcome, "accepted", "{:?}", out.error_message);
+            transitions.push(serde_json::json!({"seat": seat, "command": cmd, "result": &out}));
+            room = RoomEnvelope::from_persisted(&out.state).unwrap();
+        }
+        assert!(room.game.players[0].eliminated);
+        assert!(room.game.board(&a).is_none() && room.game.board(&b).is_none());
+        assert!(room.game.pending.is_none() && room.game.stack.is_empty());
+        assert_eq!(room.game.status, if terminal { "finished" } else { "playing" });
+        if terminal { assert_eq!(room.game.winner_team, Some(1)); }
+        for viewer in 0..4 { let _ = room.view(viewer, 0); }
+        independent_clock_record(if terminal { "sweep-terminal" } else { "sweep-elimination" },
+            serde_json::json!({"after": &room, "transitions": transitions}));
+    }
+}

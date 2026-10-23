@@ -1,0 +1,80 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm037-clock-review/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 27.43s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-22/task-2/recovery-build/target/debug/deps/hegemony_server-32dfc3fc043f2363)
+
+running 31 tests
+test batch4_clock_tests::batch4_clock_add_rejects_hidden_asset_society_and_extra_payload_before_payment ... ok
+test batch4_clock_tests::batch4_clock_add_time_pays_two_and_exhausts_once_then_resolves_on_enemy ... ok
+test batch4_clock_tests::batch4_clock_construction_counts_all_off_colors_together_at_twelve_boundary ... ok
+test batch4_clock_tests::batch4_clock_full_program_and_target_predicate_cannot_be_transplanted ... ok
+test batch4_clock_tests::batch4_clock_paid_target_departure_cancels_without_rebinding_or_refund ... ok
+test batch4_clock_tests::batch4_clock_society_is_complete_red_dependency_but_public_construction_stays_closed ... ok
+test batch4_clock_tests::batch4_clock_sweep_counts_direct_qualifiers_not_unqualified_collateral ... ok
+test batch4_clock_tests::batch4_clock_sweep_empty_set_draws_none_but_still_pays_and_exhausts ... ok
+test batch4_clock_tests::batch4_clock_sweep_includes_attached_bats_as_their_own_qualifying_role ... ok
+test batch4_clock_tests::batch4_clock_sweep_includes_own_ally_and_enemy_and_draws_after_the_whole_wave ... ok
+test batch4_clock_tests::batch4_clock_target_shield_stops_time_but_sweep_is_not_targeted ... ok
+test batch4_clock_tests::batch4_clock_time_add_and_sweep_include_secret_attachment_without_revealing_identity ... ok
+test batch4_clock_tests::batch4_clock_wm037_accept_reuses_private_shared_contest_and_all_seats_restore ... ok
+test batch4_clock_tests::batch4_clock_wm037_and_bq027_shown_continuations_preserve_both_adapters_in_order ... ok
+test batch4_clock_tests::batch4_clock_wm037_illegal_play_or_optional_payload_is_atomic ... ok
+test batch4_clock_tests::batch4_clock_wm037_losing_shown_card_still_places_time_after_rewards ... ok
+test batch4_clock_tests::batch4_clock_wm037_no_hand_to_discard_still_continues_bottom_movement ... ok
+test batch4_clock_tests::batch4_clock_wm037_pays_before_discard_then_takes_bottom_two_in_order ... ok
+test batch4_clock_tests::batch4_clock_wm037_pinned_fields_and_canonical_standard_program ... ok
+test batch4_clock_tests::batch4_clock_wm037_room_command_private_choice_retry_and_u64_use_normal_envelope ... ok
+test batch4_clock_tests::batch4_clock_wm037_short_or_empty_bottom_is_not_a_draw_and_does_not_eliminate ... ok
+test batch4_clock_tests::batch4_clock_wm037_shown_bonus_is_unconditional_but_time_requires_personal_clockmakers ... ok
+test batch4_clock_tests::batch4_clock_wm037_shown_target_is_mandatory_personal_private_and_shielded ... ok
+test batch4_clock_tests::batch4_clock_wm037_threshold_counts_physical_markers_once_and_decline_preserves_steps ... ok
+test batch4_clock_tests::independent_clock_room_sweep_short_draw_commits_elimination_and_terminal ... ok
+test batch4_clock_tests::independent_clock_sweep_uses_real_transfer_then_current_response_markers ... ok
+test batch4_clock_tests::independent_clock_wm037_response_crosses_threshold_in_both_directions ... ok
+test batch4_clock_tests::independent_clock_wm037_shown_time_consumes_real_enemy_entry_shield ... ok
+test batch4_soul_channel_tests::batch4_soul_channel_standard_action_is_not_a_response_or_other_players_turn ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_post_elimination_commits_terminal_state_without_continuation ... ok
+test xq18_tests::xq18_secret_plan_can_receive_time_without_revealing_its_name_or_hidden_roles ... ok
+
+test result: ok. 31 passed; 0 failed; 0 ignored; 0 measured; 2102 filtered out; finished in 5.28s
+
