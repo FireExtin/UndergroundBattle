@@ -85,6 +85,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_subtype: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_combat_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_defense_markers: Option<u32>,
@@ -360,6 +362,8 @@ pub struct Card {
     pub advancement_markers: u32,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_subtype: Option<crate::batch4_night::UndeadKind>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub permanent_combat_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
@@ -681,6 +685,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    JZ56Undead,
     BQ027ShownTarget,
     MysticCommit { contest_id: String },
     MysticReward { contest_id: String },

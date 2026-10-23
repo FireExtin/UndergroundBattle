@@ -19,6 +19,7 @@ export type SocietyDefinition = CardDefinition & {
 };
 export type Card = {
   namedCharacter?: string;
+  chosenSubtype?: string;
   permanentDefenseMarkers?: number;
   currentEnemySpellProtection?: boolean;
   currentDomains?: { magic: string; count: number }[];

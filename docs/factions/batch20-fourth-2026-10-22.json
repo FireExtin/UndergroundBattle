@@ -15,7 +15,7 @@
     "target": 50,
     "unassignedSlots": 0,
     "remainingNativePrograms": 18,
-    "nativeWipCards": 1,
+    "nativeWipCards": 2,
     "nativePartialCards": 0
   },
   "colorCounts": {
@@ -169,13 +169,16 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
       "sourceImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 12,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
-      "openQuestionIds": []
+      "openQuestionIds": [],
+      "fullNativeCardComplete": false,
+      "nativeEvidence": "docs/factions/JZ56_NATIVE_INCREMENT_2026-10-23.md",
+      "readinessScope": "Author native whole-program candidate: real Society payment, three-subtype choice, current-controller/current-subtype/grave-size aura, Game/Room restore and card face. Pending independent review; no admission or public acceptance."
     },
     {
       "id": "XQ15",
@@ -1016,7 +1019,7 @@
   ],
   "developmentIdentity": {
     "native": "rust-v0.2.95-batch20-fourth",
-    "pool": "limited-v2.85-batch20-fourth",
+    "pool": "limited-v2.86-batch20-fourth",
     "wasmBuilt": false,
     "publicIdentityChanged": false
   },
@@ -1042,7 +1045,7 @@
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
       "targetCards": 50,
-      "nativeWipCards": 1
+      "nativeWipCards": 2
     }
   ],
   "ownershipCheck": {
@@ -1138,10 +1141,11 @@
     "JZ36 native16: printed1 plus sacrificeX personal face-up characters, including attached Bats, before responses. Unpaid private typed cost draft or explicit X0; a single simultaneous death wave with frozen original-region receipts. Fixed paid X survives JZ30 death Forecast continuation and exact high-u64 command replay. Carrier target or original-UID region receives X time, then only target current region is checked for in-place destruction at physical total>=4. Direct region-card time and four-seat projection now admitted only by this closed program; no generic configurable marker op.",
     "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed.",
     "XG16 native22: printed6/Red3/unique/public; own Sun conditionally enables Leader. Optional entry time1 and Prepare time equal to current destroyed-region count. Uses its own finite Prepare opcode with shared typed observation/order/target/resolved-or-cancelled receipts. Effective time includes legal direct attachments; personal recipients gain defense per time, either opposing seat loses defense, ally is unchanged (primary Hegemony printed16/21). All positive defense including Ghoul permanent markers precedes negative time/curses/wounds. Real rescuer activation, aura death/cancellation, Room pause/restore/original-command replay and version-conflict rejection tested; no WASM/public admission.",
-    "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance."
+    "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance.",
+    "JZ56: author native candidate; actual paid own-Society attach followed by optional entry and closed three-subtype choice. Public enum bound to original in-play instance resets with fresh identity. Current own subtype gets temporary influence1/defense1 per source; current personal grave>=7 adds permanent combat1/kill1. No choice or unrelated subtype work in attribute queries when no active source. Game/Room four-seat restore, real combat and duplicate-command rejection tested; public admission remains off, independent closure pending."
   ],
   "next": [
-    "Continue the same50-card batch:32 native complete including all ten A/B cards; XG21 prior interrupted review remains excluded;0 new WASM/admission/acceptance.",
+    "Continue the same50-card batch:32 native complete, JZ56 author candidate pending independent review, XG21 interrupted review remains excluded;0 WASM package/admission/acceptance.",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",

@@ -143,6 +143,7 @@ impl Game {
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
         c.advancement_markers = 0;
         c.named_character = None;
+        c.chosen_subtype = None;
         c.time_markers = 0;
         c.permanent_combat_markers = 0;
         c.permanent_defense_markers = 0;
@@ -160,6 +161,7 @@ impl Game {
         Card {
             advancement_markers: 0,
             named_character: None,
+            chosen_subtype: None,
             permanent_combat_markers: 0,
             permanent_defense_markers: 0,
             time_markers: 0,
@@ -440,6 +442,9 @@ impl Game {
             .saturating_add(self.jc060_friendly_sources(c));
         permanent_result.influence += if self.jz32_destroyed(c) { 2 } else { 0 };
         let mut temporary_result = d.temporary_icons.add(sealed_temporary);
+        let (night, enhanced_night) = self.jz56_aura(c);
+        permanent_result.combat = permanent_result.combat.saturating_add(enhanced_night);
+        temporary_result.influence = temporary_result.influence.saturating_add(night);
         let (black_permanent, black_temporary) = self.black_next20_icon_bonus(c, region);
         permanent_result = permanent_result.add(black_permanent);
         temporary_result = temporary_result.add(black_temporary);
@@ -546,6 +551,7 @@ impl Game {
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
             + attachment_bonus)
             .saturating_add(self.xg17_defense_bonus(c))
+            .saturating_add(self.jz56_aura(c).0)
             .saturating_add(time_bonus)
             .saturating_add(c.permanent_defense_markers)
             .saturating_sub(time_penalty)
@@ -2377,6 +2383,7 @@ impl Game {
             advancement_markers: (!asset && kind == Some("attachment") && crate::batch4_plans::is_plan(c)).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
+            chosen_subtype: if !asset && !c.face_down && kind == Some("attachment") { c.chosen_subtype.map(|kind| kind.label().into()) } else { None },
             permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
@@ -2399,7 +2406,7 @@ impl Game {
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()
-                && (self.execution_turn_grants(c).0 > 0 || self.jz39_host_kill(c) > 0))
+                && (self.execution_turn_grants(c).0 > 0 || self.jz39_host_kill(c) > 0 || self.jz56_aura(c).1 > 0))
                 .then(|| self.effective_kill(c)),
             current_retreat: (!asset
                 && !c.face_down

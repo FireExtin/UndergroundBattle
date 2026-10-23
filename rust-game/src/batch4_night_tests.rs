@@ -1,0 +1,229 @@
+//! Explicit native layouts with real payments, choices and response commands.
+use crate::{batch4_night::{self as n, UndeadKind}, catalog, model::*, rules::*, unit_support::*};
+use crate::jc029_tests::{checkpoint, pass_top};
+
+fn play(g: &mut Game, seat: usize) -> String {
+    g.begin_window(Window::Action(g.team(seat)));
+    fund(g, seat, "JC084", 2);
+    let hand = held(g, "JZ56", seat);
+    act(g, seat, Action { card_id: Some(hand), target_id: Some(format!("society:p{seat}")), ..Action::new("play") });
+    assert_eq!(g.resources(seat), 0);
+    checkpoint(g);
+    pass_top(g);
+    let id = g.attachments.iter().find(|a| a.card.definition == "JZ56" && a.card.controller == seat && a.card.chosen_subtype.is_none()).unwrap().card.id.clone();
+    assert!(matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { declaration, .. } if declaration.ability.key == n::KEY));
+    choose(g, vec!["accept".into()]);
+    checkpoint(g);
+    pass_top(g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, n::KEY);
+    checkpoint(g);
+    id
+}
+fn night(g: &mut Game, seat: usize, kind: &str) -> String {
+    let id = play(g, seat); choose(g, vec![kind.into()]); checkpoint(g); id
+}
+fn dead(g: &mut Game, seat: usize, count: usize) {
+    for _ in 0..count { let c = g.make_card("JC125", seat); g.players[seat].graveyard.push(c); }
+}
+fn invalid(g: &Game, bad: &Game) {
+    let raw = serde_json::to_string(bad).unwrap();
+    assert!(std::panic::catch_unwind(|| Game::from_persisted(&raw)).unwrap().is_err());
+    let mut r = serde_json::to_value(crate::jc029_tests::envelope(g)).unwrap();
+    r["game"] = serde_json::to_value(bad).unwrap();
+    assert!(std::panic::catch_unwind(|| crate::room::RoomEnvelope::from_persisted(&r.to_string())).unwrap().is_err());
+}
+
+#[test]
+fn batch4_night_original_cost_loyalty_full_program_and_closed_deck_gate() {
+    let c = catalog::card("JZ56");
+    assert_eq!((c.cost, c.defense, c.unique, c.supported), (2, None, false, false));
+    assert_eq!(c.loyalty, ["黑色"]); assert_eq!(c.subtypes, ["仪式"]); assert_eq!(c.magic, "死亡");
+    assert!(catalog::runtime_implemented(c));
+    let draft = crate::deck::DeckDraft { id: "night".into(), name: "native only".into(), description: String::new(), society_id: None,
+        cards: vec![catalog::DeckEntry { card_id: "JC125".into(), count: 49 }, catalog::DeckEntry { card_id: "JZ56".into(), count: 1 }],
+        rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(), engine_version: catalog::ENGINE_VERSION.into(), updated_at: "2026-10-23".into() };
+    assert!(crate::deck::validate(draft).is_err());
+    let d = definition("JZ56"); assert_eq!(d.abilities.len(), 2);
+    assert_eq!(d.abilities[1].event, Some(Event::Enter));
+    assert!(serde_json::to_value(&d.modifiers).unwrap().to_string().contains("JZ56ChosenUndeadAura"));
+    let mut g = game(); let id = play(&mut g, 0);
+    assert_eq!(g.pending.as_ref().unwrap().choice.options.iter().map(|o|o.id.as_str()).collect::<Vec<_>>(), ["ghoul","zombie","skeleton"]);
+    choose(&mut g, vec!["ghoul".into()]);
+    assert_eq!(g.attachments.iter().find(|a|a.card.id==id).unwrap().card.chosen_subtype, Some(UndeadKind::Ghoul));
+    checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_three_subtypes_global_personal_bonuses_and_live_grave_threshold() {
+    for (choice, card) in [("ghoul","JZ50"),("zombie","JC085"),("skeleton","BQ083")] {
+        let mut g = game();
+        let personal = field(&mut g, card, 0); let ally = field(&mut g, card, 1); let enemy = field(&mut g, card, 2);
+        let other = field(&mut g, "JC125", 0);
+        let remote = field(&mut g, card, 0); let moved = g.regions[0].cards.pop().unwrap(); assert_eq!(moved.id, remote); g.regions[1].cards.push(moved);
+        let original = g.board(&personal).unwrap().1.clone(); let base_icons = g.current_icons(&original, 0);
+        let base_defense = g.defense(&original, 0); let base_kill = g.effective_kill(&original);
+        dead(&mut g, 0, 6); let source = night(&mut g, 0, choice);
+        for id in [&personal, &remote] { let (r,c)=g.board(id).unwrap(); assert_eq!(g.current_icons(c,r), base_icons.add(Icons{influence:1,..Icons::default()})); assert_eq!(g.defense(c,r),base_defense+1);assert_eq!(g.effective_kill(c),base_kill); }
+        for id in [&ally,&enemy,&other] { assert_eq!(g.jz56_aura(g.board(id).unwrap().1),(0,0)); }
+        dead(&mut g,0,1);
+        let (r,c)=g.board(&personal).unwrap();assert_eq!(g.current_icons(c,r),base_icons.add(Icons{combat:1,influence:1,..Icons::default()}));assert_eq!(g.effective_kill(c),base_kill+1);
+        assert_eq!(g.current_permanent_combat(c,r),catalog::card(card).permanent_icons.combat+1);
+        for viewer in 0..4 {
+            let v=g.view(viewer);let a=v.attachments.iter().find(|a|a.card.instance_id==source).unwrap();
+            assert_eq!(a.card.chosen_subtype.as_deref(),Some(match choice{"ghoul"=>"食尸鬼","zombie"=>"行尸",_=>"骷髅"}));
+            let cv=&v.regions[0].characters.iter().find(|c|c.instance_id==personal).unwrap();
+            assert_eq!(cv.current_kill,Some(base_kill+1));assert_eq!(cv.defense,Some(base_defense+1));
+        }
+        g.players[0].graveyard.pop();assert_eq!(g.jz56_aura(g.board(&personal).unwrap().1),(1,0));checkpoint(&g);
+    }
+}
+
+#[test]
+fn batch4_night_sources_stack_and_exhaustion_preserves_categories_not_participation() {
+    let mut g=game();let target=field(&mut g,"JC085",0);dead(&mut g,0,7);
+    let base_influence=g.current_icons(g.board(&target).unwrap().1,0).influence;
+    let one=night(&mut g,0,"zombie");let two=night(&mut g,0,"zombie");
+    assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(2,2));
+    g.board_mut(&target).unwrap().exhausted=true;let (r,c)=g.board(&target).unwrap();
+    assert_eq!(g.icons(c,r),Icons::default());assert_eq!(g.current_icons(c,r).influence,base_influence+2);
+    g.remove_dead(&one,RemovalCause::Destroy);assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(1,1));
+    g.remove_dead(&two,RemovalCause::Destroy);assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(0,0));
+    assert!(g.players[0].graveyard.iter().filter(|c|c.definition=="JZ56").all(|c|c.chosen_subtype.is_none()));checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_current_controller_not_owner_or_teammate_and_hidden_blank_boundaries() {
+    let mut g=game();let target=field(&mut g,"JC085",2);g.board_mut(&target).unwrap().controller=0;
+    let source=night(&mut g,0,"zombie");assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(1,0));
+    g.board_mut(&target).unwrap().controller=1;assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(0,0));
+    g.board_mut(&target).unwrap().controller=0;g.board_mut(&target).unwrap().face_down=true;
+    assert_eq!(g.jz56_aura(g.board(&target).unwrap().1),(0,0));
+    let mut snapshot=g.attachments.iter().find(|a|a.card.id==source).unwrap().card.clone();
+    for viewer in 0..4 {
+        assert!(g.card_view(&snapshot,viewer,None,Some("asset")).chosen_subtype.is_none());
+        assert!(g.sealed_card_view(&snapshot,viewer).chosen_subtype.is_none());
+    }
+    snapshot.face_down=true;for viewer in 0..4 {assert!(g.card_view(&snapshot,viewer,None,Some("attachment")).chosen_subtype.is_none());}
+    checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_source_loss_removes_defense_before_existing_death_cleanup() {
+    let mut g=game();let target=field(&mut g,"JC085",0);let source=night(&mut g,0,"zombie");
+    g.board_mut(&target).unwrap().wounds=1;g.settle_deaths();assert!(g.board(&target).is_some());
+    g.remove_dead(&source,RemovalCause::Destroy);g.settle_deaths();assert!(g.board(&target).is_none());checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_decline_entry_and_source_departure_do_not_rebind_replacement() {
+    for after_accept in [false,true] {
+        let mut g=game();fund(&mut g,0,"JC084",2);let h=held(&mut g,"JZ56",0);
+        act(&mut g,0,Action{card_id:Some(h),target_id:Some("society:p0".into()),..Action::new("play")});pass_top(&mut g);
+        let source=g.attachments.iter().find(|a|a.card.definition=="JZ56").unwrap().card.id.clone();
+        if !after_accept {choose(&mut g,vec![]);assert!(g.attachments[0].card.chosen_subtype.is_none());}
+        else {choose(&mut g,vec!["accept".into()]);g.remove_dead(&source,RemovalCause::Destroy);
+            let replacement=g.make_card("JZ56",0);let replacement_id=replacement.id.clone();g.attachments.push(Attachment{card:replacement,host_id:"society:p0".into()});
+            pass_top(&mut g);assert!(g.pending.is_none());assert!(g.attachments.iter().find(|a|a.card.id==replacement_id).unwrap().card.chosen_subtype.is_none());}
+        checkpoint(&g);
+    }
+}
+
+#[test]
+fn batch4_night_choice_rejects_wrong_actor_bad_payload_duplicates_and_replay() {
+    let mut g=game();let source=play(&mut g,0);let id=g.pending.as_ref().unwrap().choice.id.clone();
+    let valid=Action{choice_id:Some(id),selected:Some(vec!["zombie".into()]),..Action::new("choose")};
+    reject(&mut g,1,valid.clone());
+    for selected in [vec![],vec!["vampire".into()],vec!["ghoul".into(),"zombie".into()],vec!["zombie".into(),"zombie".into()]] {reject(&mut g,0,Action{selected:Some(selected),..valid.clone()});}
+    reject(&mut g,0,Action{region:Some(0),..valid.clone()});
+    act(&mut g,0,valid.clone());assert_eq!(g.attachments.iter().find(|a|a.card.id==source).unwrap().card.chosen_subtype,Some(UndeadKind::Zombie));
+    reject(&mut g,0,valid);checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_both_restore_entries_reject_corrupt_pending_frames_and_moved_choices() {
+    let mut g=game();play(&mut g,0);
+    for mode in 0..12 {
+        let mut bad=g.clone();let p=bad.pending.as_mut().unwrap();
+        match mode {
+            0=>p.seat=1,1=>p.choice.options.reverse(),2=>p.choice.options.pop().map(|_|()).unwrap(),
+            3=>p.choice.min=Some(0),4=>p.choice.allow_decline=Some(true),5=>p.choice.title="forged".into(),
+            _=>{let ChoiceResolution::Frame{frame,choice}=&mut p.resolution else{panic!("frame")};match mode {
+                6=>frame.cursor=0,7=>frame.source.attachment_host_instance=Some("society:p1".into()),
+                8=>frame.source.card.definition="XQ15".into(),9=>frame.steps.push(frame.steps[0].clone()),
+                10=>*choice=FrameChoice::XQ26Name,_=>frame.source.card.chosen_subtype=Some(UndeadKind::Zombie),
+            }}
+        }invalid(&g,&bad);
+    }
+    choose(&mut g,vec!["zombie".into()]);
+    let mut bad=g.clone();let c=bad.make_card("JC085",0);bad.players[0].hand.push(Card{chosen_subtype:Some(UndeadKind::Zombie),..c});invalid(&g,&bad);
+    let mut bad=g.clone();let i=bad.attachments.iter().position(|a|a.card.definition=="JZ56").unwrap();let c=bad.attachments.remove(i).card;bad.players[0].graveyard.push(c);invalid(&g,&bad);
+    let mut raw=serde_json::to_value(&g).unwrap();raw["attachments"][0]["card"]["chosen_subtype"]=serde_json::json!("vampire");assert!(Game::from_persisted(&raw.to_string()).is_err());
+}
+
+#[test]
+fn batch4_night_illegal_host_and_loyalty_never_pay() {
+    let mut g=game();fund(&mut g,0,"JC125",2);let h=held(&mut g,"JZ56",0);
+    let a=Action{card_id:Some(h.clone()),target_id:Some("society:p0".into()),..Action::new("play")};
+    reject(&mut g,0,a.clone());fund(&mut g,0,"JC084",1);
+    for target in ["society:p1","region:0",h.as_str()] {reject(&mut g,0,Action{target_id:Some(target.into()),..a.clone()});}
+    reject(&mut g,0,Action{selected:Some(vec!["zombie".into()]),..a});assert_eq!(g.resources(0),3);
+}
+
+#[test]
+fn batch4_night_enhanced_kill_uses_real_combat_damage_pipeline() {
+    let mut g=game();let ghoul=field(&mut g,"JZ50",0);let target=field(&mut g,"JC125",2);
+    dead(&mut g,0,7);night(&mut g,0,"ghoul");
+    let c=g.board(&ghoul).unwrap().1;let expected=g.icons(c,0).combat+g.effective_kill(c);
+    assert_eq!(g.effective_kill(c),1);
+    g.begin_window(Window::Before(0,1));g.close_window().unwrap();g.drive().unwrap();
+    let p=g.pending.as_ref().unwrap();assert_eq!(p.choice.amount,Some(expected));
+    let seat=p.seat;let a=Action{choice_id:Some(p.choice.id.clone()),allocations:Some(std::collections::BTreeMap::from([(target.clone(),expected)])),..Action::new("choose")};
+    act(&mut g,seat,a);assert!(g.board(&target).is_none());checkpoint(&g);
+}
+
+#[test]
+fn batch4_night_room_commands_choice_restore_four_views_and_duplicate_receipt() {
+    use crate::room::{Decision,RoomEnvelope,RoomCommand,SessionAction};
+    let mut g=game();fund(&mut g,0,"JC084",2);let hand=held(&mut g,"JZ56",0);
+    let mut room=RoomEnvelope::from_game(g);
+    let first=RoomCommand{command_id:"night-play".into(),expected_version:room.revision,action:SessionAction::Game{
+        action:Action{card_id:Some(hand),target_id:Some("society:p0".into()),..Action::new("play")}}};
+    let out=room.transition(0,Some(first.clone()),0).unwrap();assert_eq!(out.outcome,"accepted");room=RoomEnvelope::from_persisted(&out.state).unwrap();
+    for i in 0..60 {
+        if room.game.attachments.iter().any(|a|a.card.definition=="JZ56"&&a.card.chosen_subtype==Some(UndeadKind::Skeleton)){break;}
+        let (seat,action)=if let Some(p)=&room.game.pending {
+            let selected=match &p.resolution {
+                ChoiceResolution::Declare{declaration,..}if declaration.ability.key==n::KEY=>vec!["accept".into()],
+                ChoiceResolution::Frame{choice:FrameChoice::JZ56Undead,..}=>vec!["skeleton".into()],
+                _=>panic!("unexpected night choice {}",p.choice.kind),
+            };
+            (p.seat,SessionAction::Game{action:Action{choice_id:Some(p.choice.id.clone()),selected:Some(selected),..Action::new("choose")}})
+        }else if let Some(w)=&room.pacing.window {
+            let seat=*w.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
+            (seat,SessionAction::PassResponse{window_id:w.id.clone()})
+        }else{let seat=(0..4).find(|s|room.game.legal_actions(*s).iter().any(|a|a.action.kind=="pass")).unwrap();(seat,SessionAction::Game{action:Action::new("pass")})};
+        let out=room.transition(seat,Some(RoomCommand{command_id:format!("night-step-{i}"),expected_version:room.revision,action}),0).unwrap();
+        assert_eq!(out.outcome,"accepted");let next=RoomEnvelope::from_persisted(&out.state).unwrap();
+        assert_eq!(serde_json::to_value(room.replay_events(&out.journal).unwrap()).unwrap(),serde_json::to_value(&next).unwrap());
+        for viewer in 0..4 {assert_eq!(serde_json::to_value(next.view(viewer,0)).unwrap(),serde_json::to_value(RoomEnvelope::from_persisted(&out.state).unwrap().view(viewer,0)).unwrap());}
+        room=next;
+    }
+    assert_eq!(room.game.resources(0),0);
+    let c=&room.game.attachments.iter().find(|a|a.card.definition=="JZ56").unwrap().card;
+    assert_eq!(c.chosen_subtype,Some(UndeadKind::Skeleton));
+    for viewer in 0..4 {assert_eq!(room.game.card_view(c,viewer,None,Some("attachment")).chosen_subtype.as_deref(),Some("骷髅"));}
+    let saved=serde_json::to_value(&room).unwrap();let again=room.transition(0,Some(first),0).unwrap();
+    assert_eq!(again.outcome,"rejected");assert!(!again.changed&&again.journal.is_empty());
+    assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&again.state).unwrap()).unwrap(),saved);
+}
+
+#[test]
+fn batch4_night_finite_program_and_choice_cannot_be_transplanted() {
+    let d=n::definition();assert!(crate::batch4::validate_definition("JC125",&d).is_err());
+    let a=d.abilities[1].clone();assert!(crate::batch4::validate_ability("JC125",&a).is_err());
+    let mut g=game();play(&mut g,0);
+    let mut raw=serde_json::to_value(&g).unwrap();raw["attachments"][0]["card"]["chosen_subtype"]=serde_json::json!("vampire");
+    let mut room=serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();room["game"]=raw.clone();
+    assert!(std::panic::catch_unwind(||Game::from_persisted(&raw.to_string())).unwrap().is_err());
+    assert!(std::panic::catch_unwind(||crate::room::RoomEnvelope::from_persisted(&room.to_string())).unwrap().is_err());
+}

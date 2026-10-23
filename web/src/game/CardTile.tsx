@@ -4,8 +4,8 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, namedCharacter: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
-  if (card.faceDown) card = { ...card, namedCharacter: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, namedCharacter: undefined, chosenSubtype: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.faceDown) card = { ...card, namedCharacter: undefined, chosenSubtype: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
     return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
@@ -119,6 +119,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!card.faceDown && character && card.region !== undefined && card.currentPublic && <span>公开</span>}
         {!card.faceDown && character && card.region !== undefined && !!card.permanentCombatMarkers && <span>永久战斗图标标志 {card.permanentCombatMarkers}</span>}
         {!card.faceDown && !asset && card.namedCharacter && <span>通缉：{card.namedCharacter}</span>}
+        {!card.faceDown && !asset && card.chosenSubtype && <span>选择类别：{card.chosenSubtype}</span>}
         {!card.faceDown && !asset && card.region !== undefined && card.currentEnemySpellProtection && <span>不能成为敌方事务目标</span>}
         {!card.faceDown && character && card.region !== undefined && !!card.permanentDefenseMarkers && <span>永久防御标志 {card.permanentDefenseMarkers}</span>}
         {society && card.usedOncePerGame?.map(key => <span key={key}>

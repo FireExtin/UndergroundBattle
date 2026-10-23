@@ -481,7 +481,7 @@ impl Game {
                 || item.card.as_ref().is_some_and(|c| {
                     let mut expected = f.source.card.clone();
                     expected.id = c.id.clone(); expected.face_down = false;
-                    expected.advancement_markers = 0; expected.named_character = None;
+                    expected.advancement_markers = 0; expected.named_character = None; expected.chosen_subtype = None;
                     expected.time_markers = 0; expected.lock_markers = 0;
                     expected.permanent_combat_markers = 0; expected.permanent_defense_markers = 0;
                     self.vampire_id(&c.id).is_none_or(|n| n <= self.vampire_id(&f.source.card.id).unwrap() || n >= self.vampire_id(&f.frame_id).unwrap())
