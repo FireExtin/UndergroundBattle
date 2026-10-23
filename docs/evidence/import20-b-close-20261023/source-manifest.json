@@ -1,0 +1,267 @@
+{
+  "base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "intakeCommit": "a81a25171e8ec1543b75131cde7781f97639b4e0",
+  "cards": [
+    {
+      "group": "B",
+      "id": "XQ19",
+      "name": "熵力化身",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+      "imageSha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+      "primaryViewedHere": true,
+      "specIssues": [],
+      "uwpro": {
+        "id": "XQ19",
+        "path": "Cards/Data/PlayerCards/XQ/XQ019_shanglihuashen.tres",
+        "gitBlob": "50063a8c5e3262134268738322b89bc21d12750c",
+        "bytes": 1077,
+        "sha256": "b625cf662a71a2884737bc25571f24f628f65e62b1e305565726d2709bb0c1c6",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "XQ19",
+        "effectTags": [
+          "effect:zone-enter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb"
+    },
+    {
+      "group": "B",
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "imageSha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "XG13",
+          "oldSpec": "下一张灾难牌或血脉图标牌减②",
+          "primaryObserved": "下一张鸣钟教派牌或鲜血领域图标牌减②，限正面打出",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "XG13",
+        "path": "Cards/Data/PlayerCards/XG/XG013_malilindeboge.tres",
+        "gitBlob": "eed9ed5aff9420929dfa7fe94d4d5728bf4993fe",
+        "bytes": 1303,
+        "sha256": "3f8964d4635a78e9aca0f87578545dbabb30948899ac99f3ab43eba13df72d59",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "XG13",
+        "effectTags": [
+          "effect:batch",
+          "effect:time-cult",
+          "operation:entry-cultist-time",
+          "operation:next-discount"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a"
+    },
+    {
+      "group": "B",
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "imageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "primaryViewedHere": true,
+      "specIssues": [],
+      "uwpro": {
+        "id": "WM064",
+        "path": "Cards/Data/PlayerCards/WM/WM064_jumangwenshen.tres",
+        "gitBlob": "bf2358a59654cd1145459bd566449bb1b4e6b395",
+        "bytes": 1301,
+        "sha256": "1e82b237d3e3eb95a12afc0a2420ba80a443d44cf9558458c831b3d5bba058a2",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM064",
+        "effectTags": [
+          "effect:attach",
+          "effect:batch",
+          "operation:target-direct-reveal"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02"
+    },
+    {
+      "group": "B",
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "imageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "CQ24",
+          "oldSpec": "敌方附属印刷费上限⑤",
+          "primaryObserved": "上限③；仍是敌方附属，可以重新选择结附目标",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "CQ24",
+        "path": "Cards/Data/PlayerCards/CQ/CQ024_kamen.tres",
+        "gitBlob": "8a351eaf688b86089efa3e56908fbd99c4dc166e",
+        "bytes": 1263,
+        "sha256": "f019bf75421222b241f6986c43716663bba58ccd48bf814dcf9287b0c1c08e92",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ24",
+        "effectTags": [
+          "effect:criminal",
+          "operation:carmen"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d"
+    },
+    {
+      "group": "B",
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "imageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "BQ092",
+          "oldSpec": "仅横置一个本方圣甲虫产业附属",
+          "primaryObserved": "先有本牌横置图标，并另横置一个本方圣甲虫产业附属；获得①至本步骤结束",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "BQ092",
+        "path": "Cards/Data/PlayerCards/BQ/BQ092_bahamaqundaojijinzhongxin.tres",
+        "gitBlob": "f6aa8501149f76aa7cda2a64845183a1167df191",
+        "bytes": 1263,
+        "sha256": "3bd9384bfe20e40a2ce33f9234115c07f1dd30a4a502efb6bf87ec8b67db884e",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ092",
+        "effectTags": [
+          "effect:attach-district",
+          "effect:continuing-cost",
+          "effect:zone-hidden-contest",
+          "operation:mana"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe"
+    },
+    {
+      "group": "B",
+      "id": "BQ093",
+      "name": "样本陈列室",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "image-reviewed-planning-only-no-implementation",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+      "imageSha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+      "primaryViewedHere": true,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ093",
+        "path": "Cards/Data/PlayerCards/BQ/BQ093_yangbenchenlieshi.tres",
+        "gitBlob": "f067b87b7400e6bc599a492ff7f8fe198929e7c5",
+        "bytes": 1273,
+        "sha256": "16e76849109970b25486023cd6efc631661c33d754c0141ccd162b47e903defe",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ093",
+        "effectTags": [
+          "effect:attach-district",
+          "effect:mill-self-one",
+          "effect:scarab",
+          "operation:sealed-host-eye"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0,
+      "imageHashVerifiedAtClose": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c"
+    }
+  ],
+  "runtimeChanged": false,
+  "testsRun": 0,
+  "completionAdded": 0
+}
