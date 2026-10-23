@@ -385,7 +385,7 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "14 author Native normal-path tests passed on isolated ABI95 base; pending integration with separately reviewedXQ20 and independent LC16 review; not WASM/public acceptance"
+      "readinessScope": "14 author normal Native tests plus43 applicable integrated regressions passed on reviewedXQ20 base. LC16 independent closure pending; no ABI97 WASM/Worker/Web/browser or public acceptance"
     },
     {
       "id": "XQ35",
@@ -1671,5 +1671,22 @@
     "blueGrayClaim": "WM044",
     "notPublicAdmission": true,
     "includedReviewedXQ20": true
+  },
+  "lc16Candidate": {
+    "status": "author-native-passed-pending-independent-review",
+    "reviewedBase": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+    "productSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "prototype": "80551ebe0b37c6455de5813f0ff949d43e4acab0",
+    "directedPassed": 14,
+    "applicableAdjacentPassed": 43,
+    "integratedNativeTotalPassed": 57,
+    "sourceChecksPassed": 3,
+    "formalNativeClosed": 34,
+    "full50": false,
+    "extraCorruptSaveExpansion": false,
+    "wasmBuilt": false,
+    "workerRun": false,
+    "browserRun": false,
+    "blueGrayIndependentOwner": "WM044 handled by01a1693c-05ce-726e-95af-31ecb62d60f2; not included"
   }
 }
