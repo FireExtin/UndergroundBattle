@@ -16,7 +16,9 @@
     "unassignedSlots": 0,
     "remainingNativePrograms": 17,
     "nativeWipCards": 1,
-    "nativePartialCards": 0
+    "nativePartialCards": 0,
+    "wasmDirectedCards": 1,
+    "workerDirectedCards": 1
   },
   "colorCounts": {
     "红": 13,
@@ -171,14 +173,17 @@
       "imageReviewedHere": true,
       "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 34,
-      "wasmImplemented": false,
+      "wasmImplemented": true,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "fullNativeCardComplete": true,
       "nativeEvidence": "docs/factions/JZ56_RECIPIENT_P2_FIX_2026-10-23.md",
-      "readinessScope": "Independently closed native whole card at292d3f75/ebccb2e9: original wound/subtype P2s and recipient P2-3 closed. ABI95 WASM/Worker runtime pending; all public gates remain closed."
+      "readinessScope": "Independently closed native33 at292d/ebccb. Author ABI95 Native/WASM200 commands and actual Worker200 commands directed verification passed for JZ56; one normal legal Worker duel reached score terminal. No full50, new deck admission, browser or public acceptance.",
+      "wasmDirectedVerified": true,
+      "workerDirectedVerified": true,
+      "wasmEvidence": "docs/factions/ABI95_PLATFORM_2026-10-23.md"
     },
     {
       "id": "XQ15",
@@ -1020,7 +1025,7 @@
   "developmentIdentity": {
     "native": "rust-v0.2.95-batch20-fourth",
     "pool": "limited-v2.86-batch20-fourth",
-    "wasmBuilt": false,
+    "wasmBuilt": true,
     "publicIdentityChanged": false
   },
   "candidateComparison": [
@@ -1038,14 +1043,15 @@
       "candidate": "fourth batch native WIP",
       "commit": null,
       "nativeCards": 33,
-      "wasmCards": 0,
+      "wasmCards": 1,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
       "acceptedNewCards": 0,
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
       "targetCards": 50,
-      "nativeWipCards": 1
+      "nativeWipCards": 1,
+      "wasmScope": "Author directed JZ56 only; compiled core includes other closed-gate definitions, whose card-specific WASM integration is not claimed."
     }
   ],
   "ownershipCheck": {
@@ -1145,7 +1151,7 @@
     "JZ56: independently closed native33 at292d3f75/ebccb2e9. Actual paid own-Society attachment, optional entry, closed three-subtype enum, live personal subtype/grave aura; grave>=7 grants permanent combat1 and wound1, never kill damage. Wound replacement, exactly-one actual reward recipient and both restoration entries independently verified. ABI95 WASM/Worker runtime pending; public admission remains off."
   ],
   "next": [
-    "Continue the same50-card batch:33 independently closed native cards; XG21 interrupted review remains excluded. First build current ABI95 binding and validate JZ56 Native/WASM and actual Worker paths; no public admission/acceptance.",
+    "Continue remaining17 of this50-card batch; XQ20 is next finite normal-gameplay increment using the existing atomic marker transfer and accepted threshold crossing. JZ56 author ABI95 binding/Worker directed runtime verified;0 new admissions/public acceptance. XG21 interrupted review stays excluded.",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
     "Retain original BQ084/BQ086/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
@@ -1601,5 +1607,30 @@
     "report": "docs/evidence/jz56-native-closure-20261023/review.txt",
     "reportSha256": "ce7723991d95831c9ba17017eab15ac98561baab04a2dfe457abe7858dc365f1",
     "scope": "Native only. No WASM/Worker/browser/public approval."
+  },
+  "platformValidation": {
+    "status": "authorDirectedRuntimeVerified",
+    "identity": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.86-batch20-fourth",
+    "wasmBytes": 6865239,
+    "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+    "sourceManifestSha256": "43d43c0c42472f01a5dd6099f4c4d5fc4b5bec7bd29588d1dd2dd3ff47cf8a23",
+    "directedCards": [
+      "JZ56"
+    ],
+    "nativeWasmCommands": 200,
+    "workerCommands": 200,
+    "normalDuelCommands": 1216,
+    "normalDuelTurns": 21,
+    "normalDuelScore": [
+      9,
+      0
+    ],
+    "normalDuelWinnerTeam": 0,
+    "report": "docs/factions/ABI95_PLATFORM_2026-10-23.md",
+    "publicAdmission": false,
+    "browserAcceptance": false,
+    "batch50Complete": false,
+    "archiveExpansion": "Paused under latest user priority; prior guards and evidence retained, no extra archive gate."
   }
 }

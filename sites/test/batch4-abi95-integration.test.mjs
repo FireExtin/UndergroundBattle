@@ -7,10 +7,10 @@ import {assertPublicView,assertSessionJournal} from './assert-session-journal.mj
 import {harness} from './xq23-http-harness.mjs';
 const fixture=loadCurrentFixture('docs/evidence/abi95-platform-20261023/jz56.current.json.gz');
 for(const scenario of fixture.cases)test(`ABI95 JZ56 actual Worker ${scenario.name}`,async t=>{
- const h=await harness(t,scenario);let projections=0,reopened=0;
+ const h=await harness(t,scenario);let projections=0,reopened=0;const reopenedKinds=new Set();
  const allViews=async views=>{for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,200,JSON.stringify(r.body));assertPublicView(r.body,views[seat]);projections++;}};
  const initial=await h.snapshot();await allViews(scenario.initial.views);assert.deepEqual(await h.snapshot(),initial);
- const catalogue=await h.api('catalog',0);assert.equal(catalogue.status,200);assert.deepEqual(catalogue.body,fixture.catalog);
+ const catalogue=await h.api('catalog',0);assert.equal(catalogue.status,200);const {transport,entryIdempotency,...coreCatalogue}=catalogue.body;assert.equal(transport,'polling');assert.equal(entryIdempotency,true);assert.deepEqual(coreCatalogue,fixture.catalog);
  const unauthorized=await h.api('state',99);assert.equal(unauthorized.status,401);assert.deepEqual(await h.snapshot(),initial);
  for(let i=0;i<scenario.steps.length;i++){
   const row=scenario.steps[i],before=await h.snapshot();assert.equal(before.room.state,row.state);assert(row.state.includes(`"seed":${scenario.seedDecimal}`));
@@ -19,7 +19,9 @@ for(const scenario of fixture.cases)test(`ABI95 JZ56 actual Worker ${scenario.na
   const journal=await h.db().prepare('SELECT entry FROM journal WHERE room_id=? AND version=?').bind(h.id,row.expected.version).first();assertSessionJournal(journal.entry,row.expected.journal);
   const retry=await h.api('commands',row.seat,row.command);assert.equal(retry.status,200);assert.deepEqual(retry.body,result.body);assert.deepEqual(await h.snapshot(),saved);
   await allViews(row.views);
-  if(i===Math.floor(scenario.steps.length/2)||i===scenario.steps.length-1){
+  const critical=row.views.map(v=>v.pendingChoice?.kind).filter(k=>['batch4-jz56-choose-undead','damage','recipient'].includes(k)&&!reopenedKinds.has(k));
+  if(critical.length||i===Math.floor(scenario.steps.length/2)||i===scenario.steps.length-1){
+   for(const kind of critical)reopenedKinds.add(kind);
    await h.reopen();reopened++;assert.deepEqual(await h.snapshot(),saved);await allViews(row.views);
    const afterReopen=await h.api('commands',row.seat,row.command);assert.equal(afterReopen.status,200);assert.deepEqual(afterReopen.body,result.body);assert.deepEqual(await h.snapshot(),saved);
   }

@@ -80,7 +80,11 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   for (const key of ['selectionEnabled', 'published', 'accepted', 'fullyIntegratedNewCards']) assert.equal(plan.scope[key], 0);
   assert.equal(plan.candidateComparison[0].nativeCards, 20);
   assert.equal(plan.candidateComparison[0].wasmCards, 20);
-  assert.equal(plan.candidateComparison[1].wasmCards, 0);
+  assert.equal(plan.candidateComparison[1].wasmCards, 1);
+  assert.deepEqual(plan.platformValidation.directedCards, ['JZ56']);
+  assert.equal(plan.platformValidation.nativeWasmCommands, 200);
+  assert.equal(plan.platformValidation.workerCommands, 200);
+  assert.equal(plan.platformValidation.batch50Complete, false);
   assert.equal(hash(read(plan.ruleEvidence.chaos.pdf)), plan.ruleEvidence.chaos.sha256);
 });
 
