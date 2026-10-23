@@ -1,0 +1,93 @@
+{
+  "timeUtc": "2026-10-23T17:45:33.014813+00:00",
+  "task": "01a16997-118f-737d-ba64-cec3576070c4",
+  "card": "WM043",
+  "issue": "WM043-SHOWN-SHIELD",
+  "status": "Author fix verified; awaiting independent re-review",
+  "clone": "/home/ddd/Documents/Codex/2026-10-23/task-7/UndergroundBattle-wm043",
+  "ordinaryClone": true,
+  "branch": "wip/wm043-shown-shield-20261023",
+  "base": "96a5de6030cd3b207b96994638300956f77030a0",
+  "fixSourceAndTests": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+  "evidenceHead": "b4550dcd3099b4b0501c9afa2d001c5912a0a159",
+  "workingTree": "clean",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+  "bundleSha256": "128e3d703ebe1c236cca940356c0c699b513e6147c60726eafd82dae6c2c7dbe",
+  "bundleRequiredBase": "96a5de6030cd3b207b96994638300956f77030a0",
+  "bundleVerified": true,
+  "bundleVerificationLog": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-bundle-verify.txt",
+  "patches": {
+    "runtime-only": {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-runtime-only.patch",
+      "sha256": "50cac3253b311346a888658933976f6c76610838eeea2d0ab6290dcd3325d2da"
+    },
+    "source": {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-source.patch",
+      "sha256": "8f7fc4dfc434ffd5de7c29a37fca2fab3be94ae75daafb441b378be46b27ef90"
+    }
+  },
+  "runtimeChange": "3 added lines only in wm043.rs; existing shield_stops after choice/target validation",
+  "native": {
+    "uniquePassed": 23,
+    "wm043Directed": 19,
+    "adjacent": 4,
+    "currentFailures": 0,
+    "ignored": 0,
+    "originalFailuresReproducedAndPreserved": 3
+  },
+  "sourceChecksPassed": 4,
+  "all5GreenRuns": {
+    "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+    "workingTree": "clean",
+    "inputFilesVerifiedPerRun": 248
+  },
+  "oldDeliveryPreserved": {
+    "head": "96a5de6030cd3b207b96994638300956f77030a0",
+    "bundle": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-native-candidate.bundle",
+    "sha256": "53a02284fa686129337ab5df23e7f091e46b4912e41172ef8bcd9a535504bffa"
+  },
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-7/UndergroundBattle-wm043/docs/factions/WM043_SHIELD_P2_2026-10-23.md",
+  "verification": "/home/ddd/Documents/Codex/2026-10-23/task-7/UndergroundBattle-wm043/docs/evidence/wm043-shield-p2-20261023/verification.json",
+  "formalNativeCountUnchanged": "36/50",
+  "sharedLedgerModified": false,
+  "otherActiveWorkspacesModified": false,
+  "remote": {
+    "origin": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray",
+    "githubVerified": false,
+    "pushed": false,
+    "reason": "Only local checkpoint/bundle authorized"
+  },
+  "notRun": [
+    "independent re-review",
+    "WASM execution",
+    "Worker",
+    "Web build",
+    "browser",
+    "HTTP/SQLite integration",
+    "CI",
+    "main merge",
+    "deployment"
+  ],
+  "resources": {
+    "cpu": 30,
+    "jobs": 1,
+    "testThreads": 1,
+    "nice": 19,
+    "ioClass": "idle",
+    "virtualMemoryGiB": 8,
+    "offline": true,
+    "servicesStarted": false,
+    "othersKilled": false,
+    "allOwnTestReceiptsComplete": true
+  },
+  "excluded": [
+    "credentials",
+    "private data",
+    "DB",
+    "build caches"
+  ],
+  "blockingActions": [],
+  "pending": [
+    "Independent reviewer to assess exact fix commit and evidence bundle"
+  ]
+}

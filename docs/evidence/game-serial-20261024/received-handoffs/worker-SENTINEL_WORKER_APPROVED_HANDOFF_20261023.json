@@ -1,0 +1,156 @@
+{
+  "status": "four isolated real Worker/D1 normal-chain tests passed; author validation",
+  "executionHead": "75e73b9def93a806434186db2ed6fb6d87525ec4",
+  "testSource": "e21cec8381c31f1f9477c246ce3a1ba2f2b2b766",
+  "fixedRuntime": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "runtimeChanged": false,
+  "permission": {
+    "previous": "Default sandbox listen EPERM; no formal approval had been requested, not a user authorization refusal",
+    "newEvidence": "Parent explicitly authorized standard require_escalated flow for temporary127.0.0.1 listening",
+    "method": "exec_command sandbox_permissions=require_escalated",
+    "outcome": "allowed and executed, exit0",
+    "explicitApprovalRejection": false,
+    "securitySettingsChanged": false,
+    "workaroundUsed": false
+  },
+  "testsPassed": 4,
+  "testsFailed": 0,
+  "normalCommands": 20,
+  "mechanismCommandsNativeStateJournalEqual": 11,
+  "lobbyCommands": 9,
+  "nativeViewComparisons": 56,
+  "normalCreate": 1,
+  "normalJoins": 3,
+  "duplicateReceipts": 32,
+  "normalReloads": 12,
+  "cpu": 29,
+  "nice": 19,
+  "seconds": 8.157237416977296,
+  "scope": "actual local workerd,WASM,HTTP routes,RoomService,RoomStore,D1; explicit native-layout scenarios plus actual HTTP Sentinel deck selection/create/join/ready/start/normal choices. Same command receipt checked before and after persisted D1 reopen. No full game claim.",
+  "limitations": [
+    "not browser/UI acceptance",
+    "not remote deployment",
+    "not complete match",
+    "not independent Worker review",
+    "not released ABI95 artifact"
+  ],
+  "files": [
+    {
+      "path": "sentinel-worker-approved-attempt.json.gz",
+      "sha256": "a11fc8fece1354f33d18a59ec84d38bd0474542eabd00abf98f59a523767378a",
+      "originalSha256": "35019915ba984f0366b7658f3af28e0e6aecde6b256dbd239adde30071712e86"
+    },
+    {
+      "path": "sentinel-worker-approved-attempt.log.gz",
+      "sha256": "104750ee1a66c239162eba91ec63f1a1747c82e7189a5892b37cbbf5a50f4b1e",
+      "originalSha256": "73f888828a224e3edd54747cc0efe0983e92269cef38b650b5b9918e9c767a85"
+    },
+    {
+      "path": "run-sentinel-worker.py.gz",
+      "sha256": "4f227d4090d48662180d21f88e0c31588a721fd8439fe84757e170316e3b8e4d",
+      "originalSha256": "66ab5b1036d6babb3bc88df6110ee3ee75ffb8a65de1d3ce3c38b84e55c56aa5"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/store.mjs",
+      "sha256": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811",
+      "bytes": 4461
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/kernel.mjs",
+      "sha256": "595166e42bb9dd793af79eacfdbc691017670c33b01d8b50d91a8bdfd29cd01c",
+      "bytes": 346
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/service.mjs",
+      "sha256": "340db1869bfbd11a8faa7d8feac5a0176c69845fb667083f3e0e4180f4e64cfe",
+      "bytes": 14233
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/index.mjs",
+      "sha256": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401",
+      "bytes": 120
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/storage-errors.mjs",
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "bytes": 2556
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/kernel-router.mjs",
+      "sha256": "78f0130912c7d5e5c1b0c1fbca12f886824594f440316cdb706873eeb5bf1f9c",
+      "bytes": 1643
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/http.mjs",
+      "sha256": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+      "bytes": 3959
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/pass-history.mjs",
+      "sha256": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8",
+      "bytes": 4403
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "bytes": 1523
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/test/sentinel-local-worker.test.mjs",
+      "sha256": "f79d0825c9776ecf865735abf6c62105431b72b508058fe827b084b1590c4271",
+      "bytes": 6906
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/test/assert-session-journal.mjs",
+      "sha256": "5e081dcb1b2d7f82feff583a8ad9a5eba76844515cdd2d4b1085a70dec8e2d2b",
+      "bytes": 1550
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/tools/build-sentinel-local-worker.mjs",
+      "sha256": "c93a4d7ec2824bae8b5147b50975ce52905138d5f8d847c2b84298a30c17bf3a",
+      "bytes": 2097
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/worker.js",
+      "sha256": "722459b929bbc18345cf297c8cd3b824afd935c640f3b0c4033fd98dcaf41f27",
+      "bytes": 48264
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/candidate.wasm",
+      "sha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce",
+      "bytes": 6691546
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/inputs.json",
+      "sha256": "cdb48e6dfe2d05c585d57989a1c2e25037197b75ecf45ae071e62a11230a74a7",
+      "bytes": 5559
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/verification/sentinel-worker-witness.json",
+      "sha256": "6e173f51d439856dd77f351462a516b06b8e4fa63eee3bdddd95ed0005f74405",
+      "bytes": 1347746
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/verification/sentinel-worker-move-witness.json",
+      "sha256": "8a53f4bc60bd73179f2055ccbdf7888432683a990328f6053c405e7f8d373b5f",
+      "bytes": 962151
+    }
+  ],
+  "globalCountChanged": false,
+  "pushed": false,
+  "ciTriggered": false,
+  "deployed": false,
+  "evidenceHead": "e2d75231d29be3983ad6b3ccc273b1cb102fe519",
+  "remotePushedSha": null,
+  "remoteActuallyVerifiedMatching": false,
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle",
+    "sha256": "aa9240a16a2cf128525eac0900a3b321c285ae0b8eaf15ee36b894c699be7824",
+    "requires": "2bb0210d9ab43413adf795b43fb3ff45cc05ac1a",
+    "verified": true
+  },
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/docs/factions/SENTINEL_WORKER_APPROVED_2026-10-23.md",
+  "priorWipPreserved": true
+}

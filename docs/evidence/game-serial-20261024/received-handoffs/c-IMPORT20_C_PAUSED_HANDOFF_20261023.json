@@ -1,0 +1,95 @@
+{
+  "status": "ordered-pause-complete; planning only; waiting for main thread",
+  "owner": "01a16996-ccb2-7584-bc69-7308ef96e0c8",
+  "mainThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "workdir": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c",
+  "branch": "wip/import20-c-lock-choices-20261023",
+  "base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "head": "07e7e29a5f61a701a76ab316c7a71e730946a234",
+  "clean": true,
+  "ordinaryClone": true,
+  "worktree": false,
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle",
+    "bytes": 11273,
+    "sha256": "3b08cbc0ab462bcc9715435c7f3c3bdc30b959cae28f4842ab217860878db9ed"
+  },
+  "requiredBase": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "bundleVerified": true,
+  "patch": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.patch",
+    "bytes": 29260,
+    "sha256": "d9e4cea27c6b77e99063d3e97cf78090221861bd542ef9eb9c317ae87c2eaed6"
+  },
+  "manifest": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/IMPORT20_C_PAUSED_MANIFEST_20261023.json",
+    "bytes": 5086,
+    "sha256": "ca9e0245762722c95f5a0ac86bb79231f49fc2edc4bad9e077dd55a5e5361839"
+  },
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/factions/IMPORT20_C_PAUSED_HANDOFF_2026-10-23.md",
+  "tests": {
+    "gameTests": 0,
+    "builds": 0,
+    "staticSourceImageHashes": 6,
+    "staticUwproResourceHashes": 6,
+    "imagesVisuallyRead": 6,
+    "bundleVerify": true,
+    "diffCheck": true
+  },
+  "uncommittedWork": [],
+  "unresolved": [
+    {
+      "item": "Six-card implementation and targeted tests",
+      "status": "not-started-paused",
+      "reason": "User ordered planning-only handoff and no new card/mechanism work before any code edit or compile began"
+    },
+    {
+      "item": "MSJC14 dependency extraction",
+      "status": "planning-only",
+      "fixedReviewedSource": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+      "evidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+      "reason": "Interfaces read; exact minimal patch not extracted/tested or imported"
+    },
+    {
+      "item": "XG20 FAQ provenance",
+      "status": "source-follow-up",
+      "reason": "Read retained FAQ statement in UWPro resource; no fresh official-FAQ page inspection this task"
+    }
+  ],
+  "nextOrder": [
+    "Main thread verifies planning checkpoint; product code unchanged",
+    "Main thread serially resolves full reviewed MSJC14/minimal dependency and chooses implementation order",
+    "Implement private module/tests plus separate shared wiring, run scoped tests, then independent review; originalFourth50 vs future candidate counts remain separate",
+    "Only parent archives this task after verifying/integrating; no autonomous resumption"
+  ],
+  "processBoundary": {
+    "method": "host /proc cwd under this task root; exclude current verification and ancestor processes; match own PIDs to TCP listeners",
+    "remainingTaskOwnedProcesses": [],
+    "remainingTaskOwnedTcpListeners": [],
+    "killedProcesses": [],
+    "otherTasksUntouched": true
+  },
+  "originalUi": {
+    "head": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+    "source": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+    "workdir": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui",
+    "branch": "fix/abi95-terminal-ui-20261023",
+    "preserved": true,
+    "handoff": "/home/ddd/Documents/Codex/2026-10-23/task-6/ABI95_TERMINAL_UI_HANDOFF_20261023.json",
+    "bundle": {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle",
+      "bytes": 141667,
+      "sha256": "27e6a4067a23fdde3d3bae729b0579da324b3da68fbd660fdbaf08a89f56d55f"
+    },
+    "parentReportedIndependentReviewAndDeploymentComplete": true,
+    "notReexecutedHere": true
+  },
+  "deniedActions": [],
+  "uncertainActions": [],
+  "executionBlockers": [],
+  "pushed": false,
+  "mainModified": false,
+  "ci": false,
+  "deployedHere": false,
+  "secretsDbCacheIncluded": false
+}

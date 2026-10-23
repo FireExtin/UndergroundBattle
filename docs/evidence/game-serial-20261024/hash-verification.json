@@ -1,0 +1,757 @@
+{
+  "createdAtUtc": "2026-10-23T17:59:22.127466+00:00",
+  "hashChecksPassed": 121,
+  "records": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/GAME_CONVERGENCE_HANDOFF_20261023.json",
+      "bytes": 8093,
+      "sha256": "b9c70f9854f2ef0f68ee658349c6e3cb495d856ba758b49ae8fce2e12c1100dd",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle",
+      "bytes": 212461,
+      "sha256": "b2a91a7691bd73b935e429e495a18619661d0a1f3a1d0682927022cb70b37fe0",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/SENTINEL_WORKER_APPROVED_HANDOFF_20261023.json",
+      "bytes": 6900,
+      "sha256": "05e261b4e9fc196236bd0991a5eb2c97e24808db093b67b36203a7b416382f3f",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle",
+      "bytes": 144291,
+      "sha256": "aa9240a16a2cf128525eac0900a3b321c285ae0b8eaf15ee36b894c699be7824",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/SENTINEL_ACCEPTED_LOCAL_WASM_HANDOFF_20261023.json",
+      "bytes": 3199,
+      "sha256": "b19d503c594b4070ed10184ac582b844a90164665afd7623688a52bd2170441a",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle",
+      "bytes": 264148,
+      "sha256": "1b5bc96c9f526461ed58c3e1b353a3bf12396a9001633dba85da1fd409eaecf3",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/WM043_SHIELD_P2_HANDOFF_20261023.json",
+      "bytes": 3373,
+      "sha256": "85c4f6fd9f031fafd11e23b54facbedea2e29be9895c34d13bf0457ae0d6b594",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+      "bytes": 3762283,
+      "sha256": "128e3d703ebe1c236cca940356c0c699b513e6147c60726eafd82dae6c2c7dbe",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/delivery.json",
+      "bytes": 2283,
+      "sha256": "7abcc068159d5f7826a252fde0ab820ca11521f16cf39efb290ae49592167b5d",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/HANDOFF.txt",
+      "bytes": 6212,
+      "sha256": "a2bbeb0a8b8ffafdf916a5ca7697d10da7a5e80e37180695921f40f68c04df5d",
+      "kind": "file"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/manifest.json",
+      "bytes": 7060,
+      "sha256": "9ab2994f599eea12dd2c498336418d878d93ec69a8daa8b0c269ceea148ffb7e",
+      "kind": "file"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/handoff-evidence.tar.gz",
+      "bytes": 12842189,
+      "sha256": "523775568fe9f8a55362660a7cb776916a3d66e7fec301511fef1ce0d5f16396",
+      "kind": "archive"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+      "bytes": 13776,
+      "sha256": "b470823a59b336639bda86fac7b4faaa0537ccde13a28cc1ed1fa2f596168ccf",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+      "bytes": 23020,
+      "sha256": "b5e51c49926d97c6eef772915b6943cea6b590f65eb1eb3dc3a8df4779c18da6",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/IMPORT20_B_PLANNING_CLOSE_HANDOFF_20261023.json",
+      "bytes": 2290,
+      "sha256": "b8129e6bf243c51655e1222e6a30eab7761ccf9a8b21f1547f68ac8485f4ea3c",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle",
+      "bytes": 6911,
+      "sha256": "f0f80fafedc48052ec90ffaea919111be108539e034fde055fcb5f8f9034914f",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/IMPORT20_C_PAUSED_HANDOFF_20261023.json",
+      "bytes": 4039,
+      "sha256": "5fd44205f49c3259f3b1fc184cb634ad856279f8dba22ccd5dcb44297ad99071",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle",
+      "bytes": 11273,
+      "sha256": "3b08cbc0ab462bcc9715435c7f3c3bdc30b959cae28f4842ab217860878db9ed",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/ABI95_TERMINAL_UI_HANDOFF_20261023.json",
+      "bytes": 6865,
+      "sha256": "d559fc507f66b02bb26305db819b46c260e66920fbfd320b1f177ef27ebc2f0b",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle",
+      "bytes": 141667,
+      "sha256": "27e6a4067a23fdde3d3bae729b0579da324b3da68fbd660fdbaf08a89f56d55f",
+      "kind": "bundle"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_HANDOFF_2026-10-23.json",
+      "bytes": 9119,
+      "sha256": "35a7da1b5610721fa32af70fd4b9f60175c580291bad8f54cfae0c25f893e4ab",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-2/aliyun-76b1b18/publication-result.json",
+      "bytes": 886,
+      "sha256": "879a2c507869a0cff068b1bb2615edc4c00511bef8306a03b3d7146b8e0c8822",
+      "kind": "handoff"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/ABI95_PLATFORM_HANDOFF_20261023.json",
+      "bytes": 2817,
+      "sha256": "4d144faf5c2cf0fcc963ca5b4b1710d02fba133cfd7b216d0c6a4f7c629e2b85",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/BATCH50_INTEGRATION_LEDGER_20261023.json",
+      "bytes": 1856,
+      "sha256": "2a1cf869c288e68cf7895f7b548c64118e50b9319bb12f18c2a69e160ae12b2c",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/CONVERGENCE_PROCESS_READBACK_20261023.json",
+      "bytes": 251,
+      "sha256": "3d50c6fb5ea1855cca7dc286c2a03fb7e6ba9db3f6bf23ebc312dd1187a0bd83",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/IMPORT20_OWNERSHIP_20261023.json",
+      "bytes": 2127,
+      "sha256": "a4f872899107a8c600ad1ffce3ce222f85d1f2841bf11c6268745132dad9e6f1",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/LC16_NATIVE_HANDOFF_20261023.json",
+      "bytes": 3741,
+      "sha256": "60e0bf4df36e5369569e2e3ca0f2e91b553ba964e4d5fc8b1f91ec0626a40679",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/RED_BLACK_OWNERSHIP_20261023.json",
+      "bytes": 2374,
+      "sha256": "c8e1301b444c0d3162b0d225f7066d8dd95c348872415c78aeebbc4952fc2e66",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/REFERENCE_BATCH20_INTAKE_HANDOFF_20261023.json",
+      "bytes": 3856,
+      "sha256": "97b9f8a23fa6024f00c2ffc7681de482d97dba6c37e6fc5c09a684e8fbca9226",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/WM037_CLOCKMAKERS_NATIVE_HANDOFF_20261023.json",
+      "bytes": 4156,
+      "sha256": "0288097c20c5e95b546661c7588ec5e5acbf5bef8c5574fa06fa9aec9ac278a1",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/XQ20_NATIVE_HANDOFF_20261023.json",
+      "bytes": 3385,
+      "sha256": "f153675ee7b1a8ab511fcf963e70d30f73cd5917fe774d894874e3c5d55c74f5",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/handoff.json",
+      "bytes": 8686,
+      "sha256": "7b5021d3aee81ed4418b90b8cdf1289ee8bc2f620fb2c6c677989ca65dfbf8ac",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/wm037-q1-faq-correction.json",
+      "bytes": 4547,
+      "sha256": "0d7a7f01b6aa5f74d96f9f6482a1eb5d493502a856f2ce7a86fbe2ebb59fe760",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/HANDOFF.txt",
+      "bytes": 6212,
+      "sha256": "a2bbeb0a8b8ffafdf916a5ca7697d10da7a5e80e37180695921f40f68c04df5d",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/checkout-inventory.json",
+      "bytes": 9585,
+      "sha256": "47b63c2915d54a65c62b189c15f14053aa98a2e06efb2d8894bb6bcfe9bb14a3",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm037_msjc13/delivery.json",
+      "bytes": 2093,
+      "sha256": "cd27b174e6524b546379d45afacae64da7bce9627c3e77f371a57eec97a6795c",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm037_msjc13/evidence.tar.gz",
+      "bytes": 9071017,
+      "sha256": "524ad67cc86c5fff4d73946d433309dd50c3eb52705e67b006f1fbcccc76d03e",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm037_msjc13/manifest.json",
+      "bytes": 7830,
+      "sha256": "31d1f89b8a211263803a81e33e5692a261063ad5b1018eb17d454d90394531e1",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm037_msjc13/result.json",
+      "bytes": 7958,
+      "sha256": "c7181ace5672d0f816502d28ffb6023347299fc4c06701bcf223d209d6019090",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm037_msjc13/review.txt",
+      "bytes": 10689,
+      "sha256": "f75b00c78a8ded44de6c8acf196687addced4df5adbace9699ada2ee7b346e28",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm043/delivery.json",
+      "bytes": 873,
+      "sha256": "2ff58714a8377a11b4dbfcc99637ac946b6bb59194f6b03be31c907758248e53",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm043/evidence.tar.gz",
+      "bytes": 3632637,
+      "sha256": "8f2197bcf36ed9c4caae381de11498090fcd8f4e025e15a996d7a8631e2f335d",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm043/manifest.json",
+      "bytes": 6376,
+      "sha256": "ed534f84e81c8224a1dab9fb55ddbac23c15ad2b3673e5d25c9a49d52954d1c9",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm043/result.json",
+      "bytes": 8209,
+      "sha256": "c6e32d9c01c31277a408915e7f434a509fe48eecd7c618c269f8d9a37cebbfd6",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence/wm043/review.txt",
+      "bytes": 9060,
+      "sha256": "6955f8896661b828b75a0cb01b5b8d9223363bc9aa9dc842d1befab82d763eb4",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-evidence-copies.json",
+      "bytes": 2426,
+      "sha256": "4e9d5a37c15e1e19f347e688c6b4fe150cdf21d508ca3b38c88367c924a40e97",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/current-review-commits.json",
+      "bytes": 6225,
+      "sha256": "dee9f98d645c35061d960a56587a4df41de9bfa7f6dfb8a2b55ce76b7ee41535",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/handoff-state.json",
+      "bytes": 8453,
+      "sha256": "0c0b512df013eb98dc0a65ffcd4c2bfd1b660fd03131afc12bd86e08118a0bf8",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/historical-artifact-index.json",
+      "bytes": 90398,
+      "sha256": "e8d9a78bebada1ab1dd4e0f0b439542e8691acf8781ae504ea2fba3a172274c8",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/prepare-serial-review-handoff.py",
+      "bytes": 11816,
+      "sha256": "1a53f7f5bf36aa11c1302a0417cdcd760217baef46a234ab0c61ac8028ead6dd",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/process-status.json",
+      "bytes": 354,
+      "sha256": "f0aefee1259be93f72e19fc5fcc3c7f32a8fe9158300e71080b9f53a4d5b0962",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-ab-rulings-review/tracked.patch",
+      "bytes": 7391,
+      "sha256": "26ce38e48f785f560291dfff56dabb39e2528dcf475312e6f43f4427b9ad8460",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-ab-ten-review/tracked.patch",
+      "bytes": 7335,
+      "sha256": "22827e6137083c9e16d3fc990c15beef169a115183a9e3e4c7609b14c38e1e15",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-abi94-delta-review/tracked.patch",
+      "bytes": 380,
+      "sha256": "ec1f6024902ebb52f4736518021eb29a2057e4dfd44e8df8a6af282c69b5955e",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-abi94-delta-review/untracked/rust-game/src/independent_abi94_delta_tests.rs",
+      "bytes": 6072,
+      "sha256": "d1191eadbdf0a18d92bd335ee5578f8e3eeb836a7d42bdbbe09ac1cadd04ecdb",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-abi95-terminal-ui-review/untracked/web/src/game/AutoPassTerminalIndependent.test.tsx",
+      "bytes": 5265,
+      "sha256": "a634cb27eb869f9a90f623173351fc6b2a9a2e912ed5873a4c9c24a9c368c1e5",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-bq036-close-review/tracked.patch",
+      "bytes": 4530,
+      "sha256": "efa73e7ec09af9b364d6550aae73ac9cbabd2f1e91a62bd93b6b723d83739fc1",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-history-review/untracked/rust-game/tests/independent_p2_closure.rs",
+      "bytes": 33352,
+      "sha256": "6e6d33738f89aaa7369c14e9540755cb3355fb3b4c1e453b77b4ffb1bdf5f4dd",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-jz56-close-review/tracked.patch",
+      "bytes": 5552,
+      "sha256": "9ed4a5d15b27ebba9ddcc74f84c5fce3ec376b98f27d3dd6bddc2152dd0ea812",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-jz56-recipient-review/tracked.patch",
+      "bytes": 8622,
+      "sha256": "95791edd6cec5de334be758170949227bbbe70ecc09d662213b890f3b839aff5",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-jz56-review/tracked.patch",
+      "bytes": 12070,
+      "sha256": "78f5c3fd97b3ba19ea9cf6fa638d133d13c1b45ab1bfda70d13b1592ec46f119",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-lc16-review/tracked.patch",
+      "bytes": 8313,
+      "sha256": "ebaf4b260d5748ed5ef9edc40267fc8633f1b1b485cca37a736adc1a7639b614",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-recovery-regression/tracked.patch",
+      "bytes": 20517,
+      "sha256": "33bc66ab542238574a510c915fe8a7954732476d546be93e06e3ad0a2a6b29a0",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-sentinel-lock-close-review/tracked.patch",
+      "bytes": 4339,
+      "sha256": "fafdced76e381e3c8c8ea2b5896b296e359b0846e04726f1ae1ade8615b2d331",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-ui-terminal-review/untracked/web/src/game/AutoPassTerminalIndependent.test.tsx",
+      "bytes": 5265,
+      "sha256": "a634cb27eb869f9a90f623173351fc6b2a9a2e912ed5873a4c9c24a9c368c1e5",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-wm044-sentinel-review/tracked.patch",
+      "bytes": 9666,
+      "sha256": "3bf74205a3e92e611263abb5d6f0ff8256a20504b9f7f6dc65a902478cd781da",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/retained-uncommitted/UndergroundBattle-xq20-review/tracked.patch",
+      "bytes": 5794,
+      "sha256": "0b583a8057f118ce8678188050d4c6fb8cc8109b5266981820981c3ddeebe62f",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-bundle-verify.txt",
+      "bytes": 352,
+      "sha256": "13e4d3114eb74f66f880c5b168da413afe13360bd2fa6af4e5360f8b29c7aecb",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-independent-tests.patch",
+      "bytes": 8205,
+      "sha256": "46d0feed862d3eb8a5c475101f73878ee2057341083f664d6c40da106284dc34",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+      "bytes": 23020,
+      "sha256": "b5e51c49926d97c6eef772915b6943cea6b590f65eb1eb3dc3a8df4779c18da6",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-bundle-verify.txt",
+      "bytes": 343,
+      "sha256": "8e630d87087444fb4fb0cb371423b7aa6ec4ccd2836fe0b471dbb9ac3685fb49",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-independent-tests.patch",
+      "bytes": 6392,
+      "sha256": "4168951e3f9b39e2215b3ceed3e0b78a1832f60c5da0121ff56153e567dcdb99",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+      "bytes": 13776,
+      "sha256": "b470823a59b336639bda86fac7b4faaa0537ccde13a28cc1ed1fa2f596168ccf",
+      "kind": "manifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/IMPORT20_C_PAUSED_MANIFEST_20261023.json",
+      "bytes": 5086,
+      "sha256": "ca9e0245762722c95f5a0ac86bb79231f49fc2edc4bad9e077dd55a5e5361839",
+      "kind": "file"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/dependency-note.json",
+      "bytes": 1310,
+      "sha256": "ea57a208359768d258cb2206ce8e21a5ac34d250519557ca342cb79ce4c14176",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/manifest.json",
+      "bytes": 2072,
+      "sha256": "97849cd659081adb8bf7975e74ea23c7c234cc154f16e0abe66d427b4a70ff97",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/mechanism-notes.json",
+      "bytes": 2654,
+      "sha256": "b742fc0d18a648daecef8ff608d84ce100da454cb68a607c41538b33e886c5e6",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/sources.json",
+      "bytes": 6553,
+      "sha256": "8f8ee290311923fb48a3f0dc6ae65825082904d40a3b474ee1c21d260cd51278",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/status.json",
+      "bytes": 1872,
+      "sha256": "fa0dea7b60cc73738930c8c9df040324dab26e10c677c3005382282e5d43495f",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/BQ057.tres",
+      "bytes": 1256,
+      "sha256": "88e4d977414980248cf1af326575981edad4c4ec09b2af25e73283193efde5a7",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ15.tres",
+      "bytes": 1392,
+      "sha256": "9c5df597ef52e2912585c2ff1d4ddc6fd5d67ebd4220b0a5be6cd58f4cb3e423",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ18.tres",
+      "bytes": 1331,
+      "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ19.tres",
+      "bytes": 1322,
+      "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ28.tres",
+      "bytes": 1311,
+      "sha256": "051705a20336884e81ec8159ecb34b72fc14f34510f4b1fab77f0665cae7b354",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/evidence/import20-c-paused-20261023/uwpro-resources/XG20.tres",
+      "bytes": 1293,
+      "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c/docs/factions/IMPORT20_C_PAUSED_HANDOFF_2026-10-23.md",
+      "bytes": 2789,
+      "sha256": "b4ad05ee790026cb1ad043415cc5ecff8021e1cbadbac3b6c93b033e7c3d7ab0",
+      "kind": "cManifestMember"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_EVIDENCE_MANIFEST_2026-10-23.json",
+      "bytes": 5614,
+      "sha256": "95ecfb7f4f3f057be856ec48ea70fa9edb2bb7c009de1cdc145e92d332eb5aa2",
+      "kind": "file"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_EVIDENCE_BUNDLE_2026-10-23.tar.gz",
+      "bytes": 30384,
+      "sha256": "9872dc637e56cf3956f9cbeb98534fcf37ff63cc636b060600cd5bccc055f225",
+      "kind": "qaArchive"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/ABI95_REMAINING_BROWSER_ACCEPTANCE_CHECKLIST_2026-10-23.json",
+      "bytes": 2252,
+      "sha256": "0998efe05371e597330907f8315fe7342c620d9d914c29d73ba62ba5be3f688a",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/BOT_AUTHOR_BROWSER_CALL_LEDGER_2026-10-22.json",
+      "bytes": 9940,
+      "sha256": "890476d76a5103f16dc47b38c1eb6ce2dde35fbc742e49d1ef5009d50cccf796",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/BOT_BROWSER_HANDOFF_BLOCKER_2026-10-22.json",
+      "bytes": 4453,
+      "sha256": "c7cba27d65a5188f51033a4e2695422f2e0c4f0e4cf6af26785be441ff68f2b3",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/BOT_BROWSER_HANDOFF_READINESS_2026-10-22.json",
+      "bytes": 7216,
+      "sha256": "37022fd37d047285f04472dcd57bc074b083f3d9eca974ab92a11b06791fddee",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/BOT_EVIDENCE_COMMIT_42C10463_REVIEW_2026-10-22.json",
+      "bytes": 8491,
+      "sha256": "64b5284d84af61861f18197093dc1432590105b76fb7d2b4914f5fde90f06c1a",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/BOT_TERMINAL_IDENTITY_EVIDENCE_REVIEW_2026-10-22.json",
+      "bytes": 9636,
+      "sha256": "33d11de0df1d30ceb602018377f16219152bfc3b84b1bc5bd710ebabd01a3d2c",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_845F0D8_UI_TARGETED_RECHECK_2026-10-22.json",
+      "bytes": 6068,
+      "sha256": "65f40012b631f7ee06a2a9e2891cfe4286838207917eb1f958a6b406f7538fe8",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_ABI95_BROWSER_QA_2026-10-23.json",
+      "bytes": 10610,
+      "sha256": "f988dc4bb5a3c0fafed8aacb9722d9a210aba3a0a40d51ea769f3a056128abd4",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_ABI95_BROWSER_QA_MILESTONES_2026-10-23.json",
+      "bytes": 3687,
+      "sha256": "dc18f2d2e91b4531e6deb7d0d5c05805dc49ff75699cbe3085a58c7d6f336f0e",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_C811_BROWSER_QA_IDENTITY_2026-10-22.json",
+      "bytes": 2456,
+      "sha256": "d7a52488b82ef88dd1464acb0e9a2a5de72176ab6c58bd607650d5b1999f34db",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_C811_BROWSER_QA_MILESTONES_2026-10-22.json",
+      "bytes": 5474,
+      "sha256": "3436e6c8e3e27a336bfa491540d0d0e7eeb337fcf2ef8743112fc97762ab85bc",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_C811_BROWSER_QA_RESULTS_2026-10-22.json",
+      "bytes": 11283,
+      "sha256": "67b2aade27c63f92a3b34348d1e87b6a956c3b0bece07475030bbabd0542d874",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/DOMESTIC_C811_TERMINAL_EVIDENCE_2026-10-22.json",
+      "bytes": 2595,
+      "sha256": "8f866900dde2fe832f1b33aa954b1b39405871ec268c03ce6936bc948b048a47",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_HANDOFF_2026-10-23.json",
+      "bytes": 9119,
+      "sha256": "35a7da1b5610721fa32af70fd4b9f60175c580291bad8f54cfae0c25f893e4ab",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-2/aliyun-76b1b18/publication-result.json",
+      "bytes": 886,
+      "sha256": "879a2c507869a0cff068b1bb2615edc4c00511bef8306a03b3d7146b8e0c8822",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-2/aliyun-76b1b18/public-verification.json",
+      "bytes": 1039,
+      "sha256": "d08c59096fab12d4e9ecdd55137727a4727e3c538f70e25dfccfdd00cd366c1a",
+      "kind": "qaSource"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/store.mjs",
+      "bytes": 4461,
+      "sha256": "37e603ef0352ac4cf4ddee4ffed49d1442b55dbdb7a8b3c679572aa903ff9811",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/kernel.mjs",
+      "bytes": 346,
+      "sha256": "595166e42bb9dd793af79eacfdbc691017670c33b01d8b50d91a8bdfd29cd01c",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/service.mjs",
+      "bytes": 14233,
+      "sha256": "340db1869bfbd11a8faa7d8feac5a0176c69845fb667083f3e0e4180f4e64cfe",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/index.mjs",
+      "bytes": 120,
+      "sha256": "b006e42790ccb11637d18fd697f95d896376320b22aff74d63be13c9e1ffa401",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/storage-errors.mjs",
+      "bytes": 2556,
+      "sha256": "6979b752d13a2143f1e250051e5e2df1c81a7afef93727023b84ee8043b5f1a0",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/kernel-router.mjs",
+      "bytes": 1643,
+      "sha256": "78f0130912c7d5e5c1b0c1fbca12f886824594f440316cdb706873eeb5bf1f9c",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/http.mjs",
+      "bytes": 3959,
+      "sha256": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/src/pass-history.mjs",
+      "bytes": 4403,
+      "sha256": "489ca4309994b745ec6617b6b8b5706b2d34d784209012a94d330cc5638400d8",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/drizzle/0000_numerous_lucky_pierre.sql",
+      "bytes": 1523,
+      "sha256": "e7e71337892cba7558c9bd5a3c3beb78c109fa93d1775f0b13e5377030a78b43",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/test/sentinel-local-worker.test.mjs",
+      "bytes": 6906,
+      "sha256": "f79d0825c9776ecf865735abf6c62105431b72b508058fe827b084b1590c4271",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/sites/test/assert-session-journal.mjs",
+      "bytes": 1550,
+      "sha256": "5e081dcb1b2d7f82feff583a8ad9a5eba76844515cdd2d4b1085a70dec8e2d2b",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/tools/build-sentinel-local-worker.mjs",
+      "bytes": 2097,
+      "sha256": "c93a4d7ec2824bae8b5147b50975ce52905138d5f8d847c2b84298a30c17bf3a",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/worker.js",
+      "bytes": 48264,
+      "sha256": "722459b929bbc18345cf297c8cd3b824afd935c640f3b0c4033fd98dcaf41f27",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/candidate.wasm",
+      "bytes": 6691546,
+      "sha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/inputs.json",
+      "bytes": 5559,
+      "sha256": "cdb48e6dfe2d05c585d57989a1c2e25037197b75ecf45ae071e62a11230a74a7",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/verification/sentinel-worker-witness.json",
+      "bytes": 1347746,
+      "sha256": "6e173f51d439856dd77f351462a516b06b8e4fa63eee3bdddd95ed0005f74405",
+      "kind": "workerInput"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/verification/sentinel-worker-move-witness.json",
+      "bytes": 962151,
+      "sha256": "8a53f4bc60bd73179f2055ccbdf7888432683a990328f6053c405e7f8d373b5f",
+      "kind": "workerInput"
+    }
+  ],
+  "bundles": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+    "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+    "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle",
+    "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle"
+  ],
+  "qaArchiveMemberHashesPassed": 16,
+  "sourceReceipts": {
+    "own": "/home/ddd/Documents/Codex/2026-10-21/task-3/GAME_CONVERGENCE_HANDOFF_20261023.json",
+    "worker": "/home/ddd/Documents/Codex/2026-10-23/task-2/SENTINEL_WORKER_APPROVED_HANDOFF_20261023.json",
+    "wasm": "/home/ddd/Documents/Codex/2026-10-23/task-2/SENTINEL_ACCEPTED_LOCAL_WASM_HANDOFF_20261023.json",
+    "wm043": "/home/ddd/Documents/Codex/2026-10-23/task-7/WM043_SHIELD_P2_HANDOFF_20261023.json",
+    "review": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/delivery.json",
+    "b": "/home/ddd/Documents/Codex/2026-10-23/task-2/IMPORT20_B_PLANNING_CLOSE_HANDOFF_20261023.json",
+    "c": "/home/ddd/Documents/Codex/2026-10-23/task-6/IMPORT20_C_PAUSED_HANDOFF_20261023.json",
+    "ui": "/home/ddd/Documents/Codex/2026-10-23/task-6/ABI95_TERMINAL_UI_HANDOFF_20261023.json",
+    "qa": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_HANDOFF_2026-10-23.json",
+    "publication": "/home/ddd/Documents/Codex/2026-10-21/task-2/aliyun-76b1b18/publication-result.json"
+  },
+  "noExternalGameOrCiExecuted": true
+}

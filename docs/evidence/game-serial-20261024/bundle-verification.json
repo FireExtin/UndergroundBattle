@@ -1,0 +1,47 @@
+[
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n723fcb7abfc0f0aa73b429f511442d1d7c38b9f6 HEAD\nThe bundle requires this ref:\nd7c884a81c6f4b6590e9d1357824911d35358228 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\ne2d75231d29be3983ad6b3ccc273b1cb102fe519 HEAD\nThe bundle requires this ref:\n2bb0210d9ab43413adf795b43fb3ff45cc05ac1a \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n2bb0210d9ab43413adf795b43fb3ff45cc05ac1a HEAD\nThe bundle requires this ref:\n5607a1c06f00920a0d927958975e1a34e31df2f8 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\nb4550dcd3099b4b0501c9afa2d001c5912a0a159 refs/heads/wip/wm043-shown-shield-20261023\nThe bundle requires this ref:\n96a5de6030cd3b207b96994638300956f77030a0 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n00c70fc681257fc734f02cd660c9f854748b219b refs/heads/review/wm043-counterexamples-handoff-20261023\nThe bundle requires this ref:\n96a5de6030cd3b207b96994638300956f77030a0 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n4101b52ea0181ea65981658276f505bca16c9136 refs/heads/review/wm037-clockmakers-tests-handoff-20261023\nThe bundle requires this ref:\n7a739d6a66505faad5f4077b0110dd85f98c21dc \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n4a8842e1e1e6e76f34f90285add90d1d07589031 HEAD\nThe bundle requires this ref:\na0b7e49d3b77ab5d32e583c572c49fc37f413a98 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n07e7e29a5f61a701a76ab316c7a71e730946a234 HEAD\nThe bundle requires this ref:\na0b7e49d3b77ab5d32e583c572c49fc37f413a98 \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle is okay\n"
+  },
+  {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle",
+    "verifyExitCode": 0,
+    "output": "The bundle contains this ref:\n76b1b189c42c3da47ffc875a463ada162c1e8fbd HEAD\nThe bundle requires this ref:\n5a5911d64da37d1978776ef5f5760da6d5086ffb \nThe bundle uses this hash algorithm: sha1\n/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle is okay\n"
+  }
+]

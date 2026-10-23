@@ -1,0 +1,188 @@
+{
+  "createdAtUtc": "2026-10-23T17:54:46.612792+00:00",
+  "status": "stoppedAtSafeBoundaryAwaitingSerialMain",
+  "gameMainThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "workspace": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+  "documentationCheckpoint": {
+    "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake",
+    "branch": "wip/reference-batch20-plan-20261023",
+    "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "head": "723fcb7abfc0f0aa73b429f511442d1d7c38b9f6",
+    "implementationDelta": false,
+    "changedPathCount": 48,
+    "changedPathsAllDocs": true,
+    "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/HANDOFF_GAME_SERIAL_2026-10-23.md",
+    "evidenceManifest": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/convergence-20261023/manifest.json",
+    "evidenceManifestSha256": "0cfa510d155f4b33157d214e1041b1c5a2421fd36a7284da01b2c8e9c3581b04"
+  },
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle",
+    "head": "723fcb7abfc0f0aa73b429f511442d1d7c38b9f6",
+    "requiredCommit": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "sha256": "b2a91a7691bd73b935e429e495a18619661d0a1f3a1d0682927022cb70b37fe0",
+    "bytes": 212461,
+    "verified": true
+  },
+  "clones": [
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-import20-a",
+      "branch": "wip/import20-a-contest-20261023",
+      "head": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t20"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake",
+      "branch": "wip/reference-batch20-plan-20261023",
+      "head": "723fcb7abfc0f0aa73b429f511442d1d7c38b9f6",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t27"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock",
+      "branch": "wip/batch50-wm037-clock-20261023",
+      "head": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t28"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-lc16-normal",
+      "branch": "wip/batch50-lc16-integrated-20261023",
+      "head": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t23"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal",
+      "branch": "wip/xq20-normal-20261023",
+      "head": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t19"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4",
+      "branch": "progress/batch20-fourth-20261022",
+      "head": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+      "worktree": "clean",
+      "verifiedRemoteIsAncestor": true,
+      "remoteComparison": "0\t16"
+    }
+  ],
+  "packageA": {
+    "base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "head": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "codeDelta": false,
+    "sourceCorrectionApplied": false,
+    "buildsStarted": 0,
+    "testsStarted": 0,
+    "cardsReservedThenReleased": [
+      "BQ039",
+      "BQ090",
+      "WM028",
+      "WM025",
+      "WM024",
+      "BQ081",
+      "WM057",
+      "BQ064"
+    ]
+  },
+  "fiveSpecCorrections": {
+    "commit": "76ad42d00ded4e40c093745f9bb829cb6334f5dd",
+    "cards": [
+      "BQ081",
+      "WM024",
+      "XG13",
+      "CQ24",
+      "BQ092"
+    ],
+    "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/factions/REFERENCE_FIVE_SPEC_FIXES_2026-10-23.md",
+    "fieldsAndOriginalImages": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/reference-five-spec-fixes-20261023/handoff.json",
+    "actualSpecOrRuntimeModified": false
+  },
+  "projectNativeClosed": 37,
+  "combinedPlatformOrPublicCandidate": false,
+  "reviewedMechanisms": [
+    {
+      "name": "LC16",
+      "runtimeSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+      "closureHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "independentNative": 22,
+      "sourceChecks": 3
+    },
+    {
+      "name": "XQ20",
+      "runtimeSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+      "closureHead": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+      "independentNative": 21,
+      "sourceChecks": 3
+    },
+    {
+      "name": "WM037/MSJC13",
+      "runtimeSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+      "evidenceHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "authorUniqueNative": 58,
+      "independentNative": 31,
+      "sourceChecks": 6,
+      "q1ResolvedBySpecificExistingFaq": true,
+      "latestClosureRuntimeChanged": false,
+      "MSJC13NotAnotherBatchCard": true
+    }
+  ],
+  "externalCollectionNeeded": [
+    "WM044/MSJC14 latest native/WASM/Worker and import20 B handoffs from blue-gray author 01a1693c-05ce-726e-95af-31ecb62d60f2",
+    "WM043 handoff from author 01a16997-118f-737d-ba64-cec3576070c4",
+    "Import20 C-package handoff from parent-assigned author; obtain exact task identity from parent",
+    "ABI95 reviewed terminal UI specialist corrected candidate; do not deploy raw5a5911d missing the UI fix"
+  ],
+  "serialNextOrder": [
+    "Read all owner handoffs and verify exact SHAs/worktrees first; archive chats only after main confirms integration",
+    "Keep a0b as agreed common implementation base; add only reviewed runtime/source deltas for WM037/MSJC13 and WM044/MSJC14 with explicit ABI/catalogue resolution",
+    "Apply source-only corrections once by assigned owner before implementing those cards; preserve all other source records and frozen runtime evidence",
+    "Collect B/C existing deltas before assigning serial import20 implementation; A has no delta and must not be counted",
+    "Run only applicable integration checks for actual combined source; Native/WASM/Worker/public/browser statuses remain separate; no automatic publish or CI"
+  ],
+  "verificationThisConvergence": {
+    "productBuildsStarted": 0,
+    "productTestsStarted": 0,
+    "evidenceFilesHashVerified": 11,
+    "previousBundlesVerified": 5,
+    "newBundleVerified": true,
+    "gitDiffCheckPassed": true,
+    "allSixClonesClean": true,
+    "originalFailureLogsPreserved": true
+  },
+  "remoteReadback": {
+    "repository": "FireExtin/UndergroundBattle",
+    "branch": "progress/batch20-fourth-20261022",
+    "head": "08319094a113717a1a80041fbe94ca8c139429be",
+    "method": "git ls-remote read-only completed this closing segment",
+    "readbackUtc": "2026-10-23T17:54:46.613664+00:00",
+    "pushAttempted": false
+  },
+  "remainingBlockers": [
+    "A8 is planned only; collect B/C current deltas before serial continuation",
+    "37 reviewed native card closures are across branches; not one combined WASM/Worker/browser/public candidate",
+    "Use specialist ABI95 terminal-UI corrected candidate instead of raw5a5911d; collect exact handoff separately",
+    "No new push authorized under known all-push workflow uncertainty; old083 exception is single use and not broadened",
+    "Sites pending/403 and XG21 denied paths untouched"
+  ],
+  "processes": {
+    "scope": "host read-only ps comm/cwd and listening TCP endpoints; no process command lines or environment read",
+    "workspaceRelatedProcesses": [],
+    "listeningTcpForListedPids": [],
+    "ssExitCode": 0,
+    "mutations": "none; no processes killed"
+  },
+  "dataAndOtherWork": "No DB/state/evidence or other owner work removed; no process killed",
+  "newAgentsStarted": 0,
+  "pushed": false,
+  "mergedMain": false,
+  "deployed": false,
+  "ciTriggered": false,
+  "archivedAnything": false
+}

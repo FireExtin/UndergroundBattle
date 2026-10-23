@@ -1,0 +1,10 @@
+{
+  "exitCode": 1,
+  "output": "Auto-merging rust-game/data/cards.json\nAuto-merging rust-game/src/batch4.rs\nAuto-merging rust-game/src/catalog.rs\nCONFLICT (content): Merge conflict in rust-game/src/catalog.rs\nAuto-merging rust-game/src/lib.rs\nAuto-merging rust-game/src/model.rs\nAuto-merging rust-game/src/mystic_contest.rs\nCONFLICT (content): Merge conflict in rust-game/src/mystic_contest.rs\nAuto-merging rust-game/src/mystic_hooks.rs\nCONFLICT (content): Merge conflict in rust-game/src/mystic_hooks.rs\nAuto-merging rust-game/src/pack_a_contest.rs\nCONFLICT (content): Merge conflict in rust-game/src/pack_a_contest.rs\nAuto-merging rust-game/src/resolution.rs\nAuto-merging rust-game/src/rules.rs\nAutomatic merge failed; fix conflicts and then commit the result.\n",
+  "conflicts": [
+    "rust-game/src/catalog.rs",
+    "rust-game/src/mystic_contest.rs",
+    "rust-game/src/mystic_hooks.rs",
+    "rust-game/src/pack_a_contest.rs"
+  ]
+}

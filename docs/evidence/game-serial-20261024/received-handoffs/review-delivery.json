@@ -1,0 +1,46 @@
+{
+  "handoff": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/HANDOFF.txt",
+  "handoffSha256": "a2bbeb0a8b8ffafdf916a5ca7697d10da7a5e80e37180695921f40f68c04df5d",
+  "state": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/handoff-state.json",
+  "manifest": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/manifest.json",
+  "manifestSha256": "9ab2994f599eea12dd2c498336418d878d93ec69a8daa8b0c269ceea148ffb7e",
+  "archive": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/handoff-evidence.tar.gz",
+  "archiveSha256": "523775568fe9f8a55362660a7cb776916a3d66e7fec301511fef1ce0d5f16396",
+  "archiveBytes": 12842189,
+  "verifiedMembers": 41,
+  "reviewCommits": [
+    {
+      "id": "WM043",
+      "reviewedDelivery": "96a5de6030cd3b207b96994638300956f77030a0",
+      "localHead": "00c70fc681257fc734f02cd660c9f854748b219b",
+      "branch": "review/wm043-counterexamples-handoff-20261023",
+      "workdir": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review",
+      "bundle": {
+        "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+        "sha256": "b470823a59b336639bda86fac7b4faaa0537ccde13a28cc1ed1fa2f596168ccf",
+        "bytes": 13776,
+        "requiredBase": "96a5de6030cd3b207b96994638300956f77030a0",
+        "verifyExitCode": 0
+      }
+    },
+    {
+      "id": "WM037_MSJC13",
+      "reviewedDelivery": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "localHead": "4101b52ea0181ea65981658276f505bca16c9136",
+      "branch": "review/wm037-clockmakers-tests-handoff-20261023",
+      "workdir": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm037-clock-review",
+      "bundle": {
+        "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+        "sha256": "b5e51c49926d97c6eef772915b6943cea6b590f65eb1eb3dc3a8df4779c18da6",
+        "bytes": 23020,
+        "requiredBase": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+        "verifyExitCode": 0
+      }
+    }
+  ],
+  "remainingOwnProcesses": [],
+  "remainingOwnListenerPorts": [],
+  "currentSegmentComplete": true,
+  "autoContinue": false,
+  "awaitParentIntegrationBeforeArchive": true
+}

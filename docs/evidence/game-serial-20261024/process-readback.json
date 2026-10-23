@@ -1,0 +1,70 @@
+{
+  "timeUtc": "2026-10-23T18:12:11.001973+00:00",
+  "workspaceProcesses": [
+    {
+      "pid": 808830,
+      "ppid": 772914,
+      "comm": "codex",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808831,
+      "ppid": 772914,
+      "comm": "codex",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808910,
+      "ppid": 808830,
+      "comm": "codex-linux-san",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808911,
+      "ppid": 808831,
+      "comm": "codex-linux-san",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808918,
+      "ppid": 808910,
+      "comm": "bwrap",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808919,
+      "ppid": 808911,
+      "comm": "bwrap",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808920,
+      "ppid": 808918,
+      "comm": "codex",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    },
+    {
+      "pid": 808921,
+      "ppid": 808919,
+      "comm": "codex",
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3",
+      "decision": "preserved; not killed"
+    }
+  ],
+  "listenersForWorkspaceProcesses": [],
+  "existingQaPortLines": [],
+  "currentIntegrationTestJobs": "Native and UI exec sessions drained; all tests complete",
+  "newServicesStarted": 0,
+  "newListenersStarted": 0,
+  "killed": [],
+  "previousQaServicesAndTabs": "preserved; no actions against existing8113/8124 or domestic8090",
+  "scope": "ps comm and /proc cwd only; no environment, tokens, command-line contents or process memory read",
+  "ssExitCode": 0
+}

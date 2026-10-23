@@ -1,0 +1,37 @@
+{
+  "rust-game/src/batch4.rs": {
+    "conflictBlocks": 2,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/src/pack_a_contest.rs": {
+    "conflictBlocks": 1,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/src/catalog.rs": {
+    "conflictBlocks": 1,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/src/mystic_hooks.rs": {
+    "conflictBlocks": 1,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/src/pack_a_contest_tests.rs": {
+    "conflictBlocks": 1,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/src/society.rs": {
+    "conflictBlocks": 3,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "docs/factions/batch20-fourth-2026-10-22.json": {
+    "conflictBlocks": 1,
+    "rule": "retain disjoint reviewed branches and strict guards; no card rule changed"
+  },
+  "rust-game/data/cards.json": {
+    "rule": "three-way per-ID union; all same-ID records reconciled only when one side unchanged; no overlapping card conflict",
+    "cards": 251,
+    "newIdsFromSentinel": [
+      "WM044"
+    ]
+  }
+}

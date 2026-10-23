@@ -1,0 +1,5 @@
+{
+  "path": "rust-game/src/wm043_tests.rs",
+  "kind": "test append context",
+  "resolution": "retain author two additional shield tests and all independent tests already merged; no runtime difference"
+}

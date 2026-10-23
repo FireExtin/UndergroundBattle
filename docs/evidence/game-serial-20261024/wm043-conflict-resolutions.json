@@ -1,0 +1,22 @@
+[
+  {
+    "path": "rust-game/src/catalog.rs",
+    "kind": "disjoint per-card union",
+    "resolution": "    d.supported || matches!(d.id.as_str(), \"MSJC13\" | \"WM043\" | \"WM044\") || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str()) || crate::pack_a_contest::CARDS.contains(&d.id.as_str())\n"
+  },
+  {
+    "path": "rust-game/src/mystic_contest.rs",
+    "kind": "disjoint per-card union",
+    "resolution": "            \"WM061\" | \"WM043\" => 2,\n            \"WM037\" => 1,\n"
+  },
+  {
+    "path": "rust-game/src/mystic_hooks.rs",
+    "kind": "disjoint per-card union",
+    "resolution": "    pub(crate) fn mystic_shown_after(&mut self, outcome: &ContestOutcome, index: usize) -> RuleResult<()> { self.wm043_shown_after(outcome, index)?; self.b_mystic_shown(outcome, index)?; self.wm037_shown(outcome,index) }\n"
+  },
+  {
+    "path": "rust-game/src/pack_a_contest.rs",
+    "kind": "disjoint per-card union",
+    "resolution": "        if f.source.card.definition==\"WM037\" {return self.validate_wm037_frame(f);}\n        if f.ability_key == crate::wm043::SHOWN || f.steps.iter().any(|s| matches!(s.op, Op::WM043ShownLock { .. })) { return self.validate_wm043_post(f); }\n"
+  }
+]

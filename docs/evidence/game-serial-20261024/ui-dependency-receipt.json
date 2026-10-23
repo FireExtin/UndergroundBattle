@@ -1,0 +1,9 @@
+{
+  "source": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/web/node_modules",
+  "destination": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules",
+  "operation": "local copy of existing reviewed UI dependencies; cache directories excluded",
+  "packageInstall": false,
+  "network": false,
+  "originalChanged": false,
+  "tracked": false
+}

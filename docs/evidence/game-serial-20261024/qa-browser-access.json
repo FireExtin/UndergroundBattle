@@ -1,0 +1,19 @@
+{
+  "status": "original QA retained seats not visible in supported inventory",
+  "requestedBrowserSession": "01a16378-2cdd-734e-9d6c-46ca39497014",
+  "expectedSeatProviders": [
+    "browser-use:2cd977a0-687a-4361-9349-36a994ab8c02",
+    "browser-use:33217ac0-ce69-4e4b-9835-f25ceb7e4f7e"
+  ],
+  "observedInventorySession": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "observedGameUrls": [
+    "http://127.0.0.1:8113/#play",
+    "http://127.0.0.1:8124/#play"
+  ],
+  "matchingDomesticQaSeats": 0,
+  "actions": "getState read-only inventory only; no binds/clicks/navigation/reload/new seat/credential reads",
+  "originalTable": "4F3D8519E360 paused round5 score5:3 per verified received QA handoff; not freshly observed here",
+  "takeoverConfirmed": false,
+  "browserAcceptanceAdded": false,
+  "originalTabsRetained": true
+}

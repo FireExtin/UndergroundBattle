@@ -1,0 +1,80 @@
+[
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/game-convergence-20261023.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/game-convergence-20261023.bundle",
+    "bytes": 212461,
+    "sha256": "b2a91a7691bd73b935e429e495a18619661d0a1f3a1d0682927022cb70b37fe0"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-worker-approved.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/sentinel-worker-approved.bundle",
+    "bytes": 144291,
+    "sha256": "aa9240a16a2cf128525eac0900a3b321c285ae0b8eaf15ee36b894c699be7824"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/sentinel-native-accepted-local-wasm.bundle",
+    "bytes": 264148,
+    "sha256": "1b5bc96c9f526461ed58c3e1b353a3bf12396a9001633dba85da1fd409eaecf3"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/wm043-shield-p2-candidate.bundle",
+    "bytes": 3762283,
+    "sha256": "128e3d703ebe1c236cca940356c0c699b513e6147c60726eafd82dae6c2c7dbe"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/wm043-review-only.bundle",
+    "bytes": 13776,
+    "sha256": "b470823a59b336639bda86fac7b4faaa0537ccde13a28cc1ed1fa2f596168ccf"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm037_msjc13-review-only.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/wm037_msjc13-review-only.bundle",
+    "bytes": 23020,
+    "sha256": "b5e51c49926d97c6eef772915b6943cea6b590f65eb1eb3dc3a8df4779c18da6"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/import20-b-planning-close.bundle",
+    "bytes": 6911,
+    "sha256": "f0f80fafedc48052ec90ffaea919111be108539e034fde055fcb5f8f9034914f"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-6/import20-c-paused.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/import20-c-paused.bundle",
+    "bytes": 11273,
+    "sha256": "3b08cbc0ab462bcc9715435c7f3c3bdc30b959cae28f4842ab217860878db9ed"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/abi95-terminal-ui.bundle",
+    "bytes": 141667,
+    "sha256": "27e6a4067a23fdde3d3bae729b0579da324b3da68fbd660fdbaf08a89f56d55f"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/handoff-evidence.tar.gz",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/handoff-evidence.tar.gz",
+    "bytes": 12842189,
+    "sha256": "523775568fe9f8a55362660a7cb776916a3d66e7fec301511fef1ce0d5f16396"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_EVIDENCE_BUNDLE_2026-10-23.tar.gz",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/QA_EVIDENCE_BUNDLE_2026-10-23.tar.gz",
+    "bytes": 30384,
+    "sha256": "9872dc637e56cf3956f9cbeb98534fcf37ff63cc636b060600cd5bccc055f225"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-22/task-6/QA_EVIDENCE_MANIFEST_2026-10-23.json",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/QA_EVIDENCE_MANIFEST_2026-10-23.json",
+    "bytes": 5614,
+    "sha256": "95ecfb7f4f3f057be856ec48ea70fa9edb2bb7c009de1cdc145e92d332eb5aa2"
+  },
+  {
+    "original": "/home/ddd/Documents/Codex/2026-10-23/task-6/artifacts/abi95-terminal-ui-client-delta.tar.gz",
+    "retained": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/received-artifacts/abi95-terminal-ui-client-delta.tar.gz",
+    "bytes": 126486,
+    "sha256": "2d2672f1b4dd1e69b3a4b2cf491778a02bf9b42e5785340d17526d7f1c559f8e"
+  }
+]

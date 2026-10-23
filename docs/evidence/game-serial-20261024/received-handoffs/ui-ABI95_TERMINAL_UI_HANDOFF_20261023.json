@@ -1,0 +1,162 @@
+{
+  "task": "ABI95 QA-C811-UI-001 narrow integration ready for independent review",
+  "status": "completed-author-work; independent review and browser acceptance pending",
+  "ownerThread": "01a16996-ccb2-7584-bc69-7308ef96e0c8",
+  "host": "9950X (ddd-System-Product-Name)",
+  "repository": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui",
+  "ordinaryClone": true,
+  "worktreeUsed": false,
+  "branch": "fix/abi95-terminal-ui-20261023",
+  "base": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "originalEvidence": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "sourceCandidate": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+  "evidenceHead": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "finalCandidate": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "sourcePatchFrom": "845f0d8c050b4302e0e3473ccc8ea13156c41522",
+  "existingFixCommit": "835acae7d89a5d67609e7ef2a9cfa9d077804b1f",
+  "patchByteIdenticalToExistingFix": true,
+  "newCommits": [
+    "76b1b189c42c3da47ffc875a463ada162c1e8fbd docs: bind ABI95 terminal UI build and regression evidence",
+    "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103 fix(ui): preserve terminal continuous-pass notice on ABI95"
+  ],
+  "clean": true,
+  "changedPaths": [
+    "docs/ABI95_TERMINAL_UI_2026-10-23.md",
+    "docs/evidence/abi95-terminal-ui-20261023/artifact-composition.json",
+    "docs/evidence/abi95-terminal-ui-20261023/deployment-artifacts.json",
+    "docs/evidence/abi95-terminal-ui-20261023/input-audit.json",
+    "docs/evidence/abi95-terminal-ui-20261023/ownership-and-source.json",
+    "docs/evidence/abi95-terminal-ui-20261023/production-build.json.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/production-build.log.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/source-845-ui-only.patch",
+    "docs/evidence/abi95-terminal-ui-20261023/terminal-after.json.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/terminal-after.log.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/terminal-before.json.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/terminal-before.log.gz",
+    "docs/evidence/abi95-terminal-ui-20261023/verification.json",
+    "web/src/game/AutoPass.tsx",
+    "web/src/game/ContinuousPass.test.tsx"
+  ],
+  "productDelta": [
+    "web/src/game/AutoPass.tsx"
+  ],
+  "testDelta": [
+    "web/src/game/ContinuousPass.test.tsx"
+  ],
+  "verification": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/docs/evidence/abi95-terminal-ui-20261023/verification.json",
+    "bytes": 4163,
+    "sha256": "580d4dab322205bc11d9726f24d8a5adfdf7a61f4fe578eac1b7cd863d9aef5e"
+  },
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/docs/ABI95_TERMINAL_UI_2026-10-23.md",
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/abi95-terminal-ui.bundle",
+    "bytes": 141667,
+    "sha256": "27e6a4067a23fdde3d3bae729b0579da324b3da68fbd660fdbaf08a89f56d55f"
+  },
+  "bundleRequires": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "bundleVerified": true,
+  "clientDelta": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/artifacts/abi95-terminal-ui-client-delta.tar.gz",
+    "bytes": 126486,
+    "sha256": "2d2672f1b4dd1e69b3a4b2cf491778a02bf9b42e5785340d17526d7f1c559f8e"
+  },
+  "deploymentManifest": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/docs/evidence/abi95-terminal-ui-20261023/deployment-artifacts.json",
+    "bytes": 42723,
+    "sha256": "d925a2ffec69d568803a6336672a6077597dd6947be21b987f1c62f1af070b86"
+  },
+  "artifactComposition": {
+    "sourceCandidate": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+    "originalSource": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+    "originalEvidence": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+    "originalArtifactRoot": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/abi95-platform-20261023",
+    "originalManifestSha256": "af67e81b01ab95cfc97200e0a1e9832c7cf1c06996b63a4fd033003c6cef7bd8",
+    "originalFilesVerified": 267,
+    "newFiles": 267,
+    "unchangedFiles": 265,
+    "unchangedClientFiles": 260,
+    "added": [
+      "client/assets/index-DaZwUmzX.js"
+    ],
+    "removed": [
+      "client/assets/index-DiCp2mJp.js"
+    ],
+    "modified": [
+      "client/index.html"
+    ],
+    "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+    "serverReusedByteForByte": true,
+    "deltaArchive": {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/artifacts/abi95-terminal-ui-client-delta.tar.gz",
+      "bytes": 126486,
+      "sha256": "2d2672f1b4dd1e69b3a4b2cf491778a02bf9b42e5785340d17526d7f1c559f8e"
+    },
+    "fullArtifactNotAssembled": true,
+    "compositionInstructions": "In a new local staging directory copy the verified frozen267 artifact, remove only the old listed JS, and overlay the two-member client delta. Verify all final files against deployment-artifacts.json. No switch/deployment is authorized by this receipt."
+  },
+  "results": {
+    "expectedBeforeFailures": 2,
+    "afterPassed": 44,
+    "testFiles": 4,
+    "typechecks": 2,
+    "productionBuild": true,
+    "inputHashAudits": {
+      "runs": 3,
+      "filesEach": 845
+    },
+    "original267ArtifactHashesVerified": true,
+    "unchangedTargetFiles": 265
+  },
+  "preservedReviewBoundaries": {
+    "existingAbi95NativeAndPlatformApproval": "preserved, no new native/platform scope",
+    "newCandidateIndependentReview": false,
+    "realBrowserAcceptance": false,
+    "refreshEvidence": "jsdom component unmount/remount only",
+    "nativeWasmWorkerRerun": false,
+    "abi96or97Included": false,
+    "cardLedgerChanged": false,
+    "extraCorruptedSaveCases": false
+  },
+  "next": "Review exact base..finalCandidate UI/source provenance and client delta; original deployment task owns any deployment and real-browser terminal/refresh acceptance. Do not treat author44 as independent/browser approval.",
+  "executionBlockers": [],
+  "pendingActions": [
+    {
+      "action": "independent review",
+      "target": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+      "status": "pending",
+      "reason": "assigned to separate reviewer by parent; not performed by this author"
+    },
+    {
+      "action": "real-browser acceptance and deployment",
+      "target": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+      "status": "pending",
+      "reason": "original deployment task owns these actions; this task is local-only"
+    }
+  ],
+  "notPerformed": [
+    "push",
+    "main mutation",
+    "CI",
+    "deployment",
+    "force-push",
+    "reset",
+    "Air access",
+    "other active workspace edits"
+  ],
+  "excludedFromDeliverables": [
+    "node_modules",
+    "cache",
+    "credentials",
+    "databases"
+  ],
+  "resourceLimits": {
+    "cpu": [
+      31
+    ],
+    "nice": 19,
+    "maxWorkers": 1,
+    "fileParallelism": false,
+    "offline": true
+  }
+}

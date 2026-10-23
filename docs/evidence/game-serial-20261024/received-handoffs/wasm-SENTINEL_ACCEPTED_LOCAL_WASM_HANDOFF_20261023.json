@@ -1,0 +1,70 @@
+{
+  "status": "native independently accepted; finite author local WASM checks passed",
+  "runtimeSource": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "independentlyAcceptedEvidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+  "nativeAcceptanceCheckpoint": "5de09f03",
+  "testSource": "37c148d7f69074a26692f8213038a539f5b52a19",
+  "evidenceHead": "2bb0210d9ab43413adf795b43fb3ff45cc05ac1a",
+  "nativeIndependentPassed": 24,
+  "WM044FormalCountOwner": "main author; 36/50 reported, no ledger modified here",
+  "MSJC14": "native society mechanism separate from 50-card count",
+  "runtimeChangedThisTurn": false,
+  "wasm": {
+    "wasmSha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce",
+    "wasmBytes": 6691546,
+    "nativeExactCommands": 6,
+    "nativeExactViews": 32,
+    "nativeExactPolls": 24,
+    "duplicates": 11,
+    "reviewCommands": 5
+  },
+  "reviewSemanticStatesEqual": 5,
+  "artifacts": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm_bg.wasm",
+      "bytes": 6691546,
+      "sha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/sentinel-native-accepted-local-wasm.bundle",
+    "sha256": "1b5bc96c9f526461ed58c3e1b353a3bf12396a9001633dba85da1fd409eaecf3",
+    "requires": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+    "verified": true
+  },
+  "verification": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/docs/evidence/sentinel-local-wasm-20261023/verification.json",
+    "sha256": "1250327fa476ad15c51481b09039a3bcb0242f23f9782704087d8780fc8f83b7"
+  },
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray/docs/factions/WM044_SENTINEL_LOCAL_WASM_2026-10-23.md",
+  "remaining": "Independent finite WASM review and any coordinated release ABI identity; Worker/Web/UI/browser/full-match not run",
+  "isolation": "ABI95 published artifacts untouched; output is local candidate only, never deploy as ABI95",
+  "remotePushedSha": null,
+  "remoteActuallyVerifiedMatching": false,
+  "pushAttempted": false,
+  "ciTriggered": false,
+  "mainMerged": false,
+  "published": false,
+  "worktree": "clean ordinary clone",
+  "actualPermissionDenial": false
+}

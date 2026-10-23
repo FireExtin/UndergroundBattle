@@ -1,0 +1,284 @@
+{
+  "createdAtUtc": "2026-10-23T18:13:38.037397+00:00",
+  "status": "received-and-integrated-local-WIP; no publication approval claimed",
+  "mainGameThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "repository": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "integration/game-serial-20261024",
+  "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "testedSource": "69a8d0266dcd03e942acd80635ca94fb75f4440f",
+  "finalDocumentationHead": "bound by root GAME_SERIAL_RECEIPT_20261024.json after documentation commit",
+  "items": [
+    {
+      "name": "own-convergence",
+      "ref": "refs/received/own-convergence",
+      "source": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake",
+      "sha": "723fcb7abfc0f0aa73b429f511442d1d7c38b9f6",
+      "mergeCommit": "4d5cfe4c21113780afe945c149f866b0fa812f36",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "planning/evidence only; no new implementation"
+    },
+    {
+      "name": "wm037",
+      "ref": "refs/received/wm037",
+      "source": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock",
+      "sha": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "mergeCommit": "8245653a9464b1c649056e03ba4348f0d92ac7ef",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "fixed independently closed Native source and source-bound tests; integrated source still WIP"
+    },
+    {
+      "name": "wm037-review",
+      "ref": "refs/received/wm037-review",
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm037-clock-review",
+      "sha": "4101b52ea0181ea65981658276f505bca16c9136",
+      "mergeCommit": "8245653a9464b1c649056e03ba4348f0d92ac7ef",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "fixed independently closed Native source and source-bound tests; integrated source still WIP"
+    },
+    {
+      "name": "sentinel",
+      "ref": "refs/received/sentinel",
+      "source": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-blue-gray",
+      "sha": "e2d75231d29be3983ad6b3ccc273b1cb102fe519",
+      "mergeCommit": "d91d11bd87b67240de81b942d4bc8ceca5783d26",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "fixed e8bff runtime independent Native closure; later WASM/Worker are author-scoped historical receipts"
+    },
+    {
+      "name": "wm043-wip",
+      "ref": "refs/received/wm043-wip",
+      "source": "/home/ddd/Documents/Codex/2026-10-23/task-7/UndergroundBattle-wm043",
+      "sha": "b4550dcd3099b4b0501c9afa2d001c5912a0a159",
+      "mergeCommit": "4242821cf5a0fdcfb8334fe30e7973ba59c61ddb",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "WIP author fix; not independently re-reviewed; not counted"
+    },
+    {
+      "name": "wm043-review",
+      "ref": "refs/received/wm043-review",
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review",
+      "sha": "00c70fc681257fc734f02cd660c9f854748b219b",
+      "mergeCommit": "5e74786765be1f131b617238d038038e2ba4cf5c",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "original failing counterexamples preserved; passing integrator rerun does not replace independent fix review"
+    },
+    {
+      "name": "ui",
+      "ref": "refs/received/ui",
+      "source": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui",
+      "sha": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+      "mergeCommit": "142b64c35cc94a98d85df1edbe5182fdfd73e286",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "latest parent confirms independently accepted/deployed76; original author pending labels retained as history"
+    },
+    {
+      "name": "import20-b",
+      "ref": "refs/received/import20-b",
+      "source": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-import20-b",
+      "sha": "4a8842e1e1e6e76f34f90285add90d1d07589031",
+      "mergeCommit": "be2bf595aececd729027e3bf2debc34c3993e262",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "planning/evidence only; no new implementation"
+    },
+    {
+      "name": "import20-c",
+      "ref": "refs/received/import20-c",
+      "source": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-import20-c",
+      "sha": "07e7e29a5f61a701a76ab316c7a71e730946a234",
+      "mergeCommit": "bfb4f3280068332a7cec70fbafed974d35f455cf",
+      "status": "received-local; original ref retained and ancestor of integration",
+      "review": "planning/evidence only; no new implementation"
+    }
+  ],
+  "verification": {
+    "timeUtc": "2026-10-23T18:11:13.207327+00:00",
+    "testedSource": "69a8d0266dcd03e942acd80635ca94fb75f4440f",
+    "native": {
+      "passed": 128,
+      "failed": 0,
+      "ignored": 0,
+      "filtered": 2083,
+      "seconds": 60.665,
+      "byModule": {
+        "batch4_clock_tests": 29,
+        "batch4_intelligence_tests": 27,
+        "pack_a_contest_tests": 37,
+        "sentinel_tests": 15,
+        "society": 1,
+        "wm043_tests": 19
+      },
+      "includesMixedWM037WM043BQ027NormalChain": true,
+      "WM043OriginalThreeFailuresNowPassHere": true,
+      "independentFixReview": false
+    },
+    "source": {
+      "passed": 13,
+      "failed": 0,
+      "files": 4,
+      "wholeIncomingRecordsPreserved": 252,
+      "regularSupported": 213,
+      "sameSpecificationBytes": true
+    },
+    "ui": {
+      "passed": 44,
+      "failed": 0,
+      "files": 4,
+      "AutoPassByteIdenticalToReleased76b1b189": true,
+      "browser": false
+    },
+    "originalWorkspacesAndIncomingAncestry": [
+      {
+        "name": "own-convergence",
+        "sourceHeadUnchanged": "723fcb7abfc0f0aa73b429f511442d1d7c38b9f6",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "wm037",
+        "sourceHeadUnchanged": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "wm037-review",
+        "sourceHeadUnchanged": "4101b52ea0181ea65981658276f505bca16c9136",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "sentinel",
+        "sourceHeadUnchanged": "e2d75231d29be3983ad6b3ccc273b1cb102fe519",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "wm043-wip",
+        "sourceHeadUnchanged": "b4550dcd3099b4b0501c9afa2d001c5912a0a159",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "wm043-review",
+        "sourceHeadUnchanged": "00c70fc681257fc734f02cd660c9f854748b219b",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "ui",
+        "sourceHeadUnchanged": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "import20-b",
+        "sourceHeadUnchanged": "4a8842e1e1e6e76f34f90285add90d1d07589031",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      },
+      {
+        "name": "import20-c",
+        "sourceHeadUnchanged": "07e7e29a5f61a701a76ab316c7a71e730946a234",
+        "sourceClean": true,
+        "isAncestorOfIntegration": true
+      }
+    ],
+    "combinedPlatform": {
+      "nativeIdentity": "rust-v0.2.99-game-serial",
+      "pool": "limited-v2.90-game-serial",
+      "generatedGuestInRepo": "historical frozen ABI95 only; not a matching ABI99 guest",
+      "combinedWasmBuiltOrRun": false,
+      "combinedWorkerRun": false,
+      "combinedBrowserRun": false,
+      "approvedUnifiedCandidate": false
+    },
+    "productRuntimeReviewStatus": "WIP; additive integration and WM043 author fix need independent integrated review",
+    "newCardsStarted": 0,
+    "archiveCopies": 13,
+    "archivalDoesNotDeleteWorkspaces": true,
+    "receiptProcessingNote": "One original ten-card regression prints normal trace before ok; all128 test-name entries and Cargo result used for per-module count. No product rerun."
+  },
+  "formalNativeClosed": 37,
+  "WM043NotCounted": true,
+  "import20": {
+    "AImplemented": 0,
+    "BImplemented": 0,
+    "CImplemented": 0,
+    "onlyPlanningReceived": true,
+    "sourceCorrectionsNotAppliedToActualSpecifications": true
+  },
+  "conflicts": {
+    "needsNewCardRuleRuling": false,
+    "handling": "per-ID catalog union, retain disjoint validators and both society constraints, preserve WM043-before-B and WM037-after-B post adapters, preserve exact original failure logs",
+    "currentUnmergedFiles": [],
+    "originalLogWhitespace": "7 trailing spaces in immutable WM043 failing logs kept verbatim; all other newly staged paths checked"
+  },
+  "QA": {
+    "evidenceArchiveReceived": true,
+    "archiveMembersVerified": 16,
+    "takeoverConfirmed": false,
+    "originalTable": "4F3D8519E360 round5 score5:3 paused per source handoff, not freshly read",
+    "originalTabsOrCredentialsChanged": false,
+    "newBrowserAcceptance": false
+  },
+  "deployment": {
+    "domesticReleasedCommit": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+    "identityEvidence": "received publication receipt; no fresh network health claim",
+    "emptyDatabaseClaim": "0 rows was publication-time receipt; later QA created a paused game. Current database not read and not claimed empty.",
+    "overseas": "parent-reported old v74 pending; no new URL or site authorized; no new action",
+    "changedHere": false
+  },
+  "archiveRecommendations": [
+    {
+      "role": "WM044/MSJC14 and B planning author",
+      "thread": "01a1693c-05ce-726e-95af-31ecb62d60f2",
+      "readyForParentArchive": true,
+      "reason": "e2d75231 and4a8842e1 are integration ancestors; source refs,9 verified bundles and evidence copies retained"
+    },
+    {
+      "role": "WM043 author",
+      "thread": "01a16997-118f-737d-ba64-cec3576070c4",
+      "readyForParentArchive": true,
+      "reason": "b4550dcd received as WIP with author fix and original failures; remaining independent review owned by serial main"
+    },
+    {
+      "role": "independent review handoff",
+      "source": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023",
+      "readyForParentArchive": true,
+      "reason": "4101b52e and00c70fc6 merged; all40 manifest members verified and12MB archive retained; original P2/FAQ history preserved"
+    },
+    {
+      "role": "ABI95 UI and C planning author",
+      "thread": "01a16996-ccb2-7584-bc69-7308ef96e0c8",
+      "readyForParentArchive": true,
+      "reason": "76b1b189 and07e7e29a integrated; released AutoPass exact;44 component tests passed; client delta retained"
+    },
+    {
+      "role": "domestic release evidence",
+      "source": "/home/ddd/Documents/Codex/2026-10-21/task-2/aliyun-76b1b18/publication-result.json",
+      "readyForParentArchive": true,
+      "reason": "publication receipt retained; main accepts existing76b1b189 management; no deployment or DB operation here"
+    },
+    {
+      "role": "browser QA retained seats",
+      "thread": "01a16378-2cdd-734e-9d6c-46ca39497014",
+      "readyForParentArchive": false,
+      "reason": "archive and16 members verified, but original domestic seat providers absent from supported current inventory; keep old tabs/session until supported takeover confirmed"
+    }
+  ],
+  "remaining": [
+    "Independent review of additive integration and WM043 author shield fix",
+    "Build matching ABI99 binding before running integrated WASM/Worker/Web/browser; existing ABI95 guest is historical only",
+    "Supported access to original paused QA seats; do not create replacements or read credentials to work around visibility",
+    "CI/push authorization constraints unchanged; no automatic main/push/deploy"
+  ],
+  "sourceAndEvidenceOriginalsPreserved": true,
+  "newMechanismsStarted": 0,
+  "newAgentsStarted": 0,
+  "forcePush": false,
+  "reset": false,
+  "worktree": false,
+  "mainModified": false,
+  "pushed": false,
+  "ciTriggered": false,
+  "deployed": false
+}

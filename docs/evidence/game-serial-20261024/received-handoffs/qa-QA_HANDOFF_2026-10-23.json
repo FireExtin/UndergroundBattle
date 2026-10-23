@@ -1,0 +1,207 @@
+{
+  "status": "READY_FOR_MAIN_TASK_EVIDENCE_INTEGRATION_AND_BROWSER_HANDOFF_CHECK",
+  "createdAtUtc": "2026-10-23T17:52:55.234716+00:00",
+  "taskThread": "01a16378-2cdd-734e-9d6c-46ca39497014",
+  "parentThread": "01a1582e-316a-72e8-afef-6d076ef7c033",
+  "destinationGameMainThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "reason": "Explicit user consolidation request: finish minimal active segment at a safe boundary, hand off, then stop.",
+  "workspace": "/home/ddd/Documents/Codex/2026-10-22/task-6",
+  "workspaceGit": {
+    "isRepository": false,
+    "head": null,
+    "branch": null,
+    "sourceChanges": false,
+    "localCommit": null,
+    "sourcePatch": null,
+    "reason": "Read-only browser QA workspace; no code changed. Git commands reported not a repository. Evidence archive is supplied instead of a source patch or git bundle."
+  },
+  "testedRuntimeIdentity": {
+    "release": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+    "nativeSource": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+    "nativeSha256FromReceipt": "eb18ecba06723bb9ed7e7634f30d87070f74bebff763d682f94dd73568f8b9bc",
+    "frontendScript": "/assets/index-DaZwUmzX.js",
+    "frontendSha256FromReceipt": "71b8e833ad4cd95d04e5153a294353a2af2728387689bd3e5b97a82cbda01299",
+    "browserHealth": {
+      "engineVersion": "rust-v0.2.95-batch20-fourth",
+      "ok": true,
+      "service": "hegemony-rust"
+    },
+    "identityBoundary": "Real browser health and DOM resource filenames match publication receipts. Binary and JS content hashes are from those receipts, not independently recomputed in the browser.",
+    "catalog": {
+      "cards": 247,
+      "supported": 213
+    }
+  },
+  "currentPausedGame": {
+    "observedAtUtc": "2026-10-23T17:50:06.406Z",
+    "tableInvite": "4F3D8519E360",
+    "round": 5,
+    "phase": "开始阶段 · 重置与准备",
+    "pausedBothSeats": true,
+    "terminalBothSeats": false,
+    "pendingChoiceBothSeats": false,
+    "firstPlayer": "QA95-Gray-A",
+    "priority": "QA95-Gray-A",
+    "scoreBySeat": {
+      "1": 5,
+      "2": 3
+    },
+    "resourcesBySeat": {
+      "1": "4/4",
+      "2": "4/4"
+    },
+    "deckCountsBySeat": {
+      "1": 44,
+      "2": 42
+    },
+    "graveCountsBySeat": {
+      "1": 0,
+      "2": 0
+    },
+    "handsBySeat": {
+      "1": [],
+      "2": [
+        "死灵召唤",
+        "退役军人 #i146",
+        "葬礼"
+      ]
+    },
+    "worldDeckCount": 4,
+    "regions": [
+      {
+        "position": 1,
+        "name": "上海",
+        "points": 3,
+        "threshold": 4,
+        "Acharacters": [],
+        "Bcharacters": []
+      },
+      {
+        "position": 2,
+        "name": "切尔诺贝利",
+        "points": 2,
+        "threshold": 3,
+        "Acharacters": [
+          "暗藏林中女巫 #i186",
+          "公开退役军人"
+        ],
+        "Bcharacters": [
+          "公开复生行尸（墓地行动打出）"
+        ]
+      },
+      {
+        "position": 3,
+        "name": "京都",
+        "points": 3,
+        "threshold": 3,
+        "Acharacters": [],
+        "Bcharacters": []
+      }
+    ],
+    "visibleHistoryCount": 50,
+    "visibleHistoryBoundary": "UI count is capped history display, not independently counted commands or DB rows.",
+    "lastGameplayMutation": "A clicked 暂停并保存; A acknowledgement and B 查看最新状态 both confirmed pause. Later calls only inspected, captured screenshots or retained tabs.",
+    "scriptsBothSeats": [
+      "/assets/index-DaZwUmzX.js"
+    ]
+  },
+  "retainedBrowser": {
+    "browserId": "2",
+    "type": "iab",
+    "sessionThread": "01a16378-2cdd-734e-9d6c-46ca39497014",
+    "tabs": [
+      {
+        "tabId": "1",
+        "providerTabId": "browser-use:2cd977a0-687a-4361-9349-36a994ab8c02",
+        "player": "QA95-Gray-A",
+        "seat": 1
+      },
+      {
+        "tabId": "2",
+        "providerTabId": "browser-use:33217ac0-ce69-4e4b-9835-f25ceb7e4f7e",
+        "player": "QA95-Black-B",
+        "seat": 2
+      }
+    ],
+    "url": "http://8.145.46.171:8090/#play",
+    "markedHandoff": true,
+    "accessLimit": "These are this task independent sessions. Cross-thread visibility/claiming is not assumed; do not export seat credentials or close tabs until normal main-task takeover is verified."
+  },
+  "actualAcceptance": {
+    "ABI95": "PARTIAL: identity, independent sessions/decks, create/join/ready/start, double clicks, lobby/opening/bottom-choice refresh, hidden privacy, public/hidden deployment, paid zombie reveal, combat damage, grave face-up action, effective icons, district scoring and safe pause. Full game not completed.",
+    "ABI94Historical": "Complete real-browser two-seat game at c811: round7 B won8:7, both terminal refreshes matched; QA-C811-UI-001 observed at fresh terminal transition.",
+    "UI845Historical": "Existing original terminal and both refreshes plus real DOM controls checked on 845f0d8. Original choice-to-terminal transition was not recreated and remains a documented limit.",
+    "FrozenBotHistorical": "Read-only independent identity/evidence review of original author Bot2d8653c turn32 terminal; documentation-only evidence commit42c10463edbe86f04a190219ab00da257ec06c6d verified. This task did not independently replay that Bot game."
+  },
+  "notTested": [
+    "ABI95 full game and terminal",
+    "QA-C811-UI-001 fresh terminal transition on ABI95",
+    "ABI95 both-seat terminal reload",
+    "Grey police reveal trigger",
+    "Red and blue card actions",
+    "All247 catalog entries; public support remains213",
+    "Old-table compatibility after new ABI95 DB (explicitly out of scope)"
+  ],
+  "openIssues": [
+    {
+      "id": "QA-C811-UI-001",
+      "status": "Historical bug; new-bundle old-terminal smoke passed, but fresh fixed transition has not been independently accepted."
+    },
+    {
+      "id": "ABI95_BROWSER_ACCEPTANCE_PARTIAL",
+      "status": "Stopped safely per user consolidation, not a completed full-game acceptance."
+    },
+    {
+      "id": "CROSS_THREAD_IAB_SEAT_ACCESS",
+      "status": "Main task must check supported access to original retained independent tabs before attempting to resume."
+    }
+  ],
+  "newConfirmedProductDefectsInCompletedABI95Range": [],
+  "toolFailureEvidence": [
+    {
+      "failure": "MCP tool cua_repl/js is not available to the model",
+      "cause": "Environment was explicitly reported unavailable. Read-only call did not execute.",
+      "resolution": "After environment availability returned, used normal CUA documentation/inventory/rebind of the exact original tabs; same game at round2 start. No workaround, new game or DB action."
+    },
+    {
+      "failure": "waitFor hidden timed out for pending-choice dialog after bottom confirmation",
+      "observation": "The old choice had legitimately advanced to the Hong Kong win-trigger choice. Read fresh DOM; did not submit the original choice again."
+    },
+    {
+      "failure": "Some locator deadlines occurred during hydration or a response-window transition",
+      "observation": "Fresh DOM was used before adaptive action. These tool waits were not classified as game defects. Original call outputs remain in this thread."
+    }
+  ],
+  "processAndPorts": {
+    "selfCreatedPersistentProcesses": [],
+    "selfCreatedListeningPorts": [],
+    "remote8090": "Existing deployment owned by main/deploy task; retained, not changed or stopped.",
+    "legacy8113": "Earlier author-owned local QA service was never started/stopped by this task; no cleanup performed.",
+    "browserTabs": "Two own independent seats intentionally retained; pause stops game timers/automatic passing."
+  },
+  "integrationOrder": [
+    "Verify archive SHA256 and each manifest file hash.",
+    "Read this handoff and ABI95 evidence; keep ABI94/Bot historical results separate from ABI95 coverage.",
+    "Integrate evidence documents on the existing game main line; no source patch exists to merge.",
+    "Check normal access to retained original IAB tabs; keep paused if access is not supported.",
+    "After the main task explicitly resumes ownership, continue the same paused game and prioritize fresh terminal transition and both terminal refresh.",
+    "Archive this QA task only after parent verifies integration and seat preservation/takeover."
+  ],
+  "screenshotBoundary": {
+    "diskFiles": [],
+    "note": "Images were emitted as actual CUA JPEG screenshots in this thread. No supported disk export was used, so no disk screenshot files or embedded image paths are claimed.",
+    "toolOutputCaptures": [
+      "Round 1 region 3 combat reward-before window: A view, board and auto-pass control visible (CUA screenshot output).",
+      "Round4 black-seat zombie in Chernobyl, card details show effective influence1 versus printed0 after grave cast.",
+      "Final paused A screenshot: round5 start, A5:B3, paused/saved banner.",
+      "Final paused B screenshot: round5 start, B3:A5, paused/saved banner."
+    ]
+  },
+  "excluded": [
+    "Database files or backups",
+    "Credentials, seat tokens, authentication storage or cookies",
+    "Caches, build outputs, node_modules",
+    "Unrelated work or processes"
+  ],
+  "stopAfterDelivery": true
+}

@@ -1,0 +1,56 @@
+{
+  "timeUtc": "2026-10-23T17:49:29.665564+00:00",
+  "status": "closed-at-user-consolidation-planning-only-await-parent",
+  "base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "head": "4a8842e1e1e6e76f34f90285add90d1d07589031",
+  "branch": "candidate/import20-b",
+  "clone": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-import20-b",
+  "worktreeClean": true,
+  "report": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-import20-b/docs/factions/IMPORT20_B_CLOSE_2026-10-23.md",
+  "sourceManifest": "/home/ddd/Documents/Codex/2026-10-23/task-2/UndergroundBattle-import20-b/docs/evidence/import20-b-close-20261023/source-manifest.json",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-23/task-2/import20-b-planning-close.bundle",
+  "bundleSha256": "f0f80fafedc48052ec90ffaea919111be108539e034fde055fcb5f8f9034914f",
+  "bundleVerified": true,
+  "bundleRequiredBase": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "runtimeChanged": false,
+  "cardSpecChanged": false,
+  "gameTestsRun": 0,
+  "buildsRun": 0,
+  "completedCards": 0,
+  "checks": [
+    "six original image SHA256 match intake",
+    "git diff --check",
+    "git bundle verify",
+    "no matching task runner/service process at close"
+  ],
+  "notTested": [
+    "native",
+    "WASM",
+    "Worker/D1",
+    "browser"
+  ],
+  "cards": [
+    "XQ19",
+    "XG13",
+    "WM064",
+    "CQ24",
+    "BQ092",
+    "BQ093"
+  ],
+  "unresolved": "All six remain unimplemented; FAQ and no-printed-cost semantics require follow-up. Three old specification errors documented, not edited.",
+  "nextOrder": [
+    "parent reads planning and original-image corrections",
+    "XQ19 complete native slice",
+    "XG13",
+    "WM064 and CQ24",
+    "BQ092 then BQ093"
+  ],
+  "frozenPriorWorkerHandoff": "/home/ddd/Documents/Codex/2026-10-23/task-2/SENTINEL_WORKER_APPROVED_HANDOFF_20261023.json",
+  "frozenPriorHead": "e2d75231d29be3983ad6b3ccc273b1cb102fe519",
+  "pushAttempted": false,
+  "remoteVerifiedEqual": false,
+  "CITriggered": false,
+  "deployed": false,
+  "residualProcesses": "No matching task-owned runner/service process; no B listener ever started; no other processes touched",
+  "retention": "Retain clone, old candidate, bundles, and original failure evidence until parent verifies integration; no archive performed"
+}
