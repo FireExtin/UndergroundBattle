@@ -1,0 +1,121 @@
+{
+  "status": "WIP: real Worker execution blocked before HTTP/D1 by sandbox local-listen permission",
+  "sourceCommit": "e21cec8381c31f1f9477c246ce3a1ba2f2b2b766",
+  "fixedRuntime": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "runtimeUnchanged": true,
+  "CPU": 29,
+  "reservedCPUsUsed": [],
+  "nativeWitnessTestsPassed": 2,
+  "nativeWitnessCases": 3,
+  "workerPackaging": "passed: real unchanged kernel/router/http/service/store bundled with exact isolated WASM",
+  "workerTests": {
+    "passed": 0,
+    "startupFailed": 4,
+    "actualCommandsExecuted": 0,
+    "D1ChainVerified": false
+  },
+  "blocked": {
+    "action": "start local Miniflare/workerd for normal Worker/D1 tests",
+    "target": "127.0.0.1 local listener",
+    "reason": "listen EPERM: operation not permitted 127.0.0.1",
+    "state": "denied by execution environment",
+    "autoReviewRejection": false,
+    "retryOrBypassAttempted": false,
+    "required": "execution environment with authorized local listening; then run unchanged recorded command"
+  },
+  "staticChecks": "node --check on build/test scripts and git diff --check passed",
+  "dependenciesReadOnly": "existing task-3 sites/node_modules: miniflare5.20261001.0-alpha,esbuild0.25.12,workerd1.20261001.1",
+  "coveragePrepared": [
+    "WM044 selected entry-lock target",
+    "WM044 private confirmation",
+    "MSJC14 legal inherited-lock move",
+    "actual HTTP create/join with Sentinel deck selection,ready/start and normal initial choices",
+    "matching command receipt replay before/after normal Miniflare/D1 reopen; four-seat refresh and exact native state/journal checks"
+  ],
+  "notClaimed": [
+    "real Worker command success",
+    "D1 reload success",
+    "browser",
+    "deployment",
+    "full match",
+    "independent platform acceptance"
+  ],
+  "artifactsNotCommitted": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/candidate.wasm",
+      "sha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce",
+      "bytes": 6691546
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/inputs.json",
+      "sha256": "cdb48e6dfe2d05c585d57989a1c2e25037197b75ecf45ae071e62a11230a74a7",
+      "bytes": 5559
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/worker-sentinel-local/worker.js",
+      "sha256": "722459b929bbc18345cf297c8cd3b824afd935c640f3b0c4033fd98dcaf41f27",
+      "bytes": 48264
+    }
+  ],
+  "files": [
+    {
+      "path": "run-native-cpu29.py.gz",
+      "sha256": "59dd8b0d428e55c8b03a2622cbaafa60bd1f0cfad5eadd58891e4916fadb5936",
+      "originalSha256": "49e14afa6bdaee6237fe14337620d786179539d38086481270a0fc21e3292f17"
+    },
+    {
+      "path": "run-sentinel-worker.py.gz",
+      "sha256": "4f227d4090d48662180d21f88e0c31588a721fd8439fe84757e170316e3b8e4d",
+      "originalSha256": "66ab5b1036d6babb3bc88df6110ee3ee75ffb8a65de1d3ce3c38b84e55c56aa5"
+    },
+    {
+      "path": "sentinel-worker-first.json.gz",
+      "sha256": "5fbda2fcece8efeaecdfb74323e788d29fda7d932b57cb7426dcbf23b05ceed1",
+      "originalSha256": "584bc84374732633ea89870708596ebc601f91f5181eb4cd84aaca906d2f6d88"
+    },
+    {
+      "path": "sentinel-worker-first.log.gz",
+      "sha256": "cb300c644622fd4ea415c02fa27058dc3d41c59027675a12b05c277897128829",
+      "originalSha256": "bc9ff58fca49e5e7fa954619ed7b0954fac4d5ceac2ced959d562e3b0b647c12"
+    },
+    {
+      "path": "sentinel-worker-move-native.json.gz",
+      "sha256": "1cedc0e255ac9e011b244b28ade6b82b5c1e6494b12680b27148ab387c01b009",
+      "originalSha256": "715bed8b762c655a318ec88f1f3eaedbbe49ab2030cdceb93010968ed7657ece"
+    },
+    {
+      "path": "sentinel-worker-move-native.log.gz",
+      "sha256": "ee3acba827796baf723c51d7b105c060b00b093e256cccafec69871bb419e615",
+      "originalSha256": "ecf44544caa53c9cc1621a307405ba9826f37142b166b390587a9b44672e3a1d"
+    },
+    {
+      "path": "sentinel-worker-move-witness.json.gz",
+      "sha256": "41f6e3287af29b5158a9fc5583c6952f4a3e2376b1c485c06aa955d6fa99012b",
+      "originalSha256": "8a53f4bc60bd73179f2055ccbdf7888432683a990328f6053c405e7f8d373b5f"
+    },
+    {
+      "path": "sentinel-worker-native.json.gz",
+      "sha256": "8ab5c3335e0266c553879251ad1c74ee934027affb3a1b20a6cf75d8eab01bea",
+      "originalSha256": "9d9ae7a064427ae87bb43df13479671ea5e406dcff7003fc8f40d545ef02f016"
+    },
+    {
+      "path": "sentinel-worker-native.log.gz",
+      "sha256": "592fcdc401d57fcfb85ad0ff87a3887319a0d7c37f0c3acc6cdee84be4f83be7",
+      "originalSha256": "d00e97d71cd03b02a92b5237f663a702261005a390245ae75d6a7f0d21ae857a"
+    },
+    {
+      "path": "sentinel-worker-witness.json.gz",
+      "sha256": "0e08e3e9beef8bbc5caad3711d553f1948cde4d14d4c5049a07567163bead958",
+      "originalSha256": "6e173f51d439856dd77f351462a516b06b8e4fa63eee3bdddd95ed0005f74405"
+    },
+    {
+      "path": "inputs.json.gz",
+      "sha256": "b7fd078a2d5c71c78e33df4b191317a6b530c3c1e63746a1eacb0d5a783c4246",
+      "originalSha256": "cdb48e6dfe2d05c585d57989a1c2e25037197b75ecf45ae071e62a11230a74a7"
+    }
+  ],
+  "noPush": true,
+  "noCI": true,
+  "noDeploy": true,
+  "globalCountChanged": false
+}
