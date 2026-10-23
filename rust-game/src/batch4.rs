@@ -202,6 +202,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if d.source.card.definition == "JZ56" { return self.validate_jz56_declaration(d); }
         if crate::batch4_vampires::CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? { return self.validate_vampire_declaration(d); }
         self.validate_pack_a_declaration(d)?;
@@ -233,6 +234,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }
         if crate::batch4_vampires::related_frame(f) && !self.validated_cross_card_frame(f)? { return self.validate_vampire_frame(f); }
         self.validate_pack_a_frame(f)?;
@@ -292,6 +294,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_wm044_state()?;
         self.validate_jz56_state()?;
         self.validate_vampire_state()?;
         self.validate_pack_a_state()?;

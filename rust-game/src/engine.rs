@@ -2777,6 +2777,8 @@ impl Game {
                         self.next_blue_gray_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::BQ028InspectAttachments { .. }, .. }) {
                         self.blue_expansion_private_choice(p, seat)
+                    } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::WM044Inspection { .. }, .. }) {
+                        self.wm044_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JC062Inspection { .. }, .. }) {
                         self.jc062_private_choice(p, seat)
                     } else if matches!(p.resolution, ChoiceResolution::Frame { choice: FrameChoice::JZ46InspectHidden { .. }, .. }) {

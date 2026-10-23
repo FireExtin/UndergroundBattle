@@ -708,6 +708,7 @@ pub enum FrameChoice {
     JC064Upkeep,
     BQ079Upkeep,
     XQ22Orientation,
+    WM044Inspection { inspected: Card },
     JC062Inspection { inspected: Vec<Card> },
     WM033GraveSpell,
     NextBlueGraySearch { inspected_ids: Vec<String> },

@@ -124,6 +124,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    WM044HiddenOrSecretPlan,
     PackAOwnGraveCharacter,
     XQ21MarkedCarrier,
     XG16CharacterOrAttachment,
@@ -320,6 +321,8 @@ pub enum Op {
     CQ07EnterMoon,
     CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
+    WM044Inspect { contest_id: Option<String> },
+    WM044SentinelLock,
     JC062Inspect,
     JZ25SealRandomHand,
     XG28GraveReturn,
@@ -716,6 +719,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::batch4_intelligence::related(ability) { return crate::batch4_intelligence::validate_ability(card_id, ability); }
     if crate::batch4_vampire_contest::key(&ability.key) || crate::batch4_vampire_contest::owns(&ability.ops)
         || ability.modes.iter().any(|m| crate::batch4_vampire_contest::owns(&m.ops))
         || ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment))

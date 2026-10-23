@@ -1,5 +1,8 @@
 # WM044 情报分析中心：迟缓最小机制候选
 
+> 本文是679ac109迟缓切片的历史证据。后续触发进展与真实依赖见
+> [WM044_TRIGGER_CONTINUATION_2026-10-23.md](WM044_TRIGGER_CONTINUATION_2026-10-23.md)。
+
 认领：蓝／灰增量任务，在独立普通克隆 `candidate/blue-gray-minimum` 中推进。
 基线 `51a336c4a42fd67495dca8d48dcfdd374e67f0ed`（ABI95产品来源 `5a5911d64da37d1978776ef5f5760da6d5086ffb`）。
 依据50张实现清单，WM044尚未实现，不在A/B十张或原作者XQ20、JZ56、XG21的归属内。

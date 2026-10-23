@@ -118,6 +118,7 @@ impl Game {
         self.validate_mystic_outcome(o)?; Ok(o)
     }
     pub(crate) fn validate_pack_a_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if crate::batch4_vampire_contest::key(&d.ability.key) || crate::batch4_vampire_contest::owns(&d.ability.ops) { return self.validate_b_contest_declaration(d); }
         if !CARDS.contains(&d.source.card.definition.as_str()) && !related(&d.ability) { return Ok(()); }
         if self.validated_cross_card_declaration(d)? { return Ok(()); }
@@ -140,6 +141,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let id = f.source.card.definition.as_str();
         if !CARDS.contains(&id) && !f.ability_key.starts_with("pack-a-") && !f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op))) { return Ok(()); }

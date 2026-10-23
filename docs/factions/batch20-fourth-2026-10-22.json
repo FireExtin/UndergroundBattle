@@ -929,7 +929,7 @@
       "sourceImageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
       "imageReviewedHere": true,
       "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 12,
+      "nativeDirectedCases": 21,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -937,7 +937,7 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "WM044 society attachment and hidden-entry slow only. Contest inspection and Sentinel entry lock remain unimplemented; not whole-card/native closure.",
+      "readinessScope": "Society attachment, hidden-entry slow and actual mystic-win private inspection implemented. Exact MSJC14 entry-lock branch exists, but positive normal-play validation remains blocked by absent complete MSJC14 runtime. No whole-card closure or public admission.",
       "fullNativeCardComplete": false
     }
   ],

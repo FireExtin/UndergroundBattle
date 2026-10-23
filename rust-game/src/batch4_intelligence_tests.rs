@@ -115,9 +115,11 @@ fn wm044_hidden_slow_multiple_exhausted_sources_and_new_source_identity() {
 fn wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission() {
     let c = catalog::card("WM044"); assert_eq!(c.cost,1); assert_eq!(c.loyalty,["灰色","灰色"]);
     assert!(!c.supported); assert!(catalog::runtime_implemented(c));
-    let d = definition("WM044"); assert_eq!(d.abilities.len(),1);
+    let d = definition("WM044"); assert_eq!(d.abilities.len(),3);
     assert_eq!(d.abilities[0].key,"attach");
-    assert!(d.abilities.iter().all(|a|a.event.is_none()));
+    assert_eq!(d.abilities[1].event,Some(Event::MysticContestWon));
+    assert_eq!(d.abilities[2].event,Some(Event::Enter));
+    assert!(!catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));
     let draft = crate::deck::DeckDraft { id:"wm044-wip".into(),name:"not admitted".into(),description:String::new(),society_id:None,
         cards:vec![catalog::DeckEntry{card_id:"JC125".into(),count:49},catalog::DeckEntry{card_id:"WM044".into(),count:1}],
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-23".into() };
@@ -178,4 +180,152 @@ fn wm044_hidden_slow_reads_live_source_after_response_before_grave_entry() {
     top(&mut g);
     let c=g.regions[0].cards.last().unwrap();assert!(c.face_down && !c.exhausted);
     restore(&mut g);
+}
+
+fn wm044_contest(g: &mut Game, winner: Option<usize>) {
+    use crate::mystic_contest as m;
+    g.begin_window(Window::Action(0));
+    for seat in 0..4 {
+        g.players[seat].hand.clear();g.players[seat].deck.clear();
+        let def=if winner==Some(seat){"JZ49"}else{"JC125"};
+        held(g,def,seat);
+        for _ in 0..3 {let c=g.make_card("JC125",seat);g.players[seat].deck.push(c);}
+    }
+    fund(g,0,"WM022",3);let source=field(g,"WM022",0);g.board_mut(&source).unwrap().face_down=true;
+    act(g,0,Action{card_id:Some(source),..Action::new("reveal")});
+    for _ in 0..32 { if g.pending.is_some(){break;} pass(g); }
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,m::COMMIT_KIND);
+    for seat in 0..4 {
+        let id=g.players[seat].hand.iter().find(|c|c.definition==if winner==Some(seat){"JZ49"}else{"JC125"}).unwrap().id.clone();
+        assert_eq!(g.pending.as_ref().unwrap().seat,seat);choose(g,vec![id]);
+    }
+    for _ in 0..4 {
+        if g.pending.as_ref().is_some_and(|p|p.choice.kind==m::REWARD_KIND){choose(g,vec![]);}else{break;}
+    }
+}
+fn wm044_reach_trigger(g: &mut Game) -> bool {
+    for _ in 0..64 {
+        if let Some(p)=&g.pending {
+            if matches!(&p.resolution,ChoiceResolution::Declare{declaration:d,..} if d.ability.key==crate::batch4_intelligence::INSPECT){return true;}
+            if p.choice.kind=="batch3-entry-order" {let id=p.choice.options[0].id.clone();choose(g,vec![id]);}
+            else {assert_eq!(p.choice.min,Some(0));choose(g,vec![]);}
+        } else if !g.stack.is_empty(){pass(g);}else{return false;}
+    }
+    panic!("bounded WM044 trigger scheduling")
+}
+fn wm044_target(g: &mut Game, target: &str) {
+    assert!(wm044_reach_trigger(g));
+    assert!(g.pending.as_ref().unwrap().choice.options.iter().any(|o|o.id==target));
+    choose(g,vec![target.into()]);
+}
+fn hidden(g: &mut Game, def: &str, seat: usize) -> String {
+    let id=field(g,def,seat);g.board_mut(&id).unwrap().face_down=true;id
+}
+#[test]
+fn wm044_trigger_actual_win_hidden_inspection_only_original_player_sees_front() {
+    let mut g=game();center(&mut g,0);let target=hidden(&mut g,"JC031",2);
+    wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);
+    crate::jc029_tests::pass_top(&mut g);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm044-private-inspection");
+    for seat in 0..4 {
+        let view=g.view(seat);
+        if seat==0 {assert_eq!(view.pending_choice.as_ref().unwrap().preview_cards[0].card_id.as_deref(),Some("JC031"));}
+        else {assert!(view.pending_choice.is_none());assert!(!serde_json::to_string(&view.waiting_choice).unwrap().contains("JC031"));}
+        let board=view.regions[0].characters.iter().find(|c|c.instance_id==target).unwrap();
+        assert!(board.face_down);if seat!=2 {assert!(board.card_id.is_none());}
+    }
+    choose(&mut g,vec![]);assert!(g.board(&target).unwrap().1.face_down);
+    assert_eq!(g.board(&target).unwrap().1.lock_markers,0);restore(&mut g);
+}
+#[test]
+fn wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal() {
+    let mut g=game();center(&mut g,0);g.begin_window(Window::Action(1));
+    fund(&mut g,2,"WM046",3);g.add_society_markers(2,0,1);
+    let id=held(&mut g,"WM046",2);
+    act(&mut g,2,Action{card_id:Some(id),target_id:Some("society:p2".into()),option:Some("secret-plan".into()),..Action::new("play")});top(&mut g);
+    let target=g.attachments.iter().find(|a|a.card.definition=="WM046").unwrap().card.id.clone();
+    wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);crate::jc029_tests::pass_top(&mut g);
+    let view=g.view(0);assert_eq!(view.pending_choice.unwrap().preview_cards[0].card_id.as_deref(),Some("WM046"));
+    for seat in [1,3] {
+        let v=g.view(seat);let a=v.attachments.iter().find(|a|a.card.instance_id==target).unwrap();
+        assert!(a.card.card_id.is_none() && a.card.face_down);assert_eq!(a.card.name,"秘密计划");
+        assert!(v.pending_choice.is_none());
+    }
+    choose(&mut g,vec![]);assert!(g.in_play(&target).unwrap().1.face_down);restore(&mut g);
+}
+#[test]
+fn wm044_trigger_decline_tie_loss_and_missing_target() {
+    for winner in [None,Some(2),Some(0)] {
+        let mut g=game();center(&mut g,0);let target=hidden(&mut g,"JC125",2);
+        wm044_contest(&mut g,winner);
+        assert_eq!(wm044_reach_trigger(&mut g),winner==Some(0));
+        if winner==Some(0){choose(&mut g,vec![]);assert!(g.pending.is_none());}
+        assert!(g.board(&target).unwrap().1.face_down);restore(&mut g);
+    }
+    let mut g=game();center(&mut g,0);wm044_contest(&mut g,Some(0));assert!(!wm044_reach_trigger(&mut g));
+}
+#[test]
+fn wm044_trigger_source_departure_does_not_cancel_declared_inspection() {
+    let mut g=game();let source=center(&mut g,0);let target=hidden(&mut g,"JC125",2);
+    wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);
+    g.remove_dead(&source,RemovalCause::Destroy);g.drive().unwrap();restore(&mut g);
+    crate::jc029_tests::pass_top(&mut g);assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm044-private-inspection");
+    choose(&mut g,vec![]);restore(&mut g);
+}
+#[test]
+fn wm044_trigger_target_departure_cancels_without_rebinding() {
+    let mut g=game();center(&mut g,0);let target=hidden(&mut g,"JC031",2);
+    wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);
+    g.return_hand(&target);g.drive().unwrap();let replacement=hidden(&mut g,"JC031",2);restore(&mut g);
+    crate::jc029_tests::pass_top(&mut g);
+    assert!(g.pending.is_none());assert!(g.board(&replacement).unwrap().1.face_down);restore(&mut g);
+}
+#[test]
+fn wm044_trigger_current_controller_each_actual_win_not_only_first() {
+    let mut g=game();center(&mut g,1);let target=hidden(&mut g,"JC125",2);
+    for _ in 0..2 {
+        wm044_contest(&mut g,Some(0));assert!(wm044_reach_trigger(&mut g));
+        assert_eq!(g.pending.as_ref().unwrap().seat,1);
+        choose(&mut g,vec![target.clone()]);crate::jc029_tests::pass_top(&mut g);
+        assert_eq!(g.pending.as_ref().unwrap().seat,1);choose(&mut g,vec![]);
+        wm044_reach_trigger(&mut g);restore(&mut g);
+    }
+    assert_eq!(g.mystic_history.len(),2);
+}
+#[test]
+fn wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation() {
+    let mut g=game();center(&mut g,0);let target=hidden(&mut g,"JZ26",2);fund(&mut g,2,"JC031",2);
+    wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);crate::jc029_tests::pass_top(&mut g);
+    assert!(g.effects.iter().any(|e|matches!(e,Effect::Declare{declaration:d} if d.source.card.definition=="JZ26")));
+    choose(&mut g,vec![]);restore(&mut g);
+}
+#[test]
+fn wm044_trigger_sentinel_dependency_is_exact_and_not_substituted_by_gray_society() {
+    let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSJC05",0));
+    assert!(!g.wm044_has_sentinel(0));let target=hidden(&mut g,"JC125",2);
+    center(&mut g,0);assert_eq!(g.board(&target).unwrap().1.lock_markers,0);assert!(g.pending.is_none());
+    assert!(!catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));restore(&mut g);
+}
+#[test]
+fn wm044_trigger_two_centers_each_offer_once_for_same_actual_win() {
+    let mut g=game();let first=center(&mut g,0);center(&mut g,0);
+    assert_eq!(g.attachments.iter().filter(|a|a.card.definition=="WM044").count(),2);
+    let target=hidden(&mut g,"JC125",2);
+    for _ in 0..2 {
+        wm044_contest(&mut g,Some(0));
+        assert_eq!(g.pending.as_ref().unwrap().choice.kind,"batch3-entry-order");
+        let mut sources=std::collections::BTreeSet::new();
+        for _ in 0..2 {
+            assert!(wm044_reach_trigger(&mut g));
+            let ChoiceResolution::Declare{declaration:d,..}=&g.pending.as_ref().unwrap().resolution else{panic!()};
+            assert!(sources.insert(d.source.card.id.clone()));
+            choose(&mut g,vec![target.clone()]);
+        }
+        for _ in 0..2 {
+            crate::jc029_tests::pass_top(&mut g);
+            assert_eq!(g.pending.as_ref().unwrap().choice.kind,"wm044-private-inspection");
+            choose(&mut g,vec![]);
+        }
+        assert!(sources.contains(&first));assert!(!wm044_reach_trigger(&mut g));restore(&mut g);
+    }
 }
