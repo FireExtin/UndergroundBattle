@@ -5,6 +5,35 @@ use crate::{engine::RuleResult, model::*, rules::Event};
 use std::collections::BTreeMap;
 
 impl Game {
+    /// The existing reward policy: actual contributors in seat order. Influence
+    /// alone falls back to the living team when no character contributed.
+    pub(crate) fn reward_recipient_seats(&self, team: usize, region: usize, contest: usize) -> RuleResult<Vec<usize>> {
+        if team > 1 || contest > 2 || !self.region_live(region) { return Err("奖励地区或对抗类别无效".into()); }
+        let mut seats = self.contributors(team, region, contest);
+        if contest == 2 && seats.is_empty() { seats = self.living(team); }
+        Ok(seats)
+    }
+    /// Do not trust persisted options or min/max when consuming a recipient.
+    /// Run before taking pending, so invalid input leaves even direct choose unchanged.
+    pub(crate) fn selected_reward_recipient(&self, chooser: usize, region: usize, contest: usize, selected: &[String]) -> RuleResult<usize> {
+        let [id] = selected else { return Err("必须恰好选择一位实际参战的奖励领取者".into()); };
+        if chooser >= self.players.len() { return Err("奖励选择者无效".into()); }
+        let recipient = id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).ok_or("奖励领取者无效")?;
+        let seats = self.reward_recipient_seats(self.team(chooser), region, contest)?;
+        if seats.first() != Some(&chooser) || !seats.contains(&recipient) || *id != player_id(recipient) {
+            return Err("奖励只可交给本次实际参战的获胜方玩家".into());
+        }
+        Ok(recipient)
+    }
+    pub(crate) fn combat_recipient_seats(&self, team: usize, region: usize, amount: u32, sources: &[String]) -> RuleResult<Vec<usize>> {
+        self.validate_combat_wound_reward(region, team, amount, sources, None)?;
+        let seats = self.reward_recipient_seats(team, region, 1)?;
+        let counts = self.contest_counts(region, 1);
+        if self.window != Some(Window::After(region, 1)) || counts[team] <= counts[1 - team] || seats.len() < 2 {
+            return Err("战斗奖励领取续体须保留获胜方的实际参战玩家".into());
+        }
+        Ok(seats)
+    }
     /// Frozen instance IDs travel through recipient selection and allocation.
     /// Neither pause allows game actions, so restores can verify the exact live
     /// participants without rebinding a replacement of the same printed card.
@@ -37,8 +66,14 @@ impl Game {
                 if *seat >= self.players.len() { return Err("战斗创伤玩家无效".into()); }
                 self.validate_combat_wound_reward(*region, self.team(*seat), *amount, wound_sources, Some(*seat))?;
             }
-            Effect::Recipient { team, region, contest, amount, wound_sources, .. } => {
-                if *contest == 1 { self.validate_combat_wound_reward(*region, *team, *amount, wound_sources, None)?; }
+            Effect::Recipient { team, region, contest, amount, wound_sources, seats } => {
+                // A retired region cancels its queued reward at execution.
+                if *contest == 1 && self.region_live(*region) {
+                    if *seats != self.combat_recipient_seats(*team, *region, *amount, wound_sources)? {
+                        return Err("战斗奖励队列不能改写实际领取者名单".into());
+                    }
+                }
+                else if *contest == 1 && !wound_sources.is_empty() { return Err("失效地区不能保留创伤奖励".into()); }
                 else if !wound_sources.is_empty() { return Err("非战斗奖励不能携带创伤".into()); }
             }
             _ => (),
@@ -59,7 +94,18 @@ impl Game {
             }
             ChoiceResolution::Recipient { region, contest, amount, wound_sources } => {
                 if p.seat >= self.players.len() { return Err("战斗创伤玩家无效".into()); }
-                if *contest == 1 { self.validate_combat_wound_reward(*region, self.team(p.seat), *amount, wound_sources, None)?; }
+                if *contest == 1 {
+                    let seats = self.combat_recipient_seats(self.team(p.seat), *region, *amount, wound_sources)?;
+                    let expected = Choice { id: p.choice.id.clone(), kind: "recipient".into(),
+                        title: "选择本次实际参战的奖励执行者".into(), description: "选择符合数量限制的选项，然后确认。".into(),
+                        player_id: player_id(seats[0]), options: seats.iter().map(|s| ChoiceOption {
+                            id: player_id(*s), label: self.players[*s].name.clone(), card: None,
+                        }).collect(), preview_cards: vec![], min: Some(1), max: Some(1), amount: Some(*amount), allow_decline: Some(false) };
+                    if p.seat != seats[0] || p.choice.id.is_empty()
+                        || serde_json::to_value(&p.choice).unwrap() != serde_json::to_value(&expected).unwrap() {
+                        return Err("战斗奖励必须由原选择者恰好选择一名实际参战玩家".into());
+                    }
+                }
                 else if !wound_sources.is_empty() { return Err("非战斗奖励不能携带创伤".into()); }
             }
             _ => (),

@@ -1737,7 +1737,7 @@ impl Game {
                 }
             }
             Effect::Recipient {
-                team: _,
+                team,
                 region,
                 contest,
                 amount,
@@ -1745,15 +1745,18 @@ impl Game {
                 wound_sources,
             } => {
                 if !self.region_live(region) { return Ok(()); }
-                let chooser = seats[0];
+                if contest == 1 && seats != self.combat_recipient_seats(team, region, amount, &wound_sources)? {
+                    return Err("战斗奖励队列不能改写实际领取者名单".into());
+                }
+                let chooser = *seats.first().ok_or("奖励缺少实际领取者")?;
                 let options = seats
                     .into_iter()
-                    .map(|s| ChoiceOption {
+                    .map(|s| Ok(ChoiceOption {
                         id: player_id(s),
-                        label: self.players[s].name.clone(),
+                        label: self.players.get(s).ok_or("奖励领取者无效")?.name.clone(),
                         card: None,
-                    })
-                    .collect();
+                    }))
+                    .collect::<RuleResult<Vec<_>>>()?;
                 self.choice(
                     chooser,
                     "recipient",
@@ -2217,6 +2220,9 @@ impl Game {
         {
             return Err("选择数量不符".into());
         }
+        let reward_recipient = if let ChoiceResolution::Recipient { region, contest, .. } = &p.resolution {
+            Some(self.selected_reward_recipient(seat, *region, *contest, &selected)?)
+        } else { None };
         self.pending = None;
         match p.resolution {
             ChoiceResolution::JZ51Payment { draft } => self.jz51_finish_payment(*draft,&selected)?,
@@ -2332,11 +2338,7 @@ impl Game {
                 amount,
                 wound_sources,
             } => {
-                let recipient = selected[0]
-                    .strip_prefix('p')
-                    .ok_or("执行者无效")?
-                    .parse::<usize>()
-                    .map_err(|_| "执行者无效")?;
+                let recipient = reward_recipient.ok_or("奖励缺少合法领取者")?;
                 if contest == 0 {
                     self.effects.push_front(Effect::Forecast {
                         seat: recipient,

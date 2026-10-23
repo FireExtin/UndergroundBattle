@@ -579,3 +579,201 @@ mod p2_close {
         assert_eq!(g.attachments.iter().find(|a| a.card.id == source).unwrap().card.chosen_subtype, Some(UndeadKind::Ghoul));
     }
 }
+
+// Independent follow-up: the new combat continuation's recipient envelope and
+// the distinction between wound replacement and ordinary damage prevention.
+mod independent_closure_review {
+    use super::*;
+    use std::collections::BTreeMap;
+    fn layout(team: bool) -> (Game, String, String) {
+        let mut g=game(); let ghoul=field(&mut g,"JZ50",0); let victim=field(&mut g,"LC01",2);
+        if team { field(&mut g,"JC014",1); }
+        dead(&mut g,0,7);night(&mut g,0,"ghoul");
+        (g,ghoul,victim)
+    }
+    fn battle(g: &mut Game) {
+        g.begin_window(Window::Before(0,1));g.close_window().unwrap();g.drive().unwrap();checkpoint(g);
+    }
+    fn record(name: &str, data: serde_json::Value) {
+        if let Ok(dir)=std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            std::fs::write(format!("{dir}/{name}.json"),serde_json::to_vec_pretty(&data).unwrap()).unwrap();
+        }
+    }
+    fn load_both(good: &Game, bad: &Game) -> (Result<Game,String>,Result<crate::room::RoomEnvelope,String>) {
+        let raw=serde_json::to_string(bad).unwrap();
+        let game=std::panic::catch_unwind(||Game::from_persisted(&raw)).expect("Game restore must not panic");
+        let mut raw_room=serde_json::to_value(crate::jc029_tests::envelope(good)).unwrap();
+        raw_room["game"]=serde_json::to_value(bad).unwrap();
+        let room=std::panic::catch_unwind(||crate::room::RoomEnvelope::from_persisted(&raw_room.to_string())).expect("Room restore must not panic");
+        (game,room)
+    }
+    #[test]
+    fn independent_close_recipient_may_not_add_enemy_to_frozen_wound_reward() {
+        let (mut g,_,_)=layout(true);battle(&mut g);
+        assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Recipient{wound_sources,..} if !wound_sources.is_empty()));
+        let mut bad=g.clone();
+        bad.pending.as_mut().unwrap().choice.options.push(ChoiceOption{id:"p2".into(),label:bad.players[2].name.clone(),card:None});
+        let (game,room)=load_both(&g,&bad);
+        let mut next=None; let mut outcome=None;
+        if let Ok(r)=&room {
+            let p=r.game.pending.as_ref().unwrap();
+            let out=r.transition(p.seat,Some(crate::room::RoomCommand{command_id:"independent-recipient-enemy".into(),expected_version:r.revision,
+                action:crate::room::SessionAction::Game{action:Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec!["p2".into()]),..Action::new("choose")}}}),0).unwrap();
+            outcome=Some(out.outcome.clone());
+            if out.outcome=="accepted" { next=Some(crate::room::RoomEnvelope::from_persisted(&out.state).unwrap()); }
+        }
+        record("recipient-enemy-option",serde_json::json!({"good":g,"bad":bad,"gameAccepted":game.is_ok(),"roomAccepted":room.is_ok(),"roomOutcome":outcome,"after":next}));
+        assert!(game.is_err()&&room.is_err(),"wound recipient corruption accepted: roomOutcome={outcome:?}");
+    }
+    #[test]
+    fn independent_close_recipient_may_not_restore_empty_selection_that_panics() {
+        let (mut g,_,_)=layout(true);battle(&mut g);
+        let mut bad=g.clone();bad.pending.as_mut().unwrap().choice.min=Some(0);
+        let (game,room)=load_both(&g,&bad);
+        let mut command_panics=false; let mut command_error=None;
+        if let Ok(mut accepted)=game.clone() {
+            let p=accepted.pending.as_ref().unwrap();let seat=p.seat;
+            let a=Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![]),..Action::new("choose")};
+            match std::panic::catch_unwind(std::panic::AssertUnwindSafe(||accepted.apply(seat,a))) {
+                Err(_)=>command_panics=true,Ok(result)=>command_error=result.err(),
+            }
+        }
+        record("recipient-empty-choice",serde_json::json!({"good":g,"bad":bad,"gameAccepted":game.is_ok(),"roomAccepted":room.is_ok(),"commandPanics":command_panics,"commandError":command_error}));
+        assert!(game.is_err()&&room.is_err(),"wound recipient cardinality corruption accepted; commandPanics={command_panics}");
+    }
+    #[test]
+    fn independent_close_real_damage_prevention_does_not_prevent_combat_wounds() {
+        let (mut g,_,victim)=layout(false);
+        g.begin_window(Window::Action(1));fund(&mut g,2,"JC078",1);
+        let spell=held(&mut g,"JC078",2);
+        act(&mut g,2,Action{card_id:Some(spell),target_id:Some(victim.clone()),..Action::new("play")});
+        pass_top(&mut g);checkpoint(&g);assert!(g.damage_prevented(g.board(&victim).unwrap().1));
+        battle(&mut g);let p=g.pending.as_ref().unwrap();assert_eq!(p.choice.amount,Some(2));let seat=p.seat;
+        let a=Action{choice_id:Some(p.choice.id.clone()),allocations:Some(BTreeMap::from([(victim.clone(),2)])),..Action::new("choose")};
+        act(&mut g,seat,a);checkpoint(&g);
+        let c=g.board(&victim).unwrap().1;assert_eq!((c.damage,c.wounds,g.defense(c,0)),(0,2,2));
+        assert!(g.damage_prevented(c));
+        record("actual-prevention-versus-wound",serde_json::json!({"game":g,"victim":victim,"damage":0,"wounds":2,"defense":2}));
+    }
+}
+
+mod recipient_p2_close {
+    use super::*;
+    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+    fn reward() -> (Game, String, [String; 2]) {
+        let mut g = game(); let ghoul = field(&mut g, "JZ50", 0); field(&mut g, "JC014", 1);
+        let targets = [field(&mut g, "LC01", 2), field(&mut g, "LC01", 3)];
+        dead(&mut g, 0, 7); night(&mut g, 0, "ghoul");
+        g.begin_window(Window::Before(0, 1)); g.close_window().unwrap(); g.drive().unwrap(); checkpoint(&g);
+        assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(4));
+        (g, ghoul, targets)
+    }
+    fn record(name: &str, data: serde_json::Value) {
+        if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            std::fs::write(format!("{dir}/{name}.json"), serde_json::to_vec_pretty(&data).unwrap()).unwrap();
+        }
+    }
+    fn deny(good: &Game, bad: &Game, label: &str) {
+        let raw = serde_json::to_string(bad).unwrap();
+        assert!(std::panic::catch_unwind(|| Game::from_persisted(&raw)).expect(label).is_err(), "Game accepted {label}");
+        let mut room = serde_json::to_value(crate::jc029_tests::envelope(good)).unwrap(); room["game"] = serde_json::to_value(bad).unwrap();
+        assert!(std::panic::catch_unwind(|| RoomEnvelope::from_persisted(&room.to_string())).expect(label).is_err(), "Room accepted {label}");
+    }
+    #[test]
+    fn batch4_night_recipient_p2_both_restore_entries_certify_complete_choice_envelope() {
+        let (g, _, targets) = reward();
+        let mutations = ["enemy", "missing", "duplicate", "swapped", "unknown", "label", "card", "min-zero", "min-two", "min-none",
+            "max-zero", "max-two", "max-none", "decline", "decline-none", "amount", "chooser-ally", "chooser-enemy", "player", "kind", "empty-id", "preview"];
+        for mutation in mutations {
+            let mut bad = g.clone(); let p = bad.pending.as_mut().unwrap();
+            match mutation {
+                "enemy" => p.choice.options.push(ChoiceOption { id: "p2".into(), label: "P2".into(), card: None }),
+                "missing" => { p.choice.options.pop(); }
+                "duplicate" => p.choice.options[1] = p.choice.options[0].clone(),
+                "swapped" => p.choice.options.swap(0, 1),
+                "unknown" => p.choice.options[1].id = "p99".into(),
+                "label" => p.choice.options[0].label = "伪造姓名".into(),
+                "card" => p.choice.options[0].card = Some(g.card_view(g.board(&targets[0]).unwrap().1, 0, Some(0), None)),
+                "min-zero" => p.choice.min = Some(0), "min-two" => p.choice.min = Some(2), "min-none" => p.choice.min = None,
+                "max-zero" => p.choice.max = Some(0), "max-two" => p.choice.max = Some(2), "max-none" => p.choice.max = None,
+                "decline" => p.choice.allow_decline = Some(true), "decline-none" => p.choice.allow_decline = None,
+                "amount" => p.choice.amount = Some(5), "chooser-ally" => p.seat = 1, "chooser-enemy" => p.seat = 2,
+                "player" => p.choice.player_id = "p1".into(), "kind" => p.choice.kind = "target".into(), "empty-id" => p.choice.id.clear(),
+                "preview" => p.choice.preview_cards.push(g.card_view(g.board(&targets[0]).unwrap().1, 0, Some(0), None)), _ => unreachable!(),
+            }
+            deny(&g, &bad, mutation);
+        }
+        record("recipient-envelope-rejections", serde_json::json!({"mutations":mutations, "bothEntriesRejected":true, "good":g}));
+    }
+    #[test]
+    fn batch4_night_recipient_p2_queued_effect_certifies_exact_ordered_contributors() {
+        let (mut g, _, _) = reward(); let p = g.pending.take().unwrap();
+        let ChoiceResolution::Recipient { region, contest, amount, wound_sources } = p.resolution else { panic!("recipient"); };
+        let effect = Effect::Recipient { team: 0, region, contest, amount, seats: vec![0, 1], wound_sources };
+        // Explicit finite queue fixture; the normal command drive usually turns
+        // this effect into a pending choice before a snapshot is returned.
+        g.effects.push_front(effect.clone()); checkpoint(&g);
+        let candidates = [vec![], vec![0], vec![1], vec![1, 0], vec![0, 0], vec![0, 2], vec![0, 4]];
+        for seats in &candidates {
+            let mut bad = g.clone(); if let Effect::Recipient { seats: actual, .. } = bad.effects.front_mut().unwrap() { *actual = seats.clone(); }
+            deny(&g, &bad, &format!("queued seats {seats:?}"));
+            let mut direct = g.clone(); direct.effects.clear(); let before = serde_json::to_value(&direct).unwrap();
+            let invalid = bad.effects.front().unwrap().clone();
+            let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| direct.effect(invalid))).unwrap();
+            assert!(result.is_err()); assert_eq!(serde_json::to_value(&direct).unwrap(), before);
+        }
+        g.drive().unwrap(); checkpoint(&g);
+        assert_eq!(g.pending.as_ref().unwrap().choice.options.iter().map(|o| o.id.as_str()).collect::<Vec<_>>(), ["p0", "p1"]);
+        record("recipient-queue-rejections", serde_json::json!({"rejectedSeats":candidates, "bothEntriesRejected":true, "validAfter":g}));
+    }
+    #[test]
+    fn batch4_night_recipient_p2_consumer_requires_one_canonical_actual_recipient_before_mutation() {
+        let (mut g, _, _) = reward(); let before = serde_json::to_value(&g).unwrap();
+        let bad = [vec![], vec!["p0", "p1"], vec!["p0", "p0"], vec!["p2"], vec!["p99"], vec!["p00"], vec!["p+0"], vec!["p-1"], vec!["0"]];
+        for selected in &bad {
+            let ids: Vec<String> = selected.iter().map(|s| (*s).into()).collect();
+            assert!(g.selected_reward_recipient(0, 0, 1, &ids).is_err());
+            let a = Action { choice_id: Some(g.pending.as_ref().unwrap().choice.id.clone()), selected: Some(ids), ..Action::new("choose") };
+            assert!(std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| g.apply(0, a))).unwrap().is_err());
+            assert_eq!(serde_json::to_value(&g).unwrap(), before);
+        }
+        for seat in [1, 2, 99] { assert!(g.selected_reward_recipient(seat, 0, 1, &["p0".into()]).is_err()); }
+        for recipient in [0, 1] { assert_eq!(g.selected_reward_recipient(0, 0, 1, &[player_id(recipient)]).unwrap(), recipient); }
+        checkpoint(&g);
+    }
+    #[test]
+    fn batch4_night_recipient_p2_legal_game_room_replay_four_views_and_exact_duplicates() {
+        for recipient in [0, 1] {
+            let (g, ghoul, targets) = reward(); let p = g.pending.as_ref().unwrap();
+            let action = Action { choice_id: Some(p.choice.id.clone()), selected: Some(vec![player_id(recipient)]), ..Action::new("choose") };
+            let mut plain = g.clone(); act(&mut plain, 0, action.clone()); checkpoint(&plain);
+            let room = crate::jc029_tests::envelope(&g);
+            let cmd = RoomCommand { command_id: format!("recipient-{recipient}"), expected_version: room.revision, action: SessionAction::Game { action } };
+            let out = room.transition(0, Some(cmd.clone()), 0).unwrap(); assert_eq!(out.outcome, "accepted");
+            let next = RoomEnvelope::from_persisted(&out.state).unwrap();
+            assert_eq!(serde_json::to_value(room.replay_events(&out.journal).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+            assert_eq!(serde_json::to_value(&plain).unwrap(), serde_json::to_value(&next.game).unwrap());
+            let p = next.game.pending.as_ref().unwrap(); assert_eq!(p.seat, recipient); assert_eq!(p.choice.amount, Some(4));
+            assert!(matches!(&p.resolution, ChoiceResolution::Damage { wound_sources, .. } if *wound_sources == if recipient == 0 { vec![ghoul] } else { vec![] }));
+            for viewer in 0..4 {
+                assert_eq!(next.view(viewer, 0).pending_choice.is_some(), viewer == recipient);
+                assert_eq!(serde_json::to_value(next.view(viewer, 0)).unwrap(), serde_json::to_value(RoomEnvelope::from_persisted(&out.state).unwrap().view(viewer, 0)).unwrap());
+            }
+            let duplicate = next.transition(0, Some(cmd), 0).unwrap();
+            assert_eq!(duplicate.outcome, "rejected"); assert!(!duplicate.changed && duplicate.journal.is_empty());
+            assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&duplicate.state).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+            let allocation = RoomCommand { command_id: format!("recipient-damage-{recipient}"), expected_version: next.revision,
+                action: SessionAction::Game { action: Action { choice_id: Some(p.choice.id.clone()), allocations: Some(targets.iter().map(|id| (id.clone(), 2)).collect()), ..Action::new("choose") } } };
+            let allocated = next.transition(recipient, Some(allocation), 0).unwrap(); assert_eq!(allocated.outcome, "accepted");
+            let final_room = RoomEnvelope::from_persisted(&allocated.state).unwrap();
+            assert_eq!(serde_json::to_value(next.replay_events(&allocated.journal).unwrap()).unwrap(), serde_json::to_value(&final_room).unwrap());
+            for target in targets {
+                let c = final_room.game.board(&target).unwrap().1; assert_eq!((c.damage, c.wounds), if recipient == 0 { (0, 2) } else { (2, 0) });
+            }
+            record(&format!("legal-recipient-{recipient}"), serde_json::json!({"initial":room, "chosen":next, "choiceJournal":out.journal,
+                "allocated":final_room, "allocationJournal":allocated.journal, "duplicate":duplicate}));
+        }
+    }
+}
