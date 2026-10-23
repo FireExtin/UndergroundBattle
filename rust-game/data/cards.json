@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.87-batch20-fourth",
-  "engineVersion": "rust-v0.2.96-batch20-fourth",
+  "cardPoolVersion": "limited-v2.88-batch20-fourth",
+  "engineVersion": "rust-v0.2.97-batch20-fourth",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -9939,6 +9939,51 @@
         "imageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204"
       },
       "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "LC16",
+      "name": "江月",
+      "subtitle": "狐之影",
+      "kind": "character",
+      "subtypes": [
+        "妖",
+        "阴"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "鲜血",
+        "神圣",
+        "死亡"
+      ],
+      "loyaltyText": "鲜血 神圣 死亡",
+      "color": "黑",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 3,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 2,
+      "text": "创伤2\n准备步骤触发 从你的牌库中寻找一张法术牌或阴牌，将该牌置于你的墓地，然后将你的牌库洗牌。在目标地区上放置一个本方势力标志。",
+      "keywords": [
+        "创伤2"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "LC16",
+        "image": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
+        "imageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882"
+      },
+      "unique": true,
       "society": "",
       "supported": false
     }

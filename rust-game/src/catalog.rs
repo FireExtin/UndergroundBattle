@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.87-batch20-fourth";
+pub const POOL_VERSION: &str = "limited-v2.88-batch20-fourth";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.96-batch20-fourth";
+pub const ENGINE_VERSION: &str = "rust-v0.2.97-batch20-fourth";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.96-batch20-fourth-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.97-batch20-fourth-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -136,7 +136,7 @@ pub fn catalog() -> &'static Catalog {
                     })
                     .unwrap_or_default();
                 // Preserve old definitions; expose only individually reviewed subtitles.
-                if !["BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
+                if !["LC16", "BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
                     .contains(&definition.id.as_str())
                 {
                     definition.subtitle = None;

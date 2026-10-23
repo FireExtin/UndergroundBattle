@@ -125,7 +125,13 @@ impl Game {
         }
         crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0 + self.jz39_host_kill(c)
     }
-    pub(crate) fn effective_wound(&self, c: &Card) -> u32 { self.jz56_aura(c).1 }
+    pub(crate) fn effective_wound(&self, c: &Card) -> u32 {
+        if c.face_down || card(&c.definition).kind != "character" { return 0; }
+        let printed = crate::rules::definition(&c.definition).traits.wound;
+        // Current printed LC16 and JZ56's three Undead subtypes do not overlap.
+        // Combat follows the printed equal-marker replacement, not an X multiplier.
+        if printed > 0 { printed } else { self.jz56_aura(c).1 }
+    }
     pub(crate) fn has_retreat(&self, c: &Card) -> bool {
         !c.face_down
             && (crate::rules::definition(&c.definition).traits.retreat

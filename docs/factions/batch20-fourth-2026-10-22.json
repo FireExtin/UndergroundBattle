@@ -15,7 +15,7 @@
     "target": 50,
     "unassignedSlots": 0,
     "remainingNativePrograms": 16,
-    "nativeWipCards": 1,
+    "nativeWipCards": 2,
     "nativePartialCards": 0,
     "wasmDirectedCards": 1,
     "workerDirectedCards": 1
@@ -376,8 +376,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
       "sourceImageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 14,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -385,7 +385,7 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+      "readinessScope": "14 author Native normal-path tests passed on isolated ABI95 base; pending integration with separately reviewedXQ20 and independent LC16 review; not WASM/public acceptance"
     },
     {
       "id": "XQ35",
@@ -1024,8 +1024,8 @@
     }
   ],
   "developmentIdentity": {
-    "native": "rust-v0.2.96-batch20-fourth",
-    "pool": "limited-v2.87-batch20-fourth",
+    "native": "rust-v0.2.97-batch20-fourth",
+    "pool": "limited-v2.88-batch20-fourth",
     "wasmBuilt": false,
     "publicIdentityChanged": false
   },
@@ -1660,5 +1660,16 @@
     "independentNativeTests": 21,
     "independentSourceChecks": 3,
     "wasmWorkerBrowser": false
+  },
+  "projectProgress": {
+    "nativeClosedAcrossBranches": 34,
+    "localIntegratedClosedCards": 34,
+    "separateClosedCard": null,
+    "separateClosedSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+    "currentIncrement": "LC16",
+    "blueGrayOwner": "01a1693c-05ce-726e-95af-31ecb62d60f2",
+    "blueGrayClaim": "WM044",
+    "notPublicAdmission": true,
+    "includedReviewedXQ20": true
   }
 }

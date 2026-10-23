@@ -4,7 +4,7 @@ use crate::{catalog, engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-pub(crate) const IMPLEMENTING: &[&str] = &["XQ20", "XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21", "JZ56"];
+pub(crate) const IMPLEMENTING: &[&str] = &["LC16", "XQ20", "XQ21", "JZ51", "XG14", "XG15", "JZ39", "XG12", "WM060", "BQ041", "JZ38", "WM045", "WM046", "WM047", "XG17", "XG11", "WM029", "WM058", "BQ053", "XQ15", "JZ40", "JZ36", "XG16", "XG18", "XG21", "JZ56"];
 const CHAOS: &[&str] = &["XG14", "XG15"];
 const KEY: &str = "batch4-xg14-disaster";
 const XG15_KEY: &str = "batch4-xg15-destroy-region";
@@ -22,6 +22,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     if let Some(d) = crate::pack_a_contest::definition(id) { return Some(d); }
     if id == "JZ56" { return Some(crate::batch4_night::definition()); }
     if id == "XQ20" { return Some(crate::batch4_soul_channel::definition()); }
+    if id == "LC16" { return Some(crate::batch4_jiangyue::definition()); }
     if id == "XQ21" { return Some(crate::batch4_markers::definition()); }
     if id == "JZ51" { return Some(crate::batch4_wendigo::definition()); }
     if id == "XG18" { return Some(crate::batch4_omega::definition()); }
@@ -62,7 +63,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 fn owns(ops: &[Op]) -> bool {
     if crate::batch4_vampires::owns(ops) { return true; }
     ops.iter().any(|op| match op {
-        Op::JZ56ChooseUndead | Op::XQ20MoveMarkers | Op::XQ21CopyMarker | Op::JZ51TopEightCorpses | Op::JZ51GraveEntry | Op::XG18RenownPlay { .. } | Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG21RenownSearch | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
+        Op::JZ56ChooseUndead | Op::LC16PrepareSearch { .. } | Op::XQ20MoveMarkers | Op::XQ21CopyMarker | Op::JZ51TopEightCorpses | Op::JZ51GraveEntry | Op::XG18RenownPlay { .. } | Op::XG16EntryTime | Op::XG16PrepareTime { .. } | Op::JZ36TimeAndDestroyTargetRegion | Op::JZ40TimeAndDestroyHost | Op::BQ053RemoveLossControl | Op::WM058Tax { .. } | Op::WM058RemoveEnemyInfluence | Op::WM029TurnAura | Op::XG11RevealRaid { .. } | Op::XG17AdvancePlan { .. } | Op::PlanPlayed { .. } | Op::PlanAdvance | Op::PlanComplete | Op::XG21RenownSearch | Op::XG14DisasterInfluence { .. } | Op::XG15DestroyOriginalRegion | Op::JZ39EnemySacrifice | Op::XG12Reattach
             | Op::WM060RevealInfluence | Op::WM060CriminalObservation { .. } | Op::WM060RepressTwo | Op::BQ041BloodDemand { .. } | Op::JZ38RepeatDeath { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } => owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),
@@ -82,6 +83,7 @@ fn frame_related(f: &ResolutionFrame) -> bool {
 }
 fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     if crate::batch4_vampires::CARDS.contains(&id) { return crate::batch4_vampires::canonical(id, a); }
+    if id == "LC16" { return crate::batch4_jiangyue::canonical(a); }
     if id == "XG18" { return crate::batch4_omega::canonical(a); }
     if id == "XG16" { return crate::batch4_timekeeper::canonical(a); }
     if id == "JZ36" { return crate::batch4_blood::canonical(a); }
@@ -99,7 +101,7 @@ fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
     }
     Some(expected)
 }
-fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
+pub(crate) fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
     let region = source.source_region_instance.as_deref()?;
     match key {
         "renown" => Some(crate::renown::renown_ability(region)),
@@ -110,7 +112,7 @@ fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> {
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
+    } else if d.traits.wound > 0 || d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -126,6 +128,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if crate::pack_a_contest::CARDS.contains(&id) { return crate::pack_a_contest::validate_action(id, a); }
     if id == "JZ56" { return crate::batch4_night::validate_action(a); }
     if id == "XQ20" { return crate::batch4_soul_channel::validate_action(a); }
+    if id == "LC16" { return crate::batch4_jiangyue::validate_action(a); }
     if id == "XQ21" { return crate::batch4_markers::validate_action(a); }
     if id == "JZ51" { return crate::batch4_wendigo::validate_action(a); }
     if id == "XG18" { return crate::batch4_omega::validate_action(a); }
@@ -204,6 +207,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if d.source.card.definition == "JZ56" { return self.validate_jz56_declaration(d); }
+        if d.source.card.definition == "LC16" && !self.validated_cross_card_declaration(d)? { return self.validate_lc16_declaration(d); }
         if crate::batch4_vampires::CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? { return self.validate_vampire_declaration(d); }
         self.validate_pack_a_declaration(d)?;
         if crate::pack_a_contest::CARDS.contains(&d.source.card.definition.as_str()) { return Ok(()); }
@@ -235,6 +239,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }
+        if f.source.card.definition == "LC16" && !self.validated_cross_card_frame(f)? { return self.validate_lc16_frame(f); }
         if crate::batch4_vampires::related_frame(f) && !self.validated_cross_card_frame(f)? { return self.validate_vampire_frame(f); }
         self.validate_pack_a_frame(f)?;
         if crate::pack_a_contest::CARDS.contains(&f.source.card.definition.as_str()) { return Ok(()); }
@@ -295,6 +300,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
         self.validate_jz56_state()?;
+        self.validate_lc16_state()?;
         self.validate_vampire_state()?;
         self.validate_pack_a_state()?;
         self.validate_mystic_state()?;
@@ -360,7 +366,7 @@ impl Game {
                 { return Err("朽灭者目标选择须保留原操控者和原选项".into()); }
                 remember(&d.source, &d.ability.ops)?;
             }
-        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
+        } else if matches!(&p.resolution, ChoiceResolution::Frame { frame, .. } if frame_related(frame) && !crate::batch4_vampires::related_frame(frame) && !crate::pack_a_contest::CARDS.contains(&frame.source.card.definition.as_str()) && frame.source.death_echo.is_none() && !matches!(frame.source.card.definition.as_str(),"LC16"|"XQ21"|"JZ51"|"JZ39"|"WM060"|"BQ041"|"WM058") && !(frame.source.card.definition == "XG21" && frame.ability_key == crate::batch4_phantom::KEY) && !(frame.source.card.definition == "JZ56" && frame.ability_key == crate::batch4_night::KEY) && !self.validated_cross_card_frame(frame)?) {
             return Err("第四批当前有限程序不含结算中选择".into());
         } }
         Ok(())

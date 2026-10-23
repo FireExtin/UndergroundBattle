@@ -292,6 +292,7 @@ pub enum Op {
     MysticDestroyedInfluence,
     XQ21CopyMarker,
     XQ20MoveMarkers,
+    LC16PrepareSearch { event_id: Option<String> },
     JZ51TopEightCorpses,
     JZ51GraveEntry,
     XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },
@@ -628,6 +629,8 @@ pub struct Traits {
     pub barrier: bool,
     pub guard: u32,
     pub kill: u32,
+    #[serde(default, skip_serializing_if = "crate::model::is_zero")]
+    pub wound: u32,
     pub retreat: bool,
     pub unlimited_copies: bool,
     #[serde(default)]

@@ -742,6 +742,7 @@ pub enum FrameChoice {
     BQ104EmployeeSearch,
     XQ48PasserSearch,
     JZ50DeathSearch,
+    LC16Search,
     XG21RenownSearch,
     HandSeal { seat: usize, host_id: String },
     JC032TopSix { inspected_ids: Vec<String> },

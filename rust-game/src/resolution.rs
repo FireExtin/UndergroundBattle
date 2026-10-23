@@ -894,7 +894,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1655,6 +1655,7 @@ impl Game {
                 Op::MysticDestroyedInfluence => self.pack_a_destroyed_influence(&frame),
                 Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
                 Op::XQ20MoveMarkers => self.xq20_resolve(&frame)?,
+                Op::LC16PrepareSearch { .. } => self.jc035_resolve(&frame)?,
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
@@ -2599,6 +2600,7 @@ impl Game {
                 if chooser != frame.actor { return Err("牌库封印检索选择者无效".into()); }
                 self.deck_seal_search_complete(&frame, &selected, matches!(choice, FrameChoice::XQ44DreamSealSearch))?;
             }
+            FrameChoice::LC16Search => return self.lc16_search_complete(&frame, chooser, &a, &selected),
             FrameChoice::JZ50DeathSearch => {
                 if chooser != frame.actor {
                     return Err("墓穴食尸鬼检索的选择者无效".into());
