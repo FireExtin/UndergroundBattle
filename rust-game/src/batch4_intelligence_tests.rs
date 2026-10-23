@@ -9,7 +9,7 @@ fn center(g: &mut Game, seat: usize) -> String {
         && a.action.card_id.as_deref() == Some(&hand)
         && a.action.target_id.as_deref() == Some(&format!("society:p{seat}"))).expect("legal society attachment").action;
     let before = g.resources(seat);
-    act(g, seat, a); top(g);
+    act(g, seat, a); crate::jc029_tests::pass_top(g);
     assert_eq!(g.resources(seat), before - 1);
     g.attachments.iter().find(|a| a.card.definition == "WM044" && a.card.controller == seat).unwrap().card.id.clone()
 }
@@ -119,7 +119,7 @@ fn wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission()
     assert_eq!(d.abilities[0].key,"attach");
     assert_eq!(d.abilities[1].event,Some(Event::MysticContestWon));
     assert_eq!(d.abilities[2].event,Some(Event::Enter));
-    assert!(!catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));
+    assert!(catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));
     let draft = crate::deck::DeckDraft { id:"wm044-wip".into(),name:"not admitted".into(),description:String::new(),society_id:None,
         cards:vec![catalog::DeckEntry{card_id:"JC125".into(),count:49},catalog::DeckEntry{card_id:"WM044".into(),count:1}],
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-23".into() };
@@ -304,7 +304,7 @@ fn wm044_trigger_sentinel_dependency_is_exact_and_not_substituted_by_gray_societ
     let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSJC05",0));
     assert!(!g.wm044_has_sentinel(0));let target=hidden(&mut g,"JC125",2);
     center(&mut g,0);assert_eq!(g.board(&target).unwrap().1.lock_markers,0);assert!(g.pending.is_none());
-    assert!(!catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));restore(&mut g);
+    assert!(catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));restore(&mut g);
 }
 #[test]
 fn wm044_trigger_two_centers_each_offer_once_for_same_actual_win() {
@@ -327,5 +327,24 @@ fn wm044_trigger_two_centers_each_offer_once_for_same_actual_win() {
             choose(&mut g,vec![]);
         }
         assert!(sources.contains(&first));assert!(!wm044_reach_trigger(&mut g));restore(&mut g);
+    }
+}
+
+#[test]
+fn wm044_entry_lock_from_legally_selected_sentinel() {
+    let mut g=crate::sentinel_tests::sentinel_game();let target=hidden(&mut g,"JC125",1);
+    assert!(g.wm044_has_sentinel(0));center(&mut g,0);
+    assert!(g.pending.as_ref().unwrap().choice.options.iter().any(|o|o.id==target));
+    choose(&mut g,vec![target.clone()]);top(&mut g);
+    assert_eq!(g.board(&target).unwrap().1.lock_markers,1);restore(&mut g);
+}
+
+#[test]
+fn wm044_sentinel_entry_decline_and_response_target_loss() {
+    for decline in [false,true] {
+        let mut g=crate::sentinel_tests::sentinel_game();let target=hidden(&mut g,"JC125",1);center(&mut g,0);
+        if decline { choose(&mut g,vec![]);assert_eq!(g.board(&target).unwrap().1.lock_markers,0); }
+        else { choose(&mut g,vec![target.clone()]);g.remove_dead(&target,RemovalCause::Destroy);top(&mut g);assert!(g.board(&target).is_none()); }
+        restore(&mut g);
     }
 }

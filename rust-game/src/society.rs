@@ -37,6 +37,7 @@ pub struct SocietyZoneView {
 pub enum SocietyDeckConstraint {
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
+    GrayNeutralOrNoMagic,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -83,6 +84,13 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::GrayNeutralOrNoMagic => {
+                if society.card.id != "MSJC14" { return Err("哨兵构筑条件不能移植".into()); }
+                if let Some(c) = entries.iter().filter_map(|e| cards.iter().find(|c| c.id == e.card_id))
+                    .find(|c| !["灰", "中立"].contains(&c.color.as_str()) && c.magic_icon != crate::rules::MagicIcon::None) {
+                    return Err(format!("哨兵构筑不允许具有魔法领域图标的异色牌：{}", c.name));
+                }
+            }
             SocietyDeckConstraint::GreenNeutralOrPrintedHumanCombat => {
                 if society.card.id != "MSJC11" {
                     return Err("此有限混搭构筑条件仅开放给S.P.T.执行部".into());
@@ -427,6 +435,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
             red_gray_society("MSJC04", "鸣钟教派", "末日钟的侍奉者", "红", "秘密教派"),
             red_gray_society("MSJC05", "国家机构", "政府权力", "灰", "机构"),
         ]);
+        societies.push(crate::sentinel::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -498,7 +507,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC14"]
             );
         }
         assert_eq!(

@@ -1,5 +1,4 @@
-//! WM044 native candidate. MSJC14 itself remains outside the runtime pool;
-//! its entry-lock positive integration is a separate, explicit dependency.
+//! WM044 native candidate, including entry-lock through the full MSJC14 society.
 use crate::{engine::RuleResult, model::*, rules::*, mystic_contest::ContestOutcome};
 use serde::Serialize;
 use std::collections::BTreeSet;

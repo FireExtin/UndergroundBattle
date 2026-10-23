@@ -142,6 +142,7 @@ pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
+    SentinelLockedAnchor,
     XQ18CharacterOrAttachment,
     XQ23ActorAsset,
     JZ45LockedLocalTarget,
@@ -478,6 +479,8 @@ pub enum Op {
     },
     // Exact printed gray lock pair, with no generic marker/binding language.
     JC069LockTarget,
+    SentinelLock,
+    SentinelMove,
     JC069ChaseLockedTarget,
     JZ43LockOrDamageLocalTarget,
     PreventTargetDamageUntilTurnEnd {
@@ -719,6 +722,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if card_id == "MSJC14" || crate::sentinel::related(ability) { return crate::sentinel::validate_ability(card_id, ability); }
     if crate::batch4_intelligence::related(ability) { return crate::batch4_intelligence::validate_ability(card_id, ability); }
     if crate::batch4_vampire_contest::key(&ability.key) || crate::batch4_vampire_contest::owns(&ability.ops)
         || ability.modes.iter().any(|m| crate::batch4_vampire_contest::owns(&m.ops))
@@ -1540,6 +1544,9 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("{card_id}: time influence cannot be transplanted"));
         }
 
+        if card_id == "MSJC14" && serde_json::to_value(definition).unwrap() != serde_json::to_value(crate::sentinel::definition()).unwrap() {
+            return Err("MSJC14必须保留完整印刷定义".into());
+        }
         if let Some(canonical) = gray_lock_definition(card_id) {
             if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
                 return Err(format!("cardId={card_id}: only the complete printed gray lock definition is admitted"));
@@ -2155,6 +2162,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
+        m.insert("MSJC14".into(), crate::sentinel::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::pack_a_contest::CARDS { m.insert((*id).into(), crate::pack_a_contest::definition(id).unwrap()); }

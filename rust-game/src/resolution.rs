@@ -133,6 +133,7 @@ impl Game {
         region: Option<usize>,
         kind: &str,
     ) -> Vec<(Action, String)> {
+        if c.definition == "MSJC14" && kind == "activate" { return self.sentinel_candidates(actor, c); }
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
         if c.definition == "JC062" && kind == "play" { return self.jc062_action_candidates(actor, c); }
@@ -779,6 +780,7 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && c.lock_markers > 0 && self.board(&c.id).is_some(),
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && c.lock_markers > 0
                                 }
@@ -914,6 +916,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition == "MSJC14" { return self.sentinel_bind(actor, source, spec, a); }
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
         if source.card.definition == "JC062" { return self.jc062_bind(actor, source, spec, a); }
         spec.targets
@@ -1909,6 +1912,13 @@ impl Game {
                         target.id.clone(),
                         amount,
                     )]))?;
+                }
+                Op::SentinelLock => {
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
+                }
+                Op::SentinelMove => {
+                    let mover = &frame.targets[0].id;
+                    if let Some(to) = self.board(&frame.targets[1].id).map(|(r, _)| r) { self.move_on_board_instance(mover, to); }
                 }
                 Op::JC069LockTarget => {
                     let target = frame.targets.first().ok_or("缺少锁定目标")?;
