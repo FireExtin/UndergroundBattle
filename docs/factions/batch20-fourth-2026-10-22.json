@@ -7,15 +7,15 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 34,
+    "nativePilots": 35,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 16,
-    "nativeWipCards": 2,
+    "remainingNativePrograms": 15,
+    "nativeWipCards": 1,
     "nativePartialCards": 0,
     "wasmDirectedCards": 1,
     "workerDirectedCards": 1
@@ -376,7 +376,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
       "sourceImageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 14,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -385,7 +385,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "14 author normal Native tests plus43 applicable integrated regressions passed on reviewedXQ20 base. LC16 independent closure pending; no ABI97 WASM/Worker/Web/browser or public acceptance"
+      "readinessScope": "Independent normal Native closure confirmed at a0b7e49d/b98cadd2; independent22 Native and3 source passed. ABI97 WASM/Worker/Web/browser not completed; public admission closed",
+      "fullNativeCardComplete": true
     },
     {
       "id": "XQ35",
@@ -1662,8 +1663,8 @@
     "wasmWorkerBrowser": false
   },
   "projectProgress": {
-    "nativeClosedAcrossBranches": 34,
-    "localIntegratedClosedCards": 34,
+    "nativeClosedAcrossBranches": 35,
+    "localIntegratedClosedCards": 35,
     "separateClosedCard": null,
     "separateClosedSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
     "currentIncrement": "LC16",
@@ -1673,7 +1674,7 @@
     "includedReviewedXQ20": true
   },
   "lc16Candidate": {
-    "status": "author-native-passed-pending-independent-review",
+    "status": "independently-closed-native",
     "reviewedBase": "d39e8991dc0547b2554302a31c63809fa2a885b3",
     "productSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
     "prototype": "80551ebe0b37c6455de5813f0ff949d43e4acab0",
@@ -1681,12 +1682,24 @@
     "applicableAdjacentPassed": 43,
     "integratedNativeTotalPassed": 57,
     "sourceChecksPassed": 3,
-    "formalNativeClosed": 34,
+    "formalNativeClosed": 35,
     "full50": false,
     "extraCorruptSaveExpansion": false,
     "wasmBuilt": false,
     "workerRun": false,
     "browserRun": false,
-    "blueGrayIndependentOwner": "WM044 handled by01a1693c-05ce-726e-95af-31ecb62d60f2; not included"
+    "blueGrayIndependentOwner": "WM044 handled by01a1693c-05ce-726e-95af-31ecb62d60f2; not included",
+    "independentNativePassed": 22,
+    "independentSourceChecksPassed": 3
+  },
+  "lc16ClosureReview": {
+    "status": "closed",
+    "productSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "evidenceSource": "b98cadd2589717e2eaca635322316926b4f06fcb",
+    "report": "docs/evidence/lc16-native-closure-20261023/review.txt",
+    "reportSha256": "4f4648b100f72611ae69e52f0ceee77ec64bc56cc7d2453edbfbb8df1f01e0db",
+    "independentNativeTests": 22,
+    "independentSourceChecks": 3,
+    "wasmWorkerBrowser": false
   }
 }

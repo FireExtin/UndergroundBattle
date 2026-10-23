@@ -112,3 +112,144 @@ fn batch4_jiangyue_receives_and_resolves_normal_granted_renown_without_losing_it
     let p=g.pending.as_ref().unwrap();assert!(matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.ability.key=="renown"));
     choose(&mut g,vec!["accept".into()]);pass_top(&mut g);assert_eq!(g.regions[0].influence[0],2);assert_eq!(g.effective_wound(g.board(&source).unwrap().1),2);
 }
+
+// Independent normal-operation probes on fixed a0b7e49d. The starting board
+// layouts are explicit; no corrupted persisted-state input is introduced.
+mod independent_normal_review {
+    use super::*;
+    fn record(label: &str, g: &Game) {
+        if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            std::fs::write(format!("{dir}/{label}.json"), serde_json::to_vec_pretty(
+                &serde_json::json!({"game":g,"views":(0..4).map(|s|g.view(s)).collect::<Vec<_>>()})
+            ).unwrap()).unwrap();
+        }
+    }
+    fn advance_until(g: &mut Game, label: &str, done: impl Fn(&Game) -> bool) {
+        for _ in 0..256 {
+            if done(g) { record(label, g); return; }
+            assert_eq!(g.status, "playing", "{label}");
+            if g.pending.is_some() { resolve_choice(g); } else { pass(g); }
+        }
+        panic!("normal continuation did not reach {label}");
+    }
+    #[test]
+    fn independent_lc16_search_supplies_later_forced_upkeep_in_the_same_prepare_stack() {
+        let mut g = game();
+        let jiang = field(&mut g, "LC16", 0);
+        let ghoul = field(&mut g, "BQ079", 0);
+        let deck = deck_cards(&mut g, 0, &["JC102", "JC125", "XQ21"]);
+        begin(&mut g);
+        let p = g.pending.as_ref().unwrap();
+        assert_eq!(p.choice.min, Some(1));
+        let invalid_decline = Action { choice_id:Some(p.choice.id.clone()),selected:Some(vec![]),..Action::new("choose") };
+        reject(&mut g, 0, invalid_decline);
+        choose(&mut g, vec![ghoul.clone()]);
+        choose(&mut g, vec![jiang.clone()]);
+        choose(&mut g, vec!["region:1".into()]);
+        assert_eq!(g.stack.len(), 2);
+        assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().source.card.id, jiang);
+        search(&mut g);
+        assert!(g.players[0].graveyard.is_empty());
+        choose(&mut g, vec![deck[0].clone()]);
+        assert_eq!(g.regions[1].influence[0], 1);
+        let fresh = g.players[0].graveyard.iter().find(|c|c.definition=="JC102").unwrap().id.clone();
+        record("search-before-forced-upkeep", &g);
+        pass_top(&mut g);
+        assert!(matches!(&g.pending.as_ref().unwrap().resolution,
+            ChoiceResolution::Frame { choice:FrameChoice::BQ079Upkeep,.. }));
+        choose(&mut g, vec![fresh]);
+        assert!(g.in_play(&ghoul).is_some());
+        assert!(g.players[0].graveyard.is_empty());
+        assert_eq!(g.players[0].deck.last().unwrap().definition, "JC102");
+        assert_eq!(g.regions[1].influence[0], 1);
+        assert_eq!(g.jc035_preparation.as_ref().unwrap().entries.iter().filter(|e|
+            matches!(e.decision,Some(crate::jc035::PreparationDecision::Resolved {..}))).count(), 2);
+        record("search-and-forced-upkeep-complete", &g);
+    }
+    #[test]
+    fn independent_lc16_forced_prepare_damage_kills_source_but_its_queued_search_resolves() {
+        let mut g = game();
+        let jiang = field(&mut g, "LC16", 0);
+        fund(&mut g, 0, "JC048", 2);
+        let hand_clock = held(&mut g, "JC048", 0);
+        let a = g.legal_actions(0).into_iter().find(|v|
+            v.action.card_id.as_deref()==Some(hand_clock.as_str()) && v.action.region==Some(0)
+            && v.action.kind=="play").unwrap().action;
+        act(&mut g, 0, a); pass_top(&mut g);
+        let clock = g.attachments.iter().find(|a|a.card.definition=="JC048").unwrap().card.id.clone();
+        // One marker is an explicit reachable prior-turn layout.
+        g.board_mut(&clock).unwrap().time_markers = 1;
+        let deck = deck_cards(&mut g, 0, &["JC102", "JC125", "XQ21"]);
+        begin(&mut g);
+        choose(&mut g, vec![jiang.clone()]);
+        choose(&mut g, vec!["region:1".into()]);
+        assert_eq!(g.pending.as_ref().unwrap().choice.min, Some(1));
+        choose(&mut g, vec![clock.clone()]);
+        assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().source.card.id, clock);
+        pass_top(&mut g);
+        assert!(g.in_play(&jiang).is_none());
+        assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="LC16").count(), 1);
+        record("forced-prepare-source-dead", &g);
+        search(&mut g);
+        choose(&mut g, vec![deck[0].clone()]);
+        assert_eq!(g.regions[1].influence[0], 1);
+        assert_eq!(g.players[0].graveyard.iter().filter(|c|c.definition=="JC102").count(), 1);
+        record("queued-search-after-real-source-death", &g);
+    }
+    #[test]
+    fn independent_lc16_reveal_during_prepare_waits_for_next_actual_prepare_event() {
+        let mut g = game(); funds(&mut g);
+        let jiang = field(&mut g, "LC16", 0);
+        g.board_mut(&jiang).unwrap().face_down = true;
+        let annie = field(&mut g, "JC055", 0);
+        begin(&mut g);
+        let turn = g.turn;
+        assert_eq!(g.jc035_preparation.as_ref().unwrap().entries.len(), 1);
+        choose(&mut g, vec![annie.clone()]);
+        choose(&mut g, vec![annie.clone()]);
+        for _ in 0..8 { if g.can_fast(0) { break; } pass(&mut g); }
+        assert!(g.can_fast(0));
+        act(&mut g, 0, Action {card_id:Some(jiang),..Action::new("reveal")});
+        pass_top(&mut g);
+        assert_eq!(g.resources(0), 0);
+        assert!(g.jc035_preparation.as_ref().unwrap().entries.iter().all(|e|e.source.card.definition!="LC16"));
+        pass_top(&mut g);
+        assert!(g.pending.is_none());
+        record("late-reveal-no-retroactive-prepare", &g);
+        advance_until(&mut g, "late-reveal-next-natural-prepare", |g|
+            g.turn==turn+1 && g.window==Some(Window::Prepare) && g.pending.is_some());
+        assert!(g.jc035_preparation.as_ref().unwrap().entries.iter().any(|e|e.source.card.definition=="LC16"));
+        assert_eq!(g.pending.as_ref().unwrap().choice.kind, "jc035-preparation-order");
+        assert_eq!(g.pending.as_ref().unwrap().choice.min, Some(0));
+    }
+    #[test]
+    fn independent_lc16_actual_combat_wounds_survive_cleanup_then_move_by_paid_xq20() {
+        let mut g = game();
+        let jiang = field(&mut g, "LC16", 0);
+        let carrier = field(&mut g, "LC01", 2);
+        let fragile = field(&mut g, "JC125", 2);
+        g.board_mut(&fragile).unwrap().exhausted = true;
+        fund(&mut g, 0, "XQ20", 2);
+        let spell = held(&mut g, "XQ20", 0);
+        battle(&mut g);
+        assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(3));
+        allocate(&mut g, &carrier, 3);
+        assert_eq!((g.board(&carrier).unwrap().1.damage,g.board(&carrier).unwrap().1.wounds),(0,3));
+        let turn = g.turn;
+        record("combat-created-three-wounds", &g);
+        advance_until(&mut g, "next-natural-action-before-xq20", |g|
+            g.turn==turn+1 && g.window==Some(Window::Action(0)) && g.pending.is_none() && g.stack.is_empty());
+        assert_eq!(g.board(&carrier).unwrap().1.wounds, 3);
+        let a = Action {card_id:Some(spell),ability_id:Some(crate::batch4_soul_channel::KEY.into()),
+            selected:Some(vec![carrier.clone(),fragile.clone()]),..Action::new("play")};
+        assert!(g.legal_actions(0).iter().any(|v|v.action==a));
+        act(&mut g, 0, a); pass_top(&mut g);
+        assert_eq!((g.board(&carrier).unwrap().1.damage,g.board(&carrier).unwrap().1.wounds),(0,0));
+        assert!(g.in_play(&fragile).is_none());
+        assert_eq!(g.players[2].graveyard.iter().filter(|c|c.definition=="JC125").count(), 1);
+        assert_eq!(g.effective_wound(g.board(&jiang).unwrap().1), 2);
+        assert_eq!(g.resources(0), 0);
+        record("combat-wounds-moved-by-paid-xq20", &g);
+    }
+}

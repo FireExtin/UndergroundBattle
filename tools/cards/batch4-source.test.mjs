@@ -48,7 +48,10 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(drafts.length, plan.scope.nativeWipCards ?? 0);
   const reviewed = ['WM021', 'WM022', 'WM032', 'WM061', 'BQ082', 'BQ027', 'BQ031', 'BQ032', 'BQ038'];
   assert.equal(plan.packAValidation.completionCountAdded, 5);
-  assert.equal(plan.scope.nativePilots, 34);
+  assert.equal(plan.scope.nativePilots, 35);
+  assert.equal(plan.lc16ClosureReview.status, 'closed');
+  assert.equal(hash(read(plan.lc16ClosureReview.report)), plan.lc16ClosureReview.reportSha256);
+  assert(pilots.some(c => c.id === 'LC16' && c.fullNativeCardComplete));
   assert.equal(plan.xq20ClosureReview.status, 'closed');
   assert.equal(hash(read(plan.xq20ClosureReview.report)), plan.xq20ClosureReview.reportSha256);
   assert(pilots.some(c => c.id === 'XQ20' && c.fullNativeCardComplete));
