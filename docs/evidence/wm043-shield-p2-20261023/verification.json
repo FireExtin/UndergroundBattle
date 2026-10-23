@@ -1,0 +1,222 @@
+{
+  "createdUtc": "2026-10-23T17:43:50.444449+00:00",
+  "card": "WM043",
+  "issue": "WM043-SHOWN-SHIELD",
+  "oldCandidate": "96a5de6030cd3b207b96994638300956f77030a0",
+  "fixSourceAndTests": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+  "runs": [
+    {
+      "run": "adjacent-gray-04",
+      "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost"
+      ],
+      "failed": [],
+      "exitCode": 0
+    },
+    {
+      "run": "adjacent-sentinel-05",
+      "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host"
+      ],
+      "failed": [],
+      "exitCode": 0
+    },
+    {
+      "run": "adjacent-shields-03",
+      "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets"
+      ],
+      "failed": [],
+      "exitCode": 0
+    },
+    {
+      "run": "adjacent-wm044-06",
+      "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion"
+      ],
+      "failed": [],
+      "exitCode": 0
+    },
+    {
+      "run": "after-fix-02",
+      "sourceHead": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+        "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+        "wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume",
+        "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield",
+        "wm043_tests::wm043_fast_response_resolves_before_lower_spell",
+        "wm043_tests::wm043_inherited_lock_is_legal_and_response_removal_cancels_destroy",
+        "wm043_tests::wm043_lock_any_controller_character_or_hidden_and_public_marker",
+        "wm043_tests::wm043_lock_does_not_inherit_from_host_or_sibling",
+        "wm043_tests::wm043_lock_stacks_and_destroy_works_without_sentinel",
+        "wm043_tests::wm043_modes_multiple_targets_and_reject_unlocked_or_extra_input_before_payment",
+        "wm043_tests::wm043_post_decline_no_targets_and_duplicate_or_wrong_player_inputs",
+        "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+        "wm043_tests::wm043_requires_loyalty_and_cost_before_play",
+        "wm043_tests::wm043_response_reveal_loses_original_target_and_does_not_refund",
+        "wm043_tests::wm043_room_duplicate_paid_command_is_not_reapplied",
+        "wm043_tests::wm043_shown_bonus_is_three_without_sentinel_and_no_post_choice",
+        "wm043_tests::wm043_shown_invalid_or_repeated_choice_cannot_consume_a_shield",
+        "wm043_tests::wm043_shown_shield_depletion_does_not_cancel_the_next_source",
+        "wm043_tests::wm043_source_fields_registry_and_wip_admission"
+      ],
+      "failed": [],
+      "exitCode": 0
+    },
+    {
+      "run": "before-fix-01",
+      "sourceHead": "96a5de6030cd3b207b96994638300956f77030a0",
+      "sourceFileCount": 248,
+      "allInputHashesMatch": true,
+      "logHashMatches": true,
+      "passed": [
+        "wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume"
+      ],
+      "failed": [
+        "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+        "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+        "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield"
+      ],
+      "exitCode": 101
+    }
+  ],
+  "uniqueNativePassed": 23,
+  "uniquePassedNames": [
+    "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion",
+    "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+    "next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets",
+    "sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host",
+    "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+    "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+    "wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume",
+    "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield",
+    "wm043_tests::wm043_fast_response_resolves_before_lower_spell",
+    "wm043_tests::wm043_inherited_lock_is_legal_and_response_removal_cancels_destroy",
+    "wm043_tests::wm043_lock_any_controller_character_or_hidden_and_public_marker",
+    "wm043_tests::wm043_lock_does_not_inherit_from_host_or_sibling",
+    "wm043_tests::wm043_lock_stacks_and_destroy_works_without_sentinel",
+    "wm043_tests::wm043_modes_multiple_targets_and_reject_unlocked_or_extra_input_before_payment",
+    "wm043_tests::wm043_post_decline_no_targets_and_duplicate_or_wrong_player_inputs",
+    "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+    "wm043_tests::wm043_requires_loyalty_and_cost_before_play",
+    "wm043_tests::wm043_response_reveal_loses_original_target_and_does_not_refund",
+    "wm043_tests::wm043_room_duplicate_paid_command_is_not_reapplied",
+    "wm043_tests::wm043_shown_bonus_is_three_without_sentinel_and_no_post_choice",
+    "wm043_tests::wm043_shown_invalid_or_repeated_choice_cannot_consume_a_shield",
+    "wm043_tests::wm043_shown_shield_depletion_does_not_cancel_the_next_source",
+    "wm043_tests::wm043_source_fields_registry_and_wip_admission"
+  ],
+  "currentFailures": 0,
+  "counterexamples": [
+    {
+      "scenario": "enemy-shield-game",
+      "before": {
+        "shield": 1,
+        "lockMarkers": 1
+      },
+      "expected": {
+        "shield": 0,
+        "lockMarkers": 0
+      },
+      "after": {
+        "shield": 0,
+        "lockMarkers": 0
+      }
+    },
+    {
+      "scenario": "enemy-shield-room",
+      "before": {
+        "shield": 2,
+        "lockMarkers": 1
+      },
+      "expected": {
+        "shield": 1,
+        "lockMarkers": 0
+      },
+      "after": {
+        "shield": 1,
+        "lockMarkers": 0
+      }
+    },
+    {
+      "scenario": "enemy-shield-two-sources",
+      "before": {
+        "shield": 2,
+        "lockMarkers": 2
+      },
+      "expected": {
+        "shield": 0,
+        "lockMarkers": 0
+      },
+      "after": {
+        "shield": 0,
+        "lockMarkers": 0
+      }
+    }
+  ],
+  "sourceChecks": {
+    "passed": 4,
+    "log": "runs/source-07.log.gz",
+    "uncompressedLogSha256": "83e725aebd7dbcff6949376a2fd507548403a2ae3f5e1bd8e9e456ad2c8b2937",
+    "command": "node --test --test-isolation=none tools/cards/wm043-source.test.mjs",
+    "testFileSha256": "aebacf86b88be900455b52e61b6cd4342a8e6e6f98057d60b7f2f8b70895f248",
+    "note": "Captured exit 0; post-run archival receipt, not a newly executed test."
+  },
+  "formalShieldRule": {
+    "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "printedPage": 18,
+    "pdfPage": 19
+  },
+  "originalReview": {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm043-native-review",
+    "archiveSha256": "8f2197bcf36ed9c4caae381de11498090fcd8f4e025e15a996d7a8631e2f335d",
+    "testsMatchPreFixRun": true,
+    "status": "Original P2 report preserved; fix awaits independent re-review"
+  },
+  "formalNativeCountUnchanged": "36/50",
+  "scope": "3 runtime lines in wm043.rs; reviewer 4 tests plus 2 author regressions in wm043_tests.rs",
+  "notRun": [
+    "independent re-review",
+    "WASM execution",
+    "Worker",
+    "Web build",
+    "browser",
+    "HTTP/SQLite integration",
+    "CI"
+  ],
+  "remote": {
+    "pushed": false,
+    "githubVerified": false
+  },
+  "resources": {
+    "cpu": 30,
+    "jobs": 1,
+    "testThreads": 1,
+    "nice": 19,
+    "ioClass": "idle",
+    "virtualMemoryGiB": 8,
+    "offline": true,
+    "ownNativeRunsComplete": true
+  }
+}

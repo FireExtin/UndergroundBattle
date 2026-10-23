@@ -1,0 +1,126 @@
+diff --git a/rust-game/src/wm043_tests.rs b/rust-game/src/wm043_tests.rs
+index fd9bf590..1dd9f8ad 100644
+--- a/rust-game/src/wm043_tests.rs
++++ b/rust-game/src/wm043_tests.rs
+@@ -148,3 +148,121 @@ fn wm043_room_duplicate_paid_command_is_not_reapplied() {
+     let duplicate=room.transition(0,Some(c),0).unwrap();assert_eq!(duplicate.outcome,"rejected");assert!(!duplicate.changed&&duplicate.journal.is_empty());
+     assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&duplicate.state).unwrap()).unwrap(),saved);
+ }
++
++// Independent review: explicit legal layouts; shields come from an actual paid
++// BQ059 deployment, never from manually assigning the shield field. These are
++// narrow native checks, not a complete game or a browser acceptance test.
++fn independent_wm043_paid_shields(g: &mut Game, owner: usize) -> String {
++    g.begin_window(Window::Action(g.team(owner)));
++    fund(g, owner, "CQ17", 7);
++    let id = held(g, "BQ059", owner);
++    let region = (0..g.regions.len()).find(|r| g.accessible(owner, *r)).unwrap();
++    act(g, owner, Action { card_id: Some(id), region: Some(region), ..Action::new("deploy") });
++    drain(g);
++    let id = g.regions[region].cards.iter()
++        .find(|c| c.definition == "BQ059" && c.controller == owner)
++        .unwrap().id.clone();
++    assert_eq!(g.board(&id).unwrap().1.shield, 2);
++    assert_eq!(g.board(&id).unwrap().1.lock_markers, 0);
++    g.begin_window(Window::Action(0));
++    id
++}
++
++fn independent_wm043_record(name: &str, value: serde_json::Value) {
++    if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
++        std::fs::create_dir_all(&dir).unwrap();
++        std::fs::write(std::path::Path::new(&dir).join(format!("{name}.json")),
++            serde_json::to_vec_pretty(&value).unwrap()).unwrap();
++    }
++}
++
++#[test]
++fn independent_wm043_shown_enemy_shield_matches_paid_lock_guard() {
++    let shown = ["WM043", "JC125", "JC125", "JC125"];
++    let mut g = shown_layout(true, shown);
++    let target = independent_wm043_paid_shields(&mut g, 2);
++    let paid = spell(&mut g, 0);
++    act(&mut g, 0, action(&paid, "lock", &target));
++    pass_top(&mut g);
++    assert_eq!((g.board(&target).unwrap().1.shield,
++                g.board(&target).unwrap().1.lock_markers), (1, 0));
++    g.begin_window(Window::Action(0));
++    show(&mut g, shown);
++    let before = serde_json::to_value(&g).unwrap();
++    choose(&mut g, vec![target.clone()]);
++    independent_wm043_record("enemy-shield-game", serde_json::json!({
++        "before": before, "target": target, "after": &g,
++        "expectedShield": 0, "expectedLockMarkers": 0
++    }));
++    assert!(g.mystic_contest.is_none() && g.pending.is_none());
++    assert_eq!((g.board(&target).unwrap().1.shield,
++                g.board(&target).unwrap().1.lock_markers), (0, 0),
++               "printed p18 shield must terminate the targeted enemy shown-card effect");
++}
++
++#[test]
++fn independent_wm043_shown_friendly_shield_and_decline_do_not_consume() {
++    let shown = ["WM043", "JC125", "JC125", "JC125"];
++    for (owner, take) in [(0, true), (1, true), (2, false)] {
++        let mut g = shown_layout(true, shown);
++        let target = independent_wm043_paid_shields(&mut g, owner);
++        show(&mut g, shown);
++        assert!(g.pending.as_ref().unwrap().choice.options.iter().any(|o| o.id == target));
++        assert_eq!(g.board(&target).unwrap().1.shield, 2, "listing targets is read-only");
++        choose(&mut g, if take { vec![target.clone()] } else { vec![] });
++        assert!(g.mystic_contest.is_none() && g.pending.is_none());
++        assert_eq!((g.board(&target).unwrap().1.shield,
++                    g.board(&target).unwrap().1.lock_markers), (2, if take { 1 } else { 0 }));
++    }
++}
++
++#[test]
++fn independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate() {
++    use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
++    let shown = ["WM043", "JC125", "JC125", "JC125"];
++    let mut g = shown_layout(true, shown);
++    let target = independent_wm043_paid_shields(&mut g, 2);
++    show(&mut g, shown);
++    let room = RoomEnvelope::from_game(g);
++    let cmd = RoomCommand {
++        command_id: "independent-wm043-shown-shield".into(), expected_version: room.revision,
++        action: SessionAction::Game { action: Action {
++            choice_id: Some(room.game.pending.as_ref().unwrap().choice.id.clone()),
++            selected: Some(vec![target.clone()]), ..Action::new("choose")
++        } },
++    };
++    let first = room.transition(0, Some(cmd.clone()), 0).unwrap();
++    assert_eq!(first.outcome, "accepted", "shield ends only the targeted effect, not the command");
++    let after = RoomEnvelope::from_persisted(&first.state).unwrap();
++    let duplicate = after.transition(0, Some(cmd.clone()), 0).unwrap();
++    assert_eq!(duplicate.outcome, "rejected");
++    assert!(!duplicate.changed && duplicate.journal.is_empty());
++    assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&duplicate.state).unwrap()).unwrap(),
++               serde_json::to_value(&after).unwrap());
++    independent_wm043_record("enemy-shield-room", serde_json::json!({
++        "before": &room, "command": &cmd, "first": &first, "duplicate": &duplicate,
++        "expectedShield": 1, "expectedLockMarkers": 0
++    }));
++    assert!(after.game.mystic_contest.is_none() && after.game.pending.is_none());
++    assert_eq!((after.game.board(&target).unwrap().1.shield,
++                after.game.board(&target).unwrap().1.lock_markers), (1, 0));
++}
++
++#[test]
++fn independent_wm043_two_shown_sources_each_consume_one_enemy_shield() {
++    let shown = ["WM043", "WM043", "JC125", "JC125"];
++    let mut g = shown_layout(true, shown);
++    let target = independent_wm043_paid_shields(&mut g, 2);
++    show(&mut g, shown);
++    for actor in [0, 1] {
++        assert_eq!(g.pending.as_ref().unwrap().seat, actor);
++        assert_eq!(g.pending.as_ref().unwrap().choice.kind, w::CHOICE);
++        choose(&mut g, vec![target.clone()]);
++    }
++    independent_wm043_record("enemy-shield-two-sources", serde_json::json!({
++        "after": &g, "target": target, "expectedShield": 0, "expectedLockMarkers": 0
++    }));
++    assert!(g.mystic_contest.is_none() && g.pending.is_none());
++    assert_eq!((g.board(&target).unwrap().1.shield,
++                g.board(&target).unwrap().1.lock_markers), (0, 0));
++}
