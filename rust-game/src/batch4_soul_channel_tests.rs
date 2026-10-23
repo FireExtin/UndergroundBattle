@@ -196,3 +196,88 @@ fn batch4_soul_channel_room_legal_commands_preserve_pair_and_commit_only_once() 
     assert!(r.game.stack.is_empty());assert_eq!(r.game.resources(0),4);assert_eq!(r.game.board(&from).unwrap().1.time_markers,0);assert_eq!(r.game.board(&to).unwrap().1.time_markers,2);assert_eq!(r.game.seed,u64::MAX-95);
     for seat in 0..4 {let v=r.view(seat,2000);assert_eq!(v.game.regions[0].characters.iter().find(|c|c.instance_id==to).unwrap().time_markers,Some(2));}
 }
+// Independent normal-play follow-up. Layouts are disclosed; no corrupted
+// persisted-state input or recovery-boundary matrix is introduced here.
+mod independent_normal_review {
+    use super::*;
+    fn record(name: &str, g: &Game) {
+        if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            std::fs::write(format!("{dir}/{name}.json"), serde_json::to_vec_pretty(&serde_json::json!({
+                "game":g, "views":(0..4).map(|s|g.view(s)).collect::<Vec<_>>()
+            })).unwrap()).unwrap();
+        }
+    }
+    #[test]
+    fn independent_xq20_actual_host_child_roundtrip_preserves_all_physical_markers_once() {
+        let mut g = game(); fund(&mut g, 0, "XQ20", 4);
+        let host = field(&mut g, "JC029", 0);
+        let c = g.make_card("BQ026", 0); let child = c.id.clone();
+        assert!(g.valid_binding(0, &g.source_snapshot(&c, None),
+            &definition("BQ026").attachment.as_ref().unwrap().host, &host));
+        g.attachments.push(Attachment { card: c, host_id: host.clone() });
+        // BQ026 needs a Vampire host; another Bat is not a legal nested host.
+        // JZ41 is a non-equipment attachment allowed on this character.
+        let c = g.make_card("JZ41", 0); let nested = c.id.clone();
+        assert!(g.valid_binding(0, &g.source_snapshot(&c, None),
+            &definition("JZ41").attachment.as_ref().unwrap().host, &child));
+        g.attachments.push(Attachment { card: c, host_id: child.clone() });
+        for (id, amount) in [(&host, 1), (&child, 2), (&nested, 3)] {
+            for kind in MarkerKind::ALL { *kind.field(g.board_mut(id).unwrap()) = amount; }
+        }
+        let hosts = g.attachments.iter().map(|a| (a.card.id.clone(), a.host_id.clone())).collect::<Vec<_>>();
+        for (label, from, to) in [("into-child", &host, &child), ("back-to-host", &child, &host)] {
+            let card = held(&mut g, "XQ20", 0);
+            act(&mut g, 0, command(&card, from, to)); resolve_spell(&mut g, &card);
+            for kind in MarkerKind::ALL {
+                for id in [&host, &child, &nested] {
+                    assert_eq!(kind.count(g.in_play(id).unwrap().1), if id == to { 6 } else { 0 });
+                }
+                assert_eq!(g.effective_marker_count(g.in_play(&host).unwrap().1, kind), 6);
+            }
+            assert_eq!(g.attachments.iter().map(|a| (a.card.id.clone(), a.host_id.clone())).collect::<Vec<_>>(), hosts);
+            record(label, &g);
+        }
+        assert_eq!(g.resources(0), 0);
+    }
+    #[test]
+    fn independent_xq20_real_reveal_response_changes_control_and_cancels_whole_move() {
+        let mut g = game(); fund(&mut g, 0, "XQ20", 4); fund(&mut g, 2, "XQ16", 6);
+        let from = field(&mut g, "JC125", 0); let to = field(&mut g, "JC125", 0);
+        g.board_mut(&from).unwrap().time_markers = 2;
+        let vampire = field(&mut g, "JZ27", 2); g.board_mut(&vampire).unwrap().face_down = true;
+        let card = held(&mut g, "XQ20", 0); act(&mut g, 0, command(&card, &from, &to));
+        for _ in 0..4 { if g.can_fast(2) { break; } pass(&mut g); }
+        assert!(g.can_fast(2));
+        act(&mut g, 2, Action { card_id: Some(vampire), ..Action::new("reveal") });
+        crate::jc029_tests::pass_top(&mut g);
+        choose(&mut g, vec![to.clone()]);
+        crate::jc029_tests::pass_top(&mut g);
+        assert_eq!(g.board(&to).unwrap().1.controller, 2);
+        assert_eq!(g.board(&from).unwrap().1.controller, 0);
+        assert!(g.stack.iter().any(|i| i.frame.as_ref().is_some_and(|f| f.source.card.id == card)));
+        record("actual-control-response-before-original-resolution", &g);
+        resolve_spell(&mut g, &card);
+        assert_eq!(g.board(&from).unwrap().1.time_markers, 2);
+        assert_eq!(g.board(&to).unwrap().1.time_markers, 0);
+        assert_eq!(g.resources(0), 2);
+        record("actual-control-response-cancelled", &g);
+    }
+    #[test]
+    fn independent_xq20_sender_dies_after_losing_defense_only_after_destination_receives_batch() {
+        let mut g = game(); fund(&mut g, 0, "XQ20", 2);
+        let from = field(&mut g, "JC125", 0); let to = field(&mut g, "LC01", 0);
+        { let c = g.board_mut(&from).unwrap(); c.permanent_defense_markers = 1; c.damage = 1; c.time_markers = 2; }
+        g.board_mut(&to).unwrap().damage = 1;
+        assert!(g.defense(g.board(&from).unwrap().1, 0) > 1);
+        assert!(g.defense(g.board(&to).unwrap().1, 0) > 1);
+        record("source-defense-before", &g);
+        let card = held(&mut g, "XQ20", 0); act(&mut g, 0, command(&card, &from, &to)); resolve_spell(&mut g, &card);
+        assert!(g.in_play(&from).is_none());
+        assert_eq!(g.players[0].graveyard.iter().filter(|c| c.definition == "JC125").count(), 1);
+        let c = g.board(&to).unwrap().1;
+        assert_eq!((c.permanent_defense_markers, c.time_markers, c.damage), (1, 2, 1));
+        assert_eq!(g.resources(0), 0);
+        record("source-defense-after", &g);
+    }
+}

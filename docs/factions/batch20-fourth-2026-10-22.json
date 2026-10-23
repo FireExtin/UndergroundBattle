@@ -7,15 +7,15 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 33,
+    "nativePilots": 34,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 17,
-    "nativeWipCards": 2,
+    "remainingNativePrograms": 16,
+    "nativeWipCards": 1,
     "nativePartialCards": 0,
     "wasmDirectedCards": 1,
     "workerDirectedCards": 1
@@ -494,7 +494,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
       "sourceImageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 18,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -503,7 +503,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": true,
-      "readinessScope": "18 author Native directed tests passed, including real Room command path; whole-card independent review pending. ABI96 not built/run on WASM/Worker; no public admission"
+      "readinessScope": "Independently closed Native at10e46d71/3eac21c7; independent21 and source3 passed; ABI96 WASM/Worker/Web/browser and public admission not completed",
+      "fullNativeCardComplete": true
     },
     {
       "id": "XQ21",
@@ -1634,9 +1635,9 @@
     "archiveExpansion": "Paused under latest user priority; prior guards and evidence retained, no extra archive gate."
   },
   "xq20Candidate": {
-    "status": "author-native-directed-passed-pending-independent-review",
+    "status": "independently-closed-native",
     "base": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
-    "nativeClosedCountUnchanged": 33,
+    "nativeClosedCountUnchanged": 34,
     "abi95PlatformEvidence": "Frozen in base; ABI96 is not built/tested on WASM or Worker",
     "extraCorruptSaveExpansion": "paused per latest user instruction",
     "directedTests": 18,
@@ -1647,6 +1648,17 @@
     "wasmBuilt": false,
     "workerRun": false,
     "realBrowserRun": false,
-    "publicAdmission": false
+    "publicAdmission": false,
+    "independentTestsPassed": 21
+  },
+  "xq20ClosureReview": {
+    "status": "closed",
+    "productSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+    "evidenceSource": "3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6",
+    "report": "docs/evidence/xq20-native-closure-20261023/review.txt",
+    "reportSha256": "80fb5a157951e5801c7ac6602950cd3c6443de159367bf300f80bcd4fe4818b1",
+    "independentNativeTests": 21,
+    "independentSourceChecks": 3,
+    "wasmWorkerBrowser": false
   }
 }

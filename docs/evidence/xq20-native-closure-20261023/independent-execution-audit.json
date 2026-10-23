@@ -1,0 +1,122 @@
+{
+  "source": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+  "delivery": "3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6",
+  "sourceToDeliveryExecutableChanges": [],
+  "trackedInputsPerRun": 247,
+  "runs": [
+    {
+      "attempt": "normal-directed-01",
+      "returncode": 101,
+      "passed": 20,
+      "failed": 1,
+      "ignored": 0,
+      "productInputMismatches": [],
+      "originalAuthorTestsUnchanged": true,
+      "testInputSha256": "9fbf999a3d3da51126399777219891a23c29657e1eb1c72f6782b51b34782717",
+      "logSha256": "1ea936888b79a721e3faf56999969c1f503ef2a48f6c1499f2e2aa3bf637a3a6",
+      "passedNames": [
+        "batch4_soul_channel_tests::batch4_soul_channel_advancement_can_move_to_character_then_xq21_copy_without_advancing_plan",
+        "batch4_soul_channel_tests::batch4_soul_channel_bad_target_counts_hidden_private_and_extra_payload_reject_before_payment",
+        "batch4_soul_channel_tests::batch4_soul_channel_defense_and_wounds_move_atomically_without_intermediate_death",
+        "batch4_soul_channel_tests::batch4_soul_channel_does_not_move_damage_or_change_orientation",
+        "batch4_soul_channel_tests::batch4_soul_channel_inherited_nested_markers_move_once_without_moving_attachments",
+        "batch4_soul_channel_tests::batch4_soul_channel_inherited_shield_is_consumed_once_by_real_enemy_targeted_play",
+        "batch4_soul_channel_tests::batch4_soul_channel_move_to_attachment_changes_host_queries_and_keeps_physical_counters_visible",
+        "batch4_soul_channel_tests::batch4_soul_channel_paid_move_preserves_seven_categories_and_both_physical_uids",
+        "batch4_soul_channel_tests::batch4_soul_channel_pair_order_candidates_include_enemy_controller_but_not_teammate_relation",
+        "batch4_soul_channel_tests::batch4_soul_channel_printed_fields_timing_and_closed_public_admission",
+        "batch4_soul_channel_tests::batch4_soul_channel_real_loyalty_and_two_asset_cost_are_required",
+        "batch4_soul_channel_tests::batch4_soul_channel_real_rescue_invalidates_uid_and_keeps_paid_cost",
+        "batch4_soul_channel_tests::batch4_soul_channel_room_legal_commands_preserve_pair_and_commit_only_once",
+        "batch4_soul_channel_tests::batch4_soul_channel_same_controller_rechecked_before_consuming_shield_or_any_counter",
+        "batch4_soul_channel_tests::batch4_soul_channel_secret_plan_exposes_public_moved_counters_without_exposing_print",
+        "batch4_soul_channel_tests::batch4_soul_channel_standard_action_is_not_a_response_or_other_players_turn",
+        "batch4_soul_channel_tests::batch4_soul_channel_user_ruling_tianyan_one_to_three_is_one_real_completion",
+        "batch4_soul_channel_tests::batch4_soul_channel_zero_counters_is_a_paid_noop_and_damage_is_not_a_marker",
+        "batch4_soul_channel_tests::independent_normal_review::independent_xq20_actual_host_child_roundtrip_preserves_all_physical_markers_once",
+        "batch4_soul_channel_tests::independent_normal_review::independent_xq20_real_reveal_response_changes_control_and_cancels_whole_move"
+      ]
+    },
+    {
+      "attempt": "source-death-02",
+      "returncode": 0,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "productInputMismatches": [],
+      "originalAuthorTestsUnchanged": true,
+      "testInputSha256": "6c52d4dc4cead760b62b92b47fcdd3000a86d667c49f2c2bb349aff20674e658",
+      "logSha256": "9edcea80c159ff1d4ca6427ed1f257b5fef79c8ed455da8f191baf46a63fe1bc",
+      "passedNames": [
+        "batch4_soul_channel_tests::independent_normal_review::independent_xq20_sender_dies_after_losing_defense_only_after_destination_receives_batch"
+      ]
+    },
+    {
+      "attempt": "nested-legal-04",
+      "returncode": 0,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "productInputMismatches": [],
+      "originalAuthorTestsUnchanged": true,
+      "testInputSha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42",
+      "logSha256": "430410521f76ad9d5043e9a0f7a2a18687cb56083a625290f4f75692fb62c91e",
+      "passedNames": [
+        "batch4_soul_channel_tests::independent_normal_review::independent_xq20_actual_host_child_roundtrip_preserves_all_physical_markers_once"
+      ]
+    }
+  ],
+  "distinctFinalNativePassed": 21,
+  "reexecutedAuthorTests": 18,
+  "newIndependentTests": 3,
+  "latestPassingRunByTest": {
+    "batch4_soul_channel_tests::batch4_soul_channel_advancement_can_move_to_character_then_xq21_copy_without_advancing_plan": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_bad_target_counts_hidden_private_and_extra_payload_reject_before_payment": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_defense_and_wounds_move_atomically_without_intermediate_death": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_does_not_move_damage_or_change_orientation": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_inherited_nested_markers_move_once_without_moving_attachments": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_inherited_shield_is_consumed_once_by_real_enemy_targeted_play": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_move_to_attachment_changes_host_queries_and_keeps_physical_counters_visible": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_paid_move_preserves_seven_categories_and_both_physical_uids": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_pair_order_candidates_include_enemy_controller_but_not_teammate_relation": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_printed_fields_timing_and_closed_public_admission": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_real_loyalty_and_two_asset_cost_are_required": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_real_rescue_invalidates_uid_and_keeps_paid_cost": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_room_legal_commands_preserve_pair_and_commit_only_once": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_same_controller_rechecked_before_consuming_shield_or_any_counter": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_secret_plan_exposes_public_moved_counters_without_exposing_print": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_standard_action_is_not_a_response_or_other_players_turn": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_user_ruling_tianyan_one_to_three_is_one_real_completion": "normal-directed-01",
+    "batch4_soul_channel_tests::batch4_soul_channel_zero_counters_is_a_paid_noop_and_damage_is_not_a_marker": "normal-directed-01",
+    "batch4_soul_channel_tests::independent_normal_review::independent_xq20_actual_host_child_roundtrip_preserves_all_physical_markers_once": "nested-legal-04",
+    "batch4_soul_channel_tests::independent_normal_review::independent_xq20_real_reveal_response_changes_control_and_cancels_whole_move": "normal-directed-01",
+    "batch4_soul_channel_tests::independent_normal_review::independent_xq20_sender_dies_after_losing_defense_only_after_destination_receives_batch": "source-death-02"
+  },
+  "unchangedPassingFunctionsBoundToFinalInput": [
+    "independent_xq20_real_reveal_response_changes_control_and_cancels_whole_move",
+    "independent_xq20_sender_dies_after_losing_defense_only_after_destination_receives_batch"
+  ],
+  "finalTestInputSha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42",
+  "independentSourceChecksPassed": 3,
+  "sourceChecksLogSha256": "9d463e856156c8967c817cd9f527ce5e94b6aa0c20d9277c46c1d19c8bcd4ffd",
+  "finalSourceCheckInputsObservedAfterExecution": [
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "27035d8f197d5e2383303aa5da6c84beb2a9e04e9c9d2121e60be44f71e5afd0"
+    },
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "a220bf701e43f78c7941c2d21e1b51c296019bfc8ce165bfa9ac492e9c79f9d2"
+    }
+  ],
+  "fixtureCorrections": [
+    "normal-directed-01 fails before the XQ20 command: reviewer selected JC029 with defense1 but asserted defense>1; corrected only receiver to LC01. source-death-02 passes and its function is unchanged in final input.",
+    "initial nested fixture used a Bat on another Bat; this is not proof of legal host admission. Final nested-legal-04 uses JC029 Vampire -> BQ026 -> non-equipment JZ41, asserts both host predicates, and passes. No author test was edited."
+  ],
+  "sourceCheckWrapperNotCountedAgain": "source-checks-03.log",
+  "extraCorruptedStateTests": 0,
+  "productFilesEdited": [],
+  "authorWorkspaceEdited": false,
+  "testsRerunByThisAudit": false,
+  "issues": []
+}

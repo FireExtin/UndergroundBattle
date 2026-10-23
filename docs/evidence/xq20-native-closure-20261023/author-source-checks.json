@@ -1,0 +1,28 @@
+{
+  "timeUtc": "2026-10-23T15:02:03.893760+00:00",
+  "command": [
+    "node",
+    "tools/cards/batch4-source.test.mjs"
+  ],
+  "scope": "Author rerun of updated closure metadata; independent21 not re-executed here",
+  "exitCode": 0,
+  "logSha256": "d994bd6889d869860f5d0b16470979bf56e41a7910d53c53f3b75f508087d5cf",
+  "files": [
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "5baffa687472564d56a102326a977fd3694b8d397b14404ed926bdb2f4822a68"
+    },
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "3a8be9778ffbbb30bb86b925a98b9fcac3d18628a817e198e9da165e1de76807"
+    },
+    {
+      "path": "docs/evidence/xq20-native-closure-20261023/review.txt",
+      "sha256": "80fb5a157951e5801c7ac6602950cd3c6443de159367bf300f80bcd4fe4818b1"
+    },
+    {
+      "path": "rust-game/src/batch4_soul_channel_tests.rs",
+      "sha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42"
+    }
+  ]
+}

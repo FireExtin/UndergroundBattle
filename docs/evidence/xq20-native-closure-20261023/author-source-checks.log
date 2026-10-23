@@ -1,0 +1,11 @@
+✔ fourth roster preserves frozen213 and keeps native pilots separate from public admission (73.532901ms)
+✔ fourth original corrections preserve conditional public, conditional secret plans and exact threshold (18.36803ms)
+✔ package B independently closed native cards preserve prior catalogue and public gate (15.331328ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 112.656396
