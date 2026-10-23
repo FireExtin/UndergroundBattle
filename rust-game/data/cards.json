@@ -9941,6 +9941,45 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM043",
+      "name": "精准打击",
+      "kind": "spell",
+      "subtypes": [
+        "策略"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色"
+      ],
+      "loyaltyText": "灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "隐秘+2：在本次隐秘对抗后，若本方秘社为哨兵，你可以在目标角色或暗藏者上放置一个锁定标志。\n快速行动 选择一项：\n在目标角色或暗藏者上放置一个锁定标志。\n消灭其上有锁定标志的目标角色或暗藏者。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM043",
+        "image": "resource/ymsj-fun.github.io/cards/WM043 精准打击.jpg",
+        "imageSha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [
