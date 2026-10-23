@@ -1,0 +1,184 @@
+{
+  "timeUtc": "2026-10-23T17:45:16.225030+00:00",
+  "specificationBase": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "oldBaselineSpecSha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c",
+  "scope": "five not-yet-admitted cards; exact source-data correction handoff only; no actual spec/runtime mutation in this planning clone",
+  "sourceFile": "docs/factions/card-specifications.json",
+  "owners": {
+    "A": [
+      "BQ081",
+      "WM024"
+    ],
+    "B": [
+      "XG13",
+      "CQ24",
+      "BQ092"
+    ]
+  },
+  "cards": [
+    {
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "assignedImplementationOwnerPackage": "A",
+      "imagePath": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "imageRepositoryPath": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "imageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "evidenceId": "card-BQ081",
+      "normalization": "图形符号用现有语义名称/数字表示；横置本牌为费用图标的语义展开，不声称原图逐字Unicode。",
+      "fullNormalizedRulesAfterCorrection": [
+        "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。",
+        "进场触发 将你墓地中的一张角色牌置于你的牌库底，若你如此做，消灭目标附属。"
+      ],
+      "patches": [
+        {
+          "jsonPointer": "/cards/BQ081/fields/printedRuleTextLines/0",
+          "expectedOld": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "recommendedNew": "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。"
+        },
+        {
+          "jsonPointer": "/cards/BQ081/abilities/0/printedText",
+          "expectedOld": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "recommendedNew": "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。"
+        }
+      ],
+      "current250ContainsCard": false,
+      "newCompletionCountAdded": 0,
+      "futureRuleBoundaryTests": [
+        "展示后库顶足够时只置墓1，不能置墓3；空库按非抓牌既有流程处理",
+        "进场须先将本人墓地角色放库底才消灭原目标附属；不改这段规则"
+      ]
+    },
+    {
+      "id": "WM024",
+      "name": "阿剌穆特杀手",
+      "assignedImplementationOwnerPackage": "A",
+      "imagePath": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "imageRepositoryPath": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "imageSha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "evidenceId": "card-WM024",
+      "normalization": "图形符号用现有语义名称/数字表示；横置本牌为费用图标的语义展开，不声称原图逐字Unicode。",
+      "fullNormalizedRulesAfterCorrection": [
+        "额外费用 敌方秘社上每有一个暴露标志，打出或付费现身阿剌穆特杀手的所需费用就减少②。",
+        "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
+      ],
+      "patches": [
+        {
+          "jsonPointer": "/cards/WM024/fields/printedRuleTextLines/1",
+          "expectedOld": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+          "recommendedNew": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
+        },
+        {
+          "jsonPointer": "/cards/WM024/abilities/1/printedText",
+          "expectedOld": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+          "recommendedNew": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
+        }
+      ],
+      "current250ContainsCard": false,
+      "newCompletionCountAdded": 0,
+      "futureRuleBoundaryTests": [
+        "本效果杀死无声望角色不抓牌；杀死有声望角色才产生一次抓牌收益",
+        "源角色、实际袭击与死亡原因匹配；不得把所有袭击收益全局改为声望限制"
+      ]
+    },
+    {
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "assignedImplementationOwnerPackage": "B",
+      "imagePath": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "imageRepositoryPath": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "imageSha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "evidenceId": "card-XG13",
+      "normalization": "图形符号用现有语义名称/数字表示；横置本牌为费用图标的语义展开，不声称原图逐字Unicode。",
+      "fullNormalizedRulesAfterCorrection": [
+        "触发 每当另一个本方邪教徒进场时，若本方秘社上有隐秘〔月形〕标志，在该角色上放置一个时间标志。",
+        "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。"
+      ],
+      "patches": [
+        {
+          "jsonPointer": "/cards/XG13/fields/printedRuleTextLines/1",
+          "expectedOld": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。",
+          "recommendedNew": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。"
+        },
+        {
+          "jsonPointer": "/cards/XG13/abilities/1/printedText",
+          "expectedOld": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。",
+          "recommendedNew": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。"
+        }
+      ],
+      "current250ContainsCard": false,
+      "newCompletionCountAdded": 0,
+      "futureRuleBoundaryTests": [
+        "正面打出鸣钟教派牌或鲜血领域牌消耗一次减2票据",
+        "仅有灾难类别而非鸣钟/鲜血不受益；付费现身不消耗该票据"
+      ]
+    },
+    {
+      "id": "CQ24",
+      "name": "卡门",
+      "assignedImplementationOwnerPackage": "B",
+      "imagePath": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "imageRepositoryPath": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "imageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "evidenceId": "card-CQ24",
+      "normalization": "图形符号用现有语义名称/数字表示；横置本牌为费用图标的语义展开，不声称原图逐字Unicode。",
+      "fullNormalizedRulesAfterCorrection": [
+        "非资产；隐秘〔月形〕撤回",
+        "额外费用 你可以支付③。",
+        "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于③的敌方附属之操控权，你可以为该附属重新选择结附目标。"
+      ],
+      "patches": [
+        {
+          "jsonPointer": "/cards/CQ24/fields/printedRuleTextLines/2",
+          "expectedOld": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+          "recommendedNew": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于③的敌方附属之操控权，你可以为该附属重新选择结附目标。"
+        },
+        {
+          "jsonPointer": "/cards/CQ24/abilities/2/printedText",
+          "expectedOld": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+          "recommendedNew": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于③的敌方附属之操控权，你可以为该附属重新选择结附目标。"
+        }
+      ],
+      "current250ContainsCard": false,
+      "newCompletionCountAdded": 0,
+      "futureRuleBoundaryTests": [
+        "敌方附属印刷费3为合法候选，4/5非法；己方附属非法",
+        "付③或隐秘等级条件分别保留；控制改变不改owner，重结附仍校验合法宿主"
+      ]
+    },
+    {
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "assignedImplementationOwnerPackage": "B",
+      "imagePath": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "imageRepositoryPath": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "imageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "evidenceId": "card-BQ092",
+      "normalization": "图形符号用现有语义名称/数字表示；横置本牌为费用图标的语义展开，不声称原图逐字Unicode。",
+      "fullNormalizedRulesAfterCorrection": [
+        "结附于目标地区",
+        "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+        "神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）"
+      ],
+      "patches": [
+        {
+          "jsonPointer": "/cards/BQ092/fields/printedRuleTextLines/1",
+          "expectedOld": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+          "recommendedNew": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+        },
+        {
+          "jsonPointer": "/cards/BQ092/abilities/1/printedText",
+          "expectedOld": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+          "recommendedNew": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+        }
+      ],
+      "current250ContainsCard": false,
+      "newCompletionCountAdded": 0,
+      "futureRuleBoundaryTests": [
+        "本牌和支付用产业附属均须能实际横置；不得同一实体重复支付两份横置",
+        "无合法费用来源则费用与效果都不提交；所得①只存续到本步骤末"
+      ]
+    }
+  ],
+  "sourceTestBoundary": "batch4-source.test.mjs preserves all non-correction records through a historical digest. Owner must add a narrow documented exception for own corrected IDs with exact old/new assertions and retain the prior digest; do not simply replace the hash or exempt whole families.",
+  "runtimeBoundary": "All5 absent from checked250 and not counted in36. Metadata-only spec changes do not require mutating frozen ABI95/WM037 runtime. If a later parallel branch has implemented one, use its fixedSHA and include only card-specific runtime correction and directed tests; count correction0, not another new card."
+}
