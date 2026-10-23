@@ -13,7 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
-    crate::batch4_vampire_contest::admitted_start(id, key, bonus) || matches!((id,key,bonus), ("WM022",SHADOW_REVEAL,0) | ("BQ082",POISON,2))
+    (id=="WM037" && key==crate::batch4_clock_spell::PLAY && bonus==0) || crate::batch4_vampire_contest::admitted_start(id, key, bonus) || matches!((id,key,bonus), ("WM022",SHADOW_REVEAL,0) | ("BQ082",POISON,2))
 }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
     let abilities = match id {
@@ -42,6 +42,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
     Some(with_abilities(abilities))
 }
 pub(crate) fn canonical(id: &str, a: &AbilitySpec) -> Option<AbilitySpec> {
+    if id=="WM037" { return crate::batch4_clock_spell::definition().abilities.into_iter().find(|b|b.key==a.key); }
     let mut expected = definition(id)?.abilities.into_iter().find(|b| b.key == a.key)?;
     if let Some(Op::MysticWin { contest_id }) = a.ops.first() {
         if matches!(a.key.as_str(),SHADOW_WIN|PREACHER_WIN) { expected.ops[0] = Op::MysticWin { contest_id:contest_id.clone() }; }
@@ -140,6 +141,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
         if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let id = f.source.card.definition.as_str();
         if !CARDS.contains(&id) && !f.ability_key.starts_with("pack-a-") && !f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op))) { return Ok(()); }

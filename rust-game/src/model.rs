@@ -690,6 +690,8 @@ pub enum DeclareChoice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
     JZ56Undead,
+    WM037Contest,
+    WM037TimeTarget,
     BQ027ShownTarget,
     MysticCommit { contest_id: String },
     MysticReward { contest_id: String },
@@ -1031,6 +1033,7 @@ impl Game {
         self.validate_xq27_state()?;
         self.validate_xq37_state()?;
         self.validate_red_time_state()?;
+        self.validate_clock_state()?;
         self.validate_blue_expansion_state()?;
         self.validate_black_expansion_state()?;
         self.validate_wm056_state()?;

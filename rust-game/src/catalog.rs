@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.88-batch20-fourth";
+pub const POOL_VERSION: &str = "limited-v2.89-batch20-fourth";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.97-batch20-fourth";
+pub const ENGINE_VERSION: &str = "rust-v0.2.98-batch20-fourth";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.97-batch20-fourth-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.98-batch20-fourth-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -241,5 +241,5 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
-    d.supported || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str()) || crate::pack_a_contest::CARDS.contains(&d.id.as_str())
+    d.supported || d.id == "MSJC13" || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str()) || crate::pack_a_contest::CARDS.contains(&d.id.as_str())
 }

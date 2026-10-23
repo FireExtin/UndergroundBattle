@@ -5,6 +5,10 @@ mod chaos;
 mod recovery_validation_tests;
 mod batch4_night;
 mod batch4_jiangyue;
+mod batch4_clock;
+mod batch4_clock_spell;
+#[cfg(test)]
+mod batch4_clock_tests;
 #[cfg(test)]
 mod batch4_jiangyue_tests;
 mod combat_wounds;

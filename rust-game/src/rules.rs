@@ -143,6 +143,7 @@ pub enum TargetPredicate {
     JZ55UniqueCharacter,
     JC069LockedAnchor,
     XQ18CharacterOrAttachment,
+    ClockCharacterOrAttachment,
     XQ23ActorAsset,
     JZ45LockedLocalTarget,
 }
@@ -389,6 +390,9 @@ pub enum Op {
     JC054ConcealBurst { observation: Option<ConcealObservation> },
     JC054EndHide { observation: Option<EndStepObservation> },
     XQ18AddOneTimeToTarget,
+    ClockAddTime,
+    ClockSweep,
+    WM037ShownTime { contest_id: String, index: usize },
     XQ18ChooseTimeCarrier,
     JZ30AddOneTimeToOriginalSource,
     JZ30ForecastFrozenTime,
@@ -745,6 +749,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     }
     crate::batch20::validate_ability(card_id, ability)?;
     crate::red_time::validate_ability(card_id, ability)?;
+    crate::batch4_clock::validate_ability(card_id, ability)?;
     crate::blue_expansion::validate_ability(card_id, ability)?;
     crate::black_expansion::validate_ability(card_id, ability)?;
     crate::wm056::validate_ability(card_id, ability)?;
@@ -956,6 +961,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         .any(|t| t.predicate.is_some());
     if (finite_predicate && !matches!(card_id, "BQ077" | "XQ18" | "JZ45")) || (card_id == "JC015" && !runtime_reward) || card_id == "JZ55" {
         let admitted = match card_id {
+            "MSJC13" => Some(crate::batch4_clock::society_definition()),
             "JC015" => Some(jc015_definition()),
             "JZ55" => Some(jz55_definition()),
             "JC069" => gray_lock_definition("JC069"),
@@ -1502,6 +1508,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq035::validate_definition(card_id, definition)?;
         crate::mobility::validate_definition(card_id, definition)?;
         crate::red_time::validate_definition(card_id, definition)?;
+        crate::batch4_clock::validate_definition(card_id, definition)?;
         crate::blue_expansion::validate_definition(card_id, definition)?;
         crate::black_expansion::validate_definition(card_id, definition)?;
         crate::black_next20::validate_definition(card_id, definition)?;
@@ -2167,6 +2174,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::batch20::IMPLEMENTING {
             m.insert((*id).into(), crate::batch20::definition(id).unwrap());
         }
+        m.insert("MSJC13".into(), crate::batch4_clock::society_definition());
         m.insert("WM038".into(), crate::wm038::definition());
         m.insert("JZ35".into(), crate::jz35::definition());
         m.insert("JC052".into(), crate::jc052::definition());

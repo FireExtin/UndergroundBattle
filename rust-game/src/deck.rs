@@ -72,6 +72,7 @@ pub fn validate_with_cards(
         .as_deref()
         .map(crate::society::definition)
         .transpose()?;
+    if society.is_some_and(|s| !s.card.supported) { return Err("该秘社尚未开放构筑".into()); }
     draft.id = draft.id.trim().into();
     draft.name = draft.name.trim().into();
     if draft.id.is_empty()
