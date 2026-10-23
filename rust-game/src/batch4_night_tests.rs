@@ -66,13 +66,13 @@ fn batch4_night_three_subtypes_global_personal_bonuses_and_live_grave_threshold(
         for id in [&personal, &remote] { let (r,c)=g.board(id).unwrap(); assert_eq!(g.current_icons(c,r), base_icons.add(Icons{influence:1,..Icons::default()})); assert_eq!(g.defense(c,r),base_defense+1);assert_eq!(g.effective_kill(c),base_kill); }
         for id in [&ally,&enemy,&other] { assert_eq!(g.jz56_aura(g.board(id).unwrap().1),(0,0)); }
         dead(&mut g,0,1);
-        let (r,c)=g.board(&personal).unwrap();assert_eq!(g.current_icons(c,r),base_icons.add(Icons{combat:1,influence:1,..Icons::default()}));assert_eq!(g.effective_kill(c),base_kill+1);
+        let (r,c)=g.board(&personal).unwrap();assert_eq!(g.current_icons(c,r),base_icons.add(Icons{combat:1,influence:1,..Icons::default()}));assert_eq!(g.effective_kill(c),base_kill);assert_eq!(g.effective_wound(c),1);
         assert_eq!(g.current_permanent_combat(c,r),catalog::card(card).permanent_icons.combat+1);
         for viewer in 0..4 {
             let v=g.view(viewer);let a=v.attachments.iter().find(|a|a.card.instance_id==source).unwrap();
             assert_eq!(a.card.chosen_subtype.as_deref(),Some(match choice{"ghoul"=>"食尸鬼","zombie"=>"行尸",_=>"骷髅"}));
             let cv=&v.regions[0].characters.iter().find(|c|c.instance_id==personal).unwrap();
-            assert_eq!(cv.current_kill,Some(base_kill+1));assert_eq!(cv.defense,Some(base_defense+1));
+            assert_eq!(cv.current_kill,None);assert_eq!(cv.current_wound,Some(1));assert_eq!(cv.defense,Some(base_defense+1));
         }
         g.players[0].graveyard.pop();assert_eq!(g.jz56_aura(g.board(&personal).unwrap().1),(1,0));checkpoint(&g);
     }
@@ -170,11 +170,11 @@ fn batch4_night_illegal_host_and_loyalty_never_pay() {
 }
 
 #[test]
-fn batch4_night_enhanced_kill_uses_real_combat_damage_pipeline() {
+fn batch4_night_enhanced_wound_uses_real_combat_marker_pipeline() {
     let mut g=game();let ghoul=field(&mut g,"JZ50",0);let target=field(&mut g,"JC125",2);
     dead(&mut g,0,7);night(&mut g,0,"ghoul");
     let c=g.board(&ghoul).unwrap().1;let expected=g.icons(c,0).combat+g.effective_kill(c);
-    assert_eq!(g.effective_kill(c),1);
+    assert_eq!(g.effective_kill(c),0);assert_eq!(g.effective_wound(c),1);
     g.begin_window(Window::Before(0,1));g.close_window().unwrap();g.drive().unwrap();
     let p=g.pending.as_ref().unwrap();assert_eq!(p.choice.amount,Some(expected));
     let seat=p.seat;let a=Action{choice_id:Some(p.choice.id.clone()),allocations:Some(std::collections::BTreeMap::from([(target.clone(),expected)])),..Action::new("choose")};
@@ -226,4 +226,356 @@ fn batch4_night_finite_program_and_choice_cannot_be_transplanted() {
     let mut room=serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();room["game"]=raw.clone();
     assert!(std::panic::catch_unwind(||Game::from_persisted(&raw.to_string())).unwrap().is_err());
     assert!(std::panic::catch_unwind(||crate::room::RoomEnvelope::from_persisted(&room.to_string())).unwrap().is_err());
+}
+
+// Independent review of 64420e55. Explicit layouts, production commands and
+// both persisted entry points; these are not browser or full-game fixtures.
+mod independent_review {
+    use super::*;
+    fn record(label: &str, g: &Game, extra: serde_json::Value) {
+        if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            let room = crate::jc029_tests::envelope(g);
+            let views = (0..4).map(|s| serde_json::to_value(g.view(s)).unwrap()).collect::<Vec<_>>();
+            std::fs::write(format!("{dir}/{label}.json"), serde_json::to_vec_pretty(
+                &serde_json::json!({"game":g,"room":room,"views":views,"observation":extra})).unwrap()).unwrap();
+        }
+    }
+    fn cast(g: &mut Game, seat: usize, definition: &str, target: &str, option: Option<&str>) {
+        let id = held(g, definition, seat);
+        act(g, seat, Action { card_id: Some(id), target_id: Some(target.into()),
+            option: option.map(str::to_string), ..Action::new("play") });
+        pass_top(g);
+        checkpoint(g);
+    }
+    fn enhanced_combat() -> (Game, String, u32) {
+        let mut g = game();
+        let ghoul = field(&mut g, "JZ50", 0);
+        // LC01 has defense 4 and no combat icons: the wrong +1 damage does not
+        // kill it, so damage and persistent wound are independently observable.
+        let victim = field(&mut g, "LC01", 2);
+        dead(&mut g, 0, 7);
+        night(&mut g, 0, "ghoul");
+        let score = g.icons(g.board(&ghoul).unwrap().1, 0).combat;
+        assert_eq!(score, 2);
+        g.begin_window(Window::Before(0, 1));
+        g.close_window().unwrap(); g.drive().unwrap();
+        checkpoint(&g);
+        assert!(matches!(g.pending.as_ref().unwrap().resolution, ChoiceResolution::Damage { .. }));
+        (g, victim, score)
+    }
+
+    #[test]
+    fn independent_jz56_real_grave_play_and_spell_cross_threshold_at_the_correct_steps() {
+        let mut g = game(); let target = field(&mut g, "JC085", 0);
+        let enemy = field(&mut g, "LC01", 2);
+        dead(&mut g, 0, 6); let c = g.make_card("JC085", 0); let grave_id = c.id.clone();
+        g.players[0].graveyard.push(c);
+        night(&mut g, 0, "zombie");
+        assert_eq!(g.current_permanent_combat(g.board(&target).unwrap().1, 0), 2);
+        fund(&mut g, 0, "JC084", 2);
+        act(&mut g, 0, Action { card_id: Some(grave_id), region: Some(0), ..Action::new("deploy") });
+        assert_eq!(g.players[0].graveyard.len(), 6);
+        assert_eq!(g.current_permanent_combat(g.board(&target).unwrap().1, 0), 1);
+        checkpoint(&g); record("grave-7-to-6-before-resolution", &g, serde_json::json!({"combat":1}));
+        pass_top(&mut g); checkpoint(&g);
+        fund(&mut g, 0, "JC102", 2);
+        cast(&mut g, 0, "JC102", &enemy, None);
+        assert_eq!(g.players[0].graveyard.len(), 7);
+        assert_eq!(g.current_permanent_combat(g.board(&target).unwrap().1, 0), 2);
+        assert_eq!(g.defense(g.board(&target).unwrap().1, 0), 2);
+        record("spell-6-to-7-after-resolution", &g, serde_json::json!({"combat":2}));
+    }
+
+    #[test]
+    fn independent_jz56_live_added_skeleton_type_then_real_attachment_removal() {
+        let mut g = game(); let human = field(&mut g, "JC125", 0);
+        night(&mut g, 0, "skeleton");
+        assert_eq!(g.defense(g.board(&human).unwrap().1, 0), 1);
+        fund(&mut g, 0, "JZ57", 1);
+        cast(&mut g, 0, "JZ57", &human, None);
+        let tattoo = g.attachments.iter().find(|a| a.card.definition == "JZ57").unwrap().card.id.clone();
+        assert_eq!(g.defense(g.board(&human).unwrap().1, 0), 3);
+        assert_eq!(g.current_icons(g.board(&human).unwrap().1, 0).influence, 1);
+        g.begin_window(Window::Action(1)); fund(&mut g, 2, "JC005", 2);
+        cast(&mut g, 2, "JC005", &tattoo, None);
+        assert_eq!(g.defense(g.board(&human).unwrap().1, 0), 1);
+        assert_eq!(g.current_icons(g.board(&human).unwrap().1, 0).influence, 0);
+        assert_eq!(g.current_subtypes(g.board(&human).unwrap().1), ["人类"]);
+        record("dynamic-skeleton-grant-ended", &g, serde_json::json!({"defense":1}));
+    }
+
+    #[test]
+    fn independent_jz56_real_hide_reveal_and_source_removal_keep_identity_and_recompute() {
+        let mut g = game(); let old = field(&mut g, "JC085", 0);
+        let source = night(&mut g, 0, "zombie"); dead(&mut g, 0, 7);
+        fund(&mut g, 0, "JC063", 2);
+        cast(&mut g, 0, "JC063", &old, Some("hide"));
+        assert!(g.board(&old).is_none());
+        let hidden = g.regions[0].cards.iter().find(|c| c.definition == "JC085").unwrap().clone();
+        assert!(hidden.face_down); assert_eq!(g.jz56_aura(&hidden), (0,0));
+        for s in 1..4 { let v = g.view(s); let c = v.regions[0].characters.iter().find(|c| c.instance_id == hidden.id).unwrap();
+            assert!(c.current_subtypes.is_none() && c.current_kill.is_none() && c.chosen_subtype.is_none()); }
+        assert_eq!(g.attachments.iter().find(|a| a.card.id == source).unwrap().card.chosen_subtype, Some(UndeadKind::Zombie));
+        fund(&mut g, 0, "JC084", 2);
+        act(&mut g, 0, Action { card_id: Some(hidden.id.clone()), ..Action::new("reveal") });
+        pass_top(&mut g); checkpoint(&g);
+        let shown = g.regions[0].cards.iter().find(|c| c.definition == "JC085").unwrap().clone();
+        assert_ne!(shown.id, hidden.id); assert!(!shown.face_down);
+        assert_eq!(g.current_permanent_combat(&shown, 0), 2); assert_eq!(g.defense(&shown,0),2);
+        g.begin_window(Window::Action(1)); fund(&mut g, 2, "JC005", 2); fund(&mut g, 2, "JZ02", 1);
+        cast(&mut g, 2, "JC005", &source, None);
+        assert_eq!(g.current_permanent_combat(g.board(&shown.id).unwrap().1, 0), 1);
+        assert_eq!(g.defense(g.board(&shown.id).unwrap().1, 0), 1);
+        assert!(g.players[0].graveyard.iter().filter(|c| c.definition == "JZ56").all(|c| c.chosen_subtype.is_none()));
+        record("hide-reveal-source-removal", &g, serde_json::json!({"formerTarget":old,"hiddenTarget":hidden.id,"currentTarget":shown.id}));
+    }
+
+    #[test]
+    fn independent_jz56_actual_response_destroys_source_and_restore_keeps_historical_frame() {
+        let mut g = game(); fund(&mut g,0,"JC084",2); let h = held(&mut g,"JZ56",0);
+        act(&mut g,0,Action{card_id:Some(h),target_id:Some("society:p0".into()),..Action::new("play")});
+        pass_top(&mut g); let source = g.attachments.iter().find(|a| a.card.definition == "JZ56").unwrap().card.id.clone();
+        choose(&mut g,vec!["accept".into()]);
+        // The trigger's controller initially retains priority. Use genuine
+        // passes to hand the still-unresolved layer to the opposing team.
+        for _ in 0..4 { if g.priority_team == g.team(2) { break; } crate::unit_support::pass(&mut g); }
+        assert_eq!(g.priority_team,g.team(2)); assert_eq!(g.stack.len(),1);
+        fund(&mut g,2,"JC005",2);fund(&mut g,2,"JZ02",1);
+        cast(&mut g,2,"JC005",&source,None);
+        assert!(g.in_play(&source).is_none()); assert_eq!(g.stack.len(),1);
+        record("original-source-gone-frame-restorable",&g,serde_json::json!({"historicalSource":source}));
+        pass_top(&mut g); checkpoint(&g);
+        assert!(g.pending.is_none()); assert!(g.stack.is_empty());
+    }
+
+    #[test]
+    fn independent_jz56_corrupt_live_chosen_value_cannot_coexist_with_pending_choice() {
+        let mut g = game(); let source = play(&mut g,0);
+        let mut bad = g.clone(); bad.attachments.iter_mut().find(|a|a.card.id==source).unwrap().card.chosen_subtype=Some(UndeadKind::Ghoul);
+        let raw = serde_json::to_string(&bad).unwrap();
+        let game_restored = std::panic::catch_unwind(||Game::from_persisted(&raw)).unwrap();
+        let mut room = serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap(); room["game"]=serde_json::to_value(&bad).unwrap();
+        let room_restored = std::panic::catch_unwind(||crate::room::RoomEnvelope::from_persisted(&room.to_string())).unwrap();
+        let mut overwritten = None;
+        if let Ok(mut accepted) = game_restored.clone() {
+            choose(&mut accepted,vec!["skeleton".into()]);
+            overwritten=accepted.attachments.iter().find(|a|a.card.id==source).unwrap().card.chosen_subtype;
+        }
+        let mut room_outcome = None;
+        if let Ok(mut accepted) = room_restored.clone() {
+            let choice_id=accepted.game.pending.as_ref().unwrap().choice.id.clone();
+            let out=accepted.transition(0,Some(crate::room::RoomCommand{command_id:"independent-night-corrupt-choose".into(),expected_version:accepted.revision,
+                action:crate::room::SessionAction::Game{action:Action{choice_id:Some(choice_id),selected:Some(vec!["skeleton".into()]),..Action::new("choose")}}}),0).unwrap();
+            room_outcome=Some(out.outcome);
+        }
+        record("corrupt-choice-observation",&g,serde_json::json!({"badGame":bad,"gameAccepted":game_restored.is_ok(),"roomAccepted":room_restored.is_ok(),"overwrittenChoice":overwritten,"roomCommandOutcome":room_outcome}));
+        assert!(game_restored.is_err() && room_restored.is_err(), "already-selected live instance restored with pending choice; overwritten={overwritten:?}");
+    }
+
+    #[test]
+    fn independent_jz56_old_pool_and_unknown_enum_fail_closed_without_panics() {
+        let mut g = game(); let source = night(&mut g,0,"skeleton");
+        for mode in 0..2 {
+            let mut raw=serde_json::to_value(&g).unwrap();
+            if mode==0 {raw["versions"]["cardPool"]=serde_json::json!("limited-v2.85-batch20-fourth");}
+            else {let i=g.attachments.iter().position(|a|a.card.id==source).unwrap(); raw["attachments"][i]["card"]["chosen_subtype"]=serde_json::json!("human");}
+            let mut room=serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();room["game"]=raw.clone();
+            assert!(std::panic::catch_unwind(||Game::from_persisted(&raw.to_string())).unwrap().is_err(),"mode {mode}");
+            assert!(std::panic::catch_unwind(||crate::room::RoomEnvelope::from_persisted(&room.to_string())).unwrap().is_err(),"mode {mode}");
+        }
+    }
+
+    #[test]
+    fn independent_jz56_printed_wound_must_not_add_kill_damage_to_combat_reward() {
+        let (g, _, score) = enhanced_combat();
+        let actual = g.pending.as_ref().unwrap().choice.amount;
+        record("wound-not-kill-amount",&g,serde_json::json!({"combatScore":score,"assignedDamage":actual}));
+        assert_eq!(actual,Some(score),"JZ56 prints 创伤, whereas extra combat damage is 杀伤 (official printed p17)");
+    }
+
+    #[test]
+    fn independent_jz56_printed_wound_must_reach_the_wound_path_in_nonlethal_combat() {
+        let (mut g,victim,score) = enhanced_combat();
+        let p = g.pending.as_ref().unwrap(); let amount=p.choice.amount.unwrap(); let seat=p.seat;
+        let a=Action{choice_id:Some(p.choice.id.clone()),allocations:Some(std::collections::BTreeMap::from([(victim.clone(),amount)])),..Action::new("choose")};
+        act(&mut g,seat,a); checkpoint(&g);
+        let c=g.board(&victim).unwrap().1;
+        record("wound-not-ordinary-damage",&g,serde_json::json!({"combatScore":score,"assignedDamage":amount,"damage":c.damage,"wounds":c.wounds,"defense":g.defense(c,0)}));
+        assert!(c.wounds>0,"JZ56 创伤 must use wound markers; actual damage={}, wounds={}",c.damage,c.wounds);
+    }
+}
+
+/// P2 closing cases. Starting layouts/windows are explicit fixtures; payments,
+/// declarations, allocations and cleanup passes use the normal command paths.
+mod p2_close {
+    use super::*;
+    use std::collections::BTreeMap;
+    fn battle(g: &mut Game) {
+        g.begin_window(Window::Before(0, 1));
+        g.close_window().unwrap(); g.drive().unwrap(); checkpoint(g);
+    }
+    fn allocate(g: &mut Game, targets: &[(String, u32)]) {
+        let p = g.pending.as_ref().unwrap();
+        act(g, p.seat, Action { choice_id: Some(p.choice.id.clone()),
+            allocations: Some(targets.iter().cloned().collect()), ..Action::new("choose") });
+        checkpoint(g);
+    }
+    fn layout() -> (Game, String, String) {
+        let mut g = game(); let ghoul = field(&mut g, "JZ50", 0);
+        let victim = field(&mut g, "LC01", 2);
+        dead(&mut g, 0, 7); night(&mut g, 0, "ghoul");
+        (g, ghoul, victim)
+    }
+    fn record(name: &str, value: serde_json::Value) {
+        if let Ok(dir) = std::env::var("INDEPENDENT_HISTORY_OUT") {
+            std::fs::create_dir_all(&dir).unwrap();
+            std::fs::write(format!("{dir}/{name}.json"), serde_json::to_vec_pretty(&value).unwrap()).unwrap();
+        }
+    }
+    #[test]
+    fn batch4_night_p2_exact_wounds_real_room_replay_duplicate_and_end_cleanup() {
+        use crate::room::{RoomCommand, RoomEnvelope, SessionAction};
+        let (mut g, ghoul, victim) = layout(); battle(&mut g);
+        let p = g.pending.as_ref().unwrap(); assert_eq!(p.choice.amount, Some(2));
+        assert!(p.choice.title.contains("等量创伤标志"));
+        assert!(matches!(&p.resolution, ChoiceResolution::Damage { wound_sources, .. } if wound_sources == &[ghoul.clone()]));
+        let room = crate::jc029_tests::envelope(&g);
+        let cmd = RoomCommand { command_id: "night-wound-allocation".into(), expected_version: room.revision,
+            action: SessionAction::Game { action: Action { choice_id: Some(p.choice.id.clone()),
+                allocations: Some(BTreeMap::from([(victim.clone(), 2)])), ..Action::new("choose") } } };
+        let out = room.transition(p.seat, Some(cmd.clone()), 0).unwrap();
+        assert_eq!(out.outcome, "accepted");
+        let next = RoomEnvelope::from_persisted(&out.state).unwrap();
+        assert_eq!(serde_json::to_value(room.replay_events(&out.journal).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+        let duplicate = next.transition(p.seat, Some(cmd), 0).unwrap();
+        assert_eq!(duplicate.outcome, "rejected"); assert!(!duplicate.changed && duplicate.journal.is_empty());
+        assert_eq!(serde_json::to_value(RoomEnvelope::from_persisted(&duplicate.state).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+        for viewer in 0..4 {
+            let v = next.view(viewer, 0); let c = v.game.regions[0].characters.iter().find(|c| c.instance_id == victim).unwrap();
+            assert_eq!((c.damage, c.wounds, c.defense), (Some(0), Some(2), Some(2)));
+        }
+        record("p2-wound-room", serde_json::json!({"initial":room, "after":next, "journal":out.journal, "duplicate":duplicate}));
+        g = next.game;
+        // Give the nonlethal recipient an ordinary wound-free point through the
+        // existing damage function as a disclosed adjacent engine-path probe.
+        g.damage(BTreeMap::from([(victim.clone(), 1)])).unwrap(); checkpoint(&g);
+        assert_eq!((g.board(&victim).unwrap().1.damage, g.board(&victim).unwrap().1.wounds), (1, 2));
+        let turn = g.turn; g.begin_window(Window::End);
+        for _ in 0..128 { if g.turn != turn { break; } if g.pending.is_some() { resolve_choice(&mut g); } else { pass(&mut g); } }
+        assert_eq!(g.turn, turn + 1); checkpoint(&g);
+        let c = g.board(&victim).unwrap().1; assert_eq!((c.damage, c.wounds, g.defense(c, 0)), (0, 2, 2));
+        for viewer in 0..4 { let v = g.view(viewer); let c = v.regions[0].characters.iter().find(|c| c.instance_id == victim).unwrap();
+            assert_eq!((c.damage, c.wounds, c.defense), (Some(0), Some(2), Some(2))); }
+        record("p2-wounds-survive-cleanup", serde_json::json!({"game":g, "victim":victim}));
+    }
+    #[test]
+    fn batch4_night_p2_seven_to_six_paid_grave_play_removes_future_wound() {
+        let mut g = game(); let zombie = field(&mut g, "JC085", 0); let victim = field(&mut g, "LC01", 2);
+        dead(&mut g, 0, 6); let card = g.make_card("JC085", 0); let id = card.id.clone(); g.players[0].graveyard.push(card);
+        night(&mut g, 0, "zombie"); assert_eq!(g.effective_wound(g.board(&zombie).unwrap().1), 1);
+        fund(&mut g, 0, "JC084", 2);
+        act(&mut g, 0, Action { card_id: Some(id), region: Some(0), ..Action::new("deploy") });
+        assert_eq!(g.players[0].graveyard.len(), 6); assert_eq!(g.effective_wound(g.board(&zombie).unwrap().1), 0);
+        pass_top(&mut g); battle(&mut g);
+        let p = g.pending.as_ref().unwrap(); let amount = p.choice.amount.unwrap();
+        assert_eq!(amount, 2); assert!(matches!(&p.resolution, ChoiceResolution::Damage { wound_sources, .. } if wound_sources.is_empty()));
+        allocate(&mut g, &[(victim.clone(), amount)]);
+        let c = g.board(&victim).unwrap().1; assert_eq!((c.damage, c.wounds), (2, 0));
+    }
+    #[test]
+    fn batch4_night_p2_real_kill_still_adds_damage_and_combines_with_wound_replacement() {
+        for wound in [false, true] {
+            let mut g = game(); let killer = field(&mut g, "JC016", 0); let victim = field(&mut g, "LC01", 2); let other = field(&mut g, "LC01", 3);
+            assert_eq!(g.effective_kill(g.board(&killer).unwrap().1), 1);
+            if wound { field(&mut g, "JZ50", 0); dead(&mut g, 0, 7); night(&mut g, 0, "ghoul"); }
+            let combat = g.contest_counts(0, 1); let amount = combat[0] - combat[1] + 1;
+            battle(&mut g); assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(amount));
+            allocate(&mut g, &[(victim.clone(), 2), (other.clone(), amount - 2)]);
+            let c = g.board(&victim).unwrap().1;
+            assert_eq!((c.damage, c.wounds), if wound { (0, 2) } else { (2, 0) });
+            let c = g.board(&other).unwrap().1;
+            assert_eq!((c.damage, c.wounds), if wound { (0, amount - 2) } else { (amount - 2, 0) });
+        }
+    }
+    #[test]
+    fn batch4_night_p2_team_recipient_personal_participation_and_nonparticipating_grant() {
+        for recipient in [0, 1] {
+            let (mut g, ghoul, victim) = layout(); field(&mut g, "JC014", 1); let other = field(&mut g, "LC01", 3);
+            battle(&mut g); let p = g.pending.as_ref().unwrap();
+            assert!(matches!(&p.resolution, ChoiceResolution::Recipient { wound_sources, .. } if wound_sources == &[ghoul.clone()]));
+            let amount = p.choice.amount.unwrap(); choose(&mut g, vec![player_id(recipient)]); checkpoint(&g);
+            let p = g.pending.as_ref().unwrap(); assert_eq!(p.seat, recipient);
+            assert!(matches!(&p.resolution, ChoiceResolution::Damage { wound_sources, .. } if wound_sources.is_empty() == (recipient == 1)));
+            allocate(&mut g, &[(victim.clone(), 2), (other.clone(), amount - 2)]);
+            let c = g.board(&victim).unwrap().1;
+            assert_eq!((c.damage, c.wounds), if recipient == 0 { (0, 2) } else { (2, 0) });
+            let c = g.board(&other).unwrap().1;
+            assert_eq!((c.damage, c.wounds), if recipient == 0 { (0, amount - 2) } else { (amount - 2, 0) });
+        }
+        let (mut g, ghoul, victim) = layout(); let killer = field(&mut g, "JC016", 0);
+        g.board_mut(&ghoul).unwrap().exhausted = true;
+        assert_eq!(g.effective_wound(g.board(&ghoul).unwrap().1), 1); assert_eq!(g.icons(g.board(&ghoul).unwrap().1, 0).combat, 0);
+        let amount = g.icons(g.board(&killer).unwrap().1, 0).combat + 1;
+        battle(&mut g); allocate(&mut g, &[(victim.clone(), amount)]);
+        assert_eq!(g.board(&victim).unwrap().1.wounds, 0);
+    }
+    #[test]
+    fn batch4_night_p2_multiple_sources_convert_equal_points_once_and_emit_real_lethal_wound() {
+        let (mut g, _, victim) = layout(); night(&mut g, 0, "ghoul");
+        battle(&mut g); assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(3));
+        allocate(&mut g, &[(victim.clone(), 3)]);
+        assert_eq!((g.board(&victim).unwrap().1.damage, g.board(&victim).unwrap().1.wounds), (0, 3));
+        let (mut g, _, victim) = layout(); field(&mut g, "JC016", 0); let monk = field(&mut g, "LC06", 2);
+        let hand = g.players[2].hand.len(); battle(&mut g); assert_eq!(g.pending.as_ref().unwrap().choice.amount, Some(5));
+        allocate(&mut g, &[(victim.clone(), 3), (monk.clone(), 2)]);
+        assert_eq!(g.board(&victim).unwrap().1.wounds, 3); assert!(g.board(&monk).is_none());
+        let p = g.pending.as_ref().unwrap();
+        assert!(matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. } if declaration.source.card.id == monk && declaration.ability.event == Some(Event::ReceiveWound)));
+        assert_eq!(p.seat, 2);
+        for viewer in 0..4 { assert_eq!(g.view(viewer).pending_choice.is_some(), viewer == 2); }
+        choose(&mut g, vec!["accept".into()]); pass_top(&mut g);
+        assert_eq!(g.players[2].hand.len(), hand + 2); checkpoint(&g);
+    }
+    #[test]
+    fn batch4_night_p2_wound_receipts_fail_closed_for_missing_foreign_duplicate_or_rebound_participants() {
+        let (mut g, ghoul, victim) = layout(); battle(&mut g);
+        for sources in [vec![], vec![victim.clone()], vec![ghoul.clone(), ghoul.clone()], vec!["missing".into()]] {
+            let mut bad = g.clone(); if let ChoiceResolution::Damage { wound_sources, .. } = &mut bad.pending.as_mut().unwrap().resolution { *wound_sources = sources; }
+            invalid(&g, &bad);
+        }
+        let mut bad = g.clone(); bad.pending.as_mut().unwrap().choice.amount = Some(3); invalid(&g, &bad);
+        let mut bad = g.clone(); bad.regions[0].cards.iter_mut().find(|c| c.id == ghoul).unwrap().id = bad.id(); invalid(&g, &bad);
+        let mut raw = serde_json::to_value(&g).unwrap(); raw["pending"]["resolution"]["Damage"].as_object_mut().unwrap().remove("wound_sources");
+        assert!(Game::from_persisted(&raw.to_string()).is_err());
+        let (mut g, ghoul, victim) = layout(); field(&mut g, "JC014", 1); battle(&mut g);
+        for sources in [vec![], vec![victim], vec![ghoul.clone(), ghoul]] {
+            let mut bad = g.clone(); if let ChoiceResolution::Recipient { wound_sources, .. } = &mut bad.pending.as_mut().unwrap().resolution { *wound_sources = sources; }
+            invalid(&g, &bad);
+        }
+    }
+    #[test]
+    fn batch4_night_p2_chosen_live_value_rejects_every_unfinished_entry_stage_and_finish_overwrite() {
+        let mut g = game(); fund(&mut g, 0, "JC084", 2); let h = held(&mut g, "JZ56", 0);
+        act(&mut g, 0, Action { card_id: Some(h), target_id: Some("society:p0".into()), ..Action::new("play") });
+        pass_top(&mut g); let source = g.attachments.iter().find(|a| a.card.definition == "JZ56").unwrap().card.id.clone();
+        let declaration = g.clone();
+        let mut queued = g.clone(); let p = queued.pending.take().unwrap();
+        if let ChoiceResolution::Declare { declaration, .. } = p.resolution { queued.effects.push_front(Effect::Declare { declaration }); } else { panic!("entry declaration"); }
+        checkpoint(&queued); choose(&mut g, vec!["accept".into()]); let stack = g.clone(); pass_top(&mut g);
+        let frame = match &g.pending.as_ref().unwrap().resolution { ChoiceResolution::Frame { frame, .. } => frame.as_ref().clone(), _ => panic!("entry choice") };
+        for good in [queued, declaration, stack, g.clone()] {
+            checkpoint(&good);
+            for kind in [UndeadKind::Ghoul, UndeadKind::Zombie, UndeadKind::Skeleton] {
+                let mut bad = good.clone(); bad.attachments.iter_mut().find(|a| a.card.id == source).unwrap().card.chosen_subtype = Some(kind);
+                invalid(&good, &bad);
+                let before = serde_json::to_value(&bad).unwrap();
+                let action = Action { choice_id: g.pending.as_ref().map(|p| p.choice.id.clone()), selected: Some(vec!["skeleton".into()]), ..Action::new("choose") };
+                assert!(bad.jz56_choose_finish(&frame, 0, &action, &["skeleton".into()]).is_err());
+                assert_eq!(serde_json::to_value(&bad).unwrap(), before);
+            }
+        }
+        choose(&mut g, vec!["ghoul".into()]); checkpoint(&g);
+        assert_eq!(g.attachments.iter().find(|a| a.card.id == source).unwrap().card.chosen_subtype, Some(UndeadKind::Ghoul));
+    }
 }

@@ -123,8 +123,9 @@ impl Game {
         if c.face_down || card(&c.definition).kind != "character" {
             return 0;
         }
-        crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0 + self.jz39_host_kill(c) + self.jz56_aura(c).1
+        crate::rules::definition(&c.definition).traits.kill + self.execution_turn_grants(c).0 + self.jz39_host_kill(c)
     }
+    pub(crate) fn effective_wound(&self, c: &Card) -> u32 { self.jz56_aura(c).1 }
     pub(crate) fn has_retreat(&self, c: &Card) -> bool {
         !c.face_down
             && (crate::rules::definition(&c.definition).traits.retreat

@@ -37,7 +37,7 @@ pub(crate) fn validate_action(a: &Action) -> RuleResult<()> {
     Ok(())
 }
 impl Game {
-    /// (temporary influence and defense, permanent combat and kill).
+    /// (temporary influence and defense, permanent combat and wound).
     pub(crate) fn jz56_aura(&self, c: &Card) -> (u32, u32) {
         if c.face_down || c.controller >= self.players.len()
             || !catalog::has_kind(catalog::card(&c.definition), "character")
@@ -51,6 +51,11 @@ impl Game {
     }
     fn jz56_source(&self, actor: usize, s: &SourceSnapshot, attaching: bool) -> RuleResult<()> {
         let c = &s.card;
+        // A finished choice and an unfinished entry event cannot coexist for
+        // the same live instance. A departed source's historical event is legal.
+        if !attaching && self.attachments.iter().any(|a| a.card.id == c.id && a.card.chosen_subtype.is_some()) {
+            return Err("亡者之夜原实例已经选择类别，不能保留未完成选择".into());
+        }
         if c.definition != "JZ56" || c.face_down || c.chosen_subtype.is_some()
             || actor >= self.players.len() || c.controller != actor || c.owner >= self.players.len()
             || self.mystic_instance_number(&c.id).is_none() || s.region.is_some() || s.source_region_instance.is_some()
@@ -114,6 +119,7 @@ impl Game {
         }
         let kind = TYPES.into_iter().find(|kind| kind.id() == selected[0]).ok_or("不是亡者之夜的三种类别")?;
         if let Some(c) = self.attachments.iter_mut().find(|a| a.card.id == f.source.card.id).map(|a| &mut a.card) {
+            if c.chosen_subtype.is_some() { return Err("亡者之夜类别只能选择一次".into()); }
             c.chosen_subtype = Some(kind);
             self.note(format!("亡者之夜：选择{}类别", kind.label()));
         }
@@ -121,6 +127,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_jz56_state(&self) -> RuleResult<()> {
+        self.validate_combat_wound_state()?;
         for c in self.batch3_physical_cards().filter(|c| c.chosen_subtype.is_some()) {
             if c.definition != "JZ56" || c.face_down || !self.attachments.iter().any(|a| &a.card == c && self.attachment_host_valid(a)) {
                 return Err("亡者之夜类别只能留在原公开场内实例".into());

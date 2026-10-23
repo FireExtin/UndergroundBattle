@@ -2,6 +2,7 @@ mod chaos;
 #[cfg(test)]
 mod recovery_validation_tests;
 mod batch4_night;
+mod combat_wounds;
 #[cfg(test)]
 mod batch4_night_tests;
 mod batch4_warden;

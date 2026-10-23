@@ -1485,6 +1485,7 @@ impl Game {
                 .map(|c| self.effective_kill(c))
                 .sum::<u32>();
             let total = amount + kills;
+            let wound_sources = self.combat_wound_sources(region, team, None);
             if seats.len() > 1 {
                 self.effects.push_back(Effect::Recipient {
                     team,
@@ -1492,12 +1493,14 @@ impl Game {
                     contest,
                     amount: total,
                     seats,
+                    wound_sources,
                 });
             } else {
                 self.effects.push_back(Effect::Damage {
                     seat: seats[0],
                     region,
                     amount: total,
+                    wound_sources: self.combat_wound_sources(region, team, Some(seats[0])),
                 });
             }
             self.effects.extend(path_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
@@ -1512,6 +1515,7 @@ impl Game {
                     contest,
                     amount,
                     seats,
+                    wound_sources: vec![],
                 });
             } else {
                 self.effects.push_back(Effect::Forecast {
@@ -1710,6 +1714,7 @@ impl Game {
                 seat,
                 region,
                 amount,
+                wound_sources,
             } => {
                 if !self.region_live(region) { return Ok(()); }
                 let options: Vec<_> = self.region_characters(region)
@@ -1721,12 +1726,13 @@ impl Game {
                     self.choice(
                         seat,
                         "damage",
-                        format!("地区 {}：分配 {} 点同时战斗伤害", region + 1, amount),
+                        if wound_sources.is_empty() { format!("地区 {}：分配 {} 点同时战斗伤害", region + 1, amount) }
+                        else { format!("地区 {}：将 {} 点战斗伤害改为等量创伤标志", region + 1, amount) },
                         options,
                         0,
                         target_count,
                         Some(amount),
-                        ChoiceResolution::Damage { region },
+                        ChoiceResolution::Damage { region, wound_sources },
                     );
                 }
             }
@@ -1736,6 +1742,7 @@ impl Game {
                 contest,
                 amount,
                 seats,
+                wound_sources,
             } => {
                 if !self.region_live(region) { return Ok(()); }
                 let chooser = seats[0];
@@ -1759,6 +1766,7 @@ impl Game {
                         region,
                         contest,
                         amount,
+                        wound_sources,
                     },
                 );
             }
@@ -2279,7 +2287,7 @@ impl Game {
                 }
                 self.note(format!("{} 完成预测排序", self.players[seat].name));
             }
-            ChoiceResolution::Damage { region } => {
+            ChoiceResolution::Damage { region, wound_sources } => {
                 let allocations = a.allocations.unwrap_or_default();
                 if !allocations.keys().all(|id| option_ids.contains(id))
                     || allocations.values().map(|x| *x as u64).sum::<u64>()
@@ -2315,12 +2323,14 @@ impl Game {
                 {
                     return Err("必须先向护卫分配护卫值".into());
                 }
-                self.damage(allocations)?;
+                if wound_sources.is_empty() { self.damage(allocations)?; }
+                else { self.place_wounds(allocations)?; self.settle_deaths(); }
             }
             ChoiceResolution::Recipient {
                 region,
                 contest,
                 amount,
+                wound_sources,
             } => {
                 let recipient = selected[0]
                     .strip_prefix('p')
@@ -2338,6 +2348,7 @@ impl Game {
                         seat: recipient,
                         region,
                         amount,
+                        wound_sources: wound_sources.into_iter().filter(|id| self.board(id).is_some_and(|(_, c)| c.controller == recipient)).collect(),
                     })
                 }
             }
@@ -2406,8 +2417,10 @@ impl Game {
             current_kill: (!asset
                 && !c.face_down
                 && region.is_some()
-                && (self.execution_turn_grants(c).0 > 0 || self.jz39_host_kill(c) > 0 || self.jz56_aura(c).1 > 0))
+                && (self.execution_turn_grants(c).0 > 0 || self.jz39_host_kill(c) > 0))
                 .then(|| self.effective_kill(c)),
+            current_wound: (!asset && !c.face_down && region.is_some() && self.effective_wound(c) > 0)
+                .then(|| self.effective_wound(c)),
             current_retreat: (!asset
                 && !c.face_down
                 && region.is_some()
@@ -6074,7 +6087,7 @@ mod tests {
             ChoiceResolution::Bottom { .. } => {
                 a.bottom = Some(p.choice.options.iter().map(|o| o.id.clone()).collect())
             }
-            ChoiceResolution::Damage { region } => {
+            ChoiceResolution::Damage { region, .. } => {
                 let amount = p.choice.amount.unwrap();
                 let guards = p
                     .choice
@@ -6876,6 +6889,7 @@ mod tests {
             seat: 0,
             region: 0,
             amount: 2,
+            wound_sources: vec![],
         });
         g.drive().unwrap();
         let mut restored: Game = serde_json::from_str(&serde_json::to_string(&g).unwrap()).unwrap();
@@ -6924,6 +6938,7 @@ mod tests {
             seat: 0,
             region: 0,
             amount: 1,
+            wound_sources: vec![],
         });
         board(&mut g, "LC20", 2, 0);
         g.drive().unwrap();

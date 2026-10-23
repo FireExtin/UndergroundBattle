@@ -4,13 +4,13 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, namedCharacter: undefined, chosenSubtype: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
-  if (card.faceDown) card = { ...card, namedCharacter: undefined, chosenSubtype: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.faceDown) card = { ...card, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
-    return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
+    return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentWound !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
   return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
-    text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
+    text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentDomains: undefined, currentSubtypes: undefined, currentRenown: undefined, currentCombatGlory: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined, currentPublic: undefined, permanentCombatMarkers: undefined };
 }
 
@@ -108,6 +108,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
       {!compact && <span className="hg-card-text">{asset ? '未横置时可提供 1 费用，并提供所示派系与魔法忠诚。' : card.text || definition?.text || '此牌没有额外能力。'}</span>}
       <span className="hg-card-footer">
         {!card.faceDown && card.region !== undefined && typeof card.currentKill === 'number' && <span>本回合杀伤 {card.currentKill}</span>}
+        {!card.faceDown && !asset && card.region !== undefined && typeof card.currentWound === 'number' && <span>创伤 {card.currentWound}</span>}
         {!card.faceDown && card.region !== undefined && card.currentRetreat && <span>本回合撤回</span>}
         {!card.faceDown && card.region !== undefined && typeof card.currentSpiritProtection === 'boolean' && <span title="灵体按本地区双方领域数量比较防止伤害">灵体：当前{card.currentSpiritProtection ? '防止伤害' : '不防止伤害'}</span>}
         {!card.faceDown && card.region !== undefined && card.currentDamagePrevention && <span>本回合防止伤害</span>}

@@ -24,6 +24,7 @@ export type Card = {
   currentEnemySpellProtection?: boolean;
   currentDomains?: { magic: string; count: number }[];
   currentKill?: number;
+  currentWound?: number;
   currentRetreat?: boolean;
   convertedTemporaryIcons?: Icons;
   currentSpiritProtection?: boolean;

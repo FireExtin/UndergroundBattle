@@ -19,3 +19,19 @@ it.each(['asset', 'sealed', 'hidden'])('strips the choice from a blank or hidden
     expect(card.chosenSubtype).toBeUndefined();
   }
 });
+
+it('shows continuous wound separately from kill for all four seats', () => {
+  for (const viewerId of ['p0', 'p1', 'p2', 'p3']) {
+    const view = render(<CardTile card={{ ...testCard, kind: 'character', faceDown: false, region: 0, currentWound: 1 }} viewerId={viewerId} />);
+    expect(screen.getByText('创伤 1')).toBeInTheDocument();
+    expect(screen.queryByText('本回合杀伤 1')).not.toBeInTheDocument();
+    view.unmount();
+  }
+});
+
+it.each(['asset', 'sealed', 'hidden'])('strips wound from the %s face for every seat', kind => {
+  for (const viewer of ['p0', 'p1', 'p2', 'p3']) {
+    const card = visibleCard({ ...testCard, currentWound: 1, kind, faceDown: kind === 'hidden' }, viewer);
+    expect(card.currentWound).toBeUndefined();
+  }
+});

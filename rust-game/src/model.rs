@@ -105,6 +105,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_kill: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_wound: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_retreat: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub converted_temporary_icons: Option<Icons>,
@@ -511,6 +513,7 @@ pub enum Effect {
         seat: usize,
         region: usize,
         amount: u32,
+        wound_sources: Vec<String>,
     },
     Recipient {
         team: usize,
@@ -518,6 +521,7 @@ pub enum Effect {
         contest: usize,
         amount: u32,
         seats: Vec<usize>,
+        wound_sources: Vec<String>,
     },
     Award {
         seat: usize,
@@ -896,11 +900,13 @@ pub enum ChoiceResolution {
     },
     Damage {
         region: usize,
+        wound_sources: Vec<String>,
     },
     Recipient {
         region: usize,
         contest: usize,
         amount: u32,
+        wound_sources: Vec<String>,
     },
     Bottom {
         region: usize,

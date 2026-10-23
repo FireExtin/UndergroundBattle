@@ -349,6 +349,7 @@ fn green_lc30_guard_two_requires_two_before_other_enemy_even_when_exhausted_and_
             seat: 0,
             region: 0,
             amount,
+            wound_sources: vec![],
         })
         .unwrap();
         let p = g.pending.as_ref().unwrap().clone();

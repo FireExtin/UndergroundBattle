@@ -42,7 +42,7 @@ fn batch3_bq026_real_damage_and_end_cleanup_remove_damage_before_temporary_defen
 
         // Real combat-damage allocation applies damage through the normal
         // pending action; never seed a damage field or call FinishCleanup here.
-        g.effects.push_back(Effect::Damage { seat: 2, region: 0, amount: 1 });
+        g.effects.push_back(Effect::Damage { seat: 2, region: 0, amount: 1, wound_sources: vec![] });
         g.drive().unwrap();
         let p = g.pending.clone().unwrap();
         act(&mut g, p.seat, Action {
@@ -165,7 +165,7 @@ fn batch3_bq026_real_damage_and_end_cleanup_remove_damage_before_temporary_defen
 }
 #[test] fn batch3_bq026_region_combat_damage_choice_includes_attached_character_and_counts_icons_once() {
     let mut g=game();let host=field(&mut g,"JC029",0);let bat=attached(&mut g,&host);let before=g.contest_counts(0,1)[0];assert_eq!(before,g.icons(g.board(&host).unwrap().1,0).combat+1);
-    g.effects.push_back(Effect::Damage{seat:2,region:0,amount:1});g.drive().unwrap();let p=g.pending.clone().unwrap();assert!(p.choice.options.iter().any(|o|o.id==bat));
+    g.effects.push_back(Effect::Damage{seat:2,region:0,amount:1,wound_sources:vec![]});g.drive().unwrap();let p=g.pending.clone().unwrap();assert!(p.choice.options.iter().any(|o|o.id==bat));
     act(&mut g,p.seat,Action{choice_id:Some(p.choice.id),allocations:Some([(bat.clone(),1)].into_iter().collect()),..Action::new("choose")});assert!(g.board(&bat).is_none());restore(&mut g);
 }
 #[test] fn batch3_bq026_entered_region_trigger_cannot_follow_moved_or_hidden_source_or_replacement_region() {

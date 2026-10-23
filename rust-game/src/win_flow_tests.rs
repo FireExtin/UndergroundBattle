@@ -833,6 +833,7 @@ fn world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot() {
         contest: 2,
         amount: 3,
         seats: vec![0, 1],
+        wound_sources: vec![],
     });
     g.effects.push_back(Effect::Score { seat: 0, region: 2 });
     let card = g.make_card("JC075", 0);
