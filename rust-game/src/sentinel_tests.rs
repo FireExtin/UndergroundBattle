@@ -84,7 +84,7 @@ fn sentinel_insufficient_assets_exhaustion_and_response_timing() {
     let mut g=sentinel_game();let target=hidden(&mut g,2,1);fund(&mut g,0,"JC125",2);
     assert!(!g.legal_actions(0).iter().any(|a|a.action.ability_id.as_deref()==Some("sentinel-lock")));
     fund(&mut g,0,"JC125",1);let a=action(&g,0,"sentinel-lock",&target,None);act(&mut g,0,a);
-    assert!(g.can_fast(2));assert!(g.check_timing(2,&definition("MSJC14").abilities[0]).is_err());
+    let responder=g.priority_team*2;assert!(g.can_fast(responder));assert!(g.check_timing(responder,&definition("MSJC14").abilities[0]).is_err());
     top(&mut g);fund(&mut g,0,"JC125",3);
     assert!(!g.legal_actions(0).iter().any(|a|a.action.ability_id.as_deref()==Some("sentinel-lock")));
 }
