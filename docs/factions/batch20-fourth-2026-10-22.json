@@ -611,7 +611,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg",
       "sourceImageSha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 24,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -619,10 +619,10 @@
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated",
-      "fullNativeCardComplete": false,
-      "nativeDirectedStatus": "authorPassed24Directed34DistinctAdjacent_source6_pendingIndependentReview",
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Independently closed Native program received in serial integration. Combined ABI99 WASM/Worker/browser not run.",
+      "fullNativeCardComplete": true,
+      "nativeDirectedStatus": "fixed source independently closed; integrated source still WIP",
       "nativeSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
       "dependencySociety": "MSJC13",
       "nativeEvidence": "docs/evidence/wm037-clock-native-20261023/verification.json"
@@ -843,8 +843,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM043 精准打击.jpg",
       "sourceImageSha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 23,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -852,7 +852,10 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Original independent shield P2 followed by author fix. Counterexamples received; no independent fix re-review. Not counted.",
+      "fullNativeCardComplete": false,
+      "nativeSource": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+      "nativeEvidence": "b4550dcd3099b4b0501c9afa2d001c5912a0a159"
     },
     {
       "id": "CQ18",
@@ -935,7 +938,7 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
       "sourceImageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "runtime": "nativePilotPassedPendingBatchIntegration",
       "nativeDirectedCases": 21,
       "wasmImplemented": false,
       "selectionEnabled": false,
@@ -943,9 +946,10 @@
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Society attachment, hidden-entry slow and actual mystic-win private inspection implemented. Exact MSJC14 entry-lock branch exists, but positive normal-play validation remains blocked by absent complete MSJC14 runtime. No whole-card closure or public admission.",
-      "fullNativeCardComplete": false
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Independently closed Native program received in serial integration. Combined ABI99 WASM/Worker/browser not run.",
+      "fullNativeCardComplete": true,
+      "nativeDirectedStatus": "fixed source independently closed; integrated source still WIP"
     }
   ],
   "sourceCorrections": [
@@ -1031,10 +1035,13 @@
     }
   ],
   "developmentIdentity": {
-    "native": "rust-v0.2.97-batch20-fourth",
-    "pool": "limited-v2.88-batch20-fourth",
+    "native": "rust-v0.2.99-game-serial",
+    "pool": "limited-v2.90-game-serial",
     "wasmBuilt": false,
-    "publicIdentityChanged": false
+    "workerRun": false,
+    "browserRun": false,
+    "publicIdentityChanged": false,
+    "scope": "local serial integration WIP; deployed76b1b189 ABI95 unchanged"
   },
   "candidateComparison": [
     {
@@ -1669,11 +1676,11 @@
     "wasmWorkerBrowser": false
   },
   "projectProgress": {
-    "nativeClosedAcrossBranches": 35,
-    "localIntegratedClosedCards": 35,
+    "nativeClosedAcrossBranches": 37,
+    "localIntegratedClosedCards": 37,
     "separateClosedCard": null,
     "separateClosedSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
-    "currentIncrement": "LC16",
+    "currentIncrement": "serial integration WIP; reviewed source receipts retained",
     "blueGrayOwner": "01a1693c-05ce-726e-95af-31ecb62d60f2",
     "blueGrayClaim": "WM044",
     "notPublicAdmission": true,
@@ -1713,20 +1720,19 @@
       "source": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
       "evidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
       "nativeIndependentTestsPassed": 24,
-      "integratedInThisClone": false,
+      "integratedInThisClone": true,
       "dependencySociety": "MSJC14",
       "societyCountsAsBatchCard": false
     }
   },
   "projectProgressIncludingExternalReviewedBranches": {
-    "nativeClosed": 36,
+    "nativeClosed": 37,
     "target": 50,
-    "localIntegratedNativeClosed": 35,
-    "externalReviewedNotMerged": [
-      "WM044"
-    ],
+    "localIntegratedNativeClosed": 37,
+    "externalReviewedNotMerged": [],
     "currentCandidateNotCounted": [
-      "WM037"
+      "WM043",
+      "XG21"
     ],
     "publicBatchAccepted": 0
   },
@@ -1737,9 +1743,11 @@
     "completeSocietyDependency": "MSJC13",
     "nativeUniquePassed": 58,
     "sourceChecksPassed": 6,
-    "independentReview": "pending",
-    "newCompletionCountAdded": 0,
-    "publicAdmission": false
+    "independentReview": "closed; existing specific-card FAQ correction",
+    "newCompletionCountAdded": 1,
+    "publicAdmission": false,
+    "independentNativePassed": 31,
+    "independentSourcePassed": 6
   },
   "serialIntegration": {
     "status": "local integration WIP; not independent integrated approval",
@@ -1749,6 +1757,11 @@
     "WM044Source": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
     "publicAdmissionUnchanged": true,
     "wasmWorkerBrowserForCombinedSource": false,
-    "olderIdentityAndCountEntries": "historical per-source receipts; this aggregate supersedes progress counts only"
+    "olderIdentityAndCountEntries": "historical per-source receipts; this aggregate supersedes progress counts only",
+    "identity": "rust-v0.2.99-game-serial",
+    "regularDefinitions": 252,
+    "regularSupported": 213,
+    "WM043": "author shield fix WIP; not independently re-reviewed; not counted",
+    "integratedApproval": false
   }
 }

@@ -48,7 +48,7 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(drafts.length, plan.scope.nativeWipCards ?? 0);
   const reviewed = ['WM021', 'WM022', 'WM032', 'WM061', 'BQ082', 'BQ027', 'BQ031', 'BQ032', 'BQ038'];
   assert.equal(plan.packAValidation.completionCountAdded, 5);
-  assert.equal(plan.scope.nativePilots, 35);
+  assert.equal(plan.scope.nativePilots, 37);
   assert.equal(plan.lc16ClosureReview.status, 'closed');
   assert.equal(hash(read(plan.lc16ClosureReview.report)), plan.lc16ClosureReview.reportSha256);
   assert(pilots.some(c => c.id === 'LC16' && c.fullNativeCardComplete));
@@ -143,13 +143,13 @@ test('package B independently closed native cards preserve prior catalogue and p
   for (const source of packageB.rulesRead) assert.equal(hash(read(source.path)), source.sha256);
 });
 
-test('WM044 minimum aura remains explicit WIP with exact source and unchanged whole-card count', () => {
+test('WM044 reviewed Native source is received while integrated platform admission stays closed', () => {
   const row = plan.cards.find(c => c.id === 'WM044');
-  assert.equal(row.fullNativeCardComplete, false);
-  assert.equal(row.runtime, 'nativeWipDirectedPassedPendingClosure');
+  assert.equal(row.fullNativeCardComplete, true);
+  assert.equal(row.runtime, 'nativePilotPassedPendingBatchIntegration');
   assert.equal(row.selectionEnabled, false);
   assert.equal(row.wasmImplemented, false);
-  assert.equal(plan.scope.nativePilots, 33);
+  assert.equal(plan.scope.nativePilots, 37);
   const c = pool.cards.find(c => c.id === 'WM044');
   assert.equal(c.supported, false);
   assert.equal(c.text, specs.WM044.fields.printedRuleTextLines.join('\n'));

@@ -32,24 +32,26 @@ test('WM037 and complete red Society dependency retain their exact pinned origin
 
 test('prior249 regular definitions remain byte-semantically unchanged and public213 stay fixed', () => {
   assert.equal(hash(JSON.stringify(canonical(pool.cards.slice(0, 249)))), 'eb240c02012cff99fb2268d11b929a4dfcca029106c4a9fc8326516198e77b50');
-  assert.equal(pool.cards.length, 250);
+  assert.equal(pool.cards.length, 252);
   assert.equal(pool.cards[249].id, 'WM037');
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
   assert.equal(pool.cards[249].supported, false);
-  assert(!pool.cards.some(c => ['WM044', 'MSJC14', 'MSJC13'].includes(c.id)));
-  assert.equal(pool.engineVersion, 'rust-v0.2.98-batch20-fourth');
-  assert.equal(pool.cardPoolVersion, 'limited-v2.89-batch20-fourth');
+  assert.deepEqual(pool.cards.slice(250).map(c => c.id), ['WM044', 'WM043']);
+  assert(pool.cards.slice(249).every(c => c.supported === false));
+  assert(!pool.cards.some(c => ['MSJC14', 'MSJC13'].includes(c.id)));
+  assert.equal(pool.engineVersion, 'rust-v0.2.99-game-serial');
+  assert.equal(pool.cardPoolVersion, 'limited-v2.90-game-serial');
 });
 
 test('WM037 candidate and Society dependency do not inflate independent or public completion', () => {
   const wm = plan.cards.find(c => c.id === 'WM037');
-  assert.equal(wm.runtime, 'nativeWipDirectedPassedPendingClosure');
-  assert.equal(wm.fullNativeCardComplete, false);
+  assert.equal(wm.runtime, 'nativePilotPassedPendingBatchIntegration');
+  assert.equal(wm.fullNativeCardComplete, true);
   assert.equal(wm.dependencySociety, 'MSJC13');
   assert.equal(wm.selectionEnabled, false); assert.equal(wm.published, false); assert.equal(wm.accepted, false);
   assert(!plan.cards.some(c => c.id === 'MSJC13'));
-  assert.equal(plan.scope.nativePilots, 35);
-  assert.equal(plan.projectProgressIncludingExternalReviewedBranches.nativeClosed, 36);
-  assert.equal(plan.externalNativeClosure.WM044.integratedInThisClone, false);
+  assert.equal(plan.scope.nativePilots, 37);
+  assert.equal(plan.projectProgressIncludingExternalReviewedBranches.nativeClosed, 37);
+  assert.equal(plan.externalNativeClosure.WM044.integratedInThisClone, true);
   assert.equal(plan.scope.accepted, 0);
 });

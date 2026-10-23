@@ -36,9 +36,12 @@ test('WM043 catalog preserves the full printed behavior and remains unadmitted',
   assert.deepEqual(card.text.split('\n'), spec.fields.printedRuleTextLines);
   assert.equal(pool.cards.filter(c => c.id === 'WM043').length, 1);
 });
-test('WM043 is the only catalog addition; all prior cards and shared ledgers remain byte-identical', () => {
-  assert.equal(sha(JSON.stringify({...pool, cards:pool.cards.filter(c => c.id !== 'WM043')})), baseline['rust-game/data/cards.json']);
-  for (const p of ['docs/factions/card-specifications.json', 'docs/factions/batch20-fourth-2026-10-22.json',
+test('WM043 historical baseline remains exact after excluding only the other reviewed additions', () => {
+  const reviewedAdds = new Set(['WM043', 'XQ20', 'LC16', 'WM037']);
+  const historical = {...pool, engineVersion:'rust-v0.2.95-batch20-fourth', cardPoolVersion:'limited-v2.86-batch20-fourth', cards:pool.cards.filter(c => !reviewedAdds.has(c.id))};
+  assert.equal(sha(JSON.stringify(historical)), baseline['rust-game/data/cards.json']);
+  assert.equal(sha(read('docs/evidence/game-serial-20261024/batch-plan-5607.json')), baseline['docs/factions/batch20-fourth-2026-10-22.json']);
+  for (const p of ['docs/factions/card-specifications.json',
     'rust-game/src/sentinel.rs', 'rust-game/src/batch4_intelligence.rs']) {
     assert.equal(sha(read(p)), baseline[p], p);
   }

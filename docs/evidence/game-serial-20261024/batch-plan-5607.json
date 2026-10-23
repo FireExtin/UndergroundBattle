@@ -1,0 +1,1637 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch50-fourth-20261022",
+  "status": "nativeDevelopmentWip",
+  "baseCommit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+  "baseRegularDefinitions": 213,
+  "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
+  "scope": {
+    "selected": 50,
+    "nativePilots": 33,
+    "fullyIntegratedNewCards": 0,
+    "selectionEnabled": 0,
+    "published": 0,
+    "accepted": 0,
+    "target": 50,
+    "unassignedSlots": 0,
+    "remainingNativePrograms": 17,
+    "nativeWipCards": 2,
+    "nativePartialCards": 0,
+    "wasmDirectedCards": 1,
+    "workerDirectedCards": 1
+  },
+  "colorCounts": {
+    "红": 13,
+    "黑": 11,
+    "蓝": 14,
+    "灰": 12
+  },
+  "cards": [
+    {
+      "id": "XG14",
+      "name": "朽灭者",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg",
+      "sourceImageSha256": "91f54781af21e43350d32292fb6ca1801bf317c69009ae3cf099a79ee71dbd25",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 12,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG15",
+      "name": "雾涌海怪",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg",
+      "sourceImageSha256": "af667f73a9657f904f653cffdf7c32b1714d2d130e2a081b89604e990c214379",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ38",
+      "name": "仪式雕像",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
+      "sourceImageSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 15,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ39",
+      "name": "恶魔刺青",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg",
+      "sourceImageSha256": "4bfac05a9d9f65d6d5c11fd69eded848bda7472c6b7940c735d6722ae3fb5a75",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ]
+    },
+    {
+      "id": "WM029",
+      "name": "被胁迫的政要",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg",
+      "sourceImageSha256": "576d904670d85d64c33d92d5dda21142ca7faa6a079816ecd26b13480a2e8987",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 17,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ084",
+      "name": "战栗凶灵",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg",
+      "sourceImageSha256": "c6e661db496bbde8718a5af312ec64704f597d41bce424f9a0034132a16080af",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ086",
+      "name": "雅加达的萨迪金",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg",
+      "sourceImageSha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM058",
+      "name": "“弹簧刀”钱斯",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg",
+      "sourceImageSha256": "8df743099faf69b6a56cd546be5a572a3fb8505dc66083ea6e11b907592cc7c6",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 19,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM060",
+      "name": "多情达莉娅",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg",
+      "sourceImageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 14,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "JZ56",
+      "name": "亡者之夜",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
+      "sourceImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 34,
+      "wasmImplemented": true,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/JZ56_RECIPIENT_P2_FIX_2026-10-23.md",
+      "readinessScope": "Independently closed native33 at292d/ebccb. Author ABI95 Native/WASM200 commands and actual Worker200 commands directed verification passed for JZ56; one normal legal Worker duel reached score terminal. No full50, new deck admission, browser or public acceptance.",
+      "wasmDirectedVerified": true,
+      "workerDirectedVerified": true,
+      "wasmEvidence": "docs/factions/ABI95_PLATFORM_2026-10-23.md"
+    },
+    {
+      "id": "XQ15",
+      "name": "爱弗罗德庄园",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
+      "sourceImageSha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 16,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "BQ041",
+      "name": "欢宴",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
+      "sourceImageSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 15,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG11",
+      "name": "阴魂术士",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg",
+      "sourceImageSha256": "dd607b6945fbbe45cf3627832d08b9bea1e138a9c75a1eaabf2b0b5cff610ab1",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XG12",
+      "name": "兽形变化",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg",
+      "sourceImageSha256": "0a5ff08cbd1bb2c181fe8c729bec1e7a2646019e744317b17dc83498700fe2fd",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 12,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "XQ13",
+      "name": "焚血之道",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg",
+      "sourceImageSha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "isolatedDraft": {
+        "branch": "progress/batch4-pathway-rule-draft-20261022",
+        "commit": "94391d440bc2e35d52cd59116ef7bcf900b4aea9",
+        "directedPrototypeTests": 12,
+        "completedCard": false,
+        "ruleQuestion": "XQ13-PATHWAY-OVERFLOW-01",
+        "question": "Does excess Pathway control prohibit entry/play or force a sacrifice? Primary consequence/timing ruling still needed; prototype is separate."
+      }
+    },
+    {
+      "id": "BQ053",
+      "name": "老看守",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg",
+      "sourceImageSha256": "24e2f8c2efc756f3cc12cc3f3f6c7ab907655627d4d5630970af5b94e07c94a6",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "dependencyBoundary": "Distinct lossControl Society marker0..3 supported; producing Shoggoth Society/core/commands absent, marker fixture disclosed. No full Shoggoth support or admission claimed."
+    },
+    {
+      "id": "WM045",
+      "name": "计划：新秩序",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg",
+      "sourceImageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 10,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM046",
+      "name": "计划：天眼",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg",
+      "sourceImageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "nativeCaseGroup": "batch4_plans:16 unique Plan cases; one shared threshold/admission case; separate existing-JC060 regression also in module filter"
+    },
+    {
+      "id": "WM047",
+      "name": "计划：贝奥武夫",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg",
+      "sourceImageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "nativeCaseGroup": "batch4_plans:16 unique Plan cases; one shared threshold/admission case; separate existing-JC060 regression also in module filter"
+    },
+    {
+      "id": "XG17",
+      "name": "专家研讨会",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg",
+      "sourceImageSha256": "92f9461932367199a9264b98db3000c30cae949ed30bed34c35eb34f446f54e8",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 18,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": []
+    },
+    {
+      "id": "WM061",
+      "name": "土归土",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+      "sourceImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 7,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "LC16",
+      "name": "江月",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
+      "sourceImageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+    },
+    {
+      "id": "XQ35",
+      "name": "白骨仆人",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg",
+      "sourceImageSha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing grave/seal anchors only; current catalogue still requires exact absent printed cost, grave-only activation source and sealed-cost receipt design. Not implemented or counted."
+    },
+    {
+      "id": "JZ53",
+      "name": "尸舞舒拉密兹",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
+      "sourceImageSha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "JZ51",
+      "name": "温迪戈",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+      "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 19,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Closed Native grave-seal payment/top-eight entry program passed19 directed cases; no WASM or admission"
+    },
+    {
+      "id": "WM022",
+      "name": "阴影之子",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+      "sourceImageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 6,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 3,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "BQ082",
+      "name": "毒药专家塞巴斯蒂安",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+      "sourceImageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 7,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 6,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "XQ20",
+      "name": "灵魂通道",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
+      "sourceImageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "XQ21",
+      "name": "臣服于命运",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
+      "sourceImageSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 18,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "JZ40",
+      "name": "蚀刻头骨",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg",
+      "sourceImageSha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 12,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+    },
+    {
+      "id": "JZ36",
+      "name": "血祭",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ36 血祭.jpg",
+      "sourceImageSha256": "2eb242e21bbcd4e0a45037cfd5c85fed6e0fd0b59dcd67ca30d836a79896f054",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 16,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+    },
+    {
+      "id": "WM032",
+      "name": "扭曲的布道者",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+      "sourceImageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 3,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 2,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "WM036",
+      "name": "烬归烬",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg",
+      "sourceImageSha256": "afe11bd32b191576058e6f2f6c8369f606dc58731c82133037ef2cb2c1f11395",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [
+        "martialLawRedCostRing"
+      ],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "WM037",
+      "name": "戴森的计谋",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg",
+      "sourceImageSha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "XG16",
+      "name": "计时人戴森·帕佐",
+      "color": "红",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg",
+      "sourceImageSha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 22,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+    },
+    {
+      "id": "WM021",
+      "name": "秘闻记录官",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+      "sourceImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 4,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "fullNativeCardComplete": true,
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 4,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "BQ031",
+      "name": "雾羽千军",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+      "sourceImageSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 11,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "BQ027",
+      "name": "血畜",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+      "sourceImageSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 8,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "sourceImageSha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "BQ034",
+      "name": "雾羽弥生",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg",
+      "sourceImageSha256": "f91de56f6dfdaa41bb0d32759fcf32ad01985dc4c00998fc0753e8622fec59b2",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "BQ032",
+      "name": "宴会司仪",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+      "sourceImageSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 9,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "BQ036",
+      "name": "菲尼克斯",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+      "sourceImageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 13,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "P2-AB-01 independently closed and whole-card native accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+      "nativeDirectedCaseBasis": "BQ036-named cases within the author20; independent11 closure reported separately, not summed."
+    },
+    {
+      "id": "BQ038",
+      "name": "掠食时刻",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+      "sourceImageSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 10,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Whole-card native closure independently accepted; WASM/Web/Worker, deck admission and public acceptance remain pending.",
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/BQ036_HOST_P2_2026-10-22.md",
+      "nativeWholeCardIndependentReview": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+      "historicalNativeDirectedCases": 0,
+      "nativeDirectedCaseBasis": "Distinct mapped passing author test functions in e5 matrix, including shared entry test; overlapping per-card counts must not be summed."
+    },
+    {
+      "id": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "sourceImageSha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "WM043",
+      "name": "精准打击",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM043 精准打击.jpg",
+      "sourceImageSha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+      "sourceImageSha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+      "sourceImageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+    },
+    {
+      "id": "XG21",
+      "name": "计划：幻影英雄",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg",
+      "sourceImageSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
+      "imageReviewedHere": true,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 13,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required",
+      "fullNativeCardComplete": false,
+      "implementationBoundary": "正面牺牲/无阈值推进/固定印刷声望检索先行；秘密状态牺牲及牌库自身条件声望未裁定，不计完整卡。"
+    },
+    {
+      "id": "XG18",
+      "name": "欧米伽小姐",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg",
+      "sourceImageSha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88",
+      "imageReviewedHere": true,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 19,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "Existing reusable core anchors; new closed per-card program and validation still required"
+    },
+    {
+      "id": "WM044",
+      "name": "情报分析中心",
+      "color": "灰",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+      "sourceImageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
+      "imageReviewedHere": true,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 21,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "additionalThirty": true,
+      "priorMechanismAnchorsReady": false,
+      "readinessScope": "Society attachment, hidden-entry slow and actual mystic-win private inspection implemented. Exact MSJC14 entry-lock branch exists, but positive normal-play validation remains blocked by absent complete MSJC14 runtime. No whole-card closure or public admission.",
+      "fullNativeCardComplete": false
+    }
+  ],
+  "sourceCorrections": [
+    {
+      "id": "WM060",
+      "priorKeywords": [
+        "公开"
+      ],
+      "currentKeywords": [
+        "暴露条件：公开"
+      ],
+      "priorRuleText": [
+        "公开",
+        "现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。",
+        "触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。"
+      ],
+      "currentRuleText": [
+        "暴露〔日形〕公开",
+        "现身触发 在本地区上放置X个本方势力标志。X等于本地区的其他本方罪犯数量之和。",
+        "触发 每当一个其他本方罪犯进场时，抓一张牌，然后弃一张牌，遏制2。"
+      ],
+      "imageSha256": "599b9664b699091dec12e9cad27cd88c6e0df20bac8c76122091c703eb07fc77"
+    },
+    {
+      "id": "WM045",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：新秩序，将所有角色翻面为暗藏者。然后若有玩家在同一地区操控多个暗藏者，则将这些暗藏者洗混。"
+      ],
+      "imageSha256": "77a02d438cdb7904d31483ccc7227ccf6b288bd2822ec0bea3d7b7078a402c5f"
+    },
+    {
+      "id": "WM046",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进3时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进2时，牺牲计划：天眼，抓X张牌，X等于场上有锁定标志的角色和暗藏者数量之和。"
+      ],
+      "imageSha256": "ae01e60f960e66d30913aab6c8d6e0502610b59f68f4494886382b10eb80011f"
+    },
+    {
+      "id": "WM047",
+      "priorKeywords": [
+        "秘密计划",
+        "可推进"
+      ],
+      "currentKeywords": [
+        "隐秘条件：秘密计划",
+        "可推进"
+      ],
+      "priorRuleText": [
+        "结附于本方秘社；秘密计划；可推进",
+        "强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。"
+      ],
+      "currentRuleText": [
+        "结附于本方秘社；隐秘〔月形〕秘密计划；可推进",
+        "强制触发 达成推进5时，牺牲计划：贝奥武夫，消灭所有具有魔法领域图标的角色。"
+      ],
+      "imageSha256": "942ae2f3a551291d2a6f49e8f79adf2810d231f755a4f6b3e0830494672f9ea4"
+    }
+  ],
+  "developmentIdentity": {
+    "native": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.86-batch20-fourth",
+    "wasmBuilt": true,
+    "publicIdentityChanged": false
+  },
+  "candidateComparison": [
+    {
+      "candidate": "frozen third batch",
+      "commit": "b80f12202799a632ee9d75f40da8352f2ca274f1",
+      "nativeCards": 20,
+      "wasmCards": 20,
+      "candidateAdmissions": 20,
+      "publicNewCards": 0,
+      "acceptedNewCards": 0,
+      "clone": "UndergroundBattle-batch3"
+    },
+    {
+      "candidate": "fourth batch native WIP",
+      "commit": null,
+      "nativeCards": 33,
+      "wasmCards": 1,
+      "candidateAdmissions": 0,
+      "publicNewCards": 0,
+      "acceptedNewCards": 0,
+      "clone": "UndergroundBattle-batch4",
+      "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
+      "targetCards": 50,
+      "nativeWipCards": 1,
+      "wasmScope": "Author directed JZ56 only; compiled core includes other closed-gate definitions, whose card-specific WASM integration is not claimed."
+    }
+  ],
+  "ownershipCheck": {
+    "knownOtherGameTask": "Parent-authorized incremental source review of frozen third candidate; no fourth-batch edits assigned there in visible instructions",
+    "repositoryDeduplication": "All20 absent from base213; no existing fourth branch at initial remote check; ordinary clone started clean with no active local game build",
+    "appInventoryLimit": "Earlier app task-list read did not return; no private session DB read and no claim of complete app-wide inventory",
+    "expansionOwnership": "Parent assigned the additional30 to this editor; task-8 finished read-only analysis. No other writer/process observed in this clone; Bot remains separate2d8653c7 (integration251129e8)."
+  },
+  "constraints": [
+    "red/black/blue/gray only; neutral/dual expansion paused",
+    "ordinary clone and separate progress branch; no worktree or changes to frozenb80 candidate/package",
+    "only current nativeABI95 under development; no older runtime or opaque migration",
+    "noGitHubCI/main merge/production403 retry/duplicatev74 deployment"
+  ],
+  "ruleEvidence": {
+    "chaos": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 19,
+      "printedPage": 18,
+      "rule": "Chaos entry replaces destination selection with a random in-play region; moving between regions is not entry into play."
+    },
+    "plans": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 20,
+      "printedPage": 19,
+      "basis": "Original page image reviewed again: personal Moon secret play, printed cost1/loyalty, standard pay1 advancement, no turn limit; WM046/047 exact thresholds from original cards"
+    },
+    "lossControl": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPage": 21,
+      "printedPage": 20,
+      "scope": "Distinct marker on personal Society, maximum3; BQ053 removes1 on actual enter/leave. Core/commands and marker generation not implemented."
+    },
+    "blood": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35",
+      "physicalPages": [
+        4,
+        10,
+        11
+      ],
+      "scope": "Pay including X before a played card enters the stack; sacrifice of characters counts as death; choose X when paying. Printed JZ36 image supplies its specific two target kinds and threshold."
+    },
+    "timekeeper": {
+      "pdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "physicalPagesReviewedHere": [
+        17,
+        22
+      ],
+      "printedPages": [
+        16,
+        21
+      ],
+      "scope": "本方=controller personally; friendly includes teammate; enemy includes both opposing seats. Existing P11 attachment-marker inheritance retained via effective_time_markers."
+    },
+    "omega": {
+      "cardSource": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg",
+      "cardSourceSha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88",
+      "jz52Source": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg",
+      "jz52SourceSha256": "7f9ad8adb68bdd84877ebdead2bc13ed04983099977333d2106486405c6478a3",
+      "scope": "Both original images re-viewed. JZ52 explicitly forbids Hand origin but allows Graveyard origin as-if-hand, so as-if-hand does not relabel the physical asset origin. Costs/loyalty remain ordinary; no no-cost-card normalization."
+    },
+    "wendigo": {
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+      "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "faqPdf": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "faqSha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "faqPhysicalPage": 4,
+      "meaning": "Existing Martial Law distinction: direct placement is allowed; printed play restrictions are unchanged. Personal Society zone exists without selecting a Society card."
+    }
+  },
+  "implementationNotes": [
+    "Chaos paid deploy has no player-selected region and rolls once at actual entry; direct face-up entries share routing before observers; conceal and movement do not reroll.",
+    "Reuses the existing post-response entry guard for a law attachment appearing during response; sampling eligibility with a pre-existing location restriction is an implementation review boundary, not a claimed extra FAQ ruling.",
+    "JZ39 red cost-ring remains a geometry annotation; do not infer a new speed rule.",
+    "CQ11/TK008 remains independently deferred outside this roster; no token lifecycle assumption.",
+    "WM046/047 share personal Society secret play and standard unlimited pay1 advancement; secret identity remains private but type, printed cost1 and advancement counters stay public. Completion is forced and respondable.",
+    "WM045 now implemented as native pilot: exact forced threshold3, whole-field Hide followed by per-controller/per-region hidden shuffle. Already-hidden markers/orientation preserved; actually flipped characters reset markers via existing Hide; original target IDs retire and historical source receipts remain captured. Old speculative draft remains outside runtime.",
+    "JC060 real paid BQ026 entry regression confirms missing attached-character recipient; uses existing live board lookup instead of region vector only. Source patch included here; original frozen b80 and JC005-only820 do not include it.",
+    "XG17: public with personal Sun conditional Renown; other personal current Renown characters globally gain defense1 per live source. Event-time Renown qualification uses typed printed/exposure/destroyed-region/Alpha/turn-grant receipts, with separate per-entry observer keys.",
+    "XG17 targets personal live Plans including secret ones; reuses normal marker/forced-completion path. Additional advancement while completion waits adds a marker without a second completion declaration. Only declaration choice ID and selected options are accepted.",
+    "XG11: personal Moon Spirit; actual reveal freezes personal Moon tiers (max3) and live friendly JC038 grants into one cumulative Raid. Normal face-up entry and movement never emit it; generic granted-Raid path cannot bypass the conditional receipt.",
+    "WM029: public; own live indicator markers (including inherited attachment paths) grant Renown, sealed cards grant Barrier. Optional respondable Death resolves into a turn-wide dynamic conditional aura for all players and future characters; clears atomically at end cleanup. JZ38 repeats the real Death program; XG17 captures typed marker/aura entry evidence. Damage is not classified as an indicator marker.",
+    "WM058: exact unique print and three Black loyalty; each distinct personal face-up Criminal targeted by an enemy card transaction emits optional pay1-or-counter, excluding activated/triggered abilities and non-targeting mass effects. Source/target/event frozen; turn-scoped declined/paid/countered/no-card receipts prevent repeat consumption. CQ07 and Chance observers may be ordered. Existing JZ55 Immediate order is preserved; the subsequent observer finds no stack card and charges nothing. Reveal removes only original region enemy influence.",
+    "The hidden-shuffle marker loss is shared with existing DQJC110 London win. Fixed in this fourth branch; frozen ABI94 b4e does not include this change and must receive an isolated correction before any claim that its existing path is fixed.",
+    "BQ053 native13: paid entry, actual lethal/Hide/reveal/hidden return, original controller, movement excluded, marker cap/separation, zero, dynamic removal, choices/frames and four-seat restore. Explicit0..3 starting markers, not a public Shoggoth producer.",
+    "XQ15 owner-based Human→Vampire / nonhuman non-Vampire→Slave in every nonblank zone; assets, sealed and hidden cards retain blank rules. Private/public views, current-vs-printed targeting, real host invalidation, JC005, attached Bat and Warden16 directed cases. Scope stays16 native,0WASM/selection/public/acceptance.",
+    "JZ40 native pilot12: exact printed region attachment4; self-sacrifice receipt and original host UID frozen; target character/attachment receives time1, original host physical region total>=4 destroys in place; source markers leave with payment. Marked secret plans remain attachments and keep private identity through restore; ordinary hidden characters/privates still reject. No region-card time-marker producer admitted by this pilot.",
+    "JZ36 native16: printed1 plus sacrificeX personal face-up characters, including attached Bats, before responses. Unpaid private typed cost draft or explicit X0; a single simultaneous death wave with frozen original-region receipts. Fixed paid X survives JZ30 death Forecast continuation and exact high-u64 command replay. Carrier target or original-UID region receives X time, then only target current region is checked for in-place destruction at physical total>=4. Direct region-card time and four-seat projection now admitted only by this closed program; no generic configurable marker op.",
+    "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed.",
+    "XG16 native22: printed6/Red3/unique/public; own Sun conditionally enables Leader. Optional entry time1 and Prepare time equal to current destroyed-region count. Uses its own finite Prepare opcode with shared typed observation/order/target/resolved-or-cancelled receipts. Effective time includes legal direct attachments; personal recipients gain defense per time, either opposing seat loses defense, ally is unchanged (primary Hegemony printed16/21). All positive defense including Ghoul permanent markers precedes negative time/curses/wounds. Real rescuer activation, aura death/cancellation, Room pause/restore/original-command replay and version-conflict rejection tested; no WASM/public admission.",
+    "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance.",
+    "JZ56: independently closed native33 at292d3f75/ebccb2e9. Actual paid own-Society attachment, optional entry, closed three-subtype enum, live personal subtype/grave aura; grave>=7 grants permanent combat1 and wound1, never kill damage. Wound replacement, exactly-one actual reward recipient and both restoration entries independently verified. ABI95 WASM/Worker runtime pending; public admission remains off."
+  ],
+  "next": [
+    "Continue remaining17 of this50-card batch; XQ20 is next finite normal-gameplay increment using the existing atomic marker transfer and accepted threshold crossing. JZ56 author ABI95 binding/Worker directed runtime verified;0 new admissions/public acceptance. XG21 interrupted review stays excluded.",
+    "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
+    "Retain original BQ084/BQ086/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
+    "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
+    "Preserve frozen third/44cc candidates, no Sites pending/403 retry, CI, worktree or main merge"
+  ],
+  "baseSourceRecordsExceptFourCorrectionsSha256": "62ad6e766dd96492b308a7097a1507cd456e0e8559a81a9fa88ba92c6265bc5c",
+  "deferredCards": [
+    {
+      "id": "BQ033",
+      "name": "热夜之梦",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
+      "sourceImageSha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "imageReviewedHere": true,
+      "runtime": "notImplemented",
+      "nativeDirectedCases": 0,
+      "wasmImplemented": false,
+      "selectionEnabled": false,
+      "published": false,
+      "accepted": false,
+      "openQuestionIds": [],
+      "deferredReason": "Requires absent named BQ009 Yellow Spirit Anchor. Retained as dependency work; no invented anchor or assumed Yellow batch admission.",
+      "replacedBy": "XQ15"
+    }
+  ],
+  "rosterRevisions": [
+    {
+      "fromCard": "BQ033",
+      "toCard": "XQ15",
+      "scope": "Blue-for-Blue replacement within the requested20-card batch and original priorities; no neutral/dual admission",
+      "reason": "Requires absent named BQ009 Yellow Spirit Anchor. Retained as dependency work; no invented anchor or assumed Yellow batch admission.",
+      "status": "XQ15 complete native16 directed cases; original BQ033 retained unimplemented and uncounted"
+    }
+  ],
+  "historicalBatchId": "batch20-fourth-20261022",
+  "batchSizeDecision": {
+    "recordedAt": "2026-10-22T05:32:42.869699+00:00",
+    "target": 50,
+    "basis": "Latest human authorization forwarded by parent:50 cards per batch supersedes20 default",
+    "preservedNativeCards": 16,
+    "selectedSourceCards": 50,
+    "unassignedSlots": 0,
+    "notClaimed": "50 selected source records; only16 native pilots. Shared prerequisite readiness is explicit, not inferred from third-party registration.",
+    "identityBoundary": "Existing ABI95 native WIP tag and historical file/branch names retained until first consolidated current-kernel build; no compatibility loader added"
+  },
+  "mechanismClusters": [
+    {
+      "id": "region-chaos",
+      "cards": [
+        "XG14",
+        "XG15"
+      ],
+      "nativePassed": 2
+    },
+    {
+      "id": "live-attributes-and-owned-types",
+      "cards": [
+        "JZ39",
+        "XG12",
+        "XG17",
+        "WM029",
+        "XQ15"
+      ],
+      "nativePassed": 5
+    },
+    {
+      "id": "typed-observers-and-response",
+      "cards": [
+        "WM060",
+        "BQ041",
+        "JZ38",
+        "XG11",
+        "WM058"
+      ],
+      "nativePassed": 5
+    },
+    {
+      "id": "secret-plans",
+      "cards": [
+        "WM045",
+        "WM046",
+        "WM047"
+      ],
+      "nativePassed": 3
+    },
+    {
+      "id": "loss-control-removal",
+      "cards": [
+        "BQ053"
+      ],
+      "nativePassed": 1
+    },
+    {
+      "id": "anchor-dependency",
+      "cards": [
+        "BQ084"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "trauma-wording",
+      "cards": [
+        "BQ086",
+        "JZ56"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "pathway-capacity-rule",
+      "cards": [
+        "XQ13"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "expansion-grave-search",
+      "cards": [
+        "WM061",
+        "LC16",
+        "XQ35",
+        "JZ53",
+        "JZ51",
+        "WM022",
+        "BQ082"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "expansion-time-and-cost",
+      "cards": [
+        "XQ20",
+        "XQ21",
+        "JZ40",
+        "JZ36",
+        "WM032",
+        "WM036",
+        "WM037",
+        "XG16"
+      ],
+      "nativePassed": 3
+    },
+    {
+      "id": "expansion-blood-and-contest",
+      "cards": [
+        "WM021",
+        "BQ031",
+        "BQ027",
+        "BQ039",
+        "BQ034",
+        "BQ032",
+        "BQ036",
+        "BQ038"
+      ],
+      "nativePassed": 0
+    },
+    {
+      "id": "expansion-gray-plans-and-source",
+      "cards": [
+        "XG20",
+        "WM043",
+        "CQ18",
+        "CQ19",
+        "XG21",
+        "XG18",
+        "WM044"
+      ],
+      "nativePassed": 1
+    }
+  ],
+  "expansionSlotPlan": [],
+  "expansionCandidates": [
+    {
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "sourceImageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; optional pay/secrecy comparison, attachment control/rehosting engineering needed"
+    },
+    {
+      "id": "JZ51",
+      "name": "温迪戈",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg",
+      "sourceImageSha256": "1b0311913bbf4a26c0e9e2dc2c0d6b656bd802cc6e831350f6f2500edf577dc0",
+      "selected": true,
+      "implemented": false,
+      "status": "Selected in source-only additional30; native prerequisite status is recorded per roster entry"
+    },
+    {
+      "id": "CQ10",
+      "name": "朱苏德拉·纳匹什提姆",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg",
+      "sourceImageSha256": "034b75bf01c010c74474f8357d089862603cfe27fc537b0dd2f537e541e7e2bb",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Sun-conditioned leader source wording correction needed before implementation"
+    },
+    {
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "sourceImageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "selected": false,
+      "implemented": false,
+      "status": "Source record only; original image must be reviewed"
+    },
+    {
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "sourceImageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "selected": false,
+      "implemented": false,
+      "status": "Source record only; original image must be reviewed"
+    },
+    {
+      "id": "WM061",
+      "name": "土归土",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+      "sourceImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+      "selected": true,
+      "implemented": false,
+      "status": "Selected in source-only additional30; native prerequisite status is recorded per roster entry"
+    },
+    {
+      "id": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+      "sourceImageSha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; Mystic Contest shared foundation absent"
+    },
+    {
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "sourceImageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "selected": false,
+      "implemented": false,
+      "status": "Original image reviewed; source after-contest mill count3 differs from original1; correction needed"
+    },
+    {
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "sourceImageSha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "selected": true,
+      "implemented": false,
+      "status": "Selected in source-only additional30; native prerequisite status is recorded per roster entry"
+    },
+    {
+      "id": "WM021",
+      "name": "秘闻记录官",
+      "color": "蓝",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+      "sourceImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+      "selected": true,
+      "implemented": false,
+      "status": "Selected in source-only additional30; native prerequisite status is recorded per roster entry"
+    }
+  ],
+  "externalReferenceBoundary": {
+    "repository": "SuezKrish/Underworld",
+    "owner": "Parent task-8 independent inspection/test",
+    "absorptionApproval": "Awaiting reliable approved specifications/list from parent",
+    "copiedCode": false,
+    "copiedAssets": false,
+    "registeredCountNotCompletion": true
+  },
+  "independentFeatureSlices": [
+    {
+      "id": "bot-difficulty",
+      "status": "Base inspected; independent implementation slice planned, not enabled",
+      "scope": [
+        "User-selectable difficulty",
+        "Normal decision policy sees only bot legal player view",
+        "Hard advantage explicitly disclosed and restricted to server-validated Bot-only matches",
+        "Human/fair rooms reject advantage metadata; frontend hiding is insufficient",
+        "Preserve mode, difficulty and deterministic seed/counter through persistence/replay"
+      ],
+      "nativeCardsAdded": 0,
+      "thirdPartyCodeCopied": false
+    }
+  ],
+  "expansionSelection": {
+    "additionalCards": [
+      "WM061",
+      "LC16",
+      "XQ35",
+      "JZ53",
+      "JZ51",
+      "WM022",
+      "BQ082",
+      "XQ20",
+      "XQ21",
+      "JZ40",
+      "JZ36",
+      "WM032",
+      "WM036",
+      "WM037",
+      "XG16",
+      "WM021",
+      "BQ031",
+      "BQ027",
+      "BQ039",
+      "BQ034",
+      "BQ032",
+      "BQ036",
+      "BQ038",
+      "XG20",
+      "WM043",
+      "CQ18",
+      "CQ19",
+      "XG21",
+      "XG18",
+      "WM044"
+    ],
+    "duplicateAlreadyImplemented": [
+      "XQ15"
+    ],
+    "remainingSourceCandidatesForLater": [
+      "BQ061",
+      "BQ081",
+      "WM063",
+      "JC053",
+      "WM031",
+      "JC028",
+      "BQ056",
+      "BQ066",
+      "XG19",
+      "JC097",
+      "BQ093",
+      "BQ090",
+      "CQ24",
+      "BQ092",
+      "WM064",
+      "WM025",
+      "WM024",
+      "CQ09",
+      "CQ10"
+    ],
+    "sourceCandidateCount": 50,
+    "newNonduplicateCandidates": 49,
+    "basis": "Parent task-8 analysis used44cc/c6ad; reconciled against current c59 native229 plus reserved roster20. Read-only analysis; no third-party implementation/assets copied.",
+    "reviewedImageCount": 30,
+    "immediatelyReusableAnchorCards": [
+      "JZ36",
+      "JZ40",
+      "JZ51",
+      "LC16",
+      "XG16",
+      "XG18",
+      "XG21",
+      "XQ35"
+    ],
+    "sharedPrerequisitesStillNeeded": "Hidden contest lifecycle/2v2 participant contract; blood extraction and eligible Blood identity; token TK001; general marker transfer/duplication; charge markers and nonadmitted named-Society conditions. These are not claimed ready.",
+    "artifacts": {
+      "architecture-and-first50.txt": "96c245cb5378a28f10d39f579b40034d31a9115a3070157d1e1ffaab0ac846c5",
+      "mechanism-first50.csv": "f300daaf9626028ddf73d21494d545dde031a19bff057e829308a6df34b0f313",
+      "uwb-exact-card-crosswalk.csv": "d8f20936f5b333141c0f9bef722d9c3a786516b4727bb00cf99abd39e6d9689c"
+    }
+  },
+  "packAValidation": {
+    "cards": [
+      "BQ082",
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061"
+    ],
+    "baseCommit": "adf0a1c080e21b75e971bd650a61f22e47f42e91",
+    "nativeSuite": "rust-game/src/pack_a_contest_tests.rs",
+    "nativeSuiteCases": 32,
+    "nativeSuitePassed": true,
+    "integrationStatus": "nativeCompleteIndependentlyReviewedPendingBatchIntegration",
+    "sourceCorrection": {
+      "id": "BQ082",
+      "field": "conditionalPublic",
+      "basis": "original sun symbol before public; Hegemony manual printed19/22",
+      "historicalSpecificationUnmodified": true
+    },
+    "completionCountAdded": 5,
+    "historicalWipLimits": [
+      "A participant with empty hand and empty deck needs a source ruling; no zero cost invented.",
+      "Nested contests during the future pack B start-response hooks are not yet admitted.",
+      "Pack B hooks are empty integration seams; no pack B card completion claimed.",
+      "No WASM, browser acceptance, deck admission, publication or deployment."
+    ],
+    "completionReviewCandidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "limits": [
+      "No WASM/Web/Worker, deck admission, publication or public acceptance in this closure."
+    ]
+  },
+  "nativeClosureReview": {
+    "candidate": "e5ccb050f91222838b79d33001f00ae97c1fb69e",
+    "closedCards": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082",
+      "BQ027",
+      "BQ031",
+      "BQ032",
+      "BQ038"
+    ],
+    "notClosedCards": [
+      "BQ036"
+    ],
+    "finding": "P2-AB-01",
+    "report": "docs/evidence/bq036-host-p2-20261022/prior-independent-review.txt",
+    "reportSha256": "4e5f3d908054e2259b00788771e3ddb7a2311bff50940194f20d122949a0f7af",
+    "independentTests": {
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0
+    },
+    "scope": "Full native card clauses only; not WASM/Web/Worker/public acceptance",
+    "authorP2Fix": "BQ036 host witness fix pending independent closure; not counted"
+  },
+  "bq036ClosureReview": {
+    "candidate": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+    "runtimeFixCommit": "6497b9d93effe827e047b9673fdda8a74f0a7ebd",
+    "card": "BQ036",
+    "finding": "P2-AB-01",
+    "status": "closed",
+    "nativeWholeCardComplete": true,
+    "independentTestsPassed": 11,
+    "report": "docs/evidence/bq036-host-p2-close-20261022/review.txt",
+    "reportSha256": "cd0d76fd9d3f9404009ffcd877e73334dc12c87165301044dc4627ddb9b6dc5d",
+    "scope": "Native whole-card closure only; no new WASM, admission, public acceptance or main qualification"
+  },
+  "jz56ClosureReview": {
+    "candidate": "ebccb2e9a944ea434fe9ed3e88c5d001a77fdc21",
+    "productSource": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+    "status": "closed",
+    "nativeWholeCardComplete": true,
+    "closedCards": [
+      "JZ56"
+    ],
+    "independentDistinctTests": 25,
+    "report": "docs/evidence/jz56-native-closure-20261023/review.txt",
+    "reportSha256": "ce7723991d95831c9ba17017eab15ac98561baab04a2dfe457abe7858dc365f1",
+    "scope": "Native only. No WASM/Worker/browser/public approval."
+  },
+  "platformValidation": {
+    "status": "authorDirectedRuntimeVerified",
+    "identity": "rust-v0.2.95-batch20-fourth",
+    "pool": "limited-v2.86-batch20-fourth",
+    "wasmBytes": 6865239,
+    "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+    "sourceManifestSha256": "43d43c0c42472f01a5dd6099f4c4d5fc4b5bec7bd29588d1dd2dd3ff47cf8a23",
+    "directedCards": [
+      "JZ56"
+    ],
+    "nativeWasmCommands": 200,
+    "workerCommands": 200,
+    "normalDuelCommands": 1216,
+    "normalDuelTurns": 21,
+    "normalDuelScore": [
+      9,
+      0
+    ],
+    "normalDuelWinnerTeam": 0,
+    "report": "docs/factions/ABI95_PLATFORM_2026-10-23.md",
+    "publicAdmission": false,
+    "browserAcceptance": false,
+    "batch50Complete": false,
+    "archiveExpansion": "Paused under latest user priority; prior guards and evidence retained, no extra archive gate."
+  }
+}

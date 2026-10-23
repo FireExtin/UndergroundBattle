@@ -28,7 +28,7 @@ fn batch4_clock_society_is_complete_red_dependency_but_public_construction_stays
     assert!(definition("MSJC13").abilities.iter().all(|a|a.activation_only && a.timing==Timing::Standard));
     let mut d=deck::preset("watchers").unwrap();d.society_id=Some("MSJC13".into());
     assert!(deck::validate(d).unwrap_err().contains("尚未开放"));
-    assert_eq!(catalog::catalog().societies.iter().filter(|s|s.card.supported).count(),10);
+    assert_eq!(catalog::catalog().societies.iter().filter(|s|s.card.supported).count(),11);
 }
 #[test]
 fn batch4_clock_construction_counts_all_off_colors_together_at_twelve_boundary() {
@@ -140,7 +140,7 @@ fn decline_triggers(g:&mut Game) {
 
 #[test]
 fn batch4_clock_wm037_pinned_fields_and_canonical_standard_program() {
-    assert_eq!(catalog::catalog().cards.len(),250);assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),213);
+    assert_eq!(catalog::catalog().cards.len(),252);assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),213);
     let d=catalog::card("WM037");assert_eq!((&*d.name,d.cost,&*d.color,&*d.kind),("戴森的计谋",2,"红","spell"));
     assert_eq!(d.loyalty,["红色"]);assert_eq!(d.magic_icon,MagicIcon::Mind);assert_eq!(d.subtypes,["阴谋"]);assert!(!d.supported&&!d.unique);
     let a=&definition("WM037").abilities[0];assert!(a.play_only&&!a.activation_only);assert_eq!(a.timing,Timing::Standard);assert!(a.costs.is_empty());
@@ -264,6 +264,40 @@ fn batch4_clock_wm037_and_bq027_shown_continuations_preserve_both_adapters_in_or
     choose(&mut g,vec![vampire.clone()]);decline_triggers(&mut g);
     assert_eq!(g.board(&vampire).unwrap().1.time_markers,1);assert!(g.mystic_contest.is_none()&&g.pending.is_none());
     assert_eq!(g.mystic_history[0].shown[0].value,3);assert_eq!(g.mystic_history[0].shown[1].value,3);
+}
+
+// Integrator regression: a single contest traverses all three received adapters.
+// The source layouts are explicit; every contest/target step uses normal commands.
+#[test]
+fn serial_clock_sentinel_and_blood_shown_choices_preserve_all_three_adapters() {
+    let (mut g, _) = layout();
+    let sentinel = g.make_card("MSJC14", 1);
+    g.players[1].society_zone.card = Some(sentinel);
+    let target = field(&mut g, "JC029", 2);
+    held(&mut g, "WM037", 0);
+    held(&mut g, "WM043", 1);
+    held(&mut g, "BQ027", 2);
+    start_other_contest(&mut g);
+    commits(&mut g, ["WM037", "WM043", "BQ027", "JC125"]);
+    rewards(&mut g);
+
+    assert_eq!(g.pending.as_ref().unwrap().seat, 0);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, "wm037-shown-time-target");
+    choose(&mut g, vec![target.clone()]);
+    assert_eq!(g.board(&target).unwrap().1.time_markers, 1);
+
+    assert_eq!(g.pending.as_ref().unwrap().seat, 1);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, crate::wm043::CHOICE);
+    choose(&mut g, vec![target.clone()]);
+    assert_eq!(g.board(&target).unwrap().1.lock_markers, 1);
+
+    assert_eq!(g.pending.as_ref().unwrap().seat, 2);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, crate::batch4_vampire_contest::TARGET);
+    choose(&mut g, vec![target.clone()]);
+    decline_triggers(&mut g);
+    assert_eq!(g.board(&target).unwrap().1.time_markers, 1);
+    assert_eq!(g.board(&target).unwrap().1.lock_markers, 1);
+    assert!(g.mystic_contest.is_none() && g.pending.is_none());
 }
 
 // Independent normal-play boundaries. The existing WIP layout supplies the
