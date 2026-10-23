@@ -415,6 +415,7 @@ fn wm044_local_platform_room_witness() {
         let mut g=if inspection {game()} else {crate::sentinel_tests::sentinel_game()};
         let target=hidden(&mut g,"JC125",2);center(&mut g,0);
         if inspection {wm044_contest(&mut g,Some(0));wm044_target(&mut g,&target);crate::jc029_tests::pass_top(&mut g);}
+        g.room_id=if inspection {"aa0000000000000000000002"} else {"aa0000000000000000000001"}.into();
         let mut room=RoomEnvelope::from_game(g);let initial=serde_json::to_string(&room).unwrap();let initial_views=(0..4).map(|s|room.view(s,0)).collect::<Vec<_>>();let mut steps=vec![];
         for n in 0..32u64 {
             if room.game.pending.is_none() && room.game.stack.is_empty(){break;}

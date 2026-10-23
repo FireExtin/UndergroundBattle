@@ -223,3 +223,28 @@ fn sentinel_inherited_last_lock_destroyed_by_paid_response_cancels_without_refun
     top(&mut g);assert_eq!(g.board(&mover).unwrap().0,0);assert_eq!(g.resources(0),0);
     assert!(g.players[0].society_zone.card.as_ref().unwrap().exhausted);
 }
+
+#[test]
+fn sentinel_local_worker_room_witness() {
+    use crate::room::{RoomEnvelope,RoomCommand,SessionAction};
+    let Some(path)=std::env::var_os("SENTINEL_WORKER_WITNESS") else{return;};
+    let (mut g,mover,host,_child,leaf)=sentinel_chain();g.board_mut(&leaf).unwrap().lock_markers=1;
+    g.room_id="aa0000000000000000000003".into();
+    let first=action(&g,0,"sentinel-move",&mover,Some(&host));
+    let mut room=RoomEnvelope::from_game(g);let initial=serde_json::to_string(&room).unwrap();
+    let initial_views=(0..4).map(|s|room.view(s,0)).collect::<Vec<_>>();let mut steps=vec![];
+    for n in 0..32u64 {
+        if n>0 && room.game.stack.is_empty(){break;}
+        let (seat,action)=if n==0 {(0,SessionAction::Game{action:first.clone()})} else {
+            let seat=(0..4).find(|s|room.game.legal_actions(*s).iter().any(|a|a.action.kind=="pass")).unwrap();
+            (seat,SessionAction::PassResponse{window_id:room.pacing.window.as_ref().unwrap().id.clone()})
+        };
+        let command=RoomCommand{command_id:format!("worker-sentinel-{n}"),expected_version:room.revision,action};
+        let before=serde_json::to_string(&room).unwrap();let out=room.transition(seat,Some(command.clone()),n).unwrap();
+        assert!(out.error_code.is_none());room=RoomEnvelope::from_persisted(&out.state).unwrap();
+        let views=(0..4).map(|s|room.view(s,n)).collect::<Vec<_>>();
+        steps.push(serde_json::json!({"before":before,"seat":seat,"command":command,"now":n.to_string(),"expected":out,"views":views}));
+    }
+    assert!(room.game.stack.is_empty());assert_eq!(room.game.board(&mover).unwrap().0,1);assert_eq!(room.game.resources(0),0);
+    std::fs::write(path,serde_json::to_vec_pretty(&serde_json::json!([{"name":"sentinel-inherited-lock","initial":initial,"initialViews":initial_views,"steps":steps}])).unwrap()).unwrap();
+}
