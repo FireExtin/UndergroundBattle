@@ -1,0 +1,82 @@
+[
+  {
+    "path": "integrated-05.json",
+    "bytes": 36629,
+    "sha256": "e91bc30122839710f769e4395ef87ddf834d32109e47c47d1eff3071669d1faa"
+  },
+  {
+    "path": "integrated-05.log",
+    "bytes": 8110,
+    "sha256": "ae79e23dd406261532e3a557113af7271b57dc283de5e41e11a74d268b389549"
+  },
+  {
+    "path": "native-01.json",
+    "bytes": 36647,
+    "sha256": "baf25d59d6e2cd37a521b759226f8f9ef22cf10b439716954daeb34a074cc354"
+  },
+  {
+    "path": "native-01.log",
+    "bytes": 1627,
+    "sha256": "574815497622a39df81ac6de9aabd8b1fdd957dd6d3e5a3be4a5e42a338121cd"
+  },
+  {
+    "path": "native-02.json",
+    "bytes": 36647,
+    "sha256": "3070551fa6e9c721665de5b914cf7e7adaa7fdfcb33ffe3a99546f967ac71f68"
+  },
+  {
+    "path": "native-02.log",
+    "bytes": 4025,
+    "sha256": "13283333bbc3403de5a531db8655147c9546dac2d7b77e3c5957a53ebffd8cec"
+  },
+  {
+    "path": "native-03.json",
+    "bytes": 36647,
+    "sha256": "45216df3d0d7415622a09604ff41d4e0744df4b3b0f4b6761ab6cf26b5b3cd2c"
+  },
+  {
+    "path": "native-03.log",
+    "bytes": 3662,
+    "sha256": "e64ee2d0622236f68157cc5ceda6c451da02f30228cdaa5224a87e11330182da"
+  },
+  {
+    "path": "native-04.json",
+    "bytes": 36645,
+    "sha256": "04218c9b8192c6d94132763a0cf5114d4005c8d67d5ee7461c91025038aaa049"
+  },
+  {
+    "path": "native-04.log",
+    "bytes": 3094,
+    "sha256": "78bc33dea84f382863c89a1c1052bc04f1d8046ee7fa36424c5e48a42b8b3805"
+  },
+  {
+    "path": "source-final-07.json",
+    "bytes": 36615,
+    "sha256": "97b98bef84bafa9dfed61cd4658de3a81be633b46db253a2f3aa8ea0b70fcfb3"
+  },
+  {
+    "path": "source-final-07.log",
+    "bytes": 444,
+    "sha256": "d545def157b01acef411d1f0fd1ef9ebe0b659ee1c3012c92c10f4543367c5fb"
+  },
+  {
+    "path": "source-integrated-06.json",
+    "bytes": 36461,
+    "sha256": "cdcf9d744f8d1624d03b9a5de2c2d1546ead79832a94311641d866cbe550ca6d"
+  },
+  {
+    "path": "source-integrated-06.log",
+    "bytes": 446,
+    "sha256": "ad17ff4d2529679aa7e0b2ce0a370e08a5798ebc8e51d24687dfaeb0338c8f8b"
+  },
+  {
+    "path": "driver/run-lc16-normal.py",
+    "bytes": 4173,
+    "sha256": "64abe23af57af1ffbc5b4ce3b34396f29fed0efea981f621fceafdd994ce8fd0"
+  },
+  {
+    "path": "rules/hegemony-physical18.png",
+    "bytes": 3458720,
+    "sha256": "46c976eee67d95c48b73d86df10fefae26a199297f0f8cd5b8ce01ec5c802cae"
+  }
+]
