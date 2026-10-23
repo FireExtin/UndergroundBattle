@@ -1,0 +1,29 @@
+{
+  "sourceCandidate": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+  "originalSource": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "originalEvidence": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "originalArtifactRoot": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/abi95-platform-20261023",
+  "originalManifestSha256": "af67e81b01ab95cfc97200e0a1e9832c7cf1c06996b63a4fd033003c6cef7bd8",
+  "originalFilesVerified": 267,
+  "newFiles": 267,
+  "unchangedFiles": 265,
+  "unchangedClientFiles": 260,
+  "added": [
+    "client/assets/index-DaZwUmzX.js"
+  ],
+  "removed": [
+    "client/assets/index-DiCp2mJp.js"
+  ],
+  "modified": [
+    "client/index.html"
+  ],
+  "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+  "serverReusedByteForByte": true,
+  "deltaArchive": {
+    "path": "/home/ddd/Documents/Codex/2026-10-23/task-6/artifacts/abi95-terminal-ui-client-delta.tar.gz",
+    "bytes": 126486,
+    "sha256": "2d2672f1b4dd1e69b3a4b2cf491778a02bf9b42e5785340d17526d7f1c559f8e"
+  },
+  "fullArtifactNotAssembled": true,
+  "compositionInstructions": "In a new local staging directory copy the verified frozen267 artifact, remove only the old listed JS, and overlay the two-member client delta. Verify all final files against deployment-artifacts.json. No switch/deployment is authorized by this receipt."
+}

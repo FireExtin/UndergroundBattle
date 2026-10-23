@@ -1,0 +1,17 @@
+[
+  {
+    "run": "terminal-before",
+    "verifiedInputFiles": 845,
+    "binding": "base plus imported tests"
+  },
+  {
+    "run": "terminal-after",
+    "verifiedInputFiles": 845,
+    "binding": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103"
+  },
+  {
+    "run": "production-build",
+    "verifiedInputFiles": 845,
+    "binding": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103"
+  }
+]
