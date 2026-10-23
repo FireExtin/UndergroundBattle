@@ -69,6 +69,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
 
   const proposed: PassRun = { roomId: view.roomId, you: view.you, turn: view.turn, target, manualEpoch };
   const startBlocked = passRunStop(view, proposed, context);
+  const continuousNotice = view.status !== 'playing' ? startBlocked : notice || startBlocked || '连续让过已关闭';
   const cancel = () => { setRun(null); setNotice('已取消连续让过'); onActivityChange(false); };
 
   return <div className={`hg-auto-pass ${enabled ? 'hg-auto-pass-enabled' : ''}`}>
@@ -78,7 +79,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
       <label>让过到<select aria-label="连续让过的目标阶段" value={target} disabled={!!run || busy} onChange={event => setTarget(event.target.value as PassTarget)}>{passTargets.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
       {run ? <button type="button" className="hg-button hg-button-primary" onClick={cancel}>取消连续让过</button>
         : <button type="button" className="hg-button hg-button-quiet" disabled={busy || !!startBlocked} onClick={() => { if (busy || startBlocked) return; onEnabledChange(false); setNotice(''); setRun(proposed); }}>一键连续让过</button>}
-      <span role="status" aria-label="连续让过状态">{active ? `连续让过已开启 · 至${passTargets.find(option => option.value === run?.target)?.label}${busy || uncertain ? ' · 等待上一行动确认' : !pass ? ' · 等待你的合法窗口' : lastAutoKey === key ? ' · 已提交让过，等待同步' : ''}` : notice || startBlocked || '连续让过已关闭'}</span>
+      <span role="status" aria-label="连续让过状态">{active ? `连续让过已开启 · 至${passTargets.find(option => option.value === run?.target)?.label}${busy || uncertain ? ' · 等待上一行动确认' : !pass ? ' · 等待你的合法窗口' : lastAutoKey === key ? ' · 已提交让过，等待同步' : ''}` : continuousNotice}</span>
       <small>仅让过你的合法窗口；遇到选择、暂停或断线停止，刷新后关闭。“结束”处理本回合结束窗口，不自动让过下一回合。</small>
     </section>
   </div>;

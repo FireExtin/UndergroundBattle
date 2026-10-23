@@ -108,6 +108,28 @@ describe('pass until the selected phase, only in this turn', () => {
     expect(p.onAction).not.toHaveBeenCalled(); expect(status()).toHaveTextContent('已关闭');
   });
 
+  it.each([
+    { label: 'own choice', blocker: { pendingChoice: testChoice } },
+    { label: 'another player choice', blocker: { waitingChoice: { playerId: 'p1', kind: 'order', title: '选择置底顺序' } } },
+  ])('replaces a stopped $label notice with the authoritative terminal status without refresh', ({ blocker }) => {
+    const p = props(); const app = render(<AutoPass {...p} view={base} />);
+    start(); advance(300);
+    app.rerender(<AutoPass {...p} view={{ ...base, version: 2, ...blocker }} />);
+    expect(status()).toHaveTextContent('请先完成选择');
+    expect(screen.queryByRole('button', { name: '取消连续让过' })).not.toBeInTheDocument();
+    const finished: View = { ...base, version: 3, status: 'finished', legalActions: [] };
+    app.rerender(<AutoPass {...p} view={finished} />);
+    expect(status()).toHaveTextContent('对局已结束，连续让过已停止');
+    expect(status()).not.toHaveTextContent('请先完成选择');
+    expect(screen.getByRole('button', { name: '一键连续让过' })).toBeDisabled();
+    advance(10_000); expect(p.onAction).not.toHaveBeenCalled();
+    expect(p.onActivityChange).toHaveBeenLastCalledWith(false);
+    const beforeRefresh = status().textContent;
+    app.unmount(); render(<AutoPass {...p} view={finished} />);
+    expect(status().textContent).toBe(beforeRefresh);
+    advance(1000); expect(p.onAction).not.toHaveBeenCalled();
+  });
+
   it.each(['hand', 'board', 'region'])('an explicit %s click in the real Table cancels the queued pass before 550ms', location => {
     const submit = vi.fn();
     const view: View = { ...base, regions: [{ id: 'world', index: 0, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0],
