@@ -1,0 +1,11 @@
+Review-only local handoff: WM043
+Product base: 5607a1c06f00920a0d927958975e1a34e31df2f8
+Product source: 0a3122adfb5fa7d74fe6721287c48d50a384da59
+Reviewed delivery: 96a5de6030cd3b207b96994638300956f77030a0
+Status: P2 open; test-only review commit intentionally retains three failing counterexamples
+This commit contains independent tests and review documentation only; it does not implement a product fix.
+No new tests were run while creating this commit. The tested file bytes are unchanged from the recorded execution.
+Original full evidence, including failed attempts and source input hashes, remains at:
+/home/ddd/Documents/Codex/2026-10-22/task-2/wm043-native-review
+Do not bulk merge historical review fixtures from other baselines. Keep the product and dependency SHAs explicit.
+No credentials, databases, caches, generated build trees or login state were added by this handoff.

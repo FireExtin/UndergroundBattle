@@ -1,0 +1,214 @@
+{
+  "reviewedAtUtc": "2026-10-23T17:10:41.602337+00:00",
+  "base": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+  "runtimeSource": "0a3122adfb5fa7d74fe6721287c48d50a384da59",
+  "delivery": "96a5de6030cd3b207b96994638300956f77030a0",
+  "findings": {
+    "P0": [],
+    "P1": [],
+    "P2": [
+      {
+        "id": "WM043-SHOWN-SHIELD",
+        "status": "open",
+        "file": "rust-game/src/wm043.rs",
+        "line": 90,
+        "cause": "Shown target choice directly adds a lock without enemy shield interception.",
+        "normalGameplay": true,
+        "independentFailingTests": [
+          "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+          "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+          "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield"
+        ]
+      }
+    ]
+  },
+  "independentNative": {
+    "uniqueTests": 21,
+    "uniquePassed": 18,
+    "productCounterexamplesFailed": 3,
+    "ignored": 0,
+    "testInvocations": 25,
+    "firstRunFixtureFailure": "Friendly-control setup used unreachable deployment region; test helper corrected to select accessible region. Original failure retained.",
+    "runs": [
+      {
+        "started": "2026-10-23T17:03:24.714516+00:00",
+        "ended": "2026-10-23T17:03:57.532103+00:00",
+        "command": [
+          "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-j",
+          "1",
+          "-p",
+          "hegemony-server",
+          "--no-default-features",
+          "--lib",
+          "--",
+          "--test-threads=1",
+          "--nocapture",
+          "wm043_tests",
+          "next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets",
+          "gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+          "independent_sentinel_attachment_lock_is_inherited_by_anchor_host",
+          "independent_wm044_mixed_contest_sources_order_and_private_completion"
+        ],
+        "cwd": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review",
+        "returncode": 101,
+        "timed_out": false,
+        "wall_seconds": 32.818,
+        "children_user_seconds": 31.944972,
+        "children_system_seconds": 0.852549,
+        "max_child_rss_kib": 1966200,
+        "cpu": 30,
+        "nice": 19,
+        "address_space_cap_bytes_per_process": 8589934592,
+        "cargo_jobs": 1,
+        "test_threads": 1,
+        "io_class": "idle",
+        "log": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm043-native-review/native-01.log",
+        "resultSummary": [
+          "test result: FAILED. 17 passed; 4 failed; 0 ignored; 0 measured; 2102 filtered out; finished in 7.60s"
+        ],
+        "logSha256": "ae2e1a04c8fd9b299efd9c173427f9bfefc3c0f89ec0cc5866be87f6ad5143cf",
+        "passedTestNames": [
+          "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion",
+          "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+          "next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets",
+          "sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host",
+          "wm043_tests::wm043_fast_response_resolves_before_lower_spell",
+          "wm043_tests::wm043_inherited_lock_is_legal_and_response_removal_cancels_destroy",
+          "wm043_tests::wm043_lock_any_controller_character_or_hidden_and_public_marker",
+          "wm043_tests::wm043_lock_does_not_inherit_from_host_or_sibling",
+          "wm043_tests::wm043_lock_stacks_and_destroy_works_without_sentinel",
+          "wm043_tests::wm043_modes_multiple_targets_and_reject_unlocked_or_extra_input_before_payment",
+          "wm043_tests::wm043_post_decline_no_targets_and_duplicate_or_wrong_player_inputs",
+          "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+          "wm043_tests::wm043_requires_loyalty_and_cost_before_play",
+          "wm043_tests::wm043_response_reveal_loses_original_target_and_does_not_refund",
+          "wm043_tests::wm043_room_duplicate_paid_command_is_not_reapplied",
+          "wm043_tests::wm043_shown_bonus_is_three_without_sentinel_and_no_post_choice",
+          "wm043_tests::wm043_source_fields_registry_and_wip_admission"
+        ]
+      },
+      {
+        "started": "2026-10-23T17:04:28.644178+00:00",
+        "ended": "2026-10-23T17:04:55.265050+00:00",
+        "command": [
+          "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-j",
+          "1",
+          "-p",
+          "hegemony-server",
+          "--no-default-features",
+          "--lib",
+          "--",
+          "--test-threads=1",
+          "--nocapture",
+          "independent_wm043_"
+        ],
+        "cwd": "/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review",
+        "returncode": 101,
+        "timed_out": false,
+        "wall_seconds": 26.621,
+        "children_user_seconds": 25.840961,
+        "children_system_seconds": 0.7817029999999999,
+        "max_child_rss_kib": 1962220,
+        "cpu": 30,
+        "nice": 19,
+        "address_space_cap_bytes_per_process": 8589934592,
+        "cargo_jobs": 1,
+        "test_threads": 1,
+        "io_class": "idle",
+        "log": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm043-native-review/native-02.log",
+        "resultSummary": [
+          "test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 2119 filtered out; finished in 1.65s"
+        ],
+        "logSha256": "b2cf5b143c6db7c5549aa9ec1b6ada5c0668018577c85bf732671f4fdc7dc130",
+        "passedTestNames": [
+          "wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume"
+        ]
+      }
+    ]
+  },
+  "authorEvidence": {
+    "audit": "author-and-source-audit.json",
+    "nativeUniquePassedAudited": 131,
+    "sourceChecksInAuditedLog": 4,
+    "notOurExecution": true
+  },
+  "qualification": {
+    "nativeCompleteEligible": false,
+    "formalNativeCount": 36,
+    "candidateWouldBeNumber": 37,
+    "reason": "P2 WM043-SHOWN-SHIELD requires correction.",
+    "WASM": "not run",
+    "Worker": "not run",
+    "webBuild": "not run",
+    "realBrowser": "not run",
+    "extraCorruptedSaveBoundaries": "paused; not expanded or credited"
+  },
+  "patch": {
+    "path": "independent-tests.patch",
+    "sha256": "4168951e3f9b39e2215b3ceed3e0b78a1832f60c5da0121ff56153e567dcdb99",
+    "productSourceChanged": false
+  },
+  "counterexamples": [
+    {
+      "trace": "native-02-traces/enemy-shield-game.json",
+      "sha256": "1bb3bf00575c6f1f67235fe1ca91f552263427a42b550a27c332079593625d01",
+      "expectedShield": 0,
+      "expectedLockMarkers": 0,
+      "actualTargets": [
+        {
+          "id": "i266",
+          "controller": 2,
+          "shield": 1,
+          "lockMarkers": 1
+        }
+      ],
+      "pending": null,
+      "mysticContest": null
+    },
+    {
+      "trace": "native-02-traces/enemy-shield-room.json",
+      "sha256": "ffd66ba52f3d3ae7c63d91e9218a25e0a179ed1f53f3db1ff15b8dfe22feb6fc",
+      "expectedShield": 1,
+      "expectedLockMarkers": 0,
+      "actualTargets": [
+        {
+          "id": "i266",
+          "controller": 2,
+          "shield": 2,
+          "lockMarkers": 1
+        }
+      ],
+      "pending": null,
+      "mysticContest": null,
+      "roomOutcome": "accepted",
+      "duplicateOutcome": "rejected"
+    },
+    {
+      "trace": "native-02-traces/enemy-shield-two-sources.json",
+      "sha256": "01582b12cb992eaaa7e9a09a190344f930397c4a82886eb8fa4881160a866a74",
+      "expectedShield": 0,
+      "expectedLockMarkers": 0,
+      "actualTargets": [
+        {
+          "id": "i266",
+          "controller": 2,
+          "shield": 2,
+          "lockMarkers": 2
+        }
+      ],
+      "pending": null,
+      "mysticContest": null
+    }
+  ],
+  "resourceReceipt": "resource-before-native.json",
+  "authorWorkspaceModified": false,
+  "ciPushDeployExecuted": false
+}

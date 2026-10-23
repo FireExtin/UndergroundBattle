@@ -1,0 +1,92 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review/rust-game)
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 4 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 2 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 24.88s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-22/task-2/recovery-build/target/debug/deps/hegemony_server-32dfc3fc043f2363)
+
+running 21 tests
+test batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion ... ok
+test gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost ... ok
+test next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets ... ok
+test sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host ... ok
+test wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate ... 
+thread 'wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate' panicked at rust-game/src/wm043_tests.rs:246:5:
+assertion `left == right` failed
+  left: (2, 1)
+ right: (1, 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard ... 
+thread 'wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard' panicked at rust-game/src/wm043_tests.rs:197:5:
+assertion `left == right` failed: printed p18 shield must terminate the targeted enemy shown-card effect
+  left: (1, 1)
+ right: (0, 0)
+FAILED
+test wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume ... 
+thread 'wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume' panicked at rust-game/src/unit_support.rs:71:19:
+called `Result::unwrap()` on an `Err` value: "超出正常派遣距离"
+FAILED
+test wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield ... 
+thread 'wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield' panicked at rust-game/src/wm043_tests.rs:265:5:
+assertion `left == right` failed
+  left: (2, 2)
+ right: (0, 0)
+FAILED
+test wm043_tests::wm043_fast_response_resolves_before_lower_spell ... ok
+test wm043_tests::wm043_inherited_lock_is_legal_and_response_removal_cancels_destroy ... ok
+test wm043_tests::wm043_lock_any_controller_character_or_hidden_and_public_marker ... ok
+test wm043_tests::wm043_lock_does_not_inherit_from_host_or_sibling ... ok
+test wm043_tests::wm043_lock_stacks_and_destroy_works_without_sentinel ... ok
+test wm043_tests::wm043_modes_multiple_targets_and_reject_unlocked_or_extra_input_before_payment ... ok
+test wm043_tests::wm043_post_decline_no_targets_and_duplicate_or_wrong_player_inputs ... ok
+test wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player ... ok
+test wm043_tests::wm043_requires_loyalty_and_cost_before_play ... ok
+test wm043_tests::wm043_response_reveal_loses_original_target_and_does_not_refund ... ok
+test wm043_tests::wm043_room_duplicate_paid_command_is_not_reapplied ... ok
+test wm043_tests::wm043_shown_bonus_is_three_without_sentinel_and_no_post_choice ... ok
+test wm043_tests::wm043_source_fields_registry_and_wip_admission ... ok
+
+failures:
+
+failures:
+    wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate
+    wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard
+    wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume
+    wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield
+
+test result: FAILED. 17 passed; 4 failed; 0 ignored; 0 measured; 2102 filtered out; finished in 7.60s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`
