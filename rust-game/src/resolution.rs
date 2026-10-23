@@ -136,6 +136,7 @@ impl Game {
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
         if c.definition == "JC062" && kind == "play" { return self.jc062_action_candidates(actor, c); }
+        if c.definition == "XQ20" && kind == "play" { return self.xq20_action_candidates(actor, c); }
         let source = self.source_snapshot(c, region);
         let mut result = vec![];
         for ability in rules::definition(&c.definition)
@@ -755,6 +756,7 @@ impl Game {
                             .is_none_or(|predicate| match predicate {
                                 TargetPredicate::PackAOwnGraveCharacter => self.pack_a_grave_target(actor, source, c),
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
+                                TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
@@ -779,7 +781,7 @@ impl Game {
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
                                 rules::TargetPredicate::JC069LockedAnchor => {
-                                    source.card.definition == "JC069" && c.lock_markers > 0
+                                    source.card.definition == "JC069" && self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0
                                 }
                                 rules::TargetPredicate::XQ23ActorAsset => false,
                                 rules::TargetPredicate::XG16CharacterOrAttachment => self.xg16_time_target(source, c),
@@ -789,7 +791,7 @@ impl Game {
                                     self.xq18_character_or_attachment(source, c)
                                 }
                                 rules::TargetPredicate::JZ45LockedLocalTarget => {
-                                    source.card.definition == "JZ45" && c.lock_markers > 0
+                                    source.card.definition == "JZ45" && self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0
                                 }
                             })
                         && (spec.range != Range::SourceRegion || region == source.region)
@@ -915,6 +917,7 @@ impl Game {
         rules::validate_ability(&source.card.definition, spec)?;
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
         if source.card.definition == "JC062" { return self.jc062_bind(actor, source, spec, a); }
+        if source.card.definition == "XQ20" { return self.xq20_bind(actor, source, spec, a); }
         spec.targets
             .iter()
             .map(|slot| {
@@ -1557,6 +1560,7 @@ impl Game {
                 .targets
                 .iter()
                 .any(|t| !self.valid_bound_target(frame.actor, &frame.source, t))
+                || frame.source.card.definition == "XQ20" && !self.xq20_pair_current(frame)
             {
                 frame.guard = GuardState::Cancelled;
                 self.note(format!(
@@ -1650,6 +1654,7 @@ impl Game {
                 Op::MysticWin { .. } => {},
                 Op::MysticDestroyedInfluence => self.pack_a_destroyed_influence(&frame),
                 Op::XQ21CopyMarker => return self.xq21_marker_start(frame),
+                Op::XQ20MoveMarkers => self.xq20_resolve(&frame)?,
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
@@ -1915,7 +1920,7 @@ impl Game {
                 }
                 Op::JZ43LockOrDamageLocalTarget => {
                     let target = frame.targets.first().ok_or("缺少锁定目标")?;
-                    if self.board(&target.id).is_some_and(|(_, c)| c.lock_markers > 0) {
+                    if self.board(&target.id).is_some_and(|(_, c)| self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0) {
                         self.damage(BTreeMap::from([(target.id.clone(), 1)]))?;
                     } else if let Some(c) = self.board_mut(&target.id) {
                         c.lock_markers = c.lock_markers.saturating_add(1);

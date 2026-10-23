@@ -127,7 +127,7 @@ impl Game {
         }
         let kind = kinds.iter().copied().find(|k| k.id() == selected[0]).ok_or("请选择原目标当前已有的标志类别")?;
         let id = &f.targets[0].id;
-        if kind == MarkerKind::Advancement {
+        if kind == MarkerKind::Advancement && self.in_play(id).is_some_and(|(_, c)| crate::batch4_plans::is_plan(c)) {
             let controller = self.in_play(id).ok_or("原计划已离场")?.1.controller;
             // Reuse normal threshold disclosure and the owner's forced trigger.
             self.advance_plan_instance(controller, id);

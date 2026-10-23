@@ -29,8 +29,10 @@ mod batch4_manor_tests;
 #[cfg(test)]
 mod batch4_warden_tests;
 mod batch4_markers;
-#[allow(dead_code)] // XQ20 preparation only; no admitted card/Op until plan rules close.
 mod marker_transfer;
+mod batch4_soul_channel;
+#[cfg(test)]
+mod batch4_soul_channel_tests;
 #[cfg(test)]
 mod marker_transfer_tests;
 #[cfg(test)]

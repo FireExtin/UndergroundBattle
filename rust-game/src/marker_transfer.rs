@@ -1,8 +1,8 @@
-//! XQ20 prerequisite, deliberately unreachable from admitted commands.
+//! XQ20 atomic counter batch, reached through its canonical paid frame.
 //! This transient plan has no Deserialize/Serialize implementation. It freezes
 //! physical carriers, checks every addition, then writes one counter batch.
 //! Plan crossings are observed after the complete atomic counter batch. XQ20
-//! still requires its own command, payment and target admission integration.
+//! command module supplies payment, target admission and the common frame guard.
 use crate::{batch4_markers::MarkerKind, catalog, engine::RuleResult, model::*};
 use std::collections::BTreeSet;
 
@@ -20,7 +20,26 @@ pub(crate) struct PreparedMarkerMove {
 }
 
 impl Game {
-    fn marker_move_carrier(&self, id: &str) -> bool {
+    /// Read physical counters inherited through valid attachments (manual P11),
+    /// without copying them onto the host or counting a dual-type card twice.
+    pub(crate) fn marker_carriers(&self, c: &Card) -> Vec<String> {
+        let mut ids = vec![c.id.clone()];
+        let mut seen = BTreeSet::from([c.id.clone()]); let mut cursor = 0;
+        while cursor < ids.len() {
+            let parent = ids[cursor].clone(); cursor += 1;
+            for a in &self.attachments {
+                if a.host_id == parent && (!a.card.face_down || crate::batch4_plans::secret(&a.card))
+                    && self.attachment_host_valid(a) && seen.insert(a.card.id.clone()) { ids.push(a.card.id.clone()); }
+            }
+        }
+        ids
+    }
+    pub(crate) fn effective_marker_count(&self, c: &Card, kind: MarkerKind) -> u32 {
+        if !self.attachments.iter().any(|a| a.host_id == c.id) { return kind.count(c); }
+        self.marker_carriers(c).iter().skip(1).filter_map(|id| self.in_play(id).map(|(_, c)| c))
+            .fold(kind.count(c), |sum, child| sum.saturating_add(kind.count(child)))
+    }
+    pub(crate) fn marker_move_carrier(&self, id: &str) -> bool {
         self.in_play(id).is_some_and(|(_, c)| {
             (!c.face_down && catalog::card(&c.definition).kind == "character")
                 || self.attachments.iter().any(|a| a.card.id == id

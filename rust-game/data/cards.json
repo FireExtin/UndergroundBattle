@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.86-batch20-fourth",
-  "engineVersion": "rust-v0.2.95-batch20-fourth",
+  "cardPoolVersion": "limited-v2.87-batch20-fourth",
+  "engineVersion": "rust-v0.2.96-batch20-fourth",
   "sourceSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
   "cards": [
     {
@@ -9897,6 +9897,46 @@
         "record": "JZ56",
         "image": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
         "imageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "XQ20",
+      "name": "灵魂通道",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "生命"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "【标准行动】将目标角色或附属上的所有指示物标志，移动到另一个由相同玩家操控的目标角色或附属上。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ20",
+        "image": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
+        "imageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204"
       },
       "unique": false,
       "society": "",

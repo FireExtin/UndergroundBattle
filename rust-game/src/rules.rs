@@ -126,6 +126,7 @@ pub enum AttachmentHostCondition {
 pub enum TargetPredicate {
     PackAOwnGraveCharacter,
     XQ21MarkedCarrier,
+    XQ20MarkerCarrier,
     XG16CharacterOrAttachment,
     JZ36CharacterOrAttachment,
     JZ40CharacterOrAttachment,
@@ -290,6 +291,7 @@ pub enum Op {
     MysticWin { contest_id: Option<String> },
     MysticDestroyedInfluence,
     XQ21CopyMarker,
+    XQ20MoveMarkers,
     JZ51TopEightCorpses,
     JZ51GraveEntry,
     XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },

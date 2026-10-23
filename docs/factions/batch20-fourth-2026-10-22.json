@@ -15,7 +15,7 @@
     "target": 50,
     "unassignedSlots": 0,
     "remainingNativePrograms": 17,
-    "nativeWipCards": 1,
+    "nativeWipCards": 2,
     "nativePartialCards": 0,
     "wasmDirectedCards": 1,
     "workerDirectedCards": 1
@@ -494,16 +494,16 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
       "sourceImageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 18,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
       "additionalThirty": true,
-      "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "priorMechanismAnchorsReady": true,
+      "readinessScope": "18 author Native directed tests passed, including real Room command path; whole-card independent review pending. ABI96 not built/run on WASM/Worker; no public admission"
     },
     {
       "id": "XQ21",
@@ -1023,9 +1023,9 @@
     }
   ],
   "developmentIdentity": {
-    "native": "rust-v0.2.95-batch20-fourth",
-    "pool": "limited-v2.86-batch20-fourth",
-    "wasmBuilt": true,
+    "native": "rust-v0.2.96-batch20-fourth",
+    "pool": "limited-v2.87-batch20-fourth",
+    "wasmBuilt": false,
     "publicIdentityChanged": false
   },
   "candidateComparison": [
@@ -1632,5 +1632,21 @@
     "browserAcceptance": false,
     "batch50Complete": false,
     "archiveExpansion": "Paused under latest user priority; prior guards and evidence retained, no extra archive gate."
+  },
+  "xq20Candidate": {
+    "status": "author-native-directed-passed-pending-independent-review",
+    "base": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+    "nativeClosedCountUnchanged": 33,
+    "abi95PlatformEvidence": "Frozen in base; ABI96 is not built/tested on WASM or Worker",
+    "extraCorruptSaveExpansion": "paused per latest user instruction",
+    "directedTests": 18,
+    "applicableAdjacentTestsPassed": 163,
+    "normalScope": "Real paid actions, response guard, atomic counters, secret plans, accepted1-to3 threshold, Room normal command path; no new corrupted-save expansion",
+    "applicableNativeTotalPassed": 181,
+    "sourceChecksPassed": 3,
+    "wasmBuilt": false,
+    "workerRun": false,
+    "realBrowserRun": false,
+    "publicAdmission": false
   }
 }

@@ -150,7 +150,7 @@ impl Game {
         match f.source.card.definition.as_str() {
             "WM045" => self.world_hide(None, true),
             "WM046" => {
-                let n = self.in_play_cards().into_iter().filter(|(_, c)| !is_plan(c) && c.lock_markers > 0 && (c.face_down || catalog::card(&c.definition).kind == "character")).count();
+                let n = self.in_play_cards().into_iter().filter(|(_, c)| !is_plan(c) && self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0 && (c.face_down || catalog::card(&c.definition).kind == "character")).count();
                 self.draw(f.actor, n)?;
             },
             "WM047" => {
@@ -163,7 +163,7 @@ impl Game {
     }
     pub(crate) fn validate_plan_state(&self) -> RuleResult<()> {
         for c in self.batch3_physical_cards().filter(|c| c.advancement_markers > 0) {
-            if !is_plan(c) || !self.attachments.iter().any(|a| a.card.id == c.id) { return Err("推进标志只能属于有效在场计划".into()); }
+            if !self.marker_move_carrier(&c.id) { return Err("推进标志只能属于有效在场角色或附属".into()); }
         }
         let mut frames = BTreeSet::new(); let mut completed = BTreeSet::new();
         for a in self.attachments.iter().filter(|a| is_plan(&a.card)) {

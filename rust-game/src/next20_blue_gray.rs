@@ -933,8 +933,9 @@ impl Game {
         }) {
             return Err("徽记减费必须保留双通道、减1及一次使用收据".into());
         }
-        // Markers are physical, permanent icons, never a turn modifier or an
-        // off-board/hidden attribute. Fresh identity creation resets them.
+        // Markers are physical, never a turn modifier or an off-board attribute.
+        // XQ20 also permits valid attachments, including secret plans, to carry
+        // them. Fresh identity creation still resets all physical markers.
         for p in &self.players {
             if p.hand
                 .iter()
@@ -950,7 +951,7 @@ impl Game {
         if self
             .world
             .iter()
-            .chain(self.attachments.iter().filter(|a| catalog::card(&a.card.definition).kind != "character").map(|a| &a.card))
+            .chain(self.attachments.iter().filter(|a| !self.marker_move_carrier(&a.card.id)).map(|a| &a.card))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref()))
             .chain(
@@ -960,13 +961,13 @@ impl Game {
             )
             .any(|c| c.permanent_combat_markers != 0)
         {
-            return Err("永久图标标志不能存在于非场上角色区域".into());
+            return Err("永久图标标志不能存在于无效承载区域".into());
         }
         if self.regions.iter().flat_map(|r| &r.cards).chain(self.attachments.iter().map(|a| &a.card)).any(|c| {
             c.permanent_combat_markers > 0
-                && (c.face_down || catalog::card(&c.definition).kind != "character")
+                && !self.marker_move_carrier(&c.id)
         }) {
-            return Err("永久图标标志仅存在于公开角色".into());
+            return Err("永久图标标志只能存在于有效角色或附属".into());
         }
         let mut seen = BTreeSet::new();
         let mut receipt = |source: &SourceSnapshot, ops: &[Op]| -> RuleResult<()> {

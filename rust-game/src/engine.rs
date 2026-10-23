@@ -340,9 +340,11 @@ impl Game {
                 }))
     }
     pub(crate) fn shield_stops(&mut self, actor: usize, target: &str) -> bool {
-        if let Some((_, c)) = self.board(target) {
-            if self.is_enemy(actor, c) && c.shield > 0 {
-                self.board_mut(target).unwrap().shield -= 1;
+        if let Some((_, c)) = self.in_play(target) {
+            if self.is_enemy(actor, c) {
+                let physical = self.marker_carriers(c).into_iter().find(|id| self.in_play(id).is_some_and(|(_, c)| c.shield > 0));
+                let Some(physical) = physical else { return false; };
+                self.board_mut(&physical).unwrap().shield -= 1;
                 self.note("护盾强制移除，终止该来源效果".into());
                 return true;
             }
@@ -427,7 +429,7 @@ impl Game {
         let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
         let mut permanent_result = d.permanent_icons.add(sealed_permanent);
         permanent_result = permanent_result.add(self.wm030_cultist_icons(c, region));
-        permanent_result.combat = permanent_result.combat.saturating_add(c.permanent_combat_markers)
+        permanent_result.combat = permanent_result.combat.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentCombat))
             .saturating_add(self.cq17_combat_bonus(c, region));
         if c.definition == "JC045" && !c.face_down
             && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
@@ -553,10 +555,10 @@ impl Game {
             .saturating_add(self.xg17_defense_bonus(c))
             .saturating_add(self.jz56_aura(c).0)
             .saturating_add(time_bonus)
-            .saturating_add(c.permanent_defense_markers)
+            .saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentDefense))
             .saturating_sub(time_penalty)
             .saturating_sub(self.jc089_host_curses(c) as u32)
-            .saturating_sub(c.wounds)
+            .saturating_sub(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Wound))
     }
     pub(crate) fn reset_passes(&mut self) {
         self.passed.clear();
@@ -2393,12 +2395,12 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
-            advancement_markers: (!asset && kind == Some("attachment") && crate::batch4_plans::is_plan(c)).then_some(c.advancement_markers),
+            advancement_markers: (!asset && (region.is_some() || kind == Some("attachment")) && (c.advancement_markers > 0 || crate::batch4_plans::is_plan(c))).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
             chosen_subtype: if !asset && !c.face_down && kind == Some("attachment") { c.chosen_subtype.map(|kind| kind.label().into()) } else { None },
-            permanent_defense_markers: (!asset && !c.face_down && region.is_some() && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
-            permanent_combat_markers: (!asset && !c.face_down && region.is_some() && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
+            permanent_defense_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
+            permanent_combat_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
             current_domains: if hidden || asset || c.face_down || region.is_none() {
                 None
@@ -2525,18 +2527,18 @@ impl Game {
             } else {
                 Some(c.damage)
             },
-            wounds: if hidden || asset {
+            wounds: if (hidden && !crate::batch4_plans::secret(c)) || asset {
                 None
             } else {
                 Some(c.wounds)
             },
-            shield: if hidden || asset {
+            shield: if (hidden && !crate::batch4_plans::secret(c)) || asset {
                 None
             } else {
                 Some(c.shield)
             },
             // Board markers remain public even when the card's print is concealed.
-            lock_markers: (!asset && region.is_some() && c.lock_markers > 0)
+            lock_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.lock_markers > 0)
                 .then_some(c.lock_markers),
             color: if hidden { None } else { Some(d.color.clone()) },
             magic: if hidden { None } else { Some(d.magic.clone()) },

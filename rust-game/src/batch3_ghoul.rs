@@ -66,7 +66,9 @@ impl Game {
         }
     }
     pub(crate) fn validate_bq079_markers(&self)->RuleResult<()> {
-        if self.batch3_physical_cards().any(|c|c.permanent_defense_markers>0 && (c.definition!="BQ079" || c.face_down || !self.board(&c.id).is_some_and(|(_,live)|live==c))){return Err("食尸鬼永久防御标志只能留在原公开场内实例".into());}
+        // XQ20 may move the physical defense markers off the original Ghoul;
+        // fresh/private-zone entities still cannot retain them.
+        if self.batch3_physical_cards().any(|c|c.permanent_defense_markers>0 && !self.marker_move_carrier(&c.id)){return Err("永久防御标志只能留在有效在场角色或附属".into());}
         Ok(())
     }
     pub(crate) fn bq079_upkeep_start(&mut self,f:&ResolutionFrame)->RuleResult<()> {

@@ -143,9 +143,7 @@ impl Game {
     }
 
     pub(crate) fn effective_time_markers(&self, c: &Card) -> u32 {
-        self.attachments.iter().filter(|a| a.host_id == c.id && !a.card.face_down
-            && self.attachment_host_valid(a))
-            .fold(c.time_markers, |n, a| n.saturating_add(a.card.time_markers))
+        self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Time)
     }
 
     fn red_time_source(&self, actor: usize, source: &SourceSnapshot, face_down: bool) -> RuleResult<()> {
