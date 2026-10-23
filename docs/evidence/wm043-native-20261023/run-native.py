@@ -1,6 +1,6 @@
 import os,sys,subprocess,json,datetime,hashlib,time
 from pathlib import Path
-root=Path(__file__).resolve().parent; repo=root/os.environ.get('TEST_REPO','UndergroundBattle-wm043'); work=root/'verification';work.mkdir(exist_ok=True)
+root=Path(os.environ.get('WM043_TASK_ROOT','/home/ddd/Documents/Codex/2026-10-23/task-7')); repo=root/os.environ.get('TEST_REPO','UndergroundBattle-wm043'); work=root/'verification';work.mkdir(exist_ok=True)
 name,fil=sys.argv[1:]; log=work/(name+'.log'); receipt=work/(name+'.json'); assert not log.exists()
 tools=Path('/home/ddd/Documents/Codex/2026-10-21/task-3/.tools')
 env=dict(os.environ);env.update(CARGO_HOME=str(root/'build-cargo-home'),RUSTUP_HOME=str(tools/'rustup'),CARGO_TARGET_DIR=str(root/'build-target'),CARGO_BUILD_JOBS='1',RUST_TEST_THREADS='1',CARGO_NET_OFFLINE='true',RUSTUP_AUTO_INSTALL='0',CC=str(tools/'batch3-zig-cc'),CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=str(tools/'batch3-zig-cc'),ZIG_GLOBAL_CACHE_DIR=str(root/'zig-global'),ZIG_LOCAL_CACHE_DIR=str(root/'zig-local'),PATH=str(tools/'cargo/bin')+':'+env['PATH'])
