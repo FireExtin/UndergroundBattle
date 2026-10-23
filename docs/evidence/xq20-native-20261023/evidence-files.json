@@ -1,0 +1,82 @@
+[
+  {
+    "path": "adjacent-06.json",
+    "bytes": 36858,
+    "sha256": "2b1215c24ed027129796d02847ba793a295391ed0c7c352fca17c400986631eb"
+  },
+  {
+    "path": "adjacent-06.log",
+    "bytes": 4117,
+    "sha256": "aa81f3d00c9a7f2dfc6adc02d3589c3d6f4d99f7cac0393c105665c04b0a68b8"
+  },
+  {
+    "path": "first-shell-failure-notes.txt",
+    "bytes": 614,
+    "sha256": "22569494bdada154516dd227d74fa12d1e07be4186cc3352bff90d656e61708a"
+  },
+  {
+    "path": "native-01.json",
+    "bytes": 36716,
+    "sha256": "9bc49d082e6c5087f977e69a84002480e0ea4a7627ba6155af3ca8eb52f61e17"
+  },
+  {
+    "path": "native-01.log",
+    "bytes": 7214,
+    "sha256": "c79a2ce6603a9a61878e29be65ee00d3aa703f3257cc816d7db7aef0b69caeff"
+  },
+  {
+    "path": "native-02.json",
+    "bytes": 36716,
+    "sha256": "4e76e3c48f3db257f88aa18d25291a5771160d7201f9399ebb474093fb06c270"
+  },
+  {
+    "path": "native-02.log",
+    "bytes": 3488,
+    "sha256": "ddb02d4900efe9e79faeea790cf7e0e3264137512e7030bd201dae047a2c2cf4"
+  },
+  {
+    "path": "native-03.json",
+    "bytes": 36746,
+    "sha256": "885dc07e56b3bb602dc3bb424c90a2d499eb1ad947ebd1b4d94fd83bc8c77b5e"
+  },
+  {
+    "path": "native-03.log",
+    "bytes": 4778,
+    "sha256": "8efc755442b8860ebd7fd32dd3f44c53df0909eabae480232bba5acc6de0e240"
+  },
+  {
+    "path": "native-04.json",
+    "bytes": 36815,
+    "sha256": "5d002ccfd0a015cd95b9cf8d05806577f7a5e4cf06df7783f11c9aa2dcb37112"
+  },
+  {
+    "path": "native-04.log",
+    "bytes": 3412,
+    "sha256": "2464fd362529bdbe83d56ba62525be941a22c625ab087f7f6a5a4b5e1782b619"
+  },
+  {
+    "path": "native-05.json",
+    "bytes": 36992,
+    "sha256": "cf10635fda206fb1b95a5e2935836b95354aac265afc810dfdd10cd37f3470eb"
+  },
+  {
+    "path": "native-05.log",
+    "bytes": 18557,
+    "sha256": "7c5670622482c098983f89d4dcda51a5520833ac6e54987653a8efd4109d516a"
+  },
+  {
+    "path": "source-07.json",
+    "bytes": 36766,
+    "sha256": "4f37a5abe59c89b23cfc45d932c6613da1168f91e2d4253dcdc9162d6a83cb8f"
+  },
+  {
+    "path": "source-07.log",
+    "bytes": 169,
+    "sha256": "97d4bd7b9bfcad9905f7181c387c8c2738bd09cb666d3601f359789c65e75e80"
+  },
+  {
+    "path": "driver/run-xq20-normal.py",
+    "bytes": 4173,
+    "sha256": "185d34a6a48fc4626dfd6dacbe0f6f094ab295be987da9e57255a363e8bb382d"
+  }
+]
