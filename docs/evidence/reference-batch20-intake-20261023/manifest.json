@@ -6,8 +6,8 @@
   },
   {
     "path": "prepare-plan.py",
-    "bytes": 13529,
-    "sha256": "8f91e21dcf481b7b8af1b1e8217dad58b3e4b543aaaa263cb781c8147c3b8d13"
+    "bytes": 13552,
+    "sha256": "017d776ccbbb390be0f852ffa696629c6228848a55246e0e47af9f0b402146ec"
   },
   {
     "path": "reference-fetch-manifest.json",
@@ -16,8 +16,8 @@
   },
   {
     "path": "remaining-rgbk.csv",
-    "bytes": 7898,
-    "sha256": "16b40ced395c8c717f226e1b6896124da9c64382b6acb0ef824e4429644a0314"
+    "bytes": 7828,
+    "sha256": "6cd5338d9488658bd56fc9f437b439909ad468feefdfadafcf016494aadd636e"
   },
   {
     "path": "source-corrections.json",
