@@ -1,0 +1,27 @@
+{
+  "status": "read-only identification; no dependency imported; exact minimal patch not extracted or tested",
+  "fixedBase": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "externalReviewedSentinelSource": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "externalSentinelEvidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+  "existingReview": "/home/ddd/Documents/Codex/2026-10-22/task-2/sentinel-lock-close-review/review.txt",
+  "neededFor": [
+    "CQ18",
+    "CQ19"
+  ],
+  "minimumSemanticBoundary": [
+    "Full MSJC14 society definition and deck constraint, both printed actions and effective-lock query; no society-name stub",
+    "Dependent canonical target/operation registration, society registration and declaration/frame validation",
+    "CQ18 lock observer and post-mystic continuation, CQ19 entering conditional must read actual society"
+  ],
+  "inspectedExistingFiles": [
+    "rust-game/src/sentinel.rs",
+    "rust-game/src/society.rs",
+    "rust-game/src/resolution.rs"
+  ],
+  "excluded": [
+    "WM044 whole branch integration",
+    "WM037/MSJC13 whole branch integration",
+    "ABI96/97 changes beyond user-selected LC16 base"
+  ],
+  "caveat": "Base is selected LC16/a0b7 and already contains its native ABI97 lineage. No newer ABI96/97 branch was merged. ABI95 release clone stays separate."
+}

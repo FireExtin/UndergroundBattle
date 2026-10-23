@@ -1,0 +1,150 @@
+{
+  "cards": [
+    {
+      "cardId": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "imagePath": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+      "imageSha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "CQ18",
+        "path": "Cards/Data/PlayerCards/CQ/CQ018_renqiuyu.tres",
+        "gitBlob": "10e9058256991772901fee75032cd65f96f15230",
+        "bytes": 1331,
+        "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ18.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    },
+    {
+      "cardId": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "imagePath": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+      "imageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "CQ19",
+        "path": "Cards/Data/PlayerCards/CQ/CQ019_damokelisizhijian.tres",
+        "gitBlob": "d59ade6e8e1bba828e0ebb5e74f5844a0ee9d4f3",
+        "bytes": 1322,
+        "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ19.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    },
+    {
+      "cardId": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "imagePath": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "imageSha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "XG20",
+        "path": "Cards/Data/PlayerCards/XG/XG020_jinling.tres",
+        "gitBlob": "d33ecacab8aa45d2f9561acdefa948ad3b4ec51b",
+        "bytes": 1293,
+        "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/XG20.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    },
+    {
+      "cardId": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "color": "灰",
+      "inCurrentFourth50": false,
+      "imagePath": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+      "imageSha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "BQ057",
+        "path": "Cards/Data/PlayerCards/BQ/BQ057_pitegangsaleisi.tres",
+        "gitBlob": "f704519a77cdb2b788bc57e6aa5819bb89557278",
+        "bytes": 1256,
+        "sha256": "88e4d977414980248cf1af326575981edad4c4ec09b2af25e73283193efde5a7",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/BQ057.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    },
+    {
+      "cardId": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "imagePath": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
+      "imageSha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "CQ15",
+        "path": "Cards/Data/PlayerCards/CQ/CQ015_yuantuabishuangjian.tres",
+        "gitBlob": "b9bef7c0ed83fe8c9ffcbf7c78923be073c371d5",
+        "bytes": 1392,
+        "sha256": "9c5df597ef52e2912585c2ff1d4ddc6fd5d67ebd4220b0a5be6cd58f4cb3e423",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ15.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    },
+    {
+      "cardId": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "imagePath": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "imageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "pixelsViewedThisTask": true,
+      "resource": {
+        "id": "CQ28",
+        "path": "Cards/Data/PlayerCards/CQ/CQ028_zhouyuzhimen.tres",
+        "gitBlob": "543d27faf3332d7c4e95ac26b2add29eaed2584b",
+        "bytes": 1311,
+        "sha256": "051705a20336884e81ec8159ecb34b72fc14f34510f4b1fab77f0665cae7b354",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ28.tres",
+      "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "implemented": false,
+      "nativeTestsRun": 0
+    }
+  ],
+  "permission": {
+    "UWPro": {
+      "repository": "RETORETO/UnderWorldPro",
+      "fixedCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "permission": "User-confirmed direct author and illustrator reuse permission; no claim of global license change",
+      "userEvidence": "代码作者和插画作者明确许可我复用了。请继续，也可以对照我们的素材图，看你。"
+    },
+    "Suez": {
+      "repository": "SuezKrish/Underworld",
+      "fixedAnalyzedCommit": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+      "useInThisTask": "Only intake metadata/effect tags read; no implementation code or art copied",
+      "license": "No overall license; logic-reference/independent implementation only"
+    }
+  }
+}

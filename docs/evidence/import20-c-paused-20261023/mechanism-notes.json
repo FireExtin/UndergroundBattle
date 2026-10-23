@@ -1,0 +1,29 @@
+{
+  "XG20": [
+    "Original card: attachment to own society, non-asset; choose number on entry; forbid enemy face-up play and paid reveal of that printed cost.",
+    "UWPro retained text includes FAQ that response to entry may play the subsequently banned cost; independently located official FAQ page was not read this task.",
+    "Current generic Choice has finite selected options and Action.option; numeric native/UI protocol and persisted chosen-number field still need design. Do not silently cap to current catalog costs.",
+    "Mystic +3 depends on politician card in own asset zone. Current MysticShown lacks a politician-asset snapshot; preserve event-time condition through history/recovery instead of recomputing from changed live assets."
+  ],
+  "CQ19": [
+    "Original card: own-society attachment; Sentinel entry gives one charge; exhausted action adds one; exhausted action removes X charges to deal X damage to target character.",
+    "Current MarkerKind.ALL and marker-transfer arrays each have seven categories; new Charge must enter copy/move/reset/view contracts. Nothing changed yet."
+  ],
+  "CQ18": [
+    "Original card: secret +1; optional post-contest lock if own society is Sentinel; entry locks all enemy characters/hidden characters in original region; enemy locked departures draw one.",
+    "Needs departure-time snapshot and original actor/region/UID; reuse reviewed effective-lock behavior and existing contest scheduling."
+  ],
+  "BQ057": [
+    "Original card: public, withdrawal; enemy attachment play prompts that player to pay2 or original observer may draw; asset action pays3 renown to place in target region.",
+    "Trigger is played attachment, not merely entry. Payment, optional draw, actor and original receipt must resolve once."
+  ],
+  "CQ15": [
+    "Original card is red; blood loyalty4; grants permanent combat2 and wound2 to host.",
+    "Granted host action exhausts host and returns actual swords attachment to its owner as cost; destroy target then optionally seal up to three same-name character cards from controller deck/hand/graveyard to own society and shuffle that player.",
+    "Requires attachment-source witness surviving return cost and actor-only private-zone selection; no direct source branch code copied."
+  ],
+  "CQ28": [
+    "Original card: choose two modes and may repeat; mill own top6; own grave character printed cost<=2 into target region; target character defense-1 until turn end; draw1.",
+    "Current ordinary ability mode path selects one mode. Two ordered mode instances need canonical program/target identities and existing continuation, not a second external command."
+  ]
+}
