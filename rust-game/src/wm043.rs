@@ -89,6 +89,9 @@ impl Game {
         }
         if let Some(id) = selected.first() {
             if !self.valid_binding(chooser, &f.source, &lock_target(), id) { return Err("精准打击后置目标不合法".into()); }
+            // The shown-card choice bypasses accept_frame_guard; a shield still
+            // ends this enemy effect successfully, leaving the contest to resume.
+            if self.shield_stops(chooser, id) { return Ok(()); }
             self.wm043_lock(id);
         }
         Ok(())
