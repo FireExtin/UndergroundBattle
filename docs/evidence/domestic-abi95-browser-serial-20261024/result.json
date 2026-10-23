@@ -1,0 +1,178 @@
+{
+  "createdAtUtc": "2026-10-23T18:35:23.806483+00:00",
+  "status": "partial-real-browser-QA; explicit browser origin approval blocked; awaiting precise authorization",
+  "mainGameThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "testedDeployment": {
+    "releaseReceipt": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+    "nativeHealthObserved": "rust-v0.2.95-batch20-fourth",
+    "publicHealthObserved": {
+      "ok": true,
+      "service": "hegemony-rust"
+    },
+    "frontendScriptObserved": "/assets/index-DaZwUmzX.js",
+    "identityBoundary": "fresh public browser health and DOM script filename match publication receipt; binary/script content hashes not independently recomputed here",
+    "localABI99Deployed": false
+  },
+  "oldQa": {
+    "invite": "4F3D8519E360",
+    "originalSession": "01a16378-2cdd-734e-9d6c-46ca39497014",
+    "status": "not accessible via normal main browser inventory; exact original A provider bind returned Tab not found",
+    "evidence": "verified16-member QA archive remains partial acceptance",
+    "oldTabsOrCredentialsTouched": false,
+    "archiveOldQaTaskNowAllowed": true,
+    "reason": "replacement owned QA seats established per latest parent instruction; retaining old task is unnecessary"
+  },
+  "replacement": {
+    "invite": "C2679B5A8C57",
+    "browser": "1 / IAB main thread",
+    "A": {
+      "tab": "6",
+      "name": "SerialQA95-Gray-A",
+      "deck": "城市守卫（副本）,50",
+      "society": "none",
+      "independentSessionViaVisibleUi": true
+    },
+    "B": {
+      "tab": "8",
+      "name": "SerialQA95-Black-B",
+      "deck": "墓地回声,50",
+      "society": "none",
+      "independentSessionViaVisibleUi": true
+    },
+    "observedProgress": "last observed round3 action A, fees A3/3 B2/2; partial only, stopped on browser origin approval denial",
+    "status": "blocked; no further origin actions after explicit denial"
+  },
+  "confirmed": [
+    "fresh browser /api/health shows ok true, hegemony-rust and rust-v0.2.95-batch20-fourth",
+    "DOM script URL /assets/index-DaZwUmzX.js matches received76b1b189 deployment receipt",
+    "two fresh explicitly independent UI sessions created/joined C2679B5A8C57; identities and50-card deck snapshots match",
+    "illegal National Agency selection on12gray preset disabled create with explicit25gray requirement; no create executed until legal no-Society choice",
+    "A ready resynchronized against B ready race and showed2/2 before normal start",
+    "both opening choices completed by keep-all through real dialogs",
+    "A built gray asset, secretly deployed police; next turns built neutral assets and secretly deployed Angru in New York",
+    "B built black asset, secretly deployed body in Chernobyl, then built second neutral asset",
+    "normal turns1/2 completed; continuous passing stopped at end of each round and at action targets",
+    "no backend/API/injected state used for game actions and no auth/session storage/cookie/token read"
+  ],
+  "lastObservedBeforeDeniedAction": {
+    "round": 3,
+    "phase": "行动阶段 · 团队1行动",
+    "firstPlayer": "SerialQA95-Black-B",
+    "actingPlayer": "SerialQA95-Gray-A",
+    "priority": "SerialQA95-Gray-A",
+    "scores": {
+      "A": 0,
+      "B": 0
+    },
+    "fees": {
+      "A": "3/3",
+      "B": "2/2"
+    },
+    "decks": {
+      "A": 41,
+      "B": 41
+    },
+    "graves": {
+      "A": 0,
+      "B": 0
+    },
+    "region1": {
+      "name": "纽约",
+      "A": "hidden Angru from actual UI secret deploy",
+      "B": "none"
+    },
+    "region2": {
+      "name": "切尔诺贝利",
+      "A": "own hidden police #i128",
+      "B": "enemy hidden body #i134",
+      "AInfluenceMarkers": 1
+    },
+    "region3": {
+      "name": "伦敦",
+      "A": "none",
+      "B": "none"
+    },
+    "pendingChoice": false,
+    "terminal": false,
+    "paused": false,
+    "BContinuous": "enabled to current-round end; waiting for its legal window",
+    "boundary": "last fresh DOM read before approval rejection; not re-observed afterward and not a newly confirmed pause"
+  },
+  "blockingAction": {
+    "target": "http://8.145.46.171:8090",
+    "table": "C2679B5A8C57",
+    "tab": "6",
+    "action": "click own hidden police #i128 within visible Chernobyl region; selection before revealing",
+    "locator": "article 地区2·切尔诺贝利 / button with visible #i128",
+    "status": "denied by automatic browser approval review before frame authority acquired",
+    "executed": false,
+    "reason": "该操作将访问未被用户明确授权的外部 IP 源站；当前没有证据表明它是获准的现有测试站或所需目标，因此应停止并核实目标。",
+    "manualUserRejection": false,
+    "retriesAfterDenial": 0,
+    "workaround": false,
+    "followup": "precise approval question submitted to user; tool accepted the question, not permission; no answer assumed",
+    "blockedOriginActionsStopped": true
+  },
+  "notCompleted": [
+    "police reveal trigger and target destruction",
+    "complete new match terminal",
+    "fresh choice-to-terminal transition QA-C811-UI-001",
+    "both-seat terminal reload"
+  ],
+  "priorEvidence": "old table remains partial ABI95 evidence; historical ABI94 completed game and old Bot evidence remain separate",
+  "observedProductDefects": [],
+  "toolBoundaries": [
+    {
+      "case": "National Agency with12grey City Guard preset",
+      "outcome": "create disabled with visible requires25grey message; no create executed; changed to legal no-Society option"
+    },
+    {
+      "case": "A ready raced B ready",
+      "outcome": "UI explicitly synchronized and requested another ready click; fresh confirmed2/2 then started"
+    },
+    {
+      "case": "Playwright role/phase waits",
+      "outcome": "AX checkbox was DOM button; after action pending or phase changed, read fresh DOM before next operation; no speculative repeated command"
+    },
+    {
+      "case": "pass-hidden wait",
+      "outcome": "phase/priority may advance while pass remains visible; read fresh DOM; not classified as product failure"
+    },
+    {
+      "case": "screenshot",
+      "outcome": "one actual board JPEG emitted by supported CUA screenshot API; emitter returns no file link and no disk export API used; no screenshot file path claimed"
+    }
+  ],
+  "retainedSeats": {
+    "browser": "1",
+    "mainSession": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+    "A": {
+      "tab": "6",
+      "url": "http://8.145.46.171:8090/#play"
+    },
+    "B": {
+      "tab": "8",
+      "url": "http://8.145.46.171:8090/#play"
+    },
+    "handoffMarksAppliedEarlierThisTurn": true,
+    "credentialsExported": false,
+    "closedOrRecreatedAfterDenial": false
+  },
+  "archiveRecommendation": {
+    "oldQaThread": "01a16378-2cdd-734e-9d6c-46ca39497014",
+    "readyForParentArchive": true,
+    "supersedes": "QA-only defer recommendation in GAME_SERIAL_RECEIPT_20261024.json",
+    "basis": "latest parent expressly permits replacement table if original seats unavailable; main now owns two replacement UI seats; old files/records retained"
+  },
+  "localSource": {
+    "repository": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+    "headAtStart": "a3b5e7dddc86492b56f5480fb3aaf34da9c2d88c",
+    "testedByThisBrowserRun": false,
+    "localABI99Deployed": false,
+    "newMechanisms": 0
+  },
+  "ci": false,
+  "pushed": false,
+  "deployed": false,
+  "dbOrPrivateDataIncluded": false
+}
