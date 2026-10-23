@@ -5,12 +5,13 @@ import * as abi from '../../rust-game-wasm/pkg/hegemony_wasm.js';
 const bytes=readFileSync(new URL('../../rust-game-wasm/pkg/hegemony_wasm_bg.wasm',import.meta.url));
 abi.initSync({module:bytes});
 
-test('candidate package contains exactly the current ABI94 bytes and catalog identity',()=>{
+test('candidate package contains exactly the current ABI95 bytes and catalog identity',()=>{
   const catalog=JSON.parse(abi.catalog());
-  assert.deepEqual([catalog.rulesVersion,catalog.cardPoolVersion,catalog.engineVersion],['hegemony-pdf-v1','limited-v2.84-batch20-third','rust-v0.2.94-batch20-third']);
-  assert.equal(catalog.cards.length,213);
+  assert.deepEqual([catalog.rulesVersion,catalog.cardPoolVersion,catalog.engineVersion],['hegemony-pdf-v1','limited-v2.86-batch20-fourth','rust-v0.2.95-batch20-fourth']);
+  assert.equal(catalog.cards.length,247);
   assert.equal(catalog.cards.filter(c=>c.supported).length,213);
-  assert.equal(catalog.cards.filter(c=>!c.supported).length,0);
+  assert.equal(catalog.cards.filter(c=>!c.supported).length,34);
+  assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
   assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));
   assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
   assert.deepEqual(readdirSync('generated').sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);

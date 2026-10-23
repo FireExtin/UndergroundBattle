@@ -1,3 +1,5 @@
+#[cfg(test)]
+mod batch4_platform_tests;
 mod chaos;
 #[cfg(test)]
 mod recovery_validation_tests;

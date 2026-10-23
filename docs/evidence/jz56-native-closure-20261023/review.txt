@@ -1,0 +1,61 @@
+JZ56「亡者之夜」P2-3 独立关闭复核，2026-10-23 UTC
+
+结论：固定源码 292d3f75aaddae742ad04ca0e1833b68944c6c2d、交付 ebccb2e9a944ea434fe9ed3e88c5d001a77fdc21 上，奖励领取续体 P2-3 已关闭。本轮范围内未发现新增 P0/P1/P2；前轮创伤误接杀伤、已选类别重复选择两项 P2 的关闭结论保持。JZ56 可计入第四批原生闭合，资格由 32/50＋1 候选进到 33/50。此报告不修改作者台账，不授予 WASM 运行、Worker、真实浏览器或公开对战验收资格。
+
+固定身份与审查范围
+
+基线 ed69dbeffd6397c12bc8cc846436f304637c741b。普通独立克隆位于 /home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-jz56-recipient-review，HEAD 为上述交付；作者工作区只读。源码到交付的 Rust/Web/Sites/Cargo 差异为空。相对基线的产品改动仅 rust-game/src/combat_wounds.rs、rust-game/src/engine.rs，另追加 batch4_night_tests.rs。未改规则定义、模型、ABI/schema、卡池、费用或 Web/Worker 入口。
+
+bundle 为 /home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/jz56-recipient-ebccb2e9-20261023.bundle，已通过 git bundle verify；SHA256 e02b065d580421a3da8618ae12ba38039c36c7a28f999977957a86b29bedb8d4。identity.json 记录基线、来源、交付和先前测试文件哈希。仅在自己的克隆追加两条测试，没有改产品源码，没有新 worktree/线程、推送、CI、main 合并、部署或 XG21 复核。
+
+P2-3 原反例的红绿比较
+
+1. 合法 P0/P1 战斗奖励待选只追加敌方 p2 选项：修前 Game/Room 都接受，随后 Room 命令 outcome=accepted，把分配交给敌方；修后两个恢复入口都返回 Err。
+2. 同一合法待选只将 min=1 改为 0：修前 Game/Room 都接受，Game 空选命令发生 selected[0] 越界 panic；修后两个恢复入口都返回 Err。
+
+本轮与上轮两组 good/bad 快照的完整 JSON 均逐项相同，未通过更换夹具消除问题。original-counterexample-comparison.json 给出每份原始 SHA 和布尔结果，original-red/ 保留上轮实际失败日志、回执、输入清单及快照；prior19-and-close4-01-traces/ 保留本轮输出。
+
+修后损坏快照既已拒绝，测试没有执行其后续 Room/空选命令。因此 commandPanics=false 在这条记录中仅表示没有进入该后续路径，不能冒称执行过空选。独立消费守卫的非法空选及其他输入由另一个实际执行测试覆盖。触发前提仍是损坏持久快照，不把它改写成正常客户端或公网复现。
+
+代码证据（均为固定交付内的行号）
+
+- combat_wounds.rs:10 沿用实际贡献者和既有座位顺序；:18 对恰好一个规范 pN、原选择者和实际参战成员独立校验；:28 认证战斗获胜方、After 窗口和至少两位贡献者。
+- combat_wounds.rs:69 校验排队 Recipient 的完整有序席位；:95 认证待选 Choice 的原选择者、player_id、候选 ID/姓名/无附带卡、kind、标题/描述、min=max=1、amount、不可放弃及空 preview。
+- engine.rs:1748 在构造选择前检查战斗队列；空名单或不存在的玩家用安全读取返回 Err。:2223 在清除 pending 前校验领取者；:2341 用已校验结果取代 selected[0]。
+- model.rs:1008 与 room.rs:245 都进入 validate_restored_domain，既有 JZ56 验证链在 batch4_night.rs:129 调用 combat_wound_state。两入口没有分别实现而造成准入差异。
+- batch4_night_tests.rs:612、:630 为原两条反例；:685、:711、:732、:747 为本轮四条作者关闭测试。我新增的共享调查回归在独立测试文件 :819，对侧普通战斗回归在 :875（源于附带补丁，不属于作者交付）。
+
+独立实际执行
+
+使用离线 cargo test --locked -p hegemony-server --no-default-features --lib，限定筛选器、CPU31、nice19、I/O idle、jobs=1、test-threads=1、每进程地址空间上限 8 GiB；峰值子进程 RSS 约 1.86 GiB。所有可写缓存与测试产物在 task-2。没有重复全量套件或浏览器整局。
+
+主复验 prior19-and-close4-01：23/23 通过，0 失败、0 忽略。其中原 19 例未改动，原测试文件是当前固定测试文件的逐字节前缀；包括前轮原图创伤语义、类别选择/恢复、真实支付墓地阈值、离场翻暗、属性重算、伤害预防和队伍领取。另 4 例覆盖：
+  a) 22 种待选外壳损坏，在 Game/Room 均拒绝且不 panic；
+  b) 7 种排队名单损坏，两个恢复入口和直接 Effect 执行均拒绝、执行前后状态不变；
+  c) 空选、多选、重复、敌方、越界、非标准 p00/p+0/p-1/0 等 9 类输入，直接消费守卫和 Game.apply 返回错误，状态不变；错误选择者也拒绝；
+  d) P0/P1 合法领取，Game 与 Room 一致、journal 重放、四席恢复投影、重复命令不再次消费。P0 得到创伤分配，P1 按自己的参战能力得到普通伤害，未泛化继承队友创伤。
+
+新增两条独立回归的最终结果均通过：
+  a) 对侧队伍 P2/P3 普通战斗：两种合法领取者均通过 Game/Room、journal、恢复和重复命令检查；向两名敌方各分配 2 点，最终 damage=2、wounds=0。shared-consumer-02 和 -03 中都通过；最终测试正文及共享 step/record helper 与 -03 完全相同。
+  b) 共享调查领取：先手与后手各两位实际贡献者、每位均可被选；四种情况的预测只对领取者可见，预测后仅其手牌加一，排序与剩余牌库正确，Game/Room 与 journal 一致，重复不再次抽牌。shared-consumer-05 最终 1/1 通过。先手两张 LC01 调查奖励 6，后手奖励 4，保留临时图标既有规则。
+
+合计为 25 个不同测试的最终结果通过；循环中的各分支不虚增为测试数。它们分批执行，不能说成一条 25/25 的全新单次运行。含调试共 5 次命令、29 次测试执行。补充调查测试曾出现三次我编写的断言错误，完整输入和失败日志均保留，没有修改产品、原 19 例或关闭矩阵：
+  - shared-consumer-02 用原始字符串包含判断隐私，错误把 i24 匹配到公开 i240/i241。privacy-oracle-diagnosis.json 记录完整 JSON 路径，均为非精确匹配。改成完整 JSON 字符串值后，所有非领取者视图不存在预测实例 ID。
+  - shared-consumer-03 错误期待抽牌保留牌库实例 ID。engine.rs:1103 的 draw 调用既有 fresh(:143)，跨区生成新 ID。改为核对顶牌定义/归属、只抽一张、身份变更和剩余牌库顺序。
+  - shared-consumer-04 错误期待后手也获得 LC01 临时调查。engine.rs:361 的既有 current_icons 只向先手加入该临时图标；更正该夹具预期为 4，先手仍为 6。
+
+independent-execution-audit.json 逐次列出名称、返回码、原始日志 SHA、输入哈希和最终结果。所有产品输入逐项等于固定交付；差异只有我的测试追加。全部旧测试仍是原样前缀，不把作者 69 项或前轮重复执行相加。
+
+作者证据的独立审计
+
+审计固定交付中的 docs/evidence/jz56-recipient-p2-20261023/verification.json，SHA256 98f74c4a7018ba14f8985bc8185ff84dc4674517b9d4738545d0520a5aa057e4。48 份压缩文件的压缩哈希、解压哈希和字节数全部相符；4 份最终回执各 238 个源码输入＋5 个目录/来源输入与固定 292d3f75 相符，日志 SHA、退出码和清单均一致。
+
+作者 34 定向＋32 相邻＋3 核心共 69 个不同原生测试，无名字交集；日志均 0 失败、0 忽略。回执 sourceHead=ed69dbef 如实记录执行时尚未提交的修改，不能描述成作者提交后另跑；通过输入哈希绑定到 292d3f75。以上为我对作者证据的审查，不是我独立执行的 69 项。author-evidence-audit.json 与 audit-author-evidence.py 可复核全部核验。
+
+适用资格与剩余边界
+
+P2-3 修复的领取者权限、精确数量、空选恢复拒绝、敌方注入拒绝和正常领取均有直接证据，相关共享调查路径未发现回归。无需以该窄修复为由再要求一套无关浏览器整局，原生闭合可以计到 33/50。
+
+作者 WASM 证据仅为目标编译检查；本线程未执行 WASM、Worker、Web 构建/组件或真实浏览器，也未做公开对战。该补丁与前轮未补的平台运行资格仍不能由原生测试替代。报告不扩大到所有任意损坏快照、所有卡牌或公共发布许可，也不改变仍关闭的公开构筑准入。
+
+交付为本报告、result.json、independent-additional-tests.patch、完整输入/日志/快照和 evidence.tar.gz。补丁只有独立克隆中追加的两条测试，可供集成负责人选择吸收；无需产品修复项。完成后停止扩大范围。

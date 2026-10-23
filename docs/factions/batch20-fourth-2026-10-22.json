@@ -7,15 +7,15 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 32,
+    "nativePilots": 33,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 18,
-    "nativeWipCards": 2,
+    "remainingNativePrograms": 17,
+    "nativeWipCards": 1,
     "nativePartialCards": 0
   },
   "colorCounts": {
@@ -169,16 +169,16 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
       "sourceImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
       "imageReviewedHere": true,
-      "runtime": "nativeWipDirectedPassedPendingClosure",
-      "nativeDirectedCases": 12,
+      "runtime": "nativePilotPassedPendingBatchIntegration",
+      "nativeDirectedCases": 34,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
       "accepted": false,
       "openQuestionIds": [],
-      "fullNativeCardComplete": false,
-      "nativeEvidence": "docs/factions/JZ56_NATIVE_INCREMENT_2026-10-23.md",
-      "readinessScope": "Author native whole-program candidate: real Society payment, three-subtype choice, current-controller/current-subtype/grave-size aura, Game/Room restore and card face. Pending independent review; no admission or public acceptance."
+      "fullNativeCardComplete": true,
+      "nativeEvidence": "docs/factions/JZ56_RECIPIENT_P2_FIX_2026-10-23.md",
+      "readinessScope": "Independently closed native whole card at292d3f75/ebccb2e9: original wound/subtype P2s and recipient P2-3 closed. ABI95 WASM/Worker runtime pending; all public gates remain closed."
     },
     {
       "id": "XQ15",
@@ -1037,7 +1037,7 @@
     {
       "candidate": "fourth batch native WIP",
       "commit": null,
-      "nativeCards": 32,
+      "nativeCards": 33,
       "wasmCards": 0,
       "candidateAdmissions": 0,
       "publicNewCards": 0,
@@ -1045,7 +1045,7 @@
       "clone": "UndergroundBattle-batch4",
       "identityResolution": "Containing Git checkpoint; exact pushed SHA is separately verified in the checkpoint receipt",
       "targetCards": 50,
-      "nativeWipCards": 2
+      "nativeWipCards": 1
     }
   ],
   "ownershipCheck": {
@@ -1142,12 +1142,12 @@
     "XQ18 integration regression: secret plans remain attachment targets for time add/remove; Society carriers use in_play rather than region-only board lookup. Carrier choice and public removal logs keep the anonymous secret-plan name. Ordinary hidden characters remain excluded. Two new four-actor real-command cases fail before the fix; all28 XQ18 cases pass after it, including restore/mutation/privacy guards. No old kernel or frozen candidate changed.",
     "XG16 native22: printed6/Red3/unique/public; own Sun conditionally enables Leader. Optional entry time1 and Prepare time equal to current destroyed-region count. Uses its own finite Prepare opcode with shared typed observation/order/target/resolved-or-cancelled receipts. Effective time includes legal direct attachments; personal recipients gain defense per time, either opposing seat loses defense, ally is unchanged (primary Hegemony printed16/21). All positive defense including Ghoul permanent markers precedes negative time/curses/wounds. Real rescuer activation, aura death/cancellation, Room pause/restore/original-command replay and version-conflict rejection tested; no WASM/public admission.",
     "XG18 native19: own active face-up source permits current Renown character cards from personal assets through ordinary printed payment/loyalty/region checks. Explicit AssetByXG18 receipt freezes grant, actual asset and event-time Renown; normalized played card enters ready, own source asset may pay only if originally unexhausted. Hand-only JZ52 ban stays on Hand origin (its own grave-as-hand permission confirms no zone rewrite). Forced actual Renown play emits once per source/event, allows controller ordering with Alpha, uses existing Sun/Moon cancellation on living Societies; reveal/direct entry do not emit. Own Sun conditional canonical mobility retains shared exposure receipt. No WASM/deck admission/public acceptance.",
-    "JZ56: author native candidate; actual paid own-Society attach followed by optional entry and closed three-subtype choice. Public enum bound to original in-play instance resets with fresh identity. Current own subtype gets temporary influence1/defense1 per source; current personal grave>=7 adds permanent combat1/kill1. No choice or unrelated subtype work in attribute queries when no active source. Game/Room four-seat restore, real combat and duplicate-command rejection tested; public admission remains off, independent closure pending."
+    "JZ56: independently closed native33 at292d3f75/ebccb2e9. Actual paid own-Society attachment, optional entry, closed three-subtype enum, live personal subtype/grave aura; grave>=7 grants permanent combat1 and wound1, never kill damage. Wound replacement, exactly-one actual reward recipient and both restoration entries independently verified. ABI95 WASM/Worker runtime pending; public admission remains off."
   ],
   "next": [
-    "Continue the same50-card batch:32 native complete, JZ56 author candidate pending independent review, XG21 interrupted review remains excluded;0 WASM package/admission/acceptance.",
+    "Continue the same50-card batch:33 independently closed native cards; XG21 interrupted review remains excluded. First build current ABI95 binding and validate JZ56 Native/WASM and actual Worker paths; no public admission/acceptance.",
     "Build common hidden-contest/blood/marker foundations incrementally and explicitly resolve four-seat participant and continuation contracts; do not copy the reference implementation",
-    "Retain original BQ084/BQ086/JZ56/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
+    "Retain original BQ084/BQ086/XQ13 and deferred BQ033/CQ11 questions; no guessed rulings",
     "Bot room/UI slice2d8653c7 (integration251129e8) stays independent, default off, awaiting incremental review; no card-count credit",
     "Preserve frozen third/44cc candidates, no Sites pending/403 retry, CI, worktree or main merge"
   ],
@@ -1588,5 +1588,18 @@
     "report": "docs/evidence/bq036-host-p2-close-20261022/review.txt",
     "reportSha256": "cd0d76fd9d3f9404009ffcd877e73334dc12c87165301044dc4627ddb9b6dc5d",
     "scope": "Native whole-card closure only; no new WASM, admission, public acceptance or main qualification"
+  },
+  "jz56ClosureReview": {
+    "candidate": "ebccb2e9a944ea434fe9ed3e88c5d001a77fdc21",
+    "productSource": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+    "status": "closed",
+    "nativeWholeCardComplete": true,
+    "closedCards": [
+      "JZ56"
+    ],
+    "independentDistinctTests": 25,
+    "report": "docs/evidence/jz56-native-closure-20261023/review.txt",
+    "reportSha256": "ce7723991d95831c9ba17017eab15ac98561baab04a2dfe457abe7858dc365f1",
+    "scope": "Native only. No WASM/Worker/browser/public approval."
   }
 }
