@@ -1,0 +1,134 @@
+{
+  "issue": "QA-C811-UI-001",
+  "baseCommit": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "originalEvidence": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "sourceFix": "845f0d8c050b4302e0e3473ccc8ea13156c41522",
+  "sourceCandidate": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+  "status": "author checks complete; new candidate independent review pending",
+  "productFiles": [
+    "web/src/game/AutoPass.tsx"
+  ],
+  "testFiles": [
+    "web/src/game/ContinuousPass.test.tsx"
+  ],
+  "exactExistingPatch": true,
+  "sourceChanges": {
+    "addedLines": 24,
+    "removedLines": 1
+  },
+  "before": {
+    "failed": 2,
+    "skipped": 24,
+    "expected": true
+  },
+  "after": {
+    "passed": 44,
+    "files": 4
+  },
+  "typeChecks": true,
+  "productionBuild": true,
+  "testsAreJsdom": true,
+  "refreshTest": "component unmount/remount",
+  "newCandidateIndependentReview": false,
+  "realBrowserAcceptance": false,
+  "nativeWasmWorkerRerun": false,
+  "existingAbi95NativePlatformReviewPreserved": true,
+  "nativeWasmAbiDataChanges": false,
+  "abi96or97Included": false,
+  "fullSuite": false,
+  "pushed": false,
+  "ciTriggered": false,
+  "deployed": false,
+  "mainChanged": false,
+  "runs": [
+    {
+      "name": "terminal-before",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/game/ContinuousPass.test.tsx",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testNamePattern",
+        "authoritative terminal status without refresh"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/web",
+      "sourceHead": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+      "worktree": "M web/src/game/ContinuousPass.test.tsx",
+      "startedUtc": "2026-10-23T16:30:29.239311+00:00",
+      "state": "complete",
+      "cpu": [
+        31
+      ],
+      "nice": 19,
+      "offline": true,
+      "nodeVersion": "v24.22.1",
+      "exitCode": 1,
+      "seconds": 1.251,
+      "logSha256": "98970affd4467876ed031617df4ad38b364501cf6fac4466a29999730c117224"
+    },
+    {
+      "name": "terminal-after",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/game/ContinuousPass.test.tsx",
+        "src/game/ContinuousPassRecovery.test.tsx",
+        "src/game/AutoPass.test.tsx",
+        "src/game/FinishedSummary.test.tsx",
+        "--maxWorkers=1",
+        "--no-file-parallelism"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/web",
+      "sourceHead": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+      "worktree": "M web/src/game/AutoPass.tsx\n M web/src/game/ContinuousPass.test.tsx",
+      "startedUtc": "2026-10-23T16:30:47.754513+00:00",
+      "state": "complete",
+      "cpu": [
+        31
+      ],
+      "nice": 19,
+      "offline": true,
+      "nodeVersion": "v24.22.1",
+      "exitCode": 0,
+      "seconds": 4.021,
+      "logSha256": "f6d1961cc5ce556b8757e4b9b5a67b1dca78c4a7e5d212834c371cc4d0728359"
+    },
+    {
+      "name": "production-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui/web",
+      "sourceHead": "b7066bd9fe9fb3faa7ba9583eb1a7cbd57912103",
+      "worktree": "",
+      "startedUtc": "2026-10-23T16:30:57.526287+00:00",
+      "state": "complete",
+      "cpu": [
+        31
+      ],
+      "nice": 19,
+      "offline": true,
+      "nodeVersion": "v24.22.1",
+      "exitCode": 0,
+      "seconds": 9.07,
+      "logSha256": "5013f1506bdc0e5d8db967437d729cbb1a308013709321313cf309b838d49194"
+    }
+  ],
+  "resourceLimits": {
+    "cpu": [
+      31
+    ],
+    "nice": 19,
+    "maxWorkers": 1,
+    "fileParallelism": false,
+    "offlineDependencies": true
+  },
+  "evidenceScope": "Existing ABI95 platform and845 UI approvals retain their original scopes. This is author integration evidence only.",
+  "originalReview": "/home/ddd/Documents/Codex/2026-10-22/task-2/abi95-platform-close-review/review.txt",
+  "existingUiReview": "/home/ddd/Documents/Codex/2026-10-22/task-2/ui-terminal-close-review/review.txt"
+}

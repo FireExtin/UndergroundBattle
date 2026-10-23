@@ -1,0 +1,54 @@
+diff --git a/web/src/game/AutoPass.tsx b/web/src/game/AutoPass.tsx
+index 978cb771..6481cc0b 100644
+--- a/web/src/game/AutoPass.tsx
++++ b/web/src/game/AutoPass.tsx
+@@ -69,6 +69,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
+ 
+   const proposed: PassRun = { roomId: view.roomId, you: view.you, turn: view.turn, target, manualEpoch };
+   const startBlocked = passRunStop(view, proposed, context);
++  const continuousNotice = view.status !== 'playing' ? startBlocked : notice || startBlocked || '连续让过已关闭';
+   const cancel = () => { setRun(null); setNotice('已取消连续让过'); onActivityChange(false); };
+ 
+   return <div className={`hg-auto-pass ${enabled ? 'hg-auto-pass-enabled' : ''}`}>
+@@ -78,7 +79,7 @@ export function AutoPass({ view, busy, uncertain, connection, onAction, enabled,
+       <label>让过到<select aria-label="连续让过的目标阶段" value={target} disabled={!!run || busy} onChange={event => setTarget(event.target.value as PassTarget)}>{passTargets.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+       {run ? <button type="button" className="hg-button hg-button-primary" onClick={cancel}>取消连续让过</button>
+         : <button type="button" className="hg-button hg-button-quiet" disabled={busy || !!startBlocked} onClick={() => { if (busy || startBlocked) return; onEnabledChange(false); setNotice(''); setRun(proposed); }}>一键连续让过</button>}
+-      <span role="status" aria-label="连续让过状态">{active ? `连续让过已开启 · 至${passTargets.find(option => option.value === run?.target)?.label}${busy || uncertain ? ' · 等待上一行动确认' : !pass ? ' · 等待你的合法窗口' : lastAutoKey === key ? ' · 已提交让过，等待同步' : ''}` : notice || startBlocked || '连续让过已关闭'}</span>
++      <span role="status" aria-label="连续让过状态">{active ? `连续让过已开启 · 至${passTargets.find(option => option.value === run?.target)?.label}${busy || uncertain ? ' · 等待上一行动确认' : !pass ? ' · 等待你的合法窗口' : lastAutoKey === key ? ' · 已提交让过，等待同步' : ''}` : continuousNotice}</span>
+       <small>仅让过你的合法窗口；遇到选择、暂停或断线停止，刷新后关闭。“结束”处理本回合结束窗口，不自动让过下一回合。</small>
+     </section>
+   </div>;
+diff --git a/web/src/game/ContinuousPass.test.tsx b/web/src/game/ContinuousPass.test.tsx
+index e301461a..1e5fd800 100644
+--- a/web/src/game/ContinuousPass.test.tsx
++++ b/web/src/game/ContinuousPass.test.tsx
+@@ -108,6 +108,28 @@ describe('pass until the selected phase, only in this turn', () => {
+     expect(p.onAction).not.toHaveBeenCalled(); expect(status()).toHaveTextContent('已关闭');
+   });
+ 
++  it.each([
++    { label: 'own choice', blocker: { pendingChoice: testChoice } },
++    { label: 'another player choice', blocker: { waitingChoice: { playerId: 'p1', kind: 'order', title: '选择置底顺序' } } },
++  ])('replaces a stopped $label notice with the authoritative terminal status without refresh', ({ blocker }) => {
++    const p = props(); const app = render(<AutoPass {...p} view={base} />);
++    start(); advance(300);
++    app.rerender(<AutoPass {...p} view={{ ...base, version: 2, ...blocker }} />);
++    expect(status()).toHaveTextContent('请先完成选择');
++    expect(screen.queryByRole('button', { name: '取消连续让过' })).not.toBeInTheDocument();
++    const finished: View = { ...base, version: 3, status: 'finished', legalActions: [] };
++    app.rerender(<AutoPass {...p} view={finished} />);
++    expect(status()).toHaveTextContent('对局已结束，连续让过已停止');
++    expect(status()).not.toHaveTextContent('请先完成选择');
++    expect(screen.getByRole('button', { name: '一键连续让过' })).toBeDisabled();
++    advance(10_000); expect(p.onAction).not.toHaveBeenCalled();
++    expect(p.onActivityChange).toHaveBeenLastCalledWith(false);
++    const beforeRefresh = status().textContent;
++    app.unmount(); render(<AutoPass {...p} view={finished} />);
++    expect(status().textContent).toBe(beforeRefresh);
++    advance(1000); expect(p.onAction).not.toHaveBeenCalled();
++  });
++
+   it.each(['hand', 'board', 'region'])('an explicit %s click in the real Table cancels the queued pass before 550ms', location => {
+     const submit = vi.fn();
+     const view: View = { ...base, regions: [{ id: 'world', index: 0, cardId: 'DQJC112', name: '纽约', threshold: 4, points: 4, influence: [0, 0],

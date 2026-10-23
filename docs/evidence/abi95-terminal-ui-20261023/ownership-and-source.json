@@ -1,0 +1,25 @@
+{
+  "ownerThread": "01a16996-ccb2-7584-bc69-7308ef96e0c8",
+  "scope": "ABI95 terminal AutoPass UI only",
+  "base": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "originalEvidenceHead": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "sourceFix": "845f0d8c050b4302e0e3473ccc8ea13156c41522",
+  "clone": "/home/ddd/Documents/Codex/2026-10-23/task-6/UndergroundBattle-abi95-terminal-ui",
+  "branch": "fix/abi95-terminal-ui-20261023",
+  "checks": [
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "baseEqualsPreFixC811": true,
+      "baseSha256": "798eff13494118ec2131101e4d18940cc8f346635a44d4b4332cef5720a58122",
+      "source845Sha256": "b5f7e3df42d98e7cc3c0bceb297927b84633eb386cd16cf65454df8011deabd1"
+    },
+    {
+      "path": "web/src/game/ContinuousPass.test.tsx",
+      "baseEqualsPreFixC811": true,
+      "baseSha256": "2301b4601256a161ee68c501d70c7fe0a15a0921c4416dca818f0589dfe63bac",
+      "source845Sha256": "8c3229b2d5f3401a41c9754572ceabf56d6ddc86024353442d27c75ea6fc6277"
+    }
+  ],
+  "originalAuthorOwnership": "/home/ddd/Documents/Codex/2026-10-21/task-3/RED_BLACK_OWNERSHIP_20261023.json",
+  "noNewCards": true
+}
