@@ -136,3 +136,17 @@ test('package B independently closed native cards preserve prior catalogue and p
   }
   for (const source of packageB.rulesRead) assert.equal(hash(read(source.path)), source.sha256);
 });
+
+test('WM044 minimum aura remains explicit WIP with exact source and unchanged whole-card count', () => {
+  const row = plan.cards.find(c => c.id === 'WM044');
+  assert.equal(row.fullNativeCardComplete, false);
+  assert.equal(row.runtime, 'nativeWipDirectedPassedPendingClosure');
+  assert.equal(row.selectionEnabled, false);
+  assert.equal(row.wasmImplemented, false);
+  assert.equal(plan.scope.nativePilots, 33);
+  const c = pool.cards.find(c => c.id === 'WM044');
+  assert.equal(c.supported, false);
+  assert.equal(c.text, specs.WM044.fields.printedRuleTextLines.join('\n'));
+  assert.deepEqual(c.loyalty, ['灰色', '灰色']);
+  assert.equal(hash(read(c.source.image)), 'f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937');
+});

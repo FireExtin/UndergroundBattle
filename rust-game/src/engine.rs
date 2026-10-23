@@ -788,6 +788,7 @@ impl Game {
                     let mut c = self.remove_hand(seat, id)?;
                     c = self.fresh(c);
                     c.face_down = true;
+                    self.apply_hidden_entry_slow(&mut c);
                     self.regions[r].cards.push(c);
                     self.players[seat].conceal_used = true;
                     self.note(format!(

@@ -1,3 +1,6 @@
+mod batch4_intelligence;
+#[cfg(test)]
+mod batch4_intelligence_tests;
 #[cfg(test)]
 mod batch4_platform_tests;
 mod chaos;

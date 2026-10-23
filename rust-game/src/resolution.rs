@@ -2121,6 +2121,7 @@ impl Game {
                                 Destination::HiddenInChosenRegion => {
                                     c.face_down = true;
                                     let r = frame.chosen_region.ok_or("缺少派遣地区")?;
+                                    self.apply_hidden_entry_slow(&mut c);
                                     self.regions[r].cards.push(c);
                                 }
                             }

@@ -808,6 +808,7 @@ impl Game {
         let mut c = self.reset_zone_card(c);
         c.face_down = hidden;
         c.exhausted = exhausted;
+        self.apply_hidden_entry_slow(&mut c);
         let id = c.id.clone();
         let definition = c.definition.clone();
         self.regions[region].cards.push(c);
