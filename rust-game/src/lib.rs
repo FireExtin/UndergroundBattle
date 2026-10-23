@@ -1,4 +1,6 @@
 mod wm043;
+#[cfg(test)]
+mod wm043_tests;
 mod batch4_intelligence;
 #[cfg(test)]
 mod batch4_intelligence_tests;
