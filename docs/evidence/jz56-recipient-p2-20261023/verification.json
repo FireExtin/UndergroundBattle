@@ -1,0 +1,483 @@
+{
+  "state": "author-fixed-P2-3-awaiting-independent-retest",
+  "base": "ed69dbeffd6397c12bc8cc846436f304637c741b",
+  "productSourceCommit": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+  "createdUtc": "2026-10-23T12:22:22.463462+00:00",
+  "formalCount": "32/50 plus one JZ56 candidate",
+  "independentOriginal": {
+    "report": "/home/ddd/Documents/Codex/2026-10-22/task-2/jz56-p2-close-review/review.txt",
+    "reportSha256": "f638535877668f74ab79258e435f7351e786c41876a6d52f3433ca3b82afbdab",
+    "archive": "/home/ddd/Documents/Codex/2026-10-22/task-2/jz56-p2-close-review/evidence.tar.gz",
+    "archiveSha256": "0b182953e5683f0d90ed9fb9226efc5e375516c7360d063b98fb39e15ae3647f",
+    "patchSha256": "9ed4a5d15b27ebba9ddcc74f84c5fce3ec376b98f27d3dd6bddc2152dd0ea812",
+    "originalTwoP2Closed": true,
+    "original19Cases": {
+      "pass": 17,
+      "fail": 2
+    },
+    "redProductDifferences": [
+      "rust-game/src/batch4_night_tests.rs"
+    ],
+    "redTestMatchesReviewerFinalInput": true
+  },
+  "redGreen": {
+    "red-01": {
+      "recipient-enemy-option": {
+        "gameAccepted": true,
+        "roomAccepted": true,
+        "roomOutcome": "accepted"
+      },
+      "recipient-empty-choice": {
+        "gameAccepted": true,
+        "roomAccepted": true,
+        "commandPanics": true,
+        "commandError": null
+      }
+    },
+    "closure-03": {
+      "recipient-enemy-option": {
+        "gameAccepted": false,
+        "roomAccepted": false,
+        "roomOutcome": null
+      },
+      "recipient-empty-choice": {
+        "gameAccepted": false,
+        "roomAccepted": false,
+        "commandPanics": false,
+        "commandError": null
+      }
+    }
+  },
+  "checks": {
+    "nativeDirected": 34,
+    "nativeAdjacent": 32,
+    "nativeCore": 3,
+    "nativeDistinct": 69,
+    "nativeDefaultTotal": 2081,
+    "ignored": 0,
+    "nativeTests": {
+      "closure-03": [
+        "batch4_night_tests::batch4_night_both_restore_entries_reject_corrupt_pending_frames_and_moved_choices",
+        "batch4_night_tests::batch4_night_choice_rejects_wrong_actor_bad_payload_duplicates_and_replay",
+        "batch4_night_tests::batch4_night_current_controller_not_owner_or_teammate_and_hidden_blank_boundaries",
+        "batch4_night_tests::batch4_night_decline_entry_and_source_departure_do_not_rebind_replacement",
+        "batch4_night_tests::batch4_night_enhanced_wound_uses_real_combat_marker_pipeline",
+        "batch4_night_tests::batch4_night_finite_program_and_choice_cannot_be_transplanted",
+        "batch4_night_tests::batch4_night_illegal_host_and_loyalty_never_pay",
+        "batch4_night_tests::batch4_night_original_cost_loyalty_full_program_and_closed_deck_gate",
+        "batch4_night_tests::batch4_night_room_commands_choice_restore_four_views_and_duplicate_receipt",
+        "batch4_night_tests::batch4_night_source_loss_removes_defense_before_existing_death_cleanup",
+        "batch4_night_tests::batch4_night_sources_stack_and_exhaustion_preserves_categories_not_participation",
+        "batch4_night_tests::batch4_night_three_subtypes_global_personal_bonuses_and_live_grave_threshold",
+        "batch4_night_tests::independent_closure_review::independent_close_real_damage_prevention_does_not_prevent_combat_wounds",
+        "batch4_night_tests::independent_closure_review::independent_close_recipient_may_not_add_enemy_to_frozen_wound_reward",
+        "batch4_night_tests::independent_closure_review::independent_close_recipient_may_not_restore_empty_selection_that_panics",
+        "batch4_night_tests::independent_review::independent_jz56_actual_response_destroys_source_and_restore_keeps_historical_frame",
+        "batch4_night_tests::independent_review::independent_jz56_corrupt_live_chosen_value_cannot_coexist_with_pending_choice",
+        "batch4_night_tests::independent_review::independent_jz56_live_added_skeleton_type_then_real_attachment_removal",
+        "batch4_night_tests::independent_review::independent_jz56_old_pool_and_unknown_enum_fail_closed_without_panics",
+        "batch4_night_tests::independent_review::independent_jz56_printed_wound_must_not_add_kill_damage_to_combat_reward",
+        "batch4_night_tests::independent_review::independent_jz56_printed_wound_must_reach_the_wound_path_in_nonlethal_combat",
+        "batch4_night_tests::independent_review::independent_jz56_real_grave_play_and_spell_cross_threshold_at_the_correct_steps",
+        "batch4_night_tests::independent_review::independent_jz56_real_hide_reveal_and_source_removal_keep_identity_and_recompute",
+        "batch4_night_tests::p2_close::batch4_night_p2_chosen_live_value_rejects_every_unfinished_entry_stage_and_finish_overwrite",
+        "batch4_night_tests::p2_close::batch4_night_p2_exact_wounds_real_room_replay_duplicate_and_end_cleanup",
+        "batch4_night_tests::p2_close::batch4_night_p2_multiple_sources_convert_equal_points_once_and_emit_real_lethal_wound",
+        "batch4_night_tests::p2_close::batch4_night_p2_real_kill_still_adds_damage_and_combines_with_wound_replacement",
+        "batch4_night_tests::p2_close::batch4_night_p2_seven_to_six_paid_grave_play_removes_future_wound",
+        "batch4_night_tests::p2_close::batch4_night_p2_team_recipient_personal_participation_and_nonparticipating_grant",
+        "batch4_night_tests::p2_close::batch4_night_p2_wound_receipts_fail_closed_for_missing_foreign_duplicate_or_rebound_participants",
+        "batch4_night_tests::recipient_p2_close::batch4_night_recipient_p2_both_restore_entries_certify_complete_choice_envelope",
+        "batch4_night_tests::recipient_p2_close::batch4_night_recipient_p2_consumer_requires_one_canonical_actual_recipient_before_mutation",
+        "batch4_night_tests::recipient_p2_close::batch4_night_recipient_p2_legal_game_room_replay_four_views_and_exact_duplicates",
+        "batch4_night_tests::recipient_p2_close::batch4_night_recipient_p2_queued_effect_certifies_exact_ordered_contributors"
+      ],
+      "adjacent-04": [
+        "msjc11_tests::msjc11_black_bottom_query_equipment_ordinary_initiative_and_converted_vector",
+        "msjc11_tests::msjc11_construction_uses_printed_human_and_black_combat_and_old_limits",
+        "msjc11_tests::msjc11_dynamic_projection_clears_for_all_hidden_views_and_end_turn",
+        "msjc11_tests::msjc11_first_grant_any_controller_any_region_and_four_independent_sources",
+        "msjc11_tests::msjc11_grant_survives_same_instance_move_and_lost_icons_but_not_hidden_or_reentry",
+        "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+        "msjc11_tests::msjc11_programs_reject_other_cards_modes_nested_ops_costs_and_target_relations",
+        "msjc11_tests::msjc11_real_mixed_fifty_admission_and_original_fields",
+        "msjc11_tests::msjc11_real_win_window_returns_borrowed_instance_to_owner_and_preserves_attachment_batch",
+        "msjc11_tests::msjc11_region_instance_captured_required_and_replacement_cancelled_only_for_this_grant",
+        "msjc11_tests::msjc11_rejected_declarations_do_not_pay_and_cancelled_bound_target_does_not_refund",
+        "msjc11_tests::msjc11_retreat_captures_controller_instances_once_not_team_owner_name_or_later_entrants",
+        "win_flow_tests::win_flow_corrupted_contexts_reject_in_game_and_room_loaders",
+        "win_flow_tests::win_flow_duplicate_and_stale_awards_cannot_capture_a_replacement",
+        "win_flow_tests::win_flow_inner_score_terminal_clears_outer_context_and_restart_is_fresh",
+        "win_flow_tests::win_flow_nested_capture_skips_replacement_in_saved_contest",
+        "win_flow_tests::win_flow_nested_paid_reveals_resume_outer_win_then_original_action",
+        "win_flow_tests::win_flow_paid_reveal_restores_other_steps_and_skips_only_captured_contest",
+        "win_flow_tests::win_flow_paid_xq37_and_jz22_entries_resume_both_action_steps",
+        "win_flow_tests::win_flow_privilege_offers_renown_once_and_acceptance_can_win",
+        "win_flow_tests::win_flow_privilege_reaching_threshold_skips_old_region_renown",
+        "win_flow_tests::world_empty_all_vacant_fixture_has_no_forced_empty_choice_or_new_terminal_rule",
+        "win_flow_tests::world_empty_contests_keep_original_positions_and_skip_empty_slots",
+        "win_flow_tests::world_empty_corrupt_slot_and_saved_before_window_rejected_by_both_loaders",
+        "win_flow_tests::world_empty_duel_preserves_three_positions_and_any_live_region_mobility",
+        "win_flow_tests::world_empty_jc050_choice_and_won_graveyard_entry_exclude_original_empty_slot",
+        "win_flow_tests::world_empty_nested_wins_preserve_contexts_and_owner_return_positions",
+        "win_flow_tests::world_empty_rejects_deploy_conceal_targets_and_cross_gap_mobility",
+        "win_flow_tests::world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot",
+        "win_flow_tests::world_empty_ten_region_conservation_last_refill_then_vacancy",
+        "win_flow_tests::world_empty_terminal_score_and_restart_remove_then_rebuild_slot",
+        "win_flow_tests::world_empty_win_leaves_original_slot_empty_and_preserves_other_regions"
+      ],
+      "core-05": [
+        "engine::tests::combat_difference_kill_guard_simultaneous_damage_and_barrier",
+        "engine::tests::deterministic_complete_duel_and_team_games_and_restart",
+        "engine::tests::private_forecast_and_damage_choices_roundtrip_without_leaking"
+      ]
+    },
+    "wasmTargetCheck": true,
+    "WebRerun": false,
+    "WasmExecution": false,
+    "Worker": false,
+    "browser": false
+  },
+  "bindings": [
+    {
+      "run": "closure-03",
+      "productSourceCommit": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+      "receiptSha256": "3d5c8d6577a79586cb9a4ba57e02550c588fed5e64134774f574faafaa6c8cd3",
+      "inputCount": 243,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-04",
+      "productSourceCommit": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+      "receiptSha256": "23dd0fe180f3413ee5a73929256a472cf29ccf9c9ef305904b76816d8f0570b0",
+      "inputCount": 243,
+      "mismatches": []
+    },
+    {
+      "run": "core-05",
+      "productSourceCommit": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+      "receiptSha256": "1db0730f006dd2812821878f7190ad33eeec84548e696eb4bdf4f5a27267f852",
+      "inputCount": 243,
+      "mismatches": []
+    },
+    {
+      "run": "wasm-target-06",
+      "productSourceCommit": "292d3f75aaddae742ad04ca0e1833b68944c6c2d",
+      "receiptSha256": "399d245900b44df44805f1b37124b3898077f7d3ddc4eb5702300f811914ff08",
+      "inputCount": 243,
+      "mismatches": []
+    }
+  ],
+  "unchangedScopes": [
+    "web",
+    "sites",
+    "rust-game-wasm/src",
+    "rust-game/data",
+    "rust-game/src/model.rs",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/rules.rs"
+  ],
+  "testsNotRun": "remaining 2012 default native tests, Web rerun/build, current WASM package/runtime, Worker, browser, public acceptance",
+  "remote": {
+    "branch": "progress/batch20-fourth-20261022",
+    "sha": "08319094a113717a1a80041fbe94ca8c139429be",
+    "checkedBy": "git ls-remote --heads origin refs/heads/progress/batch20-fourth-20261022",
+    "exitCode": 0,
+    "pushAttempted": false,
+    "constraint": "083 one-time automatic workflow risk approval does not authorize new SHA pushes"
+  },
+  "noRuntimeSchemaChange": true,
+  "noCI": true,
+  "noMainMerge": true,
+  "noDeployment": true,
+  "files": [
+    {
+      "path": "runs/adjacent-04.json.gz",
+      "originalBytes": 35997,
+      "originalSha256": "23dd0fe180f3413ee5a73929256a472cf29ccf9c9ef305904b76816d8f0570b0",
+      "gzipSha256": "ffb5ddd9918073662b20b632709ee8c772d557a5dffbd19c9fc2575f53eee468"
+    },
+    {
+      "path": "runs/adjacent-04.log.gz",
+      "originalBytes": 4510,
+      "originalSha256": "7ca3d8c875b6ba89a2fec785e6a770f5a5c74bf79d47fbee018c0e13309b0e8b",
+      "gzipSha256": "5133d5b2ee1f1719a8e4af51489e8e71f6ab5c70be8f69dcc9d152893351c0f8"
+    },
+    {
+      "path": "runs/closure-03-traces/actual-prevention-versus-wound.json.gz",
+      "originalBytes": 66528,
+      "originalSha256": "c91417638ab5919b163d9159d5ac49970e5e05cafc58a00256158678b3895fe6",
+      "gzipSha256": "0bbd5b9855655b2b5809e51a55022dce542e5bd297c417b2e4184a2a5acc0829"
+    },
+    {
+      "path": "runs/closure-03-traces/corrupt-choice-observation.json.gz",
+      "originalBytes": 244828,
+      "originalSha256": "413e199978d87222067fd900d4e3b2656f7c105b487d5dea890360f9a2fc5c73",
+      "gzipSha256": "4f2b7cffbbba32b35f21e16680037b18af67eb9d3f12cfb1801e768c208de71b"
+    },
+    {
+      "path": "runs/closure-03-traces/dynamic-skeleton-grant-ended.json.gz",
+      "originalBytes": 188908,
+      "originalSha256": "e302f4a0a4bf8594535c8d417847a77da2e90e454bb17cb6e02eb1112fd576c4",
+      "gzipSha256": "baf8e9051bcafd4742d56c46892261ab0877ad0eb652686976cb92c7a564ac52"
+    },
+    {
+      "path": "runs/closure-03-traces/grave-7-to-6-before-resolution.json.gz",
+      "originalBytes": 206103,
+      "originalSha256": "af39b9b2c9d92ee6ecb8eb07c65eda7e5aff79c12d95caf06e2de04a21be2c06",
+      "gzipSha256": "60320c38a69a5df838c68d7a9bc8a54ca423b8bbb9a7ebea281f86e4e797e237"
+    },
+    {
+      "path": "runs/closure-03-traces/hide-reveal-source-removal.json.gz",
+      "originalBytes": 218565,
+      "originalSha256": "73aa4814a2fed9af0387c2ca4ca30c774921c96f0c707ae2d628e61d542814c7",
+      "gzipSha256": "54d5f5507bc2908caed1952c7350c696a404a2bd64c1645b70347322cc0e30ed"
+    },
+    {
+      "path": "runs/closure-03-traces/legal-recipient-0.json.gz",
+      "originalBytes": 277820,
+      "originalSha256": "cbcfe1c31ac2dfafbbd4a8cbbb0099d264f1c88b55704813fad662500a2cefcb",
+      "gzipSha256": "885f96d9ac4f9a382e908c58c6eb132b130dea428640f0d30c81ef72bdeb50ba"
+    },
+    {
+      "path": "runs/closure-03-traces/legal-recipient-1.json.gz",
+      "originalBytes": 275486,
+      "originalSha256": "c8cc761659270e0b229ca0e069a841bc2bce55ee8087144d8982f867f15e13fa",
+      "gzipSha256": "0c06455f61554c5e591160b309c84395eb5969b9da1798949440224f00c6f22d"
+    },
+    {
+      "path": "runs/closure-03-traces/original-source-gone-frame-restorable.json.gz",
+      "originalBytes": 182198,
+      "originalSha256": "0fb1fdf0f3723ac3baac45e86cdb2f37c169836bb51b00e15db367d85a460a87",
+      "gzipSha256": "eeebc551dcadf0c2c23083928ffbf96ed5a6a15bb1e18f7d18e69cba6319583d"
+    },
+    {
+      "path": "runs/closure-03-traces/p2-wound-room.json.gz",
+      "originalBytes": 197116,
+      "originalSha256": "d7be8b69aa9fafa8f4e12a99a83e2fd7e188b0b5c5473d9a6a68e1b104338699",
+      "gzipSha256": "4cb5ea1dd71ea6f11460713ea91badb747b4d413fd91dcc5b89b8ec436e7b41b"
+    },
+    {
+      "path": "runs/closure-03-traces/p2-wounds-survive-cleanup.json.gz",
+      "originalBytes": 65548,
+      "originalSha256": "c6e8eaafe833d44b5ce0f62c1eb54a2a728080cebfe9446ddd4c2316d17f319f",
+      "gzipSha256": "6798821eae70f093eb3a9a4b0270b03d0cab77ba775de83c6ad0bcd846e6b02a"
+    },
+    {
+      "path": "runs/closure-03-traces/recipient-empty-choice.json.gz",
+      "originalBytes": 133059,
+      "originalSha256": "0f57a20332a93cc88469008ee3463b5537cc0be8b6efeb1fe90a5745cc0d1e28",
+      "gzipSha256": "b65d91ec8363e1908424e45b1a28de259ce7a4f990d132835186fc03b55bea79"
+    },
+    {
+      "path": "runs/closure-03-traces/recipient-enemy-option.json.gz",
+      "originalBytes": 133124,
+      "originalSha256": "55373cd8cb19128acc52141a732cf1b3a445ae3994918d394bdaa10481abd37e",
+      "gzipSha256": "7e40cce022f5e1475e8755a63d2faeebb1367ad7d9d3a57c7e2ec6c05eb35d69"
+    },
+    {
+      "path": "runs/closure-03-traces/recipient-envelope-rejections.json.gz",
+      "originalBytes": 67150,
+      "originalSha256": "2a56b9fcd7142497a726d31610f271a003d88d28f7d39407d3fdc461c9c51175",
+      "gzipSha256": "6a4f957ef15727810692f6800ad6953176d2b20ae5821dd711d799e8ce16db89"
+    },
+    {
+      "path": "runs/closure-03-traces/recipient-queue-rejections.json.gz",
+      "originalBytes": 66989,
+      "originalSha256": "aa313bf76058fe674dc1f5ac0f859524fe1ba77f9f27cc05409540b4bed20861",
+      "gzipSha256": "3dbd5abe86d6b52547236c1b4e75255cdb92deee5261cee7fdef2cf479fb86a1"
+    },
+    {
+      "path": "runs/closure-03-traces/spell-6-to-7-after-resolution.json.gz",
+      "originalBytes": 214731,
+      "originalSha256": "5a7bed4dbb4b71bee403f33d4ce554b63c9889a7b05f7a31265bc4fd345aac0d",
+      "gzipSha256": "a1336323931003b0bb82d54f6d00ac101efbf5f120c2fd71658e15f39f04498c"
+    },
+    {
+      "path": "runs/closure-03-traces/wound-not-kill-amount.json.gz",
+      "originalBytes": 206331,
+      "originalSha256": "7a1fa24652a8e1fc04e78d594ab6f8672ab069c8c96467da1a2485c03cea96af",
+      "gzipSha256": "ef602a71cb94a0be4bd4b4536d4e5e874baf971877a6f0427deac6d6c579f75f"
+    },
+    {
+      "path": "runs/closure-03-traces/wound-not-ordinary-damage.json.gz",
+      "originalBytes": 201771,
+      "originalSha256": "be4442653b93cfda0f792b0518842fd65ede835746ecb1867d3e33283852debe",
+      "gzipSha256": "e928573a798bfab8ddf2eb942fde77644a77b9d3916d18ef7475ee5284972113"
+    },
+    {
+      "path": "runs/closure-03.json.gz",
+      "originalBytes": 35880,
+      "originalSha256": "3d5c8d6577a79586cb9a4ba57e02550c588fed5e64134774f574faafaa6c8cd3",
+      "gzipSha256": "cf4ebe374c327f2206fe35582665bbd7acae442bd16517114a053b731be3cb85"
+    },
+    {
+      "path": "runs/closure-03.log.gz",
+      "originalBytes": 5551,
+      "originalSha256": "6f599bbeaf4e43d0ba8b95992e1917a5c7022e4571100a07183b47c2858f82fa",
+      "gzipSha256": "05d01bd2ee36daa2e6f0ad59f36346106e0feeaf3d1569c285a30cdbe52abaf2"
+    },
+    {
+      "path": "runs/core-05.json.gz",
+      "originalBytes": 36098,
+      "originalSha256": "1db0730f006dd2812821878f7190ad33eeec84548e696eb4bdf4f5a27267f852",
+      "gzipSha256": "5716d37e73d81066364498c921f4b2ed07bf47c04f2e787edce97e19c151429d"
+    },
+    {
+      "path": "runs/core-05.log.gz",
+      "originalBytes": 1622,
+      "originalSha256": "b22b75eec9be3ba8506bc47e3a69d39cd1f37b479f4032e06dc0a37d385c8c45",
+      "gzipSha256": "385a1c1a17a5ea4eeda12a2765378dbc5c7bb3be8e9752a69293f7a5d7d0299d"
+    },
+    {
+      "path": "runs/green-02-traces/actual-prevention-versus-wound.json.gz",
+      "originalBytes": 66528,
+      "originalSha256": "c91417638ab5919b163d9159d5ac49970e5e05cafc58a00256158678b3895fe6",
+      "gzipSha256": "0bbd5b9855655b2b5809e51a55022dce542e5bd297c417b2e4184a2a5acc0829"
+    },
+    {
+      "path": "runs/green-02-traces/corrupt-choice-observation.json.gz",
+      "originalBytes": 244828,
+      "originalSha256": "413e199978d87222067fd900d4e3b2656f7c105b487d5dea890360f9a2fc5c73",
+      "gzipSha256": "4f2b7cffbbba32b35f21e16680037b18af67eb9d3f12cfb1801e768c208de71b"
+    },
+    {
+      "path": "runs/green-02-traces/dynamic-skeleton-grant-ended.json.gz",
+      "originalBytes": 188908,
+      "originalSha256": "e302f4a0a4bf8594535c8d417847a77da2e90e454bb17cb6e02eb1112fd576c4",
+      "gzipSha256": "baf8e9051bcafd4742d56c46892261ab0877ad0eb652686976cb92c7a564ac52"
+    },
+    {
+      "path": "runs/green-02-traces/grave-7-to-6-before-resolution.json.gz",
+      "originalBytes": 206103,
+      "originalSha256": "af39b9b2c9d92ee6ecb8eb07c65eda7e5aff79c12d95caf06e2de04a21be2c06",
+      "gzipSha256": "60320c38a69a5df838c68d7a9bc8a54ca423b8bbb9a7ebea281f86e4e797e237"
+    },
+    {
+      "path": "runs/green-02-traces/hide-reveal-source-removal.json.gz",
+      "originalBytes": 218565,
+      "originalSha256": "73aa4814a2fed9af0387c2ca4ca30c774921c96f0c707ae2d628e61d542814c7",
+      "gzipSha256": "54d5f5507bc2908caed1952c7350c696a404a2bd64c1645b70347322cc0e30ed"
+    },
+    {
+      "path": "runs/green-02-traces/original-source-gone-frame-restorable.json.gz",
+      "originalBytes": 182198,
+      "originalSha256": "0fb1fdf0f3723ac3baac45e86cdb2f37c169836bb51b00e15db367d85a460a87",
+      "gzipSha256": "eeebc551dcadf0c2c23083928ffbf96ed5a6a15bb1e18f7d18e69cba6319583d"
+    },
+    {
+      "path": "runs/green-02-traces/p2-wound-room.json.gz",
+      "originalBytes": 197116,
+      "originalSha256": "d7be8b69aa9fafa8f4e12a99a83e2fd7e188b0b5c5473d9a6a68e1b104338699",
+      "gzipSha256": "4cb5ea1dd71ea6f11460713ea91badb747b4d413fd91dcc5b89b8ec436e7b41b"
+    },
+    {
+      "path": "runs/green-02-traces/p2-wounds-survive-cleanup.json.gz",
+      "originalBytes": 65548,
+      "originalSha256": "c6e8eaafe833d44b5ce0f62c1eb54a2a728080cebfe9446ddd4c2316d17f319f",
+      "gzipSha256": "6798821eae70f093eb3a9a4b0270b03d0cab77ba775de83c6ad0bcd846e6b02a"
+    },
+    {
+      "path": "runs/green-02-traces/recipient-empty-choice.json.gz",
+      "originalBytes": 133059,
+      "originalSha256": "0f57a20332a93cc88469008ee3463b5537cc0be8b6efeb1fe90a5745cc0d1e28",
+      "gzipSha256": "b65d91ec8363e1908424e45b1a28de259ce7a4f990d132835186fc03b55bea79"
+    },
+    {
+      "path": "runs/green-02-traces/recipient-enemy-option.json.gz",
+      "originalBytes": 133124,
+      "originalSha256": "55373cd8cb19128acc52141a732cf1b3a445ae3994918d394bdaa10481abd37e",
+      "gzipSha256": "7e40cce022f5e1475e8755a63d2faeebb1367ad7d9d3a57c7e2ec6c05eb35d69"
+    },
+    {
+      "path": "runs/green-02-traces/spell-6-to-7-after-resolution.json.gz",
+      "originalBytes": 214731,
+      "originalSha256": "5a7bed4dbb4b71bee403f33d4ce554b63c9889a7b05f7a31265bc4fd345aac0d",
+      "gzipSha256": "a1336323931003b0bb82d54f6d00ac101efbf5f120c2fd71658e15f39f04498c"
+    },
+    {
+      "path": "runs/green-02-traces/wound-not-kill-amount.json.gz",
+      "originalBytes": 206331,
+      "originalSha256": "7a1fa24652a8e1fc04e78d594ab6f8672ab069c8c96467da1a2485c03cea96af",
+      "gzipSha256": "ef602a71cb94a0be4bd4b4536d4e5e874baf971877a6f0427deac6d6c579f75f"
+    },
+    {
+      "path": "runs/green-02-traces/wound-not-ordinary-damage.json.gz",
+      "originalBytes": 201771,
+      "originalSha256": "be4442653b93cfda0f792b0518842fd65ede835746ecb1867d3e33283852debe",
+      "gzipSha256": "e928573a798bfab8ddf2eb942fde77644a77b9d3916d18ef7475ee5284972113"
+    },
+    {
+      "path": "runs/green-02.json.gz",
+      "originalBytes": 35880,
+      "originalSha256": "8f7d75816aa1f59e8f78c7218708805db2c9bf0e0784ab7f8efcdadbbc0c75ff",
+      "gzipSha256": "829277da17894d6b5b9d1769a1e530d57d8457ac3ea0a22cac1d4023148ec7f7"
+    },
+    {
+      "path": "runs/green-02.log.gz",
+      "originalBytes": 5013,
+      "originalSha256": "2a691dfb2d052683cd80d053a16026417e619e227f0bf54ab6cd6486fd3de86b",
+      "gzipSha256": "c7f04d269806ba1f8bdc758686ccec6b2a8143b33bca4cc24be88d1484c58d8c"
+    },
+    {
+      "path": "runs/red-01-traces/actual-prevention-versus-wound.json.gz",
+      "originalBytes": 66528,
+      "originalSha256": "c91417638ab5919b163d9159d5ac49970e5e05cafc58a00256158678b3895fe6",
+      "gzipSha256": "0bbd5b9855655b2b5809e51a55022dce542e5bd297c417b2e4184a2a5acc0829"
+    },
+    {
+      "path": "runs/red-01-traces/recipient-empty-choice.json.gz",
+      "originalBytes": 133056,
+      "originalSha256": "a2b0db5f097075cd889fe151f4e94dcc0d7c481e2a460fc0630b28056244f05d",
+      "gzipSha256": "030b5712edc3e4e9b83e8636fef1d9a546a40bbfb7bd3ad16bfd7fd26b0421b7"
+    },
+    {
+      "path": "runs/red-01-traces/recipient-enemy-option.json.gz",
+      "originalBytes": 207178,
+      "originalSha256": "a88a430a2673ffb8bd7de2e55c72d2e541bbd9271104c1560145f65028a0ca39",
+      "gzipSha256": "3d0939495a7bb84979bdb99acb39928d8541f87623f5969f7f273aaa5a28b2dd"
+    },
+    {
+      "path": "runs/red-01.json.gz",
+      "originalBytes": 35827,
+      "originalSha256": "5ed5c810ad679792c239208655c2ed3f9e7f4fd9c6c2a356c6bc3312aad3d5b1",
+      "gzipSha256": "c16c8ffeadc5d576a4b8ea74be6387a2dd39b0c49ba88af68b791598f23b3d01"
+    },
+    {
+      "path": "runs/red-01.log.gz",
+      "originalBytes": 3020,
+      "originalSha256": "66079ca1279a0194a059ccebd5dfda8760ece8c073c11c49b667679991b0b5dd",
+      "gzipSha256": "c6d5af0db393d352d0b965ef472fb79a6b93a9ab50a7221d5723a71595d07af2"
+    },
+    {
+      "path": "runs/wasm-target-06.json.gz",
+      "originalBytes": 35858,
+      "originalSha256": "399d245900b44df44805f1b37124b3898077f7d3ddc4eb5702300f811914ff08",
+      "gzipSha256": "cbad95feb971443453637c34a4e5503f223707fdb784ff49ae6ba4c333a50586"
+    },
+    {
+      "path": "runs/wasm-target-06.log.gz",
+      "originalBytes": 670,
+      "originalSha256": "e404af74644211ad9972b7599afea3e1ce799ece45a98cdd11a01542d0ef5ffe",
+      "gzipSha256": "e84c473b04d2f9a11bfaba641b877e9d491fa80911d26770df2e68ccb11c72b1"
+    },
+    {
+      "path": "independent-original/review.txt.gz",
+      "originalBytes": 8600,
+      "originalSha256": "f638535877668f74ab79258e435f7351e786c41876a6d52f3433ca3b82afbdab",
+      "gzipSha256": "8dc47e6735293a81b74521514a7429e87cf21edb15a7c5e834ce57c238117604"
+    },
+    {
+      "path": "independent-original/independent-additional-tests.patch.gz",
+      "originalBytes": 5552,
+      "originalSha256": "9ed4a5d15b27ebba9ddcc74f84c5fce3ec376b98f27d3dd6bddc2152dd0ea812",
+      "gzipSha256": "3a3df11c71ce8bddb43ec614e29e31b3a7e4c17a5e86a0e185d2321c5a8d38e6"
+    },
+    {
+      "path": "runners/run-jz56-recipient.py.gz",
+      "originalBytes": 3717,
+      "originalSha256": "5c55f951835bc3b566d28e9403107a3009c4d0e2aaf1c8859beddd888d93c566",
+      "gzipSha256": "d4877532fe19d80db34eddf5e7dade90b7469c029d6366bed95df29f6022a597"
+    }
+  ]
+}
