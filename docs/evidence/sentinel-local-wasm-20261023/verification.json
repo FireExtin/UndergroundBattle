@@ -1,0 +1,175 @@
+{
+  "status": "author local WASM finite check passed; not platform acceptance",
+  "runtimeSource": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "independentlyAcceptedEvidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+  "testSource": "37c148d7f69074a26692f8213038a539f5b52a19",
+  "nativeWitnessTestPassed": 1,
+  "testExecutionHead": "5de09f03f45a8a8b61a8556ca05bb09dda5a8a24",
+  "actualInputHashesMatchTestSource": true,
+  "nativeWitnessTestExecutionNote": "Ran in working tree before test commit; do not claim HEAD was testSource at execution",
+  "runtimeDiffFromAccepted": [],
+  "build": {
+    "exitCode": 0,
+    "jobs": 1,
+    "cpu": 31,
+    "nice": 19,
+    "addressSpaceGiB": 8,
+    "offline": true,
+    "output": "task-local isolated directory; release pkg untouched",
+    "wasmWrapperInputs": [
+      {
+        "path": "rust-game-wasm/src/lib.rs",
+        "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+      },
+      {
+        "path": "rust-game-wasm/Cargo.toml",
+        "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+      },
+      {
+        "path": "tools/sentinel-platform-compare.mjs",
+        "sha256": "758496057ecde534fa180168484a08621c6f45ec804ae796cd5f9d22ed2e47cf"
+      },
+      {
+        "path": "tools/sentinel-platform-verify-states.py",
+        "sha256": "37b4db17034d988b00c6f57780df4cd5232d6924b10ea72dedad4181bc86ce6e"
+      }
+    ]
+  },
+  "results": {
+    "scope": "Local candidate author WASM checks; not released ABI95/96, Worker, browser or full-match acceptance",
+    "wasmSha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce",
+    "wasmBytes": 6691546,
+    "nativeExactCommands": 6,
+    "nativeExactViews": 32,
+    "nativeExactPolls": 24,
+    "duplicates": 11,
+    "reviewCommands": 5
+  },
+  "reviewSemanticStatesEqual": 5,
+  "reviewComparisonNote": "Python exact-integer structural equality against independent native object export; no byte-order equality claim for these five states",
+  "sourceIdentityNote": "Compiled candidate retains historical runtime version constants; artifact hash and runtime SHA identify this isolated check. Not published ABI95/96 and must not replace their bytes. No state version rewriting.",
+  "history": [
+    "initial native witness path collided with runner receipt; final distinct witness filename used",
+    "initial duplicate assertion wrongly required version_conflict for expired response windows; final WM044 duplicates compare complete native outputs, review duplicates require rejection and unchanged state"
+  ],
+  "artifactsNotCommitted": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm.d.ts",
+      "bytes": 3921,
+      "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm.js",
+      "bytes": 18203,
+      "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm_bg.wasm",
+      "bytes": 6691546,
+      "sha256": "0ac2657cb7ca930c910a909e728f62eb893d104f8f6dfe29856a7668beb4c2ce"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/hegemony_wasm_bg.wasm.d.ts",
+      "bytes": 1944,
+      "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-2/platform-sentinel-local/package.json",
+      "bytes": 33,
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+    }
+  ],
+  "notRun": [
+    "Worker",
+    "Web/UI",
+    "browser",
+    "complete match",
+    "broad native regression",
+    "independent WASM review",
+    "deployment"
+  ],
+  "globalCountChanged": false,
+  "pushAttempted": false,
+  "files": [
+    {
+      "path": "sentinel-platform-build.json.gz",
+      "sha256": "113bae6562432789f5b9224e6317c72c34d0975ccd29becd0866be4453375753",
+      "originalSha256": "57ca2a245e69b6129d7a3cd0b66c9c59ed4084b11352b3e58a3504ae835611ec"
+    },
+    {
+      "path": "sentinel-platform-native-final.json.gz",
+      "sha256": "ab2a9bf3dfa642d442f3d99d50e04f8fc95b5e339811aee6c4dbb7e9a25c0015",
+      "originalSha256": "1f46b3a43a17d140ac16291ba44cba92dcff53ba021e252c0bb90980184ffaab"
+    },
+    {
+      "path": "sentinel-platform-native-v3.json.gz",
+      "sha256": "8c78cbd14c9c64cc4d432f4886a352a2e877d49b47df345ec0f747f69e6bfec6",
+      "originalSha256": "a55ad44696d39478f3ad1c27a2243cb67f36db8784edd4a9a984f33f18c02711"
+    },
+    {
+      "path": "sentinel-platform-native-v4.json.gz",
+      "sha256": "6520bedf157cd0dd0e229eb56f651963580431c723543e049a3459ba13ac5290",
+      "originalSha256": "7bc9c763461414cc48773683cf8c0f7db5559e4341beabcf08b25ca7cd9a5dad"
+    },
+    {
+      "path": "sentinel-platform-native.json.gz",
+      "sha256": "af8f1e50e477ebdd956a1f2534525aa078b556f5230785d24774ef4d795a78d0",
+      "originalSha256": "20409dd31007a784727de227751d695453cef7961e905c658611ccc95fdc94b3"
+    },
+    {
+      "path": "sentinel-platform-review-input.json.gz",
+      "sha256": "4e9ee566effcdd680330fa701939d685d2c4d0caa33891abc089993cea5ec6d8",
+      "originalSha256": "16562503fddd96fca3daf89117b9717855beb084c44e99ea8b9a5e10945b3eec"
+    },
+    {
+      "path": "sentinel-platform-wasm-result.json.gz",
+      "sha256": "d49b061a01aec98eca1381430ce20b3bc0793e0a2229050ad342afad847fdbb1",
+      "originalSha256": "13d47e9db9476171bd88d2ab459406252acfdaecc858f631f2466b037d218079"
+    },
+    {
+      "path": "sentinel-platform-witness-final.json.gz",
+      "sha256": "0530644509bec5344358b66a1e36f3b6dade18472df2030e173ebb81403a727f",
+      "originalSha256": "f10b967133b301f116e8014d362589059db2890e0811dcdbcd06abc28a6b49c6"
+    },
+    {
+      "path": "sentinel-platform-witness-v4.json.gz",
+      "sha256": "e154cc29e16c7fd7d059ce8aa14ea23f38c797d2748659a0cde4e6e4500256c4",
+      "originalSha256": "78619e0e29860d8d9d6649c65b28c7dadc613ea35e551240dc257d4164a87825"
+    },
+    {
+      "path": "sentinel-platform-witness.json.gz",
+      "sha256": "100048ffb0a9076361b08bcdeb43b0298c560f4b7444f533eeea59e214d7544e",
+      "originalSha256": "4344a20a973eee1f7f61cbf9601d0a9a08dbd9dc9c87bf3cc94984e456c6cebb"
+    },
+    {
+      "path": "sentinel-platform-build.log.gz",
+      "sha256": "4c8330326757163a6c2448d8922041d25796ae1481a4debadb8de1de78327b39",
+      "originalSha256": "f0a11d7bf36dc19dea19c4b4a6bb27db7674fddcfe1ae31b4344463419290eb4"
+    },
+    {
+      "path": "sentinel-platform-native-final.log.gz",
+      "sha256": "1cc6d0f0d08435e4ac7d3a2a437d075acd181925ca79af1da3865b0a3e400398",
+      "originalSha256": "0e23833becc7f6b719dff896f566a7f5ba941c96cf0ea8da6fb04d90940a928c"
+    },
+    {
+      "path": "sentinel-platform-native-v3.log.gz",
+      "sha256": "4131c956202e95ce1fad6a3f97559102158141b24b3074d66737a81a22a65a27",
+      "originalSha256": "ff387be17ca952453908ef36f54888035ac2462f5120725f60333473ae41a794"
+    },
+    {
+      "path": "sentinel-platform-native-v4.log.gz",
+      "sha256": "3dd15849e828371a030d877e55b6ebefa2549f93cf9edd6f2a7bb01467c0a036",
+      "originalSha256": "1fa259f039bf94de81d4958fb3ad8dd618aa7deb5a1201d8dd6fdb8469d0169f"
+    },
+    {
+      "path": "sentinel-platform-native.log.gz",
+      "sha256": "83d5f963b660f31f8e531a27338de870448131284accd4f44ab13a56ef032c3e",
+      "originalSha256": "aa00fb194c811fd59af5d911c1b61c0be5911d1a3d51a5b9ae4ee8af1b8de45d"
+    },
+    {
+      "path": "run-sentinel-wasm-build.py.gz",
+      "sha256": "c605333d1b1ae96ce9ac126a57a4797bbad5b295c7d11350b65406b691f3fc41",
+      "originalSha256": "597fc25d3d6f4aab287e4383026a1d4c6f3f2f2eba837cf4352a845cfc1b7ff0"
+    }
+  ]
+}

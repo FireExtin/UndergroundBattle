@@ -1,0 +1,858 @@
+{
+  "status": "complete-native-mechanism-author-candidate-awaiting-independent-review",
+  "sourceCommit": "e68009cc8e1672bff99add379939e151b22de6a0",
+  "continuationBase": "82797bdd4c971b73fe4d55d585277ee8ef4bab2b",
+  "originalBase": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "savedUtc": "2026-10-23T15:44:02.015741+00:00",
+  "claim": "Full MSJC14 gray society and all WM044 native mechanisms including positive Sentinel entry lock through legally selected society",
+  "nativeMechanismsImplemented": true,
+  "formalAcceptance": false,
+  "globalCompletionCountModified": false,
+  "parentReportedGlobalCount": "34/50",
+  "directedPassed": 32,
+  "adjacentPassed": 231,
+  "distinctPassed": 263,
+  "distinctFailed": [],
+  "totalNativeTests": 2114,
+  "runs": [
+    {
+      "run": "sentinel-final-directed-v2",
+      "exitCode": 0,
+      "passed": [
+        "sentinel_tests::sentinel_construction_uses_magic_not_loyalty",
+        "sentinel_tests::sentinel_insufficient_assets_exhaustion_and_response_timing",
+        "sentinel_tests::sentinel_lock_response_reveal_invalidates_and_marker_stacks",
+        "sentinel_tests::sentinel_move_filters_same_region_unlocked_hidden_mover_and_teammate",
+        "sentinel_tests::sentinel_move_independent_targets_any_controller_anchor",
+        "sentinel_tests::sentinel_original_fields_and_full_registry",
+        "sentinel_tests::sentinel_paid_lock_enemy_hidden_only_and_visible_marker",
+        "sentinel_tests::sentinel_response_anchor_movement_follows_current_region_without_false_same_region_move",
+        "sentinel_tests::sentinel_response_invalidates_either_target_without_refund_or_rebind"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-wm044-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch4_intelligence_tests::wm044_entry_lock_from_legally_selected_sentinel",
+        "batch4_intelligence_tests::wm044_hidden_slow_all_four_seats_paid_entry_and_privacy",
+        "batch4_intelligence_tests::wm044_hidden_slow_face_up_and_reveal_do_not_gain_it",
+        "batch4_intelligence_tests::wm044_hidden_slow_hidden_grave_entry_uses_resolution_and_no_printed_trigger",
+        "batch4_intelligence_tests::wm044_hidden_slow_jc032_paid_search_and_bq104_entry_search",
+        "batch4_intelligence_tests::wm044_hidden_slow_live_source_only_not_asset_or_grave",
+        "batch4_intelligence_tests::wm044_hidden_slow_movement_and_hide_preserve_orientation",
+        "batch4_intelligence_tests::wm044_hidden_slow_multiple_exhausted_sources_and_new_source_identity",
+        "batch4_intelligence_tests::wm044_hidden_slow_normal_next_turn_readies_without_reentry",
+        "batch4_intelligence_tests::wm044_hidden_slow_not_retroactive_and_removal_stops_future_entries",
+        "batch4_intelligence_tests::wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission",
+        "batch4_intelligence_tests::wm044_hidden_slow_reads_live_source_after_response_before_grave_entry",
+        "batch4_intelligence_tests::wm044_hidden_slow_xg27_paid_death_reentry",
+        "batch4_intelligence_tests::wm044_sentinel_entry_decline_and_response_target_loss",
+        "batch4_intelligence_tests::wm044_trigger_actual_win_hidden_inspection_only_original_player_sees_front",
+        "batch4_intelligence_tests::wm044_trigger_current_controller_each_actual_win_not_only_first",
+        "batch4_intelligence_tests::wm044_trigger_decline_tie_loss_and_missing_target",
+        "batch4_intelligence_tests::wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation",
+        "batch4_intelligence_tests::wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal",
+        "batch4_intelligence_tests::wm044_trigger_sentinel_dependency_is_exact_and_not_substituted_by_gray_society",
+        "batch4_intelligence_tests::wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+        "batch4_intelligence_tests::wm044_trigger_target_departure_cancels_without_rebinding",
+        "batch4_intelligence_tests::wm044_trigger_two_centers_each_offer_once_for_same_actual_win"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-pack-a-v2",
+      "exitCode": 0,
+      "passed": [
+        "pack_a_contest_tests::ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate",
+        "pack_a_contest_tests::ab_card_closure_bq031_bq032_day_nonasset_never_grants_public",
+        "pack_a_contest_tests::independent_ab_ten_wm021_hand_bat_and_manor_history_are_distinct",
+        "pack_a_contest_tests::independent_ab_ten_wm032_bonus_is_personal_and_or_not_sum",
+        "pack_a_contest_tests::pack_a_actual_reveal_paid_once_and_four_private_commitments",
+        "pack_a_contest_tests::pack_a_commit_rejects_other_seat_extra_payload_duplicate_and_foreign_card",
+        "pack_a_contest_tests::pack_a_duel_uses_two_individual_values_and_opposite_enemy_reward",
+        "pack_a_contest_tests::pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+        "pack_a_contest_tests::pack_a_earth_normal_action_mills_each_player_and_short_deck",
+        "pack_a_contest_tests::pack_a_earth_player_elimination_before_and_after_payment_keeps_fixed_slots_without_milling_dead_seat",
+        "pack_a_contest_tests::pack_a_earth_restored_program_cannot_drop_reorder_duplicate_or_replace_player_slots",
+        "pack_a_contest_tests::pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+        "pack_a_contest_tests::pack_a_earth_shown_shuffles_before_post_mill",
+        "pack_a_contest_tests::pack_a_empty_deck_with_hand_is_not_draw_elimination",
+        "pack_a_contest_tests::pack_a_finished_history_cannot_omit_still_living_loser_but_retains_later_eliminated_participant",
+        "pack_a_contest_tests::pack_a_lower_response_stack_does_not_block_contest_selection",
+        "pack_a_contest_tests::pack_a_marker_rewards_are_personal_opposite_and_cancel",
+        "pack_a_contest_tests::pack_a_original_data_and_fixed_programs",
+        "pack_a_contest_tests::pack_a_owner_manor_aura_changes_human_display_and_preserves_witness",
+        "pack_a_contest_tests::pack_a_paid_response_cannot_be_moved_to_effect_queue_or_inject_transaction_attributes",
+        "pack_a_contest_tests::pack_a_personal_vampire_bonus_excludes_teammate_and_hidden_observer",
+        "pack_a_contest_tests::pack_a_poison_actual_paid_entry_target_before_responses_bonus_and_exhausted_reentry",
+        "pack_a_contest_tests::pack_a_poison_cannot_target_teammate_or_spell_and_obeys_double_black_loyalty",
+        "pack_a_contest_tests::pack_a_poison_conditional_public_is_seen_by_alpha_only_when_personally_exposed",
+        "pack_a_contest_tests::pack_a_poison_departed_target_cancels_whole_trigger_without_starting_contest",
+        "pack_a_contest_tests::pack_a_poison_source_departure_keeps_paid_trigger_but_original_region_replacement_fizzles_entry",
+        "pack_a_contest_tests::pack_a_preacher_conditional_printed_bonus",
+        "pack_a_contest_tests::pack_a_preacher_win_queues_multiple_sources_and_resolves_current_destroyed_regions",
+        "pack_a_contest_tests::pack_a_private_pending_and_result_tampering_rejected_by_both_restore_envelopes",
+        "pack_a_contest_tests::pack_a_public_requires_personal_exposure",
+        "pack_a_contest_tests::pack_a_recursive_foreign_saved_frames_rejected_in_response_and_effect_queue",
+        "pack_a_contest_tests::pack_a_response_identity_cannot_reuse_retired_or_future_instance",
+        "pack_a_contest_tests::pack_a_rng_above_js_safe_integer_and_room_revision_survive_each_choice",
+        "pack_a_contest_tests::pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+        "pack_a_contest_tests::pack_a_shared_ops_reject_nested_and_mode_transplants",
+        "pack_a_contest_tests::pack_a_start_response_elimination_keeps_receipt_then_excludes_dead_participant",
+        "pack_a_contest_tests::pack_a_team_sum_tie_has_no_winners_or_rewards"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-society-v2",
+      "exitCode": 0,
+      "passed": [
+        "society::tests::every_seat_has_an_empty_non_region_zone_and_registry_matches_support_flag"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-societies-v2",
+      "exitCode": 0,
+      "passed": [
+        "msjc01_tests::msjc01_24_25_27_yellow_and_society_excluded_from_both_counts",
+        "msjc01_tests::msjc01_empty_search_allowed_consumed_and_shuffles_without_gain",
+        "msjc01_tests::msjc01_insufficient_cost_exhausted_source_and_missing_ability_are_atomic",
+        "msjc01_tests::msjc01_legal_actions_do_not_query_private_search_availability",
+        "msjc01_tests::msjc01_new_game_restart_is_the_only_usage_reset",
+        "msjc01_tests::msjc01_paid_cancelled_frame_does_not_refund_usage_or_costs",
+        "msjc01_tests::msjc01_paid_declaration_consumes_before_resolution_four_seats_independent",
+        "msjc01_tests::msjc01_printed_color_and_unique_filter_accepts_all_kinds_not_unique_keyword",
+        "msjc01_tests::msjc01_printed_program_and_registry_admission",
+        "msjc01_tests::msjc01_room_paid_save_journal_replay_and_stale_retry_do_not_reconsume",
+        "msjc01_tests::msjc01_same_name_new_instance_cannot_bypass_stable_source_budget",
+        "msjc01_tests::msjc01_search_hit_fixtures_reuse_private_choice_reveal_fresh_hand_and_shuffle",
+        "msjc01_tests::msjc01_turn_ready_reset_does_not_refund_and_draw_ability_is_independent",
+        "msjc0405_tests::msjc0405_native83_oracles",
+        "msjc0405_tests::msjc0405_reject_partial_or_relaxed_registry_programs",
+        "msjc0405_tests::msjc04_atomic_rejections_wrong_source_cost_ability_and_exhaustion",
+        "msjc0405_tests::msjc04_cancelled_paid_frame_keeps_payment_exhaustion_and_quota",
+        "msjc0405_tests::msjc04_construction_24_25_45_and_society_outside_50",
+        "msjc0405_tests::msjc04_empty_search_shuffles_and_empty_deck_is_not_draw_elimination",
+        "msjc0405_tests::msjc04_four_personal_searches_private_choice_public_reveal_and_restore",
+        "msjc0405_tests::msjc04_initiative_draw_and_rear_paid_no_draw",
+        "msjc0405_tests::msjc04_ready_turn_new_instance_restore_and_restart_quota",
+        "msjc0405_tests::msjc04_whole_original_and_real_red_unique_program",
+        "msjc0405_tests::msjc05_atomic_rejections_wrong_source_cost_ability_and_exhaustion",
+        "msjc0405_tests::msjc05_cancelled_paid_frame_keeps_payment_exhaustion_and_quota",
+        "msjc0405_tests::msjc05_construction_24_25_45_and_society_outside_50",
+        "msjc0405_tests::msjc05_empty_search_shuffles_and_empty_deck_is_not_draw_elimination",
+        "msjc0405_tests::msjc05_initiative_draw_and_rear_paid_no_draw",
+        "msjc0405_tests::msjc05_no_gray_unique_in_deck_still_pays_consumes_quota_and_shuffles_all_seats",
+        "msjc0405_tests::msjc05_ready_turn_new_instance_restore_and_restart_quota",
+        "msjc0405_tests::msjc05_whole_original_and_gray_unique_program",
+        "msjc06_tests::msjc06_cancelled_paid_frame_retains_payment_exhaustion_and_quota",
+        "msjc06_tests::msjc06_construction_actual_white_24_25_27_and_society_outside_50",
+        "msjc06_tests::msjc06_empty_search_shuffles_and_empty_deck_is_not_draw_elimination",
+        "msjc06_tests::msjc06_four_same_societies_real_white_hits_own_deck_private_choice_public_reveal_fresh_hand",
+        "msjc06_tests::msjc06_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate",
+        "msjc06_tests::msjc06_original_whole_card_and_finite_existing_search_program",
+        "msjc06_tests::msjc06_ready_turn_and_new_instance_keep_quota_restart_clears",
+        "msjc06_tests::msjc06_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate",
+        "msjc07_tests::msjc07_cancelled_paid_frame_retains_payment_exhaustion_and_quota",
+        "msjc07_tests::msjc07_construction_actual_black_24_25_33_and_society_outside_50",
+        "msjc07_tests::msjc07_empty_search_shuffles_and_empty_deck_is_not_draw_elimination",
+        "msjc07_tests::msjc07_four_same_societies_real_black_hits_own_deck_private_choice_public_reveal_fresh_hand",
+        "msjc07_tests::msjc07_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate",
+        "msjc07_tests::msjc07_original_whole_card_and_finite_existing_search_program",
+        "msjc07_tests::msjc07_ready_turn_and_new_instance_keep_quota_restart_clears",
+        "msjc07_tests::msjc07_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate",
+        "msjc08_tests::msjc08_cancelled_paid_frame_retains_payment_exhaustion_and_quota",
+        "msjc08_tests::msjc08_construction_actual_purple_24_25_27_and_society_outside_50",
+        "msjc08_tests::msjc08_empty_search_shuffles_and_empty_deck_is_not_draw_elimination",
+        "msjc08_tests::msjc08_four_same_societies_real_purple_hits_own_deck_private_choice_public_reveal_fresh_hand",
+        "msjc08_tests::msjc08_initiative_draw_and_rear_paid_no_draw_are_personal_and_separate",
+        "msjc08_tests::msjc08_original_whole_card_and_finite_existing_search_program",
+        "msjc08_tests::msjc08_ready_turn_and_new_instance_keep_quota_restart_clears",
+        "msjc08_tests::msjc08_rejections_are_atomic_and_cannot_pay_or_activate_with_teammate",
+        "msjc11_tests::msjc11_black_bottom_query_equipment_ordinary_initiative_and_converted_vector",
+        "msjc11_tests::msjc11_construction_uses_printed_human_and_black_combat_and_old_limits",
+        "msjc11_tests::msjc11_dynamic_projection_clears_for_all_hidden_views_and_end_turn",
+        "msjc11_tests::msjc11_first_grant_any_controller_any_region_and_four_independent_sources",
+        "msjc11_tests::msjc11_grant_survives_same_instance_move_and_lost_icons_but_not_hidden_or_reentry",
+        "msjc11_tests::msjc11_kill_stacks_and_only_actual_ready_combat_participants_contribute",
+        "msjc11_tests::msjc11_programs_reject_other_cards_modes_nested_ops_costs_and_target_relations",
+        "msjc11_tests::msjc11_real_mixed_fifty_admission_and_original_fields",
+        "msjc11_tests::msjc11_real_win_window_returns_borrowed_instance_to_owner_and_preserves_attachment_batch",
+        "msjc11_tests::msjc11_region_instance_captured_required_and_replacement_cancelled_only_for_this_grant",
+        "msjc11_tests::msjc11_rejected_declarations_do_not_pay_and_cancelled_bound_target_does_not_refund",
+        "msjc11_tests::msjc11_retreat_captures_controller_instances_once_not_team_owner_name_or_later_entrants",
+        "region_aura_tests::msjc08_whole_original_reuses_paid_private_purple_unique_search",
+        "society::printed_tests::msjc09_both_members_of_the_first_team_each_pay_their_own_society_and_draw",
+        "society::printed_tests::msjc09_first_and_rear_may_pay_but_only_resolution_time_initiative_draws",
+        "society::printed_tests::msjc09_paid_room_frame_journal_four_views_and_same_instance_reset_survive_restore",
+        "society::printed_tests::msjc09_printed_registry_deck_and_atomic_start_keep_four_seat_privacy",
+        "society::printed_tests::msjc09_wrong_seats_standard_timing_insufficient_assets_and_exhaustion_are_atomic",
+        "yellow_search_batch_tests::yellow_batch_msjc01_searches_real_yellow_unique_and_reveals_then_fresh_hand"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-gray-lock-v2",
+      "exitCode": 0,
+      "passed": [
+        "gray_lock_tests::gray_lock_canonical_gates_reject_transplants_nested_ops_modes_and_field_edits",
+        "gray_lock_tests::gray_lock_chase_guard_failure_still_spends_once_and_source_reentry_does_not_inherit",
+        "gray_lock_tests::gray_lock_chase_is_fast_pays_two_no_exhaust_and_current_anchor_region",
+        "gray_lock_tests::gray_lock_chase_no_in_place_declaration_or_unlocked_target_and_failures_atomic",
+        "gray_lock_tests::gray_lock_chase_response_colocation_skips_move_but_independent_icon_still_applies",
+        "gray_lock_tests::gray_lock_citizen_local_target_rules_and_original_region_replacement",
+        "gray_lock_tests::gray_lock_citizen_resolution_time_branch_adds_one_or_deals_one_not_both",
+        "gray_lock_tests::gray_lock_citizen_source_leave_or_move_preserves_frozen_locality_and_controller",
+        "gray_lock_tests::gray_lock_city_play_gate_is_atomic_and_effect_placement_is_distinct",
+        "gray_lock_tests::gray_lock_continuous_room_protocol_pause_reopen_and_real_response_passes",
+        "gray_lock_tests::gray_lock_damage_prevention_and_self_target_use_existing_atomic_damage",
+        "gray_lock_tests::gray_lock_declaration_restore_wrong_actor_duplicate_old_choice_are_atomic",
+        "gray_lock_tests::gray_lock_dog_faceup_play_has_no_reveal_and_equipment_only_is_forbidden",
+        "gray_lock_tests::gray_lock_lethal_damage_uses_existing_controller_frozen_death_and_owner_graveyard",
+        "gray_lock_tests::gray_lock_marker_move_retains_while_leave_flip_and_death_clear",
+        "gray_lock_tests::gray_lock_per_turn_usage_is_original_instance_not_owner_or_controller",
+        "gray_lock_tests::gray_lock_restore_rejects_impossible_accepted_cursor_and_frame_choice_containers",
+        "gray_lock_tests::gray_lock_restore_rejects_transplanted_program_and_malformed_frozen_frame",
+        "gray_lock_tests::gray_lock_reveal_optional_any_region_any_controller_hidden_or_faceup",
+        "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+        "gray_lock_tests::gray_lock_sqlite_receipt_restore_and_duplicate_do_not_add_two_markers",
+        "gray_lock_tests::gray_lock_target_response_move_hide_or_new_instance_cancels_citizen_frame",
+        "gray_lock_tests::gray_lock_turn_end_expires_icon_and_reopens_original_dog_limit",
+        "gray_lock_tests::gray_lock_whole_original_fields_and_closed_definitions",
+        "gray_lock_tests::gray_lock_zero_marker_fields_keep_old_card_and_view_serialization_shape"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-plans-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch4_plans_tests::batch4_new_order_shuffle_preserves_markers_on_cards_already_hidden",
+        "batch4_plans_tests::batch4_plans_advance_rejects_other_actor_offturn_response_extra_payload_and_duplicate_payments",
+        "batch4_plans_tests::batch4_plans_advance_requires_available_resource_and_never_taps_the_plan",
+        "batch4_plans_tests::batch4_plans_atomic_marker_move_reaches_or_crosses_threshold_once_with_actual_snapshot",
+        "batch4_plans_tests::batch4_plans_beowulf_exact_five_destroys_current_domains_atomically_including_attached_characters",
+        "batch4_plans_tests::batch4_plans_crossed_completion_keeps_original_uid_after_source_loss",
+        "batch4_plans_tests::batch4_plans_faceup_play_uses_stable_empty_or_present_society_and_only_own_zone",
+        "batch4_plans_tests::batch4_plans_fixed_thresholds_and_closed_pilot_admission",
+        "batch4_plans_tests::batch4_plans_forged_secret_receipts_programs_markers_and_stack_duplicates_are_rejected",
+        "batch4_plans_tests::batch4_plans_legal_secret_advancement_remains_visible_only_to_its_controller",
+        "batch4_plans_tests::batch4_plans_normal_and_secret_plays_have_executable_published_legal_actions",
+        "batch4_plans_tests::batch4_plans_secret_advances_repeatedly_even_after_moon_loss_and_reveals_only_at_exact_threshold",
+        "batch4_plans_tests::batch4_plans_secret_is_not_a_hidden_character_for_spells_or_character_abilities",
+        "batch4_plans_tests::batch4_plans_secret_play_freezes_moon_condition_before_response_without_revealing_print",
+        "batch4_plans_tests::batch4_plans_secret_play_requires_personal_moon_and_real_loyalty_without_consuming_moon",
+        "batch4_plans_tests::batch4_plans_secret_target_remains_attachment_for_strengthened_jc005_not_hidden_character",
+        "batch4_plans_tests::batch4_plans_source_loss_while_advancing_never_advances_a_replacement_and_does_not_refund",
+        "batch4_plans_tests::batch4_plans_tianyan_counts_locked_entities_not_markers_and_includes_hidden_and_attached_characters",
+        "batch4_plans_tests::batch4_plans_tianyan_zero_draw_does_not_eliminate_and_completion_survives_original_source_loss",
+        "batch4_plans_tests::jc060_attached_bat_real_paid_entry_keeps_friendly_granted_domain_and_combat_in_four_views"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-order-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch3_guard_tests::batch3_entry_order_bq029_and_bq037_share_limited_blood_according_to_chosen_stack_order",
+        "batch3_guard_tests::batch3_entry_order_keeps_existing_jz22_entry_program_in_normal_queue_and_checks_exact_references",
+        "batch3_guard_tests::batch3_entry_order_shared_producer_two_entries_in_one_queue_keeps_observer_references_distinct"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-lifecycle-v2",
+      "exitCode": 0,
+      "passed": [
+        "mystic_lifecycle_tests::mystic_lifecycle_after_parent_keeps_its_own_outcome_when_child_finishes",
+        "mystic_lifecycle_tests::mystic_lifecycle_child_win_chain_precedes_older_parent_effects",
+        "mystic_lifecycle_tests::mystic_lifecycle_finishing_chain_authenticates_boundary_and_accepts_another_nested_response",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_contest_finishes_then_resumes_parent_once",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_receipts_and_continuations_are_closed_in_both_loaders",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_win_triggers_finish_before_parent_commit",
+        "mystic_lifecycle_tests::mystic_lifecycle_post_elimination_commits_terminal_state_without_continuation",
+        "mystic_lifecycle_tests::mystic_lifecycle_post_nonterminal_elimination_preserves_history_and_finishes_remaining_seats",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_generated_trigger_precedes_secret_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_search_private_choice_finishes_before_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_room_commands_and_journal_replay_complete_nested_response",
+        "mystic_lifecycle_tests::mystic_lifecycle_room_post_terminal_commits_and_replays_instead_of_rolling_back",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_after_responses_keeps_top_cards_without_zero_or_fence",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_child_resumes_existing_after_stage_without_outcome",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_start_response_can_leave_a_hand_with_an_empty_deck",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_unshown_finish_requires_original_empty_participant_and_boundary",
+        "mystic_lifecycle_tests::mystic_lifecycle_terminal_clears_every_suspended_level_and_restart_does_not_replay",
+        "mystic_lifecycle_tests::mystic_lifecycle_three_levels_resume_in_lifo_order_and_reject_reordered_barriers"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-pack-b-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch4_vampire_contest_tests::a_b_nested_bq038_awards_each_original_layer_once_without_repaying",
+        "batch4_vampire_contest_tests::a_b_nested_declining_child_bonus_preserves_outer_response_and_payment",
+        "batch4_vampire_contest_tests::a_b_nested_receipt_lookup_does_not_authorize_awarding_a_suspended_layer",
+        "batch4_vampire_contest_tests::a_b_nested_start_receipt_must_keep_outer_bq038_while_child_is_active",
+        "batch4_vampire_contest_tests::a_b_three_layers_reject_lost_reordered_and_duplicate_ancestor_continuations",
+        "batch4_vampire_contest_tests::a_b_three_layers_restore_original_responses_and_consume_each_bonus_once",
+        "batch4_vampire_contest_tests::b_contest_bq031_departure_does_not_feed_replacement_and_win_receipt_is_required",
+        "batch4_vampire_contest_tests::b_contest_bq031_win_is_personal_each_contest_and_shares_victory_order_with_a",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_departure_keeps_original_paid_witness",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_foreign_cost_or_host_stays_illegal",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_forged_parent_cost_and_actor_reject",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_room_payment_replay_and_outcome",
+        "batch4_vampire_contest_tests::b_contest_bq036_payment_accepts_personal_attachment_on_personal_character_and_not_printed_cost",
+        "batch4_vampire_contest_tests::b_contest_bq036_rejects_foreign_cost_wrong_host_and_double_payment_restore",
+        "batch4_vampire_contest_tests::b_contest_bq038_decline_and_zero_are_distinct_and_bonus_tampering_is_rejected",
+        "batch4_vampire_contest_tests::b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+        "batch4_vampire_contest_tests::b_contest_bq038_start_is_respondable_counts_each_personal_host_once_and_freezes",
+        "batch4_vampire_contest_tests::b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten",
+        "batch4_vampire_contest_tests::b_contest_hand_action_pays_two_discards_self_once_and_private_restore",
+        "batch4_vampire_contest_tests::b_contest_hand_invalid_cost_extra_payload_board_and_enemy_are_atomic",
+        "batch4_vampire_contest_tests::b_contest_paid_sources_preserve_foreign_owners_and_hand_action_cannot_respond",
+        "batch4_vampire_contest_tests::b_contest_programs_cannot_be_transplanted_or_expanded",
+        "batch4_vampire_contest_tests::b_contest_protocol_response_reveal_must_dispatch_before_outer_commit",
+        "batch4_vampire_contest_tests::b_contest_ruling_empty_after_paid_last_hand_action_keeps_costs_and_unshown_hands",
+        "batch4_vampire_contest_tests::b_contest_ruling_empty_room_response_reopen_and_journal_keep_payment_once",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_adds_two_after_shuffle_targets_only_personal_vampire_and_feeds",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_blood_entry_observer_and_other_shown_keep_recovery",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_no_target_or_no_blood_finishes_and_two_shown_keep_cursor",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_rejects_post_frame_target_and_cursor_forgery",
+        "batch4_vampire_contest_tests::b_contest_typed_payment_and_start_event_cannot_hide_under_foreign_programs",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_attached_dual_character_cost_must_work",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_unattached_dual_character_cost_control",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq038_nonqualifying_nested_ring_does_not_add_bonus"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-inspect-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch3_inspect_tests::batch3_jc062_faq_zero_target_draw_works_with_or_without_hidden_cards_and_at_fast_timing",
+        "batch3_inspect_tests::batch3_jc062_legal_candidate_sets_cover_zero_singles_and_pairs_without_permutations",
+        "batch3_inspect_tests::batch3_jc062_missing_target_is_not_replaced_by_same_print_and_actor_stays_frozen",
+        "batch3_inspect_tests::batch3_jc062_one_and_two_targets_are_private_until_confirmation_then_draw_exactly_one",
+        "batch3_inspect_tests::batch3_jc062_real_response_reveal_invalidates_whole_two_target_effect_without_refund_or_draw",
+        "batch3_inspect_tests::batch3_jc062_rejects_duplicate_excess_and_nonhidden_targets_before_payment"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    },
+    {
+      "run": "sentinel-final-trap-v2",
+      "exitCode": 0,
+      "passed": [
+        "batch3_trap_tests::batch3_jz26_actual_jc062_inspection_queues_once_before_private_confirmation_and_keeps_other_seats_private",
+        "batch3_trap_tests::batch3_jz26_actual_jz46_private_inspection_is_one_event_and_never_locks_a_snake_as_criminal",
+        "batch3_trap_tests::batch3_jz26_actual_xq27_paid_sweep_records_enemy_player_once_for_each_destroyed_hidden_trap",
+        "batch3_trap_tests::batch3_jz26_distinct_explicit_inspections_may_repeat_but_views_and_stale_revision_retries_cannot",
+        "batch3_trap_tests::batch3_jz26_duplicate_observation_forged_blue_receipt_and_optional_choice_payload_are_rejected",
+        "batch3_trap_tests::batch3_jz26_enemy_destruction_captures_hidden_source_before_real_grave_entry_and_old_uid_does_not_return",
+        "batch3_trap_tests::batch3_jz26_monitor_actual_free_inspection_triggers_optional_private_source_without_changing_action_right",
+        "batch3_trap_tests::batch3_jz26_monitor_read_during_response_preserves_original_clock_members_and_composing_intent",
+        "batch3_trap_tests::batch3_jz26_no_enemy_or_replaced_original_region_uses_no_randomness_and_response_asset_loss_cancels",
+        "batch3_trap_tests::batch3_jz26_personal_blue_icons_count_exhausted_assets_and_never_allied_or_enemy_assets",
+        "batch3_trap_tests::batch3_jz26_random_minimum_cost_is_untargeted_and_u64_seed_survives_each_response_restore",
+        "batch3_trap_tests::batch3_jz26_repeated_views_and_rejected_inspections_never_advance_rng_or_create_events",
+        "batch3_trap_tests::batch3_jz26_sacrifice_friendly_destruction_and_world_primitive_do_not_claim_an_enemy_player",
+        "batch3_trap_tests::batch3_jz26_stealth_blocks_faceup_play_but_paid_conceal_and_paid_reveal_are_current_kernel_commands"
+      ],
+      "allNativeSourceInputsMatchFinal": true,
+      "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0"
+    }
+  ],
+  "baselineReproductions": [
+    {
+      "run": "sentinel-baseline-pack-a",
+      "head": "679ac1092d6ee26afcb8b95afa3d2db87ad51d8a",
+      "exitCode": 101,
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "pack_a_contest_tests::",
+        "--",
+        "--test-threads=1"
+      ],
+      "passed": 36,
+      "failed": [
+        "pack_a_contest_tests::pack_a_original_data_and_fixed_programs"
+      ]
+    },
+    {
+      "run": "sentinel-original-base-societies",
+      "head": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+      "exitCode": 101,
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "msjc",
+        "--",
+        "--test-threads=1"
+      ],
+      "passed": 71,
+      "failed": [
+        "msjc0405_tests::msjc04_whole_original_and_real_red_unique_program",
+        "msjc0405_tests::msjc05_whole_original_and_gray_unique_program",
+        "msjc07_tests::msjc07_original_whole_card_and_finite_existing_search_program"
+      ]
+    },
+    {
+      "run": "sentinel-original-base-pack-a",
+      "head": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+      "exitCode": 101,
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "pack_a_contest_tests::",
+        "--",
+        "--test-threads=1"
+      ],
+      "passed": 36,
+      "failed": [
+        "pack_a_contest_tests::pack_a_original_data_and_fixed_programs"
+      ]
+    }
+  ],
+  "baselineFindings": {
+    "packA": "original51a and prior679 both actual24 versus expected23; existing JZ56 entry; corrected in standalone test-only commit755abe7b",
+    "societies": "original51a red39/gray39/black47 versus expected25/27/36; current gray40 includes earlier WM044 row. Corrected three fixture expectations only in commit e68009cc. Counts include WIP catalog entries, never formal completion totals."
+  },
+  "sourceCheck": {
+    "command": [
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+      "--test",
+      "--test-isolation=none",
+      "tools/cards/batch4-source.test.mjs"
+    ],
+    "exitCode": 0,
+    "sourceHead": "e68009cc8e1672bff99add379939e151b22de6a0",
+    "logSha256": "ba738b9d75af12e7b07d9b0424ab969360c6c7f932d82c81b034dd3d9b1145d9"
+  },
+  "sourceCheckAssertions": 4,
+  "history": "All intermediate failures retained; first build Box recursion error; initial sentinel tests used wrong enemy seats; WM044 helper auto-declined entry choice; one response timing fixture assumed wrong retained priority; stale baseline inventory failures proven and narrowly fixed. Some intermediate source hashes predate concurrent test-file edits; only finalRuns are final-source evidence.",
+  "execution": "CPU31,nice19,CARGO_BUILD_JOBS=1,RUST_TEST_THREADS=1,offline locked; v2 runner propagates cargo exitCode; baseline batch intentionally collects both failure receipts",
+  "rules": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+      "sha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg",
+      "sha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c"
+    }
+  ],
+  "staticCardImage": {
+    "path": "web/public/cards/MSJC14.jpg",
+    "sha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f"
+  },
+  "schemaAdded": [
+    "Op::SentinelLock",
+    "Op::SentinelMove",
+    "TargetPredicate::SentinelLockedAnchor",
+    "SocietyDeckConstraint::GrayNeutralOrNoMagic"
+  ],
+  "releaseIdentityChanged": false,
+  "notRun": [
+    "remaining native tests",
+    "complete WM044 legal-deck match",
+    "WASM",
+    "Worker",
+    "browser gameplay",
+    "independent review",
+    "CI"
+  ],
+  "scope": "Legal MSJC14 deck selection and four-seat start, then explicit board/hand and response-change fixtures, real legal actions/payments/guards/normal restore. WM044 formal deck admission remains closed. No new damaged-save tests.",
+  "actualPermissionDenial": false,
+  "pushAttempted": false,
+  "files": [
+    {
+      "path": "sentinel-baseline-pack-a.log.gz",
+      "sha256": "715d773f768253e26e1e754783aee41152bd0a3008d80e0b75139835d8f4383e",
+      "originalSha256": "ee7a5aae806d403e8a66e3d5ca2b6350ee207115d5199042eb709f29849b05be",
+      "originalBytes": 5771
+    },
+    {
+      "path": "sentinel-compile.log.gz",
+      "sha256": "e0ae063f69f77a2d87e4dfdbd3443186fd97cf3b3a3114c9e8eae32a27243c01",
+      "originalSha256": "22f5d327aba3df2730b170bb271a55f47bf714bf3ed5e37f2edbb116a66c44ab",
+      "originalBytes": 1640
+    },
+    {
+      "path": "sentinel-final-directed-v2.log.gz",
+      "sha256": "b6e5dbca6742b8e5d6253b66aa1391f6683c9731573ea03b13ebf59c8d3ce624",
+      "originalSha256": "aff005a13c8d7bb4cb9a248e13b3118769660be8db435ef278a772736abf4a8a",
+      "originalBytes": 2286
+    },
+    {
+      "path": "sentinel-final-directed.log.gz",
+      "sha256": "6429dcaa75fdb1211af90f8f6769e79346bc341c5d2a9bc3d14533391460613e",
+      "originalSha256": "514ca108f788483ad40f3adbe3bbf99703b25bd3a2d412e2cb0d3db82d117c71",
+      "originalBytes": 2677
+    },
+    {
+      "path": "sentinel-final-gray-lock-v2.log.gz",
+      "sha256": "ee5e127d0ba23b60e2469bcd6d3fb0fcca8fe026869062efea6706b0e87873d4",
+      "originalSha256": "e40f7b50f69ac00cfd2346449e0e72ce37dc52efdeac0927c1d555e6a30a1b01",
+      "originalBytes": 3906
+    },
+    {
+      "path": "sentinel-final-inspect-v2.log.gz",
+      "sha256": "770d92fdf5923d42f281aa6188897422fa80f0a22e1ce14785521f17503e9c48",
+      "originalSha256": "62174cffdf9775edb037c602d2804b9bccd07dea5ce8346c5dd8e0cf52a953db",
+      "originalBytes": 2078
+    },
+    {
+      "path": "sentinel-final-lifecycle-v2.log.gz",
+      "sha256": "0a862205bc2f81b9c0487ebd31ecc6a3ade2b1989acf865ab8a85519d1cad92a",
+      "originalSha256": "e2d3c876e162b4cf8c00831a1ff2bc42f06ab9bc22d21a99c90d6781d4ae30d6",
+      "originalBytes": 3415
+    },
+    {
+      "path": "sentinel-final-order-v2.log.gz",
+      "sha256": "10b569bba5333612abfab89c8f92e771c4e1531dfc10a4d50f9611479fff5b0a",
+      "originalSha256": "4c0c0cd0eb9129fd48d77274c1db2f766f6c51438734f023826ebcadb9e46236",
+      "originalBytes": 1742
+    },
+    {
+      "path": "sentinel-final-pack-a-v2.log.gz",
+      "sha256": "84652e24c498b5a0a9f021a4961567b59a89e7ea62c08ca3a0679ae278bfd0e4",
+      "originalSha256": "ec861705b703e26b58337de1aaa37c344f31a62302a9daf1912165f109fb3b07",
+      "originalBytes": 5147
+    },
+    {
+      "path": "sentinel-final-pack-b-v2.log.gz",
+      "sha256": "a75339e438a998dae8e58075f312e1c9b0d5505ebc7e658862fd0451619517bb",
+      "originalSha256": "6c8f57c08d1b5fe1992d104650c11295913efac5332db050d30104685485f6fe",
+      "originalBytes": 5134
+    },
+    {
+      "path": "sentinel-final-plans-v2.log.gz",
+      "sha256": "57573960498a2640cee55c71a508e7f167dea3f91d4e6a609291a6c14a494a96",
+      "originalSha256": "40192bd8343938931a03b9e69cba3996c35a4c18093436b5f040d6808f89e4c6",
+      "originalBytes": 3694
+    },
+    {
+      "path": "sentinel-final-societies-v2.log.gz",
+      "sha256": "dab77e7a45516eee2bf2255f101456a073ae52d8de02543a724e70c4b941cfe6",
+      "originalSha256": "94060cf122982bed2f673eb99d54e4f38a15befaa6cd5f05dca22422af0da3a0",
+      "originalBytes": 8375
+    },
+    {
+      "path": "sentinel-final-society-v2.log.gz",
+      "sha256": "7336b5b97659ac52caf884c22ccfa58671b7d5b40fffacae342109eca21fa849",
+      "originalSha256": "f9f6171e098a8784dbf351859c4e25518d093d335da26fc82be6ca642f1c2ddd",
+      "originalBytes": 1468
+    },
+    {
+      "path": "sentinel-final-trap-v2.log.gz",
+      "sha256": "5d7734a63e0cd73415ad1cf94fe2cc05f7dac1476a6209e336e48b0908be2f44",
+      "originalSha256": "126fa25a742e05ff4e3c4caceb4e723a1dddff20972eea67efa9e8ba61f7c27e",
+      "originalBytes": 3148
+    },
+    {
+      "path": "sentinel-final-wm044-v2.log.gz",
+      "sha256": "c93f410d4048659d0a405ff660c78e571ee266d6c17c52e4302c4e8d3aea348e",
+      "originalSha256": "b17e798c949d767de0207c4bbf6ba763d55cce448d30326e7eee38b6f7fe0b0d",
+      "originalBytes": 3701
+    },
+    {
+      "path": "sentinel-first.log.gz",
+      "sha256": "29451a9944734de10e29bfcc9e87115c602cd20f7a5be4d6cc65e8db071c3139",
+      "originalSha256": "03e621cdf0716d91556d76feec8a733864725ac00af188c8eb9d1170915745a9",
+      "originalBytes": 3034
+    },
+    {
+      "path": "sentinel-original-base-pack-a.log.gz",
+      "sha256": "7a68369c16ba387cae8f982be5bc8b64a9a694156239c69f4b67ca2c99fe8e3c",
+      "originalSha256": "3e877d7cbd4ea0b55f207b25da09af214eadc322c7f36731b2b7bef76e02ed69",
+      "originalBytes": 5646
+    },
+    {
+      "path": "sentinel-original-base-societies.log.gz",
+      "sha256": "47750a0c3bf489c5edb54ef7106e92e774caa904bd9894ae6085937dc8b71199",
+      "originalSha256": "dd15183d16c69886cffaab1c7957cb51ecff02f3790d587011f8352912f44cf8",
+      "originalBytes": 9699
+    },
+    {
+      "path": "sentinel-second.log.gz",
+      "sha256": "635e3ecdfd7623e3de10591753379c6ec75aa808ef52050894163b737b8851e9",
+      "originalSha256": "6c9db0081f2bbd47a5e10e72143ffaa7d395c38556349169ae1788f65586bc4a",
+      "originalBytes": 2286
+    },
+    {
+      "path": "sentinel-source.log.gz",
+      "sha256": "7f018080fd1e3d63bdf831b1356c8e0c496cf33219d9fa258c23d53cca7b7d5a",
+      "originalSha256": "ba738b9d75af12e7b07d9b0424ab969360c6c7f932d82c81b034dd3d9b1145d9",
+      "originalBytes": 552
+    },
+    {
+      "path": "sentinel-verified-directed.log.gz",
+      "sha256": "4f43855b080ca32d9adf9dbf92c4af10627d79037b7f3fdad92b95cd2e32f91c",
+      "originalSha256": "ea9ad9be37205f173b1373886d7508404d92eb5c64e2e92e714d46bf6f3a2317",
+      "originalBytes": 2285
+    },
+    {
+      "path": "sentinel-verified-pack-a.log.gz",
+      "sha256": "f9ed1688624259c3a7e162e7ea8e9a9a50ef5230970853797083fef17c41b4ca",
+      "originalSha256": "fa6fa35b6fdd55ab1dec34d2ba55ef089aacd5610ff4ee3f9ec0aa6e67fcb411",
+      "originalBytes": 5147
+    },
+    {
+      "path": "sentinel-verified-societies.log.gz",
+      "sha256": "b79aff5ed30879b0d7cc5e36492ac126b7e763c802996ac4e1fab40f5b4774eb",
+      "originalSha256": "9e29107c3853d1536bfcde4cf477df81e787dea2d848f27a57354a155cd30758",
+      "originalBytes": 9573
+    },
+    {
+      "path": "sentinel-verified-society.log.gz",
+      "sha256": "7336b5b97659ac52caf884c22ccfa58671b7d5b40fffacae342109eca21fa849",
+      "originalSha256": "f9f6171e098a8784dbf351859c4e25518d093d335da26fc82be6ca642f1c2ddd",
+      "originalBytes": 1468
+    },
+    {
+      "path": "sentinel-verified-wm044.log.gz",
+      "sha256": "4860281647991b6d229e927a82c9a6d945908a6c7b7dee54b521e2a854f35a25",
+      "originalSha256": "5e67283a1c58c413a684e0b4ee7aaccb08985c8571ed1eacbb1ec02f130d5d0a",
+      "originalBytes": 3700
+    },
+    {
+      "path": "sentinel-wm044-second.log.gz",
+      "sha256": "b2fac1c8846f0e07309e03d4b4b83aacb32bf24f0f949da69fa863f3dec2b7c8",
+      "originalSha256": "ef9c03ac975d38a1e3aa3d18a094170e6b9cf567bbe6c0cac82e9b5eb75e0523",
+      "originalBytes": 3821
+    },
+    {
+      "path": "sentinel-wm044.log.gz",
+      "sha256": "ae3a24a6bb8f727a5d8f5278804e7383fcc58386d948a1eceff1d1cb40a5669a",
+      "originalSha256": "e75ebd07f3e5bc6eff53b2b268d36d6497ea0aa5d650871d97815adbb4352d94",
+      "originalBytes": 4606
+    },
+    {
+      "path": "sentinel-baseline-pack-a.json.gz",
+      "sha256": "798d72731405029d4a873a1ad0469c5d19694bfd222c39f12a3107e1718f94d7",
+      "originalSha256": "2140f0dfb32068e7c1c87c7d97e63f278ff36cdb401727b9ac936b71dc1878b4",
+      "originalBytes": 35713
+    },
+    {
+      "path": "sentinel-compile.json.gz",
+      "sha256": "80f9a870782f7fd5b8207093522a3ceadb3ec61eb20cae27e6d951fa2baf4013",
+      "originalSha256": "7f25c2372b2353598017d30f8f91312d002f7f713e0e52f22d4df0a0178faa42",
+      "originalBytes": 35991
+    },
+    {
+      "path": "sentinel-final-directed-v2.json.gz",
+      "sha256": "ada327f077141587de4dcdd170483063944463fc43c536c39043b109f043b26f",
+      "originalSha256": "b87576111ce56d9e29ad2bec5bff860972b8b8b15804d93654549e5f29b56a66",
+      "originalBytes": 35988
+    },
+    {
+      "path": "sentinel-final-directed.json.gz",
+      "sha256": "31d0a535bdb33f366558ca16cff191b6b36e145a888a3745013218edaaec7af3",
+      "originalSha256": "29388f8d3d3de22a219eabab180291788de2cf29eaead222094488d27f10d123",
+      "originalBytes": 35989
+    },
+    {
+      "path": "sentinel-final-gray-lock-v2.json.gz",
+      "sha256": "7830be2b7e35fd67e122023e0632b1dcfa3ed04bac330e8542a4356f33313b0b",
+      "originalSha256": "a015fd38594710460f42f778d58691376a99d8036f7a6ed59916d876dec4c7a1",
+      "originalBytes": 35989
+    },
+    {
+      "path": "sentinel-final-inspect-v2.json.gz",
+      "sha256": "746a687c6a5299e359af17f0a32548d54c9230dcff59562db06fbf13f5ba79ed",
+      "originalSha256": "29b198bacccb68f95830d36458731eadc7f1f42584abb6925ae5ae9dc08f2b47",
+      "originalBytes": 35994
+    },
+    {
+      "path": "sentinel-final-lifecycle-v2.json.gz",
+      "sha256": "e6996f75d5f90abab55fcfd8a520ecac11f242a0928bef2316162539b61ef5b7",
+      "originalSha256": "79f84c6ead01952f6bbc2df3cab9b8d91b44aa7ce051a7b4f78290a2ec349cb1",
+      "originalBytes": 35995
+    },
+    {
+      "path": "sentinel-final-order-v2.json.gz",
+      "sha256": "e205febcd603460c34632933485b1d7df0492fef85abc75359c2fb0bef8d2009",
+      "originalSha256": "9778927f7b4cc5975364c2f2a92f973935f2b47b58ec234eb7f20e56cde663b8",
+      "originalBytes": 35990
+    },
+    {
+      "path": "sentinel-final-pack-a-v2.json.gz",
+      "sha256": "e3c0ccea677450ec52c8427a8fde4664a5f20ecd1b8ba73a2bca2c183750cd43",
+      "originalSha256": "a6091f83abea89f9256c355c88ad4e51c63f355b75c6489f13ea32f090c3821a",
+      "originalBytes": 35995
+    },
+    {
+      "path": "sentinel-final-pack-b-v2.json.gz",
+      "sha256": "81ec821f2108668cc183ee5aadb41826c18af1f41bb7278569bfc36ca2285984",
+      "originalSha256": "c16b2015a6b884088d178a4f9e1ed7621b126907d890a0692632156b98aaaaf8",
+      "originalBytes": 36003
+    },
+    {
+      "path": "sentinel-final-plans-v2.json.gz",
+      "sha256": "429fa0b39606c74767437c883ee8a4e954babc14a03b74e09caefb0c92539b63",
+      "originalSha256": "a01bb06b7232b68ca0d16880bdae945c4025201c0d6d3ac9249d32258c1b9360",
+      "originalBytes": 35992
+    },
+    {
+      "path": "sentinel-final-societies-v2.json.gz",
+      "sha256": "79817384152b5025b28b07a31d1eac62b22272dfc8e038b1c08d439973636e51",
+      "originalSha256": "b682f54338614e2c6f383d40d03509fef09031a7ca1467ef6075642da9f34260",
+      "originalBytes": 35976
+    },
+    {
+      "path": "sentinel-final-society-v2.json.gz",
+      "sha256": "0e50788a54c88cb82b5006de1bd077f1d264443531ca2a0a8b9a7188d52ada58",
+      "originalSha256": "338cb3fc8300938786824f3304d149e4e4092c5e541d94142429f2e6c7b43195",
+      "originalBytes": 35988
+    },
+    {
+      "path": "sentinel-final-trap-v2.json.gz",
+      "sha256": "fd0903819e19ad848215732213e431fb2a7fc8c48c7bdcac2d52030f70e15a15",
+      "originalSha256": "0654d51567181e9bd76f54bb77fd045482ee53db4f0c48418af714f423f1e316",
+      "originalBytes": 35991
+    },
+    {
+      "path": "sentinel-final-wm044-v2.json.gz",
+      "sha256": "f570237b027f6475a979a3c0557a777e9f67c27936627c8f7eb304d94fedb09b",
+      "originalSha256": "6a59c1e5dad301b5e7cf91dd6e5d5d86cdbe325365adca7926906c97b8e5385d",
+      "originalBytes": 36000
+    },
+    {
+      "path": "sentinel-first.json.gz",
+      "sha256": "e6e57a0ea942f76f48265a1bc74664c071e524d1e4c1a992b5f3857a1b91d078",
+      "originalSha256": "ec7427cabf8fc5ff9da3375211c4e3072f7a10fac1dbd1adde6a3d7c89bb795a",
+      "originalBytes": 35991
+    },
+    {
+      "path": "sentinel-original-base-pack-a.json.gz",
+      "sha256": "7ba451df4bb9bb008dfc54e728461e1bbc6188ad843fe58a42b56f468b759fa2",
+      "originalSha256": "183732d78e0b439e88c9fb470e386107a04d888743922e5dd0ca4eb1925d3467",
+      "originalBytes": 35407
+    },
+    {
+      "path": "sentinel-original-base-societies.json.gz",
+      "sha256": "f40183624c31976f6aa25fff11e78620b33ffba5c854837f3fcfccc7d6d41d65",
+      "originalSha256": "9727bc290c40f98c8f14a54a1542a21535cd99004cd4c8172ce3de6aeed7bf35",
+      "originalBytes": 35389
+    },
+    {
+      "path": "sentinel-second.json.gz",
+      "sha256": "752b5b1728e7d7b2f1bb2a5fd78cbee689399a928ec8ede1212a33d20185ae7a",
+      "originalSha256": "a4a95d6aee7aa7712d3b8e6ffb4a4bb393fe14f2f6fe33b132304512aa15e55f",
+      "originalBytes": 35989
+    },
+    {
+      "path": "sentinel-source.json.gz",
+      "sha256": "d2f59c4eee5cd783d61ad81361dccd83c9c97c6dab2b5c6611b1d2e4075fd5f1",
+      "originalSha256": "ec83c513f9bb2e625bb15dc428728bfa964446b8b5c46f76beb1893088b4282f",
+      "originalBytes": 357
+    },
+    {
+      "path": "sentinel-verified-directed.json.gz",
+      "sha256": "690ac4777d572da5e08da674f4c499bbb975d327a661c7ccea30bf563491a00e",
+      "originalSha256": "11293f8e7d55b72bcac4a38eb68bd99f9f043d82789f0f948d075965d5ae4332",
+      "originalBytes": 35988
+    },
+    {
+      "path": "sentinel-verified-pack-a.json.gz",
+      "sha256": "32219469141f5eb39eb09501c94e6bec9f5ba2b80110b1d710f16a12766750c3",
+      "originalSha256": "bc03704f4ce4ad7e0fa46890cf36100e7620ed4fa846faf1a3d931fd23197aa1",
+      "originalBytes": 35995
+    },
+    {
+      "path": "sentinel-verified-societies.json.gz",
+      "sha256": "6a2d62fb0b6da0513266aa346a0371e497c96ce3cfeb9dd7830fab9b6459fbc1",
+      "originalSha256": "b32c9c589675e88cad14b77c0176ed04eb86c9a4185b42e2c9699e2296bc8204",
+      "originalBytes": 35978
+    },
+    {
+      "path": "sentinel-verified-society.json.gz",
+      "sha256": "c2ab037c4333e59f9f108763b83c25e60c0ced6009fb5656322911f4f9438ebf",
+      "originalSha256": "1964ddc6621ef936ae2edfeccf4eec917136714c8ed2c1244766018ceac1b9fc",
+      "originalBytes": 35987
+    },
+    {
+      "path": "sentinel-verified-wm044.json.gz",
+      "sha256": "957631ba0af73176ad995824c7419f37bf52810f3c9b0620cfe1398e9a11e640",
+      "originalSha256": "dfbee1f0abe33fc026b2e307fc8c036be78225e3e900c10ff066f6ac67571d95",
+      "originalBytes": 35999
+    },
+    {
+      "path": "sentinel-wm044-second.json.gz",
+      "sha256": "436b9b8695c2851f6c41406a79cc2165fb0ab383428434013df9788711ed6669",
+      "originalSha256": "ffa379267f67e0563cbd219f0da03d3ea40aa26172822cbbfd2b75d321d0ba1c",
+      "originalBytes": 36000
+    },
+    {
+      "path": "sentinel-wm044.json.gz",
+      "sha256": "5465d196b271b37ce81df9b2aa7415a507da7a4088c959829965c97fe4163482",
+      "originalSha256": "c3043860687128401d1a1b8648e407a966d6c53eb142a6b3f8261b0253bb4431",
+      "originalBytes": 36001
+    },
+    {
+      "path": "run-native-v2.py.gz",
+      "sha256": "29d0870969ad5971c3f581ebbdd871d3a54417b73c2113ff7e0fa015dafbedd4",
+      "originalSha256": "cf0bd45feecc773d9b2e43a25d1327e806b585a9d63c7f7a6a4d3a46f4771273",
+      "originalBytes": 1984
+    }
+  ],
+  "sourceCheckInputs": [
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "95d8d1c4ec8c53c69948974c39d83d6db503d82be6c8613441907f191d3cf634"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "1b48ecd80704afea027528d8e64ee7e1a00cdc3bc73283b03826a8894a8981aa"
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c"
+    },
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "9a33d2707ee56862316ba97c74c776dbb2ee9ee31236152ec2ce11c17c2ddea0"
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.json",
+      "sha256": "aa9de668174b0f5ac31f743b97e28efda12869abb2349e1ff65f0bd1d14c044e"
+    }
+  ]
+}

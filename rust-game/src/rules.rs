@@ -124,6 +124,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    WM044HiddenOrSecretPlan,
     PackAOwnGraveCharacter,
     XQ21MarkedCarrier,
     XQ20MarkerCarrier,
@@ -142,6 +143,7 @@ pub enum TargetPredicate {
     JC015NonHumanPrintedCostAtLeastThree,
     JZ55UniqueCharacter,
     JC069LockedAnchor,
+    SentinelLockedAnchor,
     XQ18CharacterOrAttachment,
     ClockCharacterOrAttachment,
     XQ23ActorAsset,
@@ -324,6 +326,8 @@ pub enum Op {
     CQ07EnterMoon,
     CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
+    WM044Inspect { contest_id: Option<String> },
+    WM044SentinelLock,
     JC062Inspect,
     JZ25SealRandomHand,
     XG28GraveReturn,
@@ -482,6 +486,8 @@ pub enum Op {
     },
     // Exact printed gray lock pair, with no generic marker/binding language.
     JC069LockTarget,
+    SentinelLock,
+    SentinelMove,
     JC069ChaseLockedTarget,
     JZ43LockOrDamageLocalTarget,
     PreventTargetDamageUntilTurnEnd {
@@ -725,6 +731,8 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if card_id == "MSJC14" || crate::sentinel::related(ability) { return crate::sentinel::validate_ability(card_id, ability); }
+    if crate::batch4_intelligence::related(ability) { return crate::batch4_intelligence::validate_ability(card_id, ability); }
     if crate::batch4_vampire_contest::key(&ability.key) || crate::batch4_vampire_contest::owns(&ability.ops)
         || ability.modes.iter().any(|m| crate::batch4_vampire_contest::owns(&m.ops))
         || ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment))
@@ -1548,6 +1556,9 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("{card_id}: time influence cannot be transplanted"));
         }
 
+        if card_id == "MSJC14" && serde_json::to_value(definition).unwrap() != serde_json::to_value(crate::sentinel::definition()).unwrap() {
+            return Err("MSJC14必须保留完整印刷定义".into());
+        }
         if let Some(canonical) = gray_lock_definition(card_id) {
             if serde_json::to_value(definition).unwrap() != serde_json::to_value(canonical).unwrap() {
                 return Err(format!("cardId={card_id}: only the complete printed gray lock definition is admitted"));
@@ -1690,7 +1701,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2163,6 +2174,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
+        m.insert("MSJC14".into(), crate::sentinel::definition());
+        m.insert("WM044".into(), crate::batch4_intelligence::definition());
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::pack_a_contest::CARDS { m.insert((*id).into(), crate::pack_a_contest::definition(id).unwrap()); }
         for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }

@@ -7,14 +7,14 @@
   "baseRegularRecordsSha256": "5ddc50185c92d6ba6b25c811c054c20aea1e22b72fc8fd1c93932fab8e576324",
   "scope": {
     "selected": 50,
-    "nativePilots": 35,
+    "nativePilots": 37,
     "fullyIntegratedNewCards": 0,
     "selectionEnabled": 0,
     "published": 0,
     "accepted": 0,
     "target": 50,
     "unassignedSlots": 0,
-    "remainingNativePrograms": 15,
+    "remainingNativePrograms": 13,
     "nativeWipCards": 2,
     "nativePartialCards": 0,
     "wasmDirectedCards": 1,
@@ -935,8 +935,8 @@
       "sourceImage": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
       "sourceImageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
       "imageReviewedHere": true,
-      "runtime": "notImplemented",
-      "nativeDirectedCases": 0,
+      "runtime": "nativeWipDirectedPassedPendingClosure",
+      "nativeDirectedCases": 21,
       "wasmImplemented": false,
       "selectionEnabled": false,
       "published": false,
@@ -944,7 +944,8 @@
       "openQuestionIds": [],
       "additionalThirty": true,
       "priorMechanismAnchorsReady": false,
-      "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated"
+      "readinessScope": "Society attachment, hidden-entry slow and actual mystic-win private inspection implemented. Exact MSJC14 entry-lock branch exists, but positive normal-play validation remains blocked by absent complete MSJC14 runtime. No whole-card closure or public admission.",
+      "fullNativeCardComplete": false
     }
   ],
   "sourceCorrections": [
@@ -1739,5 +1740,15 @@
     "independentReview": "pending",
     "newCompletionCountAdded": 0,
     "publicAdmission": false
+  },
+  "serialIntegration": {
+    "status": "local integration WIP; not independent integrated approval",
+    "nativeClosedAcrossReceivedBranches": 37,
+    "WM037Source": "495e392db463df04d66a0e2bcdda7496bfce6120",
+    "WM037IndependentClosure": "31Native+6source; Q1 specific-card FAQ correction",
+    "WM044Source": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+    "publicAdmissionUnchanged": true,
+    "wasmWorkerBrowserForCombinedSource": false,
+    "olderIdentityAndCountEntries": "historical per-source receipts; this aggregate supersedes progress counts only"
   }
 }

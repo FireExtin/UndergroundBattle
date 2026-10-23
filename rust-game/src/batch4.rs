@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "WM044" { return Some(crate::batch4_intelligence::definition()); }
     if let Some(d) = crate::batch4_vampires::definition(id) { return Some(d); }
     if let Some(d) = crate::pack_a_contest::definition(id) { return Some(d); }
     if id == "JZ56" { return Some(crate::batch4_night::definition()); }
@@ -210,6 +211,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if d.source.card.definition=="WM037" { return Err("戴森的计谋没有场内触发声明".into()); }
+        if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if d.source.card.definition == "JZ56" { return self.validate_jz56_declaration(d); }
         if d.source.card.definition == "LC16" && !self.validated_cross_card_declaration(d)? { return self.validate_lc16_declaration(d); }
         if crate::batch4_vampires::CARDS.contains(&d.source.card.definition.as_str()) && !self.validated_cross_card_declaration(d)? { return self.validate_vampire_declaration(d); }
@@ -243,6 +245,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
+        if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }
         if f.source.card.definition == "LC16" && !self.validated_cross_card_frame(f)? { return self.validate_lc16_frame(f); }
         if crate::batch4_vampires::related_frame(f) && !self.validated_cross_card_frame(f)? { return self.validate_vampire_frame(f); }
@@ -304,6 +307,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_state(&self) -> RuleResult<()> {
+        self.validate_wm044_state()?;
         self.validate_jz56_state()?;
         self.validate_lc16_state()?;
         self.validate_vampire_state()?;

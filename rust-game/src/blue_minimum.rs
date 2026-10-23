@@ -102,6 +102,7 @@ impl Game {
             let mut c = self.reset_zone_card(c);
             c.controller = actor;
             c.face_down = true;
+            self.apply_hidden_entry_slow(&mut c);
             self.regions[r].cards.push(c);
         }
         self.shuffle_player(actor);

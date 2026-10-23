@@ -1,0 +1,494 @@
+{
+  "status": "author-minimum-slice-awaiting-independent-review",
+  "sourceCommit": "5a05fc69f237595f76cc42ba6584f8e4a6f4e3f9",
+  "base": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "createdUtc": "2026-10-23T15:02:25.967969+00:00",
+  "claim": "WM044 hidden-entry slow only; whole card incomplete",
+  "formalNativeClosed": 33,
+  "target": 50,
+  "runtimeDefinitions": 248,
+  "nativeDirected": 12,
+  "nativeAdjacent": 126,
+  "nativeDistinct": 138,
+  "totalNativeDiscovered": 2094,
+  "sourceAssertions": 4,
+  "sourceCommand": [
+    "node",
+    "--test",
+    "--test-isolation=none",
+    "tools/cards/batch4-source.test.mjs"
+  ],
+  "sourceInputs": [
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "95d8d1c4ec8c53c69948974c39d83d6db503d82be6c8613441907f191d3cf634"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "1b48ecd80704afea027528d8e64ee7e1a00cdc3bc73283b03826a8894a8981aa"
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c"
+    },
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "500c6a5490bd75d523e06679f9bc1ed9821af523386f35104e77f9ddd11bd90c"
+    },
+    {
+      "path": "docs/factions/batch4-package-b-20261022.json",
+      "sha256": "aa9de668174b0f5ac31f743b97e28efda12869abb2349e1ff65f0bd1d14c044e"
+    }
+  ],
+  "rules": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+      "sha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/间奏说明书.jpg",
+      "sha256": "efbe7e1e3711ca4b184b36f7801391afdec3b195d393cf17d2458215279f9b80"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    }
+  ],
+  "finalTests": {
+    "directed-final-06": [
+      "batch4_intelligence_tests::wm044_hidden_slow_all_four_seats_paid_entry_and_privacy",
+      "batch4_intelligence_tests::wm044_hidden_slow_face_up_and_reveal_do_not_gain_it",
+      "batch4_intelligence_tests::wm044_hidden_slow_hidden_grave_entry_uses_resolution_and_no_printed_trigger",
+      "batch4_intelligence_tests::wm044_hidden_slow_jc032_paid_search_and_bq104_entry_search",
+      "batch4_intelligence_tests::wm044_hidden_slow_live_source_only_not_asset_or_grave",
+      "batch4_intelligence_tests::wm044_hidden_slow_movement_and_hide_preserve_orientation",
+      "batch4_intelligence_tests::wm044_hidden_slow_multiple_exhausted_sources_and_new_source_identity",
+      "batch4_intelligence_tests::wm044_hidden_slow_normal_next_turn_readies_without_reentry",
+      "batch4_intelligence_tests::wm044_hidden_slow_not_retroactive_and_removal_stops_future_entries",
+      "batch4_intelligence_tests::wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission",
+      "batch4_intelligence_tests::wm044_hidden_slow_reads_live_source_after_response_before_grave_entry",
+      "batch4_intelligence_tests::wm044_hidden_slow_xg27_paid_death_reentry"
+    ],
+    "adjacent-black-11": [
+      "black_next20_tests::black_next20_all_four_characters_keep_granted_glory_original_region_and_restore",
+      "black_next20_tests::black_next20_bq085_forced_prepare_orders_two_graves_and_cannot_skip_or_repeat",
+      "black_next20_tests::black_next20_bq085_ghoul_and_hidden_death_do_not_qualify",
+      "black_next20_tests::black_next20_bq085_prepare_insufficient_grave_sacrifices_real_source_without_partial_payment",
+      "black_next20_tests::black_next20_bq085_real_sacrifice_freezes_observer_region_and_returns_only_own_ghoul_exhausted",
+      "black_next20_tests::black_next20_bq085_uses_last_controller_for_death_and_actor_personal_grave_not_owners",
+      "black_next20_tests::black_next20_cq26_jz50_public_reveal_search_also_observes_one_actual_batch",
+      "black_next20_tests::black_next20_cq26_once_per_multi_character_batch_private_optional_discard_and_dynamic_icons",
+      "black_next20_tests::black_next20_cq26_only_own_deck_and_actual_character_with_decline_and_nonasset",
+      "black_next20_tests::black_next20_fish_actual_mill_targets_only_water_and_uses_fresh_identity",
+      "black_next20_tests::black_next20_fish_other_players_deck_owner_grave_and_region_replacement",
+      "black_next20_tests::black_next20_fish_public_deploy_equipment_rejection_and_water_permanent_combat",
+      "black_next20_tests::black_next20_registry_complete_fields_and_closed_program_admission",
+      "black_next20_tests::black_next20_restore_rejects_foreign_batch_duplicate_trigger_and_death_region_forgery",
+      "black_next20_tests::black_next20_simultaneous_deaths_keep_pile_snapshot_but_do_not_retroactively_arm_spirit",
+      "black_next20_tests::black_next20_xg27_curse_discount_play_only_and_spirit_protection",
+      "black_next20_tests::black_next20_xg27_enemy_death_pays_once_hidden_entry_at_victims_region_not_observers",
+      "black_next20_tests::black_next20_xg27_frozen_victim_region_replacement_cannot_receive_hidden_recovery",
+      "black_next20_tests::black_next20_xg27_requires_prior_grave_enemy_team_and_available_one_asset",
+      "black_next20_tests::black_next20_xq39_society_host_black_discount_consumption_and_paid_reveal",
+      "black_next20_tests::black_next20_xq39_two_assets_target_personal_character_to_top_no_shuffle_and_old_target_fizzles"
+    ],
+    "adjacent-blue-09": [
+      "blue_minimum_tests::blue_jc032_borrowed_source_and_selection_keep_owner_actor_and_original_region",
+      "blue_minimum_tests::blue_jc032_next_turn_refreshes_limit_without_repaying_saved_action",
+      "blue_minimum_tests::blue_jc032_positive_lengths_and_stale_choice_are_atomic",
+      "blue_minimum_tests::blue_jc032_region_incarnation_and_prefix_guard_preserve_paid_once_rng_and_ids",
+      "blue_minimum_tests::blue_jc032_top_six_printed_filter_private_restore_fresh_hidden_and_whole_deck_shuffle",
+      "blue_minimum_tests::blue_jc032_zero_hit_private_confirmation_and_empty_deck_no_rng",
+      "blue_minimum_tests::blue_jz24_optional_skip_faceup_no_trigger_local_controller_and_actor_order",
+      "blue_minimum_tests::blue_jz24_snapshot_after_responses_never_adds_newly_eligible_enemy",
+      "blue_minimum_tests::blue_jz24_source_change_region_guard_and_death_continuation_priority",
+      "blue_minimum_tests::blue_jz24_two_enemies_bq022_return_four_cards_still_sacrifices_and_restores",
+      "blue_minimum_tests::blue_ms03_draw_checks_initiative_at_execution_and_empty_search_consumes_once",
+      "blue_minimum_tests::blue_ms03_minimum_pool_and_printed_unique_card_filter_not_character_only",
+      "blue_minimum_tests::blue_ms03_paid_search_restore_private_public_reveal_and_once_across_all_actors",
+      "blue_minimum_tests::blue_real_host_receipts_keep_original_transition_after_restart_for_both_choices",
+      "blue_minimum_tests::blue_whole_original_fields_and_closed_source_marker"
+    ],
+    "adjacent-hide-12": [
+      "jc054_tests::jc054_burst_uses_shared_prevention_ignores_targeting_barriers_and_does_not_damage_other_regions",
+      "jc054_tests::jc054_complete_print_and_closed_definitions",
+      "jc054_tests::jc054_conceal_removes_attachments_markers_and_control_but_keeps_orientation_and_trigger_actor",
+      "jc054_tests::jc054_conceal_reveal_primitive_combination_hits_the_new_face_up_worm_not_a_legal_blink_action",
+      "jc054_tests::jc054_corrupt_historical_frames_fail_both_independent_restore_paths",
+      "jc054_tests::jc054_end_and_burst_are_mandatory_separate_responsive_frames_with_simultaneous_damage",
+      "jc054_tests::jc054_end_does_not_follow_a_replacement_with_the_same_printed_name",
+      "jc054_tests::jc054_end_follows_original_uid_when_source_moves_and_its_burst_uses_the_new_region",
+      "jc054_tests::jc054_end_is_independent_of_later_control_changes_but_conceal_observes_the_current_controller",
+      "jc054_tests::jc054_end_marker_and_mandatory_order_cannot_be_removed_or_made_optional",
+      "jc054_tests::jc054_end_marker_matches_phase_and_survives_a_nested_end_win_context",
+      "jc054_tests::jc054_granted_renown_keeps_its_frozen_public_source_after_the_grant_expires",
+      "jc054_tests::jc054_granted_reward_rejects_hidden_or_play_transaction_snapshots",
+      "jc054_tests::jc054_hidden_end_and_later_reveal_do_not_reobserve_this_end_step",
+      "jc054_tests::jc054_multiple_mandatory_triggers_choose_order_and_first_team_enters_stack_first",
+      "jc054_tests::jc054_native81_room_oracles",
+      "jc054_tests::jc054_observes_the_next_end_after_real_cleanup_and_turn_advance",
+      "jc054_tests::jc054_original_region_replacement_does_not_retarget_burst",
+      "jc054_tests::jc054_p2_paid_deploy_and_reveal_preserve_all_actual_fresh_fields",
+      "jc054_tests::jc054_p2_paid_stack_cards_reject_mutation_in_both_restore_paths",
+      "jc054_tests::jc054_p2_successor_can_move_change_mutable_fields_and_legally_leave",
+      "jc054_tests::jc054_p2_surviving_successor_must_be_a_hidden_board_entity_in_both_restore_paths",
+      "jc054_tests::jc054_real_paid_deploy_secret_deploy_and_reveal_do_not_emit_conceal",
+      "jc054_tests::jc054_reconcealing_an_already_hidden_card_has_no_printed_trigger",
+      "jc054_tests::jc054_untriggered_entity_seats_and_ids_are_checked_before_end_step_observation",
+      "jc054_tests::jc054_world_conceal_batch_keeps_mandatory_order_and_hidden_identity_reset"
+    ],
+    "adjacent-jz49-07": [
+      "jz49_tests::jz49_any_living_player_can_be_targeted_and_exact_top_two_are_milled",
+      "jz49_tests::jz49_asset_building_does_not_execute_face_up_character_keywords",
+      "jz49_tests::jz49_borrowed_source_declares_for_controller_and_milled_cards_return_to_owners",
+      "jz49_tests::jz49_complete_definition_mutations_and_transplants_are_rejected",
+      "jz49_tests::jz49_continuous_paid_response_destroys_source_but_original_mill_resolves_after_restore",
+      "jz49_tests::jz49_declared_effect_survives_source_death_and_keeps_other_instance_independent",
+      "jz49_tests::jz49_free_reveal_and_face_up_grave_entry_share_slow_but_hidden_grave_entry_does_not",
+      "jz49_tests::jz49_hidden_deployment_is_ready_private_and_does_not_offer_entry_trigger",
+      "jz49_tests::jz49_insufficient_black_loyalty_or_assets_are_atomic_and_not_advertised",
+      "jz49_tests::jz49_next_turn_resets_slow_character_without_retriggering_entry",
+      "jz49_tests::jz49_original_has_black_loyalty_two_death_domain_and_exact_slow_entry",
+      "jz49_tests::jz49_paid_entry_is_exhausted_before_optional_declaration_and_can_decline",
+      "jz49_tests::jz49_paid_reveal_resets_hidden_identity_and_reapplies_slow",
+      "jz49_tests::jz49_region_movement_preserves_readiness_but_leave_and_reentry_exhausts_again",
+      "jz49_tests::jz49_short_or_empty_deck_uses_available_cards_without_draw_failure",
+      "jz49_tests::jz49_sqlite_choice_and_response_receipts_survive_reopen_without_repeat_effect",
+      "jz49_tests::jz49_target_player_eliminated_before_resolution_does_not_mill"
+    ],
+    "adjacent-search-10": [
+      "bounded_search_tests::bq104_accept_with_matches_forces_one_and_empty_search_completes_zero_shuffle",
+      "bounded_search_tests::bq104_borrowed_employee_reveals_then_enters_hidden_for_frozen_controller",
+      "bounded_search_tests::bq104_hidden_public_employee_has_no_entry_trigger_until_real_paid_reveal",
+      "bounded_search_tests::bq104_lost_original_region_preserves_search_reveal_shuffle_without_placing_in_replacement",
+      "bounded_search_tests::entry_search_definitions_reject_direct_nested_modes_and_partial_transplants",
+      "bounded_search_tests::entry_search_invalid_duplicate_foreign_stale_and_excess_selection_is_atomic",
+      "bounded_search_tests::entry_search_original_carrier_return_to_hand_and_library_bottom_still_preserves_accepted_frame",
+      "bounded_search_tests::entry_search_originals_and_closed_definitions_are_complete",
+      "bounded_search_tests::entry_search_paid_public_deploy_optional_decline_and_accepted_search",
+      "bounded_search_tests::entry_search_private_choices_hide_candidates_from_opponents_and_teammates",
+      "bounded_search_tests::entry_search_real_damage_response_returns_sealed_payload_to_owner_and_source_trigger_survives",
+      "bounded_search_tests::entry_search_saved_choice_rejects_changed_program_bounds_payloads_and_deck",
+      "bounded_search_tests::entry_search_source_leaves_moves_hides_or_changes_control_without_retargeting",
+      "bounded_search_tests::entry_search_sqlite_receipt_reopen_duplicate_and_conflict_never_repeat_shuffle",
+      "bounded_search_tests::entry_search_two_same_sources_and_same_name_instances_resolve_independently",
+      "bounded_search_tests::xq48_empty_search_still_has_explicit_zero_completion",
+      "bounded_search_tests::xq48_region_replaced_before_declaration_or_during_response_skips_search_and_shuffles",
+      "bounded_search_tests::xq48_renown_uses_existing_team_comparison_one_influence_and_excludes_hidden_exhausted",
+      "bounded_search_tests::xq48_zero_one_three_real_instances_shuffle_once_and_have_original_owners"
+    ],
+    "adjacent-wm023-08": [
+      "wm023_tests::wm023_actual_public_slow_deploy_cost_loyalty_no_secret_and_next_turn_ready",
+      "wm023_tests::wm023_all_seats_paid_target_then_actual_mage_or_vampire_hand_entry_without_printed_loyalty_or_reveal",
+      "wm023_tests::wm023_canonical_acquired_renown_is_optional_even_on_slow_exhausted_source",
+      "wm023_tests::wm023_deploy_shell_identity_payment_and_physical_card_cannot_be_forged",
+      "wm023_tests::wm023_exhaustion_assets_wrong_actor_timing_and_extra_payload_reject_atomically",
+      "wm023_tests::wm023_invalid_frame_costs_targets_actor_program_cursor_and_response_bypass_are_rejected",
+      "wm023_tests::wm023_no_eligible_hand_keeps_payment_exhaustion_and_does_not_invent_activation_gate",
+      "wm023_tests::wm023_pending_private_options_projection_limits_region_and_foreign_frame_are_closed",
+      "wm023_tests::wm023_private_current_hand_filter_choice_counts_teammate_and_noneligible_rejected",
+      "wm023_tests::wm023_put_entry_runs_real_same_name_unique_sacrifice_and_normal_entry_trigger",
+      "wm023_tests::wm023_real_source_hide_response_preserves_actor_hand_and_original_target_region",
+      "wm023_tests::wm023_resolution_uses_current_hand_and_retains_foreign_physical_owner",
+      "wm023_tests::wm023_source_control_departure_or_movement_does_not_switch_hand_owner_or_destination",
+      "wm023_tests::wm023_target_region_replacement_fizzles_without_consuming_hand_or_refunding_costs",
+      "wm023_tests::wm023_union_is_unique_character_and_mage_or_vampire_not_domain_or_attachment",
+      "wm023_tests::wm023_whole_original_public_slow_unique_and_closed_hand_entry_program"
+    ],
+    "adjacent-wm062-13": [
+      "wm062_tests::wm062_bounded_restore_rejects_wrong_successor_region_program_and_paid_container",
+      "wm062_tests::wm062_controlled_foreign_criminal_returns_controller_but_actor_keeps_optional_move",
+      "wm062_tests::wm062_decline_keeps_conceal_and_cleans_attachments_seals_markers_without_repaying",
+      "wm062_tests::wm062_duel_uses_existing_adjacency_and_preserves_exhaustion",
+      "wm062_tests::wm062_fast_in_end_window_and_no_destination_still_completes_conceal",
+      "wm062_tests::wm062_last_other_criminal_defense_loss_settles_before_optional_move",
+      "wm062_tests::wm062_paid_move_preserves_actual_successor_and_does_not_trigger_hidden_front_all_seats",
+      "wm062_tests::wm062_pause_resume_preserves_paid_pending_successor_and_rejects_moves_while_paused",
+      "wm062_tests::wm062_real_bounce_response_cancels_without_concealing_a_substitute",
+      "wm062_tests::wm062_real_police_response_retires_target_and_cancels_whole_paid_transaction",
+      "wm062_tests::wm062_rejects_teammate_enemy_hidden_noncriminal_and_premature_destination",
+      "wm062_tests::wm062_whole_print_and_closed_fast_definition"
+    ]
+  },
+  "finalSourceBindings": [
+    {
+      "run": "directed-final-06",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-black-11",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-blue-09",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-hide-12",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-jz49-07",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-search-10",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-wm023-08",
+      "inputCount": 244,
+      "mismatches": []
+    },
+    {
+      "run": "adjacent-wm062-13",
+      "inputCount": 244,
+      "mismatches": []
+    }
+  ],
+  "mutation": {
+    "run": "mutation-red-05",
+    "passed": 5,
+    "failed": 7,
+    "onlySourceDifference": [
+      "rust-game/src/batch4_intelligence.rs"
+    ],
+    "patch": "mutation-red.patch",
+    "patchSha256": "90c13ed540f522b78ec74d144a5edda498974e1b871c03a7c2ce1a4189e08ee0",
+    "interpretation": "author mutation control, not a base-card reproduction or independent review"
+  },
+  "historicalFailures": {
+    "directed-01": "0/8: missing typed definition registration",
+    "directed-02": "0/11: missing finite society host whitelist entry",
+    "directed-03": "7/11: unreachable fixture regions, invalid search fixture types and over-consuming test helper",
+    "directed-04": "10/11: fixture found face-up BQ104 source instead of the newly hidden same-print target"
+  },
+  "notRun": [
+    "remaining 1956 native cases",
+    "WASM build/runtime",
+    "Worker",
+    "browser",
+    "full WM044 legal-deck game",
+    "independent review",
+    "CI"
+  ],
+  "remainingCardText": [
+    "won mystic contest private inspection",
+    "Sentinel conditional entry lock"
+  ],
+  "limits": {
+    "host": "AMD Ryzen 9 9950X",
+    "affinity": [
+      31
+    ],
+    "nice": 19,
+    "cargoJobs": 1,
+    "testThreads": 1,
+    "buildDirectory": "/home/ddd/Documents/Codex/2026-10-23/task-2/build-target"
+  },
+  "sharedFiles": [
+    "rust-game/src/batch4.rs",
+    "rust-game/src/black_next20.rs",
+    "rust-game/src/blue_minimum.rs",
+    "rust-game/src/bounded_search.rs",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/lib.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/rules.rs"
+  ],
+  "remoteActions": {
+    "pushAttempted": false,
+    "ciTriggered": false,
+    "mergedMain": false,
+    "published": false
+  },
+  "files": [
+    {
+      "path": "adjacent-black-11.log.gz",
+      "sha256": "16ca3712bfaa37dac66aefef07b7134c671f4169cf416103abab6ae91c6d6c86",
+      "originalSha256": "0a4a8e4af77d2c973dd0939e40f80a0f88e1a33731018c3db1d47238814a7330",
+      "originalBytes": 3717
+    },
+    {
+      "path": "adjacent-blue-09.log.gz",
+      "sha256": "8500683afbfa8ad6788df3b0c752d567451cce47ec24dae710e3d83f7cded1b8",
+      "originalSha256": "15ec73b2ba46aa13b9fc7933582ee765052f786f9da55335df0ccfbfa10b72a8",
+      "originalBytes": 2925
+    },
+    {
+      "path": "adjacent-hide-12.log.gz",
+      "sha256": "9d290d80a276898dc3241432e297008d999d6f386154c21329fee32525ceda08",
+      "originalSha256": "d294127cc83392f48a530b7851cdc0ccc5b9a7018b59ddcd07ecf4160ec97c9a",
+      "originalBytes": 3888
+    },
+    {
+      "path": "adjacent-jz49-07.log.gz",
+      "sha256": "c7ce01c289d8ecc0a8c513cd596b9ad9a5af76eefa1225a8958b202abf136627",
+      "originalSha256": "cb757f5e983fc9bb5c288e4bb397fed19b910f0ab70ccfd2143863aee61fef03",
+      "originalBytes": 2999
+    },
+    {
+      "path": "adjacent-search-10.log.gz",
+      "sha256": "35f8d2974c8f90992f80b4e4cafc6df733ad928bdb4a6743a4224be8d6d4b833",
+      "originalSha256": "263d60a9a6d3c903a10ce5e30af91615d7384dde16bd0a10eda8b6657dda3d72",
+      "originalBytes": 3476
+    },
+    {
+      "path": "adjacent-wm023-08.log.gz",
+      "sha256": "dfcbe00c7032953449074962b0905a0dea37aa2a0ad6160052c2818be637398d",
+      "originalSha256": "d09aad602f9f96c5b071ba66a417ad1d5dae4b79338bbe7b94dc73ba3963cd0d",
+      "originalBytes": 3049
+    },
+    {
+      "path": "adjacent-wm062-13.log.gz",
+      "sha256": "317c549d6504023404e156abd068f6fe758c07be8728b6a49a074aa4858fe5a3",
+      "originalSha256": "28034f566c442cdc26d4545e82e5a3353364da2237b7e7d6b8ff5c3ef5a2f745",
+      "originalBytes": 2543
+    },
+    {
+      "path": "directed-01.log.gz",
+      "sha256": "16b535cab6ff4e8c5482c06d5b4e90cad634aed32e6ee0ab9c09de76b244911f",
+      "originalSha256": "8fa8a43cc01f6b64d79d4464e05a632427fdce0ce834bf8520090d0b7a697423",
+      "originalBytes": 8920
+    },
+    {
+      "path": "directed-02.log.gz",
+      "sha256": "57f14e2e56a8e429212019db97de7aaf3398d87f75cde978765e625e8f04695e",
+      "originalSha256": "e8701006411a9a3d02226274287b37d2a30b0c0c676cbd9735b9fd505e1d469b",
+      "originalBytes": 7525
+    },
+    {
+      "path": "directed-03.log.gz",
+      "sha256": "ae0292f0f8b5f99e48c0219acd780a6296ab0ecafa3c43791e0763ab53a61244",
+      "originalSha256": "c6bd7f8303327daad191f306d3c228340303429ea259189aa707d35dbe5c889a",
+      "originalBytes": 4382
+    },
+    {
+      "path": "directed-04.log.gz",
+      "sha256": "5e3b12ae61a96ce900c463bdf1fbb1e6305c6615170a294eba00300b40ff243e",
+      "originalSha256": "12df2e5ba04b02d5bec9b2c64f87b5d1fee16eae9914d95b06b59ee5cf19b566",
+      "originalBytes": 3114
+    },
+    {
+      "path": "directed-final-06.log.gz",
+      "sha256": "4e89b8b8d46a7b64eed0ee1382fd4198b4822a11f9d40055e9deec28eb735c65",
+      "originalSha256": "e34b6b1c7068f3ba0979819f935afdab12087ab569ded7fdfd30304aef77a76b",
+      "originalBytes": 2695
+    },
+    {
+      "path": "mutation-red-05.log.gz",
+      "sha256": "4dedb46d84253c26dcb6ac1018848c72c34b2940c744fe8df6b6a182ecef6e13",
+      "originalSha256": "fae92f96935f8669c4603d4c55276ee97dd5908d6863ef6cd9a4c90584e687b7",
+      "originalBytes": 5694
+    },
+    {
+      "path": "source-01.log.gz",
+      "sha256": "830c0714deb855a6dfbd75d452b225deafd3a80ba9e74ce647c76d6affdf7ba0",
+      "originalSha256": "26ef397c3edd550d3ccefae87035f7a30c33a9b8875072a9a41fc0c5f19df00d",
+      "originalBytes": 197
+    },
+    {
+      "path": "source-02.log.gz",
+      "sha256": "fd38947fc39eddf3324dc575394d7652a3956bf6b7a729aba22508e8368a4da9",
+      "originalSha256": "13350e1c3d45421ce2d382bc63159f0feff9467d216dd96fbce4fa498f7f5c87",
+      "originalBytes": 548
+    },
+    {
+      "path": "source-final-14.log.gz",
+      "sha256": "26a1ea7dcac20e454022381955f82c5d2574a165f2ce9f6095051be7087102c6",
+      "originalSha256": "2a8237b41329eeefadbee8c3bf4389b23a0d11328963bcedf4e2c24e53bf5268",
+      "originalBytes": 551
+    },
+    {
+      "path": "adjacent-black-11.json.gz",
+      "sha256": "0fe9e44d513033319c0323961604edaa3eb2ab2c99a5cdbdd563fac2cbe1d034",
+      "originalSha256": "ff2b8e032a3ed59cde3cffd300dbd530415efe0a6377fa0350487f8c33f19a86",
+      "originalBytes": 35708
+    },
+    {
+      "path": "adjacent-blue-09.json.gz",
+      "sha256": "3c6e64e2a9b05c88a065c04d25a759578f9094b50f0d4d9936afb5416f8ddf94",
+      "originalSha256": "0347533ebe29c8690f4156e4940a32aae16ebea3fa9a8dcecebf21dcbc8fae9c",
+      "originalBytes": 35708
+    },
+    {
+      "path": "adjacent-hide-12.json.gz",
+      "sha256": "a2057a92d08c138423c1a2f3d1a55a5f3d2e4ee91175f5fc5454ab5465d8d225",
+      "originalSha256": "410b0161f06127e0d3083d90bb8c0dadc5c93cdba6499103c5e160b09c0c6171",
+      "originalBytes": 35701
+    },
+    {
+      "path": "adjacent-jz49-07.json.gz",
+      "sha256": "3a5a5767256604bcae2dc40e5f60a0269a9c0113e4a8f21ca4484b701c6cb837",
+      "originalSha256": "f3300c8c742170e717e520684009cc608b42226e29861b7ff39a7fa3a005cf40",
+      "originalBytes": 35700
+    },
+    {
+      "path": "adjacent-search-10.json.gz",
+      "sha256": "5dde618dabbe3aeabed7249b011c495b5e83967929dadaef1cecfaefa3d7c43f",
+      "originalSha256": "6f013c7efb4326747f107af0dd874fb319fd6c17b3c5cf1865f4833a1af8d5d9",
+      "originalBytes": 35710
+    },
+    {
+      "path": "adjacent-wm023-08.json.gz",
+      "sha256": "4f0306ce691727f06410156b96f837f23b6fe96be42fd5cabb6b8020f07be7d6",
+      "originalSha256": "04464dba0f793e554d0cf14e3c7f31d20d642b59d5ede964abb35b09b2a35353",
+      "originalBytes": 35701
+    },
+    {
+      "path": "adjacent-wm062-13.json.gz",
+      "sha256": "32359dc8920446f57f1ab4d47586b464e8272897abe70c35cbe9f92194116600",
+      "originalSha256": "d6f4aa48fc0173c08c7121a152a2dc23612849cfd6484d0566245935aaaecef8",
+      "originalBytes": 35699
+    },
+    {
+      "path": "directed-01.json.gz",
+      "sha256": "2c0b8707ef89f153e45d74aeda2afe14f6b3b7fcfb37bd26137035c4b88858cb",
+      "originalSha256": "c93bbf8861ea4eb0f63b7a7a0b90d49cbfbb9edadf1e44648dd6a9120b5d1d78",
+      "originalBytes": 35708
+    },
+    {
+      "path": "directed-02.json.gz",
+      "sha256": "22f0c7355838ed27c745f0b45c78f27df81226675293d72c9f1af607f3cc8cc1",
+      "originalSha256": "a53b931ac2404ad589de19a82445fe027e4aa077fe79f02bfe0d9fd68fd3190c",
+      "originalBytes": 35708
+    },
+    {
+      "path": "directed-03.json.gz",
+      "sha256": "ef09e73963b93928bce519b148428f300949e9d0ed860cf73896c715fbd73aa5",
+      "originalSha256": "39a414cefbd24dddae8a7710c5bfff6647ac513f685ed728c1a783c9d2f21209",
+      "originalBytes": 35707
+    },
+    {
+      "path": "directed-04.json.gz",
+      "sha256": "5abdc9146b4fc82afdea4bba0f73382ef6bf64656d9aea2fc165aa5a8f9df363",
+      "originalSha256": "e95807822bde47c2b8761dc437e285e747e6226d95c430322ca97d215907a2c3",
+      "originalBytes": 35707
+    },
+    {
+      "path": "directed-final-06.json.gz",
+      "sha256": "46343f9740d1bdc707541fea2cf3d418ac215fd44a81d340c5eb5265b1431ca9",
+      "originalSha256": "d480eaceb3e3bfe76cf1f9cd1f94e24d0d0cdd1e461db477110d36eb0f9fea7f",
+      "originalBytes": 35706
+    },
+    {
+      "path": "mutation-red-05.json.gz",
+      "sha256": "1cbeb3915a5b2e196fed47e2bbaa2be781a380afb52c64e2ad04abd296d9b4b0",
+      "originalSha256": "898821142381bce19dc8ba2515d218939803dcd9ca49de8fe80ca9622e20d137",
+      "originalBytes": 35708
+    },
+    {
+      "path": "run-native.py.gz",
+      "sha256": "a6dbc712ade6ad7b2f14c5ada670cc9ec3fdd3d6a473bd734247a7b734ba44a2",
+      "originalSha256": "517d8dd39ab0b5e0c7e07018bedc7cef4aba3459462665b609953388c506e86f",
+      "originalBytes": 1932
+    }
+  ]
+}

@@ -133,6 +133,7 @@ impl Game {
         region: Option<usize>,
         kind: &str,
     ) -> Vec<(Action, String)> {
+        if c.definition == "MSJC14" && kind == "activate" { return self.sentinel_candidates(actor, c); }
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
         if c.definition == "JC062" && kind == "play" { return self.jc062_action_candidates(actor, c); }
@@ -482,7 +483,7 @@ impl Game {
             source_region_instance: if crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (matches!(c.definition.as_str(), "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -759,6 +760,7 @@ impl Game {
                                 TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
+                                TargetPredicate::WM044HiddenOrSecretPlan => source.card.definition == "WM044" && c.face_down && (crate::batch4_plans::secret(c) || self.board(&c.id).is_some()),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
                                 TargetPredicate::JZ34DestroyedRegion | TargetPredicate::Batch4DestroyedRegion => false,
@@ -780,6 +782,7 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && self.board(&c.id).is_some() && self.sentinel_has_effective_lock(c),
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0
                                 }
@@ -916,6 +919,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition == "MSJC14" { return self.sentinel_bind(actor, source, spec, a); }
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
         if source.card.definition == "JC062" { return self.jc062_bind(actor, source, spec, a); }
         if source.card.definition == "XQ20" { return self.xq20_bind(actor, source, spec, a); }
@@ -1277,7 +1281,7 @@ impl Game {
         {
             return Ok(());
         }
-        if !self.black_next20_trigger_available(&declaration) || !self.vampire_trigger_available(&declaration) { return Ok(()); }
+        if !self.wm044_trigger_available(&declaration) || !self.black_next20_trigger_available(&declaration) || !self.vampire_trigger_available(&declaration) { return Ok(()); }
         let title = format!(
             "{}：{}",
             crate::batch3_trap::source_label(&declaration.source),
@@ -1737,6 +1741,8 @@ impl Game {
                 Op::BQ079CorpseIcons { .. } => self.bq079_reward(&frame.source),
                 Op::WM035HostDeathDraw { .. } => self.draw(frame.actor, 1)?,
                 Op::XQ22Orientation => return self.xq22_orientation_start(frame),
+                Op::WM044Inspect { .. } => { self.wm044_inspect_start(frame)?; return Ok(()); },
+                Op::WM044SentinelLock => self.wm044_lock(&frame),
                 Op::JC062Inspect => { if self.jc062_inspect_start(frame.clone())? { return Ok(()); } },
                 Op::JZ25SealRandomHand => self.jz25_seal_random_hand(&frame)?,
                 Op::XG28GraveReturn => self.xg28_return(&frame)?,
@@ -1920,6 +1926,13 @@ impl Game {
                         target.id.clone(),
                         amount,
                     )]))?;
+                }
+                Op::SentinelLock => {
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
+                }
+                Op::SentinelMove => {
+                    let mover = &frame.targets[0].id;
+                    if let Some(to) = self.board(&frame.targets[1].id).map(|(r, _)| r) { self.move_on_board_instance(mover, to); }
                 }
                 Op::JC069LockTarget => {
                     let target = frame.targets.first().ok_or("缺少锁定目标")?;
@@ -2135,6 +2148,7 @@ impl Game {
                                 Destination::HiddenInChosenRegion => {
                                     c.face_down = true;
                                     let r = frame.chosen_region.ok_or("缺少派遣地区")?;
+                                    self.apply_hidden_entry_slow(&mut c);
                                     self.regions[r].cards.push(c);
                                 }
                             }
@@ -2574,6 +2588,7 @@ impl Game {
             FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
+            FrameChoice::WM044Inspection { inspected } => self.wm044_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::JC062Inspection { inspected } => self.jc062_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::WM033GraveSpell => return self.wm033_finish(&frame, chooser, &a, &selected),
             FrameChoice::JC051Badge => return self.jc051_choose_badge(&frame,&selected),

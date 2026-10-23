@@ -1,3 +1,6 @@
+mod batch4_intelligence;
+#[cfg(test)]
+mod batch4_intelligence_tests;
 #[cfg(test)]
 mod batch4_platform_tests;
 mod chaos;
@@ -294,6 +297,9 @@ mod jz50_search;
 mod bounded_search;
 mod deck_seal_search;
 mod gray_lock;
+mod sentinel;
+#[cfg(test)]
+mod sentinel_tests;
 mod jz22;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod jz22_tests;

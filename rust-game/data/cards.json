@@ -10025,6 +10025,46 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "WM044",
+      "name": "情报分析中心",
+      "kind": "attachment",
+      "subtypes": [
+        "机构"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰灰",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于本方秘社\n持续 所有暗藏者获得迟缓。\n触发 当你赢得隐秘对抗，检视目标暗藏者或秘密计划。\n进场触发 若本方秘社为哨兵，在目标暗藏者上放置一个锁定标志。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM044",
+        "image": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+        "imageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

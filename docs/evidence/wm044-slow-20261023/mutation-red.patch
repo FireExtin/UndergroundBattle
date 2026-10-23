@@ -1,0 +1,11 @@
+--- a/rust-game/src/batch4_intelligence.rs
++++ b/rust-game/src/batch4_intelligence.rs
+@@ -14,7 +14,7 @@
+     /// requirement does not reveal its print, emit printed entry triggers, or
+     /// repeatedly exhaust an existing hidden card on movement/ready/hide.
+     pub(crate) fn apply_hidden_entry_slow(&self, entrant: &mut Card) {
+-        if entrant.face_down && self.attachments.iter().any(|a| {
++        if false && entrant.face_down && self.attachments.iter().any(|a| {
+             a.card.definition == "WM044"
+                 && !a.card.face_down
+                 && self.players.get(a.card.controller).is_some_and(|p| !p.eliminated)

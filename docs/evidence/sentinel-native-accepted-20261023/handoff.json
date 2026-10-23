@@ -1,0 +1,26 @@
+{
+  "runtimeSource": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "evidenceHead": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+  "independentNativePassed": 24,
+  "independentNativeFailed": 0,
+  "P2": "closed",
+  "WM044": "native whole-card accepted by existing independent reviewer",
+  "MSJC14": "native mechanism accepted; outside 50-card count",
+  "parentCount": "36/50; owner updates main ledger, not this old baseline clone",
+  "reviewSha256": "cf82f745b3070ae88aaebcb21ffe4bf81ef55009f9ecb8659d674b14eaa0ccf3",
+  "archiveSha256": "8e7166d16fa1d52e3dab51906b2f3b79323526722ec8d7e0faefb089088161b7",
+  "platformAccepted": false,
+  "initialResources": {
+    "loadavg": "1.62 1.27 0.98 3/3936 3",
+    "meminfo": [
+      "MemTotal:       62121364 kB",
+      "MemFree:          908304 kB",
+      "MemAvailable:   47112832 kB",
+      "Buffers:         1613076 kB",
+      "Cached:         43152896 kB"
+    ],
+    "cpuPressure": "some avg10=0.02 avg60=4.03 avg300=5.33 total=532049147\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "memoryPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1015606\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1007453\n",
+    "ioPressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=22783332\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=21791624\n"
+  }
+}

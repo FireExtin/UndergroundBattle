@@ -1,0 +1,581 @@
+{
+  "status": "author-trigger-candidate-with-explicit-society-dependency-awaiting-review",
+  "sourceCommit": "cfc2566d12aeb2b5aa0ed18f3e01a64aa4d4a46b",
+  "base": "679ac1092d6ee26afcb8b95afa3d2db87ad51d8a",
+  "savedUtc": "2026-10-23T15:23:54.581662+00:00",
+  "claim": "WM044 slow plus actual mystic-win inspection; exact Sentinel lock branch lacks positive normal-play integration",
+  "wholeCardClosed": false,
+  "globalCompletionCountModified": false,
+  "parentReportedGlobalCount": "34/50; not changed in this ABI95-baseline clone",
+  "finalDirectedPassed": 21,
+  "finalAdjacentPassed": 130,
+  "finalAdjacentFailed": 1,
+  "finalDistinctPassed": 151,
+  "finalDistinctFailed": [
+    "pack_a_contest_tests::pack_a_original_data_and_fixed_programs"
+  ],
+  "totalTestsDiscovered": 2103,
+  "finalRuns": [
+    {
+      "run": "triggers-directed-final-25",
+      "exitCode": 0,
+      "passed": [
+        "batch4_intelligence_tests::wm044_hidden_slow_all_four_seats_paid_entry_and_privacy",
+        "batch4_intelligence_tests::wm044_hidden_slow_face_up_and_reveal_do_not_gain_it",
+        "batch4_intelligence_tests::wm044_hidden_slow_hidden_grave_entry_uses_resolution_and_no_printed_trigger",
+        "batch4_intelligence_tests::wm044_hidden_slow_jc032_paid_search_and_bq104_entry_search",
+        "batch4_intelligence_tests::wm044_hidden_slow_live_source_only_not_asset_or_grave",
+        "batch4_intelligence_tests::wm044_hidden_slow_movement_and_hide_preserve_orientation",
+        "batch4_intelligence_tests::wm044_hidden_slow_multiple_exhausted_sources_and_new_source_identity",
+        "batch4_intelligence_tests::wm044_hidden_slow_normal_next_turn_readies_without_reentry",
+        "batch4_intelligence_tests::wm044_hidden_slow_not_retroactive_and_removal_stops_future_entries",
+        "batch4_intelligence_tests::wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission",
+        "batch4_intelligence_tests::wm044_hidden_slow_reads_live_source_after_response_before_grave_entry",
+        "batch4_intelligence_tests::wm044_hidden_slow_xg27_paid_death_reentry",
+        "batch4_intelligence_tests::wm044_trigger_actual_win_hidden_inspection_only_original_player_sees_front",
+        "batch4_intelligence_tests::wm044_trigger_current_controller_each_actual_win_not_only_first",
+        "batch4_intelligence_tests::wm044_trigger_decline_tie_loss_and_missing_target",
+        "batch4_intelligence_tests::wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation",
+        "batch4_intelligence_tests::wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal",
+        "batch4_intelligence_tests::wm044_trigger_sentinel_dependency_is_exact_and_not_substituted_by_gray_society",
+        "batch4_intelligence_tests::wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+        "batch4_intelligence_tests::wm044_trigger_target_departure_cancels_without_rebinding",
+        "batch4_intelligence_tests::wm044_trigger_two_centers_each_offer_once_for_same_actual_win"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-plans-26",
+      "exitCode": 0,
+      "passed": [
+        "batch4_plans_tests::batch4_new_order_shuffle_preserves_markers_on_cards_already_hidden",
+        "batch4_plans_tests::batch4_plans_advance_rejects_other_actor_offturn_response_extra_payload_and_duplicate_payments",
+        "batch4_plans_tests::batch4_plans_advance_requires_available_resource_and_never_taps_the_plan",
+        "batch4_plans_tests::batch4_plans_atomic_marker_move_reaches_or_crosses_threshold_once_with_actual_snapshot",
+        "batch4_plans_tests::batch4_plans_beowulf_exact_five_destroys_current_domains_atomically_including_attached_characters",
+        "batch4_plans_tests::batch4_plans_crossed_completion_keeps_original_uid_after_source_loss",
+        "batch4_plans_tests::batch4_plans_faceup_play_uses_stable_empty_or_present_society_and_only_own_zone",
+        "batch4_plans_tests::batch4_plans_fixed_thresholds_and_closed_pilot_admission",
+        "batch4_plans_tests::batch4_plans_forged_secret_receipts_programs_markers_and_stack_duplicates_are_rejected",
+        "batch4_plans_tests::batch4_plans_legal_secret_advancement_remains_visible_only_to_its_controller",
+        "batch4_plans_tests::batch4_plans_normal_and_secret_plays_have_executable_published_legal_actions",
+        "batch4_plans_tests::batch4_plans_secret_advances_repeatedly_even_after_moon_loss_and_reveals_only_at_exact_threshold",
+        "batch4_plans_tests::batch4_plans_secret_is_not_a_hidden_character_for_spells_or_character_abilities",
+        "batch4_plans_tests::batch4_plans_secret_play_freezes_moon_condition_before_response_without_revealing_print",
+        "batch4_plans_tests::batch4_plans_secret_play_requires_personal_moon_and_real_loyalty_without_consuming_moon",
+        "batch4_plans_tests::batch4_plans_secret_target_remains_attachment_for_strengthened_jc005_not_hidden_character",
+        "batch4_plans_tests::batch4_plans_source_loss_while_advancing_never_advances_a_replacement_and_does_not_refund",
+        "batch4_plans_tests::batch4_plans_tianyan_counts_locked_entities_not_markers_and_includes_hidden_and_attached_characters",
+        "batch4_plans_tests::batch4_plans_tianyan_zero_draw_does_not_eliminate_and_completion_survives_original_source_loss",
+        "batch4_plans_tests::jc060_attached_bat_real_paid_entry_keeps_friendly_granted_domain_and_combat_in_four_views"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-inspect-27",
+      "exitCode": 0,
+      "passed": [
+        "batch3_inspect_tests::batch3_jc062_faq_zero_target_draw_works_with_or_without_hidden_cards_and_at_fast_timing",
+        "batch3_inspect_tests::batch3_jc062_legal_candidate_sets_cover_zero_singles_and_pairs_without_permutations",
+        "batch3_inspect_tests::batch3_jc062_missing_target_is_not_replaced_by_same_print_and_actor_stays_frozen",
+        "batch3_inspect_tests::batch3_jc062_one_and_two_targets_are_private_until_confirmation_then_draw_exactly_one",
+        "batch3_inspect_tests::batch3_jc062_real_response_reveal_invalidates_whole_two_target_effect_without_refund_or_draw",
+        "batch3_inspect_tests::batch3_jc062_rejects_duplicate_excess_and_nonhidden_targets_before_payment"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-trap-28",
+      "exitCode": 0,
+      "passed": [
+        "batch3_trap_tests::batch3_jz26_actual_jc062_inspection_queues_once_before_private_confirmation_and_keeps_other_seats_private",
+        "batch3_trap_tests::batch3_jz26_actual_jz46_private_inspection_is_one_event_and_never_locks_a_snake_as_criminal",
+        "batch3_trap_tests::batch3_jz26_actual_xq27_paid_sweep_records_enemy_player_once_for_each_destroyed_hidden_trap",
+        "batch3_trap_tests::batch3_jz26_distinct_explicit_inspections_may_repeat_but_views_and_stale_revision_retries_cannot",
+        "batch3_trap_tests::batch3_jz26_duplicate_observation_forged_blue_receipt_and_optional_choice_payload_are_rejected",
+        "batch3_trap_tests::batch3_jz26_enemy_destruction_captures_hidden_source_before_real_grave_entry_and_old_uid_does_not_return",
+        "batch3_trap_tests::batch3_jz26_monitor_actual_free_inspection_triggers_optional_private_source_without_changing_action_right",
+        "batch3_trap_tests::batch3_jz26_monitor_read_during_response_preserves_original_clock_members_and_composing_intent",
+        "batch3_trap_tests::batch3_jz26_no_enemy_or_replaced_original_region_uses_no_randomness_and_response_asset_loss_cancels",
+        "batch3_trap_tests::batch3_jz26_personal_blue_icons_count_exhausted_assets_and_never_allied_or_enemy_assets",
+        "batch3_trap_tests::batch3_jz26_random_minimum_cost_is_untargeted_and_u64_seed_survives_each_response_restore",
+        "batch3_trap_tests::batch3_jz26_repeated_views_and_rejected_inspections_never_advance_rng_or_create_events",
+        "batch3_trap_tests::batch3_jz26_sacrifice_friendly_destruction_and_world_primitive_do_not_claim_an_enemy_player",
+        "batch3_trap_tests::batch3_jz26_stealth_blocks_faceup_play_but_paid_conceal_and_paid_reveal_are_current_kernel_commands"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-lifecycle-29",
+      "exitCode": 0,
+      "passed": [
+        "mystic_lifecycle_tests::mystic_lifecycle_after_parent_keeps_its_own_outcome_when_child_finishes",
+        "mystic_lifecycle_tests::mystic_lifecycle_child_win_chain_precedes_older_parent_effects",
+        "mystic_lifecycle_tests::mystic_lifecycle_finishing_chain_authenticates_boundary_and_accepts_another_nested_response",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_contest_finishes_then_resumes_parent_once",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_receipts_and_continuations_are_closed_in_both_loaders",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_win_triggers_finish_before_parent_commit",
+        "mystic_lifecycle_tests::mystic_lifecycle_post_elimination_commits_terminal_state_without_continuation",
+        "mystic_lifecycle_tests::mystic_lifecycle_post_nonterminal_elimination_preserves_history_and_finishes_remaining_seats",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_generated_trigger_precedes_secret_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_search_private_choice_finishes_before_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_room_commands_and_journal_replay_complete_nested_response",
+        "mystic_lifecycle_tests::mystic_lifecycle_room_post_terminal_commits_and_replays_instead_of_rolling_back",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_after_responses_keeps_top_cards_without_zero_or_fence",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_child_resumes_existing_after_stage_without_outcome",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_start_response_can_leave_a_hand_with_an_empty_deck",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_unshown_finish_requires_original_empty_participant_and_boundary",
+        "mystic_lifecycle_tests::mystic_lifecycle_terminal_clears_every_suspended_level_and_restart_does_not_replay",
+        "mystic_lifecycle_tests::mystic_lifecycle_three_levels_resume_in_lifo_order_and_reject_reordered_barriers"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-packa-30",
+      "exitCode": 101,
+      "passed": [
+        "pack_a_contest_tests::ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate",
+        "pack_a_contest_tests::ab_card_closure_bq031_bq032_day_nonasset_never_grants_public",
+        "pack_a_contest_tests::independent_ab_ten_wm021_hand_bat_and_manor_history_are_distinct",
+        "pack_a_contest_tests::independent_ab_ten_wm032_bonus_is_personal_and_or_not_sum",
+        "pack_a_contest_tests::pack_a_actual_reveal_paid_once_and_four_private_commitments",
+        "pack_a_contest_tests::pack_a_commit_rejects_other_seat_extra_payload_duplicate_and_foreign_card",
+        "pack_a_contest_tests::pack_a_duel_uses_two_individual_values_and_opposite_enemy_reward",
+        "pack_a_contest_tests::pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+        "pack_a_contest_tests::pack_a_earth_normal_action_mills_each_player_and_short_deck",
+        "pack_a_contest_tests::pack_a_earth_player_elimination_before_and_after_payment_keeps_fixed_slots_without_milling_dead_seat",
+        "pack_a_contest_tests::pack_a_earth_restored_program_cannot_drop_reorder_duplicate_or_replace_player_slots",
+        "pack_a_contest_tests::pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+        "pack_a_contest_tests::pack_a_earth_shown_shuffles_before_post_mill",
+        "pack_a_contest_tests::pack_a_empty_deck_with_hand_is_not_draw_elimination",
+        "pack_a_contest_tests::pack_a_finished_history_cannot_omit_still_living_loser_but_retains_later_eliminated_participant",
+        "pack_a_contest_tests::pack_a_lower_response_stack_does_not_block_contest_selection",
+        "pack_a_contest_tests::pack_a_marker_rewards_are_personal_opposite_and_cancel",
+        "pack_a_contest_tests::pack_a_owner_manor_aura_changes_human_display_and_preserves_witness",
+        "pack_a_contest_tests::pack_a_paid_response_cannot_be_moved_to_effect_queue_or_inject_transaction_attributes",
+        "pack_a_contest_tests::pack_a_personal_vampire_bonus_excludes_teammate_and_hidden_observer",
+        "pack_a_contest_tests::pack_a_poison_actual_paid_entry_target_before_responses_bonus_and_exhausted_reentry",
+        "pack_a_contest_tests::pack_a_poison_cannot_target_teammate_or_spell_and_obeys_double_black_loyalty",
+        "pack_a_contest_tests::pack_a_poison_conditional_public_is_seen_by_alpha_only_when_personally_exposed",
+        "pack_a_contest_tests::pack_a_poison_departed_target_cancels_whole_trigger_without_starting_contest",
+        "pack_a_contest_tests::pack_a_poison_source_departure_keeps_paid_trigger_but_original_region_replacement_fizzles_entry",
+        "pack_a_contest_tests::pack_a_preacher_conditional_printed_bonus",
+        "pack_a_contest_tests::pack_a_preacher_win_queues_multiple_sources_and_resolves_current_destroyed_regions",
+        "pack_a_contest_tests::pack_a_private_pending_and_result_tampering_rejected_by_both_restore_envelopes",
+        "pack_a_contest_tests::pack_a_public_requires_personal_exposure",
+        "pack_a_contest_tests::pack_a_recursive_foreign_saved_frames_rejected_in_response_and_effect_queue",
+        "pack_a_contest_tests::pack_a_response_identity_cannot_reuse_retired_or_future_instance",
+        "pack_a_contest_tests::pack_a_rng_above_js_safe_integer_and_room_revision_survive_each_choice",
+        "pack_a_contest_tests::pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+        "pack_a_contest_tests::pack_a_shared_ops_reject_nested_and_mode_transplants",
+        "pack_a_contest_tests::pack_a_start_response_elimination_keeps_receipt_then_excludes_dead_participant",
+        "pack_a_contest_tests::pack_a_team_sum_tie_has_no_winners_or_rewards"
+      ],
+      "failed": [
+        "pack_a_contest_tests::pack_a_original_data_and_fixed_programs"
+      ],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-vampire-31",
+      "exitCode": 0,
+      "passed": [
+        "batch4_vampire_contest_tests::a_b_nested_bq038_awards_each_original_layer_once_without_repaying",
+        "batch4_vampire_contest_tests::a_b_nested_declining_child_bonus_preserves_outer_response_and_payment",
+        "batch4_vampire_contest_tests::a_b_nested_receipt_lookup_does_not_authorize_awarding_a_suspended_layer",
+        "batch4_vampire_contest_tests::a_b_nested_start_receipt_must_keep_outer_bq038_while_child_is_active",
+        "batch4_vampire_contest_tests::a_b_three_layers_reject_lost_reordered_and_duplicate_ancestor_continuations",
+        "batch4_vampire_contest_tests::a_b_three_layers_restore_original_responses_and_consume_each_bonus_once",
+        "batch4_vampire_contest_tests::b_contest_bq031_departure_does_not_feed_replacement_and_win_receipt_is_required",
+        "batch4_vampire_contest_tests::b_contest_bq031_win_is_personal_each_contest_and_shares_victory_order_with_a",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_departure_keeps_original_paid_witness",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_foreign_cost_or_host_stays_illegal",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_forged_parent_cost_and_actor_reject",
+        "batch4_vampire_contest_tests::b_contest_bq036_attached_host_room_payment_replay_and_outcome",
+        "batch4_vampire_contest_tests::b_contest_bq036_payment_accepts_personal_attachment_on_personal_character_and_not_printed_cost",
+        "batch4_vampire_contest_tests::b_contest_bq036_rejects_foreign_cost_wrong_host_and_double_payment_restore",
+        "batch4_vampire_contest_tests::b_contest_bq038_decline_and_zero_are_distinct_and_bonus_tampering_is_rejected",
+        "batch4_vampire_contest_tests::b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+        "batch4_vampire_contest_tests::b_contest_bq038_start_is_respondable_counts_each_personal_host_once_and_freezes",
+        "batch4_vampire_contest_tests::b_contest_bq038_witnesses_and_capture_identity_cannot_be_rewritten",
+        "batch4_vampire_contest_tests::b_contest_hand_action_pays_two_discards_self_once_and_private_restore",
+        "batch4_vampire_contest_tests::b_contest_hand_invalid_cost_extra_payload_board_and_enemy_are_atomic",
+        "batch4_vampire_contest_tests::b_contest_paid_sources_preserve_foreign_owners_and_hand_action_cannot_respond",
+        "batch4_vampire_contest_tests::b_contest_programs_cannot_be_transplanted_or_expanded",
+        "batch4_vampire_contest_tests::b_contest_protocol_response_reveal_must_dispatch_before_outer_commit",
+        "batch4_vampire_contest_tests::b_contest_ruling_empty_after_paid_last_hand_action_keeps_costs_and_unshown_hands",
+        "batch4_vampire_contest_tests::b_contest_ruling_empty_room_response_reopen_and_journal_keep_payment_once",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_adds_two_after_shuffle_targets_only_personal_vampire_and_feeds",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_blood_entry_observer_and_other_shown_keep_recovery",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_no_target_or_no_blood_finishes_and_two_shown_keep_cursor",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_rejects_post_frame_target_and_cursor_forgery",
+        "batch4_vampire_contest_tests::b_contest_typed_payment_and_start_event_cannot_hide_under_foreign_programs",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_attached_dual_character_cost_must_work",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq036_unattached_dual_character_cost_control",
+        "batch4_vampire_contest_tests::independent_ab_ten_bq038_nonqualifying_nested_ring_does_not_add_bonus"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    },
+    {
+      "run": "triggers-final-order-real-34",
+      "exitCode": 0,
+      "passed": [
+        "batch3_guard_tests::batch3_entry_order_bq029_and_bq037_share_limited_blood_according_to_chosen_stack_order",
+        "batch3_guard_tests::batch3_entry_order_keeps_existing_jz22_entry_program_in_normal_queue_and_checks_exact_references",
+        "batch3_guard_tests::batch3_entry_order_shared_producer_two_entries_in_one_queue_keeps_observer_references_distinct"
+      ],
+      "failed": [],
+      "allSourceInputsMatchFinal": true,
+      "inputs": 244
+    }
+  ],
+  "baselineFailureEvidence": "triggers-baseline-count.json.gz",
+  "baselineFailureScope": "exact static comparison of unchanged IMPLEMENTING constant and fixed 23 assertion against679ac109; no baseline runtime rerun",
+  "sourceChecks": {
+    "passed": 4,
+    "command": [
+      "node",
+      "--test",
+      "--test-isolation=none",
+      "tools/cards/batch4-source.test.mjs"
+    ],
+    "run": "triggers-source-final-33",
+    "inputs": [
+      {
+        "path": "tools/cards/batch4-source.test.mjs",
+        "sha256": "95d8d1c4ec8c53c69948974c39d83d6db503d82be6c8613441907f191d3cf634"
+      },
+      {
+        "path": "rust-game/data/cards.json",
+        "sha256": "1b48ecd80704afea027528d8e64ee7e1a00cdc3bc73283b03826a8894a8981aa"
+      },
+      {
+        "path": "docs/factions/card-specifications.json",
+        "sha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c"
+      },
+      {
+        "path": "docs/factions/batch20-fourth-2026-10-22.json",
+        "sha256": "9a33d2707ee56862316ba97c74c776dbb2ee9ee31236152ec2ce11c17c2ddea0"
+      },
+      {
+        "path": "docs/factions/batch4-package-b-20261022.json",
+        "sha256": "aa9de668174b0f5ac31f743b97e28efda12869abb2349e1ff65f0bd1d14c044e"
+      }
+    ]
+  },
+  "zeroMatchRuns": [
+    "triggers-adjacent-mystic-20",
+    "triggers-final-order-32"
+  ],
+  "history": {
+    "triggers-compile-15": "11 passed,1 failed: old one-ability assertion intentionally updated to three typed programs; public gate retained",
+    "triggers-directed-final-24": "20 passed,1 failed: two-center test incorrectly treated next declaration as inspection confirmation. Corrected command sequence; also added missing WM044 order registration and contest-qualified event key",
+    "triggers-adjacent-packa-22": "36 passed,1 unchanged baseline count assertion failed"
+  },
+  "runnerCaveat": "run-native.py records actual cargo exitCode in JSON but does not propagate it as its Python process exit status. All result claims use cargo exitCode and named test lines, not wrapper exit status. Duplicate attempt for run23 refused before executing because prior log existed.",
+  "rules": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+      "sha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg",
+      "sha256": "3d851c97d73d77de0a919d8a1140f3d2cfb6eb18e92a4438916249f83984ad2f"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+      "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+    }
+  ],
+  "blockedDependency": {
+    "action": "execute and independently accept WM044 positive Sentinel entry-lock through a normal legal runtime source",
+    "target": "MSJC14 哨兵",
+    "reason": "No complete runtime society definition, printed construction constraint or two printed actions; absent from current society definitions",
+    "state": "dependency_pending_not_permission_denied",
+    "completed": "WM044 exact current personal MSJC14 condition and lock operation written; valid gray-society negative case tested",
+    "notDone": "positive normal-play lock integration and full-card closure",
+    "workaroundUsed": false
+  },
+  "schemaBoundary": {
+    "added": [
+      "Op::WM044Inspect",
+      "Op::WM044SentinelLock",
+      "FrameChoice::WM044Inspection",
+      "TargetPredicate::WM044HiddenOrSecretPlan"
+    ],
+    "releaseIdentityChanged": false,
+    "releaseArtifactBuilt": false,
+    "integrationNote": "Candidate serialized extensions; must not overwrite ABI95 or ABI96 release artifacts. Coordinator assigns appropriate integration identity."
+  },
+  "notRun": [
+    "remaining1951 native tests",
+    "MSJC14 positive legal source",
+    "complete WM044 legal-deck game",
+    "WASM build/runtime",
+    "Worker",
+    "browser",
+    "independent review",
+    "CI"
+  ],
+  "files": [
+    {
+      "path": "triggers-adjacent-inspect-18.log.gz",
+      "sha256": "3a3d00ae92af512aa7e5f9caf9f2361862305f474c3e7097ebedcf78442d3d6a",
+      "originalSha256": "6accd3da9df54b4765e2c46c4b8feeefe38baee6c8573a6ac321438a8f6e9591",
+      "originalBytes": 2078
+    },
+    {
+      "path": "triggers-adjacent-lifecycle-21.log.gz",
+      "sha256": "2963997d3fd044fe34d78b290f8ea8b64392503e8a55279bcb0749faea86d349",
+      "originalSha256": "3794367de2b8103abb9f6753f79e78b55b7eb761ea89191085cdd026d1a13247",
+      "originalBytes": 3415
+    },
+    {
+      "path": "triggers-adjacent-mystic-20.log.gz",
+      "sha256": "7505ee514fbd1f2ecd6b0ef2844452f06b653577cf0d8bb64914105807a18ae0",
+      "originalSha256": "88854e62c33b0aa0a7ba87c5eafa544767b41181e7ed388a3b6c1cf3ba407b53",
+      "originalBytes": 1367
+    },
+    {
+      "path": "triggers-adjacent-packa-22.log.gz",
+      "sha256": "b25e3e519c9857d862627b90655f16438efa7f21c6d5f574d3ff7534b5cbc5cd",
+      "originalSha256": "454497a2c47208b41575bc944950b25f9a76083abaf41c0b38fa91466afd02b9",
+      "originalBytes": 5646
+    },
+    {
+      "path": "triggers-adjacent-plans-17.log.gz",
+      "sha256": "a286d9ca32542d3a99e81f6f36ad009f4684083bbd4afa35dcbfa92b220c7b3a",
+      "originalSha256": "5edeb5a6ce07c31051803bc87cc1382a0a07b8dd18e58956cee42ae36b6e9bc7",
+      "originalBytes": 3694
+    },
+    {
+      "path": "triggers-adjacent-trap-19.log.gz",
+      "sha256": "0f19a8a7666f3b26a2dc9752ca2dac1ae3e0a5a8e928f25fd986e5127f1be2db",
+      "originalSha256": "73dc695413d42d059a2d2e5e1c87a532cbca2c741e08a5481dc682afaf6b4702",
+      "originalBytes": 3148
+    },
+    {
+      "path": "triggers-adjacent-vampire-23.log.gz",
+      "sha256": "a909e277faccb2261307d9431ae8d3b7ca405ad546b8e000a15117c69d2f63b2",
+      "originalSha256": "607a9234daf313199e2742211b9e73c0495b1adbc3969e81b08a0fdce4e52da1",
+      "originalBytes": 5134
+    },
+    {
+      "path": "triggers-compile-15.log.gz",
+      "sha256": "e7475e04827fb61ca0356a7532c6cb537a1401b826211f35161d782f8a173c90",
+      "originalSha256": "ac510b0045a9d2c968ed44671f11c6f39f51620279a3f45c3bb8365bc5b13eb7",
+      "originalBytes": 3322
+    },
+    {
+      "path": "triggers-directed-16.log.gz",
+      "sha256": "79471a28361f68a58ecb40051bc58787ab8357b11b3fb1d69382114356cfd600",
+      "originalSha256": "6d123204939f23d2c4dd04948b7750409d263c5b4e57766e699a642a651425a2",
+      "originalBytes": 3540
+    },
+    {
+      "path": "triggers-directed-final-24.log.gz",
+      "sha256": "93e40dc866aa3a3c1b7ae0988d3de043eeb10d72cc558daab7a85c2f8f221396",
+      "originalSha256": "1575529d54e834f0c123833925c23cfef802d98a62ab71e2caba3b844f35b20d",
+      "originalBytes": 4218
+    },
+    {
+      "path": "triggers-directed-final-25.log.gz",
+      "sha256": "cc747874c500833ca70085107219d6a667a479d54f29694bdc617f50c3660790",
+      "originalSha256": "b5e8da009e6b8bc13d659aa2acbdc66a5ce3a31156702b49e98c6a2eb18dde02",
+      "originalBytes": 3640
+    },
+    {
+      "path": "triggers-final-inspect-27.log.gz",
+      "sha256": "89bc18a80d35b7f786d7097cee9d7cd625105c39cbcf676b0dee8df85c60ea07",
+      "originalSha256": "4370079ea721e5344f56c1ee6d1adcf2d729d46869cf8ea5c6f179ff2cb3bcc6",
+      "originalBytes": 2078
+    },
+    {
+      "path": "triggers-final-lifecycle-29.log.gz",
+      "sha256": "f2962837a5f3a2e5bb0b41509eca448004e093bf65e2e39b6b589bd41b898509",
+      "originalSha256": "32e6c67145fb28b7bbdc4b69a3dda5e47ea58e9f82c7e4c6ce027b831bbf2c86",
+      "originalBytes": 3415
+    },
+    {
+      "path": "triggers-final-order-32.log.gz",
+      "sha256": "bc581aa6d194eca591351d517b9e053e6535e20b8f02d29c98b8ec7d4b9893c4",
+      "originalSha256": "845acf42c6e27c3c93f61a9696d6fed637051c5c09ebb60f126e50b401365b05",
+      "originalBytes": 1367
+    },
+    {
+      "path": "triggers-final-order-real-34.log.gz",
+      "sha256": "54adc505f974d73d4f3aec3ac46e3e303f886ca0af94af7c26e47e5f0b6752f6",
+      "originalSha256": "7bc3dd102817704af74be89ea06e4c88dede887f495c6bc701db44a8afb0c00c",
+      "originalBytes": 1742
+    },
+    {
+      "path": "triggers-final-packa-30.log.gz",
+      "sha256": "6a8fcdee1b46e0af432e2408e1572fbb237e778571028e870d0fee2d9d4bc9d1",
+      "originalSha256": "a04353b04525f01691f01a7ce93114e824d19dd97d84f9561f8e5233a56695b8",
+      "originalBytes": 5646
+    },
+    {
+      "path": "triggers-final-plans-26.log.gz",
+      "sha256": "528b7a124443280a99d38cdd63e5f0409308632c009b05a4aaa50a22faca3df6",
+      "originalSha256": "ab81894c6a8718f5d0ca68a8c7124ec9132fa2d7fe5a1ebfd3d296b5c9f867cb",
+      "originalBytes": 3694
+    },
+    {
+      "path": "triggers-final-trap-28.log.gz",
+      "sha256": "0d884b5a4d58f618b23aebb0bf04f3af28dacc934d9a7ca9d6f36366faf229eb",
+      "originalSha256": "c2e30ccceb8f59bba2bf7729a4abece5bd1d94e35bed7cbdf897fec653ab3842",
+      "originalBytes": 3148
+    },
+    {
+      "path": "triggers-final-vampire-31.log.gz",
+      "sha256": "9403d77348c4d344cef08ad7e5b0f194e20b73adb3ceeca8709981d63a3ec865",
+      "originalSha256": "67e3952bc618a9e4ad5343709fd7c4c5f3fa4a72c1e9c42d11bcda69624d4b31",
+      "originalBytes": 5134
+    },
+    {
+      "path": "triggers-source-final-33.log.gz",
+      "sha256": "c46396a7fe0ba4a514b345dd1730a615f1fbd28ef5c5bf9122ad09d362af8e67",
+      "originalSha256": "2249fac324d5d897d4596269e74686a69308de1194526ddf5879a71797ac7762",
+      "originalBytes": 551
+    },
+    {
+      "path": "triggers-adjacent-inspect-18.json.gz",
+      "sha256": "c6e88f563716f54cb211859a92a6a8f7c7c3903ce78e18024f8ba8d6d074a557",
+      "originalSha256": "bafc6ba36ab14911cc038dedfcd23f9d95a98316dc3c01994bfa36ccec24f544",
+      "originalBytes": 35710
+    },
+    {
+      "path": "triggers-adjacent-lifecycle-21.json.gz",
+      "sha256": "b7013ea452f2288ff5266f653e077748521c1703d01e8f14531f136fc2676935",
+      "originalSha256": "0df4ed7b1ede77b7fa3c905a4a748bb7f141fe7dd1d5b0d2353fb063c556ede0",
+      "originalBytes": 35712
+    },
+    {
+      "path": "triggers-adjacent-mystic-20.json.gz",
+      "sha256": "cd3e8504a3f5320c583ca97a54ddb2610e50d05162ef617ee0381179645b5cf4",
+      "originalSha256": "6591625c8c7e2ce9221ea0b83e2f698f6916463ad1ca9b8c3012f4a2f7a96ad8",
+      "originalBytes": 35710
+    },
+    {
+      "path": "triggers-adjacent-packa-22.json.gz",
+      "sha256": "d89fca2c3929edbea52b3b09780b6492b147ee6451d58ebf6b4c1b474129dc82",
+      "originalSha256": "ae90eb2412a835ead65905a2ea3a76f96a5efce599db267f3c7f4a27cc9f3229",
+      "originalBytes": 35713
+    },
+    {
+      "path": "triggers-adjacent-plans-17.json.gz",
+      "sha256": "40128b7a97fac2280aa3a46513e33f2891671a6bf7a44ddfae121f92c88a79e9",
+      "originalSha256": "20ba47a82efb76f9ed10b7d411e7a30d14159d836646eca958f5a543eece2405",
+      "originalBytes": 35707
+    },
+    {
+      "path": "triggers-adjacent-trap-19.json.gz",
+      "sha256": "0179f30c963d44f2d5b1988d13e5d7a47bb17519a1952ddb388b3328c8bcc358",
+      "originalSha256": "c7b4b94eb953e4a5d8e16316a0a411c5f19dedbb1fca6677804056cee7813239",
+      "originalBytes": 35707
+    },
+    {
+      "path": "triggers-adjacent-vampire-23.json.gz",
+      "sha256": "277b147f1753a5fc2a66508a5b90706de7cad89ec31bb0eb4110fc9c12f9800b",
+      "originalSha256": "139a2f99bb212c9ec6f79ececf92719b15ab32642d79a65e12a23f44e7593e26",
+      "originalBytes": 35719
+    },
+    {
+      "path": "triggers-baseline-count.json.gz",
+      "sha256": "6648cc42a1e06879d79b6aa29f8bc9491d5debc0478af0e7980f5dd80f43c42e",
+      "originalSha256": "f7b0fc5d88c4125aea179db8ac4f57e92d9e8e9a97ec66358cd0680b9b234658",
+      "originalBytes": 720
+    },
+    {
+      "path": "triggers-compile-15.json.gz",
+      "sha256": "21bf23c5c039e57fcf129b3acc73dd35ff855a8d8867b06ec5008a4adf945fb7",
+      "originalSha256": "aa3f702db405bba78048dd007d912d45ad9706fa858819c880774bd9c023664f",
+      "originalBytes": 35708
+    },
+    {
+      "path": "triggers-directed-16.json.gz",
+      "sha256": "18afd4309426891b1bfcdf0e674413f792285811023fb088296db2b83e53bb1c",
+      "originalSha256": "0bdf651d69304c83a4eaa00051eb9718fe9969a8ba6599f9e22934d0143ed304",
+      "originalBytes": 35716
+    },
+    {
+      "path": "triggers-directed-final-24.json.gz",
+      "sha256": "3ef4386ed81c885006ce169a9a3e36cd3c475311148d2d1723c89e65380e6c35",
+      "originalSha256": "d137cdee21bb3a2a0d8c66f363ce24bfa2ec7f1cf6630813fdc25e7c798ddeed",
+      "originalBytes": 35718
+    },
+    {
+      "path": "triggers-directed-final-25.json.gz",
+      "sha256": "c2a9eba5aff749812e9cdc19e517aa18d927236619ca6be3a8c351b769a80d68",
+      "originalSha256": "193f1974fbc380bc4200b6789d8f13f42eee1f82fd4a1527603d48fc7f830740",
+      "originalBytes": 35716
+    },
+    {
+      "path": "triggers-final-inspect-27.json.gz",
+      "sha256": "ddbc7f8d66f293277a677b176c49543989180502dc80932f3fdf1e9fa03f55d3",
+      "originalSha256": "a2cbcf7d0f4808e4d2236694bd9a083869d0b668527cccd2a4f991bc1ead25e6",
+      "originalBytes": 35710
+    },
+    {
+      "path": "triggers-final-lifecycle-29.json.gz",
+      "sha256": "c5f7c03645470070c39829e694b98dd5b14ca2850800126b89e10ad120d10e91",
+      "originalSha256": "4699715780a0cf4b6276fe404d99cf65be74eee63c1c2372eac91159e0f26a53",
+      "originalBytes": 35712
+    },
+    {
+      "path": "triggers-final-order-32.json.gz",
+      "sha256": "245e8414d25d6b1a889ed724290701d30686399d4510c0a25b72356c8a64f03e",
+      "originalSha256": "e809b2e1d44313b706e784d249f0e22c2e686af9150d4329c796302d25f60b53",
+      "originalBytes": 35714
+    },
+    {
+      "path": "triggers-final-order-real-34.json.gz",
+      "sha256": "c249d2e057c6324bfb1272805695cd1817001442eeb9de28275cf1d89f1b7e72",
+      "originalSha256": "16d158a754aec2779987b1af96cb020d0ae32c084452cd833492dd6833ccdc70",
+      "originalBytes": 35706
+    },
+    {
+      "path": "triggers-final-packa-30.json.gz",
+      "sha256": "6c3d3fb2846d0e498571313fde8946be2a13bd9768e5473f8b93eedf868d6d87",
+      "originalSha256": "5441bae333cd631c4cc8916fbde9c2f4014197b85db6d83ea9f8fab6c842ad31",
+      "originalBytes": 35713
+    },
+    {
+      "path": "triggers-final-plans-26.json.gz",
+      "sha256": "47c51c532101f143042b3eb4b6b09a5e9f0dea2b0f50358b54f9a21c148c7334",
+      "originalSha256": "f6ba4541459473fd27e7e32f2ed729919fc532a0cddda267a9e706bd394b3478",
+      "originalBytes": 35708
+    },
+    {
+      "path": "triggers-final-trap-28.json.gz",
+      "sha256": "043a3d40ff1b20987241f67909df703532508427ee4f952d98da1d0593e11391",
+      "originalSha256": "58bc56093554c35d6d9203c759ef1aa2312ac8949737a01e563a4448e53be129",
+      "originalBytes": 35707
+    },
+    {
+      "path": "triggers-final-vampire-31.json.gz",
+      "sha256": "1f70f168088965e2ecfb9bd5bfcc8c18275b6b3b18635a054b76f55453a28420",
+      "originalSha256": "d0afdf8bf15fa7069a528df3b045f1476718ada2e569b281e7e553992e558d73",
+      "originalBytes": 35719
+    },
+    {
+      "path": "run-native.py.gz",
+      "sha256": "a6dbc712ade6ad7b2f14c5ada670cc9ec3fdd3d6a473bd734247a7b734ba44a2",
+      "originalSha256": "517d8dd39ab0b5e0c7e07018bedc7cef4aba3459462665b609953388c506e86f",
+      "originalBytes": 1932
+    }
+  ]
+}

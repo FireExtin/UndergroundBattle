@@ -38,6 +38,7 @@ pub enum SocietyDeckConstraint {
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
     ClockmakersOffColorMaximum,
+    GrayNeutralOrNoMagic,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -89,6 +90,13 @@ pub(crate) fn validate_construction(
                 let off: usize = entries.iter().filter(|e| cards.iter().any(|c| c.id == e.card_id
                     && !["红", "中立"].contains(&c.color.as_str()))).map(|e|e.count).sum();
                 if off > 12 { return Err(format!("计时者非红且非中立牌合计不能超过12张，当前{off}张")); }
+            }
+            SocietyDeckConstraint::GrayNeutralOrNoMagic => {
+                if society.card.id != "MSJC14" { return Err("哨兵构筑条件不能移植".into()); }
+                if let Some(c) = entries.iter().filter_map(|e| cards.iter().find(|c| c.id == e.card_id))
+                    .find(|c| !["灰", "中立"].contains(&c.color.as_str()) && c.magic_icon != crate::rules::MagicIcon::None) {
+                    return Err(format!("哨兵构筑不允许具有魔法领域图标的异色牌：{}", c.name));
+                }
             }
             SocietyDeckConstraint::GreenNeutralOrPrintedHumanCombat => {
                 if society.card.id != "MSJC11" {
@@ -435,6 +443,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
             red_gray_society("MSJC05", "国家机构", "政府权力", "灰", "机构"),
             crate::batch4_clock::society(),
         ]);
+        societies.push(crate::sentinel::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -506,7 +515,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14"]
             );
         }
         assert_eq!(

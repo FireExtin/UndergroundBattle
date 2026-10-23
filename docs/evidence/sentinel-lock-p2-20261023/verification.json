@@ -1,0 +1,207 @@
+{
+  "sourceCommit": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+  "base": "7002635f4d346a2acbc5827ae451d82178baf3dd",
+  "status": "P2 fixed by author; awaiting independent re-review",
+  "finding": "SENTINEL-INHERITED-LOCK",
+  "runtimeChanges": [
+    "Sentinel-specific read-only descendant lock query",
+    "SentinelLockedAnchor uses effective lock at declaration and resolution"
+  ],
+  "before": {
+    "run": "p2-before",
+    "exitCode": 101,
+    "failed": 1,
+    "allProductInputsMatchReviewedBase": true,
+    "onlyExtraInputs": "reviewer appended tests"
+  },
+  "finalNativePassed": 65,
+  "finalNativeFailed": 0,
+  "runs": [
+    {
+      "run": "p2-sentinel",
+      "passed": [
+        "sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host",
+        "sentinel_tests::independent_sentinel_room_lock_is_paid_once_and_keeps_front_private",
+        "sentinel_tests::sentinel_construction_uses_magic_not_loyalty",
+        "sentinel_tests::sentinel_inherited_last_lock_destroyed_by_paid_response_cancels_without_refund",
+        "sentinel_tests::sentinel_inherited_lock_rejects_other_markers_reverse_inheritance_and_noncharacters",
+        "sentinel_tests::sentinel_inherited_nested_lock_is_read_only_and_does_not_flow_backwards",
+        "sentinel_tests::sentinel_insufficient_assets_exhaustion_and_response_timing",
+        "sentinel_tests::sentinel_lock_response_reveal_invalidates_and_marker_stacks",
+        "sentinel_tests::sentinel_move_filters_same_region_unlocked_hidden_mover_and_teammate",
+        "sentinel_tests::sentinel_move_independent_targets_any_controller_anchor",
+        "sentinel_tests::sentinel_original_fields_and_full_registry",
+        "sentinel_tests::sentinel_paid_lock_enemy_hidden_only_and_visible_marker",
+        "sentinel_tests::sentinel_response_anchor_movement_follows_current_region_without_false_same_region_move",
+        "sentinel_tests::sentinel_response_invalidates_either_target_without_refund_or_rebind"
+      ],
+      "exitCode": 0,
+      "allNativeInputsMatch": true
+    },
+    {
+      "run": "p2-wm044",
+      "passed": [
+        "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion",
+        "batch4_intelligence_tests::independent_wm044_paid_response_destruction_changes_later_hidden_entry",
+        "batch4_intelligence_tests::independent_wm044_real_target_reveal_cancels_old_inspection",
+        "batch4_intelligence_tests::wm044_entry_lock_from_legally_selected_sentinel",
+        "batch4_intelligence_tests::wm044_hidden_slow_all_four_seats_paid_entry_and_privacy",
+        "batch4_intelligence_tests::wm044_hidden_slow_face_up_and_reveal_do_not_gain_it",
+        "batch4_intelligence_tests::wm044_hidden_slow_hidden_grave_entry_uses_resolution_and_no_printed_trigger",
+        "batch4_intelligence_tests::wm044_hidden_slow_jc032_paid_search_and_bq104_entry_search",
+        "batch4_intelligence_tests::wm044_hidden_slow_live_source_only_not_asset_or_grave",
+        "batch4_intelligence_tests::wm044_hidden_slow_movement_and_hide_preserve_orientation",
+        "batch4_intelligence_tests::wm044_hidden_slow_multiple_exhausted_sources_and_new_source_identity",
+        "batch4_intelligence_tests::wm044_hidden_slow_normal_next_turn_readies_without_reentry",
+        "batch4_intelligence_tests::wm044_hidden_slow_not_retroactive_and_removal_stops_future_entries",
+        "batch4_intelligence_tests::wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission",
+        "batch4_intelligence_tests::wm044_hidden_slow_reads_live_source_after_response_before_grave_entry",
+        "batch4_intelligence_tests::wm044_hidden_slow_xg27_paid_death_reentry",
+        "batch4_intelligence_tests::wm044_sentinel_entry_decline_and_response_target_loss",
+        "batch4_intelligence_tests::wm044_trigger_actual_win_hidden_inspection_only_original_player_sees_front",
+        "batch4_intelligence_tests::wm044_trigger_current_controller_each_actual_win_not_only_first",
+        "batch4_intelligence_tests::wm044_trigger_decline_tie_loss_and_missing_target",
+        "batch4_intelligence_tests::wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation",
+        "batch4_intelligence_tests::wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal",
+        "batch4_intelligence_tests::wm044_trigger_sentinel_dependency_is_exact_and_not_substituted_by_gray_society",
+        "batch4_intelligence_tests::wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+        "batch4_intelligence_tests::wm044_trigger_target_departure_cancels_without_rebinding",
+        "batch4_intelligence_tests::wm044_trigger_two_centers_each_offer_once_for_same_actual_win"
+      ],
+      "exitCode": 0,
+      "allNativeInputsMatch": true
+    },
+    {
+      "run": "p2-gray-lock",
+      "passed": [
+        "gray_lock_tests::gray_lock_canonical_gates_reject_transplants_nested_ops_modes_and_field_edits",
+        "gray_lock_tests::gray_lock_chase_guard_failure_still_spends_once_and_source_reentry_does_not_inherit",
+        "gray_lock_tests::gray_lock_chase_is_fast_pays_two_no_exhaust_and_current_anchor_region",
+        "gray_lock_tests::gray_lock_chase_no_in_place_declaration_or_unlocked_target_and_failures_atomic",
+        "gray_lock_tests::gray_lock_chase_response_colocation_skips_move_but_independent_icon_still_applies",
+        "gray_lock_tests::gray_lock_citizen_local_target_rules_and_original_region_replacement",
+        "gray_lock_tests::gray_lock_citizen_resolution_time_branch_adds_one_or_deals_one_not_both",
+        "gray_lock_tests::gray_lock_citizen_source_leave_or_move_preserves_frozen_locality_and_controller",
+        "gray_lock_tests::gray_lock_city_play_gate_is_atomic_and_effect_placement_is_distinct",
+        "gray_lock_tests::gray_lock_continuous_room_protocol_pause_reopen_and_real_response_passes",
+        "gray_lock_tests::gray_lock_damage_prevention_and_self_target_use_existing_atomic_damage",
+        "gray_lock_tests::gray_lock_declaration_restore_wrong_actor_duplicate_old_choice_are_atomic",
+        "gray_lock_tests::gray_lock_dog_faceup_play_has_no_reveal_and_equipment_only_is_forbidden",
+        "gray_lock_tests::gray_lock_lethal_damage_uses_existing_controller_frozen_death_and_owner_graveyard",
+        "gray_lock_tests::gray_lock_marker_move_retains_while_leave_flip_and_death_clear",
+        "gray_lock_tests::gray_lock_per_turn_usage_is_original_instance_not_owner_or_controller",
+        "gray_lock_tests::gray_lock_restore_rejects_impossible_accepted_cursor_and_frame_choice_containers",
+        "gray_lock_tests::gray_lock_restore_rejects_transplanted_program_and_malformed_frozen_frame",
+        "gray_lock_tests::gray_lock_reveal_optional_any_region_any_controller_hidden_or_faceup",
+        "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+        "gray_lock_tests::gray_lock_sqlite_receipt_restore_and_duplicate_do_not_add_two_markers",
+        "gray_lock_tests::gray_lock_target_response_move_hide_or_new_instance_cancels_citizen_frame",
+        "gray_lock_tests::gray_lock_turn_end_expires_icon_and_reopens_original_dog_limit",
+        "gray_lock_tests::gray_lock_whole_original_fields_and_closed_definitions",
+        "gray_lock_tests::gray_lock_zero_marker_fields_keep_old_card_and_view_serialization_shape"
+      ],
+      "exitCode": 0,
+      "allNativeInputsMatch": true
+    }
+  ],
+  "sourceAssertionsPassed": 4,
+  "importedIndependentTests": 5,
+  "newAuthorTests": 3,
+  "independentReviewPassed": false,
+  "globalCountChanged": false,
+  "archive": {
+    "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm044-sentinel-review/evidence.tar.gz",
+    "sha256": "d72cf1580c0fd7f43e86005a43b00b453a27c33a6be621cacbddec223a4211fd"
+  },
+  "scope": "14 sentinel,26 WM044,25 adjacent gray-lock tests; real paid reviewer counterexample now green. New tests cover legal nested descendants, read-only markers, no parent/sibling inheritance, non-lock marker exclusion, invalid anchor types, real paid destruction response cancellation with no refund. No new damaged-save tests.",
+  "notRun": [
+    "remaining native suite",
+    "full match",
+    "WASM",
+    "Worker",
+    "browser",
+    "independent re-review"
+  ],
+  "files": [
+    {
+      "path": "p2-before.log.gz",
+      "sha256": "a1c81698c5ca1054f04bff3a2634099759bd17c4b25ea2b9fb31c02b0d5c69c9",
+      "originalSha256": "a50967297b4cd2ad93697c63ee6a5094a73238c4dedc982fc7f7d30602967e77"
+    },
+    {
+      "path": "p2-gray-lock.log.gz",
+      "sha256": "4391b544f888463734174e9949f83692df6d4cc51b86722847bf0d409be9cfd8",
+      "originalSha256": "46d0d786c923926f4d122410401f5b0c19cb25564f4b78515e97f31457ade2cc"
+    },
+    {
+      "path": "p2-review-responses-03.log.gz",
+      "sha256": "d3b3b81ef1c1bb4b2b9682355c98aafc412ff8360b88c252080360338ebc8df4",
+      "originalSha256": "5944bfcdbbad9477835731efaf1ddf4484526b0e9ada92ff132f0ce58d3fc046"
+    },
+    {
+      "path": "p2-sentinel.log.gz",
+      "sha256": "bc6380dcf575a6aa802b5c6b7a2706237a4be6438ea5d410ae4229b9ae69d8fa",
+      "originalSha256": "81e364812cdd5e64c3fbb8a8aaeb7eb9115bd2287a4e5cfac3d0d4d96d76869e"
+    },
+    {
+      "path": "p2-source.log.gz",
+      "sha256": "c8e170eef999bbe1e9f824b1d43a620064ba0eea2df5cc30befd3218551a18e0",
+      "originalSha256": "17eaba33db86eea331eadea0f3a5fb4b06d9a4f789e5d79d40504f775e4680bb"
+    },
+    {
+      "path": "p2-wm044.log.gz",
+      "sha256": "92d476642ec560da7ee3acb08106bbef397274639a9648754107ac06632d5039",
+      "originalSha256": "6cc1b6523de14365f0ca114c6e74faa8a36298c45462a36253cb9300d0883120"
+    },
+    {
+      "path": "p2-before.json.gz",
+      "sha256": "ea698e110663b0c8bdff2dc083c7c2ef19df53067dee1dd1bb329999a9311ad2",
+      "originalSha256": "cfd7394c0db7bbf27f00799a1025744007542cb9fb1e7098d63550e1cf5275cd"
+    },
+    {
+      "path": "p2-gray-lock.json.gz",
+      "sha256": "8bb1ff82f0ba508934d720dd1aefce8bc60bd507ee504e229d230e501a7b89c7",
+      "originalSha256": "0e5fb46bad793dd41f036a3925dad0b0b012b4075b74e29baf1816a0254db68e"
+    },
+    {
+      "path": "p2-review-result.json.gz",
+      "sha256": "345efe4ee6d9e943fee8af88eb6b65b7308fa7713d77fa27f939ca8fb071fad4",
+      "originalSha256": "6c9e9f4f40c9720f32688b4c77ef9d867d914e18e84673f8c235da7478a8ae43"
+    },
+    {
+      "path": "p2-sentinel.json.gz",
+      "sha256": "53721a80906d025c913f62b5e519c42b946ad03e8e97d9dfb5eefd599fe54ef6",
+      "originalSha256": "ff621a3de5a525ac040e787eab98da6f50bfcda65ad75d1582f71a921246d2b7"
+    },
+    {
+      "path": "p2-source.json.gz",
+      "sha256": "76f9abb6c2d21718ef2aa06948825f2ba22537cc39db28df9e6e67ccbe5fb4cd",
+      "originalSha256": "69fbe69de6d30740c58f2b573d108c3e9929709242bfeb65b5c55e774db998bd"
+    },
+    {
+      "path": "p2-wm044.json.gz",
+      "sha256": "9252289a19d1c6c1f62fd87c88c604db78ca6e72348a85f1d20341fa21a20a09",
+      "originalSha256": "211cfdda32b58bba447c102ecb5b257da56503bfe977e5178d3846f145fdd2c3"
+    },
+    {
+      "path": "p2-review-marker-rule-p11.txt.gz",
+      "sha256": "2fe875b1bb1c8f1a4818607d28932d10022d973210c0e1529f09df8de5523dd2",
+      "originalSha256": "4d0c1d8108af81f3473ee16cc05583a641a26d4700f0ab271345ea8fffb1f6c4"
+    },
+    {
+      "path": "review.txt.gz",
+      "sha256": "2b390f9c5940e85564a416f1d8405fab4b93929ccc2a19ebe29036934a46275e",
+      "originalSha256": "403bedf5535713fcaec280e8349fa49425c06700a849ef4661f2e9989a56a287"
+    },
+    {
+      "path": "independent-tests.patch.gz",
+      "sha256": "a0e2bf15531bd2567dd6adb0e16584973c392d2646e3af4eacc84dee0c67517c",
+      "originalSha256": "3bf74205a3e92e611263abb5d6f0ff8256a20504b9f7f6dc65a902478cd781da"
+    },
+    {
+      "path": "run-native-v2.py.gz",
+      "sha256": "29d0870969ad5971c3f581ebbdd871d3a54417b73c2113ff7e0fa015dafbedd4",
+      "originalSha256": "cf0bd45feecc773d9b2e43a25d1327e806b585a9d63c7f7a6a4d3a46f4771273"
+    }
+  ]
+}
