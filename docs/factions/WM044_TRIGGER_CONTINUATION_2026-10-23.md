@@ -77,3 +77,6 @@ MSJC14未在当前 `society::definitions()` 中，缺的并非一个显示名称
 没有WASM/Worker/浏览器、从合法牌组开始的完整WM044对局、MSJC14正条件试玩或独审。
 本轮没有运行其余1951/2103项原生测试。旧切片138项只保留原身份，未叠加到本轮覆盖数。
 CPU31、nice19、Cargo jobs1/test-threads1，测试与缓存只在本任务目录；未推送、CI、合main或发布。
+
+源码和测试固定为 `cfc2566d12aeb2b5aa0ed18f3e01a64aa4d4a46b`；后续证据提交不改产品。
+完整输入绑定与所有中途日志见 [verification.json](../evidence/wm044-triggers-20261023/verification.json)。
