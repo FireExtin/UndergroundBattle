@@ -1,0 +1,157 @@
+[
+  {
+    "path": "candidate20.json",
+    "bytes": 41664,
+    "sha256": "d317578b78552bfe68d956cec042f75e1553328568bdd6dd6affd80328ac8a96"
+  },
+  {
+    "path": "prepare-plan.py",
+    "bytes": 13529,
+    "sha256": "8f91e21dcf481b7b8af1b1e8217dad58b3e4b543aaaa263cb781c8147c3b8d13"
+  },
+  {
+    "path": "reference-fetch-manifest.json",
+    "bytes": 1382,
+    "sha256": "05871531f01a06cb921970fd1baa67aec79198528b46b406238a3fa5fe802681"
+  },
+  {
+    "path": "remaining-rgbk.csv",
+    "bytes": 7898,
+    "sha256": "16b40ced395c8c717f226e1b6896124da9c64382b6acb0ef824e4429644a0314"
+  },
+  {
+    "path": "source-corrections.json",
+    "bytes": 1315,
+    "sha256": "b8e4dea525f594397cb391c698f7af56a3cfd56b10fe653b59d9f08caf7121df"
+  },
+  {
+    "path": "sources.json",
+    "bytes": 1826,
+    "sha256": "f3bf846733922c659b851242dc54156fd7d50b4f54f1c7aeac494c5716eb186c"
+  },
+  {
+    "path": "uwpro-candidate20/BQ039.tres",
+    "bytes": 1235,
+    "sha256": "422d4025053c5c321bfaeda8ecac140f995953ef2534943d5195db198901b67b"
+  },
+  {
+    "path": "uwpro-candidate20/BQ057.tres",
+    "bytes": 1256,
+    "sha256": "88e4d977414980248cf1af326575981edad4c4ec09b2af25e73283193efde5a7"
+  },
+  {
+    "path": "uwpro-candidate20/BQ064.tres",
+    "bytes": 1121,
+    "sha256": "e19ce2d34562b3ccc1b746d6a080fa993341b0dc04108d94000ecc53303b5242"
+  },
+  {
+    "path": "uwpro-candidate20/BQ081.tres",
+    "bytes": 1228,
+    "sha256": "c4e001cecfa6675c83700c5f0747876b8c4abf5de2bbc585590a2edd2a7dabc6"
+  },
+  {
+    "path": "uwpro-candidate20/BQ090.tres",
+    "bytes": 1174,
+    "sha256": "57197a8fd6a2de2fa88afa03cafa49c5ad7b75a917125537618b0a201c8bdc42"
+  },
+  {
+    "path": "uwpro-candidate20/BQ092.tres",
+    "bytes": 1263,
+    "sha256": "3bd9384bfe20e40a2ce33f9234115c07f1dd30a4a502efb6bf87ec8b67db884e"
+  },
+  {
+    "path": "uwpro-candidate20/BQ093.tres",
+    "bytes": 1273,
+    "sha256": "16e76849109970b25486023cd6efc631661c33d754c0141ccd162b47e903defe"
+  },
+  {
+    "path": "uwpro-candidate20/CQ15.tres",
+    "bytes": 1392,
+    "sha256": "9c5df597ef52e2912585c2ff1d4ddc6fd5d67ebd4220b0a5be6cd58f4cb3e423"
+  },
+  {
+    "path": "uwpro-candidate20/CQ18.tres",
+    "bytes": 1331,
+    "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc"
+  },
+  {
+    "path": "uwpro-candidate20/CQ19.tres",
+    "bytes": 1322,
+    "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738"
+  },
+  {
+    "path": "uwpro-candidate20/CQ24.tres",
+    "bytes": 1263,
+    "sha256": "f019bf75421222b241f6986c43716663bba58ccd48bf814dcf9287b0c1c08e92"
+  },
+  {
+    "path": "uwpro-candidate20/CQ28.tres",
+    "bytes": 1311,
+    "sha256": "051705a20336884e81ec8159ecb34b72fc14f34510f4b1fab77f0665cae7b354"
+  },
+  {
+    "path": "uwpro-candidate20/WM024.tres",
+    "bytes": 1270,
+    "sha256": "629012a16555f6809f92fd1b5db969f8af731ea078a7f3d5aeebd4d2e3f8af34"
+  },
+  {
+    "path": "uwpro-candidate20/WM025.tres",
+    "bytes": 1246,
+    "sha256": "adc1ad50fcd5ae6500570e741bbc7d52a7b5f5d3748d7814b3ae0d6c81110425"
+  },
+  {
+    "path": "uwpro-candidate20/WM028.tres",
+    "bytes": 1137,
+    "sha256": "8d7aca38542ec12fc8586eaff847258b072b2fe26bbd989c5b57f8df2ba8a233"
+  },
+  {
+    "path": "uwpro-candidate20/WM057.tres",
+    "bytes": 1241,
+    "sha256": "7b923dd3cf7a44759fbb6daa8ea8a66bbf5140d41ae7908f2a345450f4c674a2"
+  },
+  {
+    "path": "uwpro-candidate20/WM064.tres",
+    "bytes": 1301,
+    "sha256": "1e82b237d3e3eb95a12afc0a2420ba80a443d44cf9558458c831b3d5bba058a2"
+  },
+  {
+    "path": "uwpro-candidate20/XG13.tres",
+    "bytes": 1303,
+    "sha256": "3f8964d4635a78e9aca0f87578545dbabb30948899ac99f3ab43eba13df72d59"
+  },
+  {
+    "path": "uwpro-candidate20/XG20.tres",
+    "bytes": 1293,
+    "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03"
+  },
+  {
+    "path": "uwpro-candidate20/XQ19.tres",
+    "bytes": 1077,
+    "sha256": "b625cf662a71a2884737bc25571f24f628f65e62b1e305565726d2709bb0c1c6"
+  },
+  {
+    "path": "uwpro-candidate20-manifest.json",
+    "bytes": 5073,
+    "sha256": "1d6eae9b1a0556946bbd8b09ccc087d07c0ea0306c68f67e6d3ef6a32dba55b8"
+  },
+  {
+    "path": "uwpro-candidate20-name-check.json",
+    "bytes": 2635,
+    "sha256": "f42743bccd9e974c76e26b2e7154d3b0992d102d1ddf46b0e262811341e09692"
+  },
+  {
+    "path": "uwpro-registration.json",
+    "bytes": 2003,
+    "sha256": "7f1610d36dd60307ddea2105cd5f7cda9f161f98eabbb0e7588d0d97f9e444f6"
+  },
+  {
+    "path": "uwpro-tree.json.gz",
+    "bytes": 149995,
+    "sha256": "336663218b0ef606724b4847ae01fdd26473f22e59e6a76b744ad8e5a8eabe71"
+  },
+  {
+    "path": "verification.json",
+    "bytes": 770,
+    "sha256": "87c16aebca53174f6f8772728d2fd3f43a614c9a95375a464c88d7a5442e42e4"
+  }
+]

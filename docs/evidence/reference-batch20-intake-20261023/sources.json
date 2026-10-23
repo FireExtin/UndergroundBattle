@@ -1,0 +1,33 @@
+{
+  "UWPro": {
+    "repository": "RETORETO/UnderWorldPro",
+    "url": "https://github.com/RETORETO/UnderWorldPro",
+    "fixedAnalyzedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "observedRemoteHead": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "sourceTreeTruncated": false,
+    "playerTres": 667,
+    "registeredEffects": 135,
+    "licenseSource": "README.md lines75-81, repository global noOSS license; current project uses author/illustrator direct permission",
+    "READMEsha256": "9aad26f0e426a09ef3f71167ada935286f3943a4ff533ebd2b444597a96b6c73",
+    "userPermissionEvidence": {
+      "message": "Sentinel_e03beb50ee4881918270242ed3e5bcde",
+      "time": "2026-10-21T08:45:37Z",
+      "text": "代码作者和插画作者明确许可我复用了。请继续，也可以对照我们的素材图，看你。"
+    },
+    "sourceGlobalLicenseChanged": false,
+    "attribution": "RETORETO, original per-file paths/commit and original illustrator names retained"
+  },
+  "Suez": {
+    "repository": "SuezKrish/Underworld",
+    "url": "https://github.com/SuezKrish/Underworld",
+    "fixedAnalyzedSha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+    "observedRemoteHead": "1fb10f60a99f38dcf69104e026f48d2e3d91eb37",
+    "currentCodeAuditedOrTested": false,
+    "licenseSource": "README.md lines57-59 and THIRD_PARTY_NOTICES.md; dependency/SitesMIT does not license game code/art",
+    "READMEsha256": "3d372ba100b8cf21cf4440fc41ea0185c32a4ea61ee75b8a75789e668e28737b",
+    "currentReadmeEqualsRetainedOldReadme": true,
+    "permission": "logic and test ideas for independent implementation; no author direct-copy authorization provided",
+    "old176TestsNotCurrentHeadEvidence": true
+  },
+  "sourceReads": "Official gh GET and git ls-remote only; no external scripts run; no workflow actions or credential output"
+}

@@ -1,0 +1,31 @@
+{
+  "timeUtc": "2026-10-23T17:37:22.537394+00:00",
+  "candidateIds": 20,
+  "duplicateIds": 0,
+  "overlapWithCurrent250AndInFlight": 0,
+  "sourceImagesHashMatched": 20,
+  "uwproResourcesGitBlobMatched": 20,
+  "uwproNamesExactlyMatched": 20,
+  "sourcePrimariesDirectlyViewedThisTurnCandidate": 6,
+  "preImplementationSpecCorrectionsCandidate": 5,
+  "extraFutureSpecCorrection": 1,
+  "groups": [
+    8,
+    6,
+    6
+  ],
+  "colorCounts": {
+    "红": 3,
+    "黑": 8,
+    "蓝": 4,
+    "灰": 5
+  },
+  "inCurrentFourth50": 4,
+  "futureCandidates": 16,
+  "remainingRGBCanonicalSourceRows": 69,
+  "productRuntimeFilesChanged": false,
+  "productCandidateWM037StillFrozen": true,
+  "implementationTestsRun": 0,
+  "newNativeCardsCompleted": 0,
+  "CIorPushOrDeployment": false
+}
