@@ -246,7 +246,7 @@ impl Game {
         match shown.card.definition.as_str() {
             "WM021" => 5,
             "WM032" if !shown.destroyed_regions.is_empty() || shown.destruction_markers > 0 => 3,
-            "WM061" => 2,
+            "WM061" | "WM043" => 2,
             "WM037" => 1,
             _ => 0,
         }

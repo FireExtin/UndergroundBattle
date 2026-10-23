@@ -1,0 +1,54 @@
+{
+  "timeUtc": "2026-10-23T16:37:40.918516+00:00",
+  "hostname": "ddd-System-Product-Name",
+  "cpuModel": "AMD Ryzen 9 9950X 16-Core Processor",
+  "loadavg": "2.39 1.80 1.22 8/3911 752366",
+  "processes": [
+    "    PID  NI PSR %CPU   RSS COMMAND",
+    " 752358   0   0  100 13472 python3",
+    " 752352  19  31 99.3 956104 rustc",
+    " 736782   -   3 10.0 133280 localsearch-3",
+    "   9579   0  12  9.1 267652 ChatGPT",
+    "   7016   0   9  6.6 364348 clash-verge",
+    "   9951   0   2  6.1 1328388 ChatGPT",
+    "   9340   0  27  3.9 476932 WebKitWebProces",
+    " 390737   0  11  3.1 227128 ChatGPT",
+    " 752348  19  31  2.0 47380 cargo",
+    "   6800   0   8  1.6 353620 gnome-shell",
+    "   9526   0   1  1.0 584676 ChatGPT",
+    "   7959   0  10  1.0 122096 Xwayland",
+    " 209311   0  11  1.0 526752 qq",
+    " 201840   0   0  0.8 688836 chrome",
+    " 752307  19  31  0.4 19156 python3"
+  ],
+  "listening": [
+    "State  Recv-Q Send-Q Local Address:Port  Peer Address:Port",
+    "LISTEN 0      10         127.0.0.1:44057      0.0.0.0:*   ",
+    "LISTEN 0      511        127.0.0.1:9210       0.0.0.0:*   ",
+    "LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*   ",
+    "LISTEN 0      10         127.0.0.1:4001       0.0.0.0:*   ",
+    "LISTEN 0      4096         0.0.0.0:22         0.0.0.0:*   ",
+    "LISTEN 0      4096       127.0.0.1:631        0.0.0.0:*   ",
+    "LISTEN 0      4096       127.0.0.1:7897       0.0.0.0:*   ",
+    "LISTEN 0      128        127.0.0.1:39609      0.0.0.0:*   ",
+    "LISTEN 0      10         127.0.0.1:4310       0.0.0.0:*   ",
+    "LISTEN 0      10         127.0.0.1:4301       0.0.0.0:*   ",
+    "LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*   ",
+    "LISTEN 0      4096           [::1]:631           [::]:*   ",
+    "LISTEN 0      4096            [::]:22            [::]:*   ",
+    "LISTEN 0      5                  *:3389             *:*   ",
+    "LISTEN 0      5                  *:3390             *:*   "
+  ],
+  "ourLimits": {
+    "affinity": [
+      30
+    ],
+    "nice": 19,
+    "ioClass": "idle",
+    "cargoJobs": 1,
+    "testThreads": 1,
+    "virtualMemoryGiB": 8,
+    "offline": true,
+    "portOpened": false
+  }
+}

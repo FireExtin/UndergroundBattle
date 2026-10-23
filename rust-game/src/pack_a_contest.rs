@@ -143,6 +143,7 @@ impl Game {
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
+        if f.ability_key == crate::wm043::SHOWN || f.steps.iter().any(|s| matches!(s.op, Op::WM043ShownLock { .. })) { return self.validate_wm043_post(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let id = f.source.card.definition.as_str();

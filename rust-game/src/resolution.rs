@@ -575,6 +575,7 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        if definition == "WM043" { crate::wm043::validate_action(a)?; }
         crate::next20_blue_gray::validate_action(definition, a)?;
         if definition == "XQ23" && *a != (Action {
             card_id: a.card_id.clone(), target_id: a.target_id.clone(), ability_id: a.ability_id.clone(),
@@ -782,6 +783,7 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                TargetPredicate::WM043LockedTarget => source.card.definition == "WM043" && self.sentinel_has_effective_lock(c),
                                 TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && self.board(&c.id).is_some() && self.sentinel_has_effective_lock(c),
                                 rules::TargetPredicate::JC069LockedAnchor => {
                                     source.card.definition == "JC069" && self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0
@@ -1927,6 +1929,8 @@ impl Game {
                         amount,
                     )]))?;
                 }
+                Op::WM043Lock => { if let Some(t) = frame.targets.first() { self.wm043_lock(&t.id); } },
+                Op::WM043ShownLock { .. } => return Err("精准打击展示后置只由当前选择消费".into()),
                 Op::SentinelLock => {
                     if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
                 }
@@ -2588,6 +2592,7 @@ impl Game {
             FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
+            FrameChoice::WM043ShownTarget => return self.wm043_choose_shown(&frame, chooser, &a, &selected),
             FrameChoice::WM044Inspection { inspected } => self.wm044_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::JC062Inspection { inspected } => self.jc062_inspect_complete(&frame, chooser, &a, &selected, &inspected)?,
             FrameChoice::WM033GraveSpell => return self.wm033_finish(&frame, chooser, &a, &selected),

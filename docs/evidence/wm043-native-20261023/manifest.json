@@ -1,0 +1,102 @@
+[
+  {
+    "path": "docs/evidence/wm043-native-20261023/ownership.json",
+    "sha256": "8e969cce8b3f00ef06b07c4fc703a93181bb39d796bc2b56a429e79466429b36"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/resource-check.json",
+    "sha256": "f6dd1fdbf43ac152d78ec3a726393b48c401df80f7398354e45fd9c28edda2a8"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/run-native.py",
+    "sha256": "49269c899f70e43ca6eb8304fe59b5d8df6ce2b02533e0638663563fc365275c"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-b-contest-06.json.gz",
+    "sha256": "1ff21509131607edc0da8d7e1638fdf943b7dcd973f5734d1141860b3fe8cf93"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-b-contest-06.log.gz",
+    "sha256": "3f2f4bc119728ae0a8adf8679a17ea96ea88e9cd1adced6b791be0227f9d4e08"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-contest-05.json.gz",
+    "sha256": "3ec95a7d30e0e5f1f4cfba2bcdfd939a6058bf1e3eb7f3a251f372f5f6e24f3f"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-contest-05.log.gz",
+    "sha256": "157884fc6e924b317feaa493e4b69276e922606acfe3cccef4d17325cb2d5502"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-gray-lock-08.json.gz",
+    "sha256": "cdc3075152789599ee10bbdbf0aa0c9bbfcaf4cbb86cb40f1f5502786eaa46d9"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-gray-lock-08.log.gz",
+    "sha256": "56f5bccb0d10c20bf9e393945c9a3d027ee79b029cb04cbece883601c8d26aec"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-intelligence-07.json.gz",
+    "sha256": "24ba9886cea86253dff4a928de1fb1a5eac66b286db65ac91fe0232769079a9f"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-intelligence-07.log.gz",
+    "sha256": "5e4b980818d63c2c4332d1815596f592abd13ea0f96934f926f2d829a45f3027"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-sentinel-04.json.gz",
+    "sha256": "2bf28f8260223e62a019741d3c6075252257854deb2f5a614e43efa84d68f456"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/adjacent-sentinel-04.log.gz",
+    "sha256": "91f430349746ecbd4447a7fbf0e389707616cd82d75a59d00c7ee8ac056ad0a4"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-01.json.gz",
+    "sha256": "cb149a44a240d142c6283427e3cdc713a375d52ac98e4edf837e96f7eb2ba744"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-01.log.gz",
+    "sha256": "b820f253957701720a399988992c6a7fa9fdc76264f82b8f16150dde6b7877a7"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-02.json.gz",
+    "sha256": "9246267c3571a581ac63994498bb68d06e8383269fcfdf3c1993ec18fa3d3f3f"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-02.log.gz",
+    "sha256": "831f2a539990e9354705fb6c6c69d1abbb6afd110e86746bd656adb9b5ee0721"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-03.json.gz",
+    "sha256": "561e8523d305cef6cf89587643ca48648970d5ebba2d2108599842f0312dcfe4"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/directed-03.log.gz",
+    "sha256": "71a0e8179e5f4b7422bfa47241614ae29bf86d743dfe51b625547ebfa84079bc"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/registry-09.json.gz",
+    "sha256": "3f559506234a19f63cd03f2b40e7fd147b58e634eaf8cdc5a8b4495b74dac059"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/registry-09.log.gz",
+    "sha256": "46d82e0b3156c14e723ffb046793002130183781196bdb6d9a808815383945f8"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/source-01.log.gz",
+    "sha256": "0ff3046d44ce2bf9acafbd5db9887812e22fc2eef5f25f20beca6663301fffc4"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/source-02.log.gz",
+    "sha256": "4bec1d7068dafae08a35d2826910399aaf65e46a17c0c43e1cb2fa3987304879"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/runs/source-03.log.gz",
+    "sha256": "1e845236c848f84edc4806c65c2295e5ea4dc7bc572a4622472e6c6f2fd3a084"
+  },
+  {
+    "path": "docs/evidence/wm043-native-20261023/verification.json",
+    "sha256": "ee78dde609635338f48f909d4942bd9adf544a71c7df9a9f40324b69cc9cc889"
+  }
+]

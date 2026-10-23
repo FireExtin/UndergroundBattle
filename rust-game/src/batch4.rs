@@ -18,6 +18,7 @@ pub struct DisasterPlay {
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
+    if id == "WM043" { return Some(crate::wm043::definition()); }
     if id == "WM044" { return Some(crate::batch4_intelligence::definition()); }
     if let Some(d) = crate::batch4_vampires::definition(id) { return Some(d); }
     if let Some(d) = crate::pack_a_contest::definition(id) { return Some(d); }

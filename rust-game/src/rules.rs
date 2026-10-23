@@ -124,6 +124,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    WM043LockedTarget,
     WM044HiddenOrSecretPlan,
     PackAOwnGraveCharacter,
     XQ21MarkedCarrier,
@@ -327,6 +328,8 @@ pub enum Op {
     CQ07SpellTargeted { observation: Option<crate::batch3_phoebe::SpellTargetObservation> },
     XQ22Orientation,
     WM044Inspect { contest_id: Option<String> },
+    WM043Lock,
+    WM043ShownLock { contest_id: String, index: usize },
     WM044SentinelLock,
     JC062Inspect,
     JZ25SealRandomHand,
@@ -731,6 +734,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if card_id == "WM043" || crate::wm043::related(ability) { return crate::wm043::validate_ability(card_id, ability); }
     if card_id == "MSJC14" || crate::sentinel::related(ability) { return crate::sentinel::validate_ability(card_id, ability); }
     if crate::batch4_intelligence::related(ability) { return crate::batch4_intelligence::validate_ability(card_id, ability); }
     if crate::batch4_vampire_contest::key(&ability.key) || crate::batch4_vampire_contest::owns(&ability.ops)
@@ -2175,6 +2179,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         let mut m = BTreeMap::new();
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());
+        m.insert("WM043".into(), crate::wm043::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::pack_a_contest::CARDS { m.insert((*id).into(), crate::pack_a_contest::definition(id).unwrap()); }
