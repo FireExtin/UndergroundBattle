@@ -1,0 +1,7 @@
+{
+  "scope": "host read-only ps comm/cwd and listening TCP endpoints; no process command lines or environment read",
+  "workspaceRelatedProcesses": [],
+  "listeningTcpForListedPids": [],
+  "ssExitCode": 0,
+  "mutations": "none; no processes killed"
+}

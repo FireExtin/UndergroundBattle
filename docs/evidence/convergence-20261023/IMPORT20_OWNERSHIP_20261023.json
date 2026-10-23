@@ -1,0 +1,82 @@
+{
+  "timeUtc": "2026-10-23T17:48:36.169983+00:00",
+  "sharedImplementationBase": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "projectNativeClosed": 37,
+  "current50Target": 50,
+  "newImport20SeparateCount": 0,
+  "groups": {
+    "A": {
+      "owner": "current game integration thread",
+      "cards": [
+        "BQ039",
+        "BQ090",
+        "WM028",
+        "WM025",
+        "WM024",
+        "BQ081",
+        "WM057",
+        "BQ064"
+      ],
+      "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-import20-a",
+      "branch": "wip/import20-a-contest-20261023",
+      "firstSlice": [
+        "BQ090",
+        "BQ064"
+      ],
+      "status": "reservedThenHandedOffForSerialMain; no implementation"
+    },
+    "B": {
+      "ownerThread": "01a1693c-05ce-726e-95af-31ecb62d60f2",
+      "cards": [
+        "XQ19",
+        "XG13",
+        "WM064",
+        "CQ24",
+        "BQ092",
+        "BQ093"
+      ]
+    },
+    "C": {
+      "ownerThreadPrefix": "01a16996",
+      "owner": "parent-assigned completed UI author",
+      "cards": [
+        "CQ18",
+        "CQ19",
+        "XG20",
+        "BQ057",
+        "CQ15",
+        "CQ28"
+      ]
+    }
+  },
+  "sourceCorrectionOwners": {
+    "A": [
+      "BQ081",
+      "WM024"
+    ],
+    "B": [
+      "XG13",
+      "CQ24",
+      "BQ092"
+    ]
+  },
+  "sourceOnlyFiveHandoff": "76ad42d00ded4e40c093745f9bb829cb6334f5dd",
+  "sharedFileOwner": "integration lead; local wiring separate commit; no other active clone writes",
+  "doNotTouch": [
+    "frozen WM037 source495/evidence7a",
+    "frozen ABI95 platform",
+    "other authors workspaces",
+    "XG21 denied path"
+  ],
+  "testsNotYetRunOnImportA": true,
+  "convergence": {
+    "timeUtc": "2026-10-23T17:49:27.093076+00:00",
+    "status": "stopAtSafeBoundary",
+    "userRequest": "resume one serial thread per domain after orderly handoff",
+    "gameMainThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+    "AImplementationStarted": false,
+    "ATestsOrBuildsStarted": false,
+    "activeACardWriter": false,
+    "next": "main thread collects B/C and reviews before serial integration; no autonomous new work"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "timeUtc": "2026-10-23T17:49:27.093076+00:00",
+  "projectNativeClosed": 37,
+  "target": 50,
+  "currentRedBlackBaseNativeClosed": 35,
+  "currentCloneBase": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "externalNativeClosure": [
+    {
+      "cards": [
+        "WM044"
+      ],
+      "source": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+      "evidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+      "report": "/home/ddd/Documents/Codex/2026-10-22/task-2/sentinel-lock-close-review/review.txt",
+      "nativeTests": 24,
+      "integratedInCurrentClone": false,
+      "additionalSocietyNotCounted": "MSJC14"
+    }
+  ],
+  "currentInProgress": [],
+  "publicBatchAccepted": 0,
+  "wasmWorkerBrowserStatus": "LC16/XQ20/WM037 Native closure confirmed; collect WM044/MSJC14 owner platform handoff separately; these branches are not a combined platform candidate. ABI95 platform remains separate.",
+  "closedWM037": {
+    "source": "495e392db463df04d66a0e2bcdda7496bfce6120",
+    "evidence": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+    "independentNativePassed": 31,
+    "sourceChecksPassed": 6,
+    "faqCorrection": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/q1-faq-correction.json",
+    "runtimeChanged": false,
+    "MSJC13NotAnotherBatchCard": true
+  },
+  "handoffState": "convergence:37 last independently closed reported; import20 A reserved but no implementation; collect B/C separately",
+  "previousCandidateNowClosed": {
+    "card": "WM037",
+    "dependency": "MSJC13",
+    "source": "495e392db463df04d66a0e2bcdda7496bfce6120",
+    "evidence": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+    "authorUniqueNativePassed": 58,
+    "sourcePassed": 6,
+    "independentReview": "closed; latest existing specific-card FAQ correction supersedes earlier pending Q1",
+    "completionAdded": 1
+  },
+  "currentCandidate": null
+}

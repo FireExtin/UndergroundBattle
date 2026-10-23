@@ -1,0 +1,98 @@
+{
+  "recordedAtUtc": "2026-10-23T17:46:51.112686+00:00",
+  "questionId": "WM037-Q1-EMPTY-DISCARD-THEN",
+  "status": "withdrawnResolvedByExistingCardFaq",
+  "quote": "◆若玩家没有手牌，则发动戴森的计谋的行动能力无需弃置手牌。",
+  "sourceClassification": "existingCardDatabaseSpecificFaq; notNewOfficiallyIssuedRuling",
+  "officialOriginalIssuanceVerified": false,
+  "isNewUserRuling": false,
+  "localSource": {
+    "commit": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+    "path": "resource/ymsj-fun.github.io/cards/cards.json",
+    "faqLine": 11960,
+    "fileSha256": "7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c",
+    "gitBlob": "ffd372727a7d02872279b7c5e0b4d0f3a1336053",
+    "presentSinceInitialCommit": "9aebb4ab1b17c5142d62b85e767e7f916f0a15cd"
+  },
+  "upstreamReadInPriorReadOnlyTurn": {
+    "repository": "ymsj-fun/ymsj-fun.github.io",
+    "commit": "5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7",
+    "path": "cards/cards.json",
+    "faqLine": 11960,
+    "gitBlobReturnedByConnector": "ffd372727a7d02872279b7c5e0b4d0f3a1336053",
+    "url": "https://github.com/ymsj-fun/ymsj-fun.github.io/blob/5d72e3207860b7aaa1eec50b81bb4f9b8a697cb7/cards/cards.json#L11960",
+    "observation": "Same exact WM037 FAQ was read through the GitHub connector; not a new run in this documentation correction."
+  },
+  "referenceComparisonsOnly": [
+    {
+      "repository": "SuezKrish/Underworld",
+      "commit": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+      "faqPath": "data/Card.xml",
+      "faqLine": 14883,
+      "behaviorReferences": [
+        "data/automation-manifest.json:18307",
+        "engine/automation.mjs:902",
+        "engine/veil-tools-effects.mjs:80"
+      ],
+      "observation": "Same FAQ; static code continues from empty-hand discard to bottom-two movement and the optional contest. Not independently executed for this question; not treated as official authority."
+    },
+    {
+      "repository": "RETORETO/UnderWorldPro",
+      "commit": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "path": "Cards/Data/PlayerCards/WM/WM037_daisendejimou.tres",
+      "line": 31,
+      "gitBlob": "b19f852bb4cc63c54badc0edb5de97c5c682fa78",
+      "observation": "Template contains the same FAQ; no WM037-specific executable registration found in the checked fixed tree. Not a second runtime validation."
+    }
+  ],
+  "independentAuthorityCaveat": "The repeated FAQ may have a common source; three appearances do not constitute three independent official attestations.",
+  "genericThenRule": "No standalone generic definition was located in the checked official manual and V1.1 errata. This absence does not override the existing WM037-specific FAQ.",
+  "existingProjectAnalogy": {
+    "path": "docs/rules/JZ50_SEARCH_OWNER_FAQ_2026-10-07.md",
+    "lines": [
+      9,
+      13
+    ],
+    "scope": "User ruled zero selected search cards still shuffle; local precedent only, not a universal rule for then."
+  },
+  "resolution": "When there is no hand card to discard at WM037 resolution, skip discard, continue bottom-two-to-hand, then check the independent optional-contest condition. Keep the current implementation.",
+  "runtimeSourceUnchanged": true,
+  "testsRerun": false,
+  "existingExecution": {
+    "nativePassed": 31,
+    "sourcePassed": 6,
+    "explicitCoveredTest": "batch4_clock_tests::batch4_clock_wm037_no_hand_to_discard_still_continues_bottom_movement"
+  },
+  "previousEvidencePreserved": [
+    {
+      "path": "history/before-q1-faq-correction/review.txt",
+      "sha256": "631f88de258de3dcb72a07bdcbd926369c25b23984f1e08659b22947cda129df",
+      "bytes": 9853
+    },
+    {
+      "path": "history/before-q1-faq-correction/result.json",
+      "sha256": "defe327c9751f31e5e0d9e07d27d3fa3a9de0a852571f6a1f22e24fb2e1f9244",
+      "bytes": 6100
+    },
+    {
+      "path": "history/before-q1-faq-correction/delivery.json",
+      "sha256": "ef952036725628d1d64d7ca6d0fc3f7a3f1b76fea7c5a7107ea19f5bc18e690b",
+      "bytes": 1119
+    },
+    {
+      "path": "history/before-q1-faq-correction/manifest.json",
+      "sha256": "4b483f69f4820975b70804f118d04a2c2d6a145a4d7a0184cca3ed75a3948253",
+      "bytes": 6340
+    },
+    {
+      "path": "history/before-q1-faq-correction/artifact-notes.txt",
+      "sha256": "1cc321805468998e35bf897dfe7e45e0068f30874a6ded83a79115e23990a033",
+      "bytes": 380
+    },
+    {
+      "path": "history/before-q1-faq-correction/evidence.tar.gz",
+      "sha256": "76f9d2fdcfa9fdc20733b4e204c1f73861f77ddb7e0a518b6c4e0b51cca7811e",
+      "bytes": 4525322
+    }
+  ]
+}

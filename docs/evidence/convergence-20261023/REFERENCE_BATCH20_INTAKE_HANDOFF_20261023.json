@@ -1,0 +1,111 @@
+{
+  "timeUtc": "2026-10-23T17:41:18.148080+00:00",
+  "status": "source-and-allocation-plan-ready-no-card-implementation-claim",
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake",
+  "branch": "wip/reference-batch20-plan-20261023",
+  "head": "a81a25171e8ec1543b75131cde7781f97639b4e0",
+  "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "worktree": "clean",
+  "productCodeChanged": false,
+  "WM037FrozenHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+  "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/factions/REFERENCE_BATCH20_PLAN_2026-10-23.md",
+  "candidate20": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/reference-batch20-intake-20261023/candidate20.json",
+  "remaining69": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/reference-batch20-intake-20261023/remaining-rgbk.csv",
+  "sources": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/reference-batch20-intake-20261023/sources.json",
+  "corrections": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake/docs/evidence/reference-batch20-intake-20261023/source-corrections.json",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/reference-batch20-plan-final-20261023.bundle",
+  "bundleSha256": "e1dc4ca4ccfcc849b7afc4e467076e2b3b1707e3bfc7fe79a21bc2b9a6a22a5e",
+  "bundleVerified": true,
+  "requiredBase": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "groups": [
+    {
+      "id": "A",
+      "cards": [
+        "BQ039",
+        "BQ090",
+        "WM028",
+        "WM025",
+        "WM024",
+        "BQ081",
+        "WM057",
+        "BQ064"
+      ],
+      "newFiles": [
+        "rust-game/src/import20_contest.rs",
+        "rust-game/src/import20_contest_tests.rs"
+      ],
+      "owner": "由父线程分配一位作者"
+    },
+    {
+      "id": "B",
+      "cards": [
+        "XQ19",
+        "XG13",
+        "WM064",
+        "CQ24",
+        "BQ092",
+        "BQ093"
+      ],
+      "newFiles": [
+        "rust-game/src/import20_time_attachments.rs",
+        "rust-game/src/import20_time_attachments_tests.rs"
+      ],
+      "owner": "由父线程分配一位作者"
+    },
+    {
+      "id": "C",
+      "cards": [
+        "CQ18",
+        "CQ19",
+        "XG20",
+        "BQ057",
+        "CQ15",
+        "CQ28"
+      ],
+      "newFiles": [
+        "rust-game/src/import20_lock_choices.rs",
+        "rust-game/src/import20_lock_choices_tests.rs"
+      ],
+      "owner": "由父线程分配一位作者"
+    }
+  ],
+  "scope": {
+    "projectNativeClosed": 36,
+    "target": 50,
+    "currentFourthCandidates": 4,
+    "futureCandidates": 16,
+    "existingRosterChanged": false,
+    "first20ImplementationCompleted": 0,
+    "gameTestsRun": 0,
+    "publicAccepted": 0
+  },
+  "referenceHeads": {
+    "RETORETO/UnderWorldPro": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "SuezKrish/UnderworldCurrent": "1fb10f60a99f38dcf69104e026f48d2e3d91eb37",
+    "SuezKrish/UnderworldAnalyzed": "a8586caccd9be0cad9957e78b918245f0ddd6f85"
+  },
+  "verified": {
+    "UWProPlayerData": 667,
+    "UWProRegisteredEffects": 135,
+    "legacy77NowPresent": 77,
+    "UWProMissingRegisteredRGBK": [
+      "JC028",
+      "JC053",
+      "JC097"
+    ],
+    "candidateImagesAndResources": 20,
+    "exactNames": 20,
+    "groups": [
+      8,
+      6,
+      6
+    ],
+    "first20PrimaryCorrectionCount": 5,
+    "extraFuturePrimaryCorrectionCount": 1
+  },
+  "remoteGameProgress": "08319094a113717a1a80041fbe94ca8c139429be",
+  "pushAttempted": false,
+  "CITriggered": false,
+  "mainOrDeploy": false,
+  "next": "父线程分配3包作者/单一公共接线owner；没有新卡认领或运行测试，不把许可范围或旧参考测试扩大到新代码"
+}

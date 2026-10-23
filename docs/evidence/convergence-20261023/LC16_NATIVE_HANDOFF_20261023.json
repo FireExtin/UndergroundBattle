@@ -1,0 +1,92 @@
+{
+  "timeUtc": "2026-10-23T16:27:06.991467+00:00",
+  "task": "LC16 independent Native closure at35 of50",
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-lc16-normal",
+  "branch": "wip/batch50-lc16-integrated-20261023",
+  "base": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+  "fixedProductSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "evidenceHead": "b98cadd2589717e2eaca635322316926b4f06fcb",
+  "worktree": "clean",
+  "localPrototype": "80551ebe0b37c6455de5813f0ff949d43e4acab0",
+  "prototypeBranchPreserved": "wip/batch50-lc16-normal-20261023",
+  "prototypeBundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/lc16-prototype-20261023.bundle",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/lc16-integrated-20261023.bundle",
+  "bundleSha256": "7985d988ff661b1cc1325411cdcbf1cf88cd8bd0d51d1eeb4415ff9a770e42ec",
+  "bundleVerified": true,
+  "requiredBase": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+  "verification": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-lc16-normal/docs/evidence/lc16-native-20261023/verification.json",
+  "verificationSha256": "500b99909eb57ffe9f58906444c2cbcf16aa56158d5c377479c4028317ea1ebc",
+  "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-lc16-normal/docs/factions/LC16_NATIVE_2026-10-23.md",
+  "identity": {
+    "engine": "rust-v0.2.97-batch20-fourth",
+    "pool": "limited-v2.88-batch20-fourth",
+    "definitions": 249,
+    "supported": 213
+  },
+  "native": {
+    "LC16Directed": 14,
+    "XQ20Adjacent": 21,
+    "PreparationAdjacent": 15,
+    "JZ56WoundAdjacent": 7,
+    "uniqueFinalPassed": 57,
+    "sourceChecksPassed": 3,
+    "failed": 0,
+    "ignored": 0,
+    "authorExecution": true,
+    "realRoomPrivateSearch": true,
+    "u64Preserved": true
+  },
+  "progress": {
+    "independentlyClosedNative": 35,
+    "target": 50,
+    "newCandidate": null,
+    "notCountedAs35": false,
+    "newPublicAdmission": 0,
+    "WM044NotIncluded": true
+  },
+  "remote": {
+    "branch": "progress/batch20-fourth-20261022",
+    "verifiedSha": "08319094a113717a1a80041fbe94ca8c139429be",
+    "isAncestor": true,
+    "localAhead": 23,
+    "candidateExistsRemotely": false,
+    "pushAttempted": false,
+    "reason": "Known noCI constraint; prior one-time workflow-risk approval was only for083"
+  },
+  "previousDeliveries": {
+    "abi95Handoff": "/home/ddd/Documents/Codex/2026-10-21/task-3/ABI95_PLATFORM_HANDOFF_20261023.json",
+    "abi95FreezeStillClean": true,
+    "all267ArtifactHashesStillMatch": true,
+    "XQ20ClosureHead": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+    "XQ20ClosureClean": true,
+    "XQ20Handoff": "/home/ddd/Documents/Codex/2026-10-21/task-3/XQ20_NATIVE_HANDOFF_20261023.json"
+  },
+  "remaining": [
+    "ABI97 WASM/Worker/Web/browser not executed",
+    "Full50 batch incomplete; public gates closed",
+    "No new push authorization; no push attempted"
+  ],
+  "notPerformed": [
+    "new agent/thread",
+    "worktree",
+    "CI",
+    "push",
+    "main merge",
+    "deployment",
+    "production probe",
+    "extra corrupted-save expansion",
+    "XG21 interrupted review retry",
+    "WM044 editing"
+  ],
+  "execution": "All started own tests/builds completed; no test command remains running",
+  "closureHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "closureBundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/lc16-closed-20261023.bundle",
+  "closureBundleSha256": "e187c7fd84509df3477ed4efba11cc61fabdbd3aa5fe466053a6b4b44211c2d5",
+  "independentReview": {
+    "report": "/home/ddd/Documents/Codex/2026-10-22/task-2/lc16-native-review/review.txt",
+    "nativeDistinctPassed": 22,
+    "sourcePassed": 3,
+    "unresolvedP0P1P2": 0,
+    "wasmWorkerBrowser": false
+  }
+}

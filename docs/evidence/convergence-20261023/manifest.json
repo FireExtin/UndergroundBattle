@@ -1,0 +1,57 @@
+[
+  {
+    "path": "ABI95_PLATFORM_HANDOFF_20261023.json",
+    "bytes": 2817,
+    "sha256": "4d144faf5c2cf0fcc963ca5b4b1710d02fba133cfd7b216d0c6a4f7c629e2b85"
+  },
+  {
+    "path": "BATCH50_INTEGRATION_LEDGER_20261023.json",
+    "bytes": 1856,
+    "sha256": "2a1cf869c288e68cf7895f7b548c64118e50b9319bb12f18c2a69e160ae12b2c"
+  },
+  {
+    "path": "CONVERGENCE_PROCESS_READBACK_20261023.json",
+    "bytes": 251,
+    "sha256": "3d50c6fb5ea1855cca7dc286c2a03fb7e6ba9db3f6bf23ebc312dd1187a0bd83"
+  },
+  {
+    "path": "IMPORT20_OWNERSHIP_20261023.json",
+    "bytes": 2127,
+    "sha256": "a4f872899107a8c600ad1ffce3ce222f85d1f2841bf11c6268745132dad9e6f1"
+  },
+  {
+    "path": "LC16_NATIVE_HANDOFF_20261023.json",
+    "bytes": 3741,
+    "sha256": "60e0bf4df36e5369569e2e3ca0f2e91b553ba964e4d5fc8b1f91ec0626a40679"
+  },
+  {
+    "path": "RED_BLACK_OWNERSHIP_20261023.json",
+    "bytes": 2374,
+    "sha256": "c8e1301b444c0d3162b0d225f7066d8dd95c348872415c78aeebbc4952fc2e66"
+  },
+  {
+    "path": "REFERENCE_BATCH20_INTAKE_HANDOFF_20261023.json",
+    "bytes": 3856,
+    "sha256": "97b9f8a23fa6024f00c2ffc7681de482d97dba6c37e6fc5c09a684e8fbca9226"
+  },
+  {
+    "path": "WM037_CLOCKMAKERS_NATIVE_HANDOFF_20261023.json",
+    "bytes": 4156,
+    "sha256": "0288097c20c5e95b546661c7588ec5e5acbf5bef8c5574fa06fa9aec9ac278a1"
+  },
+  {
+    "path": "XQ20_NATIVE_HANDOFF_20261023.json",
+    "bytes": 3385,
+    "sha256": "f153675ee7b1a8ab511fcf963e70d30f73cd5917fe774d894874e3c5d55c74f5"
+  },
+  {
+    "path": "handoff.json",
+    "bytes": 8686,
+    "sha256": "7b5021d3aee81ed4418b90b8cdf1289ee8bc2f620fb2c6c677989ca65dfbf8ac"
+  },
+  {
+    "path": "wm037-q1-faq-correction.json",
+    "bytes": 4547,
+    "sha256": "0d7a7f01b6aa5f74d96f9f6482a1eb5d493502a856f2ce7a86fbe2ebb59fe760"
+  }
+]
