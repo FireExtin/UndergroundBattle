@@ -1,0 +1,71 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-22/task-2/UndergroundBattle-wm043-review/rust-game)
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 4 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 2 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 24.94s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-22/task-2/recovery-build/target/debug/deps/hegemony_server-32dfc3fc043f2363)
+
+running 4 tests
+test wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate ... 
+thread 'wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate' panicked at rust-game/src/wm043_tests.rs:247:5:
+assertion `left == right` failed
+  left: (2, 1)
+ right: (1, 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard ... 
+thread 'wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard' panicked at rust-game/src/wm043_tests.rs:198:5:
+assertion `left == right` failed: printed p18 shield must terminate the targeted enemy shown-card effect
+  left: (1, 1)
+ right: (0, 0)
+FAILED
+test wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume ... ok
+test wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield ... 
+thread 'wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield' panicked at rust-game/src/wm043_tests.rs:266:5:
+assertion `left == right` failed
+  left: (2, 2)
+ right: (0, 0)
+FAILED
+
+failures:
+
+failures:
+    wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate
+    wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard
+    wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 2119 filtered out; finished in 1.65s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`
