@@ -622,9 +622,10 @@
       "priorMechanismAnchorsReady": false,
       "readinessScope": "Planning only; shared contest/blood/token/counter or named-Society prerequisite is not yet integrated",
       "fullNativeCardComplete": false,
-      "nativeDirectedStatus": "first21Passed_newNormalRoomWaveAndBQ027CasesPending",
-      "nativeSource": "pendingFreeze",
-      "dependencySociety": "MSJC13"
+      "nativeDirectedStatus": "authorPassed24Directed34DistinctAdjacent_source6_pendingIndependentReview",
+      "nativeSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+      "dependencySociety": "MSJC13",
+      "nativeEvidence": "docs/evidence/wm037-clock-native-20261023/verification.json"
     },
     {
       "id": "XG16",
@@ -1727,5 +1728,16 @@
       "WM037"
     ],
     "publicBatchAccepted": 0
+  },
+  "clockmakersNativeCandidate": {
+    "productSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+    "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "regularCard": "WM037",
+    "completeSocietyDependency": "MSJC13",
+    "nativeUniquePassed": 58,
+    "sourceChecksPassed": 6,
+    "independentReview": "pending",
+    "newCompletionCountAdded": 0,
+    "publicAdmission": false
   }
 }
