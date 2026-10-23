@@ -1,0 +1,80 @@
+{
+  "recordedAtUtc": "2026-10-23T16:52:36.748664+00:00",
+  "state": "WIP_pending_resource_window",
+  "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "currentStaticHead": "f9231006eb7ea40e84da1eca7c1c8e0b063efae4",
+  "testedRun": "native-clock-wm037-06",
+  "testedDirectedPassed": 21,
+  "testedDirectedFailed": 0,
+  "testedDirectedIgnored": 0,
+  "currentDirectedTests": 24,
+  "current24Executed": false,
+  "runtimeChangeAfterRun06": "wm037_has_four_time also includes raw in-play region and Society counters; other runtime changes from571 had already been exercised in06",
+  "currentSourceChecksExecuted": false,
+  "projectNativeClosed": 36,
+  "localIntegratedNativeClosed": 35,
+  "externalNativeNotMerged": [
+    "WM044"
+  ],
+  "candidateWM037NotCounted": true,
+  "SocietyDependencyMSJC13NotCountedAsCard": true,
+  "heavyBuildPausedFor": "Parent-coordinated CPU30/31 RF3 window; current task released at16:46:39UTC; no new build since06",
+  "wasmWorkerWebBrowser": "notRun",
+  "pushAttempted": false,
+  "runs": [
+    {
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:32:55.455891+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 46.298,
+      "logSha256": "7bc09a719da60268f42187b24b9fdc0df7a05438af24394748c9cecc6c117a57",
+      "name": "native-clock-01"
+    },
+    {
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:34:15.420662+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 28.144,
+      "logSha256": "2897bcd1103ed0ad36f847eb67cd5f860d99ab6b3c327442a7932559f5bf0e0a",
+      "name": "native-clock-02"
+    },
+    {
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:35:17.713862+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 36.611,
+      "logSha256": "b6c27d8a936f707748ccac8feccddeee8d70e1d0762b00b71ad330a71ba7cf05",
+      "name": "native-clock-03"
+    },
+    {
+      "sourceHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "startUtc": "2026-10-23T16:38:09.640769+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 42.439,
+      "logSha256": "3d3a3bf0c2ab73342ef29b748e009d2dfb1dde66b755a4d5d394bb50aa7fa0c0",
+      "name": "native-clock-04"
+    },
+    {
+      "sourceHead": "571201343da81e832285dd40b3361c6f44dfd108",
+      "startUtc": "2026-10-23T16:41:41.983596+00:00",
+      "state": "complete",
+      "exitCode": 101,
+      "seconds": 44.453,
+      "logSha256": "1c4c76be75eb3fa155ec12e57afe2ab5e3bde9162efcb933ce29b1571b492d58",
+      "name": "native-clock-wm037-05"
+    },
+    {
+      "sourceHead": "571201343da81e832285dd40b3361c6f44dfd108",
+      "startUtc": "2026-10-23T16:44:13.089330+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 29.892,
+      "logSha256": "592a7761a1001b183c01b8e70829c33600c87df6f83e3dbe6ac6ccc8d02153bf",
+      "name": "native-clock-wm037-06"
+    }
+  ]
+}
