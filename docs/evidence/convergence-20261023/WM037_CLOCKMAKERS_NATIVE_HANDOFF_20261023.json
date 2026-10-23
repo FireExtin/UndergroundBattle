@@ -1,0 +1,99 @@
+{
+  "recordedAtUtc": "2026-10-23T17:09:02.358576+00:00",
+  "task": "WM037 plus complete red MSJC13 dependency, author Native candidate for parent independent review",
+  "status": "independentNativeClosed",
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock",
+  "branch": "wip/batch50-wm037-clock-20261023",
+  "base": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "fixedProductSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "evidenceHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+  "worktree": "clean",
+  "identity": {
+    "engine": "rust-v0.2.98-batch20-fourth",
+    "pool": "limited-v2.89-batch20-fourth",
+    "regularDefinitions": 250,
+    "regularSupported": 213,
+    "societyDefinitions": 11,
+    "societySupported": 10
+  },
+  "native": {
+    "authorExecution": true,
+    "directedPassed": 24,
+    "adjacentPassed": 35,
+    "overlap": 1,
+    "uniquePassed": 58,
+    "failed": 0,
+    "ignored": 0,
+    "sourceChecksPassed": 6,
+    "realRoomCommandJournalAndRetry": true,
+    "u64ExactNativeRoundtrip": true
+  },
+  "progress": {
+    "projectIndependentlyClosedNative": 36,
+    "localIntegratedClosedNative": 35,
+    "externalClosedNotMerged": [
+      "WM044"
+    ],
+    "newCandidateNotCounted": "WM037",
+    "dependencySocietyNotCounted": "MSJC13",
+    "target": 50,
+    "publicAccepted": 0
+  },
+  "bundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/wm037-clock-native-final-20261023.bundle",
+  "bundleSha256": "b4eccb8ddefb79ec53365ec7de097101a908ca4709566e8bf6483bb1eea8d914",
+  "bundleVerified": true,
+  "requiredBase": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/docs/factions/WM037_CLOCKMAKERS_NATIVE_2026-10-23.md",
+  "verification": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/docs/evidence/wm037-clock-native-20261023/verification.json",
+  "verificationSha256": "d25a734bd1d4f96cb23fb67350c44897f20a4e8e119e8233778facb415849a66",
+  "inputAudit": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock/docs/evidence/wm037-clock-native-20261023/fixed-source-input-audit.json",
+  "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/wm037-clock-20261023/evidence-native-author-final.tar.gz",
+  "archiveSha256": "aa25944c5b6b8aaada1991dcfd7820d941cb769085662ebd37a256bb3523e33d",
+  "archiveBytes": 179606,
+  "allFailureEvidenceRetained": true,
+  "remote": {
+    "branch": "progress/batch20-fourth-20261022",
+    "verifiedSha": "08319094a113717a1a80041fbe94ca8c139429be",
+    "isAncestor": true,
+    "localAhead": 28,
+    "progressBranchContainsCandidate": false,
+    "pushAttempted": false,
+    "reason": "NoCI constraint; prior single automatic-workflow-risk exception was only083"
+  },
+  "previousProtectedClones": {
+    "ABI95": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+    "LC16": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "XQ20": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+    "allClean": true
+  },
+  "execution": "All own commands and validation sessions completed; RF3 pause cleared, no resource blocker remains",
+  "remaining": [
+    "Parent-coordinated independent normal Native review before countingWM037",
+    "ABI98 WASM/Worker/Web/browser not executed",
+    "Complete50-card batch unfinished, public admission remains closed",
+    "New push remains unauthorized under known CI constraint"
+  ],
+  "notPerformed": [
+    "new agent/thread",
+    "worktree",
+    "push",
+    "CI",
+    "main merge",
+    "deployment",
+    "production probe",
+    "XG21 interrupted-review retry",
+    "WM044/MSJC14 editing",
+    "additional corrupt-save matrix"
+  ],
+  "closureLatest": {
+    "status": "independentNativeClosed",
+    "reportedByParent": true,
+    "nativePassed": 31,
+    "sourcePassed": 6,
+    "evidence": "frozen WM037 source495/evidence7a",
+    "q1Resolution": "existing specific card-database FAQ, not new official issuance or new user ruling",
+    "q1File": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm037-clock-native-review/q1-faq-correction.json",
+    "runtimeSourceUnchanged": true,
+    "projectNativeClosed": 37
+  }
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "BQ039",
+    "path": "Cards/Data/PlayerCards/BQ/BQ039_donghezhitong.tres",
+    "gitBlob": "b453bba71ceea3d8ac0dfc451c18f8bbfb2eba2d",
+    "bytes": 1235,
+    "sha256": "422d4025053c5c321bfaeda8ecac140f995953ef2534943d5195db198901b67b"
+  },
+  {
+    "id": "BQ090",
+    "path": "Cards/Data/PlayerCards/BQ/BQ090_taotairuozhe.tres",
+    "gitBlob": "5a8b55a602214aa7450bd7223708b4a293fd5168",
+    "bytes": 1174,
+    "sha256": "57197a8fd6a2de2fa88afa03cafa49c5ad7b75a917125537618b0a201c8bdc42"
+  },
+  {
+    "id": "WM028",
+    "path": "Cards/Data/PlayerCards/WM/WM028_manniudeyinyingtingtang.tres",
+    "gitBlob": "5e2ea9ae2c86ce8a62aa9301ca4e3bd5d85d08e4",
+    "bytes": 1137,
+    "sha256": "8d7aca38542ec12fc8586eaff847258b072b2fe26bbd989c5b57f8df2ba8a233"
+  },
+  {
+    "id": "WM025",
+    "path": "Cards/Data/PlayerCards/WM/WM025_angelamanniu.tres",
+    "gitBlob": "aadeecabc88e615d3bf76385293b3d8542a3218d",
+    "bytes": 1246,
+    "sha256": "adc1ad50fcd5ae6500570e741bbc7d52a7b5f5d3748d7814b3ae0d6c81110425"
+  },
+  {
+    "id": "WM024",
+    "path": "Cards/Data/PlayerCards/WM/WM024_alamuteshashou.tres",
+    "gitBlob": "ca6569c47939470f37786a17e5ba39310610f39a",
+    "bytes": 1270,
+    "sha256": "629012a16555f6809f92fd1b5db969f8af731ea078a7f3d5aeebd4d2e3f8af34"
+  },
+  {
+    "id": "BQ081",
+    "path": "Cards/Data/PlayerCards/BQ/BQ081_diaolingshifuguai.tres",
+    "gitBlob": "bd79b36a0cf6919d43e59dca4aee3c8547c6fe8a",
+    "bytes": 1228,
+    "sha256": "c4e001cecfa6675c83700c5f0747876b8c4abf5de2bbc585590a2edd2a7dabc6"
+  },
+  {
+    "id": "WM057",
+    "path": "Cards/Data/PlayerCards/WM/WM057_xinxiqianke.tres",
+    "gitBlob": "9b93ceaaba07b8ecd9e29016bca4fa2470ba8195",
+    "bytes": 1241,
+    "sha256": "7b923dd3cf7a44759fbb6daa8ea8a66bbf5140d41ae7908f2a345450f4c674a2"
+  },
+  {
+    "id": "BQ064",
+    "path": "Cards/Data/PlayerCards/BQ/BQ064_tiquyangben.tres",
+    "gitBlob": "4317f4229dd4df2ce23ff10b87ff9a3ac15d88f7",
+    "bytes": 1121,
+    "sha256": "e19ce2d34562b3ccc1b746d6a080fa993341b0dc04108d94000ecc53303b5242"
+  },
+  {
+    "id": "XQ19",
+    "path": "Cards/Data/PlayerCards/XQ/XQ019_shanglihuashen.tres",
+    "gitBlob": "50063a8c5e3262134268738322b89bc21d12750c",
+    "bytes": 1077,
+    "sha256": "b625cf662a71a2884737bc25571f24f628f65e62b1e305565726d2709bb0c1c6"
+  },
+  {
+    "id": "XG13",
+    "path": "Cards/Data/PlayerCards/XG/XG013_malilindeboge.tres",
+    "gitBlob": "eed9ed5aff9420929dfa7fe94d4d5728bf4993fe",
+    "bytes": 1303,
+    "sha256": "3f8964d4635a78e9aca0f87578545dbabb30948899ac99f3ab43eba13df72d59"
+  },
+  {
+    "id": "WM064",
+    "path": "Cards/Data/PlayerCards/WM/WM064_jumangwenshen.tres",
+    "gitBlob": "bf2358a59654cd1145459bd566449bb1b4e6b395",
+    "bytes": 1301,
+    "sha256": "1e82b237d3e3eb95a12afc0a2420ba80a443d44cf9558458c831b3d5bba058a2"
+  },
+  {
+    "id": "CQ24",
+    "path": "Cards/Data/PlayerCards/CQ/CQ024_kamen.tres",
+    "gitBlob": "8a351eaf688b86089efa3e56908fbd99c4dc166e",
+    "bytes": 1263,
+    "sha256": "f019bf75421222b241f6986c43716663bba58ccd48bf814dcf9287b0c1c08e92"
+  },
+  {
+    "id": "BQ092",
+    "path": "Cards/Data/PlayerCards/BQ/BQ092_bahamaqundaojijinzhongxin.tres",
+    "gitBlob": "f6aa8501149f76aa7cda2a64845183a1167df191",
+    "bytes": 1263,
+    "sha256": "3bd9384bfe20e40a2ce33f9234115c07f1dd30a4a502efb6bf87ec8b67db884e"
+  },
+  {
+    "id": "BQ093",
+    "path": "Cards/Data/PlayerCards/BQ/BQ093_yangbenchenlieshi.tres",
+    "gitBlob": "f067b87b7400e6bc599a492ff7f8fe198929e7c5",
+    "bytes": 1273,
+    "sha256": "16e76849109970b25486023cd6efc631661c33d754c0141ccd162b47e903defe"
+  },
+  {
+    "id": "CQ18",
+    "path": "Cards/Data/PlayerCards/CQ/CQ018_renqiuyu.tres",
+    "gitBlob": "10e9058256991772901fee75032cd65f96f15230",
+    "bytes": 1331,
+    "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc"
+  },
+  {
+    "id": "CQ19",
+    "path": "Cards/Data/PlayerCards/CQ/CQ019_damokelisizhijian.tres",
+    "gitBlob": "d59ade6e8e1bba828e0ebb5e74f5844a0ee9d4f3",
+    "bytes": 1322,
+    "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738"
+  },
+  {
+    "id": "XG20",
+    "path": "Cards/Data/PlayerCards/XG/XG020_jinling.tres",
+    "gitBlob": "d33ecacab8aa45d2f9561acdefa948ad3b4ec51b",
+    "bytes": 1293,
+    "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03"
+  },
+  {
+    "id": "BQ057",
+    "path": "Cards/Data/PlayerCards/BQ/BQ057_pitegangsaleisi.tres",
+    "gitBlob": "f704519a77cdb2b788bc57e6aa5819bb89557278",
+    "bytes": 1256,
+    "sha256": "88e4d977414980248cf1af326575981edad4c4ec09b2af25e73283193efde5a7"
+  },
+  {
+    "id": "CQ15",
+    "path": "Cards/Data/PlayerCards/CQ/CQ015_yuantuabishuangjian.tres",
+    "gitBlob": "b9bef7c0ed83fe8c9ffcbf7c78923be073c371d5",
+    "bytes": 1392,
+    "sha256": "9c5df597ef52e2912585c2ff1d4ddc6fd5d67ebd4220b0a5be6cd58f4cb3e423"
+  },
+  {
+    "id": "CQ28",
+    "path": "Cards/Data/PlayerCards/CQ/CQ028_zhouyuzhimen.tres",
+    "gitBlob": "543d27faf3332d7c4e95ac26b2add29eaed2584b",
+    "bytes": 1311,
+    "sha256": "051705a20336884e81ec8159ecb34b72fc14f34510f4b1fab77f0665cae7b354"
+  }
+]

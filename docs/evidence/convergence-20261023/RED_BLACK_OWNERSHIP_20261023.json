@@ -1,0 +1,61 @@
+{
+  "timeUtc": "2026-10-23T17:49:27.093076+00:00",
+  "owner": "current game integration thread",
+  "claim": [],
+  "colors": [
+    "red"
+  ],
+  "phase": "convergence handoff; A clone exact clean a0b, no implementation or tests; no active editor",
+  "baseCandidate": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "leaveUntouched": [
+    "ABI95 frozen candidate",
+    "XQ20 frozen candidate",
+    "JZ56",
+    "XG21 interrupted review",
+    "blue/gray cards owned by01a1693c-05ce-726e-95af-31ecb62d60f2"
+  ],
+  "plan": "ordinary independent clone; no worktree, extra corruption matrix, CI, push, deployment or main merge",
+  "sourceIdentity": "rust-v0.2.97-batch20-fourth / limited-v2.88-batch20-fourth",
+  "projectNativeClosed": 37,
+  "separateReviewedXQ20Source": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+  "blueGrayClaim": "WM044/MSJC14",
+  "prototype": "80551ebe0b37c6455de5813f0ff949d43e4acab0",
+  "integratedCandidate": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "evidenceHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+  "handoff": "/home/ddd/Documents/Codex/2026-10-21/task-3/WM037_CLOCKMAKERS_NATIVE_HANDOFF_20261023.json",
+  "excludedBlueGrayClaims": [
+    "WM044",
+    "MSJC14"
+  ],
+  "ownershipNote": "WM037 plus complete redMSJC13 construction and both actions; no WM044/MSJC14 editing. ABI95 terminalUI delegated to a new specialist; current thread performed read-only inspection only.",
+  "previousClaimClosed": {
+    "card": "LC16",
+    "closureHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+    "nativeCount": 35
+  },
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-import20-a",
+  "branch": "wip/import20-a-contest-20261023",
+  "externalReviewedBlueGray": {
+    "cards": [
+      "WM044"
+    ],
+    "source": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+    "evidence": "5607a1c06f00920a0d927958975e1a34e31df2f8",
+    "report": "/home/ddd/Documents/Codex/2026-10-22/task-2/sentinel-lock-close-review/review.txt",
+    "nativeTests": 24,
+    "integratedInCurrentClone": false,
+    "additionalSocietyNotCounted": "MSJC14"
+  },
+  "candidate": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "packageAssignment": "/home/ddd/Documents/Codex/2026-10-21/task-3/IMPORT20_OWNERSHIP_20261023.json",
+  "previousPackageAClaim": [
+    "BQ039",
+    "BQ090",
+    "WM028",
+    "WM025",
+    "WM024",
+    "BQ081",
+    "WM057",
+    "BQ064"
+  ]
+}

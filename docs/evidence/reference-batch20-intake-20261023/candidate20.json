@@ -1,0 +1,1188 @@
+{
+  "createdAtUtc": "2026-10-23T17:37:22.537394+00:00",
+  "purpose": "Parent allocation plan for20 actual-effect programs, not a card-table import or acceptance report",
+  "authorClaimedCards": [],
+  "productBaseForDocsOnly": "d7c884a81c6f4b6590e9d1357824911d35358228",
+  "exclusionCatalogueSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+  "exclusionEvidenceHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+  "inFlightExplicit": [
+    "MSJC13",
+    "MSJC14",
+    "WM037",
+    "WM043",
+    "WM044"
+  ],
+  "excludedCurrentCatalogueIDs": [
+    "BQ022",
+    "BQ026",
+    "BQ027",
+    "BQ028",
+    "BQ029",
+    "BQ030",
+    "BQ031",
+    "BQ032",
+    "BQ035",
+    "BQ036",
+    "BQ037",
+    "BQ038",
+    "BQ040",
+    "BQ041",
+    "BQ042",
+    "BQ053",
+    "BQ054",
+    "BQ059",
+    "BQ077",
+    "BQ078",
+    "BQ079",
+    "BQ080",
+    "BQ082",
+    "BQ083",
+    "BQ085",
+    "BQ087",
+    "BQ089",
+    "BQ091",
+    "BQ094",
+    "BQ104",
+    "CQ07",
+    "CQ08",
+    "CQ16",
+    "CQ17",
+    "CQ26",
+    "DQJC107",
+    "DQJC108",
+    "DQJC109",
+    "DQJC110",
+    "DQJC111",
+    "DQJC112",
+    "DQJC113",
+    "DQJC114",
+    "DQJC115",
+    "DQJC116",
+    "JC001",
+    "JC002",
+    "JC003",
+    "JC004",
+    "JC005",
+    "JC006",
+    "JC007",
+    "JC008",
+    "JC014",
+    "JC015",
+    "JC016",
+    "JC018",
+    "JC020",
+    "JC029",
+    "JC030",
+    "JC031",
+    "JC032",
+    "JC033",
+    "JC034",
+    "JC035",
+    "JC036",
+    "JC037",
+    "JC038",
+    "JC039",
+    "JC040",
+    "JC041",
+    "JC042",
+    "JC043",
+    "JC044",
+    "JC045",
+    "JC046",
+    "JC047",
+    "JC048",
+    "JC049",
+    "JC050",
+    "JC051",
+    "JC052",
+    "JC054",
+    "JC055",
+    "JC056",
+    "JC057",
+    "JC058",
+    "JC059",
+    "JC060",
+    "JC061",
+    "JC062",
+    "JC063",
+    "JC064",
+    "JC065",
+    "JC066",
+    "JC067",
+    "JC068",
+    "JC069",
+    "JC070",
+    "JC071",
+    "JC073",
+    "JC074",
+    "JC075",
+    "JC076",
+    "JC078",
+    "JC084",
+    "JC085",
+    "JC086",
+    "JC087",
+    "JC088",
+    "JC089",
+    "JC090",
+    "JC091",
+    "JC092",
+    "JC093",
+    "JC094",
+    "JC095",
+    "JC096",
+    "JC102",
+    "JC103",
+    "JC104",
+    "JC107",
+    "JC112",
+    "JC114",
+    "JC116",
+    "JC118",
+    "JC125",
+    "JC126",
+    "JC129",
+    "JC130",
+    "JC131",
+    "JC132",
+    "JZ02",
+    "JZ08",
+    "JZ22",
+    "JZ23",
+    "JZ24",
+    "JZ25",
+    "JZ26",
+    "JZ27",
+    "JZ28",
+    "JZ29",
+    "JZ30",
+    "JZ31",
+    "JZ32",
+    "JZ33",
+    "JZ34",
+    "JZ35",
+    "JZ36",
+    "JZ37",
+    "JZ38",
+    "JZ39",
+    "JZ40",
+    "JZ41",
+    "JZ43",
+    "JZ44",
+    "JZ45",
+    "JZ46",
+    "JZ48",
+    "JZ49",
+    "JZ50",
+    "JZ51",
+    "JZ52",
+    "JZ54",
+    "JZ55",
+    "JZ56",
+    "JZ57",
+    "JZ58",
+    "JZ59",
+    "JZ61",
+    "JZ67",
+    "JZ74",
+    "LC01",
+    "LC06",
+    "LC12",
+    "LC16",
+    "LC19",
+    "LC20",
+    "LC21",
+    "LC22",
+    "LC23",
+    "LC24",
+    "LC30",
+    "WM003",
+    "WM021",
+    "WM022",
+    "WM023",
+    "WM029",
+    "WM030",
+    "WM032",
+    "WM033",
+    "WM034",
+    "WM035",
+    "WM037",
+    "WM038",
+    "WM039",
+    "WM040",
+    "WM041",
+    "WM042",
+    "WM045",
+    "WM046",
+    "WM047",
+    "WM056",
+    "WM058",
+    "WM059",
+    "WM060",
+    "WM061",
+    "WM062",
+    "XG10",
+    "XG11",
+    "XG12",
+    "XG14",
+    "XG15",
+    "XG16",
+    "XG17",
+    "XG18",
+    "XG21",
+    "XG26",
+    "XG27",
+    "XG28",
+    "XQ03",
+    "XQ07",
+    "XQ12",
+    "XQ14",
+    "XQ15",
+    "XQ16",
+    "XQ17",
+    "XQ18",
+    "XQ20",
+    "XQ21",
+    "XQ22",
+    "XQ23",
+    "XQ24",
+    "XQ25",
+    "XQ26",
+    "XQ27",
+    "XQ34",
+    "XQ36",
+    "XQ37",
+    "XQ38",
+    "XQ39",
+    "XQ40",
+    "XQ41",
+    "XQ43",
+    "XQ44",
+    "XQ45",
+    "XQ46",
+    "XQ47",
+    "XQ48",
+    "XQ49"
+  ],
+  "projectNativeClosed": 36,
+  "currentFourthTarget": 50,
+  "proposedImplementationTarget": 20,
+  "inCurrentFourth50": 4,
+  "futureCandidates": 16,
+  "rosterChanged": false,
+  "colorCounts": {
+    "红": 3,
+    "黑": 8,
+    "蓝": 4,
+    "灰": 5
+  },
+  "groups": [
+    {
+      "id": "A",
+      "name": "隐秘对抗与后置",
+      "cards": [
+        "BQ039",
+        "BQ090",
+        "WM028",
+        "WM025",
+        "WM024",
+        "BQ081",
+        "WM057",
+        "BQ064"
+      ],
+      "owner": "由父线程分配一位作者",
+      "privateFiles": [
+        "rust-game/src/import20_contest.rs",
+        "rust-game/src/import20_contest_tests.rs"
+      ],
+      "sharedMechanisms": [
+        "神秘学博弈手牌能力的②付费/弃自身/原实例收据",
+        "准备及可响应进场启动、个人获胜观察、逐席展示后置",
+        "有条件减费/真实死亡收益、先置墓再条件消灭、私密检视",
+        "已有失控标志与隐秘加值查询"
+      ],
+      "dependencies": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "时间、附属、费用和控制",
+      "cards": [
+        "XQ19",
+        "XG13",
+        "WM064",
+        "CQ24",
+        "BQ092",
+        "BQ093"
+      ],
+      "owner": "由父线程分配一位作者",
+      "privateFiles": [
+        "rust-game/src/import20_time_attachments.rs",
+        "rust-game/src/import20_time_attachments_tests.rs"
+      ],
+      "sharedMechanisms": [
+        "在场物理时间总数、零费手牌进场；复用现有时间与进场入口",
+        "下一次合格正面打出的有限减费票据，不影响其它打出/付费现身",
+        "附属持续授予图标/关键词/类别，来源离场撤销",
+        "可选额外费用与原敌方附属控制/重结附，owner不变",
+        "本步骤临时费用与两个不同实体横置，产业进场/封印观察"
+      ],
+      "dependencies": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "锁定、充能及复合私密选择",
+      "cards": [
+        "CQ18",
+        "CQ19",
+        "XG20",
+        "BQ057",
+        "CQ15",
+        "CQ28"
+      ],
+      "owner": "由父线程分配一位作者",
+      "privateFiles": [
+        "rust-game/src/import20_lock_choices.rs",
+        "rust-game/src/import20_lock_choices_tests.rs"
+      ],
+      "sharedMechanisms": [
+        "MSJC14条件锁定、敌方带锁实体离场事件；不重复开发哨兵",
+        "充能标志X费用和伤害，纳入已有物理标志搬移契约",
+        "进场数字选择和服务端禁止打出/付费现身，响应期仍按真实时序",
+        "已有额外付费/声望资产区进场复用",
+        "有上限的敌方三私密区同名封印、目标原实例绑定",
+        "有序两次模式选择可重复，逐段真实费用/目标/续体而非重放整条外命令"
+      ],
+      "dependencies": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "group": "A",
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "inCurrentFourth50": true,
+      "scope": "current-fourth-pending",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "imageSha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ039",
+        "path": "Cards/Data/PlayerCards/BQ/BQ039_donghezhitong.tres",
+        "gitBlob": "b453bba71ceea3d8ac0dfc451c18f8bbfb2eba2d",
+        "bytes": 1235,
+        "sha256": "422d4025053c5c321bfaeda8ecac140f995953ef2534943d5195db198901b67b",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ039",
+        "effectTags": [
+          "effect:attach",
+          "effect:discard-deck",
+          "effect:zone-hidden-contest",
+          "operation:discard-one"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+      "imageSha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ090",
+        "path": "Cards/Data/PlayerCards/BQ/BQ090_taotairuozhe.tres",
+        "gitBlob": "5a8b55a602214aa7450bd7223708b4a293fd5168",
+        "bytes": 1174,
+        "sha256": "57197a8fd6a2de2fa88afa03cafa49c5ad7b75a917125537618b0a201c8bdc42",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ090",
+        "effectTags": [
+          "effect:destroy",
+          "effect:zone-hidden-contest"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "WM028",
+      "name": "曼纽的阴影厅堂",
+      "color": "蓝",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg",
+      "imageSha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "WM028",
+        "path": "Cards/Data/PlayerCards/WM/WM028_manniudeyinyingtingtang.tres",
+        "gitBlob": "5e2ea9ae2c86ce8a62aa9301ca4e3bd5d85d08e4",
+        "bytes": 1137,
+        "sha256": "8d7aca38542ec12fc8586eaff847258b072b2fe26bbd989c5b57f8df2ba8a233",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM028",
+        "effectTags": [
+          "effect:attach-society",
+          "effect:hidden-contest"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "WM025",
+      "name": "安哥拉·曼纽",
+      "color": "蓝",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg",
+      "imageSha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "WM025",
+        "path": "Cards/Data/PlayerCards/WM/WM025_angelamanniu.tres",
+        "gitBlob": "aadeecabc88e615d3bf76385293b3d8542a3218d",
+        "bytes": 1246,
+        "sha256": "adc1ad50fcd5ae6500570e741bbc7d52a7b5f5d3748d7814b3ae0d6c81110425",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM025",
+        "effectTags": [
+          "effect:field-support",
+          "operation:influence-vampire-districts"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "WM024",
+      "name": "阿剌穆特杀手",
+      "color": "蓝",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "imageSha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "WM024",
+          "oldSpec": "其它角色因袭击死亡即可抓牌",
+          "primaryObserved": "声望角色因袭击死亡才抓牌",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "WM024",
+        "path": "Cards/Data/PlayerCards/WM/WM024_alamuteshashou.tres",
+        "gitBlob": "ca6569c47939470f37786a17e5ba39310610f39a",
+        "bytes": 1270,
+        "sha256": "629012a16555f6809f92fd1b5db969f8af731ea078a7f3d5aeebd4d2e3f8af34",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM024",
+        "effectTags": [
+          "effect:damage"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "imageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "BQ081",
+          "oldSpec": "展示后库顶三张入墓",
+          "primaryObserved": "展示后库顶一张入墓",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "BQ081",
+        "path": "Cards/Data/PlayerCards/BQ/BQ081_diaolingshifuguai.tres",
+        "gitBlob": "bd79b36a0cf6919d43e59dca4aee3c8547c6fe8a",
+        "bytes": 1228,
+        "sha256": "c4e001cecfa6675c83700c5f0747876b8c4abf5de2bbc585590a2edd2a7dabc6",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ081",
+        "effectTags": [
+          "effect:grave-character-bottom-then-destroy",
+          "effect:mill-self-one"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "WM057",
+      "name": "信息掮客",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+      "imageSha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "WM057",
+        "path": "Cards/Data/PlayerCards/WM/WM057_xinxiqianke.tres",
+        "gitBlob": "9b93ceaaba07b8ecd9e29016bca4fa2470ba8195",
+        "bytes": 1241,
+        "sha256": "7b923dd3cf7a44759fbb6daa8ea8a66bbf5140d41ae7908f2a345450f4c674a2",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM057",
+        "effectTags": [
+          "effect:batch",
+          "effect:hidden-contest",
+          "effect:non-qs",
+          "effect:sequence",
+          "operation:broker-inspect",
+          "operation:deter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "A",
+      "id": "BQ064",
+      "name": "提取样本",
+      "color": "灰",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ064 提取样本.jpg",
+      "imageSha256": "4ae03aeedb44416e0daa489cf4df68613dbf32ece07d6ac642db7169a6142e10",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ064",
+        "path": "Cards/Data/PlayerCards/BQ/BQ064_tiquyangben.tres",
+        "gitBlob": "4317f4229dd4df2ce23ff10b87ff9a3ac15d88f7",
+        "bytes": 1121,
+        "sha256": "e19ce2d34562b3ccc1b746d6a080fa993341b0dc04108d94000ecc53303b5242",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ064",
+        "effectTags": [
+          "effect:batch",
+          "operation:society-remove-counter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "现有mystic_contest/mystic_hooks协议，不能新建第二协议",
+        "WM057敌方有条件使用他人来源须独立能力授权，复用XQ22边界而非通用放开",
+        "WM024动态袭击X与声望死亡记录只消费一次"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "XQ19",
+      "name": "熵力化身",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+      "imageSha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "XQ19",
+        "path": "Cards/Data/PlayerCards/XQ/XQ019_shanglihuashen.tres",
+        "gitBlob": "50063a8c5e3262134268738322b89bc21d12750c",
+        "bytes": 1077,
+        "sha256": "b625cf662a71a2884737bc25571f24f628f65e62b1e305565726d2709bb0c1c6",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "XQ19",
+        "effectTags": [
+          "effect:zone-enter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "imageSha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "XG13",
+          "oldSpec": "下一张灾难牌或血脉图标牌减②",
+          "primaryObserved": "下一张鸣钟教派牌或鲜血领域图标牌减②，限正面打出",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "XG13",
+        "path": "Cards/Data/PlayerCards/XG/XG013_malilindeboge.tres",
+        "gitBlob": "eed9ed5aff9420929dfa7fe94d4d5728bf4993fe",
+        "bytes": 1303,
+        "sha256": "3f8964d4635a78e9aca0f87578545dbabb30948899ac99f3ab43eba13df72d59",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "XG13",
+        "effectTags": [
+          "effect:batch",
+          "effect:time-cult",
+          "operation:entry-cultist-time",
+          "operation:next-discount"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "imageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "WM064",
+        "path": "Cards/Data/PlayerCards/WM/WM064_jumangwenshen.tres",
+        "gitBlob": "bf2358a59654cd1145459bd566449bb1b4e6b395",
+        "bytes": 1301,
+        "sha256": "1e82b237d3e3eb95a12afc0a2420ba80a443d44cf9558458c831b3d5bba058a2",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "WM064",
+        "effectTags": [
+          "effect:attach",
+          "effect:batch",
+          "operation:target-direct-reveal"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "imageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "CQ24",
+          "oldSpec": "敌方附属印刷费上限⑤",
+          "primaryObserved": "上限③；仍是敌方附属，可以重新选择结附目标",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "CQ24",
+        "path": "Cards/Data/PlayerCards/CQ/CQ024_kamen.tres",
+        "gitBlob": "8a351eaf688b86089efa3e56908fbd99c4dc166e",
+        "bytes": 1263,
+        "sha256": "f019bf75421222b241f6986c43716663bba58ccd48bf814dcf9287b0c1c08e92",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ24",
+        "effectTags": [
+          "effect:criminal",
+          "operation:carmen"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "imageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "primaryViewedHere": true,
+      "specIssues": [
+        {
+          "id": "BQ092",
+          "oldSpec": "仅横置一个本方圣甲虫产业附属",
+          "primaryObserved": "先有本牌横置图标，并另横置一个本方圣甲虫产业附属；获得①至本步骤结束",
+          "scope": "first20",
+          "pixelsViewed": true
+        }
+      ],
+      "uwpro": {
+        "id": "BQ092",
+        "path": "Cards/Data/PlayerCards/BQ/BQ092_bahamaqundaojijinzhongxin.tres",
+        "gitBlob": "f6aa8501149f76aa7cda2a64845183a1167df191",
+        "bytes": 1263,
+        "sha256": "3bd9384bfe20e40a2ce33f9234115c07f1dd30a4a502efb6bf87ec8b67db884e",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ092",
+        "effectTags": [
+          "effect:attach-district",
+          "effect:continuing-cost",
+          "effect:zone-hidden-contest",
+          "operation:mana"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "B",
+      "id": "BQ093",
+      "name": "样本陈列室",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+      "imageSha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ093",
+        "path": "Cards/Data/PlayerCards/BQ/BQ093_yangbenchenlieshi.tres",
+        "gitBlob": "f067b87b7400e6bc599a492ff7f8fe198929e7c5",
+        "bytes": 1273,
+        "sha256": "16e76849109970b25486023cd6efc631661c33d754c0141ccd162b47e903defe",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ093",
+        "effectTags": [
+          "effect:attach-district",
+          "effect:mill-self-one",
+          "effect:scarab",
+          "operation:sealed-host-eye"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "WM037相关共享时间查询待独审结论后由集成者接入，作者不改冻结候选",
+        "BQ092临时费用是本步骤资源，不能伪造成永久资产或默认持久加钱",
+        "原控制权、结附目标和来源UID必须走现有绑定/控制写入口"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "scope": "current-fourth-pending",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+      "imageSha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "CQ18",
+        "path": "Cards/Data/PlayerCards/CQ/CQ018_renqiuyu.tres",
+        "gitBlob": "10e9058256991772901fee75032cd65f96f15230",
+        "bytes": 1331,
+        "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ18",
+        "effectTags": [
+          "effect:draw",
+          "effect:shoggoth",
+          "operation:district-lock",
+          "operation:hidden-sentinel-lock"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "scope": "current-fourth-pending",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+      "imageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "CQ19",
+        "path": "Cards/Data/PlayerCards/CQ/CQ019_damokelisizhijian.tres",
+        "gitBlob": "d59ade6e8e1bba828e0ebb5e74f5844a0ee9d4f3",
+        "bytes": 1322,
+        "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ19",
+        "effectTags": [
+          "effect:attach-society",
+          "effect:time-cult",
+          "operation:charge-damage",
+          "operation:source-counter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "inCurrentFourth50": true,
+      "scope": "current-fourth-pending",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "imageSha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "XG20",
+        "path": "Cards/Data/PlayerCards/XG/XG020_jinling.tres",
+        "gitBlob": "d33ecacab8aa45d2f9561acdefa948ad3b4ec51b",
+        "bytes": 1293,
+        "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "XG20",
+        "effectTags": [
+          "effect:attach-society",
+          "effect:gray",
+          "operation:ban-number"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "color": "灰",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+      "imageSha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "BQ057",
+        "path": "Cards/Data/PlayerCards/BQ/BQ057_pitegangsaleisi.tres",
+        "gitBlob": "f704519a77cdb2b788bc57e6aa5819bb89557278",
+        "bytes": 1256,
+        "sha256": "88e4d977414980248cf1af326575981edad4c4ec09b2af25e73283193efde5a7",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "BQ057",
+        "effectTags": [
+          "effect:zone-enter"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "color": "红",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
+      "imageSha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f",
+      "primaryViewedHere": true,
+      "specIssues": [],
+      "uwpro": {
+        "id": "CQ15",
+        "path": "Cards/Data/PlayerCards/CQ/CQ015_yuantuabishuangjian.tres",
+        "gitBlob": "b9bef7c0ed83fe8c9ffcbf7c78923be073c371d5",
+        "bytes": 1392,
+        "sha256": "9c5df597ef52e2912585c2ff1d4ddc6fd5d67ebd4220b0a5be6cd58f4cb3e423",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ15",
+        "effectTags": [
+          "effect:attach",
+          "effect:green-black",
+          "operation:swords"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    },
+    {
+      "group": "C",
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "inCurrentFourth50": false,
+      "scope": "future-candidate-no-roster-change",
+      "status": "proposed-parent-assignment-no-implementation-claim",
+      "sourceImage": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "imageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "primaryViewedHere": false,
+      "specIssues": [],
+      "uwpro": {
+        "id": "CQ28",
+        "path": "Cards/Data/PlayerCards/CQ/CQ028_zhouyuzhimen.tres",
+        "gitBlob": "543d27faf3332d7c4e95ac26b2add29eaed2584b",
+        "bytes": 1311,
+        "sha256": "051705a20336884e81ec8159ecb34b72fc14f34510f4b1fab77f0665cae7b354",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      "suezReference": {
+        "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+        "record": "CQ28",
+        "effectTags": [
+          "effect:cq",
+          "effect:draw",
+          "operation:curse-defense",
+          "operation:curse-mill",
+          "operation:curse-revive"
+        ],
+        "use": "mechanism/reference only; independent Rust implementation; no direct copy permission"
+      },
+      "newDependencyGate": [
+        "已审MSJC14依赖在蓝灰分支，父线程统一整合后才计实际接入",
+        "CQ19新充能类别须明确XQ20/XQ21如何搬移/复制；不可悄悄遗漏",
+        "CQ15授予宿主能力来源见证、CQ28重复模式的程序认证由集成者统一接线"
+      ],
+      "newCompletionCountAdded": 0
+    }
+  ],
+  "implementationTestsRun": 0,
+  "completionAdded": 0,
+  "publicAccepted": 0,
+  "sharedFilesSingleWriter": [
+    "rust-game/src/lib.rs",
+    "rust-game/src/rules.rs",
+    "rust-game/src/model.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/catalog.rs",
+    "rust-game/data/cards.json",
+    "rust-game/src/mystic_contest.rs",
+    "rust-game/src/mystic_hooks.rs",
+    "rust-game/src/marker_transfer.rs",
+    "rust-game/src/room.rs"
+  ],
+  "wiringContract": "独立普通克隆；私有模块/测试与公共接线独立commit，集成负责人统一挑入；无一作者直接覆盖其他活动克隆；不新增apply/费用/存档内核"
+}

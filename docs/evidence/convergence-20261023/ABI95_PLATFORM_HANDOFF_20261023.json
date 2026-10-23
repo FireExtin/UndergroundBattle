@@ -1,0 +1,61 @@
+{
+  "task": "Current ABI95 JZ56 platform handoff, author evidence pending independent platform review",
+  "sourceCommit": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "evidenceHead": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4",
+  "branch": "progress/batch20-fourth-20261022",
+  "worktree": "clean",
+  "remoteVerified": "08319094a113717a1a80041fbe94ca8c139429be",
+  "localAhead": 16,
+  "remoteAncestor": true,
+  "pushed": false,
+  "pushConstraint": "Only prior083 had one-time workflow-risk authorization; no newer push attempted",
+  "verification": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4/docs/evidence/abi95-platform-20261023/verification.json",
+  "verificationSha256": "f02863dad499f8ae6f99dd1cd1b8da888878fedafdd4cadf03515d11280437eb",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/abi95-platform-51a336c4-20261023.bundle",
+  "bundleSha256": "938f362d1a8664ceb1a468620528b88287a763781b07914c78adb7458b4f8104",
+  "bundleBaseRequired": "ebccb2e9a944ea434fe9ed3e88c5d001a77fdc21",
+  "bundleVerified": true,
+  "productionArtifactRoot": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/abi95-platform-20261023",
+  "artifactInventory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4/docs/evidence/abi95-platform-20261023/deployment-artifacts.json",
+  "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+  "wasmBytes": 6865239,
+  "normalGame": {
+    "actualWorker": true,
+    "legalCommands": 1216,
+    "turns": 21,
+    "score": [
+      9,
+      0
+    ],
+    "terminalBothViews": true,
+    "realBrowser": false
+  },
+  "counts": {
+    "nativeClosed": 33,
+    "target": 50,
+    "directedWasm": 1,
+    "directedWorker": 1,
+    "publicNew": 0
+  },
+  "remaining": [
+    "Only JZ56 directed cross-platform, not33/50 matrix",
+    "No real browser in this platform slice",
+    "Public deck gates unchanged",
+    "No deployment/main/CI/newer push",
+    "Extra corrupted-save expansion paused per user"
+  ],
+  "next": "Continue XQ20 normal card mechanism from frozen source in isolated ordinary clone; preserve frozen artifact and evidence",
+  "independentReview": {
+    "status": "closed-with-no-P0-P1-P2-in-scope",
+    "report": "/home/ddd/Documents/Codex/2026-10-22/task-2/abi95-platform-close-review/review.txt",
+    "reportSha256": "b5eea3216139184362981d0c981eb83104c3507815fd36c721a5bc28264d9ac4",
+    "normalWasmCommands": 200,
+    "views": 824,
+    "polls": 800,
+    "duplicateRejections": 200,
+    "artifactFilesChecked": 267,
+    "independentWorkerOrBrowser": false,
+    "releaseScope": "Original ABI95 frozen production artifact only, domestic candidate pending real browser acceptance; parent coordinates deployment"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "createdAtUtc": "2026-10-23T17:50:55.676267+00:00",
+  "status": "stoppedAtSafeBoundaryAwaitingSerialMain",
+  "recipientGameMainThread": "01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "currentParallelWork": "none active; no new tasks or agents",
+  "clones": [
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-import20-a",
+      "branch": "wip/import20-a-contest-20261023",
+      "head": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+      "status": "clean"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-reference-intake",
+      "branch": "wip/reference-batch20-plan-20261023",
+      "head": "76ad42d00ded4e40c093745f9bb829cb6334f5dd",
+      "status": "clean"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-wm037-clock",
+      "branch": "wip/batch50-wm037-clock-20261023",
+      "head": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "status": "clean"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-lc16-normal",
+      "branch": "wip/batch50-lc16-integrated-20261023",
+      "head": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "status": "clean"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal",
+      "branch": "wip/xq20-normal-20261023",
+      "head": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+      "status": "clean"
+    },
+    {
+      "directory": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4",
+      "branch": "progress/batch20-fourth-20261022",
+      "head": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+      "status": "clean"
+    }
+  ],
+  "authorA": {
+    "base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "head": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+    "codeDelta": false,
+    "sourceCorrectionApplied": false,
+    "buildsStarted": 0,
+    "testsStarted": 0,
+    "cardsReservedThenReleased": [
+      "BQ039",
+      "BQ090",
+      "WM028",
+      "WM025",
+      "WM024",
+      "BQ081",
+      "WM057",
+      "BQ064"
+    ]
+  },
+  "planningAndFiveSpecFixes": {
+    "sourceCommit": "a81a25171e8ec1543b75131cde7781f97639b4e0",
+    "fiveFixesCommit": "76ad42d00ded4e40c093745f9bb829cb6334f5dd",
+    "fiveJson": "docs/evidence/reference-five-spec-fixes-20261023/handoff.json",
+    "A2": [
+      "BQ081",
+      "WM024"
+    ],
+    "B3": [
+      "XG13",
+      "CQ24",
+      "BQ092"
+    ],
+    "actualSpecMutation": false,
+    "implementationTestsRun": 0,
+    "newCompleteCards": 0
+  },
+  "latestKnownProjectNativeClosed": 37,
+  "noteOn37": "35 local LC16/XQ20-based native programs plus independently reviewed WM037 and WM044 on separate branches; not an integrated public37 candidate",
+  "reviewedMechanisms": [
+    {
+      "name": "LC16",
+      "runtimeSource": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+      "closureHead": "d7c884a81c6f4b6590e9d1357824911d35358228",
+      "independentNative": 22,
+      "sourceChecks": 3
+    },
+    {
+      "name": "XQ20",
+      "runtimeSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+      "closureHead": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+      "independentNative": 21,
+      "sourceChecks": 3
+    },
+    {
+      "name": "WM037/MSJC13",
+      "runtimeSource": "495e392db463df04d66a0e2bcdda7496bfce6120",
+      "evidenceHead": "7a739d6a66505faad5f4077b0110dd85f98c21dc",
+      "authorUniqueNative": 58,
+      "independentNative": 31,
+      "sourceChecks": 6,
+      "q1ResolvedBySpecificExistingFaq": true,
+      "latestClosureRuntimeChanged": false,
+      "MSJC13NotAnotherBatchCard": true
+    }
+  ],
+  "externalCollectionNeeded": [
+    "WM044/MSJC14 latest native/WASM/Worker and import20 B handoffs from blue-gray author 01a1693c-05ce-726e-95af-31ecb62d60f2",
+    "WM043 handoff from author 01a16997-118f-737d-ba64-cec3576070c4",
+    "Import20 C-package handoff from parent-assigned author; obtain exact task identity from parent",
+    "ABI95 reviewed terminal UI specialist corrected candidate; do not deploy raw5a5911d missing the UI fix"
+  ],
+  "serialNextOrder": [
+    "Read all owner handoffs and verify exact SHAs/worktrees first; archive chats only after main confirms integration",
+    "Keep a0b as agreed common implementation base; add only reviewed runtime/source deltas for WM037/MSJC13 and WM044/MSJC14 with explicit ABI/catalogue resolution",
+    "Apply source-only corrections once by assigned owner before implementing those cards; preserve all other source records and frozen runtime evidence",
+    "Collect B/C existing deltas before assigning serial import20 implementation; A has no delta and must not be counted",
+    "Run only applicable integration checks for actual combined source; Native/WASM/Worker/public/browser statuses remain separate; no automatic publish or CI"
+  ],
+  "restrictions": [
+    "no new cards/mechanisms/agents in this turn",
+    "no push/main/deploy/CI/force/reset/worktree",
+    "one-time083 push exception does not cover new checkpoints",
+    "Suez current1fb has no copied game implementation permission; UWPro direct author permission is recorded",
+    "no extra corrupted-save scope; normal gameplay priority",
+    "do not repeat XG21 denied path or Sites pending/403"
+  ],
+  "processes": {
+    "scope": "host read-only ps comm/cwd and listening TCP endpoints; no process command lines or environment read",
+    "workspaceRelatedProcesses": [],
+    "listeningTcpForListedPids": [],
+    "ssExitCode": 0,
+    "mutations": "none; no processes killed"
+  },
+  "bundles": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/abi95-platform-51a336c4-20261023.bundle",
+      "sha256": "938f362d1a8664ceb1a468620528b88287a763781b07914c78adb7458b4f8104",
+      "verified": true,
+      "verifyOutput": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/abi95-platform-51a336c4-20261023.bundle is okay\nThe bundle contains this ref:\n51a336c4a42fd67495dca8d48dcfdd374e67f0ed HEAD\nThe bundle requires this ref:\nebccb2e9a944ea434fe9ed3e88c5d001a77fdc21 \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/xq20-closed-d39e8991-20261023.bundle",
+      "sha256": "5dc78d90ca87090d1da71710b8d41de2126a0ba4dc0725fdc055ac295c527207",
+      "verified": true,
+      "verifyOutput": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/xq20-closed-d39e8991-20261023.bundle is okay\nThe bundle contains this ref:\nd39e8991dc0547b2554302a31c63809fa2a885b3 HEAD\nThe bundle requires this ref:\n3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6 \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/lc16-closed-20261023.bundle",
+      "sha256": "e187c7fd84509df3477ed4efba11cc61fabdbd3aa5fe466053a6b4b44211c2d5",
+      "verified": true,
+      "verifyOutput": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/lc16-closed-20261023.bundle is okay\nThe bundle contains this ref:\nd7c884a81c6f4b6590e9d1357824911d35358228 HEAD\nThe bundle requires this ref:\nb98cadd2589717e2eaca635322316926b4f06fcb \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/wm037-clock-native-final-20261023.bundle",
+      "sha256": "b4eccb8ddefb79ec53365ec7de097101a908ca4709566e8bf6483bb1eea8d914",
+      "verified": true,
+      "verifyOutput": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/wm037-clock-native-final-20261023.bundle is okay\nThe bundle contains this ref:\n7a739d6a66505faad5f4077b0110dd85f98c21dc HEAD\nThe bundle requires this ref:\nd7c884a81c6f4b6590e9d1357824911d35358228 \nThe bundle uses this hash algorithm: sha1\n"
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/reference-batch20-plan-final-20261023.bundle",
+      "sha256": "e1dc4ca4ccfcc849b7afc4e467076e2b3b1707e3bfc7fe79a21bc2b9a6a22a5e",
+      "verified": true,
+      "verifyOutput": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/reference-batch20-plan-final-20261023.bundle is okay\nThe bundle contains this ref:\na81a25171e8ec1543b75131cde7781f97639b4e0 HEAD\nThe bundle requires this ref:\nd7c884a81c6f4b6590e9d1357824911d35358228 \nThe bundle uses this hash algorithm: sha1\n"
+    }
+  ],
+  "remoteGameProgressLastVerified": "08319094a113717a1a80041fbe94ca8c139429be",
+  "pushAttempted": false,
+  "archivedAnything": false,
+  "snapshotNote": "Clone HEADs are the clean snapshot before committing this documentation-only convergence record. The final root GAME_CONVERGENCE_HANDOFF_20261023.json binds the resulting commit and bundle."
+}

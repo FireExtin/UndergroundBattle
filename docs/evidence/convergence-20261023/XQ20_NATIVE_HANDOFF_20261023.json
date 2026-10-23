@@ -1,0 +1,75 @@
+{
+  "task": "Normal-gameplay XQ20 author Native candidate, needs independent review",
+  "timeUtc": "2026-10-23T14:18:25.193707+00:00",
+  "clone": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal",
+  "branch": "wip/xq20-normal-20261023",
+  "base": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "fixedProductSource": "10e46d71ad55233bb06c72fc6570c0542fff941b",
+  "evidenceHead": "3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6",
+  "worktree": "clean",
+  "remoteProgressBranch": "progress/batch20-fourth-20261022",
+  "remoteVerified": "08319094a113717a1a80041fbe94ca8c139429be",
+  "remoteIsAncestor": true,
+  "aheadOfRemoteProgress": 18,
+  "newWipBranchExistsRemotely": false,
+  "pushAttempted": false,
+  "pushConstraint": "Known no-CI restriction remains; prior workflow-risk authorization covered only exact083, so no newer push attempted",
+  "identity": {
+    "engine": "rust-v0.2.96-batch20-fourth",
+    "pool": "limited-v2.87-batch20-fourth",
+    "definitions": 248,
+    "supported": 213
+  },
+  "native": {
+    "newDirected": 18,
+    "adjacent": 163,
+    "uniquePassed": 181,
+    "sourceChecks": 3,
+    "failed": 0,
+    "ignored": 0,
+    "normalRoomCommands": true,
+    "independentTestsPassed": 21,
+    "independentSourceChecksPassed": 3,
+    "authorClosureSourceChecksPassed": 3
+  },
+  "count": {
+    "formalNativeClosed": 34,
+    "target": 50,
+    "candidateCard": "XQ20",
+    "publicNewAdmission": 0
+  },
+  "verification": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal/docs/evidence/xq20-native-20261023/verification.json",
+  "verificationSha256": "27402bc78997344546fbaef8f401a9842fde524bba4244d5a8ee26c1c89240eb",
+  "bundle": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/xq20-native-3eac21c7-20261023.bundle",
+  "bundleSha256": "63fe8c9d65259777eb419146d91c76e1239b659adebd7511a8b9424e21da155e",
+  "bundleVerified": true,
+  "requiredBundleBase": "51a336c4a42fd67495dca8d48dcfdd374e67f0ed",
+  "report": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal/docs/factions/XQ20_NATIVE_2026-10-23.md",
+  "priorPlatformHandoff": "/home/ddd/Documents/Codex/2026-10-21/task-3/ABI95_PLATFORM_HANDOFF_20261023.json",
+  "frozenAbi95Unchanged": true,
+  "remaining": [
+    "ABI96 WASM/Worker/Web/browser not executed",
+    "Full50 batch incomplete; formal Native34/50",
+    "Extra corrupted-save expansion paused; existing guards/evidence retained",
+    "No newer push approval; no CI/push/main/deployment attempted"
+  ],
+  "ownTestReceipts": "All started Native/source runs completed; failures preserved; no active build left in this slice",
+  "notPerformed": [
+    "CI",
+    "push",
+    "main merge",
+    "deployment",
+    "production Site probe",
+    "extra corrupted-save matrix",
+    "XG21 interrupted review retry"
+  ],
+  "originalAuthorEvidenceHead": "3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6",
+  "currentHead": "d39e8991dc0547b2554302a31c63809fa2a885b3",
+  "closureBundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/xq20-closed-d39e8991-20261023.bundle",
+    "sha256": "5dc78d90ca87090d1da71710b8d41de2126a0ba4dc0725fdc055ac295c527207",
+    "verified": true,
+    "base": "3eac21c79bad1cf91a0dd3a12cbc23add1c0c1d6"
+  },
+  "closureReview": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-xq20-normal/docs/evidence/xq20-native-closure-20261023/review.txt"
+}

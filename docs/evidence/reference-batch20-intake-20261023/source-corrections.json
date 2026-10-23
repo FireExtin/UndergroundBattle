@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BQ081",
+    "oldSpec": "展示后库顶三张入墓",
+    "primaryObserved": "展示后库顶一张入墓",
+    "scope": "first20",
+    "pixelsViewed": true
+  },
+  {
+    "id": "WM024",
+    "oldSpec": "其它角色因袭击死亡即可抓牌",
+    "primaryObserved": "声望角色因袭击死亡才抓牌",
+    "scope": "first20",
+    "pixelsViewed": true
+  },
+  {
+    "id": "XG13",
+    "oldSpec": "下一张灾难牌或血脉图标牌减②",
+    "primaryObserved": "下一张鸣钟教派牌或鲜血领域图标牌减②，限正面打出",
+    "scope": "first20",
+    "pixelsViewed": true
+  },
+  {
+    "id": "CQ24",
+    "oldSpec": "敌方附属印刷费上限⑤",
+    "primaryObserved": "上限③；仍是敌方附属，可以重新选择结附目标",
+    "scope": "first20",
+    "pixelsViewed": true
+  },
+  {
+    "id": "BQ092",
+    "oldSpec": "仅横置一个本方圣甲虫产业附属",
+    "primaryObserved": "先有本牌横置图标，并另横置一个本方圣甲虫产业附属；获得①至本步骤结束",
+    "scope": "first20",
+    "pixelsViewed": true
+  },
+  {
+    "id": "BQ055",
+    "oldSpec": "展示牌获得地区势力+3",
+    "primaryObserved": "紫色隐秘加值+3；不增加地区势力",
+    "scope": "future-core-family-not-first20",
+    "pixelsViewed": true
+  }
+]
