@@ -3,6 +3,9 @@
 第四批原生已由独审确认 **33/50**；本轮补JZ56的WASM/Worker实际运行缺口，没有新增规则或公开准入。
 构建起点为 `7deed1977b82311c836146ff384f77690135619c`，运行规则保持已审 `292d3f75/ebccb2e9` 的内容。
 最终固定交付、输入绑定、产物清单见[verification.json](../evidence/abi95-platform-20261023/verification.json)及任务交接。
+源码固定为 `5a5911d64da37d1978776ef5f5760da6d5086ffb`；该提交的缓存WASM构建及Sites完整本地构建再次成功。
+WASM五文件与实际执行字节相同，Sites的266个文件逐字节相同；唯一差异是Wrangler生成的server/README.md构建时间。
+Worker、WASM和客户端运行字节均未变化，因此没有重复整套200命令验证。
 只有JZ56一张具本轮定向平台证据，不能把它写成33张或完整50张的WASM验收。
 
 ## 正常玩法实际结果

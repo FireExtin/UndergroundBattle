@@ -1,0 +1,23 @@
+{
+  "command": [
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "buildStartedFromCommit": "7deed1977b82311c836146ff384f77690135619c",
+  "offline": true,
+  "Node": "24.22.1",
+  "Rust": "1.90.0",
+  "wasmBindgenVersion": "0.2.104",
+  "WASM_BINDGEN": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/wasm-bindgen-0.2.104-from-crate/bin/wasm-bindgen",
+  "CARGO_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo",
+  "RUSTUP_HOME": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup",
+  "UNDERGROUNDBATTLE_BUILD_ROOT": "/home/ddd/Documents/Codex/2026-10-21/task-3/batch4-build",
+  "RUSTFLAGS": "--remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo=/__undergroundbattle/cargo --remap-path-prefix=/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-batch4=/__undergroundbattle/source",
+  "launchGuard": "original tools/build-storage.mjs; ordinary disk and memory guards; jobs1/codegen-units256",
+  "profile": "release; no society-fixtures feature; exactly current kernel",
+  "wasmBytes": 6865239,
+  "wasmSha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+  "fixedSourceCommit": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "fixedSourceCachedBuildReceipt": "fixed-wasm-build-16.json",
+  "fiveOutputsByteIdentical": true
+}

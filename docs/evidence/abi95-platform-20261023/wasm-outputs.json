@@ -1,0 +1,27 @@
+[
+  {
+    "path": "hegemony_wasm.d.ts",
+    "bytes": 3921,
+    "sha256": "c957ff06db12352cfc9ebb92a45f1707432e53972efcbee7df24c8b9c211a758"
+  },
+  {
+    "path": "hegemony_wasm.js",
+    "bytes": 18203,
+    "sha256": "fb262978c41802322caec9fa9dd38ff6e273ff019865fd401a82afd78c1cfebb"
+  },
+  {
+    "path": "hegemony_wasm_bg.wasm",
+    "bytes": 6865239,
+    "sha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe"
+  },
+  {
+    "path": "hegemony_wasm_bg.wasm.d.ts",
+    "bytes": 1944,
+    "sha256": "5ebdfb8ff652624f96dfba3d1dcecf1ec3db65c65846a3579ad1aa94372dbdf3"
+  },
+  {
+    "path": "package.json",
+    "bytes": 33,
+    "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035"
+  }
+]

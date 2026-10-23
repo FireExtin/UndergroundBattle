@@ -1,0 +1,183 @@
+{
+  "scope": "Author directed JZ56 current binding/platform evidence; not independent platform review, full50, browser acceptance or deployment",
+  "fixedSourceCommit": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+  "nativeClosedCards": 33,
+  "batchTarget": 50,
+  "wasmDirectedCards": [
+    "JZ56"
+  ],
+  "workerDirectedCards": [
+    "JZ56"
+  ],
+  "publicAdmissionNewCards": 0,
+  "identity": {
+    "rules": "hegemony-pdf-v1",
+    "pool": "limited-v2.86-batch20-fourth",
+    "engine": "rust-v0.2.95-batch20-fourth",
+    "definitions": 247,
+    "supported": 213,
+    "unsupportedFourthBatchEntries": 34
+  },
+  "wasm": {
+    "bytes": 6865239,
+    "sha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+    "sourceManifestSha256": "43d43c0c42472f01a5dd6099f4c4d5fc4b5bec7bd29588d1dd2dd3ff47cf8a23",
+    "fiveOutputsByteIdenticalAtFixedCommit": true
+  },
+  "native": {
+    "passedExporterTests": 1,
+    "disclosedLayouts": 6,
+    "commands": 200
+  },
+  "nativeWasm": {
+    "commands": 200,
+    "views": 824,
+    "polls": 800,
+    "duplicateRejections": 200,
+    "exactOpaqueStateStrings": true,
+    "u64Preserved": true
+  },
+  "worker": {
+    "testsPassed": 10,
+    "normalLayouts": 6,
+    "normalCommands": 200,
+    "normalViews": 920,
+    "normalD1Reopens": 24,
+    "identicalRetries": 224,
+    "oneWritePerCommand": true,
+    "actualWorkerdWasm": true
+  },
+  "normalDuel": {
+    "passed": true,
+    "legalHttpCommands": 1216,
+    "turn": 21,
+    "winnerTeam": 0,
+    "score": [
+      9,
+      0
+    ],
+    "bothTerminalViewsFinished": true,
+    "productBot": false,
+    "realBrowser": false,
+    "creationJoinScope": "Real Rust newGame/joinGame lobby seeded by local synthetic D1 fixture; create/join HTTP UI not covered"
+  },
+  "web": {
+    "testFiles": 2,
+    "passed": 13,
+    "skipped": 0
+  },
+  "sourceChecksPassed": 3,
+  "singleKernelBindingChecksPassed": 1,
+  "build": {
+    "fixedSourceWasmSeconds": 0.565,
+    "fixedSourceSitesSeconds": 10.163,
+    "webTypechecksAndProductionBuild": true,
+    "wrangler": "4.146.0",
+    "dryRunOnly": true,
+    "identicalFiles": 266,
+    "differentFiles": [
+      {
+        "path": "server/README.md",
+        "reason": "Wrangler generated build timestamp only; not executable",
+        "old": {
+          "path": "server/README.md",
+          "bytes": 122,
+          "sha256": "93af056da39e07d4aa16b2eab899f9d015dd6c89ee85f078ffc3cda22b2b3825"
+        },
+        "new": {
+          "path": "server/README.md",
+          "bytes": 122,
+          "sha256": "9f2b918f62760666f8790a1e68a4b02ec686f8f7e0a3f7d7496b011d667662cd"
+        }
+      }
+    ],
+    "allRuntimeFilesByteIdenticalToExecutedBuild": true
+  },
+  "sourceEvidenceAudit": [
+    {
+      "receipt": "native-export-04.json",
+      "sourceHead": "ebccb2e9a944ea434fe9ed3e88c5d001a77fdc21",
+      "exitCode": 0,
+      "rustSourceFileCount": 239,
+      "rustSourceDifferencesFromFixedCommit": []
+    },
+    {
+      "receipt": "wasm-build-05.json",
+      "sourceHead": "7deed1977b82311c836146ff384f77690135619c",
+      "exitCode": 0,
+      "rustSourceFileCount": 239,
+      "rustSourceDifferencesFromFixedCommit": []
+    },
+    {
+      "receipt": "fixed-wasm-build-16.json",
+      "sourceHead": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+      "exitCode": 0,
+      "rustSourceFileCount": 239,
+      "rustSourceDifferencesFromFixedCommit": []
+    },
+    {
+      "receipt": "http-worker-10.json",
+      "sourceHead": "7deed1977b82311c836146ff384f77690135619c",
+      "exitCode": 0,
+      "rustSourceFileCount": 239,
+      "rustSourceDifferencesFromFixedCommit": []
+    },
+    {
+      "receipt": "fixed-sites-build-17.json",
+      "sourceHead": "5a5911d64da37d1978776ef5f5760da6d5086ffb",
+      "exitCode": 0,
+      "rustSourceFileCount": 239,
+      "rustSourceDifferencesFromFixedCommit": []
+    }
+  ],
+  "preservedEarlierStorageEvidence": {
+    "expandedBeforePriorityChange": true,
+    "nativeWasmRestoreRejectCalls": 144,
+    "workerCorruptLayouts": 4,
+    "http400": 40,
+    "oldNativeAbi94Retired410Tests": 1,
+    "furtherExpansion": "paused per user; unrun cases not passed"
+  },
+  "failuresPreserved": [
+    "native-witness-01: fixture selected accept instead of an actual option",
+    "normal-game-12: client kept toggling ready",
+    "normal-game-13: client expected ended instead of finished"
+  ],
+  "artifact": {
+    "frozenProductionPath": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/abi95-platform-20261023",
+    "files": 267,
+    "bytes": 194291172,
+    "wasmModules": 1,
+    "inventory": "deployment-artifacts.json",
+    "inventorySha256": "af67e81b01ab95cfc97200e0a1e9832c7cf1c06996b63a4fd033003c6cef7bd8",
+    "fixedClockTestWrapperExcluded": true
+  },
+  "archive": {
+    "file": "author-execution-evidence.tar.gz",
+    "bytes": 303619,
+    "sha256": "eaa9ea05bf6225acb2d7073a2017b6966c9e708799b8dc07dd6bae882576aa19",
+    "filesManifest": "evidence-files.json",
+    "contains": "selected local logs/receipts/drivers and synthetic results only; no DB, credentials, dependencies or binaries"
+  },
+  "remaining": [
+    "No real browser coverage in this slice",
+    "No full50 or 33-card cross-platform matrix",
+    "Only JZ56 has this directed WASM/Worker evidence",
+    "Public fourth-batch deck gate stays closed",
+    "Platform delta awaits independent review if used for release"
+  ],
+  "git": {
+    "remoteBranch": "progress/batch20-fourth-20261022",
+    "lastVerifiedRemote": "08319094a113717a1a80041fbe94ca8c139429be",
+    "pushPerformed": false,
+    "reason": "One-time workflow-risk authorization applied only to prior083 push; no newer push attempted"
+  },
+  "actionsNotPerformed": [
+    "CI",
+    "main merge",
+    "deployment",
+    "production probing",
+    "permission changes",
+    "XG21 interrupted review retry"
+  ]
+}
