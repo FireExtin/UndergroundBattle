@@ -8,9 +8,11 @@ import {testCard,testView} from './testFixtures';
 import {catalog as testCatalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 const definition=(id)=>testCatalog.cards.find(c=>c.id===id);
 it('admits the complete twenty-card local candidate and excludes deferred cards',()=>{
-  expect(testCatalog.engineVersion).toBe('rust-v0.2.94-batch20-third');
-  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(0);
-  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(213);
+  // Recheck the third cohort against the sole current kernel; later private
+  // definitions and the new20 admissions are checked independently.
+  expect(testCatalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(39);
+  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(233);
   expect(definition('CQ07').supported).toBe(true);
   expect(definition('CQ11')).toBeUndefined();expect(definition('TK008')).toBeUndefined();
   expect(definition('BQ026').additionalKinds).toEqual(['attachment']);

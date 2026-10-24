@@ -76,7 +76,11 @@ it('validates three curse copies and rejects four while unreviewed JZ51 stays un
  const invalid={...draft,cards:[{cardId:'JC089',count:4},{cardId:'JC125',count:46}]};expect(validateDeckDraft(invalid,catalog).valid).toBe(false);
  expect(()=>kernel.newGameWithDeck('jc089-invalid','LOCAL','teams','P0',JSON.stringify(invalid),'9')).toThrow();
  expect(definitions.has('JZ50')).toBe(true);
- expect(definitions.has('JZ51')).toBe(false);
+ // A recorded private definition is still unavailable to either admission path.
+ expect(definitions.get('JZ51').supported).toBe(false);
+ const deferred={...draft,cards:[{cardId:'JZ51',count:1},{cardId:'JC125',count:49}]};
+ expect(validateDeckDraft(deferred,catalog).valid).toBe(false);
+ expect(()=>kernel.newGameWithDeck('jc089-deferred','LOCAL','teams','P0',JSON.stringify(deferred),'9')).toThrow();
 });
 
 it('merges a cursed printed glory while preserving separately granted true renown',()=>{

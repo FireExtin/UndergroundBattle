@@ -83,7 +83,7 @@ fn deck_seal_draft_space_spell_filter_accepts_both_existing_subtype_encodings() 
         .filter(|d| space_spell_card(d))
         .map(|d| d.id.as_str())
         .collect::<Vec<_>>();
-    assert_eq!(matches, ["JC005", "XQ03", "JC132"]);
+    assert_eq!(matches, ["JC005", "XQ03", "JC132", "CQ28"]);
 }
 
 #[test]

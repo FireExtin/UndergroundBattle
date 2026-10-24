@@ -3211,10 +3211,13 @@ mod tests {
         );
         assert!(active.contains("DQJC116"));
         // The original193 remain a valid mechanism fixture; current admission
-        // additionally includes the reviewed third20, while pilots stay gated.
+        // additionally includes the reviewed third20 and the pending-acceptance import20.
         assert_eq!(c.cards[..193].iter().filter(|d| d.kind != "region").count(), 183);
         assert!(c.cards[..213].iter().all(|card| card.supported));
-        assert!(c.cards[213..].iter().all(|card| !card.supported));
+        // Exactly the new author-WIP20 are admitted beyond the historical213.
+        assert_eq!(c.cards[213..].iter().filter(|card| card.supported)
+            .map(|card| card.id.as_str()).collect::<BTreeSet<_>>(),
+            crate::import20_entropy::BATCH20.iter().copied().collect::<BTreeSet<_>>());
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

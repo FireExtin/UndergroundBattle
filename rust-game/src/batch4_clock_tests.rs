@@ -140,7 +140,7 @@ fn decline_triggers(g:&mut Game) {
 
 #[test]
 fn batch4_clock_wm037_pinned_fields_and_canonical_standard_program() {
-    crate::unit_support::assert_current_serial_catalog();assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),213);
+    crate::unit_support::assert_current_serial_catalog();assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),233);
     let d=catalog::card("WM037");assert_eq!((&*d.name,d.cost,&*d.color,&*d.kind),("戴森的计谋",2,"红","spell"));
     assert_eq!(d.loyalty,["红色"]);assert_eq!(d.magic_icon,MagicIcon::Mind);assert_eq!(d.subtypes,["阴谋"]);assert!(!d.supported&&!d.unique);
     let a=&definition("WM037").abilities[0];assert!(a.play_only&&!a.activation_only);assert_eq!(a.timing,Timing::Standard);assert!(a.costs.is_empty());
