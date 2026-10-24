@@ -14,7 +14,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: currentBytes });
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/jc095.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current112/jc095.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()),fixtures.catalog);
 
 for (const scenario of fixtures.scenarios) test(`JC095 ABI93 ${scenario.name}: continuous Native commands, journals, D1 reopening and receipts`, async t => {

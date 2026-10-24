@@ -12,7 +12,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 import { passRecord } from '../src/pass-history.mjs';
 
-const native = loadCurrentFixture('rust-game-wasm/tests/current111/jc046.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current112/jc046.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()), native.catalog);
 assert.equal(native.scenarios.length, 37);
 const worker = path.dirname(process.env.CURRENT_CLOCK_WORKER || fileURLToPath(new URL('../dist/current-clock/worker.js', import.meta.url)));

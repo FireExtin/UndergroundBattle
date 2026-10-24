@@ -12,7 +12,7 @@ import { Table } from './Table';
 const bytes = currentBytes;
 abi.initSync({ module: bytes });
 const catalog = JSON.parse(abi.catalog());
-const fixture = loadCurrentFixture('rust-game-wasm/tests/current111/jc046.json.gz');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current112/jc046.json.gz');
 const props = { catalog, busy: false, connection: 'online' };
 const scenario = name => fixture.scenarios.find(row => row.name === name);
 const acceptedChoices = name => scenario(name).steps.filter(step =>
@@ -23,7 +23,7 @@ afterEach(() => { sessionStorage.clear(); vi.useRealTimers(); });
 
 it('binds the integrated chooser to the exact source-built JC046 ABI93 and unchanged Native traces', () => {
   expect(catalog).toEqual(fixture.catalog);
-  expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
   expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
   expect(fixture.scenarios).toHaveLength(37);

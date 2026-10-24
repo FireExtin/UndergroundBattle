@@ -10,7 +10,7 @@ const definition=(id)=>testCatalog.cards.find(c=>c.id===id);
 it('admits the complete twenty-card local candidate and excludes deferred cards',()=>{
   // Recheck the third cohort against the sole current kernel; later private
   // definitions and the new20 admissions are checked independently.
-  expect(testCatalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(testCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(39);
   expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(233);
   expect(definition('CQ07').supported).toBe(true);

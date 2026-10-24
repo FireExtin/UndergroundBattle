@@ -8,7 +8,7 @@ import {catalog} from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {assertCurrentCatalog, assertCurrentSourceBindings, currentIdentity,
   writeCurrentFixture} from '../current-native-source.mjs';
 
-assert.equal(currentIdentity.engineVersion, 'rust-v0.2.111-import20-rulings-complete');
+assert.equal(currentIdentity.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');
 const evidence = path.resolve(process.argv[2]);
 const read = file => JSON.parse(readFileSync(file, 'utf8'));
 const identities = {rules:currentIdentity.rulesVersion,
@@ -30,19 +30,19 @@ function audit(value) {
 }
 function pack(name, value) {
   audit(value);
-  writeCurrentFixture(`rust-game-wasm/tests/current111/${name}.json.gz`, value);
+  writeCurrentFixture(`rust-game-wasm/tests/current112/${name}.json.gz`, value);
   console.log(JSON.stringify({name, currentIdentity}));
 }
 for (const card of ['jc061','jc087','jc094','wm056','wm023','xq25','wm038','jz35'])
-  pack(card, read(`web/src/game/${card}Native111.fixture.json`));
-pack('jc052', read('web/src/game/jc052Native111Current.fixture.json'));
-pack('jc052-worker', read('sites/test/fixtures/jc052-native-v0111.json'));
-pack('lifecycle', read('web/src/game/currentLifecycle111.fixture.json'));
-pack('fixed-slots', read('web/src/game/fixedSlotsNative111.fixture.json'));
-pack('win-flow', read('sites/test/fixtures/win-flow-native-v0111.json'));
-pack('bq030-web', read('web/src/game/bq030Native111.fixture.json'));
-pack('bq030-sites', read('sites/test/fixtures/bq030-native-v0111.json'));
-pack('seven-card', read('web/src/game/sevenCardUIV0111.fixture.json'));
+  pack(card, read(`web/src/game/${card}Native112.fixture.json`));
+pack('jc052', read('web/src/game/jc052Native112Current.fixture.json'));
+pack('jc052-worker', read('sites/test/fixtures/jc052-native-v0112.json'));
+pack('lifecycle', read('web/src/game/currentLifecycle112.fixture.json'));
+pack('fixed-slots', read('web/src/game/fixedSlotsNative112.fixture.json'));
+pack('win-flow', read('sites/test/fixtures/win-flow-native-v0112.json'));
+pack('bq030-web', read('web/src/game/bq030Native112.fixture.json'));
+pack('bq030-sites', read('sites/test/fixtures/bq030-native-v0112.json'));
+pack('seven-card', read('web/src/game/sevenCardUIV0112.fixture.json'));
 const rows = readdirSync(path.join(evidence,'xq24')).filter(f=>f.endsWith('.json')).sort()
   .map(f=>read(path.join(evidence,'xq24',f)));
 assert.equal(rows.length,12);

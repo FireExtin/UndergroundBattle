@@ -9,7 +9,7 @@ import { actionForRoom } from './api';
 import { Table } from './Table';
 
 const wasm = currentBytes;
-const fixture = loadCurrentFixture('rust-game-wasm/tests/current111/lifecycle.json.gz');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current112/lifecycle.json.gz');
 expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
 abi.initSync({ module: wasm });
 const catalog = JSON.parse(abi.catalog());

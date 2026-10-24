@@ -17,7 +17,7 @@ for(const [label,fixture] of [
   ['attached-character atomic cleanup','batch3-cleanup.json.gz'],
   ['Phoebe targeted-spell rewards','batch3-cq07.json.gz']
 ]){
-const native=loadCurrentFixture('rust-game-wasm/tests/current111/'+fixture);
+const native=loadCurrentFixture('rust-game-wasm/tests/current112/'+fixture);
 test(`current ABI111 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{
   const persist=mkdtempSync(join(tmpdir(),'batch3-abi94-d1-'));
   const options=convertV4MiniflareOptions({name:'batch3-abi94',resourcePersistencePath:persist,cf:false,

@@ -8,7 +8,7 @@ import { kernel as kernel, moduleBytes as currentBytes } from '../../../rust-gam
 import { actionForRoom } from './api';
 import { ChoicePanel } from './ChoicePanel';
 import { Table } from './Table';
-const native = loadCurrentFixture('rust-game-wasm/tests/current111/xq18.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current112/xq18.json.gz');
 
 kernel.initSync({ module: currentBytes });
 const catalog = JSON.parse(kernel.catalog());

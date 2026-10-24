@@ -49,7 +49,7 @@ export function validateNative(raw){
  return counts;
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc035Native111.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc035Native112.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc035-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

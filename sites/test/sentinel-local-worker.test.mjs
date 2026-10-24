@@ -21,7 +21,7 @@ if(ownOutput){
 }
 const scenarios=process.env.SENTINEL_WORKER_WITNESSES
  ?process.env.SENTINEL_WORKER_WITNESSES.split(':').flatMap(p=>JSON.parse(readFileSync(p,'utf8')))
- :loadCurrentFixture('rust-game-wasm/tests/current111/sentinel-worker.json.gz');
+ :loadCurrentFixture('rust-game-wasm/tests/current112/sentinel-worker.json.gz');
 async function harness(t){
  const persist=mkdtempSync(join(tmpdir(),'sentinel-worker-'));
  const options=convertV4MiniflareOptions({name:'sentinel-local',resourcePersistencePath:persist,modulesRoot:worker,modules:[{type:'ESModule',path:join(worker,'worker.js')},{type:'CompiledWasm',path:join(worker,'candidate.wasm')}],compatibilityDate:'2026-10-02',cf:false,d1Databases:{DB:'sentinel-local'}});

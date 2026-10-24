@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 import {harness} from './xq23-http-harness.mjs';
-const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/jz56-platform.json.gz');
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/jz56-platform.json.gz');
 for(const scenario of fixture.cases)test(`current ABI111 JZ56 actual Worker ${scenario.name}`,async t=>{
  const h=await harness(t,scenario);let projections=0,reopened=0;const reopenedKinds=new Set();
  const allViews=async views=>{for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,200,JSON.stringify(r.body));assertPublicView(r.body,views[seat]);projections++;}};

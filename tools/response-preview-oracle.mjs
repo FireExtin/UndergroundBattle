@@ -49,7 +49,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,polls,pureViews,projections,rejected,quotes,rejectedQuotes};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/responsePreviewNative111.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/responsePreviewNative112.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'response-preview-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

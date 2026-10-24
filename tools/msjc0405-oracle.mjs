@@ -38,7 +38,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,rejected,projections};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/msjc0405Native111.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/msjc0405Native112.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'msjc0405-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

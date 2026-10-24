@@ -14,7 +14,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 
 for (const [label,file] of [['saved paused table','pause-resume.json.gz'],['sealed choice/trigger/paid stack pause','sealing-room.json.gz'],['JZ50 trigger/stack/private search pause','jz50-room.json.gz']]) test(label+': exact native transitions, D1 reopen, receipts and isolated second table', async t => {
   abi.initSync({ module: currentBytes });
-  const trace = loadCurrentFixture('rust-game-wasm/tests/current111/'+file);
+  const trace = loadCurrentFixture('rust-game-wasm/tests/current112/'+file);
   const kernel = routeKernels(abi);
   const savedIndex=trace.steps.findIndex(step=>step.command?.action.kind==='pauseRoom' && step.transition.outcome!=='rejected');
   const resumeIndex=trace.steps.findIndex(step=>step.command?.action.kind==='resumeRoom' && step.transition.outcome!=='rejected');

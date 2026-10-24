@@ -7,7 +7,7 @@ abi.initSync({module:bytes});
 
 test('candidate package contains exactly the current ABI111 bytes and catalog identity',()=>{
   const catalog=JSON.parse(abi.catalog());
-  assert.deepEqual([catalog.rulesVersion,catalog.cardPoolVersion,catalog.engineVersion],['hegemony-pdf-v1','limited-v2.102-import20-rulings-complete','rust-v0.2.111-import20-rulings-complete']);
+  assert.deepEqual([catalog.rulesVersion,catalog.cardPoolVersion,catalog.engineVersion],['hegemony-pdf-v1','limited-v2.102-import20-rulings-complete','rust-v0.2.112-shared-keyword-rewards']);
   assert.equal(catalog.cards.length,272);
   assert.equal(catalog.cards.filter(c=>c.supported).length,233);
   assert.equal(catalog.cards.filter(c=>!c.supported).length,39);

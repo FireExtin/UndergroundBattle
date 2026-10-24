@@ -11,7 +11,7 @@ import {assertCurrentCatalog, currentIdentity, currentSourceManifestSha256,
 
 const [rootArgument, ...options] = process.argv.slice(2);
 assert(rootArgument, 'Provide the fresh Native evidence root.');
-assert.equal(currentIdentity.engineVersion, 'rust-v0.2.111-import20-rulings-complete');
+assert.equal(currentIdentity.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');
 const root = path.resolve(rootArgument);
 const option = name => options.find(value => value.startsWith(`--${name}=`))?.slice(name.length + 3);
 assert(options.every(value => /^--(groups|inputs)=.+/.test(value)), 'Unknown assembler argument.');
@@ -98,7 +98,7 @@ function trace(value, label) {
 }
 function emit(name, value) {
   audit(value, name);
-  writeCurrentFixture(`rust-game-wasm/tests/current111/${name}.json.gz`, value);
+  writeCurrentFixture(`rust-game-wasm/tests/current112/${name}.json.gz`, value);
   process.stdout.write(`${name}: current Native fixture written\n`);
 }
 

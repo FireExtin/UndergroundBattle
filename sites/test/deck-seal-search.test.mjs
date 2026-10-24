@@ -10,7 +10,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-const traces=loadCurrentFixture('rust-game-wasm/tests/current111/deck-seal-room.json.gz');
+const traces=loadCurrentFixture('rust-game-wasm/tests/current112/deck-seal-room.json.gz');
 abi.initSync({module:currentBytes});
 for(const [caseIndex,trace] of traces.entries()) test(`deck seal51 Native/D1 ${caseIndex}: private choice, pause/reopen, sealing/event and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'deck-seal51-d1-'));

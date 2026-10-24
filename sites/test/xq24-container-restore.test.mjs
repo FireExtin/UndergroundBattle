@@ -13,7 +13,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 
 test('XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling', async t => {
   abi.initSync({ module:currentBytes });
-  const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/xq24-invalid.json.gz');
+  const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/xq24-invalid.json.gz');
   const persist=mkdtempSync(join(tmpdir(), 'xq24-container-d1-'));
   const options=convertV4MiniflareOptions({ name:'xq24-container-restore', resourcePersistencePath:persist,
     modules:[{ type:'ESModule', path:resolve('dist/server/index.js') },

@@ -15,8 +15,8 @@ import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: currentBytes });
 const fixtures = { scenarios: [
-  ...loadCurrentFixture('rust-game-wasm/tests/current111/win-flow.json.gz').scenarios,
-  ...loadCurrentFixture('rust-game-wasm/tests/current111/bq030-sites.json.gz').scenarios
+  ...loadCurrentFixture('rust-game-wasm/tests/current112/win-flow.json.gz').scenarios,
+  ...loadCurrentFixture('rust-game-wasm/tests/current112/bq030-sites.json.gz').scenarios
     .map(s => ({ ...s, name: 'BQ030 ' + s.name })),
 ] };
 

@@ -12,11 +12,11 @@ import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
 const wasm=currentBytes;
 abi.initSync({module:wasm});
-const fixture = loadCurrentFixture('rust-game-wasm/tests/current111/xq25.json.gz');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current112/xq25.json.gz');
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='XQ25');
 it('reads the complete pinned XQ25 face with original temporary investigation and no invented tapping ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(definition).toMatchObject({name:'监控探头',kind:'attachment',color:'灰',cost:2,loyalty:['灰色','灰色'],unique:false,
     subtypes:['设施'],magic:'',keywords:[],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:1,combat:0,influence:0}});
   expect(definition.defense).toBeNull();expect(definition.abilities).toMatchObject([{key:'xq25-attach-region',timing:'standard',triggered:false}]);

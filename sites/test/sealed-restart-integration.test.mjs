@@ -14,7 +14,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 
 test('fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt', async t => {
   abi.initSync({ module: currentBytes });
-  const trace = loadCurrentFixture('rust-game-wasm/tests/current111/sealed-restart.json.gz');
+  const trace = loadCurrentFixture('rust-game-wasm/tests/current112/sealed-restart.json.gz');
   assert.equal(trace.scope, 'natural-fresh-match-terminal-state-then-real-restart-persist-next-choice');
   const kernel = routeKernels(abi);
   const persist = mkdtempSync(join(tmpdir(), 'sealed-restart-d1-'));

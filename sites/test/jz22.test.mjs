@@ -11,7 +11,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:currentBytes});
-const cases=Object.entries(loadCurrentFixture('rust-game-wasm/tests/current111/jz22.json.gz')).map(([name, row]) => ({...row, name}));
+const cases=Object.entries(loadCurrentFixture('rust-game-wasm/tests/current112/jz22.json.gz')).map(([name, row]) => ({...row, name}));
 for(const c of cases)test(`jz22-blue54 ${c.name}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'jz22-blue54-d1-'));
  const options=convertV4MiniflareOptions({name:'jz22-blue54-test',resourcePersistencePath:persist,modules:[

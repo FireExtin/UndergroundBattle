@@ -14,10 +14,10 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: currentBytes });
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/jc046.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current112/jc046.json.gz');
 const catalog=JSON.parse(abi.catalog());
 assert.deepEqual(catalog,fixtures.catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
+assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 assert.equal(catalog.cardPoolVersion,'limited-v2.102-import20-rulings-complete');
 assert.equal(catalog.cards.length,272);
 assert.equal(fixtures.scenarios.length,37);

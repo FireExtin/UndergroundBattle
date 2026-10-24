@@ -81,7 +81,7 @@ export function validateBq035Bundle(bundle) {
   assert.match(bundle.wasmSha256, /^[a-f0-9]{64}$/);
   return { ...bundle, scenarios, invalid };
 }
-export function loadBq035Fixture(filename = path.join(repository, 'rust-game-wasm/tests/bq035Native111.fixture.json.gz')) {
+export function loadBq035Fixture(filename = path.join(repository, 'rust-game-wasm/tests/bq035Native112.fixture.json.gz')) {
   return validateBq035Bundle(JSON.parse(gunzipSync(readFileSync(filename), { maxOutputLength: 128 * 1024 * 1024 }).toString('utf8')));
 }
 export function compareBq035Fixture(fixture, abi, wasm) {
