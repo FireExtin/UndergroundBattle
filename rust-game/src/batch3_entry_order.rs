@@ -18,6 +18,8 @@ fn key(d:&Declaration)->String{
         [crate::rules::Op::BQ031AttachmentDiscard{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::BQ038RaidFeed{observation:Some(o)}]=>Some(o.raid.frame_id.as_str()),
         [crate::rules::Op::WM044Inspect{contest_id:Some(id)}] | [crate::rules::Op::MysticWin{contest_id:Some(id)},..] | [crate::rules::Op::BQ031WinFeed{contest_id:Some(id)}]=>Some(id.as_str()),
+        [crate::rules::Op::WM057Win{contest_id:Some(id)},..] | [crate::rules::Op::WM025MysticInfluence{contest_id:Some(id)}]=>Some(id.as_str()),
+        [crate::rules::Op::BQ039BattleDiscard{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::BQ038ContestBonus{observation:Some(o)}]=>Some(o.contest_id.as_str()),
         [crate::rules::Op::PeteTax{observation:Some(o)}]=>Some(o.play.frame_id.as_str()),
         [crate::rules::Op::XG18RenownPlay{observation:Some(o)}]=>Some(o.event_id.as_str()),
@@ -46,7 +48,7 @@ impl Game{
     pub(crate) fn batch3_register_entry_order(&mut self,entry:&str,previous:usize){
         let mut tail=self.effects.split_off(previous).into_iter().collect::<Vec<_>>();
         let all_decl=tail.iter().all(|e|matches!(e,Effect::Declare{..}));
-        let introduced=tail.iter().any(|e|matches!(e,Effect::Declare{declaration:d} if matches!(d.source.card.definition.as_str(),"WM044"|"WM022"|"WM032"|"BQ031"|"BQ032"|"BQ036"|"BQ038"|"XG18"|"WM058"|"XG17"|"BQ029"|"BQ037"|"XQ26"|"WM060"|"BQ041"|"JZ38"|"XG13"|"CQ24"|"BQ093"|"CQ18"|"CQ19")));
+        let introduced=tail.iter().any(|e|matches!(e,Effect::Declare{declaration:d} if matches!(d.source.card.definition.as_str(),"WM044"|"WM057"|"WM025"|"BQ039"|"WM022"|"WM032"|"BQ031"|"BQ032"|"BQ036"|"BQ038"|"XG18"|"WM058"|"XG17"|"BQ029"|"BQ037"|"XQ26"|"WM060"|"BQ041"|"JZ38"|"XG13"|"CQ24"|"BQ093"|"CQ18"|"CQ19")));
         if all_decl && introduced && tail.len()>1{
             tail.sort_by_key(|e|if let Effect::Declare{declaration:d}=e{(self.team(d.actor)!=self.first_team,d.actor)}else{unreachable!()});
             for actor in 0..self.players.len(){let remaining=tail.iter().filter_map(|e|if let Effect::Declare{declaration:d}=e{(d.actor==actor).then(||key(d))}else{None}).collect::<Vec<_>>();

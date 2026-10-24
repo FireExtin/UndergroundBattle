@@ -417,6 +417,7 @@ impl Game {
         self.validate_next_blue_gray_frame(f)?;
         self.validate_batch3_frame(f)?;
         self.validate_pack_a_frame(f)?;
+        self.validate_cq28_frame(f)?;
         if f.source.observed_death.is_some() {
             // The original observer was accepted before the random/nonrandom
             // discard. Authenticate its captured death and paid-once limit at
@@ -510,6 +511,12 @@ impl Game {
                 .and_then(|s| s.parse::<usize>().ok()),
         };
         let allowed = match &step.op {
+            Op::CQ28Mode { mode: 0, .. } => {
+                b.from_deck && !b.redraw
+                    && f.source.card.definition == "CQ28"
+                    && f.ability_key == crate::import20_gate::KEY
+                    && b.holder == f.actor && b.originals.len() <= 6
+            }
             Op::IndustryMill { .. } => {
                 b.from_deck && !b.redraw
                     && f.source.card.definition == "BQ093"

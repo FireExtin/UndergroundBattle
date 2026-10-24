@@ -251,3 +251,26 @@ fn import20_wm057_mode_and_target_stay_once_with_another_same_controller_win_obs
     broker_win(&mut g);bind_broker(&mut g,Some(&hidden));repress_to_peek(&mut g);choose(&mut g,vec![]);finish(&mut g);
     assert_eq!(g.regions[0].influence[1],0);assert_eq!(g.mystic_history.len(),1);assert!(g.entry_order_groups.is_empty());restore(&mut g);
 }
+
+#[test]
+fn import20_same_controller_can_order_broker_and_vampire_win_triggers(){
+    for first in [b::WIN,crate::import20_vampires::WIN]{
+        let mut g=game();let broker=field(&mut g,"WM057",0);field(&mut g,"WM025",0);
+        fund(&mut g,0,"JC125",2);let shown=seed_shown(&mut g,None);
+        act(&mut g,0,Action{card_id:Some(broker.clone()),ability_id:Some(b::ACT.into()),..Action::new("activate")});
+        pass_top(&mut g);commits_to_rewards(&mut g,&shown);
+        while g.pending.as_ref().is_some_and(|p|p.choice.kind==crate::mystic_contest::REWARD_KIND){choose(&mut g,vec![]);}
+        let p=g.pending.clone().expect("simultaneous win trigger order");
+        assert_eq!(p.choice.kind,"batch3-entry-order");assert_eq!(p.seat,0);assert_eq!(p.choice.options.len(),2);
+        let reference=p.choice.options.iter().find(|o|o.id.ends_with(first)).unwrap().id.clone();
+        reject(&mut g,1,Action{choice_id:Some(p.choice.id),selected:Some(vec![reference.clone()]),..Action::new("choose")});
+        choose(&mut g,vec![reference]);
+        assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Declare{declaration:d,..}if d.ability.key==first));
+        if first==b::WIN{bind_broker(&mut g,None);}else{choose(&mut g,vec!["accept".into()]);}
+        assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().ability_key,first);
+        finish(&mut g);
+        assert_eq!(g.regions[0].influence[0],1);assert_eq!(g.mystic_history.len(),1);
+        assert!(g.entry_order_groups.is_empty()&&g.pending.is_none()&&g.stack.is_empty()&&g.effects.is_empty());
+        assert_eq!(g.resources(0),0);assert!(g.board(&broker).unwrap().1.exhausted);restore(&mut g);
+    }
+}

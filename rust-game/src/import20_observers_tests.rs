@@ -110,6 +110,32 @@ fn import20_eye_actual_battle_any_host_side_and_private_enemy_discard() {
 }
 
 #[test]
+fn import20_two_paid_eyes_order_after_damage_and_each_discard_once() {
+    for reverse in [false,true] {
+        let mut g=game();let host=field(&mut g,"JC084",0);field(&mut g,"JC084",0);
+        let enemy=field(&mut g,"JC084",2);held(&mut g,"JC125",2);held(&mut g,"JC125",2);
+        attach(&mut g,"BQ039",0,&host);attach(&mut g,"BQ039",0,&host);
+        let eyes=g.attachments.iter().filter(|a|a.card.definition=="BQ039").map(|a|a.card.id.clone()).collect::<Vec<_>>();
+        assert_eq!(eyes.len(),2);battle(&mut g,0);
+        let p=g.pending.clone().expect("combat damage remains ahead of win observers");
+        assert!(matches!(p.resolution,ChoiceResolution::Damage{..}));
+        act(&mut g,p.seat,Action{choice_id:Some(p.choice.id),allocations:Some([(enemy,p.choice.amount.unwrap())].into()),..Action::new("choose")});
+        let p=g.pending.clone().expect("same controller must choose its two eye triggers");
+        assert_eq!(p.choice.kind,"batch3-entry-order");assert_eq!(p.choice.options.len(),2);assert_eq!(p.seat,0);
+        let first=&eyes[usize::from(reverse)];
+        choose(&mut g,vec![p.choice.options.iter().find(|o|o.id.starts_with(&format!("{first}:"))).unwrap().id.clone()]);
+        assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Declare{declaration:d,..}if d.source.card.id==*first));
+        for _ in 0..2 {
+            choose(&mut g,vec!["p2".into()]);pass_top(&mut g);
+            let p=g.pending.clone().unwrap();assert_eq!(p.seat,2);
+            choose(&mut g,vec![p.choice.options[0].id.clone()]);
+        }
+        assert!(g.players[2].hand.is_empty());assert_eq!(g.players[2].graveyard.iter().filter(|c|c.definition=="JC125").count(),2);
+        assert!(g.entry_order_groups.is_empty()&&g.pending.is_none()&&g.stack.is_empty());restore(&mut g);
+    }
+}
+
+#[test]
 fn import20_eye_no_trigger_from_exhausted_zero_icon_off_region_host() {
     for mode in ["exhausted","zero","other-region"] {
         let mut g=game();let host=field(&mut g,if mode=="zero"{"JC125"}else{"JC084"},0);

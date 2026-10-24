@@ -1532,10 +1532,20 @@ impl Game {
                     wound_sources: self.combat_wound_sources(region, team, Some(seats[0])),
                 });
             }
+            let eye_event = eye_triggers.first().and_then(|d| match d.ability.ops.as_slice() {
+                [Op::BQ039BattleDiscard { observation: Some(o) }] => Some(o.event_id.clone()),
+                _ => None,
+            });
+            // Keep damage ahead of the win triggers. Only their simultaneous
+            // declaration tail participates in the existing controller order.
+            let trigger_start = self.effects.len();
             self.effects.extend(path_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
             self.effects.extend(eye_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
             if let Some(declaration) = glory {
                 self.effects.push_back(Effect::Declare { declaration });
+            }
+            if let Some(event) = eye_event {
+                self.batch3_register_entry_order(&event, trigger_start);
             }
         } else if contest == 0 {
             if seats.len() > 1 {

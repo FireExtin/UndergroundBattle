@@ -455,3 +455,41 @@ fn cq28_mixed_defense_then_draw_performs_normal_lethal_cleanup() {
         .any(|c| c.definition == "JC125"));
     assert_eq!(g.players[0].hand[0].definition, "JC125");
 }
+
+#[test]
+fn cq28_mill_rumor_resumes_both_paid_modes_once() {
+    for second in [0, 3] {
+        for seal in [false, true] {
+            let (mut g, gate) = setup();
+            let host = field(&mut g, "JC125", 0);
+            g.players[0].deck.clear();
+            for i in 0..13 {
+                let card = g.make_card(if i == 0 { "WM042" } else { "JC125" }, 0);
+                g.players[0].deck.push(card);
+            }
+            mixed(&mut g, &gate, 0, second);
+            for _ in 0..16 {
+                if g.pending.is_some() { break; }
+                pass(&mut g);
+            }
+            let p = g.pending.clone().expect("CQ28 must reach the legal rumor replacement");
+            assert!(matches!(p.resolution, ChoiceResolution::Rumor { .. }));
+            assert_eq!(g.resources(0), 0);
+            reject(&mut g, 2, Action { choice_id: Some(p.choice.id),
+                selected: Some(vec![host.clone()]), ..Action::new("choose") });
+            choose(&mut g, if seal { vec![host.clone()] } else { vec![] });
+            finish(&mut g);
+            let milled = if second == 0 { 12 } else { 6 };
+            assert_eq!(g.players[0].deck.len(), 13 - milled - usize::from(second == 3));
+            assert_eq!(g.players[0].hand.len(), usize::from(second == 3));
+            assert_eq!(g.players[0].graveyard.len(), 1 + milled - usize::from(seal));
+            assert_eq!(g.sealed_cards.iter().filter(|s| s.host_id == host).count(), usize::from(seal));
+            assert_eq!(g.players[0].assets.iter().filter(|c| c.exhausted).count(), 4);
+            assert!(g.pending.is_none() && g.stack.is_empty() && g.effects.is_empty());
+            let stable = serde_json::to_string(&g).unwrap();
+            g.drive().unwrap();
+            assert_eq!(serde_json::to_string(&g).unwrap(), stable);
+            restore(&mut g);
+        }
+    }
+}
