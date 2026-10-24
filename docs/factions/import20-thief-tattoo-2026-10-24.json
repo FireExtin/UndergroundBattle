@@ -50,5 +50,12 @@
     "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
     "permission": "Existing author/illustrator direct permission; neither card has a registered external handler; independent Rust adaptation.",
     "SuezCodeOrArtCopied": false
+  },
+  "CQ24SecretPlanPublicCost": {
+    "source": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+    "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+    "section": "新机制：计划 / 秘密计划",
+    "printedText": "计划牌在背面朝上时，它仍然是一个计划类别的附属，其印刷费用为①，且名称为秘密计划。",
+    "implementation": "Only CQ24 canonical original Attachment target compares public cost1; no hidden front inspection or generic face-down eligibility."
   }
 }

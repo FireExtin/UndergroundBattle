@@ -103,13 +103,22 @@ fn import20_cq24_standalone_and_attached_bats_keep_dual_role_original_uid(){
 fn import20_cq24_secret_plan_not_disclosed_before_transfer_and_new_controller_sees_own_plan(){
     let mut g=game();g.begin_window(Window::Action(1));fund(&mut g,2,"WM046",3);g.players[2].society_zone.secrecy=1;let h=held(&mut g,"WM046",2);
     act(&mut g,2,Action{card_id:Some(h),target_id:Some("society:p2".into()),option:Some("secret-plan".into()),..Action::new("play")});pass_top(&mut g);let id=g.attachments[0].card.id.clone();
-    enter(&mut g,0,true);let option=g.pending.as_ref().unwrap().choice.options.iter().find(|o|o.id==id).unwrap();assert!(option.card.as_ref().is_none_or(|c|c.card_id.is_none()));
+    let hidden=field(&mut g,"JC125",2);g.board_mut(&hidden).unwrap().face_down=true;
+    enter(&mut g,0,true);let pending=g.pending.as_ref().unwrap();assert!(!pending.choice.options.iter().any(|o|o.id==hidden));
+    let option=pending.choice.options.iter().find(|o|o.id==id).unwrap();assert!(option.card.as_ref().is_none_or(|c|c.card_id.is_none()));
     choose(&mut g,vec![id.clone()]);let p=g.pending.as_ref().unwrap();assert_eq!(p.choice.options.len(),1);assert_eq!(p.choice.options[0].id,"society:p0");
     for seat in [0,1,3]{let v=g.view(seat);let a=v.attachments.iter().find(|a|a.card.instance_id==id).unwrap();assert!(a.card.card_id.is_none());}
     choose(&mut g,vec!["society:p0".into()]);pass_top(&mut g);
     let a=g.attachments.iter().find(|a|a.card.id==id).unwrap();assert_eq!((a.card.controller,a.card.owner),(0,2));assert!(a.card.face_down);assert_eq!(a.host_id,"society:p0");
     assert_eq!(g.view(0).attachments.iter().find(|a|a.card.instance_id==id).unwrap().card.card_id.as_deref(),Some("WM046"));
     assert!(g.view(2).attachments.iter().find(|a|a.card.instance_id==id).unwrap().card.card_id.is_none());restore(&mut g);
+}
+#[test]
+fn import20_cq24_new_enemy_host_shield_cancels_the_whole_transfer(){
+    let mut g=game();let (id,old)=ordinary(&mut g);let new=field(&mut g,"JC125",3);
+    enter(&mut g,0,true);bind(&mut g,&id,Some(&new));g.board_mut(&new).unwrap().shield=1;restore(&mut g);pass_top(&mut g);
+    let a=g.attachments.iter().find(|a|a.card.id==id).unwrap();assert_eq!(a.card.controller,2);assert_eq!(a.host_id,old);
+    assert_eq!(g.board(&new).unwrap().1.shield,0);assert!(g.control_effects.is_empty());
 }
 #[test]
 fn import20_cq24_permanent_control_does_not_expire_with_source_or_turn_and_last_take_wins(){

@@ -93,3 +93,15 @@ fn import20_wm064_control_primitive_human_and_controller_requirements_cleanup_gr
     g.add_control(&host,2,ControlLifetime::TurnEnd{turn:g.turn},SubtypeChange::HumanToVampire);g.settle_deaths();
     assert!(g.attachments.is_empty());assert!(!g.current_leader(g.board(&host).unwrap().1));assert!(!g.has_renown(g.board(&host).unwrap().1));restore(&mut g);
 }
+#[test]
+fn import20_wm064_multiple_tattoos_stack_stats_and_removing_one_preserves_remaining_grant(){
+    let mut g=game();let host=field(&mut g,"JC125",0);let icons=g.icons(g.board(&host).unwrap().1,0);let defense=g.defense(g.board(&host).unwrap().1,0);
+    let first=attach(&mut g,0,&host);let second=attach(&mut g,0,&host);
+    let c=g.board(&host).unwrap().1;assert_eq!(g.icons(c,0),icons.add(Icons{investigation:2,combat:4,influence:2}));assert_eq!(g.defense(c,0),defense+4);
+    assert_eq!(g.current_subtypes(c).iter().filter(|s|s.as_str()=="罪犯").count(),1);
+    fund(&mut g,2,"JC005",2);let spell=held(&mut g,"JC005",2);priority(&mut g,2);
+    act(&mut g,2,Action{card_id:Some(spell),target_id:Some(first.clone()),..Action::new("play")});pass_top(&mut g);
+    assert!(g.board(&first).is_none());assert!(g.board(&second).is_some());let c=g.board(&host).unwrap().1;
+    assert_eq!(g.icons(c,0),icons.add(Icons{investigation:1,combat:2,influence:1}));assert_eq!(g.defense(c,0),defense+2);
+    assert!(g.current_leader(c)&&g.has_renown(c));restore(&mut g);
+}

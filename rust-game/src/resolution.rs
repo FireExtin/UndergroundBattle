@@ -757,7 +757,8 @@ impl Game {
                             || !rules::definition(&c.definition).traits.cannot_be_equipped)
                         && spec
                             .printed_cost_max
-                            .is_none_or(|max| !c.face_down && d.cost <= max)
+                            .is_none_or(|max| (!c.face_down && d.cost <= max)
+                                || (max >= 1 && crate::import20_carmen::secret_plan_cost_target(source, spec, c)))
                         && spec
                             .predicate
                             .as_ref()

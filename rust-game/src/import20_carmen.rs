@@ -25,6 +25,13 @@ pub(crate) fn definition() -> Definition {
     with_abilities(vec![ability(ENTRY, "进场：已额外支付3或本人隐秘高于敌方时，获得费用不大于3的原敌方附属", Timing::Fast,
         vec![], vec![t], vec![Op::CQ24TakeAttachment { observation: None, attachment: None, reattach: false }], Some(Event::CQ24QualifiedEntry))])
 }
+pub(crate) fn secret_plan_cost_target(source: &SourceSnapshot, slot: &TargetSlotSpec, c: &Card) -> bool {
+    // Behind the Veil's printed Plan rules explicitly keep a secret Plan an
+    // Attachment with printed cost 1. This uses only that public facade, not
+    // the hidden front, and belongs solely to CQ24's original target slot.
+    source.card.definition == ID && crate::batch4_plans::secret(c)
+        && same(slot, &definition().abilities[0].targets[0])
+}
 fn owns(ops: &[Op]) -> bool { ops.iter().any(|op| match op {
     Op::CQ24TakeAttachment { .. } => true,
     Op::ForEachLivingPlayer(b) | Op::ForEachLivingPlayerFromActor(b) => owns(b),

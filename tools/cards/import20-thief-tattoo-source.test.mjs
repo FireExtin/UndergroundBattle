@@ -37,6 +37,8 @@ test('current105 remains author WIP; question evidence does not infer printed ze
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.priorReference20AuthorNativeWipComplete,8);assert.equal(intake.potentialReference20AuthorNativeWipComplete,10);assert.equal(intake.current50ReviewedNativeClosed,38);
   assert.equal(intake.published,false);assert.equal(intake.independentReview,'notRun');assert.equal(intake.WASM,'notBuiltOrRun');assert.equal(intake.Worker,'notBuiltOrRun');assert.equal(intake.references.SuezCodeOrArtCopied,false);
+  assert.equal(sha(read(intake.CQ24SecretPlanPublicCost.source)),intake.CQ24SecretPlanPublicCost.sha256);
+  assert.match(intake.CQ24SecretPlanPublicCost.printedText,/其印刷费用为①/);
   const q=JSON.parse(read('docs/factions/XQ19_DASH_COST_QUESTION_2026-10-24.json'));assert.equal(q.name,'熵力化身');assert.equal(q.comparisons.length,2);assert.match(q.comparisons[1].card,/淘汰弱者/);
   assert.equal(specs.cards.XQ19.costAppearance,'printedDash');assert.equal(specs.cards.XQ19.fields.printedCost,null);
   for(const[path,digest]of Object.entries(q.sourceSha256))assert.equal(sha(read(path)),digest);
