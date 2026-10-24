@@ -1,0 +1,58 @@
+{
+  "sourceFix": "4b2810cd3d56e100ab2fbdaf1cd9db934306b476",
+  "browserClosure": "Original overseas turn4 acknowledgement enabled in v5; double-click returned to normal action and next legal card deployment succeeded",
+  "wideAuthorTests": {
+    "files": 159,
+    "passed": 1579,
+    "failed": 0
+  },
+  "independentUiReview": false,
+  "terminalAcceptance": false,
+  "files": [
+    {
+      "path": "ABI112_WM057_UI_PACKAGE_IDENTITY_20261024.json",
+      "bytes": 1278,
+      "sha256": "7417bbade5d637d8959a4f56664659c3103572302535a15447faa5bddae54713"
+    },
+    {
+      "path": "ABI112_WM057_UI_PUBLICATION_20261024.json",
+      "bytes": 2510,
+      "sha256": "079f739fd0036147bf130656f78a00ff126985486562d4d668ecf7ad09c55c62"
+    },
+    {
+      "path": "ABI112_WM057_UI_SOURCE_SYNC_20261024.json",
+      "bytes": 1086,
+      "sha256": "d77823f5decb060a82abb595c0764a67a0b04a13b7ab7d10b340e902907720f8"
+    },
+    {
+      "path": "abi112-wm057-ack-green-20261024.json",
+      "bytes": 51178,
+      "sha256": "f2e596203393eed225634dc981ebbc68d3ddc15ddf7468012592051cac605d16"
+    },
+    {
+      "path": "abi112-wm057-ack-green-20261024.log.gz",
+      "bytes": 220,
+      "sha256": "27f50556b9c031afbe471bb0442a702ed797283119faf280d69d0518bee485ba"
+    },
+    {
+      "path": "abi112-wm057-ack-red-20261024.json",
+      "bytes": 51012,
+      "sha256": "6b6343bed7b40dbe3cfe82bff3beca4cffbeb38454803ffa73bbad2130def0bc"
+    },
+    {
+      "path": "abi112-wm057-ack-red-20261024.log.gz",
+      "bytes": 695,
+      "sha256": "8831c1c1de2b9f80e89d38d70e32b5d681e360084223790818243c6ab91414c0"
+    },
+    {
+      "path": "abi112-wm057-ack-wide-ui-20261024.json",
+      "bytes": 50917,
+      "sha256": "ba3e778bf7a8b2e2b6771f4b747638ba12caa49b2aee8cd270e3f2380cef267e"
+    },
+    {
+      "path": "abi112-wm057-ack-wide-ui-20261024.log.gz",
+      "bytes": 229,
+      "sha256": "b5b389b3817247af11e575eb6f7dd6c6e8424422690a3477b8315ed433ba050d"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "fixedProduct": "4b2810cd3d56e100ab2fbdaf1cd9db934306b476",
+  "basePublishedProduct": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "officialSource": "dad97780bcff0fcf87d93a468faf1b40bf0b36e0",
+  "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-abi112-wm057-4b2810cd-20261024.tar.gz",
+  "compressedBytes": 152017164,
+  "compressedSha256": "74923762456bdb0ce4ee15d9fddd33d81dddd8554db76b73f102449368577c06",
+  "files": 297,
+  "wasm": [
+    {
+      "path": "dist/server/b22cd61c8478407120d045fcf81d876fdd954ae7-hegemony_wasm_bg.wasm",
+      "bytes": 8128662,
+      "sha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049"
+    }
+  ],
+  "client": [
+    {
+      "path": "dist/client/assets/index-mYJ2gsUz.js",
+      "bytes": 418345,
+      "sha256": "d208e701623f650380a2925f0e7d4fa5b64cf886abaf58fdb3d068f9b8051495",
+      "hasExactAckKind": true,
+      "hasPrivateHeading": true
+    }
+  ],
+  "badRuntimeFiles": [],
+  "compiler330Unchanged": true,
+  "nativeBuild": "TypeScript + Vite + Wrangler dry-run passed",
+  "authorUI": {
+    "files": 159,
+    "passed": 1579,
+    "failed": 0
+  },
+  "notIndependentReview": true,
+  "hosting": {
+    "d1": "DB",
+    "r2": null,
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574"
+  }
+}

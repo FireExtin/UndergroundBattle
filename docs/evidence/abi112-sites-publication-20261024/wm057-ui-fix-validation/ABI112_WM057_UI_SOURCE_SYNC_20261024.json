@@ -1,0 +1,28 @@
+{
+  "fixedProduct": "4b2810cd3d56e100ab2fbdaf1cd9db934306b476",
+  "basePublishedProduct": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "priorSiteSource": "d05ad0fce25cb99137927f4d02f5ca1617de6505",
+  "compiler330Unchanged": true,
+  "wasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+  "hostingUnchanged": true,
+  "files": [
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "sha256": "aa4d0d25b7d254f922274b9828f081e16eaece2afa2b9e505fe72dc6340a6586",
+      "bytes": 22775
+    },
+    {
+      "path": "docs/ABI112_WM057_ZERO_ACK_FIX_WIP_2026-10-24.md",
+      "sha256": "2daf5ca38dbfa8fa7facedfd607ee03302382e47e370a91359d377bae22f7574",
+      "bytes": 1366
+    },
+    {
+      "path": "docs/evidence/abi112-sites-publication-20261024/wm057-zero-ack-failure.json",
+      "sha256": "e33b58a6c150426660cdc5a927e64ecefa8263a5edcc04c235144baecf65643c",
+      "bytes": 2281
+    }
+  ],
+  "backup": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/sites-wm057-ack-before-sync",
+  "noSensitiveRuntimeFiles": true,
+  "githubPush": false
+}
