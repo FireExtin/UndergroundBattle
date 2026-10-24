@@ -32,6 +32,7 @@ pub struct VampireRevealObservation {
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 fn observation_id(ops: &[Op]) -> Option<&str> {
     match ops {
+        [Op::BQ039BattleDiscard { observation: Some(o) }] => Some(&o.event_id),
         [Op::JC034CombatDiscard { observation: Some(o) }] => Some(&o.event_id),
         [Op::JC040RepressDiscard { observation: Some(o) }] => Some(&o.event_id),
         [Op::BQ080HideForAttachment { observation: Some(o) }] => Some(&o.event_id),

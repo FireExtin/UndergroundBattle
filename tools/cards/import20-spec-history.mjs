@@ -16,3 +16,5 @@ export function priorSpecifications(current) {
   }
   return prior;
 }
+
+export const currentImport20 = JSON.parse(readFileSync(new URL('../../docs/factions/import20-observers-2026-10-24.json', import.meta.url)));

@@ -1,3 +1,6 @@
+mod import20_observers;
+#[cfg(test)]
+mod import20_observers_tests;
 mod import20_contest;
 #[cfg(test)]
 mod import20_contest_tests;

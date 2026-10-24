@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { import20 } from './import20-spec-history.mjs';
+import { currentImport20 } from './import20-spec-history.mjs';
 const read = n => readFileSync(new URL('../../' + n, import.meta.url));
 const hash = b => createHash('sha256').update(b).digest('hex');
 const canonical = x => Array.isArray(x) ? x.map(canonical) : x && typeof x === 'object'
@@ -33,16 +33,17 @@ test('WM037 and complete red Society dependency retain their exact pinned origin
 
 test('prior249 regular definitions remain byte-semantically unchanged and public213 stay fixed', () => {
   assert.equal(hash(JSON.stringify(canonical(pool.cards.slice(0, 249)))), 'eb240c02012cff99fb2268d11b929a4dfcca029106c4a9fc8326516198e77b50');
-  assert.equal(pool.cards.length, 254);
+  assert.equal(pool.cards.length, 256);
   assert.equal(pool.cards[249].id, 'WM037');
+  assert.deepEqual(pool.cards.slice(254).map(c => c.id), ['BQ039', 'WM028']);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
   assert.equal(pool.cards[249].supported, false);
   assert.deepEqual(pool.cards.slice(250, 252).map(c => c.id), ['WM044', 'WM043']);
-  assert.deepEqual(pool.cards.slice(252).map(c => c.id), ['BQ090', 'BQ064']);
+  assert.deepEqual(pool.cards.slice(252,254).map(c => c.id), ['BQ090', 'BQ064']);
   assert(pool.cards.slice(249).every(c => c.supported === false));
   assert(!pool.cards.some(c => ['MSJC14', 'MSJC13'].includes(c.id)));
-  assert.equal(pool.engineVersion, import20.engineVersion);
-  assert.equal(pool.cardPoolVersion, import20.cardPoolVersion);
+  assert.equal(pool.engineVersion, currentImport20.engineVersion);
+  assert.equal(pool.cardPoolVersion, currentImport20.cardPoolVersion);
 });
 
 test('WM037 candidate and Society dependency do not inflate independent or public completion', () => {

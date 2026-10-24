@@ -75,8 +75,8 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
-pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "WM028" | "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08") }
+pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "WM028" | "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
     [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
@@ -85,7 +85,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
     let mut a = if id == "JC035" { definition().abilities[1].clone() }
         else if id == "JC055" { crate::next20_red::definition(id).unwrap().abilities[0].clone() }
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
-        else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).or_else(|| crate::batch4::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
+        else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).or_else(|| crate::batch4::definition(id)).or_else(|| crate::import20_observers::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
     a.ops = if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
@@ -132,7 +132,7 @@ impl Game {
                 && (c.definition != s.card.definition || c.owner != s.card.owner || (c.face_down && s.card.definition != "JC055"))) {
             return Err("JC035冻结来源、拥有者或操控席位不符".into());
         }
-        if prepared && s.card.definition == "JC068" {
+        if prepared && matches!(s.card.definition.as_str(), "JC068" | "WM028") {
             let host = s.attachment_host_instance.as_deref().ok_or("秘社准备来源缺少宿主")?;
             if host != format!("society:p{actor}") || s.region.is_some() || s.source_region_instance.is_some() {
                 return Err("秘社准备触发不得伪装地区宿主".into());
@@ -168,6 +168,7 @@ impl Game {
             let s = &entry.source; let actor = s.card.controller;
             self.jc035_source(s, actor, true)?;
             if !sources.insert(s.card.id.clone()) || o.hands[actor].eliminated
+                || (s.card.definition == "WM028" && self.team(actor) != o.first_team)
                 || (s.card.definition == "JC035" && !o.hands.iter().any(|h| !h.eliminated && self.team(h.seat) != self.team(actor) && h.count <= 3))
                 || (preparation_forced(&s.card.definition) && !self.players[actor].eliminated && matches!(entry.decision, Some(PreparationDecision::Declined))) {
                 return Err("JC035准备资格只来自当时存活的敌方席位，不能重复来源".into());
@@ -190,7 +191,7 @@ impl Game {
         if o.event_id.as_deref() != Some(event_id) { return Err("JC035程序不属于本次准备事件".into()); }
         o.entries.iter().find(|e| same(&e.source, source)).ok_or("JC035程序来源不在原准备观察中".into())
     }
-    fn jc035_declaration(&self, d: &Declaration) -> RuleResult<()> {
+    pub(crate) fn jc035_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if d.source.card.definition != "JC035" && !own(&d.ability) { return Ok(()); }
         validate_ability(&d.source.card.definition, &d.ability)?;
         let event_id = event(&d.ability.ops).ok_or("运行触发必须携带原准备事件")?;
@@ -209,6 +210,7 @@ impl Game {
             .filter(|(_, c)| c.definition != "JC035" || hands.iter().any(|h|
                 !h.eliminated && self.team(h.seat) != self.team(c.controller) && h.count <= 3))
             .filter(|(_, c)| c.definition != "CQ08" || self.cq08_count(c.controller) >= 3)
+            .filter(|(_, c)| c.definition != "WM028" || self.team(c.controller) == self.first_team)
             .filter(|(_, c)| c.definition != "BQ087" || self.players[c.controller].graveyard.iter().any(|grave| grave.owner==c.controller && catalog::catalog().cards.iter().any(|d|d.id==grave.definition && d.kind=="character")))
             .map(|(region, c)| self.source_snapshot(c, region)).collect::<Vec<_>>();
         // Seat ordering between teammates is the existing project contract;
@@ -393,7 +395,7 @@ impl Game {
             return Err("JC035准备效果不能重复执行".into());
         }
         entry.decision = Some(PreparationDecision::Resolved { frame_id: f.frame_id.clone() });
-        if f.source.card.definition == "CQ08" { return Ok(()); }
+        if matches!(f.source.card.definition.as_str(), "CQ08" | "WM028") { return Ok(()); }
         if f.source.card.definition == "LC16" { return self.lc16_search_start(f); }
         if f.source.card.definition == "XG28" { return self.mill_cards_with_cause(f.actor, 1, Some(f)); }
         if f.source.card.definition == "JC064" { return self.jc064_upkeep_start(f); }

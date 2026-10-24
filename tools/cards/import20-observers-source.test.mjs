@@ -1,0 +1,46 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { currentImport20 as intake } from './import20-spec-history.mjs';
+const read = n => readFileSync(new URL('../../'+n, import.meta.url));
+const sha = b => createHash('sha256').update(b).digest('hex');
+const canonical = x => Array.isArray(x) ? x.map(canonical) : x && typeof x==='object'
+  ? Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])) : x;
+const pool = JSON.parse(read('rust-game/data/cards.json'));
+const specs = JSON.parse(read('docs/factions/card-specifications.json')).cards;
+
+test('second serial pair preserves exact254 prior records and public213', () => {
+  assert.equal(intake.priorCatalogCount,254);
+  assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,254)))),'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
+  assert.equal(intake.priorCardsCanonicalSha256,'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
+  assert.deepEqual(pool.cards.slice(254).map(c=>c.id),['BQ039','WM028']);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,256);
+  assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
+  for (const id of intake.allFourUnadmitted) assert.equal(pool.cards.find(c=>c.id===id).supported,false);
+  assert.equal(intake.current50ReviewedNativeClosed,38); assert.equal(intake.published,false);
+});
+test('blue attachments retain original pixels, printed costs, loyalty, unique and full text', () => {
+  for (const [id,hash,cost,loyalty,unique] of [
+    ['BQ039','db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de',1,['蓝色','蓝色'],false],
+    ['WM028','f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee',2,['蓝色'],true],
+  ]) {
+    const c=pool.cards.find(c=>c.id===id),s=specs[id];
+    assert.equal(sha(read(s.sourceVerification.imagePath)),hash); assert.equal(sha(read(`web/public/cards/${id}.jpg`)),hash);
+    assert.equal(c.cost,cost);assert.deepEqual(c.loyalty,loyalty);assert.equal(c.unique,unique);
+    assert.equal(c.color,'蓝');assert.equal(c.kind,'attachment');assert.equal(c.text,s.fields.printedRuleTextLines.join('\n'));
+    assert.deepEqual(c.subtypes,s.fields.subtypes);assert.deepEqual(s.openQuestionIds,[]);
+  }
+  assert.match(specs.BQ039.fields.printedRuleTextLines[1],/战斗对抗/);
+  assert.match(specs.WM028.fields.printedRuleTextLines[1],/准备步骤强制触发/);
+});
+test('current101 is a single unqualified development kernel, not a public release', () => {
+  assert.equal(pool.engineVersion,'rust-v0.2.101-import20-observers');
+  assert.equal(pool.cardPoolVersion,'limited-v2.92-import20-observers');
+  const rust=read('rust-game/src/catalog.rs').toString();
+  assert(rust.includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
+  assert(!rust.includes('rust-v0.2.100-import20-first-slice'));
+  assert.equal(intake.independentReview,'notRun');
+  for (const k of ['WASM','Worker']) assert.equal(intake[k],'notBuiltOrRun');
+  assert.equal(intake.browser,'notRun');
+});

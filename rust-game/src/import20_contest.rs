@@ -6,7 +6,18 @@ use std::collections::BTreeSet;
 pub(crate) const CARDS: &[&str] = &["BQ090", "BQ064"];
 pub(crate) const DESTROY: &str = "import20-bq090-destroy";
 pub(crate) const HAND: &str = "import20-bq090-hand-contest";
+pub(crate) const EYE_HAND: &str = "import20-bq039-hand-contest";
 pub(crate) const SAMPLES: &str = "import20-bq064-take-samples";
+
+pub(crate) fn is_hand_key(key: &str) -> bool { matches!(key, HAND | EYE_HAND) }
+pub(crate) fn hand_ability(id: &str) -> Option<AbilitySpec> {
+    let key = match id { "BQ090" => HAND, "BQ039" => EYE_HAND, _ => return None };
+    let mut hand = ability(key, "手牌行动：支付2并弃自身，进行隐秘对抗", Timing::Standard,
+        vec![Cost::Assets(2), Cost::DiscardSelectedHandCard], vec![],
+        vec![Op::MysticContest { actor_bonus: 0 }], None);
+    hand.activation_only = true;
+    Some(hand)
+}
 
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
@@ -19,11 +30,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
             let mut play = ability(DESTROY, "快速行动：消灭印刷费用不大于3的目标角色",
                 Timing::Fast, vec![], vec![target], vec![Op::Destroy(EntityRef::Target(0))], None);
             play.play_only = true;
-            let mut hand = ability(HAND, "手牌行动：支付2并弃自身，进行隐秘对抗",
-                Timing::Standard, vec![Cost::Assets(2), Cost::DiscardSelectedHandCard], vec![],
-                vec![Op::MysticContest { actor_bonus: 0 }], None);
-            hand.activation_only = true;
-            vec![play, hand]
+            vec![play, hand_ability(id).unwrap()]
         }
         "BQ064" => {
             let mut play = ability(SAMPLES, "行动：移除本方秘社所有失控标志，每枚抓一张",
@@ -54,6 +61,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     else { Err("首批隐秘卡能力须保留原卡完整费用、目标与程序".into()) }
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "BQ039" { return crate::import20_observers::validate_action(id, a); }
     if !CARDS.contains(&id) { return Ok(()); }
     let expected = match (id, a.kind.as_str()) {
         ("BQ090", "play") => Action { card_id: a.card_id.clone(), ability_id: a.ability_id.clone(),
@@ -66,19 +74,20 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if *a == expected { Ok(()) } else { Err("本卡行动不可夹带额外目标、费用或选择".into()) }
 }
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
-    id == "BQ090" && key == HAND && bonus == 0
+    matches!((id, key, bonus), ("BQ090", HAND, 0) | ("BQ039", EYE_HAND, 0))
 }
 
 impl Game {
     pub(crate) fn import20_begin_hand(&mut self, actor: usize, a: &Action) -> RuleResult<()> {
-        validate_action("BQ090", a)?;
+        let id = match a.ability_id.as_deref() { Some(HAND) => "BQ090", Some(EYE_HAND) => "BQ039", _ => return Err("非准入神秘学博弈手牌能力".into()) };
+        validate_action(id, a)?;
         let player = self.players.get(actor).filter(|p| !p.eliminated).ok_or("手牌行动玩家无效")?;
         let c = player.hand.iter().find(|c| Some(c.id.as_str()) == a.card_id.as_deref()
-            && c.definition == "BQ090" && !c.face_down && c.controller == actor)
-            .ok_or("神秘学博弈须弃置本人的原淘汰弱者手牌")?;
+            && c.definition == id && !c.face_down && c.controller == actor)
+            .ok_or("神秘学博弈须弃置本人的原能力手牌")?;
         self.mobility_immutable_identity(c)?;
         let source = self.source_snapshot(c, None);
-        let spec = definition("BQ090").unwrap().abilities.remove(1);
+        let spec = hand_ability(id).unwrap();
         self.check_timing(actor, &spec)?;
         let payment = Action { cost_selected: Some(vec![source.card.id.clone()]), ..a.clone() };
         let paid = self.pay_ability_costs(actor, &source, &spec, &payment)?;
@@ -89,6 +98,7 @@ impl Game {
     pub(crate) fn validate_import20_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         let id = f.source.card.definition.as_str();
         let spec = definition(id).and_then(|d| d.abilities.into_iter().find(|a| a.key == f.ability_key))
+            .or_else(|| hand_ability(id).filter(|a| a.key == f.ability_key))
             .ok_or("首批隐秘卡未知程序或来源")?;
         let s = &f.source;
         if f.actor >= self.players.len() || s.card.controller != f.actor || s.card.owner >= self.players.len()
@@ -108,10 +118,10 @@ impl Game {
         self.mobility_immutable_identity(&s.card)?;
         let assets = match f.already_paid.as_slice() {
             [PaidCost::Assets(ids), PaidCost::Discarded { old_instance, holder, owner }]
-                if f.ability_key == HAND && old_instance == &s.card.id && *holder == f.actor
+                if is_hand_key(&f.ability_key) && old_instance == &s.card.id && *holder == f.actor
                     && *owner == s.card.owner && ids.len() == 2
                     && !self.batch3_physical_cards().any(|c| c.id == s.card.id) => ids,
-            [PaidCost::Assets(ids)] if f.ability_key != HAND && ids.len() <= catalog::card(id).cost as usize => ids,
+            [PaidCost::Assets(ids)] if !is_hand_key(&f.ability_key) && ids.len() <= catalog::card(id).cost as usize => ids,
             _ => return Err("首批隐秘卡须保留实际出牌或支付2并弃自身的费用收据".into()),
         };
         if assets.iter().collect::<BTreeSet<_>>().len() != assets.len()

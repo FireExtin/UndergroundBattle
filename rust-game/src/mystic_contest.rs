@@ -142,7 +142,10 @@ impl Game {
     }
     pub(crate) fn mystic_op_bonus(frame: &ResolutionFrame) -> Option<u32> {
         match frame.cursor.checked_sub(1).and_then(|i| frame.steps.get(i)).map(|s| &s.op) {
-            Some(Op::MysticContest { actor_bonus }) => Some(*actor_bonus), _ => None,
+            Some(Op::MysticContest { actor_bonus }) => Some(*actor_bonus),
+            Some(Op::Batch20Prepare { .. }) if frame.source.card.definition == "WM028"
+                && frame.ability_key == crate::import20_observers::HALL_PREP => Some(0),
+            _ => None,
         }
     }
     pub(crate) fn mystic_contest_start(&mut self, frame: ResolutionFrame, actor_bonus: u32) -> RuleResult<()> {

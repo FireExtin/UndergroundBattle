@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    BQ039HostBattleWon,
     BQ031Attachment,
     BQ038Raid,
     BQ038MysticStart,
@@ -282,6 +283,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ039BattleDiscard { observation: Option<Box<crate::import20_observers::EyeBattleObservation>> },
     JZ56ChooseUndead,
     BQ027ShownFeed { contest_id: String, index: usize },
     BQ031WinFeed { contest_id: Option<String> },
@@ -735,6 +737,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::import20_observers::related(card_id, ability) { return crate::import20_observers::validate_ability(card_id, ability); }
     if crate::import20_contest::related(card_id, ability) { return crate::import20_contest::validate_ability(card_id, ability); }
     if card_id == "WM043" || crate::wm043::related(ability) { return crate::wm043::validate_ability(card_id, ability); }
     if card_id == "MSJC14" || crate::sentinel::related(ability) { return crate::sentinel::validate_ability(card_id, ability); }
@@ -2179,6 +2182,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::import20_observers::CARDS { m.insert((*id).into(), crate::import20_observers::definition(id).unwrap()); }
         for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());

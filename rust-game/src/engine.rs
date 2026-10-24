@@ -960,7 +960,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
-                if a.ability_id.as_deref() == Some(crate::import20_contest::HAND) { return self.import20_begin_hand(seat, &a); }
+                if a.ability_id.as_deref().is_some_and(crate::import20_contest::is_hand_key) { return self.import20_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) { return self.bq032_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
@@ -1478,6 +1478,7 @@ impl Game {
             // even when printed JC018 or several curses/hosts contributed.
             let glory = self.jc089_combat_glory(team, region);
             let path_triggers = self.jc034_combat_observers(team, region);
+            let eye_triggers = self.import20_eye_battle_observers(team, region);
             let kills = self.region_characters(region)
                 .filter(|c| {
                     self.team(c.controller) == team
@@ -1508,6 +1509,7 @@ impl Game {
                 });
             }
             self.effects.extend(path_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
+            self.effects.extend(eye_triggers.into_iter().map(|declaration| Effect::Declare { declaration }));
             if let Some(declaration) = glory {
                 self.effects.push_back(Effect::Declare { declaration });
             }
@@ -2868,8 +2870,8 @@ impl Game {
                 .collect::<Vec<_>>();
             for c in &self.players[seat].hand {
                 let d = card(&c.definition);
-                if c.definition == "BQ090" && self.can_standard(seat) {
-                    candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(crate::import20_contest::HAND.into()), ..Action::new("activate") }, "淘汰弱者手牌行动：支付2并弃自身".into()));
+                if let Some(hand) = crate::import20_contest::hand_ability(&c.definition).filter(|_| self.can_standard(seat)) {
+                    candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(hand.key), ..Action::new("activate") }, hand.label));
                 }
                 if c.definition == "BQ032" && self.can_standard(seat) {
                     candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(crate::batch4_vampire_contest::HAND.into()), ..Action::new("activate") }, "宴会司仪手牌行动：支付2并弃自身".into()));

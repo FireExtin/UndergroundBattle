@@ -1,0 +1,30 @@
+{
+  "manual": {
+    "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界规则手册.pdf",
+    "sha256": "2a771874efbdb3ad8a339ea01ff62888766090d075fe2e013632c79de1aeba35"
+  },
+  "card_images": [
+    {
+      "id": "BQ039",
+      "path": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "sha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "viewed_here": true
+    },
+    {
+      "id": "WM028",
+      "path": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg",
+      "sha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee",
+      "viewed_here": true
+    }
+  ],
+  "interpretations": {
+    "battle_participation": "Same physical participant set as contest_counts, not inherited duplicate carriers; printed host need not belong to attachment controller.",
+    "trigger_timing": "Capture at won combat before its damage, matching existing combat observers; later source departure does not cancel the emitted trigger.",
+    "key": "Printed key symbol uses existing initiative/first_team; conditional preparation eligibility and order are frozen by the shared preparation event."
+  },
+  "source_quote_location": {
+    "physical_page": 4,
+    "excerpt": "触发能力在符合触发条件的时机   ◆ 同一个区域内的场上卡牌其位置可以随意摆放，只要确保双\n时才可以发动并生效，一般在描述时采用语句“当……时”，     方都能够看清即可。但是除非有卡牌效果，否则场上的卡牌不\n“在……后”。卡牌的操控者在符合触发条件"
+  },
+  "copy_permission": "Existing user direct author/illustrator permission for pinned UWPro. No direct Suez reuse."
+}

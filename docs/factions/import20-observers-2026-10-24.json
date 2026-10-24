@@ -1,0 +1,38 @@
+{
+  "baseCommit": "4391ac2612133c9b8e50f5e190ec8fa16073d0e7",
+  "priorCatalogCount": 254,
+  "priorCardsCanonicalSha256": "6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9",
+  "newCards": [
+    "BQ039",
+    "WM028"
+  ],
+  "allFourUnadmitted": [
+    "BQ090",
+    "BQ064",
+    "BQ039",
+    "WM028"
+  ],
+  "sourceProgramsAdded": 2,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "authorTotalReference20Programs": 4,
+  "current50ReviewedNativeClosed": 38,
+  "current50NewAuthorCandidate": [
+    "BQ039"
+  ],
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "engineVersion": "rust-v0.2.101-import20-observers",
+  "cardPoolVersion": "limited-v2.92-import20-observers",
+  "ruleInterpretations": {
+    "BQ039": "Attachment controller winning side plus original host actually contributing combat in that region. Host may have any controller; not mystic/investigation/influence win. Event captured before battle damage; an already-triggered ability survives source/host departure.",
+    "WM028": "Existing first_team is the shared initiative/key marker. Freeze conditional forced preparation eligibility in existing preparation observation, resolve through its exact source receipt, then the same mystic protocol."
+  },
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "User-confirmed direct author/illustrator reuse permission; these two have no registered per-card handlers; independent Rust adaptation.",
+    "SuezCodeOrArtCopied": false
+  }
+}

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { import20, priorSpecifications } from './import20-spec-history.mjs';
+import { import20, currentImport20, priorSpecifications } from './import20-spec-history.mjs';
 
 const read = name => readFileSync(new URL('../../' + name, import.meta.url));
 const sha = value => createHash('sha256').update(value).digest('hex');
@@ -15,8 +15,8 @@ const specs = specifications.cards;
 test('first import slice preserves the exact prior252 and keeps both new cards unadmitted', () => {
   assert.equal(import20.priorCatalogCount, 252);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,252)))), import20.priorCatalogCardsCanonicalSha256);
-  assert.deepEqual(pool.cards.slice(252).map(c => c.id), ['BQ090', 'BQ064']);
-  assert.equal(new Set(pool.cards.map(c => c.id)).size, 254);
+  assert.deepEqual(pool.cards.slice(252,254).map(c => c.id), ['BQ090', 'BQ064']);
+  assert.equal(new Set(pool.cards.map(c => c.id)).size, 256);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
   for (const id of import20.nativePilotCards) assert.equal(pool.cards.find(c => c.id === id).supported, false);
   assert.equal(import20.current50ClosedAdded, 0);
@@ -55,8 +55,8 @@ test('four exact BQ064 corrections preserve every other byte of the historical s
 });
 
 test('one current native identity is distinct from published ABI95 and retained guest artifacts', () => {
-  assert.equal(pool.engineVersion, 'rust-v0.2.100-import20-first-slice');
-  assert.equal(pool.cardPoolVersion, 'limited-v2.91-import20-first-slice');
+  assert.equal(pool.engineVersion, currentImport20.engineVersion);
+  assert.equal(pool.cardPoolVersion, currentImport20.cardPoolVersion);
   const rust = read('rust-game/src/catalog.rs').toString();
   assert(rust.includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert(!rust.includes('rust-v0.2.99-game-serial'));
