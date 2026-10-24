@@ -91,6 +91,7 @@ fn import20_wm025_reveal_aura_is_personal_current_and_does_not_reduce_faceup_pla
 fn import20_wm025_real_paid_reveal_aura_floors_cost_but_never_waives_loyalty(){
     let mut g=game();field(&mut g,"WM025",0);g.add_society_markers(0,0,7);fund(&mut g,0,"JC125",1);
     let hidden=field(&mut g,"JC029",0);g.board_mut(&hidden).unwrap().face_down=true;reject(&mut g,0,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});
+    fund(&mut g,0,"JC029",1);reject(&mut g,0,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});
     fund(&mut g,0,"JC029",1);let before=g.resources(0);act(&mut g,0,Action{card_id:Some(hidden),..Action::new("reveal")});
     assert_eq!(g.resources(0),before);pass_top(&mut g);assert!(g.regions[0].cards.iter().any(|c|c.definition=="JC029"&&!c.face_down));restore(&mut g);
 }
@@ -129,7 +130,7 @@ fn import20_wm025_accepted_win_survives_source_departure_and_queries_current_vam
 }
 
 #[test]
-fn import20_wm025_win_counts_a_real_attached_bat_as_a_personal_vampire_character(){
+fn import20_wm025_real_attached_bat_remains_a_character_but_does_not_inherit_host_vampire_type(){
     let mut g=game();field(&mut g,"WM025",0);let host=field_at(&mut g,"JC056",0,1);fund(&mut g,0,"JC029",8);
     let manor=held(&mut g,"XQ15",0);act(&mut g,0,Action{card_id:Some(manor),target_id:Some("society:p0".into()),..Action::new("play")});pass_top(&mut g);
     let manor=g.attachments.iter().find(|a|a.card.definition=="XQ15").unwrap().card.id.clone();
@@ -138,8 +139,10 @@ fn import20_wm025_win_counts_a_real_attached_bat_as_a_personal_vampire_character
     assert!(g.pending.as_ref().is_some_and(|p|p.choice.options.iter().any(|o|o.id==host)));
     choose(&mut g,vec![host]);pass_top(&mut g);
     assert!(g.attachments.iter().any(|a|a.card.definition=="BQ026"));
-    g.remove_dead(&manor,RemovalCause::Destroy);assert!(!g.current_subtypes(g.board(&g.regions[1].cards[0].id).unwrap().1).iter().any(|s|s=="吸血鬼"));restore(&mut g);
-    begin_win(&mut g,true);accept_win(&mut g);assert_eq!(g.regions[1].influence[0],1);restore(&mut g);
+    g.remove_dead(&manor,RemovalCause::Destroy);assert!(!g.current_subtypes(g.board(&g.regions[1].cards[0].id).unwrap().1).iter().any(|s|s=="吸血鬼"));
+    let bat=&g.attachments.iter().find(|a|a.card.definition=="BQ026").unwrap().card;
+    assert!(catalog::has_kind(catalog::card("BQ026"),"character"));assert!(!g.current_subtypes(bat).iter().any(|s|s=="吸血鬼"));restore(&mut g);
+    begin_win(&mut g,true);accept_win(&mut g);assert_eq!(g.regions[1].influence[0],0);restore(&mut g);
 }
 
 #[test]
@@ -230,6 +233,15 @@ fn import20_wm024_invalidated_original_target_cancels_without_new_target_or_refu
     let(mut g,target)=assassin([2,0],"JC070");choose(&mut g,vec![target.clone()]);let resources=g.resources(0);
     g.hide_in_place_successor(&target).unwrap();restore(&mut g);pass_top(&mut g);
     assert!(g.players[0].hand.is_empty());assert_eq!(g.resources(0),resources);assert!(g.regions[0].cards.iter().any(|c|c.face_down&&c.definition=="JC070"));restore(&mut g);
+}
+
+#[test]
+fn import20_wm024_real_fast_defense_response_prevents_lethal_without_a_draw(){
+    let(mut g,target)=assassin([1,0],"JC070");choose(&mut g,vec![target.clone()]);
+    let hermit=field(&mut g,"LC12",2);for _ in 0..4{if g.can_fast(2){break;}pass(&mut g);}assert!(g.can_fast(2));
+    act(&mut g,2,Action{card_id:Some(hermit.clone()),ability_id:Some("protect-local-character".into()),target_id:Some(target.clone()),..Action::new("activate")});
+    pass_top(&mut g);assert!(g.board(&hermit).unwrap().1.exhausted);assert_eq!(g.defense(g.board(&target).unwrap().1,0),2);
+    pass_top(&mut g);assert_eq!(g.board(&target).unwrap().1.damage,1);assert!(g.players[0].hand.is_empty());restore(&mut g);
 }
 
 #[test]
