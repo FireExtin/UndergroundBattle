@@ -265,11 +265,22 @@ mod renown {
             let c = g.make_card(&d.id, 0);
             let id = c.id.clone();
             g.regions[0].cards.push(c);
-            let spell = g.make_card("JC074", 0);
+            // A zero-defense body needs real friendly support to survive. The
+            // ready politician legitimately forbids JC074, so use the real
+            // human-host tattoo in its standard action window instead.
+            if d.id == "XQ46" {
+                for _ in 0..2 {
+                    let support = g.make_card("JC059", 0);
+                    g.regions[0].cards.push(support);
+                }
+            }
+            let tattoo = d.id == "XQ22";
+            if tattoo { g.window = Some(Window::Action(0)); }
+            let spell = g.make_card(if tattoo { "WM064" } else { "JC074" }, 0);
             let spell_id = spell.id.clone();
             g.players[0].hand.push(spell);
-            for _ in 0..2 {
-                let c = g.make_card("JC074", 0);
+            for _ in 0..if tattoo { 6 } else { 2 } {
+                let c = g.make_card(if tattoo { "WM064" } else { "JC074" }, 0);
                 g.players[0].assets.push(c);
             }
             Game::from_persisted(&serde_json::to_string(&g).unwrap())
@@ -302,9 +313,26 @@ mod renown {
             // JC067 adds a complete influence contest. Close its normal before/
             // after windows until the region has really ended, without forging
             // influence progress or bypassing any public command.
-            for _ in 0..12 {
-                if g.pending.is_some() {
-                    break;
+            for _ in 0..80 {
+                if let Some(p) = g.pending.clone() {
+                    if matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. }
+                        if declaration.ability.key == "renown") { break; }
+                    // The tattoo starts in an earlier legal window. Close its
+                    // ordinary investigation/order choices through public input.
+                    let action = if p.choice.kind == "investigation" {
+                        Action { choice_id: Some(p.choice.id),
+                            top: Some(p.choice.options.iter().map(|o| o.id.clone()).collect()),
+                            bottom: Some(vec![]), ..Action::new("choose") }
+                    } else {
+                        let selected = if p.choice.min == Some(0) { vec![] }
+                            else { p.choice.options.iter().take(p.choice.min.unwrap_or(1) as usize).map(|o| o.id.clone()).collect() };
+                        Action { choice_id: Some(p.choice.id), selected: Some(selected), ..Action::new("choose") }
+                    };
+                    if let Err(e) = g.apply(p.seat, action) {
+                        failure = Some(format!("normal phase choice rejected: {e}"));
+                        break;
+                    }
+                    continue;
                 }
                 let before = serde_json::to_string(&g).unwrap();
                 if let Err(e) = step_pass(&mut g) {
@@ -322,8 +350,8 @@ mod renown {
   else if g.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.ability.key=="renown")){passed+=1;}
   else{println!("SKIP {} no renown pending window={:?}",d.id,g.window);skipped+=1;skipped_ids.push(d.id.clone());}
         }
-        assert_eq!(skipped_ids, ["XQ46"]);
-        assert_eq!((passed, failed, skipped), (checked - 1, 0, 1));
+        assert!(skipped_ids.is_empty(), "every character needs a legal real grant: {skipped_ids:?}");
+        assert_eq!((passed, failed, skipped), (checked, 0, 0));
         println!("SUMMARY passed={passed} failed={failed} skipped={skipped}");
     }
 }

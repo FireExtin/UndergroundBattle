@@ -5,9 +5,9 @@ use std::sync::OnceLock;
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
 pub const POOL_VERSION: &str = "limited-v2.102-import20-rulings-complete";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.111-import20-rulings-complete";
+pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.111-import20-rulings-complete-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards-fixture";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all="lowercase")]

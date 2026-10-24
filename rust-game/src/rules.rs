@@ -776,6 +776,10 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     // Shared granted programs are checked before recipient-specific native
     // text. Domain validators still require their exact event-time grant;
     // validate_definitions separately rejects static transplantation.
+    if crate::renown::reward_related(ability) {
+        return if crate::jz22::runtime_ability_is_admitted(ability) { Ok(()) }
+            else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
+    }
     if crate::import20_entropy::related(card_id,ability) { return crate::import20_entropy::validate_ability(card_id,ability); }
     if crate::import20_gate::related(card_id,ability) { return crate::import20_gate::validate_ability(card_id,ability); }
     if crate::import20_swords::related(ability) { return crate::import20_swords::validate_ability(ability); }
@@ -1563,6 +1567,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        if definition.abilities.iter().any(crate::renown::reward_related) {
+            return Err(format!("cardId={card_id}: 声望/威名奖励只能由实际事件生成"));
+        }
         crate::import20_entropy::validate_definition(card_id,definition)?;
         crate::import20_gate::validate_definition(card_id,definition)?;
         crate::import20_swords::validate_definition(card_id,definition)?;

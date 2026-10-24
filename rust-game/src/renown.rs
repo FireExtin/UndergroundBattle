@@ -2,9 +2,19 @@
 //! optional reward. Hegemony win-before-renown ordering preserves the old flow.
 use crate::{
     catalog::card,
-    model::{Card, Declaration, Effect, Game, Window},
+    engine::RuleResult,
+    model::*,
     rules::{self, AbilitySpec, Event, Op, ResponsePolicy, Timing},
 };
+
+pub(crate) fn reward_key(key: &str) -> bool {
+    matches!(key, "renown" | "jc089-combat-glory")
+}
+
+pub(crate) fn reward_related(a: &AbilitySpec) -> bool {
+    reward_key(&a.key)
+        || matches!(a.event, Some(Event::RegionConfrontationsEnded | Event::CombatWon))
+}
 
 pub(crate) fn renown_ability(region_instance: &str) -> AbilitySpec {
     AbilitySpec {
@@ -29,6 +39,110 @@ pub(crate) fn renown_ability(region_instance: &str) -> AbilitySpec {
 }
 
 impl Game {
+    // These two rewards belong to the observed keyword event, independently of
+    // the recipient's printed abilities. Keep their complete one-influence
+    // program and original region closed rather than bypassing per-card checks
+    // on a key string alone. A later response may remove the source or grant.
+    fn validate_reward_source(
+        &self,
+        actor: usize,
+        source: &SourceSnapshot,
+        region_instance: &str,
+    ) -> RuleResult<()> {
+        let c = &source.card;
+        if actor >= self.players.len()
+            || c.controller != actor
+            || c.owner >= self.players.len()
+            || c.id.is_empty()
+            || c.face_down
+            || !crate::catalog::catalog().cards.iter().any(|d|
+                d.id == c.definition && crate::catalog::has_kind(d, "character"))
+            || source.region.is_none_or(|r| r >= self.regions.len())
+            || region_instance.is_empty()
+            || region_instance == c.id
+            || source.source_region_instance.as_deref() != Some(region_instance)
+            || source.play_source.is_some()
+            || source.death_echo.is_some()
+            || source.observed_death.is_some()
+            || source.observed_exposure.is_some()
+            || source.observed_mobility_grant.is_some()
+            || source.attachment_host_instance.as_ref().is_some_and(|host|
+                c.definition != "BQ026" || host.is_empty() || *host == c.id)
+            || self.regions.iter().enumerate().any(|(i,r)|
+                r.card.id == region_instance && Some(i) != source.region)
+        {
+            return Err("声望/威名奖励须保留实际角色、行动者和冻结的原地区".into());
+        }
+        self.mobility_immutable_identity(c)
+    }
+
+    pub(crate) fn validated_reward_declaration(&self, d: &Declaration) -> RuleResult<bool> {
+        if !reward_related(&d.ability) { return Ok(false); }
+        if !crate::jz22::runtime_ability_is_admitted(&d.ability) {
+            return Err("声望/威名只允许完整无费用的原地区一个势力奖励".into());
+        }
+        let [Op::PlaceInfluence { region_instance, .. }] = d.ability.ops.as_slice() else { unreachable!() };
+        self.validate_reward_source(d.actor, &d.source, region_instance)?;
+        Ok(true)
+    }
+
+    pub(crate) fn validated_reward_frame(&self, f: &ResolutionFrame) -> RuleResult<bool> {
+        if !reward_key(&f.ability_key) { return Ok(false); }
+        let [Step { context, op: Op::PlaceInfluence { region_instance, amount: 1 } }] = f.steps.as_slice()
+            else { return Err("声望/威名帧必须保留一个原地区势力奖励".into()); };
+        self.validate_reward_source(f.actor, &f.source, region_instance)?;
+        if f.frame_id.is_empty() || *context != f.actor || f.cursor > 1
+            || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
+            || f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)
+            || !f.targets.is_empty() || !f.already_paid.is_empty()
+            || !f.resource_payments.is_empty() || f.chosen_region.is_some()
+        {
+            return Err("声望/威名帧的上下文、费用、目标或执行位置不符".into());
+        }
+        Ok(true)
+    }
+
+    pub(crate) fn validate_reward_state(&self) -> RuleResult<()> {
+        for item in &self.stack {
+            if let Some(f) = &item.frame {
+                if self.validated_reward_frame(f)?
+                    && (item.id != f.frame_id || item.controller != f.actor
+                        || item.card.is_some() || item.target.is_some() || item.reveal
+                        || item.deploy_region.is_some() || f.cursor != 0)
+                {
+                    return Err("声望/威名响应对象与冻结帧不符".into());
+                }
+            }
+        }
+        for effect in &self.effects {
+            match effect {
+                Effect::Declare { declaration } => { self.validated_reward_declaration(declaration)?; }
+                Effect::Frame { frame } if self.validated_reward_frame(frame)? && frame.cursor != 0 =>
+                    return Err("声望/威名原子奖励不能保留已执行续体".into()),
+                _ => {},
+            }
+        }
+        if let Some(p) = &self.pending {
+            match &p.resolution {
+                ChoiceResolution::Declare { declaration, stage }
+                    if self.validated_reward_declaration(declaration)? => {
+                    let options = vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }];
+                    if !matches!(stage, DeclareChoice::Accept) || p.seat != declaration.actor
+                        || p.choice.player_id != player_id(declaration.actor) || p.choice.kind != "trigger"
+                        || p.choice.min != Some(0) || p.choice.max != Some(1) || p.choice.allow_decline != Some(true)
+                        || serde_json::to_value(&p.choice.options).unwrap() != serde_json::to_value(options).unwrap()
+                    {
+                        return Err("声望/威名只允许原行动者选择发动或放弃".into());
+                    }
+                }
+                ChoiceResolution::Frame { frame, .. } if self.validated_reward_frame(frame)? =>
+                    return Err("声望/威名原子奖励没有帧内选择".into()),
+                _ => {},
+            }
+        }
+        Ok(())
+    }
+
     pub(crate) fn jc089_combat_glory(&self, team: usize, region: usize) -> Option<Declaration> {
         // Only the fully admitted JC018 print and real JC089 host grant qualify.
         // Merge their identical 威名 into one optional combat-time reward.
@@ -36,9 +150,11 @@ impl Game {
             self.team(c.controller) == team && !self.players[c.controller].eliminated
                 && self.icons(c, region).combat > 0 && self.has_combat_glory(c))
             .min_by_key(|c| c.controller)?;
+        let mut snapshot = self.source_snapshot(source, Some(region));
+        snapshot.source_region_instance = Some(self.regions[region].card.id.clone());
         Some(Declaration {
             actor: source.controller,
-            source: self.source_snapshot(source, Some(region)),
+            source: snapshot,
             ability: rules::jc089_combat_glory_ability(&self.regions[region].card.id),
         })
     }
@@ -104,7 +220,8 @@ impl Game {
             .min_by_key(|c| c.controller)
             .unwrap();
         let actor = source.controller;
-        let source = self.source_snapshot(source, Some(region));
+        let mut source = self.source_snapshot(source, Some(region));
+        source.source_region_instance = Some(region_instance.into());
         let ability = renown_ability(region_instance);
         self.effects.push_front(Effect::Declare {
             declaration: Declaration {

@@ -719,3 +719,130 @@ fn renown_skipped_region_and_stale_region_identity_cannot_get_a_reward() {
     pass_top(&mut g);
     assert_eq!(g.regions[0].influence, [0, 0]);
 }
+
+fn granted_native_reward() -> (Game, Declaration) {
+    granted_native_reward_for("WM030")
+}
+
+fn granted_native_reward_for(recipient: &str) -> (Game, Declaration) {
+    let mut g = game();
+    g.regions[0].influence = [0, 3];
+    grants(&mut g, recipient, 0);
+    end_contests(&mut g);
+    let ChoiceResolution::Declare { declaration, .. } = &g.pending.as_ref().unwrap().resolution
+        else { panic!("real keyword reward declaration") };
+    assert_eq!(declaration.ability.key, "renown");
+    assert_eq!(declaration.source.source_region_instance.as_deref(), Some(g.regions[0].card.id.as_str()));
+    let declaration = declaration.clone();
+    (g, declaration)
+}
+
+#[test]
+fn renown_shared_reward_accepts_native_recipient_once_through_public_commands() {
+    let (mut g, _) = granted_native_reward();
+    let old = serde_json::to_string(&g).unwrap();
+    let p = g.pending.as_ref().unwrap();
+    assert!(g.apply(p.seat, Action { choice_id: Some(p.choice.id.clone()),
+        selected: Some(vec!["not-the-reward".into()]), ..Action::new("choose") }).is_err());
+    assert_eq!(serde_json::to_string(&g).unwrap(), old);
+    accept(&mut g);
+    let old_influence = g.regions[0].influence;
+    pass_top(&mut g);
+    assert_eq!(g.regions[0].influence, [old_influence[0], old_influence[1] - 1]);
+    assert!(g.pending.is_none() && g.stack.is_empty());
+}
+
+#[test]
+fn renown_shared_reward_does_not_admit_modified_programs_or_origins() {
+    let (g, original) = granted_native_reward();
+    for change in 0..5 {
+        let mut d = original.clone();
+        match change {
+            0 => d.ability.ops.push(Op::Draw { player: PlayerRef::Actor, count: 1, end: DeckEnd::Top }),
+            1 => d.ability.costs.push(Cost::Assets(1)),
+            2 => d.ability.event = Some(Event::EnterRegion),
+            3 => d.source.source_region_instance = Some(g.regions[1].card.id.clone()),
+            _ => d.actor = 1,
+        }
+        assert!(g.validated_cross_card_declaration(&d).is_err(), "mutation {change}");
+    }
+}
+
+#[test]
+fn renown_shared_frame_keeps_its_exact_atomic_context_and_no_payment() {
+    let (mut g, _) = granted_native_reward();
+    accept(&mut g);
+    let original = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert!(g.validated_cross_card_frame(original).unwrap());
+    for change in 0..4 {
+        let mut f = original.clone();
+        match change {
+            0 => f.steps[0].context = 1,
+            1 => f.already_paid.push(PaidCost::Assets(vec![])),
+            2 => f.steps.push(f.steps[0].clone()),
+            _ => f.chosen_region = Some(1),
+        }
+        assert!(g.validated_cross_card_frame(&f).is_err(), "mutation {change}");
+    }
+}
+
+#[test]
+fn renown_shared_reward_cannot_become_a_static_printed_ability() {
+    for a in [crate::renown::renown_ability("region-fixture"), jc089_combat_glory_ability("region-fixture")] {
+        let mut d = definition("JC125").clone();
+        d.abilities.push(a);
+        assert!(validate_definitions(&[("JC125".into(), d)].into_iter().collect()).is_err());
+    }
+}
+
+#[test]
+fn shared_reward_platform_actual_room_acceptance_and_response() {
+    use crate::room::{Decision, RoomCommand, RoomEnvelope, SessionAction};
+    use serde_json::json;
+    let mut cases = vec![];
+    for recipient in ["WM030", "XQ19", "CQ24", "BQ026"] {
+        // The initial explicit layout is after a genuine paid JC074 and normal
+        // influence-confrontation public commands, not a relabelled old state.
+        let (mut g, _) = granted_native_reward_for(recipient);
+        g.seed = u64::MAX - 112;
+        g.random = g.seed;
+        let mut room = crate::jc029_tests::envelope(&g);
+        let initial = json!({"state":serde_json::to_string(&room).unwrap(),
+            "views":(0..4).map(|s| room.view(s,0)).collect::<Vec<_>>()});
+        let before = room.game.regions[0].influence;
+        let mut steps = vec![];
+        for _ in 0..32 {
+            if !steps.is_empty() && room.game.pending.is_none() && room.game.stack.is_empty() { break; }
+            let (seat, action) = if let Some(p) = &room.game.pending {
+                assert!(matches!(&p.resolution, ChoiceResolution::Declare { declaration, .. }
+                    if declaration.ability.key == "renown"));
+                (p.seat, SessionAction::Game { action: Action { choice_id: Some(p.choice.id.clone()),
+                    selected: Some(vec!["accept".into()]), ..Action::new("choose") } })
+            } else if let Some(window) = &room.pacing.window {
+                let seat = *window.members.iter().find(|(_,d)|matches!(d,Decision::Undecided { .. })).unwrap().0;
+                (seat, SessionAction::PassResponse { window_id: window.id.clone() })
+            } else {
+                let seat = (0..4).find(|s|room.game.legal_actions(*s).iter().any(|a|a.action.kind == "pass")).unwrap();
+                (seat, SessionAction::Game { action: Action::new("pass") })
+            };
+            let state = serde_json::to_string(&room).unwrap();
+            let command = RoomCommand { command_id: format!("reward-{recipient}-{}",steps.len()),
+                expected_version: room.revision, action };
+            let expected = room.transition(seat,Some(command.clone()),0).unwrap();
+            assert_eq!(expected.outcome,"accepted","{:?}",expected.error_message);
+            room = RoomEnvelope::from_persisted(&expected.state).unwrap();
+            steps.push(json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0", "expected":expected,
+                "views":(0..4).map(|s|room.view(s,0)).collect::<Vec<_>>()}));
+        }
+        assert!(room.game.pending.is_none() && room.game.stack.is_empty());
+        assert_eq!(room.game.regions[0].influence,[before[0],before[1]-1]);
+        cases.push(json!({"name":recipient,"seedDecimal":g.seed.to_string(),"initial":initial,"steps":steps}));
+    }
+    if let Ok(file) = std::env::var("ABI112_REWARD_NATIVE_OUT") {
+        use std::io::Write;
+        let mut output = std::fs::OpenOptions::new().write(true).create_new(true).open(file).unwrap();
+        output.write_all(&serde_json::to_vec(&json!({"format":"shared-reward-native112-v1",
+            "method":"Explicit post-paid-grant layouts; actual Room acceptance/responses; not a browser match",
+            "catalog":catalog::catalog(),"cases":cases})).unwrap()).unwrap();
+    }
+}
