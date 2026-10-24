@@ -1,0 +1,26 @@
+{
+  "filters": [
+    "wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal",
+    "wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+    "wm044_trigger_current_controller_each_actual_win_not_only_first",
+    "wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation",
+    "independent_wm044_mixed_contest_sources_order_and_private_completion",
+    "batch3_xq22_all_four_payers_can_activate_enemy_or_own_source_and_choose_after_response",
+    "batch3_xq22_spell_ban_is_global_live_and_does_not_block_attachments_or_activations",
+    "pack_a_actual_reveal_paid_once_and_four_private_commitments",
+    "pack_a_earth_shown_shuffles_before_post_mill",
+    "pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+    "pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+    "pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+    "wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+    "independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+    "independent_wm043_two_shown_sources_each_consume_one_enemy_shield",
+    "independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+    "exposure_rumor_jz57_optional_draw_follows_restored_replacement",
+    "exposure_rumor_multi_player_mill_resumes_exact_remaining_steps",
+    "import20_wm025_actual_personal_mystic_win_places_once_per_current_own_vampire_region",
+    "import20_hall_forced_prepare_order_with_existing_society_upkeep"
+  ],
+  "purpose": "Affected normal shared contest/shown-mill/rumor/private inspection and XQ22 authority controls. Historical independent-named tests are author reruns here.",
+  "preflight": "One guessed WM028 test name was corrected from actual source before any test command ran."
+}

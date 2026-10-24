@@ -1,0 +1,85 @@
+{
+  "tested_head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+  "files": [
+    {
+      "path": "docs/evidence/import20-black-20261024/adjacent-plan.json",
+      "bytes": 1793,
+      "sha256": "52ef5b82efe69476f516282bcb695f53dce972a49be1c903010ec09c57e247da"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/fixed-inputs.json",
+      "bytes": 73204,
+      "sha256": "cd3d9946ff8b508c9c62c39e24cc277dc23332be51efdd25caf42800502c9b41"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-adapted-native-20261024.json",
+      "bytes": 44983,
+      "sha256": "dc64fc1ad7a9c9d6790fa2cd7dcee19d4a5e779ec57c139f4b2aa26485a96219"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-adapted-native-20261024.log.gz",
+      "bytes": 1777,
+      "sha256": "10d0aefefd8f1f6ad8e80d7a47a02bc25a91b64988690d79b0852eb893d765b8"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-first-native-20261024.json",
+      "bytes": 44983,
+      "sha256": "3d48c2810001147f643df9f392f5a7efed06efdc42f62bba21b04873a0737cb9"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-first-native-20261024.log.gz",
+      "bytes": 1034,
+      "sha256": "3c40f1c1bbece30ba0450da606f6ba005021e817f3d878e6549e382a3f740025"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-first-source-20261024.json",
+      "bytes": 45120,
+      "sha256": "77e7c4c65a82766443e91f0c8fb6ca6efbaa589d6692818e3c7e52754bdd932d"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-first-source-20261024.log.gz",
+      "bytes": 1239,
+      "sha256": "e3a10622ac8dfe36ac4fcfeccf1c8a9199268d5518216dc856a1bff9d67682f1"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-normal-adjacent-20261024.json",
+      "bytes": 46443,
+      "sha256": "7574772498d1991ec95330901fb49844dfe008ee4dca09123be1c01edec7ff69"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-normal-adjacent-20261024.log.gz",
+      "bytes": 1536,
+      "sha256": "a7548017a8a979f6b0fef2bc9f0846e209d520d16f9afd54ddec1cfe310be490"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-private-native-20261024.json",
+      "bytes": 45177,
+      "sha256": "3c7203e69d1799685ef16b335f18d9d0a5a15cb5a3c7ec646f7155494e3eac68"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-private-native-20261024.log.gz",
+      "bytes": 1641,
+      "sha256": "00d77706b3f0f3fe9bc76d694470a9c799651243f0dc2a4e8653e0f8ce1cd0e7"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-unboxed-native-20261024.json",
+      "bytes": 44983,
+      "sha256": "2e8f038d65d4faecc70f18e3f2e39e667c9030523274c419d5f8dc6b76616a98"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/import20-black-unboxed-native-20261024.log.gz",
+      "bytes": 2025,
+      "sha256": "1608a8eaa76119a452033ebf8bf4a01e93961e369f10eee4d22aaa9211b1dae5"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/result.json",
+      "bytes": 15037,
+      "sha256": "af816cb99715053db7795da3193c5f8a9d5bdef0b167cbbb4b2cc530b8758dfe"
+    },
+    {
+      "path": "docs/evidence/import20-black-20261024/rule-evidence.json",
+      "bytes": 3240,
+      "sha256": "3a701211a560ebcf852d02fb170cf4d24701dae03149cf42978077fefa52a9b0"
+    }
+  ]
+}

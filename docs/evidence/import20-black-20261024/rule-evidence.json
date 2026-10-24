@@ -1,0 +1,74 @@
+{
+  "primaryOriginals": [
+    {
+      "id": "BQ081",
+      "image": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "sha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "uwpro": {
+        "id": "BQ081",
+        "path": "Cards/Data/PlayerCards/BQ/BQ081_diaolingshifuguai.tres",
+        "gitBlob": "bd79b36a0cf6919d43e59dca4aee3c8547c6fe8a",
+        "bytes": 1228,
+        "sha256": "c4e001cecfa6675c83700c5f0747876b8c4abf5de2bbc585590a2edd2a7dabc6",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      }
+    },
+    {
+      "id": "WM057",
+      "image": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+      "sha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+      "uwpro": {
+        "id": "WM057",
+        "path": "Cards/Data/PlayerCards/WM/WM057_xinxiqianke.tres",
+        "gitBlob": "9b93ceaaba07b8ecd9e29016bca4fa2470ba8195",
+        "bytes": 1241,
+        "sha256": "7b923dd3cf7a44759fbb6daa8ea8a66bbf5140d41ae7908f2a345450f4c674a2",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      }
+    }
+  ],
+  "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+  "permission": "Existing explicit user confirmation of code-author and illustrator permission; neither has a registered per-card handler. Independent Rust adapters; no Suez code/art copied.",
+  "corrections": "BQ081 original shows +1 and post-contest top ONE card, not three; only its two text fields and bonus interpretation changed.",
+  "sharedRulePdf": {
+    "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "pages": [
+      {
+        "physical": 17,
+        "printed": 16,
+        "scope": "Player, source independence, effect and target/response timing"
+      },
+      {
+        "physical": 18,
+        "printed": 17,
+        "scope": "Repression: designated opponent chooses its own influence removal"
+      },
+      {
+        "physical": 20,
+        "printed": 19,
+        "scope": "Personal shown-card contest effects, secrecy/exposure markers"
+      },
+      {
+        "physical": 22,
+        "printed": 21,
+        "scope": "Personal vs friendly vs enemy in 2v2"
+      }
+    ]
+  },
+  "enemyPermissionQuestion": {
+    "id": "WM057-2v2-secrecy-access",
+    "original": "若敌方秘社上有隐秘标志，则敌方玩家也可以发动本能力。",
+    "scenario": "Player0 controls WM057. Only enemy Player2 has secrecy; enemy Player3 has none. Is permission personal to2, or shared by2/3?",
+    "choices": [
+      "onlyMarkedEnemy",
+      "wholeEnemyTeam"
+    ],
+    "status": "askedAsyncAwaitingReply",
+    "notGranted": true,
+    "notAttempted": true
+  },
+  "implementationBoundary": "Original ownership and ExhaustSource guards were retained. Owner activation and win trigger are implemented. A future enemy permission change needs a finite source/payer authorization and an authenticated contest history proof; merely relaxing controller==actor or changing snapshot controller is not sufficient."
+}

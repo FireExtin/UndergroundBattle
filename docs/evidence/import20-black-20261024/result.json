@@ -1,0 +1,250 @@
+{
+  "recorded_at_utc": "2026-10-24T04:14:36.419480+00:00",
+  "base_commit": "aac2569674d522cee4955f8bc9d29abaabe93b96",
+  "runtime_commit": "492913822e31bbca483bb0b020efdec62f9cad7f",
+  "native_test_head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+  "source_test_head": "321cd349ba2fd8ab74b84942e35b3d01d63644fd",
+  "new_registered_cards": [
+    "BQ081",
+    "WM057"
+  ],
+  "new_author_native_complete": [
+    "BQ081"
+  ],
+  "new_author_partial": [
+    "WM057"
+  ],
+  "author_reference20_native_wip_complete": 7,
+  "reference20_target": 20,
+  "reference20_independently_closed_added": 0,
+  "current50_reviewed_native_closed": 38,
+  "new_pair_is_original50": false,
+  "definitions": 260,
+  "public_supported": 213,
+  "all_eight_new_cards_admitted": false,
+  "engine_version": "rust-v0.2.103-import20-broker",
+  "pool_version": "limited-v2.94-import20-broker",
+  "new_native_tests": 19,
+  "previous_identity_checks": 3,
+  "other_adjacent_tests": 20,
+  "unique_native_tests_passed": 42,
+  "source_assertions_passed": 24,
+  "native_groups": [
+    {
+      "head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+      "passed": 22,
+      "failed": 0,
+      "ignored": 0
+    },
+    {
+      "head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+      "passed": 20,
+      "failed": 0,
+      "ignored": 0
+    }
+  ],
+  "source_assertions": {
+    "head": "321cd349ba2fd8ab74b84942e35b3d01d63644fd",
+    "passed": 24,
+    "failed": 0,
+    "inputs_identical_at_final_native_head": true
+  },
+  "native_compiled_input_count": 305,
+  "source_bound_files": 131,
+  "full_native_suite_size": 2285,
+  "full_native_suite": "notRun; applicable42 only",
+  "independent_review": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "deployed_abi_unchanged": 95,
+  "failed_attempts_preserved": [
+    {
+      "run": "import20-black-first-native-20261024",
+      "result": "Compile failed E0308 before executing tests; corrected Box handoff at the existing choice boundary."
+    },
+    {
+      "run": "import20-black-unboxed-native-20261024",
+      "result": "7/17: BQ081 deployment fixtures mistakenly funded neutral JC125 rather than black loyalty; corrected to black JC084. Actual runtime omissions were the finite BQ081 rumor-post allowance and WM057-specific hidden/secret-plan predicate. Existing WM044 and rumor guards retained."
+    },
+    {
+      "run": "import20-black-adapted-native-20261024",
+      "result": "17/19: private-confirmation state existed, but Game.view did not call the shared private projection for the new WM057 variant. Kept the positive chooser and negative other-seat assertions; added only that view route."
+    }
+  ],
+  "normal_coverage": [
+    "BQ081 paid3/single black loyalty, target attachment bound before responses, actual own grave character reset to deck bottom then original attachment destroyed; empty grave, decline, target/source departure and enemy shield.",
+    "Actual shared contest +1, one post-mill for personal showing seat even when losing, last-card mill is not Draw, real rumor sealing pause with original post frame, normal Game/Room roundtrips and duplicate choice rejection.",
+    "WM057 owner standard activation pays2/exhausts exact source and starts shared contest; source departure does not refund or cancel. Teammate and unmarked enemy remain unauthorized.",
+    "Actual personal win declares enemy repression; designated opponent selects its influence region, then owner may inspect or decline. Empty target set does not undo repression; zero influence does not prevent inspection.",
+    "Real secret-plan play and private inspection without revealing the plan, hidden-card inspection only projected to chooser, normal Room private-confirmation consumption once.",
+    "Existing WM044 privacy/hidden observation, XQ22 all-payer authority, WM061 shown shuffle/mill/rumor, WM043 shields/Room duplicates, JZ57 rumor continuation, WM025 win and WM028 preparation coexistence."
+  ],
+  "historical_independent_test_names": "Tests with independent_ prefixes are existing historical tests, executed by the author in this run; not a new independent review.",
+  "completion_boundary": "runtime_implemented means registered finite Native pilot, not whole-card completion; WM057 enemy clause is explicitly unfinished and not counted.",
+  "pending": [
+    {
+      "id": "WM057-2v2-secrecy-access",
+      "original": "若敌方秘社上有隐秘标志，则敌方玩家也可以发动本能力。",
+      "scenario": "Player0 controls WM057. Only enemy Player2 has secrecy; enemy Player3 has none. Is permission personal to2, or shared by2/3?",
+      "choices": [
+        "onlyMarkedEnemy",
+        "wholeEnemyTeam"
+      ],
+      "status": "askedAsyncAwaitingReply",
+      "notGranted": true,
+      "notAttempted": true
+    }
+  ],
+  "save_boundary": "No additional damaged-save expansion; existing validation retained and only normal continuation roundtrips added.",
+  "unoptimized_native_binary": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/batch4-build/target/debug/deps/hegemony_server-fc575c20deac8fce",
+    "bytes": 88124352,
+    "sha256": "040f88226af1d888c49e42bfbf019d16626c027317488e7498849d14b46435ed",
+    "deployable": false
+  },
+  "runs": [
+    {
+      "name": "import20-black-first-native-20261024",
+      "head": "321cd349ba2fd8ab74b84942e35b3d01d63644fd",
+      "exitCode": 101,
+      "seconds": 13.683,
+      "rawLogSha256": "e09d40afc5cea85af6dc960da35f775bdff4df07e76a36c98ce77d74ce5833a5",
+      "compiled": false,
+      "testsExecuted": 0,
+      "error": "E0308: a Box<ResolutionFrame> was passed to a by-value ResolutionFrame continuation"
+    },
+    {
+      "name": "import20-black-first-source-20261024",
+      "head": "321cd349ba2fd8ab74b84942e35b3d01d63644fd",
+      "exitCode": 0,
+      "seconds": 0.761,
+      "rawLogSha256": "d696fb6c796525514ccdcfdbe4616c6d9621e19919a008caf77be03f685eb193",
+      "tests": 24,
+      "passed": 24,
+      "failed": 0
+    },
+    {
+      "name": "import20-black-unboxed-native-20261024",
+      "head": "acc2b5cc08e118ae465467360b91466fccc46e1a",
+      "exitCode": 101,
+      "seconds": 31.234,
+      "rawLogSha256": "e3b1f9992e2141a3532f42b1241d1dc56b0e94099f53a7d5e244303c630b7e44",
+      "passed": 7,
+      "failed": 10,
+      "ignored": 0,
+      "passed_tests": [
+        "import20_broker_tests::import20_black_exact_registry_rejects_foreign_source_extra_steps_and_free_costs",
+        "import20_broker_tests::import20_black_original_prints_single_latest_kernel_and_closed_public_gate",
+        "import20_broker_tests::import20_bq081_mill_last_card_is_not_draw_and_does_not_eliminate",
+        "import20_broker_tests::import20_bq081_shown_bonus_one_and_exactly_one_personal_post_mill_even_when_losing",
+        "import20_broker_tests::import20_wm057_owner_activation_pays_two_taps_original_and_runs_shared_contest",
+        "import20_broker_tests::import20_wm057_owner_activation_rejects_bad_payload_payment_manual_win_and_exhaustion",
+        "import20_broker_tests::import20_wm057_source_departure_after_owner_payment_does_not_refund_or_cancel_contest"
+      ]
+    },
+    {
+      "name": "import20-black-adapted-native-20261024",
+      "head": "d0b20f82f771d6efea39adae6cdc04bbe0a2c1ef",
+      "exitCode": 101,
+      "seconds": 33.684,
+      "rawLogSha256": "534ae0e2ebc402b1c53ec79079d3ced9a7636b884ef9dadcff06b973e089445f",
+      "passed": 17,
+      "failed": 2,
+      "ignored": 0,
+      "passed_tests": [
+        "import20_broker_tests::import20_black_exact_registry_rejects_foreign_source_extra_steps_and_free_costs",
+        "import20_broker_tests::import20_black_original_prints_single_latest_kernel_and_closed_public_gate",
+        "import20_broker_tests::import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_once",
+        "import20_broker_tests::import20_bq081_departed_target_cancels_before_grave_move_but_source_departure_does_not",
+        "import20_broker_tests::import20_bq081_empty_own_character_grave_does_not_destroy_or_take_enemy_cards",
+        "import20_broker_tests::import20_bq081_enemy_shield_stops_whole_effect_before_grave_character_moves",
+        "import20_broker_tests::import20_bq081_entry_can_be_declined_without_moving_a_grave_card",
+        "import20_broker_tests::import20_bq081_mill_last_card_is_not_draw_and_does_not_eliminate",
+        "import20_broker_tests::import20_bq081_post_mill_rumor_sealing_pauses_and_keeps_the_same_contest_once",
+        "import20_broker_tests::import20_bq081_real_paid_entry_moves_own_character_to_bottom_then_destroys_bound_attachment",
+        "import20_broker_tests::import20_bq081_shown_bonus_one_and_exactly_one_personal_post_mill_even_when_losing",
+        "import20_broker_tests::import20_wm057_declining_peek_keeps_repression_and_no_hidden_target_still_represses",
+        "import20_broker_tests::import20_wm057_owner_activation_pays_two_taps_original_and_runs_shared_contest",
+        "import20_broker_tests::import20_wm057_owner_activation_rejects_bad_payload_payment_manual_win_and_exhaustion",
+        "import20_broker_tests::import20_wm057_source_departure_after_owner_payment_does_not_refund_or_cancel_contest",
+        "import20_broker_tests::import20_wm057_teammate_is_not_controller_and_unmarked_enemy_has_no_activation_permission",
+        "import20_broker_tests::import20_wm057_zero_enemy_influence_does_not_block_optional_inspection"
+      ]
+    },
+    {
+      "name": "import20-black-private-native-20261024",
+      "head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+      "exitCode": 0,
+      "seconds": 32.754,
+      "rawLogSha256": "54bd1568bc379b6b29e0f4dd89182cb9889c719434b927eeefb4fd361dcba90a",
+      "passed": 22,
+      "failed": 0,
+      "ignored": 0,
+      "passed_tests": [
+        "import20_broker_tests::import20_black_exact_registry_rejects_foreign_source_extra_steps_and_free_costs",
+        "import20_broker_tests::import20_black_original_prints_single_latest_kernel_and_closed_public_gate",
+        "import20_broker_tests::import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_once",
+        "import20_broker_tests::import20_bq081_departed_target_cancels_before_grave_move_but_source_departure_does_not",
+        "import20_broker_tests::import20_bq081_empty_own_character_grave_does_not_destroy_or_take_enemy_cards",
+        "import20_broker_tests::import20_bq081_enemy_shield_stops_whole_effect_before_grave_character_moves",
+        "import20_broker_tests::import20_bq081_entry_can_be_declined_without_moving_a_grave_card",
+        "import20_broker_tests::import20_bq081_mill_last_card_is_not_draw_and_does_not_eliminate",
+        "import20_broker_tests::import20_bq081_post_mill_rumor_sealing_pauses_and_keeps_the_same_contest_once",
+        "import20_broker_tests::import20_bq081_real_paid_entry_moves_own_character_to_bottom_then_destroys_bound_attachment",
+        "import20_broker_tests::import20_bq081_shown_bonus_one_and_exactly_one_personal_post_mill_even_when_losing",
+        "import20_broker_tests::import20_wm057_actual_win_represses_then_optionally_inspects_without_leaking_four_views",
+        "import20_broker_tests::import20_wm057_declining_peek_keeps_repression_and_no_hidden_target_still_represses",
+        "import20_broker_tests::import20_wm057_owner_activation_pays_two_taps_original_and_runs_shared_contest",
+        "import20_broker_tests::import20_wm057_owner_activation_rejects_bad_payload_payment_manual_win_and_exhaustion",
+        "import20_broker_tests::import20_wm057_secret_plan_inspection_uses_real_hidden_society_attachment",
+        "import20_broker_tests::import20_wm057_source_departure_after_owner_payment_does_not_refund_or_cancel_contest",
+        "import20_broker_tests::import20_wm057_teammate_is_not_controller_and_unmarked_enemy_has_no_activation_permission",
+        "import20_broker_tests::import20_wm057_zero_enemy_influence_does_not_block_optional_inspection",
+        "import20_contest_tests::import20_source_fields_and_closed_public_admission",
+        "import20_observers_tests::import20_observer_data_programs_and_public_gate",
+        "import20_vampires_tests::import20_vampire_prints_exact_closed_native_definitions_and_latest_identity"
+      ]
+    },
+    {
+      "name": "import20-black-normal-adjacent-20261024",
+      "head": "492913822e31bbca483bb0b020efdec62f9cad7f",
+      "exitCode": 0,
+      "seconds": 8.073,
+      "rawLogSha256": "7ce92df7fae207a44eb9d9dabd3afee9291ccdb54e7c77e7c8b11cac2b1e00ef",
+      "passed": 20,
+      "failed": 0,
+      "ignored": 0,
+      "passed_tests": [
+        "batch3_politician::tests::batch3_xq22_all_four_payers_can_activate_enemy_or_own_source_and_choose_after_response",
+        "batch3_politician::tests::batch3_xq22_spell_ban_is_global_live_and_does_not_block_attachments_or_activations",
+        "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion",
+        "batch4_intelligence_tests::wm044_trigger_current_controller_each_actual_win_not_only_first",
+        "batch4_intelligence_tests::wm044_trigger_inspecting_jz26_queues_its_real_hidden_observation",
+        "batch4_intelligence_tests::wm044_trigger_secret_plan_real_play_private_inspection_and_no_public_reveal",
+        "batch4_intelligence_tests::wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+        "exposure_tests::exposure_rumor_jz57_optional_draw_follows_restored_replacement",
+        "exposure_tests::exposure_rumor_multi_player_mill_resumes_exact_remaining_steps",
+        "import20_observers_tests::import20_hall_forced_prepare_order_with_existing_society_upkeep",
+        "import20_vampires_tests::import20_wm025_actual_personal_mystic_win_places_once_per_current_own_vampire_region",
+        "pack_a_contest_tests::pack_a_actual_reveal_paid_once_and_four_private_commitments",
+        "pack_a_contest_tests::pack_a_earth_mill_pauses_for_rumor_and_resumes_each_player_once",
+        "pack_a_contest_tests::pack_a_earth_shown_post_mill_has_own_original_cause_and_rumor_cursor",
+        "pack_a_contest_tests::pack_a_earth_shown_shuffles_before_post_mill",
+        "pack_a_contest_tests::pack_a_shadow_first_win_personal_once_per_turn_and_private_target_discard",
+        "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+        "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+        "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield",
+        "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player"
+      ]
+    }
+  ],
+  "new_agents": 0,
+  "main_push": false,
+  "deployment": false,
+  "DNS_or_domain_change": false,
+  "CI_dispatch_or_rerun": false,
+  "stage": "intermediate-owner-path-WIP-before-target-timing-correction",
+  "known_normal_play_followup": "WM057 optional inspection target was selected after repression in this WIP. Ordinary targets must bind before the response stack; later code must correct that timing before relying on these tests as current validation."
+}
