@@ -39,7 +39,7 @@ it.each(batch)('%s displays its pinned original pixels through the real collecti
 });
 
 it('does not admit any additional card or replace the current kernel while adding artwork',()=>{
-  expect(registry.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(registry.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
   expect(registry.cards).toHaveLength(272);

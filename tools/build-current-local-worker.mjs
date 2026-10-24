@@ -19,7 +19,7 @@ const {build}=createRequire(join(resolve(deps),'../package.json'))('esbuild');
 mkdirSync(dest);
 const source=`import {kernel} from ${JSON.stringify(join(root,'sites/src/kernel.mjs'))};
 import {createWorker} from ${JSON.stringify(join(root,'sites/src/http.mjs'))};
-export default {fetch(request,env){const now=Number(request.headers.get('X-Local-Clock')||'0');if(!Number.isSafeInteger(now)||now<0)throw Error('bad local clock');return createWorker(kernel,()=>now).fetch(request,env);}};`;
+export default {fetch(request,env){const now=Number(request.headers.get('X-Local-Clock')??env.LOCAL_TEST_CLOCK_MS??'0');if(!Number.isSafeInteger(now)||now<0)throw Error('bad local clock');return createWorker(kernel,()=>now).fetch(request,env);}};`;
 const result=await build({stdin:{contents:source,resolveDir:root,sourcefile:'current-local-only.mjs'},outfile:join(dest,'worker.js'),bundle:true,format:'esm',platform:'browser',target:'es2022',metafile:true,plugins:[{name:'current-only',setup(b){
  b.onResolve({filter:/hegemony_wasm\.js$/},()=>({path:join(binding,'hegemony_wasm.js')}));
  b.onResolve({filter:/\.wasm$/},()=>({path:'./candidate.wasm',external:true}));

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
   "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
-  "engineVersion": "rust-v0.2.111-import20-rulings-complete",
+  "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
