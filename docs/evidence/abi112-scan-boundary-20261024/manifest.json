@@ -1,0 +1,54 @@
+{
+  "archive": {
+    "path": "UndergroundBattle-game-serial/docs/evidence/abi112-scan-boundary-20261024/execution-evidence.tar.gz",
+    "bytes": 55865,
+    "sha256": "a8607b8b816592e3f3d192ab6f52dd7d98e8b0b4598f033d86f61267bc55858e"
+  },
+  "files": [
+    {
+      "path": "serial-intake-20261024/abi112-scan-gap-first-attempt.test.jsx",
+      "bytes": 5021,
+      "sha256": "252776da8695d8f9884e24ffccbd0e93d53d64b4ea6f28bcac71ac14c914e591"
+    },
+    {
+      "path": "ABI112_INPUT_HARNESS_FAILURE_ANALYSIS_20261024.json",
+      "bytes": 3960,
+      "sha256": "b4dbb41bca6a73e811ca0a3eae2e555827d0d544e35513c9e63548d1033f892f"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-scan-gap-boundary.json",
+      "bytes": 50953,
+      "sha256": "80de5212d4c6bc2a56f022b5250c7c683c6b82083d7eff7ef654ec492a045bb0"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-scan-gap-boundary.log",
+      "bytes": 1272,
+      "sha256": "bf43602c75604ff75f330d2a8452ea8398ba394264e9f70a00dee9776eebefb5"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-scan-gap-directory-fixed.json",
+      "bytes": 50988,
+      "sha256": "1611fc3e57a0a2816811036177fc600b638078f2b0666ec01b11103ee8a08fae"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-scan-gap-directory-fixed.log",
+      "bytes": 402,
+      "sha256": "10f9f94b41abdc9d129fea163102d258169889f999eb5fd9759011e9cadf5d62"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-final-impacted-input-harness.json",
+      "bytes": 51039,
+      "sha256": "05caaff05b632a51e3a9e53b19c3a740b8535419a03691bb52fb5fd04d63a5cb"
+    },
+    {
+      "path": "serial-intake-20261024/verification/abi112-final-impacted-input-harness.log",
+      "bytes": 6205,
+      "sha256": "67a303ebb403b1d226e2194ae18f84bca0eb4373e30cc87217ad228044ec1119"
+    }
+  ],
+  "boundary": {
+    "path": "UndergroundBattle-game-serial/docs/evidence/abi112-scan-boundary-20261024/boundary.json",
+    "bytes": 26192,
+    "sha256": "8dacefb8696f117771be10e43771dee0db53f70946ee3de23493d59b509a00e9"
+  }
+}

@@ -1,0 +1,664 @@
+{
+  "format": "abi112-scan-gap-boundary-v1",
+  "utc": "2026-10-24T13:54:45.592059+00:00",
+  "baseline": "f9a60eb9d3dd5ea39775214686b0aec3049bbb93",
+  "productChanges": false,
+  "scanIndexChanged": false,
+  "testContractChanged": false,
+  "newCardsImplemented": 0,
+  "newAdmissions": 0,
+  "scope": "Current task-3 sources, fixed local ABI112 WASM and synthetic component/create/join probes only; no public requests or old task reads",
+  "testContract": "The original validator checks every cards.json ordinary definition, including supported:false; society and art-only IDs outside cards.json are excluded. Its name does not limit it to supported cards. The all-definition check legitimately remains failed.",
+  "indexGap": {
+    "cards": [
+      {
+        "id": "BQ041",
+        "name": "欢宴",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": true,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ041.jpg",
+        "publicFileBytes": 1344418,
+        "publicFileSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg",
+        "pinnedImageSha256": "46985b4fc6b661efe337f77a01a4530816c74227fa74b078f2fc508e1fcc1270",
+        "inBatch20": false
+      },
+      {
+        "id": "JZ38",
+        "name": "仪式雕像",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": true,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/JZ38.jpg",
+        "publicFileBytes": 491622,
+        "publicFileSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg",
+        "pinnedImageSha256": "39f45ad65977ff313144e2e46f94685b686069e7b134b6321dfd9c9036fb56a0",
+        "inBatch20": false
+      },
+      {
+        "id": "JZ40",
+        "name": "蚀刻头骨",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/JZ40.jpg",
+        "publicFileBytes": 516400,
+        "publicFileSha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg",
+        "pinnedImageSha256": "2d05f56e191a2a55e5636959f3db63d9693292f39042559934cb3231c987e354",
+        "inBatch20": false
+      },
+      {
+        "id": "JZ36",
+        "name": "血祭",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/JZ36.jpg",
+        "publicFileBytes": 579138,
+        "publicFileSha256": "2eb242e21bbcd4e0a45037cfd5c85fed6e0fd0b59dcd67ca30d836a79896f054",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/JZ36 血祭.jpg",
+        "pinnedImageSha256": "2eb242e21bbcd4e0a45037cfd5c85fed6e0fd0b59dcd67ca30d836a79896f054",
+        "inBatch20": false
+      },
+      {
+        "id": "XG16",
+        "name": "计时人戴森·帕佐",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/XG16.jpg",
+        "publicFileBytes": 671457,
+        "publicFileSha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg",
+        "pinnedImageSha256": "2117d9da3f7f5c00a0f283cc2b62d3b510c21d28127e35f22848dc1853fd8e27",
+        "inBatch20": false
+      },
+      {
+        "id": "XG18",
+        "name": "欧米伽小姐",
+        "color": "灰",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/XG18.jpg",
+        "publicFileBytes": 635679,
+        "publicFileSha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg",
+        "pinnedImageSha256": "3f45307ac06fbf56f553768528a40ae16b57291bf035b5c80c0f998ac9b69f88",
+        "inBatch20": false
+      },
+      {
+        "id": "XQ21",
+        "name": "臣服于命运",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/XQ21.jpg",
+        "publicFileBytes": 1453844,
+        "publicFileSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg",
+        "pinnedImageSha256": "affd8758c81f1695ec9a80a8f3e7c2a75a910b465b65b97f9da01a2f05aa252d",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ027",
+        "name": "血畜",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ027.jpg",
+        "publicFileBytes": 1342695,
+        "publicFileSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg",
+        "pinnedImageSha256": "dd967ae165a1137d27f7259011277b2ef88872f86d6de2fbd6e05bbeda944567",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ031",
+        "name": "雾羽千军",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ031.jpg",
+        "publicFileBytes": 1356120,
+        "publicFileSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg",
+        "pinnedImageSha256": "dd88435ca5a6b01796701cf33fca64f334cd34456f48bda669c562d0599a84d1",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ032",
+        "name": "宴会司仪",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ032.jpg",
+        "publicFileBytes": 1337590,
+        "publicFileSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg",
+        "pinnedImageSha256": "ca020f841642add8e436480bfd5e5a61b301213323e8893db18bd9e253f50fd4",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ036",
+        "name": "菲尼克斯",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ036.jpg",
+        "publicFileBytes": 1354419,
+        "publicFileSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg",
+        "pinnedImageSha256": "832c1951bd6444a951a407a60a5a37f1132cb7bcb2d2c317bdac3ea702483555",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ038",
+        "name": "掠食时刻",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ038.jpg",
+        "publicFileBytes": 1336276,
+        "publicFileSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg",
+        "pinnedImageSha256": "c7354353a2a33c7be7e5878ba489f88f6179d73df7f3b171eb8112fc121d32d9",
+        "inBatch20": false
+      },
+      {
+        "id": "WM021",
+        "name": "秘闻记录官",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM021.jpg",
+        "publicFileBytes": 1367256,
+        "publicFileSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg",
+        "pinnedImageSha256": "22d864303eab37f544bfac26ba4919b0891d7f0b94f5333170261ea8dac9b615",
+        "inBatch20": false
+      },
+      {
+        "id": "WM022",
+        "name": "阴影之子",
+        "color": "蓝",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM022.jpg",
+        "publicFileBytes": 1297144,
+        "publicFileSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg",
+        "pinnedImageSha256": "3697718819e5ca9bbc3af27390837ecbbd5cdc0bf2fa86b934669b34e49107ff",
+        "inBatch20": false
+      },
+      {
+        "id": "WM032",
+        "name": "扭曲的布道者",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM032.jpg",
+        "publicFileBytes": 1327772,
+        "publicFileSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg",
+        "pinnedImageSha256": "2b450a098a54fef26aa65a186ee4cceeec4badf27389b39602a5fce27002b519",
+        "inBatch20": false
+      },
+      {
+        "id": "WM061",
+        "name": "土归土",
+        "color": "黑",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM061.jpg",
+        "publicFileBytes": 1322675,
+        "publicFileSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg",
+        "pinnedImageSha256": "c020d28cfc2cd0b6be6e93c66d209590fbfb57c68cfd106ce5cdf0ac8af391f8",
+        "inBatch20": false
+      },
+      {
+        "id": "BQ082",
+        "name": "毒药专家塞巴斯蒂安",
+        "color": "黑",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/BQ082.jpg",
+        "publicFileBytes": 1330270,
+        "publicFileSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg",
+        "pinnedImageSha256": "ef15bde65ff5020d6bb568357d52127faf9c29238aa241cacc70e92baf0ae750",
+        "inBatch20": false
+      },
+      {
+        "id": "XG21",
+        "name": "计划：幻影英雄",
+        "color": "灰",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/XG21.jpg",
+        "publicFileBytes": 811521,
+        "publicFileSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg",
+        "pinnedImageSha256": "372042a35c1703e6872a5e81a4bc3300c81dd2b1afe2d224b87ed11640c16f71",
+        "inBatch20": false
+      },
+      {
+        "id": "JZ56",
+        "name": "亡者之夜",
+        "color": "黑",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/JZ56.jpg",
+        "publicFileBytes": 516971,
+        "publicFileSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg",
+        "pinnedImageSha256": "cc3a5c11a4c65cac841f187aaddcdf8b128a6bf191e71c338bbda3eef8d0ad31",
+        "inBatch20": false
+      },
+      {
+        "id": "XQ20",
+        "name": "灵魂通道",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/XQ20.jpg",
+        "publicFileBytes": 1466963,
+        "publicFileSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg",
+        "pinnedImageSha256": "5d1d90b2e4845992f82bb7bbd0ffd7db723b040a77988708919e9ac6c4464204",
+        "inBatch20": false
+      },
+      {
+        "id": "LC16",
+        "name": "江月",
+        "color": "黑",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/LC16.jpg",
+        "publicFileBytes": 1150492,
+        "publicFileSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg",
+        "pinnedImageSha256": "b4bf90be23b928af4ad00855d364f7e5857f85275d3a4bf146d267849ab7c882",
+        "inBatch20": false
+      },
+      {
+        "id": "WM037",
+        "name": "戴森的计谋",
+        "color": "红",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM037.jpg",
+        "publicFileBytes": 1385950,
+        "publicFileSha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg",
+        "pinnedImageSha256": "e5af8b1e0846a91fa44550cd76407cf6579c07d5acc5d24a1bbb2410a8bebf1b",
+        "inBatch20": false
+      },
+      {
+        "id": "WM044",
+        "name": "情报分析中心",
+        "color": "灰",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM044.jpg",
+        "publicFileBytes": 623038,
+        "publicFileSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg",
+        "pinnedImageSha256": "f72d4902f1a96a7dcd84170c4b1ae4330cb48a773f142f3a31913b1f89f8f937",
+        "inBatch20": false
+      },
+      {
+        "id": "WM043",
+        "name": "精准打击",
+        "color": "灰",
+        "supported": false,
+        "sourceManifestPresent": false,
+        "clientUrlPresent": false,
+        "publicFile": "web/public/cards/WM043.jpg",
+        "publicFileBytes": 1291979,
+        "publicFileSha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f",
+        "pinnedImagePath": "resource/ymsj-fun.github.io/cards/WM043 精准打击.jpg",
+        "pinnedImageSha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f",
+        "inBatch20": false
+      }
+    ],
+    "count": 24,
+    "missingManifestAndClient": 22,
+    "clientOnlyMissing": [
+      "BQ041",
+      "JZ38"
+    ],
+    "staticPublicFilesAllPresentAndPinned": true,
+    "supportedAffected": 0,
+    "batch20Affected": 0,
+    "publicPresetsAffected": 0,
+    "presetCount": 5,
+    "worldAffected": 0,
+    "worldCount": 10,
+    "normalDeckEntry": "All24 rejected by client validation and actual current WASM create/join;48 rejection calls plus2 valid controls. No card ability invoked.",
+    "collection": "Default223 buildable rows exclude24; explicit all272 shows unavailable placeholders with disabled add. A saved all/unavailable filter may preserve this view. This is a real optional-directory presentation gap, not a missing normal-play image for this20.",
+    "notProven": "No live HTTP image requests; not a proof of all possible multi-card combinations. No arbitrary imported/legacy room migration attempted."
+  },
+  "testExecutions": {
+    "abi112-scan-gap-boundary": {
+      "sourceHead": "f9a60eb9d3dd5ea39775214686b0aec3049bbb93",
+      "exitCode": 1,
+      "seconds": 2.796,
+      "logSha256": "bf43602c75604ff75f330d2a8452ea8398ba394264e9f70a00dee9776eebefb5",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/ABI112ScanGapBoundary.test.jsx"
+      ]
+    },
+    "abi112-scan-gap-directory-fixed": {
+      "sourceHead": "f9a60eb9d3dd5ea39775214686b0aec3049bbb93",
+      "exitCode": 0,
+      "seconds": 0.923,
+      "logSha256": "10f9f94b41abdc9d129fea163102d258169889f999eb5fd9759011e9cadf5d62",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/ABI112ScanGapBoundary.test.jsx",
+        "-t",
+        "keeps the exact24"
+      ]
+    }
+  },
+  "newTestResult": "3 distinct boundary cases now passed across2 runs: first2 passed/1 test-harness field mistake, then only the failed case1 passed/2 skipped. Not one clean3-case invocation. Existing UI660/Worker632 were not rerun.",
+  "testSource": {
+    "path": "UndergroundBattle-game-serial/web/src/game/ABI112ScanGapBoundary.test.jsx",
+    "bytes": 5198,
+    "sha256": "325bd64691b9d6385e963ed141a621dafdf0c2d05d8789c8873c050e7d4a1aec"
+  },
+  "sourceEvidence": [
+    {
+      "path": "tools/cards/admitted-scans.test.mjs",
+      "sha256": "1a4f014268f3403d3cf01011beb46a5e7bde124178db4dd239084a9313ce8b36",
+      "lines": [
+        6,
+        12
+      ]
+    },
+    {
+      "path": "tools/cards/validate-admitted-scans.mjs",
+      "sha256": "8295abc5bc713a2bcfc2500dc6fb5b33cdfcc5bd0699df5ce6e2eb7476deb4d1",
+      "lines": [
+        25,
+        37,
+        41,
+        60
+      ]
+    },
+    {
+      "path": "tools/cards/msjc0405-source.test.mjs",
+      "sha256": "4d10b44da07483b04a16b3f36f11178fad587bfe5ecf8e7d5f4ec83893f3f7e0",
+      "lines": [
+        34,
+        35
+      ]
+    },
+    {
+      "path": "web/src/game/deckLibrary.ts",
+      "sha256": "ce79cf49153bf25594b7b30eca83fe3b8096123c50d599e3450260e44798514f",
+      "lines": [
+        37,
+        38,
+        47,
+        85
+      ]
+    },
+    {
+      "path": "web/src/game/DeckLibraryPanel.tsx",
+      "sha256": "97fa297e0bc424378f74b19899850f98c93d0aaba252f0074ed21285d3120f36",
+      "lines": [
+        145,
+        147,
+        318,
+        332,
+        335
+      ]
+    },
+    {
+      "path": "web/src/game/deckWorkspace.ts",
+      "sha256": "a56e676a4ffe1517a30069c265ac5345c98795e3b09ec345f59724c3e31f67c7",
+      "lines": [
+        9,
+        11
+      ]
+    },
+    {
+      "path": "web/src/game/DeckCardFace.tsx",
+      "sha256": "7b4b4c0472e7509475d6c3a8f8030029848ed2f7d211c4db6490ead21aa3f8b6",
+      "lines": [
+        8,
+        12,
+        14
+      ]
+    },
+    {
+      "path": "web/src/game/DeckCardPreview.tsx",
+      "sha256": "fa4c8238c2385793a6b096e6a01c18a7af331d842c2a843dde87211770ad44d4",
+      "lines": [
+        57,
+        60
+      ]
+    },
+    {
+      "path": "rust-game/src/deck.rs",
+      "sha256": "f7ac54c2f1ef9dacaf18fa5a7a8d8f46ba90a777d1808eedc33853792657d412",
+      "lines": [
+        56,
+        93,
+        101,
+        151
+      ]
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "e1e4e153c64e285b372e65412f0ad1a333d5b42355251992ecf2c76273f1deaf",
+      "lines": [
+        111,
+        118,
+        183,
+        247
+      ]
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "09e55ae23b54d4b41d2a511c907cedac29e157060a5e7c27dab42e6842ab9e42",
+      "lines": [
+        1054,
+        1055,
+        1066,
+        1081
+      ]
+    }
+  ],
+  "independentReview": {
+    "reviewer": "independent_abi112_batch20_review; non-author",
+    "initialHead": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+    "scope": [
+      "ABI112 shared renown/combat-glory repair",
+      "Exact20 cards in coverage.json",
+      "Static rule/fees/targets/response/continuation/privacy/order/once-only review"
+    ],
+    "all20ImagesViewed": true,
+    "all20Cards": [
+      "BQ090",
+      "BQ064",
+      "BQ039",
+      "WM028",
+      "WM025",
+      "WM024",
+      "BQ081",
+      "WM057",
+      "XG13",
+      "WM064",
+      "CQ24",
+      "BQ092",
+      "BQ093",
+      "CQ18",
+      "CQ19",
+      "XG20",
+      "BQ057",
+      "CQ15",
+      "CQ28",
+      "XQ19"
+    ],
+    "completeCardMechanismModules": [
+      "rust-game/src/import20_contest.rs",
+      "rust-game/src/import20_observers.rs",
+      "rust-game/src/import20_vampires.rs",
+      "rust-game/src/import20_broker.rs",
+      "rust-game/src/import20_cultist.rs",
+      "rust-game/src/import20_tattoo.rs",
+      "rust-game/src/import20_carmen.rs",
+      "rust-game/src/import20_industry.rs",
+      "rust-game/src/import20_sentinel.rs",
+      "rust-game/src/import20_tax_ban.rs",
+      "rust-game/src/import20_swords.rs",
+      "rust-game/src/import20_gate.rs",
+      "rust-game/src/import20_entropy.rs"
+    ],
+    "sharedRuntimeChecks": [
+      "canonical shared rewards before native recipients; exact actor/character/original-region snapshot",
+      "complete response wrapper, cursor/guard, no cost/target and optional trigger metadata",
+      "mandatory preparation and optional simultaneous trigger routing",
+      "private commitments/inspection preview are chooser scoped",
+      "step credits typed, personal, consumed once and pruned at step boundary",
+      "sole current kernel and incompatible old version410; opaque string and u64 preserved"
+    ],
+    "existingTestInventory": 308,
+    "inventoryNotExecution": "308 existing test annotations across the indexed15 modules; inventory is not execution and is not unique all-suite coverage",
+    "originalDynamic": {
+      "gitAndHashChecks": true,
+      "primary20ImagesViewed": true,
+      "localManualPagesViewed": [
+        "base physical4/printed2",
+        "hegemony physical17/printed16",
+        "hegemony physical18/printed17",
+        "hegemony physical19/printed18",
+        "hegemony physical20/printed19",
+        "hegemony physical22/printed21"
+      ],
+      "gameTests": 5,
+      "cargoStarted": true,
+      "wasm": false,
+      "worker": false,
+      "browser": false,
+      "probeStatus": "completed on fixed91ae;5 distinct expected-correct probes;1 control passed/4 failures confirm findings",
+      "passed": 1,
+      "failed": 4,
+      "ignored": 0,
+      "cargoExited": true,
+      "executionRecords": [
+        "independent-execution.json",
+        "independent-eye-execution.json"
+      ],
+      "failedStartupAttempt": {
+        "path": "independent-execution-attempt1.json",
+        "testsExecuted": 0,
+        "reason": "cc absent from initial PATH; corrected with task-local Zig selectors"
+      },
+      "fullAuthorSuiteRerun": false
+    },
+    "closureCandidate": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+    "closureScope": "R1_and_R2_closed_within_static_and_four_probe_scope; no_blanket_ABI112_release_acceptance",
+    "closureExecution": {
+      "originalDistinctProbes": 5,
+      "originalPassed": 1,
+      "originalFailed": 4,
+      "closureRerunCases": 4,
+      "closurePassed": 4,
+      "closureFailed": 0,
+      "closureIgnored": 0,
+      "closureFilteredOut": 2507,
+      "exitCode": 0,
+      "record": "closure-execution.json",
+      "log": "closure-native.log",
+      "unchangedProbeSources": true,
+      "originalPassingControlRerun": false,
+      "fullSuiteRerun": false,
+      "WasmWorkerBrowserExecuted": false
+    },
+    "alignmentSource": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+    "alignmentStaticOnly": true,
+    "notCovered": [
+      "All653 changed files",
+      "Every line of119 changed Rust files",
+      "Every existing test body",
+      "Exhaustive older-card/multi-card combinations",
+      "Live ABI112 browser/Bot",
+      "Independent WASM rebuild or replay",
+      "Complete Native suites",
+      "Additional corrupt-save expansion",
+      "Later author consumer/fixture rebuild, new UI/Worker runs and JC046 pin change are not independently executed or blanket approved"
+    ],
+    "evidence": [
+      {
+        "path": "serial-intake-20261024/abi112-independent-review/review.json",
+        "bytes": 7634,
+        "sha256": "80d27d5fca382ea5b914c4b8d047118df522c4d82bbb573d59c585e4dd0eaf37"
+      },
+      {
+        "path": "serial-intake-20261024/abi112-independent-review/coverage.json",
+        "bytes": 41892,
+        "sha256": "3912d6053ef50a42394bf6cf4b37a63539a6142c34fdbc3b55d8dc18fd9ec03c"
+      },
+      {
+        "path": "serial-intake-20261024/abi112-independent-review/closure-review.json",
+        "bytes": 5623,
+        "sha256": "dd99002d26629b06bc81e753657863092f2b7c3fb999b720e81e50b7f1515c26"
+      },
+      {
+        "path": "serial-intake-20261024/abi112-independent-review/alignment-review.json",
+        "bytes": 7021,
+        "sha256": "6d054c6ac3158f71658fa7773e4c05f3c3467eedfd1a033c3e7c23726a226a05"
+      }
+    ]
+  },
+  "pendingAcceptanceReadiness": {
+    "batch20Size": 20,
+    "technicalPreparationReady": true,
+    "basis": "Fixed112 artifact,330 unchanged compiler inputs,62 current inputs, successful local TypeScript/Vite/Sites dry-run, actual local Worker startup and normal command chains, prior UI660/Worker632 author scope, bounded non-author20-card static review and original findings closure.",
+    "existingIndexFailureBlocksThis20NormalEntry": false,
+    "waivesGlobalIndexContract": false,
+    "wholeReleaseAccepted": false,
+    "beforeActualPublication": "Follow the existing official Sites flow to save/bind the exact new version and check deployed identity/startup; not performed in this read-only release-readiness segment.",
+    "afterPendingPublication": "Concentrated applicable suite/review and actual112 browser play remain separate acceptance work; no extra pre-publication full-suite rule introduced.",
+    "unperformed": "No112 real-browser/public acceptance or clean full Native rerun; original2494/9 and subsequent95/72 remain distinct.",
+    "currentInstruction": "No push,CI,main or deployment this turn. Dynamic Copilot trigger still unestablished from last read; no settings changes."
+  },
+  "deniedPaths": "Prior outside-workspace handoff and XG21 denied actions not retried; metadata/admission-only tests do not invoke XG21 abilities."
+}
