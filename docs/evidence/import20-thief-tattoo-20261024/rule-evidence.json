@@ -1,0 +1,63 @@
+{
+  "originals": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "sha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "sha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "pixelsViewed": true
+    }
+  ],
+  "WM064": "Own current Human host; printed stat grants and Leader/Renown/Criminal; fast1/exhaust/sacrifice current Criminal, reveal only own hidden front Criminal without printed payment/loyalty. Noncriminal hidden front remains hidden after costs.",
+  "CQ24": {
+    "costCorrection": "Exactly two source fields: printed target maximum5 corrected to original3.",
+    "enemyComparison": "Use Hegemony printed21 enemy-player set: personal secrecy higher than every living enemy. No team sum or friendly secrecy. Qualification captured at actual entry, consistent BQ029/XQ37.",
+    "targets": "Both original attachment and optional new host bound before responses; canonical host condition delegates to original attachment specification. Control/rehost cleanup is atomic.",
+    "secretPlan": {
+      "source": "resource/ymsj-fun.github.io/public/docs/帷幕之后说明书.jpg",
+      "sha256": "333388b60e719ee61a41a0009932b505315dff0042cf01edc0de4d8ac66f5761",
+      "section": "新机制：计划 / 秘密计划",
+      "printedText": "计划牌在背面朝上时，它仍然是一个计划类别的附属，其印刷费用为①，且名称为秘密计划。",
+      "implementation": "Only CQ24 canonical original Attachment target compares public cost1; no hidden front inspection or generic face-down eligibility."
+    },
+    "qualification": "Freeze actual qualified entry, consistent with existing BQ029/XQ37, not a new CQ24-specific FAQ or user ruling.",
+    "control": "Permanent original-instance control; both targets bound before response; whole effect cancels on invalid original target/new host or shield; cleanup after transfer and reattachment together."
+  },
+  "UWPro": {
+    "repository": "RETORETO/UnderWorldPro",
+    "fixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author/illustrator permission Sentinel_e03beb50ee4881918270242ed3e5bcde.",
+    "registeredPerCardHandlers": false,
+    "externalCodeCopied": false,
+    "cards": [
+      {
+        "id": "WM064",
+        "path": "Cards/Data/PlayerCards/WM/WM064_jumangwenshen.tres",
+        "gitBlob": "bf2358a59654cd1145459bd566449bb1b4e6b395",
+        "retainedSha256": "1e82b237d3e3eb95a12afc0a2420ba80a443d44cf9558458c831b3d5bba058a2"
+      },
+      {
+        "id": "CQ24",
+        "path": "Cards/Data/PlayerCards/CQ/CQ024_kamen.tres",
+        "gitBlob": "8a351eaf688b86089efa3e56908fbd99c4dc166e",
+        "retainedSha256": "f019bf75421222b241f6986c43716663bba58ccd48bf814dcf9287b0c1c08e92"
+      }
+    ]
+  },
+  "SuezCodeOrArtCopied": false,
+  "XQ19Question": "../../factions/XQ19_DASH_COST_QUESTION_2026-10-24.json",
+  "WM057": "Already asked by parent; enemy permission still disabled."
+}

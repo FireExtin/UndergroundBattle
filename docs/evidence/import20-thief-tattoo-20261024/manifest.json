@@ -1,0 +1,140 @@
+{
+  "files": [
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/fixed-inputs.json",
+      "bytes": 159220,
+      "sha256": "c7f6b6db9026ba89017cc4b2ba789b93f9925840ed9fcd59c9fba057af75a924"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-adjacent-native-20261024.json",
+      "bytes": 49509,
+      "sha256": "ec390790eccabd95f581286a2b4ff41f39b6809b6791f5eae5f82cc408e2e30a"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-adjacent-native-20261024.log.gz",
+      "bytes": 2008,
+      "sha256": "75cb35ad23637c2fbe52a51954e814199439c6873e168e372dc11e892c112e9d"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-bound-native-20261024.json",
+      "bytes": 46233,
+      "sha256": "a6284f27e5ac496bc6642227f89ac04b0e0caf503b0e2cc00c7997b15c097d14"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-bound-native-20261024.log.gz",
+      "bytes": 2005,
+      "sha256": "0e0f5516778d27a73fb5d9ff91d86e03eb7f4371350fe52ee22f2653c9c7fc97"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-components-20261024.json",
+      "bytes": 46093,
+      "sha256": "13a9f877030e1e4f4d273331807d682b398223ba1ce98066d35bcefb11393d11"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-components-20261024.log.gz",
+      "bytes": 289,
+      "sha256": "cf025657aa9fc217a98c8663bdc71df7baed9e4a89189a18f49adba2b60179df"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-final-source-20261024.json",
+      "bytes": 46295,
+      "sha256": "41fafbe57f74449bd535dfce423c2ef6dca91417c7aa382151a5ca799f6be163"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-final-source-20261024.log.gz",
+      "bytes": 237,
+      "sha256": "798e0c02b61e8cef8b2d920756fc17378269fa709d5889fc54fd3eb8bbaeb87a"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-final-source-assertions-20261024.json",
+      "bytes": 46399,
+      "sha256": "026e0702d8fc410da116425bcaeebca91ffcd8c2618f2a8936c8e3de965113eb"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-final-source-assertions-20261024.log.gz",
+      "bytes": 1511,
+      "sha256": "37621ef7e071b95a0e9cce310be821a0f81c7a2d5cc7654c407896ded7dffb84"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-native-20261024.json",
+      "bytes": 46233,
+      "sha256": "bf381651bddee3b681afd2959993366b64f6a89cb7aed56dc4a85b9dfc807d98"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-native-20261024.log.gz",
+      "bytes": 876,
+      "sha256": "3ef1e8fb6dae4295585f2571e524cba6160a78981a3e76f3e1c73f893b6eeeca"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-source-20261024.json",
+      "bytes": 46398,
+      "sha256": "2d214b7bb73e00ad905883023294eb48b9ebb5af98d48b81f3e10ed176c13815"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-source-20261024.log.gz",
+      "bytes": 1904,
+      "sha256": "718d7a1526b3ae5163f0cbfec860e35e35fba135bdf04f1f1440a51aad3cb5e4"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-types-20261024.json",
+      "bytes": 45998,
+      "sha256": "46ee1113368b569388dd2e4cfd337e3f405eb43aa44703bf4849c4297dae8461"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-first-types-20261024.log.gz",
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-normalized-native-20261024.json",
+      "bytes": 46233,
+      "sha256": "37813371a6a5797f87e17f74822a9457f589f57b2edaaa646a38453f7230bdbd"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-normalized-native-20261024.log.gz",
+      "bytes": 2350,
+      "sha256": "1b46ea33376e1b993b7d204f1c706ffdd962bb35e39f1f97422ab189dbdc49cb"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-normalized-source-20261024.json",
+      "bytes": 46398,
+      "sha256": "854bd53390a66a94fc26d6b86dbca68d9d2c8ec962924ffa5dca6dda2f686dd2"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-normalized-source-20261024.log.gz",
+      "bytes": 1508,
+      "sha256": "4dba75b5ce35830546df9f60384fefae6b2d74a9f35f6795aca2f7c071a9c386"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-secret-plan-native-20261024.json",
+      "bytes": 46163,
+      "sha256": "523a1aaf2e86a0809879db110d9595de18161bf53b01226e44c73ccf48931a6b"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-secret-plan-native-20261024.log.gz",
+      "bytes": 2493,
+      "sha256": "4cb35e85cb6951d5ea72e7581ec5b220b2c83ba4b3e71c4dcd9d931c7117b63b"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-wm064-native-20261024.json",
+      "bytes": 46166,
+      "sha256": "f892ddb1c6fed7bce4c4841a5fc8cb00c7513b50db740ffe778e68f253ba8e9a"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/import20-thief-tattoo-wm064-native-20261024.log.gz",
+      "bytes": 1272,
+      "sha256": "1c9c5dd9c85e3ad0b6eb6d05d512137ef07d387ceebf76465eb043e9e981e687"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/result.json",
+      "bytes": 14568,
+      "sha256": "b72c1d06a5e23cae0a55bff770222f6428046645ff8d74aaeebadb8151a09679"
+    },
+    {
+      "path": "docs/evidence/import20-thief-tattoo-20261024/rule-evidence.json",
+      "bytes": 3525,
+      "sha256": "2a3a425a94d4cabb982c03d0827c70ba1da205517e2abc56e3b83f281d2e8cd9"
+    }
+  ],
+  "noSelfHash": true
+}
