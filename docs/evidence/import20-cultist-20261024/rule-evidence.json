@@ -1,0 +1,59 @@
+{
+  "originals": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "sha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+      "sha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+      "sha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "sha256": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38",
+      "pixelsViewed": true
+    }
+  ],
+  "XG13": {
+    "correction": "Printed faction emblem is 鸣钟教派, not 灾难. Exactly two source-text fields corrected.",
+    "own": "本方 is the current controller personally; Hegemony physical22/printed21, visually checked.",
+    "entry": "Reuse existing qualified-entry interpretation BQ029/XQ37: check personal secrecy and current Cultist at the actual entry; keep original entry UID and source through responses.",
+    "conditionTiming": "Consistent existing project interpretation, not a new card-specific official FAQ or user ruling.",
+    "cost": "Fast, sacrifice one other controlled current Cultist. No printed exhaust cost or turn limit. Actual payment and departure use existing subtype-sacrifice transaction.",
+    "discount": "Same existing SocietyOrMagic 鸣钟教派/Blood modifier as JC042; own next face-up play in this turn only; no loyalty waiver, no paid-reveal discount."
+  },
+  "XQ19": {
+    "clearRules": [
+      "Cannot face-up play or paid reveal.",
+      "Standard zero-cost hand ability places original card in region1 when at least4 physical time markers are in play.",
+      "Spirit; Kill3; printed cost is a dash."
+    ],
+    "unresolved": "Printed dash has no justified integer/comparison value in current schema. Do not set printed cost0 or claim complete registration.",
+    "implemented": false,
+    "registered": false
+  },
+  "WM057Question": "../../factions/WM057_ENEMY_PERMISSION_QUESTION_2026-10-24.json",
+  "reference": {
+    "repository": "RETORETO/UnderWorldPro",
+    "fixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "path": "Cards/Data/PlayerCards/XG/XG013_malilindeboge.tres",
+    "gitBlob": "eed9ed5aff9420929dfa7fe94d4d5728bf4993fe",
+    "retainedFileSha256": "3f8964d4635a78e9aca0f87578545dbabb30948899ac99f3ab43eba13df72d59",
+    "registeredPerCardEffect": false,
+    "directAuthorAndIllustratorPermission": "Sentinel_e03beb50ee4881918270242ed3e5bcde; sources.json retained unchanged.",
+    "externalCodeCopied": false,
+    "SuezCodeOrArtCopied": false
+  }
+}

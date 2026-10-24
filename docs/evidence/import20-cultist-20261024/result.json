@@ -1,0 +1,130 @@
+{
+  "createdAtUtc": "2026-10-24T04:45:39.583199+00:00",
+  "base": "d5fca00c94b2a8d83d8fe901d13d6a6a5ee43387",
+  "runtime_commit": "05d745d8386798ad33ca6434a57b0bce4afe2be8",
+  "native_test_head": "77697db6c9dc84e0f77a4d6470e60aa377538fb1",
+  "source_test_head": "5e130e8d60269d1149914c4452940c5934f8ec99",
+  "engineVersion": "rust-v0.2.104-import20-cultist",
+  "cardPoolVersion": "limited-v2.95-import20-cultist",
+  "definitions": 261,
+  "publicSupported": 213,
+  "newCard": "XG13 玛丽·林德博格",
+  "native": {
+    "author": true,
+    "directedPassed": 22,
+    "adjacentPassed": 17,
+    "uniquePassed": 39,
+    "failed": 0,
+    "fullSuiteSize": 2311,
+    "fullSuiteRun": false,
+    "fullSuiteNotRun": 2272,
+    "testNames": [
+      "batch20_tests::batch20_jc038_self_sacrifice_still_draws_after_empty_or_victim_chosen_discard",
+      "batch20_tests::batch20_jz57_grants_real_skeleton_sacrifice_and_optional_draw_after_short_mill",
+      "batch4_conference_tests::batch4_conference_moon_loss_source_leave_and_renown_loss_after_entry_do_not_requalify",
+      "batch4_conference_tests::batch4_conference_multiple_sources_order_once_and_same_controller_entries_keep_disjoint_keys",
+      "batch4_conference_tests::batch4_conference_renown_gained_only_after_entry_does_not_retroactively_trigger",
+      "engine::tests::murder_response_sacrifices_disciple_as_cost_and_independent_reduction_resolves",
+      "import20_contest_tests::import20_bq090_paid_fast_destroy_accepts_each_controller_and_cost3",
+      "import20_cultist_tests::import20_xg13_actual_wm038_granted_cultist_can_pay_then_tattoo_leaves_with_host",
+      "import20_cultist_tests::import20_xg13_ally_enemy_hidden_and_noncultist_entries_do_not_qualify",
+      "import20_cultist_tests::import20_xg13_complete_definition_rejects_transplanted_or_truncated_programs",
+      "import20_cultist_tests::import20_xg13_cost_paid_before_response_and_source_departure_preserves_discount",
+      "import20_cultist_tests::import20_xg13_discount_is_personal_and_not_secret_deploy_or_paid_reveal",
+      "import20_cultist_tests::import20_xg13_discount_never_waives_loyalty_and_failed_play_does_not_consume_it",
+      "import20_cultist_tests::import20_xg13_discount_red_faction_or_blood_including_nonred_but_not_all_red",
+      "import20_cultist_tests::import20_xg13_entered_target_destroyed_in_response_does_not_rebind_same_print",
+      "import20_cultist_tests::import20_xg13_entry_can_be_declined_without_rebinding_or_markers",
+      "import20_cultist_tests::import20_xg13_entry_condition_is_personal_and_later_moon_does_not_create_missed_event",
+      "import20_cultist_tests::import20_xg13_entry_gives_exactly_one_time_to_original_own_cultist",
+      "import20_cultist_tests::import20_xg13_fast_sacrifice_is_real_other_cultist_and_source_need_not_be_ready",
+      "import20_cultist_tests::import20_xg13_illegal_sacrifices_and_extra_payloads_roll_back",
+      "import20_cultist_tests::import20_xg13_later_secrecy_loss_does_not_erase_qualified_entry",
+      "import20_cultist_tests::import20_xg13_nonmatching_play_preserves_discount_for_actual_next_qualifying_play",
+      "import20_cultist_tests::import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool",
+      "import20_cultist_tests::import20_xg13_own_xq18_reveal_and_observer_share_real_entry_order_once",
+      "import20_cultist_tests::import20_xg13_real_deploy_retains_double_loyalty_and_does_not_observe_itself",
+      "import20_cultist_tests::import20_xg13_real_reveal_of_own_cultist_is_entry_but_hidden_observer_is_inactive",
+      "import20_cultist_tests::import20_xg13_real_room_activation_consumes_one_cost_and_rejects_stale_repeat",
+      "import20_cultist_tests::import20_xg13_repeated_sacrifices_stack_clamp_and_consume_together_once",
+      "import20_cultist_tests::import20_xg13_source_destroyed_in_real_response_does_not_cancel_entry",
+      "wm038_tests::wm038_actual_activation_all_seats_sacrifices_controlled_current_cultist_anywhere",
+      "wm038_tests::wm038_cost_loyalty_and_nonhuman_hidden_asset_targets_reject_atomically",
+      "wm038_tests::wm038_discount_matches_printed_blood_only_and_not_death_mind_or_color",
+      "wm038_tests::wm038_expiration_and_original_host_departure_do_not_transfer_time_or_subtype",
+      "wm038_tests::wm038_granted_cultist_host_is_valid_sacrifice_source_leaves_and_paid_frame_survives",
+      "wm038_tests::wm038_legal_actions_offer_only_current_controlled_cultists_and_no_unprinted_turn_limit",
+      "wm038_tests::wm038_multiple_discount_instances_stack_clamp_to_zero_and_all_consume_on_one_blood_play",
+      "wm038_tests::wm038_nonblood_play_does_not_consume_discount_next_blood_play_does_not_cross_players",
+      "wm038_tests::wm038_secret_deploy_and_paid_reveal_do_not_consume_play_only_discount",
+      "xq37_tests::xq37_entry_gate_is_at_event_not_later_declaration_or_response"
+    ],
+    "boundInputFiles": 308
+  },
+  "source": {
+    "author": true,
+    "passed": 28,
+    "failed": 0,
+    "runHead": "5e130e8d60269d1149914c4452940c5934f8ec99",
+    "assertionInputSupersetFiles": 137,
+    "inputSupersetIdenticalAtFinalNativeHead": true
+  },
+  "failedAttemptsPreserved": [
+    {
+      "head": "5e130e8d60269d1149914c4452940c5934f8ec99",
+      "name": "import20-xg13-first-native-20261024",
+      "passed": 0,
+      "failed": 19,
+      "cause": "Compiled; all19 stopped at the old closed definition validator before game assertions. Exact XG13 adapter added; other guards preserved."
+    },
+    {
+      "head": "05d745d8386798ad33ca6434a57b0bce4afe2be8",
+      "name": "import20-xg13-payment-native-20261024",
+      "passed": 14,
+      "failed": 5,
+      "cause": "Two inaccessible deployment-region fixtures and three JC005 attachment-only response fixtures. Use actual accessible regions and the existing BQ090 fast destroy; no runtime change after this head."
+    }
+  ],
+  "localNativeUnitBinary": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/batch4-build/target/debug/deps/hegemony_server-fc575c20deac8fce",
+    "sha256": "f503a2ec5de7680a4d71445a9ab4c3619517b545988ba9a2c1abab2ec1a55c22",
+    "bytes": 88421856,
+    "deployable": false,
+    "note": "Local debug/unit-test binary; not copied into repository or published."
+  },
+  "first20": {
+    "authorNativeWholeCardWip": 8,
+    "total": 20,
+    "wholeCardAuthorWip": [
+      "BQ090",
+      "BQ064",
+      "BQ039",
+      "WM028",
+      "WM025",
+      "WM024",
+      "BQ081",
+      "XG13"
+    ],
+    "partial": [
+      "WM057"
+    ],
+    "deferred": [
+      "XQ19"
+    ],
+    "independentNewClosures": 0,
+    "publicAccepted": 0
+  },
+  "historical50IndependentlyClosedNative": 38,
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "publicDeployment": "unchanged; published76b1b189/ABI95 remains separate",
+  "WM057": "Enemy activation disabled; user ruling pending with parent. Exact card text, FAQ scan scope and question retained.",
+  "XQ19": "No printed zero inferred; no source registered. Dash-cost/comparison boundary unresolved.",
+  "WM064": "Not started in this slice after parent steering; no asset or runtime edits.",
+  "processes": "All own test/build commands completed; no server/port started.",
+  "mainModified": false,
+  "workflowDispatchOrRerun": false,
+  "deployed": false
+}

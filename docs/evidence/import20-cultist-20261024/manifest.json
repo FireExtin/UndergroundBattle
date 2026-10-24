@@ -1,0 +1,70 @@
+{
+  "files": [
+    {
+      "path": "docs/evidence/import20-cultist-20261024/fixed-inputs.json",
+      "bytes": 66997,
+      "sha256": "c7d0fa5301b9a05a167085ade0c176f0c3bf53e1073e18c6f2ebd098f2138612"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-adjacent-native-20261024.json",
+      "bytes": 46193,
+      "sha256": "a885eb852c672726e588fd89212e7db721d1d736edb0dfab7e0ff3f5da81edbd"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-adjacent-native-20261024.log.gz",
+      "bytes": 1516,
+      "sha256": "1583bbc454ee5edaa7a280951675c809fcca2b4d1b8a2a1f0a8337b30f8bb558"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-first-native-20261024.json",
+      "bytes": 45444,
+      "sha256": "d0bcf71c519216fd06d84d79d09867df3611eb42c74d3461396e35d12ba82221"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-first-native-20261024.log.gz",
+      "bytes": 1962,
+      "sha256": "c31399999c990ec585125fc39285702fcea050d22c95635d7243eaaaecded5bf"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-first-source-20261024.json",
+      "bytes": 45606,
+      "sha256": "1058ebf010ae42a008a8d654bfe1b8445cf037f11c0e70def19f92eb350a4563"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-first-source-20261024.log.gz",
+      "bytes": 1382,
+      "sha256": "b92b4e2cb1ab027349aae98295beb3d8099887adc3a7263871b79596f617d157"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-normal-native-20261024.json",
+      "bytes": 45442,
+      "sha256": "684a5b9a6386c83f9d0e78ef95b4a97c8152aa57a217eabaffbe4bc9f15a507e"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-normal-native-20261024.log.gz",
+      "bytes": 1580,
+      "sha256": "170b91ca8bb7e5ae638ad4ef010d50a89c3c84b28ebb73eb1c61042b4b4c0593"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-payment-native-20261024.json",
+      "bytes": 45444,
+      "sha256": "ff434fde6ac8526e5029ae9826ff783b5cb941b57d764fa38c5f38d52891c04a"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/import20-xg13-payment-native-20261024.log.gz",
+      "bytes": 1816,
+      "sha256": "a79f72385cd1d71deb9ba88ed1f24def5fa657bddcd70918e98a29e9b726f8a8"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/result.json",
+      "bytes": 7310,
+      "sha256": "b1dd1fc21be7b519c5e8e81b6c4b1befcfe3184e4d7553fb5efa685f733add98"
+    },
+    {
+      "path": "docs/evidence/import20-cultist-20261024/rule-evidence.json",
+      "bytes": 3062,
+      "sha256": "f23636b02c17fa1854238ffea6ef293aa86e88ce63e2b360b47d2598c782a819"
+    }
+  ],
+  "noSelfHash": true
+}
