@@ -299,7 +299,7 @@ fn import20_sentinel_cq18_original_gray_unique_exact_body_and_closed_pool() {
     );
     assert_eq!(d.magic_icon, MagicIcon::Mind);
     assert_eq!(d.subtypes, ["人类", "超能力者", "特工"]);
-    assert_eq!(catalog::catalog().cards.len(), 267);
+    assert_current_serial_catalog(); // exact prior267 digest, new tail and public213
     assert_eq!(
         catalog::catalog()
             .cards
