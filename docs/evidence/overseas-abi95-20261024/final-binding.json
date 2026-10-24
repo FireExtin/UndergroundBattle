@@ -1,0 +1,28 @@
+{
+  "source_head": "e387d3bb0e045799348c3e0580ac95ad4a94cee7",
+  "source_tree": "464d48fe108ea2295bb883487fb3531864bc7be6",
+  "source_files_verified": 1065,
+  "source_status": "",
+  "product_release": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "dist_files": 267,
+  "archive_files": 270,
+  "matching_executable_and_client_files": 265,
+  "different_nonruntime_files": [
+    ".openai/hosting.json",
+    "server/README.md"
+  ],
+  "official_packager_added_schema_files": [
+    ".openai/drizzle/0000_numerous_lucky_pierre.sql",
+    ".openai/drizzle/meta/0000_snapshot.json",
+    ".openai/drizzle/meta/_journal.json"
+  ],
+  "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-13.tar.gz",
+  "archive_bytes": 125890551,
+  "archive_sha256": "f4a20cd448271273a6443f28f45f7605260d47012b91f1c77f9ad482694a5c70",
+  "wasm_sha256": "80fec8779f06ebb5a4b5a2857fedf68f725d81b8b858fb2f203ce77e3579f3fe",
+  "worker_sha256": "6c6197abd8e00a37000db8ef9af0a1242a3a1f4bc3dc48093df1890fff720b29",
+  "client_sha256": "71b8e833ad4cd95d04e5153a294353a2af2728387689bd3e5b97a82cbda01299",
+  "failed_large_source_commit_preserved": "a7b1567283580c79e4095859740b5e69818b5722",
+  "source_tree_equals_failed_full_snapshot": true,
+  "no_partial_version_saved_or_deployed": true
+}

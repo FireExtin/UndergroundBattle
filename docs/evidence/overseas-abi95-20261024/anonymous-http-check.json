@@ -1,0 +1,11 @@
+{
+  "requests": [
+    {
+      "path": "/api/health",
+      "status": 403,
+      "reason": "Forbidden"
+    }
+  ],
+  "read_only": true,
+  "authenticated_headers_used": false
+}

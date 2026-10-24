@@ -1,0 +1,16 @@
+{
+  "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+  "id": "appgprj_6adc02e46820819188f42c2474995574~appgver_b9df601c0ae88191a1b73eb4acf8a048",
+  "version_number": 1,
+  "source": {
+    "commit_sha": "e387d3bb0e045799348c3e0580ac95ad4a94cee7"
+  },
+  "archive_storage": {
+    "archive_format": "tar",
+    "sediment_file_id": "Private storage object ID omitted from public checkpoint; exact owner receipt retained locally.",
+    "content_hash": "sha256:ea460e2ef5889be3f6f7a6012baed0eb08cccefd24bdb6adf12e2e2aa2a7558f",
+    "size_bytes": 194508800,
+    "file_count": 270
+  },
+  "deployment_id": null
+}

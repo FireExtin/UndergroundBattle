@@ -1,0 +1,228 @@
+{
+  "product_release": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "product_abi": 95,
+  "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+  "source_sha": "e387d3bb0e045799348c3e0580ac95ad4a94cee7",
+  "version_id": "appgprj_6adc02e46820819188f42c2474995574~appgver_b9df601c0ae88191a1b73eb4acf8a048",
+  "version_number": 1,
+  "deployment": {
+    "id": "appgdep_6adc094bd6d481918e9c6d04145f22e8",
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "title": "隐秘世界 · 霸权（海外新站）",
+    "version_id": "appgprj_6adc02e46820819188f42c2474995574~appgver_b9df601c0ae88191a1b73eb4acf8a048",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-overseas-20261024.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6adc02e46820819188f42c2474995574",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-24T01:27:34.638801+00:00"
+  },
+  "access": {
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "access_mode": "public",
+    "revision": 2,
+    "updated_at": "2026-10-24T01:23:39.297313+00:00"
+  },
+  "database_business_tables": [
+    {
+      "table": "commands",
+      "isError": false,
+      "rows_returned": 0,
+      "has_more": false,
+      "truncated": false
+    },
+    {
+      "table": "entry_receipts",
+      "isError": false,
+      "rows_returned": 0,
+      "has_more": false,
+      "truncated": false
+    },
+    {
+      "table": "journal",
+      "isError": false,
+      "rows_returned": 0,
+      "has_more": false,
+      "truncated": false
+    },
+    {
+      "table": "rooms",
+      "isError": false,
+      "rows_returned": 0,
+      "has_more": false,
+      "truncated": false
+    },
+    {
+      "table": "seats",
+      "isError": false,
+      "rows_returned": 0,
+      "has_more": false,
+      "truncated": false
+    }
+  ],
+  "browser": {
+    "homepage_loaded": true,
+    "collection_loaded": true,
+    "editable_player_cards": 203,
+    "script": "/assets/index-DaZwUmzX.js",
+    "sample_images": [
+      {
+        "path": "/cards/JC125.jpg",
+        "natural_width": 400
+      },
+      {
+        "path": "/cards/LC19.jpg",
+        "natural_width": 400
+      },
+      {
+        "path": "/cards/LC20.jpg",
+        "natural_width": 400
+      },
+      {
+        "path": "/cards/LC21.jpg",
+        "natural_width": 400
+      },
+      {
+        "path": "/cards/LC22.jpg",
+        "natural_width": 400
+      }
+    ],
+    "console_error_count": 0,
+    "rooms_created": 0,
+    "gameplay_performed": false,
+    "deliverable_tab": "11"
+  },
+  "source_upload": {
+    "initial_large_source_commit": "a7b1567283580c79e4095859740b5e69818b5722",
+    "initial_remote_rejection": "receive-pack request exceeds maximum size",
+    "initial_worktree_preserved": true,
+    "completed_small_batches": 13,
+    "tree_equal_to_initial_full_snapshot": true,
+    "no_intermediate_site_version_saved_or_deployed": true,
+    "receipts": [
+      {
+        "batch": 1,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "5c054fb299ebef14a76f7ab9eaf0c89ac8db5d86",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-01.tar.gz"
+      },
+      {
+        "batch": 2,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "21ff573038f8e06be068b8f221b0000fb3f094f8",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-02.tar.gz"
+      },
+      {
+        "batch": 3,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "60af39df83b11e95a11b64c47656107ff07c972e",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-03.tar.gz"
+      },
+      {
+        "batch": 4,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "59fd3c4606eff5dbb6c8bd70f7e668d0e1350c52",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-04.tar.gz"
+      },
+      {
+        "batch": 5,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "1a86370d993e98e7267563cba1295782eb4efd32",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-05.tar.gz"
+      },
+      {
+        "batch": 6,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "d73d35c0c4bb5298c6164d5d13644dc324b1ba72",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-06.tar.gz"
+      },
+      {
+        "batch": 7,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "ec39d7fe7349ce37c93fccbf153c94b362bbbc3a",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-07.tar.gz"
+      },
+      {
+        "batch": 8,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "2152ac5edd5a8f3047abd4273ac25e1bba2f645a",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-08.tar.gz"
+      },
+      {
+        "batch": 9,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "8d58de983b8332e46ba9d30038288484f7a7d8b2",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-09.tar.gz"
+      },
+      {
+        "batch": 10,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "0da9b5cee2302e66aafc0f3cd737888d2ef88f13",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-10.tar.gz"
+      },
+      {
+        "batch": 11,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "640b411be97cafab61510704067d73909d548a97",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-11.tar.gz"
+      },
+      {
+        "batch": 12,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "6d6700abadf353bb68b8e24682e3e139dc8ec79d",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-12.tar.gz"
+      },
+      {
+        "batch": 13,
+        "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+        "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+        "commit_sha": "e387d3bb0e045799348c3e0580ac95ad4a94cee7",
+        "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-source-batches/batch-13.tar.gz"
+      }
+    ]
+  },
+  "boundaries": {
+    "anonymous_health_get": {
+      "url": "https://hidden-world-hegemony-overseas-20261024.chengliang1984286.chatgpt.site/api/health",
+      "status": 403,
+      "outcome": "Rejected Forbidden; stopped after one request, no token, no browser retry, no bypass. Cause not independently established."
+    },
+    "static_js_cli_get_attempted": false,
+    "browser_home_is_independent": "Frontend source does not call /api/health; normal homepage/collection observed without retrying that endpoint.",
+    "tar_byte_comparison": {
+      "local_gzip_sha256": "f4a20cd448271273a6443f28f45f7605260d47012b91f1c77f9ad482694a5c70",
+      "local_uncompressed_tar_bytes": 194519040,
+      "local_uncompressed_tar_sha256": "bf4b71d6edd9a0735095bf05420476fd44a44cff3c12541249ec03ae74728332",
+      "platform_storage": {
+        "archive_format": "tar",
+        "sediment_file_id": "Private storage object ID omitted from public checkpoint; exact owner receipt retained locally.",
+        "content_hash": "sha256:ea460e2ef5889be3f6f7a6012baed0eb08cccefd24bdb6adf12e2e2aa2a7558f",
+        "size_bytes": 194508800,
+        "file_count": 270
+      },
+      "raw_tar_bytes_not_independently_reproduced": true,
+      "normalization_details_unverified": true,
+      "executor_error": "The raw-tar assertion failed, but the orchestration did not stop the already authorized deploy request. Reported immediately. Pre-upload source/tree and all267 dist files plus3 schema files had already been verified.",
+      "not_claimed_passed": true
+    },
+    "gameplay": "No overseas game created. Domestic ABI95 full real two-seat game is separately recorded.",
+    "local_abi99": "Remains WIP; Native37/50 unchanged. Not deployed.",
+    "old_site_and_old_pending": "Untouched.",
+    "ci": "Only normal authorized development/review pushes; no dispatch/rerun/main/security changes."
+  }
+}
