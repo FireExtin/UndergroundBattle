@@ -1533,7 +1533,7 @@ impl Game {
                 });
             }
             let eye_event = eye_triggers.first().and_then(|d| match d.ability.ops.as_slice() {
-                [Op::BQ039BattleDiscard { observation: Some(o) }] => Some(o.event_id.clone()),
+                [crate::rules::Op::BQ039BattleDiscard { observation: Some(o) }] => Some(o.event_id.clone()),
                 _ => None,
             });
             // Keep damage ahead of the win triggers. Only their simultaneous

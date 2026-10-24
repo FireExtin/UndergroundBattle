@@ -268,7 +268,14 @@ fn import20_same_controller_can_order_broker_and_vampire_win_triggers(){
         assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Declare{declaration:d,..}if d.ability.key==first));
         if first==b::WIN{bind_broker(&mut g,None);}else{choose(&mut g,vec!["accept".into()]);}
         assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().ability_key,first);
-        finish(&mut g);
+        for _ in 0..100{
+            if let Some(p)=g.pending.clone(){match &p.resolution{
+                ChoiceResolution::Declare{declaration:d,..} if d.ability.key==b::WIN=>bind_broker(&mut g,None),
+                ChoiceResolution::Declare{declaration:d,..} if d.ability.key==crate::import20_vampires::WIN=>choose(&mut g,vec!["accept".into()]),
+                ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..}=>choose(&mut g,vec!["p2".into()]),
+                _=>resolve_choice(&mut g),
+            }}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}
+        }
         assert_eq!(g.regions[0].influence[0],1);assert_eq!(g.mystic_history.len(),1);
         assert!(g.entry_order_groups.is_empty()&&g.pending.is_none()&&g.stack.is_empty()&&g.effects.is_empty());
         assert_eq!(g.resources(0),0);assert!(g.board(&broker).unwrap().1.exhausted);restore(&mut g);

@@ -125,12 +125,18 @@ fn import20_two_paid_eyes_order_after_damage_and_each_discard_once() {
         let first=&eyes[usize::from(reverse)];
         choose(&mut g,vec![p.choice.options.iter().find(|o|o.id.starts_with(&format!("{first}:"))).unwrap().id.clone()]);
         assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Declare{declaration:d,..}if d.source.card.id==*first));
+        choose(&mut g,vec!["p2".into()]);
+        assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().source.card.id,*first);
+        assert!(is_eye(&g));
+        choose(&mut g,vec!["p2".into()]);
+        assert_eq!(g.stack.len(),2);
         for _ in 0..2 {
-            choose(&mut g,vec!["p2".into()]);pass_top(&mut g);
+            pass_top(&mut g);
             let p=g.pending.clone().unwrap();assert_eq!(p.seat,2);
             choose(&mut g,vec![p.choice.options[0].id.clone()]);
         }
-        assert!(g.players[2].hand.is_empty());assert_eq!(g.players[2].graveyard.iter().filter(|c|c.definition=="JC125").count(),2);
+        assert!(g.players[2].hand.is_empty());assert_eq!(g.players[2].graveyard.iter().filter(|c|c.definition=="JC125").count(),2,
+            "grave={:?}; effects={:?}",g.players[2].graveyard.iter().map(|c|&c.definition).collect::<Vec<_>>(),g.effects);
         assert!(g.entry_order_groups.is_empty()&&g.pending.is_none()&&g.stack.is_empty());restore(&mut g);
     }
 }
