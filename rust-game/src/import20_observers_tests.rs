@@ -56,7 +56,7 @@ fn finish_contest(g: &mut Game) {
 
 #[test]
 fn import20_observer_data_programs_and_public_gate() {
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.101-import20-observers");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.102-import20-vampires");
     for id in o::CARDS { let d = catalog::card(id); assert!(!d.supported); assert!(catalog::runtime_implemented(d)); }
     let eye = catalog::card("BQ039"); assert_eq!((eye.cost, eye.kind.as_str()), (1,"attachment"));
     assert_eq!(eye.loyalty, ["蓝色","蓝色"]); assert_eq!(eye.magic,"心灵"); assert!(!eye.unique);

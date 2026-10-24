@@ -328,7 +328,7 @@ impl Game {
     }
     pub(crate) fn has_barrier(&self, c: &Card) -> bool {
         !c.face_down
-            && (self.wm029_barrier(c) || rules::definition(&c.definition).traits.barrier
+            && (self.wm029_barrier(c) || self.wm025_barrier(c) || rules::definition(&c.definition).traits.barrier
                 || self.turn_attribute_modifiers.iter().any(|m| m.target_instance == c.id && m.expires_turn == self.turn && m.grants_barrier)
                 || self.attachments.iter().any(|a| {
                     a.host_id == c.id
@@ -2077,6 +2077,9 @@ impl Game {
         }
     }
     pub(crate) fn damage(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
+        self.damage_with_receipts(allocations).map(|_| ())
+    }
+    pub(crate) fn damage_with_receipts(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<Vec<crate::death_observers::CharacterDeathReceipt>> {
         for (target, amount) in allocations {
             if amount > 0
                 && self
@@ -2107,10 +2110,13 @@ impl Game {
             }
             if amount > 0 { self.jz41_observe_damage(&target); }
         }
-        self.settle_deaths();
-        Ok(())
+        Ok(self.settle_deaths_with_receipts())
     }
     pub(crate) fn settle_deaths(&mut self) {
+        self.settle_deaths_with_receipts();
+    }
+    fn settle_deaths_with_receipts(&mut self) -> Vec<crate::death_observers::CharacterDeathReceipt> {
+        let mut receipts = Vec::new();
         self.settle_controls();
         self.prune_turn_attribute_modifiers();
         self.settle_attachments();
@@ -2134,8 +2140,8 @@ impl Game {
             if dead.is_empty() {
                 break;
             }
-            self.remove_death_batch(dead.into_iter()
-                .map(|(id, source)| (id, RemovalCause::Lethal, source)).collect());
+            receipts.extend(self.remove_death_batch_with_receipts(dead.into_iter()
+                .map(|(id, source)| (id, RemovalCause::Lethal, source)).collect()));
         }
         let mut simultaneous = self
             .effects
@@ -2153,6 +2159,7 @@ impl Game {
         self.effects.extend(simultaneous);
         self.prune_turn_attribute_modifiers();
         self.queue_leader_checks();
+        receipts
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
         self.validate_exposure_state()?;
@@ -2189,6 +2196,7 @@ impl Game {
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
+        crate::import20_vampires::validate_choice_action(&p, &a)?;
         crate::batch4_timekeeper::validate_choice_action(&p, &a)?;
         crate::batch4_politician::validate_choice_action(&p, &a)?;
         crate::batch4_chance::validate_choice_action(&p, &a)?;

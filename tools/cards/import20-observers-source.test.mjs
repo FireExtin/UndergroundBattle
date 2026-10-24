@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake } from './import20-spec-history.mjs';
+import { observerSlice as intake, currentImport20 } from './import20-spec-history.mjs';
 const read = n => readFileSync(new URL('../../'+n, import.meta.url));
 const sha = b => createHash('sha256').update(b).digest('hex');
 const canonical = x => Array.isArray(x) ? x.map(canonical) : x && typeof x==='object'
@@ -14,8 +14,9 @@ test('second serial pair preserves exact254 prior records and public213', () => 
   assert.equal(intake.priorCatalogCount,254);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,254)))),'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
   assert.equal(intake.priorCardsCanonicalSha256,'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
-  assert.deepEqual(pool.cards.slice(254).map(c=>c.id),['BQ039','WM028']);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,256);
+  assert.deepEqual(pool.cards.slice(254,256).map(c=>c.id),['BQ039','WM028']);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,258);
+  assert.deepEqual(pool.cards.slice(256).map(c=>c.id), ['WM025','WM024']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for (const id of intake.allFourUnadmitted) assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.current50ReviewedNativeClosed,38); assert.equal(intake.published,false);
@@ -34,9 +35,9 @@ test('blue attachments retain original pixels, printed costs, loyalty, unique an
   assert.match(specs.BQ039.fields.printedRuleTextLines[1],/战斗对抗/);
   assert.match(specs.WM028.fields.printedRuleTextLines[1],/准备步骤强制触发/);
 });
-test('current101 is a single unqualified development kernel, not a public release', () => {
-  assert.equal(pool.engineVersion,'rust-v0.2.101-import20-observers');
-  assert.equal(pool.cardPoolVersion,'limited-v2.92-import20-observers');
+test('current development kernel is a single unqualified development kernel, not a public release', () => {
+  assert.equal(pool.engineVersion,currentImport20.engineVersion);
+  assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   const rust=read('rust-game/src/catalog.rs').toString();
   assert(rust.includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert(!rust.includes('rust-v0.2.100-import20-first-slice'));

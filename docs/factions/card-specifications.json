@@ -63343,7 +63343,7 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "额外费用 敌方秘社上每有一个暴露标志，打出或付费现身阿剌穆特杀手的所需费用就减少②。",
-          "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。"
+          "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -63357,7 +63357,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+          "printedText": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。",
           "notExecutable": true
         }
       ],
@@ -63452,20 +63452,27 @@
         "points": null,
         "printedKeywords": [
           "领袖",
-          "屏障"
+          "隐秘条件：屏障"
         ],
         "printedRuleTextLines": [
-          "领袖；屏障",
+          "领袖；【隐秘】屏障",
           "触发 当你赢得隐秘对抗时，在每个有本方吸血鬼角色的地区上放置一个本方势力标志。",
           "持续 所有本方吸血鬼角色的现身费用减少X，X等于本方秘社上隐秘标志的数量。"
         ],
-        "additionalPrintedSymbols": []
+        "additionalPrintedSymbols": [
+          {
+            "id": "moon-barrier",
+            "status": "confirmed",
+            "printedText": "〔月牙〕屏障",
+            "interpretation": "本方秘社上有隐秘标志时才获得印刷屏障。"
+          }
+        ]
       },
       "abilities": [
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "领袖；屏障",
+          "printedText": "领袖；【隐秘】屏障",
           "notExecutable": true
         },
         {

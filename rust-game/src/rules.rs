@@ -283,6 +283,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM025MysticInfluence { contest_id: Option<String> },
+    WM024RevealRaid { observation: Option<crate::import20_vampires::AssassinRaid> },
     WM028Prepare { event_id: Option<String> },
     BQ039BattleDiscard { observation: Option<Box<crate::import20_observers::EyeBattleObservation>> },
     JZ56ChooseUndead,
@@ -738,6 +740,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::import20_vampires::related(ability) { return crate::import20_vampires::validate_ability(card_id, ability); }
     if crate::import20_observers::related(card_id, ability) { return crate::import20_observers::validate_ability(card_id, ability); }
     if crate::import20_contest::related(card_id, ability) { return crate::import20_contest::validate_ability(card_id, ability); }
     if card_id == "WM043" || crate::wm043::related(ability) { return crate::wm043::validate_ability(card_id, ability); }
@@ -1516,6 +1519,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::import20_vampires::validate_definition(card_id, definition)?;
         crate::import20_observers::validate_definition(card_id, definition)?;
         crate::batch3::validate_definition(card_id, definition)?;
         crate::batch4::validate_definition(card_id, definition)?;
@@ -2184,6 +2188,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::import20_vampires::CARDS { m.insert((*id).into(), crate::import20_vampires::definition(id).unwrap()); }
         for id in crate::import20_observers::CARDS { m.insert((*id).into(), crate::import20_observers::definition(id).unwrap()); }
         for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }

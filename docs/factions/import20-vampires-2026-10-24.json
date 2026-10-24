@@ -1,0 +1,109 @@
+{
+  "baseCommit": "f9902ce1529300c9f2e88e122162ad712ed41395",
+  "priorCatalogCount": 256,
+  "priorCardsCanonicalSha256": "afa26ebb791e5d947a8e8e3496fe890a4b2a136be4a26b558ee7dc9238afe229",
+  "priorSpecificationsSha256": "e9c928bfa6bb225e6b298eccd19cb3c4ac341c6a36690393a48efbaa2dbf3c6c",
+  "newCards": [
+    "WM025",
+    "WM024"
+  ],
+  "allSixUnadmitted": [
+    "BQ090",
+    "BQ064",
+    "BQ039",
+    "WM028",
+    "WM025",
+    "WM024"
+  ],
+  "sourceProgramsAdded": 2,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "authorTotalReference20Programs": 6,
+  "current50ReviewedNativeClosed": 38,
+  "current50NewAuthorCandidate": [
+    "BQ039"
+  ],
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "engineVersion": "rust-v0.2.102-import20-vampires",
+  "cardPoolVersion": "limited-v2.93-import20-vampires",
+  "sourceCorrections": [
+    {
+      "id": "WM025",
+      "path": [
+        "fields",
+        "printedKeywords",
+        1
+      ],
+      "old": "屏障",
+      "new": "隐秘条件：屏障"
+    },
+    {
+      "id": "WM025",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        0
+      ],
+      "old": "领袖；屏障",
+      "new": "领袖；【隐秘】屏障"
+    },
+    {
+      "id": "WM025",
+      "path": [
+        "abilities",
+        0,
+        "printedText"
+      ],
+      "old": "领袖；屏障",
+      "new": "领袖；【隐秘】屏障"
+    },
+    {
+      "id": "WM025",
+      "path": [
+        "fields",
+        "additionalPrintedSymbols"
+      ],
+      "old": [],
+      "new": [
+        {
+          "id": "moon-barrier",
+          "status": "confirmed",
+          "printedText": "〔月牙〕屏障",
+          "interpretation": "本方秘社上有隐秘标志时才获得印刷屏障。"
+        }
+      ]
+    },
+    {
+      "id": "WM024",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        1
+      ],
+      "old": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+      "new": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
+    },
+    {
+      "id": "WM024",
+      "path": [
+        "abilities",
+        1,
+        "printedText"
+      ],
+      "old": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有其它角色因此效果死去，抓一张牌。",
+      "new": "现身触发 袭击X，X等于敌方秘社上暴露标志的数量。若有声望角色因此效果死去，抓一张牌。"
+    }
+  ],
+  "ruleInterpretations": {
+    "WM025": "Moon barrier is personal and only face up. Personal current vampires receive paid-reveal-only reduction using current personal secrecy; no face-up-play reduction. Personal winning contest observation survives source departure; resolve one influence per live region currently containing personal vampire characters, including valid dual-role attachments.",
+    "WM024": "Enemy includes both enemy seats in 2v2 (manual printed21), summed exposure. Both face-up play and paid reveal subtract 2 per enemy exposure with floor0 and unchanged loyalty. Reveal produces one additive Raid with event-time JC038 grant witnesses. Its printed X uses the current exposure when the damage effect resolves (ordinary effect timing, not a separately cited card-specific FAQ). Actual simultaneous lethal receipts retain dynamic renown; any such death causes exactly one draw in this effect, not a later death trigger."
+  },
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "User-confirmed direct author and illustrator permission; no registered per-card handlers for this pair; independently implemented Rust adapters.",
+    "SuezCodeOrArtCopied": false
+  }
+}
