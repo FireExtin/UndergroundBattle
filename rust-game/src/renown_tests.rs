@@ -804,6 +804,8 @@ fn shared_reward_platform_actual_room_acceptance_and_response() {
         // The initial explicit layout is after a genuine paid JC074 and normal
         // influence-confrontation public commands, not a relabelled old state.
         let (mut g, _) = granted_native_reward_for(recipient);
+        g.room_id = format!("112{:021x}", cases.len() + 1);
+        g.invite_code = "112ABC".into();
         g.seed = u64::MAX - 112;
         g.random = g.seed;
         let mut room = crate::jc029_tests::envelope(&g);
