@@ -1,8 +1,8 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.94-import20-broker",
-  "engineVersion": "rust-v0.2.103-import20-broker",
-  "sourceSha256": "1f40ee44bf6cc18bd70e8befe4a3a99c91eea1bd6c461da2d36d45f2d488de87",
+  "cardPoolVersion": "limited-v2.95-import20-cultist",
+  "engineVersion": "rust-v0.2.104-import20-cultist",
+  "sourceSha256": "efad0bc7490873890fd231cb69a353051d32b84abd2959ce17e517bb9e850861",
   "cards": [
     {
       "id": "JC125",
@@ -10437,6 +10437,48 @@
       "unique": false,
       "society": "",
       "supported": false
+    },
+    {
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "subtitle": "狂信者",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红 红",
+      "color": "红",
+      "society": "鸣钟教派",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "触发 每当另一个本方邪教徒进场时，若本方秘社上有隐秘〔月形〕标志，在该角色上放置一个时间标志。\n快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。",
+      "keywords": [],
+      "unique": true,
+      "supported": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG13",
+        "image": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+        "imageSha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a"
+      }
     }
   ],
   "decks": [

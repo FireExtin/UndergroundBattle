@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake, beforeBlackSpecifications, priorSpecifications } from './import20-spec-history.mjs';
+import { blackSlice as intake, currentImport20, beforeBlackSpecifications, priorSpecifications } from './import20-spec-history.mjs';
 const read=n=>readFileSync(new URL('../../'+n,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -12,7 +12,8 @@ test('black pair retains exact258 prior records and public213, without changing 
   assert.equal(intake.priorCatalogCount,258);
   const digest='a3d6acd39e625636da9e8c9fae9c14bac2c83b1ae56ff2c71d828cece9e50b17';
   assert.equal(intake.priorCardsCanonicalSha256,digest);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,258)))),digest);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,260);assert.deepEqual(pool.cards.slice(258).map(c=>c.id),['BQ081','WM057']);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,261);assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id),['BQ081','WM057']);
+  assert.deepEqual(pool.cards.slice(260).map(c=>c.id), ['XG13']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for(const id of intake.allEightUnadmitted)assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.current50ReviewedNativeClosed,38);assert.equal(intake.published,false);
@@ -40,8 +41,8 @@ test('black pair prints and original pixels are exact and ordinary card registra
   }
   assert.match(specifications.cards.BQ081.fields.printedRuleTextLines[0],/一张牌/);
 });
-test('latest103 is unadmitted native WIP and unresolved enemy permission is not silently granted',()=>{
-  assert.equal(pool.engineVersion,'rust-v0.2.103-import20-broker');assert.equal(pool.cardPoolVersion,'limited-v2.94-import20-broker');
+test('latest104 is unadmitted native WIP and unresolved enemy permission is not silently granted',()=>{
+  assert.equal(pool.engineVersion,currentImport20.engineVersion);assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.WM057EnemyPermission,'pendingUserRuling; no enemy activation opened');assert.equal(intake.ruleQuestion.status,'askedAsyncAwaitingReply');
   assert.equal(intake.priorReference20AuthorNativeWipComplete,6);assert.equal(intake.independentReview,'notRun');

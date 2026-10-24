@@ -1,0 +1,53 @@
+{
+  "baseCommit": "d5fca00c94b2a8d83d8fe901d13d6a6a5ee43387",
+  "priorCatalogCount": 260,
+  "priorCardsCanonicalSha256": "b59caeaf73d14629cb7107d8669e57a26bb5825d121fb60e2153f9ded2a864d5",
+  "priorSpecificationsSha256": "1f40ee44bf6cc18bd70e8befe4a3a99c91eea1bd6c461da2d36d45f2d488de87",
+  "newCards": [
+    "XG13"
+  ],
+  "sourceCorrections": [
+    {
+      "id": "XG13",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        1
+      ],
+      "old": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。",
+      "new": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。"
+    },
+    {
+      "id": "XG13",
+      "path": [
+        "abilities",
+        1,
+        "printedText"
+      ],
+      "old": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。",
+      "new": "快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。"
+    }
+  ],
+  "engineVersion": "rust-v0.2.104-import20-cultist",
+  "cardPoolVersion": "limited-v2.95-import20-cultist",
+  "priorReference20AuthorNativeWipComplete": 7,
+  "potentialReference20AuthorNativeWipComplete": 8,
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "deferred": {
+    "WM057": "Enemy permission pending user ruling; no foreign activation enabled",
+    "XQ19": "Printed cost is a dash, not a zero. Not registered until cost-comparison semantics can be resolved without guessing.",
+    "WM064": "Not started; parent latest steering keeps this slice to XQ19/XG13 clear work."
+  },
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "registeredPerCardEffect": false,
+    "permission": "Retained direct author/illustrator permission; no external handler for this card, independently adapted Rust.",
+    "SuezCodeOrArtCopied": false
+  }
+}

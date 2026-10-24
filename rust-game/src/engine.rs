@@ -1338,6 +1338,7 @@ impl Game {
         self.bq029_observe_entry(id,extra);
         self.wm060_observe_entry(id);
         self.xg17_observe_entry(id);
+        self.xg13_observe_entry(id);
         self.batch3_register_entry_order(id,previous);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });

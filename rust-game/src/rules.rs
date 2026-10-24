@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    XG13OtherCultistEntered,
     BQ039HostBattleWon,
     BQ031Attachment,
     BQ038Raid,
@@ -284,6 +285,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG13EntryTime { observation: Option<Box<crate::import20_cultist::CultistEntry>> },
     BQ081GraveBottomDestroy,
     WM057Win { contest_id: Option<String> },
     WM057Inspect,
@@ -745,6 +747,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::import20_cultist::related(card_id, ability) { return crate::import20_cultist::validate_ability(card_id, ability); }
     if crate::import20_broker::related(ability) { return crate::import20_broker::validate_ability(card_id, ability); }
     if crate::import20_vampires::related(ability) { return crate::import20_vampires::validate_ability(card_id, ability); }
     if crate::import20_observers::related(card_id, ability) { return crate::import20_observers::validate_ability(card_id, ability); }
@@ -1525,6 +1528,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::import20_cultist::validate_definition(card_id, definition)?;
         crate::import20_broker::validate_definition(card_id, definition)?;
         crate::import20_vampires::validate_definition(card_id, definition)?;
         crate::import20_observers::validate_definition(card_id, definition)?;
@@ -2195,6 +2199,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        m.insert(crate::import20_cultist::ID.into(), crate::import20_cultist::definition());
         for id in crate::import20_broker::CARDS { m.insert((*id).into(), crate::import20_broker::definition(id).unwrap()); }
         for id in crate::import20_vampires::CARDS { m.insert((*id).into(), crate::import20_vampires::definition(id).unwrap()); }
         for id in crate::import20_observers::CARDS { m.insert((*id).into(), crate::import20_observers::definition(id).unwrap()); }

@@ -1,3 +1,6 @@
+mod import20_cultist;
+#[cfg(test)]
+mod import20_cultist_tests;
 mod import20_broker;
 #[cfg(test)]
 mod import20_broker_tests;

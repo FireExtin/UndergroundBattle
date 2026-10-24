@@ -1,0 +1,65 @@
+{
+  "status": "pending-card-rule-ruling; enemy activation remains disabled",
+  "cardId": "WM057",
+  "name": "信息掮客",
+  "originalAbility": "行动②，横置：进行一次隐秘对抗。若敌方秘社上有〔月形隐秘标志〕，则敌方玩家也可以发动本能力。",
+  "symbolExpansion": "圆圈2=支付2；弯箭头=横置本牌；月形=隐秘标志。",
+  "sourceReferences": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+      "viewed": "original card pixels; first ability"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "physicalPage": 22,
+      "printedPage": 21,
+      "viewed": "2v2其他注意事项末条",
+      "originalText": "注明“本方”的卡牌，都只能影响其操控者本人的卡牌。注明“友方”的卡牌，能够影响其操控者和他的队友。注明“敌方”的卡牌，能够影响敌对队伍内的所有敌对玩家。",
+      "limitation": "defines relation but does not explicitly quantify which enemy society satisfies the conditional foreign-source permission"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "viewedPhysicalPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "result": "No WM057-specific entry or explicit 2v2 conditional borrowing ruling found in these six visually inspected pages. Not a claim about unpublished FAQ."
+    }
+  ],
+  "readyQuestion": "WM057「信息掮客」写：“行动②，横置：进行一次隐秘对抗。若敌方秘社上有隐秘标志，则敌方玩家也可以发动本能力。”在四人局里，你操控它，敌队甲的秘社有1枚隐秘标志、乙没有：应只有甲可以支付2并横置信息掮客发动，还是甲、乙都可以？",
+  "interpretations": [
+    {
+      "id": "markedEnemyOnly",
+      "meaning": "Check the activating enemy player's own society; only甲 is allowed in this example."
+    },
+    {
+      "id": "anyEnemySocietyUnlocksTeam",
+      "meaning": "One enemy society with secrecy unlocks the original ability for every living enemy; both甲 and乙 are allowed."
+    }
+  ],
+  "unchangedCommonSemantics": "payer/actor is the enemy choosing to activate; original card remains controlled by its controller; original card must be ready and is exhausted as cost; no permission to source-controller teammate implied.",
+  "referencesChecked": [
+    {
+      "repository": "RETORETO/UnderWorldPro",
+      "sha": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "path": "Cards/Data/PlayerCards/WM/WM057_xinxiqianke.tres",
+      "registeredPerCardEffect": false,
+      "scope": "retained per-card source audit: data exists but no registered handler resolves this condition; direct author/illustrator permission recorded in sources.json"
+    },
+    {
+      "repository": "SuezKrish/Underworld",
+      "sha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+      "scope": "retained crosswalk/effect tags only; not newly tested code or rule authority; no source code copied"
+    }
+  ],
+  "sourceSha256": {
+    "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+    "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+  },
+  "evidenceBase": "d5fca00c94b2a8d83d8fe901d13d6a6a5ee43387"
+}

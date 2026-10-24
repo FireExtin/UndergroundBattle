@@ -122,6 +122,7 @@ impl Game {
         self.validate_mystic_outcome(o)?; Ok(o)
     }
     pub(crate) fn validate_pack_a_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::import20_cultist::related(&d.source.card.definition, &d.ability) { return self.validate_xg13_declaration(d); }
         if crate::import20_broker::CARDS.contains(&d.source.card.definition.as_str()) || crate::import20_broker::related(&d.ability) {
             return self.validate_import20_broker_declaration(d);
         }
@@ -154,6 +155,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::import20_cultist::frame_related(f) { return self.validate_xg13_frame(f); }
         if crate::import20_broker::frame_related(f) { return self.validate_import20_broker_frame(f); }
         if crate::import20_vampires::frame_related(f) { return self.validate_import20_vampire_frame(f); }
         if crate::import20_observers::frame_related(f) { return self.validate_import20_observer_frame(f); }

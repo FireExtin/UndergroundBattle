@@ -15,9 +15,10 @@ test('second serial pair preserves exact254 prior records and public213', () => 
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,254)))),'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
   assert.equal(intake.priorCardsCanonicalSha256,'6d9b57bc51e4fe36012d9455e5c153d8891184662ea082d85e08d30bece4c8b9');
   assert.deepEqual(pool.cards.slice(254,256).map(c=>c.id),['BQ039','WM028']);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,260);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,261);
   assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id), ['WM025','WM024']);
-  assert.deepEqual(pool.cards.slice(258).map(c=>c.id), ['BQ081','WM057']);
+  assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id), ['BQ081','WM057']);
+  assert.deepEqual(pool.cards.slice(260).map(c=>c.id), ['XG13']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for (const id of intake.allFourUnadmitted) assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.current50ReviewedNativeClosed,38); assert.equal(intake.published,false);
