@@ -615,8 +615,9 @@ fn xq37_pending_trigger_actor_and_optional_accept_metadata_are_closed() {
         g.regions[2].influence = [1, 0];
         let id = entry(&mut g, 0, 0);
         let preview = g.card_view(g.board(&id).unwrap().1, 0, Some(2), None);
+        let pending = g.pending.as_mut().unwrap();
         if let ChoiceResolution::Declare { declaration, .. } =
-            &mut g.pending.as_mut().unwrap().resolution
+            &mut pending.resolution
         {
             let region = declaration
                 .source
@@ -628,6 +629,7 @@ fn xq37_pending_trigger_actor_and_optional_accept_metadata_are_closed() {
                 1 => crate::renown::renown_ability(region),
                 _ => jc089_combat_glory_ability(region),
             };
+            pending.choice.title = format!("{}：{}", catalog::card("XQ37").name, declaration.ability.label);
         } else {
             panic!("normal entry must offer declaration");
         }

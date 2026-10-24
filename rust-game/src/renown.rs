@@ -71,7 +71,7 @@ impl Game {
             || self.regions.iter().enumerate().any(|(i,r)|
                 r.card.id == region_instance && Some(i) != source.region)
         {
-            return Err("声望/威名奖励须保留实际角色、行动者和冻结的原地区".into());
+            return Err(format!("{}：声望/威名奖励须保留实际角色、行动者和冻结的原地区", c.definition));
         }
         self.mobility_immutable_identity(c)
     }
@@ -79,7 +79,7 @@ impl Game {
     pub(crate) fn validated_reward_declaration(&self, d: &Declaration) -> RuleResult<bool> {
         if !reward_related(&d.ability) { return Ok(false); }
         if !crate::jz22::runtime_ability_is_admitted(&d.ability) {
-            return Err("声望/威名只允许完整无费用的原地区一个势力奖励".into());
+            return Err(format!("{}：声望/威名只允许完整无费用的原地区一个势力奖励", d.source.card.definition));
         }
         let [Op::PlaceInfluence { region_instance, .. }] = d.ability.ops.as_slice() else { unreachable!() };
         self.validate_reward_source(d.actor, &d.source, region_instance)?;
@@ -89,7 +89,7 @@ impl Game {
     pub(crate) fn validated_reward_frame(&self, f: &ResolutionFrame) -> RuleResult<bool> {
         if !reward_key(&f.ability_key) { return Ok(false); }
         let [Step { context, op: Op::PlaceInfluence { region_instance, amount: 1 } }] = f.steps.as_slice()
-            else { return Err("声望/威名帧必须保留一个原地区势力奖励".into()); };
+            else { return Err(format!("{}：声望/威名帧必须保留一个原地区势力奖励", f.source.card.definition)); };
         self.validate_reward_source(f.actor, &f.source, region_instance)?;
         if f.frame_id.is_empty() || *context != f.actor || f.cursor > 1
             || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
@@ -97,7 +97,7 @@ impl Game {
             || !f.targets.is_empty() || !f.already_paid.is_empty()
             || !f.resource_payments.is_empty() || f.chosen_region.is_some()
         {
-            return Err("声望/威名帧的上下文、费用、目标或执行位置不符".into());
+            return Err(format!("{}：声望/威名帧的上下文、费用、目标或执行位置不符", f.source.card.definition));
         }
         Ok(true)
     }
@@ -110,7 +110,7 @@ impl Game {
                         || item.card.is_some() || item.target.is_some() || item.reveal
                         || item.deploy_region.is_some() || f.cursor != 0)
                 {
-                    return Err("声望/威名响应对象与冻结帧不符".into());
+                    return Err(format!("{}：声望/威名响应对象与冻结帧不符", f.source.card.definition));
                 }
             }
         }
@@ -118,7 +118,7 @@ impl Game {
             match effect {
                 Effect::Declare { declaration } => { self.validated_reward_declaration(declaration)?; }
                 Effect::Frame { frame } if self.validated_reward_frame(frame)? && frame.cursor != 0 =>
-                    return Err("声望/威名原子奖励不能保留已执行续体".into()),
+                    return Err(format!("{}：声望/威名原子奖励不能保留已执行续体", frame.source.card.definition)),
                 _ => {},
             }
         }
@@ -127,16 +127,20 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage }
                     if self.validated_reward_declaration(declaration)? => {
                     let options = vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }];
+                    let title = format!("{}：{}", crate::batch3_trap::source_label(&declaration.source), declaration.ability.label);
                     if !matches!(stage, DeclareChoice::Accept) || p.seat != declaration.actor
+                        || self.players[declaration.actor].eliminated || p.choice.id.is_empty()
                         || p.choice.player_id != player_id(declaration.actor) || p.choice.kind != "trigger"
+                        || p.choice.title != title || p.choice.description != "选择符合数量限制的选项，然后确认。"
+                        || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty()
                         || p.choice.min != Some(0) || p.choice.max != Some(1) || p.choice.allow_decline != Some(true)
                         || serde_json::to_value(&p.choice.options).unwrap() != serde_json::to_value(options).unwrap()
                     {
-                        return Err("声望/威名只允许原行动者选择发动或放弃".into());
+                        return Err(format!("{}：声望/威名只允许原行动者选择发动或放弃", declaration.source.card.definition));
                     }
                 }
                 ChoiceResolution::Frame { frame, .. } if self.validated_reward_frame(frame)? =>
-                    return Err("声望/威名原子奖励没有帧内选择".into()),
+                    return Err(format!("{}：声望/威名原子奖励没有帧内选择", frame.source.card.definition)),
                 _ => {},
             }
         }

@@ -836,9 +836,11 @@ fn world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot() {
         wound_sources: vec![],
     });
     g.effects.push_back(Effect::Score { seat: 0, region: 2 });
-    let card = g.make_card("JC075", 0);
-    let source = g.source_snapshot(&card, Some(2));
-    let frame = g.make_frame(
+    let card = g.make_card("JC070", 0); // Actual printed renown, already departed.
+    let mut source = g.source_snapshot(&card, Some(2));
+    source.source_region_instance = Some(original.clone());
+    g.players[0].graveyard.push(card);
+    let mut frame = g.make_frame(
         0,
         source,
         &crate::renown::renown_ability(&original),
@@ -846,6 +848,7 @@ fn world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot() {
         vec![],
         None,
     );
+    frame.frame_id = g.id();
     g.effects.push_back(Effect::Frame {
         frame: Box::new(frame),
     });

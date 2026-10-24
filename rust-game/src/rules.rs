@@ -777,7 +777,9 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     // text. Domain validators still require their exact event-time grant;
     // validate_definitions separately rejects static transplantation.
     if crate::renown::reward_related(ability) {
-        return if crate::jz22::runtime_ability_is_admitted(ability) { Ok(()) }
+        return if crate::jz22::runtime_ability_is_admitted(ability)
+            && crate::catalog::catalog().cards.iter().any(|d|
+                d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
     if crate::import20_entropy::related(card_id,ability) { return crate::import20_entropy::validate_ability(card_id,ability); }
