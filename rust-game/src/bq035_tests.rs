@@ -889,6 +889,27 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
 }
 
 #[test]
+fn bq035_native_import_recipients_cannot_register_or_manually_activate_shared_grants() {
+    for id in ["XG13", "CQ24"] {
+        let a = crate::mobility::ability();
+        crate::rules::validate_ability(id, &a).unwrap();
+        let mut registry = crate::rules::definitions().clone();
+        registry.get_mut(id).unwrap().abilities.push(a.clone());
+        assert!(crate::rules::validate_definitions(&registry).is_err());
+        let mut altered = a;
+        altered.targets[0].max = 2;
+        assert!(crate::rules::validate_ability(id, &altered).is_err());
+        let mut g = u::game();
+        let host = field(&mut g, id, 0, 0);
+        assert!(!g.has_mobility(g.board(&host).unwrap().1));
+        u::reject(&mut g, 0, Action {
+            card_id: Some(host), ability_id: Some("mobility".into()),
+            target_id: Some("region:1".into()), ..Action::new("activate")
+        });
+    }
+}
+
+#[test]
 fn bq035_pending_observation_and_program_tampering_reject_both_storage_entries() {
     let (mut g, _, _, _) = granted();
     start_mobility(&mut g);

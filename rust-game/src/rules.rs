@@ -758,6 +758,14 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    // Shared granted programs are checked before recipient-specific native
+    // text. Domain validators still require their exact event-time grant;
+    // validate_definitions separately rejects static transplantation.
+    if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
+    if crate::mobility::related_ability(ability) {
+        return if crate::mobility::canonical(ability) { Ok(()) }
+            else { Err("只准入完整的机动事件与自身移动程序".into()) };
+    }
     if crate::import20_industry::related(card_id,ability) { return crate::import20_industry::validate_ability(card_id,ability); }
     if crate::import20_carmen::related(card_id, ability) { return crate::import20_carmen::validate_ability(card_id, ability); }
     if crate::import20_tattoo::related(card_id, ability) { return crate::import20_tattoo::validate_ability(card_id, ability); }
@@ -779,13 +787,6 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::batch4::related(ability) { return crate::batch4::validate_ability(card_id, ability); }
     if card_id=="BQ029" && ability.key=="raid-1" || crate::batch3::related_ability(ability) { return crate::batch3::validate_ability(card_id, ability); }
     if crate::next20_red::related_ability(ability) || (card_id == "JZ41" && ability.key == "attach") { return crate::next20_red::validate_ability(card_id, ability); }
-    if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
-    // The registry separately forbids static transplantation. At runtime the
-    // shared mobility validator also requires the exact event-time source receipt.
-    if crate::mobility::related_ability(ability) {
-        return if crate::mobility::canonical(ability) { Ok(()) }
-            else { Err("只准入完整的机动事件与自身移动程序".into()) };
-    }
     crate::exposure::validate_ability(card_id, ability)?;
     crate::black_next20::validate_ability(card_id, ability)?;
     if crate::next20_blue_gray::related_ability(card_id, ability) {
