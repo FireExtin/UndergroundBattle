@@ -178,19 +178,19 @@ fn import20_bq090_no_card_contest_keeps_costs_and_completed_draw_steps() {
 
 #[test]
 fn import20_bq064_zero_and_multiple_removals_use_own_actual_counter_only() {
-    for count in [0, 1, 3] {
+    for (exposure, secrecy) in [(2, 0), (0, 4)] { for count in [0, 1, 3] {
         let mut g = game(); deck_cards(&mut g, 0, &["JC125", "JC125", "JC125", "JC125"]);
         g.players[0].society_zone.loss_control = count;
-        g.players[0].society_zone.exposure = 2; g.players[0].society_zone.secrecy = 4;
+        g.players[0].society_zone.exposure = exposure; g.players[0].society_zone.secrecy = secrecy;
         g.players[2].society_zone.loss_control = 7;
         fund(&mut g, 0, "JC063", 4); let source = held(&mut g, "BQ064", 0);
         act(&mut g, 0, play(&source, c::SAMPLES, None));
         assert_eq!(g.players[0].society_zone.loss_control, count); // response, not yet resolved
         pass_top(&mut g); assert_eq!(g.players[0].society_zone.loss_control, 0);
         assert_eq!(g.players[0].hand.len(), count as usize); assert_eq!(g.resources(0), 1);
-        assert_eq!((g.players[0].society_zone.exposure, g.players[0].society_zone.secrecy), (2, 4));
+        assert_eq!((g.players[0].society_zone.exposure, g.players[0].society_zone.secrecy), (exposure, secrecy));
         assert_eq!(g.players[2].society_zone.loss_control, 7);
-    }
+    }}
 }
 
 #[test]
