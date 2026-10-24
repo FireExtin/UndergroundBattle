@@ -1,0 +1,32 @@
+{
+  "filters": [
+    "death_observer_real_destroy_lethal_and_paid_sacrifice_use_same_entry",
+    "death_observer_simultaneous_dying_observers_still_observe_whole_wave",
+    "death_observer_actual_vampire_conversion_is_frozen_before_control_source_leaves",
+    "jz35_actual_departure_receipts_distinguish_two_same_name_same_region_cards_and_reset_entry",
+    "jz35_departure_that_did_not_happen_has_no_receipt_or_death_declaration",
+    "jz35_simultaneous_observers_keep_each_old_dead_identity_after_all_hosts_return",
+    "batch3_bq026_simultaneous_host_and_bat_death_has_two_actual_receipts_in_either_input_order",
+    "batch3_bq026_real_damage_and_end_cleanup_remove_damage_before_temporary_defense_expires",
+    "batch3_bq026_region_combat_damage_choice_includes_attached_character_and_counts_icons_once",
+    "batch20_jc033_reduces_only_own_paid_reveal_and_search_survives_its_sacrifice",
+    "renown_jc074_response_source_target_leaves_cancels_without_refunding",
+    "renown_shared_placement_cancels_enemy_influence_and_only_then_wins",
+    "renown_grant_follows_current_controller_and_exact_instance_until_cleanup",
+    "protection_temporary_defense_and_damage_cleanup_preserve_survivor",
+    "protection_multiple_equipment_grants_add_temporary_icons_but_keep_one_barrier",
+    "protection_faerie_fire_is_a_real_paid_fast_response_during_action_phase",
+    "batch4_spectral_actual_paid_reveal_uses_one_merged_raid_for_each_personal_moon_tier",
+    "batch4_spectral_jc038_grants_merge_once_with_conditional_printed_raid_including_zero_moon",
+    "batch4_spectral_reveal_receipt_survives_moon_and_mentor_loss_and_original_source_departure",
+    "batch4_spectral_original_region_guard_survives_source_movement_and_rejects_region_replacement",
+    "batch4_vampires_bq038_actual_personal_society_raid_accept_feeds_before_damage",
+    "batch4_vampires_bq038_granted_raid_combines_once_not_each_point",
+    "wm044_trigger_current_controller_each_actual_win_not_only_first",
+    "wm044_trigger_source_departure_does_not_cancel_declared_inspection",
+    "batch4_manor_hidden_identity_and_private_projection_stay_hidden_until_real_paid_reveal",
+    "batch4_manor_exhaustion_keeps_aura_and_source_departure_reverts_in_all_owned_zones",
+    "batch20_jc034_requires_its_own_actual_vampire_combat_contribution"
+  ],
+  "purpose": "Normal affected raid, cost, dynamic renown, lethal receipts, attachments and mystic observers; no full suite or new damaged-save expansion"
+}

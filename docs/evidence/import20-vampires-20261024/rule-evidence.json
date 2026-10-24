@@ -1,0 +1,65 @@
+{
+  "sourcePdf": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+  "pdfSha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+  "pagesActuallyViewed": [
+    {
+      "physical": 17,
+      "printed": 16,
+      "scope": "Personal/friendly/enemy definitions; paid play/reveal timing, source independence and resolution after responses."
+    },
+    {
+      "physical": 18,
+      "printed": 17,
+      "scope": "Raid is a reveal-triggered target in the original region; multiple Raid grants add. X in a cost is fixed at payment."
+    },
+    {
+      "physical": 19,
+      "printed": 18,
+      "scope": "Barrier, leaders and renown definitions."
+    },
+    {
+      "physical": 20,
+      "printed": 19,
+      "scope": "Moon/sun before a keyword condition it on the controller personal society marker."
+    },
+    {
+      "physical": 22,
+      "printed": 21,
+      "scope": "Enemy means all opposing team players; own means personal, team contests, influence shared by team."
+    }
+  ],
+  "primaryOriginals": [
+    {
+      "id": "WM025",
+      "image": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg",
+      "sha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622",
+      "uwpro": {
+        "id": "WM025",
+        "path": "Cards/Data/PlayerCards/WM/WM025_angelamanniu.tres",
+        "gitBlob": "aadeecabc88e615d3bf76385293b3d8542a3218d",
+        "bytes": 1246,
+        "sha256": "adc1ad50fcd5ae6500570e741bbc7d52a7b5f5d3748d7814b3ae0d6c81110425",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      }
+    },
+    {
+      "id": "WM024",
+      "image": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "sha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "uwpro": {
+        "id": "WM024",
+        "path": "Cards/Data/PlayerCards/WM/WM024_alamuteshashou.tres",
+        "gitBlob": "ca6569c47939470f37786a17e5ba39310610f39a",
+        "bytes": 1270,
+        "sha256": "629012a16555f6809f92fd1b5db969f8af731ea078a7f3d5aeebd4d2e3f8af34",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      }
+    }
+  ],
+  "uwproFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+  "permission": "Existing direct user confirmation of code-author and illustrator permission; both reference records have no registered per-card handler. Independent Rust adapters, no Suez code/art copied.",
+  "xTimingScope": "Current exposure at damage resolution is the ordinary effect interpretation applied here, not a claimed WM024-specific FAQ. Event-time JC038 grants retain the original additive snapshot.",
+  "attachedBatCorrection": "BQ026 retains character/attachment roles but printed subtypes are Bat/Familiar, not Vampire; no subtype inheritance from host. Negative region eligibility control verified."
+}

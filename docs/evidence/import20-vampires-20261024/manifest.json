@@ -1,0 +1,85 @@
+{
+  "tested_head": "ebeb812017a74d59b9e6c21e96d213c82455cf6e",
+  "files": [
+    {
+      "path": "docs/evidence/import20-vampires-20261024/adjacent-plan.json",
+      "bytes": 2465,
+      "sha256": "f5ff0803b29aaf58574d08cc477161ab1beb12f69118c2a892748e961744d7f7"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/fixed-inputs.json",
+      "bytes": 71301,
+      "sha256": "3e85b682cdf4657ca2827e6bd9369fb465a5d474627b70dabc169bc2a4400970"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-corrected-native-20261024.json",
+      "bytes": 44531,
+      "sha256": "f4ee450d012e430e0a5e0fef644c492982491ac0f6bd4f295bcd3f4f79eaf93d"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-corrected-native-20261024.log.gz",
+      "bytes": 1927,
+      "sha256": "09a7dcdb7ae39612e3d97e3ff8a33fe7ca2755aee9fbfbdaec9b6b6cf5d84870"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-corrected-source-20261024.json",
+      "bytes": 44640,
+      "sha256": "3e9bc0214a4e5e24f3a345db69870bd7c95024f9cd3d7a71c8281191aa1c493e"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-corrected-source-20261024.log.gz",
+      "bytes": 1082,
+      "sha256": "505497b52465d920bcd7042508bc74f4c19d12ffadd495793abc340d7ca13eca"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-first-native-20261024.json",
+      "bytes": 44531,
+      "sha256": "210fd73f3f569840168d648f7ad0fd11ccc5b213675b6c641a1b4b2d9a2dfff0"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-first-native-20261024.log.gz",
+      "bytes": 2311,
+      "sha256": "7fbd09b894fe7e9722f64e88a460841b3b87a9d55ea4e5ce766ca69c44c41e76"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-first-source-20261024.json",
+      "bytes": 44638,
+      "sha256": "82923a3c6114d0390ae2e69b8fb912c8f175e402fa34179a6782b6c03723c5e9"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-first-source-20261024.log.gz",
+      "bytes": 1788,
+      "sha256": "40ab4b69a98f5a9e8337ba19681d8b4685ebdba9c49eb67f0507b560612d6546"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-normal-adjacent-20261024.json",
+      "bytes": 46786,
+      "sha256": "8deaf6e716f411aea60c91ac176149894bb0ff056b7876fb2f5872fdc28a0e90"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-normal-adjacent-20261024.log.gz",
+      "bytes": 1847,
+      "sha256": "5842b5bf53e8862e896340ec97e000b4ac0897810121bff55aba2346d350cd94"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-normal-native-20261024.json",
+      "bytes": 44591,
+      "sha256": "3e24b7b2649e593c1cf2db0c4866cd715cdff61dad5048b0a331fb18c8c8b6d6"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/import20-vampires-normal-native-20261024.log.gz",
+      "bytes": 2454,
+      "sha256": "d21047efd20a6c522a225254bf84c90ffec5721fe9d5e4b6986030376ffcd9cf"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/result.json",
+      "bytes": 20287,
+      "sha256": "7b86a578eec665053ef4c3fe9a0eecb428d9d5556b7b4e42b58739df4bb0775d"
+    },
+    {
+      "path": "docs/evidence/import20-vampires-20261024/rule-evidence.json",
+      "bytes": 2953,
+      "sha256": "396abecfb9116186a975dc50114ee13e139e5fee7592f28d05c5f32bb725fcdf"
+    }
+  ]
+}
