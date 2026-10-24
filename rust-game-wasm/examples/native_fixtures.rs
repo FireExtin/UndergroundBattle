@@ -1295,6 +1295,7 @@ fn world_fixture(id: &str, generic_search: bool) -> Value {
             declaration: Declaration {
                 actor,
                 source: SourceSnapshot {
+                    death_echo: None,
                     observed_exposure: None,
                     observed_death: None,
                     observed_mobility_grant: None,

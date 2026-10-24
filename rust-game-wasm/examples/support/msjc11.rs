@@ -595,7 +595,7 @@ fn boundary(kind: &str) -> Value {
         }
         if ["combat-kill", "zero-combat", "exhausted-kill"].contains(&kind) {
             advance(&mut r, &mut steps, |r| {
-                r.pending.as_ref().is_some_and(|p| matches!(p.resolution, ChoiceResolution::Damage { region: rr } if rr == region))
+                r.pending.as_ref().is_some_and(|p| matches!(p.resolution, ChoiceResolution::Damage { region: rr, .. } if rr == region))
             });
             assert_eq!(
                 r.pending.as_ref().unwrap().choice.amount,

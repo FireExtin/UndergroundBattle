@@ -446,6 +446,7 @@ fn prepared_shuffle(accept: bool) -> Value {
     let mut g = initial("prepared-shuffle");
     let c = g.make_card("JZ67", 0);
     let source = SourceSnapshot {
+        death_echo: None,
         observed_exposure: None,
         observed_death: None,
         observed_mobility_grant: None,
@@ -456,6 +457,7 @@ fn prepared_shuffle(accept: bool) -> Value {
         play_source: Some(hegemony_server::model::PlaySource::Hand),
     };
     let frame = hegemony_server::model::ResolutionFrame {
+        resource_payments: vec![],
         actor: 0,
         source,
         targets: vec![],
