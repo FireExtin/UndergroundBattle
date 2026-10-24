@@ -2609,7 +2609,7 @@ impl Game {
             FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::BQ081GraveCharacter => self.bq081_entry_complete(&frame, chooser, &selected)?,
-            FrameChoice::WM057InspectTarget => return self.wm057_inspect_choose(frame, chooser, &selected),
+            FrameChoice::WM057InspectTarget => return self.wm057_inspect_choose(*frame, chooser, &selected),
             FrameChoice::WM057Inspection { .. } => self.wm057_inspect_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
             FrameChoice::WM043ShownTarget => return self.wm043_choose_shown(&frame, chooser, &a, &selected),
