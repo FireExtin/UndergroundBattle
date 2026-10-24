@@ -287,6 +287,7 @@ pub enum Op {
     BQ081GraveBottomDestroy,
     WM057Win { contest_id: Option<String> },
     WM057Inspect,
+    WM057Repress,
     WM025MysticInfluence { contest_id: Option<String> },
     WM024RevealRaid { observation: Option<crate::import20_vampires::AssassinRaid> },
     WM028Prepare { event_id: Option<String> },

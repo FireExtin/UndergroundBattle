@@ -1299,6 +1299,8 @@ impl Game {
             (
                 spec.modes
                     .iter()
+                    .filter(|m| declaration.source.card.definition != "WM057" || spec.key != crate::import20_broker::WIN
+                        || m.targets.first().is_none_or(|t| !self.binding_options(actor, &declaration.source, t).is_empty()))
                     .map(|m| ChoiceOption {
                         id: m.key.clone(),
                         label: m.label.clone(),
@@ -1676,6 +1678,7 @@ impl Game {
                 Op::MysticWin { .. } => {},
                 Op::BQ081GraveBottomDestroy => return self.bq081_entry_start(frame),
                 Op::WM057Win { .. } => {},
+                Op::WM057Repress => return self.wm057_repress_start(frame),
                 Op::WM057Inspect => return self.wm057_inspect_start(frame),
                 Op::WM025MysticInfluence { .. } => self.wm025_influence(frame.actor),
                 Op::WM024RevealRaid { .. } => self.wm024_raid_resolve(&frame)?,
@@ -2610,7 +2613,8 @@ impl Game {
             FrameChoice::BQ079Upkeep => return self.bq079_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::JC064Upkeep => return self.jc064_upkeep_complete(&frame, chooser, &a, &selected),
             FrameChoice::BQ081GraveCharacter => self.bq081_entry_complete(&frame, chooser, &selected)?,
-            FrameChoice::WM057InspectTarget => return self.wm057_inspect_choose(*frame, chooser, &selected),
+            FrameChoice::WM057Opponent => return self.wm057_repress_choose(*frame, chooser, &selected),
+            FrameChoice::WM057InspectMay => return self.wm057_inspect_choose(*frame, chooser, &selected),
             FrameChoice::WM057Inspection { .. } => self.wm057_inspect_complete(&frame, chooser, &selected)?,
             FrameChoice::XQ22Orientation => self.xq22_orientation_complete(&frame, chooser, &a, &selected)?,
             FrameChoice::WM043ShownTarget => return self.wm043_choose_shown(&frame, chooser, &a, &selected),

@@ -9,8 +9,10 @@ pub(crate) const ACT: &str = "import20-wm057-contest";
 pub(crate) const WIN: &str = "import20-wm057-win";
 const GRAVE: &str = "bq081-grave-character";
 const GRAVE_TITLE: &str = "凋零食腐怪：选择本人墓地角色置于牌库底";
-const INSPECT: &str = "wm057-inspect-target";
-const INSPECT_TITLE: &str = "信息掮客：可检视一个暗藏者或秘密计划";
+const INSPECT: &str = "wm057-inspect-bound";
+const INSPECT_TITLE: &str = "信息掮客：是否检视已绑定的原目标？";
+const OPPONENT: &str = "wm057-repress-opponent";
+const OPPONENT_TITLE: &str = "信息掮客：指定遏制的敌方玩家";
 const CONFIRM: &str = "wm057-inspection-confirm";
 const CONFIRM_TITLE: &str = "信息掮客：确认私密检视";
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
@@ -22,15 +24,13 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
         "WM057" => {
             let mut a=ability(ACT,"行动2并横置：隐秘对抗",Timing::Standard,vec![Cost::Assets(2),Cost::ExhaustSource],
                 vec![],vec![Op::MysticContest{actor_bonus:0}],None);a.activation_only=true;
-            vec![a,ability(WIN,"赢得隐秘对抗：遏制1，然后可检视暗藏者或秘密计划",Timing::Fast,vec![],
-                vec![target(Zone::Player,EntityKind::Any,Relation::EnemyTeam,Range::Anywhere)],
-                vec![Op::WM057Win{contest_id:None},Op::RepressOpponentOne{slot:0},Op::WM057Inspect],Some(Event::MysticContestWon))]
+            vec![a,win_program(None,None).unwrap()]
         },
         _=>return None,
     }))
 }
 pub(crate) fn owns(ops:&[Op])->bool { ops.iter().any(|op|match op {
-    Op::BQ081GraveBottomDestroy|Op::WM057Win{..}|Op::WM057Inspect=>true,
+    Op::BQ081GraveBottomDestroy|Op::WM057Win{..}|Op::WM057Repress|Op::WM057Inspect=>true,
     Op::ForEachLivingPlayer(body)|Op::ForEachLivingPlayerFromActor(body)=>owns(body),
     Op::IfTargetExhausted{exhausted,ready,..}=>owns(std::slice::from_ref(exhausted))||owns(std::slice::from_ref(ready)),
     _=>false,
@@ -38,10 +38,23 @@ pub(crate) fn owns(ops:&[Op])->bool { ops.iter().any(|op|match op {
 pub(crate) fn related(a:&AbilitySpec)->bool {matches!(a.key.as_str(),ENTRY|ACT|WIN|SHOWN)||owns(&a.ops)||a.modes.iter().any(|m|owns(&m.ops))}
 pub(crate) fn frame_related(f:&ResolutionFrame)->bool {CARDS.contains(&f.source.card.definition.as_str())
     ||matches!(f.ability_key.as_str(),ENTRY|ACT|WIN|SHOWN)||f.steps.iter().any(|s|owns(std::slice::from_ref(&s.op)))}
+fn win_program(contest_id:Option<String>,mode:Option<&str>)->Option<AbilitySpec>{
+    let proof=Op::WM057Win{contest_id};
+    let mut a=ability(WIN,"赢得隐秘对抗：遏制1，然后可检视暗藏者或秘密计划",Timing::Fast,vec![],vec![],vec![proof.clone()],Some(Event::MysticContestWon));
+    a.modes=vec![
+        Mode{key:"repress".into(),label:"仅遏制".into(),targets:vec![],ops:vec![proof.clone(),Op::WM057Repress]},
+        Mode{key:"inspect".into(),label:"遏制并选择可检视的目标".into(),targets:vec![inspection_target()],ops:vec![proof,Op::WM057Repress,Op::WM057Inspect]},
+    ];
+    if let Some(key)=mode{let m=a.modes.iter().find(|m|m.key==key)?.clone();a.label=format!("{}：{}",a.label,m.label);a.targets=m.targets;a.ops=m.ops;a.modes.clear();}
+    Some(a)
+}
 fn canonical(id:&str,a:&AbilitySpec)->Option<AbilitySpec>{
-    let mut expected=definition(id)?.abilities.into_iter().find(|b|b.key==a.key)?;
-    if a.key==WIN {if let Some(Op::WM057Win{contest_id})=a.ops.first(){expected.ops[0]=Op::WM057Win{contest_id:contest_id.clone()};}}
-    Some(expected)
+    if id=="WM057"&&a.key==WIN{
+        let Some(Op::WM057Win{contest_id})=a.ops.first()else{return None;};
+        if !a.modes.is_empty(){return win_program(contest_id.clone(),None);}
+        return ["repress","inspect"].iter().find_map(|key|win_program(contest_id.clone(),Some(key)).filter(|p|same(&p.ops,&a.ops)));
+    }
+    definition(id)?.abilities.into_iter().find(|b|b.key==a.key)
 }
 pub(crate) fn validate_ability(id:&str,a:&AbilitySpec)->RuleResult<()>{
     if canonical(id,a).is_none_or(|b|!same(a,&b)){return Err("黑色新卡须保留完整原能力、费用及目标程序".into());}Ok(())
@@ -98,23 +111,51 @@ impl Game{
         let sources=self.in_play_cards().into_iter().filter(|(r,c)|r.is_some()&&c.definition=="WM057"&&!c.face_down
             &&!self.players[c.controller].eliminated&&self.team(c.controller)==team&&o.participants.contains(&c.controller))
             .map(|(r,c)|self.source_snapshot(c,r)).collect::<Vec<_>>();
-        for source in sources{let mut a=definition("WM057").unwrap().abilities.remove(1);a.ops[0]=Op::WM057Win{contest_id:Some(o.contest_id.clone())};
+        for source in sources{let a=win_program(Some(o.contest_id.clone()),None).unwrap();
             self.effects.push_back(Effect::Declare{declaration:Declaration{actor:source.card.controller,source,ability:a}});}
     }
+    fn wm057_opponents(&self,actor:usize)->Vec<ChoiceOption>{
+        self.players.iter().filter(|p|!p.eliminated&&self.team(p.seat)!=self.team(actor))
+            .map(|p|ChoiceOption{id:player_id(p.seat),label:p.name.clone(),card:None}).collect()
+    }
+    fn wm057_repress_regions(&self,seat:usize)->Vec<(usize,String)>{
+        self.regions.iter().enumerate().filter(|(_,r)|!r.vacant&&r.influence[self.team(seat)]>0).map(|(r,v)|(r,v.card.id.clone())).collect()
+    }
+    fn wm057_repress_options(&self,seat:usize,regions:&[(usize,String)])->Vec<ChoiceOption>{
+        regions.iter().map(|(r,_)|ChoiceOption{id:format!("region:{r}"),label:format!("地区{}：{}（本方势力{}）",r+1,catalog::card(&self.regions[*r].card.definition).name,self.regions[*r].influence[self.team(seat)]),card:None}).collect()
+    }
+    pub(crate) fn wm057_repress_start(&mut self,f:ResolutionFrame)->RuleResult<()>{
+        self.validate_import20_broker_frame(&f)?;let options=self.wm057_opponents(f.actor);if options.is_empty(){return Ok(());}
+        self.choice(f.actor,OPPONENT,OPPONENT_TITLE.into(),options,1,1,None,
+            ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::WM057Opponent});Ok(())
+    }
+    pub(crate) fn wm057_repress_choose(&mut self,f:ResolutionFrame,actor:usize,selected:&[String])->RuleResult<()>{
+        self.validate_import20_broker_frame(&f)?;
+        if actor!=f.actor||f.cursor!=2||selected.len()!=1||!self.wm057_opponents(actor).iter().any(|o|o.id==selected[0]){return Err("信息掮客须指定一名敌方玩家遏制".into());}
+        let seat=self.players.iter().find(|p|player_id(p.seat)==selected[0]).ok_or("遏制玩家不存在")?.seat;
+        let regions=self.wm057_repress_regions(seat);if regions.is_empty(){return self.resolve_frame(f);}
+        let options=self.wm057_repress_options(seat,&regions);
+        self.choice(seat,"target","遏制1：选择移除本方势力的地区".into(),options,1,1,None,
+            ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::RepressOne{seat,regions}});Ok(())
+    }
+    fn wm057_peek_options(&self,f:&ResolutionFrame)->Vec<ChoiceOption>{
+        if f.targets.first().is_some_and(|t|self.valid_bound_target(f.actor,&f.source,t)){
+            vec![ChoiceOption{id:"inspect".into(),label:"检视已绑定的原目标".into(),card:None}]
+        }else{vec![]}
+    }
     pub(crate) fn wm057_inspect_start(&mut self,f:ResolutionFrame)->RuleResult<()>{
-        self.validate_import20_broker_frame(&f)?;let options=self.binding_options(f.actor,&f.source,&inspection_target());
-        if options.is_empty(){return Ok(());}
+        self.validate_import20_broker_frame(&f)?;let options=self.wm057_peek_options(&f);if options.is_empty(){return Ok(());}
         self.choice(f.actor,INSPECT,INSPECT_TITLE.into(),options,0,1,None,
-            ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::WM057InspectTarget});Ok(())
+            ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::WM057InspectMay});Ok(())
     }
     pub(crate) fn wm057_inspect_choose(&mut self,f:ResolutionFrame,actor:usize,selected:&[String])->RuleResult<()>{
         self.validate_import20_broker_frame(&f)?;
-        if actor!=f.actor||f.cursor!=3||selected.len()>1{return Err("信息掮客仅本人可选一次检视".into());}
-        let Some(id)=selected.first()else{return Ok(());};
-        if !self.valid_binding(actor,&f.source,&inspection_target(),id){return Err("信息掮客检视目标无效".into());}
-        if self.shield_stops(actor,id){return Ok(());}
-        let inspected=self.in_play(id).map(|(_,c)|c.clone()).ok_or("原检视对象已离场")?;
-        if !crate::batch4_plans::is_plan(&inspected){self.observe_hidden_inspection(actor,id);}
+        if actor!=f.actor||f.cursor!=3||selected.len()>1||selected.first().is_some_and(|s|s!="inspect"){return Err("信息掮客仅本人可决定是否检视原目标".into());}
+        if selected.is_empty(){return Ok(());}
+        let t=f.targets.first().ok_or("检视缺少原目标")?;
+        if !self.valid_bound_target(actor,&f.source,t){return Ok(());}
+        let inspected=self.in_play(&t.id).map(|(_,c)|c.clone()).ok_or("原检视对象已离场")?;
+        if !crate::batch4_plans::is_plan(&inspected){self.observe_hidden_inspection(actor,&t.id);}
         self.choice(actor,CONFIRM,CONFIRM_TITLE.into(),vec![],0,0,None,
             ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::WM057Inspection{inspected}});
         self.pending.as_mut().unwrap().choice.allow_decline=Some(false);Ok(())
@@ -143,7 +184,12 @@ impl Game{
             let Some(Op::WM057Win{contest_id:Some(id)})=ops.first()else{return Err("信息掮客缺少真实隐秘获胜结果".into());};
             let o=self.mystic_history.iter().find(|o|o.contest_id==*id).ok_or("信息掮客获胜结果不存在")?;
             if o.turn!=self.turn||!o.participants.contains(&s.card.controller)||o.winner_team!=Some(self.team(s.card.controller)){return Err("信息掮客奖励属于原实际获胜玩家".into());}
-            self.validate_mystic_outcome(o)?;a.ops[0]=Op::WM057Win{contest_id:Some(id.clone())};
+            self.validate_mystic_outcome(o)?;
+            let proof=Some(id.clone());
+            a=if ops.len()==1{win_program(proof,None).unwrap()}else{
+                ["repress","inspect"].iter().find_map(|key|win_program(proof.clone(),Some(key)).filter(|p|same(&p.ops,&ops.to_vec())))
+                    .ok_or("信息掮客须保留已选的完整遏制/检视程序")?
+            };
         }Ok(a)
     }
     pub(crate) fn validate_import20_broker_declaration(&self,d:&Declaration)->RuleResult<()>{
@@ -175,7 +221,7 @@ impl Game{
                 ||f.ability_key=="reveal"&&(!f.source.card.face_down||f.source.play_source.is_some()){return Err("黑色新卡派遣/现身须保留真实支付与原地区".into());}return Ok(());
         }
         let ops=f.steps.iter().map(|s|s.op.clone()).collect::<Vec<_>>();let a=self.import20_broker_expected(&f.source,&f.ability_key,&ops)?;
-        if f.source.card.face_down||f.source.play_source.is_some()||f.steps.iter().any(|s|s.context!=f.actor)||!same(&ops,&a.ops)
+        if !a.modes.is_empty()||f.source.card.face_down||f.source.play_source.is_some()||f.steps.iter().any(|s|s.context!=f.actor)||!same(&ops,&a.ops)
             ||f.chosen_region.is_some()||f.targets.len()!=a.targets.len()||f.targets.iter().zip(&a.targets).any(|(t,s)|!same(&t.spec,s)){
             return Err("黑色新卡须保留原完整程序与目标".into());
         }
@@ -196,13 +242,16 @@ impl Game{
                 self.validate_import20_broker_frame(f)?;
                 let (kind,title,options,min,max)=match choice{
                     FrameChoice::BQ081GraveCharacter if f.ability_key==ENTRY&&f.cursor==1=>(GRAVE,GRAVE_TITLE,self.bq081_grave_options(f.actor),1,1),
-                    FrameChoice::WM057InspectTarget if f.ability_key==WIN&&f.cursor==3=>(INSPECT,INSPECT_TITLE,self.binding_options(f.actor,&f.source,&inspection_target()),0,1),
+                    FrameChoice::WM057Opponent if f.ability_key==WIN&&f.cursor==2=>(OPPONENT,OPPONENT_TITLE,self.wm057_opponents(f.actor),1,1),
+                    FrameChoice::WM057InspectMay if f.ability_key==WIN&&f.cursor==3=>(INSPECT,INSPECT_TITLE,self.wm057_peek_options(f),0,1),
                     FrameChoice::WM057Inspection{inspected:c}if f.ability_key==WIN&&f.cursor==3=>{
-                        if !c.face_down||self.in_play(&c.id).is_none_or(|(_,live)|live!=c)||!self.valid_binding(f.actor,&f.source,&inspection_target(),&c.id){return Err("信息掮客确认须保留原暗牌".into());}
+                        if f.targets.first().is_none_or(|t|t.id!=c.id)||!c.face_down||self.in_play(&c.id).is_none_or(|(_,live)|live!=c)||!self.valid_binding(f.actor,&f.source,&inspection_target(),&c.id){return Err("信息掮客确认须保留原暗牌".into());}
                         (CONFIRM,CONFIRM_TITLE,vec![],0,0)
                     },
                     FrameChoice::RepressOne{seat,regions} if f.ability_key==WIN&&f.cursor==2=>{
-                        if f.targets.first().is_none_or(|t|t.id!=player_id(*seat))||p.seat!=*seat||regions.is_empty(){return Err("信息掮客遏制须由原敌方玩家移除势力".into());}return Ok(());
+                        if !self.wm057_opponents(f.actor).iter().any(|o|o.id==player_id(*seat))||p.seat!=*seat||regions.is_empty()
+                            ||!same(regions,&self.wm057_repress_regions(*seat))||!same(&p.choice.options,&self.wm057_repress_options(*seat,regions))
+                            ||p.choice.min!=Some(1)||p.choice.max!=Some(1)||p.choice.allow_decline!=Some(false){return Err("信息掮客遏制须由原敌方玩家移除势力".into());}return Ok(());
                     },
                     FrameChoice::MysticCommit{..}|FrameChoice::MysticReward{..}if f.ability_key==ACT=>return Ok(()),
                     _=>return Err("黑色新卡续体不属于当前执行阶段".into()),

@@ -35,9 +35,14 @@ fn finish(g:&mut Game){for _ in 0..150{if let Some(p)=g.pending.clone(){
     if p.choice.kind==crate::mystic_contest::REWARD_KIND{choose(g,vec![]);}else{resolve_choice(g);}
 }else if !g.stack.is_empty(){pass(g);}else if !g.effects.is_empty(){g.drive().unwrap();restore(g);}else{return;}}panic!("bounded normal continuation");}
 fn broker_win(g:&mut Game){let shown=seed_shown(g,None);hand_contest(g);commits_to_rewards(g,&shown);to_declaration(g,b::WIN);}
-fn repress_to_peek(g:&mut Game){choose(g,vec!["p2".into()]);pass_top(g);let p=g.pending.as_ref().unwrap();
-    assert_eq!(p.seat,2);assert!(matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::RepressOne{..},..}));
-    choose(g,vec!["region:0".into()]);}
+fn bind_broker(g:&mut Game,target:Option<&str>){
+    choose(g,vec![if target.is_some(){"inspect"}else{"repress"}.into()]);
+    if let Some(target)=target{choose(g,vec![target.into()]);}
+    assert!(g.stack.last().is_some_and(|i|i.frame.as_ref().is_some_and(|f|f.ability_key==b::WIN)));
+}
+fn repress_to_peek(g:&mut Game){pass_top(g);assert!(matches!(g.pending.as_ref().unwrap().resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..}));
+    choose(g,vec!["p2".into()]);let p=g.pending.as_ref().unwrap();assert_eq!(p.seat,2);
+    assert!(matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::RepressOne{..},..}));choose(g,vec!["region:0".into()]);}
 
 #[test]
 fn import20_black_original_prints_single_latest_kernel_and_closed_public_gate(){
@@ -152,7 +157,7 @@ fn import20_wm057_source_departure_after_owner_payment_does_not_refund_or_cancel
 #[test]
 fn import20_wm057_actual_win_represses_then_optionally_inspects_without_leaking_four_views(){
     let mut g=game();field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=2;
-    broker_win(&mut g);repress_to_peek(&mut g);assert_eq!(g.regions[0].influence[1],1);choose(&mut g,vec![hidden.clone()]);
+    broker_win(&mut g);bind_broker(&mut g,Some(&hidden));repress_to_peek(&mut g);assert_eq!(g.regions[0].influence[1],1);choose(&mut g,vec!["inspect".into()]);
     let p=g.pending.as_ref().unwrap();assert!(matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Inspection{..},..}));
     let own=serde_json::to_value(g.view(0)).unwrap();assert!(own.to_string().contains("JC056"));
     for seat in [1,3]{assert!(!serde_json::to_value(g.view(seat)).unwrap().to_string().contains("JC056"));}
@@ -161,8 +166,9 @@ fn import20_wm057_actual_win_represses_then_optionally_inspects_without_leaking_
 
 #[test]
 fn import20_wm057_declining_peek_keeps_repression_and_no_hidden_target_still_represses(){
-    for has_hidden in [false,true]{let mut g=game();field(&mut g,"WM057",0);if has_hidden{let c=field(&mut g,"JC056",2);g.board_mut(&c).unwrap().face_down=true;}
-        g.regions[0].influence[1]=1;broker_win(&mut g);choose(&mut g,vec!["p2".into()]);pass_top(&mut g);choose(&mut g,vec!["region:0".into()]);
+    for has_hidden in [false,true]{let mut g=game();field(&mut g,"WM057",0);
+        let hidden=has_hidden.then(||{let c=field(&mut g,"JC056",2);g.board_mut(&c).unwrap().face_down=true;c});
+        g.regions[0].influence[1]=1;broker_win(&mut g);bind_broker(&mut g,hidden.as_deref());repress_to_peek(&mut g);
         if has_hidden{choose(&mut g,vec![]);}assert_eq!(g.regions[0].influence[1],0);assert!(g.pending.is_none());restore(&mut g);
     }
 }
@@ -170,16 +176,16 @@ fn import20_wm057_declining_peek_keeps_repression_and_no_hidden_target_still_rep
 #[test]
 fn import20_wm057_zero_enemy_influence_does_not_block_optional_inspection(){
     let mut g=game();field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;
-    broker_win(&mut g);choose(&mut g,vec!["p2".into()]);pass_top(&mut g);
-    assert!(g.pending.as_ref().is_some_and(|p|matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057InspectTarget,..})));
-    choose(&mut g,vec![hidden]);choose(&mut g,vec![]);restore(&mut g);
+    broker_win(&mut g);bind_broker(&mut g,Some(&hidden));pass_top(&mut g);choose(&mut g,vec!["p2".into()]);
+    assert!(g.pending.as_ref().is_some_and(|p|matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057InspectMay,..})));
+    choose(&mut g,vec!["inspect".into()]);choose(&mut g,vec![]);restore(&mut g);
 }
 
 #[test]
 fn import20_wm057_secret_plan_inspection_uses_real_hidden_society_attachment(){
     let mut g=game();field(&mut g,"WM057",0);fund(&mut g,2,"JC063",1);g.add_society_markers(2,0,1);let hand=held(&mut g,"WM046",2);g.begin_window(Window::Action(1));
     act(&mut g,2,Action{card_id:Some(hand),target_id:Some("society:p2".into()),option:Some("secret-plan".into()),..Action::new("play")});pass_top(&mut g);g.begin_window(Window::Action(0));
-    let plan=g.attachments.iter().find(|a|a.card.definition=="WM046").unwrap().card.id.clone();broker_win(&mut g);choose(&mut g,vec!["p2".into()]);pass_top(&mut g);choose(&mut g,vec![plan.clone()]);
+    let plan=g.attachments.iter().find(|a|a.card.definition=="WM046").unwrap().card.id.clone();broker_win(&mut g);bind_broker(&mut g,Some(&plan));pass_top(&mut g);choose(&mut g,vec!["p2".into()]);choose(&mut g,vec!["inspect".into()]);
     assert!(serde_json::to_string(&g.view(0)).unwrap().contains("WM046"));assert!(!serde_json::to_string(&g.view(1)).unwrap().contains("WM046"));
     assert!(g.attachments.iter().find(|a|a.card.id==plan).unwrap().card.face_down);choose(&mut g,vec![]);restore(&mut g);
 }
@@ -196,7 +202,7 @@ fn import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_o
     use crate::room::{RoomEnvelope,RoomCommand,SessionAction};
     for inspection in [false,true]{let mut g=game();let selected=if inspection{
         field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=1;
-        broker_win(&mut g);repress_to_peek(&mut g);choose(&mut g,vec![hidden]);vec![]
+        broker_win(&mut g);bind_broker(&mut g,Some(&hidden));repress_to_peek(&mut g);choose(&mut g,vec!["inspect".into()]);vec![]
     }else{let target=attachment(&mut g);let c=corpse(&mut g,"JC125",0);enter(&mut g);bound_entry(&mut g,&target);vec![c]};
         let pending=g.pending.clone().unwrap();let room=RoomEnvelope::from_game(g);let command=RoomCommand{command_id:format!("import20-black-once-{inspection}"),expected_version:room.revision,
             action:SessionAction::Game{action:Action{choice_id:Some(pending.choice.id),selected:Some(selected),..Action::new("choose")}}};
@@ -204,4 +210,33 @@ fn import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_o
         let duplicate=room.transition(0,Some(command),0).unwrap();assert_eq!(duplicate.outcome,"rejected");assert!(!duplicate.changed&&duplicate.journal.is_empty());
         let mut room=RoomEnvelope::from_persisted(&duplicate.state).unwrap();assert_eq!(serde_json::to_value(&room).unwrap(),before);restore(&mut room.game);
     }
+}
+
+#[test]
+fn import20_wm057_bound_hidden_real_reveal_response_cancels_before_any_repression(){
+    let mut g=game();field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=1;fund(&mut g,2,"JC063",2);
+    broker_win(&mut g);bind_broker(&mut g,Some(&hidden));for _ in 0..4{if g.can_fast(2){break;}pass(&mut g);}assert!(g.can_fast(2));
+    act(&mut g,2,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});pass_top(&mut g);assert!(g.board(&hidden).is_none());pass_top(&mut g);
+    assert_eq!(g.regions[0].influence[1],1);assert!(g.pending.is_none());assert_eq!(g.resources(2),0);restore(&mut g);
+}
+
+#[test]
+fn import20_wm057_bound_enemy_shield_stops_before_repression_and_never_retargets(){
+    let mut g=game();field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.board_mut(&hidden).unwrap().shield=1;g.regions[0].influence[1]=1;
+    broker_win(&mut g);bind_broker(&mut g,Some(&hidden));pass_top(&mut g);
+    assert_eq!(g.regions[0].influence[1],1);assert_eq!(g.board(&hidden).unwrap().1.shield,0);assert!(g.board(&hidden).unwrap().1.face_down);assert!(g.pending.is_none());restore(&mut g);
+}
+
+#[test]
+fn import20_wm057_no_hidden_candidate_offers_only_targetless_repression(){
+    let mut g=game();field(&mut g,"WM057",0);broker_win(&mut g);let p=g.pending.clone().unwrap();assert_eq!(p.choice.options.iter().map(|o|o.id.as_str()).collect::<Vec<_>>(),["repress"]);
+    reject(&mut g,0,Action{choice_id:Some(p.choice.id),selected:Some(vec!["inspect".into()]),..Action::new("choose")});
+    bind_broker(&mut g,None);pass_top(&mut g);choose(&mut g,vec!["p2".into()]);assert!(g.pending.is_none());restore(&mut g);
+}
+
+#[test]
+fn import20_wm057_mode_and_target_stay_once_with_another_same_controller_win_observer(){
+    let mut g=game();field(&mut g,"WM057",0);field(&mut g,"WM025",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=1;
+    broker_win(&mut g);bind_broker(&mut g,Some(&hidden));repress_to_peek(&mut g);choose(&mut g,vec![]);finish(&mut g);
+    assert_eq!(g.regions[0].influence[1],0);assert_eq!(g.mystic_history.len(),1);assert!(g.entry_order_groups.is_empty());restore(&mut g);
 }
