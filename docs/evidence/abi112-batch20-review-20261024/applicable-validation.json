@@ -1,0 +1,701 @@
+{
+  "format": "abi112-applicable-validation-v1",
+  "utc": "2026-10-24T13:45:09.327939+00:00",
+  "sourceHeadBeforeEvidenceCommit": "a406f100e36f73d2985efe5a44de3be859a01ee8",
+  "runtimeReviewed": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "finalCompilerSource": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+  "fixtureSource": "cce07b1cb55a2f820dfc99d915770089d193d581",
+  "additionalUiSource": "61aa7ebdf638fe626e7fff74ef30ad8ab43090db",
+  "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+  "compilerInputs": 330,
+  "fixtureFiles": 62,
+  "nativeExportGroups": 51,
+  "wasm": {
+    "path": "UndergroundBattle-game-serial/rust-game-wasm/pkg/hegemony_wasm_bg.wasm",
+    "bytes": 8128662,
+    "sha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049"
+  },
+  "sitesLocalWasm": {
+    "path": "UndergroundBattle-game-serial/sites/dist/server/b22cd61c8478407120d045fcf81d876fdd954ae7-hegemony_wasm_bg.wasm",
+    "bytes": 8128662,
+    "sha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049"
+  },
+  "ui": {
+    "files": 72,
+    "passed": 648,
+    "failed": 0,
+    "originalV028TimeoutUnchanged": true
+  },
+  "newUi": {
+    "files": 1,
+    "passed": 12,
+    "failed": 0,
+    "scope": "Native real choice -> Table remount/submit -> actual WASM plus four-seat prompt privacy; component test, not browser"
+  },
+  "worker": {
+    "files": 51,
+    "tests": 632,
+    "pass": 632,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "scope": "Mixed service tests and actual Workerd/HTTP/D1; exact command in receipt; not a real browser"
+  },
+  "inputHarnessSummary": [
+    "ℹ tests 19",
+    "ℹ pass 17",
+    "ℹ fail 2",
+    "ℹ skipped 0"
+  ],
+  "normalReviewChains": {
+    "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+    "currentSourceManifestSha256": "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e",
+    "wasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+    "nativeSha256": "59ec3b08df57c31e6f6fb1403d92d5d7cc4815ce8ee4596e8332b028382c9968",
+    "scenarios": [
+      "cq28-mill-0",
+      "cq28-mill-3",
+      "mystic-order-false",
+      "mystic-order-true",
+      "eye-order-false",
+      "eye-order-true"
+    ],
+    "commands": 159,
+    "views": 660,
+    "duplicates": 159,
+    "fullCatalogEqual": true,
+    "opaqueStateAndU64Exact": true,
+    "scope": "Author actual current WASM/Native Room normal command comparison, not a browser match or independent review."
+  },
+  "sharedRewardChains": {
+    "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+    "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+    "currentSourceManifestSha256": "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e",
+    "wasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+    "wasmBytes": 8128662,
+    "nativeSha256": "a986915cf9e613df8c6a650a8db86421351df32e36745e9d8de667bdb4bb4160",
+    "scenarios": [
+      "WM030",
+      "XQ19",
+      "CQ24",
+      "BQ026"
+    ],
+    "commands": 20,
+    "views": 96,
+    "fullCatalogEqual": true,
+    "opaqueStateAndU64Exact": true,
+    "scope": "Author real WASM Room accept/respond/placement on four real granted-reward recipients. Not browser, all272 card acceptance, or independent review."
+  },
+  "receipts": {
+    "abi112-final-impacted-ui": {
+      "sourceHead": "cce07b1cb55a2f820dfc99d915770089d193d581",
+      "startUtc": "2026-10-24T13:14:57.256325+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 108.407,
+      "logSha256": "60ed0e288ad901ef08cf9a4db1b3b6ca80c885fec8c6a8c4a46b69808f82b41b",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/BQ030Combined.test.jsx",
+        "src/game/BQ035Native93.test.jsx",
+        "src/game/Batch3Integration.test.jsx",
+        "src/game/BlueMinimumScan.test.jsx",
+        "src/game/BoundedEntrySearch.test.jsx",
+        "src/game/ControlTypeBatch.test.jsx",
+        "src/game/CurrentLifecycleChoices.test.jsx",
+        "src/game/DeckSealSearch.test.jsx",
+        "src/game/DefenceEquipmentBatch.test.jsx",
+        "src/game/DreamRevealBatch.test.jsx",
+        "src/game/EquipmentAbilitiesBatch.test.jsx",
+        "src/game/GreenMinimumScan.test.jsx",
+        "src/game/HandDeckBatch.test.jsx",
+        "src/game/HandInteractionsBatch.test.jsx",
+        "src/game/IdentityOverlap.test.jsx",
+        "src/game/Import20CardFaces.test.jsx",
+        "src/game/JC005Scan.test.jsx",
+        "src/game/JC008Scan.test.jsx",
+        "src/game/JC029Scan.test.jsx",
+        "src/game/JC030Scan.test.jsx",
+        "src/game/JC035Native93.test.jsx",
+        "src/game/JC037Integration.test.jsx",
+        "src/game/JC041Native93.test.jsx",
+        "src/game/JC044Native93.test.jsx",
+        "src/game/JC046Integration.test.jsx",
+        "src/game/JC050RegionDestruction.test.jsx",
+        "src/game/JC052Integration.test.jsx",
+        "src/game/JC054Native93.test.jsx",
+        "src/game/JC061Integration.test.jsx",
+        "src/game/JC066Native93.test.jsx",
+        "src/game/JC087Integration.test.jsx",
+        "src/game/JC089Curse.test.jsx",
+        "src/game/JC094Integration.test.jsx",
+        "src/game/JZ22LowHandInfluence.test.jsx",
+        "src/game/JZ31DeathInfluence.test.jsx",
+        "src/game/JZ35Integration.test.jsx",
+        "src/game/JZ46Native93.test.jsx",
+        "src/game/JZ48Criminal.test.jsx",
+        "src/game/JZ49Slow.test.jsx",
+        "src/game/JZ55UniqueDestroy.test.jsx",
+        "src/game/MSJC01Scan.test.jsx",
+        "src/game/MSJC0405.test.jsx",
+        "src/game/MSJC06Scan.test.jsx",
+        "src/game/MSJC07Scan.test.jsx",
+        "src/game/MSJC08Scan.test.jsx",
+        "src/game/MSJC11Scan.test.jsx",
+        "src/game/MillPublicBatch.test.jsx",
+        "src/game/MixedDeckConstruction.test.jsx",
+        "src/game/NativeFixedSlots.test.jsx",
+        "src/game/ProtectionBatch.test.jsx",
+        "src/game/PurpleToolsBatch.test.jsx",
+        "src/game/RegionAura.test.jsx",
+        "src/game/RenownBatch.test.jsx",
+        "src/game/RepressAssetsBatch.test.jsx",
+        "src/game/SevenCardIntegration.test.jsx",
+        "src/game/SocietyScan.test.jsx",
+        "src/game/ThreeColorDeath.test.jsx",
+        "src/game/V028DeckEntry.test.jsx",
+        "src/game/WM023Integration.test.jsx",
+        "src/game/WM038Integration.test.jsx",
+        "src/game/WM056Integration.test.jsx",
+        "src/game/WM062Native93.test.jsx",
+        "src/game/WhiteWoundBatch.test.jsx",
+        "src/game/WoundDefenceBatch.test.jsx",
+        "src/game/XQ18TimeCarrier.test.jsx",
+        "src/game/XQ23Native93.test.jsx",
+        "src/game/XQ23P2Native93.test.jsx",
+        "src/game/XQ24Integration.test.jsx",
+        "src/game/XQ25Integration.test.jsx",
+        "src/game/XQ27HiddenSweep.test.jsx",
+        "src/game/XQ37EntryInfluence.test.jsx",
+        "src/game/YellowSearchBatchScan.test.jsx"
+      ]
+    },
+    "abi112-final-impacted-worker": {
+      "sourceHead": "cce07b1cb55a2f820dfc99d915770089d193d581",
+      "startUtc": "2026-10-24T13:17:09.539188+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 1468.119,
+      "logSha256": "eecffa17b01bc64bf3c159622e92747b396a697ffcada33964bf85cbc47037c3",
+      "command": [
+        "env",
+        "CURRENT_CLOCK_WORKER=/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/abi112-live-index-aligned/local-clock/worker.js",
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "test/batch20-review-normal-current.test.mjs",
+        "test/batch3-abi94-integration.test.mjs",
+        "test/batch4-abi95-integration.test.mjs",
+        "test/batch4-abi95-normal-game.test.mjs",
+        "test/bounded-entry-search.test.mjs",
+        "test/bq035-integration.test.mjs",
+        "test/current-kernel-http.test.mjs",
+        "test/deck-seal-search.test.mjs",
+        "test/gray-lock.test.mjs",
+        "test/integration.test.mjs",
+        "test/jc035-entry.test.mjs",
+        "test/jc035-integration.test.mjs",
+        "test/jc037-integration.test.mjs",
+        "test/jc041-entry.test.mjs",
+        "test/jc041-integration.test.mjs",
+        "test/jc044-entry.test.mjs",
+        "test/jc044-integration.test.mjs",
+        "test/jc046-integration.test.mjs",
+        "test/jc050.test.mjs",
+        "test/jc052-integration.test.mjs",
+        "test/jc054-integration.test.mjs",
+        "test/jc057-entry.test.mjs",
+        "test/jc057-integration.test.mjs",
+        "test/jc060-integration.test.mjs",
+        "test/jc066-entry.test.mjs",
+        "test/jc066-integration.test.mjs",
+        "test/jc095-integration.test.mjs",
+        "test/jz22.test.mjs",
+        "test/jz46-integration.test.mjs",
+        "test/kernel-binding.test.mjs",
+        "test/msjc0405-entry.test.mjs",
+        "test/msjc0405-integration.test.mjs",
+        "test/pass-history-integration.test.mjs",
+        "test/pause-resume-integration.test.mjs",
+        "test/response-preview-integration.test.mjs",
+        "test/sealed-restart-integration.test.mjs",
+        "test/sentinel-local-worker.test.mjs",
+        "test/seven-card-integration.test.mjs",
+        "test/shared-keyword-rewards-current.test.mjs",
+        "test/three-color-death.test.mjs",
+        "test/win-flow-integration.test.mjs",
+        "test/wm062-integration.test.mjs",
+        "test/xq18-carrier.test.mjs",
+        "test/xq23-current-owner-integration.test.mjs",
+        "test/xq23-entry.test.mjs",
+        "test/xq23-integration.test.mjs",
+        "test/xq23-p2-integration.test.mjs",
+        "test/xq24-container-restore.test.mjs",
+        "test/xq24-integration.test.mjs",
+        "test/xq27.test.mjs",
+        "test/xq37.test.mjs"
+      ]
+    },
+    "abi112-final-jc046-positive-pin-fix": {
+      "sourceHead": "61aa7ebdf638fe626e7fff74ef30ad8ab43090db",
+      "startUtc": "2026-10-24T13:44:05.216910+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 1.826,
+      "logSha256": "debd15fffa5df754f5dcc80129c079df937eaf7468baf626d475bd06c2c4ab70",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=JC046 requires the complete current 55 files",
+        "rust-game-wasm/tests/jc046_compare.test.mjs"
+      ]
+    },
+    "abi112-final-review-nodes-ui": {
+      "sourceHead": "61aa7ebdf638fe626e7fff74ef30ad8ab43090db",
+      "startUtc": "2026-10-24T13:42:14.969888+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 2.745,
+      "logSha256": "67e68492dc27dddad8b8a6b9a77b2dba5ff89c67d6ab095188f635c73f95b8d9",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "src/game/ABI112ReviewNormal.test.jsx"
+      ]
+    },
+    "abi112-final-sites-local-build": {
+      "sourceHead": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+      "startUtc": "2026-10-24T13:12:54.318052+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 14.078,
+      "logSha256": "1e949efbf6d2b5c430c140c183d28073d00e5bc3b3e9738e1a5063ad019e24be",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ]
+    },
+    "abi112-final-local-clock-worker": {
+      "sourceHead": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+      "startUtc": "2026-10-24T13:14:39.429981+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.139,
+      "logSha256": "32ecab0b201ac9059e82baa0c82baf623c00b7f684003718e7119a7fdc1a1821",
+      "command": [
+        "node",
+        "tools/build-current-local-worker.mjs",
+        "sites/node_modules",
+        "rust-game-wasm/pkg",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/abi112-live-index-aligned/local-clock"
+      ]
+    },
+    "abi112-live-index-shared-wasm": {
+      "sourceHead": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+      "startUtc": "2026-10-24T13:11:36.157083+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 0.391,
+      "logSha256": "49070d1512be6ae114eb14558c687e49e36869ca83ebebdbb0f1abf42439142c",
+      "command": [
+        "node",
+        "tools/check-shared-keyword-rewards.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/abi112-live-index-native/shared-rewards.json",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/verification/abi112-live-index-shared-wasm-result.json"
+      ]
+    },
+    "abi112-live-index-review-wasm": {
+      "sourceHead": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+      "startUtc": "2026-10-24T13:11:36.593597+00:00",
+      "state": "complete",
+      "exitCode": 0,
+      "seconds": 1.637,
+      "logSha256": "305dc00af4097882ce9b1f250feef53e23978a57b2cb09ca6c9435f2f43072da",
+      "command": [
+        "node",
+        "tools/check-batch20-review-fixes.mjs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/abi112-live-index-native/review-normal-play.json",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/verification/abi112-live-index-review-wasm-result.json"
+      ]
+    }
+  },
+  "rawInputsRetained": [
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/bq030-native-v0111.json",
+      "bytes": 4985774,
+      "sha256": "7da717e37e5a8ff7a0b57fba353771ef55dc97096e82c38edf2d8b6dc944ec05"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/bq030-native-v0112.json",
+      "bytes": 4982174,
+      "sha256": "bee7cf12cb390632c2aeabd8c376c2539a2aa143282d3d7b38ca7afa8935ec4d"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/jc052-native-v0111.json",
+      "bytes": 782611,
+      "sha256": "523491030cc87b6fa134f070b36ea46cff033003d805b5430a56c245c3a5ed7b"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/jc052-native-v0112.json",
+      "bytes": 782248,
+      "sha256": "53e1b3bfa760c071f02753a879bfc1a8e311df4d7d215d3397d104b097a216ea"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/win-flow-native-v0111.json",
+      "bytes": 17101124,
+      "sha256": "3448701cb2b134b9a37debb3fa8bf21f82bdd9d48ea06ab754cfc1bccd85d2ff"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/sites/test/fixtures/win-flow-native-v0112.json",
+      "bytes": 17090654,
+      "sha256": "bfeecf1101c0a868e5b575f7364f842cbb009f340a449a57821c94d14e1c030c"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/bq030Native111.fixture.json",
+      "bytes": 618953,
+      "sha256": "938400b784fc002b15db8378eb8f1dcdf427dd75bb2565e84ee2097bd1100d0d"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/bq030Native112.fixture.json",
+      "bytes": 618503,
+      "sha256": "08913ad47a9a2f1e1fb63f76a61f5115f3b21a88161f9044f26990d6f5791a5b"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/currentLifecycle111.fixture.json",
+      "bytes": 1026282,
+      "sha256": "8fbf3450e4b76718e2b2cc9ba32f44f6df695dd097c581123c90f8328496bab1"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/currentLifecycle112.fixture.json",
+      "bytes": 1025382,
+      "sha256": "23636052d865c0830c3e834cfcfea9f618a7f0372a385d3c2cee51093257d928"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/fixedSlotsNative111.fixture.json",
+      "bytes": 363982,
+      "sha256": "d896aa4c31e6e367cd859ea9af659f6ce15c29e9c3d4a936b003b0e10c6a2d68"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/fixedSlotsNative112.fixture.json",
+      "bytes": 363718,
+      "sha256": "1d1b921c01144eef7b8b8ff3b6686d97443728a3622670c7ede46abe0ae4daca"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc052Native111Current.fixture.json",
+      "bytes": 506584,
+      "sha256": "1d729e84aab8bb317313e6f592a02e763d791209a982ce6e1476c401a88186cd"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc052Native112Current.fixture.json",
+      "bytes": 506221,
+      "sha256": "498832f08565cf089a73771335e0b7313e8f6c20694e0b7aff7653a1bcbe1688"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc061Native111.fixture.json",
+      "bytes": 516802,
+      "sha256": "e913e09151d7975f712399882d945ae758805156806e6f5938a0ea8885e49fe3"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc061Native112.fixture.json",
+      "bytes": 516442,
+      "sha256": "2895d230a5d1ed47239b8dbddf15525cd7a45e4e0cc6ba9efda46814b7007796"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc087Native111.fixture.json",
+      "bytes": 554937,
+      "sha256": "b3162b79cff207ea351ce7fc844f7735edeb949990f24d3cc89c226d69bb2b34"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc087Native112.fixture.json",
+      "bytes": 554577,
+      "sha256": "b5ba90ecfbaf6fd712756f3d587c2fc7259cbb0d2ef67ff9eac75c0ef849ea46"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc094Native111.fixture.json",
+      "bytes": 533571,
+      "sha256": "dc1fdc0fb09657738700cc0c2889f594cafaac346613c66ffeb04334f34adcdc"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jc094Native112.fixture.json",
+      "bytes": 533211,
+      "sha256": "ec188c132cb8e1a12b1dc7718148216deadd6d36acd235e7400b984b91bfb92e"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jz35Native111.fixture.json",
+      "bytes": 491583,
+      "sha256": "4d4262170d56540075e9408048b463eecc1831dedd61750a56014c3069d40c3d"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/jz35Native112.fixture.json",
+      "bytes": 491223,
+      "sha256": "43893d28eb1de2f79b787b12a93afe2752a9ea3caaa13b72b05e4d83c8a10558"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/sevenCardUIV0111.fixture.json",
+      "bytes": 683820,
+      "sha256": "5656c1d2f5f28a20cbe0f57ee298649e96c181a852a5b6ea3a7403891d2e2afd"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/sevenCardUIV0112.fixture.json",
+      "bytes": 683484,
+      "sha256": "1b0db2e4465a56dfd195387789e8824ab100dcf7880da90e52c7ddc13647e667"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm023Native111.fixture.json",
+      "bytes": 523806,
+      "sha256": "4a078c2e6a6e2a87620f1f6e1c4512fe8c67f86ba3cc01f639638c356908c3bf"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm023Native112.fixture.json",
+      "bytes": 523446,
+      "sha256": "00609a0bcf84445f35f7942c927b470b8fcc7dfe6057d311ef51e2ee74778c76"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm038Native111.fixture.json",
+      "bytes": 504987,
+      "sha256": "c8f65956ce400cdda94daa42de0c3f3792b7b18680e898b72343cc0a558aa81e"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm038Native112.fixture.json",
+      "bytes": 504627,
+      "sha256": "32c1eb7dcf1044ff59633ddd845e19fb363218ef86e3aa7ddb46381bd39a953b"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm056Native111.fixture.json",
+      "bytes": 486320,
+      "sha256": "7851b49e6668b00f39fecccd0991f118f352fb230872604767e301a97fe9e615"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/wm056Native112.fixture.json",
+      "bytes": 485960,
+      "sha256": "fbc352d9882bca96f60e468e4d61f849c315bfb39c8b55d6e11b85707fd19a15"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/xq25Native111.fixture.json",
+      "bytes": 495247,
+      "sha256": "8f6bc687e37e1deb2aa84161ca3c1f7e79ebf4de5d21f08500d28c4c54b991ad"
+    },
+    {
+      "path": "UndergroundBattle-game-serial/web/src/game/xq25Native112.fixture.json",
+      "bytes": 494887,
+      "sha256": "0d73b155f0e84d1b45d06c3559d195614149b0bdc141593502a37335f5c23d5f"
+    }
+  ],
+  "original16Unchanged": true,
+  "priorFullNative": {
+    "passed": 2494,
+    "failed": 9,
+    "rerunThisTurn": false,
+    "old95And72NotFullRerun": true
+  },
+  "independentReview": {
+    "initialHead": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+    "staticCardCount": 20,
+    "originalDistinctProbes": 5,
+    "originalPassed": 1,
+    "originalFailed": 4,
+    "fixedProbeRerun": 4,
+    "fixedPassed": 4,
+    "P1Closed": 1,
+    "P2Closed": 1,
+    "scope": "Bounded original findings closure, not blanket release acceptance; no independent platform/full Native execution"
+  },
+  "public": "Overseas remains ABI111; this ABI112 not deployed or tested in real browser",
+  "push": "notAttempted; active dynamic Copilot trigger definition unavailable; latest no-CI constraint",
+  "manualCI": false,
+  "main": false,
+  "deployment": false,
+  "settingsChanged": false,
+  "inputHarness": {
+    "initialInvocation": {
+      "tests": 19,
+      "passed": 17,
+      "failed": 2,
+      "receipt": "abi112-final-impacted-input-harness.json"
+    },
+    "jc046OldPinFixed": {
+      "rerunOnlyOriginalFailedCase": true,
+      "passed": 1,
+      "failed": 0,
+      "receipt": "abi112-final-jc046-positive-pin-fix.json"
+    },
+    "notOneClean19TestInvocation": true,
+    "remainingFailedTest": "MSJC04/MSJC05 all-definition scan-index check;24 pre-existing gated cards,233 supported and first20 intact",
+    "failureAnalysis": {
+      "initialHarness": {
+        "passed": 17,
+        "failed": 2,
+        "log": "serial-intake-20261024/verification/abi112-final-impacted-input-harness.log",
+        "logSha256": "67a303ebb403b1d226e2194ae18f84bca0eb4373e30cc87217ad228044ec1119"
+      },
+      "JC046": "CLI still pins old pool v2.83/193 despite exact current112 fixture and WASM; fix current expected identity only",
+      "scanIndex": {
+        "affected": 24,
+        "allGated": true,
+        "all233SupportedHaveIndices": true,
+        "unchangedFromInitial91": {
+          "web/src/game/cardScans.ts": true,
+          "web/public/card-scans.json": true,
+          "tools/cards/validate-admitted-scans.mjs": true
+        },
+        "entries": [
+          {
+            "id": "BQ041",
+            "supported": false,
+            "missingManifest": false,
+            "missingClient": true
+          },
+          {
+            "id": "JZ38",
+            "supported": false,
+            "missingManifest": false,
+            "missingClient": true
+          },
+          {
+            "id": "JZ40",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "JZ36",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "XG16",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "XG18",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "XQ21",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ027",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ031",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ032",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ036",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ038",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM021",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM022",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM032",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM061",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "BQ082",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "XG21",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "JZ56",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "XQ20",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "LC16",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM037",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM044",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          },
+          {
+            "id": "WM043",
+            "supported": false,
+            "missingManifest": true,
+            "missingClient": true
+          }
+        ],
+        "status": "pre-existing outside batch20; no index changes, no XG21 denied action retried; current20 pixels/index tests pass"
+      },
+      "runtimeChanged": false
+    },
+    "notWaivedOrReportedPassed": true
+  }
+}
