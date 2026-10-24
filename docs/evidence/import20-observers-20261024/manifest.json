@@ -1,0 +1,95 @@
+{
+  "tested_head": "e8ee99ce9e24fa2fad237f29344d09ed7b0c8256",
+  "files": [
+    {
+      "path": "docs/evidence/import20-observers-20261024/fixed-inputs.json",
+      "bytes": 69952,
+      "sha256": "0c4f8de0e2551aa2e0839faf85d4834b8a526c7ab3f49010b21bff5e73dd588e"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-adjacent-corrected-20261024.log.gz",
+      "bytes": 1723,
+      "sha256": "a247e489ce4bcfc013568e6d348816fdac606fa5bdc0673d33a8f00894cf0005"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-adjacent-corrected-20261024.receipt.json.gz",
+      "bytes": 15410,
+      "sha256": "8f7908ed39d39af151fbfaf05c4e10da42bfdbf230623f30f733eee240c7b1b1"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-first-native-20261024.log.gz",
+      "bytes": 2370,
+      "sha256": "c67fb0ef40a9da0b18b5fc5604bfc40026d2f81478aff956c934d1c76de449fa"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-first-native-20261024.receipt.json.gz",
+      "bytes": 14548,
+      "sha256": "ae51522ec11d6412b53ee6052274d5313497cc034d288ec86aa21ea7656dc728"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-adapter-20261024.log.gz",
+      "bytes": 2317,
+      "sha256": "522bdb581fbee4fb883bfcf0efe7148e60a01be8b9666eda5e7117ab184758fc"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-adapter-20261024.receipt.json.gz",
+      "bytes": 14552,
+      "sha256": "e13053a224e2e92586f054d8d4483fbf7d20378bc65e999e6267191477d47845"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-corrected-20261024.log.gz",
+      "bytes": 1757,
+      "sha256": "1e5054cb8c33c0142286f3d27d69d6a21f731fbb154b63a0b47abcb5e18281ef"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-corrected-20261024.receipt.json.gz",
+      "bytes": 14547,
+      "sha256": "b6fde78f5b72c74b1e667259c35130d6422a1ad82b3737ad4707752b3bb211d9"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-host-20261024.log.gz",
+      "bytes": 2049,
+      "sha256": "92e02ff56d9b000a63010facf3fcf2c02bb09885faa52a4c1a4d0a953d8b29fb"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-native-host-20261024.receipt.json.gz",
+      "bytes": 14552,
+      "sha256": "5982ac394c936d051faf5e16bc82ed41de941afda91b8955ba6e0ad73c55407e"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-normal-adjacent-20261024.log.gz",
+      "bytes": 1959,
+      "sha256": "7d8fb98a9d6d31378415b0024a4245ee5fb900a47c1bfc8aa104166f4d084b9c"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-normal-adjacent-20261024.receipt.json.gz",
+      "bytes": 15408,
+      "sha256": "f3d2328ab60c985ebbb257a6db776fa979e167ccb8d069e74979607460f1c23a"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-source-final-20261024.log.gz",
+      "bytes": 917,
+      "sha256": "bc3587b3f4091acfa7a904a1aed18980afee0b2821a14519357f87f3007d4acb"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/import20-observers-source-final-20261024.receipt.json.gz",
+      "bytes": 14594,
+      "sha256": "74c7e52965de5fc95ad8277631b2c11f1edf8271f2d6dea78a6d15ae573e9c0b"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/jc034-existing-fixture-analysis.json",
+      "bytes": 1722,
+      "sha256": "c7484a8373c193ba94bb123fda75b47c8998a0632a2a6a6e1e81890851b1505e"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/result.json",
+      "bytes": 20066,
+      "sha256": "b602bf358b17b10c5e2f11e0c13372c5a5fa481f583b09ca1735f1f3fcac1edc"
+    },
+    {
+      "path": "docs/evidence/import20-observers-20261024/rule-evidence.json",
+      "bytes": 1722,
+      "sha256": "fb6a679d1274bdb0cf96588530cf3e284806e648a156ab35071ca8919515a7b4"
+    }
+  ]
+}
