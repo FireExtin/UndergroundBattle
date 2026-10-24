@@ -428,6 +428,89 @@ impl Game {
         Err("CQ18 departure WIP".into())
     }
     pub(crate) fn validate_sentinel_pair_state(&self) -> RuleResult<()> {
+        for item in &self.stack {
+            if let Some(f) = &item.frame {
+                if frame_related(f) && !self.validated_cross_card_frame(f)? {
+                    self.validate_sentinel_pair_frame(f)?;
+                    let play = matches!(f.ability_key.as_str(), "attach" | "deploy" | "reveal");
+                    if item.id != f.frame_id
+                        || item.controller != f.actor
+                        || item.card.is_some() != play
+                        || item.reveal != (f.ability_key == "reveal")
+                        || f.cursor != 0
+                        || !matches!(f.guard, GuardState::Unchecked)
+                        || item.target != f.targets.first().map(|t| t.id.clone())
+                    {
+                        return Err("哨兵双卡响应帧外壳须保持实际原来源与目标".into());
+                    }
+                }
+            }
+        }
+        for e in &self.effects {
+            match e {
+                Effect::Declare { declaration: d }
+                    if related(&d.source.card.definition, &d.ability)
+                        && !self.validated_cross_card_declaration(d)? =>
+                {
+                    self.validate_sentinel_pair_declaration(d)?
+                }
+                Effect::Frame { frame: f }
+                    if frame_related(f) && !self.validated_cross_card_frame(f)? =>
+                {
+                    self.validate_sentinel_pair_frame(f)?
+                }
+                _ => {}
+            }
+        }
+        if let Some(p) = &self.pending {
+            match &p.resolution {
+                ChoiceResolution::Declare {
+                    declaration: d,
+                    stage,
+                } if related(&d.source.card.definition, &d.ability)
+                    && !self.validated_cross_card_declaration(d)? =>
+                {
+                    self.validate_sentinel_pair_declaration(d)?;
+                    let expected = Choice {
+                        id: p.choice.id.clone(),
+                        kind: "trigger".into(),
+                        title: format!(
+                            "{}：{}",
+                            catalog::card(&d.source.card.definition).name,
+                            d.ability.label
+                        ),
+                        description: "选择符合数量限制的选项，然后确认。".into(),
+                        player_id: player_id(d.actor),
+                        options: vec![ChoiceOption {
+                            id: "accept".into(),
+                            label: "发动触发能力".into(),
+                            card: None,
+                        }],
+                        preview_cards: vec![],
+                        min: Some(0),
+                        max: Some(1),
+                        amount: None,
+                        allow_decline: Some(true),
+                    };
+                    if p.seat != d.actor
+                        || p.choice.id.is_empty()
+                        || !matches!(stage, DeclareChoice::Accept)
+                        || !same(&p.choice, &expected)
+                    {
+                        return Err("哨兵双卡触发只接受原玩家一次发动或放弃".into());
+                    }
+                }
+                ChoiceResolution::Frame { frame: f, .. }
+                    if frame_related(f) && !self.validated_cross_card_frame(f)? =>
+                {
+                    if f.ability_key != SHOWN {
+                        return Err("哨兵双卡原子能力没有临时帧内选择".into());
+                    }
+                    self.validate_wm043_post(f)?;
+                }
+                _ => {}
+            }
+        }
         Ok(())
     }
 }
