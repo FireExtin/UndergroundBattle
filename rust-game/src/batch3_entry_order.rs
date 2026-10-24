@@ -14,6 +14,7 @@ fn key(d:&Declaration)->String{
     // Qualify the existing reference with its actual observation, not just the
     // observer UID and printed ability shared by all of those entries.
     let event=match d.ability.ops.as_slice(){
+        [crate::rules::Op::CQ18LeaveDraw{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::BQ031AttachmentDiscard{observation:Some(o)}]=>Some(o.event_id.as_str()),
         [crate::rules::Op::BQ038RaidFeed{observation:Some(o)}]=>Some(o.raid.frame_id.as_str()),
         [crate::rules::Op::WM044Inspect{contest_id:Some(id)}] | [crate::rules::Op::MysticWin{contest_id:Some(id)},..] | [crate::rules::Op::BQ031WinFeed{contest_id:Some(id)}]=>Some(id.as_str()),
@@ -44,7 +45,7 @@ impl Game{
     pub(crate) fn batch3_register_entry_order(&mut self,entry:&str,previous:usize){
         let mut tail=self.effects.split_off(previous).into_iter().collect::<Vec<_>>();
         let all_decl=tail.iter().all(|e|matches!(e,Effect::Declare{..}));
-        let introduced=tail.iter().any(|e|matches!(e,Effect::Declare{declaration:d} if matches!(d.source.card.definition.as_str(),"WM044"|"WM022"|"WM032"|"BQ031"|"BQ032"|"BQ036"|"BQ038"|"XG18"|"WM058"|"XG17"|"BQ029"|"BQ037"|"XQ26"|"WM060"|"BQ041"|"JZ38"|"XG13"|"CQ24"|"BQ093")));
+        let introduced=tail.iter().any(|e|matches!(e,Effect::Declare{declaration:d} if matches!(d.source.card.definition.as_str(),"WM044"|"WM022"|"WM032"|"BQ031"|"BQ032"|"BQ036"|"BQ038"|"XG18"|"WM058"|"XG17"|"BQ029"|"BQ037"|"XQ26"|"WM060"|"BQ041"|"JZ38"|"XG13"|"CQ24"|"BQ093"|"CQ18"|"CQ19")));
         if all_decl && introduced && tail.len()>1{
             tail.sort_by_key(|e|if let Effect::Declare{declaration:d}=e{(self.team(d.actor)!=self.first_team,d.actor)}else{unreachable!()});
             for actor in 0..self.players.len(){let remaining=tail.iter().filter_map(|e|if let Effect::Declare{declaration:d}=e{(d.actor==actor).then(||key(d))}else{None}).collect::<Vec<_>>();

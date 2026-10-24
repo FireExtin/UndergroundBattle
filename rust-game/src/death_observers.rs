@@ -56,12 +56,13 @@ impl Game {
                 self.current_subtypes(c).iter().any(|s| s == "吸血鬼"));
             let renown = self.board(&id).is_some_and(|(_, c)| self.has_renown(c));
             let black_death = self.capture_black_death(&id);
-            (id, cause, source, vampire, renown, black_death, statue_deaths)
+            let cq18=self.capture_cq18_departure(&id);
+            (id, cause, source, vampire, renown, black_death, statue_deaths, cq18)
         }).collect::<Vec<_>>();
         let group_instance = deaths.first().map(|(id,..)|id.clone());
-        for (id, cause, source, vampire, renown, black_death, statue_deaths) in deaths {
+        for (id, cause, source, vampire, renown, black_death, statue_deaths, cq18) in deaths {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
-            if let Some(mut receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source), Some(&ghoul_sources)) {
+            if let Some(mut receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source), Some(&ghoul_sources), Some(cq18)) {
                 // Freeze dynamic renown before simultaneous departures remove
                 // a grant or its denial. Receipts remain internal, not saved.
                 receipt.was_renown = renown;

@@ -1530,13 +1530,14 @@ impl Game {
         cause: RemovalCause,
         simultaneous_source: Option<SourceSnapshot>,
         ghoul_sources: Option<&[SourceSnapshot]>,
+        cq18_observations: Option<Vec<Declaration>>,
     ) -> Option<crate::death_observers::CharacterDeathReceipt> {
         // Host departure can remove an attached control grant. Freeze before it;
         // an already captured simultaneous lethal-set snapshot remains authoritative.
         let snapshot = simultaneous_source.or_else(|| self.in_play(target)
             .map(|(region, c)| self.source_snapshot(c, region)));
         let was_renown = self.in_play(target).is_some_and(|(_, c)| self.has_renown(c));
-        if let Some((_, c)) = self.leave_in_play(target) {
+        if let Some((_, c)) = self.leave_in_play_observed(target,cq18_observations) {
             let snapshot = snapshot.expect("board departure has a pre-departure snapshot");
             let controller = snapshot.card.controller;
             let character =

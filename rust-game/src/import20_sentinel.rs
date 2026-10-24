@@ -195,7 +195,7 @@ impl Game {
         let attachments = self
             .attachments
             .iter()
-            .filter(|a| ids.contains(&a.card.id))
+            .filter(|a| a.card.id != source.card.id && ids.contains(&a.card.id))
             .cloned()
             .collect();
         let mut payment = ChargePayment {
@@ -306,6 +306,9 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_sentinel_pair_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.ability_key == SHOWN {
+            return self.validate_wm043_post(f);
+        }
         self.validate_resource_frame(f)?;
         if self.validated_cross_card_frame(f)? {
             return Ok(());
@@ -418,14 +421,145 @@ impl Game {
         };
         self.damage([(f.targets[0].id.clone(), p.amount)].into_iter().collect())
     }
-    pub(crate) fn cq18_entry_locks(&mut self, _f: &ResolutionFrame) -> RuleResult<()> {
-        Err("CQ18 entry WIP".into())
+    pub(crate) fn cq18_entry_locks(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_sentinel_pair_frame(f)?;
+        let Some(region) = self.original_region(&f.source) else {
+            return Ok(());
+        };
+        let targets = self
+            .in_play_cards()
+            .into_iter()
+            .filter(|(r, c)| {
+                *r == Some(region)
+                    && self.team(c.controller) != self.team(f.actor)
+                    && (c.face_down || catalog::has_kind(catalog::card(&c.definition), "character"))
+            })
+            .map(|(_, c)| c.id.clone())
+            .collect::<Vec<_>>();
+        for id in targets {
+            if !self.shield_stops(f.actor, &id) {
+                if let Some(c) = self.board_mut(&id) {
+                    c.lock_markers = c.lock_markers.checked_add(1).ok_or("锁定标志溢出")?;
+                }
+            }
+        }
+        Ok(())
     }
-    pub(crate) fn cq18_leave_draw(&mut self, _f: &ResolutionFrame) -> RuleResult<()> {
-        Err("CQ18 leave WIP".into())
+    /// Freeze current enemy/control and inherited locks before any host cleanup.
+    pub(crate) fn capture_cq18_departure(&mut self, id: &str) -> Vec<Declaration> {
+        let sources = self
+            .regions
+            .iter()
+            .enumerate()
+            .flat_map(|(r, x)| x.cards.iter().map(move |c| (r, c)))
+            .filter(|(_, c)| {
+                c.definition == "CQ18" && !c.face_down && !self.players[c.controller].eliminated
+            })
+            .map(|(r, c)| self.source_snapshot(c, Some(r)))
+            .collect::<Vec<_>>();
+        if sources.is_empty() {
+            return vec![];
+        }
+        let Some((region, c)) = self.in_play(id).filter(|(_, c)| {
+            c.face_down || catalog::has_kind(catalog::card(&c.definition), "character")
+        }) else {
+            return vec![];
+        };
+        if !self.sentinel_has_effective_lock(c) {
+            return vec![];
+        }
+        let departed = self.source_snapshot(c, region);
+        let ids = self.marker_carriers(c);
+        let attachments = self
+            .attachments
+            .iter()
+            .filter(|a| a.card.id != id && ids.contains(&a.card.id))
+            .cloned()
+            .collect();
+        let eligible = sources
+            .into_iter()
+            .filter(|s| self.team(s.card.controller) != self.team(c.controller))
+            .collect::<Vec<_>>();
+        if eligible.is_empty() {
+            return vec![];
+        }
+        let observation = LockedDeparture {
+            event_id: self.id(),
+            turn: self.turn,
+            departed,
+            attachments,
+        };
+        eligible
+            .into_iter()
+            .map(|source| {
+                let mut a = definition("CQ18").unwrap().abilities.remove(1);
+                a.ops = vec![Op::CQ18LeaveDraw {
+                    observation: Some(Box::new(observation.clone())),
+                }];
+                Declaration {
+                    actor: source.card.controller,
+                    source,
+                    ability: a,
+                }
+            })
+            .collect()
     }
-    fn cq18_departure_valid(&self, _actor: usize, _ops: &[Op]) -> RuleResult<()> {
-        Err("CQ18 departure WIP".into())
+    fn cq18_departure_valid(&self, actor: usize, ops: &[Op]) -> RuleResult<()> {
+        let [Op::CQ18LeaveDraw {
+            observation: Some(o),
+        }] = ops
+        else {
+            return Err("任秋雨离场抓牌须引用原实际离场".into());
+        };
+        let c = &o.departed.card;
+        if o.turn != self.turn
+            || !self.mystic_instance_valid(&o.event_id)
+            || c.controller >= self.players.len()
+            || c.owner >= self.players.len()
+            || self.team(actor) == self.team(c.controller)
+            || !self.mystic_instance_valid(&c.id)
+            || self.in_play(&c.id).is_some()
+            || !catalog::catalog()
+                .cards
+                .iter()
+                .any(|d| d.id == c.definition && (c.face_down || catalog::has_kind(d, "character")))
+        {
+            return Err("任秋雨须观察原敌方角色或暗藏者的实际离场".into());
+        }
+        self.mobility_immutable_identity(c)?;
+        let mut seen = BTreeSet::from([c.id.as_str()]);
+        let mut left = o.attachments.iter().collect::<Vec<_>>();
+        let mut locked = c.lock_markers > 0;
+        while !left.is_empty() {
+            let before = left.len();
+            left.retain(|a| {
+                if seen.contains(a.host_id.as_str()) && seen.insert(a.card.id.as_str()) {
+                    locked |= a.card.lock_markers > 0;
+                    false
+                } else {
+                    true
+                }
+            });
+            if left.len() == before {
+                return Err("离场锁定见证须为原对象的有限实际附属链".into());
+            }
+        }
+        if !locked
+            || o.attachments.iter().any(|a| {
+                a.card.face_down && !crate::batch4_plans::secret(&a.card)
+                    || !catalog::catalog()
+                        .cards
+                        .iter()
+                        .any(|d| d.id == a.card.definition && catalog::has_kind(d, "attachment"))
+            })
+        {
+            return Err("离场对象须在离场时实际具有锁定".into());
+        }
+        Ok(())
+    }
+    pub(crate) fn cq18_leave_draw(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_sentinel_pair_frame(f)?;
+        self.draw(f.actor, 1)
     }
     pub(crate) fn validate_sentinel_pair_state(&self) -> RuleResult<()> {
         for item in &self.stack {

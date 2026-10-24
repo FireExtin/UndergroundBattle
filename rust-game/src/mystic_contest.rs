@@ -251,7 +251,7 @@ impl Game {
             "WM032" if !shown.destroyed_regions.is_empty() || shown.destruction_markers > 0 => 3,
             "WM061" | "WM043" => 2,
             "BQ064" => 4,
-            "WM037" | "BQ081" => 1,
+            "CQ18" | "WM037" | "BQ081" => 1,
             _ => 0,
         }
     }

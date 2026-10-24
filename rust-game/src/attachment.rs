@@ -122,12 +122,14 @@ impl Game {
             while seen.insert(next) { if let Some(a)=self.attachments.iter().find(|a|a.card.id==next) {depth+=1;next=&a.host_id;} else {break;} }
             std::cmp::Reverse(depth)
         });
+        let observations=ids.iter().flat_map(|id|self.capture_cq18_departure(id)).collect::<Vec<_>>();
         let mut cards = std::collections::BTreeMap::new();
         for id in removing {
             self.return_sealed_cards(&id);
             let (_, c) = self.remove_board(&id).ok_or("赢区回底对象已失效")?;
             cards.insert(id, c);
         }
+        self.effects.extend(observations.into_iter().map(|declaration|Effect::Declare{declaration}));
         for id in batch.hand {
             let c = self.reset_zone_card(cards.remove(&id).ok_or("撤回对象已失效")?);
             self.players[c.owner].hand.push(c);
@@ -230,6 +232,10 @@ impl Game {
         self.leave_in_play(id).map(|(_, c)| (region, c))
     }
     pub(crate) fn leave_in_play(&mut self, id: &str) -> Option<(Option<usize>, Card)> {
+        self.leave_in_play_observed(id,None)
+    }
+    pub(crate) fn leave_in_play_observed(&mut self,id:&str,observations:Option<Vec<Declaration>>)->Option<(Option<usize>,Card)>{
+        let observations=observations.unwrap_or_else(||self.capture_cq18_departure(id));
         // Freeze the last controller before host departure removes control grants.
         let warden = self.in_play(id).filter(|(_, c)| c.definition == "BQ053" && !c.face_down)
             .map(|(r, c)| self.source_snapshot(c, r));
@@ -241,6 +247,7 @@ impl Game {
         // The old target/source identity cannot carry its effects into a new one.
         self.settle_controls();
         if removed.is_some() {
+            self.effects.extend(observations.into_iter().map(|declaration|Effect::Declare{declaration}));
             if let Some(source) = warden { self.emit_event(source.card.controller, source, crate::rules::Event::Leave); }
         }
         removed

@@ -5,6 +5,9 @@ pub(crate) const PLAY: &str = "wm043-precision-strike";
 pub(crate) const SHOWN: &str = "wm043-shown-lock";
 pub(crate) const CHOICE: &str = "wm043-shown-target";
 const TITLE: &str = "精准打击：可以在目标角色或暗藏者上放置一个锁定标志";
+fn post_config(id:&str)->Option<(&'static str,&'static str,&'static str)>{match id{
+    "WM043"=>Some((SHOWN,CHOICE,TITLE)),
+    "CQ18"=>Some((crate::import20_sentinel::SHOWN,"import20-cq18-shown-target","任秋雨：可以在目标角色或暗藏者上放置一个锁定标志")),_=>None}}
 fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
@@ -50,18 +53,19 @@ impl Game {
     }
     pub(crate) fn wm043_shown_after(&mut self, o: &ContestOutcome, index: usize) -> RuleResult<()> {
         let shown = o.shown.get(index).ok_or("精准打击展示索引无效")?;
-        if shown.card.definition != "WM043" || !self.wm044_has_sentinel(shown.seat) { return Ok(()); }
+        let Some((key,kind,title))=post_config(&shown.card.definition)else{return Ok(());};
+        if !self.wm044_has_sentinel(shown.seat) { return Ok(()); }
         let source = self.source_snapshot(&shown.card, None);
         let options = self.binding_options(shown.seat, &source, &lock_target());
         if options.is_empty() { return Ok(()); }
-        let f = ResolutionFrame { resource_payments: vec![], frame_id: self.id(), ability_key: SHOWN.into(), actor: shown.seat, source,
+        let f = ResolutionFrame { resource_payments: vec![], frame_id: self.id(), ability_key: key.into(), actor: shown.seat, source,
             targets: vec![], already_paid: vec![], guard: GuardState::Accepted, cursor: 1,
             steps: vec![Step { context: shown.seat, op: Op::WM043ShownLock { contest_id: o.contest_id.clone(), index } }],
             chosen_region: None };
         let Some(state) = &mut self.mystic_contest else { return Err("精准打击后置缺少原对抗".into()); };
         let MysticPhase::After { post_frame, .. } = &mut state.phase else { return Err("精准打击须在展示后结算".into()); };
         *post_frame = Some(Box::new(f.clone()));
-        self.choice(shown.seat, CHOICE, TITLE.into(), options, 0, 1, None,
+        self.choice(shown.seat, kind, title.into(), options, 0, 1, None,
             ChoiceResolution::Frame { frame: Box::new(f), choice: FrameChoice::WM043ShownTarget });
         Ok(())
     }
@@ -72,7 +76,8 @@ impl Game {
         let MysticPhase::After { outcome, next_shown, post_frame } = &state.phase
             else { return Err("精准打击后置阶段不符".into()); };
         let shown = outcome.shown.get(*index).ok_or("精准打击原展示索引不符")?;
-        if shown.card.definition != "WM043" || f.ability_key != SHOWN || f.actor != shown.seat
+        let Some((key,_,_))=post_config(&shown.card.definition)else{return Err("展示后锁定来源不是原印刷卡".into());};
+        if f.ability_key != key || f.actor != shown.seat
             || *context != f.actor || *next_shown != index + 1 || f.cursor != 1
             || !matches!(f.guard, GuardState::Accepted) || !f.targets.is_empty() || !f.already_paid.is_empty()
             || f.chosen_region.is_some() || !same(&f.source, &self.source_snapshot(&shown.card, None))
