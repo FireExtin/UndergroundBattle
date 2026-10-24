@@ -18,8 +18,8 @@ const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/jc046.json.
 const catalog=JSON.parse(abi.catalog());
 assert.deepEqual(catalog,fixtures.catalog);
 assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
-assert.equal(catalog.cardPoolVersion,'limited-v2.83-batch20-next');
-assert.equal(catalog.cards.length,193);
+assert.equal(catalog.cardPoolVersion,'limited-v2.102-import20-rulings-complete');
+assert.equal(catalog.cards.length,272);
 assert.equal(fixtures.scenarios.length,37);
 assert.equal(new Set(fixtures.scenarios.map(s=>s.name)).size,37);
 

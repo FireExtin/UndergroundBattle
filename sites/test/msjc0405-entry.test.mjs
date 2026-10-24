@@ -22,11 +22,11 @@ for(const societyId of ['MSJC04','MSJC05'])test(`${societyId} enters with a name
     const response=await mf.dispatchFetch('http://localhost'+route,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});
     return {status:response.status,body:await response.json()};
   };
-  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
-  assert.equal(catalog.cards.length,193);assert.equal(catalog.societies.length,10);
+  const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
+  assert.equal(catalog.cards.length,272);assert.equal(catalog.societies.length,12);
   const draft=(id,count=25)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count;const cards=[];
-    for(const card of catalog.cards.filter(c=>c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {
+    for(const card of catalog.cards.filter(c=>c.supported&&c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {
       const n=Math.min(left,card.deckCopyLimit??left);if(n)cards.push({cardId:card.id,count:n});left-=n;
     }
     assert.equal(left,0);cards.push({cardId:'JC125',count:50-count});

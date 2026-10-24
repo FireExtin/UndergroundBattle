@@ -13,12 +13,12 @@ import {RoomService,digest} from '../src/service.mjs';
 import {routeKernels} from '../src/kernel-router.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 for(const [label,fixture] of [
-  ['inspections and random traps','abi94-twenty-inspections.current.json.gz'],
-  ['attached-character atomic cleanup','abi94-twenty-cleanup.current.json.gz'],
-  ['Phoebe targeted-spell rewards','abi94-twenty-cq07.current.json.gz']
+  ['inspections and random traps','batch3-inspections.json.gz'],
+  ['attached-character atomic cleanup','batch3-cleanup.json.gz'],
+  ['Phoebe targeted-spell rewards','batch3-cq07.json.gz']
 ]){
-const native=loadCurrentFixture('docs/evidence/batch20-third-2026-10-21/'+fixture);
-test(`ABI94 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{
+const native=loadCurrentFixture('rust-game-wasm/tests/current111/'+fixture);
+test(`current ABI111 ${label} and four private views survive D1 reopen and identical receipts`,async t=>{
   const persist=mkdtempSync(join(tmpdir(),'batch3-abi94-d1-'));
   const options=convertV4MiniflareOptions({name:'batch3-abi94',resourcePersistencePath:persist,cf:false,
     modules:[{type:'ESModule',path:resolve('dist/server/index.js')},...readdirSync('dist/server').filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:resolve('dist/server',n)}))],compatibilityDate:'2026-10-02',d1Databases:{DB:'batch3-abi94'}});

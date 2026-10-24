@@ -1,16 +1,27 @@
 // Local workerd + real HTTP/service/store + persisted D1. Not browser evidence.
-import test from 'node:test';
+import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,readdirSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync,readdirSync,mkdtempSync,rmSync,existsSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {join,resolve} from 'node:path';
 import {tmpdir} from 'node:os';
-import {pathToFileURL,fileURLToPath} from 'node:url';
+import {fileURLToPath} from 'node:url';
+import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
+import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {digest} from '../src/service.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
-const {Miniflare,convertV4MiniflareOptions}=await import(pathToFileURL(join(process.env.SENTINEL_NODE_MODULES,'miniflare/dist/src/index.js')));
-const worker=resolve(process.env.SENTINEL_WORKER_DIR),project=fileURLToPath(new URL('../',import.meta.url));
-const scenarios=process.env.SENTINEL_WORKER_WITNESSES.split(':').flatMap(p=>JSON.parse(readFileSync(p,'utf8')));
+const project=fileURLToPath(new URL('../',import.meta.url));
+const root=existsSync(join(project,'web/package.json'))?project:fileURLToPath(new URL('../../',import.meta.url));
+const ownOutput=process.env.SENTINEL_WORKER_DIR?null:mkdtempSync(join(tmpdir(),'sentinel-current-'));
+const worker=process.env.SENTINEL_WORKER_DIR?resolve(process.env.SENTINEL_WORKER_DIR):join(ownOutput,'worker');
+if(ownOutput){
+ execFileSync(process.execPath,[join(root,'tools/build-current-local-worker.mjs'),join(project,'node_modules'),join(root,'rust-game-wasm/pkg'),worker]);
+ after(()=>rmSync(ownOutput,{recursive:true,force:true}));
+}
+const scenarios=process.env.SENTINEL_WORKER_WITNESSES
+ ?process.env.SENTINEL_WORKER_WITNESSES.split(':').flatMap(p=>JSON.parse(readFileSync(p,'utf8')))
+ :loadCurrentFixture('rust-game-wasm/tests/current111/sentinel-worker.json.gz');
 async function harness(t){
  const persist=mkdtempSync(join(tmpdir(),'sentinel-worker-'));
  const options=convertV4MiniflareOptions({name:'sentinel-local',resourcePersistencePath:persist,modulesRoot:worker,modules:[{type:'ESModule',path:join(worker,'worker.js')},{type:'CompiledWasm',path:join(worker,'candidate.wasm')}],compatibilityDate:'2026-10-02',cf:false,d1Databases:{DB:'sentinel-local'}});

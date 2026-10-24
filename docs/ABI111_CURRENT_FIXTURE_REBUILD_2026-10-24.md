@@ -54,6 +54,13 @@ The following tools select and package the newly generated evidence:
   to the actual current WASM before writing the new `Native111.fixture.json.gz`
   files. Historical raw-format names are schema labels; they do not load an old
   kernel. Complete catalog comparisons and source-binding checks are retained.
+* Fresh third-batch and JZ56 platform witnesses use the same current-source
+  envelope. `current-sentinel.mjs` compares the new Native command/view and
+  duplicate receipts before packaging the Sentinel witness.
+* `build-current-local-worker.mjs` creates an isolated, temporary clock wrapper
+  around the actual current production module. The Sentinel test now builds
+  this default harness itself; it needs no previously exported environment or
+  isolated historical candidate. Its temporary output is never deployed.
 
 The historical `current_ui_worker_fixtures` layout adapter was inspected and was
 **not run**. No historical state was relabeled, no live Room was imported, and
@@ -73,3 +80,11 @@ test, not a browser match and not coverage of every new card. Public browser
 evidence and later concentrated rerun totals are recorded separately with
 their exact candidate identities. The initial red results remain part of the
 evidence; corrected directed passes do not rewrite them.
+
+The completed reruns are recorded in
+`BATCH20_ABI111_POSTPUBLICATION_VERIFICATION_2026-10-24.md`. In particular,
+JZ56 remains `supported:false`: Native implementation and public admission are
+different boundaries. A mistaken test-only admission assertion was corrected
+back to that existing boundary; no production flag changed. Historical test
+filenames/titles such as `Native93` remain in some logs, while their loaded
+fixture, whole-catalog comparisons and executable WASM bind the current ABI111.

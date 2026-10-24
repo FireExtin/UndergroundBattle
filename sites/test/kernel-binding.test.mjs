@@ -11,7 +11,7 @@ test('candidate package contains exactly the current ABI111 bytes and catalog id
   assert.equal(catalog.cards.length,272);
   assert.equal(catalog.cards.filter(c=>c.supported).length,233);
   assert.equal(catalog.cards.filter(c=>!c.supported).length,39);
-  assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,true);
+  assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
   assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));
   assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
   assert.deepEqual(readdirSync('generated').sort(),['hegemony_wasm.js','hegemony_wasm_bg.wasm']);

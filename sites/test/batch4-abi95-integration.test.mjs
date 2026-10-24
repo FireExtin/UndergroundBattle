@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 import {harness} from './xq23-http-harness.mjs';
-const fixture=loadCurrentFixture('docs/evidence/abi95-platform-20261023/jz56.current.json.gz');
-for(const scenario of fixture.cases)test(`ABI95 JZ56 actual Worker ${scenario.name}`,async t=>{
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/jz56-platform.json.gz');
+for(const scenario of fixture.cases)test(`current ABI111 JZ56 actual Worker ${scenario.name}`,async t=>{
  const h=await harness(t,scenario);let projections=0,reopened=0;const reopenedKinds=new Set();
  const allViews=async views=>{for(let seat=0;seat<4;seat++){const r=await h.api('state',seat);assert.equal(r.status,200,JSON.stringify(r.body));assertPublicView(r.body,views[seat]);projections++;}};
  const initial=await h.snapshot();await allViews(scenario.initial.views);assert.deepEqual(await h.snapshot(),initial);
@@ -30,7 +30,7 @@ for(const scenario of fixture.cases)test(`ABI95 JZ56 actual Worker ${scenario.na
  t.diagnostic(JSON.stringify({scenario:scenario.name,nativeCommands:scenario.steps.length,projections,reopened,identicalReceipts:true,exactOpaqueStates:true,opaqueU64Preserved:true,publicAdmission:false}));
 });
 const invalid=new Map();for(const scenario of fixture.cases)for(const bad of scenario.invalid)if(!invalid.has(bad.label))invalid.set(bad.label,{bad,views:scenario.initial.views});
-for(const [label,{bad,views}]of invalid)test(`ABI95 JZ56 corrupted ${label} is HTTP400 without D1 writes`,async t=>{
+for(const [label,{bad,views}]of invalid)test(`current ABI111 JZ56 corrupted ${label} is HTTP400 without D1 writes`,async t=>{
  const initial={state:bad.state,views:views.map(v=>({...v,roomId:bad.roomId,inviteCode:bad.inviteCode,version:bad.revision}))};
  const h=await harness(t,{initial}),before=await h.snapshot();let rejected=0;
  for(let reopened=0;reopened<2;reopened++){

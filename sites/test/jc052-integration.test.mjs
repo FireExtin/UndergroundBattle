@@ -12,7 +12,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:currentBytes});
-const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/jc052.json.gz');
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/jc052-worker.json.gz');
 assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
 
 for(const row of fixture.cases) test(`JC052 ${row.name}: complete Native command, D1 reopen and original HTTP receipt`,async t=>{

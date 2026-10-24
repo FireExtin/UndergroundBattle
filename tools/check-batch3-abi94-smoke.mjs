@@ -7,11 +7,11 @@ const path=process.argv[2];
 assert(path,'Pass the freshly executed Native smoke JSON path');
 const bytes=readFileSync(path);const native=JSON.parse(bytes);
 assert.equal(native.format,'batch3-native94-integration-smoke-v1');
-assert.equal(catalog.engineVersion,'rust-v0.2.94-batch20-third');
+assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
 assert.deepEqual(native.catalog,catalog,'Native/WASM full catalog must match');
-assert.equal(catalog.cards.length,213);
-assert.equal(catalog.cards.filter(c=>c.supported).length,213);
-assert.equal(catalog.cards.filter(c=>!c.supported).length,0);
+assert.equal(catalog.cards.length,272);
+assert.equal(catalog.cards.filter(c=>c.supported).length,233);
+assert.equal(catalog.cards.filter(c=>!c.supported).length,39);
 assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));
 assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
 if(native.originalBatInstance){
