@@ -370,7 +370,7 @@ impl Game {
                                 // survives and later enters from this container.
                                 let mut expected = f.source.card.clone();
                                 expected.id = c.id.clone();
-                                expected.time_markers = 0;
+                                expected.time_markers = 0; expected.charge_markers = 0;
                                 expected.lock_markers = 0;
                                 !same(c, &expected)
                             })

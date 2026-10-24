@@ -131,7 +131,7 @@ impl Game {
                 }
                 let mut expected = source.card.clone();
                 expected.id = o.successor.id.clone(); expected.face_down = true;
-                expected.time_markers = 0; expected.lock_markers = 0;
+                expected.time_markers = 0; expected.charge_markers = 0; expected.lock_markers = 0;
                 expected.damage = 0; expected.wounds = 0; expected.shield = 0;
                 expected.controller = if o.baseline_eliminated { source.card.owner } else { baseline };
                 let successor_still_hidden = self.regions.iter().any(|r| !r.vacant
@@ -369,7 +369,7 @@ impl Game {
                     if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
                         if s.card.as_ref().is_none_or(|c| {
                             let mut expected=f.source.card.clone();
-                            expected.id=c.id.clone();expected.time_markers=0;expected.lock_markers=0;expected.face_down=false;
+                            expected.id=c.id.clone();expected.time_markers=0; expected.charge_markers = 0;expected.lock_markers=0;expected.face_down=false;
                             c.id == f.source.card.id || !same(c,&expected)
                         })
                             || s.deploy_region != f.source.region || s.reveal != (f.ability_key == "reveal") {

@@ -222,7 +222,7 @@ impl Game {
                     }
                     if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
                         if item.deploy_region != f.source.region || item.reveal != (f.ability_key == "reveal")
-                            || item.card.as_ref().is_none_or(|c| { let mut expected=f.source.card.clone(); expected.id=c.id.clone(); expected.face_down=false; expected.time_markers=0; expected.lock_markers=0;
+                            || item.card.as_ref().is_none_or(|c| { let mut expected=f.source.card.clone(); expected.id=c.id.clone(); expected.face_down=false; expected.time_markers=0; expected.charge_markers = 0; expected.lock_markers=0;
                                 c.id.is_empty() || c.id==f.source.card.id || !same(c,&expected) }) {
                             return Err("JC041普通派遣/现身容器与冻结来源不符".into());
                         }

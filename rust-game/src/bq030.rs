@@ -750,7 +750,7 @@ impl Game {
                                 let mut expected = f.source.card.clone();
                                 expected.id = c.id.clone();
                                 expected.face_down = false;
-                                expected.time_markers = 0;
+                                expected.time_markers = 0; expected.charge_markers = 0;
                                 expected.lock_markers = 0;
                                 self.bq030_instance_number(&c.id).is_none_or(|n| {
                                     n <= self.bq030_instance_number(&f.source.card.id).unwrap()

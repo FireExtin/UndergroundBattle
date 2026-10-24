@@ -752,3 +752,25 @@ fn import20_sentinel_charge_transfer_then_jc054_normal_hide_primitive_clears_new
         .filter(|c| c.definition == "JC054")
         .all(|c| c.face_down && c.charge_markers == 0));
 }
+
+#[test]
+fn import20_sentinel_cq19_charge_persists_through_normal_end_step_passes_and_next_turn() {
+    let mut g = game();
+    let id = weapon(&mut g, true);
+    act(&mut g, 0, activate(&id, s::CHARGE, None, None));
+    pass_top(&mut g);
+    assert_eq!(g.in_play(&id).unwrap().1.charge_markers, 2);
+    assert!(g.in_play(&id).unwrap().1.exhausted);
+    let turn = g.turn;
+    g.begin_window(Window::End);
+    for _ in 0..16 {
+        if g.turn > turn {
+            break;
+        }
+        assert!(g.pending.is_none());
+        pass(&mut g);
+    }
+    assert_eq!(g.turn, turn + 1);
+    assert_eq!(g.in_play(&id).unwrap().1.charge_markers, 2);
+    assert!(!g.in_play(&id).unwrap().1.exhausted);
+}

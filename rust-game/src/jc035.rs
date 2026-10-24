@@ -465,7 +465,7 @@ impl Game {
             if f.ability_key == "attach" {
                 if item.label != catalog::card("JC035").name || item.card.as_ref().is_none_or(|c| {
                     let mut expected = f.source.card.clone(); expected.id = c.id.clone();
-                    expected.time_markers = 0; expected.lock_markers = 0;
+                    expected.time_markers = 0; expected.charge_markers = 0; expected.lock_markers = 0;
                     c.id.is_empty() || c.id == f.source.card.id || !same(c, &expected)
                 }) { return Err("JC035结附事务实体不符".into()); }
             } else {

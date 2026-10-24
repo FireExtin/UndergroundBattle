@@ -289,7 +289,7 @@ impl Game {
         // changing payment, RNG, modifiers, or the transaction itself.
         expected.id = c.id.clone(); expected.face_down = false;
         expected.advancement_markers = 0; expected.named_character = None; expected.chosen_subtype = None;
-        expected.time_markers = 0; expected.permanent_combat_markers = 0;
+        expected.time_markers = 0; expected.charge_markers = 0; expected.permanent_combat_markers = 0;
         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
         // fresh() allocates the transaction after its original source, and
         // push_stack() allocates the immediately following frame UID. Checking

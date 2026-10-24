@@ -270,7 +270,7 @@ impl Game {
             control
         };
         expected.face_down = true;
-        expected.time_markers = 0;
+        expected.time_markers = 0; expected.charge_markers = 0;
         expected.lock_markers = 0;
         expected.damage = 0;
         expected.wounds = 0;
@@ -339,7 +339,7 @@ impl Game {
     fn wm062_container(&self, source: &Card, c: &Card) -> bool {
         let mut expected = source.clone();
         expected.id = c.id.clone();
-        expected.time_markers = 0;
+        expected.time_markers = 0; expected.charge_markers = 0;
         expected.lock_markers = 0;
         !c.id.is_empty() && c.id != source.id && same(&expected, c)
     }
