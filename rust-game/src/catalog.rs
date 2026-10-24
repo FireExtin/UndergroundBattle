@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.98-import20-sentinel";
+pub const POOL_VERSION: &str = "limited-v2.99-import20-tax-ban";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.107-import20-sentinel";
+pub const ENGINE_VERSION: &str = "rust-v0.2.108-import20-tax-ban";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.107-import20-sentinel-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.108-import20-tax-ban-fixture";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -136,7 +136,7 @@ pub fn catalog() -> &'static Catalog {
                     })
                     .unwrap_or_default();
                 // Preserve old definitions; expose only individually reviewed subtitles.
-                if !["CQ18", "CQ19", "BQ092", "BQ093", "CQ24", "XG13", "LC16", "BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
+                if !["BQ057", "CQ18", "CQ19", "BQ092", "BQ093", "CQ24", "XG13", "LC16", "BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
                     .contains(&definition.id.as_str())
                 {
                     definition.subtitle = None;
@@ -241,6 +241,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
+    if crate::import20_tax_ban::CARDS.contains(&d.id.as_str()) { return true; }
     if crate::import20_industry::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id == crate::import20_carmen::ID || d.id == crate::import20_tattoo::ID || d.id == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&d.id.as_str()) || crate::import20_vampires::CARDS.contains(&d.id.as_str()) || crate::import20_contest::CARDS.contains(&d.id.as_str()) || crate::import20_observers::CARDS.contains(&d.id.as_str()) { return true; }
     d.supported || matches!(d.id.as_str(), "MSJC13" | "WM043" | "WM044") || crate::batch4_vampires::CARDS.contains(&d.id.as_str()) || crate::batch3::IMPLEMENTING.contains(&d.id.as_str()) || crate::batch4::IMPLEMENTING.contains(&d.id.as_str()) || crate::pack_a_contest::CARDS.contains(&d.id.as_str())

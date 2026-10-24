@@ -16,11 +16,11 @@ test('first import slice preserves the exact prior252 and keeps both new cards u
   assert.equal(import20.priorCatalogCount, 252);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,252)))), import20.priorCatalogCardsCanonicalSha256);
   assert.deepEqual(pool.cards.slice(252,254).map(c => c.id), ['BQ090', 'BQ064']);
-  assert.equal(new Set(pool.cards.map(c => c.id )).size, 267);
+  assert.equal(new Set(pool.cards.map(c => c.id )).size,269);
   assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id), ['WM025','WM024']);
   assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id), ['BQ081','WM057']);
   assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id), ['XG13']);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);
+  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
   for (const id of import20.nativePilotCards) assert.equal(pool.cards.find(c => c.id === id).supported, false);
   assert.equal(import20.current50ClosedAdded, 0);

@@ -13,6 +13,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() =
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct MysticShown {
+    pub politician_asset: Option<Card>,
     pub seat: usize,
     pub card: Card,
     pub manor: Option<Attachment>,
@@ -247,6 +248,7 @@ impl Game {
     }
     fn mystic_printed_bonus(shown: &MysticShown) -> u32 {
         match shown.card.definition.as_str() {
+            "XG20" if shown.politician_asset.is_some() => 3,
             "WM021" => 5,
             "WM032" if !shown.destroyed_regions.is_empty() || shown.destruction_markers > 0 => 3,
             "WM061" | "WM043" => 2,
@@ -257,6 +259,7 @@ impl Game {
     }
     fn mystic_value(&self, shown: &MysticShown, actor: usize, actor_bonus: u32, bonuses: &[MysticBonus]) -> RuleResult<u32> {
         let printed = catalog::catalog().cards.iter().find(|c| c.id == shown.card.definition).ok_or("展示牌未登记")?;
+        self.xg20_shown_witness(shown)?;
         let vampire = printed.subtypes.iter().any(|s| s == "吸血鬼")
             || shown.manor.is_some() && printed.kind == "character" && printed.subtypes.iter().any(|s| s == "人类");
         if !vampire && !shown.vampire_observers.is_empty() { return Err("非吸血鬼展示牌不能使用秘闻记录官加值".into()); }
@@ -287,7 +290,8 @@ impl Game {
             }
             let manor = if self.xq15_owner_aura(&c) { self.attachments.iter().find(|a| a.card.definition == "XQ15" && !a.card.face_down
                 && a.card.controller == c.owner && self.society_host_seat(&a.host_id) == Some(c.owner) && self.attachment_host_valid(a)).cloned() } else { None };
-            let mut item = MysticShown { seat: *seat, card: c, manor, vampire_observers, value: 0,
+            let politician_asset = if c.definition=="XG20" { self.players[*seat].assets.iter().find(|a| catalog::card(&a.definition).subtypes.iter().any(|s|s=="政治家")).cloned() } else {None};
+            let mut item = MysticShown { politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
                 destroyed_regions: self.regions.iter().filter(|r| !r.vacant && r.destroyed).map(|r| r.card.id.clone()).collect(),
                 destruction_markers: self.players[*seat].destruction_markers };
             item.value = self.mystic_value(&item, state.frame.actor, state.actor_bonus, &state.bonuses)?;

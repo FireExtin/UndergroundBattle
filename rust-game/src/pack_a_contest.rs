@@ -125,6 +125,7 @@ impl Game {
         // A proved granted program belongs to the granting mechanism, even
         // when its recipient also has a card-specific native program.
         if self.validated_cross_card_declaration(d)? { return Ok(()); }
+        if crate::import20_tax_ban::related(&d.source.card.definition,&d.ability) { return self.validate_tax_ban_declaration(d); }
         if crate::import20_sentinel::related(&d.source.card.definition,&d.ability) { return self.validate_sentinel_pair_declaration(d); }
         if crate::import20_industry::related(&d.source.card.definition,&d.ability) { return self.validate_industry_declaration(d); }
         if crate::import20_carmen::related(&d.source.card.definition, &d.ability) { return self.validate_cq24_declaration(d); }
@@ -162,6 +163,7 @@ impl Game {
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         self.validate_resource_frame(f)?;
         if self.validated_cross_card_frame(f)? { return Ok(()); }
+        if crate::import20_tax_ban::frame_related(f) { return self.validate_tax_ban_frame(f); }
         if crate::import20_sentinel::frame_related(f) { return self.validate_sentinel_pair_frame(f); }
         if crate::import20_industry::frame_related(f) { return self.validate_industry_frame(f); }
         if crate::import20_carmen::frame_related(f) { return self.validate_cq24_frame(f); }
@@ -288,7 +290,7 @@ impl Game {
         // Mirror existing fresh() card fields without allocating identities or
         // changing payment, RNG, modifiers, or the transaction itself.
         expected.id = c.id.clone(); expected.face_down = false;
-        expected.advancement_markers = 0; expected.named_character = None; expected.chosen_subtype = None;
+        expected.advancement_markers = 0; expected.named_character = None; expected.chosen_number = None; expected.chosen_subtype = None;
         expected.time_markers = 0; expected.charge_markers = 0; expected.permanent_combat_markers = 0;
         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
         // fresh() allocates the transaction after its original source, and

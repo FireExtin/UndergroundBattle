@@ -51,9 +51,10 @@ pub(crate) fn assert_current_serial_catalog() {
     let raw:Value=serde_json::from_str(include_str!("../data/cards.json")).unwrap();
     let cards=raw["cards"].as_array().unwrap();
     let digest=format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..263].to_vec()))).unwrap()));
+    assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..267].to_vec()))).unwrap())),"af27bd4495e49cff23c10211bc05975d1a1a0eaaf2c2e5a38e133669b9d8c937");
     assert_eq!(digest,"7f9ec9a7c352d0ce5114a15eae9d0cff6056a0d74a00e1c404d48714944f25a6");
-    assert_eq!(cards[252..].iter().map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),["BQ090","BQ064","BQ039","WM028","WM025","WM024","BQ081","WM057","XG13","WM064","CQ24","BQ092","BQ093","CQ18","CQ19"]);
-    assert_eq!(cards.len(),267);assert_eq!(catalog::catalog().cards.len(),cards.len());
+    assert_eq!(cards[252..].iter().map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),["BQ090","BQ064","BQ039","WM028","WM025","WM024","BQ081","WM057","XG13","WM064","CQ24","BQ092","BQ093","CQ18","CQ19","XG20","BQ057"]);
+    assert_eq!(cards.len(),269);assert_eq!(catalog::catalog().cards.len(),cards.len());
     assert!(catalog::catalog().cards[..213].iter().all(|c|c.supported));
     assert!(catalog::catalog().cards[213..].iter().all(|c|!c.supported));
 }

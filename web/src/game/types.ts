@@ -18,6 +18,7 @@ export type SocietyDefinition = CardDefinition & {
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {
+  chosenNumber?: number;
   namedCharacter?: string;
   chosenSubtype?: string;
   permanentDefenseMarkers?: number;
@@ -65,6 +66,7 @@ export type Choice = {
   min?: number; max?: number; amount?: number; allowDecline?: boolean;
 };
 export type Player = {
+  honor?: number;
   id: string; seat: number; name: string; team: number; deckId: string;
   deckName?: string;
   ready: boolean; eliminated: boolean; handCount: number; deckCount: number; score: number;

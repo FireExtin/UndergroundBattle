@@ -1,3 +1,6 @@
+mod import20_tax_ban;
+#[cfg(test)]
+mod import20_tax_ban_tests;
 mod import20_sentinel;
 #[cfg(test)]
 mod import20_sentinel_tests;

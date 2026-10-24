@@ -1,0 +1,28 @@
+{
+  "baseCommit": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+  "priorCatalogCount": 267,
+  "priorCardsCanonicalSha256": "af27bd4495e49cff23c10211bc05975d1a1a0eaaf2c2e5a38e133669b9d8c937",
+  "priorSpecificationsSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+  "newCards": [
+    "XG20",
+    "BQ057"
+  ],
+  "sourceCorrections": [],
+  "engineVersion": "rust-v0.2.108-import20-tax-ban",
+  "cardPoolVersion": "limited-v2.99-import20-tax-ban",
+  "priorReference20AuthorNativeWipComplete": 14,
+  "potentialReference20AuthorNativeWipComplete": 16,
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author and illustrator permission; both retained resource records have no registered per-card effect handler. Independently adapt the current command/frame interpreter.",
+    "SuezCodeOrArtCopied": false
+  },
+  "honorScope": "Hegemony manual physical21/printed20: separate hand markers; no substitution of score or money; no synthetic earning or core/campaign implementation."
+}

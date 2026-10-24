@@ -1,0 +1,40 @@
+{
+  "primary": [
+    {
+      "file": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "sha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "scope": "White name, gray3/loyalty3, own Society nonasset, choose number on entry, enemy faceup-play/paid-reveal printed-cost ban and own politician-asset shown+3."
+    },
+    {
+      "file": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+      "sha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f",
+      "scope": "Gold unique gray3/loyalty2, public/retreat, enemy played-attachment extra2 or optional draw, original own asset enters target region for three hand markers."
+    },
+    {
+      "file": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "scope": "Physical21/printed20 honor hand marker, separate from money/victory score; earning by commands/tasks/other printed effects."
+    },
+    {
+      "file": "resource/ymsj-fun.github.io/public/docs/星光俱乐部说明书.jpg",
+      "sha256": "3bc9e70585a3bbc247deb9cb19639da7295589ae81dd543c6dbf0a51bde0357a",
+      "scope": "Shown conditional purple-bar additions, no XG20-specific FAQ on this page."
+    }
+  ],
+  "secondary": {
+    "file": "docs/evidence/import20-c-paused-20261023/uwpro-resources/XG20.tres",
+    "sha256": "b48bdc765a30ec79095f6c8a9258d06395f5a8590446a10f7530ab12a035fd03",
+    "fixedUWPro": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "faq": "禁令进场时，玩家可以响应打出禁令所选择费用的牌。",
+    "scope": "Retained authorized reference FAQ, not an independently located primary FAQ document. Actual response-before-resolution follows the printed entry trigger and ordinary stack timing."
+  },
+  "implementationBoundaries": {
+    "honor": "Current-table separate u32 hand-marker balance; exact three payment receipt. No new earning action, Shoggoth/core/campaign system, score conversion or starting grant invented. Native legitimate-asset action is tested with explicit positive honor layout.",
+    "numeric": "Server-issued actor-private Pending range0..u32::MAX, matching current numeric printed-cost domain. No enumeration of catalog costs. Zero and out-of-catalog maximum tested.",
+    "mysticBonus": "Freeze an own political asset Card at actual all-player reveal. Read-only outcome recomputation never consults later mutable assets.",
+    "unresolvedUnchanged": [
+      "WM057 enemy borrowing; no ruling received",
+      "XQ19 dash printed-cost comparisons; no numeric zero assigned"
+    ]
+  }
+}

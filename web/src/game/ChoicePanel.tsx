@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { NumericChoicePanel } from './NumericChoicePanel';
 import type { ReactNode } from 'react';
 import { CardContent, instanceTag, visibleCard } from './CardTile';
 import { moveCardGridFocus } from './cardGridNavigation';
@@ -32,6 +33,7 @@ type ChoicePanelProps = {
   privateInspectionControls?: ReactNode;
 };
 export function ChoicePanel(props: ChoicePanelProps) {
+  if (props.choice.kind === 'import20-xg20-number') return <NumericChoicePanel key={props.choice.id} {...props} />;
   return <ChoicePanelContent key={JSON.stringify([props.draftStore?.key, props.viewerId, choiceDraftFingerprint(props.choice)])} {...props} />;
 }
 function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onReadCard, viewerId, playerLabels, modal = false, modalActive = true, onPauseRoom, draftStore, recoveryNotices, privateInspectionControls }: ChoicePanelProps) {

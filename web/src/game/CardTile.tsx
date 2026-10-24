@@ -4,8 +4,8 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, chargeMarkers: undefined, currentLeader: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
-  if (card.faceDown) card = { ...card, currentLeader: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, chargeMarkers: undefined, currentLeader: undefined, chosenNumber: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.faceDown) card = { ...card, currentLeader: undefined, chosenNumber: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
     return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentWound !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
@@ -95,6 +95,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} actionHint={actionHint} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
+    {!card.faceDown && !asset && card.chosenNumber !== undefined && <span className="hg-charge-marker" aria-label={`禁令费用 ${card.chosenNumber}`}>禁令 {card.chosenNumber}</span>}
     {!society && !asset && !!card.chargeMarkers && <span className="hg-charge-marker" aria-label={`充能标志 ${card.chargeMarkers}`}>充能 {card.chargeMarkers}</span>}
     {card.region !== undefined && !!card.lockMarkers && <span className="hg-lock-marker" aria-label={`锁定标志 ${card.lockMarkers}`}>锁定 {card.lockMarkers}</span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>

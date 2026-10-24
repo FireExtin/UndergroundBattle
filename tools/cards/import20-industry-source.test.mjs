@@ -10,7 +10,7 @@ const pool=JSON.parse(read('rust-game/data/cards.json')),specs=JSON.parse(read('
 test('industry appends exactly2 and preserves all earlier263 and public213',()=>{
   const digest='7f9ec9a7c352d0ce5114a15eae9d0cff6056a0d74a00e1c404d48714944f25a6';
   assert.equal(intake.priorCatalogCount,263);assert.equal(intake.priorCardsCanonicalSha256,digest);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,263)))),digest);
-  assert.equal(pool.cards.length,267);assert.equal(new Set(pool.cards.map(c=>c.id)).size,267);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id),['BQ092','BQ093']);assert(pool.cards.slice(263,265).every(c=>c.supported===false));assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
+  assert.equal(pool.cards.length,269);assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id),['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);assert(pool.cards.slice(263,265).every(c=>c.supported===false));assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
 });
 test('exact BQ092 self-exhaust correction reconstructs the entire previous source and all older identities',()=>{
   const old='快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。';

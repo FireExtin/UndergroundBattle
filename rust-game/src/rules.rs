@@ -45,6 +45,7 @@ pub enum Event {
     BQ037OtherVampireEntered,
     JZ26HiddenObserved,
     BQ029QualifiedEntry,
+    PeteAttachmentPlayed,
     XQ26NamedCharacterEntered,
     WM041PublicCharacterPlayed,
     BlackCharacterDeathObserved,
@@ -77,6 +78,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    Honor(u32),
     RemoveChargeX,
     IndustryExhaustOther,
     BQ036SacrificeAttachment,
@@ -292,6 +294,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    XG20ChooseNumber,
+    PeteTax { observation: Option<Box<crate::import20_tax_ban::AttachmentPlayed>> },
+    PeteFromAsset,
     CQ19AddCharge,
     CQ19Fire,
     CQ18EntryLocks,
@@ -772,6 +777,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
     }
+    if crate::import20_tax_ban::related(card_id,ability) { return crate::import20_tax_ban::validate_ability(card_id,ability); }
     if crate::import20_sentinel::related(card_id,ability) { return crate::import20_sentinel::validate_ability(card_id,ability); }
     if crate::import20_industry::related(card_id,ability) { return crate::import20_industry::validate_ability(card_id,ability); }
     if crate::import20_carmen::related(card_id, ability) { return crate::import20_carmen::validate_ability(card_id, ability); }
@@ -1550,6 +1556,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::import20_tax_ban::validate_definition(card_id, definition)?;
         crate::import20_sentinel::validate_definition(card_id, definition)?;
         crate::import20_carmen::validate_definition(card_id, definition)?;
         crate::import20_tattoo::validate_definition(card_id, definition)?;
@@ -1753,7 +1760,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2235,6 +2242,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());
+        for id in ["XG20", "BQ057"] { m.insert(id.into(),crate::import20_tax_ban::definition(id).unwrap()); }
         for id in ["CQ18", "CQ19"] { m.insert(id.into(),crate::import20_sentinel::definition(id).unwrap()); }
         m.insert("WM043".into(), crate::wm043::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.98-import20-sentinel",
-  "engineVersion": "rust-v0.2.107-import20-sentinel",
+  "cardPoolVersion": "limited-v2.99-import20-tax-ban",
+  "engineVersion": "rust-v0.2.108-import20-tax-ban",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
@@ -10727,6 +10727,96 @@
         "record": "CQ19",
         "image": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
         "imageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "XG20",
+      "name": "禁令",
+      "subtitle": "",
+      "kind": "attachment",
+      "subtypes": [
+        "政治",
+        "策略"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "隐秘 若本方资产区中有政治家牌，+3\n结附于本方秘社；非资产\n进场触发 你选择一个数字。\n持续 敌方玩家不能正面打出或付费翻面印刷费用为你所选择之数字的牌。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XG20",
+        "image": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+        "imageSha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "subtitle": "国税局副局长",
+      "kind": "character",
+      "subtypes": [
+        "人类",
+        "政治家"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色灰色",
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "defense": 1,
+      "text": "公开；撤回\n触发 当敌方玩家打出一张附属时，除非他额外支付②，否则你可以抓一张牌。\n资产区行动 支付3名誉点：将皮特·冈萨雷斯从本方资产区放置进场并置于目标地区。",
+      "keywords": [
+        "公开",
+        "撤回"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ057",
+        "image": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+        "imageSha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f"
       },
       "unique": true,
       "society": "",

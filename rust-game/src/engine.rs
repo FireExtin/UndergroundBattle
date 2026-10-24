@@ -145,6 +145,7 @@ impl Game {
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
         c.advancement_markers = 0;
         c.named_character = None;
+        c.chosen_number = None;
         c.chosen_subtype = None;
         c.time_markers = 0;
         c.charge_markers = 0;
@@ -166,6 +167,7 @@ impl Game {
             charge_markers: 0,
             advancement_markers: 0,
             named_character: None,
+            chosen_number: None,
             chosen_subtype: None,
             permanent_combat_markers: 0,
             permanent_defense_markers: 0,
@@ -680,7 +682,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn apply_inner(&mut self, seat: usize, a: Action) -> RuleResult<()> {
-        if a.amount.is_some() && !(a.kind == "activate" && a.ability_id.as_deref() == Some(crate::import20_sentinel::FIRE) && a.card_id.as_ref().is_some_and(|id| self.in_play(id).is_some_and(|(_,c)|c.definition=="CQ19"))) { return Err("X数量只属于达摩克里斯之剑的原充能行动".into()); }
+        if a.amount.is_some() && !self.xg20_numeric_action(&a) && !(a.kind == "activate" && a.ability_id.as_deref() == Some(crate::import20_sentinel::FIRE) && a.card_id.as_ref().is_some_and(|id| self.in_play(id).is_some_and(|(_,c)|c.definition=="CQ19"))) { return Err("X数量只属于达摩克里斯之剑的原充能行动".into()); }
         if a.kind=="inspect-hidden" {return self.inspect_hidden_command(seat,&a);}
         if self.pending.is_some() {
             if a.kind != "choose" {
@@ -756,6 +758,7 @@ impl Game {
                     if !self.accessible(seat, r) { return Err("超出正常派遣距离".into()); }
                     Some(r)
                 };
+                if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
@@ -807,6 +810,7 @@ impl Game {
                     if !self.loyalty(seat, &c.definition) {
                         return Err("忠诚不足".into());
                     }
+                    self.xg20_check_play(seat,&c)?;
                     let mut paid = self.pay_printed(seat, &c, true)?;
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
                     if c.definition=="CQ24" && a.option.as_deref()==Some("pay-extra-3") { paid.push(self.cq24_pay_extra(seat)?); }
@@ -840,6 +844,7 @@ impl Game {
                     self.wm041_observe_last_play();
                     self.omega_observe_last_play();
                     let paid_play = self.stack.last().unwrap().frame.as_ref().unwrap().clone();
+                    self.pete_observe_attachment(&paid_play);
                     self.observe_batch4_disaster(&paid_play);
                     self.batch3_register_entry_order(&paid_play.frame_id, play_observers);
                 }
@@ -850,6 +855,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
@@ -870,6 +876,7 @@ impl Game {
                 }
                 let snapshot = self.source_snapshot(c, Some(r));
                 let printed = c.clone();
+                self.xg20_check_play(seat,&printed)?;
                 let paid = self.pay_printed(seat, &printed, false)?;
                 let (_, mut c) = self.remove_board(id).unwrap();
                 c = self.fresh(c);
@@ -910,6 +917,7 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
                 crate::next20_blue_gray::validate_action(&c.definition, &a)?;
@@ -948,6 +956,7 @@ impl Game {
                 {
                     return Err("请选择合法地区".into());
                 }
+                if a.option.as_deref()!=Some("secret-plan") { self.xg20_check_play(seat,&c)?; }
                 let mut paid = self.pay_printed(seat, &c, true)?;
                 paid.extend(self.pay_ability_costs(seat, &source, &spec, &a)?);
                 let c = self.remove_hand(seat, id)?;
@@ -960,6 +969,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref()==Some(crate::import20_tax_ban::ASSET) { return self.pete_begin_asset(seat,&a); }
                 if a.ability_id.as_deref().is_some_and(crate::import20_contest::is_hand_key) { return self.import20_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) { return self.bq032_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
@@ -971,6 +981,7 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 self.jc041_check_activation(seat, region, c, &a)?;
@@ -1028,6 +1039,7 @@ impl Game {
             self.players[seat].assets.clear();
             self.players[seat].graveyard.clear();
             self.players[seat].score_cards.clear();
+            self.players[seat].honor = 0;
             self.players[seat].destruction_markers = 0;
             self.players[seat].society_zone = Default::default();
             self.players[seat].eliminated = false;
@@ -2195,6 +2207,7 @@ impl Game {
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
         let p = self.pending.clone().ok_or("没有待选")?;
+        crate::import20_tax_ban::validate_choice_action(&p, &a)?;
         crate::mystic_contest::validate_choice_action(&p, &a)?;
         crate::pack_a_contest::validate_choice_action(&p, &a)?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
@@ -2420,6 +2433,7 @@ impl Game {
             advancement_markers: (!asset && (region.is_some() || kind == Some("attachment")) && (c.advancement_markers > 0 || crate::batch4_plans::is_plan(c))).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
+            chosen_number: if !asset && !c.face_down && kind==Some("attachment") && c.definition=="XG20" { c.chosen_number } else { None },
             chosen_subtype: if !asset && !c.face_down && kind == Some("attachment") { c.chosen_subtype.map(|kind| kind.label().into()) } else { None },
             permanent_defense_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_combat_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
@@ -2655,6 +2669,7 @@ impl Game {
                 .players
                 .iter()
                 .map(|p| PlayerView {
+                honor: p.honor,
                     step_resources: self.step_resource_count(p.seat),
                     id: player_id(p.seat),
                     seat: p.seat,
@@ -2832,8 +2847,9 @@ impl Game {
         let inspections=self.jc057_inspection_actions(seat);
         if let Some(p) = &self.pending {
             let mut actions=if p.seat == seat {
-                vec![LegalAction { amount_range: None,
+                vec![LegalAction { amount_range: if matches!(p.resolution,ChoiceResolution::Frame {choice:FrameChoice::XG20Number,..}) {Some(AmountRange{min:0,max:u32::MAX})} else {None},
                     action: Action {
+                        amount: matches!(p.resolution,ChoiceResolution::Frame {choice:FrameChoice::XG20Number,..}).then_some(0),
                         kind: "choose".into(),
                         choice_id: Some(p.choice.id.clone()),
                         ..Action::default()
@@ -2942,6 +2958,11 @@ impl Game {
                 }
             }
             if self.can_standard(seat) {
+                for c in &self.players[seat].assets { if c.definition=="BQ057" {
+                    for r in 0..self.regions.len() { if self.region_live(r) {
+                        candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::import20_tax_ban::ASSET.into()),region:Some(r),..Action::new("activate")},format!("皮特：支付名誉3，从资产区进场至地区{}",r+1)));
+                    }}
+                }}
                 if self.omega_can_play_assets(seat) { for c in &self.players[seat].assets {
                     if self.omega_asset_play(seat, c).is_none() { continue; }
                     if rules::definition(&c.definition).traits.chaos {

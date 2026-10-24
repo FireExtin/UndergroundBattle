@@ -13,9 +13,9 @@ test('XG13 appends one original card; all260 previous records and public213 rema
   const digest = 'b59caeaf73d14629cb7107d8669e57a26bb5825d121fb60e2153f9ded2a864d5';
   assert.equal(intake.priorCatalogCount,260); assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,260)))),digest);
-  assert.equal(pool.cards.length,267); assert.equal(new Set(pool.cards.map(c=>c.id)).size,267);
+  assert.equal(pool.cards.length,269); assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);
   assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id),['XG13']);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);
+  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   assert.equal(pool.cards.find(c=>c.id==='XG13').supported,false);
   assert(!pool.cards.some(c=>c.id==='XQ19'));

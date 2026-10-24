@@ -83,6 +83,8 @@ pub struct LegalAction {
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_number: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub charge_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub advancement_markers: Option<u32>,
@@ -218,6 +220,8 @@ pub struct Choice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerView {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub honor: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub step_resources: u32,
     pub id: String,
@@ -370,6 +374,8 @@ pub struct PrivateInspectionView {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_number: Option<u32>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub charge_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
@@ -404,6 +410,9 @@ pub struct Attachment {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Player {
+    /// Hegemony printed hand marker; independent from region victory points.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub honor: u32,
     pub seat: usize,
     pub name: String,
     pub deck_id: String,
@@ -437,6 +446,7 @@ impl Player {
             deck: vec![],
             assets: vec![],
             graveyard: vec![],
+            honor: 0,
             score_cards: vec![],
             destruction_markers: 0,
             asset_used: false,
@@ -631,6 +641,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    Honor { before: u32, amount: u32 },
     CQ19ChargeRemoved(Box<crate::import20_sentinel::ChargePayment>),
     #[serde(skip)]
     CapturedResources { receipt: Box<PaidCost>, credits: Vec<crate::step_resources::StepCredit> },
@@ -708,6 +719,9 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    XG20Number,
+    PetePay,
+    PeteDraw,
     BQ081GraveCharacter,
     WM057Opponent,
     WM057InspectMay,
@@ -1047,6 +1061,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_tax_ban_state()?;
         self.validate_sentinel_pair_state()?;
         self.validate_exposure_state()?;
         self.validate_mobility_state()?;
