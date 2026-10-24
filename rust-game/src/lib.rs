@@ -1,3 +1,6 @@
+mod import20_broker;
+#[cfg(test)]
+mod import20_broker_tests;
 mod import20_vampires;
 #[cfg(test)]
 mod import20_vampires_tests;

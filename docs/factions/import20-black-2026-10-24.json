@@ -1,0 +1,79 @@
+{
+  "baseCommit": "aac2569674d522cee4955f8bc9d29abaabe93b96",
+  "priorCatalogCount": 258,
+  "priorCardsCanonicalSha256": "a3d6acd39e625636da9e8c9fae9c14bac2c83b1ae56ff2c71d828cece9e50b17",
+  "priorSpecificationsSha256": "cac18734aa77c5d0aa133bee95f9fe1d37ad3253aaf8ce6f8250f4a48be45b8c",
+  "newCards": [
+    "BQ081",
+    "WM057"
+  ],
+  "allEightUnadmitted": [
+    "BQ090",
+    "BQ064",
+    "BQ039",
+    "WM028",
+    "WM025",
+    "WM024",
+    "BQ081",
+    "WM057"
+  ],
+  "engineVersion": "rust-v0.2.103-import20-broker",
+  "cardPoolVersion": "limited-v2.94-import20-broker",
+  "sourceCorrections": [
+    {
+      "id": "BQ081",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        0
+      ],
+      "old": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+      "new": "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。"
+    },
+    {
+      "id": "BQ081",
+      "path": [
+        "abilities",
+        0,
+        "printedText"
+      ],
+      "old": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+      "new": "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。"
+    },
+    {
+      "id": "BQ081",
+      "path": [
+        "fields",
+        "additionalPrintedSymbols",
+        0,
+        "interpretation"
+      ],
+      "old": "隐秘地区势力栏，独立于能力图标。",
+      "new": "隐秘对抗展示加值，独立于地区势力及能力图标。"
+    }
+  ],
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "priorReference20AuthorNativeWipComplete": 6,
+  "potentialReference20AuthorNativeWipComplete": 8,
+  "current50ReviewedNativeClosed": 38,
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "WM057EnemyPermission": "pendingUserRuling; no enemy activation opened",
+  "ruleQuestion": {
+    "id": "WM057-2v2-secrecy-access",
+    "scenario": "P0 controls WM057; only enemy P2 has secrecy, enemy P3 has none. Does P2 alone or both P2/P3 gain permission?",
+    "choices": [
+      "onlyMarkedEnemy",
+      "wholeEnemyTeam"
+    ],
+    "status": "askedAsyncAwaitingReply"
+  },
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author and illustrator permission; neither card has a registered handler. Independent Rust implementation.",
+    "SuezCodeOrArtCopied": false
+  }
+}

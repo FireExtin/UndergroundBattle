@@ -689,6 +689,9 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ081GraveCharacter,
+    WM057InspectTarget,
+    WM057Inspection { inspected: Card },
     JZ56Undead,
     WM037Contest,
     WM037TimeTarget,

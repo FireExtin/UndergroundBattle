@@ -11946,7 +11946,7 @@
         "points": null,
         "printedKeywords": [],
         "printedRuleTextLines": [
-          "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。",
           "进场触发 将你墓地中的一张角色牌置于你的牌库底，若你如此做，消灭目标附属。"
         ],
         "additionalPrintedSymbols": [
@@ -11954,7 +11954,7 @@
             "id": "hidden-contest-bonus",
             "status": "confirmed",
             "printedText": "隐秘 +1",
-            "interpretation": "隐秘地区势力栏，独立于能力图标。"
+            "interpretation": "隐秘对抗展示加值，独立于地区势力及能力图标。"
           }
         ]
       },
@@ -11962,7 +11962,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "隐秘+1：在本次隐秘对抗后，将你牌库顶的三张牌置于本方墓地。",
+          "printedText": "隐秘+1：在本次隐秘对抗后，将你牌库顶的一张牌置于本方墓地。",
           "notExecutable": true
         },
         {

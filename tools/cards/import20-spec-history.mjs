@@ -18,12 +18,27 @@ export function priorSpecifications(current) {
 }
 
 export const observerSlice = JSON.parse(readFileSync(new URL('../../docs/factions/import20-observers-2026-10-24.json', import.meta.url)));
-export const currentImport20 = JSON.parse(readFileSync(new URL('../../docs/factions/import20-vampires-2026-10-24.json', import.meta.url)));
+export const vampireSlice = JSON.parse(readFileSync(new URL('../../docs/factions/import20-vampires-2026-10-24.json', import.meta.url)));
+export const currentImport20 = JSON.parse(readFileSync(new URL('../../docs/factions/import20-black-2026-10-24.json', import.meta.url)));
 export function beforeVampireSpecifications(current) {
-  const prior = structuredClone(current);
-  assert.equal(currentImport20.sourceCorrections.length, 6);
-  for (const correction of currentImport20.sourceCorrections) {
+  const prior = beforeBlackSpecifications(current);
+  assert.equal(vampireSlice.sourceCorrections.length, 6);
+  for (const correction of vampireSlice.sourceCorrections) {
     assert(['WM025','WM024'].includes(correction.id));
+    let target = prior.cards[correction.id];
+    for (const key of correction.path.slice(0, -1)) target = target[key];
+    const key = correction.path.at(-1);
+    assert.deepEqual(target[key], correction.new);
+    target[key] = correction.old;
+  }
+  return prior;
+}
+
+export function beforeBlackSpecifications(current) {
+  const prior = structuredClone(current);
+  assert.equal(currentImport20.sourceCorrections.length, 3);
+  for (const correction of currentImport20.sourceCorrections) {
+    assert.equal(correction.id, 'BQ081');
     let target = prior.cards[correction.id];
     for (const key of correction.path.slice(0, -1)) target = target[key];
     const key = correction.path.at(-1);

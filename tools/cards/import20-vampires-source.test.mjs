@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake, beforeVampireSpecifications, priorSpecifications } from './import20-spec-history.mjs';
+import { vampireSlice as intake, currentImport20, beforeVampireSpecifications, priorSpecifications } from './import20-spec-history.mjs';
 const read = name => readFileSync(new URL('../../'+name, import.meta.url));
 const sha = x => createHash('sha256').update(x).digest('hex');
 const canonical = x => Array.isArray(x) ? x.map(canonical) : x && typeof x==='object'
@@ -15,8 +15,9 @@ test('third pair preserves exact256 earlier records, public213 and the frozen20 
   const digest='afa26ebb791e5d947a8e8e3496fe890a4b2a136be4a26b558ee7dc9238afe229';
   assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,256)))),digest);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,258);
-  assert.deepEqual(pool.cards.slice(256).map(c=>c.id),['WM025','WM024']);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,260);
+  assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id),['WM025','WM024']);
+  assert.deepEqual(pool.cards.slice(258).map(c=>c.id), ['BQ081','WM057']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for (const id of intake.allSixUnadmitted) assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.authorTotalReference20Programs,6);assert.equal(intake.current50ReviewedNativeClosed,38);
@@ -56,9 +57,9 @@ test('both blue vampire images and every mechanical printed field match their pr
   assert.deepEqual(pool.cards.find(c=>c.id==='WM025').keywords,['领袖','隐秘条件：屏障']);
 });
 
-test('latest102 native identity is explicit WIP with no cross-platform or independent completion claim', () => {
-  assert.equal(pool.engineVersion,'rust-v0.2.102-import20-vampires');
-  assert.equal(pool.cardPoolVersion,'limited-v2.93-import20-vampires');
+test('current native identity is explicit WIP with no cross-platform or independent completion claim', () => {
+  assert.equal(pool.engineVersion,currentImport20.engineVersion);
+  assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.independentReview,'notRun');assert.equal(intake.published,false);
   for (const k of ['WASM','Worker']) assert.equal(intake[k],'notBuiltOrRun');assert.equal(intake.browser,'notRun');

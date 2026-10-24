@@ -14,7 +14,7 @@ const baseline = JSON.parse(read('docs/evidence/game-serial-20261024/source-reco
 
 test('serial merge retains every incoming card and reconstructs the exact pre-correction specification', () => {
   const records = new Map(pool.cards.map(c => [c.id, sha(JSON.stringify(canonical(c)))]));
-  assert.equal(records.size, 258);
+  assert.equal(records.size, 260);
   const expectedIds = new Set();
   for (const source of baseline.sources) {
     for (const [id, digest] of Object.entries(source.records)) {
@@ -27,7 +27,8 @@ test('serial merge retains every incoming card and reconstructs the exact pre-co
   const prior = priorSpecifications(JSON.parse(read('docs/factions/card-specifications.json')));
   assert.equal(sha(JSON.stringify(prior, null, 2) + '\n'), baseline.specificationsSha256);
   assert.deepEqual(pool.cards.slice(254,256).map(c => c.id), ['BQ039', 'WM028']);
-  assert.deepEqual(pool.cards.slice(256).map(c=>c.id), ['WM025','WM024']);
+  assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id), ['WM025','WM024']);
+  assert.deepEqual(pool.cards.slice(258).map(c=>c.id), ['BQ081','WM057']);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
 });
 

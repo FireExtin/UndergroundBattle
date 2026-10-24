@@ -156,7 +156,7 @@ impl Game {
     }
     pub(crate) fn wm044_private_choice(&self, p: &Pending, viewer: usize) -> Choice {
         let mut choice = p.choice.clone();
-        if let ChoiceResolution::Frame { frame, choice: FrameChoice::WM044Inspection { inspected } } = &p.resolution {
+        if let ChoiceResolution::Frame { frame, choice: FrameChoice::WM044Inspection { inspected } | FrameChoice::WM057Inspection { inspected } } = &p.resolution {
             if viewer == frame.actor {
                 let mut front = inspected.clone(); front.face_down = false;
                 choice.preview_cards = vec![self.card_view(&front, viewer, None, None)];

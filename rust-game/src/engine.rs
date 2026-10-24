@@ -2196,6 +2196,7 @@ impl Game {
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
         crate::batch4_spectral::validate_choice_action(&p, &a)?;
+        crate::import20_broker::validate_choice_action(&p, &a)?;
         crate::import20_vampires::validate_choice_action(&p, &a)?;
         crate::batch4_timekeeper::validate_choice_action(&p, &a)?;
         crate::batch4_politician::validate_choice_action(&p, &a)?;

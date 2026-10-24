@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if id == "WM057" && key == crate::import20_broker::ACT && bonus == 0 { return true; }
     if crate::import20_observers::admitted_start(id, key, bonus) { return true; }
     if crate::import20_contest::admitted_start(id, key, bonus) { return true; }
     (id=="WM037" && key==crate::batch4_clock_spell::PLAY && bonus==0) || crate::batch4_vampire_contest::admitted_start(id, key, bonus) || matches!((id,key,bonus), ("WM022",SHADOW_REVEAL,0) | ("BQ082",POISON,2))
@@ -121,6 +122,9 @@ impl Game {
         self.validate_mystic_outcome(o)?; Ok(o)
     }
     pub(crate) fn validate_pack_a_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::import20_broker::CARDS.contains(&d.source.card.definition.as_str()) || crate::import20_broker::related(&d.ability) {
+            return self.validate_import20_broker_declaration(d);
+        }
         if crate::import20_vampires::CARDS.contains(&d.source.card.definition.as_str()) || crate::import20_vampires::related(&d.ability) {
             return self.validate_import20_vampire_declaration(d);
         }
@@ -150,6 +154,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::import20_broker::frame_related(f) { return self.validate_import20_broker_frame(f); }
         if crate::import20_vampires::frame_related(f) { return self.validate_import20_vampire_frame(f); }
         if crate::import20_observers::frame_related(f) { return self.validate_import20_observer_frame(f); }
         if crate::import20_contest::CARDS.contains(&f.source.card.definition.as_str())
