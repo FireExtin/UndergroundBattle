@@ -1,0 +1,91 @@
+{
+  "base": "2208df137aa4f5ad03af57afc4678ddcb013f148",
+  "runtime_and_test_head": "dae92b4d7a1c9319ddd72d779da9b56808e97179",
+  "files": [
+    {
+      "path": "actual-filter-scope.json",
+      "bytes": 27684,
+      "sha256": "e78834de81a59492a42837b0fbfe515cfa3dcc707c4d69b0d2898c5d20bd7f85"
+    },
+    {
+      "path": "failure-record.json",
+      "bytes": 1491,
+      "sha256": "0f4ca9d421eb13a589c8b7b2dae69e6cf7a3c189becb0e0b510dd7a6c3ff845a"
+    },
+    {
+      "path": "fixed-inputs.json",
+      "bytes": 74175,
+      "sha256": "a0314cf00b0b9d01986af0b712e7e9c9d6c22ecfaf6efb89c9182af56ba561c5"
+    },
+    {
+      "path": "result.json",
+      "bytes": 32103,
+      "sha256": "9f14b2b2d5c284b01e38f1ba298da994e409b8df15fc526bcc0db98cf385cfe7"
+    },
+    {
+      "path": "user-ruling.json",
+      "bytes": 498,
+      "sha256": "6adf1308a1a34de7085287daacb5d5eeaa83096db141802ea924f6cc2d280a40"
+    },
+    {
+      "path": "wm057-borrow-first-compile-20261024.json",
+      "bytes": 47949,
+      "sha256": "c30c39b569b15443585ea0ecea4493c52b7a6b42180ba825b7c027dc65f0357c"
+    },
+    {
+      "path": "wm057-borrow-first-compile-20261024.log.gz",
+      "bytes": 889,
+      "sha256": "e72242b58ec5e6379664f0ce2443c69e62c9cf0d05b0e97cec8330e4bdb279d9"
+    },
+    {
+      "path": "wm057-borrow-first-fixed-loyalty-20261024.json",
+      "bytes": 48481,
+      "sha256": "f75ce938c211d4960271671f421ecf48931712be83a666b6ee4fc58d5c740ccd"
+    },
+    {
+      "path": "wm057-borrow-first-fixed-loyalty-20261024.log.gz",
+      "bytes": 1546,
+      "sha256": "0ee0ef8fe63ab987668d2d1868126bd5b3321d9fa93b4c2f2f0ed2212dba5d33"
+    },
+    {
+      "path": "wm057-borrow-fixed-normal-20261024.json",
+      "bytes": 48449,
+      "sha256": "695b8891fd99beb6ed30c281527905d32c806fd232356ce7ff18515637c65f26"
+    },
+    {
+      "path": "wm057-borrow-fixed-normal-20261024.log.gz",
+      "bytes": 7502,
+      "sha256": "e49178450a4086a46dd34009a4627a58bd3c9cb9deef8cee9e792ade469a3745"
+    },
+    {
+      "path": "wm057-borrow-fixed-source-20261024.json",
+      "bytes": 48878,
+      "sha256": "4685a2cc9bdbff5984a3c218aee4a27948eeec23dc5a7eb59d7d41b28190fcc3"
+    },
+    {
+      "path": "wm057-borrow-fixed-source-20261024.log.gz",
+      "bytes": 2011,
+      "sha256": "44bbccc25d067f43ab6a848cda7ee7106b2ef3bfc9899f507000586caf8792d8"
+    },
+    {
+      "path": "wm057-borrow-native-first-20261024.json",
+      "bytes": 47951,
+      "sha256": "5d4c434fdb12c8813bbae919f2979d596f62974c2b489fef8c7da0e209227a7b"
+    },
+    {
+      "path": "wm057-borrow-native-first-20261024.log.gz",
+      "bytes": 1755,
+      "sha256": "9d16c398cc4b81f9438f08d441f3145c718b9d127872f5a6711782f943e5b446"
+    },
+    {
+      "path": "wm057-borrow-source-first-20261024.json",
+      "bytes": 49214,
+      "sha256": "cc6a47ea4434b3344fa250f863f2e88dfec4c659b67158c2d83278bbfae1253c"
+    },
+    {
+      "path": "wm057-borrow-source-first-20261024.log.gz",
+      "bytes": 2001,
+      "sha256": "bd9b91ba7b10c044aca12319e3d4fc0c363800eda07e4a1edc4f945454e707e2"
+    }
+  ]
+}

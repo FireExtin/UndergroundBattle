@@ -1,0 +1,30 @@
+{
+  "initialCompile": {
+    "name": "wm057-borrow-first-compile-20261024",
+    "exit": 0,
+    "testsRun": 0,
+    "note": "Compile-only empty test module; not counted as card coverage."
+  },
+  "firstDirected": {
+    "name": "wm057-borrow-native-first-20261024",
+    "passed": 17,
+    "failed": 1,
+    "head": "2208df137aa4f5ad03af57afc4678ddcb013f148",
+    "worktreeClean": false,
+    "reason": "Positive response-window fixture tried to cast black BQ090 from neutral JC125 assets. Correct its printed black loyalty funding; no rule weakening or product permission change."
+  },
+  "intermediateDirected": {
+    "name": "wm057-borrow-first-fixed-loyalty-20261024",
+    "passed": 18,
+    "head": "2208df137aa4f5ad03af57afc4678ddcb013f148",
+    "worktreeClean": false
+  },
+  "preFreezeNotes": [
+    "Retain paid-frame money/exhaust receipts; append only the captured personal permission so monetary paid_index0 is unchanged.",
+    "A compact permission is retained in completed outcomes. Do not store a live-step credit frame as completed history; the actual credit-plus-asset test progresses normally to the next step.",
+    "The newly relevant money assertion accepts physical assets plus authenticated step credits, preserving exact total2 rather than requiring exactly2 physical assets."
+  ],
+  "extraCorruptSaveExpansion": false,
+  "timeLimitsRelaxed": false,
+  "earlyRuns": "Dirty attempts are retained as observed logs/input hashes, not advertised as clean fixed-commit reproductions."
+}

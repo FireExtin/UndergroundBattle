@@ -1,0 +1,7 @@
+{
+  "questionMessage": "Sentinel_c4b08826f66c8191b48a981e2282a973",
+  "question": "你操控信息掮客，敌队甲有隐秘标志、乙没有：只允许甲借用，还是甲乙都能借用？倾向按发动者本人判断，只允许甲。",
+  "userReplyMessage": "Sentinel_0e77b75db9dc81918586912ac13d8f34",
+  "userReply": "OK",
+  "scope": "Only the actual enemy activator personal secrecy authorizes borrowing. No team-wide authority, ally lending, control transfer or XQ19 cost inference."
+}
