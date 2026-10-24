@@ -218,7 +218,9 @@ fn jc005_destroy_goes_to_owner_graveyard_without_recycling_or_bottom_and_pays_on
             g.players[0].assets.last_mut().unwrap().exhausted = true;
         }
         assert_eq!(g.actor_has_asset_domain(0, &MagicIcon::Mind, 1), mind);
-        let host = field(&mut g, "LC22", 2, 4);
+        // The attachment wound is inherited by its host. Defense2 keeps the
+        // fixture alive until the actual destroy, rather than killing LC22.
+        let host = field(&mut g, "JC029", 2, 4);
         g.board_mut(&host).unwrap().shield = 2;
         let id = attached(&mut g, &host, 3);
         let c = &mut g.attachments[0].card;

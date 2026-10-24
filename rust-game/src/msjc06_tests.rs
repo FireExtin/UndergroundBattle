@@ -161,14 +161,13 @@ pub(super) fn original(spec: &Spec) {
         matches!(&a[1].ops[0],Op::Search{player:PlayerRef::Actor,filter:CardFilter::PrintedColorAndUnique{color},to_top:false,optional:false,visibility:SearchVisibility::Reveal} if color==spec.color)
     );
     assert!(!catalog::catalog().cards.iter().any(|c| c.id == spec.id));
-    assert_eq!(
-        catalog::catalog()
-            .cards
-            .iter()
-            .filter(|c| c.color == spec.color && c.kind != "region")
-            .count(),
-        spec.color_count
-    );
+    // A census is not printed text: later reviewed/native pilot cards append
+    // to the directory. Compare the complete current ID set with the primary
+    // specifications, retaining the historical census as a lower bound.
+    let actual=catalog::catalog().cards.iter().filter(|c|c.color==spec.color&&c.kind!="region").map(|c|c.id.clone()).collect::<std::collections::BTreeSet<_>>();
+    let primary:serde_json::Value=serde_json::from_str(include_str!("../../docs/factions/card-specifications.json")).unwrap();
+    let expected=primary["cards"].as_object().unwrap().iter().filter(|(id,s)|catalog::catalog().cards.iter().any(|c|c.id==**id)&&s["fields"]["colorKey"].as_str()==Some(spec.color)&&s["fields"]["basicType"].as_str()!=Some("地区")).map(|(id,_)|id.clone()).collect::<std::collections::BTreeSet<_>>();
+    assert_eq!(actual,expected);assert!(actual.len()>=spec.color_count);
     for id in spec.uniques {
         // A printed affiliation is not a society card. The search accepts
         // ordinary unique cards of this colour, including affiliated ones.

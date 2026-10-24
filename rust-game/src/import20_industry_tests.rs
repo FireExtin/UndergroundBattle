@@ -259,6 +259,9 @@ fn import20_industry_credit_pays_tattoo_fast_cost_with_no_physical_assets() {
     let cost = field(&mut g, "JC084", 0);
     let target = field(&mut g, "JC084", 0);
     g.board_mut(&target).unwrap().face_down = true;
+    let wrong=field(&mut g,"JC125",0);
+    let attempted=Action{card_id:Some(uid.clone()),ability_id:Some(crate::import20_tattoo::FAST.into()),cost_selected:Some(vec![wrong]),target_id:Some(target.clone()),..Action::new("activate")};
+    reject(&mut g,0,attempted);assert_eq!(g.step_resource_count(0),1);assert!(!g.board(&uid).unwrap().1.exhausted);
     act(
         &mut g,
         0,
@@ -276,6 +279,16 @@ fn import20_industry_credit_pays_tattoo_fast_cost_with_no_physical_assets() {
     pass_top(&mut g);
     assert!(g.players[0].assets.is_empty());
     assert_eq!(g.resources(0), 0);
+}
+
+#[test]
+fn import20_industry_actual_mill_pauses_for_rumor_and_resumes_once() {
+    let mut g=game();let host=field(&mut g,"JC125",0);g.players[0].deck.clear();let top=g.make_card("WM042",0);g.players[0].deck.push(top);
+    start_mill(&mut g);choose(&mut g,vec!["accept".into()]);pass_top(&mut g);
+    assert!(matches!(g.pending.as_ref().map(|p|&p.resolution),Some(ChoiceResolution::Rumor{..})));restore(&mut g);
+    choose(&mut g,vec![host.clone()]);drain(&mut g,false);
+    assert!(g.players[0].deck.is_empty());assert_eq!(g.sealed_cards.iter().filter(|s|s.host_id==host&&s.card.definition=="WM042").count(),1);
+    assert!(!g.players[0].graveyard.iter().any(|c|c.definition=="WM042"));assert!(g.pending.is_none()&&g.stack.is_empty());restore(&mut g);
 }
 #[test]
 fn import20_industry_two_credits_pay_normal_plan_advancement_and_unused_credit_remains() {

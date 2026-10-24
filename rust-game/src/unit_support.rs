@@ -37,6 +37,26 @@ pub(crate) fn game() -> Game {
     g.begin_window(Window::Action(0));
     g
 }
+
+/// Current directory scope, separately from the preserved older mechanism
+/// fixtures. The entire prior263 raw records retain their pinned digest.
+pub(crate) fn assert_current_serial_catalog() {
+    use sha2::{Digest,Sha256};
+    use serde_json::Value;
+    fn sorted(v:&Value)->Value { match v {
+        Value::Array(a)=>Value::Array(a.iter().map(sorted).collect()),
+        Value::Object(o)=>{let mut keys=o.keys().collect::<Vec<_>>();keys.sort();let mut map=serde_json::Map::new();for k in keys{map.insert(k.clone(),sorted(&o[k]));}Value::Object(map)},
+        _=>v.clone(),
+    }}
+    let raw:Value=serde_json::from_str(include_str!("../data/cards.json")).unwrap();
+    let cards=raw["cards"].as_array().unwrap();
+    let digest=format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..263].to_vec()))).unwrap()));
+    assert_eq!(digest,"7f9ec9a7c352d0ce5114a15eae9d0cff6056a0d74a00e1c404d48714944f25a6");
+    assert_eq!(cards[252..].iter().map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),["BQ090","BQ064","BQ039","WM028","WM025","WM024","BQ081","WM057","XG13","WM064","CQ24","BQ092","BQ093"]);
+    assert_eq!(cards.len(),265);assert_eq!(catalog::catalog().cards.len(),cards.len());
+    assert!(catalog::catalog().cards[..213].iter().all(|c|c.supported));
+    assert!(catalog::catalog().cards[213..].iter().all(|c|!c.supported));
+}
 pub(crate) fn field(g: &mut Game, id: &str, seat: usize) -> String {
     let c = g.make_card(id, seat);
     let id = c.id.clone();

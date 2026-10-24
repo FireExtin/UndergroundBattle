@@ -70,7 +70,7 @@ fn import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool() {
     assert_eq!(d.temporary_icons, Icons { influence: 1, ..Icons::default() });
     assert_eq!(d.defense, Some(1));
     assert!(d.text.contains("下一张鸣钟教派牌")); assert!(!d.text.contains("下一张灾难牌"));
-    assert_eq!(catalog::catalog().cards.len(), 263);
+    crate::unit_support::assert_current_serial_catalog();
     assert_eq!(catalog::catalog().cards.iter().filter(|d| d.supported).count(), 213);
     assert!(!catalog::catalog().cards.iter().any(|d| d.id == "XQ19"));
     assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.106-import20-industry");

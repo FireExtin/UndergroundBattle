@@ -45,8 +45,8 @@ fn next20_cross_registry_contains_exact_twenty_complete_prints() {
         "JC039", "JZ23", "JZ28", "XG10", "CQ08", "BQ059", "CQ17", "WM039", "WM040", "WM042",
     ];
     let c = catalog::catalog();
-    assert_eq!(c.cards.len(), 193);
-    assert_eq!(c.cards.iter().filter(|c| c.kind != "region").count(), 183);
+    crate::unit_support::assert_current_serial_catalog();
+    assert_eq!(c.cards[..193].iter().filter(|c| c.kind != "region").count(), 183);
     crate::rules::validate_definitions(crate::rules::definitions()).unwrap();
     assert_eq!(ids.iter().filter(|id| catalog::card(id).unique).count(), 10);
     for id in ids {
