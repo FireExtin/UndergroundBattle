@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake, beforeThiefTattooSpecifications, priorSpecifications } from './import20-spec-history.mjs';
+import { thiefTattooSlice as intake, currentImport20, beforeThiefTattooSpecifications, priorSpecifications } from './import20-spec-history.mjs';
 const read=n=>readFileSync(new URL('../../'+n,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -11,8 +11,8 @@ test('thief and tattoo append exactly2 while preserving every prior261 and publi
   const digest='a5c28650d26f011ac54666675cac4ff7a0d0818fa30fefc787f0729c89dd53a3';
   assert.equal(intake.priorCatalogCount,261);assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,261)))),digest);
-  assert.equal(pool.cards.length,263);assert.equal(new Set(pool.cards.map(c=>c.id)).size,263);
-  assert.deepEqual(pool.cards.slice(261).map(c=>c.id),['WM064','CQ24']);assert(pool.cards.slice(261).every(c=>c.supported===false));
+  assert.equal(pool.cards.length,265);assert.equal(new Set(pool.cards.map(c=>c.id)).size,265);
+  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id),['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263).map(c=>c.id), ['BQ092','BQ093']);assert(pool.cards.slice(261).every(c=>c.supported===false));
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);assert(!pool.cards.some(c=>c.id==='XQ19'));
 });
 test('exact CQ24 cost3 correction reconstructs the entire prior source document',()=>{
@@ -32,8 +32,8 @@ test('both black cards retain exact original pixels and printed fields',()=>{
     assert.equal(sha(read(s.sourceVerification.imagePath)),hash);assert.equal(sha(read(`web/public/cards/${id}.jpg`)),hash);
   }
 });
-test('current105 remains author WIP; question evidence does not infer printed zero',()=>{
-  assert.equal(pool.engineVersion,'rust-v0.2.105-import20-thief-tattoo');assert.equal(pool.cardPoolVersion,'limited-v2.96-import20-thief-tattoo');
+test('current106 remains author WIP; question evidence does not infer printed zero',()=>{
+  assert.equal(pool.engineVersion,currentImport20.engineVersion);assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.priorReference20AuthorNativeWipComplete,8);assert.equal(intake.potentialReference20AuthorNativeWipComplete,10);assert.equal(intake.current50ReviewedNativeClosed,38);
   assert.equal(intake.published,false);assert.equal(intake.independentReview,'notRun');assert.equal(intake.WASM,'notBuiltOrRun');assert.equal(intake.Worker,'notBuiltOrRun');assert.equal(intake.references.SuezCodeOrArtCopied,false);

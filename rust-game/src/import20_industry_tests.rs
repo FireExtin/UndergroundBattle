@@ -455,7 +455,7 @@ fn import20_industry_only_same_controller_subtitle_actual_entry_qualifies_not_re
     assert!(g.pending.is_none());
     g.begin_window(Window::Action(0));
     let h = held(&mut g, "JC048", 0);
-    fund(&mut g, 0, "JC125", 2);
+    fund(&mut g, 0, "JC048", 2);
     act(
         &mut g,
         0,
@@ -766,4 +766,107 @@ fn import20_industry_zero_cost_deploy_preserves_unspent_credit() {
     pass_top(&mut g);
     assert_eq!(g.step_resource_count(0), 1);
     assert!(g.players[0].assets.is_empty());
+}
+
+#[test]
+fn import20_industry_existing_monetary_ability_matrix_uses_same_legal_command_with_credits() {
+    let mut covered = std::collections::BTreeSet::new();
+    for id in [
+        "WM039", "WM040", "WM056", "BQ037", "JC041", "BQ079", "XG12", "JZ35", "JC057", "WM062",
+    ] {
+        let spec = definition(id);
+        let choices = spec
+            .abilities
+            .iter()
+            .filter(|a| {
+                a.activation_only
+                    && a.event.is_none()
+                    && a.costs.iter().any(|c| matches!(c, Cost::Assets(1 | 2)))
+                    && a.costs
+                        .iter()
+                        .all(|c| matches!(c, Cost::Assets(1 | 2) | Cost::ExhaustSource))
+            })
+            .collect::<Vec<_>>();
+        if choices.is_empty() {
+            continue;
+        }
+        let mut base = game();
+        base.players[0].society_zone.exposure = 1;
+        base.players[0].society_zone.secrecy = 0;
+        field(&mut base, "JC125", 0);
+        field(&mut base, "JC125", 2);
+        let dark = field(&mut base, "JC029", 0);
+        base.board_mut(&dark).unwrap().face_down = true;
+        for seat in 0..4 {
+            held(&mut base, "JC125", seat);
+        }
+        grave(&mut base, "JC029", 0);
+        let source = if let Some(a) = &spec.attachment {
+            let host = match a.host.zone {
+                Zone::Region => base.regions[0].card.id.clone(),
+                Zone::Society => "society:p0".into(),
+                _ => field(&mut base, "JC125", 0),
+            };
+            let c = base.make_card(id, 0);
+            let uid = c.id.clone();
+            base.attachments.push(Attachment {
+                card: c,
+                host_id: host,
+            });
+            uid
+        } else {
+            field(&mut base, id, 0)
+        };
+        // Baseline offers only an actually legal normal command. Missing
+        // unrelated prerequisites do not create an invented card program.
+        let mut funded = base.clone();
+        fund(&mut funded, 0, "JC084", 2);
+        let offered = funded.legal_actions(0);
+        let Some(action) = offered
+            .iter()
+            .find(|x| {
+                x.action.card_id.as_deref() == Some(&source)
+                    && choices
+                        .iter()
+                        .any(|a| x.action.ability_id.as_deref() == Some(&a.key))
+            })
+            .map(|x| x.action.clone())
+        else {
+            eprintln!("industry payment matrix no baseline action: {id}");
+            continue;
+        };
+        let amount = choices
+            .iter()
+            .find(|a| action.ability_id.as_deref() == Some(&a.key))
+            .unwrap()
+            .costs
+            .iter()
+            .filter_map(|c| {
+                if let Cost::Assets(n) = c {
+                    Some(*n)
+                } else {
+                    None
+                }
+            })
+            .sum::<u32>();
+        act(&mut funded, 0, action.clone());
+        let mut credited = base;
+        credit(&mut credited, 0);
+        credit(&mut credited, 0);
+        eprintln!(
+            "industry payment matrix actual credit command: {id} / {}",
+            action.ability_id.as_deref().unwrap()
+        );
+        act(&mut credited, 0, action);
+        assert_eq!(credited.step_resource_count(0), 2 - amount, "{id}");
+        assert!(credited.players[0].assets.is_empty(), "{id}");
+        covered.insert(id);
+    }
+    for id in ["WM039", "WM040", "WM056", "BQ037"] {
+        assert!(
+            covered.contains(id),
+            "required monetary family missing: {id}; covered={covered:?}"
+        );
+    }
+    eprintln!("industry payment matrix covered: {covered:?}");
 }

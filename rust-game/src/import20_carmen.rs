@@ -123,7 +123,8 @@ impl Game {
         if let Some(p) = &o.extra {
             if !self.mystic_instance_valid(&p.play_instance) || !self.mystic_instance_valid(&p.play_frame) || p.play_instance == p.play_frame
                 || p.assets.len() + p.credits.len() != 3 || p.assets.iter().any(|id| !self.mystic_instance_valid(id) || *id == p.play_instance)
-                || p.assets.iter().collect::<BTreeSet<_>>().len() != 3 { return Err("卡门额外3须为实际不同资产与原出牌".into()); }
+                || p.assets.iter().collect::<BTreeSet<_>>().len() != p.assets.len()
+                || p.credits.iter().map(|c| &c.id).collect::<BTreeSet<_>>().len() != p.credits.len() { return Err("卡门额外3须为实际不同资产与原出牌".into()); }
             for c in &p.credits { self.validate_step_credit(c)?; if c.actor != actor { return Err("卡门额外费用不能借用其他玩家步骤费用".into()); } }
         } else if !o.enemies.iter().all(|(_, n)| o.secrecy > *n) { return Err("未额外支付的卡门须在进场时高于每个敌方玩家的隐秘等级".into()); }
         Ok(o)

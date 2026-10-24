@@ -34,7 +34,7 @@
   "priorReference20AuthorNativeWipComplete": 10,
   "potentialReference20AuthorNativeWipComplete": 12,
   "current50ReviewedNativeClosed": 38,
-  "authorNativeDirected": "notCompiledOrTested",
+  "authorNativeDirected": "pendingAtSourceFreeze",
   "independentReview": "notRun",
   "WASM": "notBuiltOrRun",
   "Worker": "notBuiltOrRun",
@@ -48,5 +48,15 @@
     "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
     "permission": "Existing direct author and illustrator permission. Source data has no registered per-card effects; independent finite adaptation.",
     "SuezCodeOrArtCopied": false
-  }
+  },
+  "stepRuleEvidence": {
+    "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+    "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "physicalPage": 9,
+    "printedPage": 8,
+    "pixelsViewed": true,
+    "interpretation": "Each action team has its own step; each region/type confrontation is one step including its before and after fast windows. Existing WinContext interrupts/resumes the same step."
+  },
+  "paymentSemantics": "Real assets and typed temporary credits recorded separately. Common constructor and direct character deploy/reveal unpack the same captured payment; no asset card or loyalty created.",
+  "sealTestScope": "Normal sealing primitive and resulting full optional declarations/response paths. No new unrelated attachment-sealing producer card or invented client action."
 }
