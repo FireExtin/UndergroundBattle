@@ -9,7 +9,7 @@ https://hidden-world-hegemony-overseas-20261024.chengliang1984286.chatgpt.site
 
 267个dist文件中，265个程序和客户端资源与原已审包相同；差异仅为新站项目清单和构建时间README。官方打包器附加3个与源码一致的D1表结构文件，最终归档270文件。原WASM、Worker、客户端哈希及源码绑定见 [绑定记录](evidence/overseas-abi95-20261024/final-binding.json)。
 
-官方返回saved version和succeeded部署；正常浏览器已打开公开首页及卡牌收藏，显示203种可编辑玩家卡，观察的5张牌面均加载完成，浏览器错误日志0。没有创建海外牌桌或保存牌组。D1的commands、entry_receipts、journal、rooms、seats五张业务表均查得0行。国内同版本的7回合10:0完整双席对局及终局双方刷新另见国内浏览器报告。
+官方返回saved version和succeeded部署；发布时正常浏览器已打开公开首页及卡牌收藏，显示203种可编辑玩家卡，观察的5张牌面均加载完成，浏览器错误日志0。当时尚未创建海外牌桌或保存牌组，D1的commands、entry_receipts、journal、rooms、seats五张业务表均查得0行。后续已在独立海外自建桌完成[6回合8:4真实双席对局及双方终局刷新](OVERSEAS_ABI95_BROWSER_QA_2026-10-24.md)，该测试正常产生业务数据，不能将初始空库描述为当前仍为空。国内同版本的7回合10:0对局证据另列。
 
 发布时的验证边界如实保留：匿名CLI只读 `/api/health` 返回403，已停止该接口检查，没有令牌重试或换客户端重试。前端源码不调用该健康接口，首页/目录是独立的正常页面检查，不能据此称健康接口通过。当时平台保存的tar原始摘要与本地解压tar摘要不同，规范化细节尚未独立核实。执行器在该原始tar摘要断言失败后没有阻止已授权部署请求，已立即披露；此前逐文件源码/构建内容验证已通过。原始回执和失败历史保留于 [发布回执与完整边界](evidence/overseas-abi95-20261024/publication-result.json)。
 
