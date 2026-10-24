@@ -137,7 +137,7 @@ impl Game {
             else { return Err("杀手袭击缺少原现身观察".into()); };
         let amount = self.wm024_enemy_exposure(f.actor).saturating_add(o.grants.len() as u32);
         let deaths = self.damage_with_receipts([(f.targets[0].id.clone(), amount)].into())?;
-        if deaths.iter().any(|d| d.was_renown) { self.draw(f.actor, 1); }
+        if deaths.iter().any(|d| d.was_renown) { self.draw(f.actor, 1)?; }
         Ok(())
     }
     fn import20_vampire_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {

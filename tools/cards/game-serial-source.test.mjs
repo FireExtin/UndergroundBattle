@@ -25,7 +25,7 @@ test('serial merge retains every incoming card and reconstructs the exact pre-co
   assert.equal(expectedIds.size, 252);
   assert.deepEqual(pool.cards.slice(252,254).map(c => c.id), ['BQ090', 'BQ064']);
   const prior = priorSpecifications(JSON.parse(read('docs/factions/card-specifications.json')));
-  assert.equal(sha(JSON.stringify(prior, null, 2) + '\n'), baseline.specificationsSha258);
+  assert.equal(sha(JSON.stringify(prior, null, 2) + '\n'), baseline.specificationsSha256);
   assert.deepEqual(pool.cards.slice(254,256).map(c => c.id), ['BQ039', 'WM028']);
   assert.deepEqual(pool.cards.slice(256).map(c=>c.id), ['WM025','WM024']);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);

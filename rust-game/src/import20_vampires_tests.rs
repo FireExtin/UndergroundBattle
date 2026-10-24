@@ -90,7 +90,7 @@ fn import20_wm025_reveal_aura_is_personal_current_and_does_not_reduce_faceup_pla
 #[test]
 fn import20_wm025_real_paid_reveal_aura_floors_cost_but_never_waives_loyalty(){
     let mut g=game();field(&mut g,"WM025",0);g.add_society_markers(0,0,7);fund(&mut g,0,"JC125",1);
-    let hidden=conceal(&mut g,"JC029");reject(&mut g,0,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});
+    let hidden=field(&mut g,"JC029",0);g.board_mut(&hidden).unwrap().face_down=true;reject(&mut g,0,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});
     fund(&mut g,0,"JC029",1);let before=g.resources(0);act(&mut g,0,Action{card_id:Some(hidden),..Action::new("reveal")});
     assert_eq!(g.resources(0),before);pass_top(&mut g);assert!(g.regions[0].cards.iter().any(|c|c.definition=="JC029"&&!c.face_down));restore(&mut g);
 }
@@ -130,12 +130,15 @@ fn import20_wm025_accepted_win_survives_source_departure_and_queries_current_vam
 
 #[test]
 fn import20_wm025_win_counts_a_real_attached_bat_as_a_personal_vampire_character(){
-    let mut g=game();field(&mut g,"WM025",0);let host=field_at(&mut g,"JC056",0,1);fund(&mut g,0,"JC029",1);
+    let mut g=game();field(&mut g,"WM025",0);let host=field_at(&mut g,"JC056",0,1);fund(&mut g,0,"JC029",8);
+    let manor=held(&mut g,"XQ15",0);act(&mut g,0,Action{card_id:Some(manor),target_id:Some("society:p0".into()),..Action::new("play")});pass_top(&mut g);
+    let manor=g.attachments.iter().find(|a|a.card.definition=="XQ15").unwrap().card.id.clone();
     let hand=held(&mut g,"BQ026",0);act(&mut g,0,Action{card_id:Some(hand),region:Some(1),..Action::new("deploy")});
     for _ in 0..40{if g.pending.is_some(){break;}pass(&mut g);}
     assert!(g.pending.as_ref().is_some_and(|p|p.choice.options.iter().any(|o|o.id==host)));
     choose(&mut g,vec![host]);pass_top(&mut g);
     assert!(g.attachments.iter().any(|a|a.card.definition=="BQ026"));
+    g.remove_dead(&manor,RemovalCause::Destroy);assert!(!g.current_subtypes(g.board(&g.regions[1].cards[0].id).unwrap().1).iter().any(|s|s=="吸血鬼"));restore(&mut g);
     begin_win(&mut g,true);accept_win(&mut g);assert_eq!(g.regions[1].influence[0],1);restore(&mut g);
 }
 
@@ -189,10 +192,10 @@ fn import20_wm024_dynamic_x_reads_exposure_after_response_and_paid_costs_stay_fi
 
 #[test]
 fn import20_wm024_actual_dynamic_renown_grant_and_denial_determine_the_death_reward(){
-    let(mut g,target)=assassin([0,1],"JC056");field(&mut g,"WM041",2);assert!(g.has_renown(g.board(&target).unwrap().1));
-    choose(&mut g,vec![target.clone()]);pass_top(&mut g);assert!(g.board(&target).is_none());assert_eq!(g.players[0].hand.len(),1);restore(&mut g);
-    let(mut g,target)=assassin([1,0],"JC070");field(&mut g,"WM041",0);assert!(!g.has_renown(g.board(&target).unwrap().1));
-    choose(&mut g,vec![target.clone()]);pass_top(&mut g);assert!(g.board(&target).is_none());assert!(g.players[0].hand.is_empty());restore(&mut g);
+    let(mut g,target)=assassin([0,1],"JC056");choose(&mut g,vec![target.clone()]);field(&mut g,"WM041",2);assert!(g.has_renown(g.board(&target).unwrap().1));
+    restore(&mut g);pass_top(&mut g);assert!(g.board(&target).is_none());assert_eq!(g.players[0].hand.len(),1);restore(&mut g);
+    let(mut g,target)=assassin([1,0],"JC070");choose(&mut g,vec![target.clone()]);field(&mut g,"WM041",0);assert!(!g.has_renown(g.board(&target).unwrap().1));
+    restore(&mut g);pass_top(&mut g);assert!(g.board(&target).is_none());assert!(g.players[0].hand.is_empty());restore(&mut g);
 }
 
 #[test]
@@ -208,13 +211,13 @@ fn import20_vampire_damage_receipts_freeze_simultaneous_renown_before_aura_depar
 fn import20_wm024_zero_damage_or_enemy_shield_does_not_fake_a_kill_reward(){
     let(mut g,target)=assassin([0,0],"JC070");choose(&mut g,vec![target.clone()]);pass_top(&mut g);
     assert_eq!(g.board(&target).unwrap().1.damage,0);assert!(g.players[0].hand.is_empty());restore(&mut g);
-    let(mut g,target)=assassin([2,0],"JC070");g.board_mut(&target).unwrap().shield=1;restore(&mut g);choose(&mut g,vec![target.clone()]);pass_top(&mut g);
+    let(mut g,target)=assassin([2,0],"JC070");choose(&mut g,vec![target.clone()]);g.board_mut(&target).unwrap().shield=1;restore(&mut g);pass_top(&mut g);
     assert_eq!((g.board(&target).unwrap().1.damage,g.board(&target).unwrap().1.shield),(0,0));assert!(g.players[0].hand.is_empty());restore(&mut g);
 }
 
 #[test]
 fn import20_wm024_one_additive_mentor_raid_keeps_grant_after_mentor_departure(){
-    let mut g=game();let target=field(&mut g,"JC095",2);let mentor=field(&mut g,"JC038",1);field(&mut g,"JC038",2);
+    let mut g=game();let target=field(&mut g,"JC095",2);let mentor=field(&mut g,"JC038",1);field(&mut g,"JC038",3);
     g.add_society_markers(2,1,0);fund(&mut g,0,"JC029",7);let hidden=conceal(&mut g,"WM024");
     act(&mut g,0,Action{card_id:Some(hidden),..Action::new("reveal")});raid_pending(&mut g);
     assert!(!g.effects.iter().any(|e|matches!(e,Effect::Declare{declaration:d}if d.ability.key=="jc038-granted-raid")));

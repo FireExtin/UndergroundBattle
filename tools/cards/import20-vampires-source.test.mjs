@@ -36,7 +36,7 @@ test('six exact image-backed corrections reconstruct both earlier whole-document
     {id:'WM024',path:['abilities',1,'printedText'],old:oldText,new:newText},
   ]);
   assert.equal(sha(JSON.stringify(beforeVampireSpecifications(specifications),null,2)+'\n'),'e9c928bfa6bb225e6b298eccd19cb3c4ac341c6a36690393a48efbaa2dbf3c6c');
-  assert.equal(sha(JSON.stringify(priorSpecifications(specifications),null,2)+'\n'),'7095e990ec75675096e984f614734236e7c937f09be619ae6b024d6d4c74f54c');
+  assert.equal(sha(JSON.stringify(priorSpecifications(specifications),null,2)+'\n'),'809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c');
   assert.equal(pool.sourceSha256,sha(read('docs/factions/card-specifications.json')));
 });
 

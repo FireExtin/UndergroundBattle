@@ -14,7 +14,7 @@ const specs = specifications.cards;
 
 test('first import slice preserves the exact prior252 and keeps both new cards unadmitted', () => {
   assert.equal(import20.priorCatalogCount, 252);
-  assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,252)))), import20.priorCatalogCardsCanonicalSha258);
+  assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,252)))), import20.priorCatalogCardsCanonicalSha256);
   assert.deepEqual(pool.cards.slice(252,254).map(c => c.id), ['BQ090', 'BQ064']);
   assert.equal(new Set(pool.cards.map(c => c.id)).size, 258);
   assert.deepEqual(pool.cards.slice(256).map(c=>c.id), ['WM025','WM024']);
@@ -51,7 +51,7 @@ test('four exact BQ064 corrections preserve every other byte of the historical s
     {id:'BQ064',path:['confirmedMechanismIds',0],old:'starlightInfluence',new:'mysticContest'},
   ]);
   const prior = priorSpecifications(specifications);
-  assert.equal(sha(JSON.stringify(prior,null,2)+'\n'), import20.priorSpecificationsSha258);
+  assert.equal(sha(JSON.stringify(prior,null,2)+'\n'), import20.priorSpecificationsSha256);
   assert.equal(pool.sourceSha256, sha(read('docs/factions/card-specifications.json')));
 });
 
