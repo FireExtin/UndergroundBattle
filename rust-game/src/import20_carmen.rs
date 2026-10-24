@@ -229,7 +229,6 @@ impl Game {
                     let mut all = ids.clone(); all.extend(extra.clone()); all
                 }, _ => return Err("卡门派遣/现身须保留实际印刷及额外3支付".into()),
             };
-            let printed = match &f.already_paid[0] { PaidCost::Assets(ids) => ids, _ => unreachable!() };
             if f.money_units(0) > 1 || assets.iter().any(|id| !f.source.valid_printed_payment_id(id)) || assets.iter().collect::<BTreeSet<_>>().len() != assets.len()
                 || !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
                 || f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play())

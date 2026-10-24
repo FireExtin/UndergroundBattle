@@ -126,7 +126,7 @@ impl Game {
                 })
                 .count()
                 != 1
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)==2&&paid(2))
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(_)] if f.money_units(0)==2&&paid(2))
             || !f.targets.is_empty()
             || !matches!(f.steps.as_slice(),[Step{context,op:Op::WM056MoveOneAdjacentInfluence}] if *context==f.actor)
             || !((f.cursor == 0 && matches!(f.guard, GuardState::Unchecked))
