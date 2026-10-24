@@ -1203,5 +1203,105 @@
     "url": "/cards/XQ15.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg",
     "sha256": "8d0767d3561ce8c09c03b9abb67cb150b26e2e3d2a213cfd95c9a4865dbec78c"
+  },
+  "BQ090": {
+    "url": "/cards/BQ090.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+    "sha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e"
+  },
+  "BQ064": {
+    "url": "/cards/BQ064.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ064 提取样本.jpg",
+    "sha256": "4ae03aeedb44416e0daa489cf4df68613dbf32ece07d6ac642db7169a6142e10"
+  },
+  "BQ039": {
+    "url": "/cards/BQ039.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+    "sha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de"
+  },
+  "WM028": {
+    "url": "/cards/WM028.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg",
+    "sha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee"
+  },
+  "WM025": {
+    "url": "/cards/WM025.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg",
+    "sha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622"
+  },
+  "WM024": {
+    "url": "/cards/WM024.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+    "sha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120"
+  },
+  "BQ081": {
+    "url": "/cards/BQ081.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+    "sha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f"
+  },
+  "WM057": {
+    "url": "/cards/WM057.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+    "sha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697"
+  },
+  "XG13": {
+    "url": "/cards/XG13.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+    "sha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a"
+  },
+  "WM064": {
+    "url": "/cards/WM064.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+    "sha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02"
+  },
+  "CQ24": {
+    "url": "/cards/CQ24.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+    "sha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d"
+  },
+  "BQ092": {
+    "url": "/cards/BQ092.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+    "sha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe"
+  },
+  "BQ093": {
+    "url": "/cards/BQ093.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+    "sha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c"
+  },
+  "CQ18": {
+    "url": "/cards/CQ18.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+    "sha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639"
+  },
+  "CQ19": {
+    "url": "/cards/CQ19.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+    "sha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1"
+  },
+  "XG20": {
+    "url": "/cards/XG20.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+    "sha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00"
+  },
+  "BQ057": {
+    "url": "/cards/BQ057.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+    "sha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f"
+  },
+  "CQ15": {
+    "url": "/cards/CQ15.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
+    "sha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f"
+  },
+  "CQ28": {
+    "url": "/cards/CQ28.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+    "sha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab"
+  },
+  "XQ19": {
+    "url": "/cards/XQ19.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+    "sha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb"
   }
 }
