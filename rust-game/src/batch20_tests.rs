@@ -345,7 +345,21 @@ fn batch20_jc034_requires_its_own_actual_vampire_combat_contribution() {
     assert!(g.jc034_combat_observers(0, 0).is_empty());
     g.board_mut(&vampire).unwrap().exhausted = false;
     let hand = held(&mut g, "JC125", 2);
-    g.reward(0, 0, 1, 1).unwrap();
+    // Keep the former incomplete reward setup as an explicit rejection control:
+    // it is not a real after-combat window and removes a contributor before the
+    // mandatory recipient transition can be offered.
+    let mut incomplete = g.clone();
+    incomplete.reward(0, 0, 1, 1).unwrap();
+    incomplete.remove_dead(&vampire, RemovalCause::Destroy);
+    incomplete.remove_dead(&path, RemovalCause::Destroy);
+    assert!(incomplete.drive().is_err());
+    // This is the observer unit test: freeze the genuine contribution witness,
+    // then model departure before its declaration. Normal complete battle and
+    // recipient commands are covered by their separate combat tests.
+    g.begin_window(Window::After(0, 1));
+    let declarations = g.jc034_combat_observers(0, 0);
+    assert_eq!(declarations.len(), 1);
+    g.effects.extend(declarations.into_iter().map(|declaration| Effect::Declare { declaration }));
     g.remove_dead(&vampire, RemovalCause::Destroy); g.remove_dead(&path, RemovalCause::Destroy);
     g.drive().unwrap(); restore(&mut g);
     while !matches!(&g.pending.as_ref().unwrap().resolution, ChoiceResolution::Declare { declaration,.. } if declaration.source.card.definition == "JC034") { resolve_choice(&mut g); }

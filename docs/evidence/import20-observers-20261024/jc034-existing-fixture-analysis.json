@@ -1,0 +1,27 @@
+{
+  "base": "4391ac2612133c9b8e50f5e190ec8fa16073d0e7",
+  "observed_failing_head": "0412547ce1c56f71ec1445ac27ec97694ca71401",
+  "unchanged_inputs": [
+    {
+      "path": "rust-game/src/batch20_tests.rs",
+      "sha256": "91c223df51c4c37895bb8409bb5dcfe3c1cb8729cbd0e013a21e6ca5cc34829c",
+      "exactly_equal_base": true
+    },
+    {
+      "path": "rust-game/src/combat_wounds.rs",
+      "sha256": "2c537adfad1d144cb94f4946d03e3c146a5ec5acb7b1da9d3e6f8ae2ac98f1a4",
+      "exactly_equal_base": true
+    },
+    {
+      "path": "rust-game/src/unit_support.rs",
+      "sha256": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683",
+      "exactly_equal_base": true
+    }
+  ],
+  "finding": "The old test calls reward with two contributors then removes one before drive; queued recipient candidates no longer match actual contributors. The snapshot guard is unchanged. New BQ039 observer returns no declarations or identity allocation when this layout contains only JC034.",
+  "baseline_dynamic_test_run": false,
+  "assessment_method": "Observed failure plus exact unchanged code and fixture comparison; not an independent baseline execution.",
+  "planned_correction": "Preserve invalid reward scenario as rejection control, then test frozen JC034 observation declarations without fabricating an incomplete reward/recipient transition.",
+  "additional_invalid_condition": "The old fixture remains Window::Action rather than the required Window::After(region,combat).",
+  "correction": "Original incomplete reward setup remains an explicit rejected control. Positive observer unit test captures actual contributions in an after-combat layout and queues only its frozen declaration; no reward guard is relaxed."
+}
