@@ -1,0 +1,215 @@
+{
+  "format": "abi112-batch20-independent-review-v1",
+  "createdUtc": "2026-10-24T12:24:24.982875+00:00",
+  "reviewer": "independent_abi112_batch20_review; non-author",
+  "repository": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "batchBase": "e2b8e9afa0c4d3107790e09809b17f9478badc67",
+  "abi112RepairBase": "55dc95d3cd4d7dc1fb8405179e782b9f8906be1d",
+  "runtimeSource": "b9dc611cdf433652b933dd2d68f5ccd27676e252",
+  "head": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+  "headFixed": true,
+  "ancestryVerified": true,
+  "scope": [
+    "ABI112 shared renown/combat-glory repair",
+    "Exact20 cards in coverage.json",
+    "Static rule/fees/targets/response/continuation/privacy/order/once-only review"
+  ],
+  "result": "changes_requested_keep_WIP",
+  "confirmedCounts": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "status": "independently_reproduced_on_fixed_head",
+      "title": "CQ28磨牌触发传闻时，正常最后响应pass被通用cause白名单拒绝",
+      "locations": [
+        {
+          "path": "rust-game/src/import20_gate.rs",
+          "start": 419,
+          "end": 420
+        },
+        {
+          "path": "rust-game/src/rumor.rs",
+          "start": 512,
+          "end": 560
+        },
+        {
+          "path": "rust-game/src/exposure.rs",
+          "start": 656,
+          "end": 656
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "start": 657,
+          "end": 683
+        }
+      ],
+      "normalScenario": [
+        "Current action window, actor0, four black assets, CQ28 in hand",
+        "WM042 within first6 deck cards; any legal public character in play",
+        "play; choose item0 and item0/item3; pay4; normal public passes"
+      ],
+      "expected": "pause at legal rumor choice then resume the same paid CQ28 frame exactly once",
+      "actualByStaticFlow": "Game.apply post-validation returns 传闻原效应不能产生该区域转移批次; final pass rolls back, paid CQ28 stays on stack",
+      "mutationOrCorruptSaveRequired": false,
+      "probe": "cq28-rumor-repro.rs",
+      "independentlyExecuted": true,
+      "executionRecord": "independent-execution.json",
+      "failingCases": 2,
+      "passingControlCases": 1
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "status": "independently_reproduced_in_two_normal_scenarios_on_fixed_head",
+      "title": "同控WM057+WM025及双BQ039同时触发缺少本人决定入堆叠顺序",
+      "locations": [
+        {
+          "path": "rust-game/src/mystic_hooks.rs",
+          "start": 5,
+          "end": 5
+        },
+        {
+          "path": "rust-game/src/mystic_contest.rs",
+          "start": 320,
+          "end": 324
+        },
+        {
+          "path": "rust-game/src/batch3_entry_order.rs",
+          "start": 46,
+          "end": 54
+        },
+        {
+          "path": "rust-game/src/engine.rs",
+          "start": 1503,
+          "end": 1538
+        }
+      ],
+      "normalScenario": [
+        "Actor0 controls faceup WM057 and WM025",
+        "pay2/exhaust original WM057; four actual private commits produce a team0 win",
+        "finish winners personal marker reward choices"
+      ],
+      "expected": "controller0 can choose which simultaneous win trigger enters stack next",
+      "actualByStaticFlow": "introduced whitelist excludes both; no EntryOrderGroup; WM057 declaration is forced first while WM025 remains queued",
+      "primaryRule": "Local base manual physical4/printed2: each first/second player chooses their simultaneous trigger entry order",
+      "mutationOrCorruptSaveRequired": false,
+      "probe": "trigger-order-repro.rs",
+      "independentlyExecuted": true,
+      "executionRecords": [
+        "independent-execution.json",
+        "independent-eye-execution.json"
+      ],
+      "failingCases": 2,
+      "additionalProbe": "bq039-order-repro.rs",
+      "additionalNormalScenario": [
+        "Actor0 uses two real1-cost play commands to attach two BQ039 to own JC084",
+        "Normal Before(0,1) window passes produce actual combat2:1 win and real damage allocation",
+        "Two same-controller EyeBattle triggers exist, but pending=trigger and orderGroups=0"
+      ]
+    }
+  ],
+  "integrity": {
+    "handoffEvidenceFiles79AllMatch": true,
+    "embeddedEvidence16CompressedAndExpandedAllMatch": true,
+    "compilerInputs329MatchFixedGit": true,
+    "artifactFiles5AllMatch": true,
+    "bundleVerified": true,
+    "bundleSha256": "722ee9a700b41837dbd2cff22a0007e421deb438ee96abc5d90407b60861d0fb",
+    "wasmBytes": 8128116,
+    "wasmSha256": "324add323aea19ef6af5c633d6dbbd96d8d36fd49bcd41853626002861726b4f",
+    "independentRebuild": false
+  },
+  "independentExecution": {
+    "gitAndHashChecks": true,
+    "primary20ImagesViewed": true,
+    "localManualPagesViewed": [
+      "base physical4/printed2",
+      "hegemony physical17/printed16",
+      "hegemony physical18/printed17",
+      "hegemony physical19/printed18",
+      "hegemony physical20/printed19",
+      "hegemony physical22/printed21"
+    ],
+    "gameTests": 5,
+    "cargoStarted": true,
+    "wasm": false,
+    "worker": false,
+    "browser": false,
+    "probeStatus": "completed on fixed91ae;5 distinct expected-correct probes;1 control passed/4 failures confirm findings",
+    "passed": 1,
+    "failed": 4,
+    "ignored": 0,
+    "cargoExited": true,
+    "executionRecords": [
+      "independent-execution.json",
+      "independent-eye-execution.json"
+    ],
+    "failedStartupAttempt": {
+      "path": "independent-execution-attempt1.json",
+      "testsExecuted": 0,
+      "reason": "cc absent from initial PATH; corrected with task-local Zig selectors"
+    },
+    "fullAuthorSuiteRerun": false
+  },
+  "authorEvidenceOnly": {
+    "originalFullNative": {
+      "passed": 2494,
+      "failed": 9,
+      "preserved": true
+    },
+    "directed95": "overlapping subsequent directed closure; not independent",
+    "integration72": "subsequent scoped integration; not independent",
+    "actualWasm": "four scenarios20commands96views, author only",
+    "actualWorker": "four scenarios20normal20duplicate96views, author only",
+    "hostAndDocs": "zero executed tests",
+    "browser": "ABI111 six-turn9:0/refresh/20images; never ABI112 acceptance",
+    "oneCleanFullNativeRerunClaimed": false
+  },
+  "limits": [
+    "All653 changed files",
+    "Every line of119 changed Rust files",
+    "Every existing test body",
+    "Exhaustive older-card/multi-card combinations",
+    "Live ABI112 browser/Bot",
+    "Independent WASM rebuild or replay",
+    "Complete Native suites",
+    "Additional corrupt-save expansion"
+  ],
+  "blockers": [],
+  "restrictionsObserved": [
+    "No author working-tree writes",
+    "No worktree",
+    "Native probes ran only after explicit CPU window release",
+    "No push, CI, main or deploy",
+    "No browser or public endpoints",
+    "No other-task/private conversation databases",
+    "No external Oracle or third-party implementation copy"
+  ],
+  "artifacts": [
+    "report.md",
+    "coverage.json",
+    "intake-verification.json",
+    "embedded-evidence-verification.json",
+    "baseline-scope.json",
+    "test-inventory.json",
+    "cq28-rumor-repro.rs",
+    "trigger-order-repro.rs",
+    "independent-execution.json",
+    "independent-probes.log",
+    "independent-eye-execution.json",
+    "independent-eye.log",
+    "independent-execution-attempt1.json",
+    "independent-probes-attempt1-missing-cc.log",
+    "bq039-order-repro.rs"
+  ],
+  "finalizedUtc": "2026-10-24T12:32:01.043750+00:00",
+  "unresolvedProductIssues": [
+    "R1",
+    "R2"
+  ]
+}

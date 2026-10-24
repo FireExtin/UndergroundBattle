@@ -1,0 +1,50 @@
+{
+  "sourceReview": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+  "runtimeFix": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "reviewerClone": "e3eed7604c17f70582d38d1924096eca347197b1",
+  "scope": "Non-author static batch20/ABI112 review and original four failing normal-command probes closure; not full suite or platform acceptance.",
+  "archive": {
+    "path": "independent-review-and-closure.tar.gz",
+    "bytes": 91219,
+    "sha256": "ff336c888c2a2417d9062ccc167238024791042fc429068e245a797b968dbaba"
+  },
+  "archivedFiles": {
+    "baseline-scope.json": "254ad9f113d5bced373fff0e56de82cd93543b6299a14b4d95737a5b7b6b9e5e",
+    "bq039-order-repro.rs": "f6fb13e8316f77feee891168d78813879f290676ee0fa088ed1c549e5fc362da",
+    "closure-clone-preparation.json": "84217e09b82670f85da70010543916abfca0ef35d19b5689b2ac533f094db545",
+    "closure-coverage.json": "1cd98b467c2b6f03f0484aa14d7a7d6b1a37e1531fa1b5f19807c8df664d9882",
+    "closure-execution.json": "f3c558f19221f10dc17011a04e2e35ff233885af589b211b4fe10efe77ef45d0",
+    "closure-manifest.json": "d827d2386bf306394a410779b3f4e2c426c39bf2a7acf488d924c99ba13c24ec",
+    "closure-native.log": "e2c7e918aaa7e29aff0246f0baa848a9366fd6714442d0ebc0bb51f08d7a9579",
+    "closure-original-integrity.json": "040d115a64e4278d6d1d57a6b7dad4d43ec2fca4da60b907dfdfb6a61941f9f5",
+    "closure-report.md": "68227f3c28745dbbfed7c6c297704bb55efbe18a395f9495b319225b8ad8472c",
+    "closure-review.json": "dd99002d26629b06bc81e753657863092f2b7c3fb999b720e81e50b7f1515c26",
+    "closure-runtime-86b4.patch": "39ed829d1c9910968815b3e3c3acf4b0b361519ba24e22e30e8431a08526b5c1",
+    "closure-runtime-final.patch": "6723167bf34c494839ca3c23bd4a70e77a0c1192abf32c86f94e9c6fe9751d43",
+    "closure-static-86b4.json": "fef0f8356f472d576eabf9e7efe821ec9c676822e2a72dbdf5159c9bcdf70fc3",
+    "coverage.json": "3912d6053ef50a42394bf6cf4b37a63539a6142c34fdbc3b55d8dc18fd9ec03c",
+    "cq28-rumor-repro.rs": "2e9f73b558271edaac1dbcfb275682048a554dbc2f7c7f702f64e665ac53afe1",
+    "embedded-evidence-verification.json": "5b831ed5e1b65214e7d9709eea83329f7ff6a9fa336daa58ccb57952478b4fe9",
+    "independent-execution-attempt1.json": "b69e152f4baca97f83f5bfed7ce6b78d1ea0c714c0689df2fd1ab006cb51a9ec",
+    "independent-execution.json": "63d56d8458e570f46186d09cd8240592cde98ae30c904f13f80903f79ac7e2f3",
+    "independent-eye-execution.json": "4f129848b99ecf2fe56c4e92af86a26e643f138ca122a31c57e161e342a92610",
+    "independent-eye.log": "768d230ea886ad36d54af60b82cc12577abbff8ab7d5d74081c0a8445afe5f44",
+    "independent-probes-attempt1-missing-cc.log": "b5f3bc7472f027d0ebce19c378ae9e12d8f16ea4dcb8dd01bf71f8a5a515e1f5",
+    "independent-probes.log": "6b9f59426d002b9f28f83589def1ae30bd6b900fb8ca233c6baa025651b2a7b7",
+    "initial-review-manifest.json": "26503dfc1abd0738d217e88fca8f88e50e3abf153536235073d89dd26c4b3d94",
+    "intake-verification.json": "0ba6016e11166c1067b88a71cac9188c10e14e3cb9a77a42cea9ce3bb6eb1567",
+    "report.md": "b32950adac3d57e363dc690e03d6555b3d2fee697f900d08579ce005a90b3e6c",
+    "review.json": "80d27d5fca382ea5b914c4b8d047118df522c4d82bbb573d59c585e4dd0eaf37",
+    "reviewer-test-graft.patch": "4108d5fa74337c9a70136f51379bb5bd5f21fb38d07c207b3c4882d57f544d1c",
+    "test-inventory.json": "40447154ead781b876060421cb2746a22d70a0bd2edd979c1405553dda8283d1",
+    "trigger-order-repro.rs": "3b5447d1df4b67acd61a2d1f3890634f5fdcfe307765323c90498c172f2a282b"
+  },
+  "authorSeparate": {
+    "newRegressionsUnique": 3,
+    "adjacent": 130,
+    "roomWitnessTest": 1,
+    "roomScenarios": 6,
+    "wasmWorkerAtCheckpoint": "notYetRunOnFixedRuntime"
+  },
+  "noCi": true
+}

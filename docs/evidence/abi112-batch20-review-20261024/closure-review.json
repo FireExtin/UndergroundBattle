@@ -1,0 +1,143 @@
+{
+  "format": "abi112-independent-closure-v1",
+  "createdUtc": "2026-10-24T12:40:39.774216+00:00",
+  "reviewer": "independent_abi112_batch20_review; non-author",
+  "initialHead": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+  "initialReport": "report.md",
+  "initialDecision": "changes_requested_keep_WIP",
+  "initialFindings": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "authorFixedCandidate": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "reviewCloneHead": "e3eed7604c17f70582d38d1924096eca347197b1",
+  "ordinaryClone": "/home/ddd/Documents/Codex/2026-10-21/task-3/serial-intake-20261024/abi112-independent-review/fixed-91ae-clone",
+  "ordinaryCloneGitCommonDir": ".git",
+  "cherryPickedOriginCommits": [
+    "86b4cdd33f1fcce02deb46a2f12ea100036c5905",
+    "33bb5824f7c756a87f68c0b19ad1612a0b59e233"
+  ],
+  "reviewCloneCommits": [
+    "8ae12c12162439de6f4804d427ede071ef08aebf",
+    "e3eed7604c17f70582d38d1924096eca347197b1"
+  ],
+  "fed008feToolConsumerCommitOmittedAsAuthorized": true,
+  "committedRustWasmDataCargoInputsMatchAuthorCandidate": true,
+  "reviewerOnlyTrackedChange": "rust-game/src/lib.rs cfg(test) includes for three unchanged reviewer probe files",
+  "runtimeFiles": [
+    {
+      "path": "rust-game/src/rumor.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "e54988b6f57d0ca2b5814d9227b1674c968ad7d1de583646d2ebb5e512c6b688",
+      "reviewedLines": [
+        420,
+        514,
+        519
+      ],
+      "conclusion": "Full CQ28 frame validation plus exact original actor/deck mill mode0 cause; existing once-only continuation and canonical program checks retained"
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "881663e07bb22a376dd1718f7929acba933f23dd440d86803c936d29659298b2",
+      "reviewedLines": [
+        21,
+        22,
+        51
+      ],
+      "conclusion": "Only WM057/WM025/BQ039 introduced; actual contest or battle observation event qualifies references; original queue payloads preserved"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "09e55ae23b54d4b41d2a511c907cedac29e157060a5e7c27dab42e6842ab9e42",
+      "reviewedLines": [
+        1535,
+        1541,
+        1548
+      ],
+      "conclusion": "Register only simultaneous declaration tail after Damage/Recipient insertion; use the frozen BQ039 battle observation event"
+    }
+  ],
+  "fixFrom86To33IncludesRequiredOpNamespaceCorrection": true,
+  "decision": "R1_and_R2_closed_within_static_and_four_probe_scope; no_blanket_ABI112_release_acceptance",
+  "findingClosure": [
+    {
+      "id": "R1",
+      "originalPriority": "P1",
+      "status": "closed_in_fixed_candidate_with_bounded_independent_reproduction",
+      "fixedCases": [
+        "R1-a",
+        "R1-b"
+      ],
+      "basis": "Exact CQ28 mill cause and complete CQ28 canonical frame are authenticated; unchanged probes now reach first legal Rumor choice"
+    },
+    {
+      "id": "R2",
+      "originalPriority": "P2",
+      "status": "closed_in_fixed_candidate_with_bounded_independent_reproduction",
+      "fixedCases": [
+        "R2-a",
+        "R2-b"
+      ],
+      "basis": "Original actual contest/battle observations produce same-controller ordering prompt with exactly two options; event-qualified references; existing Damage order preserved"
+    }
+  ],
+  "independentExecution": {
+    "originalDistinctProbes": 5,
+    "originalPassed": 1,
+    "originalFailed": 4,
+    "closureRerunCases": 4,
+    "closurePassed": 4,
+    "closureFailed": 0,
+    "closureIgnored": 0,
+    "closureFilteredOut": 2507,
+    "exitCode": 0,
+    "record": "closure-execution.json",
+    "log": "closure-native.log",
+    "unchangedProbeSources": true,
+    "originalPassingControlRerun": false,
+    "fullSuiteRerun": false,
+    "WasmWorkerBrowserExecuted": false
+  },
+  "originalEvidenceIntegrity": {
+    "manifest": "initial-review-manifest.json",
+    "verification": "closure-original-integrity.json",
+    "all16FilesUnchanged": true
+  },
+  "remainingScopeLimits": [
+    "Broader original20-card static scope remains as recorded in coverage.json; closure does not add dynamic coverage to remaining16 cards",
+    "Independent probes stop at required rumor/order choice boundaries; later full branch completions are author-only evidence",
+    "No independent full Native suite, WASM, Worker or ABI112 browser acceptance",
+    "Original author full-run9 failures retained; subsequent scoped runs do not imply a clean full rerun",
+    "The consumer-wiring commit and later author test-only Room witnesses were excluded from this review clone"
+  ],
+  "blockers": [],
+  "unresolvedConfirmedFindingsWithinReviewedFix": [],
+  "resourceStatus": {
+    "reviewerCargoExited": true,
+    "finishedUtc": "2026-10-24T12:38:21.079750+00:00",
+    "cpu31ReleasedToParent": true,
+    "noFurtherCargoPlanned": true
+  },
+  "restrictionsObserved": [
+    "Only task-3 fixed Git and authorized evidence read",
+    "No author tree writes",
+    "Ordinary clone only, no worktree",
+    "No subprocess tests before explicit CPU release",
+    "jobs1 threads1 nice19 CPU31 offline locked",
+    "No push CI main deploy browser public endpoints external Oracle or third-party implementation copying"
+  ],
+  "artifacts": [
+    "closure-report.md",
+    "closure-review.json",
+    "closure-coverage.json",
+    "closure-execution.json",
+    "closure-native.log",
+    "closure-clone-preparation.json",
+    "closure-runtime-final.patch",
+    "closure-original-integrity.json",
+    "closure-manifest.json"
+  ]
+}

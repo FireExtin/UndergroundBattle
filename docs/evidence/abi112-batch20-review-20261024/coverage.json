@@ -1,0 +1,947 @@
+{
+  "format": "abi112-batch20-independent-static-coverage-v1",
+  "head": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+  "reviewedCards": [
+    {
+      "cardId": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "kind": "spell",
+      "printedCost": 2,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_contest.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ090.jpg",
+      "primaryImageSha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "完整2/3印刷费、忠诚、快速费用≤3目标/本方失控标志结算数；原手牌2费弃自身共用隐秘续体",
+      "existingTestModule": "rust-game/src/import20_contest_tests.rs",
+      "existingModuleTestCount": 15,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "目标响应离场/护盾；私密提交及无牌裁定；未实跑"
+    },
+    {
+      "cardId": "BQ064",
+      "name": "提取样本",
+      "color": "灰",
+      "kind": "spell",
+      "printedCost": 3,
+      "costAppearance": null,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_contest.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ064.jpg",
+      "primaryImageSha256": "4ae03aeedb44416e0daa489cf4df68613dbf32ece07d6ac642db7169a6142e10",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "完整2/3印刷费、忠诚、快速费用≤3目标/本方失控标志结算数；原手牌2费弃自身共用隐秘续体",
+      "existingTestModule": "rust-game/src/import20_contest_tests.rs",
+      "existingModuleTestCount": 15,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "目标响应离场/护盾；私密提交及无牌裁定；未实跑"
+    },
+    {
+      "cardId": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "kind": "attachment",
+      "printedCost": 1,
+      "costAppearance": null,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_observers.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ039.jpg",
+      "primaryImageSha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "角色/本人秘社宿主；实际宿主战斗参与；钥匙资格冻结、强制准备及共享准备队列",
+      "existingTestModule": "rust-game/src/import20_observers_tests.rs",
+      "existingModuleTestCount": 16,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": true,
+      "findings": [
+        "R2"
+      ],
+      "limitations": "同控双眼实际战斗排序反例已失败；其他多重准备/战斗组合未穷举",
+      "independentRuntimeScope": "two real paid attachments followed by actual2:1 combat win ordering only"
+    },
+    {
+      "cardId": "WM028",
+      "name": "曼纽的阴影厅堂",
+      "color": "蓝",
+      "kind": "attachment",
+      "printedCost": 2,
+      "costAppearance": null,
+      "loyalty": [
+        "蓝色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_observers.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/WM028.jpg",
+      "primaryImageSha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "角色/本人秘社宿主；实际宿主战斗参与；钥匙资格冻结、强制准备及共享准备队列",
+      "existingTestModule": "rust-game/src/import20_observers_tests.rs",
+      "existingModuleTestCount": 16,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "多同控BQ039排序未实跑；完整强制嵌套准备组合未穷举"
+    },
+    {
+      "cardId": "WM025",
+      "name": "安哥拉·曼纽",
+      "color": "蓝",
+      "kind": "character",
+      "printedCost": 8,
+      "costAppearance": null,
+      "loyalty": [
+        "蓝色",
+        "蓝色",
+        "蓝色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_vampires.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/WM025.jpg",
+      "primaryImageSha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "个人隐秘屏障/吸血鬼现身减费；双敌暴露减费、结算X、原现身授予和声望死亡回执",
+      "existingTestModule": "rust-game/src/import20_vampires_tests.rs",
+      "existingModuleTestCount": 24,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": true,
+      "findings": [
+        "R2"
+      ],
+      "limitations": "WM025同时获胜排序见R2；未穷举所有动态类别或授予",
+      "independentRuntimeScope": "simultaneous ordering with same-controller WM057 only"
+    },
+    {
+      "cardId": "WM024",
+      "name": "阿剌穆特杀手",
+      "color": "蓝",
+      "kind": "character",
+      "printedCost": 6,
+      "costAppearance": null,
+      "loyalty": [
+        "蓝色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_vampires.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/WM024.jpg",
+      "primaryImageSha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "个人隐秘屏障/吸血鬼现身减费；双敌暴露减费、结算X、原现身授予和声望死亡回执",
+      "existingTestModule": "rust-game/src/import20_vampires_tests.rs",
+      "existingModuleTestCount": 24,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "WM025同时获胜排序见R2；未穷举所有动态类别或授予"
+    },
+    {
+      "cardId": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "kind": "character",
+      "printedCost": 3,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_broker.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ081.jpg",
+      "primaryImageSha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "本人墓地角色置底后消灭；展示+1和后置磨1；2费横置对抗、目标预绑定、遏制后私密可检视",
+      "existingTestModule": "rust-game/src/import20_broker_tests.rs",
+      "existingModuleTestCount": 23,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "WM057同时获胜排序见R2；私密视图做静态检查；独立实跑仅上述顺序场景"
+    },
+    {
+      "cardId": "WM057",
+      "name": "信息掮客",
+      "color": "黑",
+      "kind": "character",
+      "printedCost": 2,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_broker.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/WM057.jpg",
+      "primaryImageSha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "本人墓地角色置底后消灭；展示+1和后置磨1；2费横置对抗、目标预绑定、遏制后私密可检视",
+      "existingTestModule": "rust-game/src/import20_broker_tests.rs",
+      "existingModuleTestCount": 23,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [
+        "rust-game/src/wm057_borrow_tests.rs"
+      ],
+      "independentRuntimeExecuted": true,
+      "findings": [
+        "R2"
+      ],
+      "limitations": "WM057同时获胜排序见R2；私密视图做静态检查；独立实跑仅上述顺序场景",
+      "independentRuntimeScope": "actual paid mystic win simultaneous ordering only"
+    },
+    {
+      "cardId": "XG13",
+      "name": "玛丽·林德博格",
+      "color": "红",
+      "kind": "character",
+      "printedCost": 2,
+      "costAppearance": null,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_cultist.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/XG13.jpg",
+      "primaryImageSha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "双红忠诚/独有、另一本人邪教徒实际进场与当时隐秘；牺牲另一邪教徒，下一张鸣钟/鲜血正面出牌减2",
+      "existingTestModule": "rust-game/src/import20_cultist_tests.rs",
+      "existingModuleTestCount": 22,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "未穷举所有邪教徒类别增删/所有费用减免叠加"
+    },
+    {
+      "cardId": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "kind": "attachment",
+      "printedCost": 6,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_tattoo.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/WM064.jpg",
+      "primaryImageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "本人当前人类宿主；调查1/战斗2/势力1/防御2及领袖/声望/罪犯；1费横置牺牲罪犯强制现身",
+      "existingTestModule": "rust-game/src/import20_tattoo_tests.rs",
+      "existingModuleTestCount": 12,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "领袖/控制改变由现有共享清理处理，未独立执行所有四席交互"
+    },
+    {
+      "cardId": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "kind": "character",
+      "printedCost": 1,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_carmen.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/CQ24.jpg",
+      "primaryImageSha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "额外3、本人隐秘高于各敌；原敌附属费用3与可选新宿主均在响应前绑定；永久控制/结附清理",
+      "existingTestModule": "rust-game/src/import20_carmen_tests.rs",
+      "existingModuleTestCount": 19,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "秘密计划仅用公开附属费用1；未穷举所有特殊附属宿主条件"
+    },
+    {
+      "cardId": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "color": "黑",
+      "kind": "attachment",
+      "printedCost": 1,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_industry.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ092.jpg",
+      "primaryImageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "两张不同本方产业真实横置；本人步骤费用一次消费与到期；真实进场/角色封印事件与本回合调查1",
+      "existingTestModule": "rust-game/src/import20_industry_tests.rs",
+      "existingModuleTestCount": 30,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "BQ093产业封印证据含共享原语边界，未证明所有生产卡自然可达"
+    },
+    {
+      "cardId": "BQ093",
+      "name": "样本陈列室",
+      "color": "黑",
+      "kind": "attachment",
+      "printedCost": 2,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_industry.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ093.jpg",
+      "primaryImageSha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "两张不同本方产业真实横置；本人步骤费用一次消费与到期；真实进场/角色封印事件与本回合调查1",
+      "existingTestModule": "rust-game/src/import20_industry_tests.rs",
+      "existingModuleTestCount": 30,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "BQ093产业封印证据含共享原语边界，未证明所有生产卡自然可达"
+    },
+    {
+      "cardId": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "kind": "character",
+      "printedCost": 4,
+      "costAppearance": null,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_sentinel.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/CQ18.jpg",
+      "primaryImageSha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "进场无目标敌方锁定波；带实际锁定的敌方离场冻结；展示+1/哨兵后置；充能实际支付X含0",
+      "existingTestModule": "rust-game/src/import20_sentinel_tests.rs",
+      "existingModuleTestCount": 30,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "区域退回/隐藏部分覆盖为共享原语，未穷举所有离场/继承链"
+    },
+    {
+      "cardId": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "kind": "attachment",
+      "printedCost": 4,
+      "costAppearance": null,
+      "loyalty": [
+        "灰色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_sentinel.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/CQ19.jpg",
+      "primaryImageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "进场无目标敌方锁定波；带实际锁定的敌方离场冻结；展示+1/哨兵后置；充能实际支付X含0",
+      "existingTestModule": "rust-game/src/import20_sentinel_tests.rs",
+      "existingModuleTestCount": 30,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "区域退回/隐藏部分覆盖为共享原语，未穷举所有离场/继承链"
+    },
+    {
+      "cardId": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "kind": "attachment",
+      "printedCost": 3,
+      "costAppearance": null,
+      "loyalty": [
+        "灰色",
+        "灰色",
+        "灰色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_tax_ban.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/XG20.jpg",
+      "primaryImageSha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "完整数字待选及印刷费用禁令；本人政治家资产展示+3；敌方实际打出附属税费或可选抓；独立名誉3资产行动",
+      "existingTestModule": "rust-game/src/import20_tax_ban_tests.rs",
+      "existingModuleTestCount": 32,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "正名誉使用合法正余额布局，不声称当前牌池所有名誉获取链均已实现"
+    },
+    {
+      "cardId": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "color": "灰",
+      "kind": "character",
+      "printedCost": 3,
+      "costAppearance": null,
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_tax_ban.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/BQ057.jpg",
+      "primaryImageSha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "完整数字待选及印刷费用禁令；本人政治家资产展示+3；敌方实际打出附属税费或可选抓；独立名誉3资产行动",
+      "existingTestModule": "rust-game/src/import20_tax_ban_tests.rs",
+      "existingModuleTestCount": 32,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "正名誉使用合法正余额布局，不声称当前牌池所有名誉获取链均已实现"
+    },
+    {
+      "cardId": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "color": "红",
+      "kind": "attachment",
+      "printedCost": 6,
+      "costAppearance": null,
+      "loyalty": [
+        "鲜血",
+        "鲜血",
+        "鲜血",
+        "鲜血"
+      ],
+      "unique": true,
+      "implementation": "rust-game/src/import20_swords.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/CQ15.jpg",
+      "primaryImageSha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "实际宿主获授予；横置宿主并返回原剑是费用；原目标/控制者/同名三区至多3封印及洗牌",
+      "existingTestModule": "rust-game/src/import20_swords_tests.rs",
+      "existingModuleTestCount": 15,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "三区私密选项仅本人；未穷举所有装备限制/嵌套封印生产者"
+    },
+    {
+      "cardId": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "kind": "spell",
+      "printedCost": 4,
+      "costAppearance": null,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "unique": false,
+      "implementation": "rust-game/src/import20_gate.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/CQ28.jpg",
+      "primaryImageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "10种完整模式对按印刷顺序冻结，全部目标先于支付；不临时复活刚磨牌；两次独立结算/回合防御减值",
+      "existingTestModule": "rust-game/src/import20_gate_tests.rs",
+      "existingModuleTestCount": 16,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": true,
+      "findings": [
+        "R1"
+      ],
+      "limitations": "R1正常磨牌传闻续体缺口；原16例无此交界",
+      "independentRuntimeScope": "two failing legal rumor combinations plus one passing no-host control; not all16 original cases"
+    },
+    {
+      "cardId": "XQ19",
+      "name": "熵力化身",
+      "color": "红",
+      "kind": "character",
+      "printedCost": 0,
+      "costAppearance": "dash",
+      "loyalty": [],
+      "unique": false,
+      "implementation": "rust-game/src/import20_entropy.rs",
+      "implementationReview": "complete fixed Git module read; shared paths sampled separately",
+      "primaryImage": "web/public/cards/XQ19.jpg",
+      "primaryImageSha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+      "imageIndependentlyViewed": true,
+      "staticChecks": "横杠按0比较/合计/筛选；禁止普通正面deploy和付费reveal；原手牌标准0费四时间条件、地区一放置",
+      "existingTestModule": "rust-game/src/import20_entropy_tests.rs",
+      "existingModuleTestCount": 14,
+      "testCaseIndex": "test-inventory.json",
+      "testsReview": "case inventory plus selected assertions; not all test bodies read end-to-end",
+      "extraTests": [],
+      "independentRuntimeExecuted": false,
+      "findings": [],
+      "limitations": "不重用111浏览器/不透明状态；多种时间标志生产牌未穷举"
+    }
+  ],
+  "sharedRuntimeChecks": [
+    "canonical shared rewards before native recipients; exact actor/character/original-region snapshot",
+    "complete response wrapper, cursor/guard, no cost/target and optional trigger metadata",
+    "mandatory preparation and optional simultaneous trigger routing",
+    "private commitments/inspection preview are chooser scoped",
+    "step credits typed, personal, consumed once and pruned at step boundary",
+    "sole current kernel and incompatible old version410; opaque string and u64 preserved"
+  ],
+  "sourceReviewInventory": [
+    {
+      "path": "rust-game/src/import20_contest.rs",
+      "reviewScope": "complete module",
+      "sha256": "5770e8d129ce652a81c739c96989c2a536e37770663c6c1b25f22b3e18bbae00",
+      "lines": 142,
+      "blob": "dca54ab9853c4ef054e2cc80623b3c3ee9b10903"
+    },
+    {
+      "path": "rust-game/src/import20_observers.rs",
+      "reviewScope": "complete module",
+      "sha256": "a081d95fd24ce7331113cb7a09e5fe80a54e876cd49daee7c2eb16a6c186a255",
+      "lines": 185,
+      "blob": "4f62a916a163212052fb0184ab881a5408fb51b3"
+    },
+    {
+      "path": "rust-game/src/import20_vampires.rs",
+      "reviewScope": "complete module",
+      "sha256": "96276a8c6c0bb82d91291ad8f5bb58716794bfb99c0360dd97685697ee07d948",
+      "lines": 279,
+      "blob": "b956ebe7fac44cac3ffe429f1e56bfbb9f556600"
+    },
+    {
+      "path": "rust-game/src/import20_broker.rs",
+      "reviewScope": "complete module",
+      "sha256": "b4f3f2f2ac6a21725e6e3a1592131310379e6bde0effb1bbb9b36aaa42dcb07f",
+      "lines": 271,
+      "blob": "6e97e0b6296f9fca342eab115bef3ac9588712b5"
+    },
+    {
+      "path": "rust-game/src/import20_cultist.rs",
+      "reviewScope": "complete module",
+      "sha256": "0a61dac23f1c53904419b72d59743c1f3971cf116c28f716e5d5ae3c38a87bed",
+      "lines": 255,
+      "blob": "afdb58d1a535b9f7e0b02bea796d6a58fc558805"
+    },
+    {
+      "path": "rust-game/src/import20_tattoo.rs",
+      "reviewScope": "complete module",
+      "sha256": "ed51b6e00045a57d7cb41c8076565fcc3e088a616bd061820436f8cdd8cde046",
+      "lines": 118,
+      "blob": "d8036c8cd358aad7239340787656439bbdaa400c"
+    },
+    {
+      "path": "rust-game/src/import20_carmen.rs",
+      "reviewScope": "complete module",
+      "sha256": "3283ba4b9e977549b0d3824d6e04ea9ecdd898ce39f48c95b28b447f8c07241b",
+      "lines": 295,
+      "blob": "967d4eb25654e0a8e00b9e288ab196e350b47379"
+    },
+    {
+      "path": "rust-game/src/import20_industry.rs",
+      "reviewScope": "complete module",
+      "sha256": "522334dca28163e5e207e263dc68692a9e53dda98126a7acc80cede9bac9b5ef",
+      "lines": 480,
+      "blob": "24d31c238a39e08df7c6b575c33a0ca6cec3ad54"
+    },
+    {
+      "path": "rust-game/src/import20_sentinel.rs",
+      "reviewScope": "complete module",
+      "sha256": "75ece9254c4bb9eec2e0636e63c76db6e67c7b85d0bcc44e8ced093126f98c4c",
+      "lines": 650,
+      "blob": "83d1a6806389db01783feb468f7c0f7ff144cd20"
+    },
+    {
+      "path": "rust-game/src/import20_tax_ban.rs",
+      "reviewScope": "complete module",
+      "sha256": "29ec50e4c69cda0fcfbb7508acfba83c09a44681286978f499f9fca28f69841f",
+      "lines": 884,
+      "blob": "87941be5db2245ad1dbbe68a0bfea30675fea1e9"
+    },
+    {
+      "path": "rust-game/src/import20_swords.rs",
+      "reviewScope": "complete module",
+      "sha256": "cfd273490a0330794ebb5e71fbf96b2c00a22ead32c987f2d6dbad4ac2b2213f",
+      "lines": 467,
+      "blob": "f724efdbc9d8e8e46bb0ad5b1f7ce6acec26e0d9"
+    },
+    {
+      "path": "rust-game/src/import20_gate.rs",
+      "reviewScope": "complete module",
+      "sha256": "02ac575dad3f1c26a3dc8c32110d02d4d0d8af3627da9679b894eb0616df2b2d",
+      "lines": 523,
+      "blob": "177f8c585973ac62cddf4403ec24aca720f156de"
+    },
+    {
+      "path": "rust-game/src/import20_entropy.rs",
+      "reviewScope": "complete module",
+      "sha256": "f1ee01cbcf9f5ac761225a2ea340d331f6e66438c0f2852b1f345ff8261b09a3",
+      "lines": 242,
+      "blob": "85653aae15cc41c8701a4ab4ea49825836274795"
+    },
+    {
+      "path": "rust-game/src/renown.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "bbde530036a3febe5259fec561fbd18160e10a2ea1d7b9da4f9e0f32c25fc97e",
+      "lines": 238,
+      "blob": "272b60f3a8cba458565dd7fdc1206f89ddaefb5b"
+    },
+    {
+      "path": "rust-game/src/raid.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "a180185a50bdc16c1e32839b401550bd73e2003a763253e460740f2468f168b1",
+      "lines": 121,
+      "blob": "69848406518e86b4cab1b3da0508a4308bbc889c"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "88a00600f478472766692e2eaba13195e30205a1021380fe6467fda3b8d35faa",
+      "lines": 4641,
+      "blob": "82763e3a59a438a92b18e2e484f671f9c1bddaaa"
+    },
+    {
+      "path": "rust-game/src/jz22.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "bfbe6f856f4245a1856c565714dc00923249abc76eea15a6a8e78e7967286160",
+      "lines": 216,
+      "blob": "47fb02dc7a454251daa618ed3c824cc1a99626af"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "165a2d98f6a8408185bb84fe03b93fbf3d83dda2268d7888ab46fed31dcc4629",
+      "lines": 1202,
+      "blob": "a2f3dee8e70d33fcbe3f1d6eeb69dad0114059aa"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "73ffb5aa3f7c7776b46b89834533c3e8ee94f09ddcef653b5a194440aa5c958e",
+      "lines": 7143,
+      "blob": "f40d48320217da7d039bab8a300bf4cbcdc795c3"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "654a2dbffdbc284d35d114a3a81c9ac08e201ec7f6e21c4243784d63482f8e77",
+      "lines": 2903,
+      "blob": "a22d1fcb32abba7e7122472dd2a5facd58d061d9"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "2fa7c50e263279e643f59a6bf9b5e99ec345dabe8877fd13c3ce19a0fb14f5ac",
+      "lines": 828,
+      "blob": "3141cffd5cd7cb14515780dc1cc9ecf2c56b069c"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "e1e4e153c64e285b372e65412f0ad1a333d5b42355251992ecf2c76273f1deaf",
+      "lines": 257,
+      "blob": "582c6f1479feef841ee5476555df9ecf512174f4"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "f13d5bf417bd3badfee88ec90385a7238c48cb5e50ab21ab790b2943b0bcc1b5",
+      "lines": 11306,
+      "blob": "9582647e877d3a59df0297e570c33343b397adf3"
+    },
+    {
+      "path": "rust-game/src/wm057_borrow.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "2b5743c1cb7ac8e8be96542112cdd25fef2ad3f1715c0c63f408d608a4d42ee4",
+      "lines": 134,
+      "blob": "f5c13dc6ed710bae6afde1bb6cab531ce2791605"
+    },
+    {
+      "path": "rust-game/src/step_resources.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "56776a2a5a658df476dbc2948555187be7538f4a7bca726f985feba69f111eca",
+      "lines": 233,
+      "blob": "78457d6ca4cc9c839340d734afeb71fffce9c65e"
+    },
+    {
+      "path": "rust-game/src/rumor.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "d6ea5245169fb03d227c35ee6711cc559473e5616d543e02f82ee8f18a92703d",
+      "lines": 564,
+      "blob": "c95df31dec08ad1a65e5d460a4100df17e8cf41f"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "6c57fc3954366e1d7e7e4d1bca7aae733727709fe4adf0f96a3916fa3869957e",
+      "lines": 376,
+      "blob": "29aa2466e7a8518978aef8420751ce776cca9452"
+    },
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "fcefe3acca6b64f50f127927cb35db38f8b2f57ac28ba422926d99cde9596126",
+      "lines": 599,
+      "blob": "2509e74a212ff1197fab2547eb11c6d733a29685"
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "6b7460cf0acd9e22b0af39b5192ca72a653f213b090d4d05b1b3168fd9adc2cf",
+      "lines": 9,
+      "blob": "ec5996b59d90b9b5e211121575cba42e5eb300d7"
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "065cb3c78a30b80f9eb3110b8d98d8c7ceb076fe4dc1a2a538e9e0489dd629c5",
+      "lines": 81,
+      "blob": "d03ccb24cc4fe894e5accd84b741b7d85bbc8b58"
+    },
+    {
+      "path": "rust-game/src/jc035.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "225253a3672e54f4d216225e3d8d5d5e3a2ca5b943df5953b49d4bc303eab158",
+      "lines": 586,
+      "blob": "b7ad45a74ba4b61e1eb8b03688df7fff7e4c0684"
+    },
+    {
+      "path": "rust-game/src/wm043.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "dde1cd30a31380ac0416adb6215e777d2a93f8549178136d9d9894689e18a4cf",
+      "lines": 104,
+      "blob": "0ad608a236c2c42d50ce8ca8a3c04f7fb9705ecf"
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "53c57b6e6bc1d106921b359cdeae52704fbd2b255c55ca49c1a56ccac2bd8f00",
+      "lines": 757,
+      "blob": "5fda68edc47e98ce0c33d5acc3a86ff4004459f0"
+    },
+    {
+      "path": "rust-game/src/control.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "f86296b40620cf6a624602720ce4164ec380efdfe0d5d467f17016262f980ae6",
+      "lines": 228,
+      "blob": "e2d6ebf866e64d235ab1c06f1ca463d37eea02bb"
+    },
+    {
+      "path": "rust-game/src/death_observers.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "1e9830932b38aac3e0946b58cac69c6f648c8df9740d9ab3e471e67a78099321",
+      "lines": 254,
+      "blob": "8e664b22c8f4b57c7dfb2cc4ba173e5cebbb52b7"
+    },
+    {
+      "path": "rust-game/src/sealing.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "f7f4d2e39eb6bb129d007cdfbc3de6cb6a0aa372f1f1bdd3f84c5ded8a2a1cde",
+      "lines": 233,
+      "blob": "0207aa1af968c15076c3ca76f504ea0e18085755"
+    },
+    {
+      "path": "rust-game/src/mobility.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "40f16377e67b9a07030dcba8b048898ce11348c017ec969c82ec9d65c30f48eb",
+      "lines": 391,
+      "blob": "827adfd4f0b29aec40f9975df7dd8516a6e1ad96"
+    },
+    {
+      "path": "rust-game/src/batch4_plans.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "f81bba6434d33c3b6d835334795836452e34442471c3de5bebfb197d33bf4258",
+      "lines": 189,
+      "blob": "5bda8d7a9a7237697ccfacacca6ee3051c207fb9"
+    },
+    {
+      "path": "rust-game/src/batch4_intelligence.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "c9fe3c387217b8d37d6cbb00cc74ccc31d1a08ec27d16527728fde7ced975fa1",
+      "lines": 200,
+      "blob": "172903c58f02679a1a5bc5a00c5e0a7f2f697ea0"
+    },
+    {
+      "path": "rust-game/src/blue_minimum.rs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "16df8f819e2ee3ccee49526f840ca85ad14d3448ae388e3d8e8fe03862a76632",
+      "lines": 217,
+      "blob": "c023940b27914a390f6acb2505530d8ef7ffd26c"
+    },
+    {
+      "path": "sites/src/kernel-router.mjs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "78f0130912c7d5e5c1b0c1fbca12f886824594f440316cdb706873eeb5bf1f9c",
+      "lines": 31,
+      "blob": "85f0b7d152f92fbe209d9268589160a1d31bc402"
+    },
+    {
+      "path": "tools/check-shared-keyword-rewards.mjs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "18377f3ff54583ab39b419483c8893df261b2ee269aaf455952964786d314c47",
+      "lines": 42,
+      "blob": "804dbc31ff3e579e9a903771a987c1e952693dc6"
+    },
+    {
+      "path": "tools/current-native-source.mjs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "2eee3260de7ad6b10687525ae922ca0023f10ccdef86443ac29d83224066da56",
+      "lines": 65,
+      "blob": "c1c7d61fa8dab966e65807e637fb049f45a5e1fa"
+    },
+    {
+      "path": "sites/test/shared-keyword-rewards-current.test.mjs",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "6b54e4c19afc068a927cb46b1bf98ee2420fc65fd833344926d5d53862700956",
+      "lines": 35,
+      "blob": "54609a817dc3d00e50f7a03546a260fdfb5e3539"
+    },
+    {
+      "path": "web/src/game/NumericChoicePanel.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "571247570a32a98f148989d856df4b4c28920f1cdca26f512cb5369f5ead7baa",
+      "lines": 26,
+      "blob": "f467ebd80c760c7e5581fbda9a1d3c12ee80efd4"
+    },
+    {
+      "path": "web/src/game/VariableActionButton.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "94469a4fcf0804305143790797719ee2107f05fee5a661a273b62c0e4d01fb7b",
+      "lines": 19,
+      "blob": "944aa6797d4fe031138e1ae5a24b58df9ced2a32"
+    },
+    {
+      "path": "web/src/game/CardTile.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "40424a146fd95355c81e47b5ac7e7aa3498f9d3649288931ce5f38f2f5b1b96b",
+      "lines": 171,
+      "blob": "31e95056f802b8c514b9cc3a7115b8eafb5ddff0"
+    },
+    {
+      "path": "web/src/game/ChoicePanel.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "c45efc1c8bb597265dbf3b1c5cd00f02c008cc06c36709dcddc5ca5e9eae77a0",
+      "lines": 226,
+      "blob": "b37d46c582aed5f047afee832c0402519fac2648"
+    },
+    {
+      "path": "web/src/game/Table.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "aba455827ca5655ebac4e42b83e27be3f6ad5e0f186ebe181855fc95fb9a6bca",
+      "lines": 526,
+      "blob": "c0a5304f931ebb0e487c9a4f520cd77fd478245e"
+    },
+    {
+      "path": "web/src/game/types.ts",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "7d655dc5324102d87ed1529c9e2aa34841c72e159663dd76dee1a184f3f36b1e",
+      "lines": 134,
+      "blob": "b75f8777f4bf404cc3b54799348c3d50ff0540f2"
+    },
+    {
+      "path": "web/src/game/DeckCardPreview.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "fa4c8238c2385793a6b096e6a01c18a7af331d842c2a843dde87211770ad44d4",
+      "lines": 81,
+      "blob": "8ba580c8a9185cc0ef44670bd9dfb8ba3ec220f7"
+    },
+    {
+      "path": "web/src/game/DeckLibraryPanel.tsx",
+      "reviewScope": "selected relevant ranges and/or complete committed diff; not entire legacy file",
+      "sha256": "97fa297e0bc424378f74b19899850f98c93d0aaba252f0074ed21285d3120f36",
+      "lines": 352,
+      "blob": "7f8d24f60d06d16bc7ec687b603a8a87253ddfa5"
+    }
+  ],
+  "testInventoryCount": 308,
+  "testInventoryMeaning": "308 existing test annotations across the indexed15 modules; inventory is not execution and is not unique all-suite coverage",
+  "unreviewed": [
+    "All653 changed files",
+    "Every line of119 changed Rust files",
+    "Every existing test body",
+    "Exhaustive older-card/multi-card combinations",
+    "Live ABI112 browser/Bot",
+    "Independent WASM rebuild or replay",
+    "Complete Native suites",
+    "Additional corrupt-save expansion"
+  ],
+  "independentGameTestsExecuted": 5,
+  "independentGameTestsResult": {
+    "passed": 1,
+    "failed": 4,
+    "fullSuite": false
+  }
+}

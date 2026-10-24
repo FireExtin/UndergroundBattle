@@ -1,0 +1,144 @@
+{
+  "format": "abi112-independent-closure-coverage-v1",
+  "createdUtc": "2026-10-24T12:40:39.774216+00:00",
+  "originalHead": "91ae5336a89a69049c23544be3abf67ca593b6bc",
+  "authorFixedCandidate": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "reviewCloneHead": "e3eed7604c17f70582d38d1924096eca347197b1",
+  "originalCoveragePreserved": "coverage.json",
+  "exactOriginalBatch20": [
+    "BQ090",
+    "BQ064",
+    "BQ039",
+    "WM028",
+    "WM025",
+    "WM024",
+    "BQ081",
+    "WM057",
+    "XG13",
+    "WM064",
+    "CQ24",
+    "BQ092",
+    "BQ093",
+    "CQ18",
+    "CQ19",
+    "XG20",
+    "BQ057",
+    "CQ15",
+    "CQ28",
+    "XQ19"
+  ],
+  "runtimeRevalidation": [
+    {
+      "id": "R1-a",
+      "finding": "R1",
+      "cardIds": [
+        "CQ28"
+      ],
+      "function": "independent_review_cq28::independent_cq28_rumor_pair00_public_pass_must_reach_rumor",
+      "probe": "cq28-rumor-repro.rs",
+      "normalCommands": "play CQ28; choose item-0 then item-0; actual four-black payment; normal public response passes",
+      "original": "failed: final pass rejected by rumor cause validation",
+      "fixed": "passed: original legal final response reaches Rumor choice",
+      "scope": "Reach first valid rumor replacement prompt; no subsequent accept/decline completion executed independently"
+    },
+    {
+      "id": "R1-b",
+      "finding": "R1",
+      "cardIds": [
+        "CQ28"
+      ],
+      "function": "independent_review_cq28::independent_cq28_rumor_pair03_public_pass_must_reach_rumor",
+      "probe": "cq28-rumor-repro.rs",
+      "normalCommands": "play CQ28; choose item-0 then item-3; actual four-black payment; normal public response passes",
+      "original": "failed: final pass rejected by rumor cause validation",
+      "fixed": "passed: original legal final response reaches Rumor choice",
+      "scope": "Reach first valid rumor replacement prompt; no subsequent accept/decline completion executed independently"
+    },
+    {
+      "id": "R2-a",
+      "finding": "R2",
+      "cardIds": [
+        "WM057",
+        "WM025"
+      ],
+      "function": "independent_review_order::independent_wm057_wm025_simultaneous_win_must_offer_controller_order",
+      "probe": "trigger-order-repro.rs",
+      "normalCommands": "activate WM057 with actual two-resource payment and exhaust; four normal private commits; real team win; decline personal marker rewards",
+      "original": "failed: trigger fixed first WM057, no entry-order group",
+      "fixed": "passed: controller0 has batch3-entry-order with exactly two options; restore validation passes",
+      "scope": "Reach both-controller-order options; choosing and completing each order was not independently executed"
+    },
+    {
+      "id": "R2-b",
+      "finding": "R2",
+      "cardIds": [
+        "BQ039"
+      ],
+      "function": "independent_review_eye::independent_two_paid_bq039_battle_wins_must_offer_controller_order",
+      "probe": "bq039-order-repro.rs",
+      "normalCommands": "two normal paid BQ039 attachment plays; actual 2:1 battle win; normal damage allocation",
+      "original": "failed: first eye fixed, no entry-order group",
+      "fixed": "passed: controller0 has batch3-entry-order with exactly two options; two eye declarations remain queued",
+      "scope": "Reach both-controller-order options after damage; choosing and completing both orders was not independently executed"
+    }
+  ],
+  "runtimeFiles": [
+    {
+      "path": "rust-game/src/rumor.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "e54988b6f57d0ca2b5814d9227b1674c968ad7d1de583646d2ebb5e512c6b688",
+      "reviewedLines": [
+        420,
+        514,
+        519
+      ],
+      "conclusion": "Full CQ28 frame validation plus exact original actor/deck mill mode0 cause; existing once-only continuation and canonical program checks retained"
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "881663e07bb22a376dd1718f7929acba933f23dd440d86803c936d29659298b2",
+      "reviewedLines": [
+        21,
+        22,
+        51
+      ],
+      "conclusion": "Only WM057/WM025/BQ039 introduced; actual contest or battle observation event qualifies references; original queue payloads preserved"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "source": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+      "sha256": "09e55ae23b54d4b41d2a511c907cedac29e157060a5e7c27dab42e6842ab9e42",
+      "reviewedLines": [
+        1535,
+        1541,
+        1548
+      ],
+      "conclusion": "Register only simultaneous declaration tail after Damage/Recipient insertion; use the frozen BQ039 battle observation event"
+    }
+  ],
+  "controlNotRerun": {
+    "function": "independent_review_cq28::independent_cq28_rumor_without_eligible_host_control_completes",
+    "originalResult": "passed",
+    "reason": "unchanged earlier passing control; parent requested only original four failures"
+  },
+  "notExecuted": [
+    "full Native suite",
+    "remaining16 cards dynamic scenarios",
+    "all CQ28 seal/decline completions",
+    "both selected WM057/WM025 order completions",
+    "both selected two-BQ039 order completions",
+    "WASM rebuild/replay",
+    "Worker replay",
+    "ABI112 browser/Bot",
+    "additional corrupted-save expansion"
+  ],
+  "authorOnlyEvidenceNeverCountedAsReviewerRuns": [
+    "three new author regression functions individually passed",
+    "130 adjacent author regressions passed",
+    "six additional Room cross-platform witnesses planned by author after CPU handoff",
+    "earlier2494/9 full Native outcome and subsequent95/72 scoped runs",
+    "earlier ABI112 WASM/Worker scenarios",
+    "ABI111 six-turn browser and20image load"
+  ]
+}
