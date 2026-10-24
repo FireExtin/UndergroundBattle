@@ -1,0 +1,143 @@
+{
+  "recorded_at": "2026-10-24T01:01:12.203588+00:00",
+  "kind": "single-executor real browser QA, two explicitly independent player sessions",
+  "site": "http://8.145.46.171:8090",
+  "table": "C2679B5A8C57",
+  "product_release": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "observed_identity": {
+    "health": {
+      "engineVersion": "rust-v0.2.95-batch20-fourth",
+      "ok": true,
+      "service": "hegemony-rust"
+    },
+    "dom_script": "/assets/index-DaZwUmzX.js",
+    "binding": "Matches the qualified domestic publication receipt; served content hashes were not recalculated in browser."
+  },
+  "authorization": {
+    "user_reply": "Sentinel_975c387c324c8191a91c77e0d3f63771",
+    "text": "这几个决定我都批准。",
+    "denied_click_known_not_executed": true,
+    "retry_count_after_new_authorization": 1,
+    "retry_succeeded": true
+  },
+  "players": {
+    "A": "SerialQA95-Gray-A / 城市守卫（副本） / 50 cards / no society",
+    "B": "SerialQA95-Black-B / 墓地回声 / 50 cards / no society"
+  },
+  "observations": [
+    {
+      "round": 3,
+      "action": "Grey 坚毅的刑警 revealed through actual card action; legal hidden enemy selected in the entry trigger",
+      "A_fee_before": [
+        3,
+        3
+      ],
+      "A_fee_after": [
+        0,
+        3
+      ],
+      "B_fee": [
+        2,
+        2
+      ],
+      "B_grave_before": 0,
+      "B_grave_after": 1,
+      "victim_confirmed_in_visible_grave": "窃尸人",
+      "privacy": "Enemy was shown as 身份未公开 before destruction; name inspected only in public grave."
+    },
+    {
+      "round": 4,
+      "action": "Forecast 1 then draw; kept 无知路人 on top and confirmed through modal"
+    },
+    {
+      "round": 4,
+      "action": "Won 切尔诺贝利 for2 points; declined its optional win trigger",
+      "score_A_B": [
+        2,
+        0
+      ]
+    },
+    {
+      "round": 4,
+      "action": "Actual battle damage allocation:1 simultaneous damage to enemy 安格鲁，“荆棘” in London; confirmed through modal",
+      "B_grave_before": 1,
+      "B_grave_after": 2
+    },
+    {
+      "round": 5,
+      "action": "Won 纽约 for4 points; activated win trigger",
+      "score_A_B": [
+        6,
+        0
+      ]
+    },
+    {
+      "round": 5,
+      "action": "A selected 无知路人 and 停战协议 to discard and drew2; B separately chose to retain all cards",
+      "A_deck_before": 39,
+      "A_deck_after": 37,
+      "A_grave_before": 0,
+      "A_grave_after": 2,
+      "B_deck_unchanged": 39,
+      "privacy": "A saw no B choice dialog while B privately chose."
+    },
+    {
+      "round": 7,
+      "action": "Won 伦敦 for4 points, reached natural terminal",
+      "score_A_B": [
+        10,
+        0
+      ],
+      "ui_record_count": 50
+    }
+  ],
+  "terminal_before_reload": {
+    "round": 7,
+    "phase": "对抗阶段 · 地区3 · 势力 · 奖励后快速窗口",
+    "A_score": [
+      10,
+      0
+    ],
+    "B_score": [
+      0,
+      10
+    ],
+    "winner": "SerialQA95-Gray-A",
+    "A_banner": "你的秘社取得了霸权",
+    "B_banner": "SerialQA95-Gray-A赢得了霸权",
+    "both_status": "对局已结束",
+    "both_auto_pass_status": "对局已结束，连续让过已停止"
+  },
+  "reload": {
+    "A_reloaded": true,
+    "B_reloaded": true,
+    "round_preserved": 7,
+    "scores_preserved": [
+      10,
+      0
+    ],
+    "winner_preserved": "SerialQA95-Gray-A",
+    "both_auto_pass_status": "对局已结束，连续让过已停止",
+    "seat_names_and_hands_preserved": true,
+    "host_restart_button": "A only; B has the losing banner without host restart action."
+  },
+  "browser_console_error_counts": {
+    "A": 0,
+    "B": 0
+  },
+  "screenshot": {
+    "displayed_in_conversation": true,
+    "download_copy_saved": false,
+    "action_denied": "Navigate agent-created evidence tab10 to data:text/html to download screenshot bytes",
+    "reason": "Browser URL policy permits only http/https; action rejected",
+    "outcome": "Known not navigated; no retry, alternative download surface, CDP, or policy workaround. Blank evidence tab closed."
+  },
+  "preserved_prior_result": "result.json remains the historical pre-authorization partial/denied result.",
+  "limits": [
+    "One real two-seat game; does not cover all213 public cards or any Bot mode.",
+    "No local ABI99 deployment, WASM or browser qualification was inferred.",
+    "No additional damaged-save boundary expansion was run.",
+    "Terminal pass status and both reloads covered; final-pending-choice-to-terminal timing was not specially constructed.",
+    "UI selector/role/async waiting failures were checked against fresh DOM; not counted as product failures or approval denials."
+  ]
+}
