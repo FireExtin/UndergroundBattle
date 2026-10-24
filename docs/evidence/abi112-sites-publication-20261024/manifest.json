@@ -1,0 +1,21 @@
+{
+  "status": "published_pending_browser_acceptance",
+  "fixed_product_sha": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "files": [
+    {
+      "path": "browser-qa-in-progress.json",
+      "bytes": 3113,
+      "sha256": "29c59f5f25d469fa1140e7924aa6eefac98884d11db2947390e7bf81f1944c9d"
+    },
+    {
+      "path": "package-identity.json",
+      "bytes": 1185,
+      "sha256": "7a28c1a26e51d53f2080a26e5d9fbc970e76074135c8b03b07cb03244478e16f"
+    },
+    {
+      "path": "publication.json",
+      "bytes": 3059,
+      "sha256": "3388392d04b9f65233f09c7479be8afc869915cc21d793bf68b36a1381b1a555"
+    }
+  ]
+}

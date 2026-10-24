@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-24T14:04:42.433086+00:00",
+  "fixedProduct": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "officialPushedSource": "d05ad0fce25cb99137927f4d02f5ca1617de6505",
+  "projectId": "appgprj_6adc02e46820819188f42c2474995574",
+  "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-abi112-15b95a8e-20261024.tar.gz",
+  "archiveBytes": 152025164,
+  "localArchiveSha256": "92a4083862e2573109473c09251a8f16c8644178da7142b990099a7c105d7940",
+  "files": 297,
+  "wasmPath": "dist/server/b22cd61c8478407120d045fcf81d876fdd954ae7-hegemony_wasm_bg.wasm",
+  "wasmBytes": 8128662,
+  "wasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+  "hosting": {
+    "d1": "DB",
+    "r2": null,
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574"
+  },
+  "sourceProvider": "cloudflare_artifact",
+  "noGitHubPushOrCI": true,
+  "platformStoredArchiveBytesVerified": false,
+  "initialLocalInspection": "wrong root-hosting path assumption; official helper uses dist/.openai/hosting.json; archive not changed",
+  "uncompressedTarBytes": 234618880,
+  "uncompressedTarSha256": "2ca75f426c6a788f68abbd844420e3156c8b2dc8b122a673698b2b75b026a91c"
+}

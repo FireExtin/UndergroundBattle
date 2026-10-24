@@ -1,0 +1,67 @@
+{
+  "fixedProduct": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "prepared": {
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "checkout_path": "/home/ddd/Documents/Codex/2026-10-21/task-3/sites/hidden-world-overseas-20261024-bounded",
+    "commit_sha": "d05ad0fce25cb99137927f4d02f5ca1617de6505",
+    "archive": "/home/ddd/Documents/Codex/2026-10-21/task-3/artifacts/overseas-abi112-15b95a8e-20261024.tar.gz"
+  },
+  "savedVersion": {
+    "id": "appgprj_6adc02e46820819188f42c2474995574~appgver_3b9d6d1283248191aafeada7e5ada911",
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "version_number": 4,
+    "source": {
+      "commit_sha": "d05ad0fce25cb99137927f4d02f5ca1617de6505"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000a1b48230bf5bdc3628dd4a0c",
+      "content_hash": "sha256:6fd8371ed88fcb7d45294a9d1a36157398afdc6dc65b2ce22cfb7d1b840546bf",
+      "size_bytes": 234618880,
+      "file_count": 297
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "versionReadback": {
+    "id": "appgprj_6adc02e46820819188f42c2474995574~appgver_3b9d6d1283248191aafeada7e5ada911",
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "version_number": 4,
+    "source": {
+      "commit_sha": "d05ad0fce25cb99137927f4d02f5ca1617de6505"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000a1b48230bf5bdc3628dd4a0c",
+      "content_hash": "sha256:6fd8371ed88fcb7d45294a9d1a36157398afdc6dc65b2ce22cfb7d1b840546bf",
+      "size_bytes": 234618880,
+      "file_count": 297
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6adcbbe685bc81919fa4dd86f7b79263",
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "title": "隐秘世界 · 霸权（海外新站）",
+    "version_id": "appgprj_6adc02e46820819188f42c2474995574~appgver_3b9d6d1283248191aafeada7e5ada911",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://hidden-world-hegemony-overseas-20261024.chengliang1984286.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6adc02e46820819188f42c2474995574",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-24T14:08:49.357682+00:00"
+  },
+  "localWasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+  "localCompressedArchiveSha256": "92a4083862e2573109473c09251a8f16c8644178da7142b990099a7c105d7940",
+  "localUncompressedTarSha256": "2ca75f426c6a788f68abbd844420e3156c8b2dc8b122a673698b2b75b026a91c",
+  "platformArchiveDigestReproduced": false,
+  "rawOnlineWasmExtracted": false,
+  "identityScope": "Official source/version/archive custody verified; local packaged WASM exact; platform content_hash is independently recorded and not claimed equal to local tar bytes",
+  "publicStatus": "published pending acceptance",
+  "oldAbi111BrowserResultsExcluded": true,
+  "noGitHubPushOrCI": true
+}

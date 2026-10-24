@@ -1,0 +1,86 @@
+{
+  "projectId": "appgprj_6adc02e46820819188f42c2474995574",
+  "versionNumber": 4,
+  "officialSource": "d05ad0fce25cb99137927f4d02f5ca1617de6505",
+  "fixedProduct": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "deploymentId": "appgdep_6adcbbe685bc81919fa4dd86f7b79263",
+  "liveCatalogObservedThroughBrowser": {
+    "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+    "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+    "definitions": 272,
+    "supported": 233,
+    "gated": 39
+  },
+  "browser": "IAB browser2; actual live UI; no API command script",
+  "tabs": {
+    "A": "16",
+    "B": "17"
+  },
+  "roomInvite": "97EC1A99E58C",
+  "players": [
+    "ABI112-QA-A",
+    "ABI112-QA-B"
+  ],
+  "independentSessions": true,
+  "deck": "ABI112 双席修复机制 QA;50 cards created with normal UI controls",
+  "societies": [
+    "MSJC07",
+    "MSJC07"
+  ],
+  "observed": [
+    "create doubleclick yielded one visible room with one host",
+    "A ready doubleclick yielded ready once",
+    "B join doubleclick yielded second distinct seat",
+    "A lobby refresh restored same seat/deck and both ready"
+  ],
+  "currentState": "start doubleclick submitted; awaiting resulting UI; do not submit it again before checking",
+  "acceptance": "in progress; no terminal or card repair coverage claimed yet",
+  "oldAbi111ResultsExcluded": true,
+  "rawOnlineWasmExtracted": false,
+  "platformArchiveDigestReproduced": false,
+  "restrictedHealthNotRetried": true,
+  "credentialsOrSessionTokensRecorded": false,
+  "updated_at_utc": "2026-10-24T14:36:00Z",
+  "status": "IN_PROGRESS_NOT_ACCEPTED",
+  "site_project": "appgprj_6adc02e46820819188f42c2474995574",
+  "version": "appgprj_6adc02e46820819188f42c2474995574~appgver_3b9d6d1283248191aafeada7e5ada911",
+  "deployment": "appgdep_6adcbbe685bc81919fa4dd86f7b79263",
+  "deployment_status": "succeeded",
+  "product_sha": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "source_commit": "d05ad0fce25cb99137927f4d02f5ca1617de6505",
+  "engine_version": "rust-v0.2.112-shared-keyword-rewards",
+  "table_invite": "97EC1A99E58C",
+  "current_turn": 3,
+  "scores": [
+    0,
+    0
+  ],
+  "browser_tabs": [
+    "16",
+    "17"
+  ],
+  "verified_normal_ui": [
+    "independent dual seats and same legal 50-card deck",
+    "duplicate create/join/ready/start protected",
+    "both private mulligans and refresh",
+    "single asset/payment/deployment after double click",
+    "BQ093 entry trigger mills WM042",
+    "WM042 legal host selection, refresh, confirmation, exactly one public sealed card"
+  ],
+  "remaining": [
+    "full terminal and dual refresh",
+    "CQ28-specific mill continuation",
+    "same-controller trigger ordering",
+    "shared-keyword combat rewards"
+  ],
+  "limitations": [
+    "not all 20 card combinations accepted",
+    "platform tar digest not reproduced; native version/source custody and live catalog verified; no online WASM byte hash claim",
+    "health403 not retried"
+  ],
+  "verified_normal_ui_extra": [
+    "BQ081 face-up dispatch and optional entry skip",
+    "second WM057 face-up dispatch to Kyoto",
+    "JC029 secret dispatch to Kyoto"
+  ]
+}
