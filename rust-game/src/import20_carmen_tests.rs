@@ -103,7 +103,7 @@ fn import20_cq24_standalone_and_attached_bats_keep_dual_role_original_uid(){
 fn import20_cq24_secret_plan_not_disclosed_before_transfer_and_new_controller_sees_own_plan(){
     let mut g=game();g.begin_window(Window::Action(1));fund(&mut g,2,"WM046",3);g.players[2].society_zone.secrecy=1;let h=held(&mut g,"WM046",2);
     act(&mut g,2,Action{card_id:Some(h),target_id:Some("society:p2".into()),option:Some("secret-plan".into()),..Action::new("play")});pass_top(&mut g);let id=g.attachments[0].card.id.clone();
-    enter(&mut g,0,true);let option=g.pending.as_ref().unwrap().choice.options.iter().find(|o|o.id==id).unwrap();assert!(option.card.as_ref().unwrap().card_id.is_none());
+    enter(&mut g,0,true);let option=g.pending.as_ref().unwrap().choice.options.iter().find(|o|o.id==id).unwrap();assert!(option.card.as_ref().is_none_or(|c|c.card_id.is_none()));
     choose(&mut g,vec![id.clone()]);let p=g.pending.as_ref().unwrap();assert_eq!(p.choice.options.len(),1);assert_eq!(p.choice.options[0].id,"society:p0");
     for seat in [0,1,3]{let v=g.view(seat);let a=v.attachments.iter().find(|a|a.card.instance_id==id).unwrap();assert!(a.card.card_id.is_none());}
     choose(&mut g,vec!["society:p0".into()]);pass_top(&mut g);

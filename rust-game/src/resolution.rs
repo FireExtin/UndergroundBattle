@@ -928,6 +928,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition == "CQ24" && spec.targets.len()==2 { return self.cq24_bind(actor,source,spec,a); }
         if source.card.definition == "MSJC14" { return self.sentinel_bind(actor, source, spec, a); }
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
         if source.card.definition == "JC062" { return self.jc062_bind(actor, source, spec, a); }

@@ -154,18 +154,35 @@ impl Game {
     }
     fn cq24_finish_declaration(&mut self, draft: CarmenDraft, new_id: Option<&str>) -> RuleResult<()> {
         self.validate_cq24_draft(&draft)?;
-        let mut d = draft.declaration; let mut targets = vec![draft.target];
-        if let Some(id) = new_id {
+        let mut d = draft.declaration; let original_id = draft.target.id;
+        if new_id.is_some() {
             let slot = host_slot(self.cq24_host_source(d.actor, &draft.attachment)).ok_or("重结附缺少原规格")?;
-            let mut host_ability = d.ability.clone(); host_ability.targets = vec![slot.clone()];
-            targets.extend(self.bind_action(d.actor, &d.source, &host_ability, &Action { target_id: Some(id.into()), ..Action::new("play") })?);
             d.ability.targets.push(slot);
         }
         let [Op::CQ24TakeAttachment { attachment, reattach, .. }] = d.ability.ops.as_mut_slice() else { unreachable!() };
         *attachment = Some(Box::new(draft.attachment)); *reattach = new_id.is_some();
         validate_ability(ID, &d.ability)?;
+        let action = if let Some(id) = new_id { Action { selected: Some(vec![original_id,id.into()]), ..Action::new("play") } }
+            else { Action { target_id: Some(original_id), ..Action::new("play") } };
+        let targets = self.bind_action(d.actor, &d.source, &d.ability, &action)?;
         let frame = self.make_frame(d.actor, d.source, &d.ability, targets, vec![], None);
         self.dispatch_frame(frame, d.ability.label, None, ResponsePolicy::Respondable); Ok(())
+    }
+    pub(crate) fn cq24_bind(&self, actor: usize, source: &SourceSnapshot, spec: &AbilitySpec, a: &Action) -> RuleResult<Vec<BoundTarget>> {
+        validate_ability(ID,spec)?;
+        let ids = a.selected.as_ref().filter(|ids| ids.len()==2).ok_or("卡门重结附须预绑定原附属和一个新宿主")?;
+        let [Op::CQ24TakeAttachment { attachment:Some(att),reattach:true,.. }] = spec.ops.as_slice() else { return Err("卡门重结附缺少完整原附属程序".into()); };
+        if source.card.definition!=ID || actor!=source.card.controller || ids[0]!=att.card.id || ids[0]==ids[1] || spec.targets.len()!=2 {
+            return Err("卡门两个目标的来源、次序或实例无效".into());
+        }
+        spec.targets.iter().zip(ids).map(|(slot,id)| {
+            if !self.valid_binding(actor,source,slot,id) { return Err("卡门原附属或新宿主不满足原目标条件".into()); }
+            let region_instance = if slot.zone==Zone::Region {
+                let r=id.strip_prefix("region:").and_then(|n|n.parse::<usize>().ok()).filter(|r|*r<self.regions.len()).ok_or("卡门地区宿主无效")?;
+                Some(self.regions[r].card.id.clone())
+            } else {None};
+            Ok(BoundTarget { region_instance,id:id.clone(),spec:slot.clone(),public:self.public_target(actor,source,slot,id) })
+        }).collect()
     }
     fn validate_cq24_draft(&self, d: &CarmenDraft) -> RuleResult<()> {
         self.validate_cq24_declaration(&d.declaration)?;

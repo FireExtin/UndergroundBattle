@@ -52,6 +52,7 @@ fn import20_wm064_noncriminal_hidden_front_spends_all_costs_but_stays_hidden(){
 #[test]
 fn import20_wm064_no_printed_payment_or_loyalty_is_required_for_forced_reveal(){
     let mut g=game();let host=field(&mut g,"JC125",0);let source=attach(&mut g,0,&host);let paid=field(&mut g,"JC084",0);
+    g.players[0].assets.clear(); // explicit legal no-loyalty layout; exhausted assets would still grant loyalty
     let target=hidden(&mut g,"WM058",0);fund(&mut g,0,"JC125",1);
     assert!(!g.loyalty(0,"WM058"));act(&mut g,0,action(&source,&paid,&target));pass_top(&mut g);
     assert!(g.regions[0].cards.iter().any(|c|c.definition=="WM058"&&!c.face_down));assert_eq!(g.resources(0),0);restore(&mut g);
