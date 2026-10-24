@@ -13,7 +13,7 @@ import { groupObjectActions } from './objectActions';
 
 abi.initSync({module:currentBytes});
 const catalog=JSON.parse(abi.catalog()), definitions=new Map(catalog.cards.map(c=>[c.id,c]));
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/xq24.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/xq24.json.gz');
 
 it('reads the complete original XQ24 face from the admitted public asset',()=>{
   const definition=definitions.get('XQ24');

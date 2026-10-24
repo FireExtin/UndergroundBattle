@@ -6,12 +6,12 @@ import {kernel,catalog,moduleBytes} from './current-kernel.mjs';
 import {currentIdentity,loadCurrentFixture,sha256} from '../../tools/current-native-source.mjs';
 assert(process.argv[3]?.trim(), 'Usage: jc046_compare.mjs <repo-relative-fixture> <complete-55-invalid-directory> [current-manifest]');
 assert(process.argv.length <= 5, 'Unexpected JC046 comparison arguments.');
-const currentManifestPath=new URL('./current93/jc046-invalid.json.gz',import.meta.url);
+const currentManifestPath=new URL('./current111/jc046-invalid.json.gz',import.meta.url);
 const manifestBytes=readFileSync(process.argv[4] || currentManifestPath);
 const manifestSha256=sha256(manifestBytes);
 assert.equal(manifestSha256,sha256(readFileSync(currentManifestPath)),
   'JC046 invalid-state manifest must match the current source-bound identity.');
-const manifest=loadCurrentFixture('rust-game-wasm/tests/current93/jc046-invalid.json.gz');
+const manifest=loadCurrentFixture('rust-game-wasm/tests/current111/jc046-invalid.json.gz');
 assert.equal(manifest.invalidRoomStates,55);
 const invalidFiles=manifest.files;
 assert.equal(invalidFiles.length,55,'The current JC046 manifest must identify all 55 invalid states.');
@@ -34,9 +34,9 @@ const invalidStatesInput=invalidFiles.map(file=>{
   assert.deepEqual(saved.game.versions,versions,`${name}: rejection must exercise a current game`);
   return {name,state};
 });
-const fixture=loadCurrentFixture(process.argv[2] || 'rust-game-wasm/tests/current93/jc046.json.gz');
+const fixture=loadCurrentFixture(process.argv[2] || 'rust-game-wasm/tests/current111/jc046.json.gz');
 assert.deepEqual(fixture.catalog,catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.93-batch20-next');
+assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
 assert.equal(catalog.cardPoolVersion,'limited-v2.83-batch20-next');
 assert.equal(catalog.cards.length,193);
 assert.equal(fixture.scenarios.length,37);

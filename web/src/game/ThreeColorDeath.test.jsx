@@ -6,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
-const native = loadCurrentFixture('rust-game-wasm/tests/current93/three-color-death.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current111/three-color-death.json.gz');
 import {Table} from './Table';
 import {CardContent,CardTile} from './CardTile';
 import {ReadModal} from './ReadModal';

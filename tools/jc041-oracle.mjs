@@ -16,7 +16,7 @@ export function assertSources(binding) {
 export function validateNative(raw){
  assert.equal(raw.format,'jc041-native87-v1');assertSources(raw.sourceBindings);
  assertCurrentCatalog(raw.catalog);
- assert.equal(raw.catalog.cards.length,193);assert.equal(raw.catalog.societies.length,10);
+ assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
  assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
  let commands=0,rejected=0,projections=0;
  for(const s of raw.scenarios){
@@ -35,7 +35,7 @@ export function validateNative(raw){
  const counts={scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};assert.deepEqual(counts,raw.counts);assert.deepEqual(counts,{scenarios:10,commands:155,rejected:9,projections:660,invalidRestores:35});return counts;
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc041Native93.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc041Native111.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc041-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);
@@ -82,7 +82,7 @@ export function validateP2Native(raw) {
  const counts={badChecks:raw.cases.length*6,commands,views};assert.deepEqual(counts,{badChecks:24,commands:56,views:244});return counts;
 }
 export function loadP2Fixture() {
- const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jc041P2Native93.fixture.json.gz'))));
+ const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/jc041P2Native111.fixture.json.gz'))));
  assert.equal(bundle.format,'jc041-p2-native93-raw-v1');assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);
  assert.equal(bundle.wasmSha256,currentWasmSha256);assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
  const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateP2Native(raw),bundle.counts);return {...bundle,...raw};

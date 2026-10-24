@@ -11,7 +11,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:currentBytes});
-const cases=Object.entries(loadCurrentFixture('rust-game-wasm/tests/current93/xq37.json.gz')).map(([kind,d])=>({...d,kind}));
+const cases=Object.entries(loadCurrentFixture('rust-game-wasm/tests/current111/xq37.json.gz')).map(([kind,d])=>({...d,kind}));
 for(const c of cases)test(`xq37-black57 ${c.kind}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'xq37-black57-d1-'));
  const options=convertV4MiniflareOptions({name:'xq37-black57-test',resourcePersistencePath:persist,modules:[
@@ -37,7 +37,7 @@ for(const c of cases)test(`xq37-black57 ${c.kind}: native transition, D1 reopeni
 
 // The exact Rust-produced corrupt state keeps u64 values as opaque bytes.
 test('rejects the hidden root flag in both production ABI entrypoints',()=>{
- const d=loadCurrentFixture('rust-game-wasm/tests/current93/xq37-invalid-rootface.json.gz');
+ const d=loadCurrentFixture('rust-game-wasm/tests/current111/xq37-invalid-rootface.json.gz');
  assert.throws(()=>abi.view(d.state,0),/XQ37/);
  assert.throws(()=>abi.applyRoom(d.state,0,JSON.stringify({commandId:'xq37-rootface',expectedVersion:0,action:{kind:'game',action:{kind:'pass'}}}),'0'),/XQ37/);
 });

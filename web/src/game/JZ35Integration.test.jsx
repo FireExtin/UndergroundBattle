@@ -12,10 +12,10 @@ import { actionForRoom } from './api';
 const wasm=currentBytes;
 abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
-const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/jz35.json.gz');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current111/jz35.json.gz');
 it('uses the newly built JZ35 catalog and the exact matching Native93 ABI hash',()=>{
-  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');
+  expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JZ35').abilities).toMatchObject([{key:'jz35-sacrifice-return-controlled-hosts',timing:'standard',triggered:false,costs:[]}]);
 });

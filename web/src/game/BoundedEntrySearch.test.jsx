@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
-const native = loadCurrentFixture('rust-game-wasm/tests/current93/bounded-entry.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current111/bounded-entry.json.gz');
 import { ChoicePanel } from './ChoicePanel';
 import { Table } from './Table';
 import { ReadModal } from './ReadModal';

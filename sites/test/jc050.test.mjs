@@ -11,7 +11,7 @@ import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
 abi.initSync({module:currentBytes});
-const cases=[{...loadCurrentFixture('rust-game-wasm/tests/current93/jc050.json.gz'), name:'chosen-region'}];
+const cases=[{...loadCurrentFixture('rust-game-wasm/tests/current111/jc050.json.gz'), name:'chosen-region'}];
 for(const c of cases)test(`jc050-red55 ${c.name}: native transition, D1 reopening, privacy and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'jc050-red55-d1-'));
  const options=convertV4MiniflareOptions({name:'jc050-red55-test',resourcePersistencePath:persist,modules:[

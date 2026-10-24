@@ -9,9 +9,9 @@ import { fileURLToPath } from 'node:url';
 import {loadCurrentFixture,sha256} from '../../tools/current-native-source.mjs';
 
 const script=fileURLToPath(new URL('./jc046_compare.mjs',import.meta.url));
-const fixture='rust-game-wasm/tests/current93/jc046.json.gz';
-const manifest=fileURLToPath(new URL('./current93/jc046-invalid.json.gz',import.meta.url));
-const invalid=loadCurrentFixture('rust-game-wasm/tests/current93/jc046-invalid.json.gz');
+const fixture='rust-game-wasm/tests/current111/jc046.json.gz';
+const manifest=fileURLToPath(new URL('./current111/jc046-invalid.json.gz',import.meta.url));
+const invalid=loadCurrentFixture('rust-game-wasm/tests/current111/jc046-invalid.json.gz');
 assert.equal(invalid.invalidRoomStates,55);
 const names=invalid.files.map(file=>file.name).sort();
 assert.equal(names.length,55);

@@ -10,7 +10,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-const traces=loadCurrentFixture('rust-game-wasm/tests/current93/gray-lock.json.gz');
+const traces=loadCurrentFixture('rust-game-wasm/tests/current111/gray-lock.json.gz');
 abi.initSync({module:currentBytes});
 for(const [caseIndex,trace] of traces.entries()) test(`gray lock52 Native/D1 ${caseIndex}: lock/chase, pause/reopen, real responses and duplicate receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'gray-lock52-d1-'));

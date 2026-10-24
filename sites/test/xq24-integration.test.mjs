@@ -13,7 +13,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module:currentBytes });
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/xq24.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/xq24.json.gz');
 for (const scenario of fixtures.scenarios) test(`XQ24 ${scenario.name}: Native journals, continuous D1 restore and original receipts`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'xq24-d1-'));
   const options = convertV4MiniflareOptions({ name:'xq24-test', resourcePersistencePath:persist, modules:[

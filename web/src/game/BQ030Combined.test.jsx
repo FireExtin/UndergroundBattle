@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it } from 'vitest';
 import { kernel as abi, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/bq030-web.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/bq030-web.json.gz');
 import { Table } from './Table';
 
 abi.initSync({ module: currentBytes });

@@ -13,7 +13,7 @@ export const scenarioNames=['actor-0','actor-1','actor-2','actor-3','ordinary-de
 export const assertSources=assertCurrentSourceBindings;
 export function validateNative(raw){
  assert.equal(raw.format,'xq23-current-native89-v1');assertSources(raw.sourceBindings);
- assertCurrentCatalog(raw.catalog);assert.equal(raw.catalog.societies.length,10);
+ assertCurrentCatalog(raw.catalog);assert.equal(raw.catalog.societies.length,12);
  assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
  let commands=0,rejected=0,projections=0;
  for(const s of raw.scenarios){
@@ -32,7 +32,7 @@ export function validateNative(raw){
  assert.deepEqual(counts,raw.counts);assert.deepEqual(counts,{scenarios:9,commands:72,rejected:5,projections:324,invalidRestores:31});return counts;
 }
 export function loadFixture(){
- const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23CoreNative93.fixture.json.gz'))));
+ const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23CoreNative111.fixture.json.gz'))));
  assert.equal(bundle.format,'xq23-current-native93-raw-v1');assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);assert.equal(sha256(bundle.raw.json),bundle.raw.sha256);
  assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);assert.equal(bundle.wasmSha256,currentWasmSha256);
  const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative(raw),bundle.counts);return {...bundle,...raw};

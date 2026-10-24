@@ -12,11 +12,11 @@ import { cardScanUrl } from './cardScans';
 import { groupObjectActions } from './objectActions';
 const wasm=currentBytes;
 abi.initSync({module:wasm});
-const fixture = loadCurrentFixture('rust-game-wasm/tests/current93/wm038.json.gz');
+const fixture = loadCurrentFixture('rust-game-wasm/tests/current111/wm038.json.gz');
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='WM038');
 it('reads all four rules of the complete pinned WM038 face and its Blood identity',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
+  expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
   expect(definition).toMatchObject({name:'信徒烙印',kind:'attachment',color:'红',cost:1,loyalty:['红色'],unique:false,subtypes:['纹身'],magic:'鲜血',keywords:[],permanentIcons:{investigation:0,combat:0,influence:0},temporaryIcons:{investigation:0,combat:0,influence:0}});
   expect(definition.defense).toBeNull();expect(definition.abilities).toHaveLength(3);
   const original=readFileSync(resolve('../resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg'));

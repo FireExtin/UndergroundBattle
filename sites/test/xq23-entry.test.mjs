@@ -24,7 +24,8 @@ for(const societyId of ['MSJC05'])test(`XQ23 in ${societyId} enters with a named
   };
   const catalog=(await api('/api/catalog')).body;for(const key of ['rulesVersion','cardPoolVersion','engineVersion'])assert.equal(catalog[key],currentCatalog[key]);
   assert.equal(catalog.cards.length,currentCatalog.cards.length);
-  assert.equal(catalog.societies.length,10);
+  assert.equal(catalog.societies.length,12);
+  assert.deepEqual(catalog.societies.map(s=>s.id).sort(),currentCatalog.societies.map(s=>s.id).sort());
   const draft=(id,count=50)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'XQ23',count:3}];
     for(const card of catalog.cards.filter(c=>c.id!=='XQ23'&&c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {

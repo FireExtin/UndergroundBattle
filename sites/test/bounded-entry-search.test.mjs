@@ -11,7 +11,7 @@ import { kernel as abi, moduleBytes as currentBytes } from '../../rust-game-wasm
 import {routeKernels} from '../src/kernel-router.mjs';
 import {RoomStore} from '../src/store.mjs';
 import {RoomService,digest} from '../src/service.mjs';
-const fixtures=loadCurrentFixture('rust-game-wasm/tests/current93/bounded-entry.json.gz');
+const fixtures=loadCurrentFixture('rust-game-wasm/tests/current111/bounded-entry.json.gz');
 abi.initSync({module:currentBytes});
 for(const [label,count] of [['employee',1],['employeeEmpty',0],['passers',0],['passers',3],['passersEmpty',0]]) test(`bounded ${label}/${count}: private candidates, pause/reopen, exact result and one receipt`,async t=>{
  const persist=mkdtempSync(join(tmpdir(),'entry-search50-d1-'));

@@ -17,7 +17,7 @@ export function assertSources(binding) {
 export function validateNative(raw){
  assert.equal(raw.format,'jc044-native85-v1');assertSources(raw.sourceBindings);
  assertCurrentCatalog(raw.catalog);
- assert.equal(raw.catalog.cards.length,193);assert.equal(raw.catalog.societies.length,10);
+ assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
  assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
  let commands=0,rejected=0,projections=0;
  for(const s of raw.scenarios){
@@ -37,7 +37,7 @@ export function validateNative(raw){
  return counts;
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc044Native93.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc044Native111.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc044-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

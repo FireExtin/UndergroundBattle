@@ -16,7 +16,7 @@ const project=fileURLToPath(new URL('../',import.meta.url));
 const root=existsSync(project+'web/package.json')?project:fileURLToPath(new URL('../../',import.meta.url));
 const {kernel:abi,catalog}=await import(pathToFileURL(root+'rust-game-wasm/tests/current-kernel.mjs').href);
 const {loadCurrentFixture}=await import(pathToFileURL(root+'tools/current-native-source.mjs').href);
-const fixtures=loadCurrentFixture('rust-game-wasm/tests/current93/seven-card.json.gz');
+const fixtures=loadCurrentFixture('rust-game-wasm/tests/current111/seven-card.json.gz');
 for (const fixture of fixtures) test(`seven93 BQ028 attachment=${fixture.attachment} discard=${fixture.discard} seat=${fixture.targetSeat}: private HTTP, exact Native state and reopened receipt`, async t => {
   const persist = mkdtempSync(join(tmpdir(), 'seven93-d1-'));
   const options = convertV4MiniflareOptions({ name: 'seven93-test', resourcePersistencePath: persist, modules: [

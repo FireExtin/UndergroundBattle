@@ -13,7 +13,7 @@ import { RoomStore } from '../src/store.mjs';
 import { RoomService, digest } from '../src/service.mjs';
 
 abi.initSync({ module: currentBytes });
-const native = loadCurrentFixture('rust-game-wasm/tests/current93/xq18.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current111/xq18.json.gz');
 
 async function setup(t, state) {
   const persist = mkdtempSync(join(tmpdir(), 'xq18-60-d1-'));

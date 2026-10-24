@@ -6,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import { kernel as wasm, moduleBytes as currentBytes } from '../../../rust-game-wasm/tests/current-kernel.mjs';
-const native = loadCurrentFixture('rust-game-wasm/tests/current93/xq27.json.gz');
+const native = loadCurrentFixture('rust-game-wasm/tests/current111/xq27.json.gz');
 import previous from './jc050Native55Test.fixture.json';
 import {ResponseWindow} from './ResponseWindow';
 import {ReadModal} from './ReadModal';

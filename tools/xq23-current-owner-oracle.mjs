@@ -28,7 +28,7 @@ export function validateOwnerNative(raw){
  return{commands:raw.steps.length,rejected,projections:4*(raw.steps.length+1),nativeInputs:Object.keys(raw.sourceBindings.files).length};
 }
 export function loadOwnerFixture(){
- const b=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23OwnerNative93.fixture.json.gz'))));
+ const b=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/xq23OwnerNative111.fixture.json.gz'))));
  assert.equal(b.format,'xq23-owner-native93-raw-v1');assert.equal(Buffer.byteLength(b.raw.json),b.raw.bytes);assert.equal(sha256(b.raw.json),b.raw.sha256);
  assert.equal(b.currentSourceManifestSha256,currentSourceManifestSha256);assert.equal(b.wasmSha256,currentWasmSha256);
  const raw=JSON.parse(b.raw.json);assert.deepEqual(validateOwnerNative(raw),b.counts);return{...b,...raw};

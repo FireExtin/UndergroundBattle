@@ -20,7 +20,7 @@ export function assertSources(binding) {
 export function validateNative(raw) {
   assert.equal(raw.format,'jc057-native84-v2');assertSources(raw.sourceBindings);
   assertCurrentCatalog(raw.catalog);
-  assert.equal(raw.catalog.cards.length,193);assert.equal(raw.catalog.societies.length,10);
+  assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
   const secretName=raw.catalog.cards.find(c=>c.id==='JC094').name;
   const assertPrivateLogs=(scenario,views)=>{if(scenario.name.startsWith('reveal-p'))for(const view of views)assert(!view.log.some(e=>e.text.includes(secretName)),'Inspection must not publish the actual inspected JC094 name');};
@@ -47,7 +47,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,rejected,projections,invalidRestores:raw.invalid.length};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc057Native93.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc057Native111.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc057-native93-raw-v2');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

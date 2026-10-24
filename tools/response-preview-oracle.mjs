@@ -24,7 +24,7 @@ function assertViews(views) {
 export function validateNative(raw) {
   assert.equal(raw.format,'response-preview-native82-v1');assertSources(raw.sourceBindings);
   assertCurrentCatalog(raw.catalog);
-  assert.equal(raw.catalog.cards.length,193);assert.equal(raw.catalog.societies.length,10);
+  assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
   let commands=0,polls=0,pureViews=0,projections=0,rejected=0,quotes=0,rejectedQuotes=0;
   for(const scenario of raw.scenarios) {
@@ -49,7 +49,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,polls,pureViews,projections,rejected,quotes,rejectedQuotes};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/responsePreviewNative93.fixture.json.gz'));
+  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/responsePreviewNative111.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'response-preview-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

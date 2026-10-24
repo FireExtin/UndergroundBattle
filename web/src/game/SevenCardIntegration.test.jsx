@@ -12,7 +12,7 @@ import { Table } from './Table';
 import { cardScanUrl } from './cardScans';
 kernel.initSync({ module: currentBytes });
 const catalog = JSON.parse(kernel.catalog());
-const fixtures = loadCurrentFixture('rust-game-wasm/tests/current93/seven-card.json.gz');
+const fixtures = loadCurrentFixture('rust-game-wasm/tests/current111/seven-card.json.gz');
 const definitions = new Map(catalog.cards.map(card => [card.id, card]));
 const scans = JSON.parse(readFileSync(resolve('public/card-scans.json'), 'utf8'));
 
@@ -25,9 +25,11 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
   expect(screen.getByRole('img', { name: `${definition.name}原始牌面` })).toHaveAttribute('src', registered.url);
 });
 it('uses the current candidate and retains the reviewed XQ18', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');
-  expect(catalog.cards).toHaveLength(193); expect(definitions.has('XQ18')).toBe(true);
+  expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
+  expect(catalog.cards).toHaveLength(272);
+  expect(catalog.cards.filter(card => card.supported)).toHaveLength(233);
+  expect(definitions.has('XQ18')).toBe(true);
 });
 it('rejects the preserved engine57 opaque room without upgrading its state', () => {
   const previous = JSON.parse(readFileSync(resolve('src/game/xq37Native57Test.fixture.json'), 'utf8')).accept;

@@ -10,10 +10,10 @@ import {Table} from './Table';
 import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
 const bytes=currentBytes;abi.initSync({module:bytes});
-const fixture=loadCurrentFixture('rust-game-wasm/tests/current93/jc037.json.gz'),catalog=JSON.parse(abi.catalog());
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current111/jc037.json.gz'),catalog=JSON.parse(abi.catalog());
 it('binds the complete JC037 face and actual source-built ABI93',()=>{
- expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.93-batch20-next');
- expect(catalog.cardPoolVersion).toBe('limited-v2.83-batch20-next');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
+ expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+ expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
  expect(catalog.cards.find(c=>c.id==='JC037')).toMatchObject({color:'蓝',subtitle:'寂静女士',keywords:['领袖'],permanentIcons:{investigation:0,combat:2,influence:2},abilities:[]});
 });
 it('rejects preserved Native73 states through both current ABI entrypoints',()=>{

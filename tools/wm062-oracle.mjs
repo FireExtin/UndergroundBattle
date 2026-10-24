@@ -43,7 +43,7 @@ export function validateBundle(bundle) {
   assert.deepEqual(bundle.counts,counts,'Incomplete continuous Native command set');
   return {...bundle,scenarios,invalid};
 }
-export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/wm062Native93.fixture.json.gz')))));}
+export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/wm062Native111.fixture.json.gz')))));}
 export function compare(fixture,abi,bytes){
   assert.equal(sha256(bytes),fixture.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
   for(const s of fixture.scenarios){
