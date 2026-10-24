@@ -265,6 +265,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
+    if id == crate::import20_cultist::ID { return crate::import20_cultist::validate_definition(id, d); }
     if definition(id).is_some_and(|expected| !same(d, &expected))
         || (!IMPLEMENTING.contains(&id) && d.abilities.iter().any(owned_ability)) {
         return Err("本批完整定义不可改写或移植".into());
@@ -586,6 +587,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_batch20_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::import20_cultist::frame_related(f) { return self.validate_xg13_frame(f); }
         if let Some(PlaySource::GraveyardByJZ52(grant)) = &f.source.play_source {
             if f.ability_key != "deploy" || f.actor >= self.players.len() || f.actor != f.source.card.controller
                 || grant.owner >= self.players.len() || f.source.card.face_down || !f.source.valid_character_play()
