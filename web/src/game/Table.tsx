@@ -1,3 +1,4 @@
+import { VariableActionButton } from './VariableActionButton';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { instanceTag, CardContent, CardTile, sameNameTags, visibleCard } from './CardTile';
@@ -56,7 +57,7 @@ function costParts(label: string): [string, string | undefined] {
   return at < 0 ? [label, undefined] : [label.slice(0, at).trim(), label.slice(at + 1).replace(/）$/, '')];
 }
 function ActionButtons({ actions, busy, onAction, regions = [], players = [], onRegionPreview, confirm = false, unavailable }: { actions: LegalAction[]; busy: boolean; onAction: (action: Action) => void; regions?: Region[]; players?: Player[]; onRegionPreview?: (region: number | null) => void; confirm?: boolean; unavailable?: (action: Action) => boolean }) {
-  return <div className="hg-actions">{actions.map(action => <button type="button" key={action.id} data-action-id={action.id} data-action-kind={action.kind} data-action-region={action.region} aria-controls={action.region === undefined ? undefined : `hg-region-${action.region}`} className={`hg-button ${['start', 'restart', 'ready'].includes(action.kind) ? 'hg-button-primary' : action.kind === 'pass' ? 'hg-button-quiet' : 'hg-button-action'}${confirm ? ' hg-button-confirm' : ''}`} disabled={busy || unavailable?.(action)} onClick={() => onAction(action)} title={unavailable?.(action) ? '目标当前未显示，请等待牌桌更新。' : action.description}
+  return <div className="hg-actions">{actions.map(action => action.amountRange ? <VariableActionButton key={action.id} action={action} label={`${confirm ? '确认 · ' : ''}${actionLabel(action, regions, players)}`} disabled={busy || unavailable?.(action)} onAction={onAction} /> : <button type="button" key={action.id} data-action-id={action.id} data-action-kind={action.kind} data-action-region={action.region} aria-controls={action.region === undefined ? undefined : `hg-region-${action.region}`} className={`hg-button ${['start', 'restart', 'ready'].includes(action.kind) ? 'hg-button-primary' : action.kind === 'pass' ? 'hg-button-quiet' : 'hg-button-action'}${confirm ? ' hg-button-confirm' : ''}`} disabled={busy || unavailable?.(action)} onClick={() => onAction(action)} title={unavailable?.(action) ? '目标当前未显示，请等待牌桌更新。' : action.description}
     onMouseEnter={() => onRegionPreview?.(action.region ?? null)} onMouseLeave={() => onRegionPreview?.(null)} onFocus={() => onRegionPreview?.(action.region ?? null)} onBlur={() => onRegionPreview?.(null)} onPointerDown={() => onRegionPreview?.(action.region ?? null)}>
     <span>{confirm ? '确认 · ' : ''}{actionLabel(action, regions, players)}</span>{action.description && <small>{action.description}</small>}
   </button>)}</div>;

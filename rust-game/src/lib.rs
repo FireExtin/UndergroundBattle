@@ -1,3 +1,6 @@
+mod import20_sentinel;
+#[cfg(test)]
+mod import20_sentinel_tests;
 mod step_resources;
 mod import20_industry;
 #[cfg(test)]

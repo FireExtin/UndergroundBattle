@@ -125,6 +125,7 @@ impl Game {
         // A proved granted program belongs to the granting mechanism, even
         // when its recipient also has a card-specific native program.
         if self.validated_cross_card_declaration(d)? { return Ok(()); }
+        if crate::import20_sentinel::related(&d.source.card.definition,&d.ability) { return self.validate_sentinel_pair_declaration(d); }
         if crate::import20_industry::related(&d.source.card.definition,&d.ability) { return self.validate_industry_declaration(d); }
         if crate::import20_carmen::related(&d.source.card.definition, &d.ability) { return self.validate_cq24_declaration(d); }
         if crate::import20_cultist::related(&d.source.card.definition, &d.ability) { return self.validate_xg13_declaration(d); }
@@ -161,6 +162,7 @@ impl Game {
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         self.validate_resource_frame(f)?;
         if self.validated_cross_card_frame(f)? { return Ok(()); }
+        if crate::import20_sentinel::frame_related(f) { return self.validate_sentinel_pair_frame(f); }
         if crate::import20_industry::frame_related(f) { return self.validate_industry_frame(f); }
         if crate::import20_carmen::frame_related(f) { return self.validate_cq24_frame(f); }
         if crate::import20_tattoo::frame_related(f) { return self.validate_wm064_frame(f); }

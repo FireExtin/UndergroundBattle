@@ -227,6 +227,7 @@ impl Game {
                                 cost_selected: cost.clone(),
                                 ..Action::new(kind)
                             };
+                            if ability.key == crate::import20_sentinel::FIRE { a.amount=Some(self.effective_marker_count(c,crate::batch4_markers::MarkerKind::Charge)); }
                             if let Some(t) = target {
                                 if slots[0].zone == Zone::Region {
                                     a.region =
@@ -483,10 +484,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -925,6 +926,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition=="CQ19" { crate::import20_sentinel::validate_action(spec,a)?; }
         if source.card.definition == "CQ24" && spec.targets.len()==2 { return self.cq24_bind(actor,source,spec,a); }
         if source.card.definition == "MSJC14" { return self.sentinel_bind(actor, source, spec, a); }
         if source.card.definition == "JC065" { return self.jc065_bind_action(actor, source, spec, a); }
@@ -992,6 +994,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::RemoveChargeX => paid.push(self.cq19_pay_charge(source,a)?),
                 Cost::IndustryExhaustOther => paid.push(self.industry_pay_other(actor,source,a)?),
                 Cost::BQ036SacrificeAttachment => paid.push(self.bq036_pay_attachment(actor, a)?),
                 Cost::JZ51SealThreeCorpses => return Err("温迪戈封印费用必须通过墓地专属待选支付".into()),
@@ -1288,7 +1291,7 @@ impl Game {
         {
             return Ok(());
         }
-        if !self.wm044_trigger_available(&declaration) || !self.black_next20_trigger_available(&declaration) || !self.vampire_trigger_available(&declaration) { return Ok(()); }
+        if (!self.wm044_trigger_available(&declaration) || !self.sentinel_pair_trigger_available(&declaration)) || !self.black_next20_trigger_available(&declaration) || !self.vampire_trigger_available(&declaration) { return Ok(()); }
         let title = format!(
             "{}：{}",
             crate::batch3_trap::source_label(&declaration.source),
@@ -1658,6 +1661,10 @@ impl Game {
                 Op::BQ039BattleDiscard { .. } => return self.batch20_combat_discard_start(frame),
                 Op::CQ24TakeAttachment { .. } => self.cq24_take_attachment(&frame)?,
                 Op::WM064RevealCriminal => self.wm064_reveal_criminal(&frame)?,
+                Op::CQ19AddCharge => self.cq19_add_charge(&frame)?,
+                Op::CQ19Fire => self.cq19_fire(&frame)?,
+                Op::CQ18EntryLocks => self.cq18_entry_locks(&frame)?,
+                Op::CQ18LeaveDraw { .. } => self.cq18_leave_draw(&frame)?,
                 Op::IndustryStepResource => self.industry_gain_resource(&frame)?,
                 Op::IndustryMill { .. } => {self.validate_industry_frame(&frame)?;self.mill_cards_with_cause(frame.actor,1,Some(&frame))?;},
                 Op::IndustryInvestigation { .. } => self.industry_resolve_bonus(&frame)?,

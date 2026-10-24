@@ -4,7 +4,7 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, currentLeader: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, chargeMarkers: undefined, currentLeader: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (card.faceDown) card = { ...card, currentLeader: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
     return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentWound !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
@@ -132,6 +132,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}
         {!society && !concealedCompact && !!card.shield && <span className="hg-shield-marker">护盾 {card.shield}</span>}
+        {!society && !asset && !!card.chargeMarkers && <span className="hg-charge-marker" aria-label={`充能标志 ${card.chargeMarkers}`}>充能 {card.chargeMarkers}</span>}
         {!society && !asset && !card.faceDown && !!card.timeMarkers && <span className="hg-time-marker">时间 {card.timeMarkers}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
         {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}

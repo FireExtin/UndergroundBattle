@@ -147,6 +147,7 @@ impl Game {
         c.named_character = None;
         c.chosen_subtype = None;
         c.time_markers = 0;
+        c.charge_markers = 0;
         c.permanent_combat_markers = 0;
         c.permanent_defense_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
@@ -162,6 +163,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            charge_markers: 0,
             advancement_markers: 0,
             named_character: None,
             chosen_subtype: None,
@@ -678,6 +680,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn apply_inner(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        if a.amount.is_some() && !(a.kind == "activate" && a.ability_id.as_deref() == Some(crate::import20_sentinel::FIRE) && a.card_id.as_ref().is_some_and(|id| self.in_play(id).is_some_and(|(_,c)|c.definition=="CQ19"))) { return Err("X数量只属于达摩克里斯之剑的原充能行动".into()); }
         if a.kind=="inspect-hidden" {return self.inspect_hidden_command(seat,&a);}
         if self.pending.is_some() {
             if a.kind != "choose" {
@@ -2412,6 +2415,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            charge_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.charge_markers > 0).then_some(c.charge_markers),
             current_leader: (!asset && !c.face_down && region.is_some() && self.current_leader(c)).then_some(true),
             advancement_markers: (!asset && (region.is_some() || kind == Some("attachment")) && (c.advancement_markers > 0 || crate::batch4_plans::is_plan(c))).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
@@ -2828,7 +2832,7 @@ impl Game {
         let inspections=self.jc057_inspection_actions(seat);
         if let Some(p) = &self.pending {
             let mut actions=if p.seat == seat {
-                vec![LegalAction {
+                vec![LegalAction { amount_range: None,
                     action: Action {
                         kind: "choose".into(),
                         choice_id: Some(p.choice.id.clone()),
@@ -2842,7 +2846,7 @@ impl Game {
             } else {
                 vec![]
             };
-            actions.extend(inspections.into_iter().map(|(action,label)|LegalAction{id:serde_json::to_string(&action).unwrap(),source_zone_id:None,action,label,description:None}));
+            actions.extend(inspections.into_iter().map(|(action,label)|LegalAction{amount_range:None,id:serde_json::to_string(&action).unwrap(),source_zone_id:None,action,label,description:None}));
             return actions;
         }
         let mut candidates: Vec<(Action, String)> = inspections;
@@ -3025,6 +3029,7 @@ impl Game {
                 if trial.apply_inner(seat, action.clone()).is_ok() {
                     let id = serde_json::to_string(&action).expect("legal action JSON");
                     Some(LegalAction {
+                        amount_range: self.cq19_amount_range(&action),
                         source_zone_id: self.society_source_zone(action.card_id.as_deref()),
                         action,
                         id,

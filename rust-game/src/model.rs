@@ -31,6 +31,8 @@ impl Icons {
 pub struct Action {
     pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub amount: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub card_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub target_id: Option<String>,
@@ -66,6 +68,8 @@ impl Action {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LegalAction {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub amount_range: Option<AmountRange>,
     #[serde(flatten)]
     pub action: Action,
     pub id: String,
@@ -78,6 +82,8 @@ pub struct LegalAction {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CardView {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub charge_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub advancement_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -365,6 +371,8 @@ pub struct PrivateInspectionView {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
     #[serde(default, skip_serializing_if = "is_zero")]
+    pub charge_markers: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
     pub advancement_markers: u32,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub named_character: Option<String>,
@@ -623,6 +631,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CQ19ChargeRemoved(Box<crate::import20_sentinel::ChargePayment>),
     #[serde(skip)]
     CapturedResources { receipt: Box<PaidCost>, credits: Vec<crate::step_resources::StepCredit> },
     IndustryExhausted(Box<SourceSnapshot>),
@@ -1038,6 +1047,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_sentinel_pair_state()?;
         self.validate_exposure_state()?;
         self.validate_mobility_state()?;
         self.validate_bq035_state()?;
@@ -1159,3 +1169,7 @@ pub struct SealedCard {
     pub card: Card,
     pub host_id: String,
 }
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AmountRange { pub min: u32, pub max: u32 }

@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    CQ18LockedEnemyLeft,
     IndustryAttachmentEntered,
     IndustryCharacterSealed,
     CQ24QualifiedEntry,
@@ -76,6 +77,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    RemoveChargeX,
     IndustryExhaustOther,
     BQ036SacrificeAttachment,
     JZ51SealThreeCorpses,
@@ -290,6 +292,10 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    CQ19AddCharge,
+    CQ19Fire,
+    CQ18EntryLocks,
+    CQ18LeaveDraw { observation: Option<Box<crate::import20_sentinel::LockedDeparture>> },
     IndustryStepResource,
     IndustryMill { observation: Option<Box<crate::import20_industry::IndustryEvent>> },
     IndustryInvestigation { observation: Option<Box<crate::import20_industry::IndustryEvent>> },
@@ -766,6 +772,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
         return if crate::mobility::canonical(ability) { Ok(()) }
             else { Err("只准入完整的机动事件与自身移动程序".into()) };
     }
+    if crate::import20_sentinel::related(card_id,ability) { return crate::import20_sentinel::validate_ability(card_id,ability); }
     if crate::import20_industry::related(card_id,ability) { return crate::import20_industry::validate_ability(card_id,ability); }
     if crate::import20_carmen::related(card_id, ability) { return crate::import20_carmen::validate_ability(card_id, ability); }
     if crate::import20_tattoo::related(card_id, ability) { return crate::import20_tattoo::validate_ability(card_id, ability); }
@@ -1543,6 +1550,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::import20_sentinel::validate_definition(card_id, definition)?;
         crate::import20_carmen::validate_definition(card_id, definition)?;
         crate::import20_tattoo::validate_definition(card_id, definition)?;
         crate::import20_industry::validate_definition(card_id, definition)?;
@@ -2227,6 +2235,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());
+        for id in ["CQ18", "CQ19"] { m.insert(id.into(),crate::import20_sentinel::definition(id).unwrap()); }
         m.insert("WM043".into(), crate::wm043::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }

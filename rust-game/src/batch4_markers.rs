@@ -9,26 +9,26 @@ const KIND: &str = "xq21-marker";
 const TITLE: &str = "选择要增加一枚的已有指示物标志类别";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
-pub enum MarkerKind { Advancement, PermanentCombat, PermanentDefense, Time, Wound, Shield, Lock }
+pub enum MarkerKind { Advancement, PermanentCombat, PermanentDefense, Time, Wound, Shield, Lock, Charge }
 impl MarkerKind {
-    pub(crate) const ALL: [Self; 7] = [Self::Advancement, Self::PermanentCombat, Self::PermanentDefense, Self::Time, Self::Wound, Self::Shield, Self::Lock];
+    pub(crate) const ALL: [Self; 8] = [Self::Advancement, Self::PermanentCombat, Self::PermanentDefense, Self::Time, Self::Wound, Self::Shield, Self::Lock, Self::Charge];
     pub(crate) fn count(self, c: &Card) -> u32 { match self {
         Self::Advancement => c.advancement_markers, Self::PermanentCombat => c.permanent_combat_markers,
         Self::PermanentDefense => c.permanent_defense_markers, Self::Time => c.time_markers,
-        Self::Wound => c.wounds, Self::Shield => c.shield, Self::Lock => c.lock_markers,
+        Self::Wound => c.wounds, Self::Shield => c.shield, Self::Lock => c.lock_markers, Self::Charge => c.charge_markers,
     } }
     pub(crate) fn field(self, c: &mut Card) -> &mut u32 { match self {
         Self::Advancement => &mut c.advancement_markers, Self::PermanentCombat => &mut c.permanent_combat_markers,
         Self::PermanentDefense => &mut c.permanent_defense_markers, Self::Time => &mut c.time_markers,
-        Self::Wound => &mut c.wounds, Self::Shield => &mut c.shield, Self::Lock => &mut c.lock_markers,
+        Self::Wound => &mut c.wounds, Self::Shield => &mut c.shield, Self::Lock => &mut c.lock_markers, Self::Charge => &mut c.charge_markers,
     } }
     fn id(self) -> &'static str { match self {
         Self::Advancement => "advancement", Self::PermanentCombat => "permanent-combat", Self::PermanentDefense => "permanent-defense",
-        Self::Time => "time", Self::Wound => "wound", Self::Shield => "shield", Self::Lock => "lock",
+        Self::Time => "time", Self::Wound => "wound", Self::Shield => "shield", Self::Lock => "lock", Self::Charge => "charge",
     } }
     fn label(self) -> &'static str { match self {
         Self::Advancement => "推进标志", Self::PermanentCombat => "永久战斗1标志", Self::PermanentDefense => "防御+1标志",
-        Self::Time => "时间标志", Self::Wound => "伤口标志", Self::Shield => "护盾标志", Self::Lock => "锁定标志",
+        Self::Time => "时间标志", Self::Wound => "伤口标志", Self::Shield => "护盾标志", Self::Lock => "锁定标志", Self::Charge => "充能标志",
     } }
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }

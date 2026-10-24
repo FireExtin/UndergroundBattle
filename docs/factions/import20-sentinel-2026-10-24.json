@@ -1,0 +1,27 @@
+{
+  "baseCommit": "879d68f53fde5693fccff5730ee3b2faeb513d49",
+  "priorCatalogCount": 265,
+  "priorCardsCanonicalSha256": "697e41c7eadafa80c5de21d4062e74b79a21e6ff7a2961d3b96c13866299510e",
+  "priorSpecificationsSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+  "newCards": [
+    "CQ18",
+    "CQ19"
+  ],
+  "sourceCorrections": [],
+  "engineVersion": "rust-v0.2.107-import20-sentinel",
+  "cardPoolVersion": "limited-v2.98-import20-sentinel",
+  "priorReference20AuthorNativeWipComplete": 12,
+  "potentialReference20AuthorNativeWipComplete": 14,
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing author and illustrator direct permission; retained two records have no per-card effect handlers; independent finite adaptation.",
+    "SuezCodeOrArtCopied": false
+  }
+}
