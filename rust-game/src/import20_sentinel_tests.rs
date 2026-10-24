@@ -314,6 +314,7 @@ fn import20_sentinel_cq18_actual_paid_entry_locks_enemy_current_region_and_hidde
     let mut g = game();
     let e = enemy(&g, 0);
     let a = field(&mut g, "LC01", e);
+    g.board_mut(&a).unwrap().shield = 1;
     let b = field(&mut g, "JC125", e);
     g.board_mut(&b).unwrap().face_down = true;
     let own = field(&mut g, "JC125", 0);
@@ -324,6 +325,7 @@ fn import20_sentinel_cq18_actual_paid_entry_locks_enemy_current_region_and_hidde
     choose(&mut g, vec!["accept".into()]);
     pass_top(&mut g);
     assert_eq!(g.board(&a).unwrap().1.lock_markers, 1);
+    assert_eq!(g.board(&a).unwrap().1.shield, 1);
     assert_eq!(g.board(&b).unwrap().1.lock_markers, 1);
     assert_eq!(g.board(&own).unwrap().1.lock_markers, 0);
     assert_eq!(g.board(&other).unwrap().1.lock_markers, 0);
@@ -403,6 +405,16 @@ fn import20_sentinel_cq18_unlocked_friendly_movement_and_detached_lock_do_not_dr
     let moving = field(&mut g, "LC01", e);
     lock(&mut g, &moving);
     g.move_on_board_instance(&moving, 1);
+    let host = field(&mut g, "LC01", e);
+    let mut attachment = g.make_card("BQ022", e);
+    attachment.lock_markers = 1;
+    let attachment_id = attachment.id.clone();
+    g.attachments.push(Attachment {
+        card: attachment,
+        host_id: host.clone(),
+    });
+    g.remove_dead(&attachment_id, RemovalCause::Destroy);
+    g.return_hand(&host);
     g.drive().unwrap();
     assert!(g.pending.is_none() && g.stack.is_empty());
 }
@@ -563,5 +575,146 @@ fn import20_sentinel_cq18_post_lock_respects_shield_and_decline() {
         if shield {
             assert_eq!(g.board(&t).unwrap().1.shield, 0);
         }
+    }
+}
+
+#[test]
+fn import20_sentinel_cq19_real_entry_decline_retains_paid_cost_and_no_charge() {
+    let mut g = game();
+    sentinel(&mut g, 0);
+    fund(&mut g, 0, "JZ43", 4);
+    let h = held(&mut g, "CQ19", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(h),
+            target_id: Some("society:p0".into()),
+            ..Action::new("play")
+        },
+    );
+    pass_top(&mut g);
+    assert!(g.pending.is_some());
+    choose(&mut g, vec![]);
+    assert_eq!(g.resources(0), 0);
+    assert_eq!(
+        g.attachments
+            .iter()
+            .find(|a| a.card.definition == "CQ19")
+            .unwrap()
+            .card
+            .charge_markers,
+        0
+    );
+}
+#[test]
+fn import20_sentinel_cq19_target_departure_does_not_refund_or_rebind() {
+    let mut g = game();
+    let id = weapon(&mut g, true);
+    let t = field(&mut g, "LC01", 2);
+    act(&mut g, 0, activate(&id, s::FIRE, Some(1), Some(&t)));
+    g.return_hand(&t);
+    let next = field(&mut g, "LC01", 2);
+    pass_top(&mut g);
+    assert_eq!(g.board(&next).unwrap().1.damage, 0);
+    assert_eq!(g.in_play(&id).unwrap().1.charge_markers, 0);
+    assert!(g.in_play(&id).unwrap().1.exhausted);
+}
+#[test]
+fn import20_sentinel_cq18_real_paid_conceal_then_reveal_emits_entry_once() {
+    let mut g = game();
+    fund(&mut g, 0, "JZ43", 5);
+    let e = enemy(&g, 0);
+    let target = field(&mut g, "LC01", e);
+    let h = held(&mut g, "CQ18", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(h),
+            region: Some(0),
+            ..Action::new("conceal")
+        },
+    );
+    assert!(g.pending.is_none());
+    assert_eq!(g.board(&target).unwrap().1.lock_markers, 0);
+    let hidden = g.regions[0]
+        .cards
+        .iter()
+        .find(|c| c.definition == "CQ18")
+        .unwrap()
+        .id
+        .clone();
+    g.begin_window(Window::Action(0));
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(hidden),
+            ..Action::new("reveal")
+        },
+    );
+    pass_top(&mut g);
+    finish(&mut g, true);
+    assert_eq!(g.board(&target).unwrap().1.lock_markers, 1);
+    assert_eq!(g.resources(0), 0);
+}
+#[test]
+fn import20_sentinel_cq18_entry_wave_uses_original_region_and_resolution_population() {
+    let mut g = game();
+    let e = enemy(&g, 0);
+    let escaped = field(&mut g, "LC01", e);
+    let source = ren(&mut g, 0, 0);
+    choose(&mut g, vec!["accept".into()]);
+    g.move_on_board_instance(&source, 1);
+    g.move_on_board_instance(&escaped, 1);
+    let later = field(&mut g, "LC01", e);
+    pass_top(&mut g);
+    assert_eq!(g.board(&escaped).unwrap().1.lock_markers, 0);
+    assert_eq!(g.board(&later).unwrap().1.lock_markers, 1);
+}
+#[test]
+fn import20_sentinel_cq18_region_return_primitive_captures_before_all_members_leave() {
+    // Explicit prepare/commit primitive fixture, not a natural-room score claim.
+    let mut g = game();
+    field(&mut g, "CQ18", 0);
+    let e = enemy(&g, 0);
+    let a = field(&mut g, "LC01", e);
+    let b = field(&mut g, "LC01", e);
+    lock(&mut g, &a);
+    lock(&mut g, &b);
+    deck_cards(&mut g, 0, &["JC125", "JC125", "JC125"]);
+    let before = g.players[0].hand.len();
+    g.prepare_region_return(0).unwrap();
+    let batch = g.region_return.as_mut().unwrap();
+    for i in 0..batch.bottom.len() {
+        batch.orders[i] = Some(batch.bottom[i].clone());
+    }
+    g.commit_region_return(0).unwrap();
+    g.drive().unwrap();
+    restore(&mut g);
+    finish(&mut g, true);
+    assert_eq!(g.players[0].hand.len(), before + 2);
+    assert!(g.regions[0].cards.is_empty());
+}
+#[test]
+fn import20_sentinel_cq18_hidden_departure_qualifies_but_hidden_observer_has_no_printed_trigger() {
+    for hidden_observer in [false, true] {
+        let mut g = game();
+        let source = field(&mut g, "CQ18", 0);
+        g.board_mut(&source).unwrap().face_down = hidden_observer;
+        let e = enemy(&g, 0);
+        let t = field(&mut g, "JC125", e);
+        g.board_mut(&t).unwrap().face_down = true;
+        lock(&mut g, &t);
+        deck_cards(&mut g, 0, &["JC125", "JC125"]);
+        let before = g.players[0].hand.len();
+        g.return_hand(&t);
+        g.drive().unwrap();
+        finish(&mut g, true);
+        assert_eq!(
+            g.players[0].hand.len(),
+            before + usize::from(!hidden_observer)
+        );
     }
 }

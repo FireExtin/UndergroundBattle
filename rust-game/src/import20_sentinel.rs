@@ -437,10 +437,10 @@ impl Game {
             .map(|(_, c)| c.id.clone())
             .collect::<Vec<_>>();
         for id in targets {
-            if !self.shield_stops(f.actor, &id) {
-                if let Some(c) = self.board_mut(&id) {
-                    c.lock_markers = c.lock_markers.checked_add(1).ok_or("锁定标志溢出")?;
-                }
+            // This printed wave has no targets. Reuse the ordinary untargeted
+            // effect contract; targeted post-contest locking still checks shields.
+            if let Some(c) = self.board_mut(&id) {
+                c.lock_markers = c.lock_markers.checked_add(1).ok_or("锁定标志溢出")?;
             }
         }
         Ok(())

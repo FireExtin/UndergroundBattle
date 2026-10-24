@@ -95,6 +95,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}
     {!compact && !hidden && !asset && !region && !society && adjustedCost && <span className="hg-cost-explanation">当前费用 {actualCost} · 印刷费用 {printedCost}</span>}
     {archive ? <ArchiveArtwork key={`${card.instanceId}:${card.cardId}:${card.faceDown}`} card={card} actionHint={actionHint} /> : !compact && <span className="hg-card-art" aria-hidden="true"><span>{hidden ? '？' : card.kind === 'event' ? '✧' : card.kind === 'region' ? '⌖' : '◈'}</span><i /></span>}
+    {!society && !asset && !!card.chargeMarkers && <span className="hg-charge-marker" aria-label={`充能标志 ${card.chargeMarkers}`}>充能 {card.chargeMarkers}</span>}
     {card.region !== undefined && !!card.lockMarkers && <span className="hg-lock-marker" aria-label={`锁定标志 ${card.lockMarkers}`}>锁定 {card.lockMarkers}</span>}
     {hidden ? <><IconStrip icons={hiddenIcons} /><span className="hg-card-text">{hiddenRule}。{card.exhausted ? '已横置，不参与对抗。' : '在地区内且未横置时参与势力对抗。'}</span></> : <>
       {!society && <span className="hg-card-affiliation">{region ? `赢得 ${definition?.points ?? '—'} 分 · 控制阈值 ${definition?.threshold ?? '—'}` : asset ? `${card.color || '无派系'}${card.magic ? ` · ${card.magic}` : ''}` : <>{definition?.loyaltyText || (definition?.loyalty?.length ? `忠诚 ${definition.loyalty.join(' / ')}` : '无忠诚要求')}{(card.magic || definition?.magic) && ` · ${card.magic || definition?.magic}`}</>}</span>}
@@ -132,7 +133,6 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
         {!society && !concealedCompact && !!card.damage && <span className="hg-hurt hg-damage-marker">伤害 {card.damage}</span>}
         {!society && !concealedCompact && !!card.wounds && <span className="hg-hurt hg-wound-marker">创伤 {card.wounds}</span>}
         {!society && !concealedCompact && !!card.shield && <span className="hg-shield-marker">护盾 {card.shield}</span>}
-        {!society && !asset && !!card.chargeMarkers && <span className="hg-charge-marker" aria-label={`充能标志 ${card.chargeMarkers}`}>充能 {card.chargeMarkers}</span>}
         {!society && !asset && !card.faceDown && !!card.timeMarkers && <span className="hg-time-marker">时间 {card.timeMarkers}</span>}
         {card.exhausted && <span className="hg-exhausted-label">已横置</span>}
         {card.faceDown && <span>{hiddenRule}{card.exhausted ? ' · 横置不参与对抗' : ''}</span>}
