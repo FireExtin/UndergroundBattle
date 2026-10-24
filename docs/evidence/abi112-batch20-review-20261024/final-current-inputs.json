@@ -1,0 +1,382 @@
+{
+  "compilerSource": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+  "runtimeReviewed": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "wasmSha256": "1549bd17ff8eca4112807cb1b89ceca60b3d2dba19b82a53c5155b61eaad8049",
+  "currentSourceManifestSha256": "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e",
+  "compilerFiles": 330,
+  "fixtures": [
+    {
+      "path": "rust-game-wasm/tests/current112/batch20-review-normal.json.gz",
+      "bytes": 1382505,
+      "sha256": "8d4b6d21929d38829f53699e73f297e4fad5bc3499091ec7fd5f0da28a5c0ee0",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/batch3-cleanup.json.gz",
+      "bytes": 50464,
+      "sha256": "718f7f37a8c0cc1296764f6896feb50cd5d44964ea0805c58b62fd73993af9a9",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/batch3-cq07.json.gz",
+      "bytes": 117881,
+      "sha256": "908f6d81bb418536dc1fe8311ab85f7ec7cb65463b6a0e55b7fa2be223083181",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/batch3-inspections.json.gz",
+      "bytes": 139491,
+      "sha256": "2773d8537584e192979ee1b482dae329134e74ff8f092df2da17a4074a7f5f5a",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/bounded-entry.json.gz",
+      "bytes": 322317,
+      "sha256": "202e668f5d29683b4983083e66f811317219a6f24dd1d39ce2a147beb307df6d",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/bq030-sites.json.gz",
+      "bytes": 248735,
+      "sha256": "be2082d7b2283623ef96e70c902392d2271a331db41a8733a5f4587e665e3557",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/bq030-web.json.gz",
+      "bytes": 32826,
+      "sha256": "146faa11c9ebec650979c2d343d61df8c326126e8ca9567dff4a621c3ce8f432",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/deck-seal-room.json.gz",
+      "bytes": 89941,
+      "sha256": "0bf1ad865aaca1debb67005785146a3e77a66fe23368867d2b5651c78e62f108",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/deck-seal.json.gz",
+      "bytes": 322824,
+      "sha256": "60144ba28553f2ccb4928616fbe3a2c781476c0480c1c316f74df5df7ae0e75f",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/fixed-slots.json.gz",
+      "bytes": 24924,
+      "sha256": "ac14e9fd0951c573d62603fb148ff81377287a1da8f43bda67359aa6cee0e4e8",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/gray-lock.json.gz",
+      "bytes": 104695,
+      "sha256": "ed0c33094dfeb3d475dc514b51bfe20663f2271466b64709b38577c042334928",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc037.json.gz",
+      "bytes": 666097,
+      "sha256": "b057a1ae2590b304c97f13dc916711e8f104bc4c0c0c6f8524e34b145e952568",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc046-invalid.json.gz",
+      "bytes": 136972,
+      "sha256": "ef03b1cd757894ed34c44132453f7217c9b6f1d1beb3e7e025a5f8fd5aec8bb4",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc046.json.gz",
+      "bytes": 4055029,
+      "sha256": "431694100c9e51a2346e3e732b936a82a8bd6bad4bdf985817fa247f654f68d8",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc050-quote.json.gz",
+      "bytes": 3218,
+      "sha256": "f55f2eadcf45f95fb9db4b065c6fa1244044ed1e6056bb2b3d45df400c2b7398",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc050.json.gz",
+      "bytes": 7674,
+      "sha256": "6cc123de1de4a2318b712cee6952bcc9020d771f91926b5b2bdb507bd1e2ac80",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc052-worker.json.gz",
+      "bytes": 69736,
+      "sha256": "390a6788060d210142bed54f5bfaaa977a55ab2d02dbdf19fd022cdd7006cc22",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc052.json.gz",
+      "bytes": 32209,
+      "sha256": "b67df05ffa5a747755ee974c44eb0d5a6b3bc2c118f44e3721ce07d60a145497",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc060.json.gz",
+      "bytes": 1167123,
+      "sha256": "c03a49055d4ba54409a651fc79e78c98d411f79d8f2659dac0be5b8f00c1a9bc",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc061.json.gz",
+      "bytes": 35954,
+      "sha256": "5b7c4afdbf89415e2914baa19502137f715a192d684b44c619a0e6cf19bcb2b6",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc087.json.gz",
+      "bytes": 36756,
+      "sha256": "b405284ee1ab22c064c4f7381cefc60b21afdce3ceec10d644f415313c7c5509",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc094.json.gz",
+      "bytes": 34749,
+      "sha256": "a519793cc48102ee5d1704e2974400730655b80954ec39e8b3f40a9743be99f4",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jc095.json.gz",
+      "bytes": 1541115,
+      "sha256": "c665c1613e8aa4495daa72d16716830e766e64423c8676cbfb28d86c4c723314",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jz22.json.gz",
+      "bytes": 52471,
+      "sha256": "de4efd6028887f8eccd119aec84a56b4245c7ed8e4e2cef0935c38da761bfaf4",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jz35.json.gz",
+      "bytes": 32354,
+      "sha256": "92e977ffe4ee9c806826cfa4e5fb98a1de01ff45917f91d379ed7d8a2c7f5aaf",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jz50-room.json.gz",
+      "bytes": 56127,
+      "sha256": "c8f9cc8cc47cf20274ec4189ea1271e83dad0952ef13099afe365d994efd241d",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/jz56-platform.json.gz",
+      "bytes": 1782175,
+      "sha256": "c6ab1e2ae879f5d8cc676a22a5f85708bd0e31554f9ff5a63a176d6aa735a4cf",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/lifecycle.json.gz",
+      "bytes": 66753,
+      "sha256": "b93949a5c8167fa533aec7b8155206f955eabf571b11603d50464c210f2e1e3b",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/pause-resume.json.gz",
+      "bytes": 46433,
+      "sha256": "254dbc2df4a9d6e07a5cbf97495a250dae51b380783675e35aef9770f98785de",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/sealed-restart.json.gz",
+      "bytes": 16135,
+      "sha256": "d91ec7591c8b91ec6ed8d3c8f59245c907732d254a27255b8544ddbf0591bf36",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/sealing-room.json.gz",
+      "bytes": 63878,
+      "sha256": "0b9695dbb386d20ca58047c4eaaad9276f36a9c545e83c9fb2fe82a5b172634d",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/sentinel-worker.json.gz",
+      "bytes": 64469,
+      "sha256": "219ddffe79916d1efdc024405f5269ae9d99b262fcd4621e399114596ee4a91f",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/seven-card.json.gz",
+      "bytes": 33704,
+      "sha256": "aa649a905b484688e23dd4c8eec5296ef93b51c55e1ad0b713f611176eb33726",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/shared-rewards.json.gz",
+      "bytes": 212352,
+      "sha256": "648ddf79ab8b32b519fd627a5a5f544a729ca346680b6b0b82c58c2baa05d08a",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/three-color-death-commands.json.gz",
+      "bytes": 38323,
+      "sha256": "681d034ac93e0e3ff0b4279887c3f5d3506f8fa431e26930d7d23e6b04f5c03b",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/three-color-death.json.gz",
+      "bytes": 33622,
+      "sha256": "6fd4165b85225d7e28eb116b37dbc0d09b124ae8bdf98f7ef098efe6f98a8f1d",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/win-flow.json.gz",
+      "bytes": 1217857,
+      "sha256": "d150a18fdb660ff4762b4c665c491d065459e92fd6bb8ab19d3e6bf1febe42b6",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/wm023.json.gz",
+      "bytes": 35912,
+      "sha256": "4ba733201d47a311e65c4de73b801d18644c8d8553f18a1a4e18fffee4b3172f",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/wm038.json.gz",
+      "bytes": 35099,
+      "sha256": "a79c099880eb255e367a6e19d22148db40d93a2f12bb64fd03129e4ff62cd9fb",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/wm056.json.gz",
+      "bytes": 32072,
+      "sha256": "a487d656e9c93c25e598a19c77572c991238ed27cfdc5c96040a6d0d27b43d21",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq18.json.gz",
+      "bytes": 42783,
+      "sha256": "4b3b7e92d1446bc1f54b27a22ad3c97f836c64f2f6037f287e4314d27a7648db",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq24-invalid.json.gz",
+      "bytes": 11525,
+      "sha256": "7eadafa37bf145f3874f675a495a18753fce01533175ad84d15d19f3076b4ae4",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq24.json.gz",
+      "bytes": 1206112,
+      "sha256": "a3b5eb16f60479a11403f461a5ff21c113731668b340e7e7aede743467485deb",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq25.json.gz",
+      "bytes": 32166,
+      "sha256": "2172d9b4bc454b8d6bc13f508eace2adac758be8c9206afbcb17f8fec6932142",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq27-invalid-rootface.json.gz",
+      "bytes": 2897,
+      "sha256": "f9546d5634005b9b60ff9442d18d607fbb8728f52c4cde9e82a81b6997ea0e56",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq27.json.gz",
+      "bytes": 7428,
+      "sha256": "76a4fb2d4da0fc2798e7667b05de96aeb9e7f75ce43b06c1d38f7e0d508c043c",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq37-invalid-rootface.json.gz",
+      "bytes": 2884,
+      "sha256": "3ed692ac7bbc2f180ef9e66cc6d0ce79f685ba9db46a772663324b0522aa9def",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/current112/xq37.json.gz",
+      "bytes": 20448,
+      "sha256": "80f2dfccdab6c16c5dc7f55b9fb4b2d35216860a3d014d5f50f7684275beb024",
+      "format": "current-native-fixture-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/bq035Native112.fixture.json.gz",
+      "bytes": 4212038,
+      "sha256": "ee848697b90547455d27e4cb8bbaeb83fe03b5d131492e5e991472738d5c1b51",
+      "format": "bq035-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc035Native112.fixture.json.gz",
+      "bytes": 1364093,
+      "sha256": "d1c3cfb8932bdf157c0e32bf0143fa41053d86c715144776c2f118a60984c6e9",
+      "format": "jc035-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc041Native112.fixture.json.gz",
+      "bytes": 1394319,
+      "sha256": "a9e9fd0dec88c301c97acf326ad85bad5caeb605e5fb39683bef1555eb59e375",
+      "format": "jc041-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc041P2Native112.fixture.json.gz",
+      "bytes": 483153,
+      "sha256": "204bb7139917c9ba79de937e030f5da03124b94b4558c8b20a75850082f95adb",
+      "format": "jc041-p2-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc044Native112.fixture.json.gz",
+      "bytes": 1046009,
+      "sha256": "9ee75e8f41eba788cd56e5cbcb72d5108dcd1046e5a6c847ee7ade48de8f9f91",
+      "format": "jc044-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc054Native112.fixture.json.gz",
+      "bytes": 1661675,
+      "sha256": "3fb4680d0e5f1ce78d4bbbfdb2ab9e8789edabf8d20b258b74988fd76782a599",
+      "format": "jc054-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc057Native112.fixture.json.gz",
+      "bytes": 1149764,
+      "sha256": "6dda292cf896e33acb2f6bb3b02322532f115a0c2f60b5ccbf0b7e27336fd4a5",
+      "format": "jc057-native93-raw-v2"
+    },
+    {
+      "path": "rust-game-wasm/tests/jc066Native112.fixture.json.gz",
+      "bytes": 2323637,
+      "sha256": "5efe6b2df3ea89b4cd2875f91a99483bcd93729fd0b8365095ee613172e1b46c",
+      "format": "jc066-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/jz46Native112.fixture.json.gz",
+      "bytes": 3578162,
+      "sha256": "847449cfdd7878087348be54c52a7eb18f7aa9d672b26fff2f91709e869ed78f",
+      "format": "jz46-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/msjc0405Native112.fixture.json.gz",
+      "bytes": 241947,
+      "sha256": "aa0c8b81b4b75be4c1bea374c22d90dbaad86efebc00944445c36165367df0bc",
+      "format": "msjc0405-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/responsePreviewNative112.fixture.json.gz",
+      "bytes": 199088,
+      "sha256": "dfd219d32df8dcddc83c4aeb6643ff657a47976a94cfd9ba5e031ac6d8392ba2",
+      "format": "response-preview-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/wm062Native112.fixture.json.gz",
+      "bytes": 2046254,
+      "sha256": "66b7befdd587dce026f591f856c403650d864e65e29f961703636b6fa488b2c5",
+      "format": "wm062-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz",
+      "bytes": 705292,
+      "sha256": "726ecf07d0dc444a7a7f1495c303f07abf16172701801f32c1ad7b597c356d08",
+      "format": "xq23-current-native93-raw-v1"
+    },
+    {
+      "path": "rust-game-wasm/tests/xq23OwnerNative112.fixture.json.gz",
+      "bytes": 1406563,
+      "sha256": "7d50627fa7e48582593b4d5f6b63d763cc58306bea1aafd2333ed3ee62f62c2c",
+      "format": "xq23-owner-native93-raw-v1"
+    }
+  ],
+  "scope": "Final Native exporters and actual WASM comparisons. UI/Worker impacted checks remain pending at this input freeze; no browser/deploy/full Native pass claim."
+}

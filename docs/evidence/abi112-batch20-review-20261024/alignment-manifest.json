@@ -1,0 +1,15 @@
+{
+  "candidate": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+  "runtimeClosure": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "scope": "Independent static live registry alignment, exact272 records and233 admissions retained; not platform execution.",
+  "files": {
+    "alignment-review.md": {
+      "bytes": 3119,
+      "sha256": "0a872b2ec145c4514abfe37f043b7ad6ab7814d3f4765b4c61330c15610836bc"
+    },
+    "alignment-review.json": {
+      "bytes": 7021,
+      "sha256": "6d054c6ac3158f71658fa7773e4c05f3c3467eedfd1a033c3e7c23726a226a05"
+    }
+  }
+}

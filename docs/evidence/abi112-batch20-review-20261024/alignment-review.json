@@ -1,0 +1,198 @@
+{
+  "format": "abi112-live-registry-alignment-independent-static-v1",
+  "createdUtc": "2026-10-24T13:02:40.591281+00:00",
+  "reviewer": "independent_abi112_batch20_review; non-author",
+  "base": "33bb5824f7c756a87f68c0b19ad1612a0b59e233",
+  "head": "6e5567a4c3a2e4374fcf33d830cc95b434ed9945",
+  "ancestorVerified": true,
+  "decision": "no_confirmed_issue_within_narrow_static_alignment_scope",
+  "confirmedIssues": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "runtimeFiles": [
+    {
+      "path": "rust-game/src/rumor.rs",
+      "bytes": 23047,
+      "sha256": "e54988b6f57d0ca2b5814d9227b1674c968ad7d1de583646d2ebb5e512c6b688",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "bytes": 9136,
+      "sha256": "881663e07bb22a376dd1718f7929acba933f23dd440d86803c936d29659298b2",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "bytes": 295685,
+      "sha256": "09e55ae23b54d4b41d2a511c907cedac29e157060a5e7c27dab42e6842ab9e42",
+      "unchangedFromBase": true
+    }
+  ],
+  "strictGuardsUnchanged": [
+    {
+      "path": "sites/scripts/build.mjs",
+      "bytes": 2368,
+      "sha256": "770727f1fe7251bfdf7d57b3304b7ad52160a9d250f7cfea0217b187b078a8ca",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "tools/fixture-tools/current-bq030.mjs",
+      "bytes": 4277,
+      "sha256": "79e52f2516478d355aee326c11d4ad775f63c6e39539a5137a6ac703f58ab5db",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "tools/fixture-tools/jc052-current.py",
+      "bytes": 3128,
+      "sha256": "3c0901bcb5bed535d9071c92d0e4022d2a253f594d5fcafbfa80818eebb76045",
+      "unchangedFromBase": true
+    }
+  ],
+  "otherUnchangedFiles": [
+    {
+      "path": "docs/factions/import20-rulings-2026-10-24.json",
+      "bytes": 2352,
+      "sha256": "0a0bead250054d4f59c2a0834a22e08b171b1068522525368b14116e8deb9d7c",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "docs/factions/card-specifications.json",
+      "bytes": 2815473,
+      "sha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "tools/cards/import20-spec-history.mjs",
+      "bytes": 5442,
+      "sha256": "e6749e75e9726f2ed7b9debe70fb7d16fa664b388e49002b4dcbbd440a70e102",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "tools/current-native-source.mjs",
+      "bytes": 3654,
+      "sha256": "2eee3260de7ad6b10687525ae922ca0023f10ccdef86443ac29d83224066da56",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "bytes": 10373,
+      "sha256": "e1e4e153c64e285b372e65412f0ad1a333d5b42355251992ecf2c76273f1deaf",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "bytes": 30988,
+      "sha256": "2fa7c50e263279e643f59a6bf9b5e99ec345dabe8877fd13c3ce19a0fb14f5ac",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "sites/src/kernel.mjs",
+      "bytes": 346,
+      "sha256": "595166e42bb9dd793af79eacfdbc691017670c33b01d8b50d91a8bdfd29cd01c",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "sites/src/http.mjs",
+      "bytes": 3959,
+      "sha256": "252c30367ce8929cfdbbec0cb4b252091bf160aa11fff5da76925b9fb8686f9a",
+      "unchangedFromBase": true
+    }
+  ],
+  "liveRegistry": {
+    "path": "rust-game/data/cards.json",
+    "oldSha256": "f13d5bf417bd3badfee88ec90385a7238c48cb5e50ab21ab790b2943b0bcc1b5",
+    "newSha256": "eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977",
+    "changedTopLevelKeys": [
+      "engineVersion"
+    ],
+    "exactSingleStringReplacement": true,
+    "oldEngineVersion": "rust-v0.2.111-import20-rulings-complete",
+    "newEngineVersion": "rust-v0.2.112-shared-keyword-rewards",
+    "all272RecordsIdentical": true,
+    "supported": 233,
+    "otherTopLevelFieldsUnchanged": true,
+    "cardImageTreeUnchanged": true,
+    "cardImageTreeObject": "202203649f2c124c6ca22d2ef53383685c74c56f"
+  },
+  "historicalIntake": {
+    "engineVersion": "rust-v0.2.111-import20-rulings-complete",
+    "independentReview": "notRun",
+    "published": false,
+    "byteUnchanged": true
+  },
+  "changedFiles": [
+    "docs/ABI112_BATCH20_REVIEW_INPUTS_WIP_2026-10-24.md",
+    "docs/evidence/abi112-batch20-review-20261024/closure-coverage.json",
+    "docs/evidence/abi112-batch20-review-20261024/closure-report.md",
+    "docs/evidence/abi112-batch20-review-20261024/closure-review.json",
+    "docs/evidence/abi112-batch20-review-20261024/coverage.json",
+    "docs/evidence/abi112-batch20-review-20261024/independent-review-and-closure.tar.gz",
+    "docs/evidence/abi112-batch20-review-20261024/manifest.json",
+    "docs/evidence/abi112-batch20-review-20261024/report.md",
+    "docs/evidence/abi112-batch20-review-20261024/review.json",
+    "rust-game/data/cards.json",
+    "rust-game/src/abi112_review_play_tests.rs",
+    "rust-game/src/lib.rs",
+    "sites/test/batch20-review-normal-current.test.mjs",
+    "sites/test/kernel-binding.test.mjs",
+    "tools/build-current-local-worker.mjs",
+    "tools/cards/import20-rulings-source.test.mjs",
+    "tools/check-batch20-review-fixes.mjs",
+    "web/src/game/Import20CardFaces.test.jsx"
+  ],
+  "staticChecks": {
+    "onlyExistingRustChangeIsCfgTestLibInclude": true,
+    "newNativeRoomWitnesses": 6,
+    "existingFixtureFilesModified": false,
+    "noOldStateRelabelObserved": true,
+    "fullCatalogAndOpaqueStateComparisonsRetained": true,
+    "clockPrecedence": "X-Local-Clock header ?? LOCAL_TEST_CLOCK_MS env ?? 0; Number safe integer >=0",
+    "productionHttpKernelUnchanged": true
+  },
+  "preservedEvidence": [
+    {
+      "manifest": "initial-review-manifest.json",
+      "sha256": "26503dfc1abd0738d217e88fca8f88e50e3abf153536235073d89dd26c4b3d94",
+      "files": 16,
+      "allUnchanged": true
+    },
+    {
+      "manifest": "closure-manifest.json",
+      "sha256": "d827d2386bf306394a410779b3f4e2c426c39bf2a7acf488d924c99ba13c24ec",
+      "files": 11,
+      "allUnchanged": true
+    }
+  ],
+  "independentlyExecuted": {
+    "gitAndHashChecks": true,
+    "cargo": false,
+    "nodeTests": false,
+    "nativeGameTests": false,
+    "Wasm": false,
+    "Worker": false,
+    "browser": false,
+    "newDynamicPassCount": 0
+  },
+  "scopeLimits": [
+    "Static inspection of fixed33..6e changes only",
+    "No full-suite or platform independent acceptance",
+    "New WASM/Native/Worker inputs being generated by author were not inspected or independently executed",
+    "Earlier four-probe33 closure remains separate and unchanged"
+  ],
+  "report": {
+    "path": "alignment-review.md",
+    "sha256": "0a872b2ec145c4514abfe37f043b7ad6ab7814d3f4765b4c61330c15610836bc"
+  },
+  "blockers": [],
+  "resourceStatus": "No Cargo started; build window not occupied",
+  "restrictionsObserved": [
+    "Fixed authorized task-3 Git objects only",
+    "No author worktree edits",
+    "No original91/33 report edits",
+    "No worktree or additional agent",
+    "No network/browser/CI/push/deploy/external Oracle"
+  ]
+}
