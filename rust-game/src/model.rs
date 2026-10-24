@@ -212,6 +212,8 @@ pub struct Choice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerView {
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub step_resources: u32,
     pub id: String,
     pub seat: usize,
     pub name: String,

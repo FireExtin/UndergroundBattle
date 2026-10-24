@@ -147,6 +147,10 @@ fn import20_industry_real_paid_region_attachment_and_actual_two_exhausted_costs(
     pass_top(&mut g);
     assert_eq!(g.resources(0), before + 1);
     assert_eq!(g.step_resource_count(0), 1);
+    for seat in 0..4 {
+        assert_eq!(g.view(seat).players[0].step_resources, 1);
+        assert_eq!(g.view(seat).players[1].step_resources, 0);
+    }
     assert_eq!(
         serde_json::to_value(&assets).unwrap(),
         serde_json::to_value(&g.players[0].assets).unwrap()
@@ -635,4 +639,76 @@ fn import20_industry_room_activation_journal_and_duplicate_cas_spend_once() {
     let repeat = next.transition(0, Some(command), 5001).unwrap();
     assert_eq!(repeat.error_code.as_deref(), Some("version_conflict"));
     assert_eq!(repeat.state, out.state);
+}
+
+#[test]
+fn import20_industry_credits_pay_bq029_printed_and_extra_costs_with_separate_receipts() {
+    let mut g = game();
+    fund(&mut g, 0, "JC029", 2);
+    for c in &mut g.players[0].assets {
+        c.exhausted = true;
+    }
+    for _ in 0..3 {
+        credit(&mut g, 0);
+    }
+    let h = held(&mut g, "BQ029", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(h),
+            region: Some(0),
+            option: Some("pay-extra-1".into()),
+            ..Action::new("deploy")
+        },
+    );
+    let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(f.money_units(0), 2);
+    assert_eq!(f.money_units(1), 1);
+    assert!(
+        matches!(f.already_paid.as_slice(),[PaidCost::Assets(a),PaidCost::BQ029ExtraAssets(b)]if a.is_empty()&&b.is_empty())
+    );
+    pass_top(&mut g);
+    assert!(g.pending.is_some());
+    assert_eq!(g.step_resource_count(0), 0);
+    restore(&mut g);
+    choose(&mut g, vec![]);
+}
+
+#[test]
+fn import20_industry_credits_pay_carmen_printed_and_extra_three_and_keep_qualification() {
+    let mut g = game();
+    fund(&mut g, 0, "JC084", 2);
+    for c in &mut g.players[0].assets {
+        c.exhausted = true;
+    }
+    for _ in 0..4 {
+        credit(&mut g, 0);
+    }
+    let target = fixture(&mut g, "BQ091", 2);
+    let h = held(&mut g, "CQ24", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(h),
+            region: Some(0),
+            option: Some("pay-extra-3".into()),
+            ..Action::new("deploy")
+        },
+    );
+    let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(f.money_units(0), 1);
+    assert_eq!(f.money_units(1), 3);
+    assert!(
+        matches!(f.already_paid.as_slice(),[PaidCost::Assets(a),PaidCost::CQ24ExtraAssets(b)]if a.is_empty()&&b.is_empty())
+    );
+    pass_top(&mut g);
+    assert!(g.pending.is_some());
+    choose(&mut g, vec![target.clone()]);
+    choose(&mut g, vec![]);
+    pass_top(&mut g);
+    assert_eq!(g.board(&target).unwrap().1.controller, 0);
+    assert_eq!(g.step_resource_count(0), 0);
+    restore(&mut g);
 }

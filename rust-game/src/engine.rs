@@ -153,6 +153,7 @@ impl Game {
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
             .retain(|m| m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
+        self.industry_bonuses.retain(|m| m.target_instance != c.id);
         c.id = self.id();
         c.lock_markers = 0;
         c
@@ -2648,6 +2649,7 @@ impl Game {
                 .players
                 .iter()
                 .map(|p| PlayerView {
+                    step_resources: self.step_resource_count(p.seat),
                     id: player_id(p.seat),
                     seat: p.seat,
                     name: p.name.clone(),

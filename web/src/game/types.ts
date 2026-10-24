@@ -68,6 +68,7 @@ export type Player = {
   deckName?: string;
   ready: boolean; eliminated: boolean; handCount: number; deckCount: number; score: number;
   destructionMarkers?: number;
+  stepResources?: number;
 };
 export type Region = {
   id: string; index: number; cardId: string; name: string; threshold: number;
