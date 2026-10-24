@@ -975,7 +975,7 @@ impl Game {
                 if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
-                if (c.controller != seat && c.definition != "XQ22") || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
+                if (c.controller != seat && c.definition != "XQ22" && !self.wm057_borrow_command(seat,c,&a)) || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -3001,7 +3001,7 @@ impl Game {
                 }
             }
             for (r, c) in &board {
-                if c.controller != seat && !(c.definition == "XQ22" && !c.face_down) {
+                if c.controller != seat && !(c.definition == "XQ22" && !c.face_down) && !self.wm057_borrow_available(seat,c) {
                     continue;
                 }
                 if c.face_down {
@@ -3015,6 +3015,8 @@ impl Game {
                     if c.definition == "JC041" {
                         candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                     }
+                } else if c.controller != seat && c.definition=="WM057" {
+                    candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::import20_broker::ACT.into()),..Action::new("activate")},"借用信息掮客：本人隐秘，支付2并横置原牌进行隐秘对抗".into()));
                 } else {
                     candidates.extend(self.rule_action_candidates(seat, c, Some(*r), "activate"));
                 }

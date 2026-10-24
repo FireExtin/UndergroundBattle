@@ -37,7 +37,7 @@ pub(crate) fn owns(ops:&[Op])->bool { ops.iter().any(|op|match op {
 }) }
 pub(crate) fn related(a:&AbilitySpec)->bool {matches!(a.key.as_str(),ENTRY|ACT|WIN|SHOWN)||owns(&a.ops)||a.modes.iter().any(|m|owns(&m.ops))}
 pub(crate) fn frame_related(f:&ResolutionFrame)->bool {CARDS.contains(&f.source.card.definition.as_str())
-    ||matches!(f.ability_key.as_str(),ENTRY|ACT|WIN|SHOWN)||f.steps.iter().any(|s|owns(std::slice::from_ref(&s.op)))}
+    ||matches!(f.ability_key.as_str(),ENTRY|ACT|WIN|SHOWN)||f.steps.iter().any(|s|owns(std::slice::from_ref(&s.op)))||f.already_paid.iter().any(|p|matches!(p,PaidCost::WM057Borrowed(_)))}
 fn win_program(contest_id:Option<String>,mode:Option<&str>)->Option<AbilitySpec>{
     let proof=Op::WM057Win{contest_id};
     let mut a=ability(WIN,"赢得隐秘对抗：遏制1，然后可检视暗藏者或秘密计划",Timing::Fast,vec![],vec![],vec![proof.clone()],Some(Event::MysticContestWon));
@@ -208,9 +208,14 @@ impl Game{
             ||post_frame.as_ref().is_none_or(|p|!same(p.as_ref(),f)){return Err("凋零展示后置只能按本人当次展示磨一张".into());}Ok(())
     }
     pub(crate) fn validate_import20_broker_frame(&self,f:&ResolutionFrame)->RuleResult<()>{
+        self.validate_resource_frame(f)?;
         if self.validated_cross_card_frame(f)?{return Ok(());}
         if f.ability_key==SHOWN{return self.validate_bq081_post(f);}
-        self.import20_broker_source(f.actor,&f.source)?;
+        if f.source.card.definition=="WM057" && f.ability_key==ACT && f.actor!=f.source.card.controller {
+            self.import20_broker_source(f.source.card.controller,&f.source)?;
+            let Some(PaidCost::WM057Borrowed(p))=f.already_paid.last() else {return Err("敌方借用缺少发动者本人资格凭据".into());};
+            self.wm057_validate_borrow(f,p)?;
+        } else {self.import20_broker_source(f.actor,&f.source)?;}
         if !self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&f.frame_id)).is_some_and(|(s,f)|s<f)
             ||f.cursor>f.steps.len()||f.cursor==0&&!matches!(f.guard,GuardState::Unchecked)||f.cursor>0&&!matches!(f.guard,GuardState::Accepted){return Err("黑色新卡帧身份或阶段无效".into());}
         if matches!(f.ability_key.as_str(),"deploy"|"reveal"){
@@ -226,8 +231,9 @@ impl Game{
             return Err("黑色新卡须保留原完整程序与目标".into());
         }
         if f.ability_key==ACT{
-            if f.source.card.exhausted||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids),PaidCost::Exhausted(id)]if id==&f.source.card.id
-                &&f.money_units(0)==2&&ids.iter().all(|n|self.mystic_instance_valid(n)&&n!=id)&&ids.iter().collect::<BTreeSet<_>>().len()==2){return Err("信息掮客须保留实际付款2和原实例横置收据".into());}
+            let costs=if f.actor!=f.source.card.controller {&f.already_paid[..f.already_paid.len()-1]}else{f.already_paid.as_slice()};
+            if f.source.card.exhausted||!matches!(costs,[PaidCost::Assets(ids),PaidCost::Exhausted(id)]if id==&f.source.card.id
+                &&f.money_units(0)==2&&ids.iter().all(|n|self.mystic_instance_valid(n)&&n!=id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()){return Err("信息掮客须保留实际付款2和原实例横置收据".into());}
         }else if !f.already_paid.is_empty(){return Err("本触发没有额外支付".into());}Ok(())
     }
     pub(crate) fn validate_import20_broker_state(&self)->RuleResult<()>{

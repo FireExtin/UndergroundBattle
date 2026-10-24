@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake, priorSpecifications } from './import20-spec-history.mjs';
+import { taxBanSlice as intake, currentImport20, priorSpecifications } from './import20-spec-history.mjs';
 const read=n=>readFileSync(new URL('../../'+n,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -24,7 +24,7 @@ test('original images, loyalty, unique subtitle and printed cost/metadata match 
   }assert.equal(pool.cards[267].loyalty.length,3);assert.equal(pool.cards[268].loyalty.length,2);assert.deepEqual(pool.cards[267].keywords,['非资产']);assert.deepEqual(pool.cards[268].keywords,['公开','撤回']);
 });
 test('only latest108 author WIP; honor is a separate printed marker, with no new public acceptance',()=>{
-  assert.equal(pool.engineVersion,'rust-v0.2.108-import20-tax-ban');assert.equal(pool.cardPoolVersion,'limited-v2.99-import20-tax-ban');assert.equal(pool.engineVersion,intake.engineVersion);assert.equal(pool.cardPoolVersion,intake.cardPoolVersion);
+  assert.equal(intake.engineVersion,'rust-v0.2.108-import20-tax-ban');assert.equal(intake.cardPoolVersion,'limited-v2.99-import20-tax-ban');assert.equal(pool.engineVersion,currentImport20.engineVersion);assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));assert.equal(intake.priorReference20AuthorNativeWipComplete,14);assert.equal(intake.potentialReference20AuthorNativeWipComplete,16);assert.equal(intake.current50ReviewedNativeClosed,38);
   assert.equal(intake.independentReview,'notRun');assert.equal(intake.WASM,'notBuiltOrRun');assert.equal(intake.Worker,'notBuiltOrRun');assert.equal(intake.published,false);assert.equal(intake.references.SuezCodeOrArtCopied,false);
 });

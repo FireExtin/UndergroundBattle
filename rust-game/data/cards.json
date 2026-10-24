@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.99-import20-tax-ban",
-  "engineVersion": "rust-v0.2.108-import20-tax-ban",
+  "cardPoolVersion": "limited-v2.100-wm057-personal-borrow",
+  "engineVersion": "rust-v0.2.109-wm057-personal-borrow",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {

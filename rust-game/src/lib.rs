@@ -1,3 +1,6 @@
+mod wm057_borrow;
+#[cfg(test)]
+mod wm057_borrow_tests;
 mod import20_tax_ban;
 #[cfg(test)]
 mod import20_tax_ban_tests;

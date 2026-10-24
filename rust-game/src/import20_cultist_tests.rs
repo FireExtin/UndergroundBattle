@@ -73,7 +73,7 @@ fn import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool() {
     crate::unit_support::assert_current_serial_catalog();
     assert_eq!(catalog::catalog().cards.iter().filter(|d| d.supported).count(), 213);
     assert!(!catalog::catalog().cards.iter().any(|d| d.id == "XQ19"));
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.108-import20-tax-ban");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.109-wm057-personal-borrow");
     assert_eq!(definition(c::ID).abilities[1].timing, Timing::Fast);
     assert_eq!(definition(c::ID).abilities[1].response_policy, ResponsePolicy::Respondable);
     validate_definitions(definitions()).unwrap();

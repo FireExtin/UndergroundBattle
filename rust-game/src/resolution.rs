@@ -991,6 +991,8 @@ impl Game {
                 return Err("此能力本局已发动过".into());
             }
         }
+        let borrowed=self.wm057_capture_borrow(actor,source,spec,a)?;
+        let allow_borrow=borrowed.is_some();
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
@@ -1011,7 +1013,7 @@ impl Game {
                 Cost::ExhaustSource => {
                     let c = self
                         .ability_source_mut(&source.card.id)
-                        .filter(|c| c.controller == actor && !c.face_down && !c.exhausted)
+                        .filter(|c| (c.controller == actor || allow_borrow && c.id==source.card.id && c.controller==source.card.controller) && !c.face_down && !c.exhausted)
                         .ok_or("来源不可横置支付")?;
                     c.exhausted = true;
                     paid.push(PaidCost::Exhausted(c.id.clone()));
@@ -1055,6 +1057,7 @@ impl Game {
                 }
             }
         }
+        if let Some(permission)=borrowed {paid.push(PaidCost::WM057Borrowed(permission));}
         if spec.once_per_game {
             self.consume_society_usage(&source.card.id, &spec.key)?;
         }

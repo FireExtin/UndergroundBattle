@@ -28,6 +28,8 @@ pub struct MysticShown {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ContestOutcome {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub borrow_permission: Option<crate::wm057_borrow::BorrowPermission>,
     pub bonuses: Vec<MysticBonus>,
     pub contest_id: String,
     pub turn: u32,
@@ -301,7 +303,7 @@ impl Game {
         let winner_team = if totals[0] == totals[1] { None } else { Some(usize::from(totals[1] > totals[0])) };
         let first_winners = state.participants.iter().copied().filter(|seat| winner_team == Some(self.team(*seat))
             && !self.mystic_history.iter().any(|o| o.turn == self.turn && o.winner_team == Some(self.team(*seat)) && o.participants.contains(seat))).collect();
-        let outcome = ContestOutcome { bonuses: state.bonuses.clone(), contest_id: state.contest_id.clone(), turn: self.turn, frame_id: state.frame.frame_id.clone(),
+        let outcome = ContestOutcome { borrow_permission: crate::wm057_borrow::permission(&state.frame), bonuses: state.bonuses.clone(), contest_id: state.contest_id.clone(), turn: self.turn, frame_id: state.frame.frame_id.clone(),
             actor: state.frame.actor, source: state.frame.source.clone(), ability_key: state.frame.ability_key.clone(), actor_bonus: state.actor_bonus,
             participants: state.participants.clone(), shown, totals, winner_team, first_winners };
         // All private commitments are now complete. No earlier log contains a
@@ -413,7 +415,7 @@ impl Game {
     }
     pub(crate) fn validate_mystic_outcome(&self, o: &ContestOutcome) -> RuleResult<()> {
         if !self.mystic_instance_valid(&o.contest_id) || !self.mystic_instance_valid(&o.frame_id) || o.turn != self.turn
-            || o.actor >= self.players.len() || o.source.card.controller != o.actor || o.participants.is_empty()
+            || o.actor >= self.players.len() || self.wm057_outcome_authority(o).is_err() || o.participants.is_empty()
             || o.participants.windows(2).any(|w| w[0] >= w[1]) || o.participants.iter().any(|s| *s >= self.players.len())
             || self.players.iter().any(|p| !p.eliminated && !o.participants.contains(&p.seat))
             || o.shown.iter().map(|s| s.seat).collect::<Vec<_>>() != o.participants
@@ -520,6 +522,7 @@ impl Game {
         if state.response_base.iter().any(|id| !self.mystic_instance_number(id).zip(self.mystic_instance_number(&state.frame.frame_id))
                 .is_some_and(|(base,frame)| base < frame))
             || state.response_base.iter().collect::<BTreeSet<_>>().len() != state.response_base.len() { return Err("隐秘开始响应基线被改写".into()); }
+        if let MysticPhase::Rewards{outcome,..}|MysticPhase::After{outcome,..}|MysticPhase::Finishing{outcome}=&state.phase {self.wm057_bind_outcome(&state.frame,outcome)?;}
         match &state.phase {
             MysticPhase::FinishingUnshown { unable } => {
                 if state.parent.is_none() || pending.is_some() || contests.contains(state.contest_id.as_str())

@@ -641,6 +641,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    WM057Borrowed(crate::wm057_borrow::BorrowPermission),
     Honor { before: u32, amount: u32 },
     CQ19ChargeRemoved(Box<crate::import20_sentinel::ChargePayment>),
     #[serde(skip)]

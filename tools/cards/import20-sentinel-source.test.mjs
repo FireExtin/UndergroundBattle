@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { sentinelSlice as intake, priorSpecifications } from './import20-spec-history.mjs';
+import { sentinelSlice as intake, currentImport20, priorSpecifications } from './import20-spec-history.mjs';
 const read=n=>readFileSync(new URL('../../'+n,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -23,7 +23,7 @@ test('both original images and complete printed metadata are preserved',()=>{
   }assert.equal(pool.cards[265].loyalty.length,3);assert.equal(pool.cards[266].loyalty.length,1);
 });
 test('single current107 remains author WIP, with no new public or independent acceptance',()=>{
-  assert.equal(pool.engineVersion,'rust-v0.2.108-import20-tax-ban');assert.equal(pool.cardPoolVersion,'limited-v2.99-import20-tax-ban');assert.equal(intake.engineVersion,'rust-v0.2.107-import20-sentinel');assert.equal(intake.cardPoolVersion,'limited-v2.98-import20-sentinel');
+  assert.equal(pool.engineVersion,currentImport20.engineVersion);assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);assert.equal(intake.engineVersion,'rust-v0.2.107-import20-sentinel');assert.equal(intake.cardPoolVersion,'limited-v2.98-import20-sentinel');
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));assert.equal(intake.priorReference20AuthorNativeWipComplete,12);assert.equal(intake.potentialReference20AuthorNativeWipComplete,14);assert.equal(intake.current50ReviewedNativeClosed,38);
   assert.equal(intake.independentReview,'notRun');assert.equal(intake.WASM,'notBuiltOrRun');assert.equal(intake.Worker,'notBuiltOrRun');assert.equal(intake.published,false);assert.equal(intake.references.SuezCodeOrArtCopied,false);
 });
