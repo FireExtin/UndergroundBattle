@@ -1,0 +1,146 @@
+{
+  "base": "879d68f53fde5693fccff5730ee3b2faeb513d49",
+  "runtime_and_native_test_head": "bb8ab34907634bae5de45fd31a9b42a994c60d07",
+  "files": [
+    {
+      "path": "failure-record.json",
+      "bytes": 4451,
+      "sha256": "d63e688ec0b4294bfe57f196c83ac09017b23b9f6424de72208a725e18bf1c63"
+    },
+    {
+      "path": "fixed-inputs.json",
+      "bytes": 162196,
+      "sha256": "d1a00654875ddde6ad7e7f768b309e12585da8e3e1aea45e2c74f16a5493a05f"
+    },
+    {
+      "path": "import20-sentinel-adjacent-native-20261024.json",
+      "bytes": 47895,
+      "sha256": "7e3fa08c20528f788726f7e0318da245643f8c043698fa0e3327d91c1b58c7fa"
+    },
+    {
+      "path": "import20-sentinel-adjacent-native-20261024.log.gz",
+      "bytes": 11103,
+      "sha256": "131ee38cd5fc520bf30ac5e5414b8e74bc36a3c46be135e3e7275a7dbb81efa6"
+    },
+    {
+      "path": "import20-sentinel-charge-hide-actual-red-native-20261024.json",
+      "bytes": 47266,
+      "sha256": "9eab48be057fa6d581a3daa7760fb2597ea504afdff2e7e1a6b1f273b46dc483"
+    },
+    {
+      "path": "import20-sentinel-charge-hide-actual-red-native-20261024.log.gz",
+      "bytes": 1221,
+      "sha256": "431e1a04e86d2fa71efa70b1d2242aa5ee6a5dc585594ef482c0d0c1830c4177"
+    },
+    {
+      "path": "import20-sentinel-charge-hide-red-native-20261024.json",
+      "bytes": 47266,
+      "sha256": "22f7943098f7d4fb9787dcbe93a1749ac2353cea9025653b47ffb6ada487ac24"
+    },
+    {
+      "path": "import20-sentinel-charge-hide-red-native-20261024.log.gz",
+      "bytes": 1099,
+      "sha256": "ce3fc92f7f902c5647cf7dbea859f9cdb64280e7e3b90f1ff0be975b709be0b1"
+    },
+    {
+      "path": "import20-sentinel-combined-native-20261024.json",
+      "bytes": 47086,
+      "sha256": "79fdfbbff641188330031641fc5fc292401dcdc1b87b4bdf50a8b8d21ce67f7f"
+    },
+    {
+      "path": "import20-sentinel-combined-native-20261024.log.gz",
+      "bytes": 1517,
+      "sha256": "d71029b38efe9997a5c9e4ce37671f1166506fde36ea802624a439629df6737b"
+    },
+    {
+      "path": "import20-sentinel-final-native-20261024.json",
+      "bytes": 47245,
+      "sha256": "5eedd6be2c8cf23623fcec6da3ef1d72741c670121bd652738d2da76124ea041"
+    },
+    {
+      "path": "import20-sentinel-final-native-20261024.log.gz",
+      "bytes": 1730,
+      "sha256": "0ff277ac64b11502cc7a553811a78256e4d40ece6c78871fbedbdd7ad0907d75"
+    },
+    {
+      "path": "import20-sentinel-first-components-20261024.json",
+      "bytes": 47001,
+      "sha256": "a6e0811ba1acfef06d30abec61603ad4ffabe3245ce2d3602f19b9081dd7960d"
+    },
+    {
+      "path": "import20-sentinel-first-components-20261024.log.gz",
+      "bytes": 1320,
+      "sha256": "4ff3edd01169c6cf7e7059979d5d02e3cef20d87498afe023f0ed86776c23d81"
+    },
+    {
+      "path": "import20-sentinel-first-native-20261024.json",
+      "bytes": 47085,
+      "sha256": "a6cd79f178d48cc749fbb06bd44cd09544345af18e7f63e4ed28c747411e7fad"
+    },
+    {
+      "path": "import20-sentinel-first-native-20261024.log.gz",
+      "bytes": 1650,
+      "sha256": "3b425fdf88ca6d55fa3c793c9cd7a6bf359199289061382fefe71b41505754f8"
+    },
+    {
+      "path": "import20-sentinel-fixed-components-20261024.json",
+      "bytes": 47160,
+      "sha256": "127b0c91efd58262dcdadb3bc83c28ab62c996b4332637cce008577735b37d68"
+    },
+    {
+      "path": "import20-sentinel-fixed-components-20261024.log.gz",
+      "bytes": 289,
+      "sha256": "7cca90b1a41c5d20d8b3dba9d44e951d3ac9d771db104ee22ab3c1c3c7076e24"
+    },
+    {
+      "path": "import20-sentinel-host-admitted-native-20261024.json",
+      "bytes": 47085,
+      "sha256": "bfc12f0c33846c00a912a77f3796a509282a90449f01fd14d76f55676cfb3f77"
+    },
+    {
+      "path": "import20-sentinel-host-admitted-native-20261024.log.gz",
+      "bytes": 1701,
+      "sha256": "6d7f13f5a23c09524d27da6ab5e4b7d3e7641a13f381f8d647e17e49705b2489"
+    },
+    {
+      "path": "import20-sentinel-normal-complete-native-20261024.json",
+      "bytes": 47245,
+      "sha256": "6ef27afa95a84b4b9f099451a1edae1c3b09b953371a07a5ade27b179a4422fb"
+    },
+    {
+      "path": "import20-sentinel-normal-complete-native-20261024.log.gz",
+      "bytes": 1667,
+      "sha256": "0aee612a8bd8a4fc7bf45a2311d47ad57d0a140fc128cc998836086fbdd0774c"
+    },
+    {
+      "path": "import20-sentinel-source-20261024.json",
+      "bytes": 47532,
+      "sha256": "e04bcece4d93e6c6e4db63dc3bdfeac80c9081279efd8b6cdc51c76193e8d769"
+    },
+    {
+      "path": "import20-sentinel-source-20261024.log.gz",
+      "bytes": 1714,
+      "sha256": "41cea7df69c3f7d6cd6349f821374b7597f7416537dc8b23e61fe10a58acc5d3"
+    },
+    {
+      "path": "import20-sentinel-types-20261024.json",
+      "bytes": 47063,
+      "sha256": "a4abd4544e4ff2225548b9e2ba8d182285b9b3caf3e57fed53f97936ca5f0888"
+    },
+    {
+      "path": "import20-sentinel-types-20261024.log.gz",
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 45747,
+      "sha256": "67444ea904bc3e6241666186fb7c76e75e904e9cd06e72727a1b4d22a454ad10"
+    },
+    {
+      "path": "rule-evidence.json",
+      "bytes": 4108,
+      "sha256": "6ad2e174b202a4eceba6112802d46e2a5cb89fbd194eb3cb595f0c3a0c816c11"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "originals": [
+    {
+      "id": "CQ18",
+      "path": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+      "sha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "pixelsViewed": true,
+      "collectorCode": "18/39"
+    },
+    {
+      "id": "CQ19",
+      "path": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+      "sha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "pixelsViewed": true,
+      "collectorCode": "19/39"
+    }
+  ],
+  "sourceCorrections": [],
+  "primaryFullSpecificationsSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+  "UWPro": {
+    "repository": "RETORETO/UnderWorldPro",
+    "fixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author and illustrator permission Sentinel_e03beb50ee4881918270242ed3e5bcde.",
+    "records": [
+      {
+        "cardId": "CQ18",
+        "name": "任秋雨",
+        "color": "灰",
+        "inCurrentFourth50": true,
+        "imagePath": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+        "imageSha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+        "pixelsViewedThisTask": true,
+        "resource": {
+          "id": "CQ18",
+          "path": "Cards/Data/PlayerCards/CQ/CQ018_renqiuyu.tres",
+          "gitBlob": "10e9058256991772901fee75032cd65f96f15230",
+          "bytes": 1331,
+          "sha256": "7bb0b096b5bc8a92b9883177be18e0c445a0d689b5240cb37c1817fcd1721edc",
+          "registeredPerCardEffect": false,
+          "codePermission": "user-confirmed author and illustrator direct permission"
+        },
+        "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ18.tres",
+        "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+        "implemented": false,
+        "nativeTestsRun": 0
+      },
+      {
+        "cardId": "CQ19",
+        "name": "达摩克里斯之剑",
+        "color": "灰",
+        "inCurrentFourth50": true,
+        "imagePath": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+        "imageSha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+        "pixelsViewedThisTask": true,
+        "resource": {
+          "id": "CQ19",
+          "path": "Cards/Data/PlayerCards/CQ/CQ019_damokelisizhijian.tres",
+          "gitBlob": "d59ade6e8e1bba828e0ebb5e74f5844a0ee9d4f3",
+          "bytes": 1322,
+          "sha256": "120c8b54a9d238b3dd8f31c5638d8e6d1b64c180dd529a259c580acdd7229738",
+          "registeredPerCardEffect": false,
+          "codePermission": "user-confirmed author and illustrator direct permission"
+        },
+        "resourceArchive": "docs/evidence/import20-c-paused-20261023/uwpro-resources/CQ19.tres",
+        "sourceCommit": "0d60c78b68697867697f20f0c171e41445735cc4",
+        "implemented": false,
+        "nativeTestsRun": 0
+      }
+    ],
+    "registeredEffects": false,
+    "externalCodeCopied": false
+  },
+  "SuezCodeOrArtCopied": false,
+  "contracts": {
+    "lockInheritance": "Reuse reviewed sentinel_has_effective_lock/physical marker carriers, no parent/sibling reverse inheritance.",
+    "untargetedEntry": "No targets: ordinary untargeted wave contract, matching xq27_empty_wave_and_non_damage_ignores_shield_and_barrier; CQ18 shown locking remains targeted and checks shields.",
+    "postContest": "Same reviewed WM043 continuation with per-card key/label and exact original shown outcome; CQ18 gets printed+1 regardless of win, condition is own actual MSJC14.",
+    "charge": "Printed standard exhausted actions; choose integer X from0 to current physical inherited charge, server checks again. Charge persists across steps/turns and fresh zone changes clear it.",
+    "departure": "Freeze enemy controller, original UID, effective-lock descendant chain and observer eligibility before cleanup; death/region batches capture all members before mutation."
+  },
+  "scope": "Region-return and hide reset cases explicitly identify their existing primitive boundary. They are not natural-room/browsing claims."
+}

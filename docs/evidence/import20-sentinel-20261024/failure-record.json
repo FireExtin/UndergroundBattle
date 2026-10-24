@@ -1,0 +1,108 @@
+{
+  "failedAttempts": [
+    {
+      "name": "import20-sentinel-first-native-20261024",
+      "head": "4968bcfde9403b3efb5030ca7626b5adf4172345",
+      "exitCode": 101,
+      "logSha256": "c64ae9ea38793c68d8fb7e006044cb283ce75b9a0f6323f9d0dc7fed4679b28f",
+      "reason": "Compiled then0/12: CQ19 absent from the closed own-society host admission list. Add exact ID under full canonical-definition check."
+    },
+    {
+      "name": "import20-sentinel-host-admitted-native-20261024",
+      "head": "e78361e600c42d119a97ccc2ba471677a57c7461",
+      "exitCode": 101,
+      "logSha256": "e7153cd634c0335cde258ba6b2e7f9512a3e8e32fff2b5f7f26e7641ee029b04",
+      "reason": "5/12. Charge witness included the root weapon as its own descendant, original subtitle not admitted, one copy-counter fixture lacked red loyalty. Exclude root from descendant proof, admit exact viewed titles and fund a real red asset."
+    },
+    {
+      "name": "import20-sentinel-first-components-20261024",
+      "head": "04ae854ef1bc9b07c55e7271164f88c374845bbc",
+      "exitCode": 1,
+      "logSha256": "757a438ad198bb8f3dd0216d71dd20b4d775f0d198a556a75029e7ed4e5d38e8",
+      "reason": "11/12. Hidden-card layout skipped the charge badge; move public counter outside printed-front rendering while asset/sealed masks remain."
+    },
+    {
+      "name": "import20-sentinel-charge-hide-red-native-20261024",
+      "head": "68824d799f6741c480ccf4a4f024154b9b98bfe1",
+      "exitCode": 101,
+      "logSha256": "e0904f5ce30ce94ce5eb9b4bb3c1fd43a9e837f714335ff27fe31e373335ec44",
+      "reason": "0/1 at fixture setup: test used wrong ordered-target payload and assumed XQ20 cost1 instead of actual2. No product defect claimed from this failure."
+    },
+    {
+      "name": "import20-sentinel-charge-hide-actual-red-native-20261024",
+      "head": "ddf32d269605298b93d964198b6d48d71cf4064c",
+      "exitCode": 101,
+      "logSha256": "08eebd29f0832c2d850d9489e2e86ff1e0f79a4463a528aa6770a36781b6ca6d",
+      "reason": "0/1 after real XQ20 play/payment/transfer. Existing JC054 hide primitive produced a legitimate successor with charge cleared, but old expected-card normalization retained charge; drive rejected the ordinary continuation. Add charge0 to the14 corresponding existing zone-successor witness resets across12 runtime files, retaining all prior checks."
+    }
+  ],
+  "intermediatePasses": [
+    {
+      "name": "import20-sentinel-combined-native-20261024",
+      "head": "04ae854ef1bc9b07c55e7271164f88c374845bbc",
+      "result": "22/22"
+    },
+    {
+      "name": "import20-sentinel-normal-complete-native-20261024",
+      "head": "db2aab407292d17ecffb101dff1131a837c62539",
+      "result": "28/28"
+    }
+  ],
+  "additionalStaticCorrection": "Initial untargeted entry wave incorrectly consumed shields. Corrected to the established untargeted contract; final entry regression asserts lock added and shield retained. No pre-fix dynamic red result claimed for this finding.",
+  "normalResetFollowup": {
+    "reproducedAt": "ddf32d269605298b93d964198b6d48d71cf4064c",
+    "scope": "Existing normal zone-successor snapshots must clear charge just as Game::fresh does; no corrupt-save expansion",
+    "changes": [
+      {
+        "path": "rust-game/src/batch4_vampires.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/jc044.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/jc066.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/xq23.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/bq030.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/jc057.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/jc035.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/pack_a_contest.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/jc054.rs",
+        "normalZoneSnapshotResets": 2
+      },
+      {
+        "path": "rust-game/src/jc041.rs",
+        "normalZoneSnapshotResets": 1
+      },
+      {
+        "path": "rust-game/src/wm062.rs",
+        "normalZoneSnapshotResets": 2
+      },
+      {
+        "path": "rust-game/src/jz46.rs",
+        "normalZoneSnapshotResets": 1
+      }
+    ]
+  },
+  "extraCorruptSaveExpansion": false,
+  "timeLimitsRelaxed": false
+}
