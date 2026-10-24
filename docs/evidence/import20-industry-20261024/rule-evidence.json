@@ -1,0 +1,86 @@
+{
+  "originals": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "sha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+      "sha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+      "pixelsViewed": true
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "pixelsViewed": true
+    }
+  ],
+  "manualPagesViewed": [
+    {
+      "physical": 9,
+      "printed": 8,
+      "scope": "One step per action team and per region/type confrontation, including before/after fast windows"
+    },
+    {
+      "physical": 16,
+      "printed": 15,
+      "scope": "Sealing hosts and attachment marker inheritance"
+    }
+  ],
+  "sourceCorrections": [
+    {
+      "id": "BQ092",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        1
+      ],
+      "old": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+      "new": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+    },
+    {
+      "id": "BQ092",
+      "path": [
+        "abilities",
+        1,
+        "printedText"
+      ],
+      "old": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+      "new": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+    }
+  ],
+  "UWPro": {
+    "repository": "RETORETO/UnderWorldPro",
+    "fixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author/illustrator permission Sentinel_e03beb50ee4881918270242ed3e5bcde.",
+    "cards": [
+      {
+        "id": "BQ092",
+        "path": "Cards/Data/PlayerCards/BQ/BQ092_bahamaqundaojijinzhongxin.tres",
+        "gitBlob": "f6aa8501149f76aa7cda2a64845183a1167df191",
+        "bytes": 1263,
+        "sha256": "3bd9384bfe20e40a2ce33f9234115c07f1dd30a4a502efb6bf87ec8b67db884e",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      },
+      {
+        "id": "BQ093",
+        "path": "Cards/Data/PlayerCards/BQ/BQ093_yangbenchenlieshi.tres",
+        "gitBlob": "f067b87b7400e6bc599a492ff7f8fe198929e7c5",
+        "bytes": 1273,
+        "sha256": "16e76849109970b25486023cd6efc631661c33d754c0141ccd162b47e903defe",
+        "registeredPerCardEffect": false,
+        "codePermission": "user-confirmed author and illustrator direct permission"
+      }
+    ],
+    "externalCodeCopied": false,
+    "note": "No registered per-card effect handlers in these retained records; finite independent Rust adaptation of original printed rules, not a claim of transplanted nonexistent handlers."
+  },
+  "SuezCodeOrArtCopied": false,
+  "sealingTestScope": "Normal sealing primitive and resulting full optional declarations/response paths. No new unrelated attachment-sealing producer card or invented client action.",
+  "pendingQuestions": {
+    "WM057": "Parent already asked; enemy activation disabled",
+    "XQ19": "Exact named-card question retained; dash not inferred as0; no registration"
+  }
+}

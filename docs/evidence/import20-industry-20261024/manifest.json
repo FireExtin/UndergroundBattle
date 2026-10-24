@@ -1,0 +1,206 @@
+{
+  "base": "c80b961203cc39a65e4326bb497623fbb81f0e7d",
+  "runtime_and_native_test_head": "5648fa7a590d450302144315ea6bd148c8c4ae74",
+  "files": [
+    {
+      "path": "failure-closure.json",
+      "bytes": 6220,
+      "sha256": "6fa4060c1ef6d6c952c0edebce60b58bff318a06360b76818d65dceb2c962957"
+    },
+    {
+      "path": "fixed-inputs.json",
+      "bytes": 161284,
+      "sha256": "913795805d38a516a8784965fc63bcf4bbbb1e55b9ff8bf7b364044800f57be6"
+    },
+    {
+      "path": "import20-industry-adjacent-native-20261024.json",
+      "bytes": 47225,
+      "sha256": "d7ba991f09c57f60d9b167aec871aa8f77f02a87d6114e89f38947fee4fb120e"
+    },
+    {
+      "path": "import20-industry-adjacent-native-20261024.log.gz",
+      "bytes": 5663,
+      "sha256": "26b9253e87f6170058b9eab685822c9b217e85636901842991954b6b746a1b4f"
+    },
+    {
+      "path": "import20-industry-existing-lib-native-20261024.json",
+      "bytes": 46801,
+      "sha256": "de2711fb4170bb3aa72c727545d2d764f5dfe2f960e7c14086f77c33c0d228b3"
+    },
+    {
+      "path": "import20-industry-existing-lib-native-20261024.log.gz",
+      "bytes": 56464,
+      "sha256": "79b28af7b5c33d836c1bcab63353c65661ed0eeb3082d36da0daf7498323b710"
+    },
+    {
+      "path": "import20-industry-finite-final-native-20261024.json",
+      "bytes": 47224,
+      "sha256": "bbe8fff220eaae8db4911af09f76ee407ca939bd9ba4f49f38215325f8301d79"
+    },
+    {
+      "path": "import20-industry-finite-final-native-20261024.log.gz",
+      "bytes": 2467,
+      "sha256": "6cc1e6e4be9fb53ff2bb83828662564c56cec7fe50b5a3dcb190823e03e56b8a"
+    },
+    {
+      "path": "import20-industry-first-compile-20261024.json",
+      "bytes": 46641,
+      "sha256": "e4881b13addf4ed49e69ddf91936607e7844b38a0b2fcff751354a10fa059219"
+    },
+    {
+      "path": "import20-industry-first-compile-20261024.log.gz",
+      "bytes": 979,
+      "sha256": "c232d45a95cc93b460ecb2bfa7c6b387499e53dc075a9727dd24c44b66fe9505"
+    },
+    {
+      "path": "import20-industry-first-native-20261024.json",
+      "bytes": 46627,
+      "sha256": "e9b568e7c65bdfbe2e29cc73a033ac6569bed3a101f5d815afb80cc8f9e97d71"
+    },
+    {
+      "path": "import20-industry-first-native-20261024.log.gz",
+      "bytes": 2096,
+      "sha256": "a4169697abd36447062b9b7a42885ce133445b113e9c087b1c086583570a8254"
+    },
+    {
+      "path": "import20-industry-first-source-20261024.json",
+      "bytes": 47043,
+      "sha256": "5de508b337598390a066f7d9922305bd05a18a79e29724b687749d9599a8feb8"
+    },
+    {
+      "path": "import20-industry-first-source-20261024.log.gz",
+      "bytes": 2065,
+      "sha256": "0f03024e4565d899ddafeb529eaa79478462f37c0e3ab745433b23199b953723"
+    },
+    {
+      "path": "import20-industry-first-types-20261024.json",
+      "bytes": 46445,
+      "sha256": "e457a2bb9ff98d86e3aeafbd3fd1e3f7f5a3e200b4166595db10103ef222f593"
+    },
+    {
+      "path": "import20-industry-first-types-20261024.log.gz",
+      "bytes": 417,
+      "sha256": "90031e154963158ae23c59fa8dac59625460348b7267c2f7ee85b2b3da56b0db"
+    },
+    {
+      "path": "import20-industry-fixed-components-20261024.json",
+      "bytes": 46499,
+      "sha256": "21da2b215458ace2223cf50185b6b34edad3d21fab11f4a37a93a332abe80478"
+    },
+    {
+      "path": "import20-industry-fixed-components-20261024.log.gz",
+      "bytes": 275,
+      "sha256": "0c04164de4cd6710f91cd21abfbc6afb44a456c27382b7ab3028c10c9b0d5818"
+    },
+    {
+      "path": "import20-industry-fixed-layout-native-20261024.json",
+      "bytes": 46784,
+      "sha256": "64fb875b500f663c72d784b529949e9c86299d9a766b773a883aa5a992b7039f"
+    },
+    {
+      "path": "import20-industry-fixed-layout-native-20261024.log.gz",
+      "bytes": 1913,
+      "sha256": "dbb1e59bd1f59012b77d0c4437cd76ec01126ffb7d13d09b9ade280d19163b7c"
+    },
+    {
+      "path": "import20-industry-fixed-source-20261024.json",
+      "bytes": 47043,
+      "sha256": "d0376c113c3565e251a4a01e39d657b78d363e91585cf173d89ba87734d8e0f9"
+    },
+    {
+      "path": "import20-industry-fixed-source-20261024.log.gz",
+      "bytes": 1621,
+      "sha256": "72bccd99fdbc2d7fe4c1cb016f870c3cb1757df65b2c8a8d954a196e9b2d8194"
+    },
+    {
+      "path": "import20-industry-fixed-types-20261024.json",
+      "bytes": 46445,
+      "sha256": "fe300eca06f4bf18a54e5cb740a27058cb410f85caba12f52c1b7da36e9c7592"
+    },
+    {
+      "path": "import20-industry-fixed-types-20261024.log.gz",
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    {
+      "path": "import20-industry-matrix-native-20261024.json",
+      "bytes": 46785,
+      "sha256": "9fa020accadf1e6d603f5105c5f9997a983ccda88decc5e22616efd551a968bc"
+    },
+    {
+      "path": "import20-industry-matrix-native-20261024.log.gz",
+      "bytes": 1222,
+      "sha256": "006eebefe17722ac70064f8ab4c2c7052470e3ec601b8c4fdd662484b7a087bc"
+    },
+    {
+      "path": "import20-industry-normalized-native-20261024.json",
+      "bytes": 46627,
+      "sha256": "383e0910aacf80b60a3fe08024bb1f9b57a12aaca7b862a40ade2bff540c947f"
+    },
+    {
+      "path": "import20-industry-normalized-native-20261024.log.gz",
+      "bytes": 2028,
+      "sha256": "1c4dcb18552d199682bd02dd1faef7b05b1d16d1cd56467139a42e3f3087a257"
+    },
+    {
+      "path": "import20-industry-region-admitted-native-20261024.json",
+      "bytes": 46627,
+      "sha256": "f30c7e935807945273010ccde3d7f703afa339dc02b81748f9dbbb3f6d2ccacf"
+    },
+    {
+      "path": "import20-industry-region-admitted-native-20261024.log.gz",
+      "bytes": 2274,
+      "sha256": "1154e3612e07bfaa5c6298204523dcfa1b55da4ba08bc042790ba8da1645ad9f"
+    },
+    {
+      "path": "import20-industry-regression-closed-native-20261024.json",
+      "bytes": 47226,
+      "sha256": "aa01d7e2144b6aa76086d1c353bc3eba91921d9af807831ac59e8f9387516cbe"
+    },
+    {
+      "path": "import20-industry-regression-closed-native-20261024.log.gz",
+      "bytes": 2674,
+      "sha256": "412d479dccbb0fbfb4e92903ae80f444fd29d5dc204aa662f7832b1b1f714a29"
+    },
+    {
+      "path": "import20-industry-rumor-red-20261024.json",
+      "bytes": 46824,
+      "sha256": "c21280d7bd0643ccbfefa1d3923add4d67e3d5dfcd0f6d3a0886357932d5c640"
+    },
+    {
+      "path": "import20-industry-rumor-red-20261024.log.gz",
+      "bytes": 1186,
+      "sha256": "b6a090399924849b12eb6899412bd701713317f670235fba4c507e1299b8ab05"
+    },
+    {
+      "path": "import20-industry-runtime-fixed-native-20261024.json",
+      "bytes": 47226,
+      "sha256": "f91f1e0f6e7a04ce79b2ae9e0033de1ddfd8373d551a3db6e3997957647e11ff"
+    },
+    {
+      "path": "import20-industry-runtime-fixed-native-20261024.log.gz",
+      "bytes": 2809,
+      "sha256": "8db70e3aae843def1597375ef24ebbe3c4856e50a2cfdc27182a0505d11a0b2f"
+    },
+    {
+      "path": "import20-industry-step-money-components-20261024.json",
+      "bytes": 46536,
+      "sha256": "06666b0ac1433d7f5b07f3a995e4d3716c6418436ec4408ab6c9302772ce641c"
+    },
+    {
+      "path": "import20-industry-step-money-components-20261024.log.gz",
+      "bytes": 289,
+      "sha256": "445a0330962a34b5cfd03fc177e7c2e19652e15f19381121da8003696b68eae2"
+    },
+    {
+      "path": "result.json",
+      "bytes": 25840,
+      "sha256": "3072b7289d6a836a4a654a8c535872ad2461e216ab7df7351ad7799295195c04"
+    },
+    {
+      "path": "rule-evidence.json",
+      "bytes": 3441,
+      "sha256": "4e768fb3b0ba6b85ac18a6064b65bc8a59a3e0eefa5858e1071a12adcdfd6dd0"
+    }
+  ]
+}

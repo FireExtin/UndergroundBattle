@@ -1,0 +1,1301 @@
+{
+  "command": [
+    "node",
+    "tools/build-storage.mjs",
+    "--",
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--",
+    "import20_industry_tests::",
+    "--nocapture"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "sourceHead": "8011bae02bc9a101c6962a58dca80cf8c81d03d1",
+  "worktree": "",
+  "startUtc": "2026-10-24T05:43:39.428052+00:00",
+  "state": "complete",
+  "affinity": [
+    31
+  ],
+  "jobs": 1,
+  "testThreads": 1,
+  "kind": "native",
+  "inputs": [
+    {
+      "path": "docs/factions/batch20-fourth-2026-10-22.json",
+      "sha256": "2a2bad4cc4c358c866f1ff19c4fe167ddac0e2d95571874e8dd427e0f2c966c0"
+    },
+    {
+      "path": "rust-game-wasm/src/lib.rs",
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    {
+      "path": "rust-game/data/cards.json",
+      "sha256": "c1ea98c3fa94a480b5d829ffe8d3ca21972448741c87abe8d5c3db4f8dca74c6"
+    },
+    {
+      "path": "rust-game/src/attachment.rs",
+      "sha256": "09982bc334f4e25b592f53f69ce93bdc6d1405df7c6eb4d7f2c1e43de215f829"
+    },
+    {
+      "path": "rust-game/src/attributes.rs",
+      "sha256": "2091176fad7ea94d0fe4d1b55d590f0a8399a55d3fa9f52b931ca8c2862c9ce1"
+    },
+    {
+      "path": "rust-game/src/batch20.rs",
+      "sha256": "13de4ce4b2e2a95cae9daf90a4e98c33f7ca2063426a7fe48fac4705007e6996"
+    },
+    {
+      "path": "rust-game/src/batch20_observers.rs",
+      "sha256": "2eee4713dc344fbc3705d7480eea3098603d0ae8708a90192c5776f1b2ad0075"
+    },
+    {
+      "path": "rust-game/src/batch20_tests.rs",
+      "sha256": "f5178d9fb346acd2e12587aa80eac4bc5845a569f3f574bb6c93f7544b4ba012"
+    },
+    {
+      "path": "rust-game/src/batch3.rs",
+      "sha256": "88e4ffd45e399acb6249a1772f7258d0b6dec27d8b53aed38130e332d1432d94"
+    },
+    {
+      "path": "rust-game/src/batch3_abi94_tests.rs",
+      "sha256": "b92ffe9ace41d80820952b72f223f33fdbc19a41b2f227f92aac2ada5c9cc2cc"
+    },
+    {
+      "path": "rust-game/src/batch3_alpha.rs",
+      "sha256": "b75cb52a37fba27d5c65366ade0f6867e4cf90dcfdf31487b2ea0ec4b8a9fa5b"
+    },
+    {
+      "path": "rust-game/src/batch3_alpha_tests.rs",
+      "sha256": "c1f4eae7eabca24bd7c61d6a13c913186b45c80d2beeb82043313507ebb95652"
+    },
+    {
+      "path": "rust-game/src/batch3_bats.rs",
+      "sha256": "187641826051a2c8881185a9534eb9ff5b2e992b2169ddb323a8d5659fddf20a"
+    },
+    {
+      "path": "rust-game/src/batch3_bats_tests.rs",
+      "sha256": "cbf9251c7dfb23be954aeb4c8f000f4dc1309e4e2da15434e2bdf786846e15fe"
+    },
+    {
+      "path": "rust-game/src/batch3_black.rs",
+      "sha256": "d05f5e5392fa5ae8e521577d2c757f4d0cbf002489c219dfd0288e4b3ff45643"
+    },
+    {
+      "path": "rust-game/src/batch3_blood.rs",
+      "sha256": "b7c7d2a83bb4fa3492b067b2f5dba250a67754644a483971c0cd0651198ab60f"
+    },
+    {
+      "path": "rust-game/src/batch3_blood_tests.rs",
+      "sha256": "6b9558c7cf8ea7d4cb98a61dfc012df71c53964a7e43cf759fcec4524f085828"
+    },
+    {
+      "path": "rust-game/src/batch3_entry_order.rs",
+      "sha256": "a30af1bb7627686aaa52f3ea2088e3bc99ef1f7aff8b682e116292f0251db8a0"
+    },
+    {
+      "path": "rust-game/src/batch3_ghoul.rs",
+      "sha256": "d91dacc959ecd174a00a126bee7a3049f7e1d27b1b5d8df6f5ab966404c4a0e5"
+    },
+    {
+      "path": "rust-game/src/batch3_ghoul_tests.rs",
+      "sha256": "54f2dd86290c130a34bb7f77a47b6b9ffaed7f4d17a47015c9961a0b6948ba19"
+    },
+    {
+      "path": "rust-game/src/batch3_grave.rs",
+      "sha256": "63343ac45c679de84e6ff4f7a6041bdee18775f670a08e01fe3b76975a683a88"
+    },
+    {
+      "path": "rust-game/src/batch3_grave_tests.rs",
+      "sha256": "faec1227da5e4aea36a3c07ff769d5252fa3969064b5ca6e8d5a81aa9d018683"
+    },
+    {
+      "path": "rust-game/src/batch3_guard_tests.rs",
+      "sha256": "f81962728a410ddbfe486d55b39b02167bce3fe4b59416d61d677954f2691581"
+    },
+    {
+      "path": "rust-game/src/batch3_host.rs",
+      "sha256": "eb0d32fbb48aacf3d270a423c7b579c0a9c82518bb7b0a903757c60c8fdb478e"
+    },
+    {
+      "path": "rust-game/src/batch3_inspect.rs",
+      "sha256": "11213f93c1947fd3d1f0aabbd46f5f6ef08b71aacd069edb2db83fdccdcedf0f"
+    },
+    {
+      "path": "rust-game/src/batch3_inspect_tests.rs",
+      "sha256": "ad13de8e445abfffc9e73e8dc88f448161412dba8d4e89c7fb648517a5995e6b"
+    },
+    {
+      "path": "rust-game/src/batch3_law.rs",
+      "sha256": "5bd65ec6f2fd2064a34d56d03eb8c452dcc012e915a2adf4b71f79429c67ba6e"
+    },
+    {
+      "path": "rust-game/src/batch3_phoebe.rs",
+      "sha256": "d7f7a3e570795f94ed37a3846c9cce51dce673fed0ba2cf31b9acadf35fcc046"
+    },
+    {
+      "path": "rust-game/src/batch3_phoebe_tests.rs",
+      "sha256": "1a017e0a3f21dc75ef798b6be73fc243ea64fe8d9219f69a8131568e5386bb02"
+    },
+    {
+      "path": "rust-game/src/batch3_politician.rs",
+      "sha256": "9d515b2eccaa54f3b843a9abf968f28809e2b0325650875a524e2a76c6066d42"
+    },
+    {
+      "path": "rust-game/src/batch3_red.rs",
+      "sha256": "23313ad6fac670d1968ce375ec2ed2026330528652a3125acbea6bd5abeb7d1c"
+    },
+    {
+      "path": "rust-game/src/batch3_serpent_tests.rs",
+      "sha256": "a6716c36b345f2c78eaa963ba4a9ed89751baf3b6d90d23a86640bb361f7a377"
+    },
+    {
+      "path": "rust-game/src/batch3_trap.rs",
+      "sha256": "1620a9ec56a077740d5b83973967b8c5384abc001ac5b2fc8e4adec98b5d70d0"
+    },
+    {
+      "path": "rust-game/src/batch3_trap_tests.rs",
+      "sha256": "77ff0ae0308d33d403fd8e449e43452ef23d35254c504b80f32ed9ba6e850f87"
+    },
+    {
+      "path": "rust-game/src/batch3_warrant.rs",
+      "sha256": "47c744dd437b4251d2e77f00f2c4afc2342b2e01fb50f982242890ca190cd4d1"
+    },
+    {
+      "path": "rust-game/src/batch3_warrant_tests.rs",
+      "sha256": "bfa6e8c775a699b493a349513a42e97ae5f64a5209ee65b331d4a2be7b0d9a1b"
+    },
+    {
+      "path": "rust-game/src/batch4.rs",
+      "sha256": "7553c228498675d8f1220e1010737a73be3681e8344606405bdfe33fc957d03b"
+    },
+    {
+      "path": "rust-game/src/batch4_blood.rs",
+      "sha256": "3600180e5222ac7ae5e5099a6c215896a88a8474382991f9106c19eb87d994fd"
+    },
+    {
+      "path": "rust-game/src/batch4_blood_tests.rs",
+      "sha256": "e4b4af9e5ae93795b2b3f72fe07c1723b0783535a3d2d4022445a22d4d2fefdc"
+    },
+    {
+      "path": "rust-game/src/batch4_chance.rs",
+      "sha256": "228ab00cb95f0d3fd2894ab4c1c7b20120d7de5d332ba3c8be2fa5b300d0685f"
+    },
+    {
+      "path": "rust-game/src/batch4_chance_tests.rs",
+      "sha256": "e4d2f6d8d130d08b4c8e6d2e0301b48af19f235ec42163a86bf26b1255fb753f"
+    },
+    {
+      "path": "rust-game/src/batch4_clock.rs",
+      "sha256": "353847fc4580e22585506bece2e26ee323b96b8d2091da629ee0d2b1e4d3a6d5"
+    },
+    {
+      "path": "rust-game/src/batch4_clock_spell.rs",
+      "sha256": "e00403cf1506c20d9b2a869b542eda81065d1b871954c285739d86fe4f868f05"
+    },
+    {
+      "path": "rust-game/src/batch4_clock_tests.rs",
+      "sha256": "f24004024b602b8660820f2eaf621f532dc34a125a48b0e42221106407d369ae"
+    },
+    {
+      "path": "rust-game/src/batch4_conference.rs",
+      "sha256": "6cb0a261639e945dce9b7d95385ec8ff2e1015a58bf07ad70d1cb9f7091347e3"
+    },
+    {
+      "path": "rust-game/src/batch4_conference_tests.rs",
+      "sha256": "662be9cbde766b2c54affee80e0cfc1c5b830c887296bb467d1c4dfd171f3c63"
+    },
+    {
+      "path": "rust-game/src/batch4_dahlia.rs",
+      "sha256": "5ddcd0c9161c0ef0690e0c5ca37448242c8cda5caf4c82e38ee974129a6857f2"
+    },
+    {
+      "path": "rust-game/src/batch4_dahlia_tests.rs",
+      "sha256": "fcb769af740a2082f62385ed58184b5cf21c82bf3b772d62517114a5b12385ec"
+    },
+    {
+      "path": "rust-game/src/batch4_feast.rs",
+      "sha256": "d7c9c05df9bf561fcbc8df9bf3b2b6d65f16eb1bdf0f2cc3c56e83fb716fcf2a"
+    },
+    {
+      "path": "rust-game/src/batch4_feast_tests.rs",
+      "sha256": "7477c6d9901e677231c9b569170c9da142810f045065b932e2deab97c6d88257"
+    },
+    {
+      "path": "rust-game/src/batch4_intelligence.rs",
+      "sha256": "c9fe3c387217b8d37d6cbb00cc74ccc31d1a08ec27d16527728fde7ced975fa1"
+    },
+    {
+      "path": "rust-game/src/batch4_intelligence_tests.rs",
+      "sha256": "81f5dc44d7601c35cea7038f896fdd0463004147d74954fe57b15a7f03a68074"
+    },
+    {
+      "path": "rust-game/src/batch4_jiangyue.rs",
+      "sha256": "5405e86782b4e9e67d4dedc34c4bf8b05fdb70dc6da55ccf7c669df616e1c558"
+    },
+    {
+      "path": "rust-game/src/batch4_jiangyue_tests.rs",
+      "sha256": "0400eb0546a1c555053f4c40591dc97d49817beafc97c66fe6e6afb3afe5ecb5"
+    },
+    {
+      "path": "rust-game/src/batch4_manor.rs",
+      "sha256": "aac0be59678678f785fca43c8fcb481e2f383e859be06d30674f3d68e8b4bd3a"
+    },
+    {
+      "path": "rust-game/src/batch4_manor_tests.rs",
+      "sha256": "6166c77861f4e6aa0414495dc573e1673dafc840583ff6443ee987668fc66bd4"
+    },
+    {
+      "path": "rust-game/src/batch4_markers.rs",
+      "sha256": "727bce142f74433294645539d91bab67388df374581db90313dc8d8186ee6b9b"
+    },
+    {
+      "path": "rust-game/src/batch4_markers_tests.rs",
+      "sha256": "c1e6921f813b9f102fe7307c8ea3003fa7c4b8682b05d64ced3d12c77798fb6c"
+    },
+    {
+      "path": "rust-game/src/batch4_new_order_tests.rs",
+      "sha256": "12d23a34fa06672726e4d977ba9263e5dc0d6da5bfe740e96519fb3bed87d592"
+    },
+    {
+      "path": "rust-game/src/batch4_night.rs",
+      "sha256": "4ed1a3933eaae00dae16756a21f14d21abf5ea05b9ad510ab9313b9b57323374"
+    },
+    {
+      "path": "rust-game/src/batch4_night_tests.rs",
+      "sha256": "e8d216c3368278aeaf8e136905db830a3bfe2a9d7246ff8235f259e1e91147c6"
+    },
+    {
+      "path": "rust-game/src/batch4_omega.rs",
+      "sha256": "c4db0322d5ce8ed45756723a21d3d750ede3507637d3314d90023a4df81ca42d"
+    },
+    {
+      "path": "rust-game/src/batch4_omega_tests.rs",
+      "sha256": "59c6e1882c63ce33ff1cd21926e539859be7d02629873d53db4fd2f58f41748f"
+    },
+    {
+      "path": "rust-game/src/batch4_phantom.rs",
+      "sha256": "798dba884ba8a4db3c2f342aad8e08d3e1f00e31feebbe714ae73607f5b03a53"
+    },
+    {
+      "path": "rust-game/src/batch4_phantom_tests.rs",
+      "sha256": "277c92ea7f3f638aacecf7444ce416862513879354b517604677e0e097214738"
+    },
+    {
+      "path": "rust-game/src/batch4_plans.rs",
+      "sha256": "f81bba6434d33c3b6d835334795836452e34442471c3de5bebfb197d33bf4258"
+    },
+    {
+      "path": "rust-game/src/batch4_plans_tests.rs",
+      "sha256": "a5a18553eb8d8411b207cd2ec2bc106f7372c1b9b68f71394a3e7ee3c4dfdca2"
+    },
+    {
+      "path": "rust-game/src/batch4_platform_tests.rs",
+      "sha256": "87eb17375a003c9c8ea125d2ac966fb3c25f6ba7ff1977fe22deaa228651f16f"
+    },
+    {
+      "path": "rust-game/src/batch4_politician.rs",
+      "sha256": "004549818ccff01609bc5f83cc68330d48e2a723be736565cae2e42ba7738e41"
+    },
+    {
+      "path": "rust-game/src/batch4_politician_tests.rs",
+      "sha256": "2a62b2eac847207f55df0b55614c3bbae20e880bf2e1135e1acdfcc0bd57198d"
+    },
+    {
+      "path": "rust-game/src/batch4_shape.rs",
+      "sha256": "fbaacdd4ed6e4ed68071735af2d9c3b69bc68aa4a9892e4f43d6b91503996b1a"
+    },
+    {
+      "path": "rust-game/src/batch4_shape_tests.rs",
+      "sha256": "030d3fbc5d998853b39a5adeb07101858319eeae8f898018027f6f9ab21b6686"
+    },
+    {
+      "path": "rust-game/src/batch4_skull.rs",
+      "sha256": "4a6008776a4443c1b6f04ae779862eae975e48d88563375060636ea6c6058569"
+    },
+    {
+      "path": "rust-game/src/batch4_skull_tests.rs",
+      "sha256": "b9f4f336570d70b5f2969bafd0ff5f98ddea2c4ccf2d629361f7d4c87532564b"
+    },
+    {
+      "path": "rust-game/src/batch4_soul_channel.rs",
+      "sha256": "0a7243038ecc8e2773c12f4a444e57dcb16498dd10f38b8e184f6b7fa6ada526"
+    },
+    {
+      "path": "rust-game/src/batch4_soul_channel_tests.rs",
+      "sha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42"
+    },
+    {
+      "path": "rust-game/src/batch4_spectral.rs",
+      "sha256": "108555eb096947b49a78854aec64dce03cf122e163ab5b7c562f69c1537554ab"
+    },
+    {
+      "path": "rust-game/src/batch4_spectral_tests.rs",
+      "sha256": "9dae2aefe4c2f5ef73f4ac1e5b6e4962c94ed0c9b1e3f3976944a21901fc4d8e"
+    },
+    {
+      "path": "rust-game/src/batch4_statue.rs",
+      "sha256": "02f2d2663ced427ffbf469e709c1a87b6468cb7a54d9d75909cf697687b54352"
+    },
+    {
+      "path": "rust-game/src/batch4_statue_tests.rs",
+      "sha256": "829799425b7fa0bbb85938d189a75a62da4ded9d4339385564b9795dac57525b"
+    },
+    {
+      "path": "rust-game/src/batch4_tattoo.rs",
+      "sha256": "c8151c1c77f150f4021dc862a1beac1f1c59fb76f182b7dd93971224450242a9"
+    },
+    {
+      "path": "rust-game/src/batch4_tattoo_tests.rs",
+      "sha256": "78a1ebc5bc7f254fea0a76938305f8dd67de6ddaa01093c038ae75f2424a30fd"
+    },
+    {
+      "path": "rust-game/src/batch4_tests.rs",
+      "sha256": "f4d4a5a1a7baff13878a8eb4bdd20dfab14207cf5e030b3cfd1ded95f740b2dc"
+    },
+    {
+      "path": "rust-game/src/batch4_timekeeper.rs",
+      "sha256": "3d069395cde202c11ed2c7e3d701ed531eccabf9ddb8931c3929a8e7fd7e4df8"
+    },
+    {
+      "path": "rust-game/src/batch4_timekeeper_tests.rs",
+      "sha256": "a641581b016d80fa5bbaa80a4f1d9e48f12935e94dfefbe278abe009a2d032c5"
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest.rs",
+      "sha256": "713d9405149361bf86df5578f486a0abea3b750f273ea6acef3bba239602cfc0"
+    },
+    {
+      "path": "rust-game/src/batch4_vampire_contest_tests.rs",
+      "sha256": "5cf9430a5e9ba1c6fa989d77800abdb676e3578f3ab2ce6acdb76dcebcf0a10e"
+    },
+    {
+      "path": "rust-game/src/batch4_vampires.rs",
+      "sha256": "8d5700da7fd3f13b94cdb980ab7d75ffc659aee787178471e47017f1dc3253c2"
+    },
+    {
+      "path": "rust-game/src/batch4_vampires_tests.rs",
+      "sha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952"
+    },
+    {
+      "path": "rust-game/src/batch4_warden.rs",
+      "sha256": "ff4347b0868df6461caf198ac678108a6110a104c96d8829ea9be141e8821971"
+    },
+    {
+      "path": "rust-game/src/batch4_warden_tests.rs",
+      "sha256": "29ed002d07b21d771a037bd67cdaa7d6e5e302659d1eca04223817c8a6d7f528"
+    },
+    {
+      "path": "rust-game/src/batch4_wendigo.rs",
+      "sha256": "b07637b903be1ccfdea36bb73492e6f67a55583f215731aaf245351c5d7687aa"
+    },
+    {
+      "path": "rust-game/src/batch4_wendigo_tests.rs",
+      "sha256": "4b8e2c08968dd5366623fc03afc256cdd6f3b55e9fcab7be95ed6766fea61cde"
+    },
+    {
+      "path": "rust-game/src/bin/hegemony-audit.rs",
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    {
+      "path": "rust-game/src/black_expansion.rs",
+      "sha256": "8f73e8829f52463e327c5376afccd5ea85b6e55d6892392e91ac988039a33e38"
+    },
+    {
+      "path": "rust-game/src/black_expansion_tests.rs",
+      "sha256": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c"
+    },
+    {
+      "path": "rust-game/src/black_next20.rs",
+      "sha256": "f678c7b37f8ad00f9cef197bb29ab858732741e1caa25cc5a2e500c0ce080269"
+    },
+    {
+      "path": "rust-game/src/black_next20_tests.rs",
+      "sha256": "2a31edfe72a8467f9efdec728de42a89244b54affbaa25845266b30248205e68"
+    },
+    {
+      "path": "rust-game/src/blue_expansion.rs",
+      "sha256": "c5c0a86dc35a9cce5579e1321ad9af9fa2a27927762c2391b087f128567b6d23"
+    },
+    {
+      "path": "rust-game/src/blue_expansion_tests.rs",
+      "sha256": "c50802ce518921d9221e4d488b45bf925f11652db034f5276c699015b5d72555"
+    },
+    {
+      "path": "rust-game/src/blue_minimum.rs",
+      "sha256": "16df8f819e2ee3ccee49526f840ca85ad14d3448ae388e3d8e8fe03862a76632"
+    },
+    {
+      "path": "rust-game/src/blue_minimum_tests.rs",
+      "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb"
+    },
+    {
+      "path": "rust-game/src/bounded_entry_fresh_tests.rs",
+      "sha256": "3f9d5872fc39d16c05515609ea15207f82a804724c358a504a58c4cc3267d8d4"
+    },
+    {
+      "path": "rust-game/src/bounded_search.rs",
+      "sha256": "9d74e60d5a86f42721c90766cc00d5f505af506db63ae319dae96a110b031a2d"
+    },
+    {
+      "path": "rust-game/src/bounded_search_tests.rs",
+      "sha256": "75cac69e99091594475c7ae09067f27370f79e475d372d1570aea70bfa829e8f"
+    },
+    {
+      "path": "rust-game/src/bq030.rs",
+      "sha256": "34c07b566b6398ad0e6c1916b0f17a7dbcc12a76373ee967f490eb3d91fc01e4"
+    },
+    {
+      "path": "rust-game/src/bq035.rs",
+      "sha256": "81fcfa6f1f178b1d71b6d8047ae6528b7f89416f13421989df26cb52e3744ae1"
+    },
+    {
+      "path": "rust-game/src/bq035_tests.rs",
+      "sha256": "037971b19b4e0a0a7e2acf5bb61f3090af98afcbfc1201e68f5e6701fa795c6b"
+    },
+    {
+      "path": "rust-game/src/catalog.rs",
+      "sha256": "bb2bfe3af330ef9b13c54a7fe61f192ef05ccfb64e20bd6b7a2e370d01f54365"
+    },
+    {
+      "path": "rust-game/src/chaos.rs",
+      "sha256": "66e8aadce14e1a1c895ff50d8c35c8255d2e2386bd07001c3fc6ad8a7d837d81"
+    },
+    {
+      "path": "rust-game/src/combat_wounds.rs",
+      "sha256": "2c537adfad1d144cb94f4946d03e3c146a5ec5acb7b1da9d3e6f8ae2ac98f1a4"
+    },
+    {
+      "path": "rust-game/src/control.rs",
+      "sha256": "f86296b40620cf6a624602720ce4164ec380efdfe0d5d467f17016262f980ae6"
+    },
+    {
+      "path": "rust-game/src/control_tests.rs",
+      "sha256": "02f2245f8fd784cd61f1283a323221551dd5049c238eb37b8de6c629142e6c17"
+    },
+    {
+      "path": "rust-game/src/death_observer_tests.rs",
+      "sha256": "9614543f24087f7a369f847e17d6f074138866c786f2c77a3e0ef654f17588fa"
+    },
+    {
+      "path": "rust-game/src/death_observers.rs",
+      "sha256": "2a06ba8dd79e43ce667024667676953bcebb55bfd2be40317bc08cdbfa11cdf7"
+    },
+    {
+      "path": "rust-game/src/deck.rs",
+      "sha256": "f7ac54c2f1ef9dacaf18fa5a7a8d8f46ba90a777d1808eedc33853792657d412"
+    },
+    {
+      "path": "rust-game/src/deck_seal_search.rs",
+      "sha256": "931efea1430a31822623e41a5b8978ff6123bcc7ba3ee73ba4e23c12ecaad1f4"
+    },
+    {
+      "path": "rust-game/src/deck_seal_search_draft.rs",
+      "sha256": "fe343a543ab96b45ef8fa81d344e825d2935e702b6e7bdfb36975f0666e034e2"
+    },
+    {
+      "path": "rust-game/src/deck_seal_search_tests.rs",
+      "sha256": "53224b7b5da762f3f13fb547e60b034b1ce7aa4b2178dbce67a41a33b36f72d2"
+    },
+    {
+      "path": "rust-game/src/defence_equipment_tests.rs",
+      "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462"
+    },
+    {
+      "path": "rust-game/src/dream_reveal_tests.rs",
+      "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "2074647fc87e3892587dc344dbad9fe0a682a8c51e3590fd8388040c9214cd10"
+    },
+    {
+      "path": "rust-game/src/equipment_abilities_tests.rs",
+      "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c"
+    },
+    {
+      "path": "rust-game/src/exposure.rs",
+      "sha256": "e42c7be984f9471de24cd51f5398f3c61eab63b01b3cb12e0935509028ce13dd"
+    },
+    {
+      "path": "rust-game/src/exposure_tests.rs",
+      "sha256": "fe840c888e6a6405d0b5b29950ec88c9ff72cd59859c5cd559896051c57a9a5b"
+    },
+    {
+      "path": "rust-game/src/extra_influence.rs",
+      "sha256": "8d98724d538bfe3c20e0a8c82fc7130a0979242eaee126fe619c7ea3167f53a0"
+    },
+    {
+      "path": "rust-game/src/gray_expansion.rs",
+      "sha256": "d2b6e8d6a136cb7ca3167f5a987cb30f7d27e03693c282ee1706f2a35ccb9b3e"
+    },
+    {
+      "path": "rust-game/src/gray_expansion_tests.rs",
+      "sha256": "3abab9bcd5faaaa4695f5e13bbb18542015af8a17437049faf180b521cef4de0"
+    },
+    {
+      "path": "rust-game/src/gray_lock.rs",
+      "sha256": "9cb3ba36d889dc3a9cb489b4fc0c272c1d33a9e8bfea688e69fe2b0be4293cc9"
+    },
+    {
+      "path": "rust-game/src/gray_lock_tests.rs",
+      "sha256": "9e62cb326760a2f10bfff6ac94b3a4fb86e395d47d9483577725d65df9b459d4"
+    },
+    {
+      "path": "rust-game/src/green_minimum_tests.rs",
+      "sha256": "891940a5374d6957730eff0f8a1169610143d1921f061e5d6b30ef2937ca66e9"
+    },
+    {
+      "path": "rust-game/src/hand_deck_tests.rs",
+      "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c"
+    },
+    {
+      "path": "rust-game/src/hand_interactions_tests.rs",
+      "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517"
+    },
+    {
+      "path": "rust-game/src/import20_broker.rs",
+      "sha256": "714676be801eeb3921f1d7582d51e1123d2e53c79fbb5749882838ffd76f5526"
+    },
+    {
+      "path": "rust-game/src/import20_broker_tests.rs",
+      "sha256": "119a08338e2a0545d2f7aa05863d211f733532b559bfb20dc2673893d68e8cef"
+    },
+    {
+      "path": "rust-game/src/import20_carmen.rs",
+      "sha256": "175250a7b4ed9ee970294cfbe6f5216d57d6224016098d7ade0ee8a8e0c05bd9"
+    },
+    {
+      "path": "rust-game/src/import20_carmen_tests.rs",
+      "sha256": "2fc3d8cdc9d55e6618f297624e56d5d4b9536531d5b54079dcf3267e8151b17e"
+    },
+    {
+      "path": "rust-game/src/import20_contest.rs",
+      "sha256": "5770e8d129ce652a81c739c96989c2a536e37770663c6c1b25f22b3e18bbae00"
+    },
+    {
+      "path": "rust-game/src/import20_contest_tests.rs",
+      "sha256": "9198de815982740c6182f39acf18262700c946b66a185cf7efb06b897452f685"
+    },
+    {
+      "path": "rust-game/src/import20_cultist.rs",
+      "sha256": "5ec1921900def74a5fb764f31a39961315cc31ee6f6772ed6d45852e52f23581"
+    },
+    {
+      "path": "rust-game/src/import20_cultist_tests.rs",
+      "sha256": "d085014865d15b9b5e9c91f27d267c3a912f7db7c76489a544fd73dda6c84007"
+    },
+    {
+      "path": "rust-game/src/import20_industry.rs",
+      "sha256": "522334dca28163e5e207e263dc68692a9e53dda98126a7acc80cede9bac9b5ef"
+    },
+    {
+      "path": "rust-game/src/import20_industry_tests.rs",
+      "sha256": "f46c38d996d122ba92591cee9a84c6145027b4719f595f362960aabf69a3270f"
+    },
+    {
+      "path": "rust-game/src/import20_observers.rs",
+      "sha256": "a081d95fd24ce7331113cb7a09e5fe80a54e876cd49daee7c2eb16a6c186a255"
+    },
+    {
+      "path": "rust-game/src/import20_observers_tests.rs",
+      "sha256": "59bfd9d4c7696a9edf5fd41bcf314324a1df6c0a1c32a67b7051c808971b25bc"
+    },
+    {
+      "path": "rust-game/src/import20_tattoo.rs",
+      "sha256": "ed51b6e00045a57d7cb41c8076565fcc3e088a616bd061820436f8cdd8cde046"
+    },
+    {
+      "path": "rust-game/src/import20_tattoo_tests.rs",
+      "sha256": "ec1eb545fa06a8bd9f3b37b0018cdb7ea245fb79b3f7548021e13f863d0f43fc"
+    },
+    {
+      "path": "rust-game/src/import20_vampires.rs",
+      "sha256": "96276a8c6c0bb82d91291ad8f5bb58716794bfb99c0360dd97685697ee07d948"
+    },
+    {
+      "path": "rust-game/src/import20_vampires_tests.rs",
+      "sha256": "1c5a807f7f49945d89422d12470ee3728f2aa4ffb56bc0de9983248e861b66bb"
+    },
+    {
+      "path": "rust-game/src/jc004_tests.rs",
+      "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf"
+    },
+    {
+      "path": "rust-game/src/jc005_society_regression_tests.rs",
+      "sha256": "bdb25722003a7984df4fac9a9e5069f32d75d16ff1fe59e034def98eb1b2de28"
+    },
+    {
+      "path": "rust-game/src/jc005_tests.rs",
+      "sha256": "9f0ed04cf09f858c0f42868774dc3917a30ddcbf0c7e82a5fdec2366a3d08bee"
+    },
+    {
+      "path": "rust-game/src/jc008_tests.rs",
+      "sha256": "a6fe105a7f23709f659746dabf323ecee34fbc75688983f36cb2078c8406748f"
+    },
+    {
+      "path": "rust-game/src/jc029_tests.rs",
+      "sha256": "1dad9bb987524c4d11070f6e854fb08108df9a5c28663f21243764fe344867eb"
+    },
+    {
+      "path": "rust-game/src/jc030_tests.rs",
+      "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440"
+    },
+    {
+      "path": "rust-game/src/jc035.rs",
+      "sha256": "6886e1e58e870737a737fcaf84b294cb6e600e490b88800451cba7a170c85d74"
+    },
+    {
+      "path": "rust-game/src/jc035_tests.rs",
+      "sha256": "76c380335322d38fd89738ec24975a02e31229cca3150a2254711d8a84914e2b"
+    },
+    {
+      "path": "rust-game/src/jc037.rs",
+      "sha256": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b"
+    },
+    {
+      "path": "rust-game/src/jc037_tests.rs",
+      "sha256": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c"
+    },
+    {
+      "path": "rust-game/src/jc041.rs",
+      "sha256": "bf51033e80114780998f8fa4d8331e70f512cd3edff14245bef26cf002c9b1d0"
+    },
+    {
+      "path": "rust-game/src/jc041_tests.rs",
+      "sha256": "ceb78d25a4dfb96cf774cec1f3a2afca7ccf9a8ef9259d1ab00fd43abbbf05a9"
+    },
+    {
+      "path": "rust-game/src/jc044.rs",
+      "sha256": "e41ce6e99bc357da58614081589a6896f6e9ffd7871e1381cc45a9bb9a5796d9"
+    },
+    {
+      "path": "rust-game/src/jc044_tests.rs",
+      "sha256": "7dec101634878fb994fe158b92f9dd48156ef4bc36ce7b6c4c9d3f6b4875b749"
+    },
+    {
+      "path": "rust-game/src/jc046.rs",
+      "sha256": "214897c763f887e85b8d2f6acafa2d339e75e09067896109fdb43b6e23148462"
+    },
+    {
+      "path": "rust-game/src/jc046_tests.rs",
+      "sha256": "4a4e8ed5c69017424bfc9517f672ac13e78f27f241510368ae37f066a8ab7d2c"
+    },
+    {
+      "path": "rust-game/src/jc050.rs",
+      "sha256": "28b17442ebd8a4eae6cf54a966626a2add9cb81c261acfc0ca0d8a01e6d177cd"
+    },
+    {
+      "path": "rust-game/src/jc050_tests.rs",
+      "sha256": "7f0b3b45b6712a9e26031269f6aa8a42e38aca9d73a9a20c38b0993a20a0da26"
+    },
+    {
+      "path": "rust-game/src/jc052.rs",
+      "sha256": "806b9326eec6ccf949f7be6b87d231eba94162c03d01975a0780fcd168676f57"
+    },
+    {
+      "path": "rust-game/src/jc052_tests.rs",
+      "sha256": "f9b5ed78fba0cbf8ac9cfcf2848feee2816fe70c1d9057f4add49fdd62572a84"
+    },
+    {
+      "path": "rust-game/src/jc054.rs",
+      "sha256": "68a3d69b86aec9fadbc753cdfd4a441d64668d54ca27abc231f7f3226f654470"
+    },
+    {
+      "path": "rust-game/src/jc054_tests.rs",
+      "sha256": "03ea9e09b7112193c8c825d9f5ef385e6f53c56d7a86ce2ad64bc03802ad6e16"
+    },
+    {
+      "path": "rust-game/src/jc057.rs",
+      "sha256": "a16498fa9b205713f288a73d5f36758fcf5fdffcdfba0fe8d9600e8362062c94"
+    },
+    {
+      "path": "rust-game/src/jc057_tests.rs",
+      "sha256": "4932f94ed8903b4a648e56a6c313043b918ef9344640f32bd590d23fc5624a91"
+    },
+    {
+      "path": "rust-game/src/jc060.rs",
+      "sha256": "204ff39e780843f00ec9de4389bf5e03b716898e77a79cfd8fd3e2d2dd5e5b05"
+    },
+    {
+      "path": "rust-game/src/jc060_tests.rs",
+      "sha256": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121"
+    },
+    {
+      "path": "rust-game/src/jc061_tests.rs",
+      "sha256": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495"
+    },
+    {
+      "path": "rust-game/src/jc065.rs",
+      "sha256": "9e022bea01009dfed31a9984fcb81fe25f89c65528e712978a5f39ecba88539b"
+    },
+    {
+      "path": "rust-game/src/jc066.rs",
+      "sha256": "56479972771ec522726c5b126eade1ed629bb9985fc729ae11719f24fbef6877"
+    },
+    {
+      "path": "rust-game/src/jc066_tests.rs",
+      "sha256": "f6bf4422ac49852c5cc1cdd92b427283a0ecc64ebb4fbba03962cc73e23f9bd3"
+    },
+    {
+      "path": "rust-game/src/jc087_tests.rs",
+      "sha256": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6"
+    },
+    {
+      "path": "rust-game/src/jc089_tests.rs",
+      "sha256": "bfcd776222c5105ae24a0efaf42c821d53aaaf0d1352f979d00cdb32888f4867"
+    },
+    {
+      "path": "rust-game/src/jc094_tests.rs",
+      "sha256": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c"
+    },
+    {
+      "path": "rust-game/src/jc095.rs",
+      "sha256": "b87b1c2e9f0271ca2926e204d1acf922569b2f9581fd9fcdc606a007b579f702"
+    },
+    {
+      "path": "rust-game/src/jc095_tests.rs",
+      "sha256": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c"
+    },
+    {
+      "path": "rust-game/src/jz22.rs",
+      "sha256": "bfbe6f856f4245a1856c565714dc00923249abc76eea15a6a8e78e7967286160"
+    },
+    {
+      "path": "rust-game/src/jz22_tests.rs",
+      "sha256": "d28724284a5e5565a750379d90bce2763bdb68d1db33d50e6de1b7f781e56a3b"
+    },
+    {
+      "path": "rust-game/src/jz31_tests.rs",
+      "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a"
+    },
+    {
+      "path": "rust-game/src/jz35.rs",
+      "sha256": "bc080ca198237012ae86895224aa751c5cc868f7b4a1bf72aa5fb45d9dc96a65"
+    },
+    {
+      "path": "rust-game/src/jz35_tests.rs",
+      "sha256": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175"
+    },
+    {
+      "path": "rust-game/src/jz46.rs",
+      "sha256": "87d5367d67bc1b127d5f35c70bc262849b3d060c60eafa79fc9ebf77b00d18a5"
+    },
+    {
+      "path": "rust-game/src/jz46_tests.rs",
+      "sha256": "b473bd0e2c82851ee0332b5157ae5f0ffad95eecfeff915ac617593090cd8baa"
+    },
+    {
+      "path": "rust-game/src/jz48_tests.rs",
+      "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74"
+    },
+    {
+      "path": "rust-game/src/jz49_tests.rs",
+      "sha256": "892b655c1cdd627403d816e262c22fd4c9499a1758dff507d65538ccc0df159c"
+    },
+    {
+      "path": "rust-game/src/jz50_search.rs",
+      "sha256": "e9a098b060be4bac57d2fd6be021fbb7843b7c53f6f195a274d3a21318510128"
+    },
+    {
+      "path": "rust-game/src/jz50_search_tests.rs",
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6"
+    },
+    {
+      "path": "rust-game/src/jz55_tests.rs",
+      "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "2c9fa0143850e18ee1da86a27bcb86830f890c91634acb978d744647108521f4"
+    },
+    {
+      "path": "rust-game/src/main.rs",
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    {
+      "path": "rust-game/src/marker_transfer.rs",
+      "sha256": "5de6208f60eec15426dceda00edbbc4b3bb224b3d3c9f095b51e21eae712bf8a"
+    },
+    {
+      "path": "rust-game/src/marker_transfer_tests.rs",
+      "sha256": "205dc04fded7a69b9d5d7b681f1a16b85deb0dd3df4e6708b829f734ef5d2395"
+    },
+    {
+      "path": "rust-game/src/mill_public_tests.rs",
+      "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49"
+    },
+    {
+      "path": "rust-game/src/mobility.rs",
+      "sha256": "40f16377e67b9a07030dcba8b048898ce11348c017ec969c82ec9d65c30f48eb"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "9320883d6abbae972828905e0cf76934b4f586fdf16578d28d1018c811590708"
+    },
+    {
+      "path": "rust-game/src/msjc01_tests.rs",
+      "sha256": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86"
+    },
+    {
+      "path": "rust-game/src/msjc0405_tests.rs",
+      "sha256": "6567247b4bb0fc490fa31c724b229313dacf3affc6caff1ecf53dcc096352831"
+    },
+    {
+      "path": "rust-game/src/msjc06_tests.rs",
+      "sha256": "caf41499e9966dcf7c942d8268646fb1f486a36c063c661cd16da587ac3e6c8b"
+    },
+    {
+      "path": "rust-game/src/msjc07_tests.rs",
+      "sha256": "f3d1d35d94be59cc8d5846ceda49ff8af1bb48f087a334f2550e65b5fa77a693"
+    },
+    {
+      "path": "rust-game/src/msjc08_tests.rs",
+      "sha256": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4"
+    },
+    {
+      "path": "rust-game/src/msjc11_tests.rs",
+      "sha256": "5f33b02e2257e703bc0794de051864ee61ad7abce51fa3e2304e77ea093798a5"
+    },
+    {
+      "path": "rust-game/src/mystic_contest.rs",
+      "sha256": "1a865247a71677754756c56b0c3bafc8e07859a7be6b7f63096522848513f055"
+    },
+    {
+      "path": "rust-game/src/mystic_hooks.rs",
+      "sha256": "6b7460cf0acd9e22b0af39b5192ca72a653f213b090d4d05b1b3168fd9adc2cf"
+    },
+    {
+      "path": "rust-game/src/mystic_lifecycle_tests.rs",
+      "sha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c"
+    },
+    {
+      "path": "rust-game/src/next20_blue_gray.rs",
+      "sha256": "a630a750a0f64cb5b5bf6949d9dcc7641068f26aad0b8c4a96a289e4df23d607"
+    },
+    {
+      "path": "rust-game/src/next20_blue_gray_tests.rs",
+      "sha256": "29560fe4a1d814803083f43f50df1213cb0952dc08f8cfa2dc3f9056e7041610"
+    },
+    {
+      "path": "rust-game/src/next20_cross_tests.rs",
+      "sha256": "b8e56249d682623bdeb4ec3ccb82716b8d7b11fa10a1adab49795823cba1aa25"
+    },
+    {
+      "path": "rust-game/src/next20_red.rs",
+      "sha256": "68f2f1a44de295079d57099122c3f25a663d81825f51c5a61f45caf48bc949cd"
+    },
+    {
+      "path": "rust-game/src/next20_red_tests.rs",
+      "sha256": "3811b10943e2dfbda121d42c70a6e8b5ec4f9ea113c343beef836126c3b4f548"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "sha256": "4d700b3cbef88793b15cf90c2ba9171bc0d83104a902685f19b1ccfc41a72304"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest_tests.rs",
+      "sha256": "dbbcc13f696c2d23a3093ebe3ce3132ec445a9ed21c589ff3978e902ffc8cf25"
+    },
+    {
+      "path": "rust-game/src/play_sources.rs",
+      "sha256": "ea7400be841d18a78199532974f72a229090c44c172feff4b4b194927a10404a"
+    },
+    {
+      "path": "rust-game/src/protection_tests.rs",
+      "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8"
+    },
+    {
+      "path": "rust-game/src/purple_tools_tests.rs",
+      "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d"
+    },
+    {
+      "path": "rust-game/src/raid.rs",
+      "sha256": "31c141dd4113f0d08b81703e8db90a81628bbc1df19ebc04638022b0cb447679"
+    },
+    {
+      "path": "rust-game/src/recovery_validation_tests.rs",
+      "sha256": "15f035abad2472b9d6510477fbf1a378156856a245a7db74508606d4ad7f75ba"
+    },
+    {
+      "path": "rust-game/src/red_time.rs",
+      "sha256": "9d4b68aedb0f102d90ccc0822e404cf8a6e3e0d2e59c036a5ff52ddbabae7196"
+    },
+    {
+      "path": "rust-game/src/red_time_tests.rs",
+      "sha256": "c2793c6ef6f42c49723ace6478777fd7696cf69aa0983070b77ee7529e6d011e"
+    },
+    {
+      "path": "rust-game/src/region_aura_tests.rs",
+      "sha256": "c1356afe03f26921930fbd00b4a553859e249dd2102d9c447a60e7333e69485b"
+    },
+    {
+      "path": "rust-game/src/region_destruction.rs",
+      "sha256": "9f69a9d2518b4288bffeee1aa82172496758db6ad175ed540e2feb1787bd2e11"
+    },
+    {
+      "path": "rust-game/src/renown.rs",
+      "sha256": "1427d3dd517e33ca286271c5f9d61f3096602fcf5256de5d655dbce0f220a4c7"
+    },
+    {
+      "path": "rust-game/src/renown_tests.rs",
+      "sha256": "d0b3cced3cca1048672ff2a32bcf8689bbfbcfe90b3857792cb6f8326998f7ab"
+    },
+    {
+      "path": "rust-game/src/repress_assets_tests.rs",
+      "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "730cb5d03cfac01f5f0bb6315ff6e11e986a4f661a988ad679d7dfcb04da4836"
+    },
+    {
+      "path": "rust-game/src/response_preview_tests.rs",
+      "sha256": "288412326bf55c117d6549de7f8efdea34b7c3209adf23fb535f4e5b4754a927"
+    },
+    {
+      "path": "rust-game/src/room.rs",
+      "sha256": "2fa7c50e263279e643f59a6bf9b5e99ec345dabe8877fd13c3ce19a0fb14f5ac"
+    },
+    {
+      "path": "rust-game/src/rules.rs",
+      "sha256": "dec70d860d8b959852ee19936d179e872eda61583690e75b8667e0d4b12f9b7d"
+    },
+    {
+      "path": "rust-game/src/rumor.rs",
+      "sha256": "014cd9fa3383be9bafdfd509d900fcefbdad5c94bed42a267fddcf68be877994"
+    },
+    {
+      "path": "rust-game/src/sealing.rs",
+      "sha256": "f8d95e9554270601ffc8238307263dbc7d2ea19ff6f9bb36075b220e8744301f"
+    },
+    {
+      "path": "rust-game/src/sealing_tests.rs",
+      "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd"
+    },
+    {
+      "path": "rust-game/src/sentinel.rs",
+      "sha256": "1cc1fb4c63f93c5450f26f62e37c716ed7cf317c232c47832bb2fd96c400867f"
+    },
+    {
+      "path": "rust-game/src/sentinel_tests.rs",
+      "sha256": "ccb12916a62c03be0db4c8d5b7079c049f8bbb4659d26d7dccb8933d73027214"
+    },
+    {
+      "path": "rust-game/src/service.rs",
+      "sha256": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33"
+    },
+    {
+      "path": "rust-game/src/society.rs",
+      "sha256": "82d65a9b9110c2fcdb4c365f0dcd5e80c4a40df67490c6a6022071723a198de7"
+    },
+    {
+      "path": "rust-game/src/society_msjc09_tests.rs",
+      "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086"
+    },
+    {
+      "path": "rust-game/src/society_zone_tests.rs",
+      "sha256": "22bcdf0651e28d6a7faef055d75a9b74ca3776e719dfdf62ae750a2a19f46a13"
+    },
+    {
+      "path": "rust-game/src/step_resources.rs",
+      "sha256": "56776a2a5a658df476dbc2948555187be7538f4a7bca726f985feba69f111eca"
+    },
+    {
+      "path": "rust-game/src/unit_support.rs",
+      "sha256": "a37407e58126278a97624a0debe39de8810859adb6d07272e94be7e677949683"
+    },
+    {
+      "path": "rust-game/src/white_wound_tests.rs",
+      "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a"
+    },
+    {
+      "path": "rust-game/src/win_flow_tests.rs",
+      "sha256": "49b92e17363314d998af250be7edf9d3d65460aae119fc45d19091931fdb06b5"
+    },
+    {
+      "path": "rust-game/src/wm023.rs",
+      "sha256": "71c580cde53cbb6aa68e68bde1580a9f7e9a6d9a9a7646b8fe1421d6e6288a02"
+    },
+    {
+      "path": "rust-game/src/wm023_tests.rs",
+      "sha256": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363"
+    },
+    {
+      "path": "rust-game/src/wm038.rs",
+      "sha256": "6fadd5f4c5bbed726bc0eaf99eacd1c72de8ec66c82c262d799540c62effbc3c"
+    },
+    {
+      "path": "rust-game/src/wm038_tests.rs",
+      "sha256": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14"
+    },
+    {
+      "path": "rust-game/src/wm043.rs",
+      "sha256": "81ed710093bd7a341e5698ae5199073dfa46c029d651eabfdc6a3456435ded4c"
+    },
+    {
+      "path": "rust-game/src/wm043_tests.rs",
+      "sha256": "cee373f196a4b6660be527945c16915739894f6b3ce761294d00d2181ba4feba"
+    },
+    {
+      "path": "rust-game/src/wm056.rs",
+      "sha256": "a3ace7ee6c1ef2d8c0dd21b43082d851ecd837acd175ee42bb4b9910f028d447"
+    },
+    {
+      "path": "rust-game/src/wm056_tests.rs",
+      "sha256": "ca0eca171cb3958c7f886e5bcd9573ca37411fc010264a105a21f5588d5580df"
+    },
+    {
+      "path": "rust-game/src/wm062.rs",
+      "sha256": "7cc2d67b7f63d9895cd38a8c736b0da009a0334ed2491677be139e7f2a79b93e"
+    },
+    {
+      "path": "rust-game/src/wm062_tests.rs",
+      "sha256": "2b62291ce6266d981d2ef2d3f689fbfe47fbcdd29c7bef990a1b9f2a38e5a971"
+    },
+    {
+      "path": "rust-game/src/world.rs",
+      "sha256": "3bf103819b11aed2c1f36f12bccd444ca43c182eda5633000048ddc4c28197f5"
+    },
+    {
+      "path": "rust-game/src/wound_defence_tests.rs",
+      "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5"
+    },
+    {
+      "path": "rust-game/src/xq18_tests.rs",
+      "sha256": "a9d176ebc4cb02f700a0e515dad7149b19244078741b08049c88bb93ce1ba85d"
+    },
+    {
+      "path": "rust-game/src/xq23.rs",
+      "sha256": "d43f8fd74be21f1fcfd3231e64fd18dbfca523d0bcea5b23c76e4f2602958cc2"
+    },
+    {
+      "path": "rust-game/src/xq23_tests.rs",
+      "sha256": "33e659834f73166d6c477ccd3662fdcef9c78bd16e6cfc9109a4f80fb23541f2"
+    },
+    {
+      "path": "rust-game/src/xq24_tests.rs",
+      "sha256": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415"
+    },
+    {
+      "path": "rust-game/src/xq25.rs",
+      "sha256": "832668c5332e0e94498621f624363b5df0a96e17432d6a7ac36cea0f57f2ca0b"
+    },
+    {
+      "path": "rust-game/src/xq25_tests.rs",
+      "sha256": "f1ca53bbd8ea89810eebbdbf030cfd1816543bb543da6c67d2d19baaf3a19d61"
+    },
+    {
+      "path": "rust-game/src/xq27.rs",
+      "sha256": "92afe9a960cc4d32ebbe5ebbb34ec041faa7db0af6ad492e72323c2763a29e68"
+    },
+    {
+      "path": "rust-game/src/xq27_tests.rs",
+      "sha256": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38"
+    },
+    {
+      "path": "rust-game/src/xq37.rs",
+      "sha256": "f1db145c80483d37e786c716707844915eec4bb536916510d301daeba4ddb0bd"
+    },
+    {
+      "path": "rust-game/src/xq37_tests.rs",
+      "sha256": "028d8dac1804a3786cccb637847c46fcd48e2af0ea1f26bd2dbd69c6db00d0c8"
+    },
+    {
+      "path": "rust-game/src/yellow_search_batch_tests.rs",
+      "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+    },
+    {
+      "path": "tools/cards/admitted-scans.test.mjs",
+      "sha256": "1a4f014268f3403d3cf01011beb46a5e7bde124178db4dd239084a9313ce8b36"
+    },
+    {
+      "path": "tools/cards/batch20-source.test.mjs",
+      "sha256": "f4ced13b1c965dc50883118972a808ea9ddfa2277b29b456635d9033a4772147"
+    },
+    {
+      "path": "tools/cards/batch3-source.test.mjs",
+      "sha256": "789135d7f9b36dc944d0d0c51c928906a723bccf41d7450e975d0dbd6c021085"
+    },
+    {
+      "path": "tools/cards/batch4-source.test.mjs",
+      "sha256": "ef2f665b1843143ed5b2167004de440c027e8839d7425643deb2b47302b706ea"
+    },
+    {
+      "path": "tools/cards/bq030-source.test.mjs",
+      "sha256": "ec6777fe7490a6bd2716525840911dae49ffc9cc828f05406d6625aba8e56753"
+    },
+    {
+      "path": "tools/cards/bq035-source.test.mjs",
+      "sha256": "70965e9db17fef39e4ef72a83db43ad26c1a8c62ab8de63efc8fc84614336179"
+    },
+    {
+      "path": "tools/cards/check-xq24-containers.mjs",
+      "sha256": "a844b2147a0d95149e2fbaf55a455aa47552b40a2be7fd1873b6d601efff46c2"
+    },
+    {
+      "path": "tools/cards/clockmakers-source.test.mjs",
+      "sha256": "9c5293963b2483367367cf00119c49f5dfe9d1ca4ba1b8f0f3026cef60584418"
+    },
+    {
+      "path": "tools/cards/compare-bq030-room.mjs",
+      "sha256": "f2d370d092584f2fd8027f5fd91c981eeffecd0bf2712edb920becebf4d7e16b"
+    },
+    {
+      "path": "tools/cards/compare-xq24-room.mjs",
+      "sha256": "7e5d14e2e150db207900a89cc80a20249a5464481c5772c95976dbcebe66077f"
+    },
+    {
+      "path": "tools/cards/game-serial-source.test.mjs",
+      "sha256": "8ecc186d81998171c1b62885ba06ebda4a52d7f7617676abb5aa1f22810ca023"
+    },
+    {
+      "path": "tools/cards/import20-black-source.test.mjs",
+      "sha256": "e1e727e886fe6e843695904f7813f5cd77522835e56f7ae165e9a0d8f1ddaba5"
+    },
+    {
+      "path": "tools/cards/import20-cultist-source.test.mjs",
+      "sha256": "b22792487f5d612962789308544c3afca21c82dd6131eb52212d9376086cd40b"
+    },
+    {
+      "path": "tools/cards/import20-industry-source.test.mjs",
+      "sha256": "c350f215cc51e3fb694f39ea8f9e13994fd9b048314ca28e0b5907293ee4153a"
+    },
+    {
+      "path": "tools/cards/import20-observers-source.test.mjs",
+      "sha256": "88d92c480123b8f13cbec54cf48d794d0c96c509bc3f9848dd99db6c2f3bd2fa"
+    },
+    {
+      "path": "tools/cards/import20-source.test.mjs",
+      "sha256": "6974da1a290d31a21930cf1b537f801844293a81d88ac0548efd43a46a5ed088"
+    },
+    {
+      "path": "tools/cards/import20-spec-history.mjs",
+      "sha256": "5047a894363410e8a93097740eb68bb37d83f92543fe7cac29d4bb708d487c53"
+    },
+    {
+      "path": "tools/cards/import20-thief-tattoo-source.test.mjs",
+      "sha256": "963e7c3069b8fa546429c9bd35ac33083123ffdbecc7e4acdf46372a9a46b504"
+    },
+    {
+      "path": "tools/cards/import20-vampires-source.test.mjs",
+      "sha256": "17b538e08bb87198e3d0e91f41a61af70a62ef14ef3d457bf439266ad584da52"
+    },
+    {
+      "path": "tools/cards/jc035-source.test.mjs",
+      "sha256": "430a4ce094db9aaeff3801fc99a2f1dc4aa4bd27c40dfa440f9e2446d69d1c3f"
+    },
+    {
+      "path": "tools/cards/jc037-source.test.mjs",
+      "sha256": "5944a277b1d9e3cf37ecfaeb290386cd8f5c5fe3d3737c829e38e8bfbfeb30fc"
+    },
+    {
+      "path": "tools/cards/jc041-source.test.mjs",
+      "sha256": "755f17baff4f3edd71cb1b26090fcff49db0fb201679c73b886378472abefb54"
+    },
+    {
+      "path": "tools/cards/jc044-source.test.mjs",
+      "sha256": "8ee84a0f1de4a2aa58053a47fd05f6a390aab8cd3d0e05def32c15c48cf698fe"
+    },
+    {
+      "path": "tools/cards/jc046-source.test.mjs",
+      "sha256": "c59bc11e0644de03dbb6cb385757128dabd90a12b388219d10768dd441208654"
+    },
+    {
+      "path": "tools/cards/jc052-source.test.mjs",
+      "sha256": "56ecea21b50b6fd9fbfb6c5ed5f7376e068a013686803d2e8103c259ffa61e5d"
+    },
+    {
+      "path": "tools/cards/jc054-source.test.mjs",
+      "sha256": "7ce9b97bb9df7fe339530045b674e95389aa65b4410f804e12fb12549bbb9458"
+    },
+    {
+      "path": "tools/cards/jc057-source.test.mjs",
+      "sha256": "e89e6849edceec8510e8853def80421222bdca4d2ae9ccae9a6b1e845f94ca89"
+    },
+    {
+      "path": "tools/cards/jc060-source.test.mjs",
+      "sha256": "9c1f026b85fb5e60b5fb07a39cf35026f5564438ae34c2f0a6779f97d586b865"
+    },
+    {
+      "path": "tools/cards/jc066-source.test.mjs",
+      "sha256": "558a93d460aa3cda7f9a0a0af78c536e8bbc64ae89bcdd05272c3adce58a792b"
+    },
+    {
+      "path": "tools/cards/jc094-source.test.mjs",
+      "sha256": "bdcdd65ee35373c8f2de12e76a35017ed5a5052f6f056b5a95cd18d0b7c28988"
+    },
+    {
+      "path": "tools/cards/jc095-source.test.mjs",
+      "sha256": "ff9d3d4c8c04f03d0a95863d96d938d350c23874dc6b7e8e9663dd1aac8ae6d8"
+    },
+    {
+      "path": "tools/cards/jz35-source.test.mjs",
+      "sha256": "07c106e408017171fb966541e9c6fb64ceed6baa2f83baa737665aacd64e5c1d"
+    },
+    {
+      "path": "tools/cards/jz46-source.test.mjs",
+      "sha256": "55c880fef22584ad84f1d1731dca1ea610c145d01aa15173782cb5b35df421a8"
+    },
+    {
+      "path": "tools/cards/msjc0405-source.test.mjs",
+      "sha256": "4d10b44da07483b04a16b3f36f11178fad587bfe5ecf8e7d5f4ec83893f3f7e0"
+    },
+    {
+      "path": "tools/cards/package-b-interface-probe.rs",
+      "sha256": "a235fa8931428e3e884cdd6088001b6511be1d7b3e9895428d67e22029a9003d"
+    },
+    {
+      "path": "tools/cards/validate-admitted-scans.mjs",
+      "sha256": "8295abc5bc713a2bcfc2500dc6fb5b33cdfcc5bd0699df5ce6e2eb7476deb4d1"
+    },
+    {
+      "path": "tools/cards/wm023-source.test.mjs",
+      "sha256": "8fcde1f81c5b91ee3f470bc2e901bbe4fcbae58cdc3c6b462301512a06cc7a2a"
+    },
+    {
+      "path": "tools/cards/wm038-source.test.mjs",
+      "sha256": "a6e42576cf145ea158a497819700ce9d50c70129ea3804a50f7874bb95ae2c06"
+    },
+    {
+      "path": "tools/cards/wm043-source.test.mjs",
+      "sha256": "d50c59b528184100d89ac7dfc23d5b12cf22f37f20aef307ccafda53b373b6d2"
+    },
+    {
+      "path": "tools/cards/wm056-source.test.mjs",
+      "sha256": "c312717f3016a4946ea5b8229122d5d791737d499bf298d38f696dd088ce2c07"
+    },
+    {
+      "path": "tools/cards/wm062-source.test.mjs",
+      "sha256": "eb93e15838e620731f31ee53ada1eaef56829eedab60cef782097d90fb877c64"
+    },
+    {
+      "path": "tools/cards/xq23-source.test.mjs",
+      "sha256": "2d40989275f200bc2c10e218c4d0fb8ed3672edbf393d90761f4e4da2cd83499"
+    },
+    {
+      "path": "tools/cards/xq24-source.test.mjs",
+      "sha256": "3e6672fb8373299555d9b9aba1d34eca650c0fd203283a5fa1967c80e28a9187"
+    },
+    {
+      "path": "tools/cards/xq25-source.test.mjs",
+      "sha256": "2cb310719617d3482fd244f111da248a55b9a8a72a2744e13ff7bbb202e4a3e5"
+    },
+    {
+      "path": "web/src/game/AutoPass.tsx",
+      "sha256": "b5f7e3df42d98e7cc3c0bceb297927b84633eb386cd16cf65454df8011deabd1"
+    },
+    {
+      "path": "web/src/game/ContinuousPass.test.tsx",
+      "sha256": "8c3229b2d5f3401a41c9754572ceabf56d6ddc86024353442d27c75ea6fc6277"
+    }
+  ],
+  "exitCode": 0,
+  "seconds": 37.702,
+  "logSha256": "483f2867eced797843ab19400bb3444b805a518b67448b9d6804c3dcd0043895"
+}

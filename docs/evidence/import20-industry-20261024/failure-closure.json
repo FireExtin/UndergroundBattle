@@ -1,0 +1,100 @@
+{
+  "originalFullAttempt": {
+    "sourceHead": "8011bae02bc9a101c6962a58dca80cf8c81d03d1",
+    "passed": 2330,
+    "failed": 12,
+    "testNames": [
+      "batch4_clock_tests::batch4_clock_wm037_pinned_fields_and_canonical_standard_program",
+      "bq035_tests::bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_grant",
+      "control_tests::control_simultaneous_nonhuman_death_card_still_invalid_for_jz27",
+      "death_observer_tests::death_observer_duplicate_command_is_exact_and_illegal_markers_rejected",
+      "engine::tests::catalog_is_restricted_real_complete_and_decks_are_legal",
+      "import20_cultist_tests::import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool",
+      "jc005_tests::jc005_destroy_goes_to_owner_graveyard_without_recycling_or_bottom_and_pays_only_two",
+      "jc008_tests::jc008_printed_admission_and_finite_modifier_program",
+      "msjc0405_tests::msjc04_whole_original_and_real_red_unique_program",
+      "msjc0405_tests::msjc05_whole_original_and_gray_unique_program",
+      "msjc07_tests::msjc07_original_whole_card_and_finite_existing_search_program",
+      "next20_cross_tests::next20_cross_registry_contains_exact_twenty_complete_prints"
+    ],
+    "logSha256": "c550152976c4b45b514b3e42c8fb830ea195f4761d908c7279d7745360f3c7b5"
+  },
+  "originalFailureNamesAllPassInFinal42": true,
+  "final42Head": "5648fa7a590d450302144315ea6bd148c8c4ae74",
+  "currentDirectoryCheck": "Pinned canonical hash of all prior263 raw records; exact appended ID order; public213/remaining gated; current colour-search membership cross-checked against primary specifications. No bare count-to-green replacement.",
+  "legitimateOldFixtureChanges": [
+    "Live regions can carry time (WM037); hidden character, hand and world negative checks retained.",
+    "BQ022 marker inheritance requires surviving Human host:JC094 defense3 survives damage1+wound1; ownership, host shields, fixed two-cost, no-recycle and reset assertions retained.",
+    "WM029 death-source and MSJC13/MSJC14 society list included explicitly; old rule programs preserved."
+  ],
+  "failedAttempts": [
+    {
+      "name": "import20-industry-first-compile-20261024",
+      "sourceHead": "948446dd38066164735eb7ec9a13d636f3b7128f",
+      "exitCode": 101,
+      "reason": "Rust syntax in new test: missing space before if after a string literal. Compile failed; zero tests executed."
+    },
+    {
+      "name": "import20-industry-first-native-20261024",
+      "sourceHead": "1063575aa525fb239f83c9ff45f9ee20bac15c8f",
+      "exitCode": 101,
+      "reason": "0/23. Region attachment admission omitted the two exact IDs; normal commands rejected before gameplay."
+    },
+    {
+      "name": "import20-industry-region-admitted-native-20261024",
+      "sourceHead": "7ec8c37792d7467eba5b3ca15902a7d44c798755",
+      "exitCode": 101,
+      "reason": "16/25. Region play API requires region rather than target_id, subtitle whitelist omission, one incomplete legal-action test command, and direct character deploy/reveal failed to unpack captured monetary receipts."
+    },
+    {
+      "name": "import20-industry-first-types-20261024",
+      "sourceHead": "7ec8c37792d7467eba5b3ca15902a7d44c798755",
+      "exitCode": 2,
+      "reason": "View helper inferred status as arbitrary string. Test helper annotated View; production types retained."
+    },
+    {
+      "name": "import20-industry-normalized-native-20261024",
+      "sourceHead": "3e8271908396ede484adaa04234644fbdf300074",
+      "exitCode": 101,
+      "reason": "25/27. CQ24 extra receipt still required three physical asset IDs with credits, and test fixtures lacked actual red loyalty."
+    },
+    {
+      "name": "import20-industry-matrix-native-20261024",
+      "sourceHead": "92426f035cd368f03c04a7aa7dd10d34e8f6c378",
+      "exitCode": 101,
+      "reason": "Compile failed; matrix used nonexistent grave helper. Replaced by explicit make-card/grave layout; zero tests executed."
+    },
+    {
+      "name": "import20-industry-first-source-20261024",
+      "sourceHead": "92426f035cd368f03c04a7aa7dd10d34e8f6c378",
+      "exitCode": 1,
+      "reason": "35/36. New records omitted source.imageSha256. Exact original hashes added, source assertion retained."
+    },
+    {
+      "name": "import20-industry-existing-lib-native-20261024",
+      "sourceHead": "8011bae02bc9a101c6962a58dca80cf8c81d03d1",
+      "exitCode": 101,
+      "reason": "Full existing-lib attempt at8011:2330/2342. Twelve failures retained, not relabelled passed. Final42 includes every original failing name."
+    },
+    {
+      "name": "import20-industry-rumor-red-20261024",
+      "sourceHead": "1f4a65e213aaf0825b25709a523cd68824cef107",
+      "exitCode": 101,
+      "reason": "0/1. Real BQ093 entry/mill of WM042 reached a Rumor continuation but the old program whitelist rejected the new original frame. Exact BQ093 frame and one-card mill batch admitted."
+    },
+    {
+      "name": "import20-industry-runtime-fixed-native-20261024",
+      "sourceHead": "eefe5ad104e885a0bf5609f34a0d6af0bbcd834b",
+      "exitCode": 101,
+      "reason": "39/42. Granted-mobility matrix next exposed XG13 and adjacent CQ24 per-card declaration guards; exact proved shared grants now excluded from native-only metadata. Test-only migration initially chose wrong hidden-time sample and too weak a replacement host; corrected to valid live-region time and defense3 Human. Hidden/out-of-play marker negatives retained."
+    },
+    {
+      "name": "import20-industry-regression-closed-native-20261024",
+      "sourceHead": "265802a2b77056c469ab80fbdcc22e05e50207cf",
+      "exitCode": 101,
+      "reason": "41/42. The shared rules protocol dispatcher still selected XG13 native text before canonical granted mobility when choosing its destination. Shared mobility/raid protocol checks moved before recipient-native dispatch; exact domain grant authentication and static registry rejection remain. A no-grant/manual-command and static-transplant negative test was added."
+    }
+  ],
+  "finalFullSuiteRepeated": false,
+  "scope": "One full attempted existing lib sweep at8011, then necessary finite failure closures/affected-mechanism regression. No claim all final-HEAD tests were rerun."
+}
