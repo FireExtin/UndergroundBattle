@@ -1,0 +1,27 @@
+{
+  "integrationHead": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "formalNativeClosed": 38,
+  "target": 50,
+  "combinedWasmWorkerBrowser": "ABI99 combination not built/run; published ABI95 gameplay is separate.",
+  "regularDefinitions": 252,
+  "regularSupported": 213,
+  "combinedNativeIdentity": "rust-v0.2.99-game-serial",
+  "integratedReviewStatus": "WIP; no independent unified approval",
+  "newImport20Implemented": 0,
+  "domesticReleaseUnchanged": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "integrationHeadAtCheck": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "runtimeHead": "69a8d0266dcd03e942acd80635ca94fb75f4440f",
+  "previousExternalIndependentClosures": 37,
+  "serialMainNonAuthorClosures": 1,
+  "countChange": {
+    "card": "WM043",
+    "from": 37,
+    "to": 38,
+    "source": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+    "method": "Serial main static review of another author fix plus original independent counterexample rerun; no new external reviewer thread",
+    "evidence": "docs/evidence/wm043-serial-recheck-20261024/result.json"
+  },
+  "WM043NativeStatus": "Prior shown-lock shield P2 closed by serial main non-author review and 24 targeted native tests.",
+  "publicAcceptanceForLocalABI99": false,
+  "previousIntegrationReceiptHead": "a3b5e7dddc86492b56f5480fb3aaf34da9c2d88c"
+}

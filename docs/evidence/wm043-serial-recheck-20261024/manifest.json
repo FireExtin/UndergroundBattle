@@ -1,0 +1,22 @@
+{
+  "tested_head": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "files": [
+    {
+      "path": "docs/evidence/wm043-serial-recheck-20261024/result.json",
+      "bytes": 4797,
+      "sha256": "4cdcbd685554c52ac450203d3bd7809475d084d58b59d3907139a424fee810b6"
+    },
+    {
+      "path": "docs/evidence/wm043-serial-recheck-20261024/native-input-receipt.json",
+      "bytes": 43366,
+      "sha256": "06dd93b40c1bc090f1b0ba45a16e805789baadc5828c28b95523393f9c889c69"
+    },
+    {
+      "path": "docs/evidence/wm043-serial-recheck-20261024/native.log.gz",
+      "bytes": 1544,
+      "sha256": "86cf6c40187e8d984e5c8cac027fb5765ee52729a0f405047c3cbe8b14f4cf42"
+    }
+  ],
+  "source_log_sha256": "3f978b47ad2505c845f5405a7ca961dfdabca79af853ab0e7194e15f55a7118d",
+  "raw_synthetic_state_traces_kept_locally": true
+}

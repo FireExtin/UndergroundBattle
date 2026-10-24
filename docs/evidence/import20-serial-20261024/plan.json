@@ -1,0 +1,549 @@
+{
+  "checked_at_utc": "2026-10-24T02:36:08Z",
+  "purpose": "Serial implementation plan; no new card code in this handoff.",
+  "source_head_at_check": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "runtime_source": "69a8d0266dcd03e942acd80635ca94fb75f4440f",
+  "runtime_identity": "rust-v0.2.99-game-serial",
+  "runtime_qualified_for_release": false,
+  "published_product_unchanged": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "historical_planning_base": "a0b7e49d3b77ab5d32e583c572c49fc37f413a98",
+  "sole_owner": "game main 01a15fcc-1553-759a-b8ba-cef5035e5003",
+  "groups_are_not_parallel_assignments": true,
+  "groups": [
+    {
+      "id": "A",
+      "name": "隐秘对抗与后置",
+      "cards": [
+        "BQ039",
+        "BQ090",
+        "WM028",
+        "WM025",
+        "WM024",
+        "BQ081",
+        "WM057",
+        "BQ064"
+      ],
+      "owner": "sole game main",
+      "proposed_files_not_created": [
+        "rust-game/src/import20_contest.rs",
+        "rust-game/src/import20_contest_tests.rs"
+      ],
+      "mechanism_notes": [
+        "神秘学博弈手牌能力的②付费/弃自身/原实例收据",
+        "准备及可响应进场启动、个人获胜观察、逐席展示后置",
+        "有条件减费/真实死亡收益、先置墓再条件消灭、私密检视",
+        "已有失控标志与隐秘加值查询"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "时间、附属、费用和控制",
+      "cards": [
+        "XQ19",
+        "XG13",
+        "WM064",
+        "CQ24",
+        "BQ092",
+        "BQ093"
+      ],
+      "owner": "sole game main",
+      "proposed_files_not_created": [
+        "rust-game/src/import20_time_attachments.rs",
+        "rust-game/src/import20_time_attachments_tests.rs"
+      ],
+      "mechanism_notes": [
+        "在场物理时间总数、零费手牌进场；复用现有时间与进场入口",
+        "下一次合格正面打出的有限减费票据，不影响其它打出/付费现身",
+        "附属持续授予图标/关键词/类别，来源离场撤销",
+        "可选额外费用与原敌方附属控制/重结附，owner不变",
+        "本步骤临时费用与两个不同实体横置，产业进场/封印观察"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "锁定、充能及复合私密选择",
+      "cards": [
+        "CQ18",
+        "CQ19",
+        "XG20",
+        "BQ057",
+        "CQ15",
+        "CQ28"
+      ],
+      "owner": "sole game main",
+      "proposed_files_not_created": [
+        "rust-game/src/import20_lock_choices.rs",
+        "rust-game/src/import20_lock_choices_tests.rs"
+      ],
+      "mechanism_notes": [
+        "MSJC14条件锁定、敌方带锁实体离场事件；不重复开发哨兵",
+        "充能标志X费用和伤害，纳入已有物理标志搬移契约",
+        "进场数字选择和服务端禁止打出/付费现身，响应期仍按真实时序",
+        "已有额外付费/声望资产区进场复用",
+        "有上限的敌方三私密区同名封印、目标原实例绑定",
+        "有序两次模式选择可重复，逐段真实费用/目标/续体而非重放整条外命令"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "mechanism_group": "A",
+      "in_current_batch50": true,
+      "scope": "current-fourth-pending",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg",
+      "image_sha256": "db30bdf64444534316d80a9d7665f9ae3df42a9ee886b38b7aed6f1cd25fe2de",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg",
+      "image_sha256": "67ffb95243390ea8d1a9533830ef26241ec7625a1df314e203547b3804857c3e",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "WM028",
+      "name": "曼纽的阴影厅堂",
+      "color": "蓝",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg",
+      "image_sha256": "f0d66f992939844fcdcc1844de1855e3def4a73c0e8af578fbcb595ce98a7aee",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "WM025",
+      "name": "安哥拉·曼纽",
+      "color": "蓝",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg",
+      "image_sha256": "419c1c6188dbd2d793a527da238757fbe61de3f1992fcc902e124103e1651622",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "WM024",
+      "name": "阿剌穆特杀手",
+      "color": "蓝",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg",
+      "image_sha256": "78c85bc44106d49f054e1dc090d8161bebfcfb605942d04f2611323d87822120",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg",
+      "image_sha256": "b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "WM057",
+      "name": "信息掮客",
+      "color": "黑",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg",
+      "image_sha256": "5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ064",
+      "name": "提取样本",
+      "color": "灰",
+      "mechanism_group": "A",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ064 提取样本.jpg",
+      "image_sha256": "4ae03aeedb44416e0daa489cf4df68613dbf32ece07d6ac642db7169a6142e10",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "XQ19",
+      "name": "熵力化身",
+      "color": "红",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+      "image_sha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "color": "红",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg",
+      "image_sha256": "3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
+      "image_sha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg",
+      "image_sha256": "6867f1ea9a7da6a1f811a0c342c80e2879a2c82607dcb5167ce4d9c602f8c86d",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "color": "黑",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+      "image_sha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ093",
+      "name": "样本陈列室",
+      "color": "黑",
+      "mechanism_group": "B",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+      "image_sha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "mechanism_group": "C",
+      "in_current_batch50": true,
+      "scope": "current-fourth-pending",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg",
+      "image_sha256": "38e79b879bd53c793dfe9cdc7a10f11c854b399e13c22eeed307e71267fee639",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "mechanism_group": "C",
+      "in_current_batch50": true,
+      "scope": "current-fourth-pending",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg",
+      "image_sha256": "853bc6d38ea6503aaac6fadc25acb262ac41b550030cf1cb372af74ce03c67d1",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "mechanism_group": "C",
+      "in_current_batch50": true,
+      "scope": "current-fourth-pending",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg",
+      "image_sha256": "acabbde2fdffe2eb962caf4b4cf811579b460172421a9b84f8ddb966c263cc00",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "color": "灰",
+      "mechanism_group": "C",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg",
+      "image_sha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "color": "红",
+      "mechanism_group": "C",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
+      "image_sha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    },
+    {
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "mechanism_group": "C",
+      "in_current_batch50": false,
+      "scope": "future-candidate-no-roster-change",
+      "owner": "sole game main",
+      "catalogue_present": false,
+      "implemented": false,
+      "image": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+      "image_sha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+      "source_metadata_and_issues": "docs/evidence/reference-batch20-intake-20261023/candidate20.json"
+    }
+  ],
+  "catalogue_check": {
+    "path": "rust-game/data/cards.json",
+    "sha256": "d845d17f99944e788e98de6fdde0fdb8d513522edce8201a719c7605026b2d11",
+    "definitions": 252,
+    "all20_absent": true,
+    "images_verified": 20
+  },
+  "current50_candidates": [
+    "BQ039",
+    "CQ18",
+    "CQ19",
+    "XG20"
+  ],
+  "future_candidates_count": 16,
+  "new_implemented": 0,
+  "game_tests_for_new20": 0,
+  "batch50_native_closed": 38,
+  "UWPro": {
+    "repository": "RETORETO/UnderWorldPro",
+    "url": "https://github.com/RETORETO/UnderWorldPro",
+    "fixedAnalyzedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "observedRemoteHead": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "sourceTreeTruncated": false,
+    "playerTres": 667,
+    "registeredEffects": 135,
+    "licenseSource": "README.md lines75-81, repository global noOSS license; current project uses author/illustrator direct permission",
+    "READMEsha256": "9aad26f0e426a09ef3f71167ada935286f3943a4ff533ebd2b444597a96b6c73",
+    "userPermissionEvidence": {
+      "message": "Sentinel_e03beb50ee4881918270242ed3e5bcde",
+      "time": "2026-10-21T08:45:37Z",
+      "text": "代码作者和插画作者明确许可我复用了。请继续，也可以对照我们的素材图，看你。"
+    },
+    "sourceGlobalLicenseChanged": false,
+    "attribution": "RETORETO, original per-file paths/commit and original illustrator names retained"
+  },
+  "Suez": {
+    "repository": "SuezKrish/Underworld",
+    "url": "https://github.com/SuezKrish/Underworld",
+    "fixedAnalyzedSha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+    "observedRemoteHead": "1fb10f60a99f38dcf69104e026f48d2e3d91eb37",
+    "currentCodeAuditedOrTested": false,
+    "licenseSource": "README.md lines57-59 and THIRD_PARTY_NOTICES.md; dependency/SitesMIT does not license game code/art",
+    "READMEsha256": "3d372ba100b8cf21cf4440fc41ea0185c32a4ea61ee75b8a75789e668e28737b",
+    "currentReadmeEqualsRetainedOldReadme": true,
+    "permission": "logic and test ideas for independent implementation; no author direct-copy authorization provided",
+    "old176TestsNotCurrentHeadEvidence": true
+  },
+  "source_scope": {
+    "all20_have_data_but_no_registered_card_effect": true,
+    "UWPro_reuse": "Licensed common mechanisms/data may inform adaptation; no claim of 20 ready-made effect handlers.",
+    "Suez_reuse": "Mechanism/test ideas only, independently implemented; no direct code/art copy.",
+    "not_ready_registered_effect_candidates": [
+      "JC028",
+      "JC053",
+      "JC097"
+    ]
+  },
+  "next_slice": {
+    "cards": [
+      "BQ090",
+      "BQ064"
+    ],
+    "status": "planned; not started",
+    "primary_images_re_read_this_round": [
+      "BQ090",
+      "BQ064",
+      "BQ039",
+      "BQ057"
+    ],
+    "BQ090": "Printed cost2. Action destroys target character with printed cost<=3. Mystic scholarship2: hand action2, discard this original card, start one existing mystic contest.",
+    "BQ064": "Printed cost3; mystic shown bonus+4. Action removes all actual chaos markers from own society, drawing once per marker actually removed.",
+    "first_followup": "BQ039: reuse the hand-contest entry; attachment triggers on a won battle contest involving its host, not on every mystic-contest win.",
+    "normal_tests": [
+      "Legal action cost/loyalty and wrong player/target rejected before payment.",
+      "BQ090 cost<=3 vs4, original target removed during response, no refund or same-print rebinding.",
+      "Hand action consumes exactly original card and one payment, uses current shared contest protocol and ruled no-card outcome.",
+      "BQ064 zero/multiple actual removed markers; one draw per actual removal, own society only; no double consumption.",
+      "Normal Game/Room command parity and once-only command receipt; no extra corrupt-save fuzz expansion."
+    ]
+  },
+  "preimplementation_spec_corrections": {
+    "source": "docs/evidence/reference-five-spec-fixes-20261023/handoff.json",
+    "not_applied_this_round": true,
+    "items": [
+      {
+        "id": "BQ081",
+        "change": "Shown post-effect mills1, not3."
+      },
+      {
+        "id": "WM024",
+        "change": "Draw requires a renown character dying from that raid, not any other character."
+      },
+      {
+        "id": "XG13",
+        "change": "Next eligible face-up red Clock faction OR Bloodmagic card; not Disaster subtype."
+      },
+      {
+        "id": "CQ24",
+        "change": "Enemy attachment printed cost<=3, not5; optional extra3 and reattach still apply."
+      },
+      {
+        "id": "BQ092",
+        "change": "Exhaust this card AND another own Scarab Industry attachment; do not double-pay one entity."
+      }
+    ],
+    "tests": "Narrow exact old/new field exceptions; keep historic digest and all non-correction records checked."
+  },
+  "dependency_order": [
+    {
+      "phase": 1,
+      "cards": [
+        "BQ090",
+        "BQ064",
+        "BQ039"
+      ],
+      "work": "Small authenticated Ops/hand-contest/shown bonus first; BQ039 battle-win observer separately."
+    },
+    {
+      "phase": 2,
+      "cards": [
+        "CQ18",
+        "BQ092",
+        "BQ093",
+        "WM024",
+        "BQ081"
+      ],
+      "work": "Existing integrated Sentinel/entry/death/marker events; card-specific source corrections first."
+    },
+    {
+      "phase": 3,
+      "cards": [
+        "WM028",
+        "WM025",
+        "WM057",
+        "XG13",
+        "WM064",
+        "BQ057"
+      ],
+      "work": "Private choices, original source authority, one-use discounts, attachment-granted abilities; recheck exact cost icons before implementation."
+    },
+    {
+      "phase": 4,
+      "cards": [
+        "CQ19",
+        "XG20",
+        "XQ19",
+        "CQ24",
+        "CQ15",
+        "CQ28"
+      ],
+      "work": "New charge marker, unbounded legal number choice, unprinted-cost boundary, control/reattach and ordered repeated modes; resolve exact rule/FAQ gaps individually."
+    }
+  ],
+  "preserved_dependencies": {
+    "WM044_MSJC14": "e8bff04ea1a1aa3be85b55e8e3dd13ffd5bf2b52",
+    "WM037_MSJC13": "495e392db463df04d66a0e2bcdda7496bfce6120",
+    "both_in_current_runtime": true,
+    "XQ19": "No printed cost is not printed0. Hand action0 with >=4 physical time markers is a distinct rule; do not infer face-up cost comparison.",
+    "CQ19": "New charge markers must join existing physical move/copy/reset/view contracts.",
+    "XG20": "Entry number choice precedes active prohibition; no arbitrary catalogue-derived bound; verify original FAQ.",
+    "CQ15_CQ28": "Retain original attachment/host/source witness through costs; three private zones and two ordered, repeatable modes.",
+    "BQ057": "Printed card image re-read; preserve its three cost icons for asset action until mapped to existing rule resource; no guessed replacement cost."
+  },
+  "single_writer_shared_files": [
+    "rust-game/data/cards.json",
+    "rust-game/src/rules.rs",
+    "rust-game/src/model.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/mystic_contest.rs",
+    "rust-game/src/mystic_hooks.rs"
+  ],
+  "gates": [
+    "Necessary directed native tests and non-author review for actual card changes.",
+    "Actual WASM and Worker normal gameplay, catalogue admission and public browser checks recorded separately.",
+    "No deployment of local ABI99/WIP; no automatic main/publish; no new agents.",
+    "Keep the current50 target and later16 distinct; plan count never equals implemented count."
+  ]
+}

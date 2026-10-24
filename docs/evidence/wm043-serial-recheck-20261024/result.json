@@ -1,0 +1,84 @@
+{
+  "tested_head": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "actual_runtime_source": "69a8d0266dcd03e942acd80635ca94fb75f4440f",
+  "fix_source": "8c061c11157fc096aa3eba199dd7b8cc2b4e54a8",
+  "wm043_runtime_sha256": "6f3c9e38b87ad2dbc8e65b99e5eb012072c51d3d16d6281e358f1c004328f358",
+  "wm043_tests_sha256": "cee373f196a4b6660be527945c16915739894f6b3ce761294d00d2181ba4feba",
+  "runtime_and_tests_exact_fix_bytes": true,
+  "original_four_review_cases_and_two_helpers_equal": true,
+  "all_inputs_match_fixed_git_and_current": true,
+  "input_count": 292,
+  "passed_tests": [
+    "batch4_clock_tests::serial_clock_sentinel_and_blood_shown_choices_preserve_all_three_adapters",
+    "batch4_intelligence_tests::independent_wm044_mixed_contest_sources_order_and_private_completion",
+    "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+    "next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets",
+    "sentinel_tests::independent_sentinel_attachment_lock_is_inherited_by_anchor_host",
+    "wm043_tests::independent_wm043_room_shown_enemy_shield_finishes_and_rejects_duplicate",
+    "wm043_tests::independent_wm043_shown_enemy_shield_matches_paid_lock_guard",
+    "wm043_tests::independent_wm043_shown_friendly_shield_and_decline_do_not_consume",
+    "wm043_tests::independent_wm043_two_shown_sources_each_consume_one_enemy_shield",
+    "wm043_tests::wm043_fast_response_resolves_before_lower_spell",
+    "wm043_tests::wm043_inherited_lock_is_legal_and_response_removal_cancels_destroy",
+    "wm043_tests::wm043_lock_any_controller_character_or_hidden_and_public_marker",
+    "wm043_tests::wm043_lock_does_not_inherit_from_host_or_sibling",
+    "wm043_tests::wm043_lock_stacks_and_destroy_works_without_sentinel",
+    "wm043_tests::wm043_modes_multiple_targets_and_reject_unlocked_or_extra_input_before_payment",
+    "wm043_tests::wm043_post_decline_no_targets_and_duplicate_or_wrong_player_inputs",
+    "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+    "wm043_tests::wm043_requires_loyalty_and_cost_before_play",
+    "wm043_tests::wm043_response_reveal_loses_original_target_and_does_not_refund",
+    "wm043_tests::wm043_room_duplicate_paid_command_is_not_reapplied",
+    "wm043_tests::wm043_shown_bonus_is_three_without_sentinel_and_no_post_choice",
+    "wm043_tests::wm043_shown_invalid_or_repeated_choice_cannot_consume_a_shield",
+    "wm043_tests::wm043_shown_shield_depletion_does_not_cancel_the_next_source",
+    "wm043_tests::wm043_source_fields_registry_and_wip_admission"
+  ],
+  "passed": 24,
+  "failed": 0,
+  "ignored": 0,
+  "filtered": 2187,
+  "native_seconds": 9.225,
+  "log_sha256": "3f978b47ad2505c845f5405a7ca961dfdabca79af853ab0e7194e15f55a7118d",
+  "verified_bundles": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-23/task-7/wm043-shield-p2-candidate.bundle",
+      "sha256": "128e3d703ebe1c236cca940356c0c699b513e6147c60726eafd82dae6c2c7dbe",
+      "matches": true
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-22/task-2/serial-handoff-20261023/wm043-review-only.bundle",
+      "sha256": "b470823a59b336639bda86fac7b4faaa0537ccde13a28cc1ed1fa2f596168ccf",
+      "matches": true
+    }
+  ],
+  "review_method": "Serial main static review of another author fix plus original independent counterexample rerun; no new external reviewer thread",
+  "old_red_runs_retained": true,
+  "native_p2_status": "WM043-SHOWN-SHIELD closed in serial recheck",
+  "combined_abi99_platform_qualified": false,
+  "WASM_Worker_Web_browser_for_WM043_run": false,
+  "damaged_save_expansion": false,
+  "rule_and_image_checks": [
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "sha256": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+      "bytes": 15174985
+    },
+    {
+      "path": "web/public/cards/WM043.jpg",
+      "sha256": "887f3be501c9dc2b64bca87889c5ba76a870cd75a8db401c0325cd0ea774445f",
+      "bytes": 1291979
+    }
+  ],
+  "viewed_original_rule_page": "/home/ddd/Documents/Codex/2026-10-22/task-2/wm043-native-review/hegemony-rule-19.png",
+  "static_assessment": [
+    "Chooser equals authenticated original shown player before target validation.",
+    "Known same-contest source receipt and source snapshot validated first.",
+    "No shield mutation during option enumeration.",
+    "Legality validated before existing shield_stops(chooser,id).",
+    "Enemy shield consumes one and returnsOk for current source, matching ordinary guard.",
+    "Friend/ally/decline preserve shields; original and next-source cases passed.",
+    "Target definition remains CharacterOrHidden, not broadened to arbitrary attachments.",
+    "Current WM043 runtime and tests exactly match8c061c11; no runtime edits this round."
+  ]
+}

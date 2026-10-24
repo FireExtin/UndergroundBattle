@@ -1,0 +1,92 @@
+{
+  "checked_at_utc": "2026-10-24T02:36:08Z",
+  "task": "Read-only check for an overseas hostname without personal information",
+  "site": {
+    "project_id": "appgprj_6adc02e46820819188f42c2474995574",
+    "status": "active",
+    "role": "owner",
+    "version": 1,
+    "slug": "hidden-world-hegemony-overseas-20261024",
+    "live": {
+      "scheme": "https",
+      "host": "hidden-world-hegemony-overseas-20261024.<account-namespace>.chatgpt.site",
+      "path": "/",
+      "contains_account_namespace": true
+    },
+    "preview": null,
+    "expected": null,
+    "get_site_updated_at": "2026-10-24T01:28:30.552839+00:00",
+    "unpersonalized_alternate_returned": false,
+    "read_only": true
+  },
+  "custom_domains": {
+    "items": [],
+    "isError": false,
+    "unparsed": false
+  },
+  "requirement": {
+    "message": "Sentinel_987cff1fe77c81919edbc46cbb704fec",
+    "date": "2026-10-03",
+    "text": "记住域名里不要有我的任何个人信息。"
+  },
+  "privacy_requirement_met_by_current_default": false,
+  "official_capabilities": [
+    {
+      "tool": "sites_get_site",
+      "action_taken": "read",
+      "conclusion": "Current live default contains an account namespace; no anonymous alternate was returned."
+    },
+    {
+      "tool": "sites_list_custom_domains",
+      "action_taken": "read",
+      "conclusion": "No configured custom domains."
+    },
+    {
+      "tool": "sites_change_site_slug",
+      "action_taken": "description inspected only",
+      "inputs": [
+        "project_id",
+        "slug"
+      ],
+      "conclusion": "Changes the public URL label. No account-namespace parameter is exposed; it is not verified to remove the namespace."
+    },
+    {
+      "tool": "sites_add_custom_domain",
+      "action_taken": "description inspected only",
+      "conclusion": "Supported for an existing published Site; returns CNAME or apex A targets and required provider validation records. DNS and SSL activation are required before routing."
+    }
+  ],
+  "options": [
+    {
+      "option": "Default hostname without personal namespace",
+      "status": "No verified option returned by current official responses or available interfaces.",
+      "availability": "unknown; not claimed globally impossible"
+    },
+    {
+      "option": "User-owned nonpersonal custom hostname",
+      "status": "Officially supported, but none is configured.",
+      "requires": [
+        "A chosen hostname already controlled by the user",
+        "A later explicitly authorized domain-binding operation",
+        "Required DNS/validation records and active SSL"
+      ],
+      "limits": [
+        "No domain was purchased, bound, or modified.",
+        "No exposed capability was found to disable the generated default hostname; do not promise removal of its direct availability."
+      ]
+    },
+    {
+      "option": "Change slug only",
+      "status": "Insufficient evidence to meet the whole-hostname privacy requirement.",
+      "limits": [
+        "Would change the existing URL and was not executed."
+      ]
+    }
+  ],
+  "mutations_performed": [],
+  "dns_operations_performed": [],
+  "domains_purchased": [],
+  "health_403_retried": false,
+  "official_skill": "skill://plugin_connector_1p_689987207de08191979cf68eca2941c6/sites/SKILL.md",
+  "scope": "Current official Sites tool contracts and successful read-only project/domain responses, not guessed alternate URLs."
+}
