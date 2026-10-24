@@ -145,6 +145,8 @@ pub struct CardView {
     pub face_down: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cost: Option<u32>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub cost_appearance: Option<crate::catalog::CostAppearance>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub effective_cost: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1067,6 +1069,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_xq19_state()?;
         self.validate_cq28_state()?;
         self.validate_cq15_state()?;
         self.validate_tax_ban_state()?;

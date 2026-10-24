@@ -1,4 +1,4 @@
-//! CQ28 unambiguous repeated-same modes. Mixed-order modes await a ruling.
+//! CQ28: two selected items resolve in printed order (explicit user ruling).
 //! All modes/targets are declared before the existing printed-cost transaction.
 use crate::{engine::RuleResult, model::*, rules::*};
 use serde::{Deserialize, Serialize};
@@ -9,6 +9,7 @@ pub(crate) const DRAFT: &str = "cq28-before-payment";
 pub struct GateDefense {
     pub frame: Box<ResolutionFrame>,
     pub slot: usize,
+    pub op_index: usize,
     pub turn: u32,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -16,22 +17,30 @@ pub struct GateDefense {
 pub struct GateDraft {
     pub actor: usize,
     pub source: Card,
-    pub mode: Option<u8>,
+    pub modes: Vec<u8>,
     pub targets: Vec<String>,
 }
 fn same<T: Serialize>(a: &T, b: &T) -> bool {
     serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap()
 }
-fn mode(n: u8) -> Mode {
-    let labels = [
-        "将顶六张置墓，两次",
-        "从墓地放置费用不大于2角色，两次",
-        "角色防御-1，两次",
-        "抓一张，两次",
-    ];
+fn pair_keys() -> impl Iterator<Item = [u8; 2]> {
+    (0..4).flat_map(|a| (a..4).map(move |b| [a, b]))
+}
+fn item_label(n: u8) -> &'static str {
+    [
+        "将顶六张置墓",
+        "从墓地放置费用不大于2角色",
+        "目标角色本回合防御-1",
+        "抓一张",
+    ][n as usize]
+}
+fn pair_key(pair: [u8; 2]) -> String {
+    format!("pair-{}-{}", pair[0], pair[1])
+}
+fn mode(pair: [u8; 2]) -> Mode {
     let mut targets = vec![];
     let mut ops = vec![];
-    for _ in 0..2 {
+    for n in pair {
         let start = targets.len();
         match n {
             1 => {
@@ -64,8 +73,12 @@ fn mode(n: u8) -> Mode {
         });
     }
     Mode {
-        key: format!("repeat-{n}"),
-        label: labels[n as usize].into(),
+        key: pair_key(pair),
+        label: format!(
+            "{}；{}（按卡面顺序）",
+            item_label(pair[0]),
+            item_label(pair[1])
+        ),
         targets,
         ops,
     }
@@ -73,7 +86,7 @@ fn mode(n: u8) -> Mode {
 pub(crate) fn definition() -> Definition {
     let mut a = ability(
         KEY,
-        "选择两项（当前只开放同项重复；混合顺序待裁定）",
+        "选择两项，可重复；按卡面列项顺序结算",
         Timing::Standard,
         vec![],
         vec![],
@@ -81,11 +94,11 @@ pub(crate) fn definition() -> Definition {
         None,
     );
     a.play_only = true;
-    a.modes = (0..4).map(mode).collect();
+    a.modes = pair_keys().map(mode).collect();
     with_abilities(vec![a])
 }
-fn expanded(n: u8) -> AbilitySpec {
-    let m = mode(n);
+fn expanded(pair: [u8; 2]) -> AbilitySpec {
+    let m = mode(pair);
     let mut a = definition().abilities.remove(0);
     a.targets = m.targets;
     a.ops = m.ops;
@@ -107,9 +120,10 @@ pub(crate) fn related(id: &str, a: &AbilitySpec) -> bool {
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     if id != "CQ28"
-        || (!same(a, &definition().abilities[0]) && !(0..4).any(|n| same(a, &expanded(n))))
+        || (!same(a, &definition().abilities[0])
+            && !pair_keys().any(|pair| same(a, &expanded(pair))))
     {
-        return Err("咒欲之门只准入两次完整同项；混合模式顺序仍待明确".into());
+        return Err("咒欲之门须保留两个完整选项并按卡面顺序结算".into());
     }
     Ok(())
 }
@@ -154,7 +168,10 @@ impl Game {
             || d.source.controller != d.actor
             || d.source.face_down
             || !self.players[d.actor].hand.contains(&d.source)
-            || d.mode.is_some_and(|n| n > 3)
+            || d.modes.len() > 2
+            || d.modes.iter().any(|n| *n > 3)
+            || d.modes.len() == 2 && d.modes[0] > d.modes[1]
+            || d.modes.len() < 2 && !d.targets.is_empty()
         {
             return Err("咒欲之门须由原手牌持有者先声明模式目标".into());
         }
@@ -162,8 +179,8 @@ impl Game {
     }
     fn cq28_options(&self, d: &GateDraft) -> RuleResult<Vec<ChoiceOption>> {
         let s = self.cq28_source(d)?;
-        if let Some(n) = d.mode {
-            let a = expanded(n);
+        if d.modes.len() == 2 {
+            let a = expanded([d.modes[0], d.modes[1]]);
             if d.targets.len() >= a.targets.len() {
                 return Err("咒欲之门目标声明已完成".into());
             }
@@ -188,14 +205,14 @@ impl Game {
         }
         Ok((0..4)
             .filter(|n| {
-                expanded(*n)
+                expanded([*n, *n])
                     .targets
                     .iter()
                     .all(|slot| !self.cq28_target_ids(d.actor, &s, slot).is_empty())
             })
             .map(|n| ChoiceOption {
-                id: format!("repeat-{n}"),
-                label: mode(n).label,
+                id: format!("item-{n}"),
+                label: item_label(n).into(),
                 card: None,
             })
             .collect())
@@ -205,8 +222,11 @@ impl Game {
         self.choice(
             d.actor,
             DRAFT,
-            if d.mode.is_none() {
-                "咒欲之门：选择重复同项（混合模式暂未开放）".into()
+            if d.modes.len() < 2 {
+                format!(
+                    "咒欲之门：选择第{}项，可重复；结算按卡面顺序",
+                    d.modes.len() + 1
+                )
             } else {
                 format!("咒欲之门：支付前选择第{}个目标", d.targets.len() + 1)
             },
@@ -240,7 +260,7 @@ impl Game {
         self.cq28_prompt(GateDraft {
             actor,
             source: c.clone(),
-            mode: None,
+            modes: vec![],
             targets: vec![],
         })
     }
@@ -264,24 +284,28 @@ impl Game {
         {
             return Err("咒欲之门仅接受当前单项模式或原合法目标".into());
         }
-        if d.mode.is_none() {
-            d.mode = Some(
+        if d.modes.len() < 2 {
+            d.modes.push(
                 selected[0]
-                    .strip_prefix("repeat-")
+                    .strip_prefix("item-")
                     .and_then(|n| n.parse().ok())
-                    .ok_or("未知重复模式")?,
-            )
+                    .ok_or("未知选项")?,
+            );
+            if d.modes.len() < 2 {
+                return self.cq28_prompt(d);
+            }
+            d.modes.sort_unstable();
         } else {
-            d.targets.push(selected[0].clone())
+            d.targets.push(selected[0].clone());
         }
-        let n = d.mode.unwrap();
-        if d.targets.len() < expanded(n).targets.len() {
+        let pair = [d.modes[0], d.modes[1]];
+        if d.targets.len() < expanded(pair).targets.len() {
             return self.cq28_prompt(d);
         }
         let play = Action {
             card_id: Some(d.source.id),
             ability_id: Some(KEY.into()),
-            option: Some(format!("repeat-{n}")),
+            option: Some(pair_key(pair)),
             selected: Some(d.targets),
             ..Action::new("play")
         };
@@ -307,10 +331,10 @@ impl Game {
                 .as_ref()
                 .is_none_or(|v| v.len() != spec.targets.len())
             || a.option.as_deref().is_none_or(|key| {
-                !(0..4).any(|n| key == format!("repeat-{n}") && same(spec, &expanded(n)))
+                !pair_keys().any(|pair| key == pair_key(pair) && same(spec, &expanded(pair)))
             })
         {
-            return Err("咒欲之门须在付款前声明两次同项及全部原目标".into());
+            return Err("咒欲之门须在付款前声明两项及全部原目标，结算按卡面顺序".into());
         }
         spec.targets
             .iter()
@@ -344,11 +368,19 @@ impl Game {
         if !relevant {
             return Ok(());
         }
-        let n = match f.steps.first().map(|s| &s.op) {
-            Some(Op::CQ28Mode { mode, .. }) if *mode < 4 => *mode,
-            _ => return Err("咒欲之门须保留完整双模式程序".into()),
-        };
-        let a = expanded(n);
+        let modes = f
+            .steps
+            .iter()
+            .map(|s| match s.op {
+                Op::CQ28Mode { mode, .. } if mode < 4 => Some(mode),
+                _ => None,
+            })
+            .collect::<Option<Vec<_>>>()
+            .ok_or("咒欲之门须保留完整双模式程序")?;
+        if modes.len() != 2 || modes[0] > modes[1] {
+            return Err("咒欲之门的两个选项必须按卡面顺序冻结".into());
+        }
+        let a = expanded([modes[0], modes[1]]);
         if f.actor >= self.players.len()
             || f.source.card.definition != "CQ28"
             || f.source.card.owner != f.actor
@@ -419,12 +451,13 @@ impl Game {
                     self.cq28_defense_reductions.push(GateDefense {
                         frame: Box::new(f.clone()),
                         slot,
+                        op_index: f.cursor - 1,
                         turn: self.turn,
                     });
                 }
             }
             3 => self.draw(f.actor, 1)?,
-            _ => return Err("未开放混合或未知模式".into()),
+            _ => return Err("未知咒欲之门模式".into()),
         }
         Ok(())
     }
@@ -443,9 +476,10 @@ impl Game {
         for m in &self.cq28_defense_reductions {
             self.validate_cq28_frame(&m.frame)?;
             if m.turn != self.turn
-                || m.slot > 1
-                || m.frame.cursor != m.slot + 1
-                || !matches!(m.frame.steps[m.slot].op, Op::CQ28Mode { mode: 2, .. })
+                || m.op_index >= 2
+                || m.slot >= m.frame.targets.len()
+                || m.frame.cursor != m.op_index + 1
+                || !matches!(m.frame.steps[m.op_index].op,Op::CQ28Mode{mode:2,slot} if slot==m.slot)
             {
                 return Err("咒欲之门防御减值须来自原结算实例与本回合".into());
             }
@@ -471,8 +505,8 @@ impl Game {
                 {
                     return Err("咒欲之门声明续体无效".into());
                 }
-                if let Some(n) = draft.mode {
-                    let a = expanded(n);
+                if draft.modes.len() == 2 {
+                    let a = expanded([draft.modes[0], draft.modes[1]]);
                     if draft
                         .targets
                         .iter()

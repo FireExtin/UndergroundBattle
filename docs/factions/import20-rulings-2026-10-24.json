@@ -1,0 +1,59 @@
+{
+  "baseCommit": "a0963928fb0b74a76778f1a8ccc7af0ab6bd2ca8",
+  "priorCatalogCount": 271,
+  "priorCardsCanonicalSha256": "ded1ecf727d37296800157f503621fe88968bc4d6ec083483d4cef9095d4bbb4",
+  "priorSpecificationsSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+  "newCards": [
+    "XQ19"
+  ],
+  "completedExistingCard": "CQ28",
+  "sourceCorrections": [],
+  "engineVersion": "rust-v0.2.111-import20-rulings-complete",
+  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+  "priorReference20AuthorNativeWipComplete": 18,
+  "potentialReference20AuthorNativeWipComplete": 20,
+  "batch20": [
+    "BQ090",
+    "BQ064",
+    "BQ039",
+    "WM028",
+    "WM025",
+    "WM024",
+    "BQ081",
+    "WM057",
+    "XG13",
+    "WM064",
+    "CQ24",
+    "BQ092",
+    "BQ093",
+    "CQ18",
+    "CQ19",
+    "XG20",
+    "BQ057",
+    "CQ15",
+    "CQ28",
+    "XQ19"
+  ],
+  "priorPublicSupported": 213,
+  "candidatePublicSupported": 233,
+  "admission": "Exactly this20-card batch enabled in the local release candidate, pending public acceptance; previous unsupported cards remain closed.",
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing author and illustrator permission for UWPro. Original XQ19/CQ28 pixels checked; native mechanisms use our existing kernel.",
+    "SuezCodeOrArtCopied": false
+  },
+  "rulings": {
+    "parentClarificationMessage": "Sentinel_a31e6e6374948191beb9250d9d46ae49",
+    "userReplyMessage": "Sentinel_3fe3a88f00b08191b948b98dbd1100a1",
+    "userReply": "我指的是3项都可以",
+    "CQ28": "Two selected items resolve in printed item order, irrespective of click order; repeats remain two distinct instances. All targets before payment, no newly milled or entered UID substitution.",
+    "XQ19": "Printed dash remains typed dash; numeric comparison/total/limit value0. Still cannot be normally face-up played or paid-revealed. Original hand-only Standard0 placement into region1 requires at least4 physical in-play time markers at activation. Oracle authorization is unrelated to card rules and not exercised here."
+  }
+}

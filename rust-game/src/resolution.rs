@@ -1622,6 +1622,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_xq19_frame(&frame)?;
         self.validate_cq28_frame(&frame)?;
         self.validate_resource_frame(&frame)?;
         self.validate_exposure_frame(&frame)?;
@@ -1667,6 +1668,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::XQ19FromHand { .. } => self.xq19_place_hand(&frame)?,
                 Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,
                 Op::CQ15DestroySearch { .. } => return self.cq15_destroy_search(frame),
                 Op::BQ039BattleDiscard { .. } => return self.batch20_combat_discard_start(frame),

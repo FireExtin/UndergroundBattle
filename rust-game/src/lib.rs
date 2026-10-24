@@ -1,3 +1,6 @@
+mod import20_entropy;
+#[cfg(test)]
+mod import20_entropy_tests;
 mod import20_gate;
 #[cfg(test)]
 mod import20_gate_tests;

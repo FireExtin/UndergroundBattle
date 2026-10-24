@@ -4,12 +4,12 @@ import { ArchiveArtwork, useArchivePresentation } from './ArchivePresentation';
 
 /** Match the server's concealed projection: only its current controller sees print. */
 export function visibleCard(card: Card, viewerId: string): Card {
-  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, chargeMarkers: undefined, currentLeader: undefined, chosenNumber: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
+  if (card.kind === 'asset' || card.kind === 'sealed') return { ...card, costAppearance: undefined, chargeMarkers: undefined, currentLeader: undefined, chosenNumber: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (card.faceDown) card = { ...card, currentLeader: undefined, chosenNumber: undefined, namedCharacter: undefined, chosenSubtype: undefined, currentWound: undefined, permanentDefenseMarkers: undefined, currentEnemySpellProtection: undefined };
   if (!card.faceDown || card.controller === viewerId) {
     return card.faceDown && (card.convertedTemporaryIcons || card.currentKill !== undefined || card.currentWound !== undefined || card.currentRetreat !== undefined || card.currentDomains !== undefined || card.currentMobility !== undefined || card.currentMobilitySource !== undefined || card.currentPublic !== undefined || card.permanentCombatMarkers !== undefined) ? { ...card, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, currentDomains: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentPublic: undefined, permanentCombatMarkers: undefined } : card;
   }
-  return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, effectiveCost: undefined,
+  return { ...card, cardId: undefined, name: '暗藏者', kind: 'hidden', cost: undefined, costAppearance: undefined, effectiveCost: undefined,
     text: undefined, icons: undefined, convertedTemporaryIcons: undefined, currentKill: undefined, currentWound: undefined, currentRetreat: undefined, defense: undefined, damage: undefined, shield: undefined,
     wounds: undefined, timeMarkers: undefined, color: undefined, magic: undefined, currentDomains: undefined, currentSubtypes: undefined, currentRenown: undefined, currentLeader: undefined, currentCombatGlory: undefined, currentMobility: undefined, currentMobilitySource: undefined, currentBarrier: undefined, currentDamagePrevention: undefined, currentSpiritProtection: undefined, currentPrintedDefense: undefined, currentPublic: undefined, permanentCombatMarkers: undefined };
 }
@@ -79,8 +79,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
+  const dashCost = card.costAppearance === 'dash' || definition?.costAppearance === 'dash';
   const actualCost = card.effectiveCost ?? printedCost;
-  const adjustedCost = card.effectiveCost !== undefined && actualCost !== printedCost;
+  const adjustedCost = !dashCost && card.effectiveCost !== undefined && actualCost !== printedCost;
   const printedIcons = definition?.icons?.permanent || definition?.permanentIcons;
   const permanent = printedIcons || card.icons;
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
@@ -89,7 +90,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const defense = card.defense ?? definition?.defense;
   const type = hidden ? '身份未公开' : archive && asset ? '资产' : dualCharacter ? `角色／附属 · ${definition?.subtypes?.join(' · ') || ''}` : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
-    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{actualCost}</span>}</span>
+    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={dashCost ? '印刷费用为横杠；比较费用时按0计算' : adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={dashCost ? '印刷费用 —' : adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{dashCost ? '—' : actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
     {!compact && subtitle && <span className="hg-card-subtitle">{subtitle}</span>}
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}

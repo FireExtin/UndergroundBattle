@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.101-import20-swords-gate-partial",
-  "engineVersion": "rust-v0.2.110-import20-swords-gate-partial",
+  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+  "engineVersion": "rust-v0.2.111-import20-rulings-complete",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
@@ -10145,7 +10145,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ064",
@@ -10186,7 +10186,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ039",
@@ -10228,7 +10228,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "WM028",
@@ -10268,7 +10268,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "阴谋勾画之所"
     },
     {
@@ -10313,7 +10313,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false,
+      "supported": true,
       "subtitle": "阴影之君"
     },
     {
@@ -10354,7 +10354,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ081",
@@ -10395,7 +10395,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "WM057",
@@ -10436,7 +10436,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XG13",
@@ -10472,7 +10472,7 @@
       "text": "触发 每当另一个本方邪教徒进场时，若本方秘社上有隐秘〔月形〕标志，在该角色上放置一个时间标志。\n快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张鸣钟教派牌或具有血脉图标的牌，其所需费用减少②。",
       "keywords": [],
       "unique": true,
-      "supported": false,
+      "supported": true,
       "source": {
         "file": "docs/factions/card-specifications.json",
         "record": "XG13",
@@ -10510,7 +10510,7 @@
       "text": "结附于目标本方人类角色\n持续 受此结附的角色获得永久调查1、永久战斗2、永久势力1和防御+2，并获得领袖和声望，且额外具有罪犯类别。\n快速行动①，横置，牺牲一个罪犯：若目标本方暗藏者的正面是罪犯类别，则令其现身。",
       "keywords": [],
       "unique": false,
-      "supported": false,
+      "supported": true,
       "source": {
         "file": "docs/factions/card-specifications.json",
         "record": "WM064",
@@ -10554,7 +10554,7 @@
         "隐秘〔月形〕撤回"
       ],
       "unique": true,
-      "supported": false,
+      "supported": true,
       "source": {
         "file": "docs/factions/card-specifications.json",
         "record": "CQ24",
@@ -10603,7 +10603,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ093",
@@ -10644,7 +10644,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ18",
@@ -10688,7 +10688,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ19",
@@ -10730,7 +10730,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "XG20",
@@ -10775,7 +10775,7 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "BQ057",
@@ -10820,7 +10820,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ15",
@@ -10865,7 +10865,7 @@
       },
       "unique": true,
       "society": "",
-      "supported": false
+      "supported": true
     },
     {
       "id": "CQ28",
@@ -10910,7 +10910,49 @@
       },
       "unique": false,
       "society": "",
-      "supported": false
+      "supported": true
+    },
+    {
+      "id": "XQ19",
+      "name": "熵力化身",
+      "subtitle": "",
+      "kind": "character",
+      "subtypes": [
+        "幽灵"
+      ],
+      "cost": 0,
+      "costAppearance": "dash",
+      "loyalty": [],
+      "loyaltyText": "",
+      "color": "红",
+      "magic": "星辰",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "text": "灵体　杀伤3\n熵力化身不能正面打出或付费现身。\n【手牌标准行动】0：将熵力化身从你的手中放置进场，且置于地区一。你只能在场上有四个或更多时间标志时发动此能力。",
+      "keywords": [
+        "灵体",
+        "杀伤3"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "XQ19",
+        "image": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+        "imageSha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb"
+      },
+      "unique": false,
+      "society": "",
+      "supported": true
     }
   ],
   "decks": [

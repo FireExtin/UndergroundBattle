@@ -541,7 +541,7 @@ fn wm057_borrow_room_normal_duplicate_and_other_eligible_enemy_stale_command_do_
 #[test]
 fn wm057_borrow_keeps_printed_program_and_closed_public_gate_no_cost_assumption_for_xq19() {
     assert_eq!(catalog::card("WM057").color, "黑");
-    assert!(!catalog::card("WM057").supported);
+    assert!(catalog::card("WM057").supported);
     assert_eq!(
         b::definition("WM057").unwrap().abilities[0].timing,
         Timing::Standard
@@ -552,6 +552,6 @@ fn wm057_borrow_keeps_printed_program_and_closed_public_gate_no_cost_assumption_
             .as_slice(),
         [Cost::Assets(2), Cost::ExhaustSource]
     ));
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "XQ19"));
+    assert_eq!(catalog::card("XQ19").cost_appearance,Some(catalog::CostAppearance::Dash));
     assert_current_serial_catalog();
 }

@@ -1,3 +1,4 @@
+import { beforeBatch20Admission } from './import20-spec-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,16 +8,18 @@ const read=n=>readFileSync(new URL('../../'+n,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
 const pool=JSON.parse(read('rust-game/data/cards.json'));
+const priorCards=beforeBatch20Admission(pool.cards);
+
 const specifications=JSON.parse(read('docs/factions/card-specifications.json'));
 test('black pair retains exact258 prior records and public213, without changing the frozen20 roster',()=>{
   assert.equal(intake.priorCatalogCount,258);
   const digest='a3d6acd39e625636da9e8c9fae9c14bac2c83b1ae56ff2c71d828cece9e50b17';
-  assert.equal(intake.priorCardsCanonicalSha256,digest);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,258)))),digest);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id),['BQ081','WM057']);
-  assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id), ['XG13']);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
-  assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
-  for(const id of intake.allEightUnadmitted)assert.equal(pool.cards.find(c=>c.id===id).supported,false);
+  assert.equal(intake.priorCardsCanonicalSha256,digest);assert.equal(sha(JSON.stringify(canonical(priorCards.slice(0,258)))),digest);
+  assert.equal(new Set(priorCards.map(c=>c.id)).size,272);assert.deepEqual(priorCards.slice(258,260).map(c=>c.id),['BQ081','WM057']);
+  assert.deepEqual(priorCards.slice(260,261).map(c=>c.id), ['XG13']);
+  assert.deepEqual(priorCards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(priorCards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(priorCards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(priorCards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
+  assert.equal(priorCards.filter(c=>c.supported!==false).length,213);
+  for(const id of intake.allEightUnadmitted)assert.equal(priorCards.find(c=>c.id===id).supported,false);
   assert.equal(intake.current50ReviewedNativeClosed,38);assert.equal(intake.published,false);
 });
 test('three BQ081 corrections preserve every other byte of both earlier whole specification identities',()=>{
@@ -35,7 +38,7 @@ test('black pair prints and original pixels are exact and ordinary card registra
     ['BQ081','b756871bdbc90a17a24c219ec3380f09e999ab7b64042335bb9f679cea7dac4f',3,['不死生物','食尸鬼','植物'],'死亡'],
     ['WM057','5ec31d37db587a2e8859534ceba7fec5a670845e9e3959d2733aa9cc6026c697',2,['人类','罪犯','工程师'],''],
   ]){
-    const c=pool.cards.find(c=>c.id===id),s=specifications.cards[id];assert.equal(c.color,'黑');assert.equal(c.kind,'character');assert.equal(c.cost,cost);assert.equal(c.magic,magic);
+    const c=priorCards.find(c=>c.id===id),s=specifications.cards[id];assert.equal(c.color,'黑');assert.equal(c.kind,'character');assert.equal(c.cost,cost);assert.equal(c.magic,magic);
     assert.equal(c.defense,1);assert.deepEqual(c.loyalty,['黑色']);assert.deepEqual(c.subtypes,subtypes);assert.equal(c.unique,false);
     assert.equal(c.text,s.fields.printedRuleTextLines.join('\n'));assert.deepEqual(c.icons,{permanent:s.fields.permanentIcons,temporary:s.fields.temporaryIcons});
     assert.equal(sha(read(s.sourceVerification.imagePath)),hash);assert.equal(sha(read(`web/public/cards/${id}.jpg`)),hash);

@@ -11,7 +11,7 @@ fn priority(g:&mut Game,actor:usize){for _ in 0..8{if g.can_fast(actor){return;}
 #[test]
 fn import20_wm064_exact_printed_attachment_and_closed_definition(){
     let c=catalog::card(t::ID);assert_eq!((c.cost,c.color.as_str(),c.kind.as_str()),(6,"黑","attachment"));assert_eq!(c.loyalty,["黑色"]);
-    assert!(!c.supported&&!c.unique);assert!(catalog::runtime_implemented(c));let d=definition(t::ID);assert!(d.attachment.is_some());
+    assert!(c.supported&&!c.unique);assert!(catalog::runtime_implemented(c));let d=definition(t::ID);assert!(d.attachment.is_some());
     assert_eq!(d.attachment.as_ref().unwrap().host_icons,Icons{investigation:1,combat:2,influence:1});assert_eq!(d.attachment.as_ref().unwrap().host_defense_bonus,2);
     let mut all=definitions().clone();all.get_mut(t::ID).unwrap().abilities.pop();assert!(validate_definitions(&all).is_err());
     let mut all=definitions().clone();all.get_mut("JC125").unwrap().abilities.push(d.abilities[1].clone());assert!(validate_definitions(&all).is_err());

@@ -3,11 +3,15 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.101-import20-swords-gate-partial";
+pub const POOL_VERSION: &str = "limited-v2.102-import20-rulings-complete";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.110-import20-swords-gate-partial";
+pub const ENGINE_VERSION: &str = "rust-v0.2.111-import20-rulings-complete";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.110-import20-swords-gate-partial-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.111-import20-rulings-complete-fixture";
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all="lowercase")]
+pub enum CostAppearance { Dash }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -23,6 +27,8 @@ pub struct CardDefinition {
     pub r#type: String,
     #[serde(default)]
     pub cost: u32,
+    #[serde(default, skip_serializing_if="Option::is_none")]
+    pub cost_appearance: Option<CostAppearance>,
     #[serde(default)]
     pub loyalty: Vec<String>,
     #[serde(default)]
@@ -241,6 +247,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
+    if d.id=="XQ19" { return true; }
     if d.id=="CQ28" { return true; }
     if d.id=="CQ15" { return true; }
     if crate::import20_tax_ban::CARDS.contains(&d.id.as_str()) { return true; }

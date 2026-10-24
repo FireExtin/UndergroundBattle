@@ -333,7 +333,7 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
             <button type="button" className="hg-library-card-preview" aria-label={`预览 ${label}`} onKeyDown={event => moveCardGridFocus(event, catalogGrid.current)} onClick={event => openPreview(card.id, event.currentTarget, choices.map(item => item.id))}><DeckCardFace key={card.id} card={card} /><span className={`hg-library-card-badge hg-admission-${admission.status}`}>{admission.label}{count ? ` · 已加入 ×${count}` : ''}</span></button>
             <div className="hg-library-card-heading"><strong>{card.name}</strong></div>
             <div className="hg-library-grid-counter"><button type="button" className="hg-button hg-button-quiet" aria-label={`目录减少 ${label}`} disabled={disabled || count === 0} onClick={() => changeCount(card.id, -1)}>−</button><span aria-label={`${label}已加入张数`}>{count} 张</span><button type="button" className="hg-button hg-button-quiet" aria-label={`添加 ${label}`} disabled={disabled || !isEditableDeckCard(card)} onClick={() => changeCount(card.id, 1)}>{density === 'compact' ? '+' : '+ 添加'}</button></div>
-            <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind}{card.kind !== 'society' && ` · 费用 ${card.cost}`}</small>
+            <small>{card.id} · {factionName(card)} · {kinds[card.kind] || card.kind}{card.kind !== 'society' && ` · 费用 ${card.costAppearance === 'dash' ? '—' : card.cost}`}</small>
             <small>{copyLabel(card)}</small>
             {issue && <p className="hg-library-warning">当前牌组：{issue.message}</p>}
             {admission.status !== 'buildable' && <p className="hg-library-warning">{admission.reason}</p>}

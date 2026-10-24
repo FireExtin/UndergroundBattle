@@ -119,7 +119,7 @@ fn import20_industry_original_fields_exact_both_exhaustions_and_closed_gate() {
             (cost, "黑", "attachment", Some("圣甲虫产业"))
         );
         assert_eq!(d.loyalty, ["黑色"]);
-        assert!(!d.supported && !d.unique);
+        assert!(d.supported && !d.unique);
         assert!(catalog::runtime_implemented(d));
     }
     assert!(catalog::card("BQ092").text.contains("横置本牌"));

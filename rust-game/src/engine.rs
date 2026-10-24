@@ -750,6 +750,7 @@ impl Game {
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
                 let r = if chaos_play {
                     if a.region.is_some() { return Err("混乱进场不能指定地区".into()); }
@@ -854,6 +855,7 @@ impl Game {
             "reveal" => {
                 let id = a.card_id.as_deref().ok_or("请选择暗藏者")?;
                 let (r, c) = self.board(id).ok_or("实体引用已失效")?;
+                if c.definition=="XQ19"{return Err("熵力化身不能付费现身".into())}
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
@@ -972,6 +974,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref()==Some(crate::import20_entropy::HAND){return self.xq19_begin_hand(seat,&a);}
                 if a.ability_id.as_deref().is_some_and(|k|k.starts_with(crate::import20_swords::PREFIX)) { return self.cq15_begin(seat,&a); }
                 if a.ability_id.as_deref()==Some(crate::import20_tax_ban::ASSET) { return self.pete_begin_asset(seat,&a); }
                 if a.ability_id.as_deref().is_some_and(crate::import20_contest::is_hand_key) { return self.import20_begin_hand(seat, &a); }
@@ -2186,6 +2189,7 @@ impl Game {
         receipts
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_xq19_state()?;
         self.validate_cq28_state()?;
         self.validate_cq15_state()?;
         self.validate_exposure_state()?;
@@ -2531,12 +2535,14 @@ impl Game {
             region,
             exhausted: c.exhausted,
             face_down: c.face_down,
-            cost: if !asset && kind == Some("attachment") && crate::batch4_plans::secret(c) { Some(1) } else if hidden || asset || d.kind == "society" {
+            cost_appearance: if hidden||asset||kind==Some("sealed"){None}else{d.cost_appearance},
+            cost: if !asset && kind == Some("attachment") && crate::batch4_plans::secret(c) { Some(1) } else if hidden || asset || d.kind == "society" || d.cost_appearance.is_some() {
                 None
             } else {
                 Some(d.cost)
             },
             effective_cost: if hidden
+                || d.cost_appearance.is_some()
                 || asset
                 || !self.players[viewer].hand.iter().any(|own| own.id == c.id)
             {
@@ -2914,6 +2920,7 @@ impl Game {
                 .collect::<Vec<_>>();
             for c in &self.players[seat].hand {
                 let d = card(&c.definition);
+                if c.definition=="XQ19"&&self.can_standard(seat){candidates.push((Action{card_id:Some(c.id.clone()),ability_id:Some(crate::import20_entropy::HAND.into()),..Action::new("activate")},"熵力化身手牌行动0：四时间标志，放置进地区一".into()));}
                 if let Some(hand) = crate::import20_contest::hand_ability(&c.definition).filter(|_| self.can_standard(seat)) {
                     candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(hand.key), ..Action::new("activate") }, hand.label));
                 }

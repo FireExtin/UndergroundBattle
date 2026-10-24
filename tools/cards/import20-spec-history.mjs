@@ -26,7 +26,11 @@ export const industrySlice = JSON.parse(readFileSync(new URL('../../docs/faction
 export const sentinelSlice = JSON.parse(readFileSync(new URL('../../docs/factions/import20-sentinel-2026-10-24.json', import.meta.url)));
 export const taxBanSlice = JSON.parse(readFileSync(new URL('../../docs/factions/import20-tax-ban-2026-10-24.json', import.meta.url)));
 export const wm057BorrowSlice = JSON.parse(readFileSync(new URL('../../docs/factions/wm057-personal-borrow-2026-10-24.json', import.meta.url)));
-export const currentImport20 = JSON.parse(readFileSync(new URL('../../docs/factions/import20-swords-gate-2026-10-24.json', import.meta.url)));
+export const swordsGateSlice = JSON.parse(readFileSync(new URL('../../docs/factions/import20-swords-gate-2026-10-24.json', import.meta.url)));
+export const currentImport20 = JSON.parse(readFileSync(new URL('../../docs/factions/import20-rulings-2026-10-24.json', import.meta.url)));
+// Historical source checks reconstruct only the explicit batch20 admission flags.
+// The new ruling test checks that every actual flag matches this bounded list.
+export function beforeBatch20Admission(cards) {const prior=structuredClone(cards);for(const card of prior)if(currentImport20.batch20.includes(card.id))card.supported=false;return prior;}
 export function beforeVampireSpecifications(current) {
   const prior = beforeBlackSpecifications(current);
   assert.equal(vampireSlice.sourceCorrections.length, 6);

@@ -111,6 +111,7 @@ impl Game {
         view.wounds = None;
         view.shield = None;
         view.cost = None;
+        view.cost_appearance = None;
         view.effective_cost = None;
         view.text = Some("封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌".into());
         view

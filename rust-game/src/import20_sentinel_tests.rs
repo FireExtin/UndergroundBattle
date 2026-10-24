@@ -68,7 +68,7 @@ fn import20_sentinel_cq19_original_unique_gray_and_exact_standard_costs() {
         (&*d.name, d.cost, &*d.color, &*d.kind),
         ("达摩克里斯之剑", 4, "灰", "attachment")
     );
-    assert!(d.unique && !d.supported);
+    assert!(d.unique && d.supported);
     assert_eq!(d.loyalty, ["灰色"]);
     assert_eq!(d.subtitle.as_deref(), Some("天基动能武器系统"));
     let a = s::definition("CQ19").unwrap();
@@ -288,7 +288,7 @@ fn import20_sentinel_cq18_original_gray_unique_exact_body_and_closed_pool() {
         ("任秋雨", 4, "灰", Some(2))
     );
     assert_eq!(d.loyalty, ["灰色", "灰色", "灰色"]);
-    assert!(d.unique && !d.supported);
+    assert!(d.unique && d.supported);
     assert_eq!(
         d.permanent_icons,
         Icons {
@@ -299,14 +299,14 @@ fn import20_sentinel_cq18_original_gray_unique_exact_body_and_closed_pool() {
     );
     assert_eq!(d.magic_icon, MagicIcon::Mind);
     assert_eq!(d.subtypes, ["人类", "超能力者", "特工"]);
-    assert_current_serial_catalog(); // exact prior267 digest, new tail and public213
+    assert_current_serial_catalog(); // exact prior267 digest, bounded batch20 admission and current tail
     assert_eq!(
         catalog::catalog()
             .cards
             .iter()
             .filter(|d| d.supported)
             .count(),
-        213
+        233
     );
 }
 #[test]

@@ -21,7 +21,7 @@ fn destroy_character(g:&mut Game,id:&str){fund(g,2,"JC084",2);let h=held(g,"BQ09
 fn destroy_attachment(g:&mut Game,id:&str){fund(g,2,"JC005",2);let h=held(g,"JC005",2);priority(g,2);act(g,2,Action{card_id:Some(h),target_id:Some(id.into()),..Action::new("play")});pass_top(g);assert!(!g.attachments.iter().any(|a|a.card.id==id));}
 #[test]
 fn import20_cq24_original_cost3_limit_conditional_retreat_and_nonasset(){
-    let d=catalog::card(c::ID);assert_eq!((d.cost,d.color.as_str(),d.subtitle.as_deref(),d.defense),(1,"黑",Some("神偷"),Some(1)));assert_eq!(d.loyalty,["黑色","黑色"]);assert!(d.unique&&!d.supported);
+    let d=catalog::card(c::ID);assert_eq!((d.cost,d.color.as_str(),d.subtitle.as_deref(),d.defense),(1,"黑",Some("神偷"),Some(1)));assert_eq!(d.loyalty,["黑色","黑色"]);assert!(d.unique&&d.supported);
     assert_eq!(d.temporary_icons.influence,2);assert!(d.text.contains("等于③"));assert!(!d.text.contains("等于⑤"));assert!(!definition(c::ID).traits.retreat);
     let mut g=game();let id=field(&mut g,c::ID,0);assert!(!g.has_retreat(g.board(&id).unwrap().1));g.players[1].society_zone.secrecy=1;assert!(!g.has_retreat(g.board(&id).unwrap().1));g.players[0].society_zone.secrecy=1;assert!(g.has_retreat(g.board(&id).unwrap().1));
     for s in 0..4{assert_eq!(g.card_view(g.board(&id).unwrap().1,s,Some(0),None).current_retreat,Some(true));}

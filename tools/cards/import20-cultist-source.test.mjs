@@ -1,3 +1,4 @@
+import { beforeBatch20Admission } from './import20-spec-history.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,18 +8,20 @@ const read = n => readFileSync(new URL('../../'+n,import.meta.url));
 const sha = b => createHash('sha256').update(b).digest('hex');
 const canonical = x => Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
 const pool = JSON.parse(read('rust-game/data/cards.json'));
+const priorCards=beforeBatch20Admission(pool.cards);
+
 const specs = JSON.parse(read('docs/factions/card-specifications.json'));
 
 test('XG13 appends one original card; all260 previous records and public213 remain identical',()=>{
   const digest = 'b59caeaf73d14629cb7107d8669e57a26bb5825d121fb60e2153f9ded2a864d5';
   assert.equal(intake.priorCatalogCount,260); assert.equal(intake.priorCardsCanonicalSha256,digest);
-  assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,260)))),digest);
-  assert.equal(pool.cards.length,271); assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);
-  assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id),['XG13']);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
-  assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
-  assert.equal(pool.cards.find(c=>c.id==='XG13').supported,false);
-  assert(!pool.cards.some(c=>c.id==='XQ19'));
+  assert.equal(sha(JSON.stringify(canonical(priorCards.slice(0,260)))),digest);
+  assert.equal(priorCards.length,272); assert.equal(new Set(priorCards.map(c=>c.id)).size,272);
+  assert.deepEqual(priorCards.slice(260,261).map(c=>c.id),['XG13']);
+  assert.deepEqual(priorCards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(priorCards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(priorCards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(priorCards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
+  assert.equal(priorCards.filter(c=>c.supported!==false).length,213);
+  assert.equal(priorCards.find(c=>c.id==='XG13').supported,false);
+  assert(!priorCards.slice(0,271).some(c=>c.id==='XQ19'));
 });
 test('exact two XG13 faction-symbol corrections preserve earlier whole source identities',()=>{
   const old = '快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。';
@@ -32,7 +35,7 @@ test('exact two XG13 faction-symbol corrections preserve earlier whole source id
   assert.equal(pool.sourceSha256,sha(read('docs/factions/card-specifications.json')));
 });
 test('XG13 text, unique title, loyalty and original licensed pixels agree',()=>{
-  const d = pool.cards.find(c=>c.id==='XG13'), s = specs.cards.XG13.fields;
+  const d = priorCards.find(c=>c.id==='XG13'), s = specs.cards.XG13.fields;
   assert.equal(d.name,'玛丽·林德博格'); assert.equal(d.subtitle,'狂信者'); assert.equal(d.cost,2);
   assert.equal(d.color,'红'); assert.equal(d.society,'鸣钟教派'); assert.equal(d.magic,'鲜血');
   assert.deepEqual(d.loyalty,['红色','红色']); assert.deepEqual(d.subtypes,['人类','邪教徒']);

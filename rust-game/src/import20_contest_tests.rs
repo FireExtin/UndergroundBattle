@@ -25,10 +25,10 @@ fn start_contest(g: &mut Game) -> String {
 
 #[test]
 fn import20_source_fields_and_closed_public_admission() {
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.110-import20-swords-gate-partial");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.111-import20-rulings-complete");
     for id in c::CARDS {
         let d = catalog::card(id);
-        assert!(!d.supported);
+        assert!(d.supported);
         assert!(catalog::runtime_implemented(d));
         assert_eq!(d.kind, "spell");
     }

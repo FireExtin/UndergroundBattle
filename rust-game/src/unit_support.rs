@@ -49,15 +49,19 @@ pub(crate) fn assert_current_serial_catalog() {
         _=>v.clone(),
     }}
     let raw:Value=serde_json::from_str(include_str!("../data/cards.json")).unwrap();
-    let cards=raw["cards"].as_array().unwrap();
+    let mut current=raw["cards"].as_array().unwrap().clone();
+    for c in &mut current {if crate::import20_entropy::BATCH20.contains(&c["id"].as_str().unwrap()){assert_eq!(c["supported"],true);c["supported"]=serde_json::Value::Bool(false);}}
+    let cards=&current;
     let digest=format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..263].to_vec()))).unwrap()));
     assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..267].to_vec()))).unwrap())),"af27bd4495e49cff23c10211bc05975d1a1a0eaaf2c2e5a38e133669b9d8c937");
     assert_eq!(digest,"7f9ec9a7c352d0ce5114a15eae9d0cff6056a0d74a00e1c404d48714944f25a6");
-    assert_eq!(cards[252..].iter().map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),["BQ090","BQ064","BQ039","WM028","WM025","WM024","BQ081","WM057","XG13","WM064","CQ24","BQ092","BQ093","CQ18","CQ19","XG20","BQ057","CQ15","CQ28"]);
+    assert_eq!(cards[252..].iter().map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),["BQ090","BQ064","BQ039","WM028","WM025","WM024","BQ081","WM057","XG13","WM064","CQ24","BQ092","BQ093","CQ18","CQ19","XG20","BQ057","CQ15","CQ28","XQ19"]);
     assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..269].to_vec()))).unwrap())),"d865602732ed70be23cb7679f136d82902ba36d2070435683d23835b42240e6f");
-    assert_eq!(cards.len(),271);assert_eq!(catalog::catalog().cards.len(),cards.len());
+    assert_eq!(cards.len(),272);assert_eq!(catalog::catalog().cards.len(),cards.len());
     assert!(catalog::catalog().cards[..213].iter().all(|c|c.supported));
-    assert!(catalog::catalog().cards[213..].iter().all(|c|!c.supported));
+    assert!(catalog::catalog().cards[213..].iter().all(|c|c.supported==crate::import20_entropy::BATCH20.contains(&c.id.as_str())));
+    assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),233);
+    assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..271].to_vec()))).unwrap())),"ded1ecf727d37296800157f503621fe88968bc4d6ec083483d4cef9095d4bbb4");
 }
 pub(crate) fn field(g: &mut Game, id: &str, seat: usize) -> String {
     let c = g.make_card(id, seat);

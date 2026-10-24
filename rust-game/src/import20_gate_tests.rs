@@ -1,4 +1,4 @@
-//! CQ28 repeated-same paths only; author fixtures, not browser acceptance.
+//! CQ28 complete paired choices in printed order; author Native fixtures.
 use crate::{catalog, import20_gate as gate, jc029_tests::pass_top, model::*, unit_support::*};
 fn setup() -> (Game, String) {
     let mut g = game();
@@ -17,7 +17,8 @@ fn start(g: &mut Game, id: &str, n: u8) {
     );
     assert!(g.stack.is_empty());
     assert_eq!(g.pending.as_ref().unwrap().choice.kind, gate::DRAFT);
-    choose(g, vec![format!("repeat-{n}")]);
+    choose(g, vec![format!("item-{n}")]);
+    choose(g, vec![format!("item-{n}")]);
 }
 fn target(g: &mut Game, id: &str) {
     choose(g, vec![id.into()]);
@@ -47,7 +48,7 @@ fn finish(g: &mut Game) {
     panic!("bounded CQ28 continuation")
 }
 #[test]
-fn cq28_exact_printed_fields_and_partial_modes_only() {
+fn cq28_exact_printed_fields_and_ten_canonical_pairs() {
     let d = catalog::card("CQ28");
     assert_eq!(
         (
@@ -58,14 +59,14 @@ fn cq28_exact_printed_fields_and_partial_modes_only() {
             d.unique,
             d.supported
         ),
-        ("咒欲之门", "黑", 4, 4, false, false)
+        ("咒欲之门", "黑", 4, 4, false, true)
     );
     let def = gate::definition();
-    assert_eq!(def.abilities[0].modes.len(), 4);
+    assert_eq!(def.abilities[0].modes.len(), 10);
     assert!(def.abilities[0]
         .modes
         .iter()
-        .all(|m| m.key.starts_with("repeat-")));
+        .all(|m| m.key.starts_with("pair-")));
 }
 #[test]
 fn cq28_draw_twice_pays_printed_four_once_after_mode_selection() {
@@ -246,9 +247,9 @@ fn cq28_high_cost_and_other_grave_are_not_candidates() {
     );
 }
 #[test]
-fn cq28_rejects_mixed_and_extra_targets_before_payment() {
+fn cq28_rejects_reordered_unknown_and_extra_targets_before_payment() {
     let (mut g, id) = setup();
-    for option in ["draw-then-mill", "repeat-4"] {
+    for option in ["pair-3-0", "pair-4-4"] {
         reject(
             &mut g,
             0,
@@ -267,7 +268,7 @@ fn cq28_rejects_mixed_and_extra_targets_before_payment() {
         Action {
             card_id: Some(id),
             ability_id: Some(gate::KEY.into()),
-            option: Some("repeat-3".into()),
+            option: Some("pair-3-3".into()),
             selected: Some(vec!["extra".into()]),
             ..Action::new("play")
         },
@@ -298,4 +299,159 @@ fn cq28_insufficient_payment_and_spell_ban_cannot_trap_unpaid_draft() {
         },
     );
     assert!(g.pending.is_none());
+}
+
+fn mixed(g: &mut Game, id: &str, a: u8, b: u8) {
+    act(
+        g,
+        0,
+        Action {
+            card_id: Some(id.into()),
+            ..Action::new("play")
+        },
+    );
+    choose(g, vec![format!("item-{a}")]);
+    choose(g, vec![format!("item-{b}")]);
+}
+fn known_deck(g: &mut Game) {
+    g.players[0].deck.clear();
+    for id in [
+        "JC125", "JC084", "JC014", "JC085", "JC042", "JC112", "JC057", "JC070",
+    ] {
+        let c = g.make_card(id, 0);
+        g.players[0].deck.push(c)
+    }
+}
+#[test]
+fn cq28_mixed_reverse_clicks_still_mill_before_draw() {
+    for (a, b) in [(3, 0), (0, 3)] {
+        let (mut g, id) = setup();
+        known_deck(&mut g);
+        mixed(&mut g, &id, a, b);
+        let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+        assert!(matches!(
+            f.steps[0].op,
+            crate::rules::Op::CQ28Mode { mode: 0, .. }
+        ));
+        assert!(matches!(
+            f.steps[1].op,
+            crate::rules::Op::CQ28Mode { mode: 3, .. }
+        ));
+        finish(&mut g);
+        assert_eq!(
+            g.players[0]
+                .hand
+                .iter()
+                .map(|c| c.definition.as_str())
+                .collect::<Vec<_>>(),
+            ["JC057"]
+        );
+        assert_eq!(
+            g.players[0].assets.iter().filter(|c| c.exhausted).count(),
+            4
+        );
+    }
+}
+#[test]
+fn cq28_mixed_mill_revive_freezes_existing_grave_target_before_payment() {
+    let (mut g, id) = setup();
+    known_deck(&mut g);
+    let newly_milled = g.players[0].deck[0].id.clone();
+    let old = g.make_card("JC084", 0);
+    let old_id = old.id.clone();
+    g.players[0].graveyard.push(old);
+    mixed(&mut g, &id, 1, 0);
+    let p = g.pending.clone().unwrap();
+    assert!(!p.choice.options.iter().any(|o| o.id == newly_milled));
+    reject(
+        &mut g,
+        0,
+        Action {
+            choice_id: Some(p.choice.id),
+            selected: Some(vec![newly_milled]),
+            ..Action::new("choose")
+        },
+    );
+    assert!(g.players[0].assets.iter().all(|c| !c.exhausted));
+    target(&mut g, &old_id);
+    target(&mut g, "region:0");
+    finish(&mut g);
+    assert!(g.regions[0]
+        .cards
+        .iter()
+        .any(|c| c.definition == "JC084" && c.id != old_id));
+    assert!(!g.regions[0].cards.iter().any(|c| c.definition == "JC125"));
+    assert!(g.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JC125"));
+}
+#[test]
+fn cq28_mixed_mill_defense_keeps_second_step_receipt() {
+    let (mut g, id) = setup();
+    known_deck(&mut g);
+    let h = field(&mut g, "JC094", 2);
+    mixed(&mut g, &id, 2, 0);
+    target(&mut g, &h);
+    finish(&mut g);
+    assert_eq!(g.defense(g.board(&h).unwrap().1, 0), 2);
+    let m = &g.cq28_defense_reductions[0];
+    assert_eq!((m.op_index, m.slot), (1, 0));
+    restore(&mut g);
+}
+#[test]
+fn cq28_mixed_revive_defense_does_not_target_new_entry_and_uses_target_slot2() {
+    let (mut g, id) = setup();
+    let old = g.make_card("JC084", 0);
+    let oid = old.id.clone();
+    g.players[0].graveyard.push(old);
+    let h = field(&mut g, "JC094", 2);
+    mixed(&mut g, &id, 2, 1);
+    target(&mut g, &oid);
+    target(&mut g, "region:1");
+    let p = g.pending.clone().unwrap();
+    assert!(!p.choice.options.iter().any(|o| o.id == oid));
+    target(&mut g, &h);
+    finish(&mut g);
+    assert_eq!(g.defense(g.board(&h).unwrap().1, 0), 2);
+    let m = &g.cq28_defense_reductions[0];
+    assert_eq!((m.op_index, m.slot), (1, 2));
+    assert!(g.regions[1].cards.iter().any(|c| c.definition == "JC084"));
+    restore(&mut g);
+    g.effects.push_front(Effect::FinishCleanup);
+    g.drive().unwrap();
+    assert_eq!(g.defense(g.board(&h).unwrap().1, 0), 3);
+}
+#[test]
+fn cq28_mixed_revive_then_draw_uses_same_paid_frame() {
+    let (mut g, id) = setup();
+    known_deck(&mut g);
+    let old = g.make_card("JC084", 0);
+    let oid = old.id.clone();
+    g.players[0].graveyard.push(old);
+    mixed(&mut g, &id, 3, 1);
+    target(&mut g, &oid);
+    target(&mut g, "region:0");
+    finish(&mut g);
+    assert!(g.regions[0].cards.iter().any(|c| c.definition == "JC084"));
+    assert_eq!(g.players[0].hand[0].definition, "JC125");
+    assert_eq!(
+        g.players[0].assets.iter().filter(|c| c.exhausted).count(),
+        4
+    );
+}
+#[test]
+fn cq28_mixed_defense_then_draw_performs_normal_lethal_cleanup() {
+    let (mut g, id) = setup();
+    known_deck(&mut g);
+    let h = field(&mut g, "JC125", 2);
+    mixed(&mut g, &id, 3, 2);
+    target(&mut g, &h);
+    finish(&mut g);
+    assert!(g.board(&h).is_none());
+    assert!(g.players[2]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "JC125"));
+    assert_eq!(g.players[0].hand[0].definition, "JC125");
 }

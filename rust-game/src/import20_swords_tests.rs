@@ -45,7 +45,7 @@ fn cq15_printed_metadata_blood_loyalty_and_attachment() {
     let d = catalog::card("CQ15");
     assert_eq!(
         (&*d.color, d.cost, d.loyalty.clone(), d.unique, d.supported),
-        ("红", 6, vec!["鲜血".to_string(); 4], true, false)
+        ("红", 6, vec!["鲜血".to_string(); 4], true, true)
     );
     assert_eq!(d.subtitle.as_deref(), Some("杀伐至宝"));
     let (_, c) = g.board(&h).unwrap();
