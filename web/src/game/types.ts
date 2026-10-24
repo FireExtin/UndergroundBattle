@@ -31,6 +31,7 @@ export type Card = {
   currentDamagePrevention?: boolean;
   currentPrintedDefense?: number;
   currentRenown?: boolean;
+  currentLeader?: boolean;
   currentCombatGlory?: boolean;
   currentMobility?: boolean;
   currentPublic?: boolean;

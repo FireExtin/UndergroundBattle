@@ -12,8 +12,9 @@ test('black pair retains exact258 prior records and public213, without changing 
   assert.equal(intake.priorCatalogCount,258);
   const digest='a3d6acd39e625636da9e8c9fae9c14bac2c83b1ae56ff2c71d828cece9e50b17';
   assert.equal(intake.priorCardsCanonicalSha256,digest);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,258)))),digest);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,261);assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id),['BQ081','WM057']);
-  assert.deepEqual(pool.cards.slice(260).map(c=>c.id), ['XG13']);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,263);assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id),['BQ081','WM057']);
+  assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id), ['XG13']);
+  assert.deepEqual(pool.cards.slice(261).map(c=>c.id), ['WM064','CQ24']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for(const id of intake.allEightUnadmitted)assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.current50ReviewedNativeClosed,38);assert.equal(intake.published,false);
@@ -41,7 +42,7 @@ test('black pair prints and original pixels are exact and ordinary card registra
   }
   assert.match(specifications.cards.BQ081.fields.printedRuleTextLines[0],/一张牌/);
 });
-test('latest104 is unadmitted native WIP and unresolved enemy permission is not silently granted',()=>{
+test('current native identity is unadmitted native WIP and unresolved enemy permission is not silently granted',()=>{
   assert.equal(pool.engineVersion,currentImport20.engineVersion);assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.WM057EnemyPermission,'pendingUserRuling; no enemy activation opened');assert.equal(intake.ruleQuestion.status,'askedAsyncAwaitingReply');

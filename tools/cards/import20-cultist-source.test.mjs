@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { currentImport20 as intake, beforeCultistSpecifications, priorSpecifications } from './import20-spec-history.mjs';
+import { cultistSlice as intake, currentImport20, beforeCultistSpecifications, priorSpecifications } from './import20-spec-history.mjs';
 const read = n => readFileSync(new URL('../../'+n,import.meta.url));
 const sha = b => createHash('sha256').update(b).digest('hex');
 const canonical = x => Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
@@ -13,11 +13,12 @@ test('XG13 appends one original card; all260 previous records and public213 rema
   const digest = 'b59caeaf73d14629cb7107d8669e57a26bb5825d121fb60e2153f9ded2a864d5';
   assert.equal(intake.priorCatalogCount,260); assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,260)))),digest);
-  assert.equal(pool.cards.length,261); assert.equal(new Set(pool.cards.map(c=>c.id)).size,261);
-  assert.deepEqual(pool.cards.slice(260).map(c=>c.id),['XG13']);
+  assert.equal(pool.cards.length,263); assert.equal(new Set(pool.cards.map(c=>c.id)).size,263);
+  assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id),['XG13']);
+  assert.deepEqual(pool.cards.slice(261).map(c=>c.id), ['WM064','CQ24']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   assert.equal(pool.cards.find(c=>c.id==='XG13').supported,false);
-  assert(!pool.cards.some(c=>c.id==='XQ19'||c.id==='WM064'));
+  assert(!pool.cards.some(c=>c.id==='XQ19'));
 });
 test('exact two XG13 faction-symbol corrections preserve earlier whole source identities',()=>{
   const old = '快速行动 牺牲另一个邪教徒：本回合中你正面打出的下一张灾难牌或具有血脉图标的牌，其所需费用减少②。';
@@ -41,8 +42,8 @@ test('XG13 text, unique title, loyalty and original licensed pixels agree',()=>{
   const digest = '3a7d2bf5d20abd2a5da6e5c8d9f777e72668b14aab7a87ccc507ceef9ecf803a';
   assert.equal(sha(read(d.source.image)),digest); assert.equal(sha(read('web/public/cards/XG13.jpg')),digest);
 });
-test('latest104 native WIP retains unresolved cards and authorization boundaries',()=>{
-  assert.equal(pool.engineVersion,'rust-v0.2.104-import20-cultist'); assert.equal(pool.cardPoolVersion,'limited-v2.95-import20-cultist');
+test('current native identity native WIP retains unresolved cards and authorization boundaries',()=>{
+  assert.equal(pool.engineVersion,currentImport20.engineVersion); assert.equal(pool.cardPoolVersion,currentImport20.cardPoolVersion);
   assert(read('rust-game/src/catalog.rs').toString().includes(`ENGINE_VERSION: &str = "${pool.engineVersion}"`));
   assert.equal(intake.priorReference20AuthorNativeWipComplete,7); assert.equal(intake.potentialReference20AuthorNativeWipComplete,8);
   assert.equal(intake.current50ReviewedNativeClosed,38); assert.equal(intake.published,false);

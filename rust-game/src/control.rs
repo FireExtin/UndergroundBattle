@@ -4,11 +4,14 @@ use crate::{catalog::card, model::*, rules::TargetSlotSpec};
 
 impl Game {
     fn control_recipient(&self, effect: &ControlEffect) -> Option<usize> {
-        let (_, target) = self.board(&effect.target_instance)?;
-        if target.face_down || card(&target.definition).kind != "character" {
+        let (_, target) = self.in_play(&effect.target_instance)?;
+        if (target.face_down && !(matches!(effect.lifetime, ControlLifetime::CQ24Attachment { .. }) && crate::batch4_plans::secret(target))) || if matches!(effect.lifetime, ControlLifetime::CQ24Attachment { .. }) {
+            !crate::catalog::has_kind(card(&target.definition), "attachment")
+        } else { card(&target.definition).kind != "character" } {
             return None;
         }
         let recipient = match &effect.lifetime {
+            ControlLifetime::CQ24Attachment { .. } => effect.recipient,
             ControlLifetime::TurnEnd { turn } => {
                 if *turn != self.turn {
                     return None;
@@ -103,6 +106,7 @@ impl Game {
             && !result.iter().any(|s| s == "恶魔") {
             result.push("恶魔".into());
         }
+        if result.iter().any(|s| s == "人类") && self.wm064_live_tattoo(c) && !result.iter().any(|s| s == "罪犯") { result.push("罪犯".into()); }
         // XG12 adds Bat while its Vampire host remains eligible; its moon
         // condition applies only to mobility, not the subtype or combat icons.
         if result.iter().any(|s| s == "吸血鬼") && self.attachments.iter().any(|a|
@@ -124,7 +128,7 @@ impl Game {
         lifetime: ControlLifetime,
         subtype_change: SubtypeChange,
     ) {
-        let Some((_, c)) = self.board(target) else {
+        let Some((_, c)) = self.in_play(target) else {
             return;
         };
         if !self
@@ -147,7 +151,7 @@ impl Game {
     }
     /// Identity reset ends old targeted effects; synthetic baseline control remains unchanged.
     pub(crate) fn controller_after_reset(&self, target: &str) -> Option<usize> {
-        let (_, c) = self.board(target)?;
+        let (_, c) = self.in_play(target)?;
         let baseline = self
             .control_baselines
             .iter()
@@ -169,7 +173,7 @@ impl Game {
             .collect();
         let mut changed = vec![];
         for baseline in &self.control_baselines {
-            let Some((_, c)) = self.board(&baseline.target_instance) else {
+            let Some((_, c)) = self.in_play(&baseline.target_instance) else {
                 continue;
             };
             let fallback = if self
@@ -213,7 +217,7 @@ impl Game {
         self.control_baselines = baselines
             .into_iter()
             .filter(|b| {
-                self.board(&b.target_instance).is_some()
+                self.in_play(&b.target_instance).is_some()
                     && self
                         .control_effects
                         .iter()

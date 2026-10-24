@@ -33,12 +33,13 @@ test('WM037 and complete red Society dependency retain their exact pinned origin
 
 test('prior249 regular definitions remain byte-semantically unchanged and public213 stay fixed', () => {
   assert.equal(hash(JSON.stringify(canonical(pool.cards.slice(0, 249)))), 'eb240c02012cff99fb2268d11b929a4dfcca029106c4a9fc8326516198e77b50');
-  assert.equal(pool.cards.length, 261);
+  assert.equal(pool.cards.length, 263);
   assert.equal(pool.cards[249].id, 'WM037');
   assert.deepEqual(pool.cards.slice(254,256).map(c => c.id), ['BQ039', 'WM028']);
   assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id), ['WM025','WM024']);
   assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id), ['BQ081','WM057']);
-  assert.deepEqual(pool.cards.slice(260).map(c=>c.id), ['XG13']);
+  assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id), ['XG13']);
+  assert.deepEqual(pool.cards.slice(261).map(c=>c.id), ['WM064','CQ24']);
   assert.equal(pool.cards.filter(c => c.supported !== false).length, 213);
   assert.equal(pool.cards[249].supported, false);
   assert.deepEqual(pool.cards.slice(250, 252).map(c => c.id), ['WM044', 'WM043']);

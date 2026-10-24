@@ -1,0 +1,54 @@
+{
+  "baseCommit": "9d75d6e5d8b55ace8f48f16a82f5a8b9f14eed29",
+  "priorCatalogCount": 261,
+  "priorCardsCanonicalSha256": "a5c28650d26f011ac54666675cac4ff7a0d0818fa30fefc787f0729c89dd53a3",
+  "priorSpecificationsSha256": "efad0bc7490873890fd231cb69a353051d32b84abd2959ce17e517bb9e850861",
+  "newCards": [
+    "WM064",
+    "CQ24"
+  ],
+  "sourceCorrections": [
+    {
+      "id": "CQ24",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        2
+      ],
+      "old": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+      "new": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于③的敌方附属之操控权，你可以为该附属重新选择结附目标。"
+    },
+    {
+      "id": "CQ24",
+      "path": [
+        "abilities",
+        2,
+        "printedText"
+      ],
+      "old": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于⑤的敌方附属之操控权，你可以为该附属重新选择结附目标。",
+      "new": "进场触发 若已支付该牌的额外费用，或你的隐秘等级高于敌方玩家，则你获得目标印刷费用小于或等于③的敌方附属之操控权，你可以为该附属重新选择结附目标。"
+    }
+  ],
+  "engineVersion": "rust-v0.2.105-import20-thief-tattoo",
+  "cardPoolVersion": "limited-v2.96-import20-thief-tattoo",
+  "priorReference20AuthorNativeWipComplete": 8,
+  "potentialReference20AuthorNativeWipComplete": 10,
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "pendingQuestions": {
+    "WM057": "Already asked by parent; enemy permission remains disabled",
+    "XQ19": "No printed zero inferred; see XQ19_DASH_COST_QUESTION_2026-10-24.json"
+  },
+  "CQ24EnemyComparison": "Use Hegemony printed21 enemy-player set: personal secrecy higher than every living enemy. No team sum or friendly secrecy. Qualification captured at actual entry, consistent BQ029/XQ37.",
+  "CQ24Targets": "Both original attachment and optional new host bound before responses; canonical host condition delegates to original attachment specification. Control/rehost cleanup is atomic.",
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing author/illustrator direct permission; neither card has a registered external handler; independent Rust adaptation.",
+    "SuezCodeOrArtCopied": false
+  }
+}

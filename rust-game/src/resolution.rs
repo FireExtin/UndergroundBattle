@@ -75,6 +75,7 @@ impl Game {
             return false;
         }
         match condition {
+            AttachmentHostCondition::CQ24Host { .. } => false, // handled before zone dispatch below
             AttachmentHostCondition::CharacterOrActorAssetDomain { magic } => {
                 self.board(&attachment.host_id).is_some_and(|(_, host)| {
                     !host.face_down && card(&host.definition).kind == "character"
@@ -480,10 +481,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -654,6 +655,9 @@ impl Game {
         spec: &TargetSlotSpec,
         id: &str,
     ) -> bool {
+        if matches!(spec.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. })) {
+            return self.cq24_host_binding(actor, source, spec, id);
+        }
         match spec.zone {
             Zone::Society => self.society_host_seat(id).is_some_and(|seat| match spec.relation {
                 Relation::Any => true,
@@ -903,7 +907,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && (source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1361,6 +1365,10 @@ impl Game {
         self.jc035_reject_optional(&declaration)?;
         self.jc054_reject_optional(&declaration)?;
         rules::validate_ability(&declaration.source.card.definition, &declaration.ability)?;
+        if declaration.source.card.definition == crate::import20_carmen::ID && declaration.ability.key == crate::import20_carmen::ENTRY {
+            if !matches!(stage, DeclareChoice::Target) { return Err("卡门须先声明原敌方附属".into()); }
+            return self.cq24_begin_host(declaration, selected);
+        }
         if crate::bq030::is_attachment_declaration(&declaration) {
             return self.bq030_choose(declaration, stage, selected);
         }
@@ -1653,6 +1661,8 @@ impl Game {
             frame.cursor += 1;
             match step.op {
                 Op::BQ039BattleDiscard { .. } => return self.batch20_combat_discard_start(frame),
+                Op::CQ24TakeAttachment { .. } => self.cq24_take_attachment(&frame)?,
+                Op::WM064RevealCriminal => self.wm064_reveal_criminal(&frame)?,
                 Op::XG13EntryTime { .. } => self.xg13_add_time(&frame)?,
                 Op::BQ064TakeSamples => self.import20_take_samples(frame.actor)?,
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,

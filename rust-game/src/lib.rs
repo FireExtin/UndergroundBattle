@@ -1,3 +1,9 @@
+mod import20_carmen;
+#[cfg(test)]
+mod import20_carmen_tests;
+mod import20_tattoo;
+#[cfg(test)]
+mod import20_tattoo_tests;
 mod import20_cultist;
 #[cfg(test)]
 mod import20_cultist_tests;

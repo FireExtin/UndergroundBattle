@@ -44,6 +44,15 @@ impl Game {
     }
 
     pub(crate) fn reattach_source(&mut self, source_id: &str, target_id: &str) {
+        if !self.attachments.iter().any(|a| a.card.id == source_id) {
+            if self.board(source_id).is_some_and(|(_,c)| c.definition == "BQ026" && !c.face_down) {
+                if let Some((_,card)) = self.remove_board(source_id) {
+                    self.attachments.push(Attachment { card, host_id: target_id.into() });
+                    let previous = self.effects.len(); self.observe_attachment_committed(source_id);
+                    self.batch3_register_entry_order(source_id, previous); self.settle_deaths(); return;
+                }
+            }
+        }
         let Some(index) = self.attachments.iter().position(|a| a.card.id == source_id) else {
             self.note("转移结附的来源已离场，效果不再改变场上对象".into());
             return;

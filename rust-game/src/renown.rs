@@ -46,7 +46,7 @@ impl Game {
         !c.face_down
             && card(&c.definition).kind == "character"
             && !self.wm041_renown_denied(c)
-            && (self.wm029_renown(c) || self.wm041_renown_granted(c) || self.jz32_destroyed(c) || self.xg17_conditional_renown(c) || rules::definition(&c.definition).traits.renown
+            && (self.wm064_status_grant(c) || self.wm029_renown(c) || self.wm041_renown_granted(c) || self.jz32_destroyed(c) || self.xg17_conditional_renown(c) || rules::definition(&c.definition).traits.renown
                 || self.turn_attribute_modifiers.iter().any(|m| {
                     m.target_instance == c.id && m.expires_turn == self.turn && m.grants_renown
                 }))

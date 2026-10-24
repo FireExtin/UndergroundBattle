@@ -121,6 +121,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_renown: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current_leader: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_subtypes: Option<Vec<String>>,
     pub instance_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -619,6 +621,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CQ24ExtraAssets(Vec<String>),
     BQ036Attachment(Box<crate::batch4_vampire_contest::AttachmentPayment>),
     JZ51Corpses(crate::batch4_wendigo::CorpsePayment),
     JZ36Sacrificed(Vec<SourceSnapshot>),
@@ -848,6 +851,7 @@ pub struct TurnAbilityUsage {
 // This ordering is a project ruling, not a claim about the old FAQ.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ControlLifetime {
+    CQ24Attachment { source_instance: String, event_id: String, turn: u32 },
     TurnEnd { turn: u32 },
     Attached { source_instance: String },
     SourceLeaves { source_instance: String },
@@ -879,6 +883,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    CQ24Reattach { draft: Box<crate::import20_carmen::CarmenDraft> },
     JZ51Payment { draft: Box<crate::batch4_wendigo::GraveDraft> },
     JZ36Payment { draft: Box<crate::batch4_blood::BloodDraft> },
     JZ38EchoTarget { declaration: Box<Declaration> },

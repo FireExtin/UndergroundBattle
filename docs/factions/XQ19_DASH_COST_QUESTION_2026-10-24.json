@@ -1,0 +1,81 @@
+{
+  "cardId": "XQ19",
+  "name": "熵力化身",
+  "status": "pendingRuleDefinition; no question sent again here, no runtime registration",
+  "printedCost": "— (printed dash, distinct from hand ability0)",
+  "exactNormalizedText": [
+    "灵体　杀伤3",
+    "熵力化身不能正面打出或付费现身。",
+    "手牌行动⓪：将熵力化身从你的手中放置进场，且置于地区一。你只能在场上有四个或更多时间标志时发动此能力。"
+  ],
+  "comparisons": [
+    {
+      "kind": "隐秘对抗",
+      "rule": "霸权说明书物理22/印刷21：队友展示牌的印刷费用及加值相加后比较",
+      "minimalExample": "甲展示XQ19，无其它加值，其队友展示印刷0费牌；敌队合计1。若横杠参与合计按0，则甲队合计0并负；当前未为它指定数字。"
+    },
+    {
+      "kind": "印刷费用上限筛选",
+      "card": "BQ090 淘汰弱者",
+      "rule": "目标角色印刷费用≤3",
+      "minimalExample": "XQ19已由自身手牌行动合法放置进场；若费用按0，则淘汰弱者可指定它；若无可比较数值，则不能以≤3筛选它。"
+    }
+  ],
+  "sourcesChecked": [
+    {
+      "path": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
+      "scope": "original image pixels; dash fee and hand action0 explicitly distinct"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg",
+      "scope": "visually inspected full single-page Prelude manual",
+      "quote": "遭遇角色没有印刷费用。当检查一个角色的印刷费用时，遭遇角色的印刷费用视为0。",
+      "scopeLimit": "This is under 新机制：遭遇角色. XQ19 is an ordinary player character, not an Encounter Character; do not generalize this exception."
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf",
+      "physicalPage": 22,
+      "printedPage": 21,
+      "scope": "mystic-contest team total definition checked; no player-card dash comparison exception found on this page"
+    },
+    {
+      "path": "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf",
+      "physicalPages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "scope": "All six local FAQ pages visually inspected; no XQ19-specific or ordinary-player-card dash-cost ruling found. Not a claim of exhaustive later rulings."
+    }
+  ],
+  "readyQuestion": "XQ19「熵力化身」的印刷费用是横杠，手牌行动才是0。《序曲》只明确“遭遇角色”无印刷费用按0。对于XQ19这种普通玩家牌，是否也统一按0参与隐秘对抗的费用合计，以及“印刷费用≤3”等筛选？还是它没有可比较的印刷费用，这些比较不能把它当0？",
+  "candidateRulings": [
+    {
+      "id": "zeroForComparisons",
+      "meaning": "Keep dash/null as printed metadata, but define numeric comparison contribution0 for ordinary no-printed-cost player cards. Both examples use0."
+    },
+    {
+      "id": "notComparable",
+      "meaning": "Keep no numeric value. Cost-limit filters do not admit it; the rules for showing it in a contest would also need an explicit nonnumeric procedure before enabling that interaction."
+    }
+  ],
+  "recommendation": "Prefer one explicit project ruling for ordinary player-card dash comparisons, then implement a typed no-printed-cost representation. Neither candidate is enabled here.",
+  "UWPro": {
+    "sha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "path": "Cards/Data/PlayerCards/XQ/XQ019_shanglihuashen.tres",
+    "registeredPerCardEffect": false,
+    "source": "retained licensed per-card audit; cannot treat absent effect as rule authority"
+  },
+  "Suez": "Only retained old mechanism crosswalk used; no code copied or result treated as a rule authority.",
+  "relatedKnownBoundary": "XQ35 白骨仆人 has the same already-recorded no-printed-cost/comparison representation issue; not developed in this slice.",
+  "sourceSha256": {
+    "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb",
+    "resource/ymsj-fun.github.io/public/docs/序曲说明书.jpg": "08491e7ec0a716ff6d626b73bf93c07fddecc46293b2ef3ed7cc9b673c2fb5d5",
+    "resource/ymsj-fun.github.io/public/docs/霸权说明书.pdf": "a1e5bca72b8dbb374357feace28b7fbfd31136349ee23455d60f5f62e0a6b886",
+    "resource/ymsj-fun.github.io/public/docs/隐秘世界勘误及释疑.pdf": "916aa6a9f50ac7e737b517358e0c4270f715d0ed7391d55c8fcb629392a71d38"
+  },
+  "base": "9d75d6e5d8b55ace8f48f16a82f5a8b9f14eed29"
+}

@@ -812,6 +812,7 @@ impl Game {
                     }
                     let mut paid = self.pay_printed(seat, &c, true)?;
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
+                    if c.definition=="CQ24" && a.option.as_deref()==Some("pay-extra-3") { paid.push(self.cq24_pay_extra(seat)?); }
                     let mut snapshot = self.source_snapshot(&c, r);
                     snapshot.play_source = Some(play_source.clone());
                     let c = self.take_character_play_source(seat, id, play_source)?;
@@ -1266,7 +1267,9 @@ impl Game {
                 let definition = c.definition.clone();
                 self.regions[region].cards.push(c);
                 let extra=if definition=="BQ029" && !item.reveal { frame.already_paid.iter().find_map(|p|if let PaidCost::BQ029ExtraAssets(ids)=p { Some(crate::batch3_blood::BQ029ExtraPayment{play_instance:frame.source.card.id.clone(),play_frame:frame.frame_id.clone(),assets:ids.clone()}) } else { None }) } else { None };
-                self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra,true);
+                let carmen = if definition == "CQ24" && !item.reveal { frame.already_paid.iter().find_map(|p| if let PaidCost::CQ24ExtraAssets(ids) = p {
+                    Some(crate::import20_carmen::ExtraPayment { play_instance: frame.source.card.id.clone(), play_frame: frame.frame_id.clone(), assets: ids.clone() }) } else { None }) } else { None };
+                self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra,carmen,true);
             } else if card(&c.definition).kind == "attachment" {
                 if self.accept_frame_guard(&mut frame) {
                     let target = frame.targets.first().ok_or("附属缺少宿主目标")?;
@@ -1312,8 +1315,8 @@ impl Game {
         });
         Ok(())
     }
-    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None,false); }
-    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,final_region:bool) {
+    pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None,None,false); }
+    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,carmen:Option<crate::import20_carmen::ExtraPayment>,final_region:bool) {
         let previous=self.effects.len();
         if !final_region { self.route_chaos_entry(id); }
         if definition == "XG14" { if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
@@ -1339,6 +1342,7 @@ impl Game {
         self.wm060_observe_entry(id);
         self.xg17_observe_entry(id);
         self.xg13_observe_entry(id);
+        self.cq24_observe_entry(id,carmen);
         self.batch3_register_entry_order(id,previous);
         if card(definition).unique || crate::jc052::printed_leader(definition) {
             self.effects.push_front(Effect::Unique { seat });
@@ -2392,6 +2396,7 @@ impl Game {
                     self.to_bottom(&id);
                 }
             }
+            ChoiceResolution::CQ24Reattach { draft } => self.cq24_choose_host(*draft, seat, &a, &selected)?,
             ChoiceResolution::Unique => {
                 self.remove_dead(&selected[0], RemovalCause::Sacrifice);
             }
@@ -2409,6 +2414,7 @@ impl Game {
         let hidden = c.face_down && c.controller != viewer;
         let asset = kind == Some("asset");
         CardView {
+            current_leader: (!asset && !c.face_down && region.is_some() && self.current_leader(c)).then_some(true),
             advancement_markers: (!asset && (region.is_some() || kind == Some("attachment")) && (c.advancement_markers > 0 || crate::batch4_plans::is_plan(c))).then_some(c.advancement_markers),
             current_enemy_spell_protection: (!hidden && !asset && !c.face_down && region.is_some() && self.bq026_protected(c)).then_some(true),
             named_character: if !asset && !c.face_down && kind == Some("attachment") { c.named_character.clone() } else { None },
@@ -2442,7 +2448,7 @@ impl Game {
             current_retreat: (!asset
                 && !c.face_down
                 && region.is_some()
-                && self.execution_turn_grants(c).1)
+                && (self.execution_turn_grants(c).1 || self.cq24_retreat(c)))
                 .then_some(true),
             converted_temporary_icons: if hidden || asset || c.face_down {
                 None

@@ -127,6 +127,8 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     Ok(())
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == crate::import20_carmen::ID { return crate::import20_carmen::validate_action(a); }
+    if id == crate::import20_tattoo::ID { return crate::import20_tattoo::validate_action(a); }
     if id == crate::import20_cultist::ID { return crate::import20_cultist::validate_action(a); }
     if crate::import20_broker::CARDS.contains(&id) { return crate::import20_broker::validate_action(id, a); }
     if crate::import20_vampires::CARDS.contains(&id) { return crate::import20_vampires::validate_action(a); }
@@ -328,6 +330,8 @@ impl Game {
         self.validate_bq053_state()?;
         self.validate_wm058_state()?;
         self.validate_wm029_state()?;
+        self.validate_cq24_state()?;
+        self.validate_wm064_state()?;
         self.validate_xg13_state()?;
         self.validate_import20_broker_state()?;
         self.validate_import20_vampire_state()?;
