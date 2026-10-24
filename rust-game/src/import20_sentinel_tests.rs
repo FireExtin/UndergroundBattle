@@ -724,18 +724,18 @@ fn import20_sentinel_charge_transfer_then_jc054_normal_hide_primitive_clears_new
     let mut g = game();
     let weapon = weapon(&mut g, true);
     let host = field(&mut g, "JC054", 0);
-    fund(&mut g, 0, "XQ20", 1);
+    fund(&mut g, 0, "XQ20", 2);
+    g.begin_window(Window::Action(0));
     let hand = held(&mut g, "XQ20", 0);
     let action = g
         .legal_actions(0)
         .into_iter()
         .find(|a| {
             a.action.card_id.as_deref() == Some(&hand)
-                && a.action.target_id.as_deref() == Some(&weapon)
                 && a.action
                     .selected
                     .as_ref()
-                    .is_some_and(|v| v == &vec![host.clone()])
+                    .is_some_and(|v| v == &vec![weapon.clone(), host.clone()])
         })
         .expect("actual charge transfer command")
         .action;
