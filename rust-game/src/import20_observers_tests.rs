@@ -191,9 +191,14 @@ fn import20_hall_real_next_prepare_forces_one_contest_only_with_key() {
         let mut g=game();attach(&mut g,"WM028",0,"society:p0");
         for seat in 0..4 {deck_cards(&mut g,seat,&["JC125","JC125"]);}
         next_prepare(&mut g,first_team);
-        let queued=g.stack.iter().filter(|x|x.frame.as_ref().is_some_and(|f|f.ability_key==o::HALL_PREP)).count();
-        if first_team==0 {assert_eq!(queued,1);finish_contest(&mut g);assert_eq!(g.mystic_history.len(),1);}
-        else {assert_eq!(queued,0);assert!(g.mystic_history.is_empty()&&g.pending.is_none());}
+        if first_team==0 {
+            let p=g.pending.as_ref().unwrap().clone();
+            assert_eq!(p.choice.kind,"jc035-preparation-order");assert_eq!(p.choice.min,Some(1));
+            reject(&mut g,p.seat,Action{choice_id:Some(p.choice.id),selected:Some(vec![]),..Action::new("choose")});
+            choose(&mut g,vec![p.choice.options[0].id.clone()]);
+            assert_eq!(g.stack.iter().filter(|x|x.frame.as_ref().is_some_and(|f|f.ability_key==o::HALL_PREP)).count(),1);
+            finish_contest(&mut g);assert_eq!(g.mystic_history.len(),1);
+        } else {assert!(g.stack.is_empty());assert!(g.mystic_history.is_empty()&&g.pending.is_none());}
         assert!(g.stack.is_empty()&&g.mystic_contest.is_none());
     }
 }
@@ -203,6 +208,11 @@ fn import20_hall_key_is_shared_with_teammate_not_opponent() {
     for controller in 0..4 {
         let mut g=game();attach(&mut g,"WM028",controller,&format!("society:p{controller}"));
         next_prepare(&mut g,0);
+        if controller<2 {
+            let p=g.pending.as_ref().unwrap().clone();assert_eq!(p.seat,controller);
+            assert_eq!(p.choice.kind,"jc035-preparation-order");assert_eq!(p.choice.min,Some(1));
+            choose(&mut g,vec![p.choice.options[0].id.clone()]);
+        }
         assert_eq!(g.stack.iter().any(|x|x.frame.as_ref().is_some_and(|f|f.ability_key==o::HALL_PREP)),controller<2);
         finish_contest(&mut g);
         assert_eq!(g.mystic_history.len(),usize::from(controller<2));
@@ -211,7 +221,7 @@ fn import20_hall_key_is_shared_with_teammate_not_opponent() {
 
 #[test]
 fn import20_hall_forced_prepare_order_with_existing_society_upkeep() {
-    let mut g=game();attach(&mut g,"WM028",0,"society:p0");fund(&mut g,0,"JC063",1);attach(&mut g,"JC068",0,"society:p0");
+    let mut g=game();attach(&mut g,"WM028",0,"society:p0");fund(&mut g,0,"JC063",3);attach(&mut g,"JC068",0,"society:p0");
     fund(&mut g,0,"JC125",1);next_prepare(&mut g,0);
     let p=g.pending.as_ref().unwrap().clone();assert_eq!(p.choice.kind,"jc035-preparation-order");assert_eq!(p.choice.min,Some(1));
     reject(&mut g,p.seat,Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![]),..Action::new("choose")});
