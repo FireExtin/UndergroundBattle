@@ -82,7 +82,7 @@ impl Game {
         if self.batch3_physical_cards().any(|live|live.id==c.id) && (f.ability_key=="attach"||!self.attachments.iter().any(|a|a.card.id==c.id)) { return Err("兽形变化来源不能由私有区同UID冒充".into()); }
         let d=definition();let a=d.abilities.iter().find(|a|a.key==f.ability_key).ok_or("兽形变化未知程序")?;
         let steps=a.ops.iter().map(|op|Step{context:f.actor,op:op.clone()}).collect::<Vec<_>>();
-        let paid=matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if !ids.iter().any(|id|id.is_empty()||*id==c.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()&&(if f.ability_key=="attach"{ids.len()<=2}else{ids.len()==2}));
+        let paid=matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if !ids.iter().any(|id|id.is_empty()||*id==c.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()&&(if f.ability_key=="attach"{f.money_units(0)<=2}else{f.money_units(0)==2}));
         if !same(&steps,&f.steps)||f.targets.len()!=1||!same(&a.targets[0],&f.targets[0].spec)||!paid { return Err("兽形变化程序、目标或支付不完整".into()); }
         if f.ability_key=="attach" {
             if s.region.is_some()||s.source_region_instance.is_some()||s.attachment_host_instance.is_some(){return Err("兽形变化打出来源不能预结附".into());}

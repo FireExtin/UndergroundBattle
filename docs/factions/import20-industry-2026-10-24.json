@@ -1,0 +1,52 @@
+{
+  "baseCommit": "c80b961203cc39a65e4326bb497623fbb81f0e7d",
+  "priorCatalogCount": 263,
+  "priorCardsCanonicalSha256": "7f9ec9a7c352d0ce5114a15eae9d0cff6056a0d74a00e1c404d48714944f25a6",
+  "priorSpecificationsSha256": "a3d393a179ac17e46e8d213279bea1a3f92f0a2adc2d79c3f73973e93c2e13e9",
+  "newCards": [
+    "BQ092",
+    "BQ093"
+  ],
+  "sourceCorrections": [
+    {
+      "id": "BQ092",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        1
+      ],
+      "old": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+      "new": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+    },
+    {
+      "id": "BQ092",
+      "path": [
+        "abilities",
+        1,
+        "printedText"
+      ],
+      "old": "快速行动，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。",
+      "new": "快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。"
+    }
+  ],
+  "engineVersion": "rust-v0.2.106-import20-industry",
+  "cardPoolVersion": "limited-v2.97-import20-industry",
+  "priorReference20AuthorNativeWipComplete": 10,
+  "potentialReference20AuthorNativeWipComplete": 12,
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "notCompiledOrTested",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "pendingQuestions": {
+    "WM057": "Already asked; enemy ability remains disabled",
+    "XQ19": "Dash is not inferred as0; exact question delivered"
+  },
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author and illustrator permission. Source data has no registered per-card effects; independent finite adaptation.",
+    "SuezCodeOrArtCopied": false
+  }
+}

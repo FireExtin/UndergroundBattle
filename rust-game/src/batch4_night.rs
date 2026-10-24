@@ -81,7 +81,7 @@ impl Game {
             || f.chosen_region.is_some() { return Err("亡者之夜帧身份或地区载荷无效".into()); }
         if attach {
             if !f.steps.is_empty() || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked | GuardState::Accepted | GuardState::Cancelled)
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2
                     && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()
                     && ids.iter().all(|id| self.mystic_instance_number(id).zip(self.mystic_instance_number(&f.frame_id)).is_some_and(|(n, frame)| n < frame) && *id != f.source.card.id)) {
                 return Err("亡者之夜结附须保留实际支付和空程序".into());

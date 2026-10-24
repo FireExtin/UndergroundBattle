@@ -189,6 +189,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::IndustryExhaustOther)) {
+                    self.industry_cost_candidates(actor,&source.card.id).into_iter().map(|id|Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment)) {
                     self.bq036_contest_cost_candidates(actor).into_iter().map(|id| Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::JZ39SacrificeDemon)) {
@@ -481,10 +483,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -545,14 +547,7 @@ impl Game {
         } else {
             self.paid_reveal_cost(actor, c)
         };
-        let ids = self.players[actor]
-            .assets
-            .iter()
-            .filter(|a| !a.exhausted)
-            .take(amount as usize)
-            .map(|a| a.id.clone())
-            .collect();
-        self.pay(actor, amount)?;
+        let payment = self.capture_money(actor, amount)?;
         let used = self
             .modifiers
             .iter()
@@ -569,7 +564,7 @@ impl Game {
         for i in used {
             self.modifiers[i].uses -= 1;
         }
-        Ok(vec![PaidCost::Assets(ids)])
+        Ok(vec![payment])
     }
     pub(crate) fn ability_for_action(
         &self,
@@ -578,6 +573,7 @@ impl Game {
     ) -> RuleResult<AbilitySpec> {
         crate::import20_observers::validate_action(definition, a)?;
         crate::import20_contest::validate_action(definition, a)?;
+        crate::import20_industry::validate_action(definition,a)?;
         if definition == "WM043" { crate::wm043::validate_action(a)?; }
         crate::next20_blue_gray::validate_action(definition, a)?;
         if definition == "XQ23" && *a != (Action {
@@ -996,6 +992,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::IndustryExhaustOther => paid.push(self.industry_pay_other(actor,source,a)?),
                 Cost::BQ036SacrificeAttachment => paid.push(self.bq036_pay_attachment(actor, a)?),
                 Cost::JZ51SealThreeCorpses => return Err("温迪戈封印费用必须通过墓地专属待选支付".into()),
                 Cost::JZ36SacrificeBatch => paid.push(self.jz36_pay(actor, a)?),
@@ -1005,15 +1002,7 @@ impl Game {
                 Cost::Batch3RemoveTime => paid.push(self.batch3_pay_time(source, a)?),
                 Cost::RemoveOneTimeFromSource => paid.push(self.wm034_pay_time(source, a)?),                Cost::RemoveOneTimeFromSelectedControlledCard => paid.push(self.jc044_pay_time(actor, a)?),
                 Cost::Assets(n) => {
-                    let ids = self.players[actor]
-                        .assets
-                        .iter()
-                        .filter(|c| !c.exhausted)
-                        .take(*n as usize)
-                        .map(|c| c.id.clone())
-                        .collect();
-                    self.pay(actor, *n)?;
-                    paid.push(PaidCost::Assets(ids));
+                    paid.push(self.capture_money(actor, *n)?);
                 }
                 Cost::ExhaustSource => {
                     let c = self
@@ -1124,13 +1113,19 @@ impl Game {
                 });
             }
         }
+        let mut already_paid=vec![];let mut resource_payments=vec![];
+        for receipt in paid{match receipt{
+            PaidCost::CapturedResources{receipt,credits}=>{resource_payments.push(crate::step_resources::ResourcePayment{paid_index:already_paid.len(),credits});already_paid.push(*receipt);},
+            receipt=>already_paid.push(receipt),
+        }}
         ResolutionFrame {
+            resource_payments,
             frame_id: String::new(),
             ability_key: spec.key.clone(),
             actor,
             source,
             targets,
-            already_paid: paid,
+            already_paid,
             guard: GuardState::Unchecked,
             cursor: 0,
             steps,
@@ -1218,6 +1213,7 @@ impl Game {
         {
             self.observe_attachment_committed(&source.card.id);
             self.observe_bq080_attachment_entry(&source.card.id);
+            self.observe_industry_entry(&source);
         }
         if event == Event::Reveal { self.observe_jz29_vampire_reveal(&source);
             self.observe_jz23_vampire_reveal(&source); }
@@ -1619,6 +1615,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_resource_frame(&frame)?;
         self.validate_exposure_frame(&frame)?;
         self.validated_cross_card_frame(&frame)?;
         self.validate_red_time_frame(&frame)?;
@@ -1665,6 +1662,9 @@ impl Game {
                 Op::BQ039BattleDiscard { .. } => return self.batch20_combat_discard_start(frame),
                 Op::CQ24TakeAttachment { .. } => self.cq24_take_attachment(&frame)?,
                 Op::WM064RevealCriminal => self.wm064_reveal_criminal(&frame)?,
+                Op::IndustryStepResource => self.industry_gain_resource(&frame)?,
+                Op::IndustryMill { .. } => {self.validate_industry_frame(&frame)?;self.mill_cards_with_cause(frame.actor,1,Some(&frame))?;},
+                Op::IndustryInvestigation { .. } => self.industry_resolve_bonus(&frame)?,
                 Op::XG13EntryTime { .. } => self.xg13_add_time(&frame)?,
                 Op::BQ064TakeSamples => self.import20_take_samples(frame.actor)?,
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,

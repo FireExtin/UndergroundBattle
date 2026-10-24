@@ -142,7 +142,7 @@ impl Game {
         if f.frame_id.is_empty() || f.frame_id == f.source.card.id || f.cursor > f.steps.len() || (f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)) || f.cursor > 0 && !matches!(f.guard, GuardState::Accepted) { return Err("研讨会帧、游标或守卫无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 4 && ids.iter().all(|id| f.source.valid_printed_payment_id(id)) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 4 && ids.iter().all(|id| f.source.valid_printed_payment_id(id)) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some()) { return Err("研讨会派遣/现身必须保留地区及实际支付".into()); } return Ok(());
         }

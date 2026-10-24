@@ -587,7 +587,7 @@ impl Game {
         if shown.card.definition != "BQ027" {
             return Ok(());
         }
-        let f = ResolutionFrame {
+        let f = ResolutionFrame { resource_payments: vec![],
             frame_id: self.id(),
             ability_key: SHOWN.into(),
             actor: shown.seat,

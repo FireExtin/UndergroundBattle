@@ -133,9 +133,9 @@ impl Game {
         let ids_valid = |ids: &[String]| ids.iter().all(|id| !id.is_empty() && *id != c.id && f.targets.iter().all(|t| t.id != *id))
             && ids.iter().collect::<BTreeSet<_>>().len() == ids.len();
         let paid = if a.play_only {
-            matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&c.definition).cost as usize && ids_valid(ids))
+            matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&c.definition).cost as usize && ids_valid(ids))
         } else if a.event.is_some() { f.already_paid.is_empty() }
-        else { !c.exhausted && matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)] if ids.len() == 2 && ids_valid(ids) && id == &c.id) };
+        else { !c.exhausted && matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)] if f.money_units(0) == 2 && ids_valid(ids) && id == &c.id) };
         if !paid { return Err("回收须保留真实原费用与横置收据".into()); }
         Ok(())
     }

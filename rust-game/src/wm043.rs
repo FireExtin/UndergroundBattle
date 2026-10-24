@@ -54,7 +54,7 @@ impl Game {
         let source = self.source_snapshot(&shown.card, None);
         let options = self.binding_options(shown.seat, &source, &lock_target());
         if options.is_empty() { return Ok(()); }
-        let f = ResolutionFrame { frame_id: self.id(), ability_key: SHOWN.into(), actor: shown.seat, source,
+        let f = ResolutionFrame { resource_payments: vec![], frame_id: self.id(), ability_key: SHOWN.into(), actor: shown.seat, source,
             targets: vec![], already_paid: vec![], guard: GuardState::Accepted, cursor: 1,
             steps: vec![Step { context: shown.seat, op: Op::WM043ShownLock { contest_id: o.contest_id.clone(), index } }],
             chosen_region: None };

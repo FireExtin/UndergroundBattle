@@ -347,7 +347,7 @@ impl Game {
                 || self.regions.iter().enumerate().any(|(index, reg)| reg.card.id == region_id && index != r)
                 || self.jc035_physical_cards().any(|c| c.id == region_id
                     && (catalog::card(&c.definition).kind != "region" || catalog::card(&c.definition).name != t.public.label))
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 3
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 3
                     && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC035结附的完整费用、地区或公开绑定被改写".into());
             }

@@ -122,6 +122,7 @@ impl Game {
         self.validate_mystic_outcome(o)?; Ok(o)
     }
     pub(crate) fn validate_pack_a_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        if crate::import20_industry::related(&d.source.card.definition,&d.ability) { return self.validate_industry_declaration(d); }
         if crate::import20_carmen::related(&d.source.card.definition, &d.ability) { return self.validate_cq24_declaration(d); }
         if crate::import20_cultist::related(&d.source.card.definition, &d.ability) { return self.validate_xg13_declaration(d); }
         if crate::import20_broker::CARDS.contains(&d.source.card.definition.as_str()) || crate::import20_broker::related(&d.ability) {
@@ -156,6 +157,8 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_resource_frame(f)?;
+        if crate::import20_industry::frame_related(f) { return self.validate_industry_frame(f); }
         if crate::import20_carmen::frame_related(f) { return self.validate_cq24_frame(f); }
         if crate::import20_tattoo::frame_related(f) { return self.validate_wm064_frame(f); }
         if crate::import20_cultist::frame_related(f) { return self.validate_xg13_frame(f); }

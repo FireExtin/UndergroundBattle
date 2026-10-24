@@ -215,7 +215,7 @@ impl Game{
             ||f.cursor>f.steps.len()||f.cursor==0&&!matches!(f.guard,GuardState::Unchecked)||f.cursor>0&&!matches!(f.guard,GuardState::Accepted){return Err("黑色新卡帧身份或阶段无效".into());}
         if matches!(f.ability_key.as_str(),"deploy"|"reveal"){
             if !f.steps.is_empty()||!f.targets.is_empty()||f.chosen_region!=f.source.region
-                ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if ids.len()<=catalog::card(&f.source.card.definition).cost as usize
+                ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if f.money_units(0)<=catalog::card(&f.source.card.definition).cost as usize
                     &&ids.iter().all(|id|self.mystic_instance_valid(id)&&*id!=f.source.card.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
                 ||f.ability_key=="deploy"&&(f.source.card.face_down||!f.source.valid_character_play())
                 ||f.ability_key=="reveal"&&(!f.source.card.face_down||f.source.play_source.is_some()){return Err("黑色新卡派遣/现身须保留真实支付与原地区".into());}return Ok(());
@@ -227,7 +227,7 @@ impl Game{
         }
         if f.ability_key==ACT{
             if f.source.card.exhausted||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids),PaidCost::Exhausted(id)]if id==&f.source.card.id
-                &&ids.len()==2&&ids.iter().all(|n|self.mystic_instance_valid(n)&&n!=id)&&ids.iter().collect::<BTreeSet<_>>().len()==2){return Err("信息掮客须保留实际付款2和原实例横置收据".into());}
+                &&f.money_units(0)==2&&ids.iter().all(|n|self.mystic_instance_valid(n)&&n!=id)&&ids.iter().collect::<BTreeSet<_>>().len()==2){return Err("信息掮客须保留实际付款2和原实例横置收据".into());}
         }else if !f.already_paid.is_empty(){return Err("本触发没有额外支付".into());}Ok(())
     }
     pub(crate) fn validate_import20_broker_state(&self)->RuleResult<()>{

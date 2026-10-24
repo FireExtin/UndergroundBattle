@@ -73,7 +73,7 @@ fn import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool() {
     assert_eq!(catalog::catalog().cards.len(), 263);
     assert_eq!(catalog::catalog().cards.iter().filter(|d| d.supported).count(), 213);
     assert!(!catalog::catalog().cards.iter().any(|d| d.id == "XQ19"));
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.105-import20-thief-tattoo");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.106-import20-industry");
     assert_eq!(definition(c::ID).abilities[1].timing, Timing::Fast);
     assert_eq!(definition(c::ID).abilities[1].response_policy, ResponsePolicy::Respondable);
     validate_definitions(definitions()).unwrap();

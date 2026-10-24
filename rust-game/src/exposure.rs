@@ -345,7 +345,7 @@ impl Game {
                     .source_region_instance
                     .as_ref()
                     .is_none_or(|id| id.is_empty() || id == &c.id)
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&c.definition).cost as usize
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&c.definition).cost as usize
                     && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || (f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some()))
@@ -405,9 +405,9 @@ impl Game {
             return Err("暴露角色必须冻结原地区与来源".into());
         }
         let assets = |ids: &[String], n: usize| {
-            ids.len() == n
+            f.money_units(0) == n
                 && ids.iter().all(|s| !s.is_empty())
-                && ids.iter().collect::<BTreeSet<_>>().len() == n
+                && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()
         };
         let paid = match a.key.as_str() {
             "wm039-analysis" => {
@@ -429,7 +429,7 @@ impl Game {
             }
             "wm040-repress" | "renown" | "jc089-combat-glory" => f.already_paid.is_empty(),
             "wm042-news" => {
-                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && assets(ids, ids.len()))
+                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 1 && assets(ids, f.money_units(0)))
                     && f.source.region.is_none()
                     && f.source.source_region_instance.is_none()
                     && f.source.play_source.is_none()

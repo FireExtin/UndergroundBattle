@@ -393,7 +393,7 @@ impl Game {
             return Err("第三批帧身份、守卫或游标不符".into());
         }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
-            let paid = if f.source.card.definition=="BQ029" { self.bq029_printed_payment(f) } else { matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+            let paid = if f.source.card.definition=="BQ029" { self.bq029_printed_payment(f) } else { matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize
                 && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) };
             if f.source.attachment_host_instance.is_some() || !f.steps.is_empty()
                 || !f.targets.is_empty()
@@ -492,13 +492,13 @@ impl Game {
             };
         }
         if f.ability_key == "batch3-bq037-reveal" {
-            if !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()==1 && !ids[0].is_empty() && ids[0]!=f.source.card.id && f.targets.iter().all(|t|t.id!=ids[0]))
+            if !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)==1 && ids.iter().all(|id|!id.is_empty() && *id!=f.source.card.id && f.targets.iter().all(|t|t.id!=*id)))
                 || !self.turn_ability_usage.iter().any(|u|u.source_instance==f.source.card.id && u.ability_key==f.ability_key && u.turn==self.turn && u.uses==1) { return Err("穿刺公现身须保留支付1和本回合限次记录".into()); }return Ok(());
         }
         if f.ability_key == "batch3-xg26-barrier" {
             if f.source.card.exhausted
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
-                if ids.len() == 1 && !ids[0].is_empty() && ids[0] != f.source.card.id
+                if f.money_units(0) == 1 && !ids[0].is_empty() && ids[0] != f.source.card.id
                     && f.targets.iter().all(|target| target.id != ids[0]) && id == &f.source.card.id)
             {
                 return Err("看场打手必须实际支付1并横置自身".into());

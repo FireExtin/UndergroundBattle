@@ -14,7 +14,7 @@ pub struct BloodFeedCursor{pub recipients:Vec<String>,pub cursor:usize,pub compl
 pub struct BloodFeedStep{pub recipient:String,pub attached:Option<String>}
 #[derive(Clone,Debug,Serialize,Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct BQ029ExtraPayment{pub play_instance:String,pub play_frame:String,pub assets:Vec<String>}
+pub struct BQ029ExtraPayment{pub play_instance:String,pub play_frame:String,pub assets:Vec<String>,#[serde(default,skip_serializing_if="Vec::is_empty")]pub credits:Vec<crate::step_resources::StepCredit>}
 #[derive(Clone,Debug,Serialize,Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct BQ029EntryObservation{pub event_id:String,pub turn:u32,pub moon_at_entry:u32,pub extra:Option<BQ029ExtraPayment>}
@@ -28,15 +28,15 @@ pub(crate) fn bq029_definition()->Definition{
 }
 impl Game{
     pub(crate) fn bq029_printed_payment(&self,f:&ResolutionFrame)->bool{
-        let (printed,extra)=match f.already_paid.as_slice(){[PaidCost::Assets(ids)]=>(ids.as_slice(),None),[PaidCost::Assets(ids),PaidCost::BQ029ExtraAssets(extra)] if f.ability_key=="deploy" && extra.len()==1=>(ids.as_slice(),Some(extra.as_slice())),_=>return false};
-        let all=printed.iter().chain(extra.into_iter().flatten()).map(String::as_str).collect::<Vec<_>>();printed.len()<=2 && all.iter().all(|id|!id.is_empty() && *id!=f.source.card.id.as_str()) && all.iter().collect::<BTreeSet<_>>().len()==all.len() && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|a|all.contains(&a.id.as_str())))
+        let (printed,extra)=match f.already_paid.as_slice(){[PaidCost::Assets(ids)]=>(ids.as_slice(),None),[PaidCost::Assets(ids),PaidCost::BQ029ExtraAssets(extra)] if f.ability_key=="deploy" && f.money_units(1)==1=>(ids.as_slice(),Some(extra.as_slice())),_=>return false};
+        let all=printed.iter().chain(extra.into_iter().flatten()).map(String::as_str).collect::<Vec<_>>();f.money_units(0)<=2 && all.iter().all(|id|!id.is_empty() && *id!=f.source.card.id.as_str()) && all.iter().collect::<BTreeSet<_>>().len()==all.len() && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|a|all.contains(&a.id.as_str())))
     }
     pub(crate) fn validate_bq029_raid_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
         self.validate_batch3_declaration(d)?;let options=self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
         if d.ability.key!="raid-1" || !matches!(stage,DeclareChoice::Target) || options.is_empty() || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card("BQ029").name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&options,&p.choice.options){return Err("赤鳞近卫袭击须保留原现身目标选择".into());}Ok(())
     }
     pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || matches!(c.definition.as_str(),"BQ029"|"BQ031"|"BQ032") && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
-    pub(crate) fn bq029_pay_extra(&mut self,actor:usize)->RuleResult<PaidCost>{let ids=self.players[actor].assets.iter().filter(|a|!a.exhausted).take(1).map(|a|a.id.clone()).collect::<Vec<_>>();self.pay(actor,1)?;Ok(PaidCost::BQ029ExtraAssets(ids))}
+    pub(crate) fn bq029_pay_extra(&mut self,actor:usize)->RuleResult<PaidCost>{Ok(self.capture_money(actor,1)?.extra_money(false))}
     pub(crate) fn bq029_observe_entry(&mut self,id:&str,extra:Option<BQ029ExtraPayment>){
         let Some((r,c))=self.board(id).filter(|(_,c)|c.definition=="BQ029" && !c.face_down)else{return;};let actor=c.controller;let moon=self.players[actor].society_zone.secrecy;if extra.is_none() && moon==0{return;}
         let source=self.source_snapshot(c,Some(r));let observation=BQ029EntryObservation{event_id:self.id(),turn:self.turn,moon_at_entry:moon,extra};let mut a=bq029_definition().abilities.remove(1);a.ops=vec![Op::BQ029SelfFeed{observation:Some(observation)}];self.effects.push_back(Effect::Declare{declaration:Declaration{actor,source,ability:a}});
@@ -45,7 +45,7 @@ impl Game{
         let [Op::BQ029SelfFeed{observation:Some(o)}]=ops else{return Err("赤鳞近卫缺少真实条件进场观察".into());};
         let number=|id:&str|id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).filter(|n|*n>0 && *n<=self.sequence);
         if s.card.definition!="BQ029" || s.card.face_down || s.card.controller!=actor || o.turn!=self.turn || number(&o.event_id).is_none() || o.event_id==s.card.id || o.extra.is_none() && o.moon_at_entry==0 {return Err("赤鳞近卫进场条件或事件身份不符".into());}
-        if let Some(p)=&o.extra{if p.assets.len()!=1 || number(&p.assets[0]).is_none() || number(&p.play_instance).is_none() || number(&p.play_frame).is_none() || number(&p.play_instance)>=number(&p.play_frame) || number(&p.play_frame)>=number(&s.card.id) || p.assets[0]==p.play_instance || p.assets[0]==s.card.id || self.batch3_physical_cards().any(|c|c.id==p.play_instance) || self.players.iter().enumerate().any(|(seat,player)|seat!=actor && player.assets.iter().any(|a|p.assets.contains(&a.id))){return Err("赤鳞近卫额外费用须保留原打出与独立支付1收据".into());}}
+        if let Some(p)=&o.extra{if p.assets.len()+p.credits.len()!=1 || p.assets.iter().any(|id|number(id).is_none()) || number(&p.play_instance).is_none() || number(&p.play_frame).is_none() || number(&p.play_instance)>=number(&p.play_frame) || number(&p.play_frame)>=number(&s.card.id) || p.assets.iter().any(|id|*id==p.play_instance || *id==s.card.id) || self.batch3_physical_cards().any(|c|c.id==p.play_instance) || self.players.iter().enumerate().any(|(seat,player)|seat!=actor && player.assets.iter().any(|a|p.assets.contains(&a.id))){return Err("赤鳞近卫额外费用须保留原打出与独立支付1收据".into());}for c in &p.credits{self.validate_step_credit(c)?;if c.actor!=actor{return Err("赤鳞近卫额外费用不能借用其他玩家步骤费用".into());}}}
         Ok(())
     }
     pub(crate) fn bq029_feed_start(&mut self,f:ResolutionFrame)->RuleResult<()> {

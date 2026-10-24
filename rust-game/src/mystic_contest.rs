@@ -368,7 +368,7 @@ impl Game {
             let MysticPhase::After { next_shown: cursor, .. } = &mut self.mystic_contest.as_mut().unwrap().phase else { unreachable!() };
             *cursor += 1;
             self.effects.push_front(Effect::MysticContinue { contest_id: state.contest_id });
-            let post = matches!(shown.card.definition.as_str(), "WM061" | "BQ081").then(|| ResolutionFrame {
+            let post = matches!(shown.card.definition.as_str(), "WM061" | "BQ081").then(|| ResolutionFrame { resource_payments: vec![],
                 frame_id: self.id(), ability_key: if shown.card.definition == "BQ081" { crate::import20_broker::SHOWN } else { crate::pack_a_contest::EARTH_SHOWN }.into(), actor: shown.seat,
                 source: self.source_snapshot(&shown.card, None), targets: vec![], already_paid: vec![],
                 guard: GuardState::Accepted, cursor: 1,

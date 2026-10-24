@@ -283,7 +283,7 @@ impl Game {
             || (f.cursor > 0 && !matches!(f.guard, GuardState::Accepted)) { return Err("第四批执行帧身份、游标或守卫不符".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty()
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play() || f.source.region.is_some() || f.chosen_region.is_some())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some() || f.source.region.is_none() || f.chosen_region != f.source.region)
             { return Err("混乱派遣或现身帧不能更改地区、类型或支付".into()); }
@@ -333,6 +333,7 @@ impl Game {
         self.validate_cq24_state()?;
         self.validate_wm064_state()?;
         self.validate_xg13_state()?;
+        self.validate_industry_state()?;
         self.validate_import20_broker_state()?;
         self.validate_import20_vampire_state()?;
         self.validate_xg11_state()?;

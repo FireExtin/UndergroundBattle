@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    IndustryAttachmentEntered,
+    IndustryCharacterSealed,
     CQ24QualifiedEntry,
     XG13OtherCultistEntered,
     BQ039HostBattleWon,
@@ -74,6 +76,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    IndustryExhaustOther,
     BQ036SacrificeAttachment,
     JZ51SealThreeCorpses,
     JZ36SacrificeBatch,
@@ -287,6 +290,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    IndustryStepResource,
+    IndustryMill { observation: Option<Box<crate::import20_industry::IndustryEvent>> },
+    IndustryInvestigation { observation: Option<Box<crate::import20_industry::IndustryEvent>> },
     CQ24TakeAttachment { observation: Option<Box<crate::import20_carmen::CarmenEntry>>, attachment: Option<Box<crate::import20_carmen::CarmenAttachment>>, reattach: bool },
     WM064RevealCriminal,
     XG13EntryTime { observation: Option<Box<crate::import20_cultist::CultistEntry>> },
@@ -752,6 +758,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::import20_industry::related(card_id,ability) { return crate::import20_industry::validate_ability(card_id,ability); }
     if crate::import20_carmen::related(card_id, ability) { return crate::import20_carmen::validate_ability(card_id, ability); }
     if crate::import20_tattoo::related(card_id, ability) { return crate::import20_tattoo::validate_ability(card_id, ability); }
     if crate::import20_cultist::related(card_id, ability) { return crate::import20_cultist::validate_ability(card_id, ability); }
@@ -1537,6 +1544,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
     for (card_id, definition) in definitions {
         crate::import20_carmen::validate_definition(card_id, definition)?;
         crate::import20_tattoo::validate_definition(card_id, definition)?;
+        crate::import20_industry::validate_definition(card_id, definition)?;
         crate::import20_cultist::validate_definition(card_id, definition)?;
         crate::import20_broker::validate_definition(card_id, definition)?;
         crate::import20_vampires::validate_definition(card_id, definition)?;
@@ -2208,6 +2216,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::import20_industry::CARDS { m.insert((*id).into(),crate::import20_industry::definition(id).unwrap()); }
         m.insert(crate::import20_carmen::ID.into(), crate::import20_carmen::definition());
         m.insert(crate::import20_tattoo::ID.into(), crate::import20_tattoo::definition());
         m.insert(crate::import20_cultist::ID.into(), crate::import20_cultist::definition());

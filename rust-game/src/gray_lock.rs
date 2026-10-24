@@ -33,7 +33,7 @@ impl Game {
         let source = &frame.source;
         let valid_paid = if frame.ability_key == "chase-locked" {
             matches!(frame.already_paid.as_slice(), [PaidCost::Assets(ids)]
-                if ids.len() == 2 && ids[0] != ids[1] && ids.iter().all(|id| !id.is_empty()))
+                if frame.money_units(0) == 2 && ids[0] != ids[1] && ids.iter().all(|id| !id.is_empty()))
         } else { frame.already_paid.is_empty() };
         if frame.actor >= self.players.len() || source.card.owner >= self.players.len()
             || source.card.controller != frame.actor || source.card.face_down || source.card.id.is_empty()

@@ -171,7 +171,7 @@ impl Game {
                 || !t.public.valid
                 || t.public.status != "valid"
                 || t.public.invalid_reason.is_some()
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2
                     && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
             {
                 return Err("JZ46地区结附、原宿主或支付帧无效".into());

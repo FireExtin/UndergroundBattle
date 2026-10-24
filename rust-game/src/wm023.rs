@@ -109,7 +109,7 @@ impl Game {
                 || !matches!(f.guard, GuardState::Unchecked)
                 || f.chosen_region != f.source.region
                 || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]
-                    if ids.len()<=4&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+                    if f.money_units(0)<=4&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
             {
                 return Err("WM023派遣或现身支付帧无效".into());
             }
@@ -120,7 +120,7 @@ impl Game {
             || c.exhausted
             || f.source.play_source.is_some()
             || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids),PaidCost::Exhausted(id)]
-                if ids.len()==1&&!ids[0].is_empty()&&ids[0]!=c.id&&id==&c.id)
+                if f.money_units(0)==1&&!ids[0].is_empty()&&ids[0]!=c.id&&id==&c.id)
             || !matches!(f.steps.as_slice(),[Step{context,op:Op::WM023PutUniqueMageOrVampireFromHand}] if *context==f.actor)
             || !((f.cursor == 0 && matches!(f.guard, GuardState::Unchecked))
                 || (f.cursor == 1 && matches!(f.guard, GuardState::Accepted)))

@@ -85,7 +85,7 @@ impl Game {
             }
         }
         if f.targets[0].public.controller != f.targets[1].public.controller
-            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2
+            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2
                 && ids.iter().all(|id| !id.is_empty() && *id != c.id && *id != f.frame_id && f.targets.iter().all(|t| t.id != *id))
                 && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
             return Err("灵魂通道须保留同一原操控者及一次印刷费用收据".into());

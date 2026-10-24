@@ -64,7 +64,7 @@ impl Game {
         let shown=o.shown.get(index).ok_or("戴森展示后置索引无效")?;
         if shown.card.definition!="WM037"||self.players[shown.seat].eliminated
             || !self.players[shown.seat].society_zone.card.as_ref().is_some_and(|c|c.definition=="MSJC13"&&!c.face_down) {return Ok(());}
-        let f=ResolutionFrame{frame_id:self.id(),ability_key:SHOWN.into(),actor:shown.seat,source:self.source_snapshot(&shown.card,None),
+        let f=ResolutionFrame{ resource_payments: vec![],frame_id:self.id(),ability_key:SHOWN.into(),actor:shown.seat,source:self.source_snapshot(&shown.card,None),
             targets:vec![],already_paid:vec![],guard:GuardState::Accepted,cursor:1,
             steps:vec![Step{context:shown.seat,op:Op::WM037ShownTime{contest_id:o.contest_id.clone(),index}}],chosen_region:None};
         let Some(state)=&mut self.mystic_contest else{return Err("戴森展示后置缺少原对抗".into());};
@@ -115,7 +115,7 @@ impl Game {
         if f.ability_key!=PLAY||f.cursor>a.ops.len()||f.cursor==0&&!matches!(f.guard,GuardState::Unchecked)
             || f.cursor>0&&!matches!(f.guard,GuardState::Accepted)
             || f.steps.len()!=a.ops.len()||f.steps.iter().zip(&a.ops).any(|(s,op)|s.context!=f.actor||!same(&s.op,op))
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()<=2
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=2
                 && ids.iter().all(|id|self.mystic_instance_valid(id)&&*id!=c.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) {
             return Err("戴森的计谋须保留费用、弃一/底二入手/可选对抗完整次序".into());
         }

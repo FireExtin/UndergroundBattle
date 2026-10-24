@@ -253,7 +253,7 @@ impl Game {
                     || t.public.kind != "character"
                     || !t.public.valid
                     || t.public.invalid_reason.is_some()
-                    || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()<=1&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+                    || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=1&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
                 {
                     return Err("WM038结附目标或印刷支付无效".into());
                 }

@@ -55,7 +55,7 @@ impl Game {
                 || t.public.owner.as_deref().is_none_or(|id|!self.players.iter().any(|p|player_id(p.seat)==id))
                 || t.public.controller.as_deref().is_none_or(|id|!self.players.iter().any(|p|player_id(p.seat)==id))
                 || t.public.region.is_none_or(|r|r>=self.regions.len()))
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()<=1 && ids.iter().all(|id|!id.is_empty() && *id!=c.id && f.targets.iter().all(|t|t.id!=*id)) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) {
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=1 && ids.iter().all(|id|!id.is_empty() && *id!=c.id && f.targets.iter().all(|t|t.id!=*id)) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) {
             return Err("调查档案的原来源、费用、零至二目标或执行阶段不符".into());
         }
         self.mobility_immutable_identity(c)

@@ -795,7 +795,7 @@ impl Game {
         if f.frame_id.is_empty() || f.cursor > f.steps.len() {
             return Err("蓝灰帧身份或游标不符".into());
         }
-        let printed = matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
+        let printed = matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if catalog::card(&f.source.card.definition).kind != "character"
                 || !f.steps.is_empty()

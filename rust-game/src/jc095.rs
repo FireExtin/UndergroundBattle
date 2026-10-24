@@ -190,7 +190,7 @@ impl Game {
                 || (f.ability_key == "reveal"
                     && (!f.source.card.face_down || f.source.play_source.is_some()))
                 || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]
-                    if ids.len()<=7 && ids.iter().all(|id|!id.is_empty())
+                    if f.money_units(0)<=7 && ids.iter().all(|id|!id.is_empty())
                         && ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
             {
                 return Err("JC095只准入真实派遣或付费现身空程序".into());

@@ -20,6 +20,7 @@ impl Game {
         }
         let d = card(&c.definition);
         let mut permanent = d.permanent_icons;
+        permanent.investigation += self.industry_investigation(c);
         if c.definition == "BQ091" && self.players[c.controller].graveyard.len() >= 7 { permanent.investigation += 1; }
         permanent.add(if self.team(c.controller) == self.first_team {
             d.temporary_icons

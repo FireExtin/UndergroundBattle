@@ -30,7 +30,7 @@ impl Game{
             || f.frame_id.is_empty() || f.ability_key!=KEY || f.chosen_region.is_some() || !f.targets.is_empty() || f.cursor>1
             || (f.cursor==0 && !matches!(f.guard,GuardState::Unchecked)) || (f.cursor==1 && !matches!(f.guard,GuardState::Accepted))
             || !same(&f.steps,&vec![Step{context:f.actor,op:d.abilities[0].ops[0].clone()}])
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()==2 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==2 && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|asset|ids.contains(&asset.id))))
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)==2 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len() && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|asset|ids.contains(&asset.id))))
             || self.players.iter().any(|p|p.hand.iter().chain(&p.deck).chain(&p.graveyard).chain(&p.assets).chain(&p.score_cards).any(|other|other.id==c.id)){
             return Err("州议员须保留任意玩家实际支付2、原公开来源和一次执行程序".into());
         }

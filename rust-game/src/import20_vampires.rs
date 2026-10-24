@@ -205,7 +205,7 @@ impl Game {
             || f.cursor > 0 && !matches!(f.guard, GuardState::Accepted) { return Err("吸血鬼帧身份或阶段无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize
                     && ids.iter().all(|id| self.mystic_instance_valid(id) && *id != f.source.card.id)
                     && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())

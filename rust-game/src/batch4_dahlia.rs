@@ -83,7 +83,7 @@ impl Game {
         if f.frame_id.is_empty()||f.cursor>f.steps.len()||(f.cursor==0&&!matches!(f.guard,GuardState::Unchecked))||(f.cursor>0&&!matches!(f.guard,GuardState::Accepted))||!f.targets.is_empty(){return Err("达莉娅帧、游标、守卫或目标无效".into());}
         if matches!(f.ability_key.as_str(),"deploy"|"reveal") {
             if !f.steps.is_empty()||f.chosen_region!=f.source.region
-                ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if ids.len()<=5&&ids.iter().all(|id|!id.is_empty()&&*id!=f.source.card.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+                ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if f.money_units(0)<=5&&ids.iter().all(|id|!id.is_empty()&&*id!=f.source.card.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
                 ||(f.ability_key=="deploy"&&(f.source.card.face_down||!f.source.valid_character_play()))
                 ||(f.ability_key=="reveal"&&(!f.source.card.face_down||f.source.play_source.is_some())){return Err("达莉娅正常派遣或现身的支付、原地区无效".into());}
         } else {

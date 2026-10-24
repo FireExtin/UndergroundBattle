@@ -1,8 +1,8 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.96-import20-thief-tattoo",
-  "engineVersion": "rust-v0.2.105-import20-thief-tattoo",
-  "sourceSha256": "a3d393a179ac17e46e8d213279bea1a3f92f0a2adc2d79c3f73973e93c2e13e9",
+  "cardPoolVersion": "limited-v2.97-import20-industry",
+  "engineVersion": "rust-v0.2.106-import20-industry",
+  "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
       "id": "JC125",
@@ -10563,6 +10563,86 @@
       },
       "defense": 1,
       "subtitle": "神偷"
+    },
+    {
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "subtitle": "圣甲虫产业",
+      "kind": "attachment",
+      "subtypes": [
+        "设施",
+        "资源"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n快速行动，横置本牌，横置一个副名为圣甲虫产业的本方附属：你获得①直到本步骤结束。\n神秘学博弈②。（手牌行动②，从你手中弃掉此牌：进行一次隐秘对抗。）",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ092",
+        "image": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "BQ093",
+      "name": "样本陈列室",
+      "subtitle": "圣甲虫产业",
+      "kind": "attachment",
+      "subtypes": [
+        "设施",
+        "研究"
+      ],
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "color": "黑",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标地区\n触发 当一个副名为圣甲虫产业的本方附属进场时，将你的牌库顶牌置于墓地。\n触发 当一张角色牌被封印在副名为圣甲虫产业的本方附属上时，该附属获得永久调查1直到回合结束。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ093",
+        "image": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

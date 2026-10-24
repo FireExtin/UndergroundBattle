@@ -115,7 +115,7 @@ impl Game {
             || f.ability_key != KEY
             || f.chosen_region.is_some()
             || f.targets.len() != 1
-            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2
+            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2
                 && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
             || !matches!(f.steps.as_slice(), [Step { context, op: Op::WM062HideCriminalThenOptionalAdjacentMove }] if *context == f.actor)
             || !((f.cursor == 0 && matches!(f.guard, GuardState::Unchecked))

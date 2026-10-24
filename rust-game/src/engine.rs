@@ -53,6 +53,8 @@ impl Game {
         }
         Ok(Self {
             state_schema: 2,
+            step_resources: vec![],
+            industry_bonuses: vec![],
             mystic_contest: None,
             mystic_history: vec![],
             modifiers: vec![],
@@ -244,7 +246,7 @@ impl Game {
             .assets
             .iter()
             .filter(|c| !c.exhausted)
-            .count() as u32
+            .count() as u32 + self.step_resource_count(seat)
     }
     pub(crate) fn loyalty(&self, seat: usize, definition: &str) -> bool {
         let mut available: BTreeMap<String, usize> = BTreeMap::new();
@@ -264,17 +266,7 @@ impl Game {
             .all(|(k, v)| available.get(k).copied().unwrap_or(0) >= *v)
     }
     pub(crate) fn pay(&mut self, seat: usize, amount: u32) -> RuleResult<()> {
-        if self.resources(seat) < amount {
-            return Err("可用资产不足".into());
-        }
-        for c in self.players[seat]
-            .assets
-            .iter_mut()
-            .filter(|c| !c.exhausted)
-            .take(amount as usize)
-        {
-            c.exhausted = true;
-        }
+        self.capture_money(seat,amount)?;
         Ok(())
     }
     pub(crate) fn board(&self, id: &str) -> Option<(usize, &Card)> {
@@ -600,6 +592,7 @@ impl Game {
         let end_step = window == Window::End;
         let prepare = window == Window::Prepare;
         self.window = Some(window);
+        self.prune_step_resources();
         if end_step { self.jc054_begin_end_step(); }
         if prepare { self.jc035_begin_preparation(); }
         self.priority_team = self.priority_default();
@@ -826,7 +819,7 @@ impl Game {
                         false,
                         None,
                     );
-                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame {
+                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments: vec![],
                         frame_id: self.stack.last().unwrap().id.clone(),
                         ability_key: "deploy".into(),
                         actor: seat,
@@ -885,7 +878,7 @@ impl Game {
                     true,
                     None,
                 );
-                self.stack.last_mut().unwrap().frame = Some(ResolutionFrame {
+                self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments: vec![],
                     frame_id: self.stack.last().unwrap().id.clone(),
                     ability_key: "reveal".into(),
                     actor: seat,
@@ -1266,9 +1259,9 @@ impl Game {
                 let id = c.id.clone();
                 let definition = c.definition.clone();
                 self.regions[region].cards.push(c);
-                let extra=if definition=="BQ029" && !item.reveal { frame.already_paid.iter().find_map(|p|if let PaidCost::BQ029ExtraAssets(ids)=p { Some(crate::batch3_blood::BQ029ExtraPayment{play_instance:frame.source.card.id.clone(),play_frame:frame.frame_id.clone(),assets:ids.clone()}) } else { None }) } else { None };
+                let extra=if definition=="BQ029" && !item.reveal { frame.already_paid.iter().find_map(|p|if let PaidCost::BQ029ExtraAssets(ids)=p { Some(crate::batch3_blood::BQ029ExtraPayment{play_instance:frame.source.card.id.clone(),play_frame:frame.frame_id.clone(),assets:ids.clone(),credits:frame.resource_payments.iter().filter(|p|p.paid_index==1).flat_map(|p|p.credits.clone()).collect()}) } else { None }) } else { None };
                 let carmen = if definition == "CQ24" && !item.reveal { frame.already_paid.iter().find_map(|p| if let PaidCost::CQ24ExtraAssets(ids) = p {
-                    Some(crate::import20_carmen::ExtraPayment { play_instance: frame.source.card.id.clone(), play_frame: frame.frame_id.clone(), assets: ids.clone() }) } else { None }) } else { None };
+                    Some(crate::import20_carmen::ExtraPayment { play_instance: frame.source.card.id.clone(), play_frame: frame.frame_id.clone(), assets: ids.clone(), credits: frame.resource_payments.iter().filter(|p|p.paid_index==1).flat_map(|p|p.credits.clone()).collect() }) } else { None }) } else { None };
                 self.enter_triggers_with_extra(item.controller, &definition, &id, item.reveal,extra,carmen,true);
             } else if card(&c.definition).kind == "attachment" {
                 if self.accept_frame_guard(&mut frame) {
@@ -2015,6 +2008,8 @@ impl Game {
                 }
             }
             Effect::NextTurn => {
+                self.step_resources.clear();
+                self.industry_bonuses.clear();
                 self.turn += 1;
                 self.mystic_history.clear();
                 self.influence_contests.clear();

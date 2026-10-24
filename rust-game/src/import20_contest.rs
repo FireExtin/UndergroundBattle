@@ -9,9 +9,9 @@ pub(crate) const HAND: &str = "import20-bq090-hand-contest";
 pub(crate) const EYE_HAND: &str = "import20-bq039-hand-contest";
 pub(crate) const SAMPLES: &str = "import20-bq064-take-samples";
 
-pub(crate) fn is_hand_key(key: &str) -> bool { matches!(key, HAND | EYE_HAND) }
+pub(crate) fn is_hand_key(key: &str) -> bool { matches!(key, HAND | EYE_HAND | crate::import20_industry::HAND) }
 pub(crate) fn hand_ability(id: &str) -> Option<AbilitySpec> {
-    let key = match id { "BQ090" => HAND, "BQ039" => EYE_HAND, _ => return None };
+    let key = match id { "BQ090" => HAND, "BQ039" => EYE_HAND, "BQ092" => crate::import20_industry::HAND, _ => return None };
     let mut hand = ability(key, "手牌行动：支付2并弃自身，进行隐秘对抗", Timing::Standard,
         vec![Cost::Assets(2), Cost::DiscardSelectedHandCard], vec![],
         vec![Op::MysticContest { actor_bonus: 0 }], None);
@@ -61,6 +61,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     else { Err("首批隐秘卡能力须保留原卡完整费用、目标与程序".into()) }
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "BQ092" { return crate::import20_industry::validate_action(id,a); }
     if id == "BQ039" { return crate::import20_observers::validate_action(id, a); }
     if !CARDS.contains(&id) { return Ok(()); }
     let expected = match (id, a.kind.as_str()) {
@@ -74,12 +75,12 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if *a == expected { Ok(()) } else { Err("本卡行动不可夹带额外目标、费用或选择".into()) }
 }
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
-    matches!((id, key, bonus), ("BQ090", HAND, 0) | ("BQ039", EYE_HAND, 0))
+    matches!((id, key, bonus), ("BQ090", HAND, 0) | ("BQ039", EYE_HAND, 0) | ("BQ092", crate::import20_industry::HAND, 0))
 }
 
 impl Game {
     pub(crate) fn import20_begin_hand(&mut self, actor: usize, a: &Action) -> RuleResult<()> {
-        let id = match a.ability_id.as_deref() { Some(HAND) => "BQ090", Some(EYE_HAND) => "BQ039", _ => return Err("非准入神秘学博弈手牌能力".into()) };
+        let id = match a.ability_id.as_deref() { Some(HAND) => "BQ090", Some(EYE_HAND) => "BQ039", Some(crate::import20_industry::HAND) => "BQ092", _ => return Err("非准入神秘学博弈手牌能力".into()) };
         validate_action(id, a)?;
         let player = self.players.get(actor).filter(|p| !p.eliminated).ok_or("手牌行动玩家无效")?;
         let c = player.hand.iter().find(|c| Some(c.id.as_str()) == a.card_id.as_deref()
@@ -119,9 +120,9 @@ impl Game {
         let assets = match f.already_paid.as_slice() {
             [PaidCost::Assets(ids), PaidCost::Discarded { old_instance, holder, owner }]
                 if is_hand_key(&f.ability_key) && old_instance == &s.card.id && *holder == f.actor
-                    && *owner == s.card.owner && ids.len() == 2
+                    && *owner == s.card.owner && f.money_units(0) == 2
                     && !self.batch3_physical_cards().any(|c| c.id == s.card.id) => ids,
-            [PaidCost::Assets(ids)] if !is_hand_key(&f.ability_key) && ids.len() <= catalog::card(id).cost as usize => ids,
+            [PaidCost::Assets(ids)] if !is_hand_key(&f.ability_key) && f.money_units(0) <= catalog::card(id).cost as usize => ids,
             _ => return Err("首批隐秘卡须保留实际出牌或支付2并弃自身的费用收据".into()),
         };
         if assets.iter().collect::<BTreeSet<_>>().len() != assets.len()

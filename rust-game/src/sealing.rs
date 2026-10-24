@@ -6,6 +6,7 @@ use std::collections::BTreeSet;
 impl Game {
     pub(crate) fn seal_host_valid(&self, host_id: &str) -> bool {
         if self.society_host_seat(host_id).is_some() { return true; }
+        if self.attachments.iter().any(|a| a.card.id == host_id && !a.card.face_down && self.attachment_host_valid(a)) { return true; }
         self.board(host_id).is_some_and(|(_, c)| {
             !c.face_down
                 && catalog::catalog()
@@ -79,7 +80,10 @@ impl Game {
             host_id: host_id.into(),
         });
         self.note(format!("{name} 被封印在{}上",if self.society_host_seat(host_id).is_some(){"秘社"}else{"目标角色"}));
+        let previous=self.effects.len();
+        self.observe_industry_sealed(&source.card,host_id);
         self.emit_event(actor, source, Event::Sealed);
+        self.batch3_register_entry_order(host_id,previous);
     }
 
     pub(crate) fn return_sealed_cards(&mut self, host_id: &str) {

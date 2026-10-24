@@ -106,7 +106,7 @@ impl Game {
                 || f.source.source_region_instance.as_ref().is_none_or(|s|s.is_empty()) || f.source.attachment_host_instance.is_some()
                 || f.source.death_echo.is_some() || f.source.observed_death.is_some() || f.source.observed_exposure.is_some() || f.source.observed_mobility_grant.is_some()
                 || !f.targets.is_empty() || !f.steps.is_empty()
-                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()<=5 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=5 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
                 || f.ability_key=="deploy" && (c.face_down || !f.source.valid_character_play())
                 || f.ability_key=="reveal" && (!c.face_down || f.source.play_source.is_some()) {
                 return Err("温迪戈派遣/现身须保留实际印刷支付与原地区".into());

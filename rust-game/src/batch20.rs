@@ -390,9 +390,9 @@ impl Game {
     }
     pub(crate) fn validate_batch20_payment(&self, f: &ResolutionFrame, expected: &[Cost]) -> RuleResult<()> {
         if expected.len() != f.already_paid.len() { return Err("本批费用数量不符".into()); }
-        for (cost, receipt) in expected.iter().zip(&f.already_paid) {
+        for (paid_index, (cost, receipt)) in expected.iter().zip(&f.already_paid).enumerate() {
             match (cost, receipt) {
-                (Cost::Assets(n), PaidCost::Assets(ids)) if ids.len() == *n as usize
+                (Cost::Assets(n), PaidCost::Assets(ids)) if f.money_units(paid_index) == *n as usize
                     && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len() => {},
                 (Cost::SacrificeSource, PaidCost::Sacrificed { old_instance, controller, owner })
                     if old_instance == &f.source.card.id && *controller == f.actor && *owner == f.source.card.owner => {},

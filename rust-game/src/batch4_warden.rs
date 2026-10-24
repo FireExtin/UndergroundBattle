@@ -70,7 +70,7 @@ impl Game {
             || f.cursor > 0 && !matches!(f.guard, GuardState::Accepted) { return Err("老看守帧身份、游标或守卫无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 1 && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some()) {
                 return Err("老看守派遣与现身须保留原地区、实际支付及空程序".into());

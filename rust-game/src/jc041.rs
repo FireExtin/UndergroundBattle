@@ -136,7 +136,7 @@ impl Game {
                 || f.chosen_region != f.source.region
                 || (f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play()))
                 || (f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some()))
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 4 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 4 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC041普通付费派遣或现身空帧不符".into());
             }
             return Ok(());
@@ -146,7 +146,7 @@ impl Game {
                 || f.steps.len() != 1 || f.steps[0].context != f.actor || !matches!(f.steps[0].op, Op::JC041RevealOriginalHidden)
                 || f.cursor > 1 || (f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked))
                 || (f.cursor == 1 && !matches!(f.guard, GuardState::Accepted))
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 2 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) == 2 && ids.iter().all(|i| !i.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("JC041水域暗藏者付费帧或游标不符".into());
             }
             let r = &self.regions[f.source.region.unwrap()];

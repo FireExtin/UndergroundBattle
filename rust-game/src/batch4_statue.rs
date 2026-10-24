@@ -144,7 +144,7 @@ impl Game {
                 || t.public.instance_id!=host || t.public.kind!="society" || t.public.region.is_some() || !t.public.valid || t.public.status!="valid" || t.public.invalid_reason.is_some()
                 || t.public.controller.as_deref()!=Some(&player_id(f.actor)) || t.public.owner.as_deref()!=Some(&player_id(f.actor)) || t.public.label!=format!("{}的秘社",self.players[f.actor].name)
                 || f.source.attachment_host_instance.is_some() || f.chosen_region.is_some() || self.batch3_physical_cards().any(|c|c.id==f.source.card.id)
-                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if ids.len()<=2&&ids.iter().all(|id|!id.is_empty()&&*id!=f.source.card.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) { return Err("雕像结附只能保留原个人秘社和已支付费用".into()); }
+                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if f.money_units(0)<=2&&ids.iter().all(|id|!id.is_empty()&&*id!=f.source.card.id)&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) { return Err("雕像结附只能保留原个人秘社和已支付费用".into()); }
         } else {
             let mut a=definition().abilities.remove(1);a.ops=f.steps.iter().map(|s|s.op.clone()).collect();self.validate_statue_declaration(&Declaration{actor:f.actor,source:f.source.clone(),ability:a})?;
             if f.ability_key!=KEY||!f.targets.is_empty()||!f.already_paid.is_empty()||f.chosen_region.is_some()||f.steps.iter().any(|s|s.context!=f.actor)

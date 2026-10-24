@@ -590,7 +590,7 @@ impl Game {
             return Err("黑色五张帧身份或游标无效".into());
         }
         let printed_payment = matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
-            if ids.len() <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
+            if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if catalog::card(&f.source.card.definition).kind != "character"
                 || !f.steps.is_empty()
@@ -665,10 +665,10 @@ impl Game {
             }
             "black20-xq39-recover" => {
                 matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
-                if ids.len() == 2 && ids[0] != ids[1] && ids.iter().all(|id| !id.is_empty()) && *id == f.source.card.id)
+                if f.money_units(0) == 2 && ids[0] != ids[1] && ids.iter().all(|id| !id.is_empty()) && *id == f.source.card.id)
             }
             "black20-xg27-return" => {
-                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 1 && !ids[0].is_empty())
+                matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) == 1 && ids.iter().all(|id| !id.is_empty()))
             }
             _ => f.already_paid.is_empty(),
         };

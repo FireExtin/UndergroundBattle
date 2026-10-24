@@ -160,7 +160,7 @@ impl Game {
                 || f.chosen_region.is_some() || !f.steps.is_empty() || f.cursor != 0
                 || !matches!(f.guard, GuardState::Unchecked | GuardState::Accepted)
                 || f.targets.len() != 1 || !same(&f.targets[0].spec, &expected.targets[0])
-                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len() <= catalog::card(id).cost as usize
+                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(id).cost as usize
                     && ids.iter().collect::<BTreeSet<_>>().len()==ids.len()
                     && ids.iter().all(|id| *id!=s.card.id && self.mystic_instance_number(id)
                         .zip(self.mystic_instance_number(&f.frame_id)).is_some_and(|(a,f)|a<f))) {

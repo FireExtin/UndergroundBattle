@@ -76,7 +76,7 @@ impl Game {
             || !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region!=f.source.region
             || f.ability_key=="deploy" && (c.face_down || !f.source.valid_character_play())
             || f.ability_key=="reveal" && (!c.face_down || f.source.play_source.is_some())
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()<=6 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) {
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=6 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len()) {
             return Err("江月须保留正常角色打出、原地区、操控者及印刷费用".into());
         }
         self.mobility_immutable_identity(c)

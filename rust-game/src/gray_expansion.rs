@@ -311,7 +311,7 @@ impl Game {
         }
         let paid_valid = if f.source.card.definition == "JC061"
             && f.ability_key == "enter-region-paid-hidden-destroy" {
-            matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 1 && !ids[0].is_empty())
+            matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) == 1 && ids.iter().all(|id| !id.is_empty()))
         } else { f.already_paid.is_empty() };
         if f.source.play_source.is_some() || !paid_valid || f.chosen_region.is_some()
         {

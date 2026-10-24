@@ -471,10 +471,10 @@ impl Game {
                     f.already_paid.is_empty()
                 } else if f.source.card.definition == "JC114" {
                     matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
-                        if ids.len() == 1 && !ids[0].is_empty() && id == &f.source.card.id && !f.source.card.exhausted)
+                        if f.money_units(0) == 1 && ids.iter().all(|id| !id.is_empty()) && id == &f.source.card.id && !f.source.card.exhausted)
                 } else if a.costs.is_empty() {
                     matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
-                        if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+                        if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize
                             && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 } else {
                     // Existing nontrivial JC038/JZ57 sacrifice is authenticated above

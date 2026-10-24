@@ -316,7 +316,7 @@ impl Game {
         Ok(())
     }
     fn vampire_printed_payment(&self, f: &ResolutionFrame) -> bool {
-        matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= catalog::card(&f.source.card.definition).cost as usize
+        matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= catalog::card(&f.source.card.definition).cost as usize
             && ids.iter().all(|id| self.vampire_id(id).is_some() && *id != f.source.card.id)
             && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()
             && !self.players.iter().enumerate().any(|(seat, p)| seat != f.actor && p.assets.iter().any(|c| ids.contains(&c.id))))

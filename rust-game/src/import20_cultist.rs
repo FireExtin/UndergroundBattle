@@ -169,7 +169,7 @@ impl Game {
             if !f.steps.is_empty() || f.chosen_region != f.source.region
                 || f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some())
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2
                     && ids.iter().all(|id| f.source.valid_printed_payment_id(id)) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("玛丽派遣/现身须保留实际出牌与支付".into());
             }

@@ -63,7 +63,7 @@ impl Game {
             if f.chosen_region != Some(r) || t.id != format!("region:{r}") || t.public.kind != "region" || t.public.region != Some(r)
                 || t.public.owner.is_some() || t.public.controller.is_some() || t.region_instance.as_ref().is_none_or(|id| id.is_empty())
                 || s.region.is_some() || s.source_region_instance.is_some() || s.attachment_host_instance.is_some()
-                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len() <= 4 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+                || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0) <= 4 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("头骨结附须保留印刷费用与目标地区实体".into());
             }
         } else {

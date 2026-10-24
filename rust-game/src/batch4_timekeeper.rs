@@ -93,7 +93,7 @@ impl Game {
             || !matches!(f.guard, GuardState::Unchecked) { return Err("计时人戴森帧身份或阶段无效".into()); }
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             if !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 6
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 6
                     && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id)
                     && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())

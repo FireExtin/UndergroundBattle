@@ -621,6 +621,9 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    #[serde(skip)]
+    CapturedResources { receipt: Box<PaidCost>, credits: Vec<crate::step_resources::StepCredit> },
+    IndustryExhausted(Box<SourceSnapshot>),
     CQ24ExtraAssets(Vec<String>),
     BQ036Attachment(Box<crate::batch4_vampire_contest::AttachmentPayment>),
     JZ51Corpses(crate::batch4_wendigo::CorpsePayment),
@@ -666,6 +669,8 @@ pub struct Step {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ResolutionFrame {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub resource_payments: Vec<crate::step_resources::ResourcePayment>,
     pub frame_id: String,
     pub ability_key: String,
     pub actor: usize,
@@ -935,6 +940,10 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub step_resources: Vec<crate::step_resources::StepCredit>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub industry_bonuses: Vec<crate::import20_industry::IndustryBonus>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub mystic_contest: Option<crate::mystic_contest::MysticContest>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]

@@ -231,7 +231,7 @@ impl Game {
                 || !matches!(f.guard, GuardState::Unchecked)
                 || f.chosen_region != f.source.region
                 || (f.source.card.definition == "JC094" && !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
-                    if ids.len() <= 6 && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()))
+                    if f.money_units(0) <= 6 && ids.iter().all(|id| !id.is_empty()) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()))
             {
                 return Err("黑色扩展派遣/现身来源或空程序不符".into());
             }

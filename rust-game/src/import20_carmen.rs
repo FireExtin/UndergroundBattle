@@ -9,7 +9,7 @@ const HOST: &str = "cq24-new-attachment-host";
 const TITLE: &str = "卡门：可选择新的结附目标；放弃则保留原宿主";
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ExtraPayment { pub play_instance: String, pub play_frame: String, pub assets: Vec<String> }
+pub struct ExtraPayment { pub play_instance: String, pub play_frame: String, pub assets: Vec<String>, #[serde(default,skip_serializing_if="Vec::is_empty")] pub credits: Vec<crate::step_resources::StepCredit> }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct CarmenEntry { pub event_id: String, pub turn: u32, pub secrecy: u32, pub enemies: Vec<(usize, u32)>, pub extra: Option<ExtraPayment> }
@@ -88,8 +88,7 @@ impl Game {
     }
     pub(crate) fn cq24_retreat(&self, c: &Card) -> bool { c.definition == ID && !c.face_down && self.players[c.controller].society_zone.secrecy > 0 }
     pub(crate) fn cq24_pay_extra(&mut self, actor: usize) -> RuleResult<PaidCost> {
-        let assets = self.players[actor].assets.iter().filter(|c| !c.exhausted).take(3).map(|c| c.id.clone()).collect();
-        self.pay(actor, 3)?; Ok(PaidCost::CQ24ExtraAssets(assets))
+        Ok(self.capture_money(actor,3)?.extra_money(true))
     }
     pub(crate) fn cq24_observe_entry(&mut self, id: &str, extra: Option<ExtraPayment>) {
         let Some((r, c)) = self.board(id).filter(|(_, c)| c.definition == ID && !c.face_down) else { return; };
@@ -123,8 +122,9 @@ impl Game {
         }
         if let Some(p) = &o.extra {
             if !self.mystic_instance_valid(&p.play_instance) || !self.mystic_instance_valid(&p.play_frame) || p.play_instance == p.play_frame
-                || p.assets.len() != 3 || p.assets.iter().any(|id| !self.mystic_instance_valid(id) || *id == p.play_instance)
+                || p.assets.len() + p.credits.len() != 3 || p.assets.iter().any(|id| !self.mystic_instance_valid(id) || *id == p.play_instance)
                 || p.assets.iter().collect::<BTreeSet<_>>().len() != 3 { return Err("卡门额外3须为实际不同资产与原出牌".into()); }
+            for c in &p.credits { self.validate_step_credit(c)?; if c.actor != actor { return Err("卡门额外费用不能借用其他玩家步骤费用".into()); } }
         } else if !o.enemies.iter().all(|(_, n)| o.secrecy > *n) { return Err("未额外支付的卡门须在进场时高于每个敌方玩家的隐秘等级".into()); }
         Ok(o)
     }
@@ -225,12 +225,12 @@ impl Game {
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             let assets = match f.already_paid.as_slice() {
                 [PaidCost::Assets(ids)] => ids.clone(),
-                [PaidCost::Assets(ids), PaidCost::CQ24ExtraAssets(extra)] if f.ability_key == "deploy" && extra.len() == 3 => {
+                [PaidCost::Assets(ids), PaidCost::CQ24ExtraAssets(extra)] if f.ability_key == "deploy" && f.money_units(1) == 3 => {
                     let mut all = ids.clone(); all.extend(extra.clone()); all
                 }, _ => return Err("卡门派遣/现身须保留实际印刷及额外3支付".into()),
             };
             let printed = match &f.already_paid[0] { PaidCost::Assets(ids) => ids, _ => unreachable!() };
-            if printed.len() > 1 || assets.iter().any(|id| !f.source.valid_printed_payment_id(id)) || assets.iter().collect::<BTreeSet<_>>().len() != assets.len()
+            if f.money_units(0) > 1 || assets.iter().any(|id| !f.source.valid_printed_payment_id(id)) || assets.iter().collect::<BTreeSet<_>>().len() != assets.len()
                 || !f.steps.is_empty() || !f.targets.is_empty() || f.chosen_region != f.source.region
                 || f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some()) { return Err("卡门出牌须保留原来源、地区与真实支付".into()); }

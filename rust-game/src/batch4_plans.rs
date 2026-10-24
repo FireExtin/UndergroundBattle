@@ -88,7 +88,7 @@ impl Game {
             || f.cursor > 0 && !matches!(f.guard, GuardState::Accepted)
             || f.targets.len() != a.targets.len() || f.targets.iter().zip(&a.targets).any(|(t, s)| !same(&t.spec, s))
         { return Err("计划帧、程序、游标、守卫或目标不完整".into()); }
-        let paid = |n: usize, allow_reduction: bool| matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if (ids.len() == n || allow_reduction && ids.len() < n) && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
+        let paid = |n: usize, allow_reduction: bool| matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if (f.money_units(0) == n || allow_reduction && f.money_units(0) < n) && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len());
         if f.ability_key == "attach" {
             if c.advancement_markers != 0 || f.source.attachment_host_instance.is_some() || !paid(1, true) { return Err("计划打出来源或费用不符".into()); }
             let [Op::PlanPlayed { secrecy }] = a.ops.as_slice() else { return Err("计划缺少完整打出程序".into()); };

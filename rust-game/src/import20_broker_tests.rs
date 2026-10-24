@@ -51,7 +51,7 @@ fn repress_to_peek(g:&mut Game){
 
 #[test]
 fn import20_black_original_prints_single_latest_kernel_and_closed_public_gate(){
-    assert_eq!(catalog::ENGINE_VERSION,"rust-v0.2.105-import20-thief-tattoo");for id in b::CARDS{assert!(!catalog::card(id).supported);assert!(catalog::runtime_implemented(catalog::card(id)));}
+    assert_eq!(catalog::ENGINE_VERSION,"rust-v0.2.106-import20-industry");for id in b::CARDS{assert!(!catalog::card(id).supported);assert!(catalog::runtime_implemented(catalog::card(id)));}
     let c=catalog::card("BQ081");assert_eq!((c.cost,c.defense,c.color.as_str(),c.magic.as_str()),(3,Some(1),"黑","死亡"));
     assert_eq!(c.loyalty,["黑色"]);assert_eq!(c.subtypes,["不死生物","食尸鬼","植物"]);assert_eq!(c.permanent_icons,Icons{combat:1,influence:1,..Icons::default()});assert_eq!(c.temporary_icons.combat,1);
     assert!(c.text.contains("牌库顶的一张牌"));assert!(!c.text.contains("三张"));

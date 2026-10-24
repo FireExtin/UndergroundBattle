@@ -107,7 +107,7 @@ impl Game {
                 || f.chosen_region != f.source.region
                 || f.ability_key == "deploy" && (f.source.card.face_down || !f.source.valid_character_play())
                 || f.ability_key == "reveal" && (!f.source.card.face_down || f.source.play_source.is_some())
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 1 && ids.iter().all(|id| !id.is_empty())) {
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 1 && ids.iter().all(|id| !id.is_empty())) {
                 return Err("XQ23普通付费派遣/现身容器不符".into());
             }
             return Ok(());
@@ -123,7 +123,7 @@ impl Game {
                 || f.cursor > 1 || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
                 || f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)
                 || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids), PaidCost::Exhausted(id)]
-                    if ids.len() == 2 && id == &f.source.card.id && ids.iter().all(|i| !i.is_empty() && i != id)
+                    if f.money_units(0) == 2 && id == &f.source.card.id && ids.iter().all(|i| !i.is_empty() && i != id)
                     && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("XQ23必须保留完整目标、两份资产支付、原来源横置和真实游标".into());
             }

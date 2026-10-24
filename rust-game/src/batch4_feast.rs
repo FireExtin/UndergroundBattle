@@ -125,7 +125,7 @@ impl Game {
                 || t.region_instance.as_ref().is_none_or(|id| self.bq041_instance(id).is_none())
                 || f.source.region.is_some() || f.source.source_region_instance.is_some() || f.source.attachment_host_instance.is_some()
                 || self.batch3_physical_cards().any(|c| c.id == f.source.card.id)
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2 && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2 && ids.iter().all(|id| !id.is_empty() && *id != f.source.card.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
                 return Err("欢宴结附须保留原地区、支付与空程序".into());
             }
         } else {

@@ -44,7 +44,7 @@ impl Game {
             || id(&f.frame_id).is_none_or(|n| n <= id(&c.id).unwrap()) || f.ability_key != "attach" || f.chosen_region.is_some()
             || !f.steps.is_empty() || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked | GuardState::Accepted | GuardState::Cancelled)
             || self.batch3_physical_cards().any(|live| live.id == c.id)
-            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
+            || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len()) {
             return Err("庄园结附须保留原牌、操控者、空程序及实际支付".into());
         }
         self.mobility_immutable_identity(c)?;

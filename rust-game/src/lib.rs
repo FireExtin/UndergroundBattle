@@ -1,3 +1,7 @@
+mod step_resources;
+mod import20_industry;
+#[cfg(test)]
+mod import20_industry_tests;
 mod import20_carmen;
 #[cfg(test)]
 mod import20_carmen_tests;

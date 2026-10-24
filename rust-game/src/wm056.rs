@@ -91,7 +91,7 @@ impl Game {
         }
         let paid = |max: usize| {
             matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]
-            if ids.len()<=max&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+            if f.money_units(0)<=max&&ids.iter().all(|id|!id.is_empty())&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
         };
         if matches!(f.ability_key.as_str(), "deploy" | "reveal") {
             let origin = if f.ability_key == "deploy" {
@@ -126,7 +126,7 @@ impl Game {
                 })
                 .count()
                 != 1
-            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.len()==2&&paid(2))
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)==2&&paid(2))
             || !f.targets.is_empty()
             || !matches!(f.steps.as_slice(),[Step{context,op:Op::WM056MoveOneAdjacentInfluence}] if *context==f.actor)
             || !((f.cursor == 0 && matches!(f.guard, GuardState::Unchecked))

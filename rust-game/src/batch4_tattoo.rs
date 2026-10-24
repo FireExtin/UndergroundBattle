@@ -105,7 +105,7 @@ impl Game {
         }
         if f.ability_key == "attach" {
             if s.region.is_some() || s.source_region_instance.is_some() || s.attachment_host_instance.is_some()
-                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() <= 2 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
+                || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)] if f.money_units(0) <= 2 && ids.iter().all(|id| !id.is_empty() && *id != c.id) && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
                 || t.public.kind != "character" || t.public.region.is_none_or(|r| r >= self.regions.len()) || t.public.owner.is_none() || t.public.controller.is_none()
             { return Err("恶魔刺青结附帧的支付、来源或人类目标无效".into()); }
         } else {

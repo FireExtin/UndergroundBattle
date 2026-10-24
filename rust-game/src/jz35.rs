@@ -191,7 +191,7 @@ impl Game {
                 }],
             )
             || !matches!(f.already_paid.as_slice(), [PaidCost::Assets(ids)]
-                if ids.len() <= 2 && ids.iter().all(|id| !id.is_empty())
+                if f.money_units(0) <= 2 && ids.iter().all(|id| !id.is_empty())
                     && ids.iter().collect::<BTreeSet<_>>().len() == ids.len())
         {
             return Err("JZ35冻结来源、支付或固定牺牲返回帧无效".into());
