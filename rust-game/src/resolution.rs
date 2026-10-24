@@ -1113,11 +1113,7 @@ impl Game {
                 });
             }
         }
-        let mut already_paid=vec![];let mut resource_payments=vec![];
-        for receipt in paid{match receipt{
-            PaidCost::CapturedResources{receipt,credits}=>{resource_payments.push(crate::step_resources::ResourcePayment{paid_index:already_paid.len(),credits});already_paid.push(*receipt);},
-            receipt=>already_paid.push(receipt),
-        }}
+        let (already_paid,resource_payments)=crate::step_resources::unpack_payments(paid);
         ResolutionFrame {
             resource_payments,
             frame_id: String::new(),

@@ -70,7 +70,7 @@ fn play_attachment(g: &mut Game, id: &str, actor: usize) -> String {
         actor,
         Action {
             card_id: Some(h),
-            target_id: Some("region:0".into()),
+            region: Some(0),
             ..Action::new("play")
         },
     );
@@ -215,7 +215,7 @@ fn import20_industry_other_step_credit_is_personal_and_does_not_supply_loyalty()
         0,
         Action {
             card_id: Some(h),
-            target_id: Some("region:0".into()),
+            region: Some(0),
             ..Action::new("play")
         },
     );
@@ -231,6 +231,7 @@ fn import20_industry_credit_and_asset_jointly_pay_real_fast_spell_without_fabric
     let a = Action {
         card_id: Some(h),
         target_id: Some(target.clone()),
+        ability_id: Some(crate::import20_contest::DESTROY.into()),
         ..Action::new("play")
     };
     assert!(g.legal_actions(0).iter().any(|x| x.action == a));
@@ -460,7 +461,7 @@ fn import20_industry_only_same_controller_subtitle_actual_entry_qualifies_not_re
         0,
         Action {
             card_id: Some(h),
-            target_id: Some("region:0".into()),
+            region: Some(0),
             ..Action::new("play")
         },
     );
@@ -711,4 +712,58 @@ fn import20_industry_credits_pay_carmen_printed_and_extra_three_and_keep_qualifi
     assert_eq!(g.board(&target).unwrap().1.controller, 0);
     assert_eq!(g.step_resource_count(0), 0);
     restore(&mut g);
+}
+
+#[test]
+fn import20_industry_credit_pays_real_reveal_with_typed_receipt_and_original_loyalty() {
+    let mut g = game();
+    fund(&mut g, 0, "JC084", 2);
+    for c in &mut g.players[0].assets {
+        c.exhausted = true;
+    }
+    credit(&mut g, 0);
+    let hidden = field(&mut g, "CQ24", 0);
+    g.board_mut(&hidden).unwrap().face_down = true;
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(hidden.clone()),
+            ..Action::new("reveal")
+        },
+    );
+    let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(f.money_units(0), 1);
+    assert_eq!(f.resource_payments.len(), 1);
+    assert!(matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if ids.is_empty()));
+    pass_top(&mut g);
+    assert!(g.board(&hidden).is_none());
+    assert!(g.regions[0]
+        .cards
+        .iter()
+        .any(|c| c.definition == "CQ24" && !c.face_down));
+    assert_eq!(g.step_resource_count(0), 0);
+}
+
+#[test]
+fn import20_industry_zero_cost_deploy_preserves_unspent_credit() {
+    let mut g = game();
+    credit(&mut g, 0);
+    assert_eq!(catalog::card("JC125").cost, 0);
+    let h = held(&mut g, "JC125", 0);
+    act(
+        &mut g,
+        0,
+        Action {
+            card_id: Some(h),
+            region: Some(0),
+            ..Action::new("deploy")
+        },
+    );
+    let f = g.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(f.money_units(0), 0);
+    assert!(f.resource_payments.is_empty());
+    pass_top(&mut g);
+    assert_eq!(g.step_resource_count(0), 1);
+    assert!(g.players[0].assets.is_empty());
 }

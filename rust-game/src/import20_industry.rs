@@ -142,7 +142,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     let expected = match a.kind.as_str() {
         "play" if a.ability_id.as_deref().is_none_or(|k| k == "attach") => Action {
             card_id: a.card_id.clone(),
-            target_id: a.target_id.clone(),
+            region: a.region,
             ability_id: a.ability_id.clone(),
             ..Action::new("play")
         },

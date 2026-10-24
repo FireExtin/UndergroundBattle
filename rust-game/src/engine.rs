@@ -820,7 +820,8 @@ impl Game {
                         false,
                         None,
                     );
-                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments: vec![],
+                    let (paid,resource_payments)=crate::step_resources::unpack_payments(paid);
+                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments,
                         frame_id: self.stack.last().unwrap().id.clone(),
                         ability_key: "deploy".into(),
                         actor: seat,
@@ -879,7 +880,8 @@ impl Game {
                     true,
                     None,
                 );
-                self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments: vec![],
+                let (paid,resource_payments)=crate::step_resources::unpack_payments(paid);
+                    self.stack.last_mut().unwrap().frame = Some(ResolutionFrame { resource_payments,
                     frame_id: self.stack.last().unwrap().id.clone(),
                     ability_key: "reveal".into(),
                     actor: seat,

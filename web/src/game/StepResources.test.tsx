@@ -2,6 +2,7 @@ import { render, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Table } from './Table';
 import { testCard, testCatalog, testView } from './testFixtures';
+import type { View } from './types';
 
 describe('server-authored step resources', () => {
   it('shows temporary money separately from real assets and updates when it expires', () => {
@@ -9,7 +10,7 @@ describe('server-authored step resources', () => {
       { ...testCard, instanceId: 'asset-ready', controller: 'p0', exhausted: false },
       { ...testCard, instanceId: 'asset-tapped', controller: 'p0', exhausted: true },
     ];
-    const makeView = (n: number) => ({ ...testView, status: 'playing', assets, players: testView.players.map(p => ({ ...p, stepResources: p.id === 'p0' ? n : 0 })) });
+    const makeView = (n: number): View => ({ ...testView, status: 'playing', assets, players: testView.players.map(p => ({ ...p, stepResources: p.id === 'p0' ? n : 0 })) });
     const ui = render(<Table view={makeView(2)} catalog={testCatalog} busy={false} onAction={vi.fn()} />);
     const mat = () => ui.container.querySelector('[data-player-zone="p0"]')!;
     expect(mat().querySelector('[data-step-resources="2"]')).toHaveTextContent('费用 3');

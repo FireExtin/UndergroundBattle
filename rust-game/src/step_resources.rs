@@ -42,6 +42,24 @@ pub struct ResourcePayment {
     pub credits: Vec<StepCredit>,
 }
 
+pub(crate) fn unpack_payments(paid: Vec<PaidCost>) -> (Vec<PaidCost>, Vec<ResourcePayment>) {
+    let mut receipts = vec![];
+    let mut resources = vec![];
+    for receipt in paid {
+        match receipt {
+            PaidCost::CapturedResources { receipt, credits } => {
+                resources.push(ResourcePayment {
+                    paid_index: receipts.len(),
+                    credits,
+                });
+                receipts.push(*receipt);
+            }
+            receipt => receipts.push(receipt),
+        }
+    }
+    (receipts, resources)
+}
+
 impl ResolutionFrame {
     /// Physical asset receipts keep their actual IDs/count. Credits are
     /// separately typed witnesses; old monetary guards compare the total.
