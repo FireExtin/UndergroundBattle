@@ -40,7 +40,12 @@ fn bind_broker(g:&mut Game,target:Option<&str>){
     if let Some(target)=target{choose(g,vec![target.into()]);}
     assert!(g.stack.last().is_some_and(|i|i.frame.as_ref().is_some_and(|f|f.ability_key==b::WIN)));
 }
-fn repress_to_peek(g:&mut Game){pass_top(g);assert!(matches!(g.pending.as_ref().unwrap().resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..}));
+fn repress_to_peek(g:&mut Game){
+    for _ in 0..80{
+        if g.pending.as_ref().is_some_and(|p|matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..})){break;}
+        if g.pending.is_some(){resolve_choice(g);}else if !g.stack.is_empty(){pass(g);}else{g.drive().unwrap();restore(g);}
+    }
+    assert!(g.pending.as_ref().is_some_and(|p|matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..})),"pending={:?}",g.pending.as_ref().map(|p|(&p.choice.kind,&p.choice.title)));
     choose(g,vec!["p2".into()]);let p=g.pending.as_ref().unwrap();assert_eq!(p.seat,2);
     assert!(matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::RepressOne{..},..}));choose(g,vec!["region:0".into()]);}
 
@@ -216,7 +221,13 @@ fn import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_o
 fn import20_wm057_bound_hidden_real_reveal_response_cancels_before_any_repression(){
     let mut g=game();field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=1;fund(&mut g,2,"JC063",2);
     broker_win(&mut g);bind_broker(&mut g,Some(&hidden));for _ in 0..4{if g.can_fast(2){break;}pass(&mut g);}assert!(g.can_fast(2));
-    act(&mut g,2,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});pass_top(&mut g);assert!(g.board(&hidden).is_none());pass_top(&mut g);
+    let original=g.stack.iter().find(|i|i.frame.as_ref().is_some_and(|f|f.ability_key==b::WIN)).unwrap().id.clone();
+    act(&mut g,2,Action{card_id:Some(hidden.clone()),..Action::new("reveal")});
+    for _ in 0..80{
+        if !g.stack.iter().any(|i|i.id==original){break;}
+        if let Some(p)=&g.pending{assert!(!matches!(p.resolution,ChoiceResolution::Frame{choice:FrameChoice::WM057Opponent,..}));resolve_choice(&mut g);}else{pass(&mut g);}
+    }
+    assert!(!g.stack.iter().any(|i|i.id==original));assert!(g.board(&hidden).is_none());finish(&mut g);
     assert_eq!(g.regions[0].influence[1],1);assert!(g.pending.is_none());assert_eq!(g.resources(2),0);restore(&mut g);
 }
 
