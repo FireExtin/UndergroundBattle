@@ -9938,7 +9938,7 @@
         "points": null,
         "printedKeywords": [],
         "printedRuleTextLines": [
-          "隐秘地区势力+4",
+          "隐秘+4",
           "行动 从本方秘社上移除所有失控标志。每有一个标志因此被移除，就抓一张牌。"
         ],
         "additionalPrintedSymbols": [
@@ -9946,7 +9946,7 @@
             "id": "hidden-contest-bonus",
             "status": "confirmed",
             "printedText": "隐秘 +4",
-            "interpretation": "隐秘地区势力栏，独立于普通能力图标。"
+            "interpretation": "隐秘对抗展示加值，独立于地区势力及普通能力图标。"
           }
         ]
       },
@@ -9954,7 +9954,7 @@
         {
           "id": "printed-1",
           "kind": "sourceTextOnly",
-          "printedText": "隐秘地区势力+4",
+          "printedText": "隐秘+4",
           "notExecutable": true
         },
         {
@@ -9965,7 +9965,7 @@
         }
       ],
       "confirmedMechanismIds": [
-        "starlightInfluence",
+        "mysticContest",
         "core",
         "society",
         "deckChoice"

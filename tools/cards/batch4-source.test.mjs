@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { import20, priorSpecifications } from './import20-spec-history.mjs';
 
 const read = name => readFileSync(new URL('../../' + name, import.meta.url));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -72,7 +73,9 @@ test('fourth roster preserves frozen213 and keeps native pilots separate from pu
   assert.equal(plan.bq036ClosureReview.status, 'closed');
   assert.equal(plan.bq036ClosureReview.nativeWholeCardComplete, true);
   assert.equal(hash(read(plan.bq036ClosureReview.report)), plan.bq036ClosureReview.reportSha256);
-  assert.deepEqual(pool.cards.slice(213).map(c => c.id).sort(), [...pilots.map(c => c.id), ...drafts.map(c => c.id), ...partials].sort());
+  // This historical37-pilot roster excludes the separate serial import slice.
+  assert.equal(import20.priorCatalogCount, 252);
+  assert.deepEqual(pool.cards.slice(213, 252).map(c => c.id).sort(), [...pilots.map(c => c.id), ...drafts.map(c => c.id), ...partials].sort());
   assert(pool.cards.slice(213).every(c => c.supported === false));
   for (const c of pool.cards.slice(213)) {
     const spec = specs[c.id];
@@ -105,7 +108,8 @@ test('fourth original corrections preserve conditional public, conditional secre
   assert(!specs.WM046.fields.printedRuleTextLines.join('').includes('达成推进3'));
   assert.equal(plan.sourceCorrections.length, 4);
   const corrected = new Set([...plan.sourceCorrections.map(c => c.id), ...packageB.sourceCorrections]);
-  const untouched = Object.fromEntries(Object.entries(specs).filter(([id]) => !corrected.has(id)));
+  const historical = priorSpecifications(JSON.parse(read('docs/factions/card-specifications.json'))).cards;
+  const untouched = Object.fromEntries(Object.entries(historical).filter(([id]) => !corrected.has(id)));
   assert.equal(digest(untouched), packageB.baseSourceRecordsExceptPriorFourAndPackageBFiveSha256);
 });
 

@@ -305,6 +305,7 @@ pub enum Op {
     JZ36TimeAndDestroyTargetRegion,
     JZ40TimeAndDestroyHost,
     BQ053RemoveLossControl,
+    BQ064TakeSamples,
     XG11RevealRaid { observation: Option<crate::batch4_spectral::RevealRaid> },
     WM029TurnAura,
     WM058Tax { observation: Option<Box<crate::batch4_chance::TargetedCard>> },
@@ -734,6 +735,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::import20_contest::related(card_id, ability) { return crate::import20_contest::validate_ability(card_id, ability); }
     if card_id == "WM043" || crate::wm043::related(ability) { return crate::wm043::validate_ability(card_id, ability); }
     if card_id == "MSJC14" || crate::sentinel::related(ability) { return crate::sentinel::validate_ability(card_id, ability); }
     if crate::batch4_intelligence::related(ability) { return crate::batch4_intelligence::validate_ability(card_id, ability); }
@@ -2177,6 +2179,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());
         m.insert("WM043".into(), crate::wm043::definition());

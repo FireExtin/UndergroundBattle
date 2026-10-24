@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if crate::import20_contest::admitted_start(id, key, bonus) { return true; }
     (id=="WM037" && key==crate::batch4_clock_spell::PLAY && bonus==0) || crate::batch4_vampire_contest::admitted_start(id, key, bonus) || matches!((id,key,bonus), ("WM022",SHADOW_REVEAL,0) | ("BQ082",POISON,2))
 }
 pub(crate) fn definition(id: &str) -> Option<Definition> {
@@ -142,6 +143,11 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::import20_contest::CARDS.contains(&f.source.card.definition.as_str())
+            || f.ability_key.starts_with("import20-")
+            || f.steps.iter().any(|s| crate::import20_contest::owns(std::slice::from_ref(&s.op))) {
+            return self.validate_import20_frame(f);
+        }
         if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
         if f.ability_key == crate::wm043::SHOWN || f.steps.iter().any(|s| matches!(s.op, Op::WM043ShownLock { .. })) { return self.validate_wm043_post(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }

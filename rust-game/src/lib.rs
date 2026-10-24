@@ -1,3 +1,6 @@
+mod import20_contest;
+#[cfg(test)]
+mod import20_contest_tests;
 mod wm043;
 #[cfg(test)]
 mod wm043_tests;

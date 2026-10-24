@@ -575,6 +575,7 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        crate::import20_contest::validate_action(definition, a)?;
         if definition == "WM043" { crate::wm043::validate_action(a)?; }
         crate::next20_blue_gray::validate_action(definition, a)?;
         if definition == "XQ23" && *a != (Action {
@@ -1641,6 +1642,7 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::BQ064TakeSamples => self.import20_take_samples(frame.actor)?,
                 Op::XG11RevealRaid { .. } => self.xg11_raid_resolve(&frame)?,
                 Op::BQ053RemoveLossControl => {
                     let n = &mut self.players[frame.actor].society_zone.loss_control;

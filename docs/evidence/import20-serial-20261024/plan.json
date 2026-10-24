@@ -436,7 +436,7 @@
       "BQ039",
       "BQ057"
     ],
-    "BQ090": "Printed cost2. Action destroys target character with printed cost<=3. Mystic scholarship2: hand action2, discard this original card, start one existing mystic contest.",
+    "BQ090": "Printed cost2. Fast action destroys target character with printed cost<=3. Mystic scholarship2: hand action2, discard this original card, start one existing mystic contest.",
     "BQ064": "Printed cost3; mystic shown bonus+4. Action removes all actual chaos markers from own society, drawing once per marker actually removed.",
     "first_followup": "BQ039: reuse the hand-contest entry; attachment triggers on a won battle contest involving its host, not on every mystic-contest win.",
     "normal_tests": [
@@ -445,7 +445,8 @@
       "Hand action consumes exactly original card and one payment, uses current shared contest protocol and ruled no-card outcome.",
       "BQ064 zero/multiple actual removed markers; one draw per actual removal, own society only; no double consumption.",
       "Normal Game/Room command parity and once-only command receipt; no extra corrupt-save fuzz expansion."
-    ]
+    ],
+    "timing_note": "BQ090 printed fast symbol rechecked; prior prose omitted fast."
   },
   "preimplementation_spec_corrections": {
     "source": "docs/evidence/reference-five-spec-fixes-20261023/handoff.json",

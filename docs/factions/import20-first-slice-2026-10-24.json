@@ -1,0 +1,81 @@
+{
+  "baseCommit": "e2b8e9afa0c4d3107790e09809b17f9478badc67",
+  "priorCatalogCount": 252,
+  "priorCatalogCardsCanonicalSha256": "548705a8ad3fa321e8192e3cd39774c4f4abfb5ac2d22ae2fdfa93ea253f5d9a",
+  "priorSpecificationsSha256": "809afcae7627ba828c533696c16b8dc5e69f1618bdc2653889955e4c296f9c9c",
+  "engineVersion": "rust-v0.2.100-import20-first-slice",
+  "cardPoolVersion": "limited-v2.91-import20-first-slice",
+  "nativePilotCards": [
+    "BQ090",
+    "BQ064"
+  ],
+  "publicAdmission": false,
+  "supportedAdded": 0,
+  "current50ClosedAdded": 0,
+  "candidate20ImplementedByAuthor": 2,
+  "independentNativeReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "publicPublished": false,
+  "sourceCorrections": [
+    {
+      "id": "BQ064",
+      "path": [
+        "fields",
+        "printedRuleTextLines",
+        0
+      ],
+      "old": "隐秘地区势力+4",
+      "new": "隐秘+4"
+    },
+    {
+      "id": "BQ064",
+      "path": [
+        "abilities",
+        0,
+        "printedText"
+      ],
+      "old": "隐秘地区势力+4",
+      "new": "隐秘+4"
+    },
+    {
+      "id": "BQ064",
+      "path": [
+        "fields",
+        "additionalPrintedSymbols",
+        0,
+        "interpretation"
+      ],
+      "old": "隐秘地区势力栏，独立于普通能力图标。",
+      "new": "隐秘对抗展示加值，独立于地区势力及普通能力图标。"
+    },
+    {
+      "id": "BQ064",
+      "path": [
+        "confirmedMechanismIds",
+        0
+      ],
+      "old": "starlightInfluence",
+      "new": "mysticContest"
+    }
+  ],
+  "timingClarification": {
+    "id": "BQ090",
+    "printed": "快速行动",
+    "priorSerialPlanOmittedFast": true
+  },
+  "references": {
+    "UWPro": {
+      "repository": "RETORETO/UnderWorldPro",
+      "fixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+      "reusePermission": "User confirmed direct author and illustrator permission; this slice uses an independent Rust implementation; both source records have no registered per-card handler."
+    },
+    "Suez": {
+      "fixedAnalyzedSha": "a8586caccd9be0cad9957e78b918245f0ddd6f85",
+      "copiedCodeOrArt": false,
+      "currentHeadTestsClaimed": false
+    }
+  },
+  "ruleBoundary": "Existing no-card contest outcome and ordinary draw exhaustion rules; no compatibility or second contest implementation."
+}
