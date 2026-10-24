@@ -5,6 +5,7 @@ import {cleanup,render,screen} from '@testing-library/react';
 import {afterEach,expect,it} from 'vitest';
 import {DeckCardFace} from './DeckCardFace';
 import {cardScanUrl} from './cardScans';
+import {catalog as currentCatalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 
 const read=path=>readFileSync(resolve('..',path));
 const registry=JSON.parse(read('rust-game/data/cards.json'));
@@ -38,7 +39,9 @@ it.each(batch)('%s displays its pinned original pixels through the real collecti
 });
 
 it('does not admit any additional card or replace the current kernel while adding artwork',()=>{
-  expect(registry.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+  expect(registry.engineVersion).toBe('rust-v0.2.111-import20-rulings-complete');
+  expect(currentCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+  expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
   expect(registry.cards).toHaveLength(272);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(233);
   expect(registry.cards.slice(213).filter(card=>card.supported).map(card=>card.id).sort()).toEqual([...batch].sort());
