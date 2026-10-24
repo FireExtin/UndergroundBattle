@@ -84,7 +84,7 @@ fn import20_wm064_real_tattoo_removal_clears_status_and_hidden_views_do_not_leak
     let mut g=game();let host=field(&mut g,"JC125",0);let source=attach(&mut g,0,&host);fund(&mut g,2,"JC005",2);let spell=held(&mut g,"JC005",2);priority(&mut g,2);
     act(&mut g,2,Action{card_id:Some(spell),target_id:Some(source),..Action::new("play")});pass_top(&mut g);
     assert!(!g.current_leader(g.board(&host).unwrap().1));assert!(!g.has_renown(g.board(&host).unwrap().1));assert!(!g.current_subtypes(g.board(&host).unwrap().1).iter().any(|s|s=="罪犯"));
-    let dark=g.hide_in_place(&host).unwrap();for seat in 0..4{let c=g.card_view(&dark,seat,Some(0),None);assert!(c.current_leader.is_none()&&c.current_renown.is_none());}restore(&mut g);
+    assert!(g.hide_in_place(&host));let dark=g.regions[0].cards.iter().find(|c|c.face_down&&c.controller==0).unwrap().clone();for seat in 0..4{let c=g.card_view(&dark,seat,Some(0),None);assert!(c.current_leader.is_none()&&c.current_renown.is_none());}restore(&mut g);
 }
 #[test]
 fn import20_wm064_control_primitive_human_and_controller_requirements_cleanup_grant(){

@@ -10516,7 +10516,8 @@
         "record": "WM064",
         "image": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg",
         "imageSha256": "143494c4524088faf0bf21e3ae80cb81a24449b4c7bcadca251793920145ff02"
-      }
+      },
+      "defense": null
     },
     {
       "id": "CQ24",
