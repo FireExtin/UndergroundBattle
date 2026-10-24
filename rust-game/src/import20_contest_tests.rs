@@ -232,11 +232,11 @@ fn import20_bq064_can_be_asset_and_has_no_hand_activation() {
 
 #[test]
 fn import20_registered_programs_reject_foreign_or_changed_ops() {
-    let mut a = definition("BQ090").abilities.remove(1);
+    let mut a = definition("BQ090").abilities[1].clone();
     assert!(validate_ability("BQ090", &a).is_ok());
     assert!(validate_ability("JC125", &a).is_err());
     a.ops = vec![Op::MysticContest { actor_bonus: 2 }]; assert!(validate_ability("BQ090", &a).is_err());
-    let mut a = definition("BQ064").abilities.remove(0);
+    let mut a = definition("BQ064").abilities[0].clone();
     a.ops = vec![Op::ForEachLivingPlayer(vec![Op::BQ064TakeSamples])];
     assert!(validate_ability("BQ064", &a).is_err()); assert!(validate_ability("JC125", &a).is_err());
 }
