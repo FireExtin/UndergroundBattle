@@ -11,8 +11,8 @@ test('thief and tattoo append exactly2 while preserving every prior261 and publi
   const digest='a5c28650d26f011ac54666675cac4ff7a0d0818fa30fefc787f0729c89dd53a3';
   assert.equal(intake.priorCatalogCount,261);assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,261)))),digest);
-  assert.equal(pool.cards.length,269);assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id),['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);assert(pool.cards.slice(261).every(c=>c.supported===false));
+  assert.equal(pool.cards.length,271);assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);
+  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id),['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267,269).map(c=>c.id),['XG20','BQ057']);assert(pool.cards.slice(261).every(c=>c.supported===false));
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);assert(!pool.cards.some(c=>c.id==='XQ19'));
 });
 test('exact CQ24 cost3 correction reconstructs the entire prior source document',()=>{

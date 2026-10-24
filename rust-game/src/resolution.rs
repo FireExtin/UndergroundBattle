@@ -134,6 +134,7 @@ impl Game {
         region: Option<usize>,
         kind: &str,
     ) -> Vec<(Action, String)> {
+        if c.definition=="CQ28" && kind=="play" { return vec![(Action{card_id:Some(c.id.clone()),..Action::new("play")},"咒欲之门：先声明两次同项及目标".into())]; }
         if c.definition == "MSJC14" && kind == "activate" { return self.sentinel_candidates(actor, c); }
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
         if c.definition == "BQ089" && kind == "play" { return self.bq089_action_candidates(actor, c); }
@@ -926,6 +927,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition=="CQ28" { return self.cq28_bind(actor,source,spec,a); }
         if source.card.definition=="CQ19" { crate::import20_sentinel::validate_action(spec,a)?; }
         if source.card.definition == "CQ24" && spec.targets.len()==2 { return self.cq24_bind(actor,source,spec,a); }
         if source.card.definition == "MSJC14" { return self.sentinel_bind(actor, source, spec, a); }
@@ -996,6 +998,7 @@ impl Game {
         let mut paid = vec![];
         for cost in &spec.costs {
             match cost {
+                Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
                 Cost::Honor(n) => paid.push(self.pete_pay_honor(actor,source,spec,*n)?),
                 Cost::RemoveChargeX => paid.push(self.cq19_pay_charge(source,a)?),
                 Cost::IndustryExhaustOther => paid.push(self.industry_pay_other(actor,source,a)?),
@@ -1619,6 +1622,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_cq28_frame(&frame)?;
         self.validate_resource_frame(&frame)?;
         self.validate_exposure_frame(&frame)?;
         self.validated_cross_card_frame(&frame)?;
@@ -1663,6 +1667,8 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,
+                Op::CQ15DestroySearch { .. } => return self.cq15_destroy_search(frame),
                 Op::BQ039BattleDiscard { .. } => return self.batch20_combat_discard_start(frame),
                 Op::CQ24TakeAttachment { .. } => self.cq24_take_attachment(&frame)?,
                 Op::WM064RevealCriminal => self.wm064_reveal_criminal(&frame)?,
@@ -2620,6 +2626,7 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::CQ15Search { search } => return self.cq15_search_finish(&frame,&search,chooser,&a,&selected),
             FrameChoice::XG20Number => return self.xg20_number_finish(&frame,chooser,&a),
             FrameChoice::PetePay => return self.pete_pay_finish(*frame,chooser,&a,&selected),
             FrameChoice::PeteDraw => return self.pete_draw_finish(&frame,chooser,&a,&selected),

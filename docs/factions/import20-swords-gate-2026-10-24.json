@@ -1,0 +1,32 @@
+{
+  "baseCommit": "78338f3287fd28bd58e8ad0c5fa21611b0208887",
+  "priorCatalogCount": 269,
+  "priorCardsCanonicalSha256": "d865602732ed70be23cb7679f136d82902ba36d2070435683d23835b42240e6f",
+  "priorSpecificationsSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+  "newCards": [
+    "CQ15",
+    "CQ28"
+  ],
+  "sourceCorrections": [],
+  "engineVersion": "rust-v0.2.110-import20-swords-gate-partial",
+  "cardPoolVersion": "limited-v2.101-import20-swords-gate-partial",
+  "priorReference20AuthorNativeWipComplete": 17,
+  "potentialReference20AuthorNativeWipComplete": 18,
+  "partialCard": "CQ28",
+  "current50ReviewedNativeClosed": 38,
+  "authorNativeDirected": "pendingAtSourceFreeze",
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "references": {
+    "UWProFixedSha": "0d60c78b68697867697f20f0c171e41445735cc4",
+    "permission": "Existing direct author and illustrator permission. Printed data/images checked against our original; no registered external per-card handler for these cards. Mechanisms adapted on existing native kernel.",
+    "SuezCodeOrArtCopied": false
+  },
+  "pending": {
+    "XQ19": "Printed dash cost not numeric0; no ruling, not registered",
+    "CQ28": "Mixed mode sequence unspecified: mill then draw gets G versus draw then mill gets A from A..H. Keep all mixed modes closed; four repeated-same paths only."
+  }
+}

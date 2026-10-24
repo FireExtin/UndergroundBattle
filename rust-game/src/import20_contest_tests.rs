@@ -25,7 +25,7 @@ fn start_contest(g: &mut Game) -> String {
 
 #[test]
 fn import20_source_fields_and_closed_public_admission() {
-    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.109-wm057-personal-borrow");
+    assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.110-import20-swords-gate-partial");
     for id in c::CARDS {
         let d = catalog::card(id);
         assert!(!d.supported);

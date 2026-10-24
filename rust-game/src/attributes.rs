@@ -130,7 +130,7 @@ impl Game {
         let printed = crate::rules::definition(&c.definition).traits.wound;
         // Current printed LC16 and JZ56's three Undead subtypes do not overlap.
         // Combat follows the printed equal-marker replacement, not an X multiplier.
-        if printed > 0 { printed } else { self.jz56_aura(c).1 }
+        (if printed > 0 { printed } else { self.jz56_aura(c).1 }).max(self.cq15_wound(c))
     }
     pub(crate) fn has_retreat(&self, c: &Card) -> bool {
         !c.face_down

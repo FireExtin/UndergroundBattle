@@ -1,3 +1,9 @@
+mod import20_gate;
+#[cfg(test)]
+mod import20_gate_tests;
+mod import20_swords;
+#[cfg(test)]
+mod import20_swords_tests;
 mod wm057_borrow;
 #[cfg(test)]
 mod wm057_borrow_tests;

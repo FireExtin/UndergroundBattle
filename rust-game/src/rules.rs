@@ -78,6 +78,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    CQ15ReturnSword(Box<crate::model::Attachment>),
     Honor(u32),
     RemoveChargeX,
     IndustryExhaustOther,
@@ -294,6 +295,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    CQ28Mode { mode:u8, slot:usize },
+    CQ15DestroySearch { grant: Box<crate::model::Attachment> },
     XG20ChooseNumber,
     PeteTax { observation: Option<Box<crate::import20_tax_ban::AttachmentPlayed>> },
     PeteFromAsset,
@@ -772,6 +775,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     // Shared granted programs are checked before recipient-specific native
     // text. Domain validators still require their exact event-time grant;
     // validate_definitions separately rejects static transplantation.
+    if crate::import20_gate::related(card_id,ability) { return crate::import20_gate::validate_ability(card_id,ability); }
+    if crate::import20_swords::related(ability) { return crate::import20_swords::validate_ability(ability); }
     if crate::raid::related(ability) { return crate::raid::validate_ability(card_id, ability); }
     if crate::mobility::related_ability(ability) {
         return if crate::mobility::canonical(ability) { Ok(()) }
@@ -1556,6 +1561,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
 
 pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -> Result<(), String> {
     for (card_id, definition) in definitions {
+        crate::import20_gate::validate_definition(card_id,definition)?;
+        crate::import20_swords::validate_definition(card_id,definition)?;
         crate::import20_tax_ban::validate_definition(card_id, definition)?;
         crate::import20_sentinel::validate_definition(card_id, definition)?;
         crate::import20_carmen::validate_definition(card_id, definition)?;
@@ -2242,7 +2249,9 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::import20_contest::CARDS { m.insert((*id).into(), crate::import20_contest::definition(id).unwrap()); }
         for id in crate::batch4_vampires::CARDS { m.insert((*id).into(), crate::batch4_vampires::definition(id).unwrap()); }
         m.insert("MSJC14".into(), crate::sentinel::definition());
-        for id in ["XG20", "BQ057"] { m.insert(id.into(),crate::import20_tax_ban::definition(id).unwrap()); }
+        m.insert("CQ28".into(),crate::import20_gate::definition());
+    m.insert("CQ15".into(),crate::import20_swords::definition());
+    for id in ["XG20", "BQ057"] { m.insert(id.into(),crate::import20_tax_ban::definition(id).unwrap()); }
         for id in ["CQ18", "CQ19"] { m.insert(id.into(),crate::import20_sentinel::definition(id).unwrap()); }
         m.insert("WM043".into(), crate::wm043::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());

@@ -641,6 +641,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CQ15Returned(Box<crate::import20_swords::SwordPayment>),
     WM057Borrowed(crate::wm057_borrow::BorrowPermission),
     Honor { before: u32, amount: u32 },
     CQ19ChargeRemoved(Box<crate::import20_sentinel::ChargePayment>),
@@ -720,6 +721,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    CQ15Search { search: crate::import20_swords::SwordSearch },
     XG20Number,
     PetePay,
     PeteDraw,
@@ -914,6 +916,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    CQ28Draft { draft:Box<crate::import20_gate::GateDraft> },
     CQ24Reattach { draft: Box<crate::import20_carmen::CarmenDraft> },
     JZ51Payment { draft: Box<crate::batch4_wendigo::GraveDraft> },
     JZ36Payment { draft: Box<crate::batch4_blood::BloodDraft> },
@@ -1025,6 +1028,8 @@ pub struct Game {
     #[serde(default)]
     pub turn_attribute_modifiers: Vec<TurnAttributeModifier>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub cq28_defense_reductions: Vec<crate::import20_gate::GateDefense>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub politician_auras: Vec<crate::batch4_politician::PoliticianAura>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub wm058_receipts: Vec<crate::batch4_chance::TaxReceipt>,
@@ -1062,6 +1067,8 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_cq28_state()?;
+        self.validate_cq15_state()?;
         self.validate_tax_ban_state()?;
         self.validate_sentinel_pair_state()?;
         self.validate_exposure_state()?;

@@ -78,7 +78,7 @@ impl Game {
     // Existing per-card validators must admit independently validated programs
     // granted to arbitrary recipients, without accepting arbitrary source abilities.
     pub(crate) fn validated_cross_card_frame(&self, f: &ResolutionFrame) -> RuleResult<bool> {
-        Ok(self.validated_mobility_frame(f)? || self.validated_raid_frame(f)?)
+        Ok(self.cq15_validated_frame(f)? || self.validated_mobility_frame(f)? || self.validated_raid_frame(f)?)
     }
     pub(crate) fn validated_cross_card_declaration(&self, d: &Declaration) -> RuleResult<bool> {
         Ok(self.validated_mobility_declaration(d)? || self.validated_raid_declaration(d)?)

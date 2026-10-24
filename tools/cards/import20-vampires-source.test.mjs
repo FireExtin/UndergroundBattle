@@ -15,11 +15,11 @@ test('third pair preserves exact256 earlier records, public213 and the frozen20 
   const digest='afa26ebb791e5d947a8e8e3496fe890a4b2a136be4a26b558ee7dc9238afe229';
   assert.equal(intake.priorCardsCanonicalSha256,digest);
   assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,256)))),digest);
-  assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);
+  assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);
   assert.deepEqual(pool.cards.slice(256,258).map(c=>c.id),['WM025','WM024']);
   assert.deepEqual(pool.cards.slice(258,260).map(c=>c.id), ['BQ081','WM057']);
   assert.deepEqual(pool.cards.slice(260,261).map(c=>c.id), ['XG13']);
-  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);
+  assert.deepEqual(pool.cards.slice(261,263).map(c=>c.id), ['WM064','CQ24']);assert.deepEqual(pool.cards.slice(263,265).map(c=>c.id), ['BQ092','BQ093']);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);assert.deepEqual(pool.cards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
   assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   for (const id of intake.allSixUnadmitted) assert.equal(pool.cards.find(c=>c.id===id).supported,false);
   assert.equal(intake.authorTotalReference20Programs,6);assert.equal(intake.current50ReviewedNativeClosed,38);

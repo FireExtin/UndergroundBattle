@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.100-wm057-personal-borrow",
-  "engineVersion": "rust-v0.2.109-wm057-personal-borrow",
+  "cardPoolVersion": "limited-v2.101-import20-swords-gate-partial",
+  "engineVersion": "rust-v0.2.110-import20-swords-gate-partial",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
@@ -10819,6 +10819,96 @@
         "imageSha256": "b0c75d39af5529676582829f119a645658b60c67c8c3c2a5c7ddeb84ab79fc2f"
       },
       "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "subtitle": "杀伐至宝",
+      "kind": "attachment",
+      "subtypes": [
+        "武器",
+        "装备",
+        "圣物"
+      ],
+      "cost": 6,
+      "loyalty": [
+        "鲜血",
+        "鲜血",
+        "鲜血",
+        "鲜血"
+      ],
+      "loyaltyText": "鲜血 鲜血 鲜血 鲜血",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "结附于目标角色\n持续 受此结附的角色获得永久战斗2和创伤2，并获得“行动 横置，将元屠、阿鼻双剑移回其拥有者手中：消灭目标角色，然后从其操控者的牌库、手牌和墓地中寻找至多三张同名的角色牌，将这些牌封印在本方秘社上，然后令该玩家洗牌。”的能力。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ15",
+        "image": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg",
+        "imageSha256": "93c8bd987a7d4387fb6839d43907adafb46ab7d7c19b635d857ea970f061228f"
+      },
+      "unique": true,
+      "society": "",
+      "supported": false
+    },
+    {
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "subtitle": "",
+      "kind": "spell",
+      "subtypes": [
+        "法术",
+        "空间",
+        "诅咒"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "黑色",
+        "黑色",
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 黑色 黑色 黑色",
+      "color": "黑",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "行动 选择两项，你可以重复选择同一项：\n将你牌库顶的六张牌置于你的墓地。\n选择目标地区，将你墓地中印刷费用小于或等于②的目标角色牌放置进场，并置于该地区。\n目标角色获得防御力-1直到回合结束。\n抓一张牌。",
+      "keywords": [],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "CQ28",
+        "image": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg",
+        "imageSha256": "f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab"
+      },
+      "unique": false,
       "society": "",
       "supported": false
     }

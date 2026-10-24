@@ -9,8 +9,8 @@ const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Obje
 const pool=JSON.parse(read('rust-game/data/cards.json')),specs=JSON.parse(read('docs/factions/card-specifications.json'));
 test('tax/ban slice preserves all267 and public213, with exact two gray candidate records',()=>{
   assert.equal(intake.priorCatalogCount,267);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,267)))),intake.priorCardsCanonicalSha256);
-  assert.equal(pool.cards.length,269);assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);assert.deepEqual(pool.cards.slice(267).map(c=>c.id),['XG20','BQ057']);
-  assert(pool.cards.slice(267).every(c=>c.supported===false&&c.color==='灰'));assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
+  assert.equal(pool.cards.length,271);assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);assert.deepEqual(pool.cards.slice(267,269).map(c=>c.id),['XG20','BQ057']);
+  assert(pool.cards.slice(267,269).every(c=>c.supported===false&&c.color==='灰'));assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
   assert.equal(pool.cards[267].unique,false);assert.equal(pool.cards[268].unique,true);
 });
 test('primary rules and retained historical document digest do not change',()=>{

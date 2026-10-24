@@ -59,6 +59,7 @@ impl Game {
             mystic_history: vec![],
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
+            cq28_defense_reductions: vec![],
             politician_auras: vec![],
             wm058_receipts: vec![],
             turn_ability_usage: vec![],
@@ -555,6 +556,7 @@ impl Game {
             .saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentDefense))
             .saturating_sub(time_penalty)
             .saturating_sub(self.jc089_host_curses(c) as u32)
+            .saturating_sub(self.cq28_defense_penalty(c))
             .saturating_sub(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Wound))
     }
     pub(crate) fn reset_passes(&mut self) {
@@ -912,6 +914,7 @@ impl Game {
                     .find(|c| c.id == id)
                     .ok_or("手牌引用已失效")?
                     .clone();
+                if c.definition=="CQ28" && a.option.is_none() { return self.cq28_begin(seat,&c,&a); }
                 let d = card(&c.definition);
                 if d.kind == "spell" && self.xq22_spell_banned() { return Err("未横置的州议员禁止所有玩家打出事务牌".into()); }
                 if d.kind != "spell" && d.kind != "attachment" {
@@ -969,6 +972,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref().is_some_and(|k|k.starts_with(crate::import20_swords::PREFIX)) { return self.cq15_begin(seat,&a); }
                 if a.ability_id.as_deref()==Some(crate::import20_tax_ban::ASSET) { return self.pete_begin_asset(seat,&a); }
                 if a.ability_id.as_deref().is_some_and(crate::import20_contest::is_hand_key) { return self.import20_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) { return self.bq032_begin_hand(seat, &a); }
@@ -1014,6 +1018,7 @@ impl Game {
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
+        self.cq28_defense_reductions.clear();
         self.politician_auras.clear();
         self.wm058_receipts.clear();
         self.inspection_receipts.clear();
@@ -2003,6 +2008,7 @@ impl Game {
                     }
                 }
                 self.turn_attribute_modifiers.clear();
+        self.cq28_defense_reductions.clear();
                 self.politician_auras.clear();
                 self.wm058_receipts.clear();
                 self.modifiers.clear();
@@ -2180,6 +2186,8 @@ impl Game {
         receipts
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_cq28_state()?;
+        self.validate_cq15_state()?;
         self.validate_exposure_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
@@ -2259,6 +2267,7 @@ impl Game {
         } else { None };
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::CQ28Draft {draft} => self.cq28_choose(*draft,seat,&a,&selected)?,
             ChoiceResolution::JZ51Payment { draft } => self.jz51_finish_payment(*draft,&selected)?,
             ChoiceResolution::JZ36Payment { draft } => self.jz36_finish_cost(*draft,selected)?,
             ChoiceResolution::JZ38EchoTarget { declaration } => self.statue_echo_target(*declaration, seat, &a, selected)?,
@@ -3000,6 +3009,7 @@ impl Game {
                     }
                 }
             }
+            candidates.extend(self.cq15_actions(seat));
             for (r, c) in &board {
                 if c.controller != seat && !(c.definition == "XQ22" && !c.face_down) && !self.wm057_borrow_available(seat,c) {
                     continue;

@@ -9,7 +9,7 @@ const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Obje
 const pool=JSON.parse(read('rust-game/data/cards.json')),specs=JSON.parse(read('docs/factions/card-specifications.json'));
 test('Sentinel pair preserves all prior265, public213 and exact new gray unique records',()=>{
   assert.equal(intake.priorCatalogCount,265);assert.equal(sha(JSON.stringify(canonical(pool.cards.slice(0,265)))),intake.priorCardsCanonicalSha256);
-  assert.equal(pool.cards.length,269);assert.equal(new Set(pool.cards.map(c=>c.id)).size,269);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);
+  assert.equal(pool.cards.length,271);assert.equal(new Set(pool.cards.map(c=>c.id)).size,271);assert.deepEqual(pool.cards.slice(265,267).map(c=>c.id),['CQ18','CQ19']);
   assert(pool.cards.slice(265,267).every(c=>c.supported===false&&c.color==='灰'&&c.unique));assert.equal(pool.cards.filter(c=>c.supported!==false).length,213);
 });
 test('no primary rules correction; historical entire-document source identity remains',()=>{
