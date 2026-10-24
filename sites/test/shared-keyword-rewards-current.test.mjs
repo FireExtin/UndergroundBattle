@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 import {harness} from './xq23-http-harness.mjs';
-const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/shared-rewards-http.json.gz');
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/shared-rewards.json.gz');
 assert.equal(fixture.catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 for(const scenario of fixture.cases)test(`actual current Worker shared reward: ${scenario.name}`,async t=>{
  const h=await harness(t,scenario);let views=0,duplicates=0;

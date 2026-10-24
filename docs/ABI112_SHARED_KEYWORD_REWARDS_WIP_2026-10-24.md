@@ -8,7 +8,8 @@ run and every intermediate failed attempt are preserved.
 
 Runtime fix: `79de7154902a952d6dba7e29c1b211c3c9becf2e`.
 HTTP fixture identity correction: `e9f3a15b419022ea9bf3712dee0aa8fff27849ef`
-(two initial-layout fields only). Both descend from the ABI111 evidence freeze
+(two initial-layout fields only). Final recipient/pending-contract correction:
+`b9dc611cdf433652b933dd2d68f5ccd27676e252`. These descend from the ABI111 evidence freeze
 `55dc95d3cd4d7dc1fb8405179e782b9f8906be1d`. No GitHub main or deployed source
 was changed by this repair.
 
@@ -37,11 +38,14 @@ or compatibility core in the ABI112 candidate.
   friendly defense support. Ready XQ22 still forbids JC074; it receives the
   real WM064 human-host tattoo with six actual black assets in a standard
   action window instead. The spell prohibition was not relaxed.
-* Keyword/adjacent Native scope: 85 passed. This includes source departure,
-  replacement regions, exact programs and illegal command atomicity.
-* Native workspace integration scope: 45 passed, zero ignored, including
+* Final keyword/failure/adjacent Native scope: 95 passed. This includes source
+  departure, replacement regions, exact programs, all nine failures below and
+  illegal command atomicity. Existing invalid pending/recipient assertions remain.
+* Final Native workspace integration scope: 72 passed, zero ignored, including
   attachments, deck construction, service/session/pacing and the two repaired
-  grant matrices. The previously deferred pause trace executed and passed.
+  grant matrices, plus all 27 BQ030 integration cases. The previously deferred
+  pause trace executed and passed. WASM host-unit and workspace doc targets
+  completed with zero tests; they are not counted as actual WASM execution.
 * Four fresh actual Room witnesses: WM030, XQ19, CQ24 and BQ026. Their complete
   Native/WASM catalog, 20 normal commands, 96 views, opaque states and u64
   decimal seeds match exactly.
@@ -49,34 +53,47 @@ or compatibility core in the ABI112 candidate.
   commands, 20 identical duplicate receipts, 96 views and exact stored
   states/journals. These are isolated synthetic initial layouts and normal
   protocol commands, not browser or public acceptance evidence.
-* The full Native workspace invocation is in progress at this documentation
-  checkpoint. It already found one regression: the common reward path must
-  retain the existing BQ028 pending-choice identity/title/description checks.
-  Those original rejection assertions will not be removed. Its final result
-  and the directed correction must be read from the handoff before claiming
-  complete Native verification.
+* The full Native library invocation completed: 2494 passed, 9 failed, zero
+  ignored. The failures identified the pending-envelope and character-only
+  admission contracts, five stale exact engine pins, one old explicit queue
+  fixture lacking current frozen-region/frame metadata, and the card-ID error
+  context used by the XQ37 test. All nine passed in the final 95-test rerun.
+  The queue probe now uses actual printed renown, preserves its departed source,
+  original region and a real frame ID; its no-rescore assertion was retained.
+  The XQ37 synthetic reward variant retains its canonical prompt metadata and
+  all 45 original rejection mutations. No rejection assertion was weakened.
+  The full failed invocation and directed rerun overlap and must not be added
+  as a unique count or called one clean full-workspace invocation. The 72
+  integration cases and zero-test targets were subsequently completed.
+* Initial workspace compilation also exposed four stale type initializations
+  in three example-only files. Current empty payment/observation fields and the
+  damage-pattern field were added. Historical opaque-state adapters were not
+  executed or used as evidence.
 
 WASM was built with Rust 1.90.0 and wasm-bindgen 0.2.104 under the explicit
-normalized source/Cargo paths. The sole module is 8,127,433 bytes, SHA-256
-`4130b2db2fe0fe18ade701a30f6ec2f9ba2a5fa543505c24d26e3f85a117c949`.
-The second source-binding build after the two test-only ID fields produced
-the same five output bytes. This is author execution, not an independent
-reproducibility claim. Outputs remain in a separate task artifact directory;
-the frozen ABI111 package remains available unchanged.
+normalized source/Cargo paths. The final sole module is 8,128,116 bytes, SHA-256
+`324add323aea19ef6af5c633d6dbbd96d8d36fd49bcd41853626002861726b4f`.
+It was rebuilt after the final contract correction. Earlier narrower probes
+remain separately identified with their original module/source hashes.
+This is author execution, not an independent reproducibility claim. The ignored
+local development package now contains the final ABI112 module; the previous
+ABI111 package was retained intact in task evidence. No deployed output changed.
 
 The first HTTP attempt returned 404 because the older unit-layout room name
 was not a legal HTTP room identifier. Rust regenerated new witnesses with
 valid IDs; no opaque JSON string was relabeled. That failed run and the first
-WASM-only probe are retained separately. The current112 HTTP fixture will be
-regenerated after the in-flight full Native exporter and final correction.
-The earlier probes were moved intact into task evidence rather than committed
-as current inputs. The loader retains the complete source-manifest, module and
-raw-JSON hash checks; this WIP harness is not yet a complete reusable fixture.
+WASM-only probe are retained separately. The current112 HTTP fixture was
+generated from the final directed Native exporter and checked against the final
+actual WASM. Earlier probes were moved intact into task evidence. The loader
+retains the complete 329-file source inventory, module and raw-JSON hash checks.
+Protocol numbers are checked for safe integer representation; private u64 state
+remains opaque. This four-case fixture is reusable, but does not replace the
+broader UI/Worker fixture families.
 
 ## Remaining scope
 
-This is an unreviewed local repair WIP with the pending-envelope regression
-above still open at this checkpoint. Full Web/Sites ABI111 evidence is
+All failures described here have author-directed closure evidence; independent
+review remains pending. This is an unreviewed local repair WIP. Full Web/Sites ABI111 evidence is
 preserved at the previous freeze; it is not represented as ABI112 evidence.
 The broader current-only UI/Worker inputs need fresh ABI112 exports before
 their complete suites can be reused. No historical opaque state may be

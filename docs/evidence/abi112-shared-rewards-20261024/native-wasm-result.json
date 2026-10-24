@@ -1,0 +1,19 @@
+{
+  "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+  "currentSourceManifestSha256": "7a349a82718766f25cae9ce2b352f30a8823a347d931d2b63fc884162fa25cc0",
+  "wasmSha256": "324add323aea19ef6af5c633d6dbbd96d8d36fd49bcd41853626002861726b4f",
+  "wasmBytes": 8128116,
+  "nativeSha256": "a986915cf9e613df8c6a650a8db86421351df32e36745e9d8de667bdb4bb4160",
+  "scenarios": [
+    "WM030",
+    "XQ19",
+    "CQ24",
+    "BQ026"
+  ],
+  "commands": 20,
+  "views": 96,
+  "fullCatalogEqual": true,
+  "opaqueStateAndU64Exact": true,
+  "scope": "Author real WASM Room accept/respond/placement on four real granted-reward recipients. Not browser, all272 card acceptance, or independent review."
+}

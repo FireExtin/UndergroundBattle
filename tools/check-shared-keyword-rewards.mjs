@@ -4,9 +4,14 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,existsSync} from 'node:fs';
 import {kernel,catalog,moduleBytes} from '../rust-game-wasm/tests/current-kernel.mjs';
 import {assertCurrentCatalog,writeCurrentFixture,sha256,currentSourceManifestSha256} from './current-native-source.mjs';
-const [nativePath,resultPath,fixturePath='rust-game-wasm/tests/current112/shared-rewards-http.json.gz']=process.argv.slice(2);
+const [nativePath,resultPath,fixturePath='rust-game-wasm/tests/current112/shared-rewards.json.gz']=process.argv.slice(2);
 assert(nativePath&&resultPath&&!existsSync(resultPath),'Fresh Native input and NEW result required');
 const fixture=JSON.parse(readFileSync(nativePath,'utf8'));
+function safeNumbers(value){
+ if(typeof value==='number')assert(Number.isSafeInteger(value),'Protocol numbers must be safe; private u64 state stays an opaque string');
+ else if(value&&typeof value==='object')for(const item of Object.values(value))safeNumbers(item);
+}
+safeNumbers(fixture);
 assert.equal(fixture.format,'shared-reward-native112-v1');
 assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 assertCurrentCatalog(fixture.catalog);
@@ -19,6 +24,7 @@ for(const scenario of fixture.cases){
  for(const row of scenario.steps){
   assert.equal(state,row.state);
   const actual=JSON.parse(kernel.applyRoom(state,row.seat,JSON.stringify(row.command),row.serverNowMs));
+  safeNumbers(actual);
   assert.deepEqual(actual,row.expected);state=actual.state;
   assert(state.includes(`"seed":${scenario.seedDecimal}`));
   for(let seat=0;seat<4;seat++){assert.deepEqual(JSON.parse(kernel.view(state,seat)),row.views[seat]);views++;}

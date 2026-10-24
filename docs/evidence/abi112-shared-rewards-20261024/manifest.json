@@ -1,0 +1,124 @@
+{
+  "files": [
+    {
+      "file": "full-native.json.gz",
+      "bytes": 16550,
+      "sha256": "0f8a60c3af3b88c4ae7310ddbf98b051134274745df7f96eb9f38a41328f40b8",
+      "expandedBytes": 50469,
+      "expandedSha256": "c214c5cf1a110e25739412c7e7aa678a1aa68e1c052626057989c757859edfaa"
+    },
+    {
+      "file": "full-native.log.gz",
+      "bytes": 58524,
+      "sha256": "af7e66e7b01b017148668b3e720d1abce791b2699136da769c24fb97cecf62e2",
+      "expandedBytes": 269250,
+      "expandedSha256": "6d63466db98080c608622b3e27bd1e47dfec1d3e9b0c844ca014fc52d9ac6fdf"
+    },
+    {
+      "file": "directed-closure.json.gz",
+      "bytes": 16695,
+      "sha256": "253a4a8566bccc0dc803d25577698623e147b8886b32bc2b9a9e064278fd9dae",
+      "expandedBytes": 51004,
+      "expandedSha256": "2a0f02e4d606b58f8e755aae87ab09d0152cd0f8db4c797cb15e5e4a353d3b08"
+    },
+    {
+      "file": "directed-closure.log.gz",
+      "bytes": 3734,
+      "sha256": "b706a623537756e7400c047b380d6b649271eebc62603f38f0f9d395cc05b824",
+      "expandedBytes": 11483,
+      "expandedSha256": "13d362b2c2b1ab73b2b388ca27d013a8f5f96ca70d5d5a7cff8e9db561a8ceae"
+    },
+    {
+      "file": "integration.json.gz",
+      "bytes": 16508,
+      "sha256": "137c1428bf53f5d963522e1fa2cea4225925ec739ba334ca74d3caa8dffe60fa",
+      "expandedBytes": 50757,
+      "expandedSha256": "4c8d8d7da11e2e94c3b6aef88ffd8e5adf4589e9f52f17ed2cc1ce55d7b247aa"
+    },
+    {
+      "file": "integration.log.gz",
+      "bytes": 3560,
+      "sha256": "b3cb3c23ef7a99179d29b17bbacb496709431f05ebe7b355666f9fb8fd70028e",
+      "expandedBytes": 10436,
+      "expandedSha256": "fc4f1e36e21075a816dd2880c867fbe960dba964ef7a7a737cc177ac1c6ef8ec"
+    },
+    {
+      "file": "actual-worker.json.gz",
+      "bytes": 16550,
+      "sha256": "3064d02a0cd987f522f0f54fcb0e3565de4f9143d171f33facf6c88df501ad5d",
+      "expandedBytes": 50538,
+      "expandedSha256": "c8b7c4772b5ecc5905473d6ed542e139777007c8ac7abdb4533665329a29a264"
+    },
+    {
+      "file": "actual-worker.log.gz",
+      "bytes": 341,
+      "sha256": "fd28568b8ac76b5c1d6c4243a7481108f7e74e879477e5b383dec54d51311e5e",
+      "expandedBytes": 1028,
+      "expandedSha256": "1f0aa300e3778fe9dfd119c22576606b857cb9a9b6838f586022f236b72e72b5"
+    },
+    {
+      "file": "wasm-build.json.gz",
+      "bytes": 16340,
+      "sha256": "11b9d82a2282fc2d11624edbd630ea6629a5c2c4bc0d89c1214cd5cc239dde0b",
+      "expandedBytes": 50098,
+      "expandedSha256": "103d18528700fe76b3bd26cc255bb6ce2ead639ce58d1ac5c0ffe44b921fb711"
+    },
+    {
+      "file": "wasm-build.log.gz",
+      "bytes": 1027,
+      "sha256": "926d9a5eddf875a93b4e4f9ba3360fea3245ee08c4bc1e29a237365a07e5717b",
+      "expandedBytes": 2019,
+      "expandedSha256": "e751fdcbafdc28c2068b988c1c6ff1f8acf059f2339e50b05f78e81a584b924b"
+    },
+    {
+      "file": "wasm-host-target.json.gz",
+      "bytes": 16381,
+      "sha256": "ead0315e191dbc01a1197a059772558f4139e5c3d830b8aaa40d0db4413ee871",
+      "expandedBytes": 50187,
+      "expandedSha256": "d758df77a946dd2582caa0ae70c0eacc0b402cc27c76f71c1159aa3e67db439e"
+    },
+    {
+      "file": "wasm-host-target.log.gz",
+      "bytes": 722,
+      "sha256": "438c4e0a42b1edd7aca8a2bbdc551d69fbfd9774a116c3d8204669ded8144a9c",
+      "expandedBytes": 1437,
+      "expandedSha256": "264f0c9361a09d2c82598b1bd618dbbe21961bb18d074f0a20cfbd2c3c44119d"
+    },
+    {
+      "file": "doc-targets.json.gz",
+      "bytes": 16378,
+      "sha256": "29f2b433a0669c095e00ebb89152a4241816ef33a85278449cc08d465fc7fd79",
+      "expandedBytes": 50175,
+      "expandedSha256": "83e25160e700241d0e522ffa0509b4e826122aad76a71d2c320ebac67430189f"
+    },
+    {
+      "file": "doc-targets.log.gz",
+      "bytes": 682,
+      "sha256": "c76355a9cbed98f63fc3e9adedfa0d67699ceeee97b24d5d564c98fcb61b7189",
+      "expandedBytes": 1464,
+      "expandedSha256": "1038f00fc7eed14fb23685693cf995e9cf2060af3658d5127ea027795345c33b"
+    },
+    {
+      "file": "native-wasm-result.json",
+      "bytes": 749,
+      "sha256": "977dda200ad8dfed8651482715c669dd4978eef4bd114e5e8953addf398406a1",
+      "expandedBytes": 749,
+      "expandedSha256": "977dda200ad8dfed8651482715c669dd4978eef4bd114e5e8953addf398406a1"
+    },
+    {
+      "file": "wasm-build-identity.json.gz",
+      "bytes": 16531,
+      "sha256": "864f74196485d5fd8cae0c088affb569685f5c8021ff20e4bd616361b03651d0",
+      "expandedBytes": 38528,
+      "expandedSha256": "61196ebd75dd8805edf321df1bbdb82e438e14625ad96978515876ae91637f1b"
+    },
+    {
+      "file": "verification.json",
+      "bytes": 6745,
+      "sha256": "72af41c1f72ce103f3267d9edc171dd2da2b586f46d73309469440b65668eee0",
+      "expandedBytes": 6745,
+      "expandedSha256": "72af41c1f72ce103f3267d9edc171dd2da2b586f46d73309469440b65668eee0"
+    }
+  ],
+  "compiledModulesDatabasesCredentialsIncluded": false
+}
