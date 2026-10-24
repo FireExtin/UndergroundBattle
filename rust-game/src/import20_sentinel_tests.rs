@@ -718,3 +718,37 @@ fn import20_sentinel_cq18_hidden_departure_qualifies_but_hidden_observer_has_no_
         );
     }
 }
+
+#[test]
+fn import20_sentinel_charge_transfer_then_jc054_normal_hide_primitive_clears_new_counter() {
+    let mut g = game();
+    let weapon = weapon(&mut g, true);
+    let host = field(&mut g, "JC054", 0);
+    fund(&mut g, 0, "XQ20", 1);
+    let hand = held(&mut g, "XQ20", 0);
+    let action = g
+        .legal_actions(0)
+        .into_iter()
+        .find(|a| {
+            a.action.card_id.as_deref() == Some(&hand)
+                && a.action.target_id.as_deref() == Some(&weapon)
+                && a.action
+                    .selected
+                    .as_ref()
+                    .is_some_and(|v| v == &vec![host.clone()])
+        })
+        .expect("actual charge transfer command")
+        .action;
+    act(&mut g, 0, action);
+    pass_top(&mut g);
+    assert_eq!(g.in_play(&weapon).unwrap().1.charge_markers, 0);
+    assert_eq!(g.board(&host).unwrap().1.charge_markers, 1);
+    assert!(g.hide_in_place(&host));
+    g.drive().unwrap();
+    restore(&mut g);
+    assert!(g.regions[0]
+        .cards
+        .iter()
+        .filter(|c| c.definition == "JC054")
+        .all(|c| c.face_down && c.charge_markers == 0));
+}
