@@ -226,7 +226,7 @@ impl Game {
             }
         }
         for e in &self.effects { match e {
-            Effect::Declare { declaration: d } if related(&d.source.card.definition, &d.ability) => {
+            Effect::Declare { declaration: d } if related(&d.source.card.definition, &d.ability) && !self.validated_cross_card_declaration(d)? => {
                 self.validate_xg13_declaration(d)?; remember(&d.source, &d.ability.ops)?;
             },
             Effect::Frame { frame: f } if frame_related(f) && !self.validated_cross_card_frame(f)? => {
@@ -235,7 +235,7 @@ impl Game {
             _ => {},
         } }
         if let Some(p) = &self.pending { match &p.resolution {
-            ChoiceResolution::Declare { declaration: d, stage } if related(&d.source.card.definition, &d.ability) => {
+            ChoiceResolution::Declare { declaration: d, stage } if related(&d.source.card.definition, &d.ability) && !self.validated_cross_card_declaration(d)? => {
                 self.validate_xg13_declaration(d)?; remember(&d.source, &d.ability.ops)?;
                 let expected = Choice { id: p.choice.id.clone(), kind: "trigger".into(),
                     title: format!("{}：{}", catalog::card(ID).name, d.ability.label),

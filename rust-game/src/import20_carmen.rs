@@ -271,7 +271,7 @@ impl Game {
                 || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked) { return Err("卡门响应帧外壳无效".into()); }
         } } }
         for e in &self.effects { match e {
-            Effect::Declare { declaration: d } if related(&d.source.card.definition, &d.ability) => self.validate_cq24_declaration(d)?,
+            Effect::Declare { declaration: d } if related(&d.source.card.definition, &d.ability) && !self.validated_cross_card_declaration(d)? => self.validate_cq24_declaration(d)?,
             Effect::Frame { frame: f } if frame_related(f) => self.validate_cq24_frame(f)?, _ => {},
         } }
         if let Some(p) = &self.pending { match &p.resolution {
@@ -282,7 +282,7 @@ impl Game {
                     player_id: player_id(d.actor), options: self.binding_options(d.actor, &d.source, &slot), preview_cards: vec![], min: Some(0), max: Some(1), amount: None, allow_decline: Some(true) };
                 if p.seat != d.actor || p.choice.id.is_empty() || expected.options.is_empty() || !same(&p.choice, &expected) { return Err("卡门只能在原响应前选择一个合法新宿主或保留原宿主".into()); }
             },
-            ChoiceResolution::Declare { declaration: d, stage } if related(&d.source.card.definition, &d.ability) => {
+            ChoiceResolution::Declare { declaration: d, stage } if related(&d.source.card.definition, &d.ability) && !self.validated_cross_card_declaration(d)? => {
                 self.validate_cq24_declaration(d)?;
                 let expected = Choice { id: p.choice.id.clone(), kind: "trigger".into(), title: format!("{}：{}", catalog::card(ID).name, d.ability.label),
                     description: "选择符合数量限制的选项，然后确认。".into(), player_id: player_id(d.actor), options: self.binding_options(d.actor, &d.source, &d.ability.targets[0]),
