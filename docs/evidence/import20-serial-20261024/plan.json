@@ -546,5 +546,7 @@
     "Actual WASM and Worker normal gameplay, catalogue admission and public browser checks recorded separately.",
     "No deployment of local ABI99/WIP; no automatic main/publish; no new agents.",
     "Keep the current50 target and later16 distinct; plan count never equals implemented count."
-  ]
+  ],
+  "historical_plan_frozen_at": "9bbf90e7b06a9f72a605f6051de54d4d4e26077b",
+  "current_author_implementation_followup": "docs/evidence/import20-first-slice-20261024/result.json"
 }

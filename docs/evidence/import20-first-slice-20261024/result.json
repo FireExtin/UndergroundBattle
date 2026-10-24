@@ -1,0 +1,257 @@
+{
+  "recorded_at_utc": "2026-10-24T02:58:28.182967+00:00",
+  "base_commit": "e2b8e9afa0c4d3107790e09809b17f9478badc67",
+  "runtime_implementation_commit": "4e258464e390c1780bf947e4e89fc04f70350b0f",
+  "native_tested_commit": "470b5335b8491e48d7846a1a723c5dd00fee81eb",
+  "cards": [
+    "BQ090",
+    "BQ064"
+  ],
+  "author_native_implemented": 2,
+  "new20_target": 20,
+  "current50_native_closed": 38,
+  "current50_completion_added": 0,
+  "independent_native_review": "notRun",
+  "definitions": 254,
+  "public_supported": 213,
+  "both_new_cards_supported": false,
+  "engine_version": "rust-v0.2.100-import20-first-slice",
+  "pool_version": "limited-v2.91-import20-first-slice",
+  "public_release_unchanged": "76b1b189c42c3da47ffc875a463ada162c1e8fbd",
+  "public_abi": 95,
+  "directed_native": {
+    "passed": 15,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 2211
+  },
+  "normal_adjacent_native": {
+    "passed": 24,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 2202
+  },
+  "source_assertions": {
+    "passed": 13,
+    "failed": 0,
+    "executed_at": "4e258464e390c1780bf947e4e89fc04f70350b0f",
+    "all_actual_inputs_equal_to_native_tested_commit": true
+  },
+  "native_compiled_inputs": 296,
+  "source_bound_files": 114,
+  "all_native_inputs_match_git_and_worktree": true,
+  "native_test_binary": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/batch4-build/target/debug/deps/hegemony_server-fc575c20deac8fce",
+    "bytes": 87363312,
+    "sha256": "a7d8cdbe84e166bafeda8e28744d75269ce354bd2fb9273c8dbf8e525cb570c8",
+    "profile": "unoptimized unit test binary; not a deployment build"
+  },
+  "failed_attempts_preserved": [
+    {
+      "run": "import20-first-native-20261024",
+      "reason": "Two test-only immutable registry borrowing errors; no tests executed."
+    },
+    {
+      "run": "import20-first-native-retry-20261024",
+      "reason": "Fixture incorrectly combined exposure and secrecy; existing immediate-cancellation validation rejected it.14passed/1failed."
+    },
+    {
+      "run": "import20-first-native-final-20261024",
+      "reason": "Other-player fixture had7 loss-control markers above existing cap3.14passed/1failed."
+    }
+  ],
+  "production_runtime_unchanged_after_initial_commit": true,
+  "normal_scope": [
+    "Printed<=3 target and fast response; existing target invalidation, real paid shielded-cost7 exclusion, attached dual-type character.",
+    "Hand ability pays2, discards original only, no face-up loyalty, wrong actor/source/extra payload/response use rejected.",
+    "Four-seat private submissions, printed3+shown4=7, marks unchanged when merely shown, ruled empty-hand/deck outcome.",
+    "Actual own loss-control0/1/3 removed; zero draw survives empty deck, real overdraw uses existing elimination.",
+    "Room command receipts prevent repeated costs; normal legitimate continuation roundtrips.",
+    "Adjacent responding triggers, nested contests, personal bonuses/rewards, source owners, full u64 seed and Room journal replay."
+  ],
+  "not_run": [
+    "Full native suite",
+    "Independent non-author review",
+    "New WASM build or execution",
+    "Worker execution",
+    "Web integration/browser gameplay for these two cards",
+    "Corrupt-save expansion"
+  ],
+  "runs": [
+    {
+      "name": "import20-first-native-20261024",
+      "source_head": "4e258464e390c1780bf947e4e89fc04f70350b0f",
+      "exit_code": 101,
+      "seconds": 13.759,
+      "source_log_sha256": "e054d74d3ce4c62fb38734537b797df9f3f2580a395dd2f18cc927cd9f310963",
+      "source_receipt_sha256": "74739639711ee3ccedcbdfadc2b8fe397d9008e85ebef5d8ad0fd5312557f16b",
+      "inputs": 296,
+      "log": "import20-first-native-20261024.log.gz",
+      "receipt": "import20-first-native-20261024.receipt.json.gz",
+      "compile_failed": true,
+      "executed_tests": 0
+    },
+    {
+      "name": "import20-first-native-retry-20261024",
+      "source_head": "38239662c49ba9ed09ddf97bc9437c325fcd1e80",
+      "exit_code": 101,
+      "seconds": 29.043,
+      "source_log_sha256": "5dd70a28dfcdc9428c9a98389e7f51143e630374b7befade9c98a27ea1050d48",
+      "source_receipt_sha256": "dc3faf7afbc4f78c321da34f436e91cfa3efe7a91c5b9c07648965df00c7b4a3",
+      "inputs": 296,
+      "log": "import20-first-native-retry-20261024.log.gz",
+      "receipt": "import20-first-native-retry-20261024.receipt.json.gz",
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0,
+      "filtered": 2211,
+      "passed_test_names": [
+        "import20_contest_tests::import20_bq064_bad_loyalty_timing_payload_and_duplicate_do_not_spend",
+        "import20_contest_tests::import20_bq064_can_be_asset_and_has_no_hand_activation",
+        "import20_contest_tests::import20_bq064_no_markers_empty_deck_survives_but_real_overdraw_eliminates",
+        "import20_contest_tests::import20_bq064_shown_bonus7_private_commits_preserve_markers_and_history",
+        "import20_contest_tests::import20_bq090_attached_character_and_shielded_cost7_stays_illegal",
+        "import20_contest_tests::import20_bq090_fast_response_lost_original_target_does_not_rebind_or_refund",
+        "import20_contest_tests::import20_bq090_hand_pays2_discards_only_original_without_printed_loyalty",
+        "import20_contest_tests::import20_bq090_hand_rejects_insufficient_payment_foreign_source_and_response_window",
+        "import20_contest_tests::import20_bq090_illegal_targets_payloads_loyalty_and_nonasset_rollback",
+        "import20_contest_tests::import20_bq090_no_card_contest_keeps_costs_and_completed_draw_steps",
+        "import20_contest_tests::import20_bq090_paid_fast_destroy_accepts_each_controller_and_cost3",
+        "import20_contest_tests::import20_registered_programs_reject_foreign_or_changed_ops",
+        "import20_contest_tests::import20_room_commands_pay_once_and_duplicate_receipt_is_rejected",
+        "import20_contest_tests::import20_source_fields_and_closed_public_admission"
+      ]
+    },
+    {
+      "name": "import20-first-native-final-20261024",
+      "source_head": "8b3c5bf57bf58cc71c6965cb0a432995b2ba5a55",
+      "exit_code": 101,
+      "seconds": 30.05,
+      "source_log_sha256": "9aa8800a7795144b543e5300c080371a2a3344706657e3c3f6d91fbe33aa0d32",
+      "source_receipt_sha256": "61414913b72492c0cf013c31443c0a1a922a94fa7cd507eb9add1b3fdae17e4c",
+      "inputs": 296,
+      "log": "import20-first-native-final-20261024.log.gz",
+      "receipt": "import20-first-native-final-20261024.receipt.json.gz",
+      "passed": 14,
+      "failed": 1,
+      "ignored": 0,
+      "filtered": 2211,
+      "passed_test_names": [
+        "import20_contest_tests::import20_bq064_bad_loyalty_timing_payload_and_duplicate_do_not_spend",
+        "import20_contest_tests::import20_bq064_can_be_asset_and_has_no_hand_activation",
+        "import20_contest_tests::import20_bq064_no_markers_empty_deck_survives_but_real_overdraw_eliminates",
+        "import20_contest_tests::import20_bq064_shown_bonus7_private_commits_preserve_markers_and_history",
+        "import20_contest_tests::import20_bq090_attached_character_and_shielded_cost7_stays_illegal",
+        "import20_contest_tests::import20_bq090_fast_response_lost_original_target_does_not_rebind_or_refund",
+        "import20_contest_tests::import20_bq090_hand_pays2_discards_only_original_without_printed_loyalty",
+        "import20_contest_tests::import20_bq090_hand_rejects_insufficient_payment_foreign_source_and_response_window",
+        "import20_contest_tests::import20_bq090_illegal_targets_payloads_loyalty_and_nonasset_rollback",
+        "import20_contest_tests::import20_bq090_no_card_contest_keeps_costs_and_completed_draw_steps",
+        "import20_contest_tests::import20_bq090_paid_fast_destroy_accepts_each_controller_and_cost3",
+        "import20_contest_tests::import20_registered_programs_reject_foreign_or_changed_ops",
+        "import20_contest_tests::import20_room_commands_pay_once_and_duplicate_receipt_is_rejected",
+        "import20_contest_tests::import20_source_fields_and_closed_public_admission"
+      ]
+    },
+    {
+      "name": "import20-first-native-corrected-fixture-20261024",
+      "source_head": "470b5335b8491e48d7846a1a723c5dd00fee81eb",
+      "exit_code": 0,
+      "seconds": 30.079,
+      "source_log_sha256": "1efad4aaf4ba073bb560ea863f62acc6645a71ac97b76ce0fbaca5e2271a82f5",
+      "source_receipt_sha256": "6aba6d65ba6b72d422aaaa1f43bdf686ca3aa4d91efbaef9312b278ecae8a4c4",
+      "inputs": 296,
+      "log": "import20-first-native-corrected-fixture-20261024.log.gz",
+      "receipt": "import20-first-native-corrected-fixture-20261024.receipt.json.gz",
+      "passed": 15,
+      "failed": 0,
+      "ignored": 0,
+      "filtered": 2211,
+      "passed_test_names": [
+        "import20_contest_tests::import20_bq064_bad_loyalty_timing_payload_and_duplicate_do_not_spend",
+        "import20_contest_tests::import20_bq064_can_be_asset_and_has_no_hand_activation",
+        "import20_contest_tests::import20_bq064_no_markers_empty_deck_survives_but_real_overdraw_eliminates",
+        "import20_contest_tests::import20_bq064_shown_bonus7_private_commits_preserve_markers_and_history",
+        "import20_contest_tests::import20_bq064_zero_and_multiple_removals_use_own_actual_counter_only",
+        "import20_contest_tests::import20_bq090_attached_character_and_shielded_cost7_stays_illegal",
+        "import20_contest_tests::import20_bq090_fast_response_lost_original_target_does_not_rebind_or_refund",
+        "import20_contest_tests::import20_bq090_hand_pays2_discards_only_original_without_printed_loyalty",
+        "import20_contest_tests::import20_bq090_hand_rejects_insufficient_payment_foreign_source_and_response_window",
+        "import20_contest_tests::import20_bq090_illegal_targets_payloads_loyalty_and_nonasset_rollback",
+        "import20_contest_tests::import20_bq090_no_card_contest_keeps_costs_and_completed_draw_steps",
+        "import20_contest_tests::import20_bq090_paid_fast_destroy_accepts_each_controller_and_cost3",
+        "import20_contest_tests::import20_registered_programs_reject_foreign_or_changed_ops",
+        "import20_contest_tests::import20_room_commands_pay_once_and_duplicate_receipt_is_rejected",
+        "import20_contest_tests::import20_source_fields_and_closed_public_admission"
+      ]
+    },
+    {
+      "name": "import20-first-source-20261024",
+      "source_head": "4e258464e390c1780bf947e4e89fc04f70350b0f",
+      "exit_code": 0,
+      "seconds": 0.553,
+      "source_log_sha256": "a02392dcf925a6184a39dbb7b3918a80a9bb54c03cdd25122443b07f090f83b9",
+      "source_receipt_sha256": "41a068cb0f7fcb28516244010d108044e0bea22939244a4779debc05aaa13c03",
+      "inputs": 296,
+      "log": "import20-first-source-20261024.log.gz",
+      "receipt": "import20-first-source-20261024.receipt.json.gz",
+      "tests": 13,
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "name": "import20-normal-adjacent-20261024",
+      "source_head": "470b5335b8491e48d7846a1a723c5dd00fee81eb",
+      "exit_code": 0,
+      "seconds": 8.758,
+      "source_log_sha256": "43d6cee407c544cbfa291e92aa50d012236bd421ab5dc3a8668db246b09cc0df",
+      "source_receipt_sha256": "43516eb71dad86cf177246097deb517ccac2f88558a0352a0b132e910e530ed8",
+      "inputs": 296,
+      "log": "import20-normal-adjacent-20261024.log.gz",
+      "receipt": "import20-normal-adjacent-20261024.receipt.json.gz",
+      "passed": 24,
+      "failed": 0,
+      "ignored": 0,
+      "filtered": 2202,
+      "passed_test_names": [
+        "batch4_vampire_contest_tests::a_b_nested_bq038_awards_each_original_layer_once_without_repaying",
+        "batch4_vampire_contest_tests::b_contest_bq038_real_fast_response_changes_count_only_at_resolution",
+        "batch4_vampire_contest_tests::b_contest_hand_action_pays_two_discards_self_once_and_private_restore",
+        "batch4_vampire_contest_tests::b_contest_paid_sources_preserve_foreign_owners_and_hand_action_cannot_respond",
+        "batch4_vampire_contest_tests::b_contest_shown_bq027_adds_two_after_shuffle_targets_only_personal_vampire_and_feeds",
+        "gray_lock_tests::gray_lock_shield_stops_all_effect_and_barrier_rejects_before_cost",
+        "mystic_lifecycle_tests::mystic_lifecycle_after_parent_keeps_its_own_outcome_when_child_finishes",
+        "mystic_lifecycle_tests::mystic_lifecycle_nested_contest_finishes_then_resumes_parent_once",
+        "mystic_lifecycle_tests::mystic_lifecycle_post_elimination_commits_terminal_state_without_continuation",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_generated_trigger_precedes_secret_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_response_search_private_choice_finishes_before_selection",
+        "mystic_lifecycle_tests::mystic_lifecycle_room_commands_and_journal_replay_complete_nested_response",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_after_responses_keeps_top_cards_without_zero_or_fence",
+        "mystic_lifecycle_tests::mystic_lifecycle_ruling_start_response_can_leave_a_hand_with_an_empty_deck",
+        "pack_a_contest_tests::pack_a_actual_reveal_paid_once_and_four_private_commitments",
+        "pack_a_contest_tests::pack_a_empty_deck_with_hand_is_not_draw_elimination",
+        "pack_a_contest_tests::pack_a_lower_response_stack_does_not_block_contest_selection",
+        "pack_a_contest_tests::pack_a_marker_rewards_are_personal_opposite_and_cancel",
+        "pack_a_contest_tests::pack_a_owner_manor_aura_changes_human_display_and_preserves_witness",
+        "pack_a_contest_tests::pack_a_preacher_conditional_printed_bonus",
+        "pack_a_contest_tests::pack_a_rng_above_js_safe_integer_and_room_revision_survive_each_choice",
+        "pack_a_contest_tests::pack_a_team_sum_tie_has_no_winners_or_rewards",
+        "wm043_tests::wm043_post_lock_on_win_loss_or_tie_targets_any_player",
+        "wm043_tests::wm043_shown_shield_depletion_does_not_cancel_the_next_source"
+      ]
+    }
+  ],
+  "static_author_self_check": [
+    "No second payment/apply/contest kernel or new continuation model.",
+    "Registry programs are finite and reject extra payloads, changed bonus and foreign Op transplantation.",
+    "BQ090 uses the original target UID and generic guard; BQ064 clears only actual actor loss_control at resolution.",
+    "Both cards remain absent from public deck admission; no old-ABI compatibility path added."
+  ],
+  "mutations_not_performed": [
+    "main merge/push",
+    "deployment",
+    "DNS/domain changes",
+    "CI dispatch/rerun",
+    "new agents"
+  ]
+}
