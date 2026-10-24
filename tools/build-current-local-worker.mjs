@@ -14,7 +14,7 @@ assert(!existsSync(dest),'Preserve existing output');
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const bytes=readFileSync(join(binding,'hegemony_wasm_bg.wasm'));
 assert.deepEqual(bytes,moduleBytes,'Only the actual current production module may be wrapped');
-assert.equal(catalog.engineVersion,'rust-v0.2.111-import20-rulings-complete');
+assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 const {build}=createRequire(join(resolve(deps),'../package.json'))('esbuild');
 mkdirSync(dest);
 const source=`import {kernel} from ${JSON.stringify(join(root,'sites/src/kernel.mjs'))};
