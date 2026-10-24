@@ -10598,7 +10598,8 @@
       "source": {
         "file": "docs/factions/card-specifications.json",
         "record": "BQ092",
-        "image": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg"
+        "image": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg",
+        "imageSha256": "5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe"
       },
       "unique": false,
       "society": "",
@@ -10638,7 +10639,8 @@
       "source": {
         "file": "docs/factions/card-specifications.json",
         "record": "BQ093",
-        "image": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg"
+        "image": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg",
+        "imageSha256": "d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c"
       },
       "unique": false,
       "society": "",

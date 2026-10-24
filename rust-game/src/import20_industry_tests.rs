@@ -800,7 +800,8 @@ fn import20_industry_existing_monetary_ability_matrix_uses_same_legal_command_wi
         for seat in 0..4 {
             held(&mut base, "JC125", seat);
         }
-        grave(&mut base, "JC029", 0);
+        let grave_card = base.make_card("JC029", 0);
+        base.players[0].graveyard.push(grave_card);
         let source = if let Some(a) = &spec.attachment {
             let host = match a.host.zone {
                 Zone::Region => base.regions[0].card.id.clone(),

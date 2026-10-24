@@ -20,7 +20,7 @@ test('exact BQ092 self-exhaust correction reconstructs the entire previous sourc
 });
 test('both black facilities retain original pixels costs subtitle and nonunique status',()=>{
   for(const[id,cost,hash]of[['BQ092',1,'5b69295d844278f651226f007b2669b7ec2a8cc56e8bc89ab4bfa6e3714036fe'],['BQ093',2,'d182614e9928ab4cd2f5159b107fb93d2e487762bf202ade0215c06437916f0c']]){
-    const d=pool.cards.find(c=>c.id===id),s=specs.cards[id];assert.equal(d.color,'黑');assert.equal(d.cost,cost);assert.equal(d.kind,'attachment');assert.equal(d.unique,false);assert.equal(d.subtitle,'圣甲虫产业');assert.deepEqual(d.loyalty,['黑色']);assert.equal(d.defense,null);assert.equal(d.text,s.fields.printedRuleTextLines.join('\n'));assert.equal(sha(read(s.sourceVerification.imagePath)),hash);assert.equal(sha(read(`web/public/cards/${id}.jpg`)),hash);
+    const d=pool.cards.find(c=>c.id===id),s=specs.cards[id];assert.equal(d.color,'黑');assert.equal(d.cost,cost);assert.equal(d.kind,'attachment');assert.equal(d.unique,false);assert.equal(d.subtitle,'圣甲虫产业');assert.deepEqual(d.loyalty,['黑色']);assert.equal(d.defense,null);assert.equal(d.source.imageSha256,hash);assert.equal(d.text,s.fields.printedRuleTextLines.join('\n'));assert.equal(sha(read(s.sourceVerification.imagePath)),hash);assert.equal(sha(read(`web/public/cards/${id}.jpg`)),hash);
   }
 });
 test('single current106 remains WIP with no new public or independent completion claim',()=>{
