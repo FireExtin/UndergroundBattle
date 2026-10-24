@@ -235,6 +235,8 @@ fn import20_observer_registry_rejects_transplanted_or_retimed_programs() {
     let mut a=definition("BQ039").abilities[1].clone();assert!(validate_ability("JC125",&a).is_err());
     a.event=None;assert!(validate_ability("BQ039",&a).is_err());
     let mut a=definition("WM028").abilities[1].clone();a.timing=Timing::Standard;assert!(validate_ability("WM028",&a).is_err());
+    let mut wrong=o::definition("WM028").unwrap();wrong.attachment.as_mut().unwrap().host.relation=Relation::EnemyTeam;
+    assert!(o::validate_definition("WM028",&wrong).is_err());
 }
 
 #[test]

@@ -86,6 +86,11 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
     id == "WM028" && key == HALL_PREP && bonus == 0
 }
+pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
+    if CARDS.contains(&id) && definition(id).is_none_or(|expected| !same(d, &expected)) {
+        Err("新隐秘附属须保留完整宿主、费用和触发定义".into())
+    } else { Ok(()) }
+}
 
 impl Game {
     pub(crate) fn import20_eye_battle_observers(&mut self, team: usize, region: usize) -> Vec<Declaration> {
