@@ -1,0 +1,50 @@
+diff --git a/rust-game/src/wm057_borrow_tests.rs b/rust-game/src/wm057_borrow_tests.rs
+index ceccc76e..9c1dd2c0 100644
+--- a/rust-game/src/wm057_borrow_tests.rs
++++ b/rust-game/src/wm057_borrow_tests.rs
+@@ -286,7 +286,8 @@ fn wm057_borrow_does_not_allow_standard_action_during_a_response_or_private_sele
+     let (mut g, id) = layout(2);
+     g.players[2].society_zone.secrecy = 1;
+     g.players[2].assets.clear();
+-    fund(&mut g, 2, "JC084", 2);
++    fund(&mut g, 2, "JC084", 6);
++    let second = field(&mut g, "WM057", 1);
+     let target = field(&mut g, "JC001", 0);
+     let spell = held(&mut g, "BQ090", 2);
+     act(
+@@ -298,10 +299,32 @@ fn wm057_borrow_does_not_allow_standard_action_during_a_response_or_private_sele
+             ..Action::new("play")
+         },
+     );
+-    assert!(!g.board(&id).unwrap().1.exhausted);
+-    reject(&mut g, 2, action(&id));
+-    assert_eq!(g.resources(2), 0); // the spell paid its own2
++    assert_eq!(g.resources(2), 4);
++    assert!(g.can_fast(2));
++    assert!(g.wm057_borrow_available(2, g.board(&id).unwrap().1));
++    let before = serde_json::to_string(&g).unwrap();
++    let error = g.apply(2, action(&id)).unwrap_err();
++    assert!(error.contains("标准行动"), "{error}");
++    assert_eq!(serde_json::to_string(&g).unwrap(), before);
++    restore(&mut g);
++    pass_top(&mut g);
++    act(&mut g, 2, action(&id));
++    pass_top(&mut g);
++    assert_eq!(
++        g.pending.as_ref().unwrap().choice.kind,
++        crate::mystic_contest::COMMIT_KIND
++    );
++    assert_eq!(g.pending.as_ref().unwrap().seat, 0);
++    assert_eq!(g.resources(2), 2);
++    assert!(g.wm057_borrow_available(2, g.board(&second).unwrap().1));
++    let before = serde_json::to_string(&g).unwrap();
++    let error = g.apply(2, action(&second)).unwrap_err();
++    assert!(error.contains("等待玩家完成选择"), "{error}");
++    assert_eq!(serde_json::to_string(&g).unwrap(), before);
++    assert!(!g.board(&second).unwrap().1.exhausted);
++    restore(&mut g);
+ }
++
+ #[test]
+ fn wm057_borrow_receipt_survives_marker_loss_source_departure_and_no_rebinding() {
+     let (mut g, id) = layout(2);

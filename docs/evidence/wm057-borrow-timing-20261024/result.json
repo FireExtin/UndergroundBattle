@@ -1,0 +1,25 @@
+{
+  "createdAtUtc": "2026-10-24T07:48:46.000141+00:00",
+  "runtimeHead": "dae92b4d7a1c9319ddd72d779da9b56808e97179",
+  "testOnlyHead": "444808d4a4ed420c0ce57648ec82dc280dc298e2",
+  "changedProductPaths": [],
+  "changedTestPaths": [
+    "rust-game/src/wm057_borrow_tests.rs"
+  ],
+  "passed": 1,
+  "actualScope": [
+    "Enemy borrower retains four spendable fees and current fast priority while a real spell response is on the stack. Marked, ready original source remains otherwise eligible; rejection specifically states standard action, with no state/cost change.",
+    "After spell resolution, first borrowing pays2 and opens actual private commitment. A second original source is still ready, personally eligible and affordable with2 fees; command specifically rejects waiting for a private choice, with no state/cost change."
+  ],
+  "earlierCoverage": {
+    "source": "dae92b4d7a1c9319ddd72d779da9b56808e97179",
+    "nativeUniquePassed": 258,
+    "newBorrowCases": 18,
+    "sourceAssertions": 48
+  },
+  "counting": "This rechecks one of the same258 names with stronger positive preconditions, so it is not259 unique tests.",
+  "independentReview": "notRun",
+  "platformAcceptance": "notRun",
+  "deployed": false,
+  "processes": "One self-created targeted compile/test completed, no service/port created."
+}

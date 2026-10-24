@@ -1,0 +1,26 @@
+{
+  "runtimeHead": "dae92b4d7a1c9319ddd72d779da9b56808e97179",
+  "testOnlyHead": "444808d4a4ed420c0ce57648ec82dc280dc298e2",
+  "files": [
+    {
+      "path": "receipt.json",
+      "bytes": 48235,
+      "sha256": "a2df1549eece08c791348f152351ca752738f1ec164ed9efc625a8e82881e58f"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1310,
+      "sha256": "f7a52946c5ef0e8b9a7b4ad00c016aaf9be8702a7d821db2b863cd0aea4ba778"
+    },
+    {
+      "path": "run.log.gz",
+      "bytes": 951,
+      "sha256": "0c80f6130971fdca9f042a0d97f8d46d058f29ed0a446915352c33c1de809bad"
+    },
+    {
+      "path": "test-only.patch",
+      "bytes": 2129,
+      "sha256": "3d504680acaab9c37403cf250debb7c552a9b2a743627a960003bb56f8254ec0"
+    }
+  ]
+}
