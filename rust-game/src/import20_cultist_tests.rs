@@ -23,11 +23,12 @@ fn finish(g: &mut Game) {
     panic!("normal finite continuation did not finish");
 }
 fn deploy(g: &mut Game, actor: usize, id: &str) -> String {
-    let before = g.regions[0].cards.iter().map(|c| c.id.clone()).collect::<Vec<_>>();
+    let region = (0..g.regions.len()).find(|r| g.accessible(actor, *r)).unwrap();
+    let before = g.regions[region].cards.iter().map(|c| c.id.clone()).collect::<Vec<_>>();
     let source = held(g, id, actor);
-    act(g, actor, Action { card_id: Some(source), region: Some(0), ..Action::new("deploy") });
+    act(g, actor, Action { card_id: Some(source), region: Some(region), ..Action::new("deploy") });
     pass_top(g);
-    g.regions[0].cards.iter().find(|c| c.definition == id && c.controller == actor && !before.contains(&c.id)).unwrap().id.clone()
+    g.regions[region].cards.iter().find(|c| c.definition == id && c.controller == actor && !before.contains(&c.id)).unwrap().id.clone()
 }
 fn entry(g: &mut Game) -> (String, String) {
     let source = field(g, c::ID, 0);
@@ -47,8 +48,8 @@ fn discount(g: &mut Game, source: &str, paid: &str) {
     pass_top(g);
 }
 fn destruction_response(g: &mut Game, target: &str) {
-    fund(g, 2, "JC005", 2);
-    let spell = held(g, "JC005", 2);
+    fund(g, 2, "JC084", 2);
+    let spell = held(g, "BQ090", 2);
     priority(g, 2);
     let a = g.legal_actions(2).into_iter().find(|a| a.action.kind == "play"
         && a.action.card_id.as_deref() == Some(&spell) && a.action.target_id.as_deref() == Some(target)).unwrap().action;
@@ -185,6 +186,61 @@ fn import20_xg13_fast_sacrifice_is_real_other_cultist_and_source_need_not_be_rea
 }
 
 #[test]
+fn import20_xg13_actual_wm038_granted_cultist_can_pay_then_tattoo_leaves_with_host() {
+    let mut g = game(); let source = field(&mut g, c::ID, 0); let host = field(&mut g, "JC125", 0);
+    fund(&mut g, 0, "JC042", 1); let tattoo = held(&mut g, "WM038", 0);
+    act(&mut g, 0, Action { card_id: Some(tattoo), target_id: Some(host.clone()), ..Action::new("play") });
+    finish(&mut g);
+    assert!(g.current_subtypes(g.board(&host).unwrap().1).iter().any(|s| s == "邪教徒"));
+    discount(&mut g, &source, &host);
+    assert!(g.attachments.is_empty()); assert_eq!(g.modifiers[0].uses, 1);
+    assert_eq!(g.players[0].graveyard.iter().filter(|c| c.definition == "WM038").count(), 1);
+}
+
+#[test]
+fn import20_xg13_own_xq18_reveal_and_observer_share_real_entry_order_once() {
+    let mut g = game(); field(&mut g, c::ID, 0); g.players[0].society_zone.secrecy = 1;
+    let hidden = field(&mut g, "XQ18", 0); g.board_mut(&hidden).unwrap().face_down = true;
+    fund(&mut g, 0, "JC042", 2);
+    act(&mut g, 0, Action { card_id: Some(hidden), ..Action::new("reveal") }); pass_top(&mut g);
+    let mut ordered = false; let mut accepted = 0;
+    for _ in 0..100 {
+        if let Some(p) = g.pending.clone() {
+            if p.choice.kind == "batch3-entry-order" {
+                ordered = true;
+                let id = p.choice.options.iter().find(|o| o.id.ends_with(c::ENTRY)).unwrap_or(&p.choice.options[0]).id.clone();
+                choose(&mut g, vec![id]);
+            } else if matches!(&p.resolution, ChoiceResolution::Declare { declaration: d, .. } if d.ability.key == c::ENTRY) {
+                accepted += 1; choose(&mut g, vec!["accept".into()]);
+            } else if p.choice.allow_decline == Some(true) { choose(&mut g, vec![]); }
+            else { resolve_choice(&mut g); }
+        } else if !g.stack.is_empty() { pass(&mut g); }
+        else if !g.effects.is_empty() { g.drive().unwrap(); restore(&mut g); }
+        else { break; }
+    }
+    assert!(ordered); assert_eq!(accepted, 1);
+    assert_eq!(g.regions[0].cards.iter().find(|c| c.definition == "XQ18").unwrap().time_markers, 1);
+    assert!(g.entry_order_groups.is_empty()); restore(&mut g);
+}
+
+#[test]
+fn import20_xg13_real_room_activation_consumes_one_cost_and_rejects_stale_repeat() {
+    use crate::room::{RoomCommand, RoomEnvelope};
+    let mut g = game(); let source = field(&mut g, c::ID, 0); let paid = field(&mut g, "JC042", 0);
+    let r = crate::jc029_tests::envelope(&g);
+    let command = RoomCommand { command_id: "xg13-paid-once".into(), expected_version: r.revision, action: activate(&source, &paid).into() };
+    let out = r.transition(0, Some(command.clone()), 2000).unwrap();
+    assert!(out.error_code.is_none(), "{:?}", out.error_message);
+    let next = RoomEnvelope::from_persisted(&out.state).unwrap();
+    assert_eq!(serde_json::to_value(r.replay_events(&out.journal).unwrap()).unwrap(), serde_json::to_value(&next).unwrap());
+    assert!(next.game.board(&paid).is_none());
+    assert_eq!(next.game.players[0].graveyard.iter().filter(|c| c.definition == "JC042").count(), 1);
+    let repeat = next.transition(0, Some(command), 2001).unwrap();
+    assert_eq!(repeat.error_code.as_deref(), Some("version_conflict")); assert_eq!(repeat.state, out.state);
+    assert_eq!(next.game.seed, g.seed);
+}
+
+#[test]
 fn import20_xg13_illegal_sacrifices_and_extra_payloads_roll_back() {
     let mut g = game(); let source = field(&mut g, c::ID, 0);
     let ally = field(&mut g, "JC042", 1); let enemy = field(&mut g, "JC042", 2);
@@ -247,7 +303,8 @@ fn import20_xg13_discount_is_personal_and_not_secret_deploy_or_paid_reveal() {
     act(&mut g, 0, Action { card_id: Some(hidden), ..Action::new("reveal") });
     assert_eq!(g.resources(0), 1); assert_eq!(g.modifiers[0].uses, 1); finish(&mut g);
     fund(&mut g, 1, "JC042", 2); let hand = held(&mut g, "XQ18", 1);
-    act(&mut g, 1, Action { card_id: Some(hand), region: Some(0), ..Action::new("deploy") });
+    let region = (0..g.regions.len()).find(|r| g.accessible(1, *r)).unwrap();
+    act(&mut g, 1, Action { card_id: Some(hand), region: Some(region), ..Action::new("deploy") });
     assert_eq!(g.resources(1), 0); assert_eq!(g.modifiers[0].uses, 1); finish(&mut g);
 }
 
