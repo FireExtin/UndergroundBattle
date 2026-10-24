@@ -1,0 +1,66 @@
+{
+  "issue": "QA-ABI112-UI-001",
+  "severity": "P2 normal-play blocker",
+  "site_version": 4,
+  "fixed_product_before": "15b95a8ed89c33a578927593bdeeee97eed93c32",
+  "table": "97EC1A99E58C",
+  "turn": 4,
+  "scores": [
+    0,
+    0
+  ],
+  "paused_saved": true,
+  "chooser": "ABI112-QA-A",
+  "choice_contract": {
+    "kind": "wm057-inspection-confirm",
+    "min": 0,
+    "max": 0,
+    "allowDecline": false,
+    "options": []
+  },
+  "visible_browser_result": {
+    "title": "信息掮客：确认私密检视",
+    "summary": "请选择 0 项。",
+    "confirmation_disabled": true,
+    "skip_absent": true,
+    "private_preview": "卡门",
+    "other_seat_preview_visible": false
+  },
+  "normal_chain": [
+    "two WM057 sources deployed through normal card commands",
+    "pay 2 and exhaust first source",
+    "private submissions A cost2 and B cost1",
+    "A own hidden-marker reward",
+    "same-controller ordering prompt; choose second source, refresh preserves selection",
+    "one source selects inspect, one selects repression only",
+    "B London control 2→1→0 in two separate choices",
+    "A legally inspects bound B hidden Carmen; B receives no private preview",
+    "required 0/0 acknowledgement remains disabled"
+  ],
+  "root_cause": "ChoicePanel known zero-acknowledgement kinds omitted wm057-inspection-confirm; Native requires explicit empty selection.",
+  "minimal_fix": "narrow known-kind admission with existing exact min/max/options/decline guards; correct generic deck-top heading for this inspection only",
+  "runtime_abi_state_changes": false,
+  "test_before": {
+    "files": 1,
+    "passed": 6,
+    "failed": 1,
+    "log": "abi112-wm057-ack-red-20261024.log"
+  },
+  "test_after": {
+    "files": 4,
+    "passed": 46,
+    "failed": 0,
+    "includes": [
+      "7 new UI contract/guard cases",
+      "12 actual current WASM/Table ordering/rumor cases",
+      "adjacent private inspection and choice focus"
+    ],
+    "log": "abi112-wm057-ack-green-20261024.log"
+  },
+  "browser_fix_verification": "not yet published or tested; original table preserved",
+  "remaining_acceptance": [
+    "full terminal and both-seat refresh",
+    "CQ28-specific mill via actual UI",
+    "shared-keyword rewards and exact WM025/BQ039 ordering combinations not yet played"
+  ]
+}
