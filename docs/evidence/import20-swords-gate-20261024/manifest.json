@@ -1,0 +1,117 @@
+{
+  "base": "78338f3287fd28bd58e8ad0c5fa21611b0208887",
+  "fixedSource": "af97703cab589e9a30791f279eb401db653c132d",
+  "files": [
+    {
+      "path": "CQ28-mode-order-question.json",
+      "bytes": 1524,
+      "sha256": "84b083e8c91424258e550a7ee5dc52d80953008d88d1c148730ff5b4fe3365cc"
+    },
+    {
+      "path": "cq15-cq28-fifth-native-20261024.json",
+      "bytes": 49570,
+      "sha256": "44940468ed50b688a77650272dff2521ecc649e59e44d93471551e3caeb41020"
+    },
+    {
+      "path": "cq15-cq28-fifth-native-20261024.log.gz",
+      "bytes": 1711,
+      "sha256": "69ec3a9576ffc4a0df9e55f5d7d90055e60a5dcf3535b018bacf3d1159f1704a"
+    },
+    {
+      "path": "cq15-cq28-first-source-20261024.json",
+      "bytes": 50099,
+      "sha256": "a8ba517f7596f14e67bb5ffd9aad515ea34431bf0b0acc201fd81c5f115c6c54"
+    },
+    {
+      "path": "cq15-cq28-first-source-20261024.log.gz",
+      "bytes": 1866,
+      "sha256": "0b2f5b7ac3f3ce4d30554cdf32ae902ee50093d12301d6799fed9ded0ae47132"
+    },
+    {
+      "path": "cq15-cq28-fixed-native-20261024.json",
+      "bytes": 49026,
+      "sha256": "fb4ce04caaa243d7f1770a7d8c4392cca7fd35a19b4cc78e5efa14362317cc18"
+    },
+    {
+      "path": "cq15-cq28-fixed-native-20261024.log.gz",
+      "bytes": 8954,
+      "sha256": "3261cbfe38c441891f19f2890979e367f538795f2ea3cb51c1a8a6d7127a5d05"
+    },
+    {
+      "path": "cq15-cq28-fixed-source-20261024.json",
+      "bytes": 49436,
+      "sha256": "946bc8e02e4f6fa3a62b36bbb85a3fe11e985e29c38a01e91e81adc760986af9"
+    },
+    {
+      "path": "cq15-cq28-fixed-source-20261024.log.gz",
+      "bytes": 1869,
+      "sha256": "d8f68551c17c71413d507577b2d508fb3ac9337ccfc3eb5cfbab85760b164786"
+    },
+    {
+      "path": "cq15-cq28-fourth-native-20261024.json",
+      "bytes": 48659,
+      "sha256": "c0b8ee6f62062302996e8c871df9107b35a836191da645eb2155875e71f6e820"
+    },
+    {
+      "path": "cq15-cq28-fourth-native-20261024.log.gz",
+      "bytes": 1796,
+      "sha256": "29717596361d309a6b8c0b8e53aa5da095fea9c6efaebdbdbf36fb334d0387a3"
+    },
+    {
+      "path": "cq15-cq28-sixth-native-20261024.json",
+      "bytes": 49568,
+      "sha256": "b7e57f2cbff1e6716e8997002bdad3e9b2fe1ddae9347ec726b95ead8e950765"
+    },
+    {
+      "path": "cq15-cq28-sixth-native-20261024.log.gz",
+      "bytes": 1598,
+      "sha256": "e60e1e87f18ac703da906e4a37a26f7d26524bb738f0eb3ebbdf4a29590faac2"
+    },
+    {
+      "path": "cq15-cq28-third-native-20261024.json",
+      "bytes": 48625,
+      "sha256": "3335eca7aa7dba1032fc55417a2678dd18503426b89cfe1a41e20686739048b7"
+    },
+    {
+      "path": "cq15-cq28-third-native-20261024.log.gz",
+      "bytes": 1078,
+      "sha256": "d52b248a751ef6190e6460f897416484c0ad4fcc00d5bd0f578e1e99afa1735d"
+    },
+    {
+      "path": "cq15-first-native-20261024.json",
+      "bytes": 48506,
+      "sha256": "819aeda316e8e495e526c229403834a2d23f417dd5ea20830da0741048aa02f4"
+    },
+    {
+      "path": "cq15-first-native-20261024.log.gz",
+      "bytes": 1011,
+      "sha256": "e978d1dc6d16f5fc0ed8ab6b542db2257a1ce41197d4c6e20fc6c6b248c6c853"
+    },
+    {
+      "path": "cq15-second-native-20261024.json",
+      "bytes": 48505,
+      "sha256": "3fa2579bd7c5bc1ac4e35ada34f57f922b1c83d771293bc183902b9cd90e09f1"
+    },
+    {
+      "path": "cq15-second-native-20261024.log.gz",
+      "bytes": 1377,
+      "sha256": "f108964572ccfd06fb7d82b36405298fbb817bf0d68d7c565988300d8da268da"
+    },
+    {
+      "path": "failure-record.json",
+      "bytes": 2027,
+      "sha256": "18ed5adbe0178c5828a52f39e89050d3d9cc16fdf90141bcd02992393c110500"
+    },
+    {
+      "path": "fixed-inputs.json",
+      "bytes": 49731,
+      "sha256": "240548df860d931e708e473488f2add6749ad3e90419090f7eb345b5d94293d9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1230,
+      "sha256": "13f19b771e0cbabdc5f53ce589d29eaf1084e3757494ce6936870333dfb6a5f1"
+    }
+  ],
+  "scope": "Only reviewable source-bound author logs and rule question; no credentials, runtime database or compiled artifact."
+}

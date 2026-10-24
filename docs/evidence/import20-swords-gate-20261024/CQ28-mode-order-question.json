@@ -1,0 +1,24 @@
+{
+  "cardId": "CQ28",
+  "name": "咒欲之门",
+  "status": "mixed-mode-order-awaiting-explicit-evidence",
+  "printedText": [
+    "行动 选择两项，你可以重复选择同一项：",
+    "将你牌库顶的六张牌置于你的墓地。",
+    "选择目标地区，将你墓地中印刷费用小于或等于②的目标角色牌放置进场，并置于该地区。",
+    "目标角色获得防御力-1直到回合结束。",
+    "抓一张牌。"
+  ],
+  "checked": [
+    "Original CQ28 image f4ce0a675978579414f8204b5075db0fc6a9e164d504b005d13e75e1279199ab",
+    "Pinned authorized UWPro0d60 resource CQ28.tres; contains identical four options, no per-card effect handler or ordering FAQ",
+    "Local base rulebook/player guide/FAQ mode/effect ordering text searched. Targets explicitly must be chosen before payment; no direct two-mode ordering clause located."
+  ],
+  "exactQuestion": "咒欲之门选“磨六张”和“抓一张”时，是固定按卡面先磨后抓，还是玩家可指定先抓后磨？",
+  "example": "牌库顶依次A,B,C,D,E,F,G,H：先磨后抓会抓G；先抓后磨会抓A。四同项重复不受这点影响。",
+  "alternatives": [
+    "Both selected instances resolve in printed item order; two identical instances remain distinct.",
+    "Player selects the two instance order, including draw before mill."
+  ],
+  "implementationBoundary": "Keep mixed modes closed until resolved; proceed CQ15 and all four repeated-same-mode paths. Do not count partial CQ28 whole or inflate19/20."
+}

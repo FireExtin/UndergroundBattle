@@ -1,0 +1,39 @@
+{
+  "createdAtUtc": "2026-10-24T08:11:05.620616+00:00",
+  "base": "78338f3287fd28bd58e8ad0c5fa21611b0208887",
+  "fixedSource": "af97703cab589e9a30791f279eb401db653c132d",
+  "engine": "rust-v0.2.110-import20-swords-gate-partial",
+  "pool": "limited-v2.101-import20-swords-gate-partial",
+  "native": {
+    "passed": 324,
+    "directed": 25,
+    "adjacent": 299,
+    "failed": 0,
+    "ignored": 0,
+    "totalCompiledTests": 2478,
+    "filteredNotRun": 2154,
+    "execution": "author, not independent"
+  },
+  "sourceAssertions": {
+    "passed": 45,
+    "files": 12,
+    "execution": "author"
+  },
+  "wholeFirst20AuthorNativeWip": 18,
+  "partial": [
+    "CQ28 four repeated-same modes only"
+  ],
+  "notImplemented": [
+    "CQ28 mixed modes pending order",
+    "XQ19 dash-cost pending ruling"
+  ],
+  "historical50IndependentNativeClosed": 38,
+  "regularRecords": 271,
+  "publicSupported": 213,
+  "independentReview": "notRun",
+  "WASM": "notBuiltOrRun",
+  "Worker": "notBuiltOrRun",
+  "browser": "notRun",
+  "published": false,
+  "scope": "Full CQ15 author Native WIP and partial CQ28 are separate. No public admission, no full-suite claim, no independent review, no whole CQ28 claim. Latest native kernel only, no old ABI fallback."
+}

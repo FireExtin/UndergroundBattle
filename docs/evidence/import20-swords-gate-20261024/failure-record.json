@@ -1,0 +1,39 @@
+{
+  "initialCompile": {
+    "name": "cq15-first-native-20261024",
+    "failure": "Test referenced nonexistent Game.rng; corrected to actual deck-order comparison. Public seed is immutable; no game randomness code changed."
+  },
+  "secondDirected": {
+    "name": "cq15-second-native-20261024",
+    "passed": 9,
+    "failed": 1,
+    "failure": "Test incorrectly expected immutable seed to change after shuffle. Corrected to full actual shuffled deck-order assertion; no production shuffle change."
+  },
+  "thirdCompile": {
+    "name": "cq15-cq28-third-native-20261024",
+    "failure": "CQ28 tried to encode negative defense in existing unsigned positive bonus. Replaced with bounded CQ28 original-target/turn contribution, preserving every existing positive grant."
+  },
+  "fourthDirected": {
+    "name": "cq15-cq28-fourth-native-20261024",
+    "passed": 13,
+    "failed": 7,
+    "failure": "New CQ28 raw color loyalty was encoded 黑 instead of existing 黑色. Corrected new card data to exact four-black requirement; no loyalty implementation weakening."
+  },
+  "fifthDirected": {
+    "name": "cq15-cq28-fifth-native-20261024",
+    "passed": 18,
+    "failed": 2,
+    "failure": "Two legal character fixtures incorrectly selected JC126, an attachment. Changed those fixture subjects to the actual low-cost character JC084; no targeting rule weakening."
+  },
+  "sixthDirected": {
+    "name": "cq15-cq28-sixth-native-20261024",
+    "passed": 25,
+    "failed": 0,
+    "worktreeClean": false
+  },
+  "transport": {
+    "status": "Recovered",
+    "details": "Initial exec call returned CreateProcess/exec-server transport disconnected. On reconnect existing fourth receipt and source were found complete; no duplicate fourth command was launched."
+  },
+  "historyScope": "Pre-freeze logs/receipts retain actual dirty-worktree labels. Untracked early source files were not in the runner tracked-input list; do not claim exact reconstruction of every failed intermediate source. Fixed clean source receipt includes all new modules."
+}
