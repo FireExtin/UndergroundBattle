@@ -1,0 +1,83 @@
+{
+  "failedAttempts": [
+    {
+      "name": "tax-ban-first-compile-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "f324f5f314298b2c11b5450ccd8062dc0aae653012b58f34c7e72e33353162e9",
+      "explanation": "Initial module syntax: one extra closing brace, no tests executed."
+    },
+    {
+      "name": "tax-ban-second-compile-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "71df1b72332daed464180f67515d33e6199455f64e468ca98333734442f46fec",
+      "explanation": "Initial observer iterator used Card rather than the existing (region, Card) pair; compilation stopped, no tests executed."
+    },
+    {
+      "name": "tax-ban-native-first-cases-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "4ff029fe5549e553560e2d76ab21221d2d37a4ad48563a02383040c3d8ff1910",
+      "explanation": "Test-only symbol typos (View.choice vs pending_choice; destroy vs existing destroy_as). No product failure inferred; compilation stopped."
+    },
+    {
+      "name": "tax-ban-native-casefix-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "87ad63d67f9de5131ece986838ce5bf0c98849f4128e1ee7dd33b071a0f0f0f7",
+      "explanation": "15/23 pass. Eight positive fixtures incorrectly used a seat index as Window::Action team index; rejection occurred before card mechanics. Fixed team-window setup."
+    },
+    {
+      "name": "tax-ban-native-team-fixtures-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "996856c0456174d7922526f3c6ce1741407a3caf1669e1dbb82cf29deb9c7d27",
+      "explanation": "22/23 pass. Friendly seat1 fixture chose region0 outside that seat's deployment range. Use its actual accessible region."
+    },
+    {
+      "name": "tax-ban-native-expanded-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 101,
+      "logSha256": "592dc44bc5b5b96616494e39007f21c5c1b429c678c992ef5cade712b6bfae7b",
+      "explanation": "26/28 pass. BQ026 is blue, not black; corrected printed loyalty funding. Fast-response fixture must pass both original-priority teammates before enemy response. Preserved positive-command expectations."
+    },
+    {
+      "name": "tax-ban-adjacent-native-20261024",
+      "head": "590cbd281d0f2ac5e340db83d330a58a5202fc89",
+      "worktreeClean": true,
+      "exitCode": 101,
+      "logSha256": "cdf3980b4245e991ecd8fefc7e791d75f13138f8b841fe9f2cf810cb4e7d8b36",
+      "explanation": "345/346. Sole failure was the preceding Sentinel metadata test still asserting current267. Replace only that stale-total assertion with the existing exact current catalogue helper retaining prior267 hash and bounded new tail; runtime code unchanged. Targeted close plus previously unmatched guard/mobility contracts run at a separate test-only commit, without repeating345 passed cases."
+    },
+    {
+      "name": "tax-ban-source-first-20261024",
+      "head": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+      "worktreeClean": false,
+      "exitCode": 1,
+      "logSha256": "abca007a5ff8423917a59e54a65256a344348973c204ac6a0507900c1b9e7136",
+      "explanation": "35/44 pass. Nine historical-source tests retained the previous current267 total. Preserve every prior prefix hash and exact historical splice; extend only current scope to269 with explicit new tail IDs."
+    }
+  ],
+  "dirtyRunLimit": "Pre-checkpoint attempts retain their exact logs, observed worktree and input hashes; they are not claimed to be clean fixed-commit reproductions.",
+  "intermediateNormalNativePass": {
+    "name": "tax-ban-native-auth-and-plan-20261024",
+    "passed": 29,
+    "exitCode": 0,
+    "head": "5ecad466bd108be58aa0224867f0793e5bf7a010"
+  },
+  "staticFollowups": [
+    "BQ026 retains both types in every zone; real deployment play therefore also emits Pete's attachment-play observation, while paid reveal does not.",
+    "A real secret plan is an attachment play but not a face-up play; keep its proof and original private identity masked.",
+    "Event-qualified existing entry-order references include Pete's original played-frame UID; observers do not collide across distinct plays."
+  ],
+  "extraCorruptSaveExpansion": false,
+  "existingAdjacentRestoreChecks": "Existing adjacent tests retain their original restore checks. No additional corrupt-save fuzzing was authored.",
+  "timeLimitsRelaxed": false
+}

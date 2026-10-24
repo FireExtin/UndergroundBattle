@@ -1,0 +1,203 @@
+{
+  "base": "5ecad466bd108be58aa0224867f0793e5bf7a010",
+  "runtime_head": "590cbd281d0f2ac5e340db83d330a58a5202fc89",
+  "initial_native_test_head": "590cbd281d0f2ac5e340db83d330a58a5202fc89",
+  "test_only_followup_head": "daeacaaf199875fe38cf437d1519499cbb949963",
+  "files": [
+    {
+      "path": "failure-record.json",
+      "bytes": 4723,
+      "sha256": "67f1cffbc73d986e11b2fb0ace875b0fa41287fcd7fb68609234ab506d4cb9bc"
+    },
+    {
+      "path": "fixed-inputs.json",
+      "bytes": 251290,
+      "sha256": "f5d42277919ae6eb37e79a6484fcc378961d6118c0571ca93fb989713a10a91a"
+    },
+    {
+      "path": "result.json",
+      "bytes": 49312,
+      "sha256": "a3a8d8299968d42b710d2b3c2f4e6d3f3f8b958186ec840b49f45e2638fff264"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 2640,
+      "sha256": "37f8cd6ea3e55ac96af5fd4c0b0c7ef5bd6e896863401a024795bd367d35c459"
+    },
+    {
+      "path": "supplement-selection.json",
+      "bytes": 41243,
+      "sha256": "22940170bbd53208261502f87222bd2ab49ea52ff8d281515acffea1f7e1d63a"
+    },
+    {
+      "path": "tax-ban-adjacent-contracts-20261024.json",
+      "bytes": 51586,
+      "sha256": "b2a97ef9e1a0a1d537196bee4a3804a71a63ff42a42fa480f7ff54b6539dcc70"
+    },
+    {
+      "path": "tax-ban-adjacent-contracts-20261024.log.gz",
+      "bytes": 2228,
+      "sha256": "366f2aa6fabe75ef5667e4f9e2e407acdbdc7f6a548b2a062c13dfeb9a405894"
+    },
+    {
+      "path": "tax-ban-adjacent-native-20261024.json",
+      "bytes": 48257,
+      "sha256": "68042cf1d94c290a45645bce460f0fde85118222d58a14f6d118028c8af45a79"
+    },
+    {
+      "path": "tax-ban-adjacent-native-20261024.log.gz",
+      "bytes": 9938,
+      "sha256": "7d33cc858f96cd338e7bae9e64e0ef0ead7b5c826da217989954f667d7220cce"
+    },
+    {
+      "path": "tax-ban-first-compile-20261024.json",
+      "bytes": 48086,
+      "sha256": "2353f7420c8f28187fb37492aabdd1dcafd0afeb9b03c1b9acb0b0710d5649a0"
+    },
+    {
+      "path": "tax-ban-first-compile-20261024.log.gz",
+      "bytes": 371,
+      "sha256": "172d2e0fa44ed5b16f5ca34bd81528bb94db70c291cbd5f623650417de9ff9b7"
+    },
+    {
+      "path": "tax-ban-fixed-native-20261024.json",
+      "bytes": 47694,
+      "sha256": "4e149ac34afdc5c72223fbd940e99b5ef0958a4d4be3b0fd6b5f0d18f8d25c4c"
+    },
+    {
+      "path": "tax-ban-fixed-native-20261024.log.gz",
+      "bytes": 1777,
+      "sha256": "2f4337c024e41d06b047772b0ed5c695a39be9f8fb5635c8f8c5ab5343292883"
+    },
+    {
+      "path": "tax-ban-fixed-source-20261024.json",
+      "bytes": 48355,
+      "sha256": "e8643d0a2447d881e3a4e32d9b9f58fb4295a7de5125326a0a94e1599ec70286"
+    },
+    {
+      "path": "tax-ban-fixed-source-20261024.log.gz",
+      "bytes": 1863,
+      "sha256": "81751740d0737be66bf0205f6c685ed08d4822dd33b5a4a19695547ce0a9798f"
+    },
+    {
+      "path": "tax-ban-fixed-types-20261024.json",
+      "bytes": 47523,
+      "sha256": "b3e2056457f2568f8d2344a97642a292eaad820babcbd9c16bbe1796da43a3f7"
+    },
+    {
+      "path": "tax-ban-fixed-types-20261024.log.gz",
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    {
+      "path": "tax-ban-fixed-ui-20261024.json",
+      "bytes": 47699,
+      "sha256": "57ad09be19d60967577e00e1ae65d156b36077467fce92574eb429df2ed02470"
+    },
+    {
+      "path": "tax-ban-fixed-ui-20261024.log.gz",
+      "bytes": 314,
+      "sha256": "ae1315e5eb98ec178442c326fc464404a68e165d6775216c9c127d751815a100"
+    },
+    {
+      "path": "tax-ban-native-auth-and-plan-20261024.json",
+      "bytes": 48805,
+      "sha256": "dbe630f88ea06a4d6baf1e80f5dc3472a751a637659e5136afc5603393a32a89"
+    },
+    {
+      "path": "tax-ban-native-auth-and-plan-20261024.log.gz",
+      "bytes": 1703,
+      "sha256": "df8085446f1c47f8a1cf14d868998b17c607b6302332ce4f7bb4fab52142d0ec"
+    },
+    {
+      "path": "tax-ban-native-casefix-20261024.json",
+      "bytes": 48243,
+      "sha256": "054acbf1e9480fc1f62c29936c205324f8fbf781ff143bb6645c92081760789c"
+    },
+    {
+      "path": "tax-ban-native-casefix-20261024.log.gz",
+      "bytes": 1963,
+      "sha256": "c64118e2bb2f3696a98bcc4e0e5c882c0648c8e0b1b70d6b172fcdf6f1c30f0f"
+    },
+    {
+      "path": "tax-ban-native-expanded-20261024.json",
+      "bytes": 48807,
+      "sha256": "e8a4bbd8020c9d65ff4d3e231d1a850c1048a981efe2d0dd2d0090d1ba6ab1a2"
+    },
+    {
+      "path": "tax-ban-native-expanded-20261024.log.gz",
+      "bytes": 2003,
+      "sha256": "3399b934cc7ba8540d278bc1742ea244f9c50c6db48135bd9d07c31aea1bd3a2"
+    },
+    {
+      "path": "tax-ban-native-first-cases-20261024.json",
+      "bytes": 48243,
+      "sha256": "6869a13ac002b9ad6ef487a85dcc851cddc3baab730f9f1cf0cbdba2f93485c9"
+    },
+    {
+      "path": "tax-ban-native-first-cases-20261024.log.gz",
+      "bytes": 1306,
+      "sha256": "31a2ee58965d6b2aa47a6ba312a8cd2b0cb8f7a120fbaf65ed4951e04089817d"
+    },
+    {
+      "path": "tax-ban-native-team-fixtures-20261024.json",
+      "bytes": 48337,
+      "sha256": "6202e11e9b5b46e135a8fd88996a854dccbc0495aebdb0304bc15fbc3d4e83df"
+    },
+    {
+      "path": "tax-ban-native-team-fixtures-20261024.log.gz",
+      "bytes": 1874,
+      "sha256": "4feb97ca5e7080ab8ba47e47824d23d55868555c953b24cc184b31d9265d9ce2"
+    },
+    {
+      "path": "tax-ban-second-compile-20261024.json",
+      "bytes": 48186,
+      "sha256": "ecfd8c36eda554dc492dd24898f4ccb3a4255e520165d5699ab0a8a69739f707"
+    },
+    {
+      "path": "tax-ban-second-compile-20261024.log.gz",
+      "bytes": 1259,
+      "sha256": "191143cb5910f62df233c44a772253a72cb28435f5b7a3e1e6a6918a2e4a052e"
+    },
+    {
+      "path": "tax-ban-source-directory-fixed-20261024.json",
+      "bytes": 49466,
+      "sha256": "e8e7f2a81ae4e2e621d392f404695773bb2387735a21b9ea55151811a6f8d463"
+    },
+    {
+      "path": "tax-ban-source-directory-fixed-20261024.log.gz",
+      "bytes": 1847,
+      "sha256": "cefc32b31b2d28a17566d55c56eefff2ecdb3a7e2d92e74a4fc35049570e54cf"
+    },
+    {
+      "path": "tax-ban-source-first-20261024.json",
+      "bytes": 48996,
+      "sha256": "2d98e50707b088f4621c1f50d4849c3514528eed16613ba923eaaac127c6f7e6"
+    },
+    {
+      "path": "tax-ban-source-first-20261024.log.gz",
+      "bytes": 2467,
+      "sha256": "dc095310e0d27b79a41801d0176a5a27055ae2448e92c78a03f5d983f6cb9668"
+    },
+    {
+      "path": "tax-ban-types-first-20261024.json",
+      "bytes": 48163,
+      "sha256": "cac152adcb6e9f6203c8c62f532c526499f8c5f4c682e071678dc3a75b6de9fe"
+    },
+    {
+      "path": "tax-ban-types-first-20261024.log.gz",
+      "bytes": 105,
+      "sha256": "3be57a3a3cc288d5d6d2cd4e2e9cfc1cd9ff212d11b7387bd3214a65bba4cd0d"
+    },
+    {
+      "path": "tax-ban-ui-first-20261024.json",
+      "bytes": 48306,
+      "sha256": "0dfcae7c602895d8276fdb2b3d67d647d4cf772379760657169215e2f8ff93e1"
+    },
+    {
+      "path": "tax-ban-ui-first-20261024.log.gz",
+      "bytes": 305,
+      "sha256": "4317f405a0d0b07eae528492e522923a23c84d15e7897d4106088859f367bf3e"
+    }
+  ]
+}
