@@ -283,6 +283,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM028Prepare { event_id: Option<String> },
     BQ039BattleDiscard { observation: Option<Box<crate::import20_observers::EyeBattleObservation>> },
     JZ56ChooseUndead,
     BQ027ShownFeed { contest_id: String, index: usize },

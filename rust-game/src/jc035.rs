@@ -44,7 +44,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } => true,
+        Op::WM028Prepare { .. } | Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             uses(std::slice::from_ref(exhausted)) || uses(std::slice::from_ref(ready)),
@@ -79,7 +79,7 @@ pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "WM028" | "LC16"
 pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "WM028" | "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
-    [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
+    [Op::WM028Prepare { event_id }] | [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] => event_id.as_deref(), _ => None,
 }}
 fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
     let mut a = if id == "JC035" { definition().abilities[1].clone() }
@@ -87,7 +87,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).or_else(|| crate::batch4::definition(id)).or_else(|| crate::import20_observers::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if id == "WM028" { vec![Op::WM028Prepare { event_id }] } else if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -481,7 +481,16 @@ impl Game {
                     self.jc035_declaration(d)?;
                     if own(&d.ability) { remember(&d.source)?; }
                 },
-                Effect::Frame { frame } if related(frame) => return Err("JC035不能绕过响应堆栈直接执行".into()),
+                Effect::Frame { frame } if related(frame) => {
+                    // A completed WM028 step resumes after its original contest;
+                    // cursor1 cannot execute or repay the preparation operation.
+                    if frame.source.card.definition != "WM028"
+                        || frame.ability_key != crate::import20_observers::HALL_PREP || frame.cursor != 1
+                        || !matches!(frame.guard, GuardState::Accepted) {
+                        return Err("JC035不能绕过响应堆栈直接执行".into());
+                    }
+                    self.validate_jc035_frame(frame)?; remember(&frame.source)?;
+                },
                 _ => {},
             }
         }
@@ -540,6 +549,16 @@ impl Game {
                 },
                 ChoiceResolution::Frame { frame, choice: FrameChoice::JC064Upkeep } if preparation_frame(frame) => {
                     self.validate_jc035_frame(frame)?; self.validate_jc064_pending(p, frame)?; remember(&frame.source)?;
+                },
+                ChoiceResolution::Frame { frame, choice: FrameChoice::MysticCommit { .. } | FrameChoice::MysticReward { .. } }
+                    if frame.source.card.definition == "WM028" && frame.ability_key == crate::import20_observers::HALL_PREP => {
+                    self.validate_jc035_frame(frame)?;
+                    if frame.cursor != 1 || !matches!(frame.guard, GuardState::Accepted) {
+                        return Err("阴影厅堂对抗必须属于已消费的原准备帧".into());
+                    }
+                    // The shared mystic validator authenticates the private
+                    // chooser/options against this exact contest frame.
+                    remember(&frame.source)?;
                 },
                 ChoiceResolution::Frame { frame, .. } if related(frame) =>
                     return Err("固定准备效果没有其他额外待选".into()),

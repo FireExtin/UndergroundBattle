@@ -37,7 +37,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
         abilities.push(crate::import20_contest::hand_ability(id).unwrap());
     } else {
         abilities.push(ability(HALL_PREP, "准备强制触发：持有先手标志则隐秘对抗", Timing::Fast,
-            vec![], vec![], vec![Op::Batch20Prepare { event_id: None }], Some(Event::Prepare)));
+            vec![], vec![], vec![Op::WM028Prepare { event_id: None }], Some(Event::Prepare)));
     }
     Some(Definition { abilities, attachment: Some(AttachmentSpec {
         controls_host: false, host_subtype_change: SubtypeChange::None, host,
@@ -47,7 +47,7 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
 }
 pub(crate) fn owns(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ039BattleDiscard { .. } => true,
+        Op::BQ039BattleDiscard { .. } | Op::WM028Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => owns(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             owns(std::slice::from_ref(exhausted)) || owns(std::slice::from_ref(ready)),

@@ -1782,7 +1782,7 @@ impl Game {
                 Op::JC057InspectTargetHand => return self.jc057_inspect_start(frame),
                 Op::JC066SealLocalTargetOnSource => self.jc066_seal_local_target(&frame)?,
                 Op::XQ23ReturnAssetThenBecomeAsset => self.xq23_return_and_become_asset(&frame)?,
-                Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::JC055PrepareTime { .. } | Op::BQ085Prepare { .. } => {
+                Op::WM028Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::JC055PrepareTime { .. } | Op::BQ085Prepare { .. } => {
                     self.jc035_resolve(&frame)?;
                     if frame.source.card.definition == "WM028" { return self.mystic_contest_start(frame, 0); }
                 },
