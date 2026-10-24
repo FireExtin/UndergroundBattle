@@ -764,6 +764,7 @@ impl Game {
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
                                 TargetPredicate::Batch3OwnGraveCharacter => self.batch3_own_grave_character(actor, source, c),
                                 TargetPredicate::WM044HiddenOrSecretPlan => source.card.definition == "WM044" && c.face_down && (crate::batch4_plans::secret(c) || self.board(&c.id).is_some()),
+                                TargetPredicate::WM057HiddenOrSecretPlan => source.card.definition == "WM057" && c.face_down && (crate::batch4_plans::secret(c) || self.board(&c.id).is_some()),
                                 TargetPredicate::JC039BlueCharacter => source.card.definition == "JC039" && !c.face_down && d.color == "蓝",
                                 TargetPredicate::BQ077WaterRegion => false,
                                 TargetPredicate::JZ34DestroyedRegion | TargetPredicate::Batch4DestroyedRegion => false,

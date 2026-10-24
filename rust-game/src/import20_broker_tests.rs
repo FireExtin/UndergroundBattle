@@ -15,7 +15,7 @@ fn to_declaration(g:&mut Game,key:&str){
     }panic!("missing {key}");
 }
 fn enter(g:&mut Game)->String{
-    fund(g,0,"JC125",3);let hand=held(g,"BQ081",0);
+    fund(g,0,"JC084",3);let hand=held(g,"BQ081",0);
     act(g,0,Action{card_id:Some(hand),region:Some(0),..Action::new("deploy")});to_declaration(g,b::ENTRY);
     g.regions[0].cards.iter().find(|c|c.definition=="BQ081").unwrap().id.clone()
 }
@@ -133,6 +133,16 @@ fn import20_wm057_owner_activation_rejects_bad_payload_payment_manual_win_and_ex
 }
 
 #[test]
+fn import20_wm057_teammate_is_not_controller_and_unmarked_enemy_has_no_activation_permission(){
+    for actor in [1,2]{let mut g=game();let source=field(&mut g,"WM057",0);fund(&mut g,actor,"JC125",2);
+        if actor==1{g.add_society_markers(actor,0,1);}let team=g.team(actor);g.begin_window(Window::Action(team));
+        assert!(!g.legal_actions(actor).iter().any(|a|a.action.kind=="activate"&&a.action.card_id.as_deref()==Some(&source)));
+        reject(&mut g,actor,Action{card_id:Some(source.clone()),ability_id:Some(b::ACT.into()),..Action::new("activate")});
+        assert_eq!(g.resources(actor),2);assert!(!g.board(&source).unwrap().1.exhausted);
+    }
+}
+
+#[test]
 fn import20_wm057_source_departure_after_owner_payment_does_not_refund_or_cancel_contest(){
     let mut g=game();let source=field(&mut g,"WM057",0);let shown=seed_shown(&mut g,None);fund(&mut g,0,"JC125",2);
     act(&mut g,0,Action{card_id:Some(source.clone()),..Action::new("activate")});g.remove_dead(&source,RemovalCause::Destroy);restore(&mut g);pass_top(&mut g);
@@ -179,4 +189,19 @@ fn import20_black_exact_registry_rejects_foreign_source_extra_steps_and_free_cos
     let a=definition("BQ081").abilities[0].clone();assert!(validate_ability("JC125",&a).is_err());
     let mut a=definition("WM057").abilities[0].clone();a.costs.clear();assert!(validate_ability("WM057",&a).is_err());
     let mut a=definition("WM057").abilities[1].clone();a.ops.push(Op::Draw{player:PlayerRef::Actor,count:1,end:DeckEnd::Top});assert!(validate_ability("WM057",&a).is_err());
+}
+
+#[test]
+fn import20_black_room_grave_move_and_private_confirmation_each_commit_at_most_once(){
+    use crate::room::{RoomEnvelope,RoomCommand,SessionAction};
+    for inspection in [false,true]{let mut g=game();let selected=if inspection{
+        field(&mut g,"WM057",0);let hidden=field(&mut g,"JC056",2);g.board_mut(&hidden).unwrap().face_down=true;g.regions[0].influence[1]=1;
+        broker_win(&mut g);repress_to_peek(&mut g);choose(&mut g,vec![hidden]);vec![]
+    }else{let target=attachment(&mut g);let c=corpse(&mut g,"JC125",0);enter(&mut g);bound_entry(&mut g,&target);vec![c]};
+        let pending=g.pending.clone().unwrap();let room=RoomEnvelope::from_game(g);let command=RoomCommand{command_id:format!("import20-black-once-{inspection}"),expected_version:room.revision,
+            action:SessionAction::Game{action:Action{choice_id:Some(pending.choice.id),selected:Some(selected),..Action::new("choose")}}};
+        let result=room.transition(0,Some(command.clone()),0).unwrap();assert_eq!(result.outcome,"accepted");let room=RoomEnvelope::from_persisted(&result.state).unwrap();let before=serde_json::to_value(&room).unwrap();
+        let duplicate=room.transition(0,Some(command),0).unwrap();assert_eq!(duplicate.outcome,"rejected");assert!(!duplicate.changed&&duplicate.journal.is_empty());
+        let mut room=RoomEnvelope::from_persisted(&duplicate.state).unwrap();assert_eq!(serde_json::to_value(&room).unwrap(),before);restore(&mut room.game);
+    }
 }

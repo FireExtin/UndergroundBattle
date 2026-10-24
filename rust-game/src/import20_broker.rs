@@ -71,7 +71,7 @@ pub(crate) fn validate_choice_action(p:&Pending,a:&Action)->RuleResult<()>{
 }
 pub(crate) fn inspection_target()->TargetSlotSpec{
     let mut t=target(Zone::Board,EntityKind::Any,Relation::Any,Range::Anywhere);
-    t.predicate=Some(TargetPredicate::WM044HiddenOrSecretPlan);t
+    t.predicate=Some(TargetPredicate::WM057HiddenOrSecretPlan);t
 }
 impl Game{
     pub(crate) fn bq081_grave_options(&self,actor:usize)->Vec<ChoiceOption>{

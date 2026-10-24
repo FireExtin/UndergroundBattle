@@ -125,6 +125,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    WM057HiddenOrSecretPlan,
     WM043LockedTarget,
     WM044HiddenOrSecretPlan,
     PackAOwnGraveCharacter,

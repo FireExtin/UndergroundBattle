@@ -230,7 +230,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn pack_a_rumor_frame(&self, f: &ResolutionFrame) -> RuleResult<bool> {
-        if !matches!(f.ability_key.as_str(), EARTH_SHOWN | SHADOW_WIN) { return Ok(false); }
+        if !matches!(f.ability_key.as_str(), EARTH_SHOWN | SHADOW_WIN | crate::import20_broker::SHOWN) { return Ok(false); }
         self.validate_pack_a_frame(f)?; Ok(true)
     }
     pub(crate) fn pack_a_observe_mystic_win(&mut self, outcome: &ContestOutcome) {
