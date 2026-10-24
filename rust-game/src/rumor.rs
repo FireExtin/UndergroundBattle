@@ -510,6 +510,12 @@ impl Game {
                 .and_then(|s| s.parse::<usize>().ok()),
         };
         let allowed = match &step.op {
+            Op::IndustryMill { .. } => {
+                b.from_deck && !b.redraw
+                    && f.source.card.definition == "BQ093"
+                    && f.ability_key == crate::import20_industry::MILL
+                    && b.holder == f.actor && b.originals.len() == 1
+            }
             Op::MoveDeckTopToGraveyard { player, count } => {
                 b.from_deck && seat(*player) == Some(b.holder) && b.originals.len() <= *count
             }

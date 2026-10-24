@@ -122,6 +122,9 @@ impl Game {
         self.validate_mystic_outcome(o)?; Ok(o)
     }
     pub(crate) fn validate_pack_a_declaration(&self, d: &Declaration) -> RuleResult<()> {
+        // A proved granted program belongs to the granting mechanism, even
+        // when its recipient also has a card-specific native program.
+        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         if crate::import20_industry::related(&d.source.card.definition,&d.ability) { return self.validate_industry_declaration(d); }
         if crate::import20_carmen::related(&d.source.card.definition, &d.ability) { return self.validate_cq24_declaration(d); }
         if crate::import20_cultist::related(&d.source.card.definition, &d.ability) { return self.validate_xg13_declaration(d); }
@@ -137,7 +140,6 @@ impl Game {
         if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if crate::batch4_vampire_contest::key(&d.ability.key) || crate::batch4_vampire_contest::owns(&d.ability.ops) { return self.validate_b_contest_declaration(d); }
         if !CARDS.contains(&d.source.card.definition.as_str()) && !related(&d.ability) { return Ok(()); }
-        if self.validated_cross_card_declaration(d)? { return Ok(()); }
         self.pack_a_source(d.actor,&d.source)?;
         if d.source.card.face_down || d.source.play_source.is_some() || d.source.region.is_none()
             || d.source.source_region_instance.as_ref().is_none_or(|id| !self.mystic_instance_valid(id))
@@ -158,6 +160,7 @@ impl Game {
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         self.validate_resource_frame(f)?;
+        if self.validated_cross_card_frame(f)? { return Ok(()); }
         if crate::import20_industry::frame_related(f) { return self.validate_industry_frame(f); }
         if crate::import20_carmen::frame_related(f) { return self.validate_cq24_frame(f); }
         if crate::import20_tattoo::frame_related(f) { return self.validate_wm064_frame(f); }
@@ -176,7 +179,6 @@ impl Game {
         if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let id = f.source.card.definition.as_str();
         if !CARDS.contains(&id) && !f.ability_key.starts_with("pack-a-") && !f.steps.iter().any(|s| owns(std::slice::from_ref(&s.op))) { return Ok(()); }
-        if self.validated_cross_card_frame(f)? { return Ok(()); }
         self.pack_a_source(f.actor,&f.source)?;
         if !self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&f.frame_id))
                 .is_some_and(|(source, frame)| source < frame) || f.cursor > f.steps.len()
@@ -238,6 +240,10 @@ impl Game {
         Ok(())
     }
     pub(crate) fn pack_a_rumor_frame(&self, f: &ResolutionFrame) -> RuleResult<bool> {
+        if f.source.card.definition == "BQ093" && f.ability_key == crate::import20_industry::MILL {
+            self.validate_industry_frame(f)?;
+            return Ok(true);
+        }
         if !matches!(f.ability_key.as_str(), EARTH_SHOWN | SHADOW_WIN | crate::import20_broker::SHOWN) { return Ok(false); }
         self.validate_pack_a_frame(f)?; Ok(true)
     }

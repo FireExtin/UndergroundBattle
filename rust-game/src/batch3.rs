@@ -649,6 +649,10 @@ impl Game {
                 ChoiceResolution::Declare { declaration, stage } => {
                     self.validate_batch3_declaration(declaration)?;
                     self.batch3_reject_optional(declaration)?;
+                    // The shared mobility/raid validator authenticates the
+                    // complete granted program before skipping native-only
+                    // optional-trigger metadata of its recipient card.
+                    if !self.validated_cross_card_declaration(declaration)? {
                     if declaration.source.card.definition == "CQ07" { self.validate_cq07_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ26" {self.validate_jz26_pending(p,declaration,stage)?;}
                     if declaration.source.card.definition == "BQ026" { self.validate_bq026_pending(p,declaration,stage)?; }
@@ -663,6 +667,7 @@ impl Game {
                     if declaration.source.card.definition == "BQ079" && declaration.ability.key == "batch3-bq079-corpse" { self.validate_bq079_trigger_pending(p,declaration,stage)?; }
                     if declaration.source.card.definition == "JZ25" {
                         self.validate_jz25_pending(p, declaration, stage)?;
+                    }
                     }
                     remember(&declaration.source, &declaration.ability.ops)?;
                 }

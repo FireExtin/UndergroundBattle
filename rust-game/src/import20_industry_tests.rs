@@ -259,9 +259,17 @@ fn import20_industry_credit_pays_tattoo_fast_cost_with_no_physical_assets() {
     let cost = field(&mut g, "JC084", 0);
     let target = field(&mut g, "JC084", 0);
     g.board_mut(&target).unwrap().face_down = true;
-    let wrong=field(&mut g,"JC125",0);
-    let attempted=Action{card_id:Some(uid.clone()),ability_id:Some(crate::import20_tattoo::FAST.into()),cost_selected:Some(vec![wrong]),target_id:Some(target.clone()),..Action::new("activate")};
-    reject(&mut g,0,attempted);assert_eq!(g.step_resource_count(0),1);assert!(!g.board(&uid).unwrap().1.exhausted);
+    let wrong = field(&mut g, "JC125", 0);
+    let attempted = Action {
+        card_id: Some(uid.clone()),
+        ability_id: Some(crate::import20_tattoo::FAST.into()),
+        cost_selected: Some(vec![wrong]),
+        target_id: Some(target.clone()),
+        ..Action::new("activate")
+    };
+    reject(&mut g, 0, attempted);
+    assert_eq!(g.step_resource_count(0), 1);
+    assert!(!g.board(&uid).unwrap().1.exhausted);
     act(
         &mut g,
         0,
@@ -283,12 +291,35 @@ fn import20_industry_credit_pays_tattoo_fast_cost_with_no_physical_assets() {
 
 #[test]
 fn import20_industry_actual_mill_pauses_for_rumor_and_resumes_once() {
-    let mut g=game();let host=field(&mut g,"JC125",0);g.players[0].deck.clear();let top=g.make_card("WM042",0);g.players[0].deck.push(top);
-    start_mill(&mut g);choose(&mut g,vec!["accept".into()]);pass_top(&mut g);
-    assert!(matches!(g.pending.as_ref().map(|p|&p.resolution),Some(ChoiceResolution::Rumor{..})));restore(&mut g);
-    choose(&mut g,vec![host.clone()]);drain(&mut g,false);
-    assert!(g.players[0].deck.is_empty());assert_eq!(g.sealed_cards.iter().filter(|s|s.host_id==host&&s.card.definition=="WM042").count(),1);
-    assert!(!g.players[0].graveyard.iter().any(|c|c.definition=="WM042"));assert!(g.pending.is_none()&&g.stack.is_empty());restore(&mut g);
+    let mut g = game();
+    let host = field(&mut g, "JC125", 0);
+    g.players[0].deck.clear();
+    let top = g.make_card("WM042", 0);
+    g.players[0].deck.push(top);
+    start_mill(&mut g);
+    choose(&mut g, vec!["accept".into()]);
+    pass_top(&mut g);
+    assert!(matches!(
+        g.pending.as_ref().map(|p| &p.resolution),
+        Some(ChoiceResolution::Rumor { .. })
+    ));
+    restore(&mut g);
+    choose(&mut g, vec![host.clone()]);
+    drain(&mut g, false);
+    assert!(g.players[0].deck.is_empty());
+    assert_eq!(
+        g.sealed_cards
+            .iter()
+            .filter(|s| s.host_id == host && s.card.definition == "WM042")
+            .count(),
+        1
+    );
+    assert!(!g.players[0]
+        .graveyard
+        .iter()
+        .any(|c| c.definition == "WM042"));
+    assert!(g.pending.is_none() && g.stack.is_empty());
+    restore(&mut g);
 }
 #[test]
 fn import20_industry_two_credits_pay_normal_plan_advancement_and_unused_credit_remains() {
@@ -651,6 +682,43 @@ fn import20_industry_room_activation_journal_and_duplicate_cas_spend_once() {
         serde_json::to_value(&next).unwrap()
     );
     let repeat = next.transition(0, Some(command), 5001).unwrap();
+    assert_eq!(repeat.error_code.as_deref(), Some("version_conflict"));
+    assert_eq!(repeat.state, out.state);
+}
+
+#[test]
+fn import20_industry_room_joint_payment_replays_and_duplicate_does_not_spend_again() {
+    use crate::room::{RoomCommand, RoomEnvelope};
+    let mut g = game();
+    credit(&mut g, 0);
+    fund(&mut g, 0, "JC084", 1);
+    let target = field(&mut g, "JC125", 2);
+    let hand = held(&mut g, "BQ090", 0);
+    let r = crate::jc029_tests::envelope(&g);
+    let command = RoomCommand {
+        command_id: "industry-joint-payment-once".into(),
+        expected_version: r.revision,
+        action: Action {
+            card_id: Some(hand),
+            target_id: Some(target),
+            ability_id: Some(crate::import20_contest::DESTROY.into()),
+            ..Action::new("play")
+        }
+        .into(),
+    };
+    let out = r.transition(0, Some(command.clone()), 5100).unwrap();
+    assert!(out.error_code.is_none(), "{:?}", out.error_message);
+    let next = RoomEnvelope::from_persisted(&out.state).unwrap();
+    let frame = next.game.stack.last().unwrap().frame.as_ref().unwrap();
+    assert_eq!(frame.money_units(0), 2);
+    assert_eq!(frame.resource_payments[0].credits.len(), 1);
+    assert!(matches!(frame.already_paid.as_slice(), [PaidCost::Assets(ids)] if ids.len() == 1));
+    assert_eq!(next.game.resources(0), 0);
+    assert_eq!(
+        serde_json::to_value(r.replay_events(&out.journal).unwrap()).unwrap(),
+        serde_json::to_value(&next).unwrap()
+    );
+    let repeat = next.transition(0, Some(command), 5101).unwrap();
     assert_eq!(repeat.error_code.as_deref(), Some("version_conflict"));
     assert_eq!(repeat.state, out.state);
 }
