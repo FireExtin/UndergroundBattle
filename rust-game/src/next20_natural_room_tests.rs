@@ -19,11 +19,12 @@ fn candidate_scope<T>(run:impl FnOnce()->T)->T {
 }
 
 #[derive(Clone,Copy,Debug,PartialEq)]
-enum Case {Entry,Shown,Black}
-impl Case {fn name(self)->&'static str {match self {Self::Entry=>"bq034-natural-entry-counter",Self::Shown=>"bq034-natural-shown-feed",Self::Black=>"cq25-xg25-natural-seal-move-search"}}}
+enum Case {Entry,Shown,Black,Unique}
+impl Case {fn name(self)->&'static str {match self {Self::Entry=>"bq034-natural-entry-counter",Self::Shown=>"bq034-natural-shown-feed",Self::Black=>"cq25-xg25-natural-seal-move-search",Self::Unique=>"bq034-natural-two-unique-sacrifice"}}}
 
 fn draft(case:Case,seat:usize)->DeckDraft {
     let mut entries=match (case,seat) {
+        (Case::Unique,0)=>vec![("BQ034",2)],
         (Case::Black,0)=>vec![("CQ25",3),("XG25",3),("CQ07",1),("BQ090",3)],
         (Case::Black,_)=>vec![("BQ090",3),("JC125",3),("JC084",3),("JZ48",3)],
         (_,0)=>vec![("BQ034",1),("JC029",3),("XQ14",3),("BQ090",3)],
@@ -53,16 +54,16 @@ fn draft(case:Case,seat:usize)->DeckDraft {
     assert!(!d.cards.iter().any(|e|matches!(e.card_id.as_str(),"BQ009"|"BQ033")));d
 }
 
-struct Natural {case:Case,room:RoomEnvelope,sequence:usize,out:Option<File>,record:bool,region:usize,adjacent:usize,targets:BTreeMap<&'static str,String>,show_bq034:bool}
+struct Natural {case:Case,room:RoomEnvelope,sequence:usize,out:Option<File>,record:bool,region:usize,adjacent:usize,targets:BTreeMap<&'static str,String>,show_bq034:bool,unique_choices:usize}
 impl Natural {
     fn lobby(case:Case,seed:u64,record:bool)->Self {
         let decks=[draft(case,0),draft(case,1)];
-        let suffix=seed*10+match case {Case::Entry=>0,Case::Shown=>1,Case::Black=>2};
+        let suffix=seed*10+match case {Case::Entry=>0,Case::Shown=>1,Case::Black=>2,Case::Unique=>3};
         let mut game=Game::new_with_deck(format!("a112{suffix:020x}"),"NAT20A".into(),"duel".into(),"P0".into(),decks[0].clone(),seed).unwrap();
         let created=serde_json::to_string(&game).unwrap();game.join_with_deck("P1".into(),decks[1].clone()).unwrap();
         let room=RoomEnvelope::from_game(game);
         let out=if record {std::env::var_os("NEXT20_NATURAL_OUT_DIR").map(|dir|{let p=PathBuf::from(dir);std::fs::create_dir_all(&p).unwrap();File::options().write(true).create_new(true).open(p.join(format!("{}.jsonl",case.name()))).unwrap()})}else{None};
-        let mut t=Self{case,room,sequence:0,out,record,region:0,adjacent:1,targets:BTreeMap::new(),show_bq034:false};
+        let mut t=Self{case,room,sequence:0,out,record,region:0,adjacent:1,targets:BTreeMap::new(),show_bq034:false,unique_choices:0};
         if record {t.write(&json!({"kind":"initial","format":"next20-natural-candidate-room-v1","case":case.name(),"seedDecimal":seed.to_string(),"candidateConstructionOnly":CANDIDATES,"publicAdmission":false,"decks":decks,"createGameState":created,"state":serde_json::to_string(&t.room).unwrap(),"catalog":catalog::catalog(),"views":t.views()}));}t
     }
     fn write(&mut self,v:&Value){if let Some(out)=&mut self.out {serde_json::to_writer(&mut *out,v).unwrap();out.write_all(b"\n").unwrap();out.flush().unwrap();}}
@@ -71,9 +72,12 @@ impl Natural {
         assert!(self.sequence<2500,"bounded natural command limit");
         let state=if self.record {serde_json::to_string(&self.room).unwrap()}else{String::new()};let command=RoomCommand{command_id:format!("natural-{}-{}",self.case.name(),self.sequence),expected_version:self.room.revision,action};
         if self.record {self.write(&json!({"kind":"attempt","seat":seat,"command":command,"serverNowMs":"0"}));}
+        let unique_choice=self.room.game.pending.as_ref().is_some_and(|p|matches!(p.resolution,ChoiceResolution::Unique))
+            &&matches!(&command.action,SessionAction::Game{action} if action.kind=="choose");
         let expected=self.room.transition(seat,Some(command.clone()),0).unwrap();
         if self.record {self.write(&json!({"kind":"outcome","outcome":expected.outcome,"error":expected.error_message}));}
         assert_eq!(expected.outcome,"accepted","{} step {} turn {} {:?}: {:?}",self.case.name(),self.sequence,self.room.game.turn,command,expected.error_message);
+        if unique_choice {self.unique_choices+=1;}
         self.room=RoomEnvelope::from_persisted(&expected.state).unwrap();
         if self.record {let duplicate=self.room.transition(seat,Some(command.clone()),0).unwrap();RoomEnvelope::from_persisted(&duplicate.state).unwrap();
         let views=self.views();self.write(&json!({"kind":"step","state":state,"seat":seat,"command":command,"serverNowMs":"0","expected":expected,"duplicate":duplicate,"views":views}));}self.sequence+=1;
@@ -86,13 +90,18 @@ impl Natural {
         g.players.iter().flat_map(|p|p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard))
             .chain(g.regions.iter().flat_map(|r|&r.cards)).chain(g.attachments.iter().map(|a|&a.card)).chain(g.sealed_cards.iter().map(|s|&s.card)).find(|c|c.id==id).map(|c|c.definition.as_str())}
     fn keep(&self,seat:usize,id:&str)->usize {match (self.case,seat,id){
-        (Case::Black,0,"XG25")=>2,(Case::Black,0,"CQ25"|"CQ07"|"BQ090")=>1,
+        (Case::Unique,0,"BQ034")=>2,(Case::Black,0,"XG25")=>2,(Case::Black,0,"CQ25"|"CQ07"|"BQ090")=>1,
         (Case::Black,1,"BQ090"|"JC125"|"JC084"|"JZ48")=>1,
         (_,0,"BQ034"|"JC029"|"XQ14"|"BQ090")=>1,
         (_,1,"JC005"|"JC102")=>1,_=>0}}
     fn selection(&self)->Vec<String>{
         let p=self.room.game.pending.as_ref().unwrap();let options=&p.choice.options;let kind=p.choice.kind.as_str();
         let contains=|id:&str|options.iter().any(|o|o.id==id);
+        if self.case==Case::Unique&&matches!(p.resolution,ChoiceResolution::Unique){
+            assert_eq!(p.seat,0);assert_eq!(p.choice.min,Some(1));assert_eq!(p.choice.max,Some(1));assert_eq!(options.len(),2);
+            assert!(options.iter().all(|o|self.definition(&o.id)==Some("BQ034")));
+            let selected=self.targets.get("unique-sacrifice").unwrap();assert!(contains(selected));return vec![selected.clone()];
+        }
         if kind=="mulligan" {return vec![];}
         if kind==crate::mystic_contest::REWARD_KIND {return vec![];}
         if kind==crate::mystic_contest::COMMIT_KIND {
@@ -232,3 +241,29 @@ fn next20_natural_candidate_admission_is_scoped_and_copy_limited(){
 #[test]fn next20_natural_bq034_entry_and_counter_from_deck(){blue(Case::Entry);}
 #[test]fn next20_natural_bq034_shown_target_and_blood_from_deck(){blue(Case::Shown);}
 #[test]fn next20_natural_cq25_xg25_search_death_seal_and_sealed_action_from_deck(){black();}
+
+#[test]
+fn next20_natural_bq034_two_same_name_enter_choose_one_sacrifice(){candidate_scope(||{
+    let seed=(1..=4096).find(|seed|{let mut t=Natural::lobby(Case::Unique,*seed,false);t.boot();
+        t.hand(0,"BQ034")==2&&t.room.game.regions.iter().any(|r|r.card.definition=="DQJC115")}).expect("bounded two-BQ034 natural opening");
+    eprintln!("NATURAL SELECTED Unique seed={seed}");
+    let mut t=Natural::lobby(Case::Unique,seed,true);t.boot();let mut first=None;
+    for _ in 0..1800 {
+        assert_eq!(t.room.game.status,"playing");assert!(t.room.game.turn<=10);
+        if t.room.game.can_standard(0){t.asset(0);}if t.room.game.can_standard(1){t.asset(1);}
+        if t.room.game.can_standard(0)&&t.room.game.resources(0)>=4&&t.hand(0,"BQ034")>0 {
+            if first.is_none(){assert!(t.play(0,"BQ034",None,Some(t.region)));let id=t.board(0,"BQ034").unwrap();
+                assert_eq!(t.unique_choices,0);t.targets.insert("unique-sacrifice",id.clone());first=Some(id);
+            }else{
+                let old=first.unwrap();assert!(t.play(0,"BQ034",None,Some(t.adjacent)));
+                let live=t.room.game.regions.iter().flat_map(|r|&r.cards).filter(|c|c.definition=="BQ034"&&c.controller==0).collect::<Vec<_>>();
+                assert_eq!(t.unique_choices,1);assert_eq!(live.len(),1);assert_ne!(live[0].id,old);assert!(t.room.game.board(&old).is_none());
+                let kept=live[0].id.clone();let grave=t.room.game.players[0].graveyard.iter().filter(|c|c.definition=="BQ034").collect::<Vec<_>>();
+                assert_eq!(grave.len(),1);assert_eq!(grave[0].owner,0);assert_ne!(grave[0].id,old);
+                let dead=grave[0].id.clone();assert!(t.room.game.pending.is_none());
+                t.finish(json!({"printedUniqueNotDeckLimit":true,"copiesInDeck":2,"uniqueChoices":1,"selectedOldInstance":old,"keptNewInstance":kept,"ownerGraveInstance":dead,"differentRegions":true}));return;
+            }
+        }
+        t.pass();t.settle();
+    }panic!("bounded real double-unique trajectory");
+});}
