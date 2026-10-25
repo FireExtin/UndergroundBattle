@@ -1,3 +1,5 @@
+#[cfg(test)]
+mod bq001_tests;
 mod next20_black_wraiths;
 #[cfg(test)]
 mod next20_black_core_tests;
