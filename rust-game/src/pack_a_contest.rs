@@ -292,7 +292,7 @@ impl Game {
         }
         Ok(())
     }
-    fn pack_a_transaction_matches(&self, f: &ResolutionFrame, c: &Card) -> bool {
+    pub(crate) fn pack_a_transaction_matches(&self, f: &ResolutionFrame, c: &Card) -> bool {
         let mut expected = f.source.card.clone();
         // Mirror existing fresh() card fields without allocating identities or
         // changing payment, RNG, modifiers, or the transaction itself.

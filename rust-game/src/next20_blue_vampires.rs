@@ -985,9 +985,7 @@ impl Game {
                         || item.reveal != (f.ability_key == "reveal")
                         || item.target.is_some()
                         || item.card.as_ref().is_some_and(|c| {
-                            c.definition != f.source.card.definition
-                                || c.owner != f.source.card.owner
-                                || c.controller != f.actor
+!self.pack_a_transaction_matches(f, c)
                         }))
                 {
                     return Err("蓝卡派遣或现身的原响应对象被改写".into());

@@ -1,0 +1,65 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 0.02s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 17 tests
+test next20_blue_core_tests::next20_blue_core_counter_decline_keeps_attachment_and_original_transaction ... ok
+test next20_blue_core_tests::next20_blue_core_deploy_entry_blood_uses_legal_action_and_roundtrips ... ok
+test next20_blue_core_tests::next20_blue_core_deploy_recovery_rejects_missing_fee_and_wrong_region ... ok
+test next20_blue_core_tests::next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard ... ok
+test next20_blue_core_tests::next20_blue_core_enemy_transaction_counter_sacrifices_and_never_refunds ... ok
+test next20_blue_core_tests::next20_blue_core_no_anchor_rejects_deploy_and_paid_reveal_without_mutation ... ok
+test next20_blue_core_tests::next20_blue_core_paid_reveal_is_real_and_entry_can_be_declined ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_blood_finishes_after_target ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame ... ok
+test next20_blue_core_tests::next20_blue_core_real_reveal_contest_shown_target_and_blood_resume ... ok
+test next20_blue_core_tests::next20_blue_core_registry_is_real_and_admission_stays_closed ... ok
+test next20_blue_core_tests::next20_blue_core_restored_counter_rejects_changed_choice_and_response_shell ... ok
+test next20_blue_core_tests::next20_blue_core_review_deploy_rejects_transaction_instance_swap ... ok
+test next20_blue_core_tests::next20_blue_core_review_no_blood_continues_later_shown_exactly_once ... ok
+test next20_blue_core_tests::next20_blue_core_review_no_target_continues_later_shown_exactly_once ... ok
+test next20_blue_core_tests::next20_blue_core_review_reveal_rejects_transaction_instance_swap ... ok
+test next20_blue_core_tests::next20_blue_core_targeted_activated_ability_is_not_an_enemy_card ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 2505 filtered out; finished in 2.66s
+

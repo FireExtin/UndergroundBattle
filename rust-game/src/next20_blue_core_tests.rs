@@ -389,3 +389,104 @@ fn next20_blue_core_deploy_recovery_rejects_missing_fee_and_wrong_region() {
     assert!(Game::from_persisted(&bad.to_string()).is_err());
     restore(&mut g);
 }
+
+fn changed_transaction_instance_is_rejected(reveal: bool) {
+    let mut g = game();
+    fund(&mut g, 0, "JC029", 4);
+    let source = if reveal {
+        let id = field(&mut g, "BQ034", 0);
+        g.board_mut(&id).unwrap().face_down = true;
+        id
+    } else { held(&mut g, "BQ034", 0) };
+    act(&mut g, 0, Action { card_id: Some(source.clone()),
+        region: (!reveal).then_some(0), ..Action::new(if reveal { "reveal" } else { "deploy" }) });
+    let item = &g.stack[0];
+    let frame = item.frame.as_ref().unwrap();
+    let transaction = item.card.as_ref().unwrap();
+    // The engine deliberately freshens the card between source and stack. It
+    // must retain the *particular* next-before-frame ID, not literal equality.
+    assert_ne!(transaction.id, frame.source.card.id);
+    assert_eq!(g.mystic_instance_number(&transaction.id).unwrap() + 1,
+        g.mystic_instance_number(&frame.frame_id).unwrap());
+    let original = serde_json::to_value(&g).unwrap();
+    let mut bad = original.clone();
+    bad["stack"][0]["card"]["id"] = source.into();
+    assert!(Game::from_persisted(&bad.to_string()).is_err(), "retired source ID must not replace the actual paid transaction");
+    let mut bad = original;
+    bad["stack"][0]["card"]["damage"] = 1.into();
+    assert!(Game::from_persisted(&bad.to_string()).is_err(), "transaction must preserve the complete fresh-card snapshot");
+    restore(&mut g);
+}
+#[test]
+fn next20_blue_core_review_deploy_rejects_transaction_instance_swap() {
+    changed_transaction_instance_is_rejected(false);
+}
+#[test]
+fn next20_blue_core_review_reveal_rejects_transaction_instance_swap() {
+    changed_transaction_instance_is_rejected(true);
+}
+
+fn shown_continuation_once(with_target: bool) {
+    use crate::mystic_contest::{MysticPhase, COMMIT_KIND, REWARD_KIND};
+    let mut g = game();
+    let vampire = with_target.then(|| field(&mut g, "JC029", 0));
+    // No blood in this case. WM061 is a *later* shown program with a measurable
+    // effect: its top card to its owner grave, once and after BQ034 ends.
+    let source = field(&mut g, "WM057", 0);
+    g.players[0].society_zone.secrecy = 1;
+    fund(&mut g, 0, "JC029", 2);
+    let printed = ["BQ034", "JC125", "WM061", "JC125"];
+    for (seat, id) in printed.iter().enumerate() { held(&mut g, id, seat); }
+    let grave_before: Vec<_> = g.players.iter().map(|p| p.graveyard.len()).collect();
+    act(&mut g, 0, Action { card_id: Some(source),
+        ability_id: Some(crate::import20_broker::ACT.into()), ..Action::new("activate") });
+    let mut saw_target = false;
+    for _ in 0..100 {
+        if g.stack.is_empty() && g.pending.is_none() && g.mystic_contest.is_none() { break; }
+        if let Some(p) = g.pending.clone() {
+            let selected = match p.choice.kind.as_str() {
+                COMMIT_KIND => vec![g.players[p.seat].hand.iter()
+                    .find(|c| c.definition == printed[p.seat]).unwrap().id.clone()],
+                REWARD_KIND | "trigger" => vec![],
+                blue::SHOWN => {
+                    saw_target = true;
+                    let state = g.mystic_contest.as_ref().unwrap();
+                    assert!(matches!(&state.phase, MysticPhase::After { next_shown: 1, post_frame: Some(_), .. }));
+                    assert_eq!(g.effects.iter().filter(|e| matches!(e, Effect::MysticContinue { contest_id } if *contest_id == state.contest_id)).count(), 1);
+                    assert_eq!(g.players.iter().map(|p|p.graveyard.len()).collect::<Vec<_>>(), grave_before);
+                    let original = serde_json::to_value(&g).unwrap();
+                    let effects = original["effects"].as_array().unwrap();
+                    let index = effects.iter().position(|v| v["kind"] == "MysticContinue" || v.to_string().contains("MysticContinue")).unwrap();
+                    let mut duplicate = original.clone();
+                    duplicate["effects"].as_array_mut().unwrap().push(effects[index].clone());
+                    assert!(Game::from_persisted(&duplicate.to_string()).is_err());
+                    let mut missing = original;
+                    missing["effects"].as_array_mut().unwrap().remove(index);
+                    assert!(Game::from_persisted(&missing.to_string()).is_err());
+                    vec![vampire.clone().unwrap()]
+                },
+                other => panic!("unexpected {other}"),
+            };
+            let old_choice = Action { choice_id: Some(p.choice.id.clone()), selected: Some(selected.clone()), ..Action::new("choose") };
+            choose(&mut g, selected);
+            if p.choice.kind == blue::SHOWN { reject(&mut g, p.seat, old_choice); }
+        } else { pass(&mut g); }
+    }
+    assert_eq!(saw_target, with_target);
+    assert!(g.mystic_contest.is_none());
+    assert!(g.pending.is_none() && g.stack.is_empty());
+    assert!(!g.effects.iter().any(|e| matches!(e, Effect::MysticContinue { .. } | Effect::MysticFinish { .. })));
+    assert_eq!(g.mystic_history.len(), 1);
+    for (seat,(p,before)) in g.players.iter().zip(grave_before).enumerate() {
+        assert_eq!(p.graveyard.len(), before + usize::from(seat == 2));
+    }
+    restore(&mut g);
+}
+#[test]
+fn next20_blue_core_review_no_target_continues_later_shown_exactly_once() {
+    shown_continuation_once(false);
+}
+#[test]
+fn next20_blue_core_review_no_blood_continues_later_shown_exactly_once() {
+    shown_continuation_once(true);
+}

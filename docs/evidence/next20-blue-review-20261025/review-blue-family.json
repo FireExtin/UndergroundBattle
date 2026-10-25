@@ -1,0 +1,44 @@
+{
+  "state": "complete",
+  "source_head": "aedfe09249941b95ebf10c0c77ba4390194ae9e9",
+  "worktree_diff_sha256": "434a9cbe7db26e9099b49200b4fe4a5f67ebda1903879093ec9a84a6c85334a3",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--no-default-features",
+    "next20_blue_core_",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "kind": "real checkout native engine",
+  "offline": true,
+  "started_utc": "2026-10-25T07:46:09.292357+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-real-core-validation-20261025/review-blue-family.log",
+  "source_inputs": [
+    {
+      "path": "rust-game/src/next20_blue_core_tests.rs",
+      "sha256": "aeff8efe39109f7a8496202c25811239f2993f9e90e7d43326160d86ce7b7786"
+    },
+    {
+      "path": "rust-game/src/next20_blue_vampires.rs",
+      "sha256": "4da38db866009f9746b0545f2e4744858bab1b97243df9bb83ecf439fe7b27bc"
+    },
+    {
+      "path": "rust-game/src/pack_a_contest.rs",
+      "sha256": "5af0f9448195c452bd4e75e44109a26ec31f300d06575c8fc9fee4d383bc0c8a"
+    }
+  ],
+  "exit_code": 0,
+  "seconds": 2.709,
+  "log_sha256": "c96a30c96e5eaa9b215e610f1cc893b88b03f712c5eb6c53f7ddd142913aae69"
+}
