@@ -3,11 +3,16 @@
 //! the existing event queue and stack retain all declaration/resolution timing.
 use crate::{catalog, engine::RuleResult, model::*, rules::{self, Event}};
 
-/// Actual character departure receipt; never persisted or inferred from a name.
-#[derive(Clone, Debug)]
-pub(crate) struct CharacterDeathReceipt {
+/// Actual character departure receipt, or explicit pending destination. Only a waited
+/// original caller persists it; no grave identity is inferred from a printed name.
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CharacterDeathReceipt {
     pub old_instance: String,
+    // Empty while a replacement is pending, or when it ultimately seals.
+    // A concrete grave identity is issued only for an actual grave commit.
     pub grave_instance: String,
+    pub deferred_death: Option<String>,
     pub owner: usize,
     pub was_renown: bool,
 }
@@ -25,6 +30,7 @@ impl Game {
         self.remove_death_batch_with_receipts(deaths);
     }
     pub(crate) fn remove_death_batch_with_receipts(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) -> Vec<CharacterDeathReceipt> {
+        let before_deaths = self.death_instances();
         let deaths = self.dual_character_death_wave(deaths);
         let previous_effects = self.effects.len();
         let red_observers = self.jz34_observers();
@@ -101,6 +107,16 @@ impl Game {
         });
         self.effects.extend(simultaneous);
         if let Some(id)=group_instance {self.batch3_register_entry_order(&id,previous_effects);}
+        let held = self.death_replacements.iter().filter(|d| !before_deaths.contains(&d.source.card.id))
+            .map(|d| d.source.card.id.clone()).collect::<Vec<_>>();
+        if !held.is_empty() {
+            for death_instance in held { self.effects.push_back(Effect::DeathFinish { death_instance }); }
+            // Suspend the pre-existing tail (including the originating spell's
+            // Bury) until the real death response and destination finish.
+            let emitted = self.effects.split_off(previous_effects);
+            let old_tail = std::mem::replace(&mut self.effects, emitted);
+            self.effects.extend(old_tail);
+        }
         receipts
     }
     pub(crate) fn death_observer_limit_reached(&self, d: &Declaration) -> bool {

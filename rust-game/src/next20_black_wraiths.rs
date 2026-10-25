@@ -8,6 +8,7 @@ pub(crate) const CARDS: &[&str] = &["CQ25", "XG25"];
 pub(crate) const CONTEST: &str = "next20-cq25-contest";
 pub(crate) const SEARCH: &str = "next20-cq25-search";
 pub(crate) const MOVE: &str = "next20-xg25-move";
+pub(crate) const SEAL: &str = "next20-xg25-seal";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -19,6 +20,7 @@ pub struct WraithDeath {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub enum WraithProgram {
+    GhostSeal,
     TigerSearch {
         observation: Option<Box<WraithDeath>>,
     },
@@ -113,7 +115,10 @@ pub(crate) fn definition(id: &str) -> Option<Definition> {
             );
             a.activation_only = true;
             a.per_turn_limit = Some(1);
-            let mut d = with_abilities(vec![a]);
+            let death = ability(SEAL, "死亡：若本人秘社有隐秘则封印在目标角色上，否则入墓", Timing::Fast,
+                vec![], vec![target(Zone::Board, EntityKind::Character, Relation::Any, Range::Anywhere)],
+                vec![Op::Next20Wraith(WraithProgram::GhostSeal)], Some(Event::Death));
+            let mut d = with_abilities(vec![a, death]);
             d.traits.spirit = true;
             d
         }
@@ -662,6 +667,7 @@ impl Game {
             return Err("黑色新卡声明须保留原来源与地区实体".into());
         }
         self.mobility_immutable_identity(&d.source.card)?;
+        if d.ability.key == SEAL { self.validate_xg25_death_source(d.actor, &d.source)?; }
         if d.ability.key == SEARCH {
             let f = self.make_frame(d.actor, d.source.clone(), &d.ability, vec![], vec![], None);
             self.cq25_validate_search(&f)?;
@@ -683,6 +689,7 @@ impl Game {
             CONTEST => self.validate_cq25_contest_frame(f),
             SEARCH => self.cq25_validate_search(f),
             MOVE => self.validate_xg25_move_frame(f),
+            SEAL => self.validate_xg25_death_frame(f),
             _ => Err("黑色新卡操作不能借用其他程序来源".into()),
         }
     }
@@ -760,9 +767,7 @@ impl Game {
                         || item.reveal != (f.ability_key == "reveal")
                         || item.target.is_some()
                         || item.card.as_ref().is_some_and(|c| {
-                            c.definition != f.source.card.definition
-                                || c.owner != f.source.card.owner
-                                || c.controller != f.actor
+                            !self.pack_a_transaction_matches(f, c)
                         }))
                 {
                     return Err("黑卡派遣/现身的原响应对象被改写".into());
@@ -832,15 +837,15 @@ impl Game {
         Ok(())
     }
     /// Resolution-time condition query, not a death-time declaration gate.
-    /// The production pre-grave death/response continuation remains NOT WIRED.
-    /// A future caller must hold the departed card outside physical zones until
-    /// this finishes; committing to grave first would emit incorrect effects.
+    /// The shared pre-grave continuation holds the real departed card until
+    /// its original optional trigger/response has determined the destination.
     pub(crate) fn xg25_replaces_death(&self, source: &SourceSnapshot) -> bool {
         source.card.definition == "XG25"
             && !source.card.face_down
             && source.card.controller < self.players.len()
             && self.players[source.card.controller].society_zone.secrecy > 0
     }
+    #[cfg(test)]
     pub(crate) fn xg25_death_target(&self) -> TargetSlotSpec {
         target(
             Zone::Board,
@@ -849,6 +854,7 @@ impl Game {
             Range::Anywhere,
         )
     }
+    #[cfg(test)]
     pub(crate) fn xg25_seal_instead_of_grave(
         &mut self,
         departed: Card,
@@ -982,6 +988,11 @@ impl Game {
             return Ok(());
         }
         self.validate_next20_black_declaration(d)?;
+        let (options, stage_valid) = if let Some(slot) = d.ability.targets.first() {
+            (self.binding_options(d.actor, &d.source, slot), matches!(stage, DeclareChoice::Target))
+        } else {
+            (vec![ChoiceOption { id: "accept".into(), label: "发动触发能力".into(), card: None }], matches!(stage, DeclareChoice::Accept))
+        };
         let expected = Choice {
             id: p.choice.id.clone(),
             kind: "trigger".into(),
@@ -992,11 +1003,7 @@ impl Game {
             ),
             description: "选择符合数量限制的选项，然后确认。".into(),
             player_id: player_id(d.actor),
-            options: vec![ChoiceOption {
-                id: "accept".into(),
-                label: "发动触发能力".into(),
-                card: None,
-            }],
+            options,
             preview_cards: vec![],
             min: Some(0),
             max: Some(1),
@@ -1005,7 +1012,8 @@ impl Game {
         };
         if p.seat != d.actor
             || p.choice.id.is_empty()
-            || !matches!(stage, DeclareChoice::Accept)
+            || !stage_valid
+            || expected.options.is_empty()
             || !same(&p.choice, &expected)
         {
             return Err("黑卡触发须由原玩家选择发动或放弃".into());

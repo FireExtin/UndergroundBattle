@@ -311,6 +311,7 @@ mod jc050_tests;
 pub mod catalog;
 mod control;
 mod death_observers;
+mod death_continuation;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod death_observer_tests;
 #[cfg(test)]
@@ -449,3 +450,6 @@ mod abi112_review_play_tests;
 
 #[cfg(test)]
 mod next20_anchor_core_tests;
+
+#[cfg(test)]
+mod next20_death_core_tests;

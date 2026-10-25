@@ -1287,6 +1287,7 @@ impl Game {
         let actor = declaration.actor;
         let spec = &declaration.ability;
         if self.players[actor].eliminated {
+            self.decline_pregrave_declaration(&declaration)?;
             return Ok(());
         }
         if self.death_observer_limit_reached(&declaration) {
@@ -1349,6 +1350,9 @@ impl Game {
                 None,
                 ChoiceResolution::Declare { declaration, stage },
             );
+            self.record_pregrave_choice()?;
+        } else {
+            self.decline_pregrave_declaration(&declaration)?;
         }
         Ok(())
     }
@@ -1385,6 +1389,7 @@ impl Game {
             return self.bq030_choose(declaration, stage, selected);
         }
         let Some(selected) = selected.first() else {
+            self.decline_pregrave_declaration(&declaration)?;
             self.wm058_decline(&declaration)?;
             return Ok(());
         };
@@ -1559,8 +1564,10 @@ impl Game {
                 !snapshot.card.face_down && card(&snapshot.card.definition).kind == "character";
             let owner = c.owner;
             let c = self.reset_zone_card(c);
-            let grave_instance = c.id.clone();
-            self.commit_owner_grave(c, ghoul_sources);
+            let deferred = character && snapshot.card.definition == "XG25";
+            let grave_instance = if deferred { String::new() } else { c.id.clone() };
+            if deferred { self.hold_pregrave_death(&snapshot, c); }
+            else { self.commit_owner_grave(c, ghoul_sources); }
             self.note(format!(
                 "{}：{}",
                 card(&snapshot.card.definition).name,
@@ -1575,6 +1582,7 @@ impl Game {
                 return Some(crate::death_observers::CharacterDeathReceipt {
                     old_instance: target.into(),
                     grave_instance,
+                    deferred_death: deferred.then(|| target.to_owned()),
                     owner,
                     was_renown,
                 });
@@ -1674,16 +1682,19 @@ impl Game {
         self.validate_xq23_frame(&frame)?;
         self.validate_jc035_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
+            self.cancel_pregrave_frame(&frame)?;
             self.jc035_cancel_guarded_frame(&frame)?;
             return Ok(());
         }
         while frame.cursor < frame.steps.len() && self.status == "playing" {
+            let before_deaths = self.death_instances();
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
                 Op::Next20Wraith(program) => match program {
                     crate::next20_black_wraiths::WraithProgram::TigerSearch { .. } => return self.cq25_search_start(frame),
                     crate::next20_black_wraiths::WraithProgram::GhostMove { .. } => self.xg25_move(&frame)?,
+                    crate::next20_black_wraiths::WraithProgram::GhostSeal => self.resolve_xg25_death(&frame)?,
                 },
                 Op::Next20Blue(program) => match program {
                     crate::next20_blue_vampires::BlueProgram::RandomDiscard => self.bq033_random_discard(&frame)?,
@@ -2633,6 +2644,7 @@ impl Game {
                 if frame.cursor < frame.steps.len() { self.effects.push_front(Effect::Frame { frame: Box::new(frame) }); }
                 return Ok(());
             }
+            if frame.cursor < frame.steps.len() && self.defer_death_caller(frame.clone(), crate::death_continuation::DeathCallerKind::Frame, &before_deaths) { return Ok(()); }
         }
         Ok(())
     }
@@ -2645,6 +2657,7 @@ impl Game {
         selected: Vec<String>,
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
+        let before_deaths = self.death_instances();
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         self.wm060_choice_payload(&frame, chooser, &a)?;
@@ -2926,6 +2939,7 @@ impl Game {
                 return Ok(());
             }
         }
+        if frame.cursor < frame.steps.len() && self.defer_death_caller((*frame).clone(), crate::death_continuation::DeathCallerKind::Frame, &before_deaths) { return Ok(()); }
         self.effects.push_front(Effect::Frame { frame });
         Ok(())
     }

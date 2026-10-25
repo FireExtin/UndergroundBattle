@@ -1,6 +1,6 @@
 //! Real checkout commands/persistence with explicit initial layouts. Death
-//! replacement is deliberately not claimed: its shared pre-grave continuation
-//! is still absent. Sealing producers here are CQ25's real search or setup.
+//! replacement has separate coverage in next20_death_core_tests; these earlier
+//! movement/search cases use CQ25's real search or explicit initial sealing.
 use crate::{catalog, model::*, next20_black_wraiths as black, unit_support::*};
 
 fn at(g: &mut Game, id: &str, seat: usize, region: usize) -> String {

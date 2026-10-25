@@ -144,7 +144,7 @@ impl Game {
             .collect();
         self.jz24_next(frame, remaining_players)
     }
-    fn jz24_next(
+    pub(crate) fn jz24_next(
         &mut self,
         frame: ResolutionFrame,
         mut remaining_players: Vec<usize>,
@@ -211,7 +211,9 @@ impl Game {
         {
             return Err("须选择原地区中自己操控的正面角色".into());
         }
+        let before_deaths = self.death_instances();
         self.remove_dead(id, RemovalCause::Sacrifice);
+        if self.defer_death_caller(frame.clone(), crate::death_continuation::DeathCallerKind::JZ24 { remaining_players: remaining_players.clone() }, &before_deaths) { return Ok(()); }
         self.jz24_next(frame, remaining_players)
     }
 }

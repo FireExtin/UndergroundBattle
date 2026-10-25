@@ -53,6 +53,7 @@ impl Game {
         }
         Ok(Self {
             state_schema: 2,
+            death_replacements: vec![],
             step_resources: vec![],
             industry_bonuses: vec![],
             mystic_contest: None,
@@ -640,6 +641,7 @@ impl Game {
             return Err("无此座位".into());
         }
         self.validate_next20_black_state()?;
+        self.validate_death_continuations()?;
         self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;
@@ -668,6 +670,7 @@ impl Game {
         next.prune_inspection_receipts();
         next.prune_attachment_declines();
         next.validate_next20_black_state()?;
+        next.validate_death_continuations()?;
         next.validate_anchor_state()?;
         next.validate_next20_blue_state()?;
         next.validate_batch20_state()?;
@@ -1164,6 +1167,7 @@ impl Game {
     }
     pub(crate) fn eliminate(&mut self, seat: usize) {
         self.players[seat].eliminated = true;
+        self.cancel_pregrave_owner(seat);
         self.return_sealed_cards(&format!("society:p{seat}"));
         self.players[seat].hand.clear();
         self.players[seat].deck.clear();
@@ -1203,6 +1207,7 @@ impl Game {
             | Effect::Unique { seat: s } => *s != seat,
             Effect::Declare { declaration } => declaration.actor != seat,
             Effect::Frame { frame } => frame.actor != seat,
+            Effect::DeathCaller { caller } => caller.frame.actor != seat,
             Effect::Bury { card } => card.owner != seat,
             _ => true,
         });
@@ -1225,6 +1230,7 @@ impl Game {
         self.winner_team = Some(team);
         self.pending = None;
         self.mystic_contest = None;
+        self.death_replacements.clear();
         self.effects.clear();
         self.entry_order_groups.clear();
         self.attachment_declines.clear();
@@ -1679,6 +1685,7 @@ impl Game {
             {
                 break;
             }
+            if matches!(self.effects.front(), Some(Effect::DeathFinish { death_instance }) if self.death_boundary_waits(death_instance)) { break; }
             if matches!(self.effects.front(), Some(Effect::MysticContinue { .. } | Effect::MysticFinish { .. })) && self.mystic_responses_pending() { break; }
             let Some(effect) = self.effects.pop_front() else {
                 break;
@@ -1693,6 +1700,8 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::DeathFinish { death_instance } => self.finish_pregrave_death(&death_instance)?,
+            Effect::DeathCaller { caller } => self.resume_death_caller(*caller)?,
             Effect::MysticQueueFence { .. } => return Err("临时隐秘队列边界不得作为效果执行".into()),
             Effect::MysticContinue { contest_id } => self.mystic_contest_resume(&contest_id)?,
             Effect::MysticFinish { contest_id } => self.mystic_finish_nested(&contest_id)?,
@@ -2232,6 +2241,7 @@ impl Game {
         self.validate_cq15_state()?;
         self.validate_exposure_state()?;
         self.validate_next20_black_state()?;
+        self.validate_death_continuations()?;
         self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;

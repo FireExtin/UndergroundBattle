@@ -498,6 +498,8 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    DeathFinish { death_instance: String },
+    DeathCaller { caller: Box<crate::death_continuation::DeathCaller> },
     // A transient append fence used only while executing one command/effect.
     // It is never a persisted operation and cannot be supplied by a client.
     #[serde(skip)]
@@ -975,6 +977,8 @@ pub struct Pending {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub death_replacements: Vec<crate::death_continuation::PendingDeath>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub step_resources: Vec<crate::step_resources::StepCredit>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub industry_bonuses: Vec<crate::import20_industry::IndustryBonus>,
@@ -1073,6 +1077,7 @@ impl Game {
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
         self.validate_next20_black_state()?;
+        self.validate_death_continuations()?;
         self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_reward_state()?;

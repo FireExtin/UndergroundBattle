@@ -1,4 +1,4 @@
-//! JZ35 only: one atomic sacrifice/return effect, with actual departure receipts.
+//! JZ35: actual departure receipts and a waited return for pending replacements.
 use crate::{
     catalog,
     death_observers::CharacterDeathReceipt,
@@ -86,9 +86,10 @@ pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     Ok(())
 }
 
-/// Ephemeral links captured in this single effect; not a save-state continuation.
-#[derive(Clone, Debug)]
-pub(crate) struct HostReturn {
+/// Frozen departure/region links; persisted only when a replacement suspends the caller.
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct HostReturn {
     pub death: CharacterDeathReceipt,
     pub definition: String,
     pub region: usize,
@@ -136,6 +137,7 @@ impl Game {
     }
     pub(crate) fn jz35_return_hosts(&mut self, returns: &[HostReturn]) -> RuleResult<()> {
         for ret in returns {
+            if ret.death.deferred_death.is_some() { return Err("原死亡去向未决，不能提前执行JZ35返回".into()); }
             let original_region = self
                 .regions
                 .get(ret.region)
@@ -157,7 +159,9 @@ impl Game {
         Ok(())
     }
     pub(crate) fn jz35_resolve(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+        let before_deaths = self.death_instances();
         let returns = self.jz35_sacrifice_hosts(f.actor);
+        if self.defer_death_caller(f.clone(), crate::death_continuation::DeathCallerKind::JZ35 { returns: returns.clone() }, &before_deaths) { return Ok(()); }
         self.jz35_return_hosts(&returns)
         // Declaration processing waits until the entire effect completes.
     }
