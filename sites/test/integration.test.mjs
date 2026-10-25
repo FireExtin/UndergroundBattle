@@ -40,7 +40,9 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 272); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37','JZ30','BQ028','BQ040','WM059','BQ078','JZ44','JZ45','WM062','JC054','JC044','JC066','JC041','XQ23','JC035']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true); assert(catalog.body.cards.some(c => c.id === 'XQ18')); assert(catalog.body.cards.some(c => c.id === 'XQ24'));
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 277); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37','JZ30','BQ028','BQ040','WM059','BQ078','JZ44','JZ45','WM062','JC054','JC044','JC066','JC041','XQ23','JC035']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true); assert(catalog.body.cards.some(c => c.id === 'XQ18')); assert(catalog.body.cards.some(c => c.id === 'XQ24'));
+    assert.equal(catalog.body.cards.filter(card=>card.supported).length,233);
+    for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.body.cards.find(card=>card.id===id).supported,false);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
     assert.equal(catalog.body.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');

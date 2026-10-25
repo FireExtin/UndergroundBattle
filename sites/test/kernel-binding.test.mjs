@@ -8,9 +8,10 @@ abi.initSync({module:bytes});
 test('candidate package contains exactly the current ABI112 bytes and catalog identity',()=>{
   const catalog=JSON.parse(abi.catalog());
   assert.deepEqual([catalog.rulesVersion,catalog.cardPoolVersion,catalog.engineVersion],['hegemony-pdf-v1','limited-v2.102-import20-rulings-complete','rust-v0.2.112-shared-keyword-rewards']);
-  assert.equal(catalog.cards.length,272);
+  assert.equal(catalog.cards.length,277);
+  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
   assert.equal(catalog.cards.filter(c=>c.supported).length,233);
-  assert.equal(catalog.cards.filter(c=>!c.supported).length,39);
+  assert.equal(catalog.cards.filter(c=>!c.supported).length,44);
   assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
   assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));
   assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));
