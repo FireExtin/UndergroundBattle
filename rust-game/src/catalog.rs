@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.102-import20-rulings-complete";
+pub const POOL_VERSION: &str = "limited-v2.103-next20-three-admitted";
 #[cfg(not(feature = "society-fixtures"))]
 pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards";
 #[cfg(feature = "society-fixtures")]
