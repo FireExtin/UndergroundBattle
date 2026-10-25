@@ -1,0 +1,156 @@
+{
+  "at_utc": "2026-10-25T05:20:32.141335+00:00",
+  "status": "original-table terminal verified; stopped at safe boundary per latest user instruction",
+  "source_head": "476e09bc162afcec63cc22e7d96365da65499304",
+  "UI_product": "4b2810cd3d56e100ab2fbdaf1cd9db934306b476",
+  "project": "appgprj_6adc02e46820819188f42c2474995574",
+  "version": 5,
+  "official_source": "dad97780bcff0fcf87d93a468faf1b40bf0b36e0",
+  "deployment": "appgdep_6adcc85f31808191a790537923b6875e",
+  "fresh_official_deployment_status": "succeeded",
+  "client_script": "/assets/index-mYJ2gsUz.js",
+  "ABI": 112,
+  "table": "97EC1A99E58C",
+  "seats": [
+    "ABI112-QA-A",
+    "ABI112-QA-B"
+  ],
+  "tabs": [
+    "16",
+    "17"
+  ],
+  "resume_from": {
+    "turn": 6,
+    "scores_A_B": [
+      3,
+      4
+    ],
+    "paused_saved": true
+  },
+  "current_verified": {
+    "turn": 8,
+    "scores_A_B": [
+      9,
+      6
+    ],
+    "winner": "ABI112-QA-A",
+    "terminal": true,
+    "pending_choice": false,
+    "in_flight": false,
+    "both_seats_refreshed": true,
+    "before_refresh_utc": [
+      "2026-10-25T05:18:27.862Z",
+      "2026-10-25T05:18:27.931Z"
+    ],
+    "after_refresh_utc": [
+      "2026-10-25T05:18:49.011Z",
+      "2026-10-25T05:18:49.134Z"
+    ],
+    "client_scripts_both": "/assets/index-mYJ2gsUz.js",
+    "continuous_pass_terminal_message_correct_both": true,
+    "stale_please_complete_choice_both": false
+  },
+  "new_coverage": [
+    {
+      "case": "original paused-table resume",
+      "result": "accepted, same seats/hand and phase; no replay of old commands"
+    },
+    {
+      "case": "JC089 granted glory on WM025",
+      "at_utc": "2026-10-25T05:09:30.770Z",
+      "result": "granted keyword visible, mixed trigger order with BQ039; choice selected index1 preserved after refresh; accepted optional reward; New York own influence2->3 in battle after-window",
+      "limit": "one live WM025 source; not all possible recipients or renown keyword"
+    },
+    {
+      "case": "CQ28 mill to WM042 positive",
+      "at_utc": "2026-10-25T05:14:15.425Z",
+      "result": "declared mill then revive; prebound graveWM057 and Chernobyl; paid4 once; actual WM042 host choice with1 legal publicWM056; selected host survived refresh, confirmation doubleclick accepted; sealed1, deck31->25, money4/8 unchanged through choice, prebound WM057 enters Chernobyl",
+      "public_sealed_instance": "WM042 i334 carried by WM056 i269",
+      "limit": "one-host branch, not new UI execution of zero-host or three-host cases"
+    },
+    {
+      "case": "normal regional win lifecycle",
+      "result": "B Dead City score4->6; A WM025 revived by its win trigger; New York won A3->7; A return-order lists own WM025/BQ039 and excludes foreign JC089; B view subsequently shows deck41/grave3 after turn8 draw, consistent with curse returning to its owner; New York hand exchange discarded1/drew1."
+    },
+    {
+      "case": "full original game terminal and two-seat refresh",
+      "result": "original same-table ABI112 lifecycle completed naturally at turn8,A9:B6; no surrender/restart; A winner/B opponent winner text agree; both refreshes preserve result, seats, v5 client; no pending choices or stale choice prompt",
+      "limit": "resume segment starts turn6 onv5; earlier original-table UI segment usedv4 beforev5 correction, runtimeABI112 unchanged"
+    },
+    {
+      "case": "sealed WM042 carrier return at winning region",
+      "result": "after Chernobyl return and terminal, sealed count disappears and A hand shows WM042 #i347; no claim that it moved to grave"
+    }
+  ],
+  "not_claimed": [
+    "entire game began on UIv5; earlier same-runtime segment usedv4 beforev5 fix",
+    "all20 cards/all combinations or Bot QA",
+    "new realUI execution of CQ28 rumor zero-host/three-host branches; their prior WASM scope remains separate",
+    "all grant recipients and renown keyword; current browser positive is JC089 combat-glory on WM025",
+    "exact WM025+WM057 and doubleBQ039 browser combinations",
+    "independent review of4b two-lineUI fix"
+  ],
+  "changes": {
+    "product_source_edited": false,
+    "new_tests_or_builds_started": false,
+    "new_agents_started": false,
+    "github_push_CI_main_deployment": false,
+    "health403_retried": false
+  },
+  "raw_inputs_custody": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/ABI112_RAW_INPUT_CUSTODY_20261025.json",
+    "sha256": "da1e0eacdb92795c1d6ca3678cd8ed6f4c151fd5b2e205e3225c6401a75c012a",
+    "count": 32
+  },
+  "existing_recovery_bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-21/task-3/checkpoints/abi112-user-paused-476e09bc-20261024.bundle",
+    "verified_this_resume": true,
+    "head": "476e09bc162afcec63cc22e7d96365da65499304"
+  },
+  "parallel_proposals": "GAME_PARALLEL_SLICES_20261025.json",
+  "fast_status": "parent requestedgpt-6.1-sol/max; active fast state not exposed or changed",
+  "remaining_QA": [
+    "exact WM025+WM057 and doubleBQ039 combinations",
+    "independent non-author review of4b two-lineUI correction",
+    "broader recipient/renown and rumor zero/three-host UI cases only if future normal-QA scope needs them; no new saved-state edge expansion",
+    "24 prior gated scan-index failures remain preserved and outside current20; no admission or art change"
+  ],
+  "new_issue": {
+    "id": "QA-ABI112-COPY-001",
+    "scope": "low-impact normal action label; not fixed this stop boundary",
+    "card": "CQ28 咒欲之门",
+    "observed_button": "咒欲之门：先声明两次同项及目标",
+    "actual_card_and_workflow": "choose2, may repeat; mixed mill/revive actually selectable and settles printed order",
+    "source": "rust-game/src/resolution.rs:137",
+    "impact": "the word 同项 misleadingly suggests both choices must match; no functional blockage observed"
+  },
+  "pause_or_recovery_entry": {
+    "terminal_table": "97EC1A99E58C",
+    "original_tabs": [
+      "16",
+      "17"
+    ],
+    "both_marked_handoff_this_turn": true,
+    "no_restart_clicked": true,
+    "no_game_resume_needed_for_completed_table": true,
+    "later_browser_owner": "verify supported tab/seat visibility first; do not extract tokens or assume cross-thread tabIDs transferable",
+    "screenshots": "normal browser screenshots emitted in this conversation; not separately serialized to local files"
+  },
+  "stop_authority": {
+    "user_message": "Sentinel_457650d56e288191b511acb0ea5d7ef1",
+    "instruction": "隐秘这块不拆了；有空试玩；safe boundary then end",
+    "new_workers_started": 0,
+    "new_card_implementation": 0,
+    "new_builds_or_services": 0,
+    "new_ports": [],
+    "other_tasks_interrupted": false,
+    "new_agents_started_here": false,
+    "proposals_canceled": [
+      "blue BQ033/BQ034",
+      "black CQ25/XG25",
+      "new independent-review task"
+    ],
+    "fast_transfer_started": false
+  },
+  "verification_scope": "author real-browser CUA normalUI only; no game API commands, no seed/state injection, no repeat of prior UI1579/Worker632/Native scopes, no additional full suite"
+}

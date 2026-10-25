@@ -1,0 +1,78 @@
+{
+  "method": "author observation of current rendered UI through CUA; reduced transcript fields, not server state export",
+  "table": "97EC1A99E58C",
+  "observations": [
+    {
+      "seat": "A",
+      "observation": "before refresh",
+      "at_utc": "2026-10-25T05:18:27.862Z",
+      "turn": 8,
+      "phase": "对抗阶段 · 地区1 · 势力 · 奖励后快速窗口",
+      "own_opponent_scores": [
+        9,
+        6
+      ],
+      "goal": 8,
+      "status_text": "对局已结束",
+      "winner_heading": "你的秘社取得了霸权",
+      "continuous_pass_text": "对局已结束，连续让过已停止",
+      "stale_choice_prompt": false,
+      "pending_choice_options": 0,
+      "client_script": "/assets/index-mYJ2gsUz.js"
+    },
+    {
+      "seat": "A",
+      "observation": "after refresh",
+      "at_utc": "2026-10-25T05:18:49.011Z",
+      "turn": 8,
+      "phase": "对抗阶段 · 地区1 · 势力 · 奖励后快速窗口",
+      "own_opponent_scores": [
+        9,
+        6
+      ],
+      "goal": 8,
+      "status_text": "对局已结束",
+      "winner_heading": "你的秘社取得了霸权",
+      "continuous_pass_text": "对局已结束，连续让过已停止",
+      "stale_choice_prompt": false,
+      "pending_choice_options": 0,
+      "client_script": "/assets/index-mYJ2gsUz.js"
+    },
+    {
+      "seat": "B",
+      "observation": "before refresh",
+      "at_utc": "2026-10-25T05:18:27.931Z",
+      "turn": 8,
+      "phase": "对抗阶段 · 地区1 · 势力 · 奖励后快速窗口",
+      "own_opponent_scores": [
+        6,
+        9
+      ],
+      "goal": 8,
+      "status_text": "对局已结束",
+      "winner_heading": "ABI112-QA-A赢得了霸权",
+      "continuous_pass_text": "对局已结束，连续让过已停止",
+      "stale_choice_prompt": false,
+      "pending_choice_options": 0,
+      "client_script": "/assets/index-mYJ2gsUz.js"
+    },
+    {
+      "seat": "B",
+      "observation": "after refresh",
+      "at_utc": "2026-10-25T05:18:49.134Z",
+      "turn": 8,
+      "phase": "对抗阶段 · 地区1 · 势力 · 奖励后快速窗口",
+      "own_opponent_scores": [
+        6,
+        9
+      ],
+      "goal": 8,
+      "status_text": "对局已结束",
+      "winner_heading": "ABI112-QA-A赢得了霸权",
+      "continuous_pass_text": "对局已结束，连续让过已停止",
+      "stale_choice_prompt": false,
+      "pending_choice_options": 0,
+      "client_script": "/assets/index-mYJ2gsUz.js"
+    }
+  ]
+}

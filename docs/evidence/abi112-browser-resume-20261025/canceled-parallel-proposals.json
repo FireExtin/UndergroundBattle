@@ -1,0 +1,137 @@
+{
+  "at_utc": "2026-10-25T05:06:29.518742+00:00",
+  "base": "476e09bc162afcec63cc22e7d96365da65499304",
+  "repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "fix/game-abi112-wm057-ack-20261024",
+  "tracked_clean": true,
+  "untracked_raw_inputs_retained": 32,
+  "live": {
+    "version": 5,
+    "ABI": 112,
+    "official_source": "dad97780bcff0fcf87d93a468faf1b40bf0b36e0",
+    "version_id": "appgprj_6adc02e46820819188f42c2474995574~appgver_c11ed0048e048191914cd65c027b4eee",
+    "deployment": "appgdep_6adcc85f31808191a790537923b6875e",
+    "status_freshly_verified": "succeeded"
+  },
+  "main_ownership": [
+    "original QA table97EC1A99E58C, tabs16/17 and both seats",
+    "all existing source files including engine.rs/lib.rs/fees/continuations/cards.json",
+    "ABI/build/generated WASM/official Sites source and deployment",
+    "integration of separate public-wiring patches"
+  ],
+  "suggested_slices": [
+    {
+      "id": "blue-vampires",
+      "cards": [
+        "BQ033",
+        "BQ034"
+      ],
+      "status": "proposed-only; parent assigns owner; re-read primary rules before implementation",
+      "proposed_owned_files": [
+        "rust-game/src/next20_blue_vampires.rs",
+        "rust-game/src/next20_blue_vampires_tests.rs",
+        "docs/NEXT20_BLUE_VAMPIRES_WIP_2026-10-25.md"
+      ],
+      "proposed_files_exist": [],
+      "images": {
+        "BQ033": [
+          "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg"
+        ],
+        "BQ034": [
+          "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg"
+        ]
+      }
+    },
+    {
+      "id": "black-wraiths",
+      "cards": [
+        "CQ25",
+        "XG25"
+      ],
+      "status": "proposed-only; parent assigns owner; re-read primary rules before implementation",
+      "proposed_owned_files": [
+        "rust-game/src/next20_black_wraiths.rs",
+        "rust-game/src/next20_black_wraiths_tests.rs",
+        "docs/NEXT20_BLACK_WRAITHS_WIP_2026-10-25.md"
+      ],
+      "proposed_files_exist": [],
+      "images": {
+        "CQ25": [
+          "resource/ymsj-fun.github.io/cards/CQ25 伥虎.jpg"
+        ],
+        "XG25": [
+          "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg"
+        ]
+      }
+    },
+    {
+      "id": "independent-ui-review-and-new-table-QA",
+      "fixed_runtime_UI": "4b2810cd3d56e100ab2fbdaf1cd9db934306b476",
+      "baseline": "476e09bc162afcec63cc22e7d96365da65499304",
+      "runtime_write_access": "none; review/report/test-only in separate clone",
+      "files": [
+        "web/src/game/ChoicePanel.tsx",
+        "web/src/game/WM057InspectionConfirm.test.tsx"
+      ],
+      "browser": "new self-created table only, no shared original table/tabs, no health403",
+      "scope": [
+        "two-line required zero-ack UI and7 tests",
+        "CQ28 mill to WM042 positive normal UI",
+        "granted keyword reward normal UI; identify exact tested source/host"
+      ]
+    }
+  ],
+  "old_A_B": {
+    "cards": [
+      "WM021",
+      "WM022",
+      "WM032",
+      "WM061",
+      "BQ082",
+      "BQ027",
+      "BQ031",
+      "BQ032",
+      "BQ036",
+      "BQ038"
+    ],
+    "integrated_ancestor": "a3b5e7dddc86492b56f5480fb3aaf34da9c2d88c",
+    "rulings_ancestor": "c5c39467763a197aa7266c0473f44da133d0e843",
+    "BQ036_fix_ancestor": "8a5cf1f760c143b14e7e3d4cc78cd55bcaa2f022",
+    "status": "all3 confirmed ancestors, no reimplementation; current ABI112 admission still gated for these10"
+  },
+  "old_WM043": {
+    "native_fix_already_serial_rechecked": "WM043_SERIAL_RECHECK_20261024.json;24passed, original red retained",
+    "warning": "not a new unresolved Native P2; WASM/Worker/current-public-admission not qualified by old Native result"
+  },
+  "remaining_QA": [
+    "original full terminal plus both-seat refresh",
+    "CQ28 to WM042 positive",
+    "shared-keyword reward normal UI",
+    "exact WM025 plus WM057 and doubleBQ039 combinations",
+    "independent narrow review of4b UI fix"
+  ],
+  "source_checks": {
+    "candidate_csv_sha256": "6cd5338d9488658bd56fc9f437b439909ad468feefdfadafcf016494aadd636e",
+    "catalogue_sha256": "eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977",
+    "proposed4_absent_catalogue_and_rust_literals": true,
+    "card_source_status": "retained image-field specification complete; no recorded gate, author must validate semantics and dependencies"
+  },
+  "restrictions": [
+    "ordinary separate clones only, no worktree/reset/force/main",
+    "no CI/push while dynamic trigger unknown",
+    "no publication or admission change by package authors",
+    "red black blue gray only, neutral/dual paused",
+    "do not restart old A/B/ABI95 QA or duplicate first20",
+    "shared wiring returned as separate changes; main resolves semantic conflicts"
+  ],
+  "model": {
+    "parent_requested": "gpt-6.1-sol/max",
+    "current_fast": "not exposed or verified; no configuration changed",
+    "new_task_fast_api": "parent reports create supports service_tier fast; not a current-session setting proof"
+  },
+  "status": "canceled-unexecuted by latest user instruction",
+  "canceled_utc": "2026-10-25T05:20:32.141335+00:00",
+  "canceled_user_message": "Sentinel_457650d56e288191b511acb0ea5d7ef1",
+  "owners_assigned": false,
+  "new_workers_created": 0
+}

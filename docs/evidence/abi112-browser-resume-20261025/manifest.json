@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "canceled-parallel-proposals.json",
+      "bytes": 5272,
+      "sha256": "8c96ee7cb37561d55d672442afce16d2a4d377e3a899126fa49acbc38c7830e2"
+    },
+    {
+      "path": "raw-inputs-manifest.json",
+      "bytes": 6041,
+      "sha256": "da1e0eacdb92795c1d6ca3678cd8ed6f4c151fd5b2e205e3225c6401a75c012a"
+    },
+    {
+      "path": "result.json",
+      "bytes": 7006,
+      "sha256": "d01e506f8024ab5b730b603c4a99aef6bf0df48ba4a6de9d795d35f4c655e3de"
+    },
+    {
+      "path": "terminal-dom-observations.json",
+      "bytes": 2479,
+      "sha256": "cb1cea618232bca8c99afa0d9c83965f267a29de6f3f15252cb3128df4ac99e9"
+    }
+  ]
+}
