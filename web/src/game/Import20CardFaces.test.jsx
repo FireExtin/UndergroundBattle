@@ -42,7 +42,8 @@ it('does not admit any additional card or replace the current kernel while addin
   expect(registry.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(272);
+  expect(registry.cards).toHaveLength(277);
+  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(233);
   expect(registry.cards.slice(213).filter(card=>card.supported).map(card=>card.id).sort()).toEqual([...batch].sort());
   expect(cardScanUrl('unknown-private-card')).toBeUndefined();

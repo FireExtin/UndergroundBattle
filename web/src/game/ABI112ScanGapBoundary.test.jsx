@@ -10,6 +10,8 @@ import {deckCardAdmission,validateDeckDraft} from './deckLibrary';
 import {DeckLibrary} from './DeckLibraryPanel';
 
 const gaps=['BQ041','JZ38','JZ40','JZ36','XG16','XG18','XQ21','BQ027','BQ031','BQ032','BQ036','BQ038','WM021','WM022','WM032','WM061','BQ082','XG21','JZ56','XQ20','LC16','WM037','WM044','WM043'];
+const next20Wip=['BQ033','BQ034','CQ25','XG25','BQ009'];
+const unavailableFaces=[...gaps,...next20Wip];
 const scans=JSON.parse(readFileSync(resolve('../web/public/card-scans.json')));
 const pool=JSON.parse(readFileSync(resolve('../rust-game/data/cards.json')));
 const batch=JSON.parse(readFileSync(resolve('../docs/factions/import20-rulings-2026-10-24.json'))).batch20;
@@ -20,28 +22,28 @@ const base=()=>({id:'scan-gap-control',name:'索引准入边界对照',descripti
 beforeEach(()=>{localStorage.clear();sessionStorage.clear();});
 afterEach(()=>{cleanup();localStorage.clear();sessionStorage.clear();});
 
-it('keeps the exact24 index gaps outside this20, every supported definition and every public preset',()=>{
+it('keeps the historical24 and five WIP index gaps outside every supported definition and public preset',()=>{
   expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   const actual=catalog.cards.filter(card=>!scans[card.id]||cardScanUrl(card.id)!==`/cards/${card.id}.jpg`).map(card=>card.id);
-  expect(actual).toEqual(gaps);
+  expect(actual).toEqual(unavailableFaces);
   expect(batch).toHaveLength(20);
   expect(batch.filter(id=>gaps.includes(id))).toEqual([]);
   expect(catalog.cards.filter(card=>card.supported)).toHaveLength(233);
-  expect(gaps.every(id=>definition(id).supported===false)).toBe(true);
+  expect(unavailableFaces.every(id=>definition(id).supported===false)).toBe(true);
   expect(catalog.cards.filter(card=>card.supported).every(card=>scans[card.id]&&cardScanUrl(card.id)===scans[card.id].url)).toBe(true);
-  for(const deck of catalog.decks)expect(deck.cards.filter(entry=>gaps.includes(entry.cardId))).toEqual([]);
+  for(const deck of catalog.decks)expect(deck.cards.filter(entry=>unavailableFaces.includes(entry.cardId))).toEqual([]);
   expect(pool.world).toHaveLength(10); //The server deliberately omits world from the public catalog.
   expect(pool.world.filter(entry=>gaps.includes(entry.cardId))).toEqual([]);
 });
 
-it('rejects all24 through client validation and actual WASM create/join without invoking their abilities',()=>{
+it('rejects all29 unavailable faces through client validation and actual WASM create/join',()=>{
   const control=base();expect(validateDeckDraft(control,catalog).valid).toBe(true);
   const created=JSON.parse(kernel.newGameWithDeck('scan-gap-control','ABCDEF123456','duel','owner',JSON.stringify(control),'9007199254740993'));
   expect(typeof created.state).toBe('string');
   const joined=JSON.parse(kernel.joinGameWithDeck(created.state,'guest',JSON.stringify(control)));
   expect(typeof joined.state).toBe('string');
   const original=created.state;
-  for(const id of gaps){
+  for(const id of unavailableFaces){
     const card=definition(id),draft=base();draft.cards.push({cardId:id,count:1});
     expect(deckCardAdmission(card).status,id).toBe('unavailable');
     expect(validateDeckDraft(draft,catalog).issues,id).toContainEqual(expect.objectContaining({code:'unsupported',cardId:id}));
@@ -56,11 +58,11 @@ it('shows no gap in the default buildable directory and explicit unavailable pla
   const ui=render(<DeckLibrary catalog={catalog} storage={null} pageMode/>);
   const ids=()=>[...ui.container.querySelectorAll('[data-catalog-card]')].map(row=>row.dataset.catalogCard);
   expect(ids()).toHaveLength(223); //233 supported minus the10 world regions.
-  expect(ids().filter(id=>gaps.includes(id))).toEqual([]);
+  expect(ids().filter(id=>unavailableFaces.includes(id))).toEqual([]);
   expect(batch.every(id=>ids().includes(id))).toBe(true);
   fireEvent.change(screen.getByLabelText('组牌准入'),{target:{value:'all'}});
-  expect(ids()).toHaveLength(272);
-  for(const id of gaps){
+  expect(ids()).toHaveLength(277);
+  for(const id of unavailableFaces){
     const card=definition(id),row=ui.container.querySelector(`[data-catalog-card="${id}"]`);
     expect(row).toHaveAttribute('data-card-admission','unavailable');
     expect(row.querySelector('[data-deck-face]')).toHaveAttribute('data-face-state','missing');

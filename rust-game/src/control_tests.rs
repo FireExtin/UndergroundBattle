@@ -3,7 +3,7 @@
 use crate::{catalog, model::*, rules::*};
 
 // Reviewer counterexample: printed eligibility and primitive lifetime contract
-// are kept distinct. XQ12 remains non-Human among the admitted Death cards.
+// are kept distinct. XQ12 and the closed WIP XG25 remain non-Human Death cards.
 #[test]
 fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
     let death_cards = catalog::catalog()
@@ -21,29 +21,33 @@ fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
             .iter()
             .map(|c| c.id.as_str())
             .collect::<Vec<_>>(),
-        vec!["XQ12", "XQ17", "JZ59", "JZ61", "JZ31", "JZ30", "BQ078", "WM029"]
+        vec!["XQ12", "XQ17", "JZ59", "JZ61", "JZ31", "JZ30", "BQ078", "WM029", "XG25"]
     );
     assert_eq!(death_cards[0].subtypes, vec!["吸血鬼", "奴仆"]);
     assert_eq!(death_cards[1].subtypes, vec!["人类"]);
     assert_eq!(death_cards[2].subtypes, vec!["人类", "宿主"]);
     assert_eq!(death_cards[3].subtypes, vec!["人类", "宿主"]);
-    let mut g = game();
-    let target = field(&mut g, "XQ12", 2);
-    fund(&mut g, 0, "XQ16", 6);
-    let source = field(&mut g, "JZ27", 0);
-    g.board_mut(&source).unwrap().face_down = true;
-    g.apply(
-        0,
-        Action {
-            card_id: Some(source),
-            ..Action::new("reveal")
-        },
-    )
-    .unwrap();
-    pass_top(&mut g);
-    assert!(g.pending.is_none());
-    assert!(g.control_effects.is_empty());
-    assert_eq!(controller(&g, &target), 2);
+    assert_eq!(death_cards[8].subtypes, vec!["幽灵", "诅咒"]);
+    assert!(!death_cards[8].supported);
+    for card in ["XQ12", "XG25"] {
+        let mut g = game();
+        let target = field(&mut g, card, 2);
+        fund(&mut g, 0, "XQ16", 6);
+        let source = field(&mut g, "JZ27", 0);
+        g.board_mut(&source).unwrap().face_down = true;
+        g.apply(
+            0,
+            Action {
+                card_id: Some(source),
+                ..Action::new("reveal")
+            },
+        )
+        .unwrap();
+        pass_top(&mut g);
+        assert!(g.pending.is_none(), "{card}");
+        assert!(g.control_effects.is_empty(), "{card}");
+        assert_eq!(controller(&g, &target), 2, "{card}");
+    }
 }
 
 fn death_actor_and_snapshot(g: &Game, target: &str) -> (usize, usize) {
