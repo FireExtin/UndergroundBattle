@@ -1,0 +1,34 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/mystic_contest.rs:371-403
+371:     fn mystic_after_next(&mut self) -> RuleResult<()> {
+372:         let state = self.mystic_contest.as_ref().ok_or("隐秘对抗后置效果缺少原状态")?.clone();
+373:         let MysticPhase::After { outcome, next_shown, .. } = state.phase else { return Err("非隐秘对抗后置阶段".into()); };
+374:         if let Some(shown) = outcome.shown.get(next_shown) {
+375:             let MysticPhase::After { next_shown: cursor, .. } = &mut self.mystic_contest.as_mut().unwrap().phase else { unreachable!() };
+376:             *cursor += 1;
+377:             self.effects.push_front(Effect::MysticContinue { contest_id: state.contest_id });
+378:             let post = matches!(shown.card.definition.as_str(), "WM061" | "BQ081").then(|| ResolutionFrame { resource_payments: vec![],
+379:                 frame_id: self.id(), ability_key: if shown.card.definition == "BQ081" { crate::import20_broker::SHOWN } else { crate::pack_a_contest::EARTH_SHOWN }.into(), actor: shown.seat,
+380:                 source: self.source_snapshot(&shown.card, None), targets: vec![], already_paid: vec![],
+381:                 guard: GuardState::Accepted, cursor: 1,
+382:                 steps: vec![Step { context: shown.seat, op: Op::MoveDeckTopToGraveyard { player: PlayerRef::Actor, count: 1 } }],
+383:                 chosen_region: None,
+384:             });
+385:             let MysticPhase::After { post_frame, .. } = &mut self.mystic_contest.as_mut().unwrap().phase else { unreachable!() };
+386:             *post_frame = post.clone().map(Box::new);
+387:             self.mystic_effect_scope(|g| {
+388:                 if !g.players[shown.seat].eliminated {
+389:                     if let Some(frame) = post { g.mill_cards_with_cause(shown.seat, 1, Some(&frame))?; }
+390:                     else { g.mystic_shown_after(&outcome, next_shown)?; }
+391:                 }
+392:                 Ok(())
+393:             })?;
+394:             return Ok(());
+395:         }
+396:         if state.parent.is_some() {
+397:             self.mystic_contest.as_mut().unwrap().phase = MysticPhase::Finishing { outcome:outcome.clone() };
+398:         } else {
+399:             self.mystic_contest = None;
+400:         }
+401:         self.pack_a_mystic_after(&state.frame, &outcome)?;
+402:         self.resolve_frame(*state.frame)
+403:     }

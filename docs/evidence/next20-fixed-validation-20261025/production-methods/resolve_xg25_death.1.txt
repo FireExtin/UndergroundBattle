@@ -1,0 +1,26 @@
+250:     pub(crate) fn resolve_xg25_death(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+251:         self.validate_xg25_death_frame(f)?;
+252:         let host = &f.targets[0].id;
+253:         // Card-text inference accepted as test premise: the condition is in the
+254:         // effect body, so response-time loss of the moon falls back to grave.
+255:         if self.xg25_replaces_death(&f.source)
+256:             && self.seal_host_valid(host)
+257:             && self.valid_bound_target(f.actor, &f.source, &f.targets[0])
+258:         {
+259:             let index = self
+260:                 .death_replacements
+261:                 .iter()
+262:                 .position(|d| d.source.card.id == f.source.card.id)
+263:                 .unwrap();
+264:             let c = self.death_replacements[index].card.take().unwrap();
+265:             self.seal_card_on_valid_host(c, f.actor, host);
+266:             let instance = self.sealed_cards.last().unwrap().card.id.clone();
+267:             self.death_replacements[index].destination = Some(DeathDestination::Sealed {
+268:                 instance,
+269:                 host: host.clone(),
+270:             });
+271:         } else {
+272:             self.commit_pregrave_fallback(&f.source.card.id)?;
+273:         }
+274:         Ok(())
+275:     }

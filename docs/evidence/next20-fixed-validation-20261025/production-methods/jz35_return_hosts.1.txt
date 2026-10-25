@@ -1,0 +1,23 @@
+138:     pub(crate) fn jz35_return_hosts(&mut self, returns: &[HostReturn]) -> RuleResult<()> {
+139:         for ret in returns {
+140:             if ret.death.deferred_death.is_some() { return Err("原死亡去向未决，不能提前执行JZ35返回".into()); }
+141:             let original_region = self
+142:                 .regions
+143:                 .get(ret.region)
+144:                 .is_some_and(|r| !r.vacant && r.card.id == ret.region_instance);
+145:             let actual_grave_card = self.players.get(ret.death.owner).is_some_and(|p| {
+146:                 p.graveyard.iter().any(|c| {
+147:                     c.id == ret.death.grave_instance
+148:                         && c.owner == ret.death.owner
+149:                         && c.definition == ret.definition
+150:                         && catalog::card(&c.definition).kind == "character"
+151:                 })
+152:             });
+153:             // No other copy can substitute for a missing/redirected card or region.
+154:             if original_region && actual_grave_card {
+155:                 // General rule: owner controls a new entry unless the card says otherwise.
+156:                 self.world_graveyard_entry(ret.death.owner, ret.region, &ret.death.grave_instance)?;
+157:             }
+158:         }
+159:         Ok(())
+160:     }

@@ -1,0 +1,12 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=2 src/game/ABI112ScanGapBoundary.test.jsx src/game/Batch3Integration.test.jsx src/game/Import20CardFaces.test.jsx
+
+
+ RUN  v4.1.2 /home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-inventory-ed6d72a0/source/web
+
+
+ Test Files  3 passed (3)
+      Tests  34 passed (34)
+   Start at  01:49:54
+   Duration  2.52s (transform 294ms, setup 184ms, import 633ms, tests 2.40s, environment 709ms)

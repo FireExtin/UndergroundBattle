@@ -1,0 +1,101 @@
+{"cwd":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites","command":["/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node","--test","--test-reporter=tap","--test-concurrency=1","test/integration.test.mjs","test/jc035-entry.test.mjs","test/jc041-entry.test.mjs","test/jc044-entry.test.mjs","test/jc057-entry.test.mjs","test/jc066-entry.test.mjs","test/kernel-binding.test.mjs","test/msjc0405-entry.test.mjs"],"CURRENT_CLOCK_WORKER":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/current-worker/server/worker.js"}
+TAP version 13
+# Subtest: test/integration.test.mjs
+not ok 1 - test/integration.test.mjs
+  ---
+  duration_ms: 219.651237
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/integration.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/jc035-entry.test.mjs
+not ok 2 - test/jc035-entry.test.mjs
+  ---
+  duration_ms: 217.974567
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/jc035-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/jc041-entry.test.mjs
+not ok 3 - test/jc041-entry.test.mjs
+  ---
+  duration_ms: 219.354828
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/jc041-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/jc044-entry.test.mjs
+not ok 4 - test/jc044-entry.test.mjs
+  ---
+  duration_ms: 220.460943
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/jc044-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/jc057-entry.test.mjs
+not ok 5 - test/jc057-entry.test.mjs
+  ---
+  duration_ms: 218.759952
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/jc057-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/jc066-entry.test.mjs
+not ok 6 - test/jc066-entry.test.mjs
+  ---
+  duration_ms: 216.590054
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/jc066-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: test/kernel-binding.test.mjs
+ok 7 - test/kernel-binding.test.mjs
+  ---
+  duration_ms: 114.497893
+  type: 'test'
+  ...
+# Subtest: test/msjc0405-entry.test.mjs
+not ok 8 - test/msjc0405-entry.test.mjs
+  ---
+  duration_ms: 224.337691
+  type: 'test'
+  location: '/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites/test/msjc0405-entry.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 1
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1657.219056

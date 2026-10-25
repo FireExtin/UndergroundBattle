@@ -1,0 +1,47 @@
+{"cwd":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites","command":["/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node","--test","--test-concurrency=1","test/integration.test.mjs","test/jc035-entry.test.mjs","test/jc041-entry.test.mjs","test/jc044-entry.test.mjs","test/jc057-entry.test.mjs","test/jc066-entry.test.mjs","test/kernel-binding.test.mjs","test/msjc0405-entry.test.mjs"],"CURRENT_CLOCK_WORKER":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/current-worker/server/worker.js"}
+✖ test/integration.test.mjs (229.360183ms)
+✖ test/jc035-entry.test.mjs (227.526884ms)
+✖ test/jc041-entry.test.mjs (234.861073ms)
+✖ test/jc044-entry.test.mjs (237.775156ms)
+✖ test/jc057-entry.test.mjs (232.963233ms)
+✖ test/jc066-entry.test.mjs (217.839207ms)
+✔ test/kernel-binding.test.mjs (121.699583ms)
+✖ test/msjc0405-entry.test.mjs (227.448034ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1736.921003
+
+✖ failing tests:
+
+test at test/integration.test.mjs:1:1
+✖ test/integration.test.mjs (229.360183ms)
+  'test failed'
+
+test at test/jc035-entry.test.mjs:1:1
+✖ test/jc035-entry.test.mjs (227.526884ms)
+  'test failed'
+
+test at test/jc041-entry.test.mjs:1:1
+✖ test/jc041-entry.test.mjs (234.861073ms)
+  'test failed'
+
+test at test/jc044-entry.test.mjs:1:1
+✖ test/jc044-entry.test.mjs (237.775156ms)
+  'test failed'
+
+test at test/jc057-entry.test.mjs:1:1
+✖ test/jc057-entry.test.mjs (232.963233ms)
+  'test failed'
+
+test at test/jc066-entry.test.mjs:1:1
+✖ test/jc066-entry.test.mjs (217.839207ms)
+  'test failed'
+
+test at test/msjc0405-entry.test.mjs:1:1
+✖ test/msjc0405-entry.test.mjs (227.448034ms)
+  'test failed'

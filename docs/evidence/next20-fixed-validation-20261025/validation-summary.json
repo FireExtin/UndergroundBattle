@@ -1,0 +1,439 @@
+{
+  "status": "VALIDATION_COMPLETE_WITH_RETAINED_BASELINE_FAILURES; CARD_ADMISSION_CLOSED",
+  "at_utc": "2026-10-25T08:59:21.252980+00:00",
+  "fixed_source_sha": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "full_validation_docs_base": "98906bbd207dc37617de7c8bb0000c170cbfc0c5",
+  "latest_test_checkpoint": "e853d8df54740a4c6633faddf091c6761a391afb",
+  "new_test_commits": [
+    "ed6d72a0aa4bb8c28be8596e4869233b78a77880",
+    "927e18191c07d1575470a9995b7ec4a53933d112",
+    "e853d8df54740a4c6633faddf091c6761a391afb"
+  ],
+  "production_changed_since_fixed_sha": false,
+  "catalog": {
+    "registered": 277,
+    "supported": 233,
+    "unsupported": 44,
+    "closed": [
+      "BQ033",
+      "BQ034",
+      "CQ25",
+      "XG25",
+      "BQ009"
+    ]
+  },
+  "fixed_runs": {
+    "native_workspace": {
+      "passed": 2629,
+      "failed": 2,
+      "lib_passed": 2557,
+      "lib_failed": 2,
+      "integration_passed": 72,
+      "exit_code": 101,
+      "failures": [
+        "control_tests::control_simultaneous_nonhuman_death_card_still_invalid_for_jz27",
+        "deck_seal_search_draft::deck_seal_draft_dream_filter_includes_transaction_and_character"
+      ]
+    },
+    "wasm_release_build": {
+      "exit_code": 0,
+      "wasm_bytes": 8651037,
+      "wasm_sha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02"
+    },
+    "worker_and_web_build": {
+      "exit_code": 0,
+      "includes": [
+        "tsc app",
+        "tsc node",
+        "Vite",
+        "wrangler deploy --dry-run"
+      ],
+      "deployed": false
+    },
+    "fresh_native_wasm_replay": {
+      "exit_code": 0,
+      "cases": 483,
+      "transitions": 25135,
+      "views": 99903,
+      "rejected_commands": 362,
+      "rejected_deck_creations": 42,
+      "index_raw_sha256": "4722b07a3231ce6f5346b25f9b0c2bd51381d9883f36148f22dfc1af57b3a908",
+      "payloads_local_only": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/replay",
+      "new_four_card_natural_reachability": false
+    },
+    "ui_full": {
+      "files": 159,
+      "files_passed": 121,
+      "files_failed": 38,
+      "tests_passed": 1156,
+      "tests_failed": 4,
+      "collection_binding_failures": 35,
+      "count_assertion_files": 3,
+      "exit_code": 1
+    },
+    "worker_full": {
+      "node_reported_items": 91,
+      "passed": 40,
+      "failed": 51,
+      "failure_classification": {
+        "whole_manifest_binding": 39,
+        "compiler_input_cards_json_binding": 3,
+        "catalog_count_assertions": 9
+      },
+      "exit_code": 1,
+      "note": "Node totals include failed file imports, not 91 completed gameplay cases"
+    }
+  },
+  "targeted_retests": {
+    "native_control": {
+      "source_sha": "927e18191c07d1575470a9995b7ec4a53933d112",
+      "passed": 1,
+      "failed": 0
+    },
+    "native_dream": {
+      "source_sha": "927e18191c07d1575470a9995b7ec4a53933d112",
+      "passed": 1,
+      "failed": 0
+    },
+    "ui_inventory": {
+      "source_sha": "ed6d72a0aa4bb8c28be8596e4869233b78a77880",
+      "files": 3,
+      "passed": 34,
+      "failed": 0,
+      "wasm_artifact_source": "1bd07762824e138c0560863130ec7eacaddbf9c8"
+    },
+    "worker_inventory": {
+      "source_sha": "e853d8df54740a4c6633faddf091c6761a391afb",
+      "files": 8,
+      "passed": 9,
+      "failed": 0,
+      "wasm_artifact_source": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "execution": "authorized local process/loopback permission; restricted startup failures retained"
+    }
+  },
+  "old_checkpoint_comparison": {
+    "source_sha": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+    "both_native_failures_pass_at_old_sha": true,
+    "representative_old_fixture_already_incompatible": true,
+    "fixture_stored_manifest": "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e",
+    "old_candidate_manifest": "bdb004899dd74da289cc278177b960fee97dec4657f93f120ad09a1c47fcd1f0",
+    "fixed_candidate_manifest": "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c",
+    "old_full_ui_worker": "NOT_RUN; representative mismatch does not establish every old test result"
+  },
+  "review": {
+    "transaction_identity": "fixed by shared fresh-snapshot and monotone/immediate frame-ID check; direct source equality would be wrong",
+    "bq034_empty_branches": "post_frame cleared only for same frame; existing MysticContinue retained; no duplicate continuation",
+    "bq079": "No reachable discrepancy: delayed source is immutable XG25; commit_owner_grave only observes printed name 无名尸体. Frozen observers still used by ordinary death batch. No production change made."
+  },
+  "new_four_core_native": {
+    "unique_tests": 52,
+    "command_based_with_prepared_layouts": 45,
+    "catalog_deck_gates": 3,
+    "helpers": 4,
+    "not_full_card_admission": true
+  },
+  "remaining": [
+    "BQ009 legal hand/deck-to-own-society supply producer absent; prepared seals do not prove natural reachability",
+    "Fresh source-bound fixture generation/export per blocked Worker/UI suite still required; originals untouched",
+    "Four-card full RoomEnvelope/WASM/Worker/UI lifecycle and actual browser play NOT_RUN",
+    "JZ35/XG25 Host path unreachable under current subtype rules; no fabricated Host",
+    "All multi-XG25, elimination/terminal and granted/conditional/multi-op caller combinations NOT_RUN",
+    "Independent parent review pending",
+    "Latest workflow listing unavailable due connector URL allowlist; CI trigger guarantee unverified; no push"
+  ],
+  "rule_blocks": [],
+  "preservation": {
+    "original_32_count": 32,
+    "original_32_hashes_unchanged": true,
+    "original_table": "97EC1A99E58C untouched",
+    "public_site_deployment": "untouched",
+    "original_source_sha": "83e564dcdda460e4603aaf2d86494da18085b80f",
+    "source_clone_clean": true,
+    "original_history_preserved": true
+  },
+  "logs": [
+    {
+      "file": "logs/baseline-ff-binding.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-binding.json",
+      "raw_sha256": "36a5890c66fabf748526d30b37175ba9d83767ca51ae12403cc09ddda3817a2d",
+      "archived_sha256": "36a5890c66fabf748526d30b37175ba9d83767ca51ae12403cc09ddda3817a2d",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/baseline-ff-binding.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-binding.log",
+      "raw_sha256": "1baa18642bd9ca7d2584209ff82328c5668a837434c3854db78834f78e5cbdf5",
+      "archived_sha256": "1baa18642bd9ca7d2584209ff82328c5668a837434c3854db78834f78e5cbdf5",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/baseline-ff-control.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-control.json",
+      "raw_sha256": "591f876b1ad0f888a13ee683d0445490aab4c95237695dddd9814db14ec30540",
+      "archived_sha256": "591f876b1ad0f888a13ee683d0445490aab4c95237695dddd9814db14ec30540",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/baseline-ff-control.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-control.log",
+      "raw_sha256": "9d2736c0b479ed3cd079c7c13baf89511fbe6e8e540d4b132f72b73292b3f102",
+      "archived_sha256": "7653c7e44e5dbfa8e9ba43c42de1518ad213ee73f33eb119fc2af20caf1df5dc",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/baseline-ff-control.log.raw.gz",
+      "raw_gzip_sha256": "cab64c80602467838290545d7baecaa189557d3e4cc32d625843498f2306b06b"
+    },
+    {
+      "file": "logs/baseline-ff-dream.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-dream.json",
+      "raw_sha256": "89dfe9731eabe7093642c3a7754c017f58cb7985297ab532ca68a0f0ef12178b",
+      "archived_sha256": "89dfe9731eabe7093642c3a7754c017f58cb7985297ab532ca68a0f0ef12178b",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/baseline-ff-dream.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-dream.log",
+      "raw_sha256": "3812239d303fccaf5c4eaca9b6e83711efbad3428446206918290890a06589bf",
+      "archived_sha256": "5fa57dfab288cfca0631c1d173a23355a073902b610228f1332f35c7a5f97c4e",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/baseline-ff-dream.log.raw.gz",
+      "raw_gzip_sha256": "3ecefc85bb458d114f5056989eb34c6e626aea79bdd4c13f908acfad9cd0e193"
+    },
+    {
+      "file": "logs/baseline-ff-wasm-build.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-wasm-build.json",
+      "raw_sha256": "7fd08e0b4364c964f3a51b24e16401777bba62f444d06b54559be2546025e448",
+      "archived_sha256": "7fd08e0b4364c964f3a51b24e16401777bba62f444d06b54559be2546025e448",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/baseline-ff-wasm-build.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-wasm-build.log",
+      "raw_sha256": "b78d346a63b3ecaca958f620c8ff1df7483bb35601905244e56ea4f37b54f758",
+      "archived_sha256": "b78d346a63b3ecaca958f620c8ff1df7483bb35601905244e56ea4f37b54f758",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/full-native.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-native.json",
+      "raw_sha256": "80f5ba2e4c0620b25241a9bbbb854d624ffc0bcb4ace94b303d4f7e93dc20277",
+      "archived_sha256": "80f5ba2e4c0620b25241a9bbbb854d624ffc0bcb4ace94b303d4f7e93dc20277",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/full-native.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-native.log",
+      "raw_sha256": "65bac03b49e49f412a3344e359b7ddc54259f4023aa70e3686d75a141a256341",
+      "archived_sha256": "65bac03b49e49f412a3344e359b7ddc54259f4023aa70e3686d75a141a256341",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/full-ui.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-ui.json",
+      "raw_sha256": "a4db5b081a386e8211fdd2a2b11f150ae69d2de71ee257c61bfd9cec4cf48056",
+      "archived_sha256": "a4db5b081a386e8211fdd2a2b11f150ae69d2de71ee257c61bfd9cec4cf48056",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/full-ui.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-ui.log",
+      "raw_sha256": "31b26c98818e486a01f217e0c30f40aee2418840564f73303ded4b30dc823121",
+      "archived_sha256": "e7c3f2ed710583c596cf935534e124d7a8d8901b5a2702b34c7a18010d39ece9",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/full-ui.log.raw.gz",
+      "raw_gzip_sha256": "3bd9fb0527e1b4ba962bb353da2b733557f21d446cd282f5b4ddde25ae91308b"
+    },
+    {
+      "file": "logs/full-worker.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-worker.json",
+      "raw_sha256": "1559f15c3e005c6352160d596eaf86d7315bdf2666f4165e43a0e9be7b3d0cf3",
+      "archived_sha256": "1559f15c3e005c6352160d596eaf86d7315bdf2666f4165e43a0e9be7b3d0cf3",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/full-worker.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-worker.log",
+      "raw_sha256": "caf10023381edb4f98046d74a25e0584f6bdb6e4124a010bec40e59faded7823",
+      "archived_sha256": "79718e0d5858d943e78531f77f901a7dc84389ba943353c6b65d444bf824efc1",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/full-worker.log.raw.gz",
+      "raw_gzip_sha256": "0aabfde76e67f952cf9502572a6e287376dae53a1c8101333ad277e8c0b2eda6"
+    },
+    {
+      "file": "logs/post-final-native-control.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-final-native-control.json",
+      "raw_sha256": "d083e90f353ebf45610af2898dab6e6ee2f2071c7f8b4ee7304c4faaf46a2620",
+      "archived_sha256": "d083e90f353ebf45610af2898dab6e6ee2f2071c7f8b4ee7304c4faaf46a2620",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-final-native-control.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-final-native-control.log",
+      "raw_sha256": "a95a95741003b280e6996dbaa1300ae6a9781d01740e8944b77552bf60f377cb",
+      "archived_sha256": "16fdc89b865ec4536f0033a8249fb22ee0f302a574622dbc3a12eccbf81805d6",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/post-final-native-control.log.raw.gz",
+      "raw_gzip_sha256": "b07a65769f6a29c2aa1d001b564e252bfd07bed844db89d9e408f1653eb29390"
+    },
+    {
+      "file": "logs/post-final-native-dream.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-final-native-dream.json",
+      "raw_sha256": "28c1a45f77b5336c976007009e73581ad358d7ab77f7a41dd64f0991043ddce6",
+      "archived_sha256": "28c1a45f77b5336c976007009e73581ad358d7ab77f7a41dd64f0991043ddce6",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-final-native-dream.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-final-native-dream.log",
+      "raw_sha256": "93a6a0a07b63f2600fe84062420c4660c47e64ed8f24508ad34c5ca184ff8985",
+      "archived_sha256": "ca0b3b5013634de6bac7290b9162d2a3de0887ee80be0a070dbba06325c98e9d",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/post-final-native-dream.log.raw.gz",
+      "raw_gzip_sha256": "b8304b6426c2b750d309f726a0f3cc89e3d4236f981d28568a8682ee388142ab"
+    },
+    {
+      "file": "logs/post-inventory-control.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-inventory-control.json",
+      "raw_sha256": "61b718f1bda78761a41b1e18fea995051470a50e6e947f4404d9c149795d2438",
+      "archived_sha256": "61b718f1bda78761a41b1e18fea995051470a50e6e947f4404d9c149795d2438",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-inventory-control.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-inventory-control.log",
+      "raw_sha256": "90f06dea45eab117e17285152427be304e6c3682ec96eac3e24a86a225d7dadb",
+      "archived_sha256": "90f06dea45eab117e17285152427be304e6c3682ec96eac3e24a86a225d7dadb",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-inventory-ui.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-inventory-ui.json",
+      "raw_sha256": "ff4a566617ed193e5e5d2d5752552dbddb114a50a62fc419866c0a88d2e307e2",
+      "archived_sha256": "ff4a566617ed193e5e5d2d5752552dbddb114a50a62fc419866c0a88d2e307e2",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-inventory-ui.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-inventory-ui.log",
+      "raw_sha256": "10452b447a7f7f63207c845ef5c35c9e3d4c1574860be43983fb701019aee218",
+      "archived_sha256": "93081c2ed9d08367681a272ba27a97d35befc6e27f9204b7e95fa8ca366d6285",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/post-inventory-ui.log.raw.gz",
+      "raw_gzip_sha256": "daf31f9c42b8026db3678d095a29601ed1f7833a7f94b7018c297fcbb99c6f05"
+    },
+    {
+      "file": "logs/post-worker-authorized.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-authorized.json",
+      "raw_sha256": "8244655069724df110d6090a11f488d514c024ccefa40616da0ebe7135fd780c",
+      "archived_sha256": "8244655069724df110d6090a11f488d514c024ccefa40616da0ebe7135fd780c",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-worker-authorized.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-authorized.log",
+      "raw_sha256": "6ff6dfc870739e5fe4854c03a53bdcd4920ac70680614b232f33f33d43a41b6a",
+      "archived_sha256": "6ff6dfc870739e5fe4854c03a53bdcd4920ac70680614b232f33f33d43a41b6a",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-worker-diagnostic.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-diagnostic.json",
+      "raw_sha256": "5a7239814ce00616d62157981c56f90fedff010cd525d435c534aee73974564c",
+      "archived_sha256": "5a7239814ce00616d62157981c56f90fedff010cd525d435c534aee73974564c",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-worker-diagnostic.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-diagnostic.log",
+      "raw_sha256": "b436bf6f2258f77338fa4fb16aab94c406bcd23f8643aaf89ba3774abf9322ff",
+      "archived_sha256": "b436bf6f2258f77338fa4fb16aab94c406bcd23f8643aaf89ba3774abf9322ff",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-worker-targeted.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-targeted.json",
+      "raw_sha256": "f58cc992a6500b4ea548b34a9cda4f2d5ee25b8ef949a9c05f96e9a2ba03bc8e",
+      "archived_sha256": "f58cc992a6500b4ea548b34a9cda4f2d5ee25b8ef949a9c05f96e9a2ba03bc8e",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/post-worker-targeted.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-targeted.log",
+      "raw_sha256": "fa9c6bd18cf67925ddf2991e9858fe770ff959bf094ac06f3847681de01190ac",
+      "archived_sha256": "fa9c6bd18cf67925ddf2991e9858fe770ff959bf094ac06f3847681de01190ac",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-build.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-build.json",
+      "raw_sha256": "fba9aac1348691a6e3cd1abbcbde2e914a2a05abc72d3e89bf9a0ac2ab9b50e1",
+      "archived_sha256": "fba9aac1348691a6e3cd1abbcbde2e914a2a05abc72d3e89bf9a0ac2ab9b50e1",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-build.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-build.log",
+      "raw_sha256": "214de4898fee01e9ca04d7f73e7feaf4e7bf3ea9621cda69aa134ace9e15ffe3",
+      "archived_sha256": "214de4898fee01e9ca04d7f73e7feaf4e7bf3ea9621cda69aa134ace9e15ffe3",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-native-fixtures.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-native-fixtures.json",
+      "raw_sha256": "fafba340b28897a22e9d450f476658e2ca54ac95299706013d119be192d43bbb",
+      "archived_sha256": "fafba340b28897a22e9d450f476658e2ca54ac95299706013d119be192d43bbb",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-native-fixtures.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-native-fixtures.log",
+      "raw_sha256": "0c30ac88a367c36ea8bb2630dfb25bd209bf1851c54f7cc63f2fced040212a2b",
+      "archived_sha256": "0c30ac88a367c36ea8bb2630dfb25bd209bf1851c54f7cc63f2fced040212a2b",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-replay.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-replay.json",
+      "raw_sha256": "29765e1542f206d6a5d97e175aa6e11b6bb4929c8a44502353b4c4327f0a1ccd",
+      "archived_sha256": "29765e1542f206d6a5d97e175aa6e11b6bb4929c8a44502353b4c4327f0a1ccd",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/wasm-replay.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-replay.log",
+      "raw_sha256": "ad083b8a4951ecd635b23b6bb437565db7163aaa80a89cc48e7b8885a17e18d0",
+      "archived_sha256": "ad083b8a4951ecd635b23b6bb437565db7163aaa80a89cc48e7b8885a17e18d0",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/worker-build.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/worker-build.json",
+      "raw_sha256": "99333892fa743be1e53dc5f80b71e6d16cb87c40649e29221bb6bd7e2cbe6d54",
+      "archived_sha256": "99333892fa743be1e53dc5f80b71e6d16cb87c40649e29221bb6bd7e2cbe6d54",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/worker-build.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/worker-build.log",
+      "raw_sha256": "4925e935abf6ff7695e0745c866dfc33dbc20bb95550cc1ba02a0c63c566c026",
+      "archived_sha256": "bc2b6a7fe254908b6fa784d5624107f7a30b727647550ddfe141fc46fb6b9760",
+      "trailing_whitespace_normalized": true,
+      "raw_gzip_file": "logs/worker-build.log.raw.gz",
+      "raw_gzip_sha256": "173405f13e526fb34d88d8b5b130121cee30693a7134427359bb181057dece46"
+    },
+    {
+      "file": "logs/worker-clock.json",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/worker-clock.json",
+      "raw_sha256": "031a71adc94cd1ec3c003701f6e8d442735d7190bce3aa631af8f7775fc4fb64",
+      "archived_sha256": "031a71adc94cd1ec3c003701f6e8d442735d7190bce3aa631af8f7775fc4fb64",
+      "trailing_whitespace_normalized": false
+    },
+    {
+      "file": "logs/worker-clock.log",
+      "raw_source": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/worker-clock.log",
+      "raw_sha256": "b886ed25d4ca817570b91d25c2724d242d7d59f87581aa780be92bf0426afd84",
+      "archived_sha256": "b886ed25d4ca817570b91d25c2724d242d7d59f87581aa780be92bf0426afd84",
+      "trailing_whitespace_normalized": false
+    }
+  ],
+  "retest_policy": "Full fixed-SHA failures retained. Only affected tests rerun after test-only edits; post-fix full suites were NOT_RUN."
+}

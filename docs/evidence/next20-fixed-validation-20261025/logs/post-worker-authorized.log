@@ -1,0 +1,74 @@
+{"cwd":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/sites","command":["/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node","--test","--test-reporter=tap","--test-concurrency=1","test/integration.test.mjs","test/jc035-entry.test.mjs","test/jc041-entry.test.mjs","test/jc044-entry.test.mjs","test/jc057-entry.test.mjs","test/jc066-entry.test.mjs","test/kernel-binding.test.mjs","test/msjc0405-entry.test.mjs"],"CURRENT_CLOCK_WORKER":"/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/current-worker/server/worker.js"}
+TAP version 13
+# Subtest: real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen
+ok 1 - real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen
+  ---
+  duration_ms: 3144.049251
+  type: 'test'
+  ...
+# {"currentVersion":"rust-v0.2.112-shared-keyword-rewards","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+# Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/tmp/hegemony-worker-d1-BphT3g
+# Subtest: JC035 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 2 - JC035 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1204.282067
+  type: 'test'
+  ...
+# {"societyId":"MSJC03","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: JC041 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 3 - JC041 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1196.065253
+  type: 'test'
+  ...
+# {"societyId":"MSJC03","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: JC044 in MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 4 - JC044 in MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1195.351457
+  type: 'test'
+  ...
+# {"societyId":"MSJC04","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: JC057 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 5 - JC057 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1178.523681
+  type: 'test'
+  ...
+# {"societyId":"MSJC05","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: JC066 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 6 - JC066 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1186.157688
+  type: 'test'
+  ...
+# {"societyId":"MSJC05","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: candidate package contains exactly the current ABI112 bytes and catalog identity
+ok 7 - candidate package contains exactly the current ABI112 bytes and catalog identity
+  ---
+  duration_ms: 74.218917
+  type: 'test'
+  ...
+# Subtest: MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 8 - MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1185.100654
+  type: 'test'
+  ...
+# {"societyId":"MSJC04","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+# Subtest: MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+ok 9 - MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen
+  ---
+  duration_ms: 1124.606771
+  type: 'test'
+  ...
+# {"societyId":"MSJC05","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13118.128677

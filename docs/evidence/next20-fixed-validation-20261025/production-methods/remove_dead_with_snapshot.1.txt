@@ -1,0 +1,46 @@
+1547:     pub(crate) fn remove_dead_with_snapshot(
+1548:         &mut self,
+1549:         target: &str,
+1550:         cause: RemovalCause,
+1551:         simultaneous_source: Option<SourceSnapshot>,
+1552:         ghoul_sources: Option<&[SourceSnapshot]>,
+1553:         cq18_observations: Option<Vec<Declaration>>,
+1554:     ) -> Option<crate::death_observers::CharacterDeathReceipt> {
+1555:         // Host departure can remove an attached control grant. Freeze before it;
+1556:         // an already captured simultaneous lethal-set snapshot remains authoritative.
+1557:         let snapshot = simultaneous_source.or_else(|| self.in_play(target)
+1558:             .map(|(region, c)| self.source_snapshot(c, region)));
+1559:         let was_renown = self.in_play(target).is_some_and(|(_, c)| self.has_renown(c));
+1560:         if let Some((_, c)) = self.leave_in_play_observed(target,cq18_observations) {
+1561:             let snapshot = snapshot.expect("board departure has a pre-departure snapshot");
+1562:             let controller = snapshot.card.controller;
+1563:             let character =
+1564:                 !snapshot.card.face_down && card(&snapshot.card.definition).kind == "character";
+1565:             let owner = c.owner;
+1566:             let c = self.reset_zone_card(c);
+1567:             let deferred = character && snapshot.card.definition == "XG25";
+1568:             let grave_instance = if deferred { String::new() } else { c.id.clone() };
+1569:             if deferred { self.hold_pregrave_death(&snapshot, c); }
+1570:             else { self.commit_owner_grave(c, ghoul_sources); }
+1571:             self.note(format!(
+1572:                 "{}：{}",
+1573:                 card(&snapshot.card.definition).name,
+1574:                 match cause {
+1575:                     RemovalCause::Sacrifice => "牺牲",
+1576:                     RemovalCause::Destroy => "消灭",
+1577:                     RemovalCause::Lethal => "死亡",
+1578:                 }
+1579:             ));
+1580:             if character {
+1581:                 self.emit_event(controller, snapshot, Event::Death);
+1582:                 return Some(crate::death_observers::CharacterDeathReceipt {
+1583:                     old_instance: target.into(),
+1584:                     grave_instance,
+1585:                     deferred_death: deferred.then(|| target.to_owned()),
+1586:                     owner,
+1587:                     was_renown,
+1588:                 });
+1589:             }
+1590:         }
+1591:         None
+1592:     }

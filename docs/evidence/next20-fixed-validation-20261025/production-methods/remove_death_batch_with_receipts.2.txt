@@ -1,0 +1,6 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_observers.rs:117-121
+117:             let old_tail = std::mem::replace(&mut self.effects, emitted);
+118:             self.effects.extend(old_tail);
+119:         }
+120:         receipts
+121:     }

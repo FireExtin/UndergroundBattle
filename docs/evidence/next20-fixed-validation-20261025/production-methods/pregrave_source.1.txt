@@ -1,0 +1,24 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:153-175
+153:     fn pregrave_source(&self, s: &SourceSnapshot) -> RuleResult<()> {
+154:         let c = &s.card;
+155:         if c.definition != "XG25"
+156:             || c.face_down
+157:             || c.owner >= self.players.len()
+158:             || c.controller >= self.players.len()
+159:             || !self.mystic_instance_valid(&c.id)
+160:             || s.region.is_none_or(|r| r >= self.regions.len())
+161:             || s.source_region_instance
+162:                 .as_deref()
+163:                 .is_none_or(|id| !self.mystic_instance_valid(id))
+164:             || s.play_source.is_some()
+165:             || s.attachment_host_instance.is_some()
+166:             || s.death_echo.is_some()
+167:             || s.observed_death.is_some()
+168:             || s.observed_exposure.is_some()
+169:             || s.observed_mobility_grant.is_some()
+170:             || self.batch3_physical_cards().any(|live| live.id == c.id)
+171:         {
+172:             return Err("待定死亡必须属于已离场的原正面伥鬼及其原地区".into());
+173:         }
+174:         self.mobility_immutable_identity(c)
+175:     }

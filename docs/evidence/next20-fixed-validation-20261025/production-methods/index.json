@@ -1,0 +1,295 @@
+[
+  {
+    "file": "rust-game/src/resolution.rs",
+    "method": "remove_dead_with_snapshot",
+    "start": 1547,
+    "end": 1592,
+    "lines": 46,
+    "chunks": [
+      "remove_dead_with_snapshot.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "hold_pregrave_death",
+    "start": 58,
+    "end": 69,
+    "lines": 12,
+    "chunks": [
+      "hold_pregrave_death.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "death_boundary_waits",
+    "start": 70,
+    "end": 78,
+    "lines": 9,
+    "chunks": [
+      "death_boundary_waits.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "record_pregrave_choice",
+    "start": 82,
+    "end": 105,
+    "lines": 24,
+    "chunks": [
+      "record_pregrave_choice.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "decline_pregrave_declaration",
+    "start": 106,
+    "end": 112,
+    "lines": 7,
+    "chunks": [
+      "decline_pregrave_declaration.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "cancel_pregrave_frame",
+    "start": 113,
+    "end": 119,
+    "lines": 7,
+    "chunks": [
+      "cancel_pregrave_frame.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "defer_death_caller",
+    "start": 122,
+    "end": 152,
+    "lines": 31,
+    "chunks": [
+      "defer_death_caller.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "validate_xg25_death_frame",
+    "start": 197,
+    "end": 249,
+    "lines": 53,
+    "chunks": [
+      "validate_xg25_death_frame.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "resolve_xg25_death",
+    "start": 250,
+    "end": 275,
+    "lines": 26,
+    "chunks": [
+      "resolve_xg25_death.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "commit_pregrave_fallback",
+    "start": 276,
+    "end": 294,
+    "lines": 19,
+    "chunks": [
+      "commit_pregrave_fallback.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "finish_pregrave_death",
+    "start": 295,
+    "end": 330,
+    "lines": 36,
+    "chunks": [
+      "finish_pregrave_death.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "resume_death_caller",
+    "start": 506,
+    "end": 521,
+    "lines": 16,
+    "chunks": [
+      "resume_death_caller.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/next20_black_wraiths.rs",
+    "method": "cq25_search_start",
+    "start": 408,
+    "end": 430,
+    "lines": 23,
+    "chunks": [
+      "cq25_search_start.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/next20_black_wraiths.rs",
+    "method": "cq25_search_finish",
+    "start": 431,
+    "end": 491,
+    "lines": 61,
+    "chunks": [
+      "cq25_search_finish.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/next20_black_wraiths.rs",
+    "method": "cq25_observe_death",
+    "start": 276,
+    "end": 313,
+    "lines": 38,
+    "chunks": [
+      "cq25_observe_death.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/next20_black_wraiths.rs",
+    "method": "cq25_validate_search",
+    "start": 314,
+    "end": 372,
+    "lines": 59,
+    "chunks": [
+      "cq25_validate_search.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/blue_minimum.rs",
+    "method": "jz24_complete",
+    "start": 188,
+    "end": 218,
+    "lines": 31,
+    "chunks": [
+      "jz24_complete.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/blue_minimum.rs",
+    "method": "jz24_next",
+    "start": 147,
+    "end": 187,
+    "lines": 41,
+    "chunks": [
+      "jz24_next.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/jz35.rs",
+    "method": "jz35_resolve",
+    "start": 161,
+    "end": 167,
+    "lines": 7,
+    "chunks": [
+      "jz35_resolve.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/jz35.rs",
+    "method": "jz35_return_hosts",
+    "start": 138,
+    "end": 160,
+    "lines": 23,
+    "chunks": [
+      "jz35_return_hosts.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_observers.rs",
+    "method": "remove_death_batch_with_receipts",
+    "start": 32,
+    "end": 121,
+    "lines": 90,
+    "chunks": [
+      "remove_death_batch_with_receipts.1.txt",
+      "remove_death_batch_with_receipts.2.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "pregrave_source",
+    "start": 153,
+    "end": 175,
+    "lines": 23,
+    "chunks": [
+      "pregrave_source.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "validate_xg25_death_source",
+    "start": 176,
+    "end": 196,
+    "lines": 21,
+    "chunks": [
+      "validate_xg25_death_source.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "validate_death_caller",
+    "start": 377,
+    "end": 505,
+    "lines": 129,
+    "chunks": [
+      "validate_death_caller.1.txt",
+      "validate_death_caller.2.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/death_continuation.rs",
+    "method": "validate_death_continuations",
+    "start": 522,
+    "end": 630,
+    "lines": 109,
+    "chunks": [
+      "validate_death_continuations.1.txt",
+      "validate_death_continuations.2.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/pack_a_contest.rs",
+    "method": "pack_a_transaction_matches",
+    "start": 295,
+    "end": 310,
+    "lines": 16,
+    "chunks": [
+      "pack_a_transaction_matches.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/next20_blue_vampires.rs",
+    "method": "bq034_complete_shown",
+    "start": 1230,
+    "end": 1245,
+    "lines": 16,
+    "chunks": [
+      "bq034_complete_shown.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/mystic_contest.rs",
+    "method": "mystic_after_next",
+    "start": 371,
+    "end": 403,
+    "lines": 33,
+    "chunks": [
+      "mystic_after_next.1.txt"
+    ]
+  },
+  {
+    "file": "rust-game/src/batch3_ghoul.rs",
+    "method": "commit_owner_grave",
+    "start": 26,
+    "end": 39,
+    "lines": 14,
+    "chunks": [
+      "commit_owner_grave.1.txt"
+    ]
+  }
+]

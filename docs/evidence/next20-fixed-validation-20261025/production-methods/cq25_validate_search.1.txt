@@ -1,0 +1,59 @@
+314:     fn cq25_validate_search(&self, f: &ResolutionFrame) -> RuleResult<()> {
+315:         let [Step {
+316:             op:
+317:                 Op::Next20Wraith(WraithProgram::TigerSearch {
+318:                     observation: Some(o),
+319:                 }),
+320:             context,
+321:         }] = f.steps.as_slice()
+322:         else {
+323:             return Err("伥虎缺少实际死亡观察".into());
+324:         };
+325:         if f.source.card.definition != "CQ25"
+326:             || f.source.card.face_down
+327:             || f.source.card.controller != f.actor
+328:             || f.actor >= self.players.len()
+329:             || !self.mystic_instance_valid(&f.source.card.id)
+330:             || f.source.card.owner >= self.players.len()
+331:             || f.source.play_source.is_some()
+332:             || f.source.attachment_host_instance.is_some()
+333:             || f.source.death_echo.is_some()
+334:             || f.source.observed_death.is_some()
+335:             || f.source.observed_exposure.is_some()
+336:             || f.source.observed_mobility_grant.is_some()
+337:             || f.ability_key != SEARCH
+338:             || *context != f.actor
+339:             || o.turn != self.turn
+340:             || !self
+341:                 .mystic_instance_number(&o.dead.card.id)
+342:                 .zip(self.mystic_instance_number(&o.event_id))
+343:                 .is_some_and(|(d, e)| d < e)
+344:             || o.dead.card.owner >= self.players.len()
+345:             || o.dead.card.controller >= self.players.len()
+346:             || o.dead.card.face_down
+347:             || !catalog::catalog()
+348:                 .cards
+349:                 .iter()
+350:                 .any(|d| d.id == o.dead.card.definition && d.kind == "character")
+351:             || !self.is_enemy(f.actor, &o.dead.card)
+352:             || f.source.region.is_none_or(|r| r >= self.regions.len())
+353:             || f.source.region != o.dead.region
+354:             || f.source
+355:                 .source_region_instance
+356:                 .as_deref()
+357:                 .is_none_or(|id| !self.mystic_instance_valid(id))
+358:             || f.source.source_region_instance != o.dead.source_region_instance
+359:             || !f.already_paid.is_empty()
+360:             || !f.resource_payments.is_empty()
+361:             || !f.targets.is_empty()
+362:             || f.chosen_region.is_some()
+363:             || f.cursor > 1
+364:             || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
+365:             || f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)
+366:         {
+367:             return Err("伥虎只观察原地区敌方角色的实际死亡".into());
+368:         }
+369:         self.mobility_immutable_identity(&f.source.card)?;
+370:         self.mobility_immutable_identity(&o.dead.card)?;
+371:         Ok(())
+372:     }

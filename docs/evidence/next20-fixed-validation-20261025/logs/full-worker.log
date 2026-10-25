@@ -1,0 +1,1391 @@
+✔ historical assassin fixture rejects without altering persisted data (1072.463671ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/batch20-review-normal-current.test.mjs:7:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/batch20-review-normal-current.test.mjs (438.715838ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/batch3-abi94-integration.test.mjs:20:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/batch3-abi94-integration.test.mjs (345.193419ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/batch4-abi95-integration.test.mjs:8:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/batch4-abi95-integration.test.mjs (441.276113ms)
+✔ ABI95 normal legal HTTP game reaches terminal from a fresh lobby (22919.016917ms)
+ℹ {"normalCommands":201,"turn":4,"phase":"action"}
+ℹ {"normalCommands":401,"turn":7,"phase":"confrontation"}
+ℹ {"normalCommands":601,"turn":11,"phase":"action"}
+ℹ {"normalCommands":801,"turn":14,"phase":"confrontation"}
+ℹ {"normalCommands":1001,"turn":17,"phase":"confrontation"}
+ℹ {"normalCommands":1201,"turn":21,"phase":"confrontation"}
+ℹ {"engine":"rust-v0.2.112-shared-keyword-rewards","normalCommands":1216,"turn":21,"winnerTeam":0,"terminal":true,"legalInputsOnly":true}
+✔ single ABI95 Worker rejects original ABI94 opaque room with410 and preserves D1 (1102.749532ms)
+ℹ {"currentOnly":true,"originalAbi94":true,"http410":4,"reopened":true,"opaqueBytesUnchanged":true,"commandsJournalUnchanged":true,"migration":false}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/bounded-entry-search.test.mjs:14:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/bounded-entry-search.test.mjs (365.028488ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+    at assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)
+    at validateBq035Bundle (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/bq035-oracle.mjs:44:3)
+    at loadBq035Fixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/bq035-oracle.mjs:85:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/bq035-integration.test.mjs:15:17 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977',
+  expected: '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/bq035-integration.test.mjs (534.682964ms)
+✔ historical control-pair fixture rejects without altering persisted data (1026.572337ms)
+✔ current-only HTTP/D1 preserves u64, commands and receipts; retired versions return 410 without writes (2318.858864ms)
+ℹ {"currentEngine":"rust-v0.2.112-shared-keyword-rewards","wasmModules":1,"accepted":1,"receiptAfterReopen":true,"retiredHeaderIdentities":16,"rejected":64,"opaqueStateExact":true,"seedU64Exact":true,"syntheticDatabaseRetained":true}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/deck-seal-search.test.mjs:13:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/deck-seal-search.test.mjs (355.035224ms)
+✔ historical fire-scholar fixture rejects without altering persisted data (1063.412151ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/gray-lock.test.mjs:13:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/gray-lock.test.mjs (352.587357ms)
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (488.66204ms)
+✖ JC035 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (460.00555ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc035-oracle.mjs:55:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc035-integration.test.mjs:7:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc035-integration.test.mjs (412.992202ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc037-integration.test.mjs:17:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc037-integration.test.mjs (377.660838ms)
+✖ JC041 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (459.601342ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc041-oracle.mjs:41:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc041-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc041-integration.test.mjs (442.00947ms)
+✖ JC044 in MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (464.166296ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc044-oracle.mjs:43:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc044-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc044-integration.test.mjs (396.566872ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc046-integration.test.mjs:17:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc046-integration.test.mjs (526.3626ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc050.test.mjs:14:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc050.test.mjs (341.39503ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc052-integration.test.mjs:15:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc052-integration.test.mjs (331.913553ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc054-oracle.mjs:47:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc054-integration.test.mjs:15:17 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc054-integration.test.mjs (431.31753ms)
+✖ JC057 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (460.258568ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc057-oracle.mjs:53:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc057-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc057-integration.test.mjs (397.576777ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc060-integration.test.mjs:17:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc060-integration.test.mjs (384.162201ms)
+✖ JC066 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (456.512019ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc066-oracle.mjs:43:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc066-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc066-integration.test.mjs (477.024355ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc095-integration.test.mjs:17:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jc095-integration.test.mjs (438.802467ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jz22.test.mjs:14:28
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jz22.test.mjs (323.469929ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+    at assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)
+    at validateBundle (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jz46-oracle.mjs:24:55)
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jz46-oracle.mjs:46:38)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jz46-integration.test.mjs:15:17 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977',
+  expected: '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/jz46-integration.test.mjs (518.652583ms)
+✖ candidate package contains exactly the current ABI112 bytes and catalog identity (72.871164ms)
+✔ current ABI111 keeps the source bytes, reviewed prior definitions and exact new-room flow (30.971407ms)
+✔ every historical tuple and altered identity rejects before any current state operation (12.803739ms)
+ℹ {"historicalTuplesRejected":56,"alteredIdentityCases":5,"currentStateOperationsOnRejectedStates":0}
+✔ current93 rejects preserved unsupported57/59/60/61/62/63/64/72/73 rooms and separate candidate headers before interpretation (28.134144ms)
+✖ MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (478.911404ms)
+✖ MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (446.149547ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/msjc0405-oracle.mjs:44:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/msjc0405-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/msjc0405-integration.test.mjs (369.898921ms)
+✔ current real MSJC09 permits first/rear paid activation and restores four-seat frames, receipts, privacy and reset (13982.139438ms)
+ℹ {"engineVersion":"rust-v0.2.112-shared-keyword-rewards","printedSociety":"MSJC09","syntheticInitialLayout":false,"publicNaturalUiAcceptance":false,"httpCalls":2326,"acceptedCommands":457,"firstAndRearBothPaid":true,"fourSeats":true,"paidFrameReopens":2,"expiredHolderTransitions":2,"sameInstanceNaturalNextTurnReset":true}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/pass-history-integration.test.mjs:15:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/pass-history-integration.test.mjs (501.38514ms)
+✔ accepted pass context keeps public event-time actor, step and original region, without private fields (0.962554ms)
+✔ nonregional windows are global even when the stack has a region target (0.147729ms)
+✔ manual, response, cancel and timeout records use only accepted journal events (0.422888ms)
+✔ a command after Tick uses the post-timeout phase instead of borrowing the prior region (0.214609ms)
+✔ inconsistent public metadata fails closed or is omitted without exposing injected objects (0.226559ms)
+✖ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (3.60876ms)
+✖ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (2.293117ms)
+✖ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (2.194767ms)
+✔ current kernel rejects preserved actual rust-v0.2.46-pause-resume-candidate paused room without relabelling its state (6.434754ms)
+✔ current kernel rejects preserved actual rust-v0.2.47-sealed-cards-candidate paused room without relabelling its state (4.087037ms)
+✔ current kernel rejects preserved actual rust-v0.2.48-jz50-death-search-candidate paused room without relabelling its state (3.50949ms)
+✔ current kernel rejects preserved actual rust-v0.2.49-sealed-restart-candidate paused room without relabelling its state (3.729739ms)
+✔ ABI77 rejects a genuine source-built ABI72 lobby before operations and preserves D1 after reopen (952.802107ms)
+✔ ABI77 rejects a genuine source-built ABI73 lobby and preserves every D1 table after reopen (918.156849ms)
+✔ historical rescue-forecast fixture rejects without altering persisted data (970.397719ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/response-preview-oracle.mjs:55:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/response-preview-integration.test.mjs:13:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/response-preview-integration.test.mjs (316.932126ms)
+✖ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (2.006989ms)
+node:internal/test_runner/harness:124
+      throw err;
+      ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/sentinel-local-worker.test.mjs:24:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/sentinel-local-worker.test.mjs (447.651868ms)
+✔ pause/resume are parameterless session commands and reject injected clocks or nested use (0.954355ms)
+✔ recovering a paid response receipt precedes all later clock evaluation (7.19678ms)
+✔ a matching-version GET persists an expired window before deciding to return 204 (1.141614ms)
+✔ an expired response commits only the system tick and never an accepted user receipt (1.068654ms)
+✔ a CAS conflict retries Begin with its original expected version and complete intent (0.638766ms)
+✔ a formal response cannot be rebased by the host after another seat wins CAS (0.787235ms)
+✔ client clock injection and nested Session commands are rejected before the reducer (0.176239ms)
+✔ quoting an active composition refreshes its clock and does not commit a draft or receipt (1.009065ms)
+✔ historical response5 rejects before pacing and survives reopen byte-for-byte (960.704443ms)
+✔ historical response6 rejects before pacing and survives reopen byte-for-byte (909.266079ms)
+✔ historical response7 rejects before pacing and survives reopen byte-for-byte (862.708608ms)
+✔ historical response8 rejects before pacing and survives reopen byte-for-byte (866.00248ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/seven-card-integration.test.mjs:19:16 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/seven-card-integration.test.mjs (313.454495ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/shared-keyword-rewards-current.test.mjs:7:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/shared-keyword-rewards-current.test.mjs (330.889188ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+✔ an ambiguous D1 commit retries the identical command and returns its receipt without applying twice (214.140918ms)
+✔ storage diagnostics expose fixed labels and do not retry quota, constraint or unknown failures (0.276629ms)
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 1 }
+hegemony storage retry { code: 'network_lost', retryable: true, attempt: 2 }
+✔ a failure before commit retries the original identity, while an exhausted failure never returns success (757.163875ms)
+✔ transient failures have a finite budget; HTTP rejections and unclassified failures are returned immediately (0.742536ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/three-color-death.test.mjs:14:13
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/three-color-death.test.mjs (331.664774ms)
+✔ historical two-card fixture rejects without altering persisted data (976.921303ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/win-flow-integration.test.mjs:18:6
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/win-flow-integration.test.mjs (407.682311ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+    at assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)
+    at validateBundle (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/wm062-oracle.mjs:24:56)
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/wm062-oracle.mjs:46:38)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/wm062-integration.test.mjs:15:17 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977',
+  expected: '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/wm062-integration.test.mjs (405.202165ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq18-carrier.test.mjs:16:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq18-carrier.test.mjs (308.764371ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-oracle.mjs:37:9)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq23-current-owner-integration.test.mjs:8:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq23-current-owner-integration.test.mjs (370.01766ms)
+✔ XQ23 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (1176.864839ms)
+ℹ {"societyId":"MSJC05","ordinaryEntryOnly":true,"players":4,"startingHands":[6,6,6,6],"namedSnapshotsAndOriginalReceiptsRestored":true,"localSyntheticDatabaseRetained":true}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-oracle.mjs:37:9)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq23-integration.test.mjs:7:15 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq23-integration.test.mjs (368.884047ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadOwnerFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-current-owner-oracle.mjs:33:9)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq23-p2-integration.test.mjs:7:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq23-p2-integration.test.mjs (446.534095ms)
+✖ XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling (1.914769ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq24-integration.test.mjs:16:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq24-integration.test.mjs (369.685623ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq27.test.mjs:14:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq27.test.mjs (306.834102ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq37.test.mjs:14:28
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+  expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ test/xq37.test.mjs (305.31346ms)
+ℹ tests 91
+ℹ suites 0
+ℹ pass 40
+ℹ fail 51
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77699.897629
+
+✖ failing tests:
+
+test at test/batch20-review-normal-current.test.mjs:1:1
+✖ test/batch20-review-normal-current.test.mjs (438.715838ms)
+  'test failed'
+
+test at test/batch3-abi94-integration.test.mjs:1:1
+✖ test/batch3-abi94-integration.test.mjs (345.193419ms)
+  'test failed'
+
+test at test/batch4-abi95-integration.test.mjs:1:1
+✖ test/batch4-abi95-integration.test.mjs (441.276113ms)
+  'test failed'
+
+test at test/bounded-entry-search.test.mjs:1:1
+✖ test/bounded-entry-search.test.mjs (365.028488ms)
+  'test failed'
+
+test at test/bq035-integration.test.mjs:1:1
+✖ test/bq035-integration.test.mjs (534.682964ms)
+  'test failed'
+
+test at test/deck-seal-search.test.mjs:1:1
+✖ test/deck-seal-search.test.mjs (355.035224ms)
+  'test failed'
+
+test at test/gray-lock.test.mjs:1:1
+✖ test/gray-lock.test.mjs (352.587357ms)
+  'test failed'
+
+test at test/integration.test.mjs:12:1
+✖ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (488.66204ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/integration.test.mjs:43:55)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc035-entry.test.mjs:11:35
+✖ JC035 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (460.00555ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc035-entry.test.mjs:25:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc035-integration.test.mjs:1:1
+✖ test/jc035-integration.test.mjs (412.992202ms)
+  'test failed'
+
+test at test/jc037-integration.test.mjs:1:1
+✖ test/jc037-integration.test.mjs (377.660838ms)
+  'test failed'
+
+test at test/jc041-entry.test.mjs:12:35
+✖ JC041 in MSJC03 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (459.601342ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc041-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc041-integration.test.mjs:1:1
+✖ test/jc041-integration.test.mjs (442.00947ms)
+  'test failed'
+
+test at test/jc044-entry.test.mjs:12:35
+✖ JC044 in MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (464.166296ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc044-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc044-integration.test.mjs:1:1
+✖ test/jc044-integration.test.mjs (396.566872ms)
+  'test failed'
+
+test at test/jc046-integration.test.mjs:1:1
+✖ test/jc046-integration.test.mjs (526.3626ms)
+  'test failed'
+
+test at test/jc050.test.mjs:1:1
+✖ test/jc050.test.mjs (341.39503ms)
+  'test failed'
+
+test at test/jc052-integration.test.mjs:1:1
+✖ test/jc052-integration.test.mjs (331.913553ms)
+  'test failed'
+
+test at test/jc054-integration.test.mjs:1:1
+✖ test/jc054-integration.test.mjs (431.31753ms)
+  'test failed'
+
+test at test/jc057-entry.test.mjs:12:35
+✖ JC057 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (460.258568ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc057-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc057-integration.test.mjs:1:1
+✖ test/jc057-integration.test.mjs (397.576777ms)
+  'test failed'
+
+test at test/jc060-integration.test.mjs:1:1
+✖ test/jc060-integration.test.mjs (384.162201ms)
+  'test failed'
+
+test at test/jc066-entry.test.mjs:12:35
+✖ JC066 in MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (456.512019ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc066-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/jc066-integration.test.mjs:1:1
+✖ test/jc066-integration.test.mjs (477.024355ms)
+  'test failed'
+
+test at test/jc095-integration.test.mjs:1:1
+✖ test/jc095-integration.test.mjs (438.802467ms)
+  'test failed'
+
+test at test/jz22.test.mjs:1:1
+✖ test/jz22.test.mjs (323.469929ms)
+  'test failed'
+
+test at test/jz46-integration.test.mjs:1:1
+✖ test/jz46-integration.test.mjs (518.652583ms)
+  'test failed'
+
+test at test/kernel-binding.test.mjs:8:1
+✖ candidate package contains exactly the current ABI112 bytes and catalog identity (72.871164ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/kernel-binding.test.mjs:11:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/msjc0405-entry.test.mjs:12:44
+✖ MSJC04 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (478.911404ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/msjc0405-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/msjc0405-entry.test.mjs:12:44
+✖ MSJC05 enters with a named complete deck, exposes six-card start and preserves it after D1 reopen (446.149547ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  277 !== 272
+
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/msjc0405-entry.test.mjs:26:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 277,
+    expected: 272,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/msjc0405-integration.test.mjs:1:1
+✖ test/msjc0405-integration.test.mjs (369.898921ms)
+  'test failed'
+
+test at test/pass-history-integration.test.mjs:1:1
+✖ test/pass-history-integration.test.mjs (501.38514ms)
+  'test failed'
+
+test at test/pause-resume-integration.test.mjs:15:207
+✖ saved paused table: exact native transitions, D1 reopen, receipts and isolated second table (3.60876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+  - '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+      at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/pause-resume-integration.test.mjs:17:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+    expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/pause-resume-integration.test.mjs:15:207
+✖ sealed choice/trigger/paid stack pause: exact native transitions, D1 reopen, receipts and isolated second table (2.293117ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+  - '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+      at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/pause-resume-integration.test.mjs:17:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+    expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/pause-resume-integration.test.mjs:15:207
+✖ JZ50 trigger/stack/private search pause: exact native transitions, D1 reopen, receipts and isolated second table (2.194767ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+  - '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+      at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/pause-resume-integration.test.mjs:17:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+    expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/response-preview-integration.test.mjs:1:1
+✖ test/response-preview-integration.test.mjs (316.932126ms)
+  'test failed'
+
+test at test/sealed-restart-integration.test.mjs:15:1
+✖ fresh Native match terminal seal: D1 restart, reopen, next choice and original restart receipt (2.006989ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+  - '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+      at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/sealed-restart-integration.test.mjs:17:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+    expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/sentinel-local-worker.test.mjs:1:1
+✖ test/sentinel-local-worker.test.mjs (447.651868ms)
+  'test failed'
+
+test at test/seven-card-integration.test.mjs:1:1
+✖ test/seven-card-integration.test.mjs (313.454495ms)
+  'test failed'
+
+test at test/shared-keyword-rewards-current.test.mjs:1:1
+✖ test/shared-keyword-rewards-current.test.mjs (330.889188ms)
+  'test failed'
+
+test at test/three-color-death.test.mjs:1:1
+✖ test/three-color-death.test.mjs (331.664774ms)
+  'test failed'
+
+test at test/win-flow-integration.test.mjs:1:1
+✖ test/win-flow-integration.test.mjs (407.682311ms)
+  'test failed'
+
+test at test/wm062-integration.test.mjs:1:1
+✖ test/wm062-integration.test.mjs (405.202165ms)
+  'test failed'
+
+test at test/xq18-carrier.test.mjs:1:1
+✖ test/xq18-carrier.test.mjs (308.764371ms)
+  'test failed'
+
+test at test/xq23-current-owner-integration.test.mjs:1:1
+✖ test/xq23-current-owner-integration.test.mjs (370.01766ms)
+  'test failed'
+
+test at test/xq23-integration.test.mjs:1:1
+✖ test/xq23-integration.test.mjs (368.884047ms)
+  'test failed'
+
+test at test/xq23-p2-integration.test.mjs:1:1
+✖ test/xq23-p2-integration.test.mjs (446.534095ms)
+  'test failed'
+
+test at test/xq24-container-restore.test.mjs:14:1
+✖ XQ24 invalid effects saves reject at real Worker restore before HTTP pass or clock polling (1.914769ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+  - '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+      at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)
+      at TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/xq24-container-restore.test.mjs:16:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e',
+    expected: '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/xq24-integration.test.mjs:1:1
+✖ test/xq24-integration.test.mjs (369.685623ms)
+  'test failed'
+
+test at test/xq27.test.mjs:1:1
+✖ test/xq27.test.mjs (306.834102ms)
+  'test failed'
+
+test at test/xq37.test.mjs:1:1
+✖ test/xq37.test.mjs (305.31346ms)
+  'test failed'

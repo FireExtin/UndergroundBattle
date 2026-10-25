@@ -1,0 +1,17 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/next20_blue_vampires.rs:1230-1245
+1230:     fn bq034_complete_shown(&mut self, f: &ResolutionFrame) {
+1231:         if f.ability_key == SHOWN {
+1232:             if let Some(crate::mystic_contest::MysticContest {
+1233:                 phase: MysticPhase::After { post_frame, .. },
+1234:                 ..
+1235:             }) = &mut self.mystic_contest
+1236:             {
+1237:                 if post_frame
+1238:                     .as_ref()
+1239:                     .is_some_and(|p| p.frame_id == f.frame_id)
+1240:                 {
+1241:                     *post_frame = None;
+1242:                 }
+1243:             }
+1244:         }
+1245:     }

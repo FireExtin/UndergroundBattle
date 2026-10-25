@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "name": "baseline-ff-binding",
+  "source_commit": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/baseline-ff3b1c03/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/baseline-ff3b1c03/source/tools/build-storage.mjs",
+    "--",
+    "node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/check_old_binding.mjs"
+  ],
+  "started_utc": "2026-10-25T08:49:54.146487+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/baseline-ff-binding.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 0,
+  "seconds": 0.337,
+  "log_sha256": "1baa18642bd9ca7d2584209ff82328c5668a837434c3854db78834f78e5cbdf5"
+}

@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "name": "wasm-build",
+  "source_commit": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/build-storage.mjs",
+    "--",
+    "bash",
+    "rust-game-wasm/build.sh"
+  ],
+  "started_utc": "2026-10-25T08:31:25.179706+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/wasm-build.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 0,
+  "seconds": 92.083,
+  "log_sha256": "214de4898fee01e9ca04d7f73e7feaf4e7bf3ea9621cda69aa134ace9e15ffe3"
+}

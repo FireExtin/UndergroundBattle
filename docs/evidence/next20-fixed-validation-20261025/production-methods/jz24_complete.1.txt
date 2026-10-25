@@ -1,0 +1,31 @@
+188:     pub(crate) fn jz24_complete(
+189:         &mut self,
+190:         frame: ResolutionFrame,
+191:         seat: usize,
+192:         remaining_players: Vec<usize>,
+193:         selected: &[String],
+194:     ) -> RuleResult<()> {
+195:         let r = self
+196:             .blue_original_region(&frame)
+197:             .ok_or("原地区实例已失效")?;
+198:         // Reuse the Pending seat passed by the normal choice handler; never
+199:         // infer sacrifice authority from owner or a changed selected card.
+200:         let id = selected
+201:             .first()
+202:             .filter(|_| selected.len() == 1)
+203:             .ok_or("必须选择一个角色牺牲")?;
+204:         if self.team(seat) == self.team(frame.actor)
+205:             || !self.region_characters(r).any(|c| {
+206:                 &c.id == id
+207:                     && c.controller == seat
+208:                     && !c.face_down
+209:                     && card(&c.definition).kind == "character"
+210:             })
+211:         {
+212:             return Err("须选择原地区中自己操控的正面角色".into());
+213:         }
+214:         let before_deaths = self.death_instances();
+215:         self.remove_dead(id, RemovalCause::Sacrifice);
+216:         if self.defer_death_caller(frame.clone(), crate::death_continuation::DeathCallerKind::JZ24 { remaining_players: remaining_players.clone() }, &before_deaths) { return Ok(()); }
+217:         self.jz24_next(frame, remaining_players)
+218:     }

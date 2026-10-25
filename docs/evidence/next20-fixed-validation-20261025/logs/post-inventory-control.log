@@ -1,0 +1,49 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-inventory-ed6d72a0/source/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+error[E0507]: cannot move out of a shared reference
+  --> rust-game/src/deck_seal_search_draft.rs:67:17
+   |
+67 |     let dream = catalog().cards.into_iter().find(|d| d.id == "BQ033").unwrap();
+   |                 ^^^^^^^^^^^^^^^ ----------- value moved due to this method call
+   |                 |
+   |                 move occurs because value has type `Vec<CardDefinition>`, which does not implement the `Copy` trait
+   |
+note: `into_iter` takes ownership of the receiver `self`, which moves value
+  --> /rustc/1159e78c4747b02ef996e55082b704c09b970588/library/core/src/iter/traits/collect.rs:310:18
+help: you can `clone` the value and consume it, but this might not be your desired behavior
+   |
+67 |     let dream = <Vec<CardDefinition> as Clone>::clone(&catalog().cards).into_iter().find(|d| d.id == "BQ033").unwrap();
+   |                 +++++++++++++++++++++++++++++++++++++++               +
+help: consider cloning the value if the performance cost is acceptable
+   |
+67 |     let dream = catalog().cards.clone().into_iter().find(|d| d.id == "BQ033").unwrap();
+   |                                ++++++++
+
+For more information about this error, try `rustc --explain E0507`.
+warning: `hegemony-server` (lib test) generated 3 warnings
+error: could not compile `hegemony-server` (lib test) due to 1 previous error; 3 warnings emitted

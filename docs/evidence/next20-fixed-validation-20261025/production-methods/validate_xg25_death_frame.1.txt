@@ -1,0 +1,53 @@
+197:     pub(crate) fn validate_xg25_death_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+198:         self.validate_xg25_death_source(f.actor, &f.source)?;
+199:         let choice = self
+200:             .death_replacements
+201:             .iter()
+202:             .find(|d| d.source.card.id == f.source.card.id)
+203:             .and_then(|d| d.declaration_choice.as_deref())
+204:             .ok_or("死亡响应缺少原目标待选实例")?;
+205:         if !self
+206:             .mystic_instance_number(choice)
+207:             .zip(self.mystic_instance_number(&f.frame_id))
+208:             .is_some_and(|(choice, frame)| choice.checked_add(1) == Some(frame))
+209:         {
+210:             return Err("死亡响应必须承接原目标待选的下一实例".into());
+211:         }
+212:         let a = crate::next20_black_wraiths::definition("XG25")
+213:             .unwrap()
+214:             .abilities
+215:             .into_iter()
+216:             .find(|a| a.key == crate::next20_black_wraiths::SEAL)
+217:             .unwrap();
+218:         if f.ability_key != a.key
+219:             || !self
+220:                 .mystic_instance_number(&f.source.card.id)
+221:                 .zip(self.mystic_instance_number(&f.frame_id))
+222:                 .is_some_and(|(s, f)| s < f)
+223:             || f.steps.len() != 1
+224:             || f.steps[0].context != f.actor
+225:             || !same(&f.steps[0].op, &a.ops[0])
+226:             || f.targets.len() != 1
+227:             || !same(&f.targets[0].spec, &a.targets[0])
+228:             || !f.already_paid.is_empty()
+229:             || !f.resource_payments.is_empty()
+230:             || f.chosen_region.is_some()
+231:             || f.cursor > 1
+232:             || f.cursor == 0 && !matches!(f.guard, GuardState::Unchecked)
+233:             || f.cursor == 1 && !matches!(f.guard, GuardState::Accepted)
+234:         {
+235:             return Err("伥鬼死亡封印须保留原目标、程序、游标及免费收据".into());
+236:         }
+237:         let t = &f.targets[0];
+238:         if !self.mystic_instance_valid(&t.id)
+239:             || t.public.instance_id != t.id
+240:             || t.public.kind != "character"
+241:             || !t.public.valid
+242:             || t.public.status != "valid"
+243:             || t.public.invalid_reason.is_some()
+244:             || t.region_instance.is_some()
+245:         {
+246:             return Err("伥鬼死亡目标必须保留声明时的原角色".into());
+247:         }
+248:         Ok(())
+249:     }

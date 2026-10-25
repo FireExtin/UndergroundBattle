@@ -1,0 +1,9 @@
+70:     pub(crate) fn death_boundary_waits(&self, id: &str) -> bool {
+71:         self.death_replacements
+72:             .iter()
+73:             .find(|d| d.source.card.id == id)
+74:             .is_some_and(|d| {
+75:                 d.destination.is_none()
+76:                     && self.stack.iter().any(|s| !d.baseline_stack.contains(&s.id))
+77:             })
+78:     }

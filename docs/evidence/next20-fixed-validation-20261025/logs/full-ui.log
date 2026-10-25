@@ -1,0 +1,922 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=2
+
+
+ RUN  v4.1.2 /home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/web
+
+ ❯ src/game/JC066Native93.test.jsx (0 test)
+ ❯ src/game/BoundedEntrySearch.test.jsx (0 test)
+ ❯ src/game/Batch3Integration.test.jsx (9 tests | 1 failed) 275ms
+   × admits the complete twenty-card local candidate and excludes deferred cards 12ms
+ ❯ src/game/SevenCardIntegration.test.jsx (0 test)
+ ❯ src/game/JC041Native93.test.jsx (0 test)
+ ❯ src/game/WM038Integration.test.jsx (0 test)
+ ❯ src/game/JC037Integration.test.jsx (0 test)
+ ❯ src/game/ThreeColorDeath.test.jsx (0 test)
+ ❯ src/game/JC044Native93.test.jsx (0 test)
+ ❯ src/game/CurrentLifecycleChoices.test.jsx (0 test)
+ ❯ src/game/DeckSealSearch.test.jsx (0 test)
+ ❯ src/game/XQ23Native93.test.jsx (0 test)
+ ❯ src/game/JZ46Native93.test.jsx (0 test)
+ ❯ src/game/WM023Integration.test.jsx (0 test)
+ ❯ src/game/XQ25Integration.test.jsx (0 test)
+ ❯ src/game/ABI112ScanGapBoundary.test.jsx (3 tests | 2 failed) 937ms
+   × keeps the exact24 index gaps outside this20, every supported definition and every public preset 6ms
+   × shows no gap in the default buildable directory and explicit unavailable placeholders under all 904ms
+ ❯ src/game/JC035Native93.test.jsx (0 test)
+ ❯ src/game/JC046Integration.test.jsx (0 test)
+ ❯ src/game/XQ37EntryInfluence.test.jsx (0 test)
+ ❯ src/game/JC052Integration.test.jsx (0 test)
+ ❯ src/game/XQ24Integration.test.jsx (0 test)
+ ❯ src/game/WM056Integration.test.jsx (0 test)
+ ❯ src/game/JZ22LowHandInfluence.test.jsx (0 test)
+ ❯ src/game/JC094Integration.test.jsx (0 test)
+ ❯ src/game/JC054Native93.test.jsx (0 test)
+ ❯ src/game/WM062Native93.test.jsx (0 test)
+ ❯ src/game/JC087Integration.test.jsx (0 test)
+ ❯ src/game/JC050RegionDestruction.test.jsx (0 test)
+ ❯ src/game/JC061Integration.test.jsx (0 test)
+ ❯ src/game/BQ035Native93.test.jsx (0 test)
+ ❯ src/game/XQ27HiddenSweep.test.jsx (0 test)
+ ❯ src/game/NativeFixedSlots.test.jsx (0 test)
+ ❯ src/game/ABI112ReviewNormal.test.jsx (0 test)
+ ❯ src/game/XQ18TimeCarrier.test.jsx (0 test)
+ ❯ src/game/JZ35Integration.test.jsx (0 test)
+ ❯ src/game/Import20CardFaces.test.jsx (22 tests | 1 failed) 300ms
+   × does not admit any additional card or replace the current kernel while adding artwork 4ms
+ ❯ src/game/XQ23P2Native93.test.jsx (0 test)
+ ❯ src/game/BQ030Combined.test.jsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 35 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/ABI112ReviewNormal.test.jsx [ src/game/ABI112ReviewNormal.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/ABI112ReviewNormal.test.jsx:10:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/39]⎯
+
+ FAIL  src/game/BQ030Combined.test.jsx [ src/game/BQ030Combined.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/BQ030Combined.test.jsx:8:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/39]⎯
+
+ FAIL  src/game/BQ035Native93.test.jsx [ src/game/BQ035Native93.test.jsx ]
+AssertionError: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+
+Expected: "27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32"
+Received: "eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977"
+
+ ❯ assertCurrentSourceBindings ../tools/current-native-source.mjs:44:12
+     42|   for (const [name, hash] of Object.entries(binding.files)) {
+     43|     assert(Object.hasOwn(files, name), `Native input outside current s…
+     44|     assert.equal(hash, files[name], `Native compiler input differs fro…
+       |            ^
+     45|   }
+     46| }
+ ❯ validateBq035Bundle ../tools/bq035-oracle.mjs:44:3
+ ❯ loadBq035Fixture ../tools/bq035-oracle.mjs:85:10
+ ❯ src/game/BQ035Native93.test.jsx:9:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/39]⎯
+
+ FAIL  src/game/BoundedEntrySearch.test.jsx [ src/game/BoundedEntrySearch.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/BoundedEntrySearch.test.jsx:8:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/39]⎯
+
+ FAIL  src/game/CurrentLifecycleChoices.test.jsx [ src/game/CurrentLifecycleChoices.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/CurrentLifecycleChoices.test.jsx:12:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/39]⎯
+
+ FAIL  src/game/DeckSealSearch.test.jsx [ src/game/DeckSealSearch.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/DeckSealSearch.test.jsx:8:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/39]⎯
+
+ FAIL  src/game/JC035Native93.test.jsx [ src/game/JC035Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/jc035-oracle.mjs:55:10
+     53|   const bundle=JSON.parse(gunzipSync(bytes));
+     54|   assert.equal(bundle.format,'jc035-native93-raw-v1');
+     55|   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifes…
+       |          ^
+     56|   assert.equal(bundle.wasmSha256,currentWasmSha256);
+     57|   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);as…
+ ❯ src/game/JC035Native93.test.jsx:9:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/39]⎯
+
+ FAIL  src/game/JC037Integration.test.jsx [ src/game/JC037Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC037Integration.test.jsx:13:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/39]⎯
+
+ FAIL  src/game/JC041Native93.test.jsx [ src/game/JC041Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/jc041-oracle.mjs:41:10
+     39|   const bundle=JSON.parse(gunzipSync(bytes));
+     40|   assert.equal(bundle.format,'jc041-native93-raw-v1');
+     41|   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifes…
+       |          ^
+     42|   assert.equal(bundle.wasmSha256,currentWasmSha256);
+     43|   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);as…
+ ❯ src/game/JC041Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/39]⎯
+
+ FAIL  src/game/JC044Native93.test.jsx [ src/game/JC044Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/jc044-oracle.mjs:43:10
+     41|   const bundle=JSON.parse(gunzipSync(bytes));
+     42|   assert.equal(bundle.format,'jc044-native93-raw-v1');
+     43|   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifes…
+       |          ^
+     44|   assert.equal(bundle.wasmSha256,currentWasmSha256);
+     45|   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);as…
+ ❯ src/game/JC044Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/39]⎯
+
+ FAIL  src/game/JC046Integration.test.jsx [ src/game/JC046Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC046Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/39]⎯
+
+ FAIL  src/game/JC050RegionDestruction.test.jsx [ src/game/JC050RegionDestruction.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC050RegionDestruction.test.jsx:9:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/39]⎯
+
+ FAIL  src/game/JC052Integration.test.jsx [ src/game/JC052Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC052Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/39]⎯
+
+ FAIL  src/game/JC054Native93.test.jsx [ src/game/JC054Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/jc054-oracle.mjs:47:10
+     45|   const bundle=JSON.parse(gunzipSync(bytes));
+     46|   assert.equal(bundle.format,'jc054-native93-raw-v1');
+     47|   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifes…
+       |          ^
+     48|   assert.equal(bundle.wasmSha256,currentWasmSha256);
+     49|   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);as…
+ ❯ src/game/JC054Native93.test.jsx:10:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/39]⎯
+
+ FAIL  src/game/JC061Integration.test.jsx [ src/game/JC061Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC061Integration.test.jsx:14:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/39]⎯
+
+ FAIL  src/game/JC066Native93.test.jsx [ src/game/JC066Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/jc066-oracle.mjs:43:10
+     41|   const bundle=JSON.parse(gunzipSync(bytes));
+     42|   assert.equal(bundle.format,'jc066-native93-raw-v1');
+     43|   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifes…
+       |          ^
+     44|   assert.equal(bundle.wasmSha256,currentWasmSha256);
+     45|   assert.equal(Buffer.byteLength(bundle.raw.json),bundle.raw.bytes);as…
+ ❯ src/game/JC066Native93.test.jsx:10:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/39]⎯
+
+ FAIL  src/game/JC087Integration.test.jsx [ src/game/JC087Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC087Integration.test.jsx:14:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/39]⎯
+
+ FAIL  src/game/JC094Integration.test.jsx [ src/game/JC094Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JC094Integration.test.jsx:16:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/39]⎯
+
+ FAIL  src/game/JZ22LowHandInfluence.test.jsx [ src/game/JZ22LowHandInfluence.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JZ22LowHandInfluence.test.jsx:9:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/39]⎯
+
+ FAIL  src/game/JZ35Integration.test.jsx [ src/game/JZ35Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/JZ35Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/39]⎯
+
+ FAIL  src/game/JZ46Native93.test.jsx [ src/game/JZ46Native93.test.jsx ]
+AssertionError: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+
+Expected: "27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32"
+Received: "eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977"
+
+ ❯ assertCurrentSourceBindings ../tools/current-native-source.mjs:44:12
+     42|   for (const [name, hash] of Object.entries(binding.files)) {
+     43|     assert(Object.hasOwn(files, name), `Native input outside current s…
+     44|     assert.equal(hash, files[name], `Native compiler input differs fro…
+       |            ^
+     45|   }
+     46| }
+ ❯ validateBundle ../tools/jz46-oracle.mjs:24:55
+ ❯ loadFixture ../tools/jz46-oracle.mjs:46:38
+ ❯ src/game/JZ46Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/39]⎯
+
+ FAIL  src/game/NativeFixedSlots.test.jsx [ src/game/NativeFixedSlots.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/NativeFixedSlots.test.jsx:8:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/39]⎯
+
+ FAIL  src/game/SevenCardIntegration.test.jsx [ src/game/SevenCardIntegration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/SevenCardIntegration.test.jsx:15:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/39]⎯
+
+ FAIL  src/game/ThreeColorDeath.test.jsx [ src/game/ThreeColorDeath.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/ThreeColorDeath.test.jsx:9:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/39]⎯
+
+ FAIL  src/game/WM023Integration.test.jsx [ src/game/WM023Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/WM023Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/39]⎯
+
+ FAIL  src/game/WM038Integration.test.jsx [ src/game/WM038Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/WM038Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/39]⎯
+
+ FAIL  src/game/WM056Integration.test.jsx [ src/game/WM056Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/WM056Integration.test.jsx:14:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/39]⎯
+
+ FAIL  src/game/WM062Native93.test.jsx [ src/game/WM062Native93.test.jsx ]
+AssertionError: Native compiler input differs from current source: rust-game/data/cards.json
++ actual - expected
+
++ 'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'
+- '27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'
+
+
+Expected: "27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32"
+Received: "eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977"
+
+ ❯ assertCurrentSourceBindings ../tools/current-native-source.mjs:44:12
+     42|   for (const [name, hash] of Object.entries(binding.files)) {
+     43|     assert(Object.hasOwn(files, name), `Native input outside current s…
+     44|     assert.equal(hash, files[name], `Native compiler input differs fro…
+       |            ^
+     45|   }
+     46| }
+ ❯ validateBundle ../tools/wm062-oracle.mjs:24:56
+ ❯ loadFixture ../tools/wm062-oracle.mjs:46:38
+ ❯ src/game/WM062Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/39]⎯
+
+ FAIL  src/game/XQ18TimeCarrier.test.jsx [ src/game/XQ18TimeCarrier.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/XQ18TimeCarrier.test.jsx:11:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/39]⎯
+
+ FAIL  src/game/XQ23Native93.test.jsx [ src/game/XQ23Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadFixture ../tools/xq23-oracle.mjs:37:9
+     35|  const bundle=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-…
+     36|  assert.equal(bundle.format,'xq23-current-native93-raw-v1');assert.equ…
+     37|  assert.equal(bundle.currentSourceManifestSha256,currentSourceManifest…
+       |         ^
+     38|  const raw=JSON.parse(bundle.raw.json);assert.deepEqual(validateNative…
+     39| }
+ ❯ src/game/XQ23Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/39]⎯
+
+ FAIL  src/game/XQ23P2Native93.test.jsx [ src/game/XQ23P2Native93.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadOwnerFixture ../tools/xq23-current-owner-oracle.mjs:33:9
+     31|  const b=JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-…
+     32|  assert.equal(b.format,'xq23-owner-native93-raw-v1');assert.equal(Buff…
+     33|  assert.equal(b.currentSourceManifestSha256,currentSourceManifestSha25…
+       |         ^
+     34|  const raw=JSON.parse(b.raw.json);assert.deepEqual(validateOwnerNative…
+     35| }
+ ❯ src/game/XQ23P2Native93.test.jsx:9:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/39]⎯
+
+ FAIL  src/game/XQ24Integration.test.jsx [ src/game/XQ24Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/XQ24Integration.test.jsx:16:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/39]⎯
+
+ FAIL  src/game/XQ25Integration.test.jsx [ src/game/XQ25Integration.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/XQ25Integration.test.jsx:15:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/39]⎯
+
+ FAIL  src/game/XQ27HiddenSweep.test.jsx [ src/game/XQ27HiddenSweep.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/XQ27HiddenSweep.test.jsx:9:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/39]⎯
+
+ FAIL  src/game/XQ37EntryInfluence.test.jsx [ src/game/XQ37EntryInfluence.test.jsx ]
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'
+- '09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'
+
+
+Expected: "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c"
+Received: "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e"
+
+ ❯ loadCurrentFixture ../tools/current-native-source.mjs:51:10
+     49|   const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, re…
+     50|   assert.equal(bundle.format, 'current-native-fixture-v1');
+     51|   assert.equal(bundle.currentSourceManifestSha256, currentSourceManife…
+       |          ^
+     52|   assert.equal(bundle.wasmSha256, currentWasmSha256);
+     53|   assert.equal(Buffer.byteLength(bundle.raw.json), bundle.raw.bytes);
+ ❯ src/game/XQ37EntryInfluence.test.jsx:9:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/39]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/game/ABI112ScanGapBoundary.test.jsx > keeps the exact24 index gaps outside this20, every supported definition and every public preset
+AssertionError: expected [ 'BQ041', 'JZ38', 'JZ40', …(26) ] to deeply equal [ 'BQ041', 'JZ38', 'JZ40', …(21) ]
+
+- Expected
++ Received
+
+@@ -21,6 +21,11 @@
+    "XQ20",
+    "LC16",
+    "WM037",
+    "WM044",
+    "WM043",
++   "BQ033",
++   "BQ034",
++   "CQ25",
++   "XG25",
++   "BQ009",
+  ]
+
+ ❯ src/game/ABI112ScanGapBoundary.test.jsx:26:18
+     24|   expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rew…
+     25|   const actual=catalog.cards.filter(card=>!scans[card.id]||cardScanUrl…
+     26|   expect(actual).toEqual(gaps);
+       |                  ^
+     27|   expect(batch).toHaveLength(20);
+     28|   expect(batch.filter(id=>gaps.includes(id))).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/39]⎯
+
+ FAIL  src/game/ABI112ScanGapBoundary.test.jsx > shows no gap in the default buildable directory and explicit unavailable placeholders under all
+AssertionError: expected [ 'JC125', 'LC19', 'LC20', …(274) ] to have a length of 272 but got 277
+
+- Expected
++ Received
+
+- 272
++ 277
+
+ ❯ src/game/ABI112ScanGapBoundary.test.jsx:62:17
+     60|   expect(batch.every(id=>ids().includes(id))).toBe(true);
+     61|   fireEvent.change(screen.getByLabelText('组牌准入'),{target:{value:'all'}…
+     62|   expect(ids()).toHaveLength(272);
+       |                 ^
+     63|   for(const id of gaps){
+     64|     const card=definition(id),row=ui.container.querySelector(`[data-ca…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/39]⎯
+
+ FAIL  src/game/Batch3Integration.test.jsx > admits the complete twenty-card local candidate and excludes deferred cards
+AssertionError: expected [ …(44) ] to have a length of 39 but got 44
+
+- Expected
++ Received
+
+- 39
++ 44
+
+ ❯ src/game/Batch3Integration.test.jsx:14:60
+     12|   // definitions and the new20 admissions are checked independently.
+     13|   expect(testCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword…
+     14|   expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLengt…
+       |                                                            ^
+     15|   expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLengt…
+     16|   expect(definition('CQ07').supported).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/39]⎯
+
+ FAIL  src/game/Import20CardFaces.test.jsx > does not admit any additional card or replace the current kernel while adding artwork
+AssertionError: expected [ { id: 'JC125', …(15) }, …(276) ] to have a length of 272 but got 277
+
+- Expected
++ Received
+
+- 272
++ 277
+
+ ❯ src/game/Import20CardFaces.test.jsx:45:26
+     43|   expect(currentCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyw…
+     44|   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toE…
+     45|   expect(registry.cards).toHaveLength(272);
+       |                          ^
+     46|   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLe…
+     47|   expect(registry.cards.slice(213).filter(card=>card.supported).map(ca…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/39]⎯
+
+
+ Test Files  38 failed | 121 passed (159)
+      Tests  4 failed | 1156 passed (1160)
+   Start at  01:37:31
+   Duration  79.50s (transform 3.60s, setup 7.66s, import 9.86s, tests 80.58s, environment 38.59s)

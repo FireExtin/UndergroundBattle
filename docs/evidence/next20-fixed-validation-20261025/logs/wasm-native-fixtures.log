@@ -1,0 +1,566 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling wasm-bindgen-shared v0.2.104
+   Compiling rustversion v1.0.23
+   Compiling serde_core v1.0.229
+   Compiling syn v2.0.119
+   Compiling zmij v1.0.23
+   Compiling bumpalo v3.20.3
+   Compiling log v0.4.34
+   Compiling wasm-bindgen-backend v0.2.104
+   Compiling syn v3.0.6
+   Compiling serde_json v1.0.151
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling wasm-bindgen v0.2.104
+   Compiling wasm-bindgen-macro-support v0.2.104
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling wasm-bindgen-macro v0.2.104
+   Compiling once_cell v1.21.4
+   Compiling cfg-if v1.0.5
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: constant `BATCH20` is never used
+ --> rust-game/src/import20_entropy.rs:7:18
+  |
+7 | pub(crate) const BATCH20: &[&str] = &[
+  |                  ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: method `mill_cards` is never used
+   --> rust-game/src/batch20.rs:468:19
+    |
+288 | impl Game {
+    | --------- method in this implementation
+...
+468 |     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
+    |                   ^^^^^^^^^^
+
+warning: `hegemony-server` (lib) generated 3 warnings (run `cargo fix --lib -p hegemony-server` to apply 1 suggestion)
+   Compiling hegemony-wasm v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/rust-game-wasm)
+    Finished `dev` profile [unoptimized] target(s) in 28.82s
+     Running `/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/wasm-build/target/debug/examples/native_fixtures /home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/replay/native.json`
+fixture 000 "white-paid-rescue-and-purple-private-forecast-three": 22 transitions, 88 projections, 1516202 bytes written
+fixture 001 "red-region-damage-and-yellow-printed-spell-book-search": 17 transitions, 68 projections, 1336938 bytes written
+fixture 002 "magic-return-owner-and-public-lawyer-self-controller-hide": 16 transitions, 64 projections, 1295352 bytes written
+fixture 003 "owl-controller-mind-two-and-skeleton-paid-entry": 16 transitions, 64 projections, 1146224 bytes written
+fixture 004 "printed-cost-reveal-guard-and-paid-self-hide": 16 transitions, 64 projections, 1172664 bytes written
+fixture 005 "attachment-enemy-host-and-hide-owner-recycle": 11 transitions, 44 projections, 805046 bytes written
+fixture 006 "attachment-target-murder-response-cancelled": 14 transitions, 56 projections, 1024987 bytes written
+fixture 007 "actual-hong-kong-nonempty-attachment-search": 14 transitions, 56 projections, 531027 bytes written
+fixture 008 "won-region-batch-cross-owner-equipment-and-aura": 9 transitions, 36 projections, 719789 bytes written
+fixture 009 "direct-grave-face-up-play-normal-cost-and-conditional-icons": 6 transitions, 24 projections, 414151 bytes written
+fixture 010 "duel": 185 transitions, 369 projections, 8062233 bytes written
+fixture 011 "teams": 189 transitions, 750 projections, 15880211 bytes written
+fixture 012 "real-response-frame-continuation-and-heal-cost": 22 transitions, 44 projections, 1064690 bytes written
+fixture 013 "detective-target-reveal-invalidates-original-instance": 12 transitions, 24 projections, 489159 bytes written
+fixture 014 "detective-source-death-independent-hidden-destroy": 12 transitions, 24 projections, 515560 bytes written
+fixture 015 "custom-deck-create-join-lobby-freeze-and-start": 14 transitions, 50 projections, 587840 bytes written
+fixture 016 "friendly-teammate-defense-and-public-team-icons": 1 transitions, 4 projections, 118783 bytes written
+fixture 017 "4999-parallel-intents-quote-repeat-cancel-and-untimed-composition": 12 transitions, 48 projections, 945270 bytes written
+fixture 018 "5000-expiry-rejected-command-commits-only-system-tick": 6 transitions, 24 projections, 467510 bytes written
+fixture 019 "real-world-win-trigger-DQJC108": 14 transitions, 56 projections, 944848 bytes written
+fixture 020 "real-world-win-trigger-DQJC109": 10 transitions, 40 projections, 716871 bytes written
+fixture 021 "real-world-win-trigger-DQJC110": 10 transitions, 40 projections, 713971 bytes written
+fixture 022 "real-world-win-trigger-DQJC111": 14 transitions, 56 projections, 1035828 bytes written
+fixture 023 "real-world-win-trigger-DQJC115": 15 transitions, 60 projections, 1060631 bytes written
+fixture 024 "real-world-win-trigger-DQJC116": 14 transitions, 56 projections, 862447 bytes written
+fixture 025 "generic-simultaneous-character-search-not-hong-kong-binding": 11 transitions, 44 projections, 402472 bytes written
+fixture 026 "printed-MSJC09-normal-four-seat-first-and-rear-paid-resolution-reset": 465 transitions, 1854 projections, 36752870 bytes written
+fixture 027 "JC004-ready": 14 transitions, 56 projections, 1239091 bytes written
+fixture 028 "JC004-exhausted": 14 transitions, 56 projections, 1234827 bytes written
+fixture 029 "JC004-response-exhaust": 22 transitions, 88 projections, 1878218 bytes written
+fixture 030 "JC004-response-hide": 22 transitions, 88 projections, 1941529 bytes written
+fixture 031 "JC004-old-instance-reentered": 6 transitions, 24 projections, 544822 bytes written
+fixture 032 "JC004-moved-away": 6 transitions, 24 projections, 545410 bytes written
+fixture 033 "JC004-moved-back": 6 transitions, 24 projections, 541906 bytes written
+fixture 034 "JC004-hidden-before-guard": 6 transitions, 24 projections, 537427 bytes written
+fixture 035 "JC004-shield-before-guard": 6 transitions, 24 projections, 542885 bytes written
+fixture 036 "JC004-borrowed-return": 14 transitions, 56 projections, 1272064 bytes written
+fixture 037 "JC004-self-target": 14 transitions, 56 projections, 1239097 bytes written
+fixture 038 "JC004-continuation-return": 7 transitions, 28 projections, 615535 bytes written
+fixture 039 "JC004-continuation-exhaust": 7 transitions, 28 projections, 621586 bytes written
+fixture 040 "JC004-optional-decline": 9 transitions, 36 projections, 808621 bytes written
+fixture 041 "JC004-declared-ready-resolved-exhausted": 6 transitions, 24 projections, 537724 bytes written
+fixture 042 "JC004-declared-exhausted-resolved-ready": 6 transitions, 24 projections, 541928 bytes written
+fixture 043 "JC005-normal-character": 7 transitions, 28 projections, 543260 bytes written
+fixture 044 "JC005-mind-character": 7 transitions, 28 projections, 550017 bytes written
+fixture 045 "JC005-exhausted-mind": 7 transitions, 28 projections, 549972 bytes written
+fixture 046 "JC005-bound-host-moved-region": 6 transitions, 24 projections, 484537 bytes written
+fixture 047 "JC005-response-host-return": 15 transitions, 60 projections, 1163766 bytes written
+fixture 048 "JC005-response-host-hide": 15 transitions, 60 projections, 1168115 bytes written
+fixture 049 "JC005-bound-host-change-character": 6 transitions, 24 projections, 491460 bytes written
+fixture 050 "JC005-bound-host-change-type": 6 transitions, 24 projections, 482235 bytes written
+fixture 051 "JC005-bound-target-reentered": 6 transitions, 24 projections, 482685 bytes written
+fixture 052 "JC005-bound-target-hidden": 6 transitions, 24 projections, 475103 bytes written
+fixture 053 "JC005-bound-target-shield": 6 transitions, 24 projections, 480790 bytes written
+fixture 054 "JC005-bound-mind-removed-character": 6 transitions, 24 projections, 479884 bytes written
+fixture 055 "JC005-synthetic-noncharacter-no-mind": 1 transitions, 4 projections, 179565 bytes written
+fixture 056 "JC005-synthetic-noncharacter-mind-settlement": 7 transitions, 28 projections, 551981 bytes written
+fixture 057 "JC008-first-team": 7 transitions, 28 projections, 519700 bytes written
+fixture 058 "JC008-rear-team": 7 transitions, 28 projections, 519699 bytes written
+fixture 059 "JC008-exhausted-character": 7 transitions, 28 projections, 519664 bytes written
+fixture 060 "JC008-stack-two": 13 transitions, 52 projections, 961482 bytes written
+fixture 061 "JC008-reject-hidden": 1 transitions, 4 projections, 175279 bytes written
+fixture 062 "JC008-reject-barrier": 1 transitions, 4 projections, 176956 bytes written
+fixture 063 "JC008-reject-cost": 1 transitions, 4 projections, 175282 bytes written
+fixture 064 "JC008-reject-loyalty": 1 transitions, 4 projections, 176849 bytes written
+fixture 065 "JC008-shield-enemy": 7 transitions, 28 projections, 518297 bytes written
+fixture 066 "JC008-shield-friend": 7 transitions, 28 projections, 517759 bytes written
+fixture 067 "JC008-response-hide": 15 transitions, 60 projections, 1185074 bytes written
+fixture 068 "JC008-response-return": 15 transitions, 60 projections, 1181259 bytes written
+fixture 069 "JC008-hide-reveal": 21 transitions, 84 projections, 1609971 bytes written
+fixture 070 "JC008-return-reenter": 23 transitions, 92 projections, 1750929 bytes written
+fixture 071 "JC008-bound-target-reentered": 6 transitions, 24 projections, 459676 bytes written
+fixture 072 "JC008-checkpoint-controller": 6 transitions, 24 projections, 451406 bytes written
+fixture 073 "JC008-checkpoint-movement": 6 transitions, 24 projections, 449730 bytes written
+fixture 074 "JC008-cleanup-simultaneous-survival": 6 transitions, 24 projections, 449740 bytes written
+fixture 075 "JC008-cleanup-wounds": 6 transitions, 24 projections, 451399 bytes written
+fixture 076 "JC008-cleanup-zero-defense": 6 transitions, 24 projections, 450041 bytes written
+fixture 077 "JC008-cleanup-discard-pause": 8 transitions, 32 projections, 692894 bytes written
+fixture 078 "JC008-cleanup-discard-pause-rear-initiative": 8 transitions, 32 projections, 692909 bytes written
+fixture 079 "JC008-cleanup-death-trigger-reentry": 21 transitions, 84 projections, 1565306 bytes written
+natural four same red seed=40
+fixture 080 "MSJC01-construction-25-yellow": 1 transitions, 1 projections, 9325 bytes written
+fixture 081 "MSJC01-construction-27-yellow": 1 transitions, 1 projections, 9325 bytes written
+fixture 082 "printed-MSJC01-natural-four-seat-build-pay-draw-empty-search-turn-restore": 645 transitions, 2574 projections, 62057513 bytes written
+fixture 083 "MSJC01-empty-search": 7 transitions, 28 projections, 419794 bytes written
+fixture 084 "MSJC01-empty-deck": 7 transitions, 28 projections, 405269 bytes written
+fixture 085 "MSJC01-reject-cost": 1 transitions, 4 projections, 90367 bytes written
+fixture 086 "MSJC01-reject-exhausted": 1 transitions, 4 projections, 96387 bytes written
+fixture 087 "MSJC01-draw-first": 7 transitions, 28 projections, 418298 bytes written
+fixture 088 "MSJC01-draw-rear": 7 transitions, 28 projections, 415385 bytes written
+fixture 089 "MSJC01-neutral-unique-one-hit": 8 transitions, 32 projections, 492168 bytes written
+fixture 090 "MSJC01-neutral-unique-three-hits": 8 transitions, 32 projections, 499533 bytes written
+fixture 091 "MSJC01-pending-search-restore": 4 transitions, 16 projections, 266550 bytes written
+fixture 092 "MSJC01-cancelled-paid-frame": 6 transitions, 24 projections, 364296 bytes written
+fixture 093 "MSJC01-new-instance-used": 1 transitions, 4 projections, 99553 bytes written
+fixture 094 "MSJC01-new-game-reset": 3 transitions, 12 projections, 261819 bytes written
+fixture 095 "MSJC01-turn-reset-used": 155 transitions, 620 projections, 8866659 bytes written
+fixture 096 "society-zone-JC033-empty-paid-attachment": 9 transitions, 36 projections, 616060 bytes written
+fixture 097 "society-zone-JC033-with-card-paid-attachment": 9 transitions, 36 projections, 646240 bytes written
+fixture 098 "society-zone-JC034-empty-paid-attachment": 9 transitions, 36 projections, 613756 bytes written
+fixture 099 "society-zone-JC034-with-card-paid-attachment": 9 transitions, 36 projections, 644187 bytes written
+fixture 100 "society-zone-JZ29-empty-paid-attachment": 10 transitions, 40 projections, 678859 bytes written
+fixture 101 "society-zone-JZ29-with-card-paid-attachment": 10 transitions, 40 projections, 712760 bytes written
+fixture 102 "society-zone-JC068-empty-paid-attachment": 9 transitions, 36 projections, 613221 bytes written
+fixture 103 "society-zone-JC068-with-card-paid-attachment": 9 transitions, 36 projections, 643652 bytes written
+fixture 104 "next20-shared-forced-preparation-and-cq08-once": 25 transitions, 100 projections, 2000673 bytes written
+fixture 105 "next20-jz23-paid-marker-rumor-declined": 15 transitions, 60 projections, 1157037 bytes written
+fixture 106 "next20-jz23-paid-marker-rumor-sealed": 15 transitions, 60 projections, 1156679 bytes written
+fixture 107 "next20-actual-mill-rumor-cq26-discard-jz28-top-four": 26 transitions, 104 projections, 2012656 bytes written
+fixture 108 "next20-bq077-real-deck-to-grave-water-entry": 17 transitions, 68 projections, 1140816 bytes written
+fixture 109 "next20-bq085-sacrifice-and-xg27-victim-region-recovery": 16 transitions, 64 projections, 1288296 bytes written
+fixture 110 "next20-JC039-empty-zone-discount-play": 17 transitions, 68 projections, 1252218 bytes written
+fixture 111 "next20-JC039-empty-zone-discount-paid-reveal": 18 transitions, 72 projections, 1328783 bytes written
+fixture 112 "next20-XQ39-empty-zone-discount-play": 17 transitions, 68 projections, 1249074 bytes written
+fixture 113 "next20-XQ39-empty-zone-discount-paid-reveal": 17 transitions, 68 projections, 1250285 bytes written
+fixture 114 "next20-xq39-own-grave-to-top-no-shuffle": 12 transitions, 48 projections, 861857 bytes written
+fixture 115 "next20-jc039-own-blue-hide-fresh-instance-clears-marker": 12 transitions, 48 projections, 912106 bytes written
+fixture 116 "next20-xg10-one-cost-blood-search": 9 transitions, 36 projections, 626622 bytes written
+fixture 117 "next20-xg10-five-cost-embrace-control": 9 transitions, 36 projections, 624821 bytes written
+fixture 118 "next20-BQ059-exact-search-original-region": 17 transitions, 68 projections, 1314275 bytes written
+fixture 119 "next20-CQ17-exact-search-original-region": 8 transitions, 32 projections, 648046 bytes written
+fixture 120 "next20-CQ17-exact-search-replacement-region-fizzles": 6 transitions, 24 projections, 486787 bytes written
+fixture 121 "next20-cq08-reveal-private-same-name-hidden-entry": 12 transitions, 48 projections, 730620 bytes written
+fixture 122 "next20-jc051-private-badge-JC039-empty-zone": 12 transitions, 48 projections, 747015 bytes written
+fixture 123 "next20-jc051-private-badge-XQ39-empty-zone": 12 transitions, 48 projections, 747113 bytes written
+fixture 124 "next20-jz32-real-sacrifice-hourglass-return": 8 transitions, 32 projections, 558012 bytes written
+fixture 125 "next20-jz32-paid-replacement-region-fizzle": 5 transitions, 20 projections, 364575 bytes written
+fixture 126 "next20-jz34-entry-personal-sacrifice-destruction-death-influence": 17 transitions, 68 projections, 1287088 bytes written
+fixture 127 "next20-jz41-private-forecast-jz28-raid-adds-real-wound": 27 transitions, 108 projections, 1840620 bytes written
+fixture 128 "next20-wm039-once-analysis-wm042-both-modes-cancellation": 17 transitions, 68 projections, 1175007 bytes written
+fixture 129 "next20-wm040-real-exposure-removal-repress-and-local-heal": 17 transitions, 68 projections, 1318888 bytes written
+fixture 130 "next20-wm040-frozen-conditional-mobility-survives-cover-response": 16 transitions, 64 projections, 1146115 bytes written
+fixture 131 "next20-JC051-granted-renown-original-region": 15 transitions, 60 projections, 1007774 bytes written
+fixture 132 "next20-JC051-granted-renown-replacement-region-fizzle": 5 transitions, 20 projections, 367672 bytes written
+fixture 133 "next20-CQ26-granted-renown-original-region": 15 transitions, 60 projections, 1008235 bytes written
+fixture 134 "next20-CQ26-granted-renown-replacement-region-fizzle": 5 transitions, 20 projections, 367989 bytes written
+fixture 135 "next20-JZ23-granted-renown-original-region": 15 transitions, 60 projections, 1003321 bytes written
+fixture 136 "next20-JZ23-granted-renown-replacement-region-fizzle": 5 transitions, 20 projections, 366321 bytes written
+fixture 137 "next20-WM040-granted-renown-original-region": 15 transitions, 60 projections, 1014235 bytes written
+fixture 138 "next20-WM040-granted-renown-replacement-region-fizzle": 5 transitions, 20 projections, 369647 bytes written
+fixture 139 "yellow-batch-private-search": 8 transitions, 32 projections, 531614 bytes written
+fixture 140 "yellow-batch-private-empty": 6 transitions, 24 projections, 385751 bytes written
+fixture 141 "yellow-batch-private-cost-rejection": 1 transitions, 4 projections, 92257 bytes written
+fixture 142 "yellow-batch-private-exhaustion-rejection": 1 transitions, 4 projections, 103084 bytes written
+fixture 143 "yellow-batch-real-yellow-reveal": 8 transitions, 32 projections, 528176 bytes written
+fixture 144 "yellow-batch-top-search": 8 transitions, 32 projections, 553104 bytes written
+fixture 145 "yellow-batch-top-draw": 6 transitions, 24 projections, 407589 bytes written
+fixture 146 "yellow-batch-top-controller": 1 transitions, 4 projections, 77064 bytes written
+fixture 147 "yellow-batch-top-exhausted": 1 transitions, 4 projections, 80483 bytes written
+fixture 148 "yellow-batch-top-hidden": 1 transitions, 4 projections, 79130 bytes written
+fixture 149 "yellow-batch-top-empty": 1 transitions, 4 projections, 78182 bytes written
+fixture 150 "yellow-batch-top-multiple-leave": 11 transitions, 44 projections, 783876 bytes written
+fixture 151 "yellow-batch-top-return-checkpoint": 6 transitions, 24 projections, 372326 bytes written
+fixture 152 "yellow-batch-top-optional-shuffle-checkpoint": 6 transitions, 24 projections, 372182 bytes written
+fixture 153 "printed-yellow-batch-natural-four-seat-real-search-LC01-deploy-private-top-restore": 647 transitions, 2582 projections, 62090424 bytes written
+fixture 154 "control-temporary-target-hide": 30 transitions, 120 projections, 3345726 bytes written
+fixture 155 "control-source-hide": 21 transitions, 84 projections, 2343711 bytes written
+fixture 156 "control-source-controller-fixed-recipient": 158 transitions, 632 projections, 17564172 bytes written
+fixture 157 "control-three-layers-expiry": 330 transitions, 1320 projections, 38112660 bytes written
+fixture 158 "control-lower-removed-under-upper": 326 transitions, 1304 projections, 37858271 bytes written
+natural control seed=5 steps=1917 turn=13 milestones=[true, true, true, true]
+fixture 159 "control-natural-four-seat-real-50-card-decks": 1917 transitions, 7662 projections, 264297865 bytes written
+fixture 160 "renown-merged-decline": 10 transitions, 40 projections, 899189 bytes written
+fixture 161 "renown-normal-win": 15 transitions, 60 projections, 1321869 bytes written
+fixture 162 "renown-renown-win": 14 transitions, 56 projections, 1247299 bytes written
+fixture 163 "renown-response-identity": 23 transitions, 92 projections, 1936374 bytes written
+fixture 164 "renown-control-cleanup": 157 transitions, 628 projections, 13187749 bytes written
+fixture 165 "renown-natural-four-seat-paid-three-cards": 644 transitions, 2570 projections, 57099336 bytes written
+fixture 166 "batch20-JZ33-granted-renown-restore": 15 transitions, 60 projections, 1002989 bytes written
+fixture 167 "batch20-JZ52-granted-renown-restore": 15 transitions, 60 projections, 1004945 bytes written
+fixture 168 "batch20-JC040-granted-renown-restore": 15 transitions, 60 projections, 998201 bytes written
+fixture 169 "batch20-JC067-granted-renown-restore": 23 transitions, 92 projections, 1508303 bytes written
+fixture 170 "batch20-JZ33-granted-jc089-combat-glory-restore": 35 transitions, 140 projections, 2433888 bytes written
+fixture 171 "batch20-JZ52-granted-jc089-combat-glory-restore": 36 transitions, 144 projections, 2525074 bytes written
+fixture 172 "batch20-JC040-granted-jc089-combat-glory-restore": 36 transitions, 144 projections, 2508324 bytes written
+fixture 173 "protection-paid-four": 167 transitions, 668 projections, 16627118 bytes written
+fixture 174 "protection-foreign-host": 12 transitions, 48 projections, 1179323 bytes written
+fixture 175 "protection-response-return": 14 transitions, 56 projections, 1363849 bytes written
+fixture 176 "protection-response-hide": 14 transitions, 56 projections, 1368601 bytes written
+fixture 177 "protection-source-return": 14 transitions, 56 projections, 1372577 bytes written
+fixture 178 "protection-phase-loyalty": 8 transitions, 32 projections, 711319 bytes written
+fixture 179 "protection-fire-purple-loyalty": 8 transitions, 32 projections, 697032 bytes written
+fixture 180 "protection-natural-four-seat-paid-four-cards": 2280 transitions, 9114 projections, 290136144 bytes written
+fixture 181 "defence-equipment-paid-four": 175 transitions, 700 projections, 20471462 bytes written
+fixture 182 "defence-equipment-shield-return": 14 transitions, 56 projections, 1501442 bytes written
+fixture 183 "defence-equipment-shield-hide": 13 transitions, 52 projections, 1406279 bytes written
+fixture 184 "defence-equipment-vest-target": 19 transitions, 76 projections, 2055760 bytes written
+fixture 185 "defence-equipment-vest-source": 19 transitions, 76 projections, 2065185 bytes written
+fixture 186 "defence-equipment-vest-lost-defense": 16 transitions, 64 projections, 1733212 bytes written
+fixture 187 "defence-equipment-roles-targets": 19 transitions, 76 projections, 2134550 bytes written
+fixture 188 "defence-equipment-blood-type": 16 transitions, 64 projections, 1735401 bytes written
+fixture 189 "defence-equipment-cat-loyalty": 14 transitions, 56 projections, 1327916 bytes written
+fixture 190 "defence-equipment-natural-four-seat-paid-four-cards": 2422 transitions, 9682 projections, 289175823 bytes written
+fixture 191 "equipment-abilities-paid-four": 48 transitions, 192 projections, 5277898 bytes written
+fixture 192 "equipment-abilities-knife-source-moved": 5 transitions, 20 projections, 557912 bytes written
+fixture 193 "equipment-abilities-knife-target-moved": 5 transitions, 20 projections, 561801 bytes written
+fixture 194 "equipment-abilities-knife-paid-shield": 5 transitions, 20 projections, 558849 bytes written
+fixture 195 "equipment-abilities-blade-twice": 157 transitions, 628 projections, 16556773 bytes written
+fixture 196 "equipment-abilities-blade-source-left": 19 transitions, 76 projections, 2009459 bytes written
+fixture 197 "equipment-abilities-blade-host-left": 19 transitions, 76 projections, 2001219 bytes written
+fixture 198 "equipment-abilities-blade-host-moved": 5 transitions, 20 projections, 553374 bytes written
+fixture 199 "equipment-abilities-blade-host-rebound": 5 transitions, 20 projections, 553672 bytes written
+fixture 200 "equipment-abilities-blade-control": 7 transitions, 28 projections, 769766 bytes written
+fixture 201 "equipment-abilities-water-group": 165 transitions, 660 projections, 18817109 bytes written
+fixture 202 "equipment-abilities-water-source-moved": 5 transitions, 20 projections, 551783 bytes written
+fixture 203 "equipment-abilities-gun-win": 6 transitions, 24 projections, 644212 bytes written
+natural equipment turn=1 kind=asset def=Some("JC088") assets=0
+natural equipment turn=1 kind=deploy def=Some("JC125") assets=1
+natural equipment turn=2 kind=asset def=Some("JC014") assets=1
+natural equipment turn=2 kind=play def=Some("JC020") assets=2
+natural equipment turn=2 kind=deploy def=Some("JC125") assets=2
+natural equipment turn=2 kind=activate def=Some("JC020") assets=2
+natural equipment turn=3 kind=activate def=Some("JC020") assets=2
+natural equipment turn=3 kind=asset def=Some("XQ07") assets=2
+natural equipment turn=3 kind=play def=Some("XQ07") assets=3
+natural equipment turn=4 kind=activate def=Some("JC020") assets=3
+natural equipment turn=4 kind=asset def=Some("JC085") assets=3
+natural equipment turn=4 kind=play def=Some("JC093") assets=4
+natural equipment turn=5 kind=activate def=Some("JC020") assets=4
+natural equipment turn=5 kind=asset def=Some("LC01") assets=4
+natural equipment turn=5 kind=play def=Some("JC116") assets=5
+natural equipment turn=5 kind=activate def=Some("XQ07") assets=5
+natural equipment turn=6 kind=activate def=Some("JC020") assets=5
+natural equipment turn=6 kind=deploy def=Some("JC125") assets=5
+natural equipment turn=6 kind=activate def=Some("JC093") assets=5
+natural equipment turn=6 kind=activate def=Some("JC093") assets=5
+natural equipment turn=7 kind=activate def=Some("JC020") assets=5
+natural equipment turn=7 kind=asset def=Some("JC085") assets=5
+natural equipment turn=8 kind=activate def=Some("JC020") assets=6
+natural equipment turn=8 kind=deploy def=Some("JC125") assets=6
+natural equipment turn=8 kind=activate def=Some("JC020") assets=6
+fixture 204 "equipment-abilities-natural-four-seat-paid-four": 1299 transitions, 5190 projections, 141319647 bytes written
+fixture 205 "equipment-abilities-controller-only-hosts": 35 transitions, 140 projections, 4132265 bytes written
+fixture 206 "hand-deck-paid-four": 24 transitions, 96 projections, 2098620 bytes written
+fixture 207 "hand-deck-research-private": 11 transitions, 44 projections, 940087 bytes written
+fixture 208 "hand-deck-airdrop-private": 9 transitions, 36 projections, 772804 bytes written
+fixture 209 "hand-deck-empty-search": 6 transitions, 24 projections, 506086 bytes written
+fixture 210 "hand-deck-research-depletion": 6 transitions, 24 projections, 484117 bytes written
+fixture 211 "hand-deck-dog-invalid": 14 transitions, 56 projections, 1163822 bytes written
+fixture 212 "hand-deck-dog-self": 6 transitions, 24 projections, 515626 bytes written
+fixture 213 "hand-deck-controlled-not-owned": 6 transitions, 24 projections, 516016 bytes written
+fixture 214 "hand-deck-offering-accept": 12 transitions, 48 projections, 1020872 bytes written
+fixture 215 "hand-deck-offering-skip": 7 transitions, 28 projections, 597035 bytes written
+fixture 216 "hand-deck-loyalty": 5 transitions, 20 projections, 418634 bytes written
+fixture 217 "hand-deck-source-return": 12 transitions, 48 projections, 1043349 bytes written
+fixture 218 "hand-deck-real-JZ27-simultaneous-source-first": 12 transitions, 48 projections, 882355 bytes written
+fixture 219 "hand-deck-real-JZ27-simultaneous-offering-first": 12 transitions, 48 projections, 882357 bytes written
+fixture 220 "hand-interactions-hacker-accept-target-0": 8 transitions, 32 projections, 555711 bytes written
+fixture 221 "hand-interactions-hacker-accept-target-1": 8 transitions, 32 projections, 554182 bytes written
+fixture 222 "hand-interactions-hacker-accept-target-2": 8 transitions, 32 projections, 553678 bytes written
+fixture 223 "hand-interactions-hacker-accept-target-3": 8 transitions, 32 projections, 553696 bytes written
+fixture 224 "hand-interactions-hacker-decline-target-2": 8 transitions, 32 projections, 552184 bytes written
+fixture 225 "hand-interactions-hacker-source-return-target-2": 15 transitions, 60 projections, 1058604 bytes written
+fixture 226 "hand-interactions-hacker-foreign-discard-target-2": 8 transitions, 32 projections, 554128 bytes written
+fixture 227 "hand-interactions-hacker-inspiration-accept-target-2": 13 transitions, 52 projections, 809577 bytes written
+fixture 228 "hand-interactions-hacker-inspiration-skip-target-2": 9 transitions, 36 projections, 565245 bytes written
+fixture 229 "hand-interactions-hacker-inspiration-unfunded-target-2": 8 transitions, 32 projections, 498681 bytes written
+fixture 230 "hand-interactions-recover-ordinary": 12 transitions, 48 projections, 842835 bytes written
+fixture 231 "hand-interactions-recover-inspiration-accept": 17 transitions, 68 projections, 1192204 bytes written
+fixture 232 "hand-interactions-recover-inspiration-skip": 13 transitions, 52 projections, 903405 bytes written
+fixture 233 "hand-interactions-recover-inspiration-unfunded": 12 transitions, 48 projections, 757879 bytes written
+fixture 234 "hand-interactions-entry-mill-0": 11 transitions, 44 projections, 646190 bytes written
+fixture 235 "hand-interactions-entry-mill-1": 11 transitions, 44 projections, 649988 bytes written
+fixture 236 "hand-interactions-entry-mill-3": 11 transitions, 44 projections, 657247 bytes written
+fixture 237 "hand-interactions-amnesia-one-target-2": 7 transitions, 28 projections, 422300 bytes written
+fixture 238 "hand-interactions-amnesia-random-three-target-2": 7 transitions, 28 projections, 431386 bytes written
+fixture 239 "hand-interactions-amnesia-foreign-owner-target-2": 7 transitions, 28 projections, 422740 bytes written
+fixture 240 "hand-interactions-amnesia-empty-target-2": 7 transitions, 28 projections, 417617 bytes written
+fixture 241 "hand-interactions-amnesia-self-target-0": 7 transitions, 28 projections, 472109 bytes written
+fixture 242 "hand-interactions-prepared-optional-shuffle-accept": 2 transitions, 8 projections, 129711 bytes written
+fixture 243 "hand-interactions-prepared-optional-shuffle-decline": 2 transitions, 8 projections, 129694 bytes written
+fixture 244 "hand-interactions-normal-inspiration-play-empty-hacker": 12 transitions, 48 projections, 815204 bytes written
+fixture 245 "hand-interactions-prepared-stale-recovery-trigger-still-draws": 10 transitions, 40 projections, 719946 bytes written
+fixture 246 "hand-interactions-natural-real-50-card-dealt-hacker-deploy-only-printed-two": 176 transitions, 698 projections, 12129767 bytes written
+fixture 247 "purple-tools-painter-exhaust-only-discount-play-asset-character-no-death": 8 transitions, 32 projections, 575979 bytes written
+fixture 248 "purple-tools-conceal-asset-do-not-consume-paid-reveal-does": 15 transitions, 60 projections, 1064245 bytes written
+fixture 249 "purple-tools-legacy-reduction-excludes-paid-reveal": 15 transitions, 60 projections, 1064734 bytes written
+fixture 250 "purple-tools-real-DQJC108-win-free-reveal-keeps-discount": 12 transitions, 48 projections, 828632 bytes written
+fixture 251 "purple-tools-discount-not-consumed-bad-target": 3 transitions, 12 projections, 257699 bytes written
+fixture 252 "purple-tools-discount-not-consumed-loyalty": 3 transitions, 12 projections, 245321 bytes written
+fixture 253 "purple-tools-discount-not-consumed-no-money": 3 transitions, 12 projections, 242715 bytes written
+fixture 254 "purple-tools-discount-not-consumed-nonpurple": 7 transitions, 28 projections, 534099 bytes written
+fixture 255 "purple-tools-discount-not-consumed-other-actor": 17 transitions, 68 projections, 1244680 bytes written
+fixture 256 "purple-tools-stacked-discounts-clamp-zero-consume-next": 9 transitions, 36 projections, 663712 bytes written
+fixture 257 "purple-tools-returned-source-keeps-declared-controller-discount": 7 transitions, 28 projections, 509045 bytes written
+fixture 258 "purple-tools-turn-end-expires-discount": 143 transitions, 572 projections, 9285590 bytes written
+fixture 259 "purple-tools-collapse-seat-0-asset-owner-fresh-instance-privacy": 6 transitions, 24 projections, 420249 bytes written
+fixture 260 "purple-tools-collapse-seat-1-asset-owner-fresh-instance-privacy": 6 transitions, 24 projections, 420242 bytes written
+fixture 261 "purple-tools-collapse-seat-2-asset-owner-fresh-instance-privacy": 6 transitions, 24 projections, 420242 bytes written
+fixture 262 "purple-tools-collapse-seat-3-asset-owner-fresh-instance-privacy": 6 transitions, 24 projections, 420242 bytes written
+fixture 263 "purple-tools-collapse-reject-character-atomically": 2 transitions, 8 projections, 164491 bytes written
+fixture 264 "purple-tools-collapse-reject-hidden-atomically": 2 transitions, 8 projections, 162194 bytes written
+fixture 265 "purple-tools-collapse-reject-hand-atomically": 2 transitions, 8 projections, 161135 bytes written
+fixture 266 "purple-tools-collapse-reject-grave-atomically": 2 transitions, 8 projections, 164105 bytes written
+fixture 267 "purple-tools-collapse-reject-region-atomically": 2 transitions, 8 projections, 159933 bytes written
+fixture 268 "purple-tools-collapse-reject-player-atomically": 2 transitions, 8 projections, 159927 bytes written
+fixture 269 "purple-tools-collapse-reject-missing-atomically": 2 transitions, 8 projections, 159946 bytes written
+fixture 270 "purple-tools-collapse-real-control-attachment-cleans-control": 11 transitions, 44 projections, 831749 bytes written
+fixture 271 "purple-tools-destroy-armor-settles-wounded-host-real-death-trigger": 12 transitions, 48 projections, 857737 bytes written
+fixture 272 "purple-tools-real-host-rescue-stales-attachment-no-refund": 14 transitions, 56 projections, 1064492 bytes written
+fixture 273 "wound-defence-hermit-no-assets": 6 transitions, 24 projections, 414463 bytes written
+fixture 274 "wound-defence-hermit-controller": 6 transitions, 24 projections, 446726 bytes written
+fixture 275 "wound-defence-hermit-stack": 11 transitions, 44 projections, 824263 bytes written
+fixture 276 "wound-defence-hermit-source-return": 12 transitions, 48 projections, 908944 bytes written
+fixture 277 "wound-defence-hermit-target-return": 17 transitions, 68 projections, 1266354 bytes written
+fixture 278 "wound-defence-hermit-reject-self": 2 transitions, 8 projections, 161343 bytes written
+fixture 279 "wound-defence-hermit-reject-teammate": 2 transitions, 8 projections, 165932 bytes written
+fixture 280 "wound-defence-hermit-reject-enemy": 2 transitions, 8 projections, 165890 bytes written
+fixture 281 "wound-defence-hermit-reject-other-region": 2 transitions, 8 projections, 165975 bytes written
+fixture 282 "wound-defence-hermit-reject-hidden": 2 transitions, 8 projections, 164599 bytes written
+fixture 283 "wound-defence-hermit-reject-asset": 2 transitions, 8 projections, 163280 bytes written
+fixture 284 "wound-defence-hermit-reject-hand": 2 transitions, 8 projections, 167621 bytes written
+fixture 285 "wound-defence-hermit-reject-missing": 2 transitions, 8 projections, 161388 bytes written
+fixture 286 "wound-defence-prepared-hermit-target-moved-cancels": 5 transitions, 20 projections, 384333 bytes written
+fixture 287 "wound-defence-prepared-hermit-target-controlled-cancels": 5 transitions, 20 projections, 384524 bytes written
+fixture 288 "wound-defence-prepared-hermit-target-hidden-cancels": 5 transitions, 20 projections, 379495 bytes written
+fixture 289 "wound-defence-real-murder-death-wound-normal": 11 transitions, 44 projections, 830229 bytes written
+fixture 290 "wound-defence-real-murder-death-wound-controller": 11 transitions, 44 projections, 830495 bytes written
+fixture 291 "wound-defence-death-no-local-character-no-choice": 6 transitions, 24 projections, 449493 bytes written
+fixture 292 "wound-defence-death-decline-free": 7 transitions, 28 projections, 534559 bytes written
+fixture 293 "wound-defence-real-murder-death-wound-lethal": 11 transitions, 44 projections, 832385 bytes written
+fixture 294 "wound-defence-real-murder-death-wound-prevented": 16 transitions, 64 projections, 1240827 bytes written
+fixture 295 "wound-defence-real-murder-death-wound-shield": 11 transitions, 44 projections, 830637 bytes written
+fixture 296 "wound-defence-real-murder-death-wound-target-return": 19 transitions, 76 projections, 1518345 bytes written
+fixture 297 "wound-defence-real-murder-death-wound-persist": 149 transitions, 596 projections, 10823330 bytes written
+fixture 298 "wound-defence-real-murder-death-wound-saved": 154 transitions, 616 projections, 11577502 bytes written
+fixture 299 "wound-defence-real-sacrifice-cost-independent-death-wound": 11 transitions, 44 projections, 827060 bytes written
+fixture 300 "wound-defence-prepared-cleanup-damage-cleared-with-defense-expiry": 5 transitions, 20 projections, 379025 bytes written
+fixture 301 "wound-defence-prepared-cleanup-wounds-stay-expiry-real-death": 14 transitions, 56 projections, 1015536 bytes written
+fixture 302 "dream-reveal-real-spirit-damage-advantage": 6 transitions, 24 projections, 456518 bytes written
+fixture 303 "dream-reveal-real-spirit-damage-tie": 6 transitions, 24 projections, 470150 bytes written
+fixture 304 "dream-reveal-real-spirit-damage-deficit": 6 transitions, 24 projections, 486772 bytes written
+fixture 305 "dream-reveal-real-spirit-damage-attachment": 6 transitions, 24 projections, 548175 bytes written
+fixture 306 "dream-reveal-real-spirit-damage-simultaneous": 6 transitions, 24 projections, 502030 bytes written
+fixture 307 "dream-reveal-real-spirit-wound-still-kills": 11 transitions, 44 projections, 802312 bytes written
+fixture 308 "dream-reveal-real-spirit-assassin-destruction-still-kills": 11 transitions, 44 projections, 834291 bytes written
+fixture 309 "dream-reveal-real-spirit-granted-combat-participates": 6 transitions, 24 projections, 445895 bytes written
+fixture 310 "dream-reveal-paid-zero-reveal-repress-normal": 12 transitions, 48 projections, 828831 bytes written
+fixture 311 "dream-reveal-paid-zero-reveal-repress-target3": 12 transitions, 48 projections, 829331 bytes written
+fixture 312 "dream-reveal-paid-zero-reveal-repress-reject": 17 transitions, 68 projections, 1166919 bytes written
+fixture 313 "dream-reveal-paid-zero-reveal-no-enemy-influence": 11 transitions, 44 projections, 759903 bytes written
+fixture 314 "dream-reveal-paid-zero-reveal-decline-free": 7 transitions, 28 projections, 487416 bytes written
+fixture 315 "dream-reveal-paid-zero-reveal-repress-source-return": 18 transitions, 72 projections, 1294220 bytes written
+fixture 316 "dream-reveal-real-death-named-search-found": 12 transitions, 48 projections, 851385 bytes written
+fixture 317 "dream-reveal-real-death-named-search-controller": 12 transitions, 48 projections, 851748 bytes written
+fixture 318 "dream-reveal-death-named-search-empty-shuffles": 11 transitions, 44 projections, 778382 bytes written
+fixture 319 "dream-reveal-death-named-search-trigger-decline": 7 transitions, 28 projections, 505261 bytes written
+fixture 320 "dream-reveal-real-death-named-search-search-decline": 12 transitions, 48 projections, 849780 bytes written
+fixture 321 "dream-reveal-real-amnesia-genuine-dream-accept": 8 transitions, 32 projections, 590883 bytes written
+fixture 322 "dream-reveal-real-amnesia-genuine-dream-decline": 8 transitions, 32 projections, 590916 bytes written
+fixture 323 "dream-reveal-real-amnesia-genuine-dream-hidden": 7 transitions, 28 projections, 514775 bytes written
+fixture 324 "dream-reveal-real-amnesia-genuine-dream-teammate": 7 transitions, 28 projections, 521102 bytes written
+fixture 325 "dream-reveal-real-amnesia-genuine-dream-enemy": 7 transitions, 28 projections, 520970 bytes written
+fixture 326 "dream-reveal-real-amnesia-genuine-dream-source-return": 13 transitions, 52 projections, 983489 bytes written
+fixture 327 "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-accept": 34 transitions, 130 projections, 2052984 bytes written
+fixture 328 "dream-reveal-natural-real-50-card-joined-actual-jz58-deploy-amnesia-decline": 34 transitions, 130 projections, 2052967 bytes written
+fixture 329 "identity-overlap-four-same-red-exact-controller-source-defense-and-damage": 15 transitions, 60 projections, 1695146 bytes written
+fixture 330 "identity-overlap-four-same-red-reveal-exhaust-exact-enemy-instance": 11 transitions, 44 projections, 1199885 bytes written
+fixture 331 "identity-overlap-four-same-red-death-wound-only-selected-instance": 11 transitions, 44 projections, 1227176 bytes written
+fixture 332 "identity-overlap-real-control-same-red-owner-return-response-stale-target-fresh-redeploy": 31 transitions, 124 projections, 3540112 bytes written
+fixture 333 "identity-overlap-same-red-simultaneous-four-deaths-last-controller-and-owner-graves": 30 transitions, 120 projections, 3276147 bytes written
+fixture 334 "identity-overlap-actual-unique-lc23-per-controller-not-color-team-or-opponent": 7 transitions, 28 projections, 816841 bytes written
+fixture 335 "identity-overlap-four-same-real-society-exact-instances-source-authority-and-payment": 9 transitions, 36 projections, 907555 bytes written
+fixture 336 "identity-overlap-different-real-societies-common-red-assets-personal-payment": 9 transitions, 36 projections, 942507 bytes written
+fixture 337 "identity-overlap-natural-four-seat-same-red-real-deal-assets-deploy": 49 transitions, 190 projections, 3261669 bytes written
+fixture 338 "repress-assets-accident-seat0-choose": 7 transitions, 28 projections, 462131 bytes written
+fixture 339 "repress-assets-accident-seat1-choose": 7 transitions, 28 projections, 462236 bytes written
+fixture 340 "repress-assets-accident-seat2-choose": 7 transitions, 28 projections, 461296 bytes written
+fixture 341 "repress-assets-accident-seat3-choose": 7 transitions, 28 projections, 461640 bytes written
+fixture 342 "repress-assets-accident-seat0-empty-influence": 6 transitions, 24 projections, 400193 bytes written
+fixture 343 "repress-assets-accident-seat0-empty-deck": 6 transitions, 24 projections, 350361 bytes written
+fixture 344 "repress-assets-accident-seat0-reject": 16 transitions, 64 projections, 1008817 bytes written
+fixture 345 "repress-assets-expansion-seat0-JC104-normal": 6 transitions, 24 projections, 427119 bytes written
+fixture 346 "repress-assets-expansion-seat1-JZ58-normal": 6 transitions, 24 projections, 424964 bytes written
+fixture 347 "repress-assets-expansion-seat2-LC23-normal": 6 transitions, 24 projections, 425016 bytes written
+fixture 348 "repress-assets-expansion-seat3-JC126-normal": 6 transitions, 24 projections, 424898 bytes written
+fixture 349 "repress-assets-expansion-seat0-JC104-prior-build": 8 transitions, 32 projections, 558165 bytes written
+fixture 350 "repress-assets-expansion-seat0-JC104-later-build": 7 transitions, 28 projections, 493427 bytes written
+fixture 351 "repress-assets-expansion-seat0-JC104-empty": 6 transitions, 24 projections, 378747 bytes written
+fixture 352 "repress-assets-expansion-seat0-JC104-dirty-boundary": 6 transitions, 24 projections, 427411 bytes written
+fixture 353 "repress-assets-two-paid-expansions-one-turn-two-fresh-assets": 11 transitions, 44 projections, 753311 bytes written
+fixture 354 "repress-assets-paid-jc104-response-private-forecast-changes-actual-top": 18 transitions, 72 projections, 1247471 bytes written
+fixture 355 "repress-assets-neutral-expansion-blue-loyalty-not-supplied-by-teammate": 2 transitions, 8 projections, 161418 bytes written
+fixture 356 "repress-assets-real-target-empty-deck-draw-elimination-cancels-whole-program": 13 transitions, 52 projections, 766861 bytes written
+fixture 357 "repress-assets-new-asset-pays-real-two-cost-spell-and-supplies-yellow-loyalty-public-mind": 154 transitions, 616 projections, 11691122 bytes written
+fixture 358 "repress-assets-natural-real-50-card-three-normal-build-turns-both-new-spells": 325 transitions, 1294 projections, 23885731 bytes written
+fixture 359 "mixed-decks-natural-red-black-versus-red-blue-four-shared-red-personal-loyalty": 199 transitions, 790 projections, 14740024 bytes written
+fixture 360 "MSJC07-construction-25-black": 1 transitions, 1 projections, 11074 bytes written
+fixture 361 "MSJC07-construction-33-black": 1 transitions, 1 projections, 11326 bytes written
+fixture 362 "printed-MSJC07-natural-four-seat-build-pay-draw-black-search-turn-restore": 651 transitions, 2598 projections, 63872535 bytes written
+fixture 363 "MSJC07-reject-cost": 2 transitions, 8 projections, 135057 bytes written
+fixture 364 "MSJC07-reject-exhausted": 2 transitions, 8 projections, 143794 bytes written
+fixture 365 "MSJC07-reject-foreign-source": 2 transitions, 8 projections, 145717 bytes written
+fixture 366 "MSJC07-reject-yellow-key": 2 transitions, 8 projections, 145674 bytes written
+fixture 367 "MSJC07-draw-first": 6 transitions, 24 projections, 408610 bytes written
+fixture 368 "MSJC07-draw-rear": 6 transitions, 24 projections, 407153 bytes written
+fixture 369 "MSJC07-empty-search": 6 transitions, 24 projections, 410613 bytes written
+fixture 370 "MSJC07-empty-deck": 6 transitions, 24 projections, 397904 bytes written
+fixture 371 "MSJC07-one-hit": 10 transitions, 40 projections, 687560 bytes written
+fixture 372 "MSJC07-two-hits-seat3": 10 transitions, 40 projections, 694547 bytes written
+fixture 373 "MSJC07-cancelled-paid-frame": 5 transitions, 20 projections, 347551 bytes written
+fixture 374 "MSJC07-new-instance-used": 2 transitions, 8 projections, 148278 bytes written
+fixture 375 "MSJC07-finished-restart": 2 transitions, 8 projections, 178540 bytes written
+fixture 376 "MSJC07-turn-reset-used": 155 transitions, 620 projections, 10003229 bytes written
+fixture 377 "MSJC06-construction-25-white": 1 transitions, 1 projections, 10936 bytes written
+fixture 378 "MSJC06-construction-27-white": 1 transitions, 1 projections, 10936 bytes written
+fixture 379 "printed-MSJC06-natural-four-seat-build-pay-draw-white-search-turn-restore": 651 transitions, 2598 projections, 63117238 bytes written
+fixture 380 "MSJC06-reject-cost": 2 transitions, 8 projections, 132955 bytes written
+fixture 381 "MSJC06-reject-exhausted": 2 transitions, 8 projections, 141716 bytes written
+fixture 382 "MSJC06-reject-foreign-source": 2 transitions, 8 projections, 143591 bytes written
+fixture 383 "MSJC06-reject-yellow-key": 2 transitions, 8 projections, 143548 bytes written
+fixture 384 "MSJC06-draw-first": 6 transitions, 24 projections, 402656 bytes written
+fixture 385 "MSJC06-draw-rear": 6 transitions, 24 projections, 401199 bytes written
+fixture 386 "MSJC06-empty-search": 6 transitions, 24 projections, 404659 bytes written
+fixture 387 "MSJC06-empty-deck": 6 transitions, 24 projections, 391950 bytes written
+fixture 388 "MSJC06-one-hit": 10 transitions, 40 projections, 677384 bytes written
+fixture 389 "MSJC06-two-hits-seat3": 10 transitions, 40 projections, 682851 bytes written
+fixture 390 "MSJC06-cancelled-paid-frame": 5 transitions, 20 projections, 342494 bytes written
+fixture 391 "MSJC06-new-instance-used": 2 transitions, 8 projections, 146020 bytes written
+fixture 392 "MSJC06-finished-restart": 2 transitions, 8 projections, 175342 bytes written
+fixture 393 "MSJC06-turn-reset-used": 155 transitions, 620 projections, 9856404 bytes written
+fixture 394 "LC06-normal": 16 transitions, 64 projections, 830565 bytes written
+fixture 395 "LC06-controller": 16 transitions, 64 projections, 828768 bytes written
+fixture 396 "LC06-fatal-controller": 16 transitions, 64 projections, 830195 bytes written
+fixture 397 "LC06-decline": 12 transitions, 48 projections, 622314 bytes written
+fixture 398 "LC06-source-return": 22 transitions, 88 projections, 1248014 bytes written
+fixture 399 "LC06-target-return": 17 transitions, 68 projections, 975107 bytes written
+fixture 400 "LC06-damage-prevention": 21 transitions, 84 projections, 1187362 bytes written
+fixture 401 "LC06-exhausted-two-wounds": 31 transitions, 124 projections, 1745464 bytes written
+fixture 402 "LC06-empty-deck": 16 transitions, 64 projections, 788856 bytes written
+fixture 403 "LC06-damage": 6 transitions, 24 projections, 335505 bytes written
+fixture 404 "LC06-destroy": 6 transitions, 24 projections, 318431 bytes written
+fixture 405 "LC06-manual": 2 transitions, 8 projections, 112185 bytes written
+fixture 406 "LC06-shield": 11 transitions, 44 projections, 572536 bytes written
+fixture 407 "LC06-healing": 6 transitions, 24 projections, 331249 bytes written
+fixture 408 "LC06-gold-unique-same-controller": 7 transitions, 28 projections, 326910 bytes written
+fixture 409 "LC06-gold-unique-friend": 6 transitions, 24 projections, 279732 bytes written
+fixture 410 "LC06-gold-unique-paid-reveal": 7 transitions, 28 projections, 325259 bytes written
+LC06 natural iteration=0 turn=1 searched=false lc=None jz=None killed=false drawn=false assets=[] hand=["JZ59", "JZ59", "JC091", "JC075", "JC074", "JC091"]
+LC06 natural iteration=200 turn=2 searched=false lc=None jz=None killed=false drawn=false assets=["JC075", "JC074"] hand=["JZ59", "JZ59", "JC091", "JC091", "JC125", "JC075"]
+LC06 natural iteration=400 turn=3 searched=false lc=None jz=None killed=false drawn=false assets=["JC075", "JC074", "JZ59"] hand=["JZ59", "JC091", "JC091", "JC125", "JC075", "JC125"]
+LC06 natural iteration=600 turn=5 searched=true lc=None jz=None killed=false drawn=false assets=["JC075", "JC074", "JZ59", "JC091"] hand=["JZ59", "JC091", "JC125", "JC075", "JC125", "XQ34", "LC06"]
+fixture 411 "LC06-natural-four-seat-white-search-paid-entry-real-JZ59-death-wound-responsive-draw": 790 transitions, 3154 projections, 79685193 bytes written
+fixture 412 "MSJC08-construction-25-purple": 1 transitions, 1 projections, 10975 bytes written
+fixture 413 "MSJC08-construction-27-purple": 1 transitions, 1 projections, 10975 bytes written
+fixture 414 "printed-MSJC08-natural-four-seat-build-pay-draw-purple-search-turn-restore": 651 transitions, 2598 projections, 63185899 bytes written
+fixture 415 "MSJC08-reject-cost": 2 transitions, 8 projections, 133577 bytes written
+fixture 416 "MSJC08-reject-exhausted": 2 transitions, 8 projections, 142314 bytes written
+fixture 417 "MSJC08-reject-foreign-source": 2 transitions, 8 projections, 144245 bytes written
+fixture 418 "MSJC08-reject-yellow-key": 2 transitions, 8 projections, 144201 bytes written
+fixture 419 "MSJC08-draw-first": 6 transitions, 24 projections, 404745 bytes written
+fixture 420 "MSJC08-draw-rear": 6 transitions, 24 projections, 403288 bytes written
+fixture 421 "MSJC08-empty-search": 6 transitions, 24 projections, 406804 bytes written
+fixture 422 "MSJC08-empty-deck": 6 transitions, 24 projections, 394095 bytes written
+fixture 423 "MSJC08-one-hit": 10 transitions, 40 projections, 681679 bytes written
+fixture 424 "MSJC08-two-hits-seat3": 10 transitions, 40 projections, 688490 bytes written
+fixture 425 "MSJC08-cancelled-paid-frame": 5 transitions, 20 projections, 344333 bytes written
+fixture 426 "MSJC08-new-instance-used": 2 transitions, 8 projections, 146811 bytes written
+fixture 427 "MSJC08-finished-restart": 2 transitions, 8 projections, 176565 bytes written
+fixture 428 "MSJC08-turn-reset-used": 155 transitions, 620 projections, 9911370 bytes written
+fixture 429 "XQ43-first": 6 transitions, 24 projections, 412144 bytes written
+fixture 430 "XQ43-rear": 6 transitions, 24 projections, 412106 bytes written
+fixture 431 "XQ43-hidden-initial": 6 transitions, 24 projections, 405790 bytes written
+fixture 432 "XQ43-exhausted": 6 transitions, 24 projections, 412259 bytes written
+fixture 433 "XQ43-granted-temporary": 11 transitions, 44 projections, 768435 bytes written
+fixture 434 "XQ43-ordinary-turn-bonus": 26 transitions, 104 projections, 2024709 bytes written
+fixture 435 "XQ43-reject-cost": 2 transitions, 8 projections, 106101 bytes written
+fixture 436 "XQ43-reject-loyalty": 2 transitions, 8 projections, 109953 bytes written
+fixture 437 "XQ43-reject-region": 2 transitions, 8 projections, 149371 bytes written
+fixture 438 "XQ43-reject-host-zone": 2 transitions, 8 projections, 149395 bytes written
+fixture 439 "XQ43-paid-region-replaced": 5 transitions, 20 projections, 349467 bytes written
+fixture 440 "XQ43-dangling-exact-host": 2 transitions, 8 projections, 146680 bytes written
+fixture 441 "XQ43-prepared-relocated-host": 2 transitions, 8 projections, 156787 bytes written
+fixture 442 "XQ43-destroy-source": 11 transitions, 44 projections, 783015 bytes written
+fixture 443 "XQ43-jc005-no-mind": 7 transitions, 28 projections, 484485 bytes written
+fixture 444 "XQ43-jc005-mind-qualified": 11 transitions, 44 projections, 776085 bytes written
+fixture 445 "XQ43-multiple-controllers": 15 transitions, 60 projections, 1088833 bytes written
+fixture 446 "XQ43-same-controller-unique": 12 transitions, 48 projections, 843303 bytes written
+fixture 447 "XQ43-hidden-real-trigger": 16 transitions, 64 projections, 1179500 bytes written
+fixture 448 "XQ43-win-four-owner-return": 9 transitions, 36 projections, 773211 bytes written
+fixture 449 "XQ43-outside-region": 6 transitions, 24 projections, 412084 bytes written
+fixture 450 "printed-MSJC08-XQ43-natural-four-seat-paid-region-conceal-reveal-granted-icons-restore": 966 transitions, 3858 projections, 103387679 bytes written
+fixture 451 "msjc11-real-green-black-50-admission": 4 transitions, 10 projections, 68377 bytes written
+fixture 452 "msjc11-real-green-red-50-admission": 4 transitions, 10 projections, 68315 bytes written
+fixture 453 "msjc11-natural-four-seat-green-black": 1570 transitions, 6274 projections, 197668682 bytes written
+fixture 454 "msjc11-natural-four-seat-green-red": 981 transitions, 3918 projections, 112482127 bytes written
+fixture 455 "msjc11-boundary-kill-seat-0": 6 transitions, 24 projections, 492267 bytes written
+fixture 456 "msjc11-boundary-kill-seat-1": 6 transitions, 24 projections, 492257 bytes written
+fixture 457 "msjc11-boundary-kill-seat-2": 6 transitions, 24 projections, 489582 bytes written
+fixture 458 "msjc11-boundary-kill-seat-3": 6 transitions, 24 projections, 489580 bytes written
+fixture 459 "msjc11-boundary-reject-fee": 2 transitions, 8 projections, 167769 bytes written
+fixture 460 "msjc11-boundary-reject-exhausted": 2 transitions, 8 projections, 175460 bytes written
+fixture 461 "msjc11-boundary-reject-other-source": 2 transitions, 8 projections, 186397 bytes written
+fixture 462 "msjc11-boundary-reject-barrier": 2 transitions, 8 projections, 185316 bytes written
+fixture 463 "msjc11-boundary-reject-hidden": 2 transitions, 8 projections, 183726 bytes written
+fixture 464 "msjc11-boundary-cancel-target": 5 transitions, 20 projections, 404131 bytes written
+fixture 465 "msjc11-boundary-stack-kill": 11 transitions, 44 projections, 887575 bytes written
+fixture 466 "msjc11-boundary-zero-combat": 55 transitions, 220 projections, 4257211 bytes written
+fixture 467 "msjc11-boundary-combat-kill": 55 transitions, 220 projections, 4135084 bytes written
+fixture 468 "msjc11-boundary-exhausted-kill": 55 transitions, 220 projections, 4237027 bytes written
+fixture 469 "msjc11-boundary-retreat-once": 11 transitions, 44 projections, 891617 bytes written
+fixture 470 "msjc11-boundary-equipment": 6 transitions, 24 projections, 513779 bytes written
+fixture 471 "msjc11-boundary-lost-icons": 11 transitions, 44 projections, 963436 bytes written
+fixture 472 "msjc11-boundary-movement": 19 transitions, 76 projections, 1502127 bytes written
+fixture 473 "msjc11-boundary-ordinary": 11 transitions, 44 projections, 927689 bytes written
+fixture 474 "msjc11-boundary-late-icons": 11 transitions, 44 projections, 923354 bytes written
+fixture 475 "msjc11-boundary-temporary-first": 6 transitions, 24 projections, 497869 bytes written
+fixture 476 "msjc11-boundary-temporary-rear": 6 transitions, 24 projections, 497868 bytes written
+fixture 477 "msjc11-boundary-converted-spirit-no-combat": 6 transitions, 24 projections, 515363 bytes written
+fixture 478 "msjc11-boundary-region-replaced": 5 transitions, 20 projections, 415507 bytes written
+fixture 479 "msjc11-boundary-region-binding-missing": 5 transitions, 20 projections, 416047 bytes written
+fixture 480 "msjc11-boundary-win-owner-attachment": 69 transitions, 276 projections, 5615867 bytes written
+fixture 481 "msjc11-boundary-expiry": 153 transitions, 612 projections, 11332822 bytes written
+fixture 482 "msjc11-boundary-hide-reentry": 16 transitions, 64 projections, 1337779 bytes written

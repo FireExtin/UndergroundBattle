@@ -1,0 +1,16 @@
+506:     pub(crate) fn resume_death_caller(&mut self, c: DeathCaller) -> RuleResult<()> {
+507:         self.validate_death_caller(&c)?;
+508:         if c.waits.iter().any(|w| w.destination.is_none()) {
+509:             return Err("原死亡去向未决，不能恢复调用方".into());
+510:         }
+511:         if self.players[c.frame.actor].eliminated {
+512:             return Ok(());
+513:         }
+514:         match c.kind {
+515:             DeathCallerKind::Frame => self.resolve_frame(*c.frame),
+516:             DeathCallerKind::JZ24 { remaining_players } => {
+517:                 self.jz24_next(*c.frame, remaining_players)
+518:             }
+519:             DeathCallerKind::JZ35 { returns } => self.jz35_return_hosts(&returns),
+520:         }
+521:     }

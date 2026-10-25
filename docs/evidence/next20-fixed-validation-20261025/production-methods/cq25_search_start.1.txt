@@ -1,0 +1,23 @@
+408:     pub(crate) fn cq25_search_start(&mut self, f: ResolutionFrame) -> RuleResult<()> {
+409:         self.cq25_validate_search(&f)?;
+410:         if f.cursor != 1 || !matches!(f.guard, GuardState::Accepted) {
+411:             return Err("伥虎搜索尚未通过原帧守卫".into());
+412:         }
+413:         // An empty confirmation remains necessary: searching the deck and
+414:         // failing to find still shuffles. Choosing only the graveyard does not.
+415:         let options = self.cq25_search_choices(f.actor);
+416:         self.choice(
+417:             f.actor,
+418:             SEARCH,
+419:             "伥虎：选择本人墓地或牌库中的伥鬼，或搜索牌库而未找到".into(),
+420:             options,
+421:             1,
+422:             1,
+423:             None,
+424:             ChoiceResolution::Frame {
+425:                 frame: Box::new(f),
+426:                 choice: FrameChoice::Next20Wraith(WraithChoice::TigerSearch),
+427:             },
+428:         );
+429:         Ok(())
+430:     }

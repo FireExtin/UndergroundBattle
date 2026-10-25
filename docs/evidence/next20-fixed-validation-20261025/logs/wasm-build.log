@@ -1,0 +1,51 @@
+   Compiling unicode-ident v1.0.26
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling wasm-bindgen-shared v0.2.104
+   Compiling rustversion v1.0.23
+   Compiling serde_core v1.0.229
+   Compiling syn v2.0.119
+   Compiling zmij v1.0.23
+   Compiling log v0.4.34
+   Compiling bumpalo v3.20.3
+   Compiling wasm-bindgen-backend v0.2.104
+   Compiling syn v3.0.6
+   Compiling serde_json v1.0.151
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling wasm-bindgen v0.2.104
+   Compiling wasm-bindgen-macro-support v0.2.104
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling wasm-bindgen-macro v0.2.104
+   Compiling cfg-if v1.0.5
+   Compiling once_cell v1.21.4
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: constant `BATCH20` is never used
+ --> rust-game/src/import20_entropy.rs:7:18
+  |
+7 | pub(crate) const BATCH20: &[&str] = &[
+  |                  ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: method `mill_cards` is never used
+   --> rust-game/src/batch20.rs:468:19
+    |
+288 | impl Game {
+    | --------- method in this implementation
+...
+468 |     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
+    |                   ^^^^^^^^^^
+
+warning: `hegemony-server` (lib) generated 3 warnings (run `cargo fix --lib -p hegemony-server` to apply 1 suggestion)
+   Compiling hegemony-wasm v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/rust-game-wasm)
+    Finished `release` profile [optimized] target(s) in 1m 31s

@@ -1,0 +1,86 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:377-461
+377:     pub(crate) fn validate_death_caller(&self, c: &DeathCaller) -> RuleResult<()> {
+378:         let f = &c.frame;
+379:         if c.waits.is_empty()
+380:             || f.actor >= self.players.len()
+381:             || !matches!(f.guard, GuardState::Accepted)
+382:             || f.cursor == 0
+383:             || f.cursor > f.steps.len()
+384:         {
+385:             return Err("死亡原调用方缺少已执行游标及原去向收据".into());
+386:         }
+387:         if f.source.card.controller != f.actor
+388:             || f.source.card.owner >= self.players.len()
+389:             || !self
+390:                 .mystic_instance_number(&f.source.card.id)
+391:                 .zip(self.mystic_instance_number(&f.frame_id))
+392:                 .is_some_and(|(a, b)| a < b)
+393:         {
+394:             return Err("死亡原调用方更换了原来源、操控者或响应实例".into());
+395:         }
+396:         self.mobility_immutable_identity(&f.source.card)?;
+397:         let mut proof = (**f).clone();
+398:         proof.cursor = 0;
+399:         proof.guard = GuardState::Unchecked;
+400:         self.validate_pack_a_frame(&proof)?;
+401:         let mut ids = BTreeSet::new();
+402:         for w in &c.waits {
+403:             self.pregrave_source(&w.source)?;
+404:             if !ids.insert(&w.source.card.id) {
+405:                 return Err("原调用方重复等待同次死亡".into());
+406:             }
+407:             if let Some(result) = &w.destination {
+408:                 self.validate_destination(&w.source, result, None)?;
+409:             } else if self
+410:                 .death_replacements
+411:                 .iter()
+412:                 .find(|d| d.source.card.id == w.source.card.id)
+413:                 .is_none_or(|d| !same(&d.source, &w.source))
+414:             {
+415:                 return Err("原调用方等待了不存在或异源的死亡".into());
+416:             }
+417:         }
+418:         match &c.kind {
+419:             DeathCallerKind::Frame => {
+420:                 let canonical = definition(&f.source.card.definition)
+421:                     .abilities
+422:                     .iter()
+423:                     .any(|a| {
+424:                         a.key == f.ability_key
+425:                             && same(
+426:                                 &self
+427:                                     .make_frame(
+428:                                         f.actor,
+429:                                         f.source.clone(),
+430:                                         a,
+431:                                         f.targets.clone(),
+432:                                         f.already_paid.clone(),
+433:                                         f.chosen_region,
+434:                                     )
+435:                                     .steps,
+436:                                 &f.steps,
+437:                             )
+438:                             && a.targets.len() == f.targets.len()
+439:                             && a.targets
+440:                                 .iter()
+441:                                 .zip(&f.targets)
+442:                                 .all(|(a, t)| same(a, &t.spec))
+443:                     });
+444:                 if f.cursor >= f.steps.len() || !canonical {
+445:                     return Err("死亡续帧须保留完整原程序及尚未执行的操作".into());
+446:                 }
+447:             }
+448:             DeathCallerKind::JZ24 { remaining_players } => {
+449:                 if f.source.card.definition != "JZ24"
+450:                     || f.ability_key != "local-enemy-sacrifice"
+451:                     || f.cursor != 1
+452:                     || f.steps.len() != 1
+453:                     || !matches!(f.steps[0].op, Op::JZ24LocalSacrificeSnapshot)
+454:                     || !f.already_paid.is_empty()
+455:                     || !f.targets.is_empty()
+456:                     || remaining_players
+457:                         .iter()
+458:                         .any(|s| *s >= self.players.len() || self.team(*s) == self.team(f.actor))
+459:                     || remaining_players.iter().collect::<BTreeSet<_>>().len()
+460:                         != remaining_players.len()
+461:                 {

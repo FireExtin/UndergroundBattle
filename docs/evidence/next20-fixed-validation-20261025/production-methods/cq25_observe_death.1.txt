@@ -1,0 +1,38 @@
+276:     pub(crate) fn cq25_observe_death(&mut self, sources: &[SourceSnapshot], dead: &SourceSnapshot) {
+277:         if dead.card.face_down
+278:             || catalog::card(&dead.card.definition).kind != "character"
+279:             || dead.region.is_none()
+280:         {
+281:             return;
+282:         }
+283:         let eligible = sources
+284:             .iter()
+285:             .filter(|source| {
+286:                 source.region == dead.region
+287:                     && source.source_region_instance == dead.source_region_instance
+288:                     && self.is_enemy(source.card.controller, &dead.card)
+289:             })
+290:             .collect::<Vec<_>>();
+291:         // Existing games without an eligible tiger retain their exact ID stream.
+292:         if eligible.is_empty() {
+293:             return;
+294:         }
+295:         let observation = WraithDeath {
+296:             event_id: self.id(),
+297:             turn: self.turn,
+298:             dead: dead.clone(),
+299:         };
+300:         for source in eligible {
+301:             let mut a = definition("CQ25").unwrap().abilities.remove(1);
+302:             a.ops = vec![Op::Next20Wraith(WraithProgram::TigerSearch {
+303:                 observation: Some(Box::new(observation.clone())),
+304:             })];
+305:             self.effects.push_back(Effect::Declare {
+306:                 declaration: Declaration {
+307:                     actor: source.card.controller,
+308:                     source: source.clone(),
+309:                     ability: a,
+310:                 },
+311:             });
+312:         }
+313:     }

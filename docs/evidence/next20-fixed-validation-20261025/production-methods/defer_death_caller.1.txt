@@ -1,0 +1,31 @@
+122:     pub(crate) fn defer_death_caller(
+123:         &mut self,
+124:         frame: ResolutionFrame,
+125:         kind: DeathCallerKind,
+126:         before: &BTreeSet<String>,
+127:     ) -> bool {
+128:         let waits = self
+129:             .death_replacements
+130:             .iter()
+131:             .filter(|d| !before.contains(&d.source.card.id))
+132:             .map(|d| DeathWait {
+133:                 source: d.source.clone(),
+134:                 destination: d.destination.clone(),
+135:             })
+136:             .collect::<Vec<_>>();
+137:         if waits.is_empty() {
+138:             return false;
+139:         }
+140:         let at=self.effects.iter().rposition(|e|matches!(e,Effect::DeathFinish{death_instance} if waits.iter().any(|w|w.source.card.id==*death_instance))).expect("new held departures have destination barriers")+1;
+141:         self.effects.insert(
+142:             at,
+143:             Effect::DeathCaller {
+144:                 caller: Box::new(DeathCaller {
+145:                     frame: Box::new(frame),
+146:                     waits,
+147:                     kind,
+148:                 }),
+149:             },
+150:         );
+151:         true
+152:     }

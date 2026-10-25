@@ -1,0 +1,23 @@
+{
+  "state": "complete",
+  "name": "full-ui",
+  "source_commit": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=2"
+  ],
+  "started_utc": "2026-10-25T08:37:31.222339+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-ui.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 1,
+  "seconds": 79.802,
+  "log_sha256": "31b26c98818e486a01f217e0c30f40aee2418840564f73303ded4b30dc823121"
+}

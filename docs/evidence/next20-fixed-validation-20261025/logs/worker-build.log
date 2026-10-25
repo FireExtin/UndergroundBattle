@@ -1,0 +1,37 @@
+
+> build
+> node scripts/build.mjs
+
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.0.3 building client environment for production...
+[2K
+transforming...✓ 74 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:   0.34 kB
+dist/assets/index-CAKnJ40O.css  201.23 kB │ gzip:  35.08 kB
+dist/assets/index-mYJ2gsUz.js   418.34 kB │ gzip: 129.10 kB
+
+✓ built in 332ms
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+
+ ⛅️ wrangler 4.146.0
+────────────────────
+✨ Read 291 files from the assets directory /home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/public
+Total Upload: 8497.28 KiB / gzip: 2142.59 KiB
+Your Worker has access to the following bindings:
+Binding                    Resource
+env.DB (hegemony)          D1 Database
+env.ASSETS                 Assets
+
+--dry-run: exiting now.
+npm notice
+npm notice New major version of npm available! 11.19.1 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

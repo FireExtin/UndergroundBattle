@@ -1,0 +1,86 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:522-606
+522:     pub(crate) fn validate_death_continuations(&self) -> RuleResult<()> {
+523:         let mut ids = BTreeSet::new();
+524:         let mut held = BTreeSet::new();
+525:         let mut callers = BTreeSet::new();
+526:         for d in &self.death_replacements {
+527:             self.pregrave_source(&d.source)?;
+528:             if self.status!="playing"||d.turn!=self.turn||!ids.insert(&d.source.card.id)||!held.insert(&d.transition_instance)||!self.mystic_instance_number(&d.source.card.id).zip(self.mystic_instance_number(&d.transition_instance)).is_some_and(|(a,b)|a<b)
+529:                 ||d.baseline_stack.iter().collect::<BTreeSet<_>>().len()!=d.baseline_stack.len()||d.baseline_stack.iter().any(|id|!self.mystic_instance_number(id).zip(self.mystic_instance_number(d.declaration_choice.as_ref().unwrap_or(&d.transition_instance))).is_some_and(|(a,b)|a<b))
+530:                 ||self.effects.iter().filter(|e|matches!(e,Effect::DeathFinish{death_instance} if *death_instance==d.source.card.id)).count()!=1{return Err("待定死亡来源、原堆栈边界或唯一收束续体无效".into());}
+531:             if d.declaration_choice.as_deref().is_some_and(|choice| {
+532:                 !self
+533:                     .mystic_instance_number(&d.transition_instance)
+534:                     .zip(self.mystic_instance_number(choice))
+535:                     .is_some_and(|(held, choice)| held < choice)
+536:             }) {
+537:                 return Err("死亡原目标待选必须晚于实际离场换号".into());
+538:             }
+539:             match (&d.card, &d.destination) {
+540:                 (Some(c), None) => {
+541:                     let mut expected = d.source.card.clone();
+542:                     expected.id = d.transition_instance.clone();
+543:                     expected.controller = expected.owner;
+544:                     expected.face_down = false;
+545:                     expected.exhausted = false;
+546:                     expected.damage = 0;
+547:                     expected.wounds = 0;
+548:                     expected.shield = 0;
+549:                     expected.lock_markers = 0;
+550:                     expected.time_markers = 0;
+551:                     expected.charge_markers = 0;
+552:                     expected.advancement_markers = 0;
+553:                     expected.permanent_combat_markers = 0;
+554:                     expected.permanent_defense_markers = 0;
+555:                     expected.named_character = None;
+556:                     expected.chosen_number = None;
+557:                     expected.chosen_subtype = None;
+558:                     if !same(c, &expected)
+559:                         || self
+560:                             .batch3_physical_cards()
+561:                             .filter(|v| v.id == c.id)
+562:                             .count()
+563:                             != 1
+564:                     {
+565:                         return Err("待定死亡必须独占完整重置后的真实牌".into());
+566:                     }
+567:                 }
+568:                 (None, Some(result)) => {
+569:                     self.validate_destination(&d.source, result, Some(&d.transition_instance))?
+570:                 }
+571:                 _ => return Err("死亡牌与最终去向必须且只能处于一个阶段".into()),
+572:             }
+573:             let mut live = 0;
+574:             for e in &self.effects {
+575:                 if let Effect::Declare { declaration } = e {
+576:                     if declaration.ability.key == crate::next20_black_wraiths::SEAL
+577:                         && declaration.source.card.id == d.source.card.id
+578:                     {
+579:                         self.validate_xg25_death_source(declaration.actor, &declaration.source)?;
+580:                         if d.declaration_choice.is_some() {
+581:                             return Err("死亡不能重放已经提供的原声明".into());
+582:                         }
+583:                         live += 1;
+584:                     }
+585:                 }
+586:             }
+587:             for item in &self.stack {
+588:                 if let Some(f) = &item.frame {
+589:                     if f.ability_key == crate::next20_black_wraiths::SEAL
+590:                         && f.source.card.id == d.source.card.id
+591:                     {
+592:                         self.validate_xg25_death_frame(f)?;
+593:                         live += 1;
+594:                     }
+595:                 }
+596:             }
+597:             if let Some(p) = &self.pending {
+598:                 if let ChoiceResolution::Declare { declaration, .. } = &p.resolution {
+599:                     if declaration.ability.key == crate::next20_black_wraiths::SEAL
+600:                         && declaration.source.card.id == d.source.card.id
+601:                     {
+602:                         self.validate_xg25_death_source(declaration.actor, &declaration.source)?;
+603:                         if d.declaration_choice.as_deref() != Some(&p.choice.id) {
+604:                             return Err("死亡待选更换了原选择实例".into());
+605:                         }
+606:                         live += 1;

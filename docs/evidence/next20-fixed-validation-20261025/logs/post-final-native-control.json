@@ -1,0 +1,28 @@
+{
+  "state": "complete",
+  "name": "post-final-native-control",
+  "source_commit": "927e18191c07d1575470a9995b7ec4a53933d112",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "control_tests::control_simultaneous_nonhuman_death_card_still_invalid_for_jz27",
+    "--",
+    "--exact",
+    "--test-threads=1"
+  ],
+  "started_utc": "2026-10-25T08:51:26.902323+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-final-native-control.log",
+  "scope": "read-only fixed main checkout targeted tests; all compiler outputs in task-7",
+  "exit_code": 0,
+  "seconds": 29.269,
+  "log_sha256": "a95a95741003b280e6996dbaa1300ae6a9781d01740e8944b77552bf60f377cb"
+}

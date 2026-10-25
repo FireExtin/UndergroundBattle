@@ -1,0 +1,12 @@
+{
+  "parent": "98906bbd207dc37617de7c8bb0000c170cbfc0c5",
+  "fixed_validation": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "files": {
+    "rust-game/src/control_tests.rs": "bb4afca0da05b6c7f8a93238e362d536dd2fe79018af8ed7168604d3a7866dde",
+    "rust-game/src/deck_seal_search_draft.rs": "76af148bb1888bab06994f7ee60261353e86d74a1e5f0c2d3269e6bcc6cae1aa",
+    "web/src/game/ABI112ScanGapBoundary.test.jsx": "325bd64691b9d6385e963ed141a621dafdf0c2d05d8789c8873c050e7d4a1aec",
+    "web/src/game/Batch3Integration.test.jsx": "8178923bd3f249f571a409373b386b110df2f156631758ff605b78df948794af",
+    "web/src/game/Import20CardFaces.test.jsx": "0b1ed43c9ec4e85f3fba890252984a4d450499c62aa65ff0f17281cce16ce95a"
+  },
+  "scope": "test-only exact closed inventory and actual JZ27 eligibility; no inputs or production rules"
+}

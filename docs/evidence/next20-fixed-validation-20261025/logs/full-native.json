@@ -1,0 +1,25 @@
+{
+  "state": "complete",
+  "name": "full-native",
+  "source_commit": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--workspace",
+    "--no-fail-fast",
+    "--",
+    "--test-threads=1"
+  ],
+  "started_utc": "2026-10-25T08:27:09.053845+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/full-native.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 101,
+  "seconds": 949.519,
+  "log_sha256": "65bac03b49e49f412a3344e359b7ddc54259f4023aa70e3686d75a141a256341"
+}

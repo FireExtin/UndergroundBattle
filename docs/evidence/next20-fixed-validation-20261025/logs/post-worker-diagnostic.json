@@ -1,0 +1,19 @@
+{
+  "state": "complete",
+  "name": "post-worker-diagnostic",
+  "source_commit": "e853d8df54740a4c6633faddf091c6761a391afb",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-worker-e853d8df/source/tools/build-storage.mjs",
+    "--",
+    "node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/run_selected_worker_tests.mjs"
+  ],
+  "started_utc": "2026-10-25T08:56:17.310607+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-worker-diagnostic.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 1,
+  "seconds": 1.704,
+  "log_sha256": "b436bf6f2258f77338fa4fb16aab94c406bcd23f8643aaf89ba3774abf9322ff"
+}

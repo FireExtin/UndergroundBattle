@@ -1,0 +1,41 @@
+147:     pub(crate) fn jz24_next(
+148:         &mut self,
+149:         frame: ResolutionFrame,
+150:         mut remaining_players: Vec<usize>,
+151:     ) -> RuleResult<()> {
+152:         let r = self
+153:             .blue_original_region(&frame)
+154:             .ok_or("原地区实例已失效")?;
+155:         while !remaining_players.is_empty() {
+156:             let seat = remaining_players.remove(0);
+157:             let options: Vec<_> = self.region_characters(r)
+158:                 .filter(|c| {
+159:                     c.controller == seat && !c.face_down && card(&c.definition).kind == "character"
+160:                 })
+161:                 .map(|c| self.option(c, seat, Some(r), None))
+162:                 .collect();
+163:             if options.is_empty() {
+164:                 continue;
+165:             }
+166:             self.choice(
+167:                 seat,
+168:                 "jz24_sacrifice",
+169:                 "牺牲一个原地区中自己操控的角色".into(),
+170:                 options,
+171:                 1,
+172:                 1,
+173:                 None,
+174:                 ChoiceResolution::Frame {
+175:                     frame: Box::new(frame),
+176:                     choice: FrameChoice::JZ24Sacrifice { remaining_players },
+177:                 },
+178:             );
+179:             return Ok(());
+180:         }
+181:         // Continue this frame before Death declarations already queued by
+182:         // remove_dead, matching existing frame-choice continuation ordering.
+183:         self.effects.push_front(Effect::Frame {
+184:             frame: Box::new(frame),
+185:         });
+186:         Ok(())
+187:     }

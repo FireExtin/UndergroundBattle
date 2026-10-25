@@ -1,0 +1,7 @@
+113:     pub(crate) fn cancel_pregrave_frame(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+114:         if f.ability_key == crate::next20_black_wraiths::SEAL {
+115:             self.validate_xg25_death_source(f.actor, &f.source)?;
+116:             self.commit_pregrave_fallback(&f.source.card.id)?;
+117:         }
+118:         Ok(())
+119:     }

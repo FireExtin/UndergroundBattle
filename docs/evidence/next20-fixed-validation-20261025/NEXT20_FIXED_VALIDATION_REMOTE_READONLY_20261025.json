@@ -1,0 +1,35 @@
+{
+  "at_utc": "2026-10-25 08:52:58 UTC",
+  "repo": "FireExtin/UndergroundBattle",
+  "local_test_checkpoint": "927e18191c07d1575470a9995b7ec4a53933d112",
+  "production_code_checkpoint": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "operation": "READ_ONLY connector GETs; no push/settings/dispatch",
+  "remote": {
+    "main": "d1c068ea8c4162212cd19fa023841513c4c67e33",
+    "review/game-serial-abi99-wip-20261024": "e7b3366b16ed7d70783ce00bf96e87df4d220789",
+    "review/game-abi111-card-faces-20261024": "a520f7680387831b7ee011b42d4c445fca2183de",
+    "progress/batch20-fourth-20261022": "08319094a113717a1a80041fbe94ca8c139429be"
+  },
+  "remote_changed_since_0819": false,
+  "workflow_refresh": {
+    "state": "UNAVAILABLE",
+    "action": "GET actions/workflows",
+    "target": "https://api.github.com/repos/FireExtin/UndergroundBattle/actions/workflows",
+    "reason": "HTTPError: 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint. (Response: None)",
+    "error_code": "INVALID_ARGUMENT",
+    "outcome": "Connector endpoint allowlist rejected this URL; no alternate channel attempted; this was not an auto-review or filesystem permission denial"
+  },
+  "last_known_workflows": {
+    "at_utc": "2026-10-25T08:19:02.633048+00:00",
+    "items": [
+      {
+        "id": 259796635,
+        "name": "Copilot cloud agent",
+        "path": "dynamic/copilot-swe-agent/copilot",
+        "state": "active"
+      }
+    ]
+  },
+  "push": "NOT_ATTEMPTED; CI event definitions still unverified",
+  "new_remote_ref_changes": []
+}

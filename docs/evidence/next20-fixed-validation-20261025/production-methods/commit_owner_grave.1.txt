@@ -1,0 +1,15 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/batch3_ghoul.rs:26-39
+26:     pub(crate) fn commit_owner_grave(&mut self,c:Card,frozen:Option<&[SourceSnapshot]>){
+27:         let owner=c.owner;
+28:         let observes=catalog::card(&c.definition).name=="无名尸体" && !self.players[owner].eliminated;
+29:         let sources=if observes{frozen.map(<[SourceSnapshot]>::to_vec).unwrap_or_else(||self.bq079_sources())}else{vec![]};
+30:         let sources=sources.into_iter().filter(|s|s.card.controller==owner).collect::<Vec<_>>();
+31:         if sources.is_empty(){self.players[owner].graveyard.push(c);return;}
+32:         let observation=CorpseGraveObservation{event_id:self.id(),turn:self.turn,arrived:c.clone()};
+33:         self.players[owner].graveyard.push(c);
+34:         for source in sources{
+35:             let mut a=definition().abilities.remove(1);
+36:             a.ops=vec![Op::BQ079CorpseIcons{observation:Some(observation.clone())}];
+37:             self.effects.push_back(Effect::Declare{declaration:Declaration{actor:source.card.controller,source,ability:a}});
+38:         }
+39:     }

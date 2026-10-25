@@ -1,0 +1,86 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_observers.rs:32-116
+32:     pub(crate) fn remove_death_batch_with_receipts(&mut self, deaths: Vec<(String, RemovalCause, SourceSnapshot)>) -> Vec<CharacterDeathReceipt> {
+33:         let before_deaths = self.death_instances();
+34:         let deaths = self.dual_character_death_wave(deaths);
+35:         let previous_effects = self.effects.len();
+36:         let red_observers = self.jz34_observers();
+37:         let mut receipts = Vec::new();
+38:         let mut observers = Vec::new();
+39:         let tigers = self.cq25_capture_sources();
+40:         let black_sources = self.capture_black_death_sources();
+41:         let host_sources = self.wm035_death_sources();
+42:         let ghoul_sources = self.bq079_sources();
+43:         for (r, region) in self.regions.iter().enumerate() {
+44:             for c in &region.cards {
+45:                 if !c.face_down && matches!(c.definition.as_str(), "JC045" | "JC031") {
+46:                     observers.push(self.source_snapshot(c, Some(r)));
+47:                 }
+48:             }
+49:         }
+50:         for a in &self.attachments {
+51:             if matches!(a.card.definition.as_str(), "JC090" | "BQ094") && !a.card.face_down && self.attachment_host_valid(a) {
+52:                 if let Some(r) = self.regions.iter().position(|r| !r.vacant && r.card.id == a.host_id) {
+53:                     let mut source = self.source_snapshot(&a.card, Some(r));
+54:                     source.source_region_instance = Some(a.host_id.clone());
+55:                     observers.push(source);
+56:                 }
+57:             }
+58:         }
+59:         // Capture actual subtypes before host departure can remove conversion.
+60:         let deaths = deaths.into_iter().map(|(id, cause, source)| {
+61:             let statue_deaths = self.jz38_capture_death(&source);
+62:             let vampire = self.board(&id).is_some_and(|(_, c)|
+63:                 self.current_subtypes(c).iter().any(|s| s == "吸血鬼"));
+64:             let renown = self.board(&id).is_some_and(|(_, c)| self.has_renown(c));
+65:             let black_death = self.capture_black_death(&id);
+66:             let cq18=self.capture_cq18_departure(&id);
+67:             (id, cause, source, vampire, renown, black_death, statue_deaths, cq18)
+68:         }).collect::<Vec<_>>();
+69:         let group_instance = deaths.first().map(|(id,..)|id.clone());
+70:         for (id, cause, source, vampire, renown, black_death, statue_deaths, cq18) in deaths {
+71:             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
+72:             let mut tiger_death = source.clone();
+73:             // The general source snapshot omits region UIDs for many victims;
+74:             // freeze the actual death region before this member leaves.
+75:             if tiger_death.source_region_instance.is_none() {
+76:                 tiger_death.source_region_instance = tiger_death.region.and_then(|r| self.regions.get(r)).map(|r|r.card.id.clone());
+77:             }
+78:             if let Some(mut receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source), Some(&ghoul_sources), Some(cq18)) {
+79:                 // Freeze dynamic renown before simultaneous departures remove
+80:                 // a grant or its denial. Receipts remain internal, not saved.
+81:                 self.cq25_observe_death(&tigers, &tiger_death);
+82:                 receipt.was_renown = renown;
+83:                 receipts.push(receipt);
+84:                 self.jz38_emit_death(statue_deaths);
+85:                 if let Some(observation) = black_death {
+86:                     let observation = self.emit_black_death(&black_sources, observation);
+87:                     self.wm035_emit_host_death(&host_sources, &observation);
+88:                 }
+89:                 self.jz34_observe_death(&red_observers, &dead.card);
+90:                 for observer in &observers {
+91:                     if observer.card.definition != "JC045"
+92:                         && (dead.card.controller != observer.card.controller
+93:                             || (observer.card.definition == "JC031" && dead.card.id == observer.card.id))
+94:                     { continue; }
+95:                     let mut source = observer.clone();
+96:                     source.observed_death = Some(dead.clone());
+97:                     self.emit_event(source.card.controller, source, Event::CharacterDeathObserved);
+98:                 }
+99:             }
+100:         }
+101:         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
+102:         simultaneous.sort_by_key(|e| match e {
+103:             Effect::Declare { declaration } if matches!(declaration.ability.event,
+104:                 Some(Event::Next20WraithDeath | Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
+105:                 (self.team(declaration.actor) != self.first_team, declaration.actor),
+106:             _ => (true, usize::MAX),
+107:         });
+108:         self.effects.extend(simultaneous);
+109:         if let Some(id)=group_instance {self.batch3_register_entry_order(&id,previous_effects);}
+110:         let held = self.death_replacements.iter().filter(|d| !before_deaths.contains(&d.source.card.id))
+111:             .map(|d| d.source.card.id.clone()).collect::<Vec<_>>();
+112:         if !held.is_empty() {
+113:             for death_instance in held { self.effects.push_back(Effect::DeathFinish { death_instance }); }
+114:             // Suspend the pre-existing tail (including the originating spell's
+115:             // Bury) until the real death response and destination finish.
+116:             let emitted = self.effects.split_off(previous_effects);

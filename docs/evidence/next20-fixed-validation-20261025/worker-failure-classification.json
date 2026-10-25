@@ -1,0 +1,308 @@
+[
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Native compiler input differs from current source: rust-game/data/cards.json",
+    "frame": "assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)",
+    "actual": "'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'",
+    "expected": "'27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc035-oracle.mjs:55:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc041-oracle.mjs:41:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc044-oracle.mjs:43:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc054-oracle.mjs:47:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc057-oracle.mjs:53:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/jc066-oracle.mjs:43:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Native compiler input differs from current source: rust-game/data/cards.json",
+    "frame": "assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)",
+    "actual": "'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'",
+    "expected": "'27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/msjc0405-oracle.mjs:44:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/response-preview-oracle.mjs:55:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Native compiler input differs from current source: rust-game/data/cards.json",
+    "frame": "assertCurrentSourceBindings (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:44:12)",
+    "actual": "'eb68427fc22325322bfd399ce3e3ee34715ee47a6d99718dba3784d68a0b4977'",
+    "expected": "'27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-oracle.mjs:37:9)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-oracle.mjs:37:9)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadOwnerFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/xq23-current-owner-oracle.mjs:33:9)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/integration.test.mjs:43:55)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc035-entry.test.mjs:25:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc041-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc044-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc057-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/jc066-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/kernel-binding.test.mjs:11:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/msjc0405-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "TestContext.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/sites/test/msjc0405-entry.test.mjs:26:10)",
+    "actual": "277",
+    "expected": "272"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  },
+  {
+    "message": "Expected values to be strictly equal:",
+    "frame": "loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/source/tools/current-native-source.mjs:51:10)",
+    "actual": "'b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e'",
+    "expected": "'09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c'"
+  }
+]

@@ -1,0 +1,12 @@
+58:     pub(crate) fn hold_pregrave_death(&mut self, source: &SourceSnapshot, card: Card) {
+59:         debug_assert!(source.card.definition == "XG25" && !source.card.face_down);
+60:         self.death_replacements.push(PendingDeath {
+61:             turn: self.turn,
+62:             source: source.clone(),
+63:             transition_instance: card.id.clone(),
+64:             card: Some(card),
+65:             baseline_stack: self.stack.iter().map(|s| s.id.clone()).collect(),
+66:             declaration_choice: None,
+67:             destination: None,
+68:         });
+69:     }

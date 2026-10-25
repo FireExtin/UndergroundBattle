@@ -1,0 +1,19 @@
+276:     fn commit_pregrave_fallback(&mut self, id: &str) -> RuleResult<()> {
+277:         let index = self
+278:             .death_replacements
+279:             .iter()
+280:             .position(|d| d.source.card.id == id)
+281:             .ok_or("待定死亡回退缺少原实例")?;
+282:         if let Some(c) = self.death_replacements[index].card.take() {
+283:             let owner = c.owner;
+284:             let instance = c.id.clone();
+285:             let destination = if self.players[owner].eliminated {
+286:                 DeathDestination::Removed
+287:             } else {
+288:                 self.commit_owner_grave(c, None);
+289:                 DeathDestination::Grave { instance }
+290:             };
+291:             self.death_replacements[index].destination = Some(destination);
+292:         }
+293:         Ok(())
+294:     }

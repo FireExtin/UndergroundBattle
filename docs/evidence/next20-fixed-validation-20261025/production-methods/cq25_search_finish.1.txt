@@ -1,0 +1,61 @@
+431:     pub(crate) fn cq25_search_finish(
+432:         &mut self,
+433:         f: &ResolutionFrame,
+434:         chooser: usize,
+435:         selected: &[String],
+436:     ) -> RuleResult<()> {
+437:         self.cq25_validate_search(f)?;
+438:         if f.cursor != 1
+439:             || !matches!(f.guard, GuardState::Accepted)
+440:             || chooser != f.actor
+441:             || selected.len() != 1
+442:         {
+443:             return Err("伥虎只能寻找一张本人伥鬼，或确认搜索牌库未找到".into());
+444:         }
+445:         let id = &selected[0];
+446:         if !self
+447:             .cq25_search_choices(chooser)
+448:             .iter()
+449:             .any(|o| &o.id == id)
+450:         {
+451:             return Err("不能略过实际可找到的牌库伥鬼或选择外来牌".into());
+452:         }
+453:         if id == "search-deck-no-card" {
+454:             self.shuffle_player(chooser);
+455:             return Ok(());
+456:         }
+457:         if !self
+458:             .cq25_search_options(chooser)
+459:             .iter()
+460:             .any(|o| &o.id == id)
+461:         {
+462:             return Err("选择不是本人牌库或墓地里的原伥鬼".into());
+463:         }
+464:         let (c, deck) = if let Some(i) = self.players[chooser]
+465:             .graveyard
+466:             .iter()
+467:             .position(|c| &c.id == id)
+468:         {
+469:             (self.players[chooser].graveyard.remove(i), false)
+470:         } else {
+471:             let i = self.players[chooser]
+472:                 .deck
+473:                 .iter()
+474:                 .position(|c| &c.id == id)
+475:                 .ok_or("原牌库伥鬼失效")?;
+476:             (self.players[chooser].deck.remove(i), true)
+477:         };
+478:         if deck {
+479:             self.shuffle_player(chooser);
+480:         }
+481:         if self
+482:             .board(&f.source.card.id)
+483:             .is_some_and(|(_, c)| c.definition == "CQ25" && !c.face_down)
+484:         {
+485:             self.seal_card_on_valid_host(c, chooser, &f.source.card.id);
+486:         } else {
+487:             let c = self.reset_zone_card(c);
+488:             self.commit_owner_grave(c, None);
+489:         }
+490:         Ok(())
+491:     }

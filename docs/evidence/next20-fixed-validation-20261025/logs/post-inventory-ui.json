@@ -1,0 +1,26 @@
+{
+  "state": "complete",
+  "name": "post-inventory-ui",
+  "source_commit": "ed6d72a0aa4bb8c28be8596e4869233b78a77880",
+  "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-inventory-ed6d72a0/source",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/post-inventory-ed6d72a0/source/tools/build-storage.mjs",
+    "--",
+    "npm",
+    "--prefix",
+    "web",
+    "test",
+    "--",
+    "--maxWorkers=2",
+    "src/game/ABI112ScanGapBoundary.test.jsx",
+    "src/game/Batch3Integration.test.jsx",
+    "src/game/Import20CardFaces.test.jsx"
+  ],
+  "started_utc": "2026-10-25T08:49:54.142924+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/validation-fixed-1bd0776-20261025/logs/post-inventory-ui.log",
+  "scope": "isolated fixed Git archive; offline; no original artifact or table writes",
+  "exit_code": 0,
+  "seconds": 2.77,
+  "log_sha256": "10452b447a7f7f63207c845ef5c35c9e3d4c1574860be43983fb701019aee218"
+}

@@ -1,0 +1,22 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:176-196
+176:     pub(crate) fn validate_xg25_death_source(
+177:         &self,
+178:         actor: usize,
+179:         s: &SourceSnapshot,
+180:     ) -> RuleResult<()> {
+181:         self.pregrave_source(s)?;
+182:         let d = self
+183:             .death_replacements
+184:             .iter()
+185:             .find(|d| d.source.card.id == s.card.id)
+186:             .ok_or("伥鬼死亡触发缺少真实待定离场")?;
+187:         if actor != s.card.controller
+188:             || d.turn != self.turn
+189:             || !same(&d.source, s)
+190:             || d.card.is_none()
+191:             || d.destination.is_some()
+192:         {
+193:             return Err("伥鬼死亡触发更换了原操控者、来源或去向阶段".into());
+194:         }
+195:         Ok(())
+196:     }

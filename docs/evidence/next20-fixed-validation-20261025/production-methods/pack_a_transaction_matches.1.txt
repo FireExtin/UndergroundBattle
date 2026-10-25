@@ -1,0 +1,17 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/pack_a_contest.rs:295-310
+295:     pub(crate) fn pack_a_transaction_matches(&self, f: &ResolutionFrame, c: &Card) -> bool {
+296:         let mut expected = f.source.card.clone();
+297:         // Mirror existing fresh() card fields without allocating identities or
+298:         // changing payment, RNG, modifiers, or the transaction itself.
+299:         expected.id = c.id.clone(); expected.face_down = false;
+300:         expected.advancement_markers = 0; expected.named_character = None; expected.chosen_number = None; expected.chosen_subtype = None;
+301:         expected.time_markers = 0; expected.charge_markers = 0; expected.permanent_combat_markers = 0;
+302:         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
+303:         // fresh() allocates the transaction after its original source, and
+304:         // push_stack() allocates the immediately following frame UID. Checking
+305:         // only the interval would still admit a retired UID after the source.
+306:         self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&c.id))
+307:             .zip(self.mystic_instance_number(&f.frame_id))
+308:             .is_some_and(|((source, transaction), frame)| source < transaction && transaction.checked_add(1) == Some(frame))
+309:             && *c == expected
+310:     }

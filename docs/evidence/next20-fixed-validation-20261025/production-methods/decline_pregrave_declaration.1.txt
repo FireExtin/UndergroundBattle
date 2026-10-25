@@ -1,0 +1,7 @@
+106:     pub(crate) fn decline_pregrave_declaration(&mut self, d: &Declaration) -> RuleResult<()> {
+107:         if d.ability.key == crate::next20_black_wraiths::SEAL {
+108:             self.validate_xg25_death_source(d.actor, &d.source)?;
+109:             self.commit_pregrave_fallback(&d.source.card.id)?;
+110:         }
+111:         Ok(())
+112:     }

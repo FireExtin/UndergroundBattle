@@ -1,0 +1,25 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:607-630
+607:                     }
+608:                 }
+609:             }
+610:             if live > 1
+611:                 || d.destination.is_some() && live != 0
+612:                 || d.card.is_some()
+613:                     && live == 0
+614:                     && !self.death_boundary_waits(&d.source.card.id)
+615:                     && !self.players[d.source.card.controller].eliminated
+616:             {
+617:                 return Err("待定死亡不得复制、跳过或重放原触发响应".into());
+618:             }
+619:         }
+620:         for (position, e) in self.effects.iter().enumerate() {
+621:             match e{
+622:             Effect::DeathFinish{death_instance} if !ids.contains(death_instance)=>return Err("死亡收束续体没有原待定离场".into()),
+623:             Effect::DeathFinish{death_instance} if self.effects.iter().skip(position+1).any(|e| matches!(e,Effect::Declare{declaration:d} if d.ability.key == crate::next20_black_wraiths::SEAL && d.source.card.id == *death_instance)) => return Err("死亡去向不能越过尚未声明的原触发".into()),
+624:             Effect::DeathCaller{caller}=>{self.validate_death_caller(caller)?;
+625:                 for w in &caller.waits { if w.destination.is_none() && self.effects.iter().position(|e| matches!(e,Effect::DeathFinish{death_instance} if *death_instance == w.source.card.id)).is_none_or(|i| i >= position) { return Err("原调用方不能越过未决死亡的原收束边界".into()); } }
+626:                 if !callers.insert(&caller.frame.frame_id)||self.stack.iter().any(|s|s.id==caller.frame.frame_id)||self.effects.iter().any(|e|matches!(e,Effect::Frame{frame} if frame.frame_id==caller.frame.frame_id)){return Err("死亡原调用方不能重复续帧或同时在堆栈执行".into());}},_=>(),
+627:         }
+628:         }
+629:         Ok(())
+630:     }

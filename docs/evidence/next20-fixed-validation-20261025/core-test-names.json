@@ -1,0 +1,366 @@
+[
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 47,
+    "test": "next20_blue_core_registry_is_real_and_admission_stays_closed",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 62,
+    "test": "next20_blue_core_deploy_entry_blood_uses_legal_action_and_roundtrips",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 96,
+    "test": "next20_blue_core_paid_reveal_is_real_and_entry_can_be_declined",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 119,
+    "test": "next20_blue_core_enemy_transaction_counter_sacrifices_and_never_refunds",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 144,
+    "test": "next20_blue_core_counter_decline_keeps_attachment_and_original_transaction",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 167,
+    "test": "next20_blue_core_targeted_activated_ability_is_not_an_enemy_card",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 194,
+    "test": "next20_blue_core_no_anchor_rejects_deploy_and_paid_reveal_without_mutation",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 255,
+    "test": "next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 338,
+    "test": "next20_blue_core_real_reveal_contest_shown_target_and_blood_resume",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 342,
+    "test": "next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 346,
+    "test": "next20_blue_core_real_contest_without_blood_finishes_after_target",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 351,
+    "test": "next20_blue_core_restored_counter_rejects_changed_choice_and_response_shell",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 370,
+    "test": "next20_blue_core_deploy_recovery_rejects_missing_fee_and_wrong_region",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 421,
+    "test": "next20_blue_core_review_deploy_rejects_transaction_instance_swap",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 425,
+    "test": "next20_blue_core_review_reveal_rejects_transaction_instance_swap",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 486,
+    "test": "next20_blue_core_review_no_target_continues_later_shown_exactly_once",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_blue_core_tests.rs",
+    "line": 490,
+    "test": "next20_blue_core_review_no_blood_continues_later_shown_exactly_once",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 56,
+    "test": "next20_black_core_all_four_remain_closed_without_fake_anchor",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 67,
+    "test": "next20_black_core_board_move_uses_real_payment_target_filter_and_once_limit",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 111,
+    "test": "next20_black_core_sealed_owner_pays_not_prior_actor_or_host_controller",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 164,
+    "test": "next20_black_core_real_control_change_keeps_board_action_with_controller",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 198,
+    "test": "next20_black_core_target_control_change_is_rechecked_before_payment",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 229,
+    "test": "next20_black_core_actual_death_search_seals_and_enables_owner_action",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 271,
+    "test": "next20_black_core_departed_tiger_still_searches_shuffles_and_buries_found_card",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 303,
+    "test": "next20_black_core_search_trigger_can_be_declined_without_creating_a_card",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 317,
+    "test": "next20_black_core_cq25_real_entry_contest_binds_curse_bonus_and_roundtrips",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 366,
+    "test": "next20_black_core_sealed_move_restore_rejects_changed_fee_or_target_region",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 392,
+    "test": "next20_black_core_conditional_spirit_follows_actual_controller_after_control_spell",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 423,
+    "test": "next20_black_core_sealed_move_survives_real_host_departure_with_original_region",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 460,
+    "test": "next20_black_core_pregrave_helper_lost_secrecy_has_a_real_grave_fallback",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_black_core_tests.rs",
+    "line": 484,
+    "test": "next20_black_core_ineligible_death_observation_preserves_unrelated_id_stream",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 30,
+    "test": "next20_anchor_core_original_printed_no_effect_play_does_not_self_seal",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 55,
+    "test": "next20_anchor_core_deploy_and_paid_reveal_consume_actual_anchor_receipt_once",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 127,
+    "test": "next20_anchor_core_bad_anchor_zone_or_payment_is_atomic",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 159,
+    "test": "next20_anchor_core_sealing_on_own_society_emits_real_optional_modes_and_forecast",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 213,
+    "test": "next20_anchor_core_other_hosts_do_not_emit_society_trigger",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 230,
+    "test": "next20_anchor_core_copy_limit_is_conditional_and_public_admission_remains_closed",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_anchor_core_tests.rs",
+    "line": 247,
+    "test": "next20_anchor_core_recovery_rejects_changed_event_host_mode_and_private_choice",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 70,
+    "test": "next20_death_core_real_destroy_holds_card_then_seals_without_grave_visit",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 92,
+    "test": "next20_death_core_resolution_time_marker_loss_buries_once_and_finishes",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 111,
+    "test": "next20_death_core_target_destroyed_by_real_response_has_grave_fallback",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 129,
+    "test": "next20_death_core_decline_and_no_target_both_finish_to_owner_grave",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 151,
+    "test": "next20_death_core_actual_jz24_caller_waits_before_next_player_and_resumes_once",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 204,
+    "test": "next20_death_core_nested_real_response_deaths_keep_distinct_continuations",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 230,
+    "test": "next20_death_core_paid_black_transactions_reject_swapped_instance",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 259,
+    "test": "next20_death_core_actual_damage_lethal_set_uses_the_same_pregrave_protocol",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 287,
+    "test": "next20_death_core_actual_sacrifice_cost_finishes_destination_before_paid_original_effect",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 324,
+    "test": "next20_death_core_actual_death_then_sealed_action_uses_owner_not_old_or_host_control",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 399,
+    "test": "next20_death_core_restore_rejects_duplicate_held_card_and_changed_source_or_barrier",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 444,
+    "test": "next20_death_core_restore_rejects_early_or_replayed_original_caller",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 471,
+    "test": "next20_death_core_jz35_does_not_invent_a_host_type_for_ghosts",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  },
+  {
+    "source": "rust-game/src/next20_death_core_tests.rs",
+    "line": 485,
+    "test": "next20_death_core_already_stacked_tiger_can_find_declined_or_cancelled_ghost",
+    "full_native_log": "logs/full-native.log",
+    "baseline_included": true
+  }
+]

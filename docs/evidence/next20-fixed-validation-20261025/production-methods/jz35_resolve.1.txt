@@ -1,0 +1,7 @@
+161:     pub(crate) fn jz35_resolve(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+162:         let before_deaths = self.death_instances();
+163:         let returns = self.jz35_sacrifice_hosts(f.actor);
+164:         if self.defer_death_caller(f.clone(), crate::death_continuation::DeathCallerKind::JZ35 { returns: returns.clone() }, &before_deaths) { return Ok(()); }
+165:         self.jz35_return_hosts(&returns)
+166:         // Declaration processing waits until the entire effect completes.
+167:     }

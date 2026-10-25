@@ -1,0 +1,45 @@
+Source 1bd07762824e138c0560863130ec7eacaddbf9c8 | rust-game/src/death_continuation.rs:462-505
+462:                     return Err("卡迪纳追迹人死亡后须续接原敌方名单".into());
+463:                 }
+464:             }
+465:             DeathCallerKind::JZ35 { returns } => {
+466:                 self.validate_jz35_frame(&proof)?;
+467:                 if f.cursor != 1
+468:                     || returns
+469:                         .iter()
+470:                         .map(|r| &r.death.old_instance)
+471:                         .collect::<BTreeSet<_>>()
+472:                         .len()
+473:                         != returns.len()
+474:                 {
+475:                     return Err("JZ35死亡后返回名单重复".into());
+476:                 }
+477:                 for r in returns {
+478:                     if r.death.owner >= self.players.len()
+479:                         || r.region >= self.regions.len()
+480:                         || !self.mystic_instance_valid(&r.region_instance)
+481:                         || !self.mystic_instance_valid(&r.death.old_instance)
+482:                         || !catalog::catalog()
+483:                             .cards
+484:                             .iter()
+485:                             .any(|d| d.id == r.definition && d.kind == "character")
+486:                     {
+487:                         return Err("JZ35原返回实体、拥有者或地区无效".into());
+488:                     }
+489:                     if let Some(id) = &r.death.deferred_death {
+490:                         if !r.death.grave_instance.is_empty()
+491:                             || !c.waits.iter().any(|w| {
+492:                                 w.source.card.id == *id
+493:                                     && w.destination.is_none()
+494:                                     && w.source.card.owner == r.death.owner
+495:                                     && w.source.card.definition == r.definition
+496:                             })
+497:                         {
+498:                             return Err("JZ35不得以虚构墓地实例跳过待定死亡".into());
+499:                         }
+500:                     }
+501:                 }
+502:             }
+503:         }
+504:         Ok(())
+505:     }

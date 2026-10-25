@@ -1,0 +1,36 @@
+295:     pub(crate) fn finish_pregrave_death(&mut self, id: &str) -> RuleResult<()> {
+296:         if self.death_boundary_waits(id) {
+297:             return Err("死亡去向须等待原响应链结束".into());
+298:         }
+299:         // Decline, no candidate, cancelled/terminated frame, or lost target all
+300:         // use the same real fallback. No exception is used as a continuation.
+301:         self.commit_pregrave_fallback(id)?;
+302:         let index = self
+303:             .death_replacements
+304:             .iter()
+305:             .position(|d| d.source.card.id == id)
+306:             .ok_or("死亡去向不可重复收束")?;
+307:         let completed = self.death_replacements.remove(index);
+308:         let result = completed.destination.ok_or("死亡缺少最终去向")?;
+309:         for e in &mut self.effects {
+310:             if let Effect::DeathCaller { caller } = e {
+311:                 for w in &mut caller.waits {
+312:                     if w.source.card.id == id {
+313:                         w.destination = Some(result.clone());
+314:                     }
+315:                 }
+316:                 if let DeathCallerKind::JZ35 { returns } = &mut caller.kind {
+317:                     for r in returns {
+318:                         if r.death.deferred_death.as_deref() == Some(id) {
+319:                             r.death.deferred_death = None;
+320:                             r.death.grave_instance = match &result {
+321:                                 DeathDestination::Grave { instance } => instance.clone(),
+322:                                 _ => String::new(),
+323:                             };
+324:                         }
+325:                     }
+326:                 }
+327:             }
+328:         }
+329:         Ok(())
+330:     }
