@@ -460,3 +460,6 @@ mod next20_anchor_core_tests;
 
 #[cfg(test)]
 mod next20_death_core_tests;
+
+#[cfg(test)]
+mod bq001_natural_room_tests;
