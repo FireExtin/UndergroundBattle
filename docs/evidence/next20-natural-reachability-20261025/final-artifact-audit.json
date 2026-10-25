@@ -1,0 +1,232 @@
+{
+  "at_utc": "2026-10-25T11:35:46.874663+00:00",
+  "source_commit": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "new_delivery_files_scanned": 55,
+  "strong_secret_scan": "PASS",
+  "data_archive_entries_byte_verified": 76,
+  "tracked_snapshot_blobs_still_match": 8366,
+  "original32_unchanged": true,
+  "no_database_cache_dependency_or_build_binary_in_archive": true,
+  "files": {
+    "docs/NEXT20_NATURAL_CANDIDATE_REACHABILITY_2026-10-25.md": {
+      "sha256": "4e165c59a3d50989031f2c37ba546f3858db765aa0a99c30ac0d51fe8fd88481",
+      "bytes": 6323
+    },
+    "docs/evidence/next20-natural-reachability-20261025/frozen-source.json": {
+      "sha256": "1b68873cf25b66e53130724701d750b90eafd9a016a33977849dc05e1c72be48",
+      "bytes": 4137
+    },
+    "docs/evidence/next20-natural-reachability-20261025/raw-log-index.json": {
+      "sha256": "364bc8014633882d922fe650355adfea8b5f2f9313c18d31cb04018f6f59160d",
+      "bytes": 1993
+    },
+    "docs/evidence/next20-natural-reachability-20261025/isolated-dependencies.json": {
+      "sha256": "74981a15a7227bf6b62678b3b6627a4dbdafdf69d27c2dc96c727983c1aabf1b",
+      "bytes": 1354
+    },
+    "docs/evidence/next20-natural-reachability-20261025/natural-reachability-audit.json": {
+      "sha256": "f14f182f06c11a3ae9be14cff3c4752325e9344e584b873071a2110fd602f4da",
+      "bytes": 13640
+    },
+    "docs/evidence/next20-natural-reachability-20261025/scope-summary.json": {
+      "sha256": "000ac33a6c3076268751a96b7131951d22cd95118061dc98c5e9ee730e5fcd3b",
+      "bytes": 4073
+    },
+    "docs/evidence/next20-natural-reachability-20261025/packet-manifest.json": {
+      "sha256": "5be171c80aea24aa666117cddcae1a478f65fc377ff71854a525e360a603eae0",
+      "bytes": 662
+    },
+    "docs/evidence/next20-natural-reachability-20261025/remote-refs-readonly.json": {
+      "sha256": "785e1e40821efb1d8f2fc3355109aab6e27e6702c15f54b425cb4351734d72db",
+      "bytes": 6085
+    },
+    "docs/evidence/next20-natural-reachability-20261025/cross-build-cache-reuse.json": {
+      "sha256": "141633fbc757922c75ba3c86063388c9a04b4f1f9c315c21d1a79c33e7325318",
+      "bytes": 489
+    },
+    "docs/evidence/next20-natural-reachability-20261025/evidence-archive.json": {
+      "sha256": "e8c543fa107d590189e660fee18591dd26e10d7191403add6c18c1e035b7836b",
+      "bytes": 293
+    },
+    "docs/evidence/next20-natural-reachability-20261025/natural-evidence-index.json": {
+      "sha256": "70302c9dc830ef4ce3d9a75f2ae887b97e0e7d85b64ee473ffd212d549bf4681",
+      "bytes": 12500
+    },
+    "docs/evidence/next20-natural-reachability-20261025/runtime-source-boundary.json": {
+      "sha256": "63393cac00b6a64f06859bd91cf0850e55a245236ae694742177e390e5a11601",
+      "bytes": 1734
+    },
+    "docs/evidence/next20-natural-reachability-20261025/known-source-consistency.json": {
+      "sha256": "3da39f831ca9ca32e46db1786da2adeee580b5527880391386df7be5565eed9d",
+      "bytes": 678
+    },
+    "docs/evidence/next20-natural-reachability-20261025/natural-cross-comparison.json": {
+      "sha256": "4125d24108c3cd28f184103eaae01b37252321b55396ab04f2c1f8285f62cecb",
+      "bytes": 1105
+    },
+    "docs/evidence/next20-natural-reachability-20261025/source-checkpoint.json": {
+      "sha256": "57992b5dcfd5fa6e49a7d2109327180fef50ef5dea95447b8ce96043c2c373b5",
+      "bytes": 452
+    },
+    "docs/evidence/next20-natural-reachability-20261025/failed-source-recovery.json": {
+      "sha256": "8541375fd433fdaa7f80bdcac81c8a02bb8f4d6b0c6fb1accc3155c980c9fc5a",
+      "bytes": 650
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/audit_natural.py": {
+      "sha256": "b5db7e4414f6127f6005866a12f20a0fb27d872408f07e0d99b5dbe6e8654f5c",
+      "bytes": 6405
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/run_cross.py": {
+      "sha256": "6fec105af390512f49b365b83e081f36018fc4c83ea5c3cf98c50c5a672028fe",
+      "bytes": 2476
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/run_limited_worker.mjs": {
+      "sha256": "fc8aa3dde477872e8f60e9bfee7106cf299a23b7d756fdabedcf73acece4cbad",
+      "bytes": 443
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/archive_natural.py": {
+      "sha256": "720d1ab7950d6714b599d32b040467bf860006991760551e08f09b4046524c0f",
+      "bytes": 15090
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/pack_natural.mjs": {
+      "sha256": "cf83612dd79a431f282e83fb389274ab2f185fbfc80d05277dbd716394409c9d",
+      "bytes": 3169
+    },
+    "docs/evidence/next20-natural-reachability-20261025/reproduction/run_native.py": {
+      "sha256": "73b6a5cb1ff261932fe8719adbd4e12192879d650f03b26de6c93c8b6556b95f",
+      "bytes": 2923
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-02.raw.log.gz": {
+      "sha256": "0e5ed2dbf35c5589bd4157317b0ddcfbff22d83ca8223d47fb2945abaf1a58df",
+      "bytes": 1626
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-natural.json": {
+      "sha256": "428ed71801261b4f1ca6805a4474dbc8b58f07f48e23d11ede40fab028c62125",
+      "bytes": 4870
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build-isolated.raw.log.gz": {
+      "sha256": "08210fd7e182d016d7334c2d593e56a5037ff3a5a55b4a5bdf8c2e1315168f76",
+      "bytes": 679
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build.json": {
+      "sha256": "cf736f7d239c5dea644a10938c33b4844c291afddd8bbc5c70c17655d03883e7",
+      "bytes": 4818
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/wasm-build.raw.log.gz": {
+      "sha256": "62a1dc2aec10f7e1890df98bf28cd2fd7a31702d54e0c82c11dc3d625daa36ff",
+      "bytes": 609
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/black-04.raw.log.gz": {
+      "sha256": "9dc3a6b01adfc3583317dc25831caea022182cd1756228b649004f0ce9460de7",
+      "bytes": 1037
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/fixed-native-06.log": {
+      "sha256": "4fe5ee6bbbb3f8f4a36357a1e276ab5228e95bbb2b8aa0547ddca38383199d00",
+      "bytes": 2378
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-02-receipt.json": {
+      "sha256": "a3ede4b98ca91b3ad3506b6a40fea4c97708bc1c41b21f9551ee06d2490a7431",
+      "bytes": 1560
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/pack-natural.json": {
+      "sha256": "f6623696baa80bf741bf95635ab7d7f782d7341d35f59e3365ab17551e33787e",
+      "bytes": 4878
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/wasm-build.log": {
+      "sha256": "5d58fb7d003b0a2472c689b8077f9b9b712b92a5ac5996ffc4e57adbeca3d7d5",
+      "bytes": 1185
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/fixed-native-06-receipt.json": {
+      "sha256": "92146a6b786f2a27ee4420c16e1efcd28d0e6d22ee7d6a7fbe35226378d3fac4",
+      "bytes": 1563
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/pack-natural.raw.log.gz": {
+      "sha256": "c924ff5002f8c333dde3ed8725b633067fafb98af1c3e56d4f798d26438938dc",
+      "bytes": 340
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build-isolated.log": {
+      "sha256": "9c637b279c684f248ec788a083c0bca1dc7d44dc3bfdc7a846a6f28086cadd11",
+      "bytes": 1057
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-05-receipt.json": {
+      "sha256": "15355d5b7ba55c92093879d4cc3a3f39cd98965fd7c194e77bd822d1e9177de2",
+      "bytes": 1558
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/admission-01.log": {
+      "sha256": "11511c84c74486f0481d04b07c440d29c23e882b6610b46fcf7b4ef0b6518b19",
+      "bytes": 2359
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/wasm-build.json": {
+      "sha256": "915a0c60386ba039c9376ae66383baf36ded509bbafdbbcd6be354e9fca3cfb6",
+      "bytes": 4795
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build-isolated.json": {
+      "sha256": "f39c72fc0552db3c86d528f6d53dfc3479d15bbc0bc0ab5b6f0f37d23cff5d6a",
+      "bytes": 4837
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/admission-01.raw.log.gz": {
+      "sha256": "df401ed50729b196a0557e0e693e7ef0b6bb3bfb3404d841b4f6e505616c1825",
+      "bytes": 1116
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build.log": {
+      "sha256": "44b672cd88d9307a6171fa9c8d257dc460bcdf65a8e5c02e13e9e057c8c7032e",
+      "bytes": 2425
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/black-04-receipt.json": {
+      "sha256": "32118cf4b73083d6965c0150204b536d05a4560b47ee6c90007cf5c3da45f7b7",
+      "bytes": 1666
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/fixed-native-06.raw.log.gz": {
+      "sha256": "1ce888acca81d9affcc0d5a0116dd58d0b920addc85cd271e01a3ff1c3974313",
+      "bytes": 1113
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-03-receipt.json": {
+      "sha256": "f4e82c791af4a3638f1c07997c195447334ede189a7edb341888e624dbda7fb7",
+      "bytes": 1561
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-02.log": {
+      "sha256": "88b87fe639ac8301e99b0e6f2e687f81749855f60eba025afd3c1923ffd577bd",
+      "bytes": 3987
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-03.log": {
+      "sha256": "dbc6eac1651a69a73187654ce910e20319d694aba987d46f0f9d5fb0d6342535",
+      "bytes": 4101
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-05.log": {
+      "sha256": "cc7f7a84d7ab36a338fd1edbf95a3d7ff1e8cd20659ad28930acd113c8783c75",
+      "bytes": 2501
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/black-04.log": {
+      "sha256": "25965e895f86610ac5727770805ce17d5e1eb3ef36fc52ce18d424b52a262e65",
+      "bytes": 2004
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-natural.log": {
+      "sha256": "b12ffc5fa7a08d78309aeee8b734962c844d34930994d53fc36d4dcff8a9eb36",
+      "bytes": 1510
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-03.raw.log.gz": {
+      "sha256": "8099dc2939dda0bc08bdb919eb885e49c7aed553272bcf40bca66f49a002bc49",
+      "bytes": 1677
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/natural-05.raw.log.gz": {
+      "sha256": "d463cd563e266190e11d206b315ba2788c12f836f7210949976b861989467923",
+      "bytes": 1157
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/pack-natural.log": {
+      "sha256": "ec12a13f4ccd9d2e64a1c0709676fef0da6e12c35226ee21b68127821db069dc",
+      "bytes": 667
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-natural.raw.log.gz": {
+      "sha256": "b79d47c7ba89d543ae5b20c2f2e32cbe83385541beb343306934391b383a068d",
+      "bytes": 551
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/admission-01-receipt.json": {
+      "sha256": "83bfd75b5ed2d68e4d6d68d620a5795612df418357ce6331d137a9d6107f5919",
+      "bytes": 1600
+    },
+    "docs/evidence/next20-natural-reachability-20261025/logs/worker-build.raw.log.gz": {
+      "sha256": "b487c2006c5cbc029b07c998a44c4442a95d12f1558a19531896d0201322ec74",
+      "bytes": 777
+    }
+  }
+}

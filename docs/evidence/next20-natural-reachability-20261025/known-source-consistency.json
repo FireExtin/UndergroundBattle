@@ -1,0 +1,15 @@
+{
+  "source_commit": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "scope": "Existing raw metadata vs directory construction contract; not changed in this slice",
+  "raw_BQ034": {
+    "unique": true,
+    "keywords": []
+  },
+  "directory_BQ034": {
+    "deckCopyLimit": 3,
+    "keywords": [],
+    "supported": false
+  },
+  "observed_failure": "runs/admission-01: candidate construction accepted two BQ034, contradicting the initial test assumption",
+  "handling": "All three natural decks use BQ034 at most once. Fillers exclude raw unique definitions. Ordinary four-copy negative passes. No production uniqueness or admission rule was changed. Parent review before admission."
+}

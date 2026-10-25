@@ -1,0 +1,110 @@
+{
+  "at_utc": "2026-10-25T11:32:45.489286+00:00",
+  "tested_source_SHA": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "publicAdmission": false,
+  "candidateConstructionOnly": [
+    "BQ034",
+    "CQ25",
+    "XG25"
+  ],
+  "Native": {
+    "pass": 4,
+    "fail": 0,
+    "old_tests_filtered_out": 2561,
+    "full_old_suite": "NOT_RUN at this source",
+    "receipt": "runs/fixed-native-06/receipt.json",
+    "natural_commands": 1075
+  },
+  "limited_WASM": {
+    "cases": [
+      {
+        "name": "bq034-natural-entry-counter",
+        "seed": "1603",
+        "nativeCommands": 386,
+        "productionReplayedCommands": 383,
+        "views": 766,
+        "duplicates": 383,
+        "rawNativeSha256": "8e76e1bbc6b973fa0ae08a202c6d22325178d3c58fb5f1c203c0f7adadb7605f"
+      },
+      {
+        "name": "bq034-natural-shown-feed",
+        "seed": "1603",
+        "nativeCommands": 332,
+        "productionReplayedCommands": 329,
+        "views": 658,
+        "duplicates": 329,
+        "rawNativeSha256": "04a4b1eefa64c871bdd2ef370a2c39e380acf4ff66c421c511902e7b0c32f00a"
+      },
+      {
+        "name": "cq25-xg25-natural-seal-move-search",
+        "seed": "1723",
+        "nativeCommands": 357,
+        "productionReplayedCommands": 354,
+        "views": 708,
+        "duplicates": 354,
+        "rawNativeSha256": "55912af09934be0fc4f3512f2631373b75f4dd5b8b652f94c2fa63e2e70dcac5"
+      }
+    ],
+    "commands_after_candidate_start": 1066,
+    "views": 2132,
+    "actual_duplicate_reducer_probes": 1066,
+    "production_candidate_start_rejected": true,
+    "currentSourceManifestSha256": "ae97682563cb9b45806da72117c36d4c391dd7092c9c9fa88c95b224065943b5",
+    "currentWasmSha256": "ec71c2a3958a86cb5fbb5b47e45d2bd570c6c6549804a2cfd443dd426989a2dc",
+    "publicAdmission": false
+  },
+  "limited_Worker": {
+    "pass": 3,
+    "fail": 0,
+    "seconds": 86.751,
+    "commands": 1066,
+    "each_original_HTTP_receipt": true,
+    "each_persisted_state_journal_and_two_seat_views": true,
+    "D1_reopens_per_case": 4,
+    "local_workerd_only": true
+  },
+  "builds": {
+    "WASM": "PASS fresh release",
+    "UI_typescript_vite": "PASS",
+    "Worker": "PASS dry-run only, no deployment"
+  },
+  "candidate_setup_boundary": "The 3 Native ready/start commands per case (9 total) use candidate construction admission. Production start rejects. WASM/D1 begins at the genuine Native post-start state; public create/join/start admission is not claimed.",
+  "known_source_issue": "BQ034 raw unique:true but current directory deckCopyLimit=3; all these decks use exactly one, fillers exclude raw unique. No production rule changed; review before admission.",
+  "remaining": [
+    "BQ009/BQ033 seal supply is still absent and out of scope",
+    "Production supported:false on all five remains",
+    "Complete card admission and parent review pending",
+    "New real browser play/remote D1 acceptance NOT_RUN",
+    "Old full Native/UI/Worker/WASM483 suites NOT_RUN at this source; historical 9afd8a57 evidence retained under its original SHA"
+  ],
+  "permissions": "Original Vite dependency-cache write was stopped after EROFS; no retry/elevation of that target. Only independently copied dependencies in authorized Task7 were built.",
+  "remote": "main and two review refs read unchanged; progress/batch20-fourth-20261022 read failed with RemoteProtocolError and was not retried. Workflow allowlist rejection not retried.",
+  "push": "NOT_ATTEMPTED",
+  "CI": "NOT_TRIGGERED",
+  "deployment": "NOT_ATTEMPTED",
+  "original_table": "97EC1A99E58C and both seats untouched",
+  "original32": "unchanged",
+  "cases": [
+    {
+      "name": "bq034-natural-entry-counter",
+      "seed": "1603",
+      "native_commands": 386,
+      "cross_commands": 383,
+      "views": 766
+    },
+    {
+      "name": "bq034-natural-shown-feed",
+      "seed": "1603",
+      "native_commands": 332,
+      "cross_commands": 329,
+      "views": 658
+    },
+    {
+      "name": "cq25-xg25-natural-seal-move-search",
+      "seed": "1723",
+      "native_commands": 357,
+      "cross_commands": 354,
+      "views": 708
+    }
+  ]
+}

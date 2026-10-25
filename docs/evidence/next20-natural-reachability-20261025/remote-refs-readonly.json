@@ -1,0 +1,98 @@
+{
+  "at_utc": "2026-10-25T11:29:37.121Z",
+  "operation": "READ_ONLY git/ref/heads; no workflow retry",
+  "refs": [
+    {
+      "ref": "main",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "{\"ref\":\"refs/heads/main\",\"node_id\":\"REF_kwDOR1_4-69yZWZzL2hlYWRzL21haW4\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/main\",\"object\":{\"sha\":\"d1c068ea8c4162212cd19fa023841513c4c67e33\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/d1c068ea8c4162212cd19fa023841513c4c67e33\"}}",
+          "title": "main",
+          "modified_date": null,
+          "url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/main",
+          "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/main",
+          "display_title": "main",
+          "structuredContent": {
+            "title": "main",
+            "content": "{\"ref\":\"refs/heads/main\",\"node_id\":\"REF_kwDOR1_4-69yZWZzL2hlYWRzL21haW4\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/main\",\"object\":{\"sha\":\"d1c068ea8c4162212cd19fa023841513c4c67e33\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/d1c068ea8c4162212cd19fa023841513c4c67e33\"}}",
+            "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/main"
+          }
+        },
+        "isError": false
+      }
+    },
+    {
+      "ref": "review/game-serial-abi99-wip-20261024",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "{\"ref\":\"refs/heads/review/game-serial-abi99-wip-20261024\",\"node_id\":\"REF_kwDOR1_4-9oAMHJlZnMvaGVhZHMvcmV2aWV3L2dhbWUtc2VyaWFsLWFiaTk5LXdpcC0yMDI2MTAyNA\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/review/game-serial-abi99-wip-20261024\",\"object\":{\"sha\":\"e7b3366b16ed7d70783ce00bf96e87df4d220789\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/e7b3366b16ed7d70783ce00bf96e87df4d220789\"}}",
+          "title": "game-serial-abi99-wip-20261024",
+          "modified_date": null,
+          "url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-serial-abi99-wip-20261024",
+          "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-serial-abi99-wip-20261024",
+          "display_title": "game-serial-abi99-wip-20261024",
+          "structuredContent": {
+            "title": "game-serial-abi99-wip-20261024",
+            "content": "{\"ref\":\"refs/heads/review/game-serial-abi99-wip-20261024\",\"node_id\":\"REF_kwDOR1_4-9oAMHJlZnMvaGVhZHMvcmV2aWV3L2dhbWUtc2VyaWFsLWFiaTk5LXdpcC0yMDI2MTAyNA\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/review/game-serial-abi99-wip-20261024\",\"object\":{\"sha\":\"e7b3366b16ed7d70783ce00bf96e87df4d220789\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/e7b3366b16ed7d70783ce00bf96e87df4d220789\"}}",
+            "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-serial-abi99-wip-20261024"
+          }
+        },
+        "isError": false
+      }
+    },
+    {
+      "ref": "review/game-abi111-card-faces-20261024",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "content": "{\"ref\":\"refs/heads/review/game-abi111-card-faces-20261024\",\"node_id\":\"REF_kwDOR1_4-9oAMXJlZnMvaGVhZHMvcmV2aWV3L2dhbWUtYWJpMTExLWNhcmQtZmFjZXMtMjAyNjEwMjQ\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/review/game-abi111-card-faces-20261024\",\"object\":{\"sha\":\"a520f7680387831b7ee011b42d4c445fca2183de\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/a520f7680387831b7ee011b42d4c445fca2183de\"}}",
+          "title": "game-abi111-card-faces-20261024",
+          "modified_date": null,
+          "url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-abi111-card-faces-20261024",
+          "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-abi111-card-faces-20261024",
+          "display_title": "game-abi111-card-faces-20261024",
+          "structuredContent": {
+            "title": "game-abi111-card-faces-20261024",
+            "content": "{\"ref\":\"refs/heads/review/game-abi111-card-faces-20261024\",\"node_id\":\"REF_kwDOR1_4-9oAMXJlZnMvaGVhZHMvcmV2aWV3L2dhbWUtYWJpMTExLWNhcmQtZmFjZXMtMjAyNjEwMjQ\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/refs/heads/review/game-abi111-card-faces-20261024\",\"object\":{\"sha\":\"a520f7680387831b7ee011b42d4c445fca2183de\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/FireExtin/UndergroundBattle/git/commits/a520f7680387831b7ee011b42d4c445fca2183de\"}}",
+            "display_url": "https://api.github.com/repos/FireExtin/UndergroundBattle/git/ref/heads/review/game-abi111-card-faces-20261024"
+          }
+        },
+        "isError": false
+      }
+    },
+    {
+      "ref": "progress/batch20-fourth-20261022",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "RemoteProtocolError: Server disconnected without sending a response."
+          }
+        ],
+        "structuredContent": {
+          "error": "RemoteProtocolError: Server disconnected without sending a response.",
+          "error_code": "UNKNOWN"
+        },
+        "isError": true
+      }
+    }
+  ],
+  "push": "NOT_ATTEMPTED"
+}

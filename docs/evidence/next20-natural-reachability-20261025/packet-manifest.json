@@ -1,0 +1,17 @@
+{
+  "source_commit": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "packets": {
+    "rust-game-wasm/tests/current112/cq25-xg25-natural-seal-move-search.json.gz": {
+      "bytes": 3843021,
+      "sha256": "1b24622b69f2d180b4e6afdb426b50ce5b771f2d5aa00c598a3d7e9f1d0da6a3"
+    },
+    "rust-game-wasm/tests/current112/bq034-natural-entry-counter.json.gz": {
+      "bytes": 3929634,
+      "sha256": "ef5fa31f68b6418ed02118437501c6ea6407a3e34c9f534a1262db7a6afdbdf2"
+    },
+    "rust-game-wasm/tests/current112/bq034-natural-shown-feed.json.gz": {
+      "bytes": 3284236,
+      "sha256": "f911ccf4eacc6b2e56c8e10c25132a1a41d2fe702937b3c5b160b5a65d7fd546"
+    }
+  }
+}

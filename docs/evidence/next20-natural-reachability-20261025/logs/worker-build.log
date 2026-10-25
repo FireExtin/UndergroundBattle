@@ -1,0 +1,43 @@
+
+> build
+> node scripts/build.mjs
+
+
+> undergroundbattle-web@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+failed to load config from /home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/web/vite.config.ts
+error during build:
+Error: EROFS: read-only file system, open '/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/web/node_modules/.vite-temp/vite.config.ts.timestamp-1792927067629-26c0bcb4847c28.mjs'
+    at async open (node:internal/fs/promises:1345:25)
+    at async Object.writeFile (node:internal/fs/promises:1972:14)
+    at async loadConfigFromBundledFile (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/chunks/node.js:34574:3)
+    at async bundleAndLoadConfigFile (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/chunks/node.js:34437:17)
+    at async loadConfigFromFile (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/chunks/node.js:34404:42)
+    at async resolveConfig (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/chunks/node.js:34028:22)
+    at async createBuilder (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/chunks/node.js:33246:17)
+    at async CAC.<anonymous> (file:///home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules/vite/dist/node/cli.js:767:19) {
+  errno: -30,
+  code: 'EROFS',
+  syscall: 'open',
+  path: '/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/web/node_modules/.vite-temp/vite.config.ts.timestamp-1792927067629-26c0bcb4847c28.mjs'
+}
+node:internal/errors:986
+  const err = new Error(message);
+              ^
+
+Error: Command failed: npm run build
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at checkExecSyncError (node:child_process:943:11)
+    at execFileSync (node:child_process:979:15)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/sites/scripts/build.mjs:15:1 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 30,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.22.1

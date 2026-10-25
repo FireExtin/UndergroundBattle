@@ -1,0 +1,8 @@
+{
+  "at_utc": "2026-10-25T11:15:56.226651+00:00",
+  "from_source_pin": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target",
+  "destination": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/cross-build/target",
+  "method": "copy-on-write or separate bytes; no hardlinks",
+  "scope": "pure compiler artifacts only; fresh build command follows, no test result reuse"
+}

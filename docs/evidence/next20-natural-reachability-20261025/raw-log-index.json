@@ -1,0 +1,57 @@
+[
+  {
+    "path": "runs/admission-01/output.log",
+    "raw_sha256": "6518c652e11ffec17ebdc6c42c1957f860ab036c4eb1a6f1e9c82cabbcb16145",
+    "raw_gzip": "admission-01.raw.log.gz"
+  },
+  {
+    "path": "runs/black-04/output.log",
+    "raw_sha256": "fe6b54f83920b2c0cb9a9bd0fc39135816483bfff062c101119a7368958b81e2",
+    "raw_gzip": "black-04.raw.log.gz"
+  },
+  {
+    "path": "runs/fixed-native-06/output.log",
+    "raw_sha256": "cb907e5b19c1d5e0090c66aa39d2892ae373c50e941db636f63db8bb42fe8020",
+    "raw_gzip": "fixed-native-06.raw.log.gz"
+  },
+  {
+    "path": "runs/natural-02/output.log",
+    "raw_sha256": "eb65edf5b3fad913776574b6ee14bca884d2929928f42b621cb15dabca7806fd",
+    "raw_gzip": "natural-02.raw.log.gz"
+  },
+  {
+    "path": "runs/natural-03/output.log",
+    "raw_sha256": "dbc6eac1651a69a73187654ce910e20319d694aba987d46f0f9d5fb0d6342535",
+    "raw_gzip": "natural-03.raw.log.gz"
+  },
+  {
+    "path": "runs/natural-05/output.log",
+    "raw_sha256": "9aac893551229bd3c1fab81603afaadc2ebabb7ffa9331a9131176835940115a",
+    "raw_gzip": "natural-05.raw.log.gz"
+  },
+  {
+    "path": "cross-logs/pack-natural.log",
+    "raw_sha256": "ec12a13f4ccd9d2e64a1c0709676fef0da6e12c35226ee21b68127821db069dc",
+    "raw_gzip": "pack-natural.raw.log.gz"
+  },
+  {
+    "path": "cross-logs/wasm-build.log",
+    "raw_sha256": "5d58fb7d003b0a2472c689b8077f9b9b712b92a5ac5996ffc4e57adbeca3d7d5",
+    "raw_gzip": "wasm-build.raw.log.gz"
+  },
+  {
+    "path": "cross-logs/worker-build-isolated.log",
+    "raw_sha256": "034227519928667c8593a0f12339124b192e5e5f1e439f5474828545c80587e4",
+    "raw_gzip": "worker-build-isolated.raw.log.gz"
+  },
+  {
+    "path": "cross-logs/worker-build.log",
+    "raw_sha256": "44b672cd88d9307a6171fa9c8d257dc460bcdf65a8e5c02e13e9e057c8c7032e",
+    "raw_gzip": "worker-build.raw.log.gz"
+  },
+  {
+    "path": "cross-logs/worker-natural.log",
+    "raw_sha256": "b12ffc5fa7a08d78309aeee8b734962c844d34930994d53fc36d4dcff8a9eb36",
+    "raw_gzip": "worker-natural.raw.log.gz"
+  }
+]

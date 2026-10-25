@@ -1,0 +1,15 @@
+{"scope":"Only the three new natural candidate paths; no old full suite","cwd":"/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/sites","args":["--test","--test-concurrency=1","test/next20-natural.test.mjs"]}
+✔ natural candidate bq034-natural-entry-counter: full Native commands, every receipt and persisted restore (30845.099662ms)
+ℹ {"seed":"1603","nativeSetupCommands":3,"publicStartRejected":true,"commands":383,"everyCommandOriginalHttpReceipt":true,"everyCommandPersistedStateAndViews":true,"journalsEqual":true,"reopened":4,"nativeDeckConstructionOnly":true,"publicAdmission":false}
+✔ natural candidate bq034-natural-shown-feed: full Native commands, every receipt and persisted restore (27134.042707ms)
+ℹ {"seed":"1603","nativeSetupCommands":3,"publicStartRejected":true,"commands":329,"everyCommandOriginalHttpReceipt":true,"everyCommandPersistedStateAndViews":true,"journalsEqual":true,"reopened":4,"nativeDeckConstructionOnly":true,"publicAdmission":false}
+✔ natural candidate cq25-xg25-natural-seal-move-search: full Native commands, every receipt and persisted restore (28349.470784ms)
+ℹ {"seed":"1723","nativeSetupCommands":3,"publicStartRejected":true,"commands":354,"everyCommandOriginalHttpReceipt":true,"everyCommandPersistedStateAndViews":true,"journalsEqual":true,"reopened":4,"nativeDeckConstructionOnly":true,"publicAdmission":false}
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86674.77281

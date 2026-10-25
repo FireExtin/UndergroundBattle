@@ -1,0 +1,15 @@
+{
+  "tested_source_SHA": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "previous_runtime_implementation_SHA": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "production_semantics_change": "none; deck hook and module only cfg(test)",
+  "cards_json_bytes_unchanged": true,
+  "candidate_registry": "thread-local, only BQ034/CQ25/XG25, reset on scope exit; global catalog false",
+  "new_source_files": [
+    "rust-game/src/deck.rs",
+    "rust-game/src/lib.rs",
+    "rust-game/src/next20_natural_room_tests.rs",
+    "sites/test/next20-natural.test.mjs"
+  ],
+  "deck_diff": "diff --git a/rust-game/src/deck.rs b/rust-game/src/deck.rs\nindex 5f699661..18f86d8e 100644\n--- a/rust-game/src/deck.rs\n+++ b/rust-game/src/deck.rs\n@@ -57,6 +57,10 @@ pub(crate) fn copy_limit_for_society(card: &CardDefinition, society_id: Option<&\n     if card.name == \"\u7cbe\u795e\u951a\u70b9\" && society_id == Some(\"MSJC10\") { None } else { copy_limit(card) }\n }\n pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {\n+    #[cfg(test)]\n+    if let Some(cards) = crate::next20_natural_room_tests::candidate_registry() {\n+        return validate_with_cards(draft, &cards);\n+    }\n     validate_with_cards(draft, &catalog::catalog().cards)\n }\n /// The caller supplies a typed registry; game entry points always use the active catalog.\n",
+  "lib_diff": "diff --git a/rust-game/src/lib.rs b/rust-game/src/lib.rs\nindex 1dc04a3f..04db5113 100644\n--- a/rust-game/src/lib.rs\n+++ b/rust-game/src/lib.rs\n@@ -7,6 +7,8 @@ mod next20_anchor;\n mod next20_blue_core_tests;\n #[cfg(test)]\n mod next20_candidate_room_tests;\n+#[cfg(test)]\n+mod next20_natural_room_tests;\n mod import20_entropy;\n #[cfg(test)]\n mod import20_entropy_tests;\n"
+}

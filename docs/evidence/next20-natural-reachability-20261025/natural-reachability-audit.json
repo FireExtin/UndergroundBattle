@@ -1,0 +1,495 @@
+{
+  "source_commit": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "publicAdmission": false,
+  "candidateConstructionOnly": [
+    "BQ034",
+    "CQ25",
+    "XG25"
+  ],
+  "native_commands": 1075,
+  "no_runtime_fixture_injection_in_test_source": true,
+  "cases": [
+    {
+      "file": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/runs/fixed-native-06/native/bq034-natural-entry-counter.jsonl",
+      "raw_sha256": "8e76e1bbc6b973fa0ae08a202c6d22325178d3c58fb5f1c203c0f7adadb7605f",
+      "assets": [
+        {
+          "command": "natural-bq034-natural-entry-counter-9",
+          "seat": 1,
+          "definition": "JC003",
+          "hand_instance": "i117",
+          "turn": 1
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-12",
+          "seat": 0,
+          "definition": "JC032",
+          "hand_instance": "i113",
+          "turn": 1
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-59",
+          "seat": 0,
+          "definition": "XQ12",
+          "hand_instance": "i125",
+          "turn": 2
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-62",
+          "seat": 1,
+          "definition": "JC102",
+          "hand_instance": "i120",
+          "turn": 2
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-109",
+          "seat": 1,
+          "definition": "JC004",
+          "hand_instance": "i118",
+          "turn": 3
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-112",
+          "seat": 0,
+          "definition": "JC003",
+          "hand_instance": "i114",
+          "turn": 3
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-159",
+          "seat": 0,
+          "definition": "XQ14",
+          "hand_instance": "i115",
+          "turn": 4
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-162",
+          "seat": 1,
+          "definition": "XQ12",
+          "hand_instance": "i119",
+          "turn": 4
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-209",
+          "seat": 1,
+          "definition": "JC104",
+          "hand_instance": "i126",
+          "turn": 5
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-212",
+          "seat": 0,
+          "definition": "JC029",
+          "hand_instance": "i116",
+          "turn": 5
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-259",
+          "seat": 0,
+          "definition": "XQ12",
+          "hand_instance": "i129",
+          "turn": 6
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-268",
+          "seat": 1,
+          "definition": "JZ59",
+          "hand_instance": "i130",
+          "turn": 6
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-318",
+          "seat": 1,
+          "definition": "JC008",
+          "hand_instance": "i134",
+          "turn": 7
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-321",
+          "seat": 0,
+          "definition": "JC102",
+          "hand_instance": "i133",
+          "turn": 7
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-375",
+          "seat": 0,
+          "definition": "JC003",
+          "hand_instance": "i145",
+          "turn": 8
+        },
+        {
+          "command": "natural-bq034-natural-entry-counter-378",
+          "seat": 1,
+          "definition": "JZ59",
+          "hand_instance": "i138",
+          "turn": 8
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "real_XQ14_grave_arrival",
+          "command": "natural-bq034-natural-entry-counter-271"
+        },
+        {
+          "kind": "real_XQ14_grave_arrival",
+          "command": "natural-bq034-natural-entry-counter-383"
+        }
+      ],
+      "case": "bq034-natural-entry-counter",
+      "seed": "1603",
+      "decks": [
+        {
+          "seat": 0,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": [
+            {
+              "cardId": "BQ034",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": []
+        }
+      ],
+      "commands": 386,
+      "turn": 8,
+      "details": {
+        "counterSacrificedBlood": true,
+        "enemySpellTerminated": true,
+        "entryBloodAttached": true,
+        "realGraveSource": "JC005 destroyed attached XQ14",
+        "source": "i165"
+      },
+      "views": 774,
+      "asset_commands_by_seat": {
+        "1": 8,
+        "0": 8
+      }
+    },
+    {
+      "file": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/runs/fixed-native-06/native/bq034-natural-shown-feed.jsonl",
+      "raw_sha256": "04a4b1eefa64c871bdd2ef370a2c39e380acf4ff66c421c511902e7b0c32f00a",
+      "assets": [
+        {
+          "command": "natural-bq034-natural-shown-feed-9",
+          "seat": 1,
+          "definition": "JC003",
+          "hand_instance": "i117",
+          "turn": 1
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-12",
+          "seat": 0,
+          "definition": "JC032",
+          "hand_instance": "i113",
+          "turn": 1
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-59",
+          "seat": 0,
+          "definition": "XQ12",
+          "hand_instance": "i125",
+          "turn": 2
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-62",
+          "seat": 1,
+          "definition": "JC102",
+          "hand_instance": "i120",
+          "turn": 2
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-109",
+          "seat": 1,
+          "definition": "JC004",
+          "hand_instance": "i118",
+          "turn": 3
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-112",
+          "seat": 0,
+          "definition": "JC003",
+          "hand_instance": "i114",
+          "turn": 3
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-159",
+          "seat": 0,
+          "definition": "XQ14",
+          "hand_instance": "i115",
+          "turn": 4
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-162",
+          "seat": 1,
+          "definition": "XQ12",
+          "hand_instance": "i119",
+          "turn": 4
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-209",
+          "seat": 1,
+          "definition": "JC104",
+          "hand_instance": "i126",
+          "turn": 5
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-212",
+          "seat": 0,
+          "definition": "JC029",
+          "hand_instance": "i116",
+          "turn": 5
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-259",
+          "seat": 0,
+          "definition": "XQ12",
+          "hand_instance": "i129",
+          "turn": 6
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-268",
+          "seat": 1,
+          "definition": "JZ59",
+          "hand_instance": "i130",
+          "turn": 6
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-318",
+          "seat": 1,
+          "definition": "JC008",
+          "hand_instance": "i134",
+          "turn": 7
+        },
+        {
+          "command": "natural-bq034-natural-shown-feed-321",
+          "seat": 0,
+          "definition": "JC102",
+          "hand_instance": "i133",
+          "turn": 7
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "real_XQ14_grave_arrival",
+          "command": "natural-bq034-natural-shown-feed-271"
+        }
+      ],
+      "case": "bq034-natural-shown-feed",
+      "seed": "1603",
+      "decks": [
+        {
+          "seat": 0,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": [
+            {
+              "cardId": "BQ034",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": []
+        }
+      ],
+      "commands": 332,
+      "turn": 7,
+      "details": {
+        "realGraveSource": "JC005 destroyed attached XQ14",
+        "shownBQ034Target": "i150",
+        "shownBloodAttached": true
+      },
+      "views": 666,
+      "asset_commands_by_seat": {
+        "1": 7,
+        "0": 7
+      }
+    },
+    {
+      "file": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/runs/fixed-native-06/native/cq25-xg25-natural-seal-move-search.jsonl",
+      "raw_sha256": "55912af09934be0fc4f3512f2631373b75f4dd5b8b652f94c2fa63e2e70dcac5",
+      "assets": [
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-9",
+          "seat": 1,
+          "definition": "BQ083",
+          "hand_instance": "i117",
+          "turn": 1
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-12",
+          "seat": 0,
+          "definition": "JC084",
+          "hand_instance": "i111",
+          "turn": 1
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-59",
+          "seat": 0,
+          "definition": "XQ16",
+          "hand_instance": "i129",
+          "turn": 2
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-62",
+          "seat": 1,
+          "definition": "JC029",
+          "hand_instance": "i120",
+          "turn": 2
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-109",
+          "seat": 1,
+          "definition": "JC032",
+          "hand_instance": "i121",
+          "turn": 3
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-112",
+          "seat": 0,
+          "definition": "JC032",
+          "hand_instance": "i133",
+          "turn": 3
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-159",
+          "seat": 0,
+          "definition": "JC092",
+          "hand_instance": "i137",
+          "turn": 4
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-162",
+          "seat": 1,
+          "definition": "BQ083",
+          "hand_instance": "i130",
+          "turn": 4
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-209",
+          "seat": 1,
+          "definition": "JC032",
+          "hand_instance": "i134",
+          "turn": 5
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-212",
+          "seat": 0,
+          "definition": "XQ12",
+          "hand_instance": "i141",
+          "turn": 5
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-259",
+          "seat": 0,
+          "definition": "JC088",
+          "hand_instance": "i145",
+          "turn": 6
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-271",
+          "seat": 1,
+          "definition": "JC036",
+          "hand_instance": "i138",
+          "turn": 6
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-332",
+          "seat": 1,
+          "definition": "JC091",
+          "hand_instance": "i142",
+          "turn": 7
+        },
+        {
+          "command": "natural-cq25-xg25-natural-seal-move-search-335",
+          "seat": 0,
+          "definition": "XQ14",
+          "hand_instance": "i125",
+          "turn": 7
+        }
+      ],
+      "milestones": [
+        {
+          "kind": "CQ07_actual_moon_arrival",
+          "command": "natural-cq25-xg25-natural-seal-move-search-265",
+          "before": 0,
+          "after": 1
+        },
+        {
+          "kind": "XG25_sealed_owner_action_on_enemy_host",
+          "target": "i162",
+          "activation_command": "natural-cq25-xg25-natural-seal-move-search-345",
+          "owner_payer": 0,
+          "host_controller": 1,
+          "from_region": 1,
+          "usage_after_activation": [
+            {
+              "source_instance": "i169",
+              "ability_key": "next20-xg25-move",
+              "turn": 7,
+              "uses": 1
+            }
+          ],
+          "resolution_command": "natural-cq25-xg25-natural-seal-move-search-347",
+          "to_region": 0
+        },
+        {
+          "kind": "CQ25_nonempty_search",
+          "command": "natural-cq25-xg25-natural-seal-move-search-354",
+          "source_zone": "deck",
+          "actual_instance": "i40"
+        }
+      ],
+      "case": "cq25-xg25-natural-seal-move-search",
+      "seed": "1723",
+      "decks": [
+        {
+          "seat": 0,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": [
+            {
+              "cardId": "CQ25",
+              "count": 3
+            },
+            {
+              "cardId": "XG25",
+              "count": 3
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "cards": 50,
+          "max_printed_name_count": 3,
+          "candidate_entries": []
+        }
+      ],
+      "commands": 357,
+      "turn": 7,
+      "details": {
+        "deathSealHost": "i159",
+        "moonSource": "real CQ07 deploy/entry",
+        "moved": "i162",
+        "nonemptyTigerSearchAndSealHost": "i182",
+        "onlyDeckGeneratedCards": true,
+        "sealedMovePayer": 0
+      },
+      "views": 716,
+      "asset_commands_by_seat": {
+        "1": 7,
+        "0": 7
+      }
+    }
+  ]
+}

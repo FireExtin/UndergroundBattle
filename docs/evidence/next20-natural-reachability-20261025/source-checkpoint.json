@@ -1,0 +1,13 @@
+{
+  "HEAD": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "parent": "dc7ff9ab6a8458648079bb0815ee8a27fddfc44f",
+  "files": [
+    "rust-game/src/deck.rs",
+    "rust-game/src/lib.rs",
+    "rust-game/src/next20_natural_room_tests.rs",
+    "sites/test/next20-natural.test.mjs"
+  ],
+  "precommit_native": "runs/natural-05/receipt.json",
+  "production_admission": "unchanged false; registry override cfg(test) and thread scoped",
+  "push": "NOT_ATTEMPTED"
+}

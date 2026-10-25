@@ -1,0 +1,17 @@
+[
+  {
+    "run": "admission-01",
+    "compiler_inputs_byte_verified": true,
+    "method": "Recovered exact source text; SHA256 equals the digest captured before compilation. Native output/logs were not rewritten."
+  },
+  {
+    "run": "natural-02",
+    "compiler_inputs_byte_verified": true,
+    "method": "Recovered exact source text; SHA256 equals the digest captured before compilation. Native output/logs were not rewritten."
+  },
+  {
+    "run": "natural-03",
+    "compiler_inputs_byte_verified": true,
+    "method": "Recovered exact source text; SHA256 equals the digest captured before compilation. Native output/logs were not rewritten."
+  }
+]

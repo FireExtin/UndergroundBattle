@@ -1,0 +1,74 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 4 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 2 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 29.71s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 4 tests
+test next20_natural_room_tests::next20_natural_bq034_entry_and_counter_from_deck ...
+thread 'next20_natural_room_tests::next20_natural_bq034_entry_and_counter_from_deck' panicked at rust-game/src/next20_natural_room_tests.rs:43:59:
+insufficient ordinary filler definitions
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test next20_natural_room_tests::next20_natural_bq034_shown_target_and_blood_from_deck ...
+thread 'next20_natural_room_tests::next20_natural_bq034_shown_target_and_blood_from_deck' panicked at rust-game/src/next20_natural_room_tests.rs:43:59:
+insufficient ordinary filler definitions
+FAILED
+test next20_natural_room_tests::next20_natural_candidate_admission_is_scoped_and_copy_limited ... ok
+test next20_natural_room_tests::next20_natural_cq25_xg25_search_death_seal_and_sealed_action_from_deck ... NATURAL SEED SEARCH Black through 250
+NATURAL SEED SEARCH Black through 500
+NATURAL SEED SEARCH Black through 750
+NATURAL SEED SEARCH Black through 1000
+NATURAL SEED SEARCH Black through 1250
+NATURAL SEED SEARCH Black through 1500
+NATURAL SELECTED Black seed=1723
+
+thread 'next20_natural_room_tests::next20_natural_cq25_xg25_search_death_seal_and_sealed_action_from_deck' panicked at rust-game/src/next20_natural_room_tests.rs:75:9:
+assertion `left == right` failed: cq25-xg25-natural-seal-move-search step 290 turn 6 RoomCommand { command_id: "natural-cq25-xg25-natural-seal-move-search-290", expected_version: 291, action: Game { action: Action { kind: "choose", amount: None, card_id: None, target_id: None, region: None, option: None, choice_id: Some("i171"), selected: Some(["i47"]), top: None, bottom: None, allocations: None, ability_id: None, cost_selected: None, deck_draft: None } } }: Some("必须将所有预测牌完整分到顶或底")
+  left: "rejected"
+ right: "accepted"
+FAILED
+
+failures:
+
+failures:
+    next20_natural_room_tests::next20_natural_bq034_entry_and_counter_from_deck
+    next20_natural_room_tests::next20_natural_bq034_shown_target_and_blood_from_deck
+    next20_natural_room_tests::next20_natural_cq25_xg25_search_death_seal_and_sealed_action_from_deck
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 2561 filtered out; finished in 38.48s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

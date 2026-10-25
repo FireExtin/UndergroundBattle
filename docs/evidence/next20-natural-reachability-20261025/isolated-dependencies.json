@@ -1,0 +1,29 @@
+{
+  "at_utc": "2026-10-25T11:21:25.051775+00:00",
+  "reason": "Vite temp write through shared dependency symlink was denied before completion; no retry or elevation of that protected path",
+  "action": "Independent dependency file copies within already authorized Task7 root; original dependency directories unchanged",
+  "copies": [
+    {
+      "source_read_only": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/web/node_modules",
+      "new_writable_copy": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/isolated-dependencies/web/node_modules",
+      "source_link": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/web/node_modules",
+      "excluded_transient_caches": [
+        ".vite",
+        ".vite-temp",
+        ".cache",
+        ".wrangler"
+      ]
+    },
+    {
+      "source_read_only": "/home/ddd/Documents/Codex/2026-10-21/task-3/SitesSource-b80f122-prepared/node_modules",
+      "new_writable_copy": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/isolated-dependencies/sites/node_modules",
+      "source_link": "/home/ddd/Documents/Codex/2026-10-24/task-7/natural-next20-20261025/source/sites/node_modules",
+      "excluded_transient_caches": [
+        ".vite",
+        ".vite-temp",
+        ".cache",
+        ".wrangler"
+      ]
+    }
+  ]
+}

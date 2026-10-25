@@ -1,0 +1,307 @@
+{
+  "source_commit": "64e76dfcdfae8be35fd2b68f53e9c855d0efb98d",
+  "scope": "Synthetic original Native full/partial traces, three strict packets, all failures, exact compiler inputs and text; no credentials, private user data, databases, dependency caches or build binaries",
+  "strong_secret_scan": "PASS",
+  "files": {
+    "archive_natural.py": {
+      "bytes": 15090,
+      "sha256": "720d1ab7950d6714b599d32b040467bf860006991760551e08f09b4046524c0f"
+    },
+    "audit_natural.py": {
+      "bytes": 6405,
+      "sha256": "b5db7e4414f6127f6005866a12f20a0fb27d872408f07e0d99b5dbe6e8654f5c"
+    },
+    "cross-build-cache-reuse.json": {
+      "bytes": 489,
+      "sha256": "141633fbc757922c75ba3c86063388c9a04b4f1f9c315c21d1a79c33e7325318"
+    },
+    "cross-logs/pack-natural.json": {
+      "bytes": 4878,
+      "sha256": "f6623696baa80bf741bf95635ab7d7f782d7341d35f59e3365ab17551e33787e"
+    },
+    "cross-logs/pack-natural.log": {
+      "bytes": 667,
+      "sha256": "ec12a13f4ccd9d2e64a1c0709676fef0da6e12c35226ee21b68127821db069dc"
+    },
+    "cross-logs/wasm-build.json": {
+      "bytes": 4795,
+      "sha256": "915a0c60386ba039c9376ae66383baf36ded509bbafdbbcd6be354e9fca3cfb6"
+    },
+    "cross-logs/wasm-build.log": {
+      "bytes": 1185,
+      "sha256": "5d58fb7d003b0a2472c689b8077f9b9b712b92a5ac5996ffc4e57adbeca3d7d5"
+    },
+    "cross-logs/worker-build-isolated.json": {
+      "bytes": 4837,
+      "sha256": "f39c72fc0552db3c86d528f6d53dfc3479d15bbc0bc0ab5b6f0f37d23cff5d6a"
+    },
+    "cross-logs/worker-build-isolated.log": {
+      "bytes": 1128,
+      "sha256": "034227519928667c8593a0f12339124b192e5e5f1e439f5474828545c80587e4"
+    },
+    "cross-logs/worker-build.json": {
+      "bytes": 4818,
+      "sha256": "cf736f7d239c5dea644a10938c33b4844c291afddd8bbc5c70c17655d03883e7"
+    },
+    "cross-logs/worker-build.log": {
+      "bytes": 2425,
+      "sha256": "44b672cd88d9307a6171fa9c8d257dc460bcdf65a8e5c02e13e9e057c8c7032e"
+    },
+    "cross-logs/worker-natural.json": {
+      "bytes": 4870,
+      "sha256": "428ed71801261b4f1ca6805a4474dbc8b58f07f48e23d11ede40fab028c62125"
+    },
+    "cross-logs/worker-natural.log": {
+      "bytes": 1510,
+      "sha256": "b12ffc5fa7a08d78309aeee8b734962c844d34930994d53fc36d4dcff8a9eb36"
+    },
+    "failed-source-recovery.json": {
+      "bytes": 650,
+      "sha256": "8541375fd433fdaa7f80bdcac81c8a02bb8f4d6b0c6fb1accc3155c980c9fc5a"
+    },
+    "fixtures/rust-game-wasm/tests/current112/bq034-natural-entry-counter.json.gz": {
+      "bytes": 3929634,
+      "sha256": "ef5fa31f68b6418ed02118437501c6ea6407a3e34c9f534a1262db7a6afdbdf2"
+    },
+    "fixtures/rust-game-wasm/tests/current112/bq034-natural-shown-feed.json.gz": {
+      "bytes": 3284236,
+      "sha256": "f911ccf4eacc6b2e56c8e10c25132a1a41d2fe702937b3c5b160b5a65d7fd546"
+    },
+    "fixtures/rust-game-wasm/tests/current112/cq25-xg25-natural-seal-move-search.json.gz": {
+      "bytes": 3843021,
+      "sha256": "1b24622b69f2d180b4e6afdb426b50ce5b771f2d5aa00c598a3d7e9f1d0da6a3"
+    },
+    "frozen-source.json": {
+      "bytes": 4137,
+      "sha256": "1b68873cf25b66e53130724701d750b90eafd9a016a33977849dc05e1c72be48"
+    },
+    "isolated-dependencies.json": {
+      "bytes": 1354,
+      "sha256": "74981a15a7227bf6b62678b3b6627a4dbdafdf69d27c2dc96c727983c1aabf1b"
+    },
+    "known-source-consistency.json": {
+      "bytes": 678,
+      "sha256": "3da39f831ca9ca32e46db1786da2adeee580b5527880391386df7be5565eed9d"
+    },
+    "natural-cross-comparison.json": {
+      "bytes": 1105,
+      "sha256": "4125d24108c3cd28f184103eaae01b37252321b55396ab04f2c1f8285f62cecb"
+    },
+    "natural-reachability-audit.json": {
+      "bytes": 13640,
+      "sha256": "f14f182f06c11a3ae9be14cff3c4752325e9344e584b873071a2110fd602f4da"
+    },
+    "pack_natural.mjs": {
+      "bytes": 3169,
+      "sha256": "cf83612dd79a431f282e83fb389274ab2f185fbfc80d05277dbd716394409c9d"
+    },
+    "packet-manifest.json": {
+      "bytes": 662,
+      "sha256": "5be171c80aea24aa666117cddcae1a478f65fc377ff71854a525e360a603eae0"
+    },
+    "remote-refs-readonly.json": {
+      "bytes": 6085,
+      "sha256": "785e1e40821efb1d8f2fc3355109aab6e27e6702c15f54b425cb4351734d72db"
+    },
+    "run_cross.py": {
+      "bytes": 2476,
+      "sha256": "6fec105af390512f49b365b83e081f36018fc4c83ea5c3cf98c50c5a672028fe"
+    },
+    "run_limited_worker.mjs": {
+      "bytes": 443,
+      "sha256": "fc8aa3dde477872e8f60e9bfee7106cf299a23b7d756fdabedcf73acece4cbad"
+    },
+    "run_native.py": {
+      "bytes": 2923,
+      "sha256": "73b6a5cb1ff261932fe8719adbd4e12192879d650f03b26de6c93c8b6556b95f"
+    },
+    "runs/admission-01/output.log": {
+      "bytes": 2360,
+      "sha256": "6518c652e11ffec17ebdc6c42c1957f860ab036c4eb1a6f1e9c82cabbcb16145"
+    },
+    "runs/admission-01/receipt.json": {
+      "bytes": 1600,
+      "sha256": "83bfd75b5ed2d68e4d6d68d620a5795612df418357ce6331d137a9d6107f5919"
+    },
+    "runs/admission-01/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/admission-01/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/admission-01/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 20317,
+      "sha256": "5898c7e435744af4733fef7efda4b70107a57ea133f6523a3e94dc9779f1f37e"
+    },
+    "runs/black-04/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 35709954,
+      "sha256": "141d0ff0a545bbedbe7cb715f4d7d29ae241b81347938a5c2562a942dce1adfe"
+    },
+    "runs/black-04/output.log": {
+      "bytes": 2005,
+      "sha256": "fe6b54f83920b2c0cb9a9bd0fc39135816483bfff062c101119a7368958b81e2"
+    },
+    "runs/black-04/receipt.json": {
+      "bytes": 1666,
+      "sha256": "32118cf4b73083d6965c0150204b536d05a4560b47ee6c90007cf5c3da45f7b7"
+    },
+    "runs/black-04/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/black-04/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/black-04/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 21567,
+      "sha256": "4eb2f26654b53ea986adffb11d7cd98957ed01ddee426d97dcccf35d680dfc5a"
+    },
+    "runs/fixed-native-06/native/bq034-natural-entry-counter.jsonl": {
+      "bytes": 37939660,
+      "sha256": "8e76e1bbc6b973fa0ae08a202c6d22325178d3c58fb5f1c203c0f7adadb7605f"
+    },
+    "runs/fixed-native-06/native/bq034-natural-shown-feed.jsonl": {
+      "bytes": 31970057,
+      "sha256": "04a4b1eefa64c871bdd2ef370a2c39e380acf4ff66c421c511902e7b0c32f00a"
+    },
+    "runs/fixed-native-06/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 35905048,
+      "sha256": "55912af09934be0fc4f3512f2631373b75f4dd5b8b652f94c2fa63e2e70dcac5"
+    },
+    "runs/fixed-native-06/output.log": {
+      "bytes": 2379,
+      "sha256": "cb907e5b19c1d5e0090c66aa39d2892ae373c50e941db636f63db8bb42fe8020"
+    },
+    "runs/fixed-native-06/receipt.json": {
+      "bytes": 1563,
+      "sha256": "92146a6b786f2a27ee4420c16e1efcd28d0e6d22ee7d6a7fbe35226378d3fac4"
+    },
+    "runs/fixed-native-06/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/fixed-native-06/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/fixed-native-06/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 21819,
+      "sha256": "e542035fbd8208b59a961bae9c52a0ae9ee2c771bc379223d6ce21b7f7de8ef9"
+    },
+    "runs/natural-02/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 27984165,
+      "sha256": "11d3554a0e49d67a27c9febf6a3e29f21a0e2bcc0f29b3a428b8c17c0d415b52"
+    },
+    "runs/natural-02/output.log": {
+      "bytes": 3989,
+      "sha256": "eb65edf5b3fad913776574b6ee14bca884d2929928f42b621cb15dabca7806fd"
+    },
+    "runs/natural-02/receipt.json": {
+      "bytes": 1560,
+      "sha256": "a3ede4b98ca91b3ad3506b6a40fea4c97708bc1c41b21f9551ee06d2490a7431"
+    },
+    "runs/natural-02/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/natural-02/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/natural-02/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 20674,
+      "sha256": "968ea3fdecc48a64b3994e61cc14f7a6d9be13d8343d0efec74fcc43cb9cf1ed"
+    },
+    "runs/natural-03/native/bq034-natural-entry-counter.jsonl": {
+      "bytes": 37754745,
+      "sha256": "79a26a082d90e128bd4a85028bc2d77fe6e35040a2530e48e0d6fdc5bc908f9a"
+    },
+    "runs/natural-03/native/bq034-natural-shown-feed.jsonl": {
+      "bytes": 31773386,
+      "sha256": "274385308da32382505f021adb0f5cc6f5dddb4771d236be7e8fe59d8b2009fe"
+    },
+    "runs/natural-03/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 28550031,
+      "sha256": "eeb96cd8212f18cb9d44a24b732fc05a2c02c198eda8594673bfe85e1948a9ba"
+    },
+    "runs/natural-03/output.log": {
+      "bytes": 4101,
+      "sha256": "dbc6eac1651a69a73187654ce910e20319d694aba987d46f0f9d5fb0d6342535"
+    },
+    "runs/natural-03/receipt.json": {
+      "bytes": 1561,
+      "sha256": "f4e82c791af4a3638f1c07997c195447334ede189a7edb341888e624dbda7fb7"
+    },
+    "runs/natural-03/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/natural-03/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/natural-03/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 21029,
+      "sha256": "13d6bdd5ed9fecb261c6aaa00729f19d67c28450577fa017f468f4edbd301ed4"
+    },
+    "runs/natural-05/native/bq034-natural-entry-counter.jsonl": {
+      "bytes": 37939660,
+      "sha256": "8e76e1bbc6b973fa0ae08a202c6d22325178d3c58fb5f1c203c0f7adadb7605f"
+    },
+    "runs/natural-05/native/bq034-natural-shown-feed.jsonl": {
+      "bytes": 31970057,
+      "sha256": "04a4b1eefa64c871bdd2ef370a2c39e380acf4ff66c421c511902e7b0c32f00a"
+    },
+    "runs/natural-05/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 35905048,
+      "sha256": "55912af09934be0fc4f3512f2631373b75f4dd5b8b652f94c2fa63e2e70dcac5"
+    },
+    "runs/natural-05/output.log": {
+      "bytes": 2502,
+      "sha256": "9aac893551229bd3c1fab81603afaadc2ebabb7ffa9331a9131176835940115a"
+    },
+    "runs/natural-05/receipt.json": {
+      "bytes": 1558,
+      "sha256": "15355d5b7ba55c92093879d4cc3a3f39cd98965fd7c194e77bd822d1e9177de2"
+    },
+    "runs/natural-05/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/natural-05/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/natural-05/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 21819,
+      "sha256": "e542035fbd8208b59a961bae9c52a0ae9ee2c771bc379223d6ce21b7f7de8ef9"
+    },
+    "runtime-source-boundary.json": {
+      "bytes": 1734,
+      "sha256": "63393cac00b6a64f06859bd91cf0850e55a245236ae694742177e390e5a11601"
+    },
+    "scope-summary.json": {
+      "bytes": 4073,
+      "sha256": "000ac33a6c3076268751a96b7131951d22cd95118061dc98c5e9ee730e5fcd3b"
+    },
+    "source-checkpoint.json": {
+      "bytes": 452,
+      "sha256": "57992b5dcfd5fa6e49a7d2109327180fef50ef5dea95447b8ce96043c2c373b5"
+    },
+    "source-versions/admission-01.rs": {
+      "bytes": 20317,
+      "sha256": "5898c7e435744af4733fef7efda4b70107a57ea133f6523a3e94dc9779f1f37e"
+    },
+    "source-versions/natural-02.rs": {
+      "bytes": 20674,
+      "sha256": "968ea3fdecc48a64b3994e61cc14f7a6d9be13d8343d0efec74fcc43cb9cf1ed"
+    },
+    "source-versions/natural-03.rs": {
+      "bytes": 21029,
+      "sha256": "13d6bdd5ed9fecb261c6aaa00729f19d67c28450577fa017f468f4edbd301ed4"
+    }
+  }
+}
