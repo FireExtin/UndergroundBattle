@@ -1,0 +1,241 @@
+   Compiling hegemony-server v0.1.0 (/tmp/next20-blue-black-harness/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: method `bq034_shown` is never used
+   --> rust-game/src/next20_blue_vampires.rs:203:19
+    |
+ 81 | impl Game {
+    | --------- method in this implementation
+...
+203 |     pub(crate) fn bq034_shown(&mut self, o: &ContestOutcome, index: usize) -> RuleResult<()> {
+    |                   ^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+
+warning: `hegemony-server` (lib test) generated 6 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 39.45s
+     Running unittests src/lib.rs (/tmp/next20-blue-black-target/debug/deps/hegemony_server-28c642ca9eeb1baf)
+
+running 26 tests
+test next20_blue_gray_tests::next20_blue_gray_bq059_shield_is_entry_trigger_and_x_is_exact_bounded ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_complete_definitions_reject_cost_or_program_transplants ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_cq08_reveal_search_and_shared_preparation_original_region ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_cq17_exact_cost_aura_is_local_other_own_gray ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jc039_hide_is_own_blue_any_region_and_resets_marker ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jc039_public_attach_and_both_discount_channels ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jz23_observes_reveal_pays_once_marker_persists_and_discard_is_private ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jz23_receipt_payment_and_duplicate_observation_are_bound ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jz28_actual_discard_top_four_private_not_mill ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_jz28_reveal_raid_deals_two_and_preserves_leader ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_source_region_replacement_keeps_cost_and_never_retargets ... FAILED
+test next20_blue_gray_tests::next20_blue_gray_xg10_exact_named_attachment_costs_private_choices_and_control ... FAILED
+test next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner ... FAILED
+test next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend ... FAILED
+test next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund ... FAILED
+test next20_blue_vampires_tests::next20_blue_definitions_reject_transplant_missing_trigger_and_extra_program ... ok
+test next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society ... FAILED
+test next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient ... FAILED
+test next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted ... FAILED
+test next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance ... FAILED
+
+failures:
+
+---- next20_blue_gray_tests::next20_blue_gray_bq059_shield_is_entry_trigger_and_x_is_exact_bounded stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_bq059_shield_is_entry_trigger_and_x_is_exact_bounded' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_complete_definitions_reject_cost_or_program_transplants stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_complete_definitions_reject_cost_or_program_transplants' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_cq08_reveal_search_and_shared_preparation_original_region stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_cq08_reveal_search_and_shared_preparation_original_region' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_cq17_exact_cost_aura_is_local_other_own_gray stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_cq17_exact_cost_aura_is_local_other_own_gray' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jc039_hide_is_own_blue_any_region_and_resets_marker stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jc039_hide_is_own_blue_any_region_and_resets_marker' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jc039_public_attach_and_both_discount_channels stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jc039_public_attach_and_both_discount_channels' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jz23_observes_reveal_pays_once_marker_persists_and_discard_is_private stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jz23_observes_reveal_pays_once_marker_persists_and_discard_is_private' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jz23_receipt_payment_and_duplicate_observation_are_bound stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jz23_receipt_payment_and_duplicate_observation_are_bound' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jz28_actual_discard_top_four_private_not_mill stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jz28_actual_discard_top_four_private_not_mill' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_jz28_reveal_raid_deals_two_and_preserves_leader stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_jz28_reveal_raid_deals_two_and_preserves_leader' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_source_region_replacement_keeps_cost_and_never_retargets stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_source_region_replacement_keeps_cost_and_never_retargets' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_gray_tests::next20_blue_gray_xg10_exact_named_attachment_costs_private_choices_and_control stdout ----
+
+thread 'next20_blue_gray_tests::next20_blue_gray_xg10_exact_named_attachment_costs_private_choices_and_control' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+---- next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance' panicked at rust-game/src/rules.rs:4318:37:
+Invalid released rule declaration: 隐秘对抗能力只能保留已核对的完整原程序
+
+
+failures:
+    next20_blue_gray_tests::next20_blue_gray_bq059_shield_is_entry_trigger_and_x_is_exact_bounded
+    next20_blue_gray_tests::next20_blue_gray_bq059_two_real_shields_cancel_two_enemy_targets
+    next20_blue_gray_tests::next20_blue_gray_complete_definitions_reject_cost_or_program_transplants
+    next20_blue_gray_tests::next20_blue_gray_cq08_reveal_search_and_shared_preparation_original_region
+    next20_blue_gray_tests::next20_blue_gray_cq17_exact_cost_aura_is_local_other_own_gray
+    next20_blue_gray_tests::next20_blue_gray_jc039_hide_is_own_blue_any_region_and_resets_marker
+    next20_blue_gray_tests::next20_blue_gray_jc039_public_attach_and_both_discount_channels
+    next20_blue_gray_tests::next20_blue_gray_jz23_observes_reveal_pays_once_marker_persists_and_discard_is_private
+    next20_blue_gray_tests::next20_blue_gray_jz23_receipt_payment_and_duplicate_observation_are_bound
+    next20_blue_gray_tests::next20_blue_gray_jz28_actual_discard_top_four_private_not_mill
+    next20_blue_gray_tests::next20_blue_gray_jz28_reveal_raid_deals_two_and_preserves_leader
+    next20_blue_gray_tests::next20_blue_gray_source_region_replacement_keeps_cost_and_never_retargets
+    next20_blue_gray_tests::next20_blue_gray_xg10_exact_named_attachment_costs_private_choices_and_control
+    next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner
+    next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend
+    next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop
+    next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice
+    next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card
+    next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host
+    next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing
+    next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund
+    next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society
+    next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient
+    next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted
+    next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance
+
+test result: FAILED. 1 passed; 25 failed; 0 ignored; 0 measured; 2495 filtered out; finished in 0.23s
+
+error: test failed, to rerun pass `--lib`

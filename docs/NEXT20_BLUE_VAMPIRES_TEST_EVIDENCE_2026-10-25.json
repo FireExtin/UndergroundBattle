@@ -1,0 +1,185 @@
+{
+  "at_utc": "2026-10-25T06:34:30.786467+00:00",
+  "status": "LOCAL_WIP_NOT_INTEGRATED",
+  "base": "476e09bc162afcec63cc22e7d96365da65499304",
+  "branch": "dev/next20-blue-black-20261025",
+  "source_repo": "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black",
+  "ABI": 112,
+  "own_source": {
+    "rust-game/src/next20_blue_vampires.rs": {
+      "sha256": "b0f4785c35701c29ac1bf32a5e638262b31daa6efb54b1ef6462f0d421cac4e4",
+      "lines": 1007
+    },
+    "rust-game/src/next20_blue_vampires_tests.rs": {
+      "sha256": "20d1f3ae04f471a059bd425885ed684aa79cee9d136dfaf190984f5cc1668317",
+      "lines": 630
+    },
+    "rust-game/src/next20_black_wraiths.rs": {
+      "sha256": "f840dcd6e32ec1b7b5d2655efd836c895513e84889aa6042afafc67bc998734c",
+      "lines": 837
+    },
+    "rust-game/src/next20_black_wraiths_tests.rs": {
+      "sha256": "8d7829f548e4a3239b35a57483b8973e00310a354fd5c951d2bfb40e712ea05a",
+      "lines": 555
+    }
+  },
+  "images": {
+    "BQ033": {
+      "path": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg",
+      "sha256": "a00ff13389fddf8e27073ec3e507f979d5c12b6eeffb8cf28211a5fdaef8ede8",
+      "direct_image_review": true
+    },
+    "BQ034": {
+      "path": "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg",
+      "sha256": "f91de56f6dfdaa41bb0d32759fcf32ad01985dc4c00998fc0753e8622fec59b2",
+      "direct_image_review": true
+    },
+    "CQ25": {
+      "path": "resource/ymsj-fun.github.io/cards/CQ25 伥虎.jpg",
+      "sha256": "9b18fbff8a4063a6cba2276032bd8653be61ee58f0948256b7531aaeed3638ab",
+      "direct_image_review": true
+    },
+    "XG25": {
+      "path": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+      "sha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661",
+      "direct_image_review": true
+    }
+  },
+  "validation_environment": {
+    "kind": "isolated native fixture",
+    "root": "/tmp/next20-blue-black-harness",
+    "offline": true,
+    "cargo_build_jobs": 1,
+    "cargo_flags": [
+      "--lib",
+      "--no-default-features",
+      "--test-threads=1"
+    ],
+    "registry_fixture": "four unsupported card records plus BQ009 name-only record with empty rule definition; no yellow gameplay",
+    "cargo_home": "/tmp/next20-blue-black-cargo",
+    "target_dir": "/tmp/next20-blue-black-target",
+    "toolchain": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin",
+    "linker": "/tmp/next20-blue-black-zig-cc"
+  },
+  "runs": [
+    {
+      "scope": "next20_blue_vampires_tests::",
+      "status": "PASS",
+      "executed": 19,
+      "failed": 0,
+      "log": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-final-test.log",
+      "log_sha256": "402e64663575a6fa1a0f43a144c305dcb2f600909ba58a4f7edd454bc561235c",
+      "tests": [
+        "next20_blue_vampires_tests::next20_blue_actions_require_mandatory_anchor_on_play_and_paid_reveal",
+        "next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner",
+        "next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend",
+        "next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop",
+        "next20_blue_vampires_tests::next20_blue_bq034_normal_deploy_requires_two_blue_then_entry_feeds",
+        "next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice",
+        "next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card",
+        "next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host",
+        "next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing",
+        "next20_blue_vampires_tests::next20_blue_counter_normal_enemy_play_trigger_response_choice_and_room_restore",
+        "next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund",
+        "next20_blue_vampires_tests::next20_blue_definitions_reject_transplant_missing_trigger_and_extra_program",
+        "next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society",
+        "next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient",
+        "next20_blue_vampires_tests::next20_blue_pending_roundtrip_preserves_current_blood_options_and_rejects_forgery",
+        "next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted",
+        "next20_blue_vampires_tests::next20_blue_shown_post_effect_uses_real_contest_and_resumes_after_blood",
+        "next20_blue_vampires_tests::next20_blue_state_rejects_duplicate_target_observations_and_response_shell_edits",
+        "next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance"
+      ]
+    },
+    {
+      "scope": "next20_black_wraiths_tests::",
+      "status": "PASS",
+      "executed": 22,
+      "failed": 0,
+      "log": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-final-test.log",
+      "log_sha256": "71a2dcd95c0434d331564c4eb15da328ac6733f8343dba43046a2c8c7451b4bb",
+      "tests": [
+        "next20_black_wraiths_tests::next20_black_cq25_actual_shared_contest_binds_bonus_to_actor_and_restores_outcome",
+        "next20_black_wraiths_tests::next20_black_cq25_bonus_only_own_displayed_curse_in_its_entry_contest",
+        "next20_black_wraiths_tests::next20_black_cq25_deck_search_shuffles_and_resets_identity",
+        "next20_black_wraiths_tests::next20_black_cq25_failed_deck_search_still_shuffles_and_requires_confirmation",
+        "next20_black_wraiths_tests::next20_black_cq25_foreign_zone_wrong_player_and_corrupt_death_do_not_mutate",
+        "next20_black_wraiths_tests::next20_black_cq25_grave_search_seals_on_original_instance_without_shuffle",
+        "next20_black_wraiths_tests::next20_black_cq25_only_real_enemy_faceup_characters_in_original_region",
+        "next20_black_wraiths_tests::next20_black_cq25_source_leaving_never_seals_on_replacement_tiger",
+        "next20_black_wraiths_tests::next20_black_cq25_spirit_requires_current_personal_secrecy_and_faceup",
+        "next20_black_wraiths_tests::next20_black_printed_fields_spirit_and_fixed_abilities",
+        "next20_black_wraiths_tests::next20_black_search_pending_roundtrip_and_corruption_checks",
+        "next20_black_wraiths_tests::next20_black_state_rejects_duplicate_death_and_paid_move_with_wrong_public_target_region",
+        "next20_black_wraiths_tests::next20_black_xg25_death_adapter_seals_before_grave_and_preserves_owner",
+        "next20_black_wraiths_tests::next20_black_xg25_death_replacement_is_conditioned_on_original_controllers_secrecy",
+        "next20_black_wraiths_tests::next20_black_xg25_invalid_original_host_falls_back_to_owner_grave",
+        "next20_black_wraiths_tests::next20_black_xg25_moves_adjacent_enemy_with_attachments_and_one_fee",
+        "next20_black_wraiths_tests::next20_black_xg25_normal_board_action_uses_public_payment_response_and_restore",
+        "next20_black_wraiths_tests::next20_black_xg25_original_region_is_frozen_and_replacement_region_does_not_receive",
+        "next20_black_wraiths_tests::next20_black_xg25_replacement_rejects_duplicate_physical_card",
+        "next20_black_wraiths_tests::next20_black_xg25_sealed_on_character_can_pay_and_move_without_granting_other_text",
+        "next20_black_wraiths_tests::next20_black_xg25_sealed_on_society_has_no_activation_and_host_departure_returns_to_owner",
+        "next20_black_wraiths_tests::next20_black_xg25_target_predicate_rejects_friendly_same_region_hidden_and_nonadjacent"
+      ]
+    }
+  ],
+  "checks": {
+    "own_rustfmt": "PASS",
+    "harness_python_syntax": "PASS",
+    "partial_wiring_git_apply_check_against_fixed_base": "PASS",
+    "shared_core_and_catalogue_unchanged_in_author_clone": true
+  },
+  "prior_runs": {
+    "logs_retained_in": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025",
+    "description": "Initial incomplete fixture registry routing and a test with insufficient spell funding produced failures. Corrected in isolated fixture/tests; latest runs above are the result used for counts. Initial broad prefix also selected 13 existing blue-gray tests; no full regression claim."
+  },
+  "NOT_RUN": [
+    "full baseline regression",
+    "production-main integration",
+    "BQ033 normal deploy/paid-reveal with real anchor cost receipt",
+    "XG25 sealed-card legal-action generation and full command path",
+    "XG25 pre-grave target/response/replacement continuation",
+    "all nested contest combinations",
+    "WASM",
+    "Worker",
+    "normal browser UI/both seats",
+    "deployment",
+    "publication",
+    "GitHub CI"
+  ],
+  "pending_parent_integration": [
+    {
+      "target": "engine.rs/model.rs printed fees + continuations",
+      "action": "BQ033 real extra-cost receipt on deploy AND paid reveal, with complete recovery validation",
+      "status": "PENDING",
+      "reason": "shared file ownership; BQ009 runtime absent",
+      "completed": "owned mandatory-selection guard, candidate/payment/receipt helpers, directed tests"
+    },
+    {
+      "target": "engine.rs legal actions / sealed-card source routing",
+      "action": "XG25 sealed-on-character action exception",
+      "status": "PENDING",
+      "reason": "shared file ownership; foreign-control actor policy needs ruling",
+      "completed": "owned source/target/fee/once checks and direct adapter test"
+    },
+    {
+      "target": "resolution.rs::remove_dead_with_snapshot / death_observers receipts",
+      "action": "XG25 pre-grave replacement target/response continuation",
+      "status": "PENDING",
+      "reason": "current engine commits grave before Death event; cannot emulate by taking back from grave",
+      "completed": "owned replacement helpers and directed no-intermediate-grave tests"
+    }
+  ],
+  "rulings_pending": [
+    "foreign-controlled XG25 sealed-action actor",
+    "XG25 secrecy lost during replacement response",
+    "CQ25 source gone before search: proceed versus pre-search skip"
+  ],
+  "permissions": {
+    "denied": false,
+    "uncertain_mutation": false
+  },
+  "public_admission": "UNCHANGED_CLOSED",
+  "batch_completion_claim": false
+}
