@@ -53,6 +53,9 @@ pub fn copy_limit(card: &CardDefinition) -> Option<usize> {
         Some(3)
     }
 }
+pub(crate) fn copy_limit_for_society(card: &CardDefinition, society_id: Option<&str>) -> Option<usize> {
+    if card.name == "精神锚点" && society_id == Some("MSJC10") { None } else { copy_limit(card) }
+}
 pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {
     validate_with_cards(draft, &catalog::catalog().cards)
 }
@@ -111,9 +114,9 @@ pub fn validate_with_cards(
         *count = count.checked_add(entry.count).ok_or("同一卡牌数量溢出")?;
         let group = by_name
             .entry(card.name.clone())
-            .or_insert((0, copy_limit(card)));
+            .or_insert((0, copy_limit_for_society(card, draft.society_id.as_deref())));
         group.0 = group.0.checked_add(entry.count).ok_or("同名卡牌数量溢出")?;
-        group.1 = match (group.1, copy_limit(card)) {
+        group.1 = match (group.1, copy_limit_for_society(card, draft.society_id.as_deref())) {
             (Some(a), Some(b)) => Some(a.min(b)),
             (None, _) | (_, None) => None,
         };

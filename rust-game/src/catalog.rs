@@ -248,6 +248,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
     if crate::next20_black_wraiths::CARDS.contains(&d.id.as_str()) { return true; }
+    if d.id==crate::next20_anchor::ID { return true; }
     if crate::next20_blue_vampires::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id=="XQ19" { return true; }
     if d.id=="CQ28" { return true; }

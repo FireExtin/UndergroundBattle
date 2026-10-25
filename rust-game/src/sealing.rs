@@ -82,7 +82,16 @@ impl Game {
         self.note(format!("{name} 被封印在{}上",if self.society_host_seat(host_id).is_some(){"秘社"}else{"目标角色"}));
         let previous=self.effects.len();
         self.observe_industry_sealed(&source.card,host_id);
-        self.emit_event(actor, source, Event::Sealed);
+        if source.card.definition == crate::next20_anchor::ID {
+            // BQ009's printed condition is its own society, not every host.
+            // Freeze the actual validated host before the card becomes blank.
+            if host_id == format!("society:p{actor}") {
+                source.attachment_host_instance = Some(host_id.into());
+                self.emit_event(actor, source, Event::Sealed);
+            }
+        } else {
+            self.emit_event(actor, source, Event::Sealed);
+        }
         self.batch3_register_entry_order(host_id,previous);
     }
 

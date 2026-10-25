@@ -11090,6 +11090,37 @@
       ],
       "unique": false,
       "supported": false
+    },
+    {
+      "id": "BQ009",
+      "name": "精神锚点",
+      "subtitle": null,
+      "kind": "spell",
+      "cost": 0,
+      "loyalty": [],
+      "color": "黄",
+      "magic": "星辰",
+      "subtypes": [
+        "法术",
+        "心灵"
+      ],
+      "text": "（结算此牌没有效果）\n持续 若本方秘社为貘组，则名为精神锚点的牌，构筑时在牌组中的数量没有限制。\n触发 当精神锚点被封印在本方秘社上时，你可以遏制1或预测1。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 0,
+      "keywords": [],
+      "unique": false,
+      "supported": false
     }
   ],
   "decks": [

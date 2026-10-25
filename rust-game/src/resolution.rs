@@ -1263,6 +1263,7 @@ impl Game {
     }
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_anchor_declaration(&declaration)?;
         if crate::next20_blue_vampires::related(&declaration.ability) { self.validate_next20_blue_declaration(&declaration)?; }
         if crate::next20_black_wraiths::related(&declaration.ability) { self.validate_next20_black_declaration(&declaration)?; }
         self.validate_batch20_declaration(&declaration)?;
@@ -1358,6 +1359,7 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_anchor_declaration(&declaration)?;
         if crate::next20_blue_vampires::related(&declaration.ability) { self.validate_next20_blue_declaration(&declaration)?; }
         if crate::next20_black_wraiths::related(&declaration.ability) { self.validate_next20_black_declaration(&declaration)?; }
         self.validate_batch20_declaration(&declaration)?;
@@ -1647,6 +1649,7 @@ impl Game {
         self.validate_jz35_frame(&frame)?;
         self.validate_next20_black_play_frame(&frame)?;
         if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_anchor_frame(&frame)?;
         self.validate_next20_blue_play_frame(&frame)?;
         if crate::next20_blue_vampires::frame_related(&frame) { self.validate_next20_blue_frame(&frame)?; }
         self.validate_batch20_frame(&frame)?;

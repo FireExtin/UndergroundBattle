@@ -59,7 +59,8 @@ fn next20_black_core_all_four_remain_closed_without_fake_anchor() {
     for id in ["BQ033", "BQ034", "CQ25", "XG25"] {
         assert!(!catalog::card(id).supported);
     }
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "BQ009"));
+    assert!(!catalog::card("BQ009").supported);
+    assert!(catalog::runtime_implemented(catalog::card("BQ009")));
     assert!(catalog::card("CQ25").text.contains("敌方角色"));
 }
 

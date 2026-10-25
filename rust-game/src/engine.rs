@@ -640,6 +640,7 @@ impl Game {
             return Err("无此座位".into());
         }
         self.validate_next20_black_state()?;
+        self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
@@ -667,6 +668,7 @@ impl Game {
         next.prune_inspection_receipts();
         next.prune_attachment_declines();
         next.validate_next20_black_state()?;
+        next.validate_anchor_state()?;
         next.validate_next20_blue_state()?;
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
@@ -772,6 +774,7 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
@@ -873,6 +876,7 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
@@ -939,6 +943,7 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
@@ -1003,6 +1008,7 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
@@ -1266,6 +1272,7 @@ impl Game {
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_next20_black_play_frame(&frame)?;
         if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_anchor_frame(&frame)?;
         self.validate_next20_blue_play_frame(&frame)?;
         if crate::next20_blue_vampires::frame_related(&frame) { self.validate_next20_blue_frame(&frame)?; }
         self.validate_batch20_frame(&frame)?;
@@ -2225,6 +2232,7 @@ impl Game {
         self.validate_cq15_state()?;
         self.validate_exposure_state()?;
         self.validate_next20_black_state()?;
+        self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
@@ -2256,6 +2264,7 @@ impl Game {
         crate::mystic_contest::validate_choice_action(&p, &a)?;
         crate::pack_a_contest::validate_choice_action(&p, &a)?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
+        crate::next20_anchor::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;

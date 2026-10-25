@@ -1,0 +1,40 @@
+{
+  "state": "complete",
+  "source_head": "d0b3e3254c1eec9440fdc3e90464646154d27160",
+  "worktree_diff_sha256": "60e7dd16dae5361580806771e3af78b5433fe78d32f4b87806a1739a24258ebf",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--no-default-features",
+    "next20_anchor_core_",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "kind": "real checkout native engine",
+  "offline": true,
+  "started_utc": "2026-10-25T07:47:46.832684+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-real-core-validation-20261025/anchor-red.log",
+  "source_inputs": [
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "13d259cf9dde0eb362dc9a11c7098c3302f6ede49e489ae0c8adc6c529e219e9"
+    },
+    {
+      "path": "rust-game/src/next20_anchor_core_tests.rs",
+      "sha256": "6cfa5bc52463509a0726be3c5e22fa9fcc4850a0c7e28d5271c8c381dcbbacf0"
+    }
+  ],
+  "exit_code": 101,
+  "seconds": 26.725,
+  "log_sha256": "6ca61f40c7d0f6a8654fd4cff12ad226e30ee085756e42211a825105e675cc36"
+}

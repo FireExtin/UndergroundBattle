@@ -52,7 +52,8 @@ fn next20_blue_core_registry_is_real_and_admission_stays_closed() {
         assert!(catalog::runtime_implemented(catalog::card(id)));
     }
     assert_eq!(catalog::card("BQ034").subtitle.as_deref(), Some("美浓之鬼"));
-    assert!(!catalog::catalog().cards.iter().any(|c| c.id == "BQ009"));
+    assert!(!catalog::card("BQ009").supported);
+    assert!(catalog::runtime_implemented(catalog::card("BQ009")));
     assert!(["CQ25", "XG25"]
         .iter()
         .all(|id| !catalog::card(id).supported));

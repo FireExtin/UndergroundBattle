@@ -1073,6 +1073,7 @@ impl Game {
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
         self.validate_next20_black_state()?;
+        self.validate_anchor_state()?;
         self.validate_next20_blue_state()?;
         self.validate_reward_state()?;
         self.validate_xq19_state()?;

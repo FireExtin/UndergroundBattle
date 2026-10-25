@@ -2,6 +2,7 @@ mod next20_black_wraiths;
 #[cfg(test)]
 mod next20_black_core_tests;
 mod next20_blue_vampires;
+mod next20_anchor;
 #[cfg(test)]
 mod next20_blue_core_tests;
 mod import20_entropy;
@@ -445,3 +446,6 @@ mod black_next20_tests;
 
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod abi112_review_play_tests;
+
+#[cfg(test)]
+mod next20_anchor_core_tests;
