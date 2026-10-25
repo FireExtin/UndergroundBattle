@@ -367,7 +367,14 @@ impl Natural {
     }
     fn pass(&mut self) {
         if let Some(p) = self.room.game.pending.clone() {
-            let a = if matches!(p.resolution, ChoiceResolution::Forecast { .. }) {
+            let a = if matches!(
+                p.resolution,
+                ChoiceResolution::Forecast { .. }
+                    | ChoiceResolution::Frame {
+                        choice: FrameChoice::Forecast { .. },
+                        ..
+                    }
+            ) {
                 self.forecast += 1;
                 Action {
                     choice_id: Some(p.choice.id),
