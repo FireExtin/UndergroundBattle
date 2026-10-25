@@ -1,0 +1,1002 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: sentinel-inherited-lock exact duplicate
++ actual - expected
+
++ {
++   changed: false,
++   errorCode: 'version_conflict',
++   errorMessage: '房间已更新，请重新报价并确认动作',
++   journal: [],
++   outcome: 'rejected',
++   seat: 0,
++   state: '{"state_schema":3,"revision":13,"versions":{"rules":"hegemony-pdf-v1","cardPool":"limited-v2.102-import20-rulings-complete","engine":"rust-v0.2.112-shared-keyword-rewards"},"game":{"state_schema":2,"room_id":"aa0000000000000000000003","invite_code":"LOCAL","mode":"teams","version":13,"status":"playing","players":[{"seat":0,"name":"P0","deck_id":"custom","deck_snapshot":{"id":"watchers","name":"帷幕调查","description":"以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。","societyId":"MSJC14","cards":[{"cardId":"JC125","count":50}],"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.102-import20-rulings-complete","engineVersion":"rust-v0.2.112-shared-keyword-rewards","updatedAt":""},"society_zone":{"card":{"id":"i1","definition":"MSJC14","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},"used_once_per_game":[]},"ready":true,"eliminated":false,"hand":[],"deck":[{"id":"i23","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i38","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i42","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i25","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i31","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i30","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i16","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i10","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i24","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i5","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i36","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i44","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i9","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i40","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i8","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i20","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i11","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i51","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i41","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i28","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i32","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i19","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i18","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i4","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i43","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i13","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i48","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i7","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i26","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i37","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i47","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i21","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i50","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i29","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i34","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i22","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i6","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i35","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i49","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i39","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i15","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i27","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i3","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i33","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0}],"assets":[{"id":"i244","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i245","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i246","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0}],"graveyard":[],"score_cards":[],"asset_used":false,"conceal_used":false},{"seat":1,"name":"P1","deck_id":"custom","deck_snapshot":{"id":"watchers","name":"帷幕调查","description":"以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。","societyId":"MSJC14","cards":[{"cardId":"JC125","count":50}],"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.102-import20-rulings-complete","engineVersion":"rust-v0.2.112-shared-keyword-rewards","updatedAt":""},"society_zone":{"card":{"id":"i52","definition":"MSJC14","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},"used_once_per_game":[]},"ready":true,"eliminated":false,"hand":[],"deck":[{"id":"i56","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i99","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i102","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i92","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i97","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i76","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i64","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i84","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i75","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i68","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i65","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i91","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i57","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i61","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i96","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i69","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i71","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i85","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i90","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0'... 20975 more characters,
++   version: 13,
++   view: {
++     activeTeam: 0,
++     assets: [
++       {
++         color: '中立',
++         controller: 'p0',
++         exhausted: true,
++         faceDown: false,
++         instanceId: 'i244',
++         kind: 'asset',
++         magic: '',
++         name: '资产',
++         owner: 'p0'
++       },
++       {
++         color: '中立',
++         controller: 'p0',
++         exhausted: true,
++         faceDown: false,
++         instanceId: 'i245',
++         kind: 'asset',
++         magic: '',
++         name: '资产',
++         owner: 'p0'
++       },
++       {
++         color: '中立',
++         controller: 'p0',
++         exhausted: true,
++         faceDown: false,
++         instanceId: 'i246',
++         kind: 'asset',
++         magic: '',
++         name: '资产',
++         owner: 'p0'
++       }
++     ],
++     attachments: [
++       {
++         cardId: 'BQ026',
++         color: '蓝',
++         controller: 'p2',
++         cost: 1,
++         currentEnemySpellProtection: true,
++         currentPublic: true,
++         damage: 0,
++         defense: 1,
++         exhausted: false,
++         faceDown: false,
++         hostId: 'i248',
++         icons: {
++           combat: 0,
++           influence: 0,
++           investigation: 0
++         },
++         instanceId: 'i249',
++         kind: 'attachment',
++         magic: '',
++         name: '吸血蝙蝠群',
++         owner: 'p2',
++         region: 1,
++         shield: 0,
++         text: '公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。',
++         wounds: 0
++       },
++       {
++         cardId: 'BQ026',
++         color: '蓝',
++         controller: 'p2',
++         cost: 1,
++         currentPublic: true,
++         damage: 0,
++         defense: 1,
++         exhausted: false,
++         faceDown: false,
++         hostId: 'i249',
++         icons: {
++           combat: 0,
++           influence: 0,
++           investigation: 0
++         },
++         instanceId: 'i250',
++         kind: 'attachment',
++         lockMarkers: 1,
++         magic: '',
++         name: '吸血蝙蝠群',
++         owner: 'p2',
++         region: 1,
++         shield: 0,
++         text: '公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。',
++         wounds: 0
++       }
++     ],
++     canPause: true,
++     firstTeam: 0,
++     graveyard: [],
++     hand: [],
++     inviteCode: 'LOCAL',
++     legalActions: [
++       {
++         id: '{"kind":"pass"}',
++         kind: 'pass',
++         label: '让过'
++       }
++     ],
++     log: [
++       {
++         text: 'P1 加入座位 2',
++         version: 1
++       },
++       {
++         text: 'P2 加入座位 3',
++         version: 2
++       },
++       {
++         text: 'P3 加入座位 4',
++         version: 3
++       },
++       {
++         text: '开始 四人协作；团队 1 持先手',
++         version: 8
++       },
++       {
++         text: 'P0 完成一次再调度（0张）',
++         version: 9
++       },
++       {
++         text: 'P1 完成一次再调度（0张）',
++         version: 10
++       },
++       {
++         text: 'P2 完成一次再调度（0张）',
++         version: 11
++       },
++       {
++         text: 'P3 完成一次再调度（0张）',
++         version: 12
++       },
++       {
++         text: 'P0 发动 哨兵：行动3，横置：移动本方角色至锁定目标所在地区',
++         version: 13
++       }
++     ],
++     mode: 'teams',
++     pendingChoice: null,
++     phase: 'action',
++     players: [
++       {
++         deckCount: 44,
++         deckId: 'custom',
++         deckName: '帷幕调查',
++         eliminated: false,
++         handCount: 0,
++         id: 'p0',
++         name: 'P0',
++         ready: true,
++         score: 0,
++         seat: 0,
++         team: 0
++       },
++       {
++         deckCount: 44,
++         deckId: 'custom',
++         deckName: '帷幕调查',
++         eliminated: false,
++         handCount: 0,
++         id: 'p1',
++         name: 'P1',
++         ready: true,
++         score: 0,
++         seat: 1,
++         team: 0
++       },
++       {
++         deckCount: 44,
++         deckId: 'custom',
++         deckName: '帷幕调查',
++         eliminated: false,
++         handCount: 0,
++         id: 'p2',
++         name: 'P2',
++         ready: true,
++         score: 0,
++         seat: 2,
++         team: 1
++       },
++       {
++         deckCount: 44,
++         deckId: 'custom',
++         deckName: '帷幕调查',
++         eliminated: false,
++         handCount: 0,
++         id: 'p3',
++         name: 'P3',
++         ready: true,
++         score: 0,
++         seat: 3,
++         team: 1
++       }
++     ],
++     priorityTeam: 0,
++     regions: [
++       {
++         cardId: 'DQJC115',
++         characters: [
++           {
++             cardId: 'JC125',
++             color: '中立',
++             controller: 'p0',
++             cost: 0,
++             currentPublic: false,
++             damage: 0,
++             defense: 1,
++             exhausted: false,
++             faceDown: false,
++             icons: {
++               combat: 0,
++               influence: 0,
++               investigation: 0
++             },
++             instanceId: 'i247',
++             kind: 'character',
++             magic: '',
++             name: '无知路人',
++             owner: 'p0',
++             region: 0,
++             shield: 0,
++             text: '持续：名称为无知路人的牌，构筑时在牌组中的数量没有限制。',
++             wounds: 0
++           }
++         ],
++         iconsByTeam: [
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           }
++         ],
++         id: 'i243',
++         index: 0,
++         influence: [
++           0,
++           0
++         ],
++         name: '死者之城',
++         points: 2,
++         skipConfrontation: false,
++         threshold: 3
++       },
++       {
++         cardId: 'DQJC107',
++         characters: [
++           {
++             cardId: 'JC029',
++             color: '蓝',
++             controller: 'p2',
++             cost: 2,
++             currentEnemySpellProtection: true,
++             currentPublic: false,
++             damage: 0,
++             defense: 1,
++             exhausted: false,
++             faceDown: false,
++             icons: {
++               combat: 0,
++               influence: 0,
++               investigation: 0
++             },
++             instanceId: 'i248',
++             kind: 'character',
++             magic: '鲜血',
++             name: '新生血族',
++             owner: 'p2',
++             region: 1,
++             shield: 0,
++             text: '袭击1（当该角色翻面现身进场时，你可以令其对本地区的目标角色造成1点伤害。）',
++             wounds: 0
++           }
++         ],
++         iconsByTeam: [
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           }
++         ],
++         id: 'i205',
++         index: 1,
++         influence: [
++           0,
++           0
++         ],
++         name: '沉没的废墟',
++         points: 4,
++         skipConfrontation: false,
++         threshold: 4
++       },
++       {
++         cardId: 'DQJC108',
++         characters: [],
++         iconsByTeam: [
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           }
++         ],
++         id: 'i206',
++         index: 2,
++         influence: [
++           0,
++           0
++         ],
++         name: '佛罗伦萨',
++         points: 3,
++         skipConfrontation: false,
++         threshold: 4
++       },
++       {
++         cardId: 'DQJC115',
++         characters: [],
++         iconsByTeam: [
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           }
++         ],
++         id: 'i213',
++         index: 3,
++         influence: [
++           0,
++           0
++         ],
++         name: '死者之城',
++         points: 2,
++         skipConfrontation: false,
++         threshold: 3
++       },
++       {
++         cardId: 'DQJC111',
++         characters: [],
++         iconsByTeam: [
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           }
++         ],
++         id: 'i209',
++         index: 4,
++         influence: [
++           0,
++           0
++         ],
++         name: '莫斯科',
++         points: 3,
++         skipConfrontation: false,
++         threshold: 4
++       }
++     ],
++     responseWindow: {
++       canBegin: false,
++       holderTeam: 0,
++       id: 'response:1',
++       members: [
++         {
++           deadlineMs: 5000,
++           playerId: 'p0',
++           status: 'undecided'
++         },
++         {
++           deadlineMs: 5000,
++           playerId: 'p1',
++           status: 'undecided'
++         }
++       ],
++       previewSources: [],
++       stackTopId: 'i251'
++     },
++     roomId: 'aa0000000000000000000003',
++     scoreCards: [],
++     serverNowMs: 0,
++     societyZones: [
++       {
++         card: {
++           cardId: 'MSJC14',
++           color: '灰',
++           controller: 'p0',
++           damage: 0,
++           exhausted: true,
++           faceDown: false,
++           icons: {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           instanceId: 'i1',
++           kind: 'society',
++           magic: '',
++           name: '哨兵',
++           owner: 'p0',
++           shield: 0,
++           text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
++           wounds: 0
++         },
++         exposure: 0,
++         handLimit: 7,
++         id: 'society:p0',
++         playerId: 'p0',
++         secrecy: 0
++       },
++       {
++         card: {
++           cardId: 'MSJC14',
++           color: '灰',
++           controller: 'p1',
++           damage: 0,
++           exhausted: false,
++           faceDown: false,
++           icons: {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           instanceId: 'i52',
++           kind: 'society',
++           magic: '',
++           name: '哨兵',
++           owner: 'p1',
++           shield: 0,
++           text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
++           wounds: 0
++         },
++         exposure: 0,
++         handLimit: 7,
++         id: 'society:p1',
++         playerId: 'p1',
++         secrecy: 0
++       },
++       {
++         card: {
++           cardId: 'MSJC14',
++           color: '灰',
++           controller: 'p2',
++           damage: 0,
++           exhausted: false,
++           faceDown: false,
++           icons: {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           instanceId: 'i103',
++           kind: 'society',
++           magic: '',
++           name: '哨兵',
++           owner: 'p2',
++           shield: 0,
++           text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
++           wounds: 0
++         },
++         exposure: 0,
++         handLimit: 7,
++         id: 'society:p2',
++         playerId: 'p2',
++         secrecy: 0
++       },
++       {
++         card: {
++           cardId: 'MSJC14',
++           color: '灰',
++           controller: 'p3',
++           damage: 0,
++           exhausted: false,
++           faceDown: false,
++           icons: {
++             combat: 0,
++             influence: 0,
++             investigation: 0
++           },
++           instanceId: 'i154',
++           kind: 'society',
++           magic: '',
++           name: '哨兵',
++           owner: 'p3',
++           shield: 0,
++           text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
++           wounds: 0
++         },
++         exposure: 0,
++         handLimit: 7,
++         id: 'society:p3',
++         playerId: 'p3',
++         secrecy: 0
++       }
++     ],
++     stack: [
++       {
++         abilityId: 'sentinel-move',
++         cardId: 'MSJC14',
++         controller: 'p0',
++         id: 'i251',
++         label: '哨兵：行动3，横置：移动本方角色至锁定目标所在地区',
++         resolutionState: 'awaitingResponses',
++         targetId: 'i247',
++         targetSummaries: [
++           {
++             controller: 'p0',
++             instanceId: 'i247',
++             kind: 'character',
++             label: '无知路人',
++             owner: 'p0',
++             region: 0,
++             status: 'valid',
++             valid: true
++           },
++           {
++             controller: 'p2',
++             instanceId: 'i248',
++             kind: 'character',
++             label: '新生血族',
++             owner: 'p2',
++             region: 1,
++             status: 'valid',
++             valid: true
++           }
++         ],
++         targets: [
++           'i247',
++           'i248'
++         ]
++       }
++     ],
++     status: 'playing',
++     step: 'team:0',
++     turn: 1,
++     version: 13,
++     versions: {
++       cardPool: 'limited-v2.102-import20-rulings-complete',
++       engine: 'rust-v0.2.112-shared-keyword-rewards',
++       rules: 'hegemony-pdf-v1'
++     },
++     waitingChoice: null,
++     winScore: 10,
++     worldDeckCount: 5,
++     you: 'p0',
++     yourDeck: {
++       cardPoolVersion: 'limited-v2.102-import20-rulings-complete',
++       cards: [
++         {
++           cardId: 'JC125',
++           count: 50
++         }
++       ],
++       description: '以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。',
++       engineVersion: 'rust-v0.2.112-shared-keyword-rewards',
++       id: 'watchers',
++       name: '帷幕调查',
++       rulesVersion: 'hegemony-pdf-v1',
++       societyId: 'MSJC14',
++       updatedAt: ''
++     }
++   }
++ }
+- undefined
+
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/source/tools/fixture-tools/current-sentinel.mjs:23:10
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    state: '{"state_schema":3,"revision":13,"versions":{"rules":"hegemony-pdf-v1","cardPool":"limited-v2.102-import20-rulings-complete","engine":"rust-v0.2.112-shared-keyword-rewards"},"game":{"state_schema":2,"room_id":"aa0000000000000000000003","invite_code":"LOCAL","mode":"teams","version":13,"status":"playing","players":[{"seat":0,"name":"P0","deck_id":"custom","deck_snapshot":{"id":"watchers","name":"帷幕调查","description":"以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。","societyId":"MSJC14","cards":[{"cardId":"JC125","count":50}],"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.102-import20-rulings-complete","engineVersion":"rust-v0.2.112-shared-keyword-rewards","updatedAt":""},"society_zone":{"card":{"id":"i1","definition":"MSJC14","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},"used_once_per_game":[]},"ready":true,"eliminated":false,"hand":[],"deck":[{"id":"i23","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i38","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i42","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i25","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i31","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i30","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i16","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i10","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i24","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i5","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i36","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i44","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i9","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i40","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i8","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i20","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i11","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i51","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i41","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i28","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i32","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i19","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i18","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i4","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i43","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i13","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i48","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i7","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i26","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i37","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i47","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i21","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i50","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i29","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i34","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i22","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i6","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i35","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i49","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i39","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i15","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i27","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i3","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i33","definition":"JC125","owner":0,"controller":0,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0}],"assets":[{"id":"i244","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i245","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i246","definition":"JC125","owner":0,"controller":0,"exhausted":true,"face_down":false,"damage":0,"wounds":0,"shield":0}],"graveyard":[],"score_cards":[],"asset_used":false,"conceal_used":false},{"seat":1,"name":"P1","deck_id":"custom","deck_snapshot":{"id":"watchers","name":"帷幕调查","description":"以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。","societyId":"MSJC14","cards":[{"cardId":"JC125","count":50}],"rulesVersion":"hegemony-pdf-v1","cardPoolVersion":"limited-v2.102-import20-rulings-complete","engineVersion":"rust-v0.2.112-shared-keyword-rewards","updatedAt":""},"society_zone":{"card":{"id":"i52","definition":"MSJC14","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},"used_once_per_game":[]},"ready":true,"eliminated":false,"hand":[],"deck":[{"id":"i56","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i99","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i102","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i92","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i97","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i76","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i64","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i84","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i75","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i68","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i65","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i91","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i57","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i61","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i96","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i69","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i71","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i85","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0,"wounds":0,"shield":0},{"id":"i90","definition":"JC125","owner":1,"controller":1,"exhausted":false,"face_down":false,"damage":0'... 20975 more characters,
+    view: {
+      roomId: 'aa0000000000000000000003',
+      inviteCode: 'LOCAL',
+      version: 13,
+      mode: 'teams',
+      status: 'playing',
+      you: 'p0',
+      players: [
+        {
+          id: 'p0',
+          seat: 0,
+          name: 'P0',
+          team: 0,
+          deckId: 'custom',
+          deckName: '帷幕调查',
+          ready: true,
+          eliminated: false,
+          handCount: 0,
+          deckCount: 44,
+          score: 0
+        },
+        {
+          id: 'p1',
+          seat: 1,
+          name: 'P1',
+          team: 0,
+          deckId: 'custom',
+          deckName: '帷幕调查',
+          ready: true,
+          eliminated: false,
+          handCount: 0,
+          deckCount: 44,
+          score: 0
+        },
+        {
+          id: 'p2',
+          seat: 2,
+          name: 'P2',
+          team: 1,
+          deckId: 'custom',
+          deckName: '帷幕调查',
+          ready: true,
+          eliminated: false,
+          handCount: 0,
+          deckCount: 44,
+          score: 0
+        },
+        {
+          id: 'p3',
+          seat: 3,
+          name: 'P3',
+          team: 1,
+          deckId: 'custom',
+          deckName: '帷幕调查',
+          ready: true,
+          eliminated: false,
+          handCount: 0,
+          deckCount: 44,
+          score: 0
+        }
+      ],
+      firstTeam: 0,
+      activeTeam: 0,
+      priorityTeam: 0,
+      turn: 1,
+      phase: 'action',
+      step: 'team:0',
+      winScore: 10,
+      regions: [
+        {
+          id: 'i243',
+          index: 0,
+          cardId: 'DQJC115',
+          name: '死者之城',
+          threshold: 3,
+          points: 2,
+          influence: [ 0, 0 ],
+          iconsByTeam: [ [Object], [Object] ],
+          skipConfrontation: false,
+          characters: [ [Object] ]
+        },
+        {
+          id: 'i205',
+          index: 1,
+          cardId: 'DQJC107',
+          name: '沉没的废墟',
+          threshold: 4,
+          points: 4,
+          influence: [ 0, 0 ],
+          iconsByTeam: [ [Object], [Object] ],
+          skipConfrontation: false,
+          characters: [ [Object] ]
+        },
+        {
+          id: 'i206',
+          index: 2,
+          cardId: 'DQJC108',
+          name: '佛罗伦萨',
+          threshold: 4,
+          points: 3,
+          influence: [ 0, 0 ],
+          iconsByTeam: [ [Object], [Object] ],
+          skipConfrontation: false,
+          characters: []
+        },
+        {
+          id: 'i213',
+          index: 3,
+          cardId: 'DQJC115',
+          name: '死者之城',
+          threshold: 3,
+          points: 2,
+          influence: [ 0, 0 ],
+          iconsByTeam: [ [Object], [Object] ],
+          skipConfrontation: false,
+          characters: []
+        },
+        {
+          id: 'i209',
+          index: 4,
+          cardId: 'DQJC111',
+          name: '莫斯科',
+          threshold: 4,
+          points: 3,
+          influence: [ 0, 0 ],
+          iconsByTeam: [ [Object], [Object] ],
+          skipConfrontation: false,
+          characters: []
+        }
+      ],
+      societyZones: [
+        {
+          exposure: 0,
+          secrecy: 0,
+          handLimit: 7,
+          id: 'society:p0',
+          playerId: 'p0',
+          card: {
+            instanceId: 'i1',
+            cardId: 'MSJC14',
+            name: '哨兵',
+            owner: 'p0',
+            controller: 'p0',
+            kind: 'society',
+            exhausted: true,
+            faceDown: false,
+            text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
+            icons: [Object],
+            damage: 0,
+            shield: 0,
+            wounds: 0,
+            color: '灰',
+            magic: ''
+          }
+        },
+        {
+          exposure: 0,
+          secrecy: 0,
+          handLimit: 7,
+          id: 'society:p1',
+          playerId: 'p1',
+          card: {
+            instanceId: 'i52',
+            cardId: 'MSJC14',
+            name: '哨兵',
+            owner: 'p1',
+            controller: 'p1',
+            kind: 'society',
+            exhausted: false,
+            faceDown: false,
+            text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
+            icons: [Object],
+            damage: 0,
+            shield: 0,
+            wounds: 0,
+            color: '灰',
+            magic: ''
+          }
+        },
+        {
+          exposure: 0,
+          secrecy: 0,
+          handLimit: 7,
+          id: 'society:p2',
+          playerId: 'p2',
+          card: {
+            instanceId: 'i103',
+            cardId: 'MSJC14',
+            name: '哨兵',
+            owner: 'p2',
+            controller: 'p2',
+            kind: 'society',
+            exhausted: false,
+            faceDown: false,
+            text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
+            icons: [Object],
+            damage: 0,
+            shield: 0,
+            wounds: 0,
+            color: '灰',
+            magic: ''
+          }
+        },
+        {
+          exposure: 0,
+          secrecy: 0,
+          handLimit: 7,
+          id: 'society:p3',
+          playerId: 'p3',
+          card: {
+            instanceId: 'i154',
+            cardId: 'MSJC14',
+            name: '哨兵',
+            owner: 'p3',
+            controller: 'p3',
+            kind: 'society',
+            exhausted: false,
+            faceDown: false,
+            text: '持续：构筑时你的牌组中只能包含灰和中立牌，以及其他派系不具有魔法领域图标的牌。行动3，横置：在目标敌方暗藏者上放置一个锁定标志。行动3，横置：选择目标本方角色，将其移动到目标具有锁定标志的角色或暗藏者所在的地区。',
+            icons: [Object],
+            damage: 0,
+            shield: 0,
+            wounds: 0,
+            color: '灰',
+            magic: ''
+          }
+        }
+      ],
+      attachments: [
+        {
+          currentEnemySpellProtection: true,
+          currentPublic: true,
+          instanceId: 'i249',
+          cardId: 'BQ026',
+          name: '吸血蝙蝠群',
+          owner: 'p2',
+          controller: 'p2',
+          kind: 'attachment',
+          region: 1,
+          exhausted: false,
+          faceDown: false,
+          cost: 1,
+          text: '公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。',
+          icons: { investigation: 0, combat: 0, influence: 0 },
+          defense: 1,
+          damage: 0,
+          shield: 0,
+          wounds: 0,
+          color: '蓝',
+          magic: '',
+          hostId: 'i248'
+        },
+        {
+          currentPublic: true,
+          instanceId: 'i250',
+          cardId: 'BQ026',
+          name: '吸血蝙蝠群',
+          owner: 'p2',
+          controller: 'p2',
+          kind: 'attachment',
+          region: 1,
+          exhausted: false,
+          faceDown: false,
+          cost: 1,
+          text: '公开；机动；不能被装备结附；触发 当吸血蝙蝠群进入一个地区时，你可以将其结附于本地区的目标本方吸血鬼角色。；持续 若结附于角色上，吸血蝙蝠群不能移动，受其结附的角色不能成为敌方事务牌的目标。',
+          icons: { investigation: 0, combat: 0, influence: 0 },
+          defense: 1,
+          damage: 0,
+          shield: 0,
+          wounds: 0,
+          lockMarkers: 1,
+          color: '蓝',
+          magic: '',
+          hostId: 'i249'
+        }
+      ],
+      hand: [],
+      assets: [
+        {
+          instanceId: 'i244',
+          name: '资产',
+          owner: 'p0',
+          controller: 'p0',
+          kind: 'asset',
+          exhausted: true,
+          faceDown: false,
+          color: '中立',
+          magic: ''
+        },
+        {
+          instanceId: 'i245',
+          name: '资产',
+          owner: 'p0',
+          controller: 'p0',
+          kind: 'asset',
+          exhausted: true,
+          faceDown: false,
+          color: '中立',
+          magic: ''
+        },
+        {
+          instanceId: 'i246',
+          name: '资产',
+          owner: 'p0',
+          controller: 'p0',
+          kind: 'asset',
+          exhausted: true,
+          faceDown: false,
+          color: '中立',
+          magic: ''
+        }
+      ],
+      graveyard: [],
+      scoreCards: [],
+      stack: [
+        {
+          id: 'i251',
+          label: '哨兵：行动3，横置：移动本方角色至锁定目标所在地区',
+          controller: 'p0',
+          cardId: 'MSJC14',
+          targetId: 'i247',
+          abilityId: 'sentinel-move',
+          targets: [ 'i247', 'i248' ],
+          targetSummaries: [ [Object], [Object] ],
+          resolutionState: 'awaitingResponses'
+        }
+      ],
+      pendingChoice: null,
+      legalActions: [ { kind: 'pass', id: '{"kind":"pass"}', label: '让过' } ],
+      log: [
+        { version: 1, text: 'P1 加入座位 2' },
+        { version: 2, text: 'P2 加入座位 3' },
+        { version: 3, text: 'P3 加入座位 4' },
+        { version: 8, text: '开始 四人协作；团队 1 持先手' },
+        { version: 9, text: 'P0 完成一次再调度（0张）' },
+        { version: 10, text: 'P1 完成一次再调度（0张）' },
+        { version: 11, text: 'P2 完成一次再调度（0张）' },
+        { version: 12, text: 'P3 完成一次再调度（0张）' },
+        { version: 13, text: 'P0 发动 哨兵：行动3，横置：移动本方角色至锁定目标所在地区' }
+      ],
+      versions: {
+        rules: 'hegemony-pdf-v1',
+        cardPool: 'limited-v2.102-import20-rulings-complete',
+        engine: 'rust-v0.2.112-shared-keyword-rewards'
+      },
+      waitingChoice: null,
+      yourDeck: {
+        id: 'watchers',
+        name: '帷幕调查',
+        description: '以检视、横置与调查奖励掌控节奏。50张受限卡池自组预组，非官方预组。',
+        societyId: 'MSJC14',
+        cards: [ { cardId: 'JC125', count: 50 } ],
+        rulesVersion: 'hegemony-pdf-v1',
+        cardPoolVersion: 'limited-v2.102-import20-rulings-complete',
+        engineVersion: 'rust-v0.2.112-shared-keyword-rewards',
+        updatedAt: ''
+      },
+      worldDeckCount: 5,
+      serverNowMs: 0,
+      responseWindow: {
+        id: 'response:1',
+        stackTopId: 'i251',
+        holderTeam: 0,
+        members: [
+          { playerId: 'p0', status: 'undecided', deadlineMs: 5000 },
+          { playerId: 'p1', status: 'undecided', deadlineMs: 5000 }
+        ],
+        canBegin: false,
+        previewSources: []
+      },
+      canPause: true
+    },
+    version: 13,
+    seat: 0,
+    changed: false,
+    journal: [],
+    outcome: 'rejected',
+    errorCode: 'version_conflict',
+    errorMessage: '房间已更新，请重新报价并确认动作'
+  },
+  expected: undefined,
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

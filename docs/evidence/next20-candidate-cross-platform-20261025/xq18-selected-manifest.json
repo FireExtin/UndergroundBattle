@@ -1,0 +1,550 @@
+[
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-47823.json",
+    "sha256": "04b1b2fb243a123ab1fef8fa321fe8e8564549f0e519e58ee7f9527443611975"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-47859.json",
+    "sha256": "65cd5bd34cb89a1f6ee9799fafbb10c39d562439569b6b56e3f6b43659fd68fc"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-47895.json",
+    "sha256": "95919d55e6089d7556f400ec539637136610211930aa8337c837a8ae929c9a99"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-47931.json",
+    "sha256": "52ac6ef49c645e6f87796a13417f102dcfd23b20c3319aae791ba7c1a5f32c49"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-47967.json",
+    "sha256": "058f0a03210261c7f14fb55e072ba23a745b22e15bddf70c215f82ba054fe56f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48003.json",
+    "sha256": "cf01e7acae295b0119cf386c84556732709e03644f07cbca2818bf2df41d8dd5"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48039.json",
+    "sha256": "28fcb4950c6ca3a50865eda659fc09db9ac0fcfa06077dcf6445ec1236a2ea0e"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48075.json",
+    "sha256": "c4b2411ec5beb5e2f6b3bd399fd78946194acf00f2c33715f9e3b069bd97fb78"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48111.json",
+    "sha256": "9c112571fbdb6d79bb573621cd7dc93e8850360739baea7198b03c64f6aecc70"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48147.json",
+    "sha256": "68db60e87e9abc8a8dd485065adaaaa47f8334991e5722dbd80a618d4beea13e"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48183.json",
+    "sha256": "28f7cd792146a0bd6a18e545c65065645851f4641667c17c1db3ca4cb401be83"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48219.json",
+    "sha256": "19c5c60bedae44bfec75b63ce96c1692648d5745e6b35fafb8707b5c4ac1f4b5"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48255.json",
+    "sha256": "5c9525854e345b1ff9306bd920ba197d7cc2876c246f44bddbc83f0af9197aff"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48291.json",
+    "sha256": "e888a653a608d7f909e52af7cb98cb796105c3bf79f23f45bdd734c1a5c0cd38"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48327.json",
+    "sha256": "6f72657e3f8d841958f37bc9afe1fba36893f631524282102143d46daf5c1275"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48363.json",
+    "sha256": "b3d8b4a0e59502008b56a268944f837fb27d29fca5a5fdad1a5d3adafa9e1127"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48399.json",
+    "sha256": "0efba93e1db98bde6065de2bedcdcd8a603143079325b39ed5455e17f7199104"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48435.json",
+    "sha256": "66fab8580ce2d7745efc9c620258e1bf42aa5cc27c065e10d8a5f4e2d1241497"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48471.json",
+    "sha256": "c4a00ca347ed5e029d501af4f538156cc5c0780823019f5bd04d6afb8ff202c7"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48507.json",
+    "sha256": "d3621df40a33d61d41404374d1649f1d49bab8738de38828b3c084bd1314955e"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48543.json",
+    "sha256": "851868ff0dc8966ff21253e6a9c5ea7ae3a26d92e6927efeb9bce0b148dbd98c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48687.json",
+    "sha256": "c0490a631dfa61ea16fdd797fd304f5ab76c247e5c69b4343843ae54e283e18a"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48723.json",
+    "sha256": "029b4bd130e05ba22fe2b1a969005fbe4c5ec6773b38e102f4ff1e4e56475cd0"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48759.json",
+    "sha256": "a9d417941f53785693e6990fd503c07ea0698fa48124b461d2b7abee28c4a57e"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48851.json",
+    "sha256": "c7b65d04e29b25982e74b75723fc4dfbd37373b59e33be1bb9088f15cf49794f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-48921.json",
+    "sha256": "e869f9f6c7b488aa495f50aeb3352f0f28863677bc1187d1795aed083fc7943e"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49159.json",
+    "sha256": "24dfc6bb5a26e7b7a67824fe8922b3e2c71f5aa3e711f3c4f5f8c4c415328284"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49196.json",
+    "sha256": "58bacaf56e411573751949b64e0953bdf2368048e62e6aa00401310d734e62ec"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49280.json",
+    "sha256": "2891b0d0973618b08819b23686aa5498ffb29e7aa9f978d7e08d17567316895b"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49317.json",
+    "sha256": "3db2de9e17fe663ea52268fa357230e2d5040ddce20057d6c4e9e01c58d4b59d"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49354.json",
+    "sha256": "0abded095e71fdb16728b3e77dfcf15827d378ed16b758cc2f2630d529e05914"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49391.json",
+    "sha256": "8b348d8a86c913a33adc7dd4b9caaa444ec062654b4cb624733b17c37911016f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49428.json",
+    "sha256": "7c4131ea43006637cb98f06ec8991fdba3ba7e6ff12c2cb811b997cca0f0950c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49465.json",
+    "sha256": "d8c805bb30aad68cb77d14c4c2af0d161dca4d7ab92c1921f576d7d8b23149fe"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49502.json",
+    "sha256": "449ec28284926fe9ead5d4f9845e6dfe7fbdf4c4e4f63f20669011a641faa40b"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49539.json",
+    "sha256": "876b9f0e37147e0a5a361eff060394e71c5b82a7a3553c07721b31f48056208f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49576.json",
+    "sha256": "523618adb2030fc9f882df43677a3f6c26c919de2de63fbea06125817110c6cb"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49749.json",
+    "sha256": "7f01a0ae0550ae737da0532e092cb5d8f122f89d3b4a4421ebb7ea578764bfc2"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49787.json",
+    "sha256": "af5cd417d7b1d0ed3f332dd39494cbc090266c06df84ec0cf799a9cb9aa460ae"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49825.json",
+    "sha256": "52e7d15f5cf58ba0a5c111832c9ec7358582d9780a48d478a394c6e87c1a5785"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-49863.json",
+    "sha256": "23ae7c0d3d45148d7f48b560929bd64f90b3a718231a7aae1e41a4b1432b7921"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/step-50102.json",
+    "sha256": "51aeb5fdd027f206ef8ddc35400ce17de238e6fdff58bfb7b7c9cd235eb17182"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47821.json",
+    "sha256": "1b30860de8ab9a9f854e25abb020aacd6ca63228d58c20a86bf46dcf3d64b1a3"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47822.json",
+    "sha256": "1b30860de8ab9a9f854e25abb020aacd6ca63228d58c20a86bf46dcf3d64b1a3"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47857.json",
+    "sha256": "6cd08a3e5ef6258a6d36413d0d40d9da52d03dd2fa85e98dc988a6f736bb9143"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47858.json",
+    "sha256": "6cd08a3e5ef6258a6d36413d0d40d9da52d03dd2fa85e98dc988a6f736bb9143"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47893.json",
+    "sha256": "76af46d565632291e02e7e1942e5a7b663a0f6817fb07973e3303788b04ddda9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47894.json",
+    "sha256": "76af46d565632291e02e7e1942e5a7b663a0f6817fb07973e3303788b04ddda9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47929.json",
+    "sha256": "c77899dc6a7d69e8062c7273f661ed2e58e5d7c00e5e6449e029d930762ccd04"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47930.json",
+    "sha256": "c77899dc6a7d69e8062c7273f661ed2e58e5d7c00e5e6449e029d930762ccd04"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47965.json",
+    "sha256": "07f2dc85a0f8db7c1b292ac4bbdfd472a0021f56aba5c2f216112dccc94319a6"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-47966.json",
+    "sha256": "07f2dc85a0f8db7c1b292ac4bbdfd472a0021f56aba5c2f216112dccc94319a6"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48001.json",
+    "sha256": "b8d32e8d3ccf044e544db82d8fd2ece1155f07c5dfae495ec4dbc0df78c24db9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48002.json",
+    "sha256": "b8d32e8d3ccf044e544db82d8fd2ece1155f07c5dfae495ec4dbc0df78c24db9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48037.json",
+    "sha256": "267e0804c69d4ff61a92d25a091e98a582cd908cb1fc4ad67692e506fd195b63"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48038.json",
+    "sha256": "267e0804c69d4ff61a92d25a091e98a582cd908cb1fc4ad67692e506fd195b63"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48073.json",
+    "sha256": "e21fa116c769e4bbfffa28e80ccb1f3c7b7f8c66c27fc231a9c378da5e01c04c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48074.json",
+    "sha256": "e21fa116c769e4bbfffa28e80ccb1f3c7b7f8c66c27fc231a9c378da5e01c04c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48109.json",
+    "sha256": "66d26330cff92032f1035063c1bf79d1517f06e0555df97ed082fdb1cd0e79fb"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48110.json",
+    "sha256": "66d26330cff92032f1035063c1bf79d1517f06e0555df97ed082fdb1cd0e79fb"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48145.json",
+    "sha256": "1eb95f3214e2aaf3574be86c730e11ea30fda9b3c49d13c33390d2299aad83c9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48146.json",
+    "sha256": "1eb95f3214e2aaf3574be86c730e11ea30fda9b3c49d13c33390d2299aad83c9"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48181.json",
+    "sha256": "a8e814652450f6f11001ed40ab26536684c0d0a129d0145cbc3a59c29d906b32"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48182.json",
+    "sha256": "a8e814652450f6f11001ed40ab26536684c0d0a129d0145cbc3a59c29d906b32"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48217.json",
+    "sha256": "736098950a48bd58e76aff8f396c7f75661d7dcf6c1943b175ac7e2b6a82edfc"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48218.json",
+    "sha256": "736098950a48bd58e76aff8f396c7f75661d7dcf6c1943b175ac7e2b6a82edfc"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48253.json",
+    "sha256": "c643e5d8df7e6c342e6c322c71adcd56f1670072c9f5d3c81b27d2c486fae657"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48254.json",
+    "sha256": "c643e5d8df7e6c342e6c322c71adcd56f1670072c9f5d3c81b27d2c486fae657"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48289.json",
+    "sha256": "98c5dc41d80bc3ccba694a217c7c6f3b0c211aa870dcf2654953d8de030f9739"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48290.json",
+    "sha256": "98c5dc41d80bc3ccba694a217c7c6f3b0c211aa870dcf2654953d8de030f9739"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48325.json",
+    "sha256": "1a3fa28fd7221d8d7d779a094713d30d13f6c8b43ecfa41921133f23ae0920a4"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48326.json",
+    "sha256": "1a3fa28fd7221d8d7d779a094713d30d13f6c8b43ecfa41921133f23ae0920a4"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48361.json",
+    "sha256": "8349f5aa3cf9fd7ad74d53fe62b739467229ca87567d84a73aff4aa04d3e7057"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48362.json",
+    "sha256": "8349f5aa3cf9fd7ad74d53fe62b739467229ca87567d84a73aff4aa04d3e7057"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48397.json",
+    "sha256": "bd0fc800f598bb9b1972253e2393d1dfa50f8795710d73059e27e9b04c2b654f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48398.json",
+    "sha256": "bd0fc800f598bb9b1972253e2393d1dfa50f8795710d73059e27e9b04c2b654f"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48433.json",
+    "sha256": "70a9b679bf40799d84fe7c2fac70dd40f016c3ad2a5f7fb17451b91e82237b70"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48434.json",
+    "sha256": "70a9b679bf40799d84fe7c2fac70dd40f016c3ad2a5f7fb17451b91e82237b70"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48469.json",
+    "sha256": "b4d7fda1ea6e5ceb29f09054844fe493cf136081a5fb479860211aa392e129a2"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48470.json",
+    "sha256": "b4d7fda1ea6e5ceb29f09054844fe493cf136081a5fb479860211aa392e129a2"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48505.json",
+    "sha256": "f288e72ebfe73cf9a75c8c5a2ef5212736dc6e14da797180065438863972cb94"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48506.json",
+    "sha256": "f288e72ebfe73cf9a75c8c5a2ef5212736dc6e14da797180065438863972cb94"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48541.json",
+    "sha256": "a78aa18a6cb6b7fd86416f84d550d27e9fc11d504409389907712f297ec54c28"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48542.json",
+    "sha256": "a78aa18a6cb6b7fd86416f84d550d27e9fc11d504409389907712f297ec54c28"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48685.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48686.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48721.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48722.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48757.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48758.json",
+    "sha256": "f84879df522f8bd2ce7dd6188eff07785ac537e5ad1cd89ddcce93018fbba7e1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48848.json",
+    "sha256": "dfd1f2b4deb745c4210d4101718dea3364fb232cf4d6b6a0684ceb399061a5fa"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48850.json",
+    "sha256": "dfd1f2b4deb745c4210d4101718dea3364fb232cf4d6b6a0684ceb399061a5fa"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48919.json",
+    "sha256": "9cf47afddb2b1ca0d8b41de1ad6ab84030e5d21f3f27d23d2e09f1b594ab345b"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-48920.json",
+    "sha256": "9cf47afddb2b1ca0d8b41de1ad6ab84030e5d21f3f27d23d2e09f1b594ab345b"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49157.json",
+    "sha256": "b391c2664ec3cefae7e0f5ed34ad9a2b48ac7d42929475b71589aa87f0c19a91"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49158.json",
+    "sha256": "b391c2664ec3cefae7e0f5ed34ad9a2b48ac7d42929475b71589aa87f0c19a91"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49194.json",
+    "sha256": "040dcac734d550d68fa4c847921c4b08f919157496a922b6dee59c9fd4e6aa52"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49195.json",
+    "sha256": "040dcac734d550d68fa4c847921c4b08f919157496a922b6dee59c9fd4e6aa52"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49278.json",
+    "sha256": "8fa412913f38ddff386782223cae1ee445c910daf50d174a689f9a79bffedaf1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49279.json",
+    "sha256": "8fa412913f38ddff386782223cae1ee445c910daf50d174a689f9a79bffedaf1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49314.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49315.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49316.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49351.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49352.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49353.json",
+    "sha256": "f805a3953fa54e2d74949c20403dcd68ed2c9e602559a86168c5aebcfd41dd4c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49388.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49389.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49390.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49425.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49426.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49427.json",
+    "sha256": "bccc8bd030068226709d323417a852030a2d7ab2c10d74847c305389f4b619ac"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49462.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49463.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49464.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49499.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49500.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49501.json",
+    "sha256": "235d1df6783bff41f3dc583942a6a312d93e61a060a6a9fdae848c9b24963eb1"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49536.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49537.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49538.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49573.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49574.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49575.json",
+    "sha256": "156ed4c3ec01a03b6b2a874370ee27ded4e45e2443bf72401677a46444373161"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49746.json",
+    "sha256": "b84ced76bd1c41bafc88229cd62b9e8f08a0ec5d4d364e456e52bc76b3fa7d1c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49747.json",
+    "sha256": "b84ced76bd1c41bafc88229cd62b9e8f08a0ec5d4d364e456e52bc76b3fa7d1c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49748.json",
+    "sha256": "b84ced76bd1c41bafc88229cd62b9e8f08a0ec5d4d364e456e52bc76b3fa7d1c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49784.json",
+    "sha256": "e8cdeb97cf197405377ef674ca8d9f5c08a5edb349341cc426f3c25e1d84364c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49785.json",
+    "sha256": "e8cdeb97cf197405377ef674ca8d9f5c08a5edb349341cc426f3c25e1d84364c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49786.json",
+    "sha256": "e8cdeb97cf197405377ef674ca8d9f5c08a5edb349341cc426f3c25e1d84364c"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49822.json",
+    "sha256": "031e4a57d036a19442662ac4b8ea99e70a428d9aa691376c79b424e5b5b39dc7"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49823.json",
+    "sha256": "031e4a57d036a19442662ac4b8ea99e70a428d9aa691376c79b424e5b5b39dc7"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49824.json",
+    "sha256": "031e4a57d036a19442662ac4b8ea99e70a428d9aa691376c79b424e5b5b39dc7"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49860.json",
+    "sha256": "1fa571546acc19e7853fe2b32be7d5f45285310a26f87929a3de7c94c24e0909"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49861.json",
+    "sha256": "1fa571546acc19e7853fe2b32be7d5f45285310a26f87929a3de7c94c24e0909"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-49862.json",
+    "sha256": "1fa571546acc19e7853fe2b32be7d5f45285310a26f87929a3de7c94c24e0909"
+  },
+  {
+    "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/shared/trace/checkpoint-50101.json",
+    "sha256": "3a4b929530c7a95cbd0130c203293663da7550e664833959f6d390a3974993cd"
+  }
+]

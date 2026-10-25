@@ -1,0 +1,21 @@
+{
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
+    "engineVersion": "rust-v0.2.112-shared-keyword-rewards"
+  },
+  "nativeCommands": 10,
+  "fourPrivateViewsPerStep": true,
+  "wasmBytes": 8651037,
+  "wasmSha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02",
+  "currentSourceManifestSha256": "9cb74b60533a7a3e470219f75765bb7f64e7d6c6bd492127bacde4a7ff4c4a03",
+  "nativeRawJsonBytes": 1249664,
+  "nativeRawJsonSha256": "872278738b07bc7e1044ed9274d42bcef55c1892f0bb1b97c7de143d23216d03",
+  "catalogDefinitions": 277,
+  "constructionSupported": 233,
+  "pendingDisabled": 44,
+  "candidateBatchAdmissions": 20,
+  "publicBatchAdmissions": 0,
+  "output": "rust-game-wasm/tests/current112/batch3-cq07.json.gz",
+  "scope": "Author necessary twenty-card candidate integration; no publication, full-suite, independent or browser acceptance"
+}

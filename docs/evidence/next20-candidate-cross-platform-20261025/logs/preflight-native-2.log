@@ -1,0 +1,60 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 4 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 2 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 30.96s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-fc575c20deac8fce)
+
+running 2 tests
+test next20_candidate_room_tests::next20_candidate_actual_room_four_closed_card_witnesses ... FAILED
+test next20_candidate_room_tests::next20_candidate_public_new_and_join_reject_all_five_without_mutation ... ok
+
+failures:
+
+---- next20_candidate_room_tests::next20_candidate_actual_room_four_closed_card_witnesses stdout ----
+
+thread 'next20_candidate_room_tests::next20_candidate_actual_room_four_closed_card_witnesses' panicked at rust-game/src/next20_candidate_room_tests.rs:88:13:
+assertion `left == right` failed
+  left: "accepted"
+ right: "rejected"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    next20_candidate_room_tests::next20_candidate_actual_room_four_closed_card_witnesses
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 2559 filtered out; finished in 0.59s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

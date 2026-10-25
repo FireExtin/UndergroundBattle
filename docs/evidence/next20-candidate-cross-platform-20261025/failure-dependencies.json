@@ -1,0 +1,463 @@
+{
+  "source_SHA": "e26640b4a8a82fad0fad89ba7552a2933c110bba",
+  "ui": [
+    {
+      "file": "web/src/game/ABI112ReviewNormal.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/batch20-review-normal.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/BQ030Combined.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/bq030-web.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/BQ035Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/bq035Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/BoundedEntrySearch.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/bounded-entry.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/CurrentLifecycleChoices.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/lifecycle.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/DeckSealSearch.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/deck-seal.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC035Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jc035Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC037Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc037.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC041Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jc041Native112.fixture.json.gz",
+        "rust-game-wasm/tests/jc041P2Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC044Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jc044Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC046Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc046.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC050RegionDestruction.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc050-quote.json.gz",
+        "rust-game-wasm/tests/current112/jc050.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC052Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc052.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC054Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jc054Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC061Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc061.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC066Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jc066Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC087Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc087.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JC094Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc094.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JZ22LowHandInfluence.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jz22.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JZ35Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jz35.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/JZ46Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/jz46Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/NativeFixedSlots.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/fixed-slots.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/SevenCardIntegration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/seven-card.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/ThreeColorDeath.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/three-color-death.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/WM023Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/wm023.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/WM038Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/wm038.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/WM056Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/wm056.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/WM062Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/wm062Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ18TimeCarrier.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq18.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ23Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ23P2Native93.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz",
+        "rust-game-wasm/tests/xq23OwnerNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ24Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq24.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ25Integration.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq25.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ27HiddenSweep.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq27.json.gz"
+      ]
+    },
+    {
+      "file": "web/src/game/XQ37EntryInfluence.test.jsx",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq37.json.gz"
+      ]
+    }
+  ],
+  "worker": [
+    {
+      "file": "sites/test/batch20-review-normal-current.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/batch20-review-normal.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/batch3-abi94-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/batch4-abi95-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jz56-platform.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/bounded-entry-search.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/bounded-entry.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/bq035-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/deck-seal-search.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/deck-seal-room.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/gray-lock.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/gray-lock.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc035-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/jc035Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc037-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc037.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc041-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/jc041Native112.fixture.json.gz",
+        "rust-game-wasm/tests/jc041P2Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc044-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/jc044Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc046-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc046.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc050.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc050.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc052-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc052-worker.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc054-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/jc057-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/jc057Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc060-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc060.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc066-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/jc066Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jc095-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc095.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jz22.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jz22.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/jz46-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/msjc0405-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/msjc0405Native112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/pass-history-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/jc046.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/pause-resume-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/response-preview-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/responsePreviewNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/sealed-restart-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/sealed-restart.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/sentinel-local-worker.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/sentinel-worker.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/seven-card-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/seven-card.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/shared-keyword-rewards-current.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/shared-rewards.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/three-color-death.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/three-color-death-commands.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/win-flow-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/bq030-sites.json.gz",
+        "rust-game-wasm/tests/current112/win-flow.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/wm062-integration.test.mjs",
+      "fixtures": []
+    },
+    {
+      "file": "sites/test/xq18-carrier.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq18.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq23-current-owner-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz",
+        "rust-game-wasm/tests/xq23OwnerNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq23-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq23-p2-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/xq23CoreNative112.fixture.json.gz",
+        "rust-game-wasm/tests/xq23OwnerNative112.fixture.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq24-container-restore.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq24-invalid.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq24-integration.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq24.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq27.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq27-invalid-rootface.json.gz",
+        "rust-game-wasm/tests/current112/xq27.json.gz"
+      ]
+    },
+    {
+      "file": "sites/test/xq37.test.mjs",
+      "fixtures": [
+        "rust-game-wasm/tests/current112/xq37-invalid-rootface.json.gz",
+        "rust-game-wasm/tests/current112/xq37.json.gz"
+      ]
+    }
+  ],
+  "stored_whole_manifest": "b527bf3706d1a5a2970bf5b6417bb0a04b4924bd590e58e2fabd6cc07cee638e",
+  "prior_candidate_whole_manifest": "09ac47dd46dfd5582c1a99cd7d0f1d7561385c87f780c000014e79c949140e2c",
+  "compiler_binding_files": [
+    "tools/bq035-oracle.mjs",
+    "tools/jz46-oracle.mjs",
+    "tools/wm062-oracle.mjs"
+  ],
+  "compiler_binding_dependency": "rust-game/data/cards.json old eb68427f... vs current 27124452...; complete Native inputs must be regenerated",
+  "interface_reason": "Existing loaders hard-code prior relative evidence paths. Add an explicit candidate root for test-only reads/writes, no fallback, retain every fingerprint/hash/catalog/view guard."
+}

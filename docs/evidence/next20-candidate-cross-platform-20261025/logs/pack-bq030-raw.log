@@ -1,0 +1,1 @@
+{"scenarios":7,"steps":[{"name":"lethal-offboard-accept","count":5},{"name":"lethal-offboard-decline","count":1},{"name":"multiple-observer-order","count":6},{"name":"empty-deck-elimination","count":1},{"name":"granted-renown","count":13},{"name":"granted-combat-glory","count":5},{"name":"granted-renown-vacant","count":9}]}

@@ -1,0 +1,12 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "original": "tools/check-batch3-abi94-smoke.mjs",
+  "original_sha256": "77b76220692445643b2beafae7eb05f0351f920d8a675b54c6cb1298a41f9e05",
+  "changes": [
+    "imports point explicitly at frozen source",
+    "exact closed count 39->44 for five closed definitions; existing 277/233 and five-card closure assertions retained",
+    "receipt census reads actual catalog, replacing obsolete 213/213/0 literals"
+  ],
+  "production_source_changed": false,
+  "scope": "external candidate assembly checker only; original command/state/journal/private-view checks intact"
+}

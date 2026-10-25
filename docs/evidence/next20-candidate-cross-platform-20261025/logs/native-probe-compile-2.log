@@ -1,0 +1,9 @@
+error: linking with `/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/batch3-zig-cc` failed: exit status: 1
+  |
+  = note:  "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/batch3-zig-cc" "-m64" "/tmp/rustc8BPYWh/symbols.o" "<9 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug/deps/{libhegemony_server-95c6d7ea0cbaf9a4,libserde_json-58d9c930da461bcd,libmemchr-5d9e693b80e05042,libitoa-51e4f6f72a9d3a37,libzmij-3e63241fed7f77e5,libserde-f1ab0e191553194d,libserde_core-fc5bbc6f41fe54c5}.rlib" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib/{libstd-*,libpanic_unwind-*,libobject-*,libmemchr-*,libaddr2line-*,libgimli-*,librustc_demangle-*,libstd_detect-*,libhashbrown-*,librustc_std_workspace_alloc-*,libminiz_oxide-*,libadler2-*,libunwind-*,libcfg_if-*,liblibc-*,librustc_std_workspace_core-*,liballoc-*,libcore-*,libcompiler_builtins-*}.rlib" "-Wl,-Bdynamic" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-L" "/tmp/rustc8BPYWh/raw-dylibs" "-B<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld" "-fuse-ld=lld" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/bin/supplement-native-duplicates" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-nodefaultlibs"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: error: unable to open global cache directory '/home/ddd/.cache/zig': ReadOnlyFileSystem
+          If this location is not writable then consider specifying an alternative with the ZIG_GLOBAL_CACHE_DIR environment variable or the --global-cache-dir option.
+
+
+error: aborting due to 1 previous error

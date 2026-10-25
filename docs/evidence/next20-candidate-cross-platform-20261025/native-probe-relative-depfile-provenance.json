@@ -1,0 +1,7 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "main_runtime_unchanged_from": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "note": "Rust depfiles use workspace-relative source paths; absence of an absolute frozen path is expected. Library path/hash recorded in native-probe-libraries.json. Artifacts were reused only from the exact fixed-source build; cargo invoked from frozen source with the same locked toolchain. No exported Native results reused.",
+  "cargo_native_export_receipt": "logs/wasm-native-fixtures.json",
+  "build_cache_reuse_receipt": "native-build-cache-reuse.json"
+}

@@ -1,0 +1,15 @@
+{
+  "new_four": {
+    "path": "native/single/next20_candidate_native_out.json",
+    "bytes": 8224350,
+    "sha256": "7859ace589e2636eacb07126717e6d0f00392148febba0afaabeddb4ec487e09",
+    "archive": "new-four-original-native.raw.json.gz"
+  },
+  "default_replay_index": {
+    "path": "replay/native.json",
+    "bytes": 618920,
+    "sha256": "4722b07a3231ce6f5346b25f9b0c2bd51381d9883f36148f22dfc1af57b3a908",
+    "archive": "default-replay-native-index.raw.json.gz",
+    "payloads": "483 newly exported payload files retained in authorized local replay directory; export command is recorded"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "at_utc": "2026-10-25T10:27:39.114543+00:00",
+  "initial_check": "git diff --cached --check rejected six readable logs with trailing blank lines at EOF; commit had not run",
+  "fixed_readable_files": [
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-export-batch4.log",
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/ui-full.log",
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-ui-next20.log",
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-probe-compile-2.log",
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native-baseline.log",
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-3.log"
+  ],
+  "scope": "Only readable EOF whitespace normalized. Exact original .raw.log.gz bytes, original receipts, all tests and source unchanged. No tests rerun."
+}

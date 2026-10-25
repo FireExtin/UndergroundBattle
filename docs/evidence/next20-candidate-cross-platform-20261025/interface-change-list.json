@@ -1,0 +1,26 @@
+{
+  "files": [
+    "tools/current-native-source.mjs",
+    "tools/bq035-oracle.mjs",
+    "tools/jc035-oracle.mjs",
+    "tools/jc041-oracle.mjs",
+    "tools/jc044-oracle.mjs",
+    "tools/jc054-oracle.mjs",
+    "tools/jc057-oracle.mjs",
+    "tools/jc066-oracle.mjs",
+    "tools/jz46-oracle.mjs",
+    "tools/msjc0405-oracle.mjs",
+    "tools/response-preview-oracle.mjs",
+    "tools/wm062-oracle.mjs",
+    "tools/xq23-current-owner-oracle.mjs",
+    "tools/xq23-oracle.mjs",
+    "tools/batch4-platform-compare.mjs",
+    "tools/check-batch3-abi94-smoke.mjs",
+    "sites/test/jc046-integration.test.mjs",
+    "sites/test/seven-card-integration.test.mjs",
+    "web/src/game/SevenCardIntegration.test.jsx",
+    "tools/candidate-native-path.mjs",
+    "tools/candidate-native-path.test.mjs"
+  ],
+  "scope": "test-only candidate evidence path, strict existing guards retained; exact five closed append-only catalog count updates"
+}

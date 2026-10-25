@@ -1,0 +1,151 @@
+{
+  "at_utc": "2026-10-25T10:25:26.006309+00:00",
+  "fixed_tested_source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "runtime_implementation_commit": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "scope": "fresh independent candidate evidence; all five definitions remain publicly closed",
+  "native_complete_baseline": {
+    "pass": 2633,
+    "fail": 0,
+    "library": 2561,
+    "integration": 72,
+    "one_complete_run": true,
+    "receipt": "logs/full-native-baseline.json"
+  },
+  "native_export_run": {
+    "pass": 2632,
+    "fail": 1,
+    "reason": "BATCH4_ABI95_NATIVE_OUT was a directory, exporter expected a file",
+    "retained_failure": true,
+    "corrected_native_export_retest": "logs/native-export-batch4.json"
+  },
+  "WASM_build": {
+    "exit_code": 0,
+    "bytes": 8651037,
+    "sha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02"
+  },
+  "UI_and_Worker_build": {
+    "exit_code": 0,
+    "UI_typescript_and_vite": true,
+    "Worker_wrangler_dry_run_only": true
+  },
+  "WASM_complete_default_replay": {
+    "ok": true,
+    "cases": 483,
+    "wasmBytes": 8651037,
+    "wasmSha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02",
+    "transitions": 25135,
+    "projections": 99903,
+    "quotes": 1,
+    "rejectedCommands": 362,
+    "rejectedDeckCreations": 42,
+    "choiceKinds": [
+      "bq085-bottom",
+      "damage",
+      "discard",
+      "graveyard",
+      "influence",
+      "investigation",
+      "jc035-preparation-order",
+      "jc055-preparation-target",
+      "mulligan",
+      "next-blue-gray-search",
+      "optional-shuffle",
+      "recipient",
+      "region_return",
+      "revealed-hand-discard",
+      "rumor",
+      "sacrifice",
+      "search",
+      "target",
+      "trigger"
+    ],
+    "slowestFixtureStepMs": 28.78,
+    "opaqueState": true,
+    "maximumU64SeedExact": true,
+    "nativeWasmStateAndViewsMatch": true
+  },
+  "UI_complete": {
+    "files": 160,
+    "pass": 1584,
+    "fail": 0,
+    "candidate_path_explicit": true
+  },
+  "Worker_complete": {
+    "files": 66,
+    "tests": 669,
+    "suites": 0,
+    "pass": 669,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "candidate_path_explicit": true,
+    "local_workerd_D1_only": true
+  },
+  "new_four_internal_native_WASM": {
+    "cases": 4,
+    "commands": 54,
+    "views": 232,
+    "duplicateReducerProbes": 54,
+    "rawNativeSha256": "7859ace589e2636eacb07126717e6d0f00392148febba0afaabeddb4ec487e09",
+    "currentSourceManifestSha256": "9cb74b60533a7a3e470219f75765bb7f64e7d6c6bd492127bacde4a7ff4c4a03",
+    "currentWasmSha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02",
+    "publicAdmission": false,
+    "preparedAnchorNotSupplyReachability": true
+  },
+  "new_four_worker_test_names": [
+    "✔ Internal closed next20 next20-bq033-real-anchor-payment: continuous Native commands, journals, D1 reopening and receipts (2471.114947ms)",
+    "✔ Internal closed next20 next20-bq034-real-blood-entry: continuous Native commands, journals, D1 reopening and receipts (2232.560454ms)",
+    "✔ Internal closed next20 next20-cq25-departed-source-search: continuous Native commands, journals, D1 reopening and receipts (2641.097327ms)",
+    "✔ Internal closed next20 next20-xg25-real-response-fallback-caller: continuous Native commands, journals, D1 reopening and receipts (2663.320612ms)",
+    "✔ public closed next20: real HTTP create/join rejection, original receipts and D1 pause/reopen/resume (1081.373885ms)"
+  ],
+  "test_path_contract": {
+    "pass": 1,
+    "fail": 0,
+    "no_fallback": true
+  },
+  "fixture_archive": {
+    "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/checkpoints/next20-candidate-fixtures-20261025.tar.gz",
+    "bytes": 32001928,
+    "sha256": "e9719bddc031b059e44328dbe4c45d3d3e4971411efbcb3cbb9e90a685e49d87",
+    "files": 66,
+    "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d"
+  },
+  "preserved_original32_archive": {
+    "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/checkpoints/next20-original32-preserved-20261025.tar.gz",
+    "bytes": 5000574,
+    "sha256": "35ef84d0e128ed5e968d3e6e7a76ca5297c6b6efaee3bbd4d416dfbd930dc00e",
+    "entries": 33,
+    "scope": "Not new Native evidence and not resigned to the current source"
+  },
+  "candidate_source_manifest_sha256": "9cb74b60533a7a3e470219f75765bb7f64e7d6c6bd492127bacde4a7ff4c4a03",
+  "public_admission": {
+    "catalog_total": 277,
+    "supported": 233,
+    "closed": 44,
+    "five_supported_false": [
+      "BQ009",
+      "BQ033",
+      "BQ034",
+      "CQ25",
+      "XG25"
+    ]
+  },
+  "NOT_RUN_or_remaining": [
+    "Natural public reachability of the four cards; BQ009 hand/deck to own-society supply is absent and out of current scope",
+    "Cross-port replay of every one of the 52 Native core-directed tests; only four new continuous internal witnesses are added here",
+    "Complete public card admission/release and independent parent review",
+    "New real-browser play, external Cloudflare D1/online acceptance, alternate society-fixtures feature matrix"
+  ],
+  "preserved": [
+    "original 32 raw inputs unchanged",
+    "finished table 97EC1A99E58C unchanged",
+    "public website and deployments unchanged",
+    "all original failure and diagnostic logs retained"
+  ],
+  "push": "NOT_ATTEMPTED",
+  "CI": "NOT_TRIGGERED",
+  "deploy": "NOT_ATTEMPTED",
+  "workflow_read": "Prior endpoint allowlist rejection not retried; trigger guarantee unavailable; local checkpoint/bundle retained"
+}

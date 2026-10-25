@@ -1,0 +1,11 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "original": "tools/fixture-tools/current-classic.mjs",
+  "original_sha256": "47b1f5fb603d3549d8c96d9e04eaf6df6e09b8f74db68cf3c9bd8fe6734704d5",
+  "changes": [
+    "imports anchored to frozen source",
+    "resume already generated current candidate packets only after strict loadCurrentFixture and exact deep equality; never overwrite",
+    "input directory correction: five search/receipt cases are in DECK_SEAL_STORE_TRACE_DIR"
+  ],
+  "no_rule_or_test_assertion_removed": true
+}

@@ -1,0 +1,13 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "failed_test": "batch4_platform_tests::batch4_abi95_jz56_native_platform_witnesses",
+  "cause": "Confirmed runner configuration error: BATCH4_ABI95_NATIVE_OUT names an existing directory although the exporter expects a file; exact captured panic will be checked when the ongoing export run ends",
+  "original_env_file": "native-env.json",
+  "original_env_sha256": "b88c2a328a8d83cae7dc69a38eb788a30ecd3e1da6aa295fdfdf79cdbf471350",
+  "corrected_env_file": "native-env-corrected.json",
+  "source_changed": false,
+  "handling": "Retain export-run failure; run an ordinary complete workspace baseline with export flags removed, plus regenerate this one witness using its correct new file path",
+  "at_utc": "2026-10-25T09:32:42.631063+00:00",
+  "exact_panic": "failures:\n\n---- batch4_platform_tests::batch4_abi95_jz56_native_platform_witnesses stdout ----\n\nthread 'batch4_platform_tests::batch4_abi95_jz56_native_platform_witnesses' panicked at rust-game/src/batch4_platform_tests.rs:132:319:\ncalled `Result::unwrap()` on an `Err` value: Os { code: 21, kind: IsADirectory, message: \"Is a directory\" }\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    batch4_platform_tests::batch4_abi95_jz56_native_platform_witnesses\n\ntest result: FAILED. 2560 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1038.55s",
+  "confirmed": true
+}

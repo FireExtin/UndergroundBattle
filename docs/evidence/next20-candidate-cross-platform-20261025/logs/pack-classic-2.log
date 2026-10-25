@@ -1,0 +1,33 @@
+xq37: current Native fixture written
+xq37-invalid-rootface: current Native fixture written
+xq27: current Native fixture written
+xq27-invalid-rootface: current Native fixture written
+jc050: current Native fixture written
+jc050-quote: current Native fixture written
+jz22: current Native fixture written
+three-color-death: current Native fixture written
+three-color-death-commands: current Native fixture written
+bounded-entry: current Native fixture written
+deck-seal: current Native fixture written
+deck-seal-room: current Native fixture written
+gray-lock: current Native fixture written
+jz50-room: current Native fixture written
+pause-resume: current Native fixture written
+sealing-room: current Native fixture written
+sealed-restart: current Native fixture written
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Missing equal-name equal-owner XQ18 carriers
+    at Object.xq18 (file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/current-classic-resume.mjs:210:5)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/current-classic-resume.mjs:281:19 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

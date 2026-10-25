@@ -1,0 +1,16 @@
+node:fs:621
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open '/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/fixtures/rust-game-wasm/tests/current112/batch3-inspections.json.gz'
+    at Object.openSync (node:fs:621:18)
+    at readFileSync (node:fs:487:35)
+    at loadCurrentFixture (file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/source/tools/current-native-source.mjs:52:40)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/pack-smoke-current-counts.mjs:43:42 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/fixtures/rust-game-wasm/tests/current112/batch3-inspections.json.gz'
+}
+
+Node.js v24.22.1

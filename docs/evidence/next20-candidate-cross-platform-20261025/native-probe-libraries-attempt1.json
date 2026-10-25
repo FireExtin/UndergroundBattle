@@ -1,0 +1,14 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "libraries": {
+    "hegemony_server": {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug/deps/libhegemony_server-95c6d7ea0cbaf9a4.rlib",
+      "sha256": "a8ca3259a9bb8414564d144eece13eb47208abcd8143349ec8d60ef40b94476a"
+    },
+    "serde_json": {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug/deps/libserde_json-46b21819a1f6a186.rlib",
+      "sha256": "e4640b2c835b20df45a9da169602582c8933ba9b021552ce5371c679783010e8"
+    }
+  },
+  "scope": "same-source Native example dependency artifacts; compiled production Room reducer"
+}

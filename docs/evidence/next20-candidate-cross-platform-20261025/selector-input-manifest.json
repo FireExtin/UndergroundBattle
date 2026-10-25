@@ -1,0 +1,1586 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "scope": "Explicit fresh Native layouts and original accepted Room commands; no natural play, migration or public admission.",
+  "inputs": [
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc061_evidence_dir/entry-accept.json",
+      "sha256": "ae02c096403d9ded7e79e8d48b6574ade3be47f6efb0285a9498f3923a8adeb3",
+      "bytes": 65384
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc061_evidence_dir/entry-decline.json",
+      "sha256": "ae02c096403d9ded7e79e8d48b6574ade3be47f6efb0285a9498f3923a8adeb3",
+      "bytes": 65384
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc061_evidence_dir/mobility-choice.json",
+      "sha256": "96507117faefb83d7a0686a15b64e0aa4bd3f1dbc30504c09028e0500012f75e",
+      "bytes": 56169
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc061_evidence_dir/mobility-entry-choice.json",
+      "sha256": "4761e8b5d142e6c7b15a507bc298ff33ed8ff971aee2b3c22836d6c0c21e527a",
+      "bytes": 57169
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc087_evidence_dir/decline.json",
+      "sha256": "506a366dfb0e231382ae844281a4e1849d32995a597a0ee112c8c78ed4433605",
+      "bytes": 68475
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc087_evidence_dir/move-entry.json",
+      "sha256": "7e8d413da02b3de6b841aac3d2aac8c892ad345aa96a4c6584102eeb8e905e5a",
+      "bytes": 58624
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc087_evidence_dir/other.json",
+      "sha256": "9db9cd8977eb6ec84c8c1b90bcc58d03d19f7aaf3fb74632ecf6f2e2dde97777",
+      "bytes": 68481
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc087_evidence_dir/self.json",
+      "sha256": "08ae03eab4793788fc566ac6913da133317cf4f9274a6c29aa8d67cd041d648b",
+      "bytes": 68481
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc094_evidence_dir/hidden-target.json",
+      "sha256": "7266d9352fe8cb59d4494f276a750fcc80ba8a7b9187a0a04823b3c4686ec266",
+      "bytes": 61691
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc094_evidence_dir/public-target.json",
+      "sha256": "5341e3aba5da7a884c0854ee5a78baa1c80bbe4de9578e9fbe0df9242de5449c",
+      "bytes": 62433
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc094_evidence_dir/self-target.json",
+      "sha256": "a31280f9b0a4a421baa94f7ac4e3d089cc0097b9cfa9140ca0f2787d8c960766",
+      "bytes": 60170
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc094_evidence_dir/target-is-cost.json",
+      "sha256": "66094e800d17d95d2f416fee720c1bee03f4a0e87855a77f324e18fe93b393b9",
+      "bytes": 60170
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm056_evidence_dir/activation.json",
+      "sha256": "30c09ca7e4884ac17d81a41f2844bf73986d67c42035aade395147849934e508",
+      "bytes": 55378
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm056_evidence_dir/origin-left.json",
+      "sha256": "86af7c6577fdf6eba3465693be210aaa60608a5c3b628cce68fa94edf53313b0",
+      "bytes": 59055
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm056_evidence_dir/origin-right.json",
+      "sha256": "cb464421e552eae9606e43dbfbae837fa559e9047cd61084ef5a81fa1560fc3c",
+      "bytes": 59055
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm056_evidence_dir/origin-single.json",
+      "sha256": "eb86bad935b0f2d4e478428a171e1c82a8c8fa725b1145a2090beb413eac82aa",
+      "bytes": 58948
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm023_evidence_dir/activation.json",
+      "sha256": "65eaead66d60a3aa790d4e4cdffd46ca18878decb74581dcbdfd13fb4742212e",
+      "bytes": 59544
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm023_evidence_dir/hand-after-source-hide.json",
+      "sha256": "7132620757a491ef9ce3d62a50e1f321dc6631b414e464466abdb1419e5c0235",
+      "bytes": 64428
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm023_evidence_dir/hand-mage.json",
+      "sha256": "cd1e709c9d2aa404d0463ed964e100c3db0da35de55fbe505985069c582ede70",
+      "bytes": 62892
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm023_evidence_dir/hand-vampire.json",
+      "sha256": "6f75bd2b06be288992dd31ab89d82d783cc1fbcae512cd1b4bbbf401a06b92e4",
+      "bytes": 63114
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq25_evidence_dir/attach.json",
+      "sha256": "fbc333e2c22d951fffd8d7f79ec5a7a08e2b5da4a4cd7ea67a98294c79d73452",
+      "bytes": 53931
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq25_evidence_dir/conceal-stacked.json",
+      "sha256": "36b58c426689708065b07f6a24eaba864964a1f3bee05f52ea096362ab96902a",
+      "bytes": 66185
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq25_evidence_dir/conceal-surcharge.json",
+      "sha256": "f975edc65f92e9b9b4f17951455d9fb78fcc7a3df98a2a72723c8561709fa249",
+      "bytes": 57476
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq25_evidence_dir/conceal-tapped.json",
+      "sha256": "a0ff44a460beee948e2e80b9a2c1f2116db4c3c9817a125c915b57d47eca49b3",
+      "bytes": 56722
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm038_evidence_dir/attach.json",
+      "sha256": "f03305d67dbe4bd9dcf3207e28f54f3c746da316cce9eff6eaa2fdef2d6a4e4f",
+      "bytes": 54171
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm038_evidence_dir/blood-discount.json",
+      "sha256": "5d817907f3d4575702be5f52bad90fd9450a0fe8ffda3c1558b58d42ff3c709e",
+      "bytes": 59968
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm038_evidence_dir/discounted-blood-deploy.json",
+      "sha256": "2102d321be7d4797a3854d5cea744b79fb2b93993ecb12f1f8684fb0f9f0a1de",
+      "bytes": 63383
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/wm038_evidence_dir/host-time-accept.json",
+      "sha256": "8c59852568174590da979221eb9c6d18aa91dc1ac1e5c62544ba546aec7e1f44",
+      "bytes": 57947
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jz35_evidence_dir/enemy-owned-host-play.json",
+      "sha256": "35ec83e3f028207e2d674b4e1b28436604386c3d6f989ea8ad3deaef2371e0b0",
+      "bytes": 61680
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jz35_evidence_dir/no-hosts-play.json",
+      "sha256": "66a9e5af00a8f4971966ba02dedb879c1823d649b4c16861fa4409f5a770c3cc",
+      "bytes": 54739
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jz35_evidence_dir/response-interval-play.json",
+      "sha256": "17f86cbf80bc9af5ab15cb145e8ddbc266de50991486b31bf52ea4468267a83f",
+      "bytes": 54634
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jz35_evidence_dir/same-name-hosts-play.json",
+      "sha256": "ecf2d0f99f6b20b667a847aae8ff4f1820b38b63d3845d321377018f77320f48",
+      "bytes": 58494
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc052_evidence_dir/deploy.json",
+      "sha256": "cef8c38ddf34da10876df905ad540c52a105b533ed174ebed0f46e875957c50d",
+      "bytes": 57403
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc052_evidence_dir/entry-accept.json",
+      "sha256": "88f26b5f54efe61c261ed6372f84423deaddb2b4b9bbcc7d6b1b0389f16e3164",
+      "bytes": 60002
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc052_evidence_dir/entry-decline.json",
+      "sha256": "c21df3515e133ba05c34b18a8b51445933cb36dd43307ffae386ba63e36791f1",
+      "bytes": 59994
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc052_evidence_dir/leader-sacrifice.json",
+      "sha256": "e73fa5aa73888cd791a3a300373a2477169ba8075ee992569493d0f4c09b6b2b",
+      "bytes": 63659
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/blue_frontend_dir/jc032-positive.json",
+      "sha256": "ae991560d073fa607cadacc0211c8772d2ef467cf64267631b88277e107cf392",
+      "bytes": 57979
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/blue_frontend_dir/jc032-zero-hit.json",
+      "sha256": "94298e17ceaedf66568e0302808ade4e4a62d3f2ea2ead0f0a901a413236cc84",
+      "bytes": 54431
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/black_expansion_evidence_dir/bq078-death-corpse-choice-0.json",
+      "sha256": "f795cb294c177476850bc7e0ad3cf962b43650145255274a46192f3add6888e6",
+      "bytes": 32413
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/black_expansion_evidence_dir/bq078-death-corpse-choice-1.json",
+      "sha256": "cdbae4bb643cfa457b81afc0eb9d381bfdf58e35588a2f027438d5532882b949",
+      "bytes": 32413
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/black_expansion_evidence_dir/bq078-death-corpse-choice-2.json",
+      "sha256": "44f76850de43b8f270de4ef0fe759462b2bdd0b3f7cdca04cff978d8f849c729",
+      "bytes": 32413
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/black_expansion_evidence_dir/bq078-death-corpse-choice-3.json",
+      "sha256": "0b3ddad5e2340b313825ff000b70c740e6650f137668f325c634af08606c91b2",
+      "bytes": 32413
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/red_time_evidence_dir/0027-jz30-private-forecast.json",
+      "sha256": "54af8a819f296f197e37bb307f96e72bc909fdd87491574575e3f32ddb802368",
+      "bytes": 64333
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/red_time_evidence_dir/0032-jz30-private-forecast.json",
+      "sha256": "89a2170fa006fa2f4514e044069843d22417c9202082318726e9f4f7558d93a0",
+      "bytes": 64471
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/red_time_evidence_dir/0037-jz30-private-forecast.json",
+      "sha256": "0debe60f8dfd5dc22e70a292c13caf694905688e6df95995b70c7c324d02346a",
+      "bytes": 64382
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/red_time_evidence_dir/0042-jz30-private-forecast.json",
+      "sha256": "8c2cd50df2fc56858e5049c1230e0f565636795deaf175503018223876de3064",
+      "bytes": 64382
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-0-step.json",
+      "sha256": "c60eb8e9b5ef41b39089bc49c9729cbc7df9ee3a150aaf8ae67b9f64022c7318",
+      "bytes": 100228
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-1-step.json",
+      "sha256": "ab8fc35e4bd10801bc0661baa06005c2342bb6c5f2e6c278e96cbbe1be7cdde5",
+      "bytes": 100775
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-2-step.json",
+      "sha256": "ae1248407bff3f0bd828ce7209d099b4d633368cfe30e6faf308569f29d14562",
+      "bytes": 100553
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-3-step.json",
+      "sha256": "b494d83819230d58be845ed80045263b82f37f3f80e9def71b708efa29970303",
+      "bytes": 100392
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-4-step.json",
+      "sha256": "24fb3a3c7e0d98cf09a04752f5cac1bfee95209fed6fd18d3664312c743501ce",
+      "bytes": 102248
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-5-step.json",
+      "sha256": "5a30651c20e05224ce6ea987c7098e7d656efaa23b8448a907975dba85ba18ca",
+      "bytes": 104386
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-6-step.json",
+      "sha256": "af4f4742296ed2578902a1f38181e9a354036d7dbd7278a1cb5abb4f0f308760",
+      "bytes": 103935
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-7-step.json",
+      "sha256": "18d9bd5306ae7306998ee6c20a6c0187c3e8f38d11926b090096811712f4c20e",
+      "bytes": 103709
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-8-step.json",
+      "sha256": "2130ed51a59152b095d5429108e179cdb1342ebd6a88cd2efbf0310b97765e1d",
+      "bytes": 103548
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-9-step.json",
+      "sha256": "7441cdc6b5596ab8547a118892ddf091b65ed51c61a4d1ca17b465e2fe21c463",
+      "bytes": 101908
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-10-step.json",
+      "sha256": "a0a5bab8836e1ef6ce03f8558bdd55062b74ac14ea6e91ea406f58cbfa8df235",
+      "bytes": 101712
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-11-step.json",
+      "sha256": "f387e1237673a68b5b6d52f505c18bd58829ef16bd7d78971a0229820410b908",
+      "bytes": 101381
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-12-step.json",
+      "sha256": "547d385270fa590c68b7573775168b0035273e3169732fe00900ff31590617f1",
+      "bytes": 101325
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-13-step.json",
+      "sha256": "1841a11c5a70e2abb8658db2ae2290d14503bb114ef3bd21822c9c0c56e59e77",
+      "bytes": 105577
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-14-step.json",
+      "sha256": "fde034ef53e8fdfe572279dcd3990e82a61dc2d5c8b7220e1e69384094320f4f",
+      "bytes": 101375
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-15-step.json",
+      "sha256": "26d8d64384a3e6b95dd873f9fbdf40bfaa970414a892c24ee9caf91dab637617",
+      "bytes": 99531
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-16-step.json",
+      "sha256": "9fbb33bdd32c36a9206815b3a6123d72eedef1e56856153fc3993939b909de6d",
+      "bytes": 97618
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-17-step.json",
+      "sha256": "781de0b223343c0a3c17be3773a13864c8c0f685e7323a9c8565e80e5c9a2a39",
+      "bytes": 97513
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-18-step.json",
+      "sha256": "dc77729e8b8e37030dbc69fc355436a90c92f90fabc0943cabfe85184260411b",
+      "bytes": 97574
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-19-step.json",
+      "sha256": "af0f094767f963cc091c5aa3c1c71a2db598850aa5971b2ee2ace4e98ec20e28",
+      "bytes": 97518
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/entry-XQ37-0-first-0-20-step.json",
+      "sha256": "0b78648ffeb13673a6103cf4773af1b96763d7d53a039d39b42141d5f728f59a",
+      "bytes": 97634
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-0-step.json",
+      "sha256": "b8188fdaea256e07f5d967b9be8defcf123140669c92f4d07c382d9f053bfe06",
+      "bytes": 102716
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-1-step.json",
+      "sha256": "3a6567bfae675be23b0dac83d58a42d7d7f6d12f0dd1b20ee42ec5103c3b38b2",
+      "bytes": 103259
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-2-step.json",
+      "sha256": "0b74b08f04cdcccd13f0e71779697d2d34a4ac3b4eeeafd95a22b76ce0789db1",
+      "bytes": 103688
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-3-step.json",
+      "sha256": "ecdb23dbb1aff8ae35230a68e598691ff1cf1a47768c6fc81df935b5710e2ccd",
+      "bytes": 103236
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-4-step.json",
+      "sha256": "03d73a9338361925990a6de5e57b69301218db99ee8b02e543afc01689345f7e",
+      "bytes": 105455
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-5-step.json",
+      "sha256": "98775728673e050a84ae3427b8320a01fcaf5be7cb47a660ee62287232adc098",
+      "bytes": 107267
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-6-step.json",
+      "sha256": "4f71756d1a7b8ace1cedcffabec8f432489b869471f7577fc18d0a2a74ac2c30",
+      "bytes": 106771
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-7-step.json",
+      "sha256": "f2716e9e89cbafcaa02fc57c26263297e06f3d9b4a48d431751f021b0ab36903",
+      "bytes": 107196
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-8-step.json",
+      "sha256": "251bab606c3b59987dacef15a3468076d3d6b343011c6b7d74d82286f06ae4bc",
+      "bytes": 106744
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-9-step.json",
+      "sha256": "dd2e34b259940a9c67437b7a04f7ea349a93ea853c6302bb72899156225c6c50",
+      "bytes": 105063
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-10-step.json",
+      "sha256": "f5b524e10d1086b4651c5bfa9d74cad846b4f89148240a1a44f7c78a5cf97476",
+      "bytes": 106552
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-11-step.json",
+      "sha256": "45b4370f3caf17ce8da3714d5dce8e8a2deb4ceb77aff36fbe9af5869ed6480f",
+      "bytes": 107088
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-12-step.json",
+      "sha256": "a80df9cd64bcfde73f1cca74968078663a30337905dfa94e5bb23c65edc6a8a6",
+      "bytes": 107254
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-13-step.json",
+      "sha256": "61648994d6d0e677f70de8cce70f0cf259c0c7d663fa2a275231010d96cac87a",
+      "bytes": 107093
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-14-step.json",
+      "sha256": "1edbc0295fec3abe2cc8d293162164b5d75bbc8d71b4f5cfbbda47aa0ade01e1",
+      "bytes": 109312
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-15-step.json",
+      "sha256": "1dfa6c938fb01c337c170decf2abdede42fa847a7e03daa0c64fd8a38d4dad1d",
+      "bytes": 111092
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-16-step.json",
+      "sha256": "b5b516c5e76d2439b79e914aae726b7e2903688818c2f90a95f2f3bcec1c39b3",
+      "bytes": 110596
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-17-step.json",
+      "sha256": "828aa1c7747a3db57df8a41d076bac7a737a47faf38400bb53c235bd7250a898",
+      "bytes": 110762
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-18-step.json",
+      "sha256": "853049b61cd8915a83caf443bd16fcac5da97fe9eb2f860ac22083e4aa8039c8",
+      "bytes": 110601
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-19-step.json",
+      "sha256": "f8361eafa46c6230643511f60bb6c21e82285fb448c224cf2a72d0c192085358",
+      "bytes": 108869
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-20-step.json",
+      "sha256": "27ffa88d89ec480e87e023ae72f50d4041309a8c6e88460645713b08531613b9",
+      "bytes": 108252
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-21-step.json",
+      "sha256": "3034e92ad41282e34ac16e55763dde92fb1a86529f98adc95da9fcaea2b55320",
+      "bytes": 108313
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-22-step.json",
+      "sha256": "86b30d8fba7fc6b0b70bde8fb5d786beebbcaeb05f0ce42bd8768c0112b480e9",
+      "bytes": 108257
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-23-step.json",
+      "sha256": "4d4d9a996b649e9e6044ff063eafa8a4aabed5430bc12d368c62a22b43880761",
+      "bytes": 111557
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-24-step.json",
+      "sha256": "a82df83d697e4b56ceae2911caba7f3c368c1d2ba18048824990be63af71172e",
+      "bytes": 113252
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-25-step.json",
+      "sha256": "05b2e10f005d8fb4a92c9dd46535f733dd67d3668765ccdae2e2036dd69b55c2",
+      "bytes": 114441
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-26-step.json",
+      "sha256": "2359b183f0695d4146ab36162fcdbd02489261e50fbda050e7676355a3ed8b4e",
+      "bytes": 114400
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-27-step.json",
+      "sha256": "e4534ef5047c3fa3f30822299547503ad480a56f008a646259cf03f756220761",
+      "bytes": 109320
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-28-step.json",
+      "sha256": "24058100ec83d86488577ae4b5e488c2a56c6247c00e4d4f21d2a3766f6ca26d",
+      "bytes": 106923
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-29-step.json",
+      "sha256": "f7fb3b00ef94c24715eccb264d1c6d2414564995edb7cd476ae9f1989758c4b1",
+      "bytes": 105843
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-30-step.json",
+      "sha256": "ce6611dc3e724dfcdfeb4423377a40d8c0ea5686c1a08840f3dd86b0ae857237",
+      "bytes": 105904
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-31-step.json",
+      "sha256": "17f323b19a00ec6014e0e5bcd87dd1b835c6ab140da654f48b37697168611301",
+      "bytes": 105848
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-32-step.json",
+      "sha256": "e4c101371da908815f991cb5d80971b1ed9f8a5531c6095b8f12e2cdc5da2d26",
+      "bytes": 109230
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-33-step.json",
+      "sha256": "6fba6200fe9662f2ffc18ced898a56362750bd54c3599ca2892a572de7cc2a99",
+      "bytes": 107625
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/nested-reveal-Before(1, 0)-34-step.json",
+      "sha256": "f27defc5efbc8c295af9c07ad37fbc93936ee58059c78a2450f2c93e9d6385b1",
+      "bytes": 105151
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-0-step.json",
+      "sha256": "9f114dc06c595f525670df55183fdba57794554628af666147f656ba460fc58b",
+      "bytes": 101306
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-1-step.json",
+      "sha256": "243be46d4765b25ac76c8ba300d471ed3deb56f752cfbf7f8775811a3d30c3b0",
+      "bytes": 103502
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-2-step.json",
+      "sha256": "b38fba13e924e3d8cc26943c249084ad5560aa40e77add460f9d76d4c8fcfd78",
+      "bytes": 103038
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-3-step.json",
+      "sha256": "493b38351bec9f38a62e1b214ea543b7a70dddc0d5e33db4280016ab5fa72243",
+      "bytes": 103204
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-4-step.json",
+      "sha256": "6733140dc044879bd42e358e0c66278f8e29d72aa38d1789036ded452dee2e51",
+      "bytes": 103043
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-5-step.json",
+      "sha256": "ebc32d3b10cd38e42d38e149cc00cd65215d507b88707606894ca96804556e76",
+      "bytes": 101347
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-6-step.json",
+      "sha256": "b1f3c0a07f2784db2d44b628b9d8245c9b660edccef011990ef47f0dd7414726",
+      "bytes": 100741
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-7-step.json",
+      "sha256": "93c286cd131f4086b0ae09937ff77ac3320f452589f34c1ebf10bda0070c7acc",
+      "bytes": 100802
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-8-step.json",
+      "sha256": "9dc0796c7ff7116cb275910d95a22446356cf1107f00ea373c94e415f39fc438",
+      "bytes": 100746
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-9-step.json",
+      "sha256": "dbcf286ae6f43a03214f823599483f3e33e3f8bbc352a5b6c331eb08f342b8bc",
+      "bytes": 104548
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-10-step.json",
+      "sha256": "a9ecf2fc6083a857164829bb442fb56e046b6eb2125bd0a0a45dfdd21cb1ed98",
+      "bytes": 98860
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-renown-true-11-step.json",
+      "sha256": "e1bd7a42d881af57251239b0fe163562dca43df2c6aeb60608c24995c7a1561a",
+      "bytes": 96206
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-0-step.json",
+      "sha256": "983590f45140e5c19fde511e52baab82e912e35ebe7b3d453bf75e2f04039132",
+      "bytes": 99792
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-1-step.json",
+      "sha256": "6621589c561393eaa0a555eeb587661e8a14a606b4f4e976aea6ce5f09f18cc7",
+      "bytes": 100041
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-2-step.json",
+      "sha256": "22ade5eb7e5451131c3b30f0044ccdcfb537c54dcb96ed198693404751cb5a31",
+      "bytes": 100106
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-3-step.json",
+      "sha256": "2357b235a40bf9ec2319acc20fa550b44f616884e2e6f1da5c5aeba84297e26a",
+      "bytes": 100050
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-4-step.json",
+      "sha256": "084964577f66ade6db976c4e3364b8e6ccf48abb4c4cd3db92db72f2f8e31b0b",
+      "bytes": 103852
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-5-step.json",
+      "sha256": "e38f6ff11d37e164d955795b03ab07c61ed45957ffa3b5d53e3022fdc16ed893",
+      "bytes": 98162
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/privilege-already-wins-6-step.json",
+      "sha256": "0d8a659963211e05cbcf2ee5b6e30ea394704b1bd5c0855e89bc93eafc2545c7",
+      "bytes": 95508
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-0-step.json",
+      "sha256": "376a15a8b46180ddefe3ab5dcd0bdfca41442caac72111cf5408e33f118379bb",
+      "bytes": 101195
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-1-step.json",
+      "sha256": "a8d669d9d251d620e78993ddd0ce20e6e37efa569667b6a61f12b417ac6bb437",
+      "bytes": 101738
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-2-step.json",
+      "sha256": "93a1b60e6f163a6bd290a4dc5b6e56fc9d917baed940b29e433538ca11b0a14b",
+      "bytes": 102167
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-3-step.json",
+      "sha256": "678cfdd59e3e55935c53f0ef42ea347c1b7e0441e3a5c2f308a2e033448a52de",
+      "bytes": 101715
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-4-step.json",
+      "sha256": "ab5d7550816cc13e036202545a113d00a1a5b3604ac9e09b857ecd706e262541",
+      "bytes": 103934
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-5-step.json",
+      "sha256": "79e180c948304964b7567ada111dc0220e400314751b9d77b4f0e9714ae7e3d6",
+      "bytes": 105746
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-6-step.json",
+      "sha256": "fb9648bb4239eeb9d13d725251ec8b950292b5fbf0f7e6a64e5a953529dde642",
+      "bytes": 105250
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-7-step.json",
+      "sha256": "28b6fe15551ab638fa639dbb55ab53e9b945e096727e2970b9411faeb2fc1bd5",
+      "bytes": 105675
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-8-step.json",
+      "sha256": "2902fc9eab55d5d81ec6255436d77ee162eb88ba0035827d429bab3a3052a76a",
+      "bytes": 105223
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-9-step.json",
+      "sha256": "19e6673aeae28b7b0f5ffa01b4a0e62afa1085043648f060a4f842483f1f117a",
+      "bytes": 103542
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-10-step.json",
+      "sha256": "4896271093bba6149076b08f8fbee4f42dd5ebbfa2ec1fbe0aceb861b607da52",
+      "bytes": 105031
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-11-step.json",
+      "sha256": "1408f19a31b3b9ade595b01641076281a56229f1933c6c7c88b0a60d7c444dd6",
+      "bytes": 105567
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-12-step.json",
+      "sha256": "c8005d8545d0ccc934abc5745fdab607766b6c7ad5d903fe83f3059a72c89ba4",
+      "bytes": 105733
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-13-step.json",
+      "sha256": "d467bd3533b46b284c3a27972f73db86ebd011530ca439eb2347aae58fcb66d9",
+      "bytes": 105572
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-14-step.json",
+      "sha256": "78730a7d6f8e29b7eeb829e9c64166c06b08c6533d9b85def9bcd6a4f36509e5",
+      "bytes": 107791
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-15-step.json",
+      "sha256": "23c0b32edcff3357f69b3a158bf378c6b738621faa0ef9ab45c4cdfb8ee8f064",
+      "bytes": 109571
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-16-step.json",
+      "sha256": "eaf6da3029405731892639853a46c2f7a1ad1d2c78819f74594c09b357640273",
+      "bytes": 109075
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-17-step.json",
+      "sha256": "9faf32d2f8d9841a54171a6efdd44a38e8195684d0361d627ad5b47908026dcb",
+      "bytes": 109241
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-18-step.json",
+      "sha256": "308c301b9e8ba950f92cd302690d3cce60d322f5cf874498f8963784b57b4f3e",
+      "bytes": 109080
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-19-step.json",
+      "sha256": "a502050348872070ffe5994e9bb70653de4f76f84f0eb9927f7739fd4c85c169",
+      "bytes": 107348
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-20-step.json",
+      "sha256": "8c12e579bef1f0cad7ccd9b436d40fc52c403676c95ec50dcbf8fac9c31beaaa",
+      "bytes": 106731
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-21-step.json",
+      "sha256": "6d715a94d82e0a63d5e86f71c8c02a3fec3c9773627edbd66635ddf639c815db",
+      "bytes": 106792
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-22-step.json",
+      "sha256": "f99ce7a48a300c97cbca2549c1f22c3eeba9e9c6e7d4f7ae49dddedff2aaf86a",
+      "bytes": 106736
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-23-step.json",
+      "sha256": "0b3a30544b2cfb8e6558524ade154474d952b427d6b670d4d654feda905e7a69",
+      "bytes": 110036
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-24-step.json",
+      "sha256": "997401f48c6381153e92b5297459cb68444260760db0006589bf2222df458300",
+      "bytes": 111731
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-25-step.json",
+      "sha256": "3e2531bdf6dee65cbe50a1303a2480207c8f917ba7e96d7124752b6b703acf5d",
+      "bytes": 112879
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-26-step.json",
+      "sha256": "26bf8e2d176d2d26a4fe306480b830eeba84916e1565369f1edd3de5f2072d0b",
+      "bytes": 107933
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-27-step.json",
+      "sha256": "53547ca89f16c366046389e511975b8e69ac6c265b32970f52e1881b744685ba",
+      "bytes": 105705
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-28-step.json",
+      "sha256": "8d4f119a33e3ab618aa71b2f718247af2781992750bd83dc0a181c7fb20416cc",
+      "bytes": 104625
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-29-step.json",
+      "sha256": "8b347c9828509821357b6b35ea9695fa1c5a530fdcaaa872cc87fcb5cd1e7207",
+      "bytes": 104686
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-30-step.json",
+      "sha256": "33dde73120adb691668f45e17eba78bbe747fc152e1dad92950968a10ea913ae",
+      "bytes": 104630
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-31-step.json",
+      "sha256": "38dbf1656d0cff85ee39586d956eb07dd8da6fe264a2f5d005c84e5dafdbba28",
+      "bytes": 108012
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-32-step.json",
+      "sha256": "791ce86fbd4940ce9c4840b5eab4affe7553b936ebde565ff12cb2fb1d2f6e33",
+      "bytes": 106541
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-33-step.json",
+      "sha256": "402ed518463e8d608d9046c47c7826499523622f7db52123152ad8026a8bcdca",
+      "bytes": 104236
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-34-step.json",
+      "sha256": "1e125e8b1cfdcb3fce0139262f63dd8d3a3569a648a8bf1d9b5af4917bf32bae",
+      "bytes": 103098
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-35-step.json",
+      "sha256": "9375b5593efbebf281073d66671d02faf0bcff597cdffc70df284f1718499eff",
+      "bytes": 103159
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-36-step.json",
+      "sha256": "6909978290654323706b8b18ab4f75786a84324bac8d8f428084e870e312a7e6",
+      "bytes": 103103
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-nested-2-1-37-step.json",
+      "sha256": "52bc310ca3ce5170bc050b19f7782c0be2019e5b2159f631f099a54ded17aa99",
+      "bytes": 103186
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-0-step.json",
+      "sha256": "e5d801121c7290af57bd12aa2482d307eb1a33881f7cd51b2dbdd44bf7a767b2",
+      "bytes": 103787
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-1-step.json",
+      "sha256": "897429b678162587d721e21dec170f313655c64a9469d3fe7c93f11ef86916b4",
+      "bytes": 104428
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-2-step.json",
+      "sha256": "cf3aac10cece3c0307fd1b47ff1cafbc8645cd7a68cb12c5431fcc2f6b8c3618",
+      "bytes": 104598
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-3-step.json",
+      "sha256": "84c5da8ae270f260a93a63ef98cdc77f180e8b265bba7de48dffa300b1662803",
+      "bytes": 104437
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-4-step.json",
+      "sha256": "6469db8f38b77c93d846c661d9d66b6d4dc45d7ceaef1161d1504007805d4871",
+      "bytes": 104896
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-5-step.json",
+      "sha256": "9dea8844c6feab0ef76120c73b84bd10c2895f42aec808d7424801bc31ff32f8",
+      "bytes": 105659
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-6-step.json",
+      "sha256": "53a7d3cf62fc04e9fdb61a2c06f3ca0a2533cd47b0b90c34a122404446362a2a",
+      "bytes": 104488
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-0-step.json",
+      "sha256": "d3aea59f8d823ec14c2e741a3746d419ee1bb4a3cad17b466471e46f16f83b2c",
+      "bytes": 105825
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-1-step.json",
+      "sha256": "735e34be0d1244c86d9013ba38dbc336f9b3e14fb6963ee795eed707a188b574",
+      "bytes": 106369
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-2-step.json",
+      "sha256": "8e3f7b06593127424ca292b6a6793c2a671ba63f87d5ef41e567b1ebec4aa0d1",
+      "bytes": 106571
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-3-step.json",
+      "sha256": "1bc763fbd2f3f748e7c6e9e2ae47f52a9629c959c019951c94a5edc01b3da4de",
+      "bytes": 106669
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-4-step.json",
+      "sha256": "3b3ce2f3f6741390fa3d80737c6094b13c8fd5c8f63c93617bba7405ebe111aa",
+      "bytes": 108591
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-5-step.json",
+      "sha256": "367db89134bb397e22fb4b57fafb5c783e4307173bc9d5ddeb0f29566ac10f0e",
+      "bytes": 110370
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-6-step.json",
+      "sha256": "5a722de34840d9c7abcbe4828241ba2ef2f0edb15ca8f8eb36519ea041f59704",
+      "bytes": 109874
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-7-step.json",
+      "sha256": "e680ab2b86bbb144a27246142e364aa9a2afb9c4720e72a056b70966739a6b75",
+      "bytes": 110072
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-8-step.json",
+      "sha256": "940cfd735f54258885c3aaee5ae6d367645cb194a0d6f3258902154e62a41318",
+      "bytes": 110170
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-9-step.json",
+      "sha256": "672bfa70a65a0a96fd0571cceb217829ef248db19c5a10df0b245153405a878a",
+      "bytes": 108232
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-10-step.json",
+      "sha256": "bf505f4e89ac314707fffff64d2f053b93c5cea97299c56fc63688c1297fcd04",
+      "bytes": 107637
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-11-step.json",
+      "sha256": "e73b7fb1e64103ed67ee8e0532e567f2e7a4613fd1120af345046717c52bff6f",
+      "bytes": 107814
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-12-step.json",
+      "sha256": "16fcab53706f5f0e799953b67dfdeb795ff70866f8cb53f8c6fa7bc05af24e61",
+      "bytes": 108163
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-13-step.json",
+      "sha256": "673c1bc3717314a785826d9cc9d371f44aade674ed951b81dc03a6fc19e56108",
+      "bytes": 108915
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-14-step.json",
+      "sha256": "7d9350a7848defede14c279f85b4ac99470b94ea7f3c0f109f237df17cfaabd6",
+      "bytes": 108440
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-15-step.json",
+      "sha256": "e2ad46045e4fbd428c94999eb4575a9f14670e5a7ce0a274866b11ec5d7883d1",
+      "bytes": 107302
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-16-step.json",
+      "sha256": "7145e6a62311c6799b6405f7f597d01697e3803167ce7355746a7993832e0a92",
+      "bytes": 107479
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-17-step.json",
+      "sha256": "d7d0b82114185396388fb5ba847c92e46102bfc0d7700ec4cfd4ba0a30c48b67",
+      "bytes": 109510
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-18-step.json",
+      "sha256": "a07fbab1ece841be5b40b834d9b9724351e8a62c3f77609abc40768ab86e13f4",
+      "bytes": 110045
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-19-step.json",
+      "sha256": "3b7cdab9caea207a61b3c25be95b737f975adbcc4a0e0e1d7b81a72c9e271fd5",
+      "bytes": 110211
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-20-step.json",
+      "sha256": "ed1841fa3e8d033fbbab09c7fe06613e88dc897fb7129824658ca0cb2694f946",
+      "bytes": 110050
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-21-step.json",
+      "sha256": "53b33a643643b282da40d59c0c66f32fee44795090b17f28e6cb63e03d9f5c96",
+      "bytes": 112263
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-22-step.json",
+      "sha256": "4a7429cc2f59c2429048c8ecbcfa872c07d2094f804f2fbbf9f2f9304c9306b9",
+      "bytes": 113983
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-23-step.json",
+      "sha256": "61c760caf109a71169af63a8eba1524eb21ab3ff5f27e9761e367c7bbc2aa32e",
+      "bytes": 113546
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-24-step.json",
+      "sha256": "5b1f8624bd98a65e5f3e2cee343959724628c97f25776a614d202f64a5aea0cc",
+      "bytes": 113712
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-25-step.json",
+      "sha256": "bda5ac57ad9745b4baa422ab34a472ae45675e3ab11a008288c35040c1c2f7fb",
+      "bytes": 113551
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-26-step.json",
+      "sha256": "6c1abc721b89172a14cc816269dde094bf5df58118b42670fda37f0f5f28bbb4",
+      "bytes": 111904
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-27-step.json",
+      "sha256": "7779ebe22fd51e0750800edcdf5340c0ed78fb4b2c756ff41bc3e1a7e0e30999",
+      "bytes": 111307
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-28-step.json",
+      "sha256": "5c39b28ab35c93746de90129757d97bda67f09847362062f349be5525af95644",
+      "bytes": 111368
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-29-step.json",
+      "sha256": "83d2fe557e45afcb2b90531f053611482ac59f4446c658cc15b34c3a9883aa21",
+      "bytes": 111312
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-30-step.json",
+      "sha256": "8ab904a8d6a5e90a557bcff8f1bce8fc1dd666aa4914418d56ea900b5907566e",
+      "bytes": 113084
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-conservation-31-step.json",
+      "sha256": "b5e822e977832af2e267661ca2c0c63c9fa436670e203b5c6a9cd00605894b45",
+      "bytes": 112704
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-0-step.json",
+      "sha256": "d3e17d2dda30f34f32dba5956c6ad6c9f747620e194f726f6caedc15f3fc2f0d",
+      "bytes": 49211
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-1-step.json",
+      "sha256": "af7afda62713f889a88b8a0136f7b0e628939fb583cefdc73c69cc05c8aa2c23",
+      "bytes": 49880
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-2-step.json",
+      "sha256": "3f52a5ef367100eb5ff4b08bd6a4894a0726194d529aae4ec73c77e325dfd175",
+      "bytes": 51662
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-3-step.json",
+      "sha256": "6e058e897946798770864ccc6c37d8292953c83c3572018c102625047ef6ae50",
+      "bytes": 52509
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-4-step.json",
+      "sha256": "92eb331d0eaf15521b1473fe5e803204304cabf284d6d6c381c4719a2fe00499",
+      "bytes": 52146
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-5-step.json",
+      "sha256": "c1250dabb08ae45638672735ebfad3aa38513d220fb58a675f9107454a285908",
+      "bytes": 51073
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-6-step.json",
+      "sha256": "2f8ef9b86ecdce745902ae9d6eb7e595bf922b5a9fed358c4f80abb08c997dc8",
+      "bytes": 50572
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-7-step.json",
+      "sha256": "4240a376b5f5ba54fa480232b79b332d31175e9d7271b49e4583f5ddb513a75a",
+      "bytes": 52007
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-8-step.json",
+      "sha256": "c7313b54f2150acebd26b88ab956d660426bfc22c8ef1923cc9eb325e5d19a38",
+      "bytes": 51813
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-9-step.json",
+      "sha256": "5b2957e163cc542af4bb648e5c78f42b6c8ec368d36c5aa64a26395e978cde3e",
+      "bytes": 50858
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-10-step.json",
+      "sha256": "a1b4b86be69a3291cae6b2265221b7ec93c2a545ec4cdd59324bebe7398f6ab5",
+      "bytes": 50807
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-11-step.json",
+      "sha256": "afa6a62fb15e3d5f879aa511becab00136008eef70bc115aa3116dde91918667",
+      "bytes": 50801
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-12-step.json",
+      "sha256": "206e664dfb2f7aa309a173789c24ab8adee7f936061ebbacd3870d0b348893cf",
+      "bytes": 50860
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-13-step.json",
+      "sha256": "8785237f188b026901ddd5439a145b260e1d1686eb38c2bf1e4a035b13f1749e",
+      "bytes": 50801
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-14-step.json",
+      "sha256": "ad5783eaff8d792bd1a6eb33ad74f187146fb469bba7d9c2dbef19fd69406bec",
+      "bytes": 52846
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-15-step.json",
+      "sha256": "d355c5fdbbafe7c61abdc3e816ce65002da977dae4367fd1adec100bc3074c82",
+      "bytes": 54095
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-16-step.json",
+      "sha256": "a2b29337618948009e23575b19fb50e58f0fabbfaf55180e3d1abe3369aa1fe9",
+      "bytes": 54956
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-17-step.json",
+      "sha256": "55b2a6ee238ce04794f5d044988ced09af9dd3d705a8baf9439b667312a144ad",
+      "bytes": 54847
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-18-step.json",
+      "sha256": "e974990718892f4bfaaf082fe1c4e83eaee9c4a858385825dff2e5c0b8d9e215",
+      "bytes": 52478
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-0-step.json",
+      "sha256": "d3e17d2dda30f34f32dba5956c6ad6c9f747620e194f726f6caedc15f3fc2f0d",
+      "bytes": 49211
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-1-step.json",
+      "sha256": "af7afda62713f889a88b8a0136f7b0e628939fb583cefdc73c69cc05c8aa2c23",
+      "bytes": 49880
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-2-step.json",
+      "sha256": "3f52a5ef367100eb5ff4b08bd6a4894a0726194d529aae4ec73c77e325dfd175",
+      "bytes": 51662
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-3-step.json",
+      "sha256": "6e058e897946798770864ccc6c37d8292953c83c3572018c102625047ef6ae50",
+      "bytes": 52509
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-4-step.json",
+      "sha256": "92eb331d0eaf15521b1473fe5e803204304cabf284d6d6c381c4719a2fe00499",
+      "bytes": 52146
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-5-step.json",
+      "sha256": "c1250dabb08ae45638672735ebfad3aa38513d220fb58a675f9107454a285908",
+      "bytes": 51073
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-6-step.json",
+      "sha256": "2f8ef9b86ecdce745902ae9d6eb7e595bf922b5a9fed358c4f80abb08c997dc8",
+      "bytes": 50572
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-7-step.json",
+      "sha256": "4240a376b5f5ba54fa480232b79b332d31175e9d7271b49e4583f5ddb513a75a",
+      "bytes": 52007
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-8-step.json",
+      "sha256": "c7313b54f2150acebd26b88ab956d660426bfc22c8ef1923cc9eb325e5d19a38",
+      "bytes": 51813
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-9-step.json",
+      "sha256": "5b2957e163cc542af4bb648e5c78f42b6c8ec368d36c5aa64a26395e978cde3e",
+      "bytes": 50858
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-10-step.json",
+      "sha256": "a1b4b86be69a3291cae6b2265221b7ec93c2a545ec4cdd59324bebe7398f6ab5",
+      "bytes": 50807
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-11-step.json",
+      "sha256": "afa6a62fb15e3d5f879aa511becab00136008eef70bc115aa3116dde91918667",
+      "bytes": 50801
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-12-step.json",
+      "sha256": "206e664dfb2f7aa309a173789c24ab8adee7f936061ebbacd3870d0b348893cf",
+      "bytes": 50860
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-13-step.json",
+      "sha256": "8785237f188b026901ddd5439a145b260e1d1686eb38c2bf1e4a035b13f1749e",
+      "bytes": 50801
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-14-step.json",
+      "sha256": "ad5783eaff8d792bd1a6eb33ad74f187146fb469bba7d9c2dbef19fd69406bec",
+      "bytes": 52846
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-15-step.json",
+      "sha256": "d355c5fdbbafe7c61abdc3e816ce65002da977dae4367fd1adec100bc3074c82",
+      "bytes": 54095
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-16-step.json",
+      "sha256": "a2b29337618948009e23575b19fb50e58f0fabbfaf55180e3d1abe3369aa1fe9",
+      "bytes": 54956
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-17-step.json",
+      "sha256": "55b2a6ee238ce04794f5d044988ced09af9dd3d705a8baf9439b667312a144ad",
+      "bytes": 54847
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-18-step.json",
+      "sha256": "e974990718892f4bfaaf082fe1c4e83eaee9c4a858385825dff2e5c0b8d9e215",
+      "bytes": 52478
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-0-checkpoint.json",
+      "sha256": "eb2499833853cf4315f5d959570ac5c455572dc548241d32dba46a265b166c9b",
+      "bytes": 25910
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-1-checkpoint.json",
+      "sha256": "6ea5a18e0e3ac7e3084f01b7401f580585f03a334ad69e9ba8a8fc7d0195e757",
+      "bytes": 26753
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-2-checkpoint.json",
+      "sha256": "9f19f4555be02d3e7b28ce74a9d2994dc8a5a47c8ddc75e6004c1ba6ccbcffaf",
+      "bytes": 26753
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-3-checkpoint.json",
+      "sha256": "13ddc4b000de1f6c30570cc995787f784ffe69555b465738a8d8c821ccf2fa48",
+      "bytes": 28205
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-4-checkpoint.json",
+      "sha256": "ebc7cee16ff69b6273c04052ca839bc718a7e9048973114e02d85234d91b2bf7",
+      "bytes": 28193
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-5-checkpoint.json",
+      "sha256": "fe8db93984da1d1b0002d34e0b2489620424122a942a3a5eaef2c500eefcfbbf",
+      "bytes": 28193
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-6-checkpoint.json",
+      "sha256": "9591e837c69125d8ce2d4631a9c2159913ea30aa79c742d2b424a48dd0374e85",
+      "bytes": 27314
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-7-checkpoint.json",
+      "sha256": "a900fba7c1f1960146dc83ffbeaefa877abd57d46a374e21e9c69c94f3014312",
+      "bytes": 27314
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-8-checkpoint.json",
+      "sha256": "c4bae7506f8d85f45ff6154d164f0e12993860cc3cce289bc0e60eb6eafc3b4a",
+      "bytes": 28690
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-9-checkpoint.json",
+      "sha256": "dac6a688faecc09141225f284a7bbeda14376b668d86e1d41a6d43259f8245d8",
+      "bytes": 27426
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-10-checkpoint.json",
+      "sha256": "ec28295a78230a8c2881867830ca9b94da3f88e3c2b609b9936004785c5fc285",
+      "bytes": 27487
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-11-checkpoint.json",
+      "sha256": "c7737c1f2ed597f8e12fa8ed2662ae2da9c414775499925cd87e87b05683c69d",
+      "bytes": 27426
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-12-checkpoint.json",
+      "sha256": "3e646ca4f9067b021453623376998c207d818ccd31218654b9e9f60488ca77be",
+      "bytes": 27426
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-13-checkpoint.json",
+      "sha256": "35bcf6bde50b46574b4c9f9aae94fe0d651a847d1eaa7ccd1bfce48a921b68d1",
+      "bytes": 27426
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-14-checkpoint.json",
+      "sha256": "765274bb0f70191f9a64d056407ce3da962298c7d4279f45edf5a8a6bcd5fdcb",
+      "bytes": 27426
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-15-checkpoint.json",
+      "sha256": "fb30b39bf2f30973c64bdb663f445e91d503c7d5e864677581841a665b689bdf",
+      "bytes": 29095
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-16-checkpoint.json",
+      "sha256": "fb30b39bf2f30973c64bdb663f445e91d503c7d5e864677581841a665b689bdf",
+      "bytes": 29095
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-17-checkpoint.json",
+      "sha256": "f10bf7a6b0cfab20ee44a8c84bd4ea99574dafdd355d0a26c777269774a23a18",
+      "bytes": 29679
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-18-checkpoint.json",
+      "sha256": "05a7f7622b5708b276bab2ee0c53f924c8269615971cddcec1177a73056bd5b7",
+      "bytes": 29679
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-duel-7-checkpoint.json",
+      "sha256": "a900fba7c1f1960146dc83ffbeaefa877abd57d46a374e21e9c69c94f3014312",
+      "bytes": 27314
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-0-step.json",
+      "sha256": "dece6223f617b7a73effa549ee7bd28975291e325125f6981ee6ac431b078b63",
+      "bytes": 94174
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-1-step.json",
+      "sha256": "69608426872e63a7a4946231682b587ef1a429706d91f939a0a849636ec4eb8e",
+      "bytes": 94718
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-2-step.json",
+      "sha256": "ae76df4ecb382f200916cabff72daaba341b62dd0318fb346626d0d5cc0dae82",
+      "bytes": 94920
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-3-step.json",
+      "sha256": "3afb2510d12f61190b47c5ebe632e04c7f889e7dc9108bcbef4debcd594b4104",
+      "bytes": 94759
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-4-step.json",
+      "sha256": "303b9bcc238882d6bd471664152146fec9dbf0374cc00f69ae1b0653b74f1f84",
+      "bytes": 97189
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-5-step.json",
+      "sha256": "63f4507bcdcc838e5daee79f7c81891f7f52d38269716f84ff761b5147acfbad",
+      "bytes": 98719
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-6-step.json",
+      "sha256": "045233a1a450bc33bc4666fd270b5803e7e9d225870ece43d846475b900d6fbe",
+      "bytes": 98223
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-7-step.json",
+      "sha256": "25a407cea627500b1f53f379c65030abda8bc12d330f7860823004c1c9f814a8",
+      "bytes": 98421
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-8-step.json",
+      "sha256": "36b905cb3d37be1e68f34c03ec78759e7a74631826b26bf183a2ddc1f19de38c",
+      "bytes": 98260
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-9-step.json",
+      "sha256": "c85a3ce344e149228db1ef0a492fa1ee849d50e288654412da69b7fa48cfcaa3",
+      "bytes": 96830
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-10-step.json",
+      "sha256": "57d4e5624509e43d8dddc0405419fd2d4d4ad3fc5abbc50957038097830f80ef",
+      "bytes": 95986
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-11-step.json",
+      "sha256": "7640e2619666cd2d26249529972ce5b72e498f59df9d0d9767978a3aab31a259",
+      "bytes": 96160
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-12-step.json",
+      "sha256": "5ab84bdf3a715c95f71ce0512f3e012fac6aec6ed7146b684e285365d210b2d9",
+      "bytes": 96104
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-13-step.json",
+      "sha256": "106f74f287fc705dffdb6ab5f1d2b65c14651eda9fd1adc78fa09269e98e3e43",
+      "bytes": 98049
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-14-step.json",
+      "sha256": "aca39b658897d5605a94ca501f3fd010ed5cbe808c216792cc8971b41268c3b2",
+      "bytes": 97507
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-0-checkpoint.json",
+      "sha256": "af32209e2b7c2126874d17cf9dd2b44409be95b0a1c1f9227ee909f5a83830d9",
+      "bytes": 53078
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-1-checkpoint.json",
+      "sha256": "e2dd06fedd8fce281001c210251251d3ec6f0d4a82812c8cb79f135fc107be86",
+      "bytes": 54702
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-2-checkpoint.json",
+      "sha256": "c9684fb17699f5023966f3540e80894365e58ec242dceff20bf8a7dc262b59c1",
+      "bytes": 54543
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-3-checkpoint.json",
+      "sha256": "b1eb24e99c676c640e33e31545a120dd172bdfef5e5ca32d9698cd1529329839",
+      "bytes": 54742
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-4-checkpoint.json",
+      "sha256": "f73f36a563f99ecedd06ae62c1a58027e15f94e841467436b44eb00c6ff734e3",
+      "bytes": 54578
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-5-checkpoint.json",
+      "sha256": "3e5d9ccf3f9f5ec53efc4d3f2673f4eef0902d4cbaccb7eb9290e7737f2ac5af",
+      "bytes": 56485
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-6-checkpoint.json",
+      "sha256": "a60e5fca46839995ec41e1f971788b881115ef3ff3fd45cde7eab975146462e5",
+      "bytes": 57381
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-7-checkpoint.json",
+      "sha256": "27469eb72283b9946e76f7855c7dfef599c87aa0a808168dc1740c40c54d9f8c",
+      "bytes": 57216
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-8-checkpoint.json",
+      "sha256": "443bdecfbc62560d0bd8747a017e6bd1f9bfb3804506dc4bf703e3e8bac9bf84",
+      "bytes": 57415
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-9-checkpoint.json",
+      "sha256": "bdc0b14c7fb508af1ad2756e91066b72df0a8a0c13f951ee97a14c03f0d7b3c7",
+      "bytes": 57251
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-10-checkpoint.json",
+      "sha256": "f32aa232eb7c1a10eb9e0a49c7269b89502e940ecfa21bbe22602abf17744e2a",
+      "bytes": 55825
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-11-checkpoint.json",
+      "sha256": "1860a08d598f119fcc69b5ba3d00d757e6c674cd64e709b82f39ddea801c4842",
+      "bytes": 55767
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-12-checkpoint.json",
+      "sha256": "c5c9d411f155a1938f490e3251b8e3e3dfe60011b7d91c4025677d5eeacf6aa0",
+      "bytes": 55940
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-13-checkpoint.json",
+      "sha256": "103cde212e00d69db35b6ad2085f794163fea97ac0ca5c4135915ca1fc34304e",
+      "bytes": 55883
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-14-checkpoint.json",
+      "sha256": "c7a9d8276544cd8d8440d745b875076d969fe2081ad296bbf7acfa232f43880f",
+      "bytes": 57482
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-slot-2-13-checkpoint.json",
+      "sha256": "103cde212e00d69db35b6ad2085f794163fea97ac0ca5c4135915ca1fc34304e",
+      "bytes": 55883
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-0-step.json",
+      "sha256": "e5d801121c7290af57bd12aa2482d307eb1a33881f7cd51b2dbdd44bf7a767b2",
+      "bytes": 103787
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-1-step.json",
+      "sha256": "897429b678162587d721e21dec170f313655c64a9469d3fe7c93f11ef86916b4",
+      "bytes": 104428
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-2-step.json",
+      "sha256": "cf3aac10cece3c0307fd1b47ff1cafbc8645cd7a68cb12c5431fcc2f6b8c3618",
+      "bytes": 104598
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-3-step.json",
+      "sha256": "84c5da8ae270f260a93a63ef98cdc77f180e8b265bba7de48dffa300b1662803",
+      "bytes": 104437
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-4-step.json",
+      "sha256": "6469db8f38b77c93d846c661d9d66b6d4dc45d7ceaef1161d1504007805d4871",
+      "bytes": 104896
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-5-step.json",
+      "sha256": "9dea8844c6feab0ef76120c73b84bd10c2895f42aec808d7424801bc31ff32f8",
+      "bytes": 105659
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-6-step.json",
+      "sha256": "53a7d3cf62fc04e9fdb61a2c06f3ca0a2533cd47b0b90c34a122404446362a2a",
+      "bytes": 104488
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-0-checkpoint.json",
+      "sha256": "0f763dac6be01c3879d5733b660dc5906569a601e382bc3c893253ca4cb2b0c8",
+      "bytes": 59737
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-1-checkpoint.json",
+      "sha256": "c16728fc64aab5893b28df825c1c2aa0226a7a6de5b7a0d0b4340b1d123dbbd6",
+      "bytes": 61628
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-2-checkpoint.json",
+      "sha256": "ecd8213dd6eeb3c8050482750dfe133321c9fac1f4cb7d350ab48c47dd23215f",
+      "bytes": 61469
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-3-checkpoint.json",
+      "sha256": "0ee5f086f03209bc2b04ebe4acf1ed574485ad2a0052033e948efe5fff297caf",
+      "bytes": 61636
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-4-checkpoint.json",
+      "sha256": "05e1158ba5ad91d2fe0f0e8fb85799fe210e446a29b350c746ea352cafa070e3",
+      "bytes": 61472
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-5-checkpoint.json",
+      "sha256": "8be5d7cc30f974a265f91279c93a5c2c2932fda61e8838d71eef4c1bbefb3895",
+      "bytes": 62006
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-6-checkpoint.json",
+      "sha256": "8be5d7cc30f974a265f91279c93a5c2c2932fda61e8838d71eef4c1bbefb3895",
+      "bytes": 62006
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/win_flow_evidence_dir/world-empty-jc050-6-checkpoint.json",
+      "sha256": "8be5d7cc30f974a265f91279c93a5c2c2932fda61e8838d71eef4c1bbefb3895",
+      "bytes": 62006
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/raw-selectors/web/src/game/sevenCardUIV0112.fixture.json",
+      "sha256": "1b0db2e4465a56dfd195387789e8824ab100dcf7880da90e52c7ddc13647e667",
+      "bytes": 683484
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-accept.json",
+      "sha256": "af4a7196da1781dafa58481aa725cf497e22b23c2016755d2166365ceaf6b42b",
+      "bytes": 845532
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-decline.json",
+      "sha256": "f9753cc4c4193bce5d03fb0bd4f1421ce1c358db98ee8cece446e263bc2459bd",
+      "bytes": 617695
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-murder-response.json",
+      "sha256": "c503c1520ac2620f415eaf774d27bfab4fcb5873cc1d0ddc36c3add64685a7ac",
+      "bytes": 1188542
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-region-replaced-fixture.json",
+      "sha256": "ffb45bf5e8c62a3f30b3c749f3675bf6cf524d1e7d46dcdfb405e3283d1d4d95",
+      "bytes": 632676
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-region-vacant-fixture.json",
+      "sha256": "e5a6c10ade12d7b35a26fb77f29fc92136afdd8c5b59d4266850f708a67c0392",
+      "bytes": 610714
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/duel-source-moved-fixture.json",
+      "sha256": "2a4ba8545baffb9fa3a7e1947bbf9dcc609dc57670dc6d6711685c6eb81b93bf",
+      "bytes": 622941
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-accept.json",
+      "sha256": "98aee9d92c46f731871fec54e6de3d8f025dcc2134f443d543b9535e3f5ef9e5",
+      "bytes": 1736740
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-decline.json",
+      "sha256": "1b8bc9d8bc042480118b679f67b9874038686197a377f338cd41abd018b59df8",
+      "bytes": 1105606
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-murder-response.json",
+      "sha256": "f7092aed091c8144bc0de00196b83a08c028d82128602f0e13856f9b444175dd",
+      "bytes": 2694451
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-region-replaced-fixture.json",
+      "sha256": "0c14ae2f1027165c5f65c8836aa5af7fddd045cd281abf11c024aced8740a90a",
+      "bytes": 1142957
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-region-vacant-fixture.json",
+      "sha256": "8f3fa7de91ac36dc4a19740f6945b02498a95b121aae2d2aeddfbc72f4fe0e43",
+      "bytes": 1111915
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/xq24_trace_dir/teams-source-moved-fixture.json",
+      "sha256": "9875fe54ec284b78a562773dd6c657eb7f99365a4b1a6454ce23fcb87cd21a48",
+      "bytes": 1122342
+    },
+    {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/single/xq24_container_evidence_file.json",
+      "sha256": "1314fca1ad32051bebf9f2ff03dc997c4a3fefb6c0ca194db641f8566849a555",
+      "bytes": 226797
+    }
+  ]
+}

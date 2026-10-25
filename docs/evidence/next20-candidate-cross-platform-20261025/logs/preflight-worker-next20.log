@@ -1,0 +1,18 @@
+✔ Internal closed next20 next20-bq033-real-anchor-payment: continuous Native commands, journals, D1 reopening and receipts (2499.755237ms)
+ℹ {"preparedNativeLayout":true,"accepted":10,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ Internal closed next20 next20-bq034-real-blood-entry: continuous Native commands, journals, D1 reopening and receipts (2401.624753ms)
+ℹ {"preparedNativeLayout":true,"accepted":11,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ Internal closed next20 next20-cq25-departed-source-search: continuous Native commands, journals, D1 reopening and receipts (2882.447847ms)
+ℹ {"preparedNativeLayout":true,"accepted":17,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ Internal closed next20 next20-xg25-real-response-fallback-caller: continuous Native commands, journals, D1 reopening and receipts (2877.958672ms)
+ℹ {"preparedNativeLayout":true,"accepted":16,"rejected":0,"reopened":2,"fullJournalsEqual":true,"opaqueStatesEqual":true,"seatViewsEqual":true,"duplicateOriginalReceipt":true}
+✔ public closed next20: real HTTP create/join rejection, original receipts and D1 pause/reopen/resume (1174.649863ms)
+ℹ {"publicAdmission":false,"closedCardsRejectedAtCreateAndJoin":5,"originalEntryAndCommandReceipts":true,"opaquePausedStateRestored":true,"players":2}
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12248.189739

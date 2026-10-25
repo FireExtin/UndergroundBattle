@@ -1,0 +1,8 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "source": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug",
+  "destination": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug",
+  "method": "cp -a --reflink=auto, copy-on-write or separate bytes; no hardlinks",
+  "scope": "pure compiled artifacts only, no test-result reuse",
+  "at_utc": "2026-10-25T09:25:18.726785+00:00"
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/select_classic_traces.py", line 11, in <module>
+    declarations=[resolution.get('Declare',{}).get('declaration',{})]
+                  ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'

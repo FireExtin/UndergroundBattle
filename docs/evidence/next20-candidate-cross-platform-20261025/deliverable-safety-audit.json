@@ -1,0 +1,878 @@
+{
+  "at_utc": "2026-10-25T10:27:39.258504+00:00",
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "files_scanned_before_this_audit": 217,
+  "bytes": 2530465,
+  "findings": [],
+  "exclusions": "no credentials, private user data, databases, build outputs, native binaries, package caches or node_modules; only authorized source/text and synthetic test evidence",
+  "files": {
+    "docs/NEXT20_CANDIDATE_CROSS_PLATFORM_2026-10-25.md": {
+      "bytes": 8895,
+      "sha256": "f791c912590baeaed13196b3e4cde60abc8421da31d10eaf2e354ff724aab7c7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/rewards-compare.json": {
+      "bytes": 749,
+      "sha256": "3b365bbae5148974bb65d7111116c918c89791f80ada37fa04e1b09ae6531c06"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-probe-compile-args.json": {
+      "bytes": 817,
+      "sha256": "630fd14246de7e057b9017454fa62b224e3e7ff82b8e946632c193cd9b62e576"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/new-four-original-native.raw.json.gz": {
+      "bytes": 650849,
+      "sha256": "d538af1261bb6a65c4d76dc79ba8f266b667139a8909e9cf5dea6eba490bf0f9"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/frozen-source.json": {
+      "bytes": 4245,
+      "sha256": "af327c7fd0f1c464823afaf27527d619e31102f1327ba1d2d41630b91aa22aa3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/preserved-original32.json": {
+      "bytes": 4043,
+      "sha256": "ea7c0f5697131a5634914254e7dfc2272387e3cab6352be0464da61957c7bbd0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/xq18-selected-manifest.json": {
+      "bytes": 30850,
+      "sha256": "51fbdb74e6ab32966fa67e55a593c2face4af6bb8309dbe67b26677a14fee019"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/summary.json": {
+      "bytes": 5504,
+      "sha256": "d0be2762515c744912f11f4bb3fcc4e0a7b67320e0605adef740c463f29a0886"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/runtime-source-equality.json": {
+      "bytes": 1669,
+      "sha256": "52e5708973a0b95abfc9d048b29f876a13d8ec73002a76fc1488fd5b61c11c0e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/export-path-diagnostic.json": {
+      "bytes": 1469,
+      "sha256": "a931278511f67d379784c85d0caf7db98413ef6885f2d5874c0a44989dbc8e1d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-probe-libraries.json": {
+      "bytes": 1035,
+      "sha256": "755fcb9b5817fa09ef4b50307d4925c28acc1881e90fa0cc85b799b4b12acd06"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/original-native-inputs.json": {
+      "bytes": 597,
+      "sha256": "e2dbc068d998f225c2fcb93091abc7771103eaddd3dc6787cc2766518114ad0a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/original32-archive.json": {
+      "bytes": 310,
+      "sha256": "62f116891b332dfe5b49cb4348eaae455ba648f8e89459399fbc1a47baf490cd"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/failure-dependencies.json": {
+      "bytes": 12765,
+      "sha256": "77abec83a9accdce5abe31be6afe683e533c5d1605b5ccdf336bd1455a9a3d49"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-env-corrected.json": {
+      "bytes": 15289,
+      "sha256": "4cf071aca7099d9605c2b38eb15a6553547ea6aadd645a6488a905b73c3df85d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/default-replay-native-index.raw.json.gz": {
+      "bytes": 77643,
+      "sha256": "cce970cc42b1605cd478e269aab3e67336062789ec4a11aadaefa4258b0e9664"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-env.json": {
+      "bytes": 15277,
+      "sha256": "b88c2a328a8d83cae7dc69a38eb788a30ecd3e1da6aa295fdfdf79cdbf471350"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/batch20-review-compare.json": {
+      "bytes": 729,
+      "sha256": "61f24ade860db827f5c35d4f8c9c5f7da2c8119d4aa2dec20b286878207098e7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/remote-ref-check-1007.json": {
+      "bytes": 7676,
+      "sha256": "5226e31bcf1883a115f35352d61581973841f70c95027933435d24141f7c86d4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/source-diff-e266-to-9afd.patch.gz": {
+      "bytes": 13843,
+      "sha256": "41c2a177f0afa969251533d067214da8c25c1bc06298525e60a48c27aeb6f107"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-probe-libraries-attempt1.json": {
+      "bytes": 733,
+      "sha256": "9c2948cc89c1bc5c65bf7b8b5b1468a967b1f461c2e1856154d56e80fc13eeb2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-build-cache-reuse.json": {
+      "bytes": 489,
+      "sha256": "9f738fa7b019839595cf448f720a88994dbeddaf985d3f113be603940e062574"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/archive-format-correction.json": {
+      "bytes": 905,
+      "sha256": "4720369e3be6e061d5072346a08cf4918672a213742c2dd188c97f6821e21c4e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/command-log-index.json": {
+      "bytes": 51837,
+      "sha256": "8ea07621806e240cdb9297b002399bc0829d3c4b473cd9b2637b23745799c028"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/classic-resume-derivation.json": {
+      "bytes": 547,
+      "sha256": "a62c75d62998cf56bd2143d35118068e2390cb725d6ed24647e7043853ca1dd2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/candidate-fixture-manifest.json": {
+      "bytes": 11192,
+      "sha256": "2acaf9e12b8c9b6b56c2f92b61a4e5bd58ee2509033ba2ac6fc76d62990e36cc"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/sentinel-compare.json": {
+      "bytes": 452,
+      "sha256": "d31c28c2d06956119e119003df9f962dd21c4d11941312134ed60f7eef030eed"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/selector-input-manifest.json": {
+      "bytes": 86948,
+      "sha256": "46a1faeecf86a8054584539a9eb5bbb152b29532ac9e70a5f2ee2b2df4d16f93"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/history-provenance.json": {
+      "bytes": 1640,
+      "sha256": "dde0e53984fc4644e32ac464b069854ee38e7e86227a94dbb0bd60074f2c8108"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/interface-change-list.json": {
+      "bytes": 919,
+      "sha256": "b3dd444e70bb3ea09df5f8191d13511a20f6c2bb7cb2bdc596416d7e85666dee"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/fixture-archive.json": {
+      "bytes": 293,
+      "sha256": "ff0ff054f2b2c86cdb76fb5e283dc2b4c89ff21ec664dd3a648ef7063f0d4627"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/native-probe-relative-depfile-provenance.json": {
+      "bytes": 607,
+      "sha256": "c4fc08e952d371d3a407b6887e1f73a6acdabada917aa1596ffa7deb5c50b7db"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/parent-review-excerpts.md": {
+      "bytes": 7316,
+      "sha256": "fe0d147a4cdee49920594ad9e019fb411f001906740221f144775f50af099a8b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/smoke-packer-derivation.json": {
+      "bytes": 630,
+      "sha256": "f6ec62a50adf982efc59b0cd9e26539acd932ea622c55769dc50361b217f150d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/batch4-compare.json": {
+      "bytes": 2489,
+      "sha256": "531d690a8737ffa1538ca5954b7c0a4ad847b3a04723710b66468c9741c0a5fb"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/candidate-audit.json": {
+      "bytes": 1713,
+      "sha256": "6f46336f2859faf831b9cf0c5e6de5595dad1e18b4cfee459e6a0ebe948ea506"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/pack_direct.py": {
+      "bytes": 2069,
+      "sha256": "22a73d3524033b3d9a024574a64f705c81afec4b0533e97a67659ccb0afee5c9"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/assemble_evidence.py": {
+      "bytes": 21413,
+      "sha256": "a87dd5afd7bcab7031b485f78cd4712980b37555674fb5c8a54edc4576caf327"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/run_all_worker.mjs": {
+      "bytes": 481,
+      "sha256": "5227f9cb3f8447e84a0a19f2951bfac6c35f8426e8342fc6bd5446ea35ffd50c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/run_stage.py": {
+      "bytes": 4840,
+      "sha256": "b82974155b84527d3856bb7b165caf1ff186d287c2eded2ef71de6b1c7075554"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/assemble_selectors.mjs": {
+      "bytes": 7721,
+      "sha256": "b346ad881281a70cd8f4856fafbd67dbbddb253adca02c20bcdcd7569cc0b56c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/pack-smoke-current-counts.mjs": {
+      "bytes": 4082,
+      "sha256": "9fe7d8a0f0f184c6e93b983988a81ef0e4520807f71f4372c15c0b8af6812b0f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/audit_candidate.py": {
+      "bytes": 6432,
+      "sha256": "f51318d21ddc4808163f7997694170ba3bd7a4e39989305e3db77f1f0c2f8c98"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/pack_remaining.py": {
+      "bytes": 1321,
+      "sha256": "910c4ea14027f4a745f84563afa378e8dee15e31e5e4c3ab35c3a05cb1147eca"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/supplement_native_duplicates.rs": {
+      "bytes": 1303,
+      "sha256": "b4fbf68153ff6be5e5e5345af503a3724349df40b460741ad805b72a582fe0ba"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/current-classic-resume.mjs": {
+      "bytes": 18508,
+      "sha256": "9cc8948eaa1fb6fff65348bf62e0dea4c49b9d73b5bc0cbd13b98702b0399f60"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/current-bq030-new-output.mjs": {
+      "bytes": 4321,
+      "sha256": "e7479eaa5a6aa22bd3dc3199f1c0573d49baad759a44ca2fda64b98623974adb"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/select_classic_traces.py": {
+      "bytes": 1915,
+      "sha256": "707994e4a288c5efbcf3febf4dd2d490fa8dc00f2632e2a0617aa38fa702f19b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/finalize_small_packets.mjs": {
+      "bytes": 659,
+      "sha256": "1d897a036558e64ba0adec0160b52bc9f47234b348438ae51ff61f8c06df2a30"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/pack_next20.mjs": {
+      "bytes": 1811,
+      "sha256": "95c3ce27862d43958a6d7aea5d9c240e4a08af62d7df28b0558488043a12600b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/reproduction/run_compile_probe.py": {
+      "bytes": 196,
+      "sha256": "801c9c7f2e76a719d7a06518e4a62b22966d9a88bd70e474b5219632625c7b9d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-clock.raw.log.gz": {
+      "bytes": 187,
+      "sha256": "874e0f4fb699fc2fb9ab3c004eb37ae3621824a64bc221a87d0a12331e4faed1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-full.json": {
+      "bytes": 4999,
+      "sha256": "1e9d5d15aa04c9b21e49324764e213f3d94e28ef1a1896e9f55b6f1a5f67afbb"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-response-preview.json": {
+      "bytes": 5376,
+      "sha256": "0e2be3dddebc966d9faa6b34bbae78b9b507acc31fa356c18a757611858c080f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-3.raw.log.gz": {
+      "bytes": 215,
+      "sha256": "dcea551dbddedf4878ac6f316afaafb0acfd4c649ab7d8d54c31cc3bf1e8d5d0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-wm062.log": {
+      "bytes": 222,
+      "sha256": "b4f9969037cab7403854acfaef6d5070dc0169db8a7ded3f030f1ed30172c2dd"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-full.raw.log.gz": {
+      "bytes": 18792,
+      "sha256": "0b0e876f5a86567c59648a59ef181378055b615fceb854b19eec639173c565b8"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-export-batch4.log": {
+      "bytes": 1869,
+      "sha256": "cf23b2e866b62ad6cadb324396829ac87f38cae6f5f516379eafe7df5ba811e1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc057.json": {
+      "bytes": 5322,
+      "sha256": "1fa60f8cbbb2fe233c2d0a9b6a3d7f70ffcde22025e5be2288969c6ec0e01ff9"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors.json": {
+      "bytes": 5006,
+      "sha256": "08c7900c4b241260cd25d7d8a2d0e205fb8da36ed244bb6f2f15765d7ffad316"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-2.log": {
+      "bytes": 48830,
+      "sha256": "5cedf6b8ce1a5dd9b26cb097ba0ad3d938da5b90f836c32a0ad4616e8b565eda"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-msjc0405.raw.log.gz": {
+      "bytes": 342,
+      "sha256": "7deb923ec135230652c78bd651154d571ad30975e54388ae75fcf3cc93f93e8f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection-2.log": {
+      "bytes": 80,
+      "sha256": "c735d83242ec2e0674ab98f356b83df6c9dafe30dcc6e84d6fdd352768c83a35"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cleanup-2.raw.log.gz": {
+      "bytes": 581,
+      "sha256": "1458ea6d618a7eea7eab969e61220dcc79ddda16591925d4820956513b742f43"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-sentinel-duplicates.log": {
+      "bytes": 34,
+      "sha256": "3de87013118c0589ce83ccc5070304774f6af7bcd7f1c599c3f69b24dcffcc34"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic.json": {
+      "bytes": 5147,
+      "sha256": "06976dec39460239e3524c32be52423807a4d95ff9a5d1878eda58876ba341b4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23.log": {
+      "bytes": 472,
+      "sha256": "36eba4f1ee4d36b25c6486d598ac0347cd5d674d7f8752dd0600fa7df8450dac"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc044.json": {
+      "bytes": 5321,
+      "sha256": "3287733fafa670f6d5762dea70996176ef55a8967006b0ffd54e0574841c9fd7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041.raw.log.gz": {
+      "bytes": 357,
+      "sha256": "746822ba9824ef8f199502d10ee8c90abb47538b949385e25426481cda9ece43"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-seven.json": {
+      "bytes": 5271,
+      "sha256": "72b9669da18e1f76b9c04a85526631020b3a912e26052df1ebed79daa165cfe1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq030-raw.raw.log.gz": {
+      "bytes": 175,
+      "sha256": "dadc84c5c20668065357440406c247fcb3de9b0c7af83917a1eebfcc86a7b5a1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-next20.json": {
+      "bytes": 5125,
+      "sha256": "29a1526fd832555dc1ea07c805cf40f37535a7afbe950f17796132c9f32f7aa4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections.raw.log.gz": {
+      "bytes": 374,
+      "sha256": "fba63998e30b81ef034a2fb879e4e5fcd12a724edf2efb951bde24d122294c54"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jz46.log": {
+      "bytes": 223,
+      "sha256": "59804179e1b20069523586292cdb9b061febc3da24e4b79d600c86e64b3eeb27"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/ui-full.raw.log.gz": {
+      "bytes": 278,
+      "sha256": "748031c5764ce70ca35942debab6b3d66188c18c1661e8225b980561e5313125"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors-2.log": {
+      "bytes": 158,
+      "sha256": "5ab76e045fcbb4a9f9805728c54021bb973a98d08d194dc738575067e0187c71"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors-2.json": {
+      "bytes": 5010,
+      "sha256": "21bce4b37421003f5760877a84d5a8f2af1c2c05e45eebfc4ee0077c49c3ea90"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-build.json": {
+      "bytes": 4947,
+      "sha256": "438a7651db66b2e7caefdb88177e25b571ec214a5ffbee3c7153a5012fcbfb5a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-3.raw.log.gz": {
+      "bytes": 310,
+      "sha256": "0a0942dd1a1453e1d55d41a8f2154ea6fb020f62a6ca6fcb47af026b24841c95"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-3.log": {
+      "bytes": 1001,
+      "sha256": "282da8039a9367167bdf1145c67ab48095283aec64e8d031c53f0cd3db81a73d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native.json": {
+      "bytes": 5123,
+      "sha256": "3f74435556c47c645edd4b418f88df4880dabb4c03b4855f2bfd319f018c05ff"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-build.raw.log.gz": {
+      "bytes": 858,
+      "sha256": "6a42f975380b5310b1e1224fefb7df0670d084ccac87b34ef10cd15fd431b824"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-3.json": {
+      "bytes": 5216,
+      "sha256": "9008960698ab504c307bd97a11b0cf403f02ef7f669a2ed985de856bc0ea80b4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041.log": {
+      "bytes": 470,
+      "sha256": "5a040b4c07254296a06211b44f352869486b5f935e4b90ce1e4fa0559f7503d6"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-probe-compile-2.raw.log.gz": {
+      "bytes": 927,
+      "sha256": "dc412a87e41ad69ea2ef013abf31781e5dcba3f20e6bc7b225c83f94e1d5a187"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc044.log": {
+      "bytes": 471,
+      "sha256": "005af65626fadb8797a743cea427f24c64e4c5d6966d29ec54a0ec83c07fb4db"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native.log": {
+      "bytes": 281007,
+      "sha256": "e9660947fdfb6baa244f72780ca54b297be375df74f5122c2e480a9338e12720"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch4-2.raw.log.gz": {
+      "bytes": 702,
+      "sha256": "a50cdc76071062abe04700f08965073d9b772add1c7084542fe4a98643d0fea1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc035.json": {
+      "bytes": 5322,
+      "sha256": "e91616507f648f1bc57c86cb3d3d9364169740fb85d22d37b0d381a69e84fe92"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-rewards-2.log": {
+      "bytes": 677,
+      "sha256": "e7202ef50a73be90b3a9fb8d647a1e0da94241adae13098eaf52686d664eafd3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-probe-compile.raw.log.gz": {
+      "bytes": 1359,
+      "sha256": "bc2462cb203b8d70bdaa1c8ae4b7620e529a45887191f4f9319e79828d20287a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-sentinel-duplicates.raw.log.gz": {
+      "bytes": 54,
+      "sha256": "97a07379da69b8516994e00e8b491da1086c0cbbf7663588754288edc5bfd97a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-seven.log": {
+      "bytes": 1799,
+      "sha256": "907d7a86592c3b938c73edc4fd217783fdccc4145c8afc680ba070d0970a31db"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native-baseline.json": {
+      "bytes": 5138,
+      "sha256": "01bd1e4a8c19f3f961160301b7a4d83cf651303e4365a35393d54dfc3eb7587c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23-current-owner.log": {
+      "bytes": 448,
+      "sha256": "d5516f631353c7f77027423041bc136786538f53e4309ca1111d986e957f1221"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-3.json": {
+      "bytes": 3753,
+      "sha256": "306df240f29db9973fc4a7c0df7254b0533c5f7e0f3a60ed54eafced19ce2022"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-3.raw.log.gz": {
+      "bytes": 989,
+      "sha256": "dc02c2893f5c1d3555a18be9f3960d30286bfc5f29475619380314e4f1a7f9b7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/tool-path-contract.json": {
+      "bytes": 4964,
+      "sha256": "38f841d0f70e317b6c58818f8da24e4ed34da94182c9d726082d13ede83dc80a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/ui-full.log": {
+      "bytes": 358,
+      "sha256": "0cfdbe7dfd4b81f111746fbf0c5ab7a2c8a227982f362fb55cce55557afe867a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-seven.raw.log.gz": {
+      "bytes": 782,
+      "sha256": "c432926d53cc06fb885a0eb90ed34ff743486d20ec084a35b6d8db142da38c64"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-jc052-worker.raw.log.gz": {
+      "bytes": 750,
+      "sha256": "317aaca0b1ad3457693d408e9d71e4388f16e907f03bd58edcc3705d631941b9"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-2.log": {
+      "bytes": 2581,
+      "sha256": "b3ff4e5ba0652dd742c3a046b735114620843e33211b795adf8f3ebd78d7b622"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-native-fixtures.raw.log.gz": {
+      "bytes": 10461,
+      "sha256": "1e735f22a910da188e791425e1535f621c506d2cebfb88e6c8d8c1e0c693b571"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq030-raw.json": {
+      "bytes": 5244,
+      "sha256": "ef610368d3d13f5cea93949a6bfbbd474f4a2781d1d8e55b2c4ccbb1ad2c770e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc054.raw.log.gz": {
+      "bytes": 309,
+      "sha256": "e36149ee604c96b7468d9b872a9e266d085846e22abea49d783bf9329bf9cf6c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-wm062.json": {
+      "bytes": 5286,
+      "sha256": "ceb6d6efa5959bce4e92baf2034b1c3883a536f008fcca63a0471144a83e0236"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-clock.log": {
+      "bytes": 208,
+      "sha256": "9fb7597c791a25b81acbec5676109966822958a8fd7d74662676e8abac9c0800"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-1.log": {
+      "bytes": 2630,
+      "sha256": "1f0d2dfb00fb138b84fe70ae0e41b57f9de7b810d50962e0fa9bfe0a3aa3ddf0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-3.json": {
+      "bytes": 5240,
+      "sha256": "d7681d106341b236f64eb37b528a7e5758e4903050a548af7b80ebfa1bc4a782"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic.log": {
+      "bytes": 1315,
+      "sha256": "5f588a619f2082201fe11ebe11dad1995249a1db83cf014f17ea0fbb03d93a9d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc066.json": {
+      "bytes": 5322,
+      "sha256": "8d4672d6711932928483e95dcf8d045041e450ddfa4e7aa4be37945515ad784a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-build.log": {
+      "bytes": 1966,
+      "sha256": "caa3b02fb7348cb779ffd590fddcbde8be9f7b0668a512a30645a40e76ca3da5"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041.json": {
+      "bytes": 5322,
+      "sha256": "b58a663a68c0f91b2f712cc414cb10207e5c8c1b0d794292a2a89308a3d57ce1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-native-probe-compile.json": {
+      "bytes": 5029,
+      "sha256": "959d6843ef5d1d5583a38a1f5053c7f446877a8d21881b55477875b7799ee0ce"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-next20.raw.log.gz": {
+      "bytes": 299,
+      "sha256": "06000624316c9baa74dcb2876d5b99e121f2b28507fd0a07fd561ba3667473ea"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cleanup-2.log": {
+      "bytes": 930,
+      "sha256": "09188288509dba0476a84b7d4f677cc1b5c9fac73c1cc635a8a83b79d6fabcff"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-small-3.json": {
+      "bytes": 5006,
+      "sha256": "27c5e62abd78b57845bc4b455d9b35a59fd84110d611ea40c7def6f0e651796c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc066.log": {
+      "bytes": 472,
+      "sha256": "d4bc459e4a4e8c56437a044fde44058840be9003a58d27eb90277d919e9866b1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-2.raw.log.gz": {
+      "bytes": 496,
+      "sha256": "751506d3f616a6f5338cb3f1034559e7aa81767863aaf63af579c665b7805b68"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-sentinel-duplicates.json": {
+      "bytes": 5278,
+      "sha256": "2ebbcc962325a7859c49e83674b5f37f87e7a93f204f836599284497e6175f50"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-native-probe-compile.raw.log.gz": {
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jz46.json": {
+      "bytes": 5279,
+      "sha256": "c83449c1d82c2a1f0eba2169b24d4199aaad5bb823cb0c572ce19f870a8cf7a0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-rewards-2.raw.log.gz": {
+      "bytes": 490,
+      "sha256": "a5878884ba344c14d7eb49c02ff57afc99425d199aa5865a3a1d57cb19f103cd"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections-2.raw.log.gz": {
+      "bytes": 586,
+      "sha256": "3beec27c5647b29d19397df1a2ca35bbf6c61a3b3d78cb4e805e8e88aa11e7c4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-small-3.log": {
+      "bytes": 95,
+      "sha256": "5ec10831a991b4f2747390982f36ec4414557effe4b020c06f77006974e3e367"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-native-fixtures.log": {
+      "bytes": 54413,
+      "sha256": "44fc2ad851a5ae378a3734bed89efe0f751697a1c0453a046da1bdf3517f5f12"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/tool-path-contract.log": {
+      "bytes": 168,
+      "sha256": "0d2a049e1abef50bc826a867b7f30f6954f78b293488be2acfd042e036cf8ca1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq030-raw.log": {
+      "bytes": 326,
+      "sha256": "ae9f7aa70e6e7500f2618f1cb72760cf2ad15ed79c992d1cfd7203c92aa64bb6"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-replay.json": {
+      "bytes": 5055,
+      "sha256": "450e0621e45bf959da4133476ff0e19bfd7847baef05592f51fee097fc8421a2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-clock.json": {
+      "bytes": 5045,
+      "sha256": "08875c8d8c9ea514071b59f929c6c371bd05a58da8e5e1bac8477121949a0263"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-pack-next20.raw.log.gz": {
+      "bytes": 299,
+      "sha256": "06000624316c9baa74dcb2876d5b99e121f2b28507fd0a07fd561ba3667473ea"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-rewards-2.json": {
+      "bytes": 5179,
+      "sha256": "a378987c9a15bdefd6d2b43624bee7bfc6cfe3feb4c30ac2c9caf09729885ff0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-next20.log": {
+      "bytes": 402,
+      "sha256": "dd09064510a97fa51e7490519a0127c4bc3d10abdcb62ed78e875ca83e616aca"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-ui-next20.log": {
+      "bytes": 385,
+      "sha256": "7c19c20f5cf1488725450f22f513f09caeee467f697745f75425ca4e15ad1987"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/tool-path-contract.raw.log.gz": {
+      "bytes": 146,
+      "sha256": "0eb1e86835bdcf55d1a24f5ea3665f9969206ff885fa8adab3655b046a9c6d49"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041-p2.raw.log.gz": {
+      "bytes": 402,
+      "sha256": "e05c5826f9bd96517cb49dbbdad1d2fb341f46ae70e8d7e653126b422bb8ec18"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-msjc0405.log": {
+      "bytes": 450,
+      "sha256": "d31c8ddc2428baee4731c5cdd84247929c11b0369f4b5f53f2d79f0c5dc44c5e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-2.raw.log.gz": {
+      "bytes": 5219,
+      "sha256": "47a02ccdb3ef8c15ad59bc720568cc54f6c4c3ad8fd74fd4e1ff28d01c71ab9a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-worker-next20.log": {
+      "bytes": 1674,
+      "sha256": "8d6269b44b6ca34dd6e0fe1828efa343ed7bec7cef788bf394bc254ec433f085"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections-2.log": {
+      "bytes": 936,
+      "sha256": "ddc6d5c2d3b85c9bf5d66d6d584a1252288f60d0d8c476d43315dd739dc5ac47"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors-2.raw.log.gz": {
+      "bytes": 147,
+      "sha256": "3836f79ff67c34898d35c1d2764de96e6c6badc3c9c17cd3ced5359a4c611737"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23.raw.log.gz": {
+      "bytes": 359,
+      "sha256": "e1fd9b18f5387cba070957b5b96c479852a2cc9f66cb21aba9da54a064b49df6"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc057.log": {
+      "bytes": 471,
+      "sha256": "56081eaaf24852e0c1ce34bfc090e81ba8af47bf448cabadc543df12d258717b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-replay.log": {
+      "bytes": 86786,
+      "sha256": "c5cf05e132f410618a04a317bc338a7e8482752943ba0dfa14fdadab180dafe7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc057.raw.log.gz": {
+      "bytes": 359,
+      "sha256": "bacf115086ddd640f622b5562362b5875e976f40ed6aa1ddb96a126cdae04bf0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection.raw.log.gz": {
+      "bytes": 246,
+      "sha256": "5e407b17c6e1cf2b8047f422b3e2f9ac49a7b24046ec4d125005c92e5286647f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-probe-compile-2.log": {
+      "bytes": 1821,
+      "sha256": "12fdd35c249d55dfcb2e290cafbd80ed33a07bf9be172457ea54e626252fb2e6"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq035.log": {
+      "bytes": 353,
+      "sha256": "2beabcc678e6f4aad1f3b2364a3226ca3c88e448bb1e8a92eae7d499981172e8"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041-p2.json": {
+      "bytes": 5332,
+      "sha256": "c6df30dbbb5ae3fc6bb8c272640d9b71bb1e2cc5bb1af2cfa6d4c7f7023ad612"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cq07-2.json": {
+      "bytes": 5206,
+      "sha256": "6b831b61d0abb6a4a49bf1e4d556194b41f5ca9cd1d56b224ba1ea8ff964fc4a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-build.json": {
+      "bytes": 4923,
+      "sha256": "26bba5a4f070ac1c8ecada2e64ae3ae4c95826aea983567cd13bcbdedf3400d2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-native-probe-compile.log": {
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc054.log": {
+      "bytes": 394,
+      "sha256": "6d84f1ddbfd5cead26305c5e4fa73a42790c2d64aec54932b9bf045b18c1dcdb"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections-2.json": {
+      "bytes": 5228,
+      "sha256": "b9352307d0d2c82a819784581a88e920ed651e816ff60994b5ea29432258d193"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cleanup-2.json": {
+      "bytes": 5224,
+      "sha256": "8294ea2a759d7fc22c6c5ce0ea2ebbaef3f3dd1e95dca012f151a64d1684a3b4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-replay.raw.log.gz": {
+      "bytes": 28091,
+      "sha256": "18e50365caec41452f2b21f5ec02438b93b45e90631c6a0d86546d7a23cd2ea2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection.json": {
+      "bytes": 5023,
+      "sha256": "0214a84df88873993a8b2a040ac19639caca3dd9121d2d8e383c3569feea1c9e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors.log": {
+      "bytes": 831,
+      "sha256": "0b2c041898fe24dbf68f95530b9e687fa663e0f696823ab4e5de91cc99d9ccef"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection-2.json": {
+      "bytes": 5028,
+      "sha256": "26f22125839d7e607505cfce95a5c292630fc149317ac6e106ea3e02634e9250"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native-baseline.raw.log.gz": {
+      "bytes": 60959,
+      "sha256": "146560805fe140794d9c0a7267512f3a2ea43da2865974d59b09d3adb187da85"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-response-preview.raw.log.gz": {
+      "bytes": 364,
+      "sha256": "b787eb7652407d1a81628e0cfc1634a4e8cbcd28080fb5294092649676794bd4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-export-batch4.json": {
+      "bytes": 5231,
+      "sha256": "816f0a4f7b75964097349b59c6c631fdad2788639a80f08996dfdb113b9fbea9"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jz46.raw.log.gz": {
+      "bytes": 198,
+      "sha256": "af0d2ca1187573b8c12c92badb69b89657bb1312506576950ac8fa8a8489fe84"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-build.log": {
+      "bytes": 1175,
+      "sha256": "4337d1f0c6c2c899a9586263efabada6f6fc835a6f00b61dceb5e3995073aeff"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23.json": {
+      "bytes": 5341,
+      "sha256": "862b7a76177eb7f1734abc49f870d66f86f8f3837259d20c63267b74008608a8"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native-baseline.log": {
+      "bytes": 280249,
+      "sha256": "5352d09f02aeb74d35170d349537300ece0a09ada97a542d28547f446c28754f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/full-native.raw.log.gz": {
+      "bytes": 61402,
+      "sha256": "96f61a275c44c76a9d791dd28466e28b65f7b3d29c24aa53d9788e78c09c57a4"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-pack-next20.log": {
+      "bytes": 402,
+      "sha256": "dd09064510a97fa51e7490519a0127c4bc3d10abdcb62ed78e875ca83e616aca"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-full.log": {
+      "bytes": 158412,
+      "sha256": "a48ab11e687b2c4e079c020c06af699e1ce5ce5cb4f106cbe023a0c1520e1cfb"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch4-2.json": {
+      "bytes": 5230,
+      "sha256": "2c1631200b182ee615b31c579aed30c572f3ebae141285bc0a85a38b1c9f1f99"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch20-review-2.raw.log.gz": {
+      "bytes": 447,
+      "sha256": "75d25ed6fe0a854dc29505abe5a4d5ec3203d95b6773c74e2fff360cff83fcd5"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-2.log": {
+      "bytes": 1320,
+      "sha256": "7459457a9b58635836ae3aed4211b495b7cd7f79fafabcff37ba23ea4860d3e0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-worker-next20.json": {
+      "bytes": 3878,
+      "sha256": "5789d2a1585401f60a376813d11910a9d1622e8ba1b371ab6b79a88acb60c890"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc044.raw.log.gz": {
+      "bytes": 359,
+      "sha256": "bd6699c0772ee48b04ca99218294e3ea1dd71ea07b74a0ea673a4a36a3bad4a2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc035.log": {
+      "bytes": 528,
+      "sha256": "e00e338054ae7d1d607f05085ed80802731ed042bc5774d1a9713c9e78ed56bd"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-jc052-worker.json": {
+      "bytes": 5439,
+      "sha256": "f6a1dd45b5e957af5e08aca91654e23990fb8c4ef9726a85bb73b32cacc595b1"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-2.json": {
+      "bytes": 5246,
+      "sha256": "b4a2970dbe8f7345793a84490a549af8f67e71571c1bc4b57667385bc060155f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc066.raw.log.gz": {
+      "bytes": 359,
+      "sha256": "06f73b822273f592909087340a6efbbed24166561ef094fa2f098311736b9e34"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-2.json": {
+      "bytes": 1198,
+      "sha256": "350f34995f6026d3578e042f326bd53db9e0c610c9fcd7ed9fc14ee35b99d3b3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/ui-full.json": {
+      "bytes": 4956,
+      "sha256": "52d3ba7d3837adb21838b730441080d4bd273f1483c1ab316d742f2da49efb35"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-native-fixtures.json": {
+      "bytes": 5247,
+      "sha256": "5bd4904b8c44bed94c47a5c11a2a33419c9caeff435eee39691ed0edd913b587"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-response-preview.log": {
+      "bytes": 502,
+      "sha256": "fa2355b96b31af48c1b4c1780fed1b6024072c67f6d229a9d9c731ea3601652b"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch20-review-2.json": {
+      "bytes": 5198,
+      "sha256": "6d56ab51e42c7f14f64de84e98a3b168780ce1d1f756c4839344b42c36b34abc"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-wm062.raw.log.gz": {
+      "bytes": 198,
+      "sha256": "a6ba1615e78f710205fd7df6e018f5c1ea23b06abd598d6db49ad187f5194099"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-pack-next20.json": {
+      "bytes": 3986,
+      "sha256": "eacb8861beecdadbab39661cf3ea88d14fe50c164997af9caef38ac9642de403"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23-current-owner.raw.log.gz": {
+      "bytes": 347,
+      "sha256": "1dd3f53f693708154e0d14f5be399a54432e3cfcdad2590b7194ac8d561f7958"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-export-batch4.raw.log.gz": {
+      "bytes": 943,
+      "sha256": "ee96f970258896df9f89319ac11a124211ee400483355db73d52e07963409b0d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cq07-2.raw.log.gz": {
+      "bytes": 583,
+      "sha256": "81bc3655576a76a30a31004c3fa2c959aec686563beaf9f88db86ceb7bf4d0f2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-small-3.raw.log.gz": {
+      "bytes": 73,
+      "sha256": "53a1b18da506c1ca5a698fddeef7eee8d4fa8a26cd33f441e0d8a93c96056d69"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-msjc0405.json": {
+      "bytes": 5337,
+      "sha256": "57079ce3f163c15e7490ab76095b7ad4bc862b06432af88f5a035fd1aad5b4cd"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-ui-next20.raw.log.gz": {
+      "bytes": 293,
+      "sha256": "c22dba7ea7fbe72244f2ae3809ab68624f7fcdef759837cf5d0ba50c2f85fbce"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-1.json": {
+      "bytes": 1198,
+      "sha256": "46cf42ba6592bef3fb045daffb482db3ebb9ec43926d9045050ac21199076a3a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-selectors.raw.log.gz": {
+      "bytes": 410,
+      "sha256": "384579ca0baa7f6cc2979ba38e289c377323748f35b670fa77b5717166054fa5"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch20-review-2.log": {
+      "bytes": 651,
+      "sha256": "9655d9523e456bd2be8b3a5b97a76dd4143b9a5467369604f37a9758efe6fab3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc041-p2.log": {
+      "bytes": 539,
+      "sha256": "f5271284755d2749663989ec8a7525721afd94a9a282ae8732445e20ce5d1f77"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-1.raw.log.gz": {
+      "bytes": 1242,
+      "sha256": "956e64c516e9f721f7e2929bd8b5698b28cfb97aa72d9f4d9dbf3b745f9c5ee3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq035.json": {
+      "bytes": 5297,
+      "sha256": "db67d6d95fa7600bcd9f65243395e43134749b8ad8e342316132a25e2146c620"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-worker-next20.raw.log.gz": {
+      "bytes": 550,
+      "sha256": "64723a22a2c625f2c5ca709e8d9ac8ecbcdf8a1a350a382e1fa6254742931070"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-cq07-2.log": {
+      "bytes": 929,
+      "sha256": "6ba9eb1326b5d6a9bf9ca702e84abeec094d33d065117a687e12c03fc1f1922d"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-3.log": {
+      "bytes": 1988,
+      "sha256": "0652c1c8195cc953e399a95f38b72d4370d8bcebf89fa51a1d631643a1c522ae"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/wasm-jc052-worker.log": {
+      "bytes": 1673,
+      "sha256": "8ce9b6977983f60372624debe1f5023bd73e8d03a8acde48c4aa6e64b6c7e2f0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-bq035.raw.log.gz": {
+      "bytes": 274,
+      "sha256": "f9d1da0a3be8f15e873ef0c2541077643ee5bdcd5e8aac315e7d932d5e6d941a"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic.raw.log.gz": {
+      "bytes": 551,
+      "sha256": "cf8d6d301e744bc97abcbebd4ef1bff0795dfd1aa64d312e4d8f6bfb1a6b69f2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection.log": {
+      "bytes": 324,
+      "sha256": "16bf51c7170bfd9947c0d39b485aebf0dbf5ee1a948f201e12799d4afd2b17e2"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections.json": {
+      "bytes": 5224,
+      "sha256": "96909cb162e0dc0f405caafaf884bd76354ad976dc5c5a1e6a67b4f5987ae52f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/native-probe-compile.log": {
+      "bytes": 6124,
+      "sha256": "5038e52f6cf728a07a5d2b8c437e3bd3f1af535b5a81e586ecfcc47f2f4df257"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-xq23-current-owner.json": {
+      "bytes": 5384,
+      "sha256": "73788d0957024db00e9eaae4a2f392d07a98ccf1f7681c8eb695d8fcc395036c"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-ui-next20.json": {
+      "bytes": 3876,
+      "sha256": "bbe5db2013fcf10a06679b7fbb795a02b6be5066aad2c9a06843d0571173a361"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-trace-selection-2.raw.log.gz": {
+      "bytes": 91,
+      "sha256": "19420f3954a36ae4dd65164d62b06bfe653a9c304bb19774e6b4592faacba3d3"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch4-2.log": {
+      "bytes": 1672,
+      "sha256": "40e0ae2cce2354b5c7441acfb494ce4cec0424def3f2006894ee0a9aa2d9e6a0"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc035.raw.log.gz": {
+      "bytes": 384,
+      "sha256": "ffff73052699a1ce848f7706052d7bb0fde12c47223e3d0831179606de2e78e7"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-jc054.json": {
+      "bytes": 5322,
+      "sha256": "4720913e1314502edf2c033c8f5c951b75e5581dd761025b6ba476d193d9a122"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/preflight-native-2.raw.log.gz": {
+      "bytes": 1171,
+      "sha256": "7f149567a44c46b9758ebef0f9866dd913975069f084371911ba00decc5aee30"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/worker-build.raw.log.gz": {
+      "bytes": 703,
+      "sha256": "8f35c939b698288693f1c1b880a2ddc481ed4309e1ab37a79e18243b2e4bf80e"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-sentinel-3.log": {
+      "bytes": 419,
+      "sha256": "e9407a80f50d37b7e825041dbef2c3420a240bc6f724f5291b276567b3a1a48f"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-classic-2.json": {
+      "bytes": 5215,
+      "sha256": "dba16b0c720b95182baf2da6f94235d53d030efddab42297f3dd8217850c4b87"
+    },
+    "docs/evidence/next20-candidate-cross-platform-20261025/logs/pack-batch3-inspections.log": {
+      "bytes": 841,
+      "sha256": "77302a556679fadd9120390bd039d390da19ce990074137c07ced4493579b646"
+    }
+  }
+}

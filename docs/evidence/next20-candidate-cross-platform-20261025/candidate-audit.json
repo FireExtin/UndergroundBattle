@@ -1,0 +1,48 @@
+{
+  "at_utc": "2026-10-25T10:06:25.089869+00:00",
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "tracked_source_blobs_verified": 8146,
+  "main_tracked_clean": true,
+  "original_untracked32_bytes_unchanged": true,
+  "source_original32_bytes_unchanged": true,
+  "canonical_fixture_files": 63,
+  "compressed_bytes": 38414910,
+  "expanded_wrapper_bytes": 598485840,
+  "fixture_hash_and_raw_checks": "PASS",
+  "raw_records_verified": 234,
+  "existing_fixture_formats_preserved": {
+    "bq035-native93-raw-v1": 1,
+    "jc057-native93-raw-v2": 1,
+    "jc041-native93-raw-v1": 1,
+    "jc054-native93-raw-v1": 1,
+    "response-preview-native93-raw-v1": 1,
+    "wm062-native93-raw-v1": 1,
+    "jc035-native93-raw-v1": 1,
+    "msjc0405-native93-raw-v1": 1,
+    "jc044-native93-raw-v1": 1,
+    "xq23-owner-native93-raw-v1": 1,
+    "jc066-native93-raw-v1": 1,
+    "xq23-current-native93-raw-v1": 1,
+    "jc041-p2-native93-raw-v1": 1,
+    "jz46-native93-raw-v1": 1,
+    "current-native-fixture-v1": 49
+  },
+  "source_manifest": "9cb74b60533a7a3e470219f75765bb7f64e7d6c6bd492127bacde4a7ff4c4a03",
+  "wasm_sha256": "c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02",
+  "strong_secret_scan": {
+    "fixture_wrappers_and_all_current_logs": "PASS",
+    "findings": [],
+    "patterns": [
+      "private_key",
+      "github_token",
+      "aws_access_key",
+      "google_api_key",
+      "credential_url"
+    ]
+  },
+  "archive_scope": "63 synthetic test data gzip files and two provenance manifests; no credentials, user databases, private data, build outputs, caches, or source tree",
+  "donor": {
+    "HEAD": "83e564dcdda460e4603aaf2d86494da18085b80f",
+    "tracked_and_untracked_clean": true
+  }
+}

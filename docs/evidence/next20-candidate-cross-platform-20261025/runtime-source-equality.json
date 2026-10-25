@@ -1,0 +1,19 @@
+{
+  "runtime_implementation_commit": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "fixed_tested_source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "runtime_semantics_unchanged": true,
+  "catalog_bytes_unchanged": true,
+  "lib_cfg_test_diff": "diff --git a/rust-game/src/lib.rs b/rust-game/src/lib.rs\nindex c6f06c3f..1dc04a3f 100644\n--- a/rust-game/src/lib.rs\n+++ b/rust-game/src/lib.rs\n@@ -5,6 +5,8 @@ mod next20_blue_vampires;\n mod next20_anchor;\n #[cfg(test)]\n mod next20_blue_core_tests;\n+#[cfg(test)]\n+mod next20_candidate_room_tests;\n mod import20_entropy;\n #[cfg(test)]\n mod import20_entropy_tests;\n",
+  "deck_seal_search_draft_cfg": "#[cfg(all(test, not(feature = \"society-fixtures\")))]",
+  "deck_seal_draft_test_only_diff": "diff --git a/rust-game/src/deck_seal_search_draft.rs b/rust-game/src/deck_seal_search_draft.rs\nindex eb0f9864..5483def9 100644\n--- a/rust-game/src/deck_seal_search_draft.rs\n+++ b/rust-game/src/deck_seal_search_draft.rs\n@@ -63,7 +63,10 @@ fn deck_seal_draft_dream_filter_includes_transaction_and_character() {\n         .filter(|d| dream_card(d))\n         .map(|d| d.id.as_str())\n         .collect::<Vec<_>>();\n-    assert_eq!(matches, [\"XQ41\", \"XQ45\"]);\n+    assert_eq!(matches, [\"XQ41\", \"XQ45\", \"BQ033\"]);\n+    let dream = catalog().cards.iter().find(|d| d.id == \"BQ033\").unwrap();\n+    assert_eq!(dream.kind, \"character\");\n+    assert!(!dream.supported);\n     assert_eq!(\n         catalog()\n             .cards\n",
+  "changed_paths_total": 176,
+  "five_closed": [
+    "BQ009",
+    "BQ033",
+    "BQ034",
+    "CQ25",
+    "XG25"
+  ],
+  "public_total": 233,
+  "catalog_total": 277
+}

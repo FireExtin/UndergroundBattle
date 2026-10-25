@@ -1,0 +1,32 @@
+[
+  {
+    "sha": "83e564dcdda460e4603aaf2d86494da18085b80f",
+    "ancestor_of_current_HEAD": true,
+    "ancestor_exit": 0,
+    "metadata": "83e564dcdda460e4603aaf2d86494da18085b80f\nCodex <codex@localhost>\nTighten next20 source and continuation guards while preserving shared contests\nf8ac51a7b2d6a5a92347b59c95481b9224b5d8bd"
+  },
+  {
+    "sha": "bb74e675bc78cf41ac875451658ea5a898b283ef",
+    "ancestor_of_current_HEAD": true,
+    "ancestor_exit": 0,
+    "metadata": "bb74e675bc78cf41ac875451658ea5a898b283ef\nCodex <codex@users.noreply.github.com>\ndocs: retain ABI112 resumed browser terminal evidence\n476e09bc162afcec63cc22e7d96365da65499304"
+  },
+  {
+    "sha": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+    "ancestor_of_current_HEAD": true,
+    "ancestor_exit": 0,
+    "metadata": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210\nCodex <codex@localhost>\nRecord disabled next20 WIP integration provenance and offline validation\nf665abb98ab13155ce54a65617cbbbd1e2b0f22b"
+  },
+  {
+    "sha": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+    "ancestor_of_current_HEAD": true,
+    "ancestor_exit": 0,
+    "metadata": "1bd07762824e138c0560863130ec7eacaddbf9c8\nCodex <codex@openai.com>\nfeat(game): resume XG25 pre-grave responses and original callers as closed WIP\nea8289f95e1521e8b23304d162ce8339f0612676"
+  },
+  {
+    "sha": "e26640b4a8a82fad0fad89ba7552a2933c110bba",
+    "ancestor_of_current_HEAD": true,
+    "ancestor_exit": 0,
+    "metadata": "e26640b4a8a82fad0fad89ba7552a2933c110bba\nCodex <codex@openai.com>\ndocs(game): retain fixed baseline failures and next20 review evidence\ne853d8df54740a4c6633faddf091c6761a391afb"
+  }
+]

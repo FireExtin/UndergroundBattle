@@ -1,0 +1,1 @@
+{"scenarios":13,"commands":378,"projections":1510,"rejected":3,"invalid":56,"negativeRestoreCalls":448,"wasmSha256":"c97f177335f0afb94e154886006c91b2a35d2d2e5113e76a4630d0b0ab8e6a02","completeOpaqueStateAndTransitionMatch":true,"fixtureBytes":4226044,"fixtureSha256":"5f88f83fed66058b49319c0a02da62b0acaa6143437a2b65e0194f8a47f6b9ce","sourceFiles":120}

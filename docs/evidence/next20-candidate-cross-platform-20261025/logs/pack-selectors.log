@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: /home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/native/jc094_evidence_dir/local-cost-projection.json has no exact accepted current Native command
+    at chosen (file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/assemble_selectors.mjs:37:22)
+    at value (file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/assemble_selectors.mjs:38:29)
+    at Array.map (<anonymous>)
+    at file:///home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/assemble_selectors.mjs:41:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

@@ -1,0 +1,12 @@
+
+> undergroundbattle-web@0.1.0 test
+> vitest --run --maxWorkers=2
+
+
+ RUN  v4.1.2 /home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/source/web
+
+
+ Test Files  160 passed (160)
+      Tests  1584 passed (1584)
+   Start at  02:56:59
+   Duration  102.49s (transform 3.33s, setup 7.70s, import 17.91s, tests 128.12s, environment 36.86s)

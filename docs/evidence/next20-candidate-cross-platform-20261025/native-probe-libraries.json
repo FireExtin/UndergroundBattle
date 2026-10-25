@@ -1,0 +1,18 @@
+{
+  "source_commit": "9afd8a573d8e7a3c6a416537578364846ce5534d",
+  "libraries": {
+    "hegemony_server": {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug/deps/libhegemony_server-95c6d7ea0cbaf9a4.rlib",
+      "sha256": "a8ca3259a9bb8414564d144eece13eb47208abcd8143349ec8d60ef40b94476a",
+      "depfile_source_mentions_frozen": false
+    },
+    "serde_json": {
+      "path": "/home/ddd/Documents/Codex/2026-10-24/task-7/candidate-cross-platform-20261025/wasm-build/target/debug/deps/libserde_json-58d9c930da461bcd.rlib",
+      "sha256": "4f21279794a4b9d62a9abc6ef8776aa8c30228fa94eeacbe1cf787bd9e779be5",
+      "depfile_source_mentions_frozen": false
+    }
+  },
+  "helper_source_sha256": "b4fbf68153ff6be5e5e5345af503a3724349df40b460741ad805b72a582fe0ba",
+  "binary_sha256": "532e9f1233a114164005d38e5eff4809e6f1aec667983511c0be186508eea558",
+  "scope": "direct production Room API, supplement actual Native duplicate probes only; original state strings untouched"
+}
