@@ -11,7 +11,7 @@ test('candidate package contains exactly the current ABI112 bytes and catalog id
   assert.equal(catalog.cards.length,277);
   for(const id of ['BQ033','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
   assert.equal(catalog.cards.filter(c=>c.supported).length,236);
-  assert.equal(catalog.cards.filter(c=>!c.supported).length,44);
+  assert.equal(catalog.cards.filter(c=>!c.supported).length,41);
   assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
   assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));
   assert(!catalog.cards.some(c=>c.id==='CQ11'||c.id==='TK008'));

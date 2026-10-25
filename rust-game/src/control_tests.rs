@@ -3,7 +3,7 @@
 use crate::{catalog, model::*, rules::*};
 
 // Reviewer counterexample: printed eligibility and primitive lifetime contract
-// are kept distinct. XQ12 and the closed WIP XG25 remain non-Human Death cards.
+// are kept distinct. XQ12 and the admitted XG25 remain non-Human Death cards.
 #[test]
 fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
     let death_cards = catalog::catalog()
@@ -28,7 +28,7 @@ fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
     assert_eq!(death_cards[2].subtypes, vec!["人类", "宿主"]);
     assert_eq!(death_cards[3].subtypes, vec!["人类", "宿主"]);
     assert_eq!(death_cards[8].subtypes, vec!["幽灵", "诅咒"]);
-    assert!(!death_cards[8].supported);
+    assert!(death_cards[8].supported);
     for card in ["XQ12", "XG25"] {
         let mut g = game();
         let target = field(&mut g, card, 2);

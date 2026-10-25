@@ -73,7 +73,7 @@ test('unwrapped production Worker admits all three cards through public create j
  for(let seat=0;seat<2;seat++)await send(seat,{kind:'game',action:{kind:'ready'}});
  const start=await send(0,{kind:'game',action:{kind:'start'}});assert.equal(start.status,'playing');
  const pause=await send(0,{kind:'pauseRoom'});assert(pause.pause);const stored=await h.store().room(host.body.roomId);await h.reopen();assert.deepEqual(await h.store().room(host.body.roomId),stored);
- const resumed=await send(0,{kind:'resumeRoom'});assert.equal(resumed.pause,null);assert.equal(resumed.status,'playing');
+ const resumed=await send(0,{kind:'resumeRoom'});assert.equal(resumed.pause,undefined);assert.equal(resumed.status,'playing');
  for(let seat=0;seat<2;seat++)assert.equal((await api(`/api/rooms/${host.body.roomId}/state`,null,sessions[seat])).status,200);
  t.diagnostic(JSON.stringify({productionBundleUnwrapped:true,publicCreateJoinStart:true,cards:['BQ034','CQ25','XG25'],realRandomSeed:true,commandReceipts:n,coldReopens:1}));
 });

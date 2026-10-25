@@ -3269,10 +3269,10 @@ mod tests {
         // additionally includes the reviewed third20 and the pending-acceptance import20.
         assert_eq!(c.cards[..193].iter().filter(|d| d.kind != "region").count(), 183);
         assert!(c.cards[..213].iter().all(|card| card.supported));
-        // Exactly the new author-WIP20 are admitted beyond the historical213.
+        // Exactly the existing import20 plus the three approved next20 cards are admitted beyond the historical213.
         assert_eq!(c.cards[213..].iter().filter(|card| card.supported)
             .map(|card| card.id.as_str()).collect::<BTreeSet<_>>(),
-            crate::import20_entropy::BATCH20.iter().copied().collect::<BTreeSet<_>>());
+            crate::import20_entropy::BATCH20.iter().copied().chain(["BQ034","CQ25","XG25"]).collect::<BTreeSet<_>>());
         assert_eq!(c.decks.len(), 5);
         for deck in &c.decks {
             assert_eq!(deck.card_count, 50);

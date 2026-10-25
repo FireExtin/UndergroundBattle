@@ -94,7 +94,7 @@ fn next20_black_printed_fields_spirit_and_fixed_abilities() {
         let d = catalog::card(id);
         assert_eq!(
             (d.cost, d.defense, d.unique, d.supported),
-            (cost, Some(1), false, false)
+            (cost, Some(1), false, true)
         );
         assert_eq!(d.subtypes, subtypes);
         assert_eq!(d.loyalty, vec!["黑色"]);

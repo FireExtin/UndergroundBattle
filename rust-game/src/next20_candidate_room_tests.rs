@@ -102,13 +102,17 @@ fn next20_candidate_actual_room_four_closed_card_witnesses() {
     }
 }
 #[test]
-fn next20_candidate_public_new_and_join_reject_all_five_without_mutation() {
+fn next20_candidate_public_new_and_join_admit_exactly_three_and_reject_dependencies_atomically() {
     for id in ["BQ033","BQ034","CQ25","XG25","BQ009"] {
+        let admitted=["BQ034","CQ25","XG25"].contains(&id);
         let mut draft=crate::deck::preset("watchers").unwrap();
         draft.cards.push(crate::catalog::DeckEntry{card_id:id.into(),count:1});
-        assert!(Game::new_with_deck("candidate-public".into(),"PUBLIC".into(),"teams".into(),"P0".into(),draft.clone(),7).is_err());
+        let created=Game::new_with_deck("candidate-public".into(),"PUBLIC".into(),"teams".into(),"P0".into(),draft.clone(),7);
+        assert_eq!(created.is_ok(),admitted,"public creation {id}");
         let mut game=Game::new("candidate-public".into(),"PUBLIC".into(),"teams".into(),"P0".into(),"watchers".into(),7).unwrap();
-        let before=serde_json::to_string(&game).unwrap();assert!(game.join_with_deck("P1".into(),draft).is_err());
-        assert_eq!(serde_json::to_string(&game).unwrap(),before);
+        let before=serde_json::to_string(&game).unwrap();let joined=game.join_with_deck("P1".into(),draft);
+        assert_eq!(joined.is_ok(),admitted,"public join {id}");
+        if admitted {assert!(game.players[1].deck_snapshot.as_ref().unwrap().cards.iter().any(|c|c.card_id==id));}
+        else {assert_eq!(serde_json::to_string(&game).unwrap(),before);}
     }
 }
