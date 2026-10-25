@@ -1,0 +1,14 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+error: unexpected closing delimiter: `}`
+   --> rust-game/src/death_continuation.rs:193:1
+    |
+ 39 |     pub(crate) fn death_boundary_waits(&self,id:&str)->bool{
+    |                                                            - the nearest open delimiter
+...
+ 51 |         })))
+    |            - missing open `(` for this delimiter
+...
+193 | }
+    | ^ unexpected closing delimiter
+
+error: could not compile `hegemony-server` (lib test) due to 1 previous error

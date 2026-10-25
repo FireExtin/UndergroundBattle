@@ -1,0 +1,423 @@
+{
+  "at_utc": "2026-10-25T08:21:33.293296+00:00",
+  "status": "CLOSED_NATIVE_WIP_READY_FOR_PARENT_REVIEW",
+  "repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "fix/game-abi112-wm057-ack-20261024",
+  "code_HEAD": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "review_base": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+  "source_history_ancestors_verified": {
+    "bb74e675bc78cf41ac875451658ea5a898b283ef": true,
+    "83e564dcdda460e4603aaf2d86494da18085b80f": true,
+    "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210": true,
+    "dd172815eed66c6776ed2523eb5e74b3054f6d22": true,
+    "d0b3e3254c1eec9440fdc3e90464646154d27160": true,
+    "ea8289f95e1521e8b23304d162ce8339f0612676": true
+  },
+  "source_inputs": [
+    {
+      "path": "docs/NEXT20_ANCHOR_DEPENDENCY_WIP_2026-10-25.md",
+      "sha256": "24904f8080e7af5dc079e1efac6db31d644dd5cb9460ec5dedf303a828c57e44"
+    },
+    {
+      "path": "rust-game/src/batch3_ghoul.rs",
+      "sha256": "ef42a52a535f7d0ec2d898d5173967e1d14764392affb5b69d1e70ba68c966f6"
+    },
+    {
+      "path": "rust-game/src/blue_minimum.rs",
+      "sha256": "0ef2305cb4f68fa18e7c8a9ed57616aed278fdb804c0a4c0f8a30be0ea47a1a8"
+    },
+    {
+      "path": "rust-game/src/death_observers.rs",
+      "sha256": "cbfb873c915d118c0d8c1ac5c73c18e53c47953334bcf3f7b40770e3e8f055ee"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "3a539683374500e91bbc06f09cec1cc6c1af621080218363808ec2d878a674b5"
+    },
+    {
+      "path": "rust-game/src/jz35.rs",
+      "sha256": "df1e0352e2f76e1081202f80c2eeee270dd8990df4193480500e2084a27ca83f"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "7b339dcb70ff07e565ef23a6522206e7a143fd49d0376200ed3d2e450324d26c"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "80969e6e973e53eacfbfaf21c7766db6c981669f629d36774a69a9fd2169ad99"
+    },
+    {
+      "path": "rust-game/src/next20_black_core_tests.rs",
+      "sha256": "1e38eec7ac5e6f1c79a7b7d7b945688a632a1b7fd93f00dba402dc545a1153ec"
+    },
+    {
+      "path": "rust-game/src/next20_black_wraiths.rs",
+      "sha256": "57fec08480a910f5de11bbb15c2535556241d6f34ac7a941a3f16c9cc1d9c088"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "751c90f5e7e63288416604fe9bc2764768ef2f68ab94cd14022d603ccb4a331c"
+    },
+    {
+      "path": "rust-game/src/death_continuation.rs",
+      "sha256": "f1053b59a07aedf320119f60e4cc3c2427555fb74ea7573024f3e10818f6f4c2"
+    },
+    {
+      "path": "rust-game/src/next20_death_core_tests.rs",
+      "sha256": "cf2c5d7cce52feb382529f9bad459847cc53a0f167fe88704216a8095ae50d50"
+    }
+  ],
+  "validation": [
+    {
+      "name": "final-death",
+      "passed": 14,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "next20_death_core_",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "c7f7c03b1e4b64a39165d4af1f74361bc4d6bf48157a181a1cd45769b3bc6520"
+    },
+    {
+      "name": "final-blue",
+      "passed": 17,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "next20_blue_core_",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "45ff1c90083912cd74cac5fa8fabbc911302f6977e6608a6f7ea3ecdff384b79"
+    },
+    {
+      "name": "final-black",
+      "passed": 14,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "next20_black_core_",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "3b4f5d2036397749c0fe8dade8383e79eb9dbbf13516ef06462430551f0663e2"
+    },
+    {
+      "name": "final-anchor",
+      "passed": 7,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "next20_anchor_core_",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "11d0dbc5b1b8bb922b074808c0a070a5ace01259344f84a94a1854a5b7ba0344"
+    },
+    {
+      "name": "final-jz24",
+      "passed": 5,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "jz24",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "3bd59478ea040d5c19252c1f360a3e4d7128d8e2cb1ce3d652ef46b1eeb825f3"
+    },
+    {
+      "name": "final-jz35",
+      "passed": 18,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "jz35",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "9eddd3f9ff01214d23a5656ac5ae362b79386343fa600498cf583c94365143f6"
+    },
+    {
+      "name": "final-death-observers",
+      "passed": 23,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "death_observer",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "e2ab50447ca7b8c524a5a50f8d60c98cb60bb00e0e5035e0c1c58c6b1b5c288e"
+    },
+    {
+      "name": "final-mystic",
+      "passed": 22,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "mystic",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "7f41c47b2b5540fabf04e048b1e0a5820554a8689b2ef0d0f935bc704baa322f"
+    },
+    {
+      "name": "final-sealing",
+      "passed": 28,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "hegemony-server",
+        "--lib",
+        "--no-default-features",
+        "sealing",
+        "--",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "log_sha256": "4787576854275d0b54e4c4c37bd90cb32ddcb5d95472512607235682e98d4223"
+    },
+    {
+      "name": "final-all-targets",
+      "passed": null,
+      "exit_code": 0,
+      "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "--workspace",
+        "--all-targets"
+      ],
+      "log_sha256": "88879facf37626c4463e848ea346f38abd8520a7205f7b0b49634a5a03e50a43"
+    }
+  ],
+  "core_unique_tests": 52,
+  "core_classification": {
+    "real_command_based": 45,
+    "catalogue_deck_gates": 3,
+    "helper_primitive_contracts": 4,
+    "anchor_7_breakdown": "5 command-based, 1 sealing host primitive, 1 deck/admission gate",
+    "death_14_breakdown": "13 command-based, 1 JZ35 type eligibility helper",
+    "response_marker_limit": "Two death command flows use explicit shared add_society_markers response perturbation; no new card removal action is invented."
+  },
+  "filters_overlap_do_not_sum": true,
+  "original_adapter_41_rerun": false,
+  "rulings": "Both user rulings accepted; secrecy resolution timing remains text inference accepted as test premise, not an official dedicated FAQ",
+  "implementation": {
+    "BQ009_BQ033": "Real pinned spell definition, no-effect play, own-society optional repression/forecast, conditional copy-limit predicate, actual deploy/reveal fee and owner-deck anchor receipt; supply producer still absent",
+    "XG25": "Real departure held outside grave, ordinary optional target/response, actual fallback on decline/no candidate/guard cancellation/lost secrecy, JZ24/paid-cost caller resume, nested departures, owner-only sealed action",
+    "CQ25_cross": "Earlier stacked search finds the actual newly buried borrowed-owner ghost; source departure still searches then buries found card when host invalid",
+    "recovery": "Exclusive held card, source and choice/frame correlation, original lower stack at declaration, one finish and caller, no early/replayed caller",
+    "JZ35_limit": "Typed pending receipt/caller path exists; no currently legal Host grant for XG25 is invented"
+  },
+  "NOT_RUN": [
+    "Full baseline regression",
+    "BQ009 legal hand/deck-to-own-society supply producer",
+    "New-card RoomEnvelope end-to-end lifecycle",
+    "WASM32 build and WASM execution",
+    "Worker",
+    "browser UI/both-seat new-card play",
+    "independent parent review",
+    "JZ35/XG25 host scenario (unreachable with present subtype rules; no fake Host grant)",
+    "all granted/conditional/multi-op caller combinations",
+    "simultaneous multi-XG25 wave and all elimination/terminal edge cases",
+    "GitHub CI",
+    "push",
+    "deployment/publication"
+  ],
+  "rule_blocks": [],
+  "implementation_gap": {
+    "action": "Reach BQ009 own-society sealing through a legal implemented hand/deck producer",
+    "target": "BQ001/BQ003/BQ007/MSJC10 supply dependency",
+    "status": "PENDING_IMPLEMENTATION_OUTSIDE_CURRENT_CARD_SCOPE",
+    "reason": "None of the existing implemented producers can seal this spell onto own society; BQ009 printed play has no effect",
+    "denied": false
+  },
+  "public_admission": "BQ009/BQ033/BQ034/CQ25/XG25 all supported:false; supported count233 unchanged",
+  "raw_inputs_32": {
+    "sites/test/fixtures/bq030-native-v0111.json": "7da717e37e5a8ff7a0b57fba353771ef55dc97096e82c38edf2d8b6dc944ec05",
+    "sites/test/fixtures/bq030-native-v0112.json": "bee7cf12cb390632c2aeabd8c376c2539a2aa143282d3d7b38ca7afa8935ec4d",
+    "sites/test/fixtures/jc052-native-v0111.json": "523491030cc87b6fa134f070b36ea46cff033003d805b5430a56c245c3a5ed7b",
+    "sites/test/fixtures/jc052-native-v0112.json": "53e1b3bfa760c071f02753a879bfc1a8e311df4d7d215d3397d104b097a216ea",
+    "sites/test/fixtures/win-flow-native-v0111.json": "3448701cb2b134b9a37debb3fa8bf21f82bdd9d48ea06ab754cfc1bccd85d2ff",
+    "sites/test/fixtures/win-flow-native-v0112.json": "bfeecf1101c0a868e5b575f7364f842cbb009f340a449a57821c94d14e1c030c",
+    "web/src/game/bq030Native111.fixture.json": "938400b784fc002b15db8378eb8f1dcdf427dd75bb2565e84ee2097bd1100d0d",
+    "web/src/game/bq030Native112.fixture.json": "08913ad47a9a2f1e1fb63f76a61f5115f3b21a88161f9044f26990d6f5791a5b",
+    "web/src/game/currentLifecycle111.fixture.json": "8fbf3450e4b76718e2b2cc9ba32f44f6df695dd097c581123c90f8328496bab1",
+    "web/src/game/currentLifecycle112.fixture.json": "23636052d865c0830c3e834cfcfea9f618a7f0372a385d3c2cee51093257d928",
+    "web/src/game/fixedSlotsNative111.fixture.json": "d896aa4c31e6e367cd859ea9af659f6ce15c29e9c3d4a936b003b0e10c6a2d68",
+    "web/src/game/fixedSlotsNative112.fixture.json": "1d1b921c01144eef7b8b8ff3b6686d97443728a3622670c7ede46abe0ae4daca",
+    "web/src/game/jc052Native111Current.fixture.json": "1d729e84aab8bb317313e6f592a02e763d791209a982ce6e1476c401a88186cd",
+    "web/src/game/jc052Native112Current.fixture.json": "498832f08565cf089a73771335e0b7313e8f6c20694e0b7aff7653a1bcbe1688",
+    "web/src/game/jc061Native111.fixture.json": "e913e09151d7975f712399882d945ae758805156806e6f5938a0ea8885e49fe3",
+    "web/src/game/jc061Native112.fixture.json": "2895d230a5d1ed47239b8dbddf15525cd7a45e4e0cc6ba9efda46814b7007796",
+    "web/src/game/jc087Native111.fixture.json": "b3162b79cff207ea351ce7fc844f7735edeb949990f24d3cc89c226d69bb2b34",
+    "web/src/game/jc087Native112.fixture.json": "b5ba90ecfbaf6fd712756f3d587c2fc7259cbb0d2ef67ff9eac75c0ef849ea46",
+    "web/src/game/jc094Native111.fixture.json": "dc1fdc0fb09657738700cc0c2889f594cafaac346613c66ffeb04334f34adcdc",
+    "web/src/game/jc094Native112.fixture.json": "ec188c132cb8e1a12b1dc7718148216deadd6d36acd235e7400b984b91bfb92e",
+    "web/src/game/jz35Native111.fixture.json": "4d4262170d56540075e9408048b463eecc1831dedd61750a56014c3069d40c3d",
+    "web/src/game/jz35Native112.fixture.json": "43893d28eb1de2f79b787b12a93afe2752a9ea3caaa13b72b05e4d83c8a10558",
+    "web/src/game/sevenCardUIV0111.fixture.json": "5656c1d2f5f28a20cbe0f57ee298649e96c181a852a5b6ea3a7403891d2e2afd",
+    "web/src/game/sevenCardUIV0112.fixture.json": "1b0db2e4465a56dfd195387789e8824ab100dcf7880da90e52c7ddc13647e667",
+    "web/src/game/wm023Native111.fixture.json": "4a078c2e6a6e2a87620f1f6e1c4512fe8c67f86ba3cc01f639638c356908c3bf",
+    "web/src/game/wm023Native112.fixture.json": "00609a0bcf84445f35f7942c927b470b8fcc7dfe6057d311ef51e2ee74778c76",
+    "web/src/game/wm038Native111.fixture.json": "c8f65956ce400cdda94daa42de0c3f3792b7b18680e898b72343cc0a558aa81e",
+    "web/src/game/wm038Native112.fixture.json": "32c1eb7dcf1044ff59633ddd845e19fb363218ef86e3aa7ddb46381bd39a953b",
+    "web/src/game/wm056Native111.fixture.json": "7851b49e6668b00f39fecccd0991f118f352fb230872604767e301a97fe9e615",
+    "web/src/game/wm056Native112.fixture.json": "fbc352d9882bca96f60e468e4d61f849c315bfb39c8b55d6e11b85707fd19a15",
+    "web/src/game/xq25Native111.fixture.json": "8f6bc687e37e1deb2aa84161ca3c1f7e79ebf4de5d21f08500d28c4c54b991ad",
+    "web/src/game/xq25Native112.fixture.json": "0d73b155f0e84d1b45d06c3559d195614149b0bdc141593502a37335f5c23d5f"
+  },
+  "preservation": {
+    "table_97EC1A99E58C": "NO_INTERACTION",
+    "deployment": "NO_CHANGE",
+    "web_or_UI": "NO_CHANGE",
+    "new_workers": 0,
+    "new_services": 0
+  },
+  "remote": {
+    "at_utc": "2026-10-25T08:19:02.633048+00:00",
+    "local_code_HEAD": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+    "remote": {
+      "review/game-serial-abi99-wip-20261024": "e7b3366b16ed7d70783ce00bf96e87df4d220789",
+      "review/game-abi111-card-faces-20261024": "a520f7680387831b7ee011b42d4c445fca2183de",
+      "progress/batch20-fourth-20261022": "08319094a113717a1a80041fbe94ca8c139429be",
+      "main": "d1c068ea8c4162212cd19fa023841513c4c67e33"
+    },
+    "operation": "READ_ONLY; no push/settings/dispatch",
+    "workflows": [
+      {
+        "id": 259796635,
+        "name": "Copilot cloud agent",
+        "path": "dynamic/copilot-swe-agent/copilot",
+        "state": "active"
+      }
+    ],
+    "remote_changed_since_0743": false,
+    "workflow_metadata_changed_since_0743": false,
+    "push": "NOT_ATTEMPTED; dynamic workflow event definition still not established",
+    "new_blockers": []
+  },
+  "early_failures": {
+    "death-red": "Valid JZ24 caller and black transaction UID negatives; destruction fixtures initially used Spirit-prevented JC102 damage and therefore are not all valid missing-trigger evidence",
+    "death-first": "Compiled; same Spirit/retired reveal ID fixture mistakes, then corrected to real BQ090 destroy and new JZ24 identity",
+    "death-boundaries-red": "11/13; actual paid-cost caller and early restored caller fail before fixes",
+    "death-boundaries-green": "Syntax error in intermediate predicate; corrected",
+    "death-tiger-order-red": "Actual borrowed-owner CQ25/XG25 ordering failure",
+    "death-tiger-order-fixed": "13/14; response fixture lacked priority, corrected with actual passes/legal action",
+    "final": "All final checks pass at exact code HEAD"
+  },
+  "release_version_note": "Unpublished Native WIP; deployment identity/version regeneration and full release validation remain pending"
+}

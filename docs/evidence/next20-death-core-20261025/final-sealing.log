@@ -1,0 +1,76 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 0.01s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 28 tests
+test import20_broker_tests::import20_bq081_post_mill_rumor_sealing_pauses_and_keeps_the_same_contest_once ... ok
+test jc066_tests::jc066_original_host_or_region_departure_cancels_without_sealing_another_instance ... ok
+test jc066_tests::jc066_sealing_performs_existing_attachment_and_nested_seal_departure_cleanup ... ok
+test next20_anchor_core_tests::next20_anchor_core_sealing_on_own_society_emits_real_optional_modes_and_forecast ... ok
+test sealing_tests::sealing_actual_paid_rescue_returns_host_and_payload_to_different_owners ... ok
+test sealing_tests::sealing_board_move_and_control_change_keep_exact_host_and_independent_payloads ... ok
+test sealing_tests::sealing_choice_rejects_wrong_seat_unknown_duplicate_and_stale_ids_atomically ... ok
+test sealing_tests::sealing_drawn_card_is_a_required_private_choice_then_public_blank_zone ... ok
+test sealing_tests::sealing_elimination_releases_foreign_payloads_and_removes_eliminated_owners ... ok
+test sealing_tests::sealing_empty_draw_eliminates_actor_before_any_seal_or_private_selection ... ok
+test sealing_tests::sealing_exact_printed_three_definitions_and_xq45_no_domain ... ok
+test sealing_tests::sealing_finished_restart_clears_old_seals_roundtrips_and_accepts_next_command ... ok
+test sealing_tests::sealing_missing_or_replaced_paid_target_cancels_entire_draw_without_refund ... ok
+test sealing_tests::sealing_new_zone_rejects_invalid_saved_hosts_owners_duplicates_and_mutated_state ... ok
+test sealing_tests::sealing_paid_source_departure_does_not_cancel_draw_or_original_host_binding ... ok
+test sealing_tests::sealing_private_choice_roundtrips_for_every_actor_and_rejects_invalid_bound_frames ... ok
+test sealing_tests::sealing_private_selection_trigger_and_paid_stack_pause_resume_actual_room_trace ... ok
+test sealing_tests::sealing_region_win_bottom_batch_excludes_sealed_cards_and_returns_them_to_hand ... ok
+test sealing_tests::sealing_sacrifice_destroy_and_actual_lethal_return_to_each_owner_without_payload_death ... ok
+test sealing_tests::sealing_simultaneous_lethal_keeps_same_printed_payload_instances_and_owners_separate ... ok
+test sealing_tests::sealing_two_same_printed_xq41_events_keep_fifo_original_holders_and_exact_one_draw ... ok
+test sealing_tests::sealing_whole_definitions_and_nested_program_transplants_are_rejected ... ok
+test sealing_tests::sealing_world_hide_returns_payload_and_replaces_host_without_a_death_trigger ... ok
+test sealing_tests::sealing_xq41_can_decline_once_and_does_not_trigger_again_when_returning_to_hand ... ok
+test sealing_tests::sealing_xq41_freezes_hand_holder_and_trigger_survives_host_destruction ... ok
+test sealing_tests::sealing_xq45_checks_actual_relationship_at_resolution_and_never_retargets_a_new_instance ... ok
+test sealing_tests::sealing_xq45_destroys_a_sealed_host_once_and_returns_payloads_before_death ... ok
+test sealing_tests::sealing_xq45_may_target_an_unsealed_character_but_does_not_destroy_it ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 2515 filtered out; finished in 4.26s
+

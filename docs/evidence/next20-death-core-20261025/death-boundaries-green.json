@@ -1,0 +1,76 @@
+{
+  "state": "complete",
+  "source_head": "ea8289f95e1521e8b23304d162ce8339f0612676",
+  "worktree_diff_sha256": "3a7d8488b88022a5d01c3e10feb3dcff8325f5811a3ea56cf9b3f2e528d25731",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--no-default-features",
+    "next20_death_core_",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "kind": "real checkout native engine",
+  "offline": true,
+  "started_utc": "2026-10-25T08:08:48.477330+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-real-core-validation-20261025/death-boundaries-green.log",
+  "source_inputs": [
+    {
+      "path": "rust-game/src/batch3_ghoul.rs",
+      "sha256": "ef42a52a535f7d0ec2d898d5173967e1d14764392affb5b69d1e70ba68c966f6"
+    },
+    {
+      "path": "rust-game/src/blue_minimum.rs",
+      "sha256": "0ef2305cb4f68fa18e7c8a9ed57616aed278fdb804c0a4c0f8a30be0ea47a1a8"
+    },
+    {
+      "path": "rust-game/src/death_continuation.rs",
+      "sha256": "fe17a0f73830f8c1f62d5b64a282d26aee8013f25fcb8662a385d8c32ec82d02"
+    },
+    {
+      "path": "rust-game/src/death_observers.rs",
+      "sha256": "936edfbc9a29f194e16b07e5358a382f6615afe51134349e560747735b37d7a2"
+    },
+    {
+      "path": "rust-game/src/engine.rs",
+      "sha256": "3a539683374500e91bbc06f09cec1cc6c1af621080218363808ec2d878a674b5"
+    },
+    {
+      "path": "rust-game/src/jz35.rs",
+      "sha256": "77c16d2c619483cfdf686f69d19d719b9769e22017e3eb4c1eb6334c19917c04"
+    },
+    {
+      "path": "rust-game/src/lib.rs",
+      "sha256": "7b339dcb70ff07e565ef23a6522206e7a143fd49d0376200ed3d2e450324d26c"
+    },
+    {
+      "path": "rust-game/src/model.rs",
+      "sha256": "80969e6e973e53eacfbfaf21c7766db6c981669f629d36774a69a9fd2169ad99"
+    },
+    {
+      "path": "rust-game/src/next20_black_wraiths.rs",
+      "sha256": "57fec08480a910f5de11bbb15c2535556241d6f34ac7a941a3f16c9cc1d9c088"
+    },
+    {
+      "path": "rust-game/src/next20_death_core_tests.rs",
+      "sha256": "865547b0a8122dd8c6a02d9a4830356598441bce482d670633f6a8843af9ab63"
+    },
+    {
+      "path": "rust-game/src/resolution.rs",
+      "sha256": "a4e31cf691899ec5315d0db278910ef23e841a3c6faae946db75f347b12f55d8"
+    }
+  ],
+  "exit_code": 101,
+  "seconds": 1.297,
+  "log_sha256": "cf3083f4d9b1c89ad919b2c10781470bc157449101ce231a9c0b326c8581e7c4"
+}

@@ -1,0 +1,71 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 0.01s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 23 tests
+test death_observer_tests::death_observer_actual_vampire_conversion_is_frozen_before_control_source_leaves ... ok
+test death_observer_tests::death_observer_all_removal_causes_and_optional_decline ... ok
+test death_observer_tests::death_observer_both_discard_branches_preserve_holder_event_and_owner_grave ... ok
+test death_observer_tests::death_observer_cascade_captures_a_new_wave_and_excludes_prior_departures ... ok
+test death_observer_tests::death_observer_caster_limit_is_acceptance_per_original_instance_and_per_turn ... ok
+test death_observer_tests::death_observer_contract_freezes_original_region_before_and_after_response ... ok
+test death_observer_tests::death_observer_contract_one_point_enemy_repression_threshold_and_self_death_preserved ... ok
+test death_observer_tests::death_observer_contract_threshold_runs_existing_win_window_and_team_victory ... ok
+test death_observer_tests::death_observer_controller_owner_teams_and_identical_instances_are_independent ... ok
+test death_observer_tests::death_observer_definition_transplants_nested_modes_and_program_mutations_rejected ... ok
+test death_observer_tests::death_observer_duplicate_command_is_exact_and_illegal_markers_rejected ... ok
+test death_observer_tests::death_observer_gray_locked_lethal_hit_restores_both_program_families ... ok
+test death_observer_tests::death_observer_hidden_return_bottom_and_region_removal_do_not_trigger ... ok
+test death_observer_tests::death_observer_late_arrival_self_exclusion_and_exhaustion ... ok
+test death_observer_tests::death_observer_normal_discard_private_choice_random_and_empty_hand ... ok
+test death_observer_tests::death_observer_original_fields_three_programs_and_unchanged_initiative_icons ... ok
+test death_observer_tests::death_observer_persisted_declarations_atomic_guards_and_discard_cursor_are_closed ... ok
+test death_observer_tests::death_observer_priest_exact_markers_move_control_exhaustion_and_leave_reset ... ok
+test death_observer_tests::death_observer_priest_original_instance_and_caster_effect_survive_source_departure ... ok
+test death_observer_tests::death_observer_real_destroy_lethal_and_paid_sacrifice_use_same_entry ... ok
+test death_observer_tests::death_observer_real_paid_deployment_and_attachment_require_printed_domains ... ok
+test death_observer_tests::death_observer_same_card_same_color_instances_limit_independently_and_first_team_declares_first ... ok
+test death_observer_tests::death_observer_simultaneous_dying_observers_still_observe_whole_wave ... ok
+
+test result: ok. 23 passed; 0 failed; 0 ignored; 0 measured; 2520 filtered out; finished in 8.79s
+

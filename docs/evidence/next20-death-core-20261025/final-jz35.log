@@ -1,0 +1,66 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 0.01s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 18 tests
+test jz35_tests::jz35_actual_departure_receipts_distinguish_two_same_name_same_region_cards_and_reset_entry ... ok
+test jz35_tests::jz35_cannot_be_played_as_a_response_and_has_no_unprinted_once_per_turn_limit ... ok
+test jz35_tests::jz35_current_controller_only_excludes_teammates_enemies_hidden_nonhosts_and_assets ... ok
+test jz35_tests::jz35_death_triggers_keep_old_controller_source_and_original_region_after_return ... ok
+test jz35_tests::jz35_departure_that_did_not_happen_has_no_receipt_or_death_declaration ... ok
+test jz35_tests::jz35_duplicate_room_command_and_consumed_hand_action_do_not_pay_or_remove_twice ... ok
+test jz35_tests::jz35_full_original_and_closed_standard_spell ... ok
+test jz35_tests::jz35_host_attachments_leave_and_cannot_return_or_grant_subtype_to_new_instance ... ok
+test jz35_tests::jz35_insufficient_cost_or_loyalty_and_extra_payload_are_atomic_rejections ... ok
+test jz35_tests::jz35_missing_actual_grave_card_never_substitutes_old_same_name_or_other_owners_copy ... ok
+test jz35_tests::jz35_modified_frames_and_stack_shells_reject_both_restore_loaders ... ok
+test jz35_tests::jz35_no_hosts_is_a_legal_paid_noop_and_spell_is_buried ... ok
+test jz35_tests::jz35_ordinary_grave_entry_enqueues_enter_but_not_reveal_triggers_for_the_owner ... ok
+test jz35_tests::jz35_original_region_vacant_missing_or_replaced_leaves_actual_card_in_grave ... ok
+test jz35_tests::jz35_paid_same_name_hosts_all_seats_and_owners_return_as_new_owner_controlled_instances ... ok
+test jz35_tests::jz35_resolves_current_hosts_after_responses_instead_of_freezing_declaration_targets ... ok
+test jz35_tests::jz35_simultaneous_observers_keep_each_old_dead_identity_after_all_hosts_return ... ok
+test next20_death_core_tests::next20_death_core_jz35_does_not_invent_a_host_type_for_ghosts ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 2525 filtered out; finished in 2.82s
+

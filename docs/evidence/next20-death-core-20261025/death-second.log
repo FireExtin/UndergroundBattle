@@ -1,0 +1,56 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 27.56s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 7 tests
+test next20_death_core_tests::next20_death_core_actual_jz24_caller_waits_before_next_player_and_resumes_once ... ok
+test next20_death_core_tests::next20_death_core_decline_and_no_target_both_finish_to_owner_grave ... ok
+test next20_death_core_tests::next20_death_core_nested_real_response_deaths_keep_distinct_continuations ... ok
+test next20_death_core_tests::next20_death_core_paid_black_transactions_reject_swapped_instance ... ok
+test next20_death_core_tests::next20_death_core_real_destroy_holds_card_then_seals_without_grave_visit ... ok
+test next20_death_core_tests::next20_death_core_resolution_time_marker_loss_buries_once_and_finishes ... ok
+test next20_death_core_tests::next20_death_core_target_destroyed_by_real_response_has_grave_fallback ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 2529 filtered out; finished in 2.00s
+

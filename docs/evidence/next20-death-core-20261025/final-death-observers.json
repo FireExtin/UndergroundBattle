@@ -1,0 +1,31 @@
+{
+  "state": "complete",
+  "source_head": "1bd07762824e138c0560863130ec7eacaddbf9c8",
+  "worktree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--lib",
+    "--no-default-features",
+    "death_observer",
+    "--",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "kind": "real checkout native engine",
+  "offline": true,
+  "started_utc": "2026-10-25T08:18:53.403065+00:00",
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-real-core-validation-20261025/final-death-observers.log",
+  "source_inputs": [],
+  "exit_code": 0,
+  "seconds": 8.831,
+  "log_sha256": "e2ab50447ca7b8c524a5a50f8d60c98cb60bb00e0e5035e0c1c58c6b1b5c288e"
+}
