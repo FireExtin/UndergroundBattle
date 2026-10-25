@@ -1,0 +1,8 @@
+{
+  "at_utc": "2026-10-25T12:36:37.068387+00:00",
+  "process_group": 1381982,
+  "action": "SIGTERM own failed test group after all five body outcomes were printed",
+  "reason": "Four local wrapper cases failed module root resolution; production unwrapped case passed; process retained open handles",
+  "logs_preserved": true,
+  "new_test_started_before_stop": false
+}

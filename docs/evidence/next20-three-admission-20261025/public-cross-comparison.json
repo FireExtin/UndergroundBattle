@@ -1,0 +1,47 @@
+{
+  "currentSourceManifestSha256": "8b32a7a1ea1034a263edc4438a5281267445b89528c850c21b61448301b1d4ff",
+  "currentWasmSha256": "369b05ecf33a8b7bfb80556bba35ac3f7eab9b6ff258fc83b2aaf4917d9a622d",
+  "publicAdmission": true,
+  "cases": [
+    {
+      "name": "bq034-natural-entry-counter",
+      "seed": "1603",
+      "commands": 386,
+      "views": 772,
+      "duplicates": 386,
+      "publicNewGameAndJoin": true,
+      "publicStartAccepted": true,
+      "rawNativeSha256": "5e4e8a33f5008dd491e2f83731ea1346acc09969f10f9adafd806bed629c7d37"
+    },
+    {
+      "name": "bq034-natural-shown-feed",
+      "seed": "1603",
+      "commands": 332,
+      "views": 664,
+      "duplicates": 332,
+      "publicNewGameAndJoin": true,
+      "publicStartAccepted": true,
+      "rawNativeSha256": "9116c87bf5ad777153eeb07be75e6f143a9b7b9789662c23cf4cc5457bead8bc"
+    },
+    {
+      "name": "cq25-xg25-natural-seal-move-search",
+      "seed": "1723",
+      "commands": 357,
+      "views": 714,
+      "duplicates": 357,
+      "publicNewGameAndJoin": true,
+      "publicStartAccepted": true,
+      "rawNativeSha256": "e5deb5124eacc7a06e84ae755e968d2a41132821a238561ada2214cd5e3841d7"
+    },
+    {
+      "name": "bq034-natural-two-unique-sacrifice",
+      "seed": "171",
+      "commands": 229,
+      "views": 458,
+      "duplicates": 229,
+      "publicNewGameAndJoin": true,
+      "publicStartAccepted": true,
+      "rawNativeSha256": "5c175119f3c6df96fd6032d09ec82e23ab28b83d86560d29cf960ef9c5adab4a"
+    }
+  ]
+}

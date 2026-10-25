@@ -1,0 +1,3033 @@
+{
+  "source_commit": "fe2b7f9338582d48e18e39861f7161a052120ce0",
+  "files": {
+    "admission-final-summary.json": {
+      "bytes": 7065,
+      "sha256": "eea7d52c313299d9f75536a2edb2f59de4d6dbdca241b76e207814a80d4866df"
+    },
+    "anchor-dependency-review.md": {
+      "bytes": 3808,
+      "sha256": "f4943657ec5bfc1223a72ec9ec1918aa35781d0905d26392423faedade298a93"
+    },
+    "before-admission-cards.json": {
+      "bytes": 310798,
+      "sha256": "27124452b0037582bfeaa8e4f4d6bada17ca625e79aae6a35ef97e057703be32"
+    },
+    "cross-logs/final-admission-source.json": {
+      "bytes": 5015,
+      "sha256": "a7b325e498bcefa8f07ad6cd25ada52c237eccb954dacea501ba84ac3b9c33b9"
+    },
+    "cross-logs/final-admission-source.log": {
+      "bytes": 212,
+      "sha256": "0f22c549bd9cbcbb1b5d30b7a98e9b7e87417caf018451060035f49b0b9e7774"
+    },
+    "cross-logs/final-http-wrapper-build.json": {
+      "bytes": 5107,
+      "sha256": "7d0d1e984716b58d4380d253c1f89bb3f5a27ba8d25ea1c23e3808efeb70514b"
+    },
+    "cross-logs/final-http-wrapper-build.log": {
+      "bytes": 471,
+      "sha256": "3546ad307dc265cbf0469d7407eb0ccfc6cef655e3a4d4882bd4b6b18721ad7a"
+    },
+    "cross-logs/final-http-wrapper-in-root.json": {
+      "bytes": 5286,
+      "sha256": "20ffbd4a4e140045a5ce2c22605bd8bf2c11210c5bfa6e4268f9e56bc38de745"
+    },
+    "cross-logs/final-http-wrapper-in-root.log": {
+      "bytes": 496,
+      "sha256": "526de976a1741a8e159e3615bb19ba6bd15f176cc6b1c90d2495f906255d0752"
+    },
+    "cross-logs/final-import20-source.json": {
+      "bytes": 5007,
+      "sha256": "c641ebe3bbc82929ce68777375662d8bdbca37c3cd04eb4f2216fe748e75acdd"
+    },
+    "cross-logs/final-import20-source.log": {
+      "bytes": 564,
+      "sha256": "6897631ac102b9f58c34ce6cbf31a7413953b750dfc292ed804569998aa1d687"
+    },
+    "cross-logs/final-kernel-binding.json": {
+      "bytes": 5085,
+      "sha256": "d2b126884612ada735a8f9685edc9935477498d94d796e3cb1398cac2e90c797"
+    },
+    "cross-logs/final-kernel-binding.log": {
+      "bytes": 211,
+      "sha256": "40e13e38637d9fc4f564e76488c955c5e19c0e6f08cda6cee3bff42655f1d00d"
+    },
+    "cross-logs/final-public-pack.json": {
+      "bytes": 5093,
+      "sha256": "be75c1835acad4b5eca936e8a49fc899a05892d76d676350391c903282711de4"
+    },
+    "cross-logs/final-public-pack.log": {
+      "bytes": 958,
+      "sha256": "a33de82ee9981025df075a9c13c424dc749e174fbf190ad6920d848a2fe243e5"
+    },
+    "cross-logs/final-public-worker-02.json": {
+      "bytes": 5207,
+      "sha256": "9e70e2b097e15631696db31721bb872f14799eb7806c23ef216c1c5633552516"
+    },
+    "cross-logs/final-public-worker-02.log": {
+      "bytes": 2140,
+      "sha256": "66a3e512d8dc6e340488e26f0232134a60ce6b323e65c244a09bcabbe5853388"
+    },
+    "cross-logs/final-public-worker-stop.json": {
+      "bytes": 368,
+      "sha256": "5dba0be94da637037a1e184b8ec7be663be1c66d3f57dbe080ef6e88957efef1"
+    },
+    "cross-logs/final-public-worker.json": {
+      "bytes": 5054,
+      "sha256": "f1de10694a1b4e270dcd604b58e2c9d5e5e7f850e6e0c3d76872c9ddc0145e55"
+    },
+    "cross-logs/final-public-worker.log": {
+      "bytes": 17788,
+      "sha256": "cfcb29b021d70de8581b4bb9a23e00761f8d508edb26e09aa8619c166e45a8fc"
+    },
+    "cross-logs/final-wasm-build.json": {
+      "bytes": 4976,
+      "sha256": "7c69f47a96064368f9bd8c2d96d93e430895040bc35a8bc8024580b805d75902"
+    },
+    "cross-logs/final-wasm-build.log": {
+      "bytes": 1201,
+      "sha256": "6a9246a75663178f699c5c7da306f6c16ea95752a206fdabe5d5520450ae7b1e"
+    },
+    "cross-logs/final-worker-build.json": {
+      "bytes": 5002,
+      "sha256": "e28206a17d6094b06f991d0c6037bb6b4aece7d1c7d57247d45e0c9f1abddfb1"
+    },
+    "cross-logs/final-worker-build.log": {
+      "bytes": 1136,
+      "sha256": "1516ffe46d25509010ec782930c4236e45c4b2792a6d2fcf39c60cb82c7fe607"
+    },
+    "cross-logs/final-worker-integration.json": {
+      "bytes": 5240,
+      "sha256": "3488d7fac3829a1a44cdb3a25032af5b869d4d0802a2715961d8f133ae7cb61e"
+    },
+    "cross-logs/final-worker-integration.log": {
+      "bytes": 721,
+      "sha256": "533bb35bebb1f26ec9da9ee7dbb622cdcc0642696a642769188271ac3c8d3a29"
+    },
+    "cross-logs/production-public-entry-approved-01.json": {
+      "bytes": 5065,
+      "sha256": "98e7f053cf0c0e747e58304d2d423bdf75649e12de1c9a9262b56d715518ac36"
+    },
+    "cross-logs/production-public-entry-approved-01.log": {
+      "bytes": 319,
+      "sha256": "8434f76a6d0612c7713b9ad928dca92dd6228711df3afaac9dd1fe717755d936"
+    },
+    "cross-logs/production-public-entry-probe.json": {
+      "bytes": 5053,
+      "sha256": "b57058c9dee467367d615c93cb4addff2b5745c372a79728915bdf482b2c4b7e"
+    },
+    "cross-logs/production-public-entry-probe.log": {
+      "bytes": 481,
+      "sha256": "697c05f3befebc765d011cf7653feb9ab10b14cf7e03f2cb3471e534bbed0f20"
+    },
+    "cross-logs/public-http-wrapper-build.json": {
+      "bytes": 5085,
+      "sha256": "314514fec2c81088a3a41b9296733948e274b4b34d105aef8c9fbab15af85339"
+    },
+    "cross-logs/public-http-wrapper-build.log": {
+      "bytes": 459,
+      "sha256": "5d5862a10b830ea03da1e4b9d995be4ba26a35dc64936c254350aa82cb2c7804"
+    },
+    "cross-logs/public-wasm-build.json": {
+      "bytes": 4961,
+      "sha256": "16c05667de1f812459f617e12b15420864405b1b0a15216b24e918e23d142576"
+    },
+    "cross-logs/public-wasm-build.log": {
+      "bytes": 1189,
+      "sha256": "d14be8e67e8630348edbc0b74e8c2707c54b3a48079076e72ac5a8e570ccb35e"
+    },
+    "cross-logs/public-worker-build.json": {
+      "bytes": 4986,
+      "sha256": "cfbc2ee0ef428e194976ca096b9d1ac99ed1799945c73bbd807c27b20f965565"
+    },
+    "cross-logs/public-worker-build.log": {
+      "bytes": 1130,
+      "sha256": "d89e6228ea530fd4ae5afce21f858da25cf704044e37ce2875e02c3df6c02872"
+    },
+    "cross-logs/worker-root-diagnostic.json": {
+      "bytes": 776,
+      "sha256": "cf72900d40a3945bd960a35a4eff153310e90a3692fe39e66c2764c227ba9e01"
+    },
+    "fixtures/rust-game-wasm/tests/current112/bq034-natural-entry-counter.json.gz": {
+      "bytes": 3918114,
+      "sha256": "631fdb7583d14b8e2f502490df148de3d56cd5c5b4ae125970d0736b9547924d"
+    },
+    "fixtures/rust-game-wasm/tests/current112/bq034-natural-shown-feed.json.gz": {
+      "bytes": 3276352,
+      "sha256": "ed3a4289784285e86390ac2c21e6be5bdfd4e2aa6f3e163be2dfa595187dcb32"
+    },
+    "fixtures/rust-game-wasm/tests/current112/bq034-natural-two-unique-sacrifice.json.gz": {
+      "bytes": 2099244,
+      "sha256": "81061253bddc87225093c055bc68196f743e5129294a9ebcc06191675871a012"
+    },
+    "fixtures/rust-game-wasm/tests/current112/cq25-xg25-natural-seal-move-search.json.gz": {
+      "bytes": 3833959,
+      "sha256": "5ec9ca952a73e54e94f864bfb308e5bdb00d623c92775e2e518a7d120e54e248"
+    },
+    "frozen-source-a78.json": {
+      "bytes": 4283,
+      "sha256": "51ebfa2c7eca8268042639e4ff3baf4e70696387586386f292452a8a86127915"
+    },
+    "frozen-source.json": {
+      "bytes": 4289,
+      "sha256": "0331d382919d21000526d080d278b7bc8324516a055ccee7aec9a3ae957462fc"
+    },
+    "initial-inputs.json": {
+      "bytes": 3857,
+      "sha256": "1c6b0d922436dce77b0f1c69bea36a9b580d97ba048bcf92ef5ea097379979d6"
+    },
+    "minimal-admission-commit.patch": {
+      "bytes": 1893,
+      "sha256": "1e73d40fe8182b176c042f77ec13330b0f2e4e2196a86020405a7e82b2881433"
+    },
+    "pack_public.mjs": {
+      "bytes": 3341,
+      "sha256": "f4444025f5362c69db53c256b76530b1c02ed3070412a08087a7c9889c0646d9"
+    },
+    "public-cross-comparison.json": {
+      "bytes": 1493,
+      "sha256": "05708ab5d1578b8049634af63d684b02fd079ec2a23b7a7f0b2b0f5a0ee1a73d"
+    },
+    "public_entry_probe.mjs": {
+      "bytes": 4974,
+      "sha256": "835dbecd60f01974701ca56ea857fa38c3d226d268251325ee68e62158cea4f4"
+    },
+    "run_cross.py": {
+      "bytes": 2642,
+      "sha256": "d129f60c6e0321f6cc12e05da6a81daf2d3257517abc398b6c4af1dfef6829fa"
+    },
+    "run_public_native.py": {
+      "bytes": 3205,
+      "sha256": "0f0cb31f0360116a838189382e591b29ef970689044975afd7ba9f87b02d4776"
+    },
+    "run_public_worker.mjs": {
+      "bytes": 464,
+      "sha256": "49890c42cfc5b5932e4e0ede5234648bbd480286b848bdefedee52d12fe8b218"
+    },
+    "run_sites_file.mjs": {
+      "bytes": 245,
+      "sha256": "2a13c6a840077384d0ef13e21326eb22bdce8895635fcb17191bf85a2f73f206"
+    },
+    "runs/public-fixed-export-02/native/bq034-natural-entry-counter.jsonl": {
+      "bytes": 37835177,
+      "sha256": "5e4e8a33f5008dd491e2f83731ea1346acc09969f10f9adafd806bed629c7d37"
+    },
+    "runs/public-fixed-export-02/native/bq034-natural-shown-feed.jsonl": {
+      "bytes": 31880154,
+      "sha256": "9116c87bf5ad777153eeb07be75e6f143a9b7b9789662c23cf4cc5457bead8bc"
+    },
+    "runs/public-fixed-export-02/native/bq034-natural-two-unique-sacrifice.jsonl": {
+      "bytes": 21512092,
+      "sha256": "5c175119f3c6df96fd6032d09ec82e23ab28b83d86560d29cf960ef9c5adab4a"
+    },
+    "runs/public-fixed-export-02/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 35808395,
+      "sha256": "e5deb5124eacc7a06e84ae755e968d2a41132821a238561ada2214cd5e3841d7"
+    },
+    "runs/public-fixed-export-02/output.log": {
+      "bytes": 2723,
+      "sha256": "00e0e82f91c4cfbe85d165e036e7b2e2af39f7cf3af1ed0838f5c5e2e7df2f4f"
+    },
+    "runs/public-fixed-export-02/receipt.json": {
+      "bytes": 38247,
+      "sha256": "73f943a3c07514696f4603d125ceb09a4e3a0253ef35db948b224ac42f3586c0"
+    },
+    "runs/public-fixed-export-02/source-files/Cargo.lock": {
+      "bytes": 29338,
+      "sha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54"
+    },
+    "runs/public-fixed-export-02/source-files/Cargo.toml": {
+      "bytes": 69,
+      "sha256": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/Cargo.toml": {
+      "bytes": 375,
+      "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/current_jc052_worker_fixtures.rs": {
+      "bytes": 2282,
+      "sha256": "44e7e0e21f8f4bec952d2219d514d1cdbf3aecfd9a3fdbbca3d93d14f57710f2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/current_ui_worker_fixtures.rs": {
+      "bytes": 12321,
+      "sha256": "6e442faf36a3a38ab599f847d1353db8ad230d9b9386f2766fd8fe7a119a7fce"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/native_fixtures.rs": {
+      "bytes": 110698,
+      "sha256": "f140b24b43871beac254936a227a19f1bb64e125e34ddcb28117f7f7b3e01c54"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/seven_card_ui_fixtures.rs": {
+      "bytes": 4680,
+      "sha256": "d69205fd16f38d9c42ab66b9d168bead1df4fec0c276b10f30a6340c36666091"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/control.rs": {
+      "bytes": 32299,
+      "sha256": "1618ccac6c656dcf2543b6a21af56c33238f3a61355e05bc61dfd9cc3ba7328c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/defence_equipment.rs": {
+      "bytes": 35306,
+      "sha256": "085237fdcbd268ec6f1e4a2268029163c5a389adc7a1178faeb7f5834602816a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/dream_reveal.rs": {
+      "bytes": 26062,
+      "sha256": "c959a2f38defa321b6c36fe16f9accba13af4d596e320047d8e0e5be86fbf0e8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/equipment_abilities.rs": {
+      "bytes": 46779,
+      "sha256": "f3fc79ea993c5c3004a42663cabd9d983d36593d32d5e4a212c3e0b0e4404c5c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/hand_deck.rs": {
+      "bytes": 22585,
+      "sha256": "a4d034538019fe1fee159225da3e35ea7df38d2266c8bcb6597d65c75b4a6bd2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/hand_interactions.rs": {
+      "bytes": 25833,
+      "sha256": "30033bf1b0b5ce256d6424165129646bfebc41bb1d05be16cc3a28dbb4490243"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/identity_overlap.rs": {
+      "bytes": 22904,
+      "sha256": "1391b5c1fd88c220e3762778365e137cb8756c44c0e569a5bb3a7f58988d27f3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/jc004.rs": {
+      "bytes": 17861,
+      "sha256": "634717ba75955c5cb81709653baf169af9f8dba879a819a0f74966047f944195"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/jc005.rs": {
+      "bytes": 10615,
+      "sha256": "80a709822ea9c1789131a90085f16e09afc9bf4775d3502fc1ca09714d8df9e5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/jc008.rs": {
+      "bytes": 18984,
+      "sha256": "eb8a68cbf7b4ac600449b1c53bc22de77487c69bdffde31065d2855c0b83f32c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/mixed_decks.rs": {
+      "bytes": 9760,
+      "sha256": "73076b806a934ce05b7821746a4dc0f7c0ce5d181211b4c999165ccd2697cab8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc01.rs": {
+      "bytes": 19062,
+      "sha256": "2e329f0fe67cbaa47c2b44617c9dcb6b9f46915d4a4ea191b7212f629f115ded"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc06.rs": {
+      "bytes": 23002,
+      "sha256": "b92e1deadd07607f61fe9000afc6f419b5887b2cc47300fee45de7dab501e604"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc07.rs": {
+      "bytes": 23037,
+      "sha256": "08655fcc1b107d2de814a0231eea1ce3a098554fa11562bfc42137c9729bea22"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc08.rs": {
+      "bytes": 23014,
+      "sha256": "adeb445615d0212b05b9c921db271c1978acde518ba5a42ce40159fd69a04867"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc09.rs": {
+      "bytes": 7086,
+      "sha256": "6799e96443d34cf1409cd18a51fb7d406ddb12be22e29f07162e805f38bbd731"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/msjc11.rs": {
+      "bytes": 35026,
+      "sha256": "f0e028a0bda97dd32ca6bf376ace12f68c3b26ae70d718ffaa4c1165a9e78c95"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/next20.rs": {
+      "bytes": 44098,
+      "sha256": "16f94037ab7e941549908c59ffdb9c196affca70b870f272c6a6d3f0391d3d34"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/protection.rs": {
+      "bytes": 28856,
+      "sha256": "1272d3010d72f1a58f9f45e691dccf19524f5aa5ba1b59ed84959e8e949d75a1"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/purple_tools.rs": {
+      "bytes": 20088,
+      "sha256": "c757e16892c55416f13494a6e1e1d03d89a8223442f43f7a63de57e41c23fb56"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/region_aura.rs": {
+      "bytes": 36238,
+      "sha256": "e2237116208fa3b95b5846965e66ae7710c2c4a3a2f58672a72542c26dc824b3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/renown.rs": {
+      "bytes": 22652,
+      "sha256": "a3ff9f0ca4e44c57f5d743cc68814ade1825cbe20ffe9f3e0862a4a0a19b98b4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/repress_assets.rs": {
+      "bytes": 24144,
+      "sha256": "4d6d082c56ad9a840c6785154c5cc49a4724b4dd72e99fa668e7d6951fae55eb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/society_fixture.rs": {
+      "bytes": 6201,
+      "sha256": "531b8909c33ac20bba4757a68c5217f6b27efc2d246f9031e5d6d5e08bf1224c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/society_zone.rs": {
+      "bytes": 6306,
+      "sha256": "ddc4aca067d364ab7d9be11ccef22f1b91b0c5cb6eef78ccf72a97686688be98"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/white_wound.rs": {
+      "bytes": 26782,
+      "sha256": "2fbe71526baa5a04928f6a8380ad1a51a2e9c13b3be2ecca243b93d4fe716e0e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/wound_defence.rs": {
+      "bytes": 19662,
+      "sha256": "1b731716fa5198dd8b357c48d06c74c3a62ded5d44efae4d6a3396a965dcec3d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/examples/support/yellow_search.rs": {
+      "bytes": 16961,
+      "sha256": "ea184291253d3faf4bc7a6722da25261e8bffe0e6a9b4990913aa1cc5e40b57b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game-wasm/src/lib.rs": {
+      "bytes": 7064,
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/Cargo.toml": {
+      "bytes": 1271,
+      "sha256": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/data/cards.json": {
+      "bytes": 310791,
+      "sha256": "8374881d798c04fb22666842a24b4e96ceb51f1fcfb3516104429280c6463a07"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/examples/semantic_scope_audit.rs": {
+      "bytes": 302,
+      "sha256": "fd5acb012a686f9a73cc1fe1b26553cbe199adb371e8d8ec917befe8b642a3fd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/abi112_review_play_tests.rs": {
+      "bytes": 9422,
+      "sha256": "521f991661c9a9c8966d2cb9cd952ea256599f1f1a89641f068a35d29e1e1542"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/attachment.rs": {
+      "bytes": 31222,
+      "sha256": "53c57b6e6bc1d106921b359cdeae52704fbd2b255c55ca49c1a56ccac2bd8f00"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/attributes.rs": {
+      "bytes": 11131,
+      "sha256": "b856b83b7b07aed62487aed006567f4952eb88272a69fded35a52e1e274d504c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch20.rs": {
+      "bytes": 50269,
+      "sha256": "13de4ce4b2e2a95cae9daf90a4e98c33f7ca2063426a7fe48fac4705007e6996"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch20_observers.rs": {
+      "bytes": 14706,
+      "sha256": "2eee4713dc344fbc3705d7480eea3098603d0ae8708a90192c5776f1b2ad0075"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch20_tests.rs": {
+      "bytes": 27737,
+      "sha256": "f5178d9fb346acd2e12587aa80eac4bc5845a569f3f574bb6c93f7544b4ba012"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3.rs": {
+      "bytes": 50774,
+      "sha256": "f0cb831afa130f8b96ba1910ffd8dc4c92494da7f6ccbdfe881fc32e3aed2c86"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_abi94_tests.rs": {
+      "bytes": 2865,
+      "sha256": "b92ffe9ace41d80820952b72f223f33fdbc19a41b2f227f92aac2ada5c9cc2cc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_alpha.rs": {
+      "bytes": 4732,
+      "sha256": "b75cb52a37fba27d5c65366ade0f6867e4cf90dcfdf31487b2ea0ec4b8a9fa5b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_alpha_tests.rs": {
+      "bytes": 7633,
+      "sha256": "c1f4eae7eabca24bd7c61d6a13c913186b45c80d2beeb82043313507ebb95652"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_bats.rs": {
+      "bytes": 7421,
+      "sha256": "187641826051a2c8881185a9534eb9ff5b2e992b2169ddb323a8d5659fddf20a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_bats_tests.rs": {
+      "bytes": 18007,
+      "sha256": "cbf9251c7dfb23be954aeb4c8f000f4dc1309e4e2da15434e2bdf786846e15fe"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_black.rs": {
+      "bytes": 13648,
+      "sha256": "d05f5e5392fa5ae8e521577d2c757f4d0cbf002489c219dfd0288e4b3ff45643"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_blood.rs": {
+      "bytes": 19260,
+      "sha256": "b7c7d2a83bb4fa3492b067b2f5dba250a67754644a483971c0cd0651198ab60f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_blood_tests.rs": {
+      "bytes": 10107,
+      "sha256": "6b9558c7cf8ea7d4cb98a61dfc012df71c53964a7e43cf759fcec4524f085828"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_entry_order.rs": {
+      "bytes": 9136,
+      "sha256": "881663e07bb22a376dd1718f7929acba933f23dd440d86803c936d29659298b2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_ghoul.rs": {
+      "bytes": 8472,
+      "sha256": "ef42a52a535f7d0ec2d898d5173967e1d14764392affb5b69d1e70ba68c966f6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_ghoul_tests.rs": {
+      "bytes": 9721,
+      "sha256": "54f2dd86290c130a34bb7f77a47b6b9ffaed7f4d17a47015c9961a0b6948ba19"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_grave.rs": {
+      "bytes": 12444,
+      "sha256": "63343ac45c679de84e6ff4f7a6041bdee18775f670a08e01fe3b76975a683a88"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_grave_tests.rs": {
+      "bytes": 12337,
+      "sha256": "faec1227da5e4aea36a3c07ff769d5252fa3969064b5ca6e8d5a81aa9d018683"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_guard_tests.rs": {
+      "bytes": 13483,
+      "sha256": "f81962728a410ddbfe486d55b39b02167bce3fe4b59416d61d677954f2691581"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_host.rs": {
+      "bytes": 15893,
+      "sha256": "eb0d32fbb48aacf3d270a423c7b579c0a9c82518bb7b0a903757c60c8fdb478e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_inspect.rs": {
+      "bytes": 7817,
+      "sha256": "11213f93c1947fd3d1f0aabbd46f5f6ef08b71aacd069edb2db83fdccdcedf0f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_inspect_tests.rs": {
+      "bytes": 5724,
+      "sha256": "ad13de8e445abfffc9e73e8dc88f448161412dba8d4e89c7fb648517a5995e6b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_law.rs": {
+      "bytes": 7681,
+      "sha256": "5bd65ec6f2fd2064a34d56d03eb8c452dcc012e915a2adf4b71f79429c67ba6e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_phoebe.rs": {
+      "bytes": 7771,
+      "sha256": "d7f7a3e570795f94ed37a3846c9cce51dce673fed0ba2cf31b9acadf35fcc046"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_phoebe_tests.rs": {
+      "bytes": 13117,
+      "sha256": "1a017e0a3f21dc75ef798b6be73fc243ea64fe8d9219f69a8131568e5386bb02"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_politician.rs": {
+      "bytes": 9586,
+      "sha256": "9d515b2eccaa54f3b843a9abf968f28809e2b0325650875a524e2a76c6066d42"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_red.rs": {
+      "bytes": 11084,
+      "sha256": "23313ad6fac670d1968ce375ec2ed2026330528652a3125acbea6bd5abeb7d1c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_serpent_tests.rs": {
+      "bytes": 6560,
+      "sha256": "a6716c36b345f2c78eaa963ba4a9ed89751baf3b6d90d23a86640bb361f7a377"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_trap.rs": {
+      "bytes": 12361,
+      "sha256": "1620a9ec56a077740d5b83973967b8c5384abc001ac5b2fc8e4adec98b5d70d0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_trap_tests.rs": {
+      "bytes": 13080,
+      "sha256": "77ff0ae0308d33d403fd8e449e43452ef23d35254c504b80f32ed9ba6e850f87"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_warrant.rs": {
+      "bytes": 8319,
+      "sha256": "47c744dd437b4251d2e77f00f2c4afc2342b2e01fb50f982242890ca190cd4d1"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch3_warrant_tests.rs": {
+      "bytes": 8076,
+      "sha256": "bfa6e8c775a699b493a349513a42e97ae5f64a5209ee65b331d4a2be7b0d9a1b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4.rs": {
+      "bytes": 32654,
+      "sha256": "7553c228498675d8f1220e1010737a73be3681e8344606405bdfe33fc957d03b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_blood.rs": {
+      "bytes": 13854,
+      "sha256": "3600180e5222ac7ae5e5099a6c215896a88a8474382991f9106c19eb87d994fd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_blood_tests.rs": {
+      "bytes": 12194,
+      "sha256": "e4b4af9e5ae93795b2b3f72fe07c1723b0783535a3d2d4022445a22d4d2fefdc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_chance.rs": {
+      "bytes": 21274,
+      "sha256": "228ab00cb95f0d3fd2894ab4c1c7b20120d7de5d332ba3c8be2fa5b300d0685f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_chance_tests.rs": {
+      "bytes": 14769,
+      "sha256": "e4d2f6d8d130d08b4c8e6d2e0301b48af19f235ec42163a86bf26b1255fb753f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_clock.rs": {
+      "bytes": 8458,
+      "sha256": "353847fc4580e22585506bece2e26ee323b96b8d2091da629ee0d2b1e4d3a6d5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_clock_spell.rs": {
+      "bytes": 11217,
+      "sha256": "e00403cf1506c20d9b2a869b542eda81065d1b871954c285739d86fe4f868f05"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_clock_tests.rs": {
+      "bytes": 28892,
+      "sha256": "d6a67041d2e827210d8687e5a55729ecf5d13cadd88cdda0b760fc7d80a22785"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_conference.rs": {
+      "bytes": 17472,
+      "sha256": "6cb0a261639e945dce9b7d95385ec8ff2e1015a58bf07ad70d1cb9f7091347e3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_conference_tests.rs": {
+      "bytes": 15875,
+      "sha256": "662be9cbde766b2c54affee80e0cfc1c5b830c887296bb467d1c4dfd171f3c63"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_dahlia.rs": {
+      "bytes": 14916,
+      "sha256": "5ddcd0c9161c0ef0690e0c5ca37448242c8cda5caf4c82e38ee974129a6857f2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_dahlia_tests.rs": {
+      "bytes": 11244,
+      "sha256": "fcb769af740a2082f62385ed58184b5cf21c82bf3b772d62517114a5b12385ec"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_feast.rs": {
+      "bytes": 17889,
+      "sha256": "d7c9c05df9bf561fcbc8df9bf3b2b6d65f16eb1bdf0f2cc3c56e83fb716fcf2a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_feast_tests.rs": {
+      "bytes": 14987,
+      "sha256": "7477c6d9901e677231c9b569170c9da142810f045065b932e2deab97c6d88257"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_intelligence.rs": {
+      "bytes": 11972,
+      "sha256": "c9fe3c387217b8d37d6cbb00cc74ccc31d1a08ec27d16527728fde7ced975fa1"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_intelligence_tests.rs": {
+      "bytes": 25275,
+      "sha256": "81f5dc44d7601c35cea7038f896fdd0463004147d74954fe57b15a7f03a68074"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_jiangyue.rs": {
+      "bytes": 10334,
+      "sha256": "5405e86782b4e9e67d4dedc34c4bf8b05fdb70dc6da55ccf7c669df616e1c558"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_jiangyue_tests.rs": {
+      "bytes": 20149,
+      "sha256": "0400eb0546a1c555053f4c40591dc97d49817beafc97c66fe6e6afb3afe5ecb5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_manor.rs": {
+      "bytes": 6331,
+      "sha256": "aac0be59678678f785fca43c8fcb481e2f383e859be06d30674f3d68e8b4bd3a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_manor_tests.rs": {
+      "bytes": 10949,
+      "sha256": "6166c77861f4e6aa0414495dc573e1673dafc840583ff6443ee987668fc66bd4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_markers.rs": {
+      "bytes": 12242,
+      "sha256": "76b5f15a251efe4b94c2b551f7714757cd2a85df0acc34907985494113f2f2ad"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_markers_tests.rs": {
+      "bytes": 16567,
+      "sha256": "c1e6921f813b9f102fe7307c8ea3003fa7c4b8682b05d64ced3d12c77798fb6c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_new_order_tests.rs": {
+      "bytes": 8025,
+      "sha256": "12d23a34fa06672726e4d977ba9263e5dc0d6da5bfe740e96519fb3bed87d592"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_night.rs": {
+      "bytes": 13464,
+      "sha256": "4ed1a3933eaae00dae16756a21f14d21abf5ea05b9ad510ab9313b9b57323374"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_night_tests.rs": {
+      "bytes": 54666,
+      "sha256": "e8d216c3368278aeaf8e136905db830a3bfe2a9d7246ff8235f259e1e91147c6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_omega.rs": {
+      "bytes": 16514,
+      "sha256": "c4db0322d5ce8ed45756723a21d3d750ede3507637d3314d90023a4df81ca42d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_omega_tests.rs": {
+      "bytes": 13578,
+      "sha256": "59c6e1882c63ce33ff1cd21926e539859be7d02629873d53db4fd2f58f41748f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_phantom.rs": {
+      "bytes": 7721,
+      "sha256": "798dba884ba8a4db3c2f342aad8e08d3e1f00e31feebbe714ae73607f5b03a53"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_phantom_tests.rs": {
+      "bytes": 14007,
+      "sha256": "277c92ea7f3f638aacecf7444ce416862513879354b517604677e0e097214738"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_plans.rs": {
+      "bytes": 15428,
+      "sha256": "f81bba6434d33c3b6d835334795836452e34442471c3de5bebfb197d33bf4258"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_plans_tests.rs": {
+      "bytes": 20339,
+      "sha256": "a5a18553eb8d8411b207cd2ec2bc106f7372c1b9b68f71394a3e7ee3c4dfdca2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_platform_tests.rs": {
+      "bytes": 10274,
+      "sha256": "87eb17375a003c9c8ea125d2ac966fb3c25f6ba7ff1977fe22deaa228651f16f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_politician.rs": {
+      "bytes": 15881,
+      "sha256": "004549818ccff01609bc5f83cc68330d48e2a723be736565cae2e42ba7738e41"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_politician_tests.rs": {
+      "bytes": 14886,
+      "sha256": "2a62b2eac847207f55df0b55614c3bbae20e880bf2e1135e1acdfcc0bd57198d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_shape.rs": {
+      "bytes": 8639,
+      "sha256": "fbaacdd4ed6e4ed68071735af2d9c3b69bc68aa4a9892e4f43d6b91503996b1a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_shape_tests.rs": {
+      "bytes": 10368,
+      "sha256": "030d3fbc5d998853b39a5adeb07101858319eeae8f898018027f6f9ab21b6686"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_skull.rs": {
+      "bytes": 8180,
+      "sha256": "4a6008776a4443c1b6f04ae779862eae975e48d88563375060636ea6c6058569"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_skull_tests.rs": {
+      "bytes": 8715,
+      "sha256": "b9f4f336570d70b5f2969bafd0ff5f98ddea2c4ccf2d629361f7d4c87532564b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_soul_channel.rs": {
+      "bytes": 7369,
+      "sha256": "0a7243038ecc8e2773c12f4a444e57dcb16498dd10f38b8e184f6b7fa6ada526"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_soul_channel_tests.rs": {
+      "bytes": 22019,
+      "sha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_spectral.rs": {
+      "bytes": 12351,
+      "sha256": "108555eb096947b49a78854aec64dce03cf122e163ab5b7c562f69c1537554ab"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_spectral_tests.rs": {
+      "bytes": 9598,
+      "sha256": "9dae2aefe4c2f5ef73f4ac1e5b6e4962c94ed0c9b1e3f3976944a21901fc4d8e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_statue.rs": {
+      "bytes": 24157,
+      "sha256": "02f2d2663ced427ffbf469e709c1a87b6468cb7a54d9d75909cf697687b54352"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_statue_tests.rs": {
+      "bytes": 13953,
+      "sha256": "829799425b7fa0bbb85938d189a75a62da4ded9d4339385564b9795dac57525b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_tattoo.rs": {
+      "bytes": 13701,
+      "sha256": "c8151c1c77f150f4021dc862a1beac1f1c59fb76f182b7dd93971224450242a9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_tattoo_tests.rs": {
+      "bytes": 11523,
+      "sha256": "78a1ebc5bc7f254fea0a76938305f8dd67de6ddaa01093c038ae75f2424a30fd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_tests.rs": {
+      "bytes": 21934,
+      "sha256": "f4d4a5a1a7baff13878a8eb4bdd20dfab14207cf5e030b3cfd1ded95f740b2dc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_timekeeper.rs": {
+      "bytes": 11574,
+      "sha256": "3d069395cde202c11ed2c7e3d701ed531eccabf9ddb8931c3929a8e7fd7e4df8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_timekeeper_tests.rs": {
+      "bytes": 17819,
+      "sha256": "a641581b016d80fa5bbaa80a4f1d9e48f12935e94dfefbe278abe009a2d032c5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_vampire_contest.rs": {
+      "bytes": 30358,
+      "sha256": "713d9405149361bf86df5578f486a0abea3b750f273ea6acef3bba239602cfc0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_vampire_contest_tests.rs": {
+      "bytes": 57547,
+      "sha256": "5cf9430a5e9ba1c6fa989d77800abdb676e3578f3ab2ce6acdb76dcebcf0a10e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_vampires.rs": {
+      "bytes": 44011,
+      "sha256": "bcdbc476403034845dc1223a55fda5a819b857281da37944730a24578377d5f0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_vampires_tests.rs": {
+      "bytes": 33275,
+      "sha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_warden.rs": {
+      "bytes": 9221,
+      "sha256": "ff4347b0868df6461caf198ac678108a6110a104c96d8829ea9be141e8821971"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_warden_tests.rs": {
+      "bytes": 9493,
+      "sha256": "29ed002d07b21d771a037bd67cdaa7d6e5e302659d1eca04223817c8a6d7f528"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_wendigo.rs": {
+      "bytes": 18634,
+      "sha256": "b07637b903be1ccfdea36bb73492e6f67a55583f215731aaf245351c5d7687aa"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/batch4_wendigo_tests.rs": {
+      "bytes": 16828,
+      "sha256": "4b8e2c08968dd5366623fc03afc256cdd6f3b55e9fcab7be95ed6766fea61cde"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bin/hegemony-audit.rs": {
+      "bytes": 627,
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/black_expansion.rs": {
+      "bytes": 23684,
+      "sha256": "8f73e8829f52463e327c5376afccd5ea85b6e55d6892392e91ac988039a33e38"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/black_expansion_tests.rs": {
+      "bytes": 35366,
+      "sha256": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/black_next20.rs": {
+      "bytes": 44933,
+      "sha256": "f678c7b37f8ad00f9cef197bb29ab858732741e1caa25cc5a2e500c0ce080269"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/black_next20_tests.rs": {
+      "bytes": 31164,
+      "sha256": "2a31edfe72a8467f9efdec728de42a89244b54affbaa25845266b30248205e68"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/blue_expansion.rs": {
+      "bytes": 22651,
+      "sha256": "c5c0a86dc35a9cce5579e1321ad9af9fa2a27927762c2391b087f128567b6d23"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/blue_expansion_tests.rs": {
+      "bytes": 34027,
+      "sha256": "c50802ce518921d9221e4d488b45bf925f11652db034f5276c699015b5d72555"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/blue_minimum.rs": {
+      "bytes": 8366,
+      "sha256": "0ef2305cb4f68fa18e7c8a9ed57616aed278fdb804c0a4c0f8a30be0ea47a1a8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/blue_minimum_tests.rs": {
+      "bytes": 35054,
+      "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bounded_entry_fresh_tests.rs": {
+      "bytes": 7211,
+      "sha256": "3f9d5872fc39d16c05515609ea15207f82a804724c358a504a58c4cc3267d8d4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bounded_search.rs": {
+      "bytes": 10777,
+      "sha256": "9d74e60d5a86f42721c90766cc00d5f505af506db63ae319dae96a110b031a2d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bounded_search_tests.rs": {
+      "bytes": 31018,
+      "sha256": "75cac69e99091594475c7ae09067f27370f79e475d372d1570aea70bfa829e8f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bq030.rs": {
+      "bytes": 40113,
+      "sha256": "d0d05354f3783a7a610f876fffa65cf9d3108bc2653c2de4526900d8e456d218"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bq035.rs": {
+      "bytes": 12464,
+      "sha256": "81fcfa6f1f178b1d71b6d8047ae6528b7f89416f13421989df26cb52e3744ae1"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/bq035_tests.rs": {
+      "bytes": 67766,
+      "sha256": "645620ccab01d6571cfb23df624cf78a58f548397029927bb9705797fcb603c6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/catalog.rs": {
+      "bytes": 10601,
+      "sha256": "e8460135b0e9bea89fc8bca7ec935e13ee2da29caf1413a6ff60d4f16dc45290"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/chaos.rs": {
+      "bytes": 953,
+      "sha256": "66e8aadce14e1a1c895ff50d8c35c8255d2e2386bd07001c3fc6ad8a7d837d81"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/combat_wounds.rs": {
+      "bytes": 8805,
+      "sha256": "2c537adfad1d144cb94f4946d03e3c146a5ec5acb7b1da9d3e6f8ae2ac98f1a4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/control.rs": {
+      "bytes": 9442,
+      "sha256": "f86296b40620cf6a624602720ce4164ec380efdfe0d5d467f17016262f980ae6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/control_tests.rs": {
+      "bytes": 27065,
+      "sha256": "b8775f282de31ac3d0f4a11597a90f7c42f9bb9fe5265a7cf068d077d342d6c2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/death_continuation.rs": {
+      "bytes": 28946,
+      "sha256": "f1053b59a07aedf320119f60e4cc3c2427555fb74ea7573024f3e10818f6f4c2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/death_observer_tests.rs": {
+      "bytes": 29046,
+      "sha256": "d20b6fcbd7e55f634152e3a7b7ac353c0f2e304a6feb4f20d9acb00fffa83709"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/death_observers.rs": {
+      "bytes": 17607,
+      "sha256": "cbfb873c915d118c0d8c1ac5c73c18e53c47953334bcf3f7b40770e3e8f055ee"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/deck.rs": {
+      "bytes": 6461,
+      "sha256": "41d585c3af095daf3b6fe6951b47283cec29f34f150d440dcb7add7e71e26d47"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/deck_seal_search.rs": {
+      "bytes": 9602,
+      "sha256": "931efea1430a31822623e41a5b8978ff6123bcc7ba3ee73ba4e23c12ecaad1f4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/deck_seal_search_draft.rs": {
+      "bytes": 13477,
+      "sha256": "3f1336f7054da9ec4d9ce6464c56ec5c170b1d1e21ddb11657a0fc2b1cda9925"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/deck_seal_search_tests.rs": {
+      "bytes": 44725,
+      "sha256": "53224b7b5da762f3f13fb547e60b034b1ce7aa4b2178dbce67a41a33b36f72d2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/defence_equipment_tests.rs": {
+      "bytes": 16130,
+      "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/dream_reveal_tests.rs": {
+      "bytes": 14832,
+      "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/engine.rs": {
+      "bytes": 298802,
+      "sha256": "0116ba614a40be1b9264771ea5011c010f63f23aa5f5842b9791c94e3067aaa6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/equipment_abilities_tests.rs": {
+      "bytes": 24063,
+      "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/exposure.rs": {
+      "bytes": 27901,
+      "sha256": "e42c7be984f9471de24cd51f5398f3c61eab63b01b3cb12e0935509028ce13dd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/exposure_tests.rs": {
+      "bytes": 29660,
+      "sha256": "fe840c888e6a6405d0b5b29950ec88c9ff72cd59859c5cd559896051c57a9a5b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/extra_influence.rs": {
+      "bytes": 3258,
+      "sha256": "8d98724d538bfe3c20e0a8c82fc7130a0979242eaee126fe619c7ea3167f53a0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/gray_expansion.rs": {
+      "bytes": 22419,
+      "sha256": "d2b6e8d6a136cb7ca3167f5a987cb30f7d27e03693c282ee1706f2a35ccb9b3e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/gray_expansion_tests.rs": {
+      "bytes": 46592,
+      "sha256": "3abab9bcd5faaaa4695f5e13bbb18542015af8a17437049faf180b521cef4de0"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/gray_lock.rs": {
+      "bytes": 6176,
+      "sha256": "9cb3ba36d889dc3a9cb489b4fc0c272c1d33a9e8bfea688e69fe2b0be4293cc9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/gray_lock_tests.rs": {
+      "bytes": 33613,
+      "sha256": "9e62cb326760a2f10bfff6ac94b3a4fb86e395d47d9483577725d65df9b459d4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/green_minimum_tests.rs": {
+      "bytes": 28748,
+      "sha256": "891940a5374d6957730eff0f8a1169610143d1921f061e5d6b30ef2937ca66e9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/hand_deck_tests.rs": {
+      "bytes": 14114,
+      "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/hand_interactions_tests.rs": {
+      "bytes": 19545,
+      "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_broker.rs": {
+      "bytes": 22158,
+      "sha256": "b4f3f2f2ac6a21725e6e3a1592131310379e6bde0effb1bbb9b36aaa42dcb07f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_broker_tests.rs": {
+      "bytes": 22492,
+      "sha256": "dbd2d7bc538b86b00ab65325bf96e1eb9c15dbd9533d0791886e7d6c377116a8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_carmen.rs": {
+      "bytes": 25461,
+      "sha256": "3283ba4b9e977549b0d3824d6e04ea9ecdd898ce39f48c95b28b447f8c07241b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_carmen_tests.rs": {
+      "bytes": 15481,
+      "sha256": "40314335dda6b133bcdafa2d6e0724ee144013b12c9538f42c119e413c50d653"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_contest.rs": {
+      "bytes": 8629,
+      "sha256": "5770e8d129ce652a81c739c96989c2a536e37770663c6c1b25f22b3e18bbae00"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_contest_tests.rs": {
+      "bytes": 13715,
+      "sha256": "575cbfa5430d4f1dbaa798a077d5f61182372aab692e5cb94316bc714d961328"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_cultist.rs": {
+      "bytes": 15813,
+      "sha256": "0a61dac23f1c53904419b72d59743c1f3971cf116c28f716e5d5ae3c38a87bed"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_cultist_tests.rs": {
+      "bytes": 19013,
+      "sha256": "922052b565aef2f1801913eb6e9fb8524d35ea08f895439de423183ca9de034f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_entropy.rs": {
+      "bytes": 9589,
+      "sha256": "f1ee01cbcf9f5ac761225a2ea340d331f6e66438c0f2852b1f345ff8261b09a3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_entropy_tests.rs": {
+      "bytes": 10292,
+      "sha256": "2d4bc8b9251f21346f4978bec0613f02ce3a89dc363962fead240c5d407abea8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_gate.rs": {
+      "bytes": 18548,
+      "sha256": "02ac575dad3f1c26a3dc8c32110d02d4d0d8af3627da9679b894eb0616df2b2d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_gate_tests.rs": {
+      "bytes": 15068,
+      "sha256": "6368854dd84fa3fac0820b8b0fb32d98543915037eae01d165ba5912686acb7a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_industry.rs": {
+      "bytes": 18367,
+      "sha256": "522334dca28163e5e207e263dc68692a9e53dda98126a7acc80cede9bac9b5ef"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_industry_tests.rs": {
+      "bytes": 31076,
+      "sha256": "02213a725493b9abc97c3e162bdee3ee0670510b1aa7cccbfa987c20bdc29355"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_observers.rs": {
+      "bytes": 11673,
+      "sha256": "a081d95fd24ce7331113cb7a09e5fe80a54e876cd49daee7c2eb16a6c186a255"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_observers_tests.rs": {
+      "bytes": 17338,
+      "sha256": "debb5c9634c8df32e118d0ceb0b9d0348ed5258187053382f7c8d65467a712c4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_sentinel.rs": {
+      "bytes": 26260,
+      "sha256": "75ece9254c4bb9eec2e0636e63c76db6e67c7b85d0bcc44e8ced093126f98c4c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_sentinel_tests.rs": {
+      "bytes": 24877,
+      "sha256": "84564055ba096b5938474d4b5f9454e7ad63f4bd3d3065e689e000ff85a2b313"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_swords.rs": {
+      "bytes": 17257,
+      "sha256": "cfd273490a0330794ebb5e71fbf96b2c00a22ead32c987f2d6dbad4ac2b2213f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_swords_tests.rs": {
+      "bytes": 11786,
+      "sha256": "4aa4c180f3e2217a254a181e1d730a7aae4ec1f471ed23013ee24fd01b5ea2f2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_tattoo.rs": {
+      "bytes": 9321,
+      "sha256": "ed51b6e00045a57d7cb41c8076565fcc3e088a616bd061820436f8cdd8cde046"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_tattoo_tests.rs": {
+      "bytes": 9935,
+      "sha256": "3c836a19eb5ab51a0c04183eb13836edba8ec652cf4bc0b87e365f2ad4a6807f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_tax_ban.rs": {
+      "bytes": 34176,
+      "sha256": "29ec50e4c69cda0fcfbb7508acfba83c09a44681286978f499f9fca28f69841f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_tax_ban_tests.rs": {
+      "bytes": 27378,
+      "sha256": "a13b06de0c857770f3250843adbd07783a910f76affbecac4238cc87dc2c5b60"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_vampires.rs": {
+      "bytes": 17665,
+      "sha256": "96276a8c6c0bb82d91291ad8f5bb58716794bfb99c0360dd97685697ee07d948"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/import20_vampires_tests.rs": {
+      "bytes": 18708,
+      "sha256": "c7f782550477f502a558ea38960048e7f223672bd1fd3498ec5c73bd9e97c260"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc004_tests.rs": {
+      "bytes": 17587,
+      "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc005_society_regression_tests.rs": {
+      "bytes": 3416,
+      "sha256": "bdb25722003a7984df4fac9a9e5069f32d75d16ff1fe59e034def98eb1b2de28"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc005_tests.rs": {
+      "bytes": 15212,
+      "sha256": "60f04040e8c55c2660a8c579910c29e2ba5510a2815eb2b9667d963c602cb64f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc008_tests.rs": {
+      "bytes": 16763,
+      "sha256": "b29379526f59a664367ab2220660b782e93486d090fa3f2c9f258909a4fb22a9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc029_tests.rs": {
+      "bytes": 18132,
+      "sha256": "1dad9bb987524c4d11070f6e854fb08108df9a5c28663f21243764fe344867eb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc030_tests.rs": {
+      "bytes": 10280,
+      "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc035.rs": {
+      "bytes": 39799,
+      "sha256": "225253a3672e54f4d216225e3d8d5d5e3a2ca5b943df5953b49d4bc303eab158"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc035_tests.rs": {
+      "bytes": 38236,
+      "sha256": "76c380335322d38fd89738ec24975a02e31229cca3150a2254711d8a84914e2b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc037.rs": {
+      "bytes": 1733,
+      "sha256": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc037_tests.rs": {
+      "bytes": 21478,
+      "sha256": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc041.rs": {
+      "bytes": 18196,
+      "sha256": "22ce4ba9cb771ce8a07a624724a5beada24e18c1ee495f951cd6b031d132c7f9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc041_tests.rs": {
+      "bytes": 30804,
+      "sha256": "ceb78d25a4dfb96cf774cec1f3a2afca7ccf9a8ef9259d1ab00fd43abbbf05a9"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc044.rs": {
+      "bytes": 18130,
+      "sha256": "81d3b0c0cd052c036a26dce8dc3c932e5a8445e7984ac44faad6177f68bea795"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc044_tests.rs": {
+      "bytes": 35173,
+      "sha256": "7dec101634878fb994fe158b92f9dd48156ef4bc36ce7b6c4c9d3f6b4875b749"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc046.rs": {
+      "bytes": 24022,
+      "sha256": "214897c763f887e85b8d2f6acafa2d339e75e09067896109fdb43b6e23148462"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc046_tests.rs": {
+      "bytes": 55531,
+      "sha256": "4a4e8ed5c69017424bfc9517f672ac13e78f27f241510368ae37f066a8ab7d2c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc050.rs": {
+      "bytes": 7633,
+      "sha256": "28b17442ebd8a4eae6cf54a966626a2add9cb81c261acfc0ca0d8a01e6d177cd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc050_tests.rs": {
+      "bytes": 19685,
+      "sha256": "7f0b3b45b6712a9e26031269f6aa8a42e38aca9d73a9a20c38b0993a20a0da26"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc052.rs": {
+      "bytes": 18502,
+      "sha256": "806b9326eec6ccf949f7be6b87d231eba94162c03d01975a0780fcd168676f57"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc052_tests.rs": {
+      "bytes": 27020,
+      "sha256": "f9b5ed78fba0cbf8ac9cfcf2848feee2816fe70c1d9057f4add49fdd62572a84"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc054.rs": {
+      "bytes": 25535,
+      "sha256": "497c68c925379a12849ab1254aeaceee74a96ec1ea1dfa37a9be26c9dffe48ed"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc054_tests.rs": {
+      "bytes": 40299,
+      "sha256": "03ea9e09b7112193c8c825d9f5ef385e6f53c56d7a86ce2ad64bc03802ad6e16"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc057.rs": {
+      "bytes": 17849,
+      "sha256": "c22dae44bbdea0ec2b73c39da1a08ae73b83eb7cbe7b78b6e037a3b57ba5142c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc057_tests.rs": {
+      "bytes": 35652,
+      "sha256": "4932f94ed8903b4a648e56a6c313043b918ef9344640f32bd590d23fc5624a91"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc060.rs": {
+      "bytes": 3265,
+      "sha256": "204ff39e780843f00ec9de4389bf5e03b716898e77a79cfd8fd3e2d2dd5e5b05"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc060_tests.rs": {
+      "bytes": 34359,
+      "sha256": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc061_tests.rs": {
+      "bytes": 13502,
+      "sha256": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc065.rs": {
+      "bytes": 6367,
+      "sha256": "9e022bea01009dfed31a9984fcb81fe25f89c65528e712978a5f39ecba88539b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc066.rs": {
+      "bytes": 15117,
+      "sha256": "e3ef8420e57ff54621a3227b10ebcd699c8638197d336384b320335b8d02998e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc066_tests.rs": {
+      "bytes": 45477,
+      "sha256": "f6bf4422ac49852c5cc1cdd92b427283a0ecc64ebb4fbba03962cc73e23f9bd3"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc087_tests.rs": {
+      "bytes": 15763,
+      "sha256": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc089_tests.rs": {
+      "bytes": 35103,
+      "sha256": "bfcd776222c5105ae24a0efaf42c821d53aaaf0d1352f979d00cdb32888f4867"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc094_tests.rs": {
+      "bytes": 13733,
+      "sha256": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc095.rs": {
+      "bytes": 14803,
+      "sha256": "b87b1c2e9f0271ca2926e204d1acf922569b2f9581fd9fcdc606a007b579f702"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jc095_tests.rs": {
+      "bytes": 41079,
+      "sha256": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz22.rs": {
+      "bytes": 9431,
+      "sha256": "bfbe6f856f4245a1856c565714dc00923249abc76eea15a6a8e78e7967286160"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz22_tests.rs": {
+      "bytes": 24665,
+      "sha256": "d28724284a5e5565a750379d90bce2763bdb68d1db33d50e6de1b7f781e56a3b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz31_tests.rs": {
+      "bytes": 28850,
+      "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz35.rs": {
+      "bytes": 11061,
+      "sha256": "df1e0352e2f76e1081202f80c2eeee270dd8990df4193480500e2084a27ca83f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz35_tests.rs": {
+      "bytes": 22822,
+      "sha256": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz46.rs": {
+      "bytes": 18402,
+      "sha256": "0856cd01831b353ac19bd5be064a7dddfd2915fdeaf7f250725e97d97bc80e91"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz46_tests.rs": {
+      "bytes": 47655,
+      "sha256": "b473bd0e2c82851ee0332b5157ae5f0ffad95eecfeff915ac617593090cd8baa"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz48_tests.rs": {
+      "bytes": 23819,
+      "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz49_tests.rs": {
+      "bytes": 25330,
+      "sha256": "892b655c1cdd627403d816e262c22fd4c9499a1758dff507d65538ccc0df159c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz50_search.rs": {
+      "bytes": 7171,
+      "sha256": "e9a098b060be4bac57d2fd6be021fbb7843b7c53f6f195a274d3a21318510128"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz50_search_tests.rs": {
+      "bytes": 33411,
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/jz55_tests.rs": {
+      "bytes": 30201,
+      "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/main.rs": {
+      "bytes": 822,
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/marker_transfer.rs": {
+      "bytes": 5459,
+      "sha256": "afb8fda862ca295a2eed88a8c4e790d37a177f050e412cad87f9b62cec69433a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/marker_transfer_tests.rs": {
+      "bytes": 7003,
+      "sha256": "205dc04fded7a69b9d5d7b681f1a16b85deb0dd3df4e6708b829f734ef5d2395"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/mill_public_tests.rs": {
+      "bytes": 14064,
+      "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/mobility.rs": {
+      "bytes": 16863,
+      "sha256": "40f16377e67b9a07030dcba8b048898ce11348c017ec969c82ec9d65c30f48eb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/model.rs": {
+      "bytes": 42392,
+      "sha256": "80969e6e973e53eacfbfaf21c7766db6c981669f629d36774a69a9fd2169ad99"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc01_tests.rs": {
+      "bytes": 15973,
+      "sha256": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc0405_tests.rs": {
+      "bytes": 19336,
+      "sha256": "6567247b4bb0fc490fa31c724b229313dacf3affc6caff1ecf53dcc096352831"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc06_tests.rs": {
+      "bytes": 17588,
+      "sha256": "5318c6aba79deed0ea1817ef60e0cdc954b484a3fb2cb811f41111708b98b001"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc07_tests.rs": {
+      "bytes": 1496,
+      "sha256": "f3d1d35d94be59cc8d5846ceda49ff8af1bb48f087a334f2550e65b5fa77a693"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc08_tests.rs": {
+      "bytes": 1396,
+      "sha256": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/msjc11_tests.rs": {
+      "bytes": 19830,
+      "sha256": "5f33b02e2257e703bc0794de051864ee61ad7abce51fa3e2304e77ea093798a5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/mystic_contest.rs": {
+      "bytes": 42542,
+      "sha256": "7d9b1977a049271a85ff3619b3b132756eac953691d68ad5e2ff50695e6bfd02"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/mystic_hooks.rs": {
+      "bytes": 1118,
+      "sha256": "b1d5318d7ecf10cf6c0c520ed22d06a171f89ca66384ef3f72a9ecb2cb80b3da"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/mystic_lifecycle_tests.rs": {
+      "bytes": 23885,
+      "sha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_anchor.rs": {
+      "bytes": 17192,
+      "sha256": "91862e57d833a719c138ab9a6141bffa6ccc14c2e337e011faaa4aa80146abdc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_anchor_core_tests.rs": {
+      "bytes": 10054,
+      "sha256": "3ae3f5696d1786b5d138c83ae905442cd214362781513b1106eb1e5c7ecff702"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_black_core_tests.rs": {
+      "bytes": 15420,
+      "sha256": "cd024e0de3ea1a64200ea829fc512050dc69f235c7076ca51970abd483687173"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_black_wraiths.rs": {
+      "bytes": 41768,
+      "sha256": "57fec08480a910f5de11bbb15c2535556241d6f34ac7a941a3f16c9cc1d9c088"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_black_wraiths_tests.rs": {
+      "bytes": 20417,
+      "sha256": "1488646cc41105c69574f4244654a949c9cbb563bca45393f76c2b13d07c4118"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_blue_core_tests.rs": {
+      "bytes": 17671,
+      "sha256": "7c89c0610a5c27a83677788d0acbdf18a68489e1261b8e5afac4a70c2bc1d8ad"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_blue_gray.rs": {
+      "bytes": 46164,
+      "sha256": "a630a750a0f64cb5b5bf6949d9dcc7641068f26aad0b8c4a96a289e4df23d607"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_blue_gray_tests.rs": {
+      "bytes": 20163,
+      "sha256": "29560fe4a1d814803083f43f50df1213cb0952dc08f8cfa2dc3f9056e7041610"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_blue_vampires.rs": {
+      "bytes": 47538,
+      "sha256": "4da38db866009f9746b0545f2e4744858bab1b97243df9bb83ecf439fe7b27bc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_blue_vampires_tests.rs": {
+      "bytes": 23088,
+      "sha256": "cbc144a712b408030cf359b46b7b1d77221703047af189c2ad5f584d4aa5c283"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_candidate_room_tests.rs": {
+      "bytes": 8072,
+      "sha256": "d516af7c5a7099c9a4aff93e6d33012dee484fb2a7e5199929f779064e35c072"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_cross_tests.rs": {
+      "bytes": 15293,
+      "sha256": "c7b0f3f63e9aa99e82811420eaf6e123a3af105fad71f819b9aa7a21cdfd4219"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_death_core_tests.rs": {
+      "bytes": 18175,
+      "sha256": "cf2c5d7cce52feb382529f9bad459847cc53a0f167fe88704216a8095ae50d50"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 24039,
+      "sha256": "2912f2df96023778a84f697b59488a50c5f5caab45be9c4712fabf16488e9d7c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_red.rs": {
+      "bytes": 38219,
+      "sha256": "68f2f1a44de295079d57099122c3f25a663d81825f51c5a61f45caf48bc949cd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/next20_red_tests.rs": {
+      "bytes": 19563,
+      "sha256": "3811b10943e2dfbda121d42c70a6e8b5ec4f9ea113c343beef836126c3b4f548"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/pack_a_contest.rs": {
+      "bytes": 29203,
+      "sha256": "5af0f9448195c452bd4e75e44109a26ec31f300d06575c8fc9fee4d383bc0c8a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/pack_a_contest_tests.rs": {
+      "bytes": 34588,
+      "sha256": "dbbcc13f696c2d23a3093ebe3ce3132ec445a9ed21c589ff3978e902ffc8cf25"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/play_sources.rs": {
+      "bytes": 15039,
+      "sha256": "ea7400be841d18a78199532974f72a229090c44c172feff4b4b194927a10404a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/protection_tests.rs": {
+      "bytes": 18634,
+      "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/purple_tools_tests.rs": {
+      "bytes": 16491,
+      "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/raid.rs": {
+      "bytes": 8662,
+      "sha256": "a180185a50bdc16c1e32839b401550bd73e2003a763253e460740f2468f168b1"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/recovery_validation_tests.rs": {
+      "bytes": 3582,
+      "sha256": "15f035abad2472b9d6510477fbf1a378156856a245a7db74508606d4ad7f75ba"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/red_time.rs": {
+      "bytes": 24469,
+      "sha256": "9d4b68aedb0f102d90ccc0822e404cf8a6e3e0d2e59c036a5ff52ddbabae7196"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/red_time_tests.rs": {
+      "bytes": 28651,
+      "sha256": "c2793c6ef6f42c49723ace6478777fd7696cf69aa0983070b77ee7529e6d011e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/region_aura_tests.rs": {
+      "bytes": 18342,
+      "sha256": "c1356afe03f26921930fbd00b4a553859e249dd2102d9c447a60e7333e69485b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/region_destruction.rs": {
+      "bytes": 3307,
+      "sha256": "9f69a9d2518b4288bffeee1aa82172496758db6ad175ed540e2feb1787bd2e11"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/renown.rs": {
+      "bytes": 11598,
+      "sha256": "bbde530036a3febe5259fec561fbd18160e10a2ea1d7b9da4f9e0f32c25fc97e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/renown_tests.rs": {
+      "bytes": 27906,
+      "sha256": "4c2ab8625c8b3694f13f4891effc519e8d2109d185342f61771965fed09d1abb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/repress_assets_tests.rs": {
+      "bytes": 14834,
+      "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/resolution.rs": {
+      "bytes": 158274,
+      "sha256": "751c90f5e7e63288416604fe9bc2764768ef2f68ab94cd14022d603ccb4a331c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/response_preview_tests.rs": {
+      "bytes": 19938,
+      "sha256": "288412326bf55c117d6549de7f8efdea34b7c3209adf23fb535f4e5b4754a927"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/room.rs": {
+      "bytes": 30988,
+      "sha256": "2fa7c50e263279e643f59a6bf9b5e99ec345dabe8877fd13c3ce19a0fb14f5ac"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/rules.rs": {
+      "bytes": 185307,
+      "sha256": "cb9f58fc98cc83b68dde2d57cb0722e9ec07ab8f16f84a69ec787e3b2ebe6e6b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/rumor.rs": {
+      "bytes": 23047,
+      "sha256": "e54988b6f57d0ca2b5814d9227b1674c968ad7d1de583646d2ebb5e512c6b688"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/sealing.rs": {
+      "bytes": 9992,
+      "sha256": "d3e29ce0d187d68a183aa5dab700f97a6d0f008c4f9490f4181f5ff4faa4faad"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/sealing_tests.rs": {
+      "bytes": 55319,
+      "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/sentinel.rs": {
+      "bytes": 6730,
+      "sha256": "1cc1fb4c63f93c5450f26f62e37c716ed7cf317c232c47832bb2fd96c400867f"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/sentinel_tests.rs": {
+      "bytes": 17619,
+      "sha256": "ccb12916a62c03be0db4c8d5b7079c049f8bbb4659d26d7dccb8933d73027214"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/service.rs": {
+      "bytes": 30688,
+      "sha256": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/society.rs": {
+      "bytes": 37419,
+      "sha256": "82d65a9b9110c2fcdb4c365f0dcd5e80c4a40df67490c6a6022071723a198de7"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/society_msjc09_tests.rs": {
+      "bytes": 13088,
+      "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/society_zone_tests.rs": {
+      "bytes": 10611,
+      "sha256": "22bcdf0651e28d6a7faef055d75a9b74ca3776e719dfdf62ae750a2a19f46a13"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/step_resources.rs": {
+      "bytes": 7956,
+      "sha256": "56776a2a5a658df476dbc2948555187be7538f4a7bca726f985feba69f111eca"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/unit_support.rs": {
+      "bytes": 9686,
+      "sha256": "60a5a2e018918ee3561d8210a509735611b2c81476edbdbaebfc992d29779dbb"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/white_wound_tests.rs": {
+      "bytes": 13035,
+      "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/win_flow_tests.rs": {
+      "bytes": 56322,
+      "sha256": "ea9fa129490024bb5aa0543d4abe4a4694f0b33a5edef35b98233fd4435ff734"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm023.rs": {
+      "bytes": 14331,
+      "sha256": "71c580cde53cbb6aa68e68bde1580a9f7e9a6d9a9a7646b8fe1421d6e6288a02"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm023_tests.rs": {
+      "bytes": 18430,
+      "sha256": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm038.rs": {
+      "bytes": 16681,
+      "sha256": "6fadd5f4c5bbed726bc0eaf99eacd1c72de8ec66c82c262d799540c62effbc3c"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm038_tests.rs": {
+      "bytes": 27702,
+      "sha256": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm043.rs": {
+      "bytes": 6710,
+      "sha256": "dde1cd30a31380ac0416adb6215e777d2a93f8549178136d9d9894689e18a4cf"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm043_tests.rs": {
+      "bytes": 17223,
+      "sha256": "cee373f196a4b6660be527945c16915739894f6b3ce761294d00d2181ba4feba"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm056.rs": {
+      "bytes": 13745,
+      "sha256": "a3ace7ee6c1ef2d8c0dd21b43082d851ecd837acd175ee42bb4b9910f028d447"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm056_tests.rs": {
+      "bytes": 17632,
+      "sha256": "ca0eca171cb3958c7f886e5bcd9573ca37411fc010264a105a21f5588d5580df"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm057_borrow.rs": {
+      "bytes": 4968,
+      "sha256": "2b5743c1cb7ac8e8be96542112cdd25fef2ad3f1715c0c63f408d608a4d42ee4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm057_borrow_tests.rs": {
+      "bytes": 18660,
+      "sha256": "c2f8b1c97933a576844a3ec05d5b5f5206413d8ac1d4513ae1da178dc54e64aa"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm062.rs": {
+      "bytes": 17979,
+      "sha256": "44beac551adf7b85002a2792a24a758f39d567da26682c7ab2ebdbb7ef30cbef"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wm062_tests.rs": {
+      "bytes": 43729,
+      "sha256": "2b62291ce6266d981d2ef2d3f689fbfe47fbcdd29c7bef990a1b9f2a38e5a971"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/world.rs": {
+      "bytes": 29713,
+      "sha256": "3bf103819b11aed2c1f36f12bccd444ca43c182eda5633000048ddc4c28197f5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/wound_defence_tests.rs": {
+      "bytes": 14728,
+      "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq18_tests.rs": {
+      "bytes": 33229,
+      "sha256": "a9d176ebc4cb02f700a0e515dad7149b19244078741b08049c88bb93ce1ba85d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq23.rs": {
+      "bytes": 13841,
+      "sha256": "011c5a3fa81d7ef206fda93312aed92df08c3759ddcd4759839a0e6d7876b91d"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq23_tests.rs": {
+      "bytes": 30111,
+      "sha256": "33e659834f73166d6c477ccd3662fdcef9c78bd16e6cfc9109a4f80fb23541f2"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq24_tests.rs": {
+      "bytes": 34084,
+      "sha256": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq25.rs": {
+      "bytes": 9062,
+      "sha256": "832668c5332e0e94498621f624363b5df0a96e17432d6a7ac36cea0f57f2ca0b"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq25_tests.rs": {
+      "bytes": 20973,
+      "sha256": "f1ca53bbd8ea89810eebbdbf030cfd1816543bb543da6c67d2d19baaf3a19d61"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq27.rs": {
+      "bytes": 5401,
+      "sha256": "92afe9a960cc4d32ebbe5ebbb34ec041faa7db0af6ad492e72323c2763a29e68"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq27_tests.rs": {
+      "bytes": 11224,
+      "sha256": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq37.rs": {
+      "bytes": 9592,
+      "sha256": "f1db145c80483d37e786c716707844915eec4bb536916510d301daeba4ddb0bd"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/xq37_tests.rs": {
+      "bytes": 23853,
+      "sha256": "a376748d610471722b5e8685527ad1be39b21a531467e08b3132dcb57662ad04"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/src/yellow_search_batch_tests.rs": {
+      "bytes": 12029,
+      "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/attachment_service.rs": {
+      "bytes": 19696,
+      "sha256": "79f7313fa80f67d6cd835dbf06f448f59e7e86cf5b7e1a0b0e04b63aa1d4152e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/audit_regressions.rs": {
+      "bytes": 33002,
+      "sha256": "fef05e278d9bbd7df1e11740143431afe387ccd0c0cc788c1c5dc000bf66e799"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/bq030_attachment_regression.rs": {
+      "bytes": 61718,
+      "sha256": "09ebc5d76acfb22ac99b6a3d31bd3fbdedf68774371bad3d44266fc8e8f75cc4"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/deck_construction.rs": {
+      "bytes": 12760,
+      "sha256": "c6541a9f981104c30320f3ff722b10ed2837b64f275f8deebfff99507993459e"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/jc059_friendly.rs": {
+      "bytes": 4232,
+      "sha256": "119f746ec5d8a22fd3ee20293b4b7a020f3a1140e22412fb92e15985d0a0dcdc"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/room_pacing.rs": {
+      "bytes": 26700,
+      "sha256": "fd038fc90f2cb1f3d91897bca82054337d2b28c7283be5a22a0d4f36ce09fb46"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/service.rs": {
+      "bytes": 34553,
+      "sha256": "2387f166af25aa1f3c60d6b953a22457fe115865f94f4db17b9a33bb76c523ab"
+    },
+    "runs/public-fixed-export-02/source-files/rust-game/tests/session_service.rs": {
+      "bytes": 25798,
+      "sha256": "9f604523d1790931edf33b62acabaa9dfdecb03a2a38803c05f4f3bfa99f2f98"
+    },
+    "runs/public-fixed-export-02/source-files/rust-toolchain.toml": {
+      "bytes": 76,
+      "sha256": "9af7a084f6c81634ad8ed71a2a095dc77bc1723406e0f95dccf19f4af5d984e6"
+    },
+    "runs/public-full-native-01/native/bq034-natural-entry-counter.jsonl": {
+      "bytes": 37835177,
+      "sha256": "5e4e8a33f5008dd491e2f83731ea1346acc09969f10f9adafd806bed629c7d37"
+    },
+    "runs/public-full-native-01/native/bq034-natural-shown-feed.jsonl": {
+      "bytes": 31880154,
+      "sha256": "9116c87bf5ad777153eeb07be75e6f143a9b7b9789662c23cf4cc5457bead8bc"
+    },
+    "runs/public-full-native-01/native/bq034-natural-two-unique-sacrifice.jsonl": {
+      "bytes": 21512092,
+      "sha256": "5c175119f3c6df96fd6032d09ec82e23ab28b83d86560d29cf960ef9c5adab4a"
+    },
+    "runs/public-full-native-01/native/cq25-xg25-natural-seal-move-search.jsonl": {
+      "bytes": 35808395,
+      "sha256": "e5deb5124eacc7a06e84ae755e968d2a41132821a238561ada2214cd5e3841d7"
+    },
+    "runs/public-full-native-01/output.log": {
+      "bytes": 277350,
+      "sha256": "6fb62ef02b5fe5a588e438a32d72c98a477523fda8f873ab5d1d0dbbead57304"
+    },
+    "runs/public-full-native-01/receipt.json": {
+      "bytes": 1523,
+      "sha256": "22dca6e219995bebae38825c94a980f76de333e6d3d623d3fdc55de2474ecddf"
+    },
+    "runs/public-full-native-01/source-files/rust-game/src/deck.rs": {
+      "bytes": 6461,
+      "sha256": "41d585c3af095daf3b6fe6951b47283cec29f34f150d440dcb7add7e71e26d47"
+    },
+    "runs/public-full-native-01/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/public-full-native-01/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 24039,
+      "sha256": "2912f2df96023778a84f697b59488a50c5f5caab45be9c4712fabf16488e9d7c"
+    },
+    "runs/public-full-native-02/output.log": {
+      "bytes": 285852,
+      "sha256": "2240034eab2e1300b02bc2b4986421be9d290efe6087b0f0722026ad5224e87b"
+    },
+    "runs/public-full-native-02/receipt.json": {
+      "bytes": 38196,
+      "sha256": "95dacb328e9551ef5c57fad2ddabbb06a0312e15c1c3287d4ceda8ece00a6c1e"
+    },
+    "runs/public-full-native-02/source-files/Cargo.lock": {
+      "bytes": 29338,
+      "sha256": "1745cc1af931f500e763222c39100da3ac0521f4a1f96fc54e82c8589e2edb54"
+    },
+    "runs/public-full-native-02/source-files/Cargo.toml": {
+      "bytes": 69,
+      "sha256": "6a2e27cc47931d9285d713ced9aad949ebcf36cfd32f5eeaf329fec24fda3257"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/Cargo.toml": {
+      "bytes": 375,
+      "sha256": "cbdeefa0ca26e19bab521fd24e56bdc4e2f2f7f3c53e78f9e0a4d61b6c4e0fd0"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/current_jc052_worker_fixtures.rs": {
+      "bytes": 2282,
+      "sha256": "44e7e0e21f8f4bec952d2219d514d1cdbf3aecfd9a3fdbbca3d93d14f57710f2"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/current_ui_worker_fixtures.rs": {
+      "bytes": 12321,
+      "sha256": "6e442faf36a3a38ab599f847d1353db8ad230d9b9386f2766fd8fe7a119a7fce"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/native_fixtures.rs": {
+      "bytes": 110698,
+      "sha256": "f140b24b43871beac254936a227a19f1bb64e125e34ddcb28117f7f7b3e01c54"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/seven_card_ui_fixtures.rs": {
+      "bytes": 4680,
+      "sha256": "d69205fd16f38d9c42ab66b9d168bead1df4fec0c276b10f30a6340c36666091"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/control.rs": {
+      "bytes": 32299,
+      "sha256": "1618ccac6c656dcf2543b6a21af56c33238f3a61355e05bc61dfd9cc3ba7328c"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/defence_equipment.rs": {
+      "bytes": 35306,
+      "sha256": "085237fdcbd268ec6f1e4a2268029163c5a389adc7a1178faeb7f5834602816a"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/dream_reveal.rs": {
+      "bytes": 26062,
+      "sha256": "c959a2f38defa321b6c36fe16f9accba13af4d596e320047d8e0e5be86fbf0e8"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/equipment_abilities.rs": {
+      "bytes": 46779,
+      "sha256": "f3fc79ea993c5c3004a42663cabd9d983d36593d32d5e4a212c3e0b0e4404c5c"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/hand_deck.rs": {
+      "bytes": 22585,
+      "sha256": "a4d034538019fe1fee159225da3e35ea7df38d2266c8bcb6597d65c75b4a6bd2"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/hand_interactions.rs": {
+      "bytes": 25833,
+      "sha256": "30033bf1b0b5ce256d6424165129646bfebc41bb1d05be16cc3a28dbb4490243"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/identity_overlap.rs": {
+      "bytes": 22904,
+      "sha256": "1391b5c1fd88c220e3762778365e137cb8756c44c0e569a5bb3a7f58988d27f3"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/jc004.rs": {
+      "bytes": 17861,
+      "sha256": "634717ba75955c5cb81709653baf169af9f8dba879a819a0f74966047f944195"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/jc005.rs": {
+      "bytes": 10615,
+      "sha256": "80a709822ea9c1789131a90085f16e09afc9bf4775d3502fc1ca09714d8df9e5"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/jc008.rs": {
+      "bytes": 18984,
+      "sha256": "eb8a68cbf7b4ac600449b1c53bc22de77487c69bdffde31065d2855c0b83f32c"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/mixed_decks.rs": {
+      "bytes": 9760,
+      "sha256": "73076b806a934ce05b7821746a4dc0f7c0ce5d181211b4c999165ccd2697cab8"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc01.rs": {
+      "bytes": 19062,
+      "sha256": "2e329f0fe67cbaa47c2b44617c9dcb6b9f46915d4a4ea191b7212f629f115ded"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc06.rs": {
+      "bytes": 23002,
+      "sha256": "b92e1deadd07607f61fe9000afc6f419b5887b2cc47300fee45de7dab501e604"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc07.rs": {
+      "bytes": 23037,
+      "sha256": "08655fcc1b107d2de814a0231eea1ce3a098554fa11562bfc42137c9729bea22"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc08.rs": {
+      "bytes": 23014,
+      "sha256": "adeb445615d0212b05b9c921db271c1978acde518ba5a42ce40159fd69a04867"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc09.rs": {
+      "bytes": 7086,
+      "sha256": "6799e96443d34cf1409cd18a51fb7d406ddb12be22e29f07162e805f38bbd731"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/msjc11.rs": {
+      "bytes": 35026,
+      "sha256": "f0e028a0bda97dd32ca6bf376ace12f68c3b26ae70d718ffaa4c1165a9e78c95"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/next20.rs": {
+      "bytes": 44098,
+      "sha256": "16f94037ab7e941549908c59ffdb9c196affca70b870f272c6a6d3f0391d3d34"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/protection.rs": {
+      "bytes": 28856,
+      "sha256": "1272d3010d72f1a58f9f45e691dccf19524f5aa5ba1b59ed84959e8e949d75a1"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/purple_tools.rs": {
+      "bytes": 20088,
+      "sha256": "c757e16892c55416f13494a6e1e1d03d89a8223442f43f7a63de57e41c23fb56"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/region_aura.rs": {
+      "bytes": 36238,
+      "sha256": "e2237116208fa3b95b5846965e66ae7710c2c4a3a2f58672a72542c26dc824b3"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/renown.rs": {
+      "bytes": 22652,
+      "sha256": "a3ff9f0ca4e44c57f5d743cc68814ade1825cbe20ffe9f3e0862a4a0a19b98b4"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/repress_assets.rs": {
+      "bytes": 24144,
+      "sha256": "4d6d082c56ad9a840c6785154c5cc49a4724b4dd72e99fa668e7d6951fae55eb"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/society_fixture.rs": {
+      "bytes": 6201,
+      "sha256": "531b8909c33ac20bba4757a68c5217f6b27efc2d246f9031e5d6d5e08bf1224c"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/society_zone.rs": {
+      "bytes": 6306,
+      "sha256": "ddc4aca067d364ab7d9be11ccef22f1b91b0c5cb6eef78ccf72a97686688be98"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/white_wound.rs": {
+      "bytes": 26782,
+      "sha256": "2fbe71526baa5a04928f6a8380ad1a51a2e9c13b3be2ecca243b93d4fe716e0e"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/wound_defence.rs": {
+      "bytes": 19662,
+      "sha256": "1b731716fa5198dd8b357c48d06c74c3a62ded5d44efae4d6a3396a965dcec3d"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/examples/support/yellow_search.rs": {
+      "bytes": 16961,
+      "sha256": "ea184291253d3faf4bc7a6722da25261e8bffe0e6a9b4990913aa1cc5e40b57b"
+    },
+    "runs/public-full-native-02/source-files/rust-game-wasm/src/lib.rs": {
+      "bytes": 7064,
+      "sha256": "e813ff003dfad6063d117333412e3dd15e70dd19967aa2b6279a30fe86deb4f3"
+    },
+    "runs/public-full-native-02/source-files/rust-game/Cargo.toml": {
+      "bytes": 1271,
+      "sha256": "47861cbf8380fef68303845ac3872d8adb73a4dc7df8580ea5d43108b3ac9178"
+    },
+    "runs/public-full-native-02/source-files/rust-game/data/cards.json": {
+      "bytes": 310791,
+      "sha256": "8374881d798c04fb22666842a24b4e96ceb51f1fcfb3516104429280c6463a07"
+    },
+    "runs/public-full-native-02/source-files/rust-game/examples/semantic_scope_audit.rs": {
+      "bytes": 302,
+      "sha256": "fd5acb012a686f9a73cc1fe1b26553cbe199adb371e8d8ec917befe8b642a3fd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/abi112_review_play_tests.rs": {
+      "bytes": 9422,
+      "sha256": "521f991661c9a9c8966d2cb9cd952ea256599f1f1a89641f068a35d29e1e1542"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/attachment.rs": {
+      "bytes": 31222,
+      "sha256": "53c57b6e6bc1d106921b359cdeae52704fbd2b255c55ca49c1a56ccac2bd8f00"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/attributes.rs": {
+      "bytes": 11131,
+      "sha256": "b856b83b7b07aed62487aed006567f4952eb88272a69fded35a52e1e274d504c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch20.rs": {
+      "bytes": 50269,
+      "sha256": "13de4ce4b2e2a95cae9daf90a4e98c33f7ca2063426a7fe48fac4705007e6996"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch20_observers.rs": {
+      "bytes": 14706,
+      "sha256": "2eee4713dc344fbc3705d7480eea3098603d0ae8708a90192c5776f1b2ad0075"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch20_tests.rs": {
+      "bytes": 27737,
+      "sha256": "f5178d9fb346acd2e12587aa80eac4bc5845a569f3f574bb6c93f7544b4ba012"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3.rs": {
+      "bytes": 50774,
+      "sha256": "f0cb831afa130f8b96ba1910ffd8dc4c92494da7f6ccbdfe881fc32e3aed2c86"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_abi94_tests.rs": {
+      "bytes": 2865,
+      "sha256": "b92ffe9ace41d80820952b72f223f33fdbc19a41b2f227f92aac2ada5c9cc2cc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_alpha.rs": {
+      "bytes": 4732,
+      "sha256": "b75cb52a37fba27d5c65366ade0f6867e4cf90dcfdf31487b2ea0ec4b8a9fa5b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_alpha_tests.rs": {
+      "bytes": 7633,
+      "sha256": "c1f4eae7eabca24bd7c61d6a13c913186b45c80d2beeb82043313507ebb95652"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_bats.rs": {
+      "bytes": 7421,
+      "sha256": "187641826051a2c8881185a9534eb9ff5b2e992b2169ddb323a8d5659fddf20a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_bats_tests.rs": {
+      "bytes": 18007,
+      "sha256": "cbf9251c7dfb23be954aeb4c8f000f4dc1309e4e2da15434e2bdf786846e15fe"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_black.rs": {
+      "bytes": 13648,
+      "sha256": "d05f5e5392fa5ae8e521577d2c757f4d0cbf002489c219dfd0288e4b3ff45643"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_blood.rs": {
+      "bytes": 19260,
+      "sha256": "b7c7d2a83bb4fa3492b067b2f5dba250a67754644a483971c0cd0651198ab60f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_blood_tests.rs": {
+      "bytes": 10107,
+      "sha256": "6b9558c7cf8ea7d4cb98a61dfc012df71c53964a7e43cf759fcec4524f085828"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_entry_order.rs": {
+      "bytes": 9136,
+      "sha256": "881663e07bb22a376dd1718f7929acba933f23dd440d86803c936d29659298b2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_ghoul.rs": {
+      "bytes": 8472,
+      "sha256": "ef42a52a535f7d0ec2d898d5173967e1d14764392affb5b69d1e70ba68c966f6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_ghoul_tests.rs": {
+      "bytes": 9721,
+      "sha256": "54f2dd86290c130a34bb7f77a47b6b9ffaed7f4d17a47015c9961a0b6948ba19"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_grave.rs": {
+      "bytes": 12444,
+      "sha256": "63343ac45c679de84e6ff4f7a6041bdee18775f670a08e01fe3b76975a683a88"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_grave_tests.rs": {
+      "bytes": 12337,
+      "sha256": "faec1227da5e4aea36a3c07ff769d5252fa3969064b5ca6e8d5a81aa9d018683"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_guard_tests.rs": {
+      "bytes": 13483,
+      "sha256": "f81962728a410ddbfe486d55b39b02167bce3fe4b59416d61d677954f2691581"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_host.rs": {
+      "bytes": 15893,
+      "sha256": "eb0d32fbb48aacf3d270a423c7b579c0a9c82518bb7b0a903757c60c8fdb478e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_inspect.rs": {
+      "bytes": 7817,
+      "sha256": "11213f93c1947fd3d1f0aabbd46f5f6ef08b71aacd069edb2db83fdccdcedf0f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_inspect_tests.rs": {
+      "bytes": 5724,
+      "sha256": "ad13de8e445abfffc9e73e8dc88f448161412dba8d4e89c7fb648517a5995e6b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_law.rs": {
+      "bytes": 7681,
+      "sha256": "5bd65ec6f2fd2064a34d56d03eb8c452dcc012e915a2adf4b71f79429c67ba6e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_phoebe.rs": {
+      "bytes": 7771,
+      "sha256": "d7f7a3e570795f94ed37a3846c9cce51dce673fed0ba2cf31b9acadf35fcc046"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_phoebe_tests.rs": {
+      "bytes": 13117,
+      "sha256": "1a017e0a3f21dc75ef798b6be73fc243ea64fe8d9219f69a8131568e5386bb02"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_politician.rs": {
+      "bytes": 9586,
+      "sha256": "9d515b2eccaa54f3b843a9abf968f28809e2b0325650875a524e2a76c6066d42"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_red.rs": {
+      "bytes": 11084,
+      "sha256": "23313ad6fac670d1968ce375ec2ed2026330528652a3125acbea6bd5abeb7d1c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_serpent_tests.rs": {
+      "bytes": 6560,
+      "sha256": "a6716c36b345f2c78eaa963ba4a9ed89751baf3b6d90d23a86640bb361f7a377"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_trap.rs": {
+      "bytes": 12361,
+      "sha256": "1620a9ec56a077740d5b83973967b8c5384abc001ac5b2fc8e4adec98b5d70d0"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_trap_tests.rs": {
+      "bytes": 13080,
+      "sha256": "77ff0ae0308d33d403fd8e449e43452ef23d35254c504b80f32ed9ba6e850f87"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_warrant.rs": {
+      "bytes": 8319,
+      "sha256": "47c744dd437b4251d2e77f00f2c4afc2342b2e01fb50f982242890ca190cd4d1"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch3_warrant_tests.rs": {
+      "bytes": 8076,
+      "sha256": "bfa6e8c775a699b493a349513a42e97ae5f64a5209ee65b331d4a2be7b0d9a1b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4.rs": {
+      "bytes": 32654,
+      "sha256": "7553c228498675d8f1220e1010737a73be3681e8344606405bdfe33fc957d03b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_blood.rs": {
+      "bytes": 13854,
+      "sha256": "3600180e5222ac7ae5e5099a6c215896a88a8474382991f9106c19eb87d994fd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_blood_tests.rs": {
+      "bytes": 12194,
+      "sha256": "e4b4af9e5ae93795b2b3f72fe07c1723b0783535a3d2d4022445a22d4d2fefdc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_chance.rs": {
+      "bytes": 21274,
+      "sha256": "228ab00cb95f0d3fd2894ab4c1c7b20120d7de5d332ba3c8be2fa5b300d0685f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_chance_tests.rs": {
+      "bytes": 14769,
+      "sha256": "e4d2f6d8d130d08b4c8e6d2e0301b48af19f235ec42163a86bf26b1255fb753f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_clock.rs": {
+      "bytes": 8458,
+      "sha256": "353847fc4580e22585506bece2e26ee323b96b8d2091da629ee0d2b1e4d3a6d5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_clock_spell.rs": {
+      "bytes": 11217,
+      "sha256": "e00403cf1506c20d9b2a869b542eda81065d1b871954c285739d86fe4f868f05"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_clock_tests.rs": {
+      "bytes": 28892,
+      "sha256": "d6a67041d2e827210d8687e5a55729ecf5d13cadd88cdda0b760fc7d80a22785"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_conference.rs": {
+      "bytes": 17472,
+      "sha256": "6cb0a261639e945dce9b7d95385ec8ff2e1015a58bf07ad70d1cb9f7091347e3"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_conference_tests.rs": {
+      "bytes": 15875,
+      "sha256": "662be9cbde766b2c54affee80e0cfc1c5b830c887296bb467d1c4dfd171f3c63"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_dahlia.rs": {
+      "bytes": 14916,
+      "sha256": "5ddcd0c9161c0ef0690e0c5ca37448242c8cda5caf4c82e38ee974129a6857f2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_dahlia_tests.rs": {
+      "bytes": 11244,
+      "sha256": "fcb769af740a2082f62385ed58184b5cf21c82bf3b772d62517114a5b12385ec"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_feast.rs": {
+      "bytes": 17889,
+      "sha256": "d7c9c05df9bf561fcbc8df9bf3b2b6d65f16eb1bdf0f2cc3c56e83fb716fcf2a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_feast_tests.rs": {
+      "bytes": 14987,
+      "sha256": "7477c6d9901e677231c9b569170c9da142810f045065b932e2deab97c6d88257"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_intelligence.rs": {
+      "bytes": 11972,
+      "sha256": "c9fe3c387217b8d37d6cbb00cc74ccc31d1a08ec27d16527728fde7ced975fa1"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_intelligence_tests.rs": {
+      "bytes": 25275,
+      "sha256": "81f5dc44d7601c35cea7038f896fdd0463004147d74954fe57b15a7f03a68074"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_jiangyue.rs": {
+      "bytes": 10334,
+      "sha256": "5405e86782b4e9e67d4dedc34c4bf8b05fdb70dc6da55ccf7c669df616e1c558"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_jiangyue_tests.rs": {
+      "bytes": 20149,
+      "sha256": "0400eb0546a1c555053f4c40591dc97d49817beafc97c66fe6e6afb3afe5ecb5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_manor.rs": {
+      "bytes": 6331,
+      "sha256": "aac0be59678678f785fca43c8fcb481e2f383e859be06d30674f3d68e8b4bd3a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_manor_tests.rs": {
+      "bytes": 10949,
+      "sha256": "6166c77861f4e6aa0414495dc573e1673dafc840583ff6443ee987668fc66bd4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_markers.rs": {
+      "bytes": 12242,
+      "sha256": "76b5f15a251efe4b94c2b551f7714757cd2a85df0acc34907985494113f2f2ad"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_markers_tests.rs": {
+      "bytes": 16567,
+      "sha256": "c1e6921f813b9f102fe7307c8ea3003fa7c4b8682b05d64ced3d12c77798fb6c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_new_order_tests.rs": {
+      "bytes": 8025,
+      "sha256": "12d23a34fa06672726e4d977ba9263e5dc0d6da5bfe740e96519fb3bed87d592"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_night.rs": {
+      "bytes": 13464,
+      "sha256": "4ed1a3933eaae00dae16756a21f14d21abf5ea05b9ad510ab9313b9b57323374"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_night_tests.rs": {
+      "bytes": 54666,
+      "sha256": "e8d216c3368278aeaf8e136905db830a3bfe2a9d7246ff8235f259e1e91147c6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_omega.rs": {
+      "bytes": 16514,
+      "sha256": "c4db0322d5ce8ed45756723a21d3d750ede3507637d3314d90023a4df81ca42d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_omega_tests.rs": {
+      "bytes": 13578,
+      "sha256": "59c6e1882c63ce33ff1cd21926e539859be7d02629873d53db4fd2f58f41748f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_phantom.rs": {
+      "bytes": 7721,
+      "sha256": "798dba884ba8a4db3c2f342aad8e08d3e1f00e31feebbe714ae73607f5b03a53"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_phantom_tests.rs": {
+      "bytes": 14007,
+      "sha256": "277c92ea7f3f638aacecf7444ce416862513879354b517604677e0e097214738"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_plans.rs": {
+      "bytes": 15428,
+      "sha256": "f81bba6434d33c3b6d835334795836452e34442471c3de5bebfb197d33bf4258"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_plans_tests.rs": {
+      "bytes": 20339,
+      "sha256": "a5a18553eb8d8411b207cd2ec2bc106f7372c1b9b68f71394a3e7ee3c4dfdca2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_platform_tests.rs": {
+      "bytes": 10274,
+      "sha256": "87eb17375a003c9c8ea125d2ac966fb3c25f6ba7ff1977fe22deaa228651f16f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_politician.rs": {
+      "bytes": 15881,
+      "sha256": "004549818ccff01609bc5f83cc68330d48e2a723be736565cae2e42ba7738e41"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_politician_tests.rs": {
+      "bytes": 14886,
+      "sha256": "2a62b2eac847207f55df0b55614c3bbae20e880bf2e1135e1acdfcc0bd57198d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_shape.rs": {
+      "bytes": 8639,
+      "sha256": "fbaacdd4ed6e4ed68071735af2d9c3b69bc68aa4a9892e4f43d6b91503996b1a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_shape_tests.rs": {
+      "bytes": 10368,
+      "sha256": "030d3fbc5d998853b39a5adeb07101858319eeae8f898018027f6f9ab21b6686"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_skull.rs": {
+      "bytes": 8180,
+      "sha256": "4a6008776a4443c1b6f04ae779862eae975e48d88563375060636ea6c6058569"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_skull_tests.rs": {
+      "bytes": 8715,
+      "sha256": "b9f4f336570d70b5f2969bafd0ff5f98ddea2c4ccf2d629361f7d4c87532564b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_soul_channel.rs": {
+      "bytes": 7369,
+      "sha256": "0a7243038ecc8e2773c12f4a444e57dcb16498dd10f38b8e184f6b7fa6ada526"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_soul_channel_tests.rs": {
+      "bytes": 22019,
+      "sha256": "f8afc5d8c14fd8fd772eb0e627ff1545b5d398d504e798f01bf3af075aabcf42"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_spectral.rs": {
+      "bytes": 12351,
+      "sha256": "108555eb096947b49a78854aec64dce03cf122e163ab5b7c562f69c1537554ab"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_spectral_tests.rs": {
+      "bytes": 9598,
+      "sha256": "9dae2aefe4c2f5ef73f4ac1e5b6e4962c94ed0c9b1e3f3976944a21901fc4d8e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_statue.rs": {
+      "bytes": 24157,
+      "sha256": "02f2d2663ced427ffbf469e709c1a87b6468cb7a54d9d75909cf697687b54352"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_statue_tests.rs": {
+      "bytes": 13953,
+      "sha256": "829799425b7fa0bbb85938d189a75a62da4ded9d4339385564b9795dac57525b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_tattoo.rs": {
+      "bytes": 13701,
+      "sha256": "c8151c1c77f150f4021dc862a1beac1f1c59fb76f182b7dd93971224450242a9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_tattoo_tests.rs": {
+      "bytes": 11523,
+      "sha256": "78a1ebc5bc7f254fea0a76938305f8dd67de6ddaa01093c038ae75f2424a30fd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_tests.rs": {
+      "bytes": 21934,
+      "sha256": "f4d4a5a1a7baff13878a8eb4bdd20dfab14207cf5e030b3cfd1ded95f740b2dc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_timekeeper.rs": {
+      "bytes": 11574,
+      "sha256": "3d069395cde202c11ed2c7e3d701ed531eccabf9ddb8931c3929a8e7fd7e4df8"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_timekeeper_tests.rs": {
+      "bytes": 17819,
+      "sha256": "a641581b016d80fa5bbaa80a4f1d9e48f12935e94dfefbe278abe009a2d032c5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_vampire_contest.rs": {
+      "bytes": 30358,
+      "sha256": "713d9405149361bf86df5578f486a0abea3b750f273ea6acef3bba239602cfc0"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_vampire_contest_tests.rs": {
+      "bytes": 57547,
+      "sha256": "5cf9430a5e9ba1c6fa989d77800abdb676e3578f3ab2ce6acdb76dcebcf0a10e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_vampires.rs": {
+      "bytes": 44011,
+      "sha256": "bcdbc476403034845dc1223a55fda5a819b857281da37944730a24578377d5f0"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_vampires_tests.rs": {
+      "bytes": 33275,
+      "sha256": "5386e318ade936ab72aed6cd0c6dce372d97213f513d49c984199a02d7642952"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_warden.rs": {
+      "bytes": 9221,
+      "sha256": "ff4347b0868df6461caf198ac678108a6110a104c96d8829ea9be141e8821971"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_warden_tests.rs": {
+      "bytes": 9493,
+      "sha256": "29ed002d07b21d771a037bd67cdaa7d6e5e302659d1eca04223817c8a6d7f528"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_wendigo.rs": {
+      "bytes": 18634,
+      "sha256": "b07637b903be1ccfdea36bb73492e6f67a55583f215731aaf245351c5d7687aa"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/batch4_wendigo_tests.rs": {
+      "bytes": 16828,
+      "sha256": "4b8e2c08968dd5366623fc03afc256cdd6f3b55e9fcab7be95ed6766fea61cde"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bin/hegemony-audit.rs": {
+      "bytes": 627,
+      "sha256": "6e1d4f5cb0b803f9aa4bc233dfb2445cbddb2801522846963aa2caf2b2090e2e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/black_expansion.rs": {
+      "bytes": 23684,
+      "sha256": "8f73e8829f52463e327c5376afccd5ea85b6e55d6892392e91ac988039a33e38"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/black_expansion_tests.rs": {
+      "bytes": 35366,
+      "sha256": "0b3e0651572439f36df78044d2f9fc2a057837a471764a3362b525636b54c34c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/black_next20.rs": {
+      "bytes": 44933,
+      "sha256": "f678c7b37f8ad00f9cef197bb29ab858732741e1caa25cc5a2e500c0ce080269"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/black_next20_tests.rs": {
+      "bytes": 31164,
+      "sha256": "2a31edfe72a8467f9efdec728de42a89244b54affbaa25845266b30248205e68"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/blue_expansion.rs": {
+      "bytes": 22651,
+      "sha256": "c5c0a86dc35a9cce5579e1321ad9af9fa2a27927762c2391b087f128567b6d23"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/blue_expansion_tests.rs": {
+      "bytes": 34027,
+      "sha256": "c50802ce518921d9221e4d488b45bf925f11652db034f5276c699015b5d72555"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/blue_minimum.rs": {
+      "bytes": 8366,
+      "sha256": "0ef2305cb4f68fa18e7c8a9ed57616aed278fdb804c0a4c0f8a30be0ea47a1a8"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/blue_minimum_tests.rs": {
+      "bytes": 35054,
+      "sha256": "70e0a8d18b5c49e32b7eb84dee46151ed2231664158d89372da1f5e8f46ff0cb"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bounded_entry_fresh_tests.rs": {
+      "bytes": 7211,
+      "sha256": "3f9d5872fc39d16c05515609ea15207f82a804724c358a504a58c4cc3267d8d4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bounded_search.rs": {
+      "bytes": 10777,
+      "sha256": "9d74e60d5a86f42721c90766cc00d5f505af506db63ae319dae96a110b031a2d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bounded_search_tests.rs": {
+      "bytes": 31018,
+      "sha256": "75cac69e99091594475c7ae09067f27370f79e475d372d1570aea70bfa829e8f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bq030.rs": {
+      "bytes": 40113,
+      "sha256": "d0d05354f3783a7a610f876fffa65cf9d3108bc2653c2de4526900d8e456d218"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bq035.rs": {
+      "bytes": 12464,
+      "sha256": "81fcfa6f1f178b1d71b6d8047ae6528b7f89416f13421989df26cb52e3744ae1"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/bq035_tests.rs": {
+      "bytes": 67766,
+      "sha256": "645620ccab01d6571cfb23df624cf78a58f548397029927bb9705797fcb603c6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/catalog.rs": {
+      "bytes": 10601,
+      "sha256": "e8460135b0e9bea89fc8bca7ec935e13ee2da29caf1413a6ff60d4f16dc45290"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/chaos.rs": {
+      "bytes": 953,
+      "sha256": "66e8aadce14e1a1c895ff50d8c35c8255d2e2386bd07001c3fc6ad8a7d837d81"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/combat_wounds.rs": {
+      "bytes": 8805,
+      "sha256": "2c537adfad1d144cb94f4946d03e3c146a5ec5acb7b1da9d3e6f8ae2ac98f1a4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/control.rs": {
+      "bytes": 9442,
+      "sha256": "f86296b40620cf6a624602720ce4164ec380efdfe0d5d467f17016262f980ae6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/control_tests.rs": {
+      "bytes": 27065,
+      "sha256": "b8775f282de31ac3d0f4a11597a90f7c42f9bb9fe5265a7cf068d077d342d6c2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/death_continuation.rs": {
+      "bytes": 28946,
+      "sha256": "f1053b59a07aedf320119f60e4cc3c2427555fb74ea7573024f3e10818f6f4c2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/death_observer_tests.rs": {
+      "bytes": 29046,
+      "sha256": "d20b6fcbd7e55f634152e3a7b7ac353c0f2e304a6feb4f20d9acb00fffa83709"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/death_observers.rs": {
+      "bytes": 17607,
+      "sha256": "cbfb873c915d118c0d8c1ac5c73c18e53c47953334bcf3f7b40770e3e8f055ee"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/deck.rs": {
+      "bytes": 6461,
+      "sha256": "41d585c3af095daf3b6fe6951b47283cec29f34f150d440dcb7add7e71e26d47"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/deck_seal_search.rs": {
+      "bytes": 9602,
+      "sha256": "931efea1430a31822623e41a5b8978ff6123bcc7ba3ee73ba4e23c12ecaad1f4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/deck_seal_search_draft.rs": {
+      "bytes": 13477,
+      "sha256": "3f1336f7054da9ec4d9ce6464c56ec5c170b1d1e21ddb11657a0fc2b1cda9925"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/deck_seal_search_tests.rs": {
+      "bytes": 44725,
+      "sha256": "53224b7b5da762f3f13fb547e60b034b1ce7aa4b2178dbce67a41a33b36f72d2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/defence_equipment_tests.rs": {
+      "bytes": 16130,
+      "sha256": "911114e3ef9bf06fcd75c8dc3ac609cb2391fc5c0fc5d5f7efb5ae79471ae462"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/dream_reveal_tests.rs": {
+      "bytes": 14832,
+      "sha256": "6ec4e9877f69cd49426138d8ba88dbc41b28d0863dc6c2702fba3453d107a94e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/engine.rs": {
+      "bytes": 298802,
+      "sha256": "0116ba614a40be1b9264771ea5011c010f63f23aa5f5842b9791c94e3067aaa6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/equipment_abilities_tests.rs": {
+      "bytes": 24063,
+      "sha256": "9afdb2620b714f42886a6e389b050a7a7c242a4b5c71104d45d678c46a58344c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/exposure.rs": {
+      "bytes": 27901,
+      "sha256": "e42c7be984f9471de24cd51f5398f3c61eab63b01b3cb12e0935509028ce13dd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/exposure_tests.rs": {
+      "bytes": 29660,
+      "sha256": "fe840c888e6a6405d0b5b29950ec88c9ff72cd59859c5cd559896051c57a9a5b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/extra_influence.rs": {
+      "bytes": 3258,
+      "sha256": "8d98724d538bfe3c20e0a8c82fc7130a0979242eaee126fe619c7ea3167f53a0"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/gray_expansion.rs": {
+      "bytes": 22419,
+      "sha256": "d2b6e8d6a136cb7ca3167f5a987cb30f7d27e03693c282ee1706f2a35ccb9b3e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/gray_expansion_tests.rs": {
+      "bytes": 46592,
+      "sha256": "3abab9bcd5faaaa4695f5e13bbb18542015af8a17437049faf180b521cef4de0"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/gray_lock.rs": {
+      "bytes": 6176,
+      "sha256": "9cb3ba36d889dc3a9cb489b4fc0c272c1d33a9e8bfea688e69fe2b0be4293cc9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/gray_lock_tests.rs": {
+      "bytes": 33613,
+      "sha256": "9e62cb326760a2f10bfff6ac94b3a4fb86e395d47d9483577725d65df9b459d4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/green_minimum_tests.rs": {
+      "bytes": 28748,
+      "sha256": "891940a5374d6957730eff0f8a1169610143d1921f061e5d6b30ef2937ca66e9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/hand_deck_tests.rs": {
+      "bytes": 14114,
+      "sha256": "6ded1339c83045d889a82c022356e38487aabfd11aff26fdf734b67be5bca17c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/hand_interactions_tests.rs": {
+      "bytes": 19545,
+      "sha256": "7eaeacab6aa0acc7a0f5c89352557a424b70dade17376f7874d658fa7cf13517"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_broker.rs": {
+      "bytes": 22158,
+      "sha256": "b4f3f2f2ac6a21725e6e3a1592131310379e6bde0effb1bbb9b36aaa42dcb07f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_broker_tests.rs": {
+      "bytes": 22492,
+      "sha256": "dbd2d7bc538b86b00ab65325bf96e1eb9c15dbd9533d0791886e7d6c377116a8"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_carmen.rs": {
+      "bytes": 25461,
+      "sha256": "3283ba4b9e977549b0d3824d6e04ea9ecdd898ce39f48c95b28b447f8c07241b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_carmen_tests.rs": {
+      "bytes": 15481,
+      "sha256": "40314335dda6b133bcdafa2d6e0724ee144013b12c9538f42c119e413c50d653"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_contest.rs": {
+      "bytes": 8629,
+      "sha256": "5770e8d129ce652a81c739c96989c2a536e37770663c6c1b25f22b3e18bbae00"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_contest_tests.rs": {
+      "bytes": 13715,
+      "sha256": "575cbfa5430d4f1dbaa798a077d5f61182372aab692e5cb94316bc714d961328"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_cultist.rs": {
+      "bytes": 15813,
+      "sha256": "0a61dac23f1c53904419b72d59743c1f3971cf116c28f716e5d5ae3c38a87bed"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_cultist_tests.rs": {
+      "bytes": 19013,
+      "sha256": "922052b565aef2f1801913eb6e9fb8524d35ea08f895439de423183ca9de034f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_entropy.rs": {
+      "bytes": 9589,
+      "sha256": "f1ee01cbcf9f5ac761225a2ea340d331f6e66438c0f2852b1f345ff8261b09a3"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_entropy_tests.rs": {
+      "bytes": 10292,
+      "sha256": "2d4bc8b9251f21346f4978bec0613f02ce3a89dc363962fead240c5d407abea8"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_gate.rs": {
+      "bytes": 18548,
+      "sha256": "02ac575dad3f1c26a3dc8c32110d02d4d0d8af3627da9679b894eb0616df2b2d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_gate_tests.rs": {
+      "bytes": 15068,
+      "sha256": "6368854dd84fa3fac0820b8b0fb32d98543915037eae01d165ba5912686acb7a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_industry.rs": {
+      "bytes": 18367,
+      "sha256": "522334dca28163e5e207e263dc68692a9e53dda98126a7acc80cede9bac9b5ef"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_industry_tests.rs": {
+      "bytes": 31076,
+      "sha256": "02213a725493b9abc97c3e162bdee3ee0670510b1aa7cccbfa987c20bdc29355"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_observers.rs": {
+      "bytes": 11673,
+      "sha256": "a081d95fd24ce7331113cb7a09e5fe80a54e876cd49daee7c2eb16a6c186a255"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_observers_tests.rs": {
+      "bytes": 17338,
+      "sha256": "debb5c9634c8df32e118d0ceb0b9d0348ed5258187053382f7c8d65467a712c4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_sentinel.rs": {
+      "bytes": 26260,
+      "sha256": "75ece9254c4bb9eec2e0636e63c76db6e67c7b85d0bcc44e8ced093126f98c4c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_sentinel_tests.rs": {
+      "bytes": 24877,
+      "sha256": "84564055ba096b5938474d4b5f9454e7ad63f4bd3d3065e689e000ff85a2b313"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_swords.rs": {
+      "bytes": 17257,
+      "sha256": "cfd273490a0330794ebb5e71fbf96b2c00a22ead32c987f2d6dbad4ac2b2213f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_swords_tests.rs": {
+      "bytes": 11786,
+      "sha256": "4aa4c180f3e2217a254a181e1d730a7aae4ec1f471ed23013ee24fd01b5ea2f2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_tattoo.rs": {
+      "bytes": 9321,
+      "sha256": "ed51b6e00045a57d7cb41c8076565fcc3e088a616bd061820436f8cdd8cde046"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_tattoo_tests.rs": {
+      "bytes": 9935,
+      "sha256": "3c836a19eb5ab51a0c04183eb13836edba8ec652cf4bc0b87e365f2ad4a6807f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_tax_ban.rs": {
+      "bytes": 34176,
+      "sha256": "29ec50e4c69cda0fcfbb7508acfba83c09a44681286978f499f9fca28f69841f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_tax_ban_tests.rs": {
+      "bytes": 27378,
+      "sha256": "a13b06de0c857770f3250843adbd07783a910f76affbecac4238cc87dc2c5b60"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_vampires.rs": {
+      "bytes": 17665,
+      "sha256": "96276a8c6c0bb82d91291ad8f5bb58716794bfb99c0360dd97685697ee07d948"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/import20_vampires_tests.rs": {
+      "bytes": 18708,
+      "sha256": "c7f782550477f502a558ea38960048e7f223672bd1fd3498ec5c73bd9e97c260"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc004_tests.rs": {
+      "bytes": 17587,
+      "sha256": "df50006ba54f6553494909ddfebce9dee7560b0bdbbdeb2a0d86d845dc046abf"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc005_society_regression_tests.rs": {
+      "bytes": 3416,
+      "sha256": "bdb25722003a7984df4fac9a9e5069f32d75d16ff1fe59e034def98eb1b2de28"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc005_tests.rs": {
+      "bytes": 15212,
+      "sha256": "60f04040e8c55c2660a8c579910c29e2ba5510a2815eb2b9667d963c602cb64f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc008_tests.rs": {
+      "bytes": 16763,
+      "sha256": "b29379526f59a664367ab2220660b782e93486d090fa3f2c9f258909a4fb22a9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc029_tests.rs": {
+      "bytes": 18132,
+      "sha256": "1dad9bb987524c4d11070f6e854fb08108df9a5c28663f21243764fe344867eb"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc030_tests.rs": {
+      "bytes": 10280,
+      "sha256": "69971223f942abdb2206a3dfadfb308b6cebcd115c890e9b8fad440916915440"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc035.rs": {
+      "bytes": 39799,
+      "sha256": "225253a3672e54f4d216225e3d8d5d5e3a2ca5b943df5953b49d4bc303eab158"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc035_tests.rs": {
+      "bytes": 38236,
+      "sha256": "76c380335322d38fd89738ec24975a02e31229cca3150a2254711d8a84914e2b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc037.rs": {
+      "bytes": 1733,
+      "sha256": "4b59f607e3b4b0876034533f9de7ca4e3736674cd74cf25eb075a83683651a2b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc037_tests.rs": {
+      "bytes": 21478,
+      "sha256": "8c3eb1ab447fb14bf9129a7b707d723da7055ccfc1d2710677af66dd1ef3766c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc041.rs": {
+      "bytes": 18196,
+      "sha256": "22ce4ba9cb771ce8a07a624724a5beada24e18c1ee495f951cd6b031d132c7f9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc041_tests.rs": {
+      "bytes": 30804,
+      "sha256": "ceb78d25a4dfb96cf774cec1f3a2afca7ccf9a8ef9259d1ab00fd43abbbf05a9"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc044.rs": {
+      "bytes": 18130,
+      "sha256": "81d3b0c0cd052c036a26dce8dc3c932e5a8445e7984ac44faad6177f68bea795"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc044_tests.rs": {
+      "bytes": 35173,
+      "sha256": "7dec101634878fb994fe158b92f9dd48156ef4bc36ce7b6c4c9d3f6b4875b749"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc046.rs": {
+      "bytes": 24022,
+      "sha256": "214897c763f887e85b8d2f6acafa2d339e75e09067896109fdb43b6e23148462"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc046_tests.rs": {
+      "bytes": 55531,
+      "sha256": "4a4e8ed5c69017424bfc9517f672ac13e78f27f241510368ae37f066a8ab7d2c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc050.rs": {
+      "bytes": 7633,
+      "sha256": "28b17442ebd8a4eae6cf54a966626a2add9cb81c261acfc0ca0d8a01e6d177cd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc050_tests.rs": {
+      "bytes": 19685,
+      "sha256": "7f0b3b45b6712a9e26031269f6aa8a42e38aca9d73a9a20c38b0993a20a0da26"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc052.rs": {
+      "bytes": 18502,
+      "sha256": "806b9326eec6ccf949f7be6b87d231eba94162c03d01975a0780fcd168676f57"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc052_tests.rs": {
+      "bytes": 27020,
+      "sha256": "f9b5ed78fba0cbf8ac9cfcf2848feee2816fe70c1d9057f4add49fdd62572a84"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc054.rs": {
+      "bytes": 25535,
+      "sha256": "497c68c925379a12849ab1254aeaceee74a96ec1ea1dfa37a9be26c9dffe48ed"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc054_tests.rs": {
+      "bytes": 40299,
+      "sha256": "03ea9e09b7112193c8c825d9f5ef385e6f53c56d7a86ce2ad64bc03802ad6e16"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc057.rs": {
+      "bytes": 17849,
+      "sha256": "c22dae44bbdea0ec2b73c39da1a08ae73b83eb7cbe7b78b6e037a3b57ba5142c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc057_tests.rs": {
+      "bytes": 35652,
+      "sha256": "4932f94ed8903b4a648e56a6c313043b918ef9344640f32bd590d23fc5624a91"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc060.rs": {
+      "bytes": 3265,
+      "sha256": "204ff39e780843f00ec9de4389bf5e03b716898e77a79cfd8fd3e2d2dd5e5b05"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc060_tests.rs": {
+      "bytes": 34359,
+      "sha256": "51eef7e001ed59ef279b86495c40ec0fa892c85abba3be1edc15d7ad6f059121"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc061_tests.rs": {
+      "bytes": 13502,
+      "sha256": "0f06f3d3ff8d8afc14c4441702d257febc789427566cee0d84d68cca37335495"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc065.rs": {
+      "bytes": 6367,
+      "sha256": "9e022bea01009dfed31a9984fcb81fe25f89c65528e712978a5f39ecba88539b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc066.rs": {
+      "bytes": 15117,
+      "sha256": "e3ef8420e57ff54621a3227b10ebcd699c8638197d336384b320335b8d02998e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc066_tests.rs": {
+      "bytes": 45477,
+      "sha256": "f6bf4422ac49852c5cc1cdd92b427283a0ecc64ebb4fbba03962cc73e23f9bd3"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc087_tests.rs": {
+      "bytes": 15763,
+      "sha256": "3d26a2dacf8aee2f307182e99446d5953fc9d95001837f623f35d2f24dcb31c6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc089_tests.rs": {
+      "bytes": 35103,
+      "sha256": "bfcd776222c5105ae24a0efaf42c821d53aaaf0d1352f979d00cdb32888f4867"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc094_tests.rs": {
+      "bytes": 13733,
+      "sha256": "79cc9bb2a605b3c9c26fc1901efa81b4ba444c18f1292a27788c3e170051889c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc095.rs": {
+      "bytes": 14803,
+      "sha256": "b87b1c2e9f0271ca2926e204d1acf922569b2f9581fd9fcdc606a007b579f702"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jc095_tests.rs": {
+      "bytes": 41079,
+      "sha256": "ffe1a467b14489ff86e5260df6ff995cc8a3f4bdbb63aeec9c25e26c1b06b61c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz22.rs": {
+      "bytes": 9431,
+      "sha256": "bfbe6f856f4245a1856c565714dc00923249abc76eea15a6a8e78e7967286160"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz22_tests.rs": {
+      "bytes": 24665,
+      "sha256": "d28724284a5e5565a750379d90bce2763bdb68d1db33d50e6de1b7f781e56a3b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz31_tests.rs": {
+      "bytes": 28850,
+      "sha256": "961799907e3bdffe55d447e92896c5fbe37e29b3360976be0b91b4f2d74b0b0a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz35.rs": {
+      "bytes": 11061,
+      "sha256": "df1e0352e2f76e1081202f80c2eeee270dd8990df4193480500e2084a27ca83f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz35_tests.rs": {
+      "bytes": 22822,
+      "sha256": "2372abf0f05397dac2b2c28c623e32da5c3e4ca94a7901061d8a250281916175"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz46.rs": {
+      "bytes": 18402,
+      "sha256": "0856cd01831b353ac19bd5be064a7dddfd2915fdeaf7f250725e97d97bc80e91"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz46_tests.rs": {
+      "bytes": 47655,
+      "sha256": "b473bd0e2c82851ee0332b5157ae5f0ffad95eecfeff915ac617593090cd8baa"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz48_tests.rs": {
+      "bytes": 23819,
+      "sha256": "b7fb20fccc11851b466a44e3ef367d11406585e23035c7a243c77bcb454d9e74"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz49_tests.rs": {
+      "bytes": 25330,
+      "sha256": "892b655c1cdd627403d816e262c22fd4c9499a1758dff507d65538ccc0df159c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz50_search.rs": {
+      "bytes": 7171,
+      "sha256": "e9a098b060be4bac57d2fd6be021fbb7843b7c53f6f195a274d3a21318510128"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz50_search_tests.rs": {
+      "bytes": 33411,
+      "sha256": "e42fffac0a0993549f3305f6aeaabc323afc06d46f0fa985edeef33880442ca6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/jz55_tests.rs": {
+      "bytes": 30201,
+      "sha256": "6fefc07141bef592f769c2e4d1b6ce30d5bd3539f7faf24f043405a20e5e1e02"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/main.rs": {
+      "bytes": 822,
+      "sha256": "b19047fc01dd00d864860551b41b2b8be883c04d77b158691b3bdc44252acf2e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/marker_transfer.rs": {
+      "bytes": 5459,
+      "sha256": "afb8fda862ca295a2eed88a8c4e790d37a177f050e412cad87f9b62cec69433a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/marker_transfer_tests.rs": {
+      "bytes": 7003,
+      "sha256": "205dc04fded7a69b9d5d7b681f1a16b85deb0dd3df4e6708b829f734ef5d2395"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/mill_public_tests.rs": {
+      "bytes": 14064,
+      "sha256": "e55fc52d8264d24d0b9832d936c49cf5b8b43a2f6947cbc0365fbc68cb691b49"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/mobility.rs": {
+      "bytes": 16863,
+      "sha256": "40f16377e67b9a07030dcba8b048898ce11348c017ec969c82ec9d65c30f48eb"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/model.rs": {
+      "bytes": 42392,
+      "sha256": "80969e6e973e53eacfbfaf21c7766db6c981669f629d36774a69a9fd2169ad99"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc01_tests.rs": {
+      "bytes": 15973,
+      "sha256": "9fd96f705138c5ec5ee9b25fee08a33ce2efb2638272d122b3d4d7ca9df9fe86"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc0405_tests.rs": {
+      "bytes": 19336,
+      "sha256": "6567247b4bb0fc490fa31c724b229313dacf3affc6caff1ecf53dcc096352831"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc06_tests.rs": {
+      "bytes": 17588,
+      "sha256": "5318c6aba79deed0ea1817ef60e0cdc954b484a3fb2cb811f41111708b98b001"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc07_tests.rs": {
+      "bytes": 1496,
+      "sha256": "f3d1d35d94be59cc8d5846ceda49ff8af1bb48f087a334f2550e65b5fa77a693"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc08_tests.rs": {
+      "bytes": 1396,
+      "sha256": "5d8ec395f46f8428a286db5d9f87ed8d9c50e21a2e39b154ec06c0bab088e8b4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/msjc11_tests.rs": {
+      "bytes": 19830,
+      "sha256": "5f33b02e2257e703bc0794de051864ee61ad7abce51fa3e2304e77ea093798a5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/mystic_contest.rs": {
+      "bytes": 42542,
+      "sha256": "7d9b1977a049271a85ff3619b3b132756eac953691d68ad5e2ff50695e6bfd02"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/mystic_hooks.rs": {
+      "bytes": 1118,
+      "sha256": "b1d5318d7ecf10cf6c0c520ed22d06a171f89ca66384ef3f72a9ecb2cb80b3da"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/mystic_lifecycle_tests.rs": {
+      "bytes": 23885,
+      "sha256": "fc71b40eaf04306d3f403e331029f3a15f918cabe3781e92c6ddc7c5f5ae9b0c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_anchor.rs": {
+      "bytes": 17192,
+      "sha256": "91862e57d833a719c138ab9a6141bffa6ccc14c2e337e011faaa4aa80146abdc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_anchor_core_tests.rs": {
+      "bytes": 10054,
+      "sha256": "3ae3f5696d1786b5d138c83ae905442cd214362781513b1106eb1e5c7ecff702"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_black_core_tests.rs": {
+      "bytes": 15420,
+      "sha256": "cd024e0de3ea1a64200ea829fc512050dc69f235c7076ca51970abd483687173"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_black_wraiths.rs": {
+      "bytes": 41768,
+      "sha256": "57fec08480a910f5de11bbb15c2535556241d6f34ac7a941a3f16c9cc1d9c088"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_black_wraiths_tests.rs": {
+      "bytes": 20417,
+      "sha256": "1488646cc41105c69574f4244654a949c9cbb563bca45393f76c2b13d07c4118"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_blue_core_tests.rs": {
+      "bytes": 17671,
+      "sha256": "7c89c0610a5c27a83677788d0acbdf18a68489e1261b8e5afac4a70c2bc1d8ad"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_blue_gray.rs": {
+      "bytes": 46164,
+      "sha256": "a630a750a0f64cb5b5bf6949d9dcc7641068f26aad0b8c4a96a289e4df23d607"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_blue_gray_tests.rs": {
+      "bytes": 20163,
+      "sha256": "29560fe4a1d814803083f43f50df1213cb0952dc08f8cfa2dc3f9056e7041610"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_blue_vampires.rs": {
+      "bytes": 47538,
+      "sha256": "4da38db866009f9746b0545f2e4744858bab1b97243df9bb83ecf439fe7b27bc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_blue_vampires_tests.rs": {
+      "bytes": 23088,
+      "sha256": "cbc144a712b408030cf359b46b7b1d77221703047af189c2ad5f584d4aa5c283"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_candidate_room_tests.rs": {
+      "bytes": 8072,
+      "sha256": "d516af7c5a7099c9a4aff93e6d33012dee484fb2a7e5199929f779064e35c072"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_cross_tests.rs": {
+      "bytes": 15293,
+      "sha256": "c7b0f3f63e9aa99e82811420eaf6e123a3af105fad71f819b9aa7a21cdfd4219"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_death_core_tests.rs": {
+      "bytes": 18175,
+      "sha256": "cf2c5d7cce52feb382529f9bad459847cc53a0f167fe88704216a8095ae50d50"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 24039,
+      "sha256": "2912f2df96023778a84f697b59488a50c5f5caab45be9c4712fabf16488e9d7c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_red.rs": {
+      "bytes": 38219,
+      "sha256": "68f2f1a44de295079d57099122c3f25a663d81825f51c5a61f45caf48bc949cd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/next20_red_tests.rs": {
+      "bytes": 19563,
+      "sha256": "3811b10943e2dfbda121d42c70a6e8b5ec4f9ea113c343beef836126c3b4f548"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/pack_a_contest.rs": {
+      "bytes": 29203,
+      "sha256": "5af0f9448195c452bd4e75e44109a26ec31f300d06575c8fc9fee4d383bc0c8a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/pack_a_contest_tests.rs": {
+      "bytes": 34588,
+      "sha256": "dbbcc13f696c2d23a3093ebe3ce3132ec445a9ed21c589ff3978e902ffc8cf25"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/play_sources.rs": {
+      "bytes": 15039,
+      "sha256": "ea7400be841d18a78199532974f72a229090c44c172feff4b4b194927a10404a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/protection_tests.rs": {
+      "bytes": 18634,
+      "sha256": "603ae14cf365d77eefc7cef817fd7a91a95b0ee160f6180aa9abea7ac10dfbc8"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/purple_tools_tests.rs": {
+      "bytes": 16491,
+      "sha256": "e642ab5cba65086996335831b2f67afc204994485f9d6ccd482a898d26dc351d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/raid.rs": {
+      "bytes": 8662,
+      "sha256": "a180185a50bdc16c1e32839b401550bd73e2003a763253e460740f2468f168b1"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/recovery_validation_tests.rs": {
+      "bytes": 3582,
+      "sha256": "15f035abad2472b9d6510477fbf1a378156856a245a7db74508606d4ad7f75ba"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/red_time.rs": {
+      "bytes": 24469,
+      "sha256": "9d4b68aedb0f102d90ccc0822e404cf8a6e3e0d2e59c036a5ff52ddbabae7196"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/red_time_tests.rs": {
+      "bytes": 28651,
+      "sha256": "c2793c6ef6f42c49723ace6478777fd7696cf69aa0983070b77ee7529e6d011e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/region_aura_tests.rs": {
+      "bytes": 18342,
+      "sha256": "c1356afe03f26921930fbd00b4a553859e249dd2102d9c447a60e7333e69485b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/region_destruction.rs": {
+      "bytes": 3307,
+      "sha256": "9f69a9d2518b4288bffeee1aa82172496758db6ad175ed540e2feb1787bd2e11"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/renown.rs": {
+      "bytes": 11598,
+      "sha256": "bbde530036a3febe5259fec561fbd18160e10a2ea1d7b9da4f9e0f32c25fc97e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/renown_tests.rs": {
+      "bytes": 27906,
+      "sha256": "4c2ab8625c8b3694f13f4891effc519e8d2109d185342f61771965fed09d1abb"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/repress_assets_tests.rs": {
+      "bytes": 14834,
+      "sha256": "877d08dbc6080a4d595457f29cd8002056901e68ebd4b59c86e5f9ddffdb4660"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/resolution.rs": {
+      "bytes": 158274,
+      "sha256": "751c90f5e7e63288416604fe9bc2764768ef2f68ab94cd14022d603ccb4a331c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/response_preview_tests.rs": {
+      "bytes": 19938,
+      "sha256": "288412326bf55c117d6549de7f8efdea34b7c3209adf23fb535f4e5b4754a927"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/room.rs": {
+      "bytes": 30988,
+      "sha256": "2fa7c50e263279e643f59a6bf9b5e99ec345dabe8877fd13c3ce19a0fb14f5ac"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/rules.rs": {
+      "bytes": 185307,
+      "sha256": "cb9f58fc98cc83b68dde2d57cb0722e9ec07ab8f16f84a69ec787e3b2ebe6e6b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/rumor.rs": {
+      "bytes": 23047,
+      "sha256": "e54988b6f57d0ca2b5814d9227b1674c968ad7d1de583646d2ebb5e512c6b688"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/sealing.rs": {
+      "bytes": 9992,
+      "sha256": "d3e29ce0d187d68a183aa5dab700f97a6d0f008c4f9490f4181f5ff4faa4faad"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/sealing_tests.rs": {
+      "bytes": 55319,
+      "sha256": "4b4147bc2d98703464c7b5433c854a9c34c1496a956fc93d2f5703c6e58981cd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/sentinel.rs": {
+      "bytes": 6730,
+      "sha256": "1cc1fb4c63f93c5450f26f62e37c716ed7cf317c232c47832bb2fd96c400867f"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/sentinel_tests.rs": {
+      "bytes": 17619,
+      "sha256": "ccb12916a62c03be0db4c8d5b7079c049f8bbb4659d26d7dccb8933d73027214"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/service.rs": {
+      "bytes": 30688,
+      "sha256": "b76fa8f5b0c20d79936dfb88c9207af6e22131d082b5fa769761db2570a74a33"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/society.rs": {
+      "bytes": 37419,
+      "sha256": "82d65a9b9110c2fcdb4c365f0dcd5e80c4a40df67490c6a6022071723a198de7"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/society_msjc09_tests.rs": {
+      "bytes": 13088,
+      "sha256": "0c202064bab7229e54352a392da1f5ed6bfd1b87d7ef53e5cbf91c9d42f13086"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/society_zone_tests.rs": {
+      "bytes": 10611,
+      "sha256": "22bcdf0651e28d6a7faef055d75a9b74ca3776e719dfdf62ae750a2a19f46a13"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/step_resources.rs": {
+      "bytes": 7956,
+      "sha256": "56776a2a5a658df476dbc2948555187be7538f4a7bca726f985feba69f111eca"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/unit_support.rs": {
+      "bytes": 9686,
+      "sha256": "60a5a2e018918ee3561d8210a509735611b2c81476edbdbaebfc992d29779dbb"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/white_wound_tests.rs": {
+      "bytes": 13035,
+      "sha256": "bcbb0ce418f390d53f546b8be69ce72da96d2d90e6bf0a35764ccab567502f7a"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/win_flow_tests.rs": {
+      "bytes": 56322,
+      "sha256": "ea9fa129490024bb5aa0543d4abe4a4694f0b33a5edef35b98233fd4435ff734"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm023.rs": {
+      "bytes": 14331,
+      "sha256": "71c580cde53cbb6aa68e68bde1580a9f7e9a6d9a9a7646b8fe1421d6e6288a02"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm023_tests.rs": {
+      "bytes": 18430,
+      "sha256": "538d86fa08c75b825645cbbf1e1e34a942db41ec115c6c9537e082f1ed4fa363"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm038.rs": {
+      "bytes": 16681,
+      "sha256": "6fadd5f4c5bbed726bc0eaf99eacd1c72de8ec66c82c262d799540c62effbc3c"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm038_tests.rs": {
+      "bytes": 27702,
+      "sha256": "b285b20445b23ed3cfa16aae43139a90a9db13e3f6585a10aecee44a7980ee14"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm043.rs": {
+      "bytes": 6710,
+      "sha256": "dde1cd30a31380ac0416adb6215e777d2a93f8549178136d9d9894689e18a4cf"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm043_tests.rs": {
+      "bytes": 17223,
+      "sha256": "cee373f196a4b6660be527945c16915739894f6b3ce761294d00d2181ba4feba"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm056.rs": {
+      "bytes": 13745,
+      "sha256": "a3ace7ee6c1ef2d8c0dd21b43082d851ecd837acd175ee42bb4b9910f028d447"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm056_tests.rs": {
+      "bytes": 17632,
+      "sha256": "ca0eca171cb3958c7f886e5bcd9573ca37411fc010264a105a21f5588d5580df"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm057_borrow.rs": {
+      "bytes": 4968,
+      "sha256": "2b5743c1cb7ac8e8be96542112cdd25fef2ad3f1715c0c63f408d608a4d42ee4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm057_borrow_tests.rs": {
+      "bytes": 18660,
+      "sha256": "c2f8b1c97933a576844a3ec05d5b5f5206413d8ac1d4513ae1da178dc54e64aa"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm062.rs": {
+      "bytes": 17979,
+      "sha256": "44beac551adf7b85002a2792a24a758f39d567da26682c7ab2ebdbb7ef30cbef"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wm062_tests.rs": {
+      "bytes": 43729,
+      "sha256": "2b62291ce6266d981d2ef2d3f689fbfe47fbcdd29c7bef990a1b9f2a38e5a971"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/world.rs": {
+      "bytes": 29713,
+      "sha256": "3bf103819b11aed2c1f36f12bccd444ca43c182eda5633000048ddc4c28197f5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/wound_defence_tests.rs": {
+      "bytes": 14728,
+      "sha256": "3595cc700517d3a29d49f5e4f8b47f30ca81ebd90fe3af035120280e0ce84cd5"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq18_tests.rs": {
+      "bytes": 33229,
+      "sha256": "a9d176ebc4cb02f700a0e515dad7149b19244078741b08049c88bb93ce1ba85d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq23.rs": {
+      "bytes": 13841,
+      "sha256": "011c5a3fa81d7ef206fda93312aed92df08c3759ddcd4759839a0e6d7876b91d"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq23_tests.rs": {
+      "bytes": 30111,
+      "sha256": "33e659834f73166d6c477ccd3662fdcef9c78bd16e6cfc9109a4f80fb23541f2"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq24_tests.rs": {
+      "bytes": 34084,
+      "sha256": "4eb42d9b9b158196533683cddeda82dff509002bac593a3807604bc2340f5415"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq25.rs": {
+      "bytes": 9062,
+      "sha256": "832668c5332e0e94498621f624363b5df0a96e17432d6a7ac36cea0f57f2ca0b"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq25_tests.rs": {
+      "bytes": 20973,
+      "sha256": "f1ca53bbd8ea89810eebbdbf030cfd1816543bb543da6c67d2d19baaf3a19d61"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq27.rs": {
+      "bytes": 5401,
+      "sha256": "92afe9a960cc4d32ebbe5ebbb34ec041faa7db0af6ad492e72323c2763a29e68"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq27_tests.rs": {
+      "bytes": 11224,
+      "sha256": "c7c0010e019244e8c1d611130f5589238fe2d843aaf54a0a69a117f472866f38"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq37.rs": {
+      "bytes": 9592,
+      "sha256": "f1db145c80483d37e786c716707844915eec4bb536916510d301daeba4ddb0bd"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/xq37_tests.rs": {
+      "bytes": 23853,
+      "sha256": "a376748d610471722b5e8685527ad1be39b21a531467e08b3132dcb57662ad04"
+    },
+    "runs/public-full-native-02/source-files/rust-game/src/yellow_search_batch_tests.rs": {
+      "bytes": 12029,
+      "sha256": "eacb1cb6b1dfe13826ff63a48e9a923543acff3f26f64ce2668315ab205ff7f6"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/attachment_service.rs": {
+      "bytes": 19696,
+      "sha256": "79f7313fa80f67d6cd835dbf06f448f59e7e86cf5b7e1a0b0e04b63aa1d4152e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/audit_regressions.rs": {
+      "bytes": 33002,
+      "sha256": "fef05e278d9bbd7df1e11740143431afe387ccd0c0cc788c1c5dc000bf66e799"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/bq030_attachment_regression.rs": {
+      "bytes": 61718,
+      "sha256": "09ebc5d76acfb22ac99b6a3d31bd3fbdedf68774371bad3d44266fc8e8f75cc4"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/deck_construction.rs": {
+      "bytes": 12760,
+      "sha256": "c6541a9f981104c30320f3ff722b10ed2837b64f275f8deebfff99507993459e"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/jc059_friendly.rs": {
+      "bytes": 4232,
+      "sha256": "119f746ec5d8a22fd3ee20293b4b7a020f3a1140e22412fb92e15985d0a0dcdc"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/room_pacing.rs": {
+      "bytes": 26700,
+      "sha256": "fd038fc90f2cb1f3d91897bca82054337d2b28c7283be5a22a0d4f36ce09fb46"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/service.rs": {
+      "bytes": 34553,
+      "sha256": "2387f166af25aa1f3c60d6b953a22457fe115865f94f4db17b9a33bb76c523ab"
+    },
+    "runs/public-full-native-02/source-files/rust-game/tests/session_service.rs": {
+      "bytes": 25798,
+      "sha256": "9f604523d1790931edf33b62acabaa9dfdecb03a2a38803c05f4f3bfa99f2f98"
+    },
+    "runs/public-full-native-02/source-files/rust-toolchain.toml": {
+      "bytes": 76,
+      "sha256": "9af7a084f6c81634ad8ed71a2a095dc77bc1723406e0f95dccf19f4af5d984e6"
+    },
+    "runs/unique-before-admission-01/native/bq034-natural-two-unique-sacrifice.jsonl": {
+      "bytes": 21574185,
+      "sha256": "989049496e8ebf7b4f444b9ab391a02660ec887018bfef18d1bac52605ce252a"
+    },
+    "runs/unique-before-admission-01/output.log": {
+      "bytes": 1995,
+      "sha256": "f9dfbb53de2617af0c1b11ef306e94bd2f471a0094134f0b665a4d0ec10367c2"
+    },
+    "runs/unique-before-admission-01/receipt.json": {
+      "bytes": 1614,
+      "sha256": "fcec9dee818a3dc5074e17bdc2997203d9623c202155643c3363cae6a7127f71"
+    },
+    "runs/unique-before-admission-01/source-files/rust-game/src/deck.rs": {
+      "bytes": 6617,
+      "sha256": "1662fb782cb695f8a86d4bba42383b58e4c065765b848980b21e0068b46ab950"
+    },
+    "runs/unique-before-admission-01/source-files/rust-game/src/lib.rs": {
+      "bytes": 10436,
+      "sha256": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07"
+    },
+    "runs/unique-before-admission-01/source-files/rust-game/src/next20_natural_room_tests.rs": {
+      "bytes": 24742,
+      "sha256": "9adfb5f6199017042227387dc262c3981ca7d6993e52fcbccebee579d7ec364c"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/source-final/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: constant `BATCH20` is never used
+ --> rust-game/src/import20_entropy.rs:7:18
+  |
+7 | pub(crate) const BATCH20: &[&str] = &[
+  |                  ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: method `mill_cards` is never used
+   --> rust-game/src/batch20.rs:468:19
+    |
+288 | impl Game {
+    | --------- method in this implementation
+...
+468 |     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
+    |                   ^^^^^^^^^^
+
+warning: `hegemony-server` (lib) generated 3 warnings (run `cargo fix --lib -p hegemony-server` to apply 1 suggestion)
+   Compiling hegemony-wasm v0.1.0 (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/source-final/rust-game-wasm)
+    Finished `release` profile [optimized] target(s) in 1m 18s

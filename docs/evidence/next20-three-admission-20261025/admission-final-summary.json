@@ -1,0 +1,220 @@
+{
+  "at_utc": "2026-10-25T12:48:48.417110+00:00",
+  "tested_source_commit": "fe2b7f9338582d48e18e39861f7161a052120ce0",
+  "admission_commit": "6bba71cf106ce6c9e468857d169f7b10bb4d1f3a",
+  "scope": "BQ034 CQ25 XG25 local admission, no publication; BQ001 next slice not started",
+  "approval": {
+    "user_reply": "Sentinel_6c9b41caab1c81919e0275b4594da1f4",
+    "at_utc": "2026-10-25 12:05 UTC",
+    "rejected_original_action": "Confirmed not executed; retained original denial",
+    "exact_retry_count_after_new_evidence": 1,
+    "retry_result": "approved and executed"
+  },
+  "catalog": {
+    "total": 277,
+    "supported": 236,
+    "closed": 41,
+    "new_admissions_only": [
+      "BQ034",
+      "CQ25",
+      "XG25"
+    ],
+    "BQ009": false,
+    "BQ033": false,
+    "pool": "limited-v2.103-next20-three-admitted",
+    "engine": "rust-v0.2.112-shared-keyword-rewards"
+  },
+  "Native_full": {
+    "passed": 2638,
+    "failed": 0,
+    "ignored": 0,
+    "groups": [
+      [
+        2566,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        0
+      ],
+      [
+        27,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ],
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        10,
+        0,
+        0
+      ],
+      [
+        8,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "seconds": 874.943,
+    "command": [
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+      "--",
+      "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "-p",
+      "hegemony-server",
+      "--",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "receipt": "runs/public-full-native-02/receipt.json",
+    "log_sha256": "2240034eab2e1300b02bc2b4986421be9d290efe6087b0f0722026ad5224e87b",
+    "all_compiler_input_hashes_match_mainline_and_snapshot": true,
+    "compiler_source_file_count": 341
+  },
+  "Native_export": {
+    "passed": 5,
+    "failed": 0,
+    "receipt": "runs/public-fixed-export-02/receipt.json",
+    "cases": [
+      {
+        "name": "bq034-natural-entry-counter",
+        "seed": "1603",
+        "commands": 386,
+        "views": 772,
+        "duplicates": 386,
+        "publicNewGameAndJoin": true,
+        "publicStartAccepted": true,
+        "rawNativeSha256": "5e4e8a33f5008dd491e2f83731ea1346acc09969f10f9adafd806bed629c7d37"
+      },
+      {
+        "name": "bq034-natural-shown-feed",
+        "seed": "1603",
+        "commands": 332,
+        "views": 664,
+        "duplicates": 332,
+        "publicNewGameAndJoin": true,
+        "publicStartAccepted": true,
+        "rawNativeSha256": "9116c87bf5ad777153eeb07be75e6f143a9b7b9789662c23cf4cc5457bead8bc"
+      },
+      {
+        "name": "cq25-xg25-natural-seal-move-search",
+        "seed": "1723",
+        "commands": 357,
+        "views": 714,
+        "duplicates": 357,
+        "publicNewGameAndJoin": true,
+        "publicStartAccepted": true,
+        "rawNativeSha256": "e5deb5124eacc7a06e84ae755e968d2a41132821a238561ada2214cd5e3841d7"
+      },
+      {
+        "name": "bq034-natural-two-unique-sacrifice",
+        "seed": "171",
+        "commands": 229,
+        "views": 458,
+        "duplicates": 229,
+        "publicNewGameAndJoin": true,
+        "publicStartAccepted": true,
+        "rawNativeSha256": "5c175119f3c6df96fd6032d09ec82e23ab28b83d86560d29cf960ef9c5adab4a"
+      }
+    ]
+  },
+  "WASM": {
+    "bytes": 8650973,
+    "sha256": "369b05ecf33a8b7bfb80556bba35ac3f7eab9b6ff258fc83b2aaf4917d9a622d",
+    "commands": 1304,
+    "views": 2608,
+    "actual_duplicate_reducer_probes": 1304,
+    "public_newGame_joinGame_start": "PASS all four cases",
+    "current_source_manifest_sha256": "8b32a7a1ea1034a263edc4438a5281267445b89528c850c21b61448301b1d4ff"
+  },
+  "Worker": {
+    "public_cases_passed": 5,
+    "failed": 0,
+    "four_full_HTTP_trajectories_commands": 1304,
+    "additional_unwrapped_production_commands": 5,
+    "every_original_HTTP_receipt": true,
+    "every_step_two_seat_refresh": true,
+    "cold_reopens_per_trajectory": 4,
+    "additional_unwrapped_cold_reopen": 1,
+    "production_entry_gate_override": false,
+    "D1_room_state_injection": false,
+    "test_wrapper": "Only constructor seed and trusted clock fixed; exact production WASM; separate local output within existing module root",
+    "HTTP_vs_Native_identity_normalization": [
+      "roomId",
+      "inviteCode"
+    ],
+    "unwrapped_production_random_seed_smoke": "PASS",
+    "affected_existing_integration_passed": 1,
+    "receipt": "cross-logs/final-public-worker-02.json",
+    "integration_receipt": "cross-logs/final-worker-integration.json"
+  },
+  "builds": {
+    "fresh_release_WASM": "PASS",
+    "UI_TypeScript_Vite": "PASS",
+    "Worker_dry_run": "PASS; no deployment",
+    "exact_packaged_kernel_binding": 1,
+    "source_registry_and_history_tests": 5,
+    "production_bundle_contains_LOCAL_TEST_SEED": false
+  },
+  "preserved_failures": {
+    "first_full_Native": "2563 passed / 3 failed on a78ffb56, all stale admission expectations; complete logs retained, followed by full 2638/0 rerun",
+    "first_HTTP_sandbox": "EPERM listening on 127.0.0.1 before room creation; same local test subsequently approved via normal escalation",
+    "first_full_HTTP": "4 local wrapper body failures / 1 unwrapped body pass due external module-root path; own verified failed process group terminated after all body outcomes, raw log retained",
+    "corrected_HTTP": "Same source; generated test wrapper built inside existing Sites module root; 5/0 complete normal exit"
+  },
+  "unique_rule_correction": "BQ034 gold-name unique:true is an in-play same-controller printed-name limit; it has no 唯一 construction keyword, so 3-copy directory limit is correct. Tests accept 1/2/3 copies, reject4; real two-copy trajectory chooses exactly once. Earlier archived source-consistency concern is withdrawn, not silently rewritten.",
+  "NOT_RUN": [
+    "Old full UI unit suite at this source",
+    "Old full Worker suite at this source",
+    "Broad old WASM483 matrix at this source",
+    "New browser playtest",
+    "Remote Cloudflare D1 acceptance",
+    "Publication/deployment",
+    "BQ001 implementation or new anchor supply path"
+  ],
+  "original32": "Hashes unchanged; old inputs not relabelled as new evidence",
+  "original_table": "97EC1A99E58C and original deployment untouched",
+  "workflow_allowlist_denial": "NOT_RETRIED",
+  "push_CI_main": "NOT_ATTEMPTED",
+  "tracked_worktree_at_test_finish": "clean",
+  "BQ001_next": "Directly authorized minimum yellow exception; full ability implementation and genuine anchor chain remain next independent slice"
+}

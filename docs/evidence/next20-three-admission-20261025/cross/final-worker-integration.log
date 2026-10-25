@@ -1,0 +1,11 @@
+✔ real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reopen (2999.839651ms)
+ℹ {"currentVersion":"rust-v0.2.112-shared-keyword-rewards","unsupportedFrozenVersions":["rust-v0.2.1","rust-v0.2.10","rust-v0.2.2","rust-v0.2.3","rust-v0.2.4","rust-v0.2.5","rust-v0.2.6","rust-v0.2.7","rust-v0.2.8","rust-v0.2.9"],"oldDataUntouchedBeforeAndAfterReopen":true,"localWorkerdD1Only":true}
+ℹ Provider emulation only; remote Cloudflare D1 acceptance is still required. Persisted at /home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/cross-build/tmp/hegemony-worker-d1-wz8RNX
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3002.690084

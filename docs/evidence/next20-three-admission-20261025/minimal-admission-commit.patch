@@ -1,0 +1,60 @@
+commit 6bba71cf106ce6c9e468857d169f7b10bb4d1f3a
+Author:     Codex <codex@openai.com>
+AuthorDate: Sun Oct 25 05:06:53 2026 -0700
+Commit:     Codex <codex@openai.com>
+CommitDate: Sun Oct 25 05:06:53 2026 -0700
+
+    feat(next20): admit BQ034 CQ25 and XG25 in pool 103
+
+diff --git a/rust-game/data/cards.json b/rust-game/data/cards.json
+index 6c127447..3c784f23 100644
+--- a/rust-game/data/cards.json
++++ b/rust-game/data/cards.json
+@@ -1,6 +1,6 @@
+ {
+   "rulesVersion": "hegemony-pdf-v1",
+-  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
++  "cardPoolVersion": "limited-v2.103-next20-three-admitted",
+   "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+   "cards": [
+@@ -11019,7 +11019,7 @@
+       "defense": 1,
+       "keywords": [],
+       "unique": true,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "CQ25",
+@@ -11054,7 +11054,7 @@
+         "隐秘〔月形〕灵体"
+       ],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "XG25",
+@@ -11089,7 +11089,7 @@
+         "灵体"
+       ],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "BQ009",
+diff --git a/rust-game/src/catalog.rs b/rust-game/src/catalog.rs
+index 74b3050f..4a3daca9 100644
+--- a/rust-game/src/catalog.rs
++++ b/rust-game/src/catalog.rs
+@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
+ use std::sync::OnceLock;
+ 
+ pub const RULES_VERSION: &str = "hegemony-pdf-v1";
+-pub const POOL_VERSION: &str = "limited-v2.102-import20-rulings-complete";
++pub const POOL_VERSION: &str = "limited-v2.103-next20-three-admitted";
+ #[cfg(not(feature = "society-fixtures"))]
+ pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards";
+ #[cfg(feature = "society-fixtures")]

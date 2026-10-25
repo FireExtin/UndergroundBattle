@@ -1,0 +1,19 @@
+{"scope":"Four public HTTP trajectories plus unwrapped production entry; no old full Worker suite","cwd":"/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/source-final/sites","args":["--max-old-space-size=4096","test/next20-natural.test.mjs"]}
+✔ public next20 bq034-natural-entry-counter: HTTP create/join/start, every command receipt and cold restore (19513.738692ms)
+ℹ {"seed":"1603","publicAdmission":true,"candidateOverride":false,"D1StateInjection":false,"HTTPCreateJoinStart":true,"commands":386,"everyReceiptAndTwoSeatRefresh":true,"reopens":4,"identityNormalizationOnly":["roomId","inviteCode"]}
+✔ public next20 bq034-natural-shown-feed: HTTP create/join/start, every command receipt and cold restore (16617.969559ms)
+ℹ {"seed":"1603","publicAdmission":true,"candidateOverride":false,"D1StateInjection":false,"HTTPCreateJoinStart":true,"commands":332,"everyReceiptAndTwoSeatRefresh":true,"reopens":4,"identityNormalizationOnly":["roomId","inviteCode"]}
+✔ public next20 cq25-xg25-natural-seal-move-search: HTTP create/join/start, every command receipt and cold restore (17935.284215ms)
+ℹ {"seed":"1723","publicAdmission":true,"candidateOverride":false,"D1StateInjection":false,"HTTPCreateJoinStart":true,"commands":357,"everyReceiptAndTwoSeatRefresh":true,"reopens":4,"identityNormalizationOnly":["roomId","inviteCode"]}
+✔ public next20 bq034-natural-two-unique-sacrifice: HTTP create/join/start, every command receipt and cold restore (12407.381104ms)
+ℹ {"seed":"171","publicAdmission":true,"candidateOverride":false,"D1StateInjection":false,"HTTPCreateJoinStart":true,"commands":229,"everyReceiptAndTwoSeatRefresh":true,"reopens":4,"identityNormalizationOnly":["roomId","inviteCode"]}
+✔ unwrapped production Worker admits all three cards through public create join start and resumes after cold reopen (1284.943352ms)
+ℹ {"productionBundleUnwrapped":true,"publicCreateJoinStart":true,"cards":["BQ034","CQ25","XG25"],"realRandomSeed":true,"commandReceipts":5,"coldReopens":1}
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67764.420562

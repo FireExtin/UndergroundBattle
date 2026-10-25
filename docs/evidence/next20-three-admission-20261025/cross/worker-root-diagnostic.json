@@ -1,0 +1,9 @@
+{
+  "failed_harness_path": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/public-worker-final/worker.js",
+  "default_module_root": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/source-final/sites",
+  "error": "workerd virtual module filesystem cannot use .. outside its starting directory",
+  "production_entry_passed": true,
+  "chosen_fix": "Keep the existing module root and build the same local test wrapper inside sites/.test-build; no production or admission change",
+  "new_harness_path": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/source-final/sites/.test-build/next20-public/worker.js",
+  "old_failed_run": "final-public-worker, 4 body failures/1 body pass, terminated with logs retained"
+}

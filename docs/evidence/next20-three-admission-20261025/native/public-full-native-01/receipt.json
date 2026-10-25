@@ -1,0 +1,33 @@
+{
+  "state": "complete",
+  "at_utc": "2026-10-25T12:11:36.102403+00:00",
+  "HEAD": "a78ffb56acc5d7be80f9e5a11a2770b8846f036e",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_files": {
+    "rust-game/src/deck.rs": "41d585c3af095daf3b6fe6951b47283cec29f34f150d440dcb7add7e71e26d47",
+    "rust-game/src/lib.rs": "56eead8a7130790e4c978c38d03b464e0b66d75d5e70b09a41195e7ab62f8d07",
+    "rust-game/src/next20_natural_room_tests.rs": "2912f2df96023778a84f697b59488a50c5f5caab45be9c4712fabf16488e9d7c"
+  },
+  "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+    "--",
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "-p",
+    "hegemony-server",
+    "--",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "test_filter": "",
+  "timeout_seconds": 900,
+  "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-admission-20261025/runs/public-full-native-01/output.log",
+  "scope": "Candidate-only three-card construction; genuine deck-to-game commands, no runtime fixture injection",
+  "exit_code": 101,
+  "seconds": 879.827,
+  "log_sha256": "6fb62ef02b5fe5a588e438a32d72c98a477523fda8f873ab5d1d0dbbead57304"
+}
