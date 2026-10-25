@@ -7,6 +7,8 @@ mod next20_anchor;
 mod next20_blue_core_tests;
 #[cfg(test)]
 mod next20_candidate_room_tests;
+#[cfg(test)]
+mod next20_natural_room_tests;
 mod import20_entropy;
 #[cfg(test)]
 mod import20_entropy_tests;
