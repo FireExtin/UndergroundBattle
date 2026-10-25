@@ -473,16 +473,8 @@ fn bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment() {
     for id in CANDIDATES {
         assert!(catalog::card(id).supported);
     }
-    let seed = (1..=1024)
-        .find(|seed| {
-            let mut t = Natural::lobby(*seed, false);
-            t.boot();
-            CANDIDATES
-                .iter()
-                .chain(["BQ090"].iter())
-                .all(|id| t.hand_id(0, id).is_some())
-        })
-        .expect("bounded actual initial-hand seed search");
+    // First naturally matching opening found by the retained bounded search.
+    let seed = 345;
     eprintln!("BQ001 CANDIDATE SELECTED seed={seed}");
     let mut t = Natural::lobby(seed, true);
     t.boot();
@@ -573,7 +565,9 @@ fn bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment() {
                 t.stage = 2;
             }
         }
-        if t.stage == 2 && t.room.game.can_standard(0) && t.room.game.resources(0) >= 2 {
+        // Keep the contest and anchor consumption in the same real turn: 2 + 3.
+        // The public engine normally clears per-turn contest history next turn.
+        if t.stage == 2 && t.room.game.can_standard(0) && t.room.game.resources(0) >= 5 {
             if let Some(a) = t
                 .room
                 .game
