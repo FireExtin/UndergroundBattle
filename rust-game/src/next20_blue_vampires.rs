@@ -594,10 +594,14 @@ impl Game {
         let Some((_, c)) = self.board(&recipient).filter(|(_, c)| {
             !c.face_down && self.current_subtypes(c).iter().any(|s| s == "吸血鬼")
         }) else {
+            self.bq034_complete_shown(&f);
             return Ok(());
         };
         let seat = c.controller;
         let options = self.blood_options(seat);
+        if options.is_empty() {
+            self.bq034_complete_shown(&f);
+        }
         if !options.is_empty() {
             self.choice(
                 seat,
@@ -680,6 +684,9 @@ impl Game {
         *post_frame = Some(Box::new(f.clone()));
         self.validate_next20_blue_frame(&f)?;
         let options = self.binding_options(f.actor, &f.source, &vampire_target());
+        if options.is_empty() {
+            self.bq034_complete_shown(&f);
+        }
         if !options.is_empty() {
             self.choice(
                 f.actor,
@@ -883,6 +890,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_next20_blue_pending(&self, p: &Pending) -> RuleResult<()> {
+        self.validate_blue_declaration_pending(p)?;
         if matches!(&p.resolution, ChoiceResolution::Frame { frame,choice } if frame_related(frame) && !matches!(choice,FrameChoice::Next20Blue(_)))
         {
             return Err("蓝色新卡不能借用其他卡的待选续体".into());
@@ -967,6 +975,23 @@ impl Game {
         };
         for item in &self.stack {
             if let Some(f) = &item.frame {
+                self.validate_next20_blue_play_frame(f)?;
+                if CARDS.contains(&f.source.card.definition.as_str())
+                    && matches!(f.ability_key.as_str(), "deploy" | "reveal")
+                    && (item.id != f.frame_id
+                        || item.controller != f.actor
+                        || item.card.is_none()
+                        || item.deploy_region != f.source.region
+                        || item.reveal != (f.ability_key == "reveal")
+                        || item.target.is_some()
+                        || item.card.as_ref().is_some_and(|c| {
+                            c.definition != f.source.card.definition
+                                || c.owner != f.source.card.owner
+                                || c.controller != f.actor
+                        }))
+                {
+                    return Err("蓝卡派遣或现身的原响应对象被改写".into());
+                }
                 if frame_related(f) {
                     self.validate_next20_blue_frame(f)?;
                     if !frames.insert(f.frame_id.clone())
@@ -991,6 +1016,9 @@ impl Game {
             }
         }
         for e in &self.effects {
+            if let Effect::Frame { frame } = e {
+                self.validate_next20_blue_play_frame(frame)?;
+            }
             match e {
                 Effect::Declare { declaration: d } if related(&d.ability) => {
                     self.validate_next20_blue_declaration(d)?;
@@ -1003,6 +1031,10 @@ impl Game {
             }
         }
         if let Some(p) = &self.pending {
+            self.validate_next20_blue_pending(p)?;
+            if let ChoiceResolution::Frame { frame, .. } = &p.resolution {
+                self.validate_next20_blue_play_frame(frame)?;
+            }
             match &p.resolution {
                 ChoiceResolution::Declare { declaration: d, .. } if related(&d.ability) => {
                     self.validate_next20_blue_declaration(d)?;
@@ -1017,6 +1049,9 @@ impl Game {
                 _ => (),
             }
         }
+        for state in self.mystic_states() {
+            self.validate_next20_blue_play_frame(&state.frame)?;
+        }
         if let Some(state) = &self.mystic_contest {
             if let MysticPhase::After {
                 post_frame: Some(f),
@@ -1029,5 +1064,185 @@ impl Game {
             }
         }
         Ok(())
+    }
+}
+
+impl Game {
+    fn validate_blue_declaration_pending(&self, p: &Pending) -> RuleResult<()> {
+        let ChoiceResolution::Declare {
+            declaration: d,
+            stage,
+        } = &p.resolution
+        else {
+            return Ok(());
+        };
+        if !related(&d.ability) {
+            return Ok(());
+        }
+        self.validate_next20_blue_declaration(d)?;
+        let (options, stage_valid) = if let Some(slot) = d.ability.targets.first() {
+            (
+                self.binding_options(d.actor, &d.source, slot),
+                matches!(stage, DeclareChoice::Target),
+            )
+        } else {
+            (
+                vec![ChoiceOption {
+                    id: "accept".into(),
+                    label: "发动触发能力".into(),
+                    card: None,
+                }],
+                matches!(stage, DeclareChoice::Accept),
+            )
+        };
+        let expected = Choice {
+            id: p.choice.id.clone(),
+            kind: "trigger".into(),
+            title: format!(
+                "{}：{}",
+                crate::batch3_trap::source_label(&d.source),
+                d.ability.label
+            ),
+            description: "选择符合数量限制的选项，然后确认。".into(),
+            player_id: player_id(d.actor),
+            options,
+            preview_cards: vec![],
+            min: Some(0),
+            max: Some(1),
+            amount: None,
+            allow_decline: Some(true),
+        };
+        if p.seat != d.actor
+            || p.choice.id.is_empty()
+            || !stage_valid
+            || expected.options.is_empty()
+            || !same(&p.choice, &expected)
+        {
+            return Err("蓝卡声明待选只能保留原发动者、原目标或明确放弃".into());
+        }
+        Ok(())
+    }
+    /// Expand the ordinary engine candidates; no independent play/fee path.
+    pub(crate) fn bq033_payment_candidates(
+        &self,
+        actor: usize,
+        candidates: Vec<(Action, String)>,
+    ) -> Vec<(Action, String)> {
+        let anchors = self.bq033_anchor_options(actor);
+        candidates
+            .into_iter()
+            .flat_map(|(a, label)| {
+                let heat = matches!(a.kind.as_str(), "deploy" | "reveal")
+                    && a.card_id.as_ref().is_some_and(|id| {
+                        self.batch3_physical_cards()
+                            .any(|c| c.id == *id && c.definition == "BQ033")
+                    });
+                if !heat {
+                    return vec![(a, label)];
+                }
+                anchors
+                    .iter()
+                    .map(|anchor| {
+                        let mut a = a.clone();
+                        a.cost_selected = Some(vec![anchor.clone()]);
+                        (a, format!("{label}（洗回本人秘社封印的精神锚点）"))
+                    })
+                    .collect()
+            })
+            .collect()
+    }
+
+    pub(crate) fn pay_bq033_extra(&mut self, actor: usize, a: &Action) -> RuleResult<PaidCost> {
+        let selected = a
+            .cost_selected
+            .as_ref()
+            .filter(|s| s.len() == 1)
+            .ok_or("热夜之梦必须选择一张真实封印的精神锚点")?;
+        Ok(PaidCost::BQ033Anchor(Box::new(
+            self.bq033_pay_anchor(actor, &selected[0])?,
+        )))
+    }
+
+    /// Authenticate the existing engine's ordinary deploy/reveal receipt.
+    pub(crate) fn validate_next20_blue_play_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        let play = CARDS.contains(&f.source.card.definition.as_str())
+            && matches!(f.ability_key.as_str(), "deploy" | "reveal");
+        if f.already_paid
+            .iter()
+            .any(|p| matches!(p, PaidCost::BQ033Anchor(_)))
+            && !(play && f.source.card.definition == "BQ033")
+        {
+            return Err("精神锚点收据只能属于热夜之梦的真实派遣或付费现身".into());
+        }
+        if !play {
+            return Ok(());
+        }
+        let c = &f.source.card;
+        if f.actor >= self.players.len()
+            || c.controller != f.actor
+            || c.owner >= self.players.len()
+            || !self
+                .mystic_instance_number(&c.id)
+                .zip(self.mystic_instance_number(&f.frame_id))
+                .is_some_and(|(s, frame)| s < frame)
+            || f.cursor != 0
+            || !matches!(f.guard, GuardState::Unchecked)
+            || !f.steps.is_empty()
+            || !f.targets.is_empty()
+            || f.chosen_region != f.source.region
+            || f.source.region.is_none_or(|r| r >= self.regions.len())
+            || f.source
+                .source_region_instance
+                .as_deref()
+                .is_none_or(|id| !self.mystic_instance_valid(id))
+            || f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play())
+            || f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some())
+        {
+            return Err("蓝卡派遣或现身须保留原来源、地区和完整支付帧".into());
+        }
+        self.mobility_immutable_identity(c)?;
+        let money = match f.already_paid.first() {
+            Some(PaidCost::Assets(ids)) => ids,
+            _ => return Err("蓝卡缺少真实印刷费用收据".into()),
+        };
+        if f.money_units(0) > catalog::card(&c.definition).cost as usize
+            || money
+                .iter()
+                .any(|id| !f.source.valid_printed_payment_id(id))
+            || money.iter().collect::<BTreeSet<_>>().len() != money.len()
+        {
+            return Err("蓝卡印刷费用收据被改写".into());
+        }
+        self.validate_resource_frame(f)?;
+        if c.definition == "BQ033" {
+            let [PaidCost::Assets(_), PaidCost::BQ033Anchor(anchor)] = f.already_paid.as_slice()
+            else {
+                return Err("热夜之梦派遣和付费现身必须已经实际支付锚点".into());
+            };
+            self.validate_bq033_payment(anchor)?;
+            if anchor.payer != f.actor {
+                return Err("精神锚点由原出牌玩家支付".into());
+            }
+        } else if f.already_paid.len() != 1 {
+            return Err("雾羽弥生不能夹带额外支付收据".into());
+        }
+        Ok(())
+    }
+
+    fn bq034_complete_shown(&mut self, f: &ResolutionFrame) {
+        if f.ability_key == SHOWN {
+            if let Some(crate::mystic_contest::MysticContest {
+                phase: MysticPhase::After { post_frame, .. },
+                ..
+            }) = &mut self.mystic_contest
+            {
+                if post_frame
+                    .as_ref()
+                    .is_some_and(|p| p.frame_id == f.frame_id)
+                {
+                    *post_frame = None;
+                }
+            }
+        }
     }
 }

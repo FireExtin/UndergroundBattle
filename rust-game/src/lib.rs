@@ -1,3 +1,9 @@
+mod next20_black_wraiths;
+#[cfg(test)]
+mod next20_black_core_tests;
+mod next20_blue_vampires;
+#[cfg(test)]
+mod next20_blue_core_tests;
 mod import20_entropy;
 #[cfg(test)]
 mod import20_entropy_tests;

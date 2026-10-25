@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if id == "CQ25" && key == crate::next20_black_wraiths::CONTEST && bonus == 0 { return true; }
     if id == "WM057" && key == crate::import20_broker::ACT && bonus == 0 { return true; }
     if crate::import20_observers::admitted_start(id, key, bonus) { return true; }
     if crate::import20_contest::admitted_start(id, key, bonus) { return true; }
@@ -125,6 +126,8 @@ impl Game {
         // A proved granted program belongs to the granting mechanism, even
         // when its recipient also has a card-specific native program.
         if self.validated_cross_card_declaration(d)? { return Ok(()); }
+        if crate::next20_black_wraiths::related(&d.ability) { return self.validate_next20_black_declaration(d); }
+        if crate::next20_blue_vampires::related(&d.ability) { return self.validate_next20_blue_declaration(d); }
         if crate::import20_tax_ban::related(&d.source.card.definition,&d.ability) { return self.validate_tax_ban_declaration(d); }
         if crate::import20_sentinel::related(&d.source.card.definition,&d.ability) { return self.validate_sentinel_pair_declaration(d); }
         if crate::import20_industry::related(&d.source.card.definition,&d.ability) { return self.validate_industry_declaration(d); }
@@ -161,6 +164,10 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        self.validate_next20_black_play_frame(f)?;
+        if crate::next20_black_wraiths::frame_related(f) { return self.validate_next20_black_program_frame(f); }
+        self.validate_next20_blue_play_frame(f)?;
+        if crate::next20_blue_vampires::frame_related(f) { return self.validate_next20_blue_frame(f); }
         self.validate_resource_frame(f)?;
         if self.validated_cross_card_frame(f)? { return Ok(()); }
         if crate::import20_tax_ban::frame_related(f) { return self.validate_tax_ban_frame(f); }

@@ -485,7 +485,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -656,6 +656,7 @@ impl Game {
         if matches!(spec.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. })) {
             return self.cq24_host_binding(actor, source, spec, id);
         }
+        if spec.predicate == Some(TargetPredicate::Next20XG25AdjacentEnemy) { return self.xg25_adjacent_target(actor,source,id); }
         match spec.zone {
             Zone::Society => self.society_host_seat(id).is_some_and(|seat| match spec.relation {
                 Relation::Any => true,
@@ -761,6 +762,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::Next20XG25AdjacentEnemy => self.xg25_adjacent_target(actor,source,&c.id),
                                 TargetPredicate::PackAOwnGraveCharacter => self.pack_a_grave_target(actor, source, c),
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
@@ -1152,7 +1154,7 @@ impl Game {
         self.push_stack(actor, label, transaction, None, false, target);
         frame.frame_id = self.stack.last().unwrap().id.clone();
         if observe_spell { self.cq07_observe_spell_targets(&frame); }
-        if observe_disaster { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.observe_batch4_disaster(&frame); }
+        if observe_disaster { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); self.observe_batch4_disaster(&frame); }
         self.bq038_observe_raid(&frame);
         self.batch3_register_entry_order(&frame.frame_id, previous);
         self.stack.last_mut().unwrap().frame = Some(frame);
@@ -1174,7 +1176,7 @@ impl Game {
                 // Preserve the established immediate-card ordering: capture
                 // target events now, execute the card without a response item,
                 // then declare observers. A later tax finds no stack card.
-                if transaction.is_some() { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); }
+                if transaction.is_some() { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); }
                 if transaction.is_some() { self.observe_batch4_disaster(&frame); }
                 if transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell") {
                     self.cq07_observe_spell_targets(&frame);
@@ -1261,6 +1263,8 @@ impl Game {
     }
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        if crate::next20_blue_vampires::related(&declaration.ability) { self.validate_next20_blue_declaration(&declaration)?; }
+        if crate::next20_black_wraiths::related(&declaration.ability) { self.validate_next20_black_declaration(&declaration)?; }
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
@@ -1354,6 +1358,8 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        if crate::next20_blue_vampires::related(&declaration.ability) { self.validate_next20_blue_declaration(&declaration)?; }
+        if crate::next20_black_wraiths::related(&declaration.ability) { self.validate_next20_black_declaration(&declaration)?; }
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
         self.validate_black_next20_declaration(&declaration)?;
@@ -1639,6 +1645,10 @@ impl Game {
         self.validate_jz46_frame(&frame)?;
         self.validate_wm038_frame(&frame)?;
         self.validate_jz35_frame(&frame)?;
+        self.validate_next20_black_play_frame(&frame)?;
+        if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_next20_blue_play_frame(&frame)?;
+        if crate::next20_blue_vampires::frame_related(&frame) { self.validate_next20_blue_frame(&frame)?; }
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
@@ -1668,6 +1678,16 @@ impl Game {
             let step = frame.steps[frame.cursor].clone();
             frame.cursor += 1;
             match step.op {
+                Op::Next20Wraith(program) => match program {
+                    crate::next20_black_wraiths::WraithProgram::TigerSearch { .. } => return self.cq25_search_start(frame),
+                    crate::next20_black_wraiths::WraithProgram::GhostMove { .. } => self.xg25_move(&frame)?,
+                },
+                Op::Next20Blue(program) => match program {
+                    crate::next20_blue_vampires::BlueProgram::RandomDiscard => self.bq033_random_discard(&frame)?,
+                    crate::next20_blue_vampires::BlueProgram::EntryFeed => { let recipient = frame.source.card.id.clone(); return self.bq034_feed_start(frame, recipient); },
+                    crate::next20_blue_vampires::BlueProgram::Counter { .. } => return self.bq034_counter_start(frame),
+                    crate::next20_blue_vampires::BlueProgram::ShownFeed { .. } => return Err("展示后饮血须沿原对抗后置续体".into()),
+                },
                 Op::XQ19FromHand { .. } => self.xq19_place_hand(&frame)?,
                 Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,
                 Op::CQ15DestroySearch { .. } => return self.cq15_destroy_search(frame),
@@ -2628,6 +2648,12 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::Next20Wraith(crate::next20_black_wraiths::WraithChoice::TigerSearch) => return self.cq25_search_finish(&frame,chooser,&selected),
+            FrameChoice::Next20Blue(choice) => return match choice {
+                crate::next20_blue_vampires::BlueChoice::ShownTarget => self.bq034_shown_target(*frame,chooser,&selected),
+                crate::next20_blue_vampires::BlueChoice::Blood { recipient } => self.bq034_feed_finish(&frame,&recipient,chooser,&selected),
+                crate::next20_blue_vampires::BlueChoice::SacrificeAttachment => self.bq034_counter_finish(&frame,chooser,&selected),
+            },
             FrameChoice::CQ15Search { search } => return self.cq15_search_finish(&frame,&search,chooser,&a,&selected),
             FrameChoice::XG20Number => return self.xg20_number_finish(&frame,chooser,&a),
             FrameChoice::PetePay => return self.pete_pay_finish(*frame,chooser,&a,&selected),

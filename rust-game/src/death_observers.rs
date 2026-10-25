@@ -30,6 +30,7 @@ impl Game {
         let red_observers = self.jz34_observers();
         let mut receipts = Vec::new();
         let mut observers = Vec::new();
+        let tigers = self.cq25_capture_sources();
         let black_sources = self.capture_black_death_sources();
         let host_sources = self.wm035_death_sources();
         let ghoul_sources = self.bq079_sources();
@@ -62,9 +63,16 @@ impl Game {
         let group_instance = deaths.first().map(|(id,..)|id.clone());
         for (id, cause, source, vampire, renown, black_death, statue_deaths, cq18) in deaths {
             let dead = ObservedCharacterDeath { card: source.card.clone(), vampire };
+            let mut tiger_death = source.clone();
+            // The general source snapshot omits region UIDs for many victims;
+            // freeze the actual death region before this member leaves.
+            if tiger_death.source_region_instance.is_none() {
+                tiger_death.source_region_instance = tiger_death.region.and_then(|r| self.regions.get(r)).map(|r|r.card.id.clone());
+            }
             if let Some(mut receipt) = self.remove_dead_with_snapshot(&id, cause, Some(source), Some(&ghoul_sources), Some(cq18)) {
                 // Freeze dynamic renown before simultaneous departures remove
                 // a grant or its denial. Receipts remain internal, not saved.
+                self.cq25_observe_death(&tigers, &tiger_death);
                 receipt.was_renown = renown;
                 receipts.push(receipt);
                 self.jz38_emit_death(statue_deaths);
@@ -87,7 +95,7 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
+                Some(Event::Next20WraithDeath | Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });

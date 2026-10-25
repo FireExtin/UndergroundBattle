@@ -643,6 +643,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    BQ033Anchor(Box<crate::next20_blue_vampires::AnchorPayment>),
     CQ15Returned(Box<crate::import20_swords::SwordPayment>),
     WM057Borrowed(crate::wm057_borrow::BorrowPermission),
     Honor { before: u32, amount: u32 },
@@ -723,6 +724,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    Next20Wraith(crate::next20_black_wraiths::WraithChoice),
+    Next20Blue(crate::next20_blue_vampires::BlueChoice),
     CQ15Search { search: crate::import20_swords::SwordSearch },
     XG20Number,
     PetePay,
@@ -1069,6 +1072,8 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_next20_black_state()?;
+        self.validate_next20_blue_state()?;
         self.validate_reward_state()?;
         self.validate_xq19_state()?;
         self.validate_cq28_state()?;

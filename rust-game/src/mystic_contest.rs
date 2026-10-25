@@ -259,7 +259,7 @@ impl Game {
             _ => 0,
         }
     }
-    fn mystic_value(&self, shown: &MysticShown, actor: usize, actor_bonus: u32, bonuses: &[MysticBonus]) -> RuleResult<u32> {
+    fn mystic_value(&self, shown: &MysticShown, actor: usize, actor_bonus: u32, bonuses: &[MysticBonus], origin: &SourceSnapshot, key: &str) -> RuleResult<u32> {
         let printed = catalog::catalog().cards.iter().find(|c| c.id == shown.card.definition).ok_or("展示牌未登记")?;
         self.xg20_shown_witness(shown)?;
         let vampire = printed.subtypes.iter().any(|s| s == "吸血鬼")
@@ -269,6 +269,7 @@ impl Game {
         printed.cost.checked_add(Self::mystic_printed_bonus(shown))
             .and_then(|n| n.checked_add(self.mystic_extra_shown_bonus(shown).ok()?))
             .and_then(|n| n.checked_add(added))
+            .and_then(|n| n.checked_add(self.cq25_contest_bonus(origin,key,actor,shown.seat,&shown.card)))
             .and_then(|n| n.checked_add(if shown.seat == actor { actor_bonus } else { 0 }))
             .and_then(|n| n.checked_add((shown.vampire_observers.len() as u32).checked_mul(2)?))
             .ok_or_else(|| "隐秘对抗数值超出表示范围".into())
@@ -296,7 +297,7 @@ impl Game {
             let mut item = MysticShown { politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
                 destroyed_regions: self.regions.iter().filter(|r| !r.vacant && r.destroyed).map(|r| r.card.id.clone()).collect(),
                 destruction_markers: self.players[*seat].destruction_markers };
-            item.value = self.mystic_value(&item, state.frame.actor, state.actor_bonus, &state.bonuses)?;
+            item.value = self.mystic_value(&item, state.frame.actor, state.actor_bonus, &state.bonuses, &state.frame.source, &state.frame.ability_key)?;
             totals[self.team(*seat)] = totals[self.team(*seat)].checked_add(item.value).ok_or("隐秘队伍合计溢出")?;
             shown.push(item);
         }
@@ -428,7 +429,7 @@ impl Game {
         for shown in &o.shown {
             if !self.mystic_instance_valid(&shown.card.id) || !ids.insert(&shown.card.id) || shown.card.face_down
                 || shown.card.owner >= self.players.len() || shown.card.controller != shown.seat
-                || shown.value != self.mystic_value(shown,o.actor,o.actor_bonus,&o.bonuses)?
+                || shown.value != self.mystic_value(shown,o.actor,o.actor_bonus,&o.bonuses,&o.source,&o.ability_key)?
                 || shown.destroyed_regions.iter().collect::<BTreeSet<_>>().len() != shown.destroyed_regions.len()
                 || shown.destroyed_regions.iter().any(|id| !self.mystic_instance_valid(id)) {
                 return Err("隐秘展示身份、加值或队伍贡献被改写".into());

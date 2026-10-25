@@ -639,6 +639,8 @@ impl Game {
         if seat >= self.players.len() {
             return Err("无此座位".into());
         }
+        self.validate_next20_black_state()?;
+        self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
         self.validate_batch3_state()?;
@@ -664,6 +666,8 @@ impl Game {
         next.drive()?;
         next.prune_inspection_receipts();
         next.prune_attachment_declines();
+        next.validate_next20_black_state()?;
+        next.validate_next20_blue_state()?;
         next.validate_batch20_state()?;
         next.validate_next20_red_state()?;
         next.validate_batch3_state()?;
@@ -768,6 +772,8 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
+                crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -815,6 +821,7 @@ impl Game {
                     }
                     self.xg20_check_play(seat,&c)?;
                     let mut paid = self.pay_printed(seat, &c, true)?;
+                    if c.definition == "BQ033" { paid.push(self.pay_bq033_extra(seat, &a)?); }
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
                     if c.definition=="CQ24" && a.option.as_deref()==Some("pay-extra-3") { paid.push(self.cq24_pay_extra(seat)?); }
                     let mut snapshot = self.source_snapshot(&c, r);
@@ -866,6 +873,8 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
+                crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
                 crate::jc046::validate_character_action(&c.definition, &a)?;
                 crate::jc066::validate_character_action(&c.definition, &a)?;
@@ -881,7 +890,8 @@ impl Game {
                 let snapshot = self.source_snapshot(c, Some(r));
                 let printed = c.clone();
                 self.xg20_check_play(seat,&printed)?;
-                let paid = self.pay_printed(seat, &printed, false)?;
+                let mut paid = self.pay_printed(seat, &printed, false)?;
+                if printed.definition == "BQ033" { paid.push(self.pay_bq033_extra(seat, &a)?); }
                 let (_, mut c) = self.remove_board(id).unwrap();
                 c = self.fresh(c);
                 c.face_down = false;
@@ -929,6 +939,8 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
+                crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::xq25::validate_play_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
                 crate::wm062::validate_action(&c.definition, &a)?;
@@ -981,6 +993,9 @@ impl Game {
                 if a.ability_id.as_deref() == Some(crate::batch4_vampire_contest::HAND) { return self.bq032_begin_hand(seat, &a); }
                 if a.ability_id.as_deref() == Some(crate::batch4_wendigo::GRAVE) { return self.jz51_begin_grave(seat, &a); }
                 let id = a.card_id.as_deref().ok_or("请选择能力来源")?;
+                if self.sealed_cards.iter().any(|s|s.card.id==id && s.card.definition=="XG25") {
+                    return self.xg25_begin_sealed_action(seat,&a);
+                }
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
                 if (c.controller != seat && c.definition != "XQ22" && !self.wm057_borrow_command(seat,c,&a)) || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
@@ -988,6 +1003,8 @@ impl Game {
                 crate::next20_red::validate_action(&c.definition, &a)?;
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
+                crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
+                crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
@@ -1247,6 +1264,10 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
+        self.validate_next20_black_play_frame(&frame)?;
+        if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_next20_blue_play_frame(&frame)?;
+        if crate::next20_blue_vampires::frame_related(&frame) { self.validate_next20_blue_frame(&frame)?; }
         self.validate_batch20_frame(&frame)?;
         self.validate_next_blue_gray_frame(&frame)?;
         self.validate_next20_red_frame(&frame)?;
@@ -2203,6 +2224,8 @@ impl Game {
         self.validate_cq28_state()?;
         self.validate_cq15_state()?;
         self.validate_exposure_state()?;
+        self.validate_next20_black_state()?;
+        self.validate_next20_blue_state()?;
         self.validate_batch20_state()?;
         self.validate_next20_red_state()?;
         self.validate_batch3_state()?;
@@ -2233,6 +2256,8 @@ impl Game {
         crate::mystic_contest::validate_choice_action(&p, &a)?;
         crate::pack_a_contest::validate_choice_action(&p, &a)?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
+        crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
+        crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
@@ -3072,7 +3097,8 @@ impl Game {
             }
         }
         let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
-        candidates
+        candidates.extend(self.xg25_sealed_actions(seat));
+        self.bq033_payment_candidates(seat, candidates)
             .into_iter()
             .filter_map(|(action, label)| {
                 let mut trial = self.clone();

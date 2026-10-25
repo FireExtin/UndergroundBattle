@@ -275,18 +275,24 @@ impl Game {
         {
             return;
         }
+        let eligible = sources
+            .iter()
+            .filter(|source| {
+                source.region == dead.region
+                    && source.source_region_instance == dead.source_region_instance
+                    && self.is_enemy(source.card.controller, &dead.card)
+            })
+            .collect::<Vec<_>>();
+        // Existing games without an eligible tiger retain their exact ID stream.
+        if eligible.is_empty() {
+            return;
+        }
         let observation = WraithDeath {
             event_id: self.id(),
             turn: self.turn,
             dead: dead.clone(),
         };
-        for source in sources {
-            if source.region != dead.region
-                || source.source_region_instance != dead.source_region_instance
-                || !self.is_enemy(source.card.controller, &dead.card)
-            {
-                continue;
-            }
+        for source in eligible {
             let mut a = definition("CQ25").unwrap().abilities.remove(1);
             a.ops = vec![Op::Next20Wraith(WraithProgram::TigerSearch {
                 observation: Some(Box::new(observation.clone())),
@@ -681,6 +687,7 @@ impl Game {
         }
     }
     pub(crate) fn validate_next20_black_pending(&self, p: &Pending) -> RuleResult<()> {
+        self.validate_black_declaration_pending(p)?;
         // CQ25 commitments and rewards are owned by the shared contest
         // protocol; its pack-specific search owns the Wraith continuation.
         if let ChoiceResolution::Frame {
@@ -743,6 +750,23 @@ impl Game {
         };
         for item in &self.stack {
             if let Some(f) = &item.frame {
+                self.validate_next20_black_play_frame(f)?;
+                if CARDS.contains(&f.source.card.definition.as_str())
+                    && matches!(f.ability_key.as_str(), "deploy" | "reveal")
+                    && (item.id != f.frame_id
+                        || item.controller != f.actor
+                        || item.card.is_none()
+                        || item.deploy_region != f.source.region
+                        || item.reveal != (f.ability_key == "reveal")
+                        || item.target.is_some()
+                        || item.card.as_ref().is_some_and(|c| {
+                            c.definition != f.source.card.definition
+                                || c.owner != f.source.card.owner
+                                || c.controller != f.actor
+                        }))
+                {
+                    return Err("黑卡派遣/现身的原响应对象被改写".into());
+                }
                 if frame_related(f) {
                     self.validate_next20_black_program_frame(f)?;
                     if !frames.insert(f.frame_id.clone())
@@ -767,6 +791,9 @@ impl Game {
             }
         }
         for e in &self.effects {
+            if let Effect::Frame { frame } = e {
+                self.validate_next20_black_play_frame(frame)?;
+            }
             match e {
                 Effect::Declare { declaration: d } if related(&d.ability) => {
                     self.validate_next20_black_declaration(d)?;
@@ -779,6 +806,10 @@ impl Game {
             }
         }
         if let Some(p) = &self.pending {
+            self.validate_next20_black_pending(p)?;
+            if let ChoiceResolution::Frame { frame, .. } = &p.resolution {
+                self.validate_next20_black_play_frame(frame)?;
+            }
             match &p.resolution {
                 ChoiceResolution::Declare { declaration: d, .. } if related(&d.ability) => {
                     self.validate_next20_black_declaration(d)?;
@@ -800,9 +831,10 @@ impl Game {
         }
         Ok(())
     }
-    /// Called at the existing pre-grave replacement boundary. The caller must
-    /// hold the departed card outside all physical zones until choosing the
-    /// target; committing to grave first would incorrectly emit grave effects.
+    /// Resolution-time condition query, not a death-time declaration gate.
+    /// The production pre-grave death/response continuation remains NOT WIRED.
+    /// A future caller must hold the departed card outside physical zones until
+    /// this finishes; committing to grave first would emit incorrect effects.
     pub(crate) fn xg25_replaces_death(&self, source: &SourceSnapshot) -> bool {
         source.card.definition == "XG25"
             && !source.card.face_down
@@ -823,7 +855,9 @@ impl Game {
         source: &SourceSnapshot,
         target: &str,
     ) -> RuleResult<()> {
-        if !self.xg25_replaces_death(source)
+        if source.card.definition != "XG25"
+            || source.card.face_down
+            || source.card.controller >= self.players.len()
             || departed.definition != "XG25"
             || departed.id != source.card.id
             || departed.owner >= self.players.len()
@@ -839,13 +873,142 @@ impl Game {
             return Err("伥鬼替代必须持有尚未入墓的原死亡实例".into());
         }
         let actor = source.card.controller;
-        if self.valid_binding(actor, source, &self.xg25_death_target(), target)
+        if self.xg25_replaces_death(source)
+            && self.valid_binding(actor, source, &self.xg25_death_target(), target)
             && self.seal_host_valid(target)
         {
             self.seal_card_on_valid_host(departed, actor, target);
         } else {
             let c = self.reset_zone_card(departed);
             self.commit_owner_grave(c, None);
+        }
+        Ok(())
+    }
+}
+
+impl Game {
+    /// User ruling 2026-10-25: only the sealed ghost's owner activates/pays/uses
+    /// its once-per-turn slot. This exception never changes board control.
+    pub(crate) fn xg25_begin_sealed_action(&mut self, actor: usize, a: &Action) -> RuleResult<()> {
+        validate_action("XG25", a)?;
+        if a.ability_id.as_deref() != Some(MOVE) {
+            return Err("封印伥鬼仅能发动原移动行动".into());
+        }
+        let (source, host) =
+            self.xg25_sealed_source(actor, a.card_id.as_deref().ok_or("缺少封印伥鬼")?)?;
+        let mut spec = definition("XG25").unwrap().abilities.remove(0);
+        spec.ops = vec![Op::Next20Wraith(WraithProgram::GhostMove {
+            sealed_host: Some(Box::new(host)),
+        })];
+        self.check_timing(actor, &spec)?;
+        let targets = self.bind_action(actor, &source, &spec, a)?;
+        let paid = self.pay_ability_costs(actor, &source, &spec, a)?;
+        let frame = self.make_frame(actor, source, &spec, targets, paid, None);
+        self.dispatch_frame(
+            frame,
+            "封印伥鬼：拥有者支付1移动相邻敌方角色".into(),
+            None,
+            spec.response_policy,
+        );
+        Ok(())
+    }
+    pub(crate) fn xg25_sealed_actions(&self, actor: usize) -> Vec<(Action, String)> {
+        let spec = &definition("XG25").unwrap().abilities[0];
+        let mut actions = vec![];
+        for sealed in &self.sealed_cards {
+            if sealed.card.definition != "XG25" || sealed.card.owner != actor {
+                continue;
+            }
+            let Ok((source, _)) = self.xg25_sealed_source(actor, &sealed.card.id) else {
+                continue;
+            };
+            for target in self.binding_options(actor, &source, &spec.targets[0]) {
+                actions.push((
+                    Action {
+                        card_id: Some(sealed.card.id.clone()),
+                        ability_id: Some(MOVE.into()),
+                        target_id: Some(target.id),
+                        ..Action::new("activate")
+                    },
+                    "封印伥鬼：拥有者支付1，移动相邻敌方角色至载体原地区（每回合一次）".into(),
+                ));
+            }
+        }
+        actions
+    }
+    pub(crate) fn validate_next20_black_play_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if !CARDS.contains(&f.source.card.definition.as_str())
+            || !matches!(f.ability_key.as_str(), "deploy" | "reveal")
+        {
+            return Ok(());
+        }
+        let c = &f.source.card;
+        if f.actor >= self.players.len()
+            || c.controller != f.actor
+            || c.owner >= self.players.len()
+            || !self
+                .mystic_instance_number(&c.id)
+                .zip(self.mystic_instance_number(&f.frame_id))
+                .is_some_and(|(s, f)| s < f)
+            || f.cursor != 0
+            || !matches!(f.guard, GuardState::Unchecked)
+            || !f.steps.is_empty()
+            || !f.targets.is_empty()
+            || f.chosen_region != f.source.region
+            || f.source.region.is_none_or(|r| r >= self.regions.len())
+            || f.source
+                .source_region_instance
+                .as_deref()
+                .is_none_or(|id| !self.mystic_instance_valid(id))
+            || f.ability_key == "deploy" && (c.face_down || !f.source.valid_character_play())
+            || f.ability_key == "reveal" && (!c.face_down || f.source.play_source.is_some())
+            || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if ids.iter().all(|id|f.source.valid_printed_payment_id(id)) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len())
+            || f.money_units(0) > catalog::card(&c.definition).cost as usize
+        {
+            return Err("黑卡派遣/现身须保留原地区、来源及真实费用".into());
+        }
+        self.mobility_immutable_identity(c)?;
+        self.validate_resource_frame(f)
+    }
+    fn validate_black_declaration_pending(&self, p: &Pending) -> RuleResult<()> {
+        let ChoiceResolution::Declare {
+            declaration: d,
+            stage,
+        } = &p.resolution
+        else {
+            return Ok(());
+        };
+        if !related(&d.ability) {
+            return Ok(());
+        }
+        self.validate_next20_black_declaration(d)?;
+        let expected = Choice {
+            id: p.choice.id.clone(),
+            kind: "trigger".into(),
+            title: format!(
+                "{}：{}",
+                crate::batch3_trap::source_label(&d.source),
+                d.ability.label
+            ),
+            description: "选择符合数量限制的选项，然后确认。".into(),
+            player_id: player_id(d.actor),
+            options: vec![ChoiceOption {
+                id: "accept".into(),
+                label: "发动触发能力".into(),
+                card: None,
+            }],
+            preview_cards: vec![],
+            min: Some(0),
+            max: Some(1),
+            amount: None,
+            allow_decline: Some(true),
+        };
+        if p.seat != d.actor
+            || p.choice.id.is_empty()
+            || !matches!(stage, DeclareChoice::Accept)
+            || !same(&p.choice, &expected)
+        {
+            return Err("黑卡触发须由原玩家选择发动或放弃".into());
         }
         Ok(())
     }

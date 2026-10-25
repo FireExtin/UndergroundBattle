@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    Next20WraithDeath,
+    Next20VampireTargeted,
     CQ18LockedEnemyLeft,
     IndustryAttachmentEntered,
     IndustryCharacterSealed,
@@ -136,6 +138,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    Next20XG25AdjacentEnemy,
     WM057HiddenOrSecretPlan,
     WM043LockedTarget,
     WM044HiddenOrSecretPlan,
@@ -295,6 +298,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    Next20Wraith(crate::next20_black_wraiths::WraithProgram),
+    Next20Blue(crate::next20_blue_vampires::BlueProgram),
     XQ19FromHand { witnesses: Option<Vec<crate::import20_entropy::TimeWitness>> },
     CQ28Mode { mode:u8, slot:usize },
     CQ15DestroySearch { grant: Box<crate::model::Attachment> },
@@ -782,6 +787,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
+    if crate::next20_blue_vampires::related(ability) { return crate::next20_blue_vampires::validate_ability(card_id,ability); }
+    if crate::next20_black_wraiths::related(ability) { return crate::next20_black_wraiths::validate_ability(card_id,ability); }
     if crate::import20_entropy::related(card_id,ability) { return crate::import20_entropy::validate_ability(card_id,ability); }
     if crate::import20_gate::related(card_id,ability) { return crate::import20_gate::validate_ability(card_id,ability); }
     if crate::import20_swords::related(ability) { return crate::import20_swords::validate_ability(ability); }
@@ -1572,6 +1579,8 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         if definition.abilities.iter().any(crate::renown::reward_related) {
             return Err(format!("cardId={card_id}: 声望/威名奖励只能由实际事件生成"));
         }
+        crate::next20_blue_vampires::validate_definition(card_id,definition)?;
+        crate::next20_black_wraiths::validate_definition(card_id,definition)?;
         crate::import20_entropy::validate_definition(card_id,definition)?;
         crate::import20_gate::validate_definition(card_id,definition)?;
         crate::import20_swords::validate_definition(card_id,definition)?;
@@ -2251,6 +2260,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use EntityRef::{Source, Target};
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
+        for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
+        for id in crate::next20_blue_vampires::CARDS { m.insert((*id).into(), crate::next20_blue_vampires::definition(id).unwrap()); }
         for id in crate::import20_industry::CARDS { m.insert((*id).into(),crate::import20_industry::definition(id).unwrap()); }
         m.insert(crate::import20_carmen::ID.into(), crate::import20_carmen::definition());
         m.insert(crate::import20_tattoo::ID.into(), crate::import20_tattoo::definition());

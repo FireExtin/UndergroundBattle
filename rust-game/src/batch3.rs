@@ -282,6 +282,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
 
 impl Game {
     pub(crate) fn current_spirit(&self, c: &Card) -> bool {
+        if c.definition == "CQ25" { return self.cq25_spirit(c); }
         !c.face_down
             && (rules::definition(&c.definition).traits.spirit
                 || (matches!(c.definition.as_str(), "BQ042" | "XG14" | "XG11")

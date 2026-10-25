@@ -10953,6 +10953,143 @@
       "unique": false,
       "society": "",
       "supported": true
+    },
+    {
+      "id": "BQ033",
+      "name": "热夜之梦",
+      "subtitle": null,
+      "kind": "character",
+      "cost": 3,
+      "loyalty": [],
+      "color": "蓝",
+      "magic": "星辰",
+      "subtypes": [
+        "梦境",
+        "造物"
+      ],
+      "text": "灵体\n额外费用 将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库。\n进场触发 目标玩家随机弃一张手牌。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "keywords": [
+        "灵体"
+      ],
+      "unique": false,
+      "supported": false
+    },
+    {
+      "id": "BQ034",
+      "name": "雾羽弥生",
+      "subtitle": "美浓之鬼",
+      "kind": "character",
+      "cost": 4,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "color": "蓝",
+      "magic": "血",
+      "subtypes": [
+        "吸血鬼",
+        "忍者"
+      ],
+      "text": "隐秘+1；在本次隐秘对抗后，目标本方吸血鬼饮血1。\n进场触发 饮血1。\n触发 当一个本方吸血鬼角色成为敌方卡牌的目标时，你可以牺牲一个结附于其上的本方附属，然后终止该卡牌。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "keywords": [],
+      "unique": true,
+      "supported": false
+    },
+    {
+      "id": "CQ25",
+      "name": "伥虎",
+      "subtitle": null,
+      "kind": "character",
+      "cost": 4,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "死亡",
+      "subtypes": [
+        "猫",
+        "诅咒"
+      ],
+      "text": "隐秘〔月形〕灵体\n进场触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的诅咒牌获得隐秘+2。\n触发 每当本地区的一个敌方角色死亡时，从本方牌库或墓地中寻找一张名为伥鬼的角色牌，将该牌封印在伥虎上。若从牌库中寻找，则洗牌。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 2,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "keywords": [
+        "隐秘〔月形〕灵体"
+      ],
+      "unique": false,
+      "supported": false
+    },
+    {
+      "id": "XG25",
+      "name": "伥鬼",
+      "subtitle": null,
+      "kind": "character",
+      "cost": 2,
+      "loyalty": [
+        "黑色"
+      ],
+      "color": "黑",
+      "magic": "死亡",
+      "subtypes": [
+        "幽灵",
+        "诅咒"
+      ],
+      "text": "灵体\n行动①：将相邻地区的目标敌方角色移动到本地区。该能力每回合只能发动一次。若伥鬼被封印在角色上，该能力也可发动。\n死亡触发 若本方秘社上有隐秘〔月形〕标志，将伥鬼封印在目标角色上，而非置于墓地。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "keywords": [
+        "灵体"
+      ],
+      "unique": false,
+      "supported": false
     }
   ],
   "decks": [
