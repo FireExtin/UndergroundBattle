@@ -1,0 +1,71 @@
+    Checking hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: methods `xg25_replaces_death`, `xg25_death_target`, and `xg25_seal_instead_of_grave` are never used
+   --> rust-game/src/next20_black_wraiths.rs:838:19
+    |
+190 | impl Game {
+    | --------- methods in this implementation
+...
+838 |     pub(crate) fn xg25_replaces_death(&self, source: &SourceSnapshot) -> bool {
+    |                   ^^^^^^^^^^^^^^^^^^^
+...
+844 |     pub(crate) fn xg25_death_target(&self) -> TargetSlotSpec {
+    |                   ^^^^^^^^^^^^^^^^^
+...
+852 |     pub(crate) fn xg25_seal_instead_of_grave(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: constant `BATCH20` is never used
+ --> rust-game/src/import20_entropy.rs:7:18
+  |
+7 | pub(crate) const BATCH20: &[&str] = &[
+  |                  ^^^^^^^
+
+warning: method `mill_cards` is never used
+   --> rust-game/src/batch20.rs:468:19
+    |
+288 | impl Game {
+    | --------- method in this implementation
+...
+468 |     pub(crate) fn mill_cards(&mut self, seat: usize, count: usize) {
+    |                   ^^^^^^^^^^
+
+warning: `hegemony-server` (lib) generated 4 warnings (run `cargo fix --lib -p hegemony-server` to apply 1 suggestion)
+    Checking hegemony-wasm v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game-wasm)
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 4 warnings (1 duplicate) (run `cargo fix --lib -p hegemony-server --tests` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized] target(s) in 21.44s

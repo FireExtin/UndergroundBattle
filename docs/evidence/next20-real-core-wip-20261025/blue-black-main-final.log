@@ -1,0 +1,76 @@
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 28.73s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 27 tests
+test next20_black_core_tests::next20_black_core_actual_death_search_seals_and_enables_owner_action ... ok
+test next20_black_core_tests::next20_black_core_all_four_remain_closed_without_fake_anchor ... ok
+test next20_black_core_tests::next20_black_core_board_move_uses_real_payment_target_filter_and_once_limit ... ok
+test next20_black_core_tests::next20_black_core_conditional_spirit_follows_actual_controller_after_control_spell ... ok
+test next20_black_core_tests::next20_black_core_cq25_real_entry_contest_binds_curse_bonus_and_roundtrips ... ok
+test next20_black_core_tests::next20_black_core_departed_tiger_still_searches_shuffles_and_buries_found_card ... ok
+test next20_black_core_tests::next20_black_core_ineligible_death_observation_preserves_unrelated_id_stream ... ok
+test next20_black_core_tests::next20_black_core_pregrave_helper_lost_secrecy_has_a_real_grave_fallback ... ok
+test next20_black_core_tests::next20_black_core_real_control_change_keeps_board_action_with_controller ... ok
+test next20_black_core_tests::next20_black_core_sealed_move_restore_rejects_changed_fee_or_target_region ... ok
+test next20_black_core_tests::next20_black_core_sealed_move_survives_real_host_departure_with_original_region ... ok
+test next20_black_core_tests::next20_black_core_sealed_owner_pays_not_prior_actor_or_host_controller ... ok
+test next20_black_core_tests::next20_black_core_search_trigger_can_be_declined_without_creating_a_card ... ok
+test next20_black_core_tests::next20_black_core_target_control_change_is_rechecked_before_payment ... ok
+test next20_blue_core_tests::next20_blue_core_counter_decline_keeps_attachment_and_original_transaction ... ok
+test next20_blue_core_tests::next20_blue_core_deploy_entry_blood_uses_legal_action_and_roundtrips ... ok
+test next20_blue_core_tests::next20_blue_core_deploy_recovery_rejects_missing_fee_and_wrong_region ... ok
+test next20_blue_core_tests::next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard ... ok
+test next20_blue_core_tests::next20_blue_core_enemy_transaction_counter_sacrifices_and_never_refunds ... ok
+test next20_blue_core_tests::next20_blue_core_no_anchor_rejects_deploy_and_paid_reveal_without_mutation ... ok
+test next20_blue_core_tests::next20_blue_core_paid_reveal_is_real_and_entry_can_be_declined ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_blood_finishes_after_target ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame ... ok
+test next20_blue_core_tests::next20_blue_core_real_reveal_contest_shown_target_and_blood_resume ... ok
+test next20_blue_core_tests::next20_blue_core_registry_is_real_and_admission_stays_closed ... ok
+test next20_blue_core_tests::next20_blue_core_restored_counter_rejects_changed_choice_and_response_shell ... ok
+test next20_blue_core_tests::next20_blue_core_targeted_activated_ability_is_not_an_enemy_card ... ok
+
+test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 2491 filtered out; finished in 3.95s
+

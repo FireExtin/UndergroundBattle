@@ -1,0 +1,114 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling typenum v1.20.1
+   Compiling quote v1.0.47
+   Compiling generic-array v0.14.7
+   Compiling libc v0.2.189
+   Compiling itoa v1.0.18
+   Compiling serde_core v1.0.229
+   Compiling bytes v1.12.1
+   Compiling cfg-if v1.0.5
+   Compiling pin-project-lite v0.2.17
+   Compiling futures-core v0.3.34
+   Compiling http v1.5.0
+   Compiling syn v3.0.6
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling bitflags v2.13.2
+   Compiling serde_json v1.0.151
+   Compiling linux-raw-sys v0.12.1
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling rustix v1.1.5
+   Compiling digest v0.10.7
+   Compiling getrandom v0.4.3
+   Compiling serde_derive v1.0.229
+   Compiling zmij v1.0.23
+   Compiling http-body v1.1.0
+   Compiling memchr v2.8.3
+   Compiling tower-layer v0.3.3
+   Compiling sync_wrapper v1.0.2
+   Compiling fastrand v2.5.0
+   Compiling tower-service v0.3.3
+   Compiling cpufeatures v0.2.17
+   Compiling once_cell v1.21.4
+   Compiling tempfile v3.27.0
+   Compiling sha2 v0.10.9
+   Compiling tower v0.5.3
+   Compiling http-body-util v0.1.5
+   Compiling serde v1.0.229
+   Compiling hegemony-server v0.1.0 (/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 40.26s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 12 tests
+test next20_blue_core_tests::next20_blue_core_counter_decline_keeps_attachment_and_original_transaction ... ok
+test next20_blue_core_tests::next20_blue_core_deploy_entry_blood_uses_legal_action_and_roundtrips ... ok
+test next20_blue_core_tests::next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard ... 
+thread 'next20_blue_core_tests::next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard' panicked at rust-game/src/next20_blue_core_tests.rs:270:10:
+called `Option::unwrap()` on a `None` value
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test next20_blue_core_tests::next20_blue_core_enemy_transaction_counter_sacrifices_and_never_refunds ... ok
+test next20_blue_core_tests::next20_blue_core_no_anchor_rejects_deploy_and_paid_reveal_without_mutation ... ok
+test next20_blue_core_tests::next20_blue_core_paid_reveal_is_real_and_entry_can_be_declined ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_blood_finishes_after_target ... ok
+test next20_blue_core_tests::next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame ... 
+thread 'next20_blue_core_tests::next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame' panicked at rust-game/src/next20_blue_core_tests.rs:319:53:
+called `Option::unwrap()` on a `None` value
+FAILED
+test next20_blue_core_tests::next20_blue_core_real_reveal_contest_shown_target_and_blood_resume ... ok
+test next20_blue_core_tests::next20_blue_core_registry_is_real_and_admission_stays_closed ... ok
+test next20_blue_core_tests::next20_blue_core_restored_counter_rejects_changed_choice_and_response_shell ... ok
+test next20_blue_core_tests::next20_blue_core_targeted_activated_ability_is_not_an_enemy_card ... ok
+
+failures:
+
+failures:
+    next20_blue_core_tests::next20_blue_core_effect_entry_has_no_play_fee_and_runs_random_discard
+    next20_blue_core_tests::next20_blue_core_real_contest_without_vampire_has_no_stale_post_frame
+
+test result: FAILED. 10 passed; 2 failed; 0 ignored; 0 measured; 2491 filtered out; finished in 2.05s
+
+error: test failed, to rerun pass `-p hegemony-server --lib`

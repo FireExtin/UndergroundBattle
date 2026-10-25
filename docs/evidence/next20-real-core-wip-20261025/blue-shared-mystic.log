@@ -1,0 +1,70 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized] target(s) in 0.02s
+     Running unittests src/lib.rs (/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/build/target/debug/deps/hegemony_server-c591320b73efff35)
+
+running 22 tests
+test import20_entropy_tests::xq19_mystic_shown_contributes_numeric_zero_to_team_total ... ok
+test import20_observers_tests::import20_eye_mystic_win_does_not_count_as_host_battle_win ... ok
+test import20_vampires_tests::import20_wm025_actual_personal_mystic_win_places_once_per_current_own_vampire_region ... ok
+test import20_vampires_tests::import20_wm025_hidden_source_and_nonmystic_events_do_not_generate_win_trigger ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_after_parent_keeps_its_own_outcome_when_child_finishes ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_child_win_chain_precedes_older_parent_effects ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_finishing_chain_authenticates_boundary_and_accepts_another_nested_response ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_nested_contest_finishes_then_resumes_parent_once ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_nested_receipts_and_continuations_are_closed_in_both_loaders ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_nested_win_triggers_finish_before_parent_commit ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_post_elimination_commits_terminal_state_without_continuation ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_post_nonterminal_elimination_preserves_history_and_finishes_remaining_seats ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_response_generated_trigger_precedes_secret_selection ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_response_search_private_choice_finishes_before_selection ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_room_commands_and_journal_replay_complete_nested_response ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_room_post_terminal_commits_and_replays_instead_of_rolling_back ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_after_responses_keeps_top_cards_without_zero_or_fence ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_ruling_empty_child_resumes_existing_after_stage_without_outcome ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_ruling_start_response_can_leave_a_hand_with_an_empty_deck ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_ruling_unshown_finish_requires_original_empty_participant_and_boundary ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_terminal_clears_every_suspended_level_and_restart_does_not_replay ... ok
+test mystic_lifecycle_tests::mystic_lifecycle_three_levels_resume_in_lifo_order_and_reject_reordered_barriers ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 2481 filtered out; finished in 8.93s
+

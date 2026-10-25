@@ -1,0 +1,276 @@
+{
+  "status": "REAL_NATIVE_PARTIAL_CORE_WIRING_WIP_ALL_FOUR_ADMISSION_CLOSED",
+  "at_utc": "2026-10-25T07:29:49.647706+00:00",
+  "base": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+  "code_head": "dd172815eed66c6776ed2523eb5e74b3054f6d22",
+  "repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "fix/game-abi112-wm057-ack-20261024",
+  "source_provenance": {
+    "original_package_HEAD": "83e564dcdda460e4603aaf2d86494da18085b80f",
+    "original_commits": [
+      "f8ac51a7b2d6a5a92347b59c95481b9224b5d8bd",
+      "83e564dcdda460e4603aaf2d86494da18085b80f"
+    ],
+    "archive_merge": "f665abb98ab13155ce54a65617cbbbd1e2b0f22b",
+    "prior_archive_HEAD": "ff3b1c03f4cc4e17ae740a61b1dc34c8c86a0210",
+    "original_history_retained": true
+  },
+  "validation": [
+    {
+      "name": "blue-black-main-final",
+      "exit": 0,
+      "passed": 27,
+      "failed": 0
+    },
+    {
+      "name": "shared-mystic-final",
+      "exit": 0,
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "name": "shared-vampire-final",
+      "exit": 0,
+      "passed": 116,
+      "failed": 0
+    },
+    {
+      "name": "shared-death-observers-final",
+      "exit": 0,
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "name": "main-all-targets-final",
+      "exit": 0,
+      "passed": null,
+      "failed": null
+    }
+  ],
+  "new_27_classification": {
+    "actual_engine_command_and_persistence_scenarios": 23,
+    "catalogue_admission_contracts": 2,
+    "helper_contracts": 2,
+    "helper_limit": "One proves no eligible CQ25 observer leaves ID stream unchanged; one tests XG25 pre-grave helper fallback only, not a wired death response lifecycle."
+  },
+  "shared_filter_counts_are_separate_runs_and_may_overlap": true,
+  "first_failures_retained": {
+    "blue-main-first": "Two initial-layout assumptions: BQ089 is a hand-played spell; WM022 itself is a vampire, so the no-vampire contest fixture moved to real WM057 activation.",
+    "blue-black-main-first": "Real wiring misses: generic victim snapshots did not retain region UID and shared contest declaration did not route CQ25; plus neutral JC129 assets could not supply purple loyalty in control tests.",
+    "blue-black-main-second": "Only the two loyalty setup failures remained; corrected to actual purple assets.",
+    "blue-black-main-third": "26 passed; subsequent non-interference review prevented CQ25 hook allocating IDs in unrelated deaths, then final27 passed."
+  },
+  "production_harness_patch_used": false,
+  "original_41_adapter_tests_rerun": false,
+  "native_test_context": "Production checkout/build and real catalogue; explicit initial layouts of supported=false WIP cards, commands via Game::apply and persistence round trips. No fake BQ009 or patched kernel. Not a legal deck-to-public-game admission test.",
+  "catalogue": {
+    "original_272_entries_unchanged": true,
+    "new_real_records": [
+      "BQ033",
+      "BQ034",
+      "CQ25",
+      "XG25"
+    ],
+    "all_new_supported": false,
+    "supported_count_unchanged": 233,
+    "internal_snapshot_WIP_allowlist_added": true,
+    "public_deck_and_preset_gate_unchanged": true,
+    "BQ009_added": false
+  },
+  "rules": {
+    "status": "TWO_USER_RULINGS_ACCEPTED_ONE_TEXT_INFERENCE_RETAINED",
+    "human_acceptance_message": "Sentinel_8b4bed99c53c8191a43ebb23a60aabdb",
+    "accepted_proposal_message": "Sentinel_b04b320d45bc8191a007e851bfc076c2",
+    "XG25_sealed_action": {
+      "status": "USER_ACCEPTED",
+      "rule": "封印后由牌拥有者发动、付费、记每回合次数，不沿用死亡前临时操控者，不交给载体操控者；场上能力仍按当前操控者。"
+    },
+    "CQ25_departed_source": {
+      "status": "USER_ACCEPTED",
+      "rule": "已入堆叠后来源离场仍按卡文检索；选中牌因原载体失效入拥有者墓地；若搜牌库仍洗牌。不将JZ02专属跳过检索裁定推广，不强造牌或取消原可选触发。"
+    },
+    "XG25_secrecy": {
+      "status": "CARD_TEXT_INFERENCE_ACCEPTED_AS_TEST_PREMISE",
+      "text": "死亡触发 若本方秘社上有〔隐秘图标〕，将伥鬼封印在目标角色上。而非置于墓地。",
+      "interpretation": "死亡为触发时机，若条件位于效果正文，在结算时判断；本轮仅补单卡辅助接口的失隐秘入墓回退，未接完整死亡响应链。",
+      "sources": [
+        "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+        "organized_content/rules/隐秘世界规则手册.md:80",
+        "organized_content/rules/隐秘世界规则手册.md:243"
+      ]
+    }
+  },
+  "blockers": [
+    {
+      "action": "Complete BQ033 successful ordinary deploy and paid reveal with a legal anchor",
+      "target": "BQ009 actual catalogue/rules/producer plus BQ033 printed-cost receipt path",
+      "status": "PENDING_IMPLEMENTATION_DEPENDENCY",
+      "reason": "Real BQ009 runtime and legal anchor supply are absent. No name-only fixture record was added.",
+      "completed": "Actual engine mandatory payment route, serialized PaidCost receipt/validation, action candidates, atomic rejection without anchor; effect entry bypasses play fee and runs its real trigger."
+    },
+    {
+      "action": "Complete XG25 death replacement through actual Game::apply target/response/fallback/caller continuation",
+      "target": "resolution.rs::remove_dead_with_snapshot; death_observers::CharacterDeathReceipt; jz35.rs::jz35_return_hosts and other post-removal callers",
+      "status": "PENDING_SHARED_KERNEL_IMPLEMENTATION",
+      "reason": "Current synchronous removal commits grave before Death, then callers immediately consume a concrete grave_instance. Waiting for replacement responses requires suspending the originating effect/caller, not only adding a card helper or making grave_instance optional.",
+      "completed": "Owner-only sealed action, actual payments/once/targets/restore and control/host-departure regressions; helper-only lost-secrecy resolution now commits owner grave instead of throwing; death ability itself remains deliberately unregistered."
+    }
+  ],
+  "NOT_RUN": [
+    "Full baseline regression",
+    "Successful BQ033 real anchor payment with legal BQ009 source",
+    "XG25 normal death target/response/replacement/fallback/caller continuation",
+    "All cross-card granted-ability and nested replacement combinations",
+    "New-card RoomEnvelope end-to-end lifecycle",
+    "wasm32 build/WASM execution",
+    "Worker",
+    "Normal browser UI/both seats for these four cards",
+    "Independent parent review",
+    "GitHub CI",
+    "Deployment",
+    "Publication"
+  ],
+  "review": "PENDING_PARENT_INDEPENDENT_REVIEW",
+  "version_note": "Local unpublished Native source candidate; engine/ABI release tags and deployed v5 ABI112 package were not regenerated. Do not identify this changed source as the deployed package.",
+  "preservation": {
+    "raw_inputs_32_sha256_equal": true,
+    "web_files_modified": false,
+    "original_table_97EC1A99E58C_interaction": "NONE",
+    "site_or_deployment_mutation": "NONE",
+    "new_game_workers": 0,
+    "new_services": 0
+  },
+  "permissions": {
+    "denied": false,
+    "uncertain_mutation": false
+  },
+  "push": "NOT_ATTEMPTED",
+  "CI": "NOT_RUN",
+  "files": [
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-final.json",
+      "sha256": "203d865079ec3d3d3efcfe4fd619148e6e4d9ad55da52fabcaa0123781930839",
+      "bytes": 3612
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-final.log",
+      "sha256": "13958a363aa8a4b26e85536bd6e789f2564ebc8bd0f9901b321dcfb62ff2d375",
+      "bytes": 4932
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-first.json",
+      "sha256": "1e9b810540d53a3868c1f77929c851f32b280b6193a3a33ab289b2011323dc12",
+      "bytes": 3614
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-first.log",
+      "sha256": "7f704fa519e2890847e0bf354a234dc0a414afc89ce89662c986d232e5859fad",
+      "bytes": 7068
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-second.json",
+      "sha256": "e2b50a7fed95261dd5eb2eee9a1e14731230cbfe6327943534bb24d4f667c57f",
+      "bytes": 3615
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-second.log",
+      "sha256": "7886bfe5ec8cec0c14376405d4b60cf0e0063f1f56d04e1e53d40142c992b513",
+      "bytes": 5759
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-third.json",
+      "sha256": "803b00de2318ca281b5d6b50d8444f13aa7cd53072c5e8fbe16d37344f42d8c3",
+      "bytes": 3612
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-black-main-third.log",
+      "sha256": "3018a92d1a798ac8d95a5b8cb41d78fd3ef671d268d1008ba597dc61c7c7dd47",
+      "bytes": 4818
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-main-first.json",
+      "sha256": "7560a05f257daecae742701a76c2a905edffbc24e572b06c86f8f4384eeac303",
+      "bytes": 1166
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-main-first.log",
+      "sha256": "f746e4483b075a90344d0c508020666fc9dc42f146532c3f1e3dea8fc9d2c3a4",
+      "bytes": 5246
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-main-second.json",
+      "sha256": "756c2441f552fefea5bc2cb6e41dc8ea85836b4ae0a2f07da5d1fe0b333a2c1c",
+      "bytes": 2885
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-main-second.log",
+      "sha256": "371aa8ca7eee9f1a9c760c22860cb2d0abd6927b11f24b468b0bd72079d190f0",
+      "bytes": 3275
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-shared-mystic.json",
+      "sha256": "97e07be6f95f657c24f2c53bd1084fe7215e3ea84ee03b837028ff4cb9dcac01",
+      "bytes": 2869
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/blue-shared-mystic.log",
+      "sha256": "c1a0f914cacb297b24b438903298d30145213d48feeb9a9813d18e7c03fadee9",
+      "bytes": 4363
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/main-all-targets-final.json",
+      "sha256": "a059d9fe46a42ae1476d6ae87aba60441821179953c2d32c090da6d191f0b252",
+      "bytes": 3506
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/main-all-targets-final.log",
+      "sha256": "6114401b4f842582c41c567f3d122ee3cddf8f7ae2d7721b278643d58c37393a",
+      "bytes": 2829
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/rulings.json",
+      "sha256": "505d8cbba9852c1742e0d41d5e6efe41e5427a9c8b468a6bc3073f3e6f6ad987",
+      "bytes": 1356
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/run-real-check.py",
+      "sha256": "34af0052f1bef0c7cb43526d874cb2a9d78d4bf7b315e50766b7f5e30463e07d",
+      "bytes": 2983
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-death-observers-final.json",
+      "sha256": "f5160d17597fc7f2eb28ab56b5ed9572e2127489d8c7ed00b6b6b7c15dc02657",
+      "bytes": 3620
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-death-observers-final.log",
+      "sha256": "3991120d7b1bccba79c83c1c487f8f3fb248e2584dfd910bd6753397bcdc48fd",
+      "bytes": 4391
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-mystic-final.json",
+      "sha256": "6d4e45de7c46c94b3c41f90bc83d6c6538b48a14d341613d7f5a12eabd3634ab",
+      "bytes": 3603
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-mystic-final.log",
+      "sha256": "26cc0a9e0f62d39a5dad6d167be94cc994816c1b559f71058013fdcedbdd23ab",
+      "bytes": 4363
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-vampire-final.json",
+      "sha256": "104703a81e8a746304804a0e6066f22d69a7037a04b2d3167c3edde2b3efa990",
+      "bytes": 3606
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/shared-vampire-final.log",
+      "sha256": "d1a9eed3601f72bd43430ee1302ab669baf22728d6c896fc1a34a4844a8eefbf",
+      "bytes": 15153
+    },
+    {
+      "path": "docs/evidence/next20-real-core-wip-20261025/source-commit.json",
+      "sha256": "6bf5785541a45887cadd278d89cd2a2b23e431ece4b0a464208a1764aa480016",
+      "bytes": 3617
+    }
+  ]
+}

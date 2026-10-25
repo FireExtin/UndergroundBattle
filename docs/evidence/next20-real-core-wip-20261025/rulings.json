@@ -1,0 +1,23 @@
+{
+  "status": "TWO_USER_RULINGS_ACCEPTED_ONE_TEXT_INFERENCE_RETAINED",
+  "human_acceptance_message": "Sentinel_8b4bed99c53c8191a43ebb23a60aabdb",
+  "accepted_proposal_message": "Sentinel_b04b320d45bc8191a007e851bfc076c2",
+  "XG25_sealed_action": {
+    "status": "USER_ACCEPTED",
+    "rule": "封印后由牌拥有者发动、付费、记每回合次数，不沿用死亡前临时操控者，不交给载体操控者；场上能力仍按当前操控者。"
+  },
+  "CQ25_departed_source": {
+    "status": "USER_ACCEPTED",
+    "rule": "已入堆叠后来源离场仍按卡文检索；选中牌因原载体失效入拥有者墓地；若搜牌库仍洗牌。不将JZ02专属跳过检索裁定推广，不强造牌或取消原可选触发。"
+  },
+  "XG25_secrecy": {
+    "status": "CARD_TEXT_INFERENCE_ACCEPTED_AS_TEST_PREMISE",
+    "text": "死亡触发 若本方秘社上有〔隐秘图标〕，将伥鬼封印在目标角色上。而非置于墓地。",
+    "interpretation": "死亡为触发时机，若条件位于效果正文，在结算时判断；本轮仅补单卡辅助接口的失隐秘入墓回退，未接完整死亡响应链。",
+    "sources": [
+      "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+      "organized_content/rules/隐秘世界规则手册.md:80",
+      "organized_content/rules/隐秘世界规则手册.md:243"
+    ]
+  }
+}
