@@ -410,12 +410,34 @@ impl Game {
             .iter()
             .find(|d| d.id == tx.source.card.definition)
             .ok_or("雾羽目标事件含未登记卡牌")?;
-        if !catalog::catalog()
+        let target_print = catalog::catalog()
             .cards
             .iter()
-            .any(|d| d.id == t.definition && d.kind == "character")
+            .find(|d| d.id == t.definition && d.kind == "character")
+            .ok_or("雾羽目标事件含未登记角色")?;
+        if !(target_print
+            .subtypes
+            .iter()
+            .any(|s| matches!(s.as_str(), "吸血鬼" | "人类"))
+            || t.definition == "JC030")
+            || o.subtypes.iter().collect::<BTreeSet<_>>().len() != o.subtypes.len()
+            || o.subtypes.iter().any(|s| {
+                !target_print.subtypes.contains(s)
+                    && !matches!(
+                        s.as_str(),
+                        "吸血鬼"
+                            | "奴仆"
+                            | "邪教徒"
+                            | "宿主"
+                            | "不死生物"
+                            | "骷髅"
+                            | "蝙蝠"
+                            | "恶魔"
+                            | "罪犯"
+                    )
+            })
         {
-            return Err("雾羽目标事件含未登记角色".into());
+            return Err("雾羽观察含不可能的吸血鬼类别快照".into());
         }
         if f.source.card.definition != "BQ034"
             || f.ability_key != COUNTER
@@ -861,6 +883,10 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_next20_blue_pending(&self, p: &Pending) -> RuleResult<()> {
+        if matches!(&p.resolution, ChoiceResolution::Frame { frame,choice } if frame_related(frame) && !matches!(choice,FrameChoice::Next20Blue(_)))
+        {
+            return Err("蓝色新卡不能借用其他卡的待选续体".into());
+        }
         let ChoiceResolution::Frame {
             frame: f,
             choice: FrameChoice::Next20Blue(choice),

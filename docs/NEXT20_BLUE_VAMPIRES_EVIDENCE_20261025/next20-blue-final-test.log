@@ -40,7 +40,7 @@ warning: constant `KEY` is never used
   = note: `#[warn(dead_code)]` on by default
 
 warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.85s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.90s
      Running unittests src/lib.rs (/tmp/next20-blue-black-target/debug/deps/hegemony_server-28c642ca9eeb1baf)
 
 running 19 tests
@@ -64,5 +64,5 @@ test next20_blue_vampires_tests::next20_blue_shown_post_effect_uses_real_contest
 test next20_blue_vampires_tests::next20_blue_state_rejects_duplicate_target_observations_and_response_shell_edits ... ok
 test next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance ... ok
 
-test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 2513 filtered out; finished in 1.49s
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 2513 filtered out; finished in 1.48s
 

@@ -681,6 +681,21 @@ impl Game {
         }
     }
     pub(crate) fn validate_next20_black_pending(&self, p: &Pending) -> RuleResult<()> {
+        // CQ25 commitments and rewards are owned by the shared contest
+        // protocol; its pack-specific search owns the Wraith continuation.
+        if let ChoiceResolution::Frame {
+            frame,
+            choice: FrameChoice::MysticCommit { .. } | FrameChoice::MysticReward { .. },
+        } = &p.resolution
+        {
+            if frame.ability_key == CONTEST && frame.source.card.definition == "CQ25" {
+                return self.validate_cq25_contest_frame(frame);
+            }
+        }
+        if matches!(&p.resolution, ChoiceResolution::Frame { frame,choice } if frame_related(frame) && !matches!(choice,FrameChoice::Next20Wraith(_)))
+        {
+            return Err("黑色新卡不能借用其他卡的待选续体".into());
+        }
         let ChoiceResolution::Frame {
             frame: f,
             choice: FrameChoice::Next20Wraith(WraithChoice::TigerSearch),

@@ -462,6 +462,13 @@ fn next20_black_search_pending_roundtrip_and_corruption_checks() {
         }
         assert!(g.validate_next20_black_pending(&bad).is_err());
     }
+    let mut wrong_continuation = p;
+    if let ChoiceResolution::Frame { choice, .. } = &mut wrong_continuation.resolution {
+        *choice = FrameChoice::VampireBlood;
+    }
+    assert!(g
+        .validate_next20_black_pending(&wrong_continuation)
+        .is_err());
 }
 #[test]
 fn next20_black_xg25_normal_board_action_uses_public_payment_response_and_restore() {

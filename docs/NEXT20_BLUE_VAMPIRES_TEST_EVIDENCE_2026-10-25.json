@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-10-25T06:34:30.786467+00:00",
+  "at_utc": "2026-10-25T06:38:14.632607+00:00",
   "status": "LOCAL_WIP_NOT_INTEGRATED",
   "base": "476e09bc162afcec63cc22e7d96365da65499304",
   "branch": "dev/next20-blue-black-20261025",
@@ -7,20 +7,20 @@
   "ABI": 112,
   "own_source": {
     "rust-game/src/next20_blue_vampires.rs": {
-      "sha256": "b0f4785c35701c29ac1bf32a5e638262b31daa6efb54b1ef6462f0d421cac4e4",
-      "lines": 1007
+      "sha256": "2511eb38c91fc8695b3306e36305cae51535b87e44f94b37be5f76a7279778ba",
+      "lines": 1033
     },
     "rust-game/src/next20_blue_vampires_tests.rs": {
-      "sha256": "20d1f3ae04f471a059bd425885ed684aa79cee9d136dfaf190984f5cc1668317",
-      "lines": 630
+      "sha256": "84a195558a9b2caf5f91723bf6f962fc754a3256aa61ecb151b8eac011aec9a1",
+      "lines": 635
     },
     "rust-game/src/next20_black_wraiths.rs": {
-      "sha256": "f840dcd6e32ec1b7b5d2655efd836c895513e84889aa6042afafc67bc998734c",
-      "lines": 837
+      "sha256": "1235ae95c5f13ab0a9f800e391381ff20a380f3d42a101140e54ff02440e8a15",
+      "lines": 852
     },
     "rust-game/src/next20_black_wraiths_tests.rs": {
-      "sha256": "8d7829f548e4a3239b35a57483b8973e00310a354fd5c951d2bfb40e712ea05a",
-      "lines": 555
+      "sha256": "9b817a791a5ae0325a551c20cc90846bae76b998ce5c24b0e411269da4bca1bc",
+      "lines": 562
     }
   },
   "images": {
@@ -68,7 +68,7 @@
       "executed": 19,
       "failed": 0,
       "log": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-final-test.log",
-      "log_sha256": "402e64663575a6fa1a0f43a144c305dcb2f600909ba58a4f7edd454bc561235c",
+      "log_sha256": "302aba8b88a93737c76b85188083e8f0e8326c991a5df8cc97d4f8eea28694e9",
       "tests": [
         "next20_blue_vampires_tests::next20_blue_actions_require_mandatory_anchor_on_play_and_paid_reveal",
         "next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner",
@@ -97,7 +97,7 @@
       "executed": 22,
       "failed": 0,
       "log": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-final-test.log",
-      "log_sha256": "71a2dcd95c0434d331564c4eb15da328ac6733f8343dba43046a2c8c7451b4bb",
+      "log_sha256": "10a83c937b4b47e5a4d0dd22868ad2c0dab85555a6a4dd9748ac9cd0d7dbe4a7",
       "tests": [
         "next20_black_wraiths_tests::next20_black_cq25_actual_shared_contest_binds_bonus_to_actor_and_restores_outcome",
         "next20_black_wraiths_tests::next20_black_cq25_bonus_only_own_displayed_curse_in_its_entry_contest",
@@ -132,7 +132,7 @@
   },
   "prior_runs": {
     "logs_retained_in": "docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025",
-    "description": "Initial incomplete fixture registry routing and a test with insufficient spell funding produced failures. Corrected in isolated fixture/tests; latest runs above are the result used for counts. Initial broad prefix also selected 13 existing blue-gray tests; no full regression claim."
+    "description": "Initial incomplete fixture registry routing and a test with insufficient spell funding produced failures. Corrected in isolated fixture/tests; latest runs above are the result used for counts. Initial broad prefix also selected 13 existing blue-gray tests; no full regression claim. Review hardening initially rejected CQ25 shared MysticCommit/MysticReward; the directed test failed, was retained as next20-black-continuation-review-red.log, and passed after allowing only the exact CQ25 shared continuations."
   },
   "NOT_RUN": [
     "full baseline regression",
@@ -181,5 +181,23 @@
     "uncertain_mutation": false
   },
   "public_admission": "UNCHANGED_CLOSED",
-  "batch_completion_claim": false
+  "batch_completion_claim": false,
+  "command_recipe": {
+    "fixture": "python3 docs/NEXT20_BLUE_VAMPIRES_HARNESS_2026-10-25.py",
+    "tests": "cargo test --offline --manifest-path /tmp/next20-blue-black-harness/rust-game/Cargo.toml --lib --no-default-features <scope> -- --test-threads=1",
+    "scopes": [
+      "next20_blue_vampires_tests::",
+      "next20_black_wraiths_tests::"
+    ],
+    "env": {
+      "PATH_prefix": "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin",
+      "CARGO_HOME": "/tmp/next20-blue-black-cargo",
+      "CARGO_TARGET_DIR": "/tmp/next20-blue-black-target",
+      "CARGO_BUILD_JOBS": "1",
+      "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/tmp/next20-blue-black-zig-cc",
+      "ZIG_LOCAL_CACHE_DIR": "/tmp/next20-blue-black-zig-local",
+      "ZIG_GLOBAL_CACHE_DIR": "/tmp/next20-blue-black-zig-global"
+    },
+    "initial_cache_setup": "copy the non-secret registry directory from /home/ddd/Documents/Codex/2026-10-21/task-3/.tools/cargo/registry into the isolated CARGO_HOME; linker is a local copy of .tools/zig-cc"
+  }
 }

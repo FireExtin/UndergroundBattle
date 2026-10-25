@@ -39,7 +39,7 @@ warning: constant `KEY` is never used
   = note: `#[warn(dead_code)]` on by default
 
 warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
      Running unittests src/lib.rs (/tmp/next20-blue-black-target/debug/deps/hegemony_server-28c642ca9eeb1baf)
 
 running 22 tests

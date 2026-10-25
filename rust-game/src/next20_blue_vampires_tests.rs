@@ -420,6 +420,11 @@ fn next20_blue_pending_roundtrip_preserves_current_blood_options_and_rejects_for
         }
         assert!(g.validate_next20_blue_pending(&bad).is_err());
     }
+    let mut wrong_continuation = p.clone();
+    if let ChoiceResolution::Frame { choice, .. } = &mut wrong_continuation.resolution {
+        *choice = FrameChoice::VampireBlood;
+    }
+    assert!(g.validate_next20_blue_pending(&wrong_continuation).is_err());
     let a = Action {
         amount: Some(99),
         ..Action::new("choose")
