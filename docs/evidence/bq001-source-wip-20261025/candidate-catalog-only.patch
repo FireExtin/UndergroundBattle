@@ -1,0 +1,29 @@
+--- mainline/rust-game/data/cards.json
++++ internal-candidate/rust-game/data/cards.json
+@@ -10985,7 +10985,7 @@
+         "灵体"
+       ],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "BQ034",
+@@ -11120,7 +11120,7 @@
+       "defense": 0,
+       "keywords": [],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "BQ001",
+@@ -11154,7 +11154,7 @@
+       "defense": 1,
+       "keywords": [],
+       "unique": false,
+-      "supported": false,
++      "supported": true,
+       "source": {
+         "imagePath": "resource/ymsj-fun.github.io/cards/BQ001 脑叶专家.jpg",
+         "imageSha256": "c2c6de0b1d71e37a913c9b2e2c358a0e28702037d6983430bc7bc10a9a1b78a1",

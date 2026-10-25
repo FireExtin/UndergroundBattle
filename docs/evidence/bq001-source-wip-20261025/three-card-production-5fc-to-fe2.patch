@@ -1,0 +1,67 @@
+diff --git a/rust-game/data/cards.json b/rust-game/data/cards.json
+index 6c127447..3c784f23 100644
+--- a/rust-game/data/cards.json
++++ b/rust-game/data/cards.json
+@@ -1,6 +1,6 @@
+ {
+   "rulesVersion": "hegemony-pdf-v1",
+-  "cardPoolVersion": "limited-v2.102-import20-rulings-complete",
++  "cardPoolVersion": "limited-v2.103-next20-three-admitted",
+   "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+   "cards": [
+@@ -11019,7 +11019,7 @@
+       "defense": 1,
+       "keywords": [],
+       "unique": true,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "CQ25",
+@@ -11054,7 +11054,7 @@
+         "隐秘〔月形〕灵体"
+       ],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "XG25",
+@@ -11089,7 +11089,7 @@
+         "灵体"
+       ],
+       "unique": false,
+-      "supported": false
++      "supported": true
+     },
+     {
+       "id": "BQ009",
+diff --git a/rust-game/src/catalog.rs b/rust-game/src/catalog.rs
+index 74b3050f..4a3daca9 100644
+--- a/rust-game/src/catalog.rs
++++ b/rust-game/src/catalog.rs
+@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
+ use std::sync::OnceLock;
+ 
+ pub const RULES_VERSION: &str = "hegemony-pdf-v1";
+-pub const POOL_VERSION: &str = "limited-v2.102-import20-rulings-complete";
++pub const POOL_VERSION: &str = "limited-v2.103-next20-three-admitted";
+ #[cfg(not(feature = "society-fixtures"))]
+ pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards";
+ #[cfg(feature = "society-fixtures")]
+diff --git a/rust-game/src/deck.rs b/rust-game/src/deck.rs
+index 18f86d8e..5f699661 100644
+--- a/rust-game/src/deck.rs
++++ b/rust-game/src/deck.rs
+@@ -57,10 +57,6 @@ pub(crate) fn copy_limit_for_society(card: &CardDefinition, society_id: Option<&
+     if card.name == "精神锚点" && society_id == Some("MSJC10") { None } else { copy_limit(card) }
+ }
+ pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {
+-    #[cfg(test)]
+-    if let Some(cards) = crate::next20_natural_room_tests::candidate_registry() {
+-        return validate_with_cards(draft, &cards);
+-    }
+     validate_with_cards(draft, &catalog::catalog().cards)
+ }
+ /// The caller supplies a typed registry; game entry points always use the active catalog.

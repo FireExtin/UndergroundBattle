@@ -1,0 +1,638 @@
+{
+  "status": "PAUSED_INCOMPLETE_PROPOSAL_ONLY",
+  "candidateCount": 20,
+  "implementedNewCards": 0,
+  "sources": {
+    "UWPro": "RETORETO/UnderWorldPro@0d60c78b68697867697f20f0c171e41445735cc4",
+    "UWProPermissionEvidence": "Sentinel_e03beb50ee4881918270242ed3e5bcde 2026-10-21T08:45:37Z; author and illustrator direct reuse permission, global README retains all rights",
+    "Suez": "SuezKrish/Underworld@a8586caccd9be0cad9957e78b918245f0ddd6f85",
+    "SuezLaterObservedReadmeOnly": "1fb10f60a99f38dcf69104e026f48d2e3d91eb37",
+    "SuezBoundary": "Logic/test ideas only; independent implementation, no source/art copied into product, no tests of reference executed",
+    "verifiedNewDataBlobs": 15,
+    "proposalCount": 20,
+    "proposalPrimaryImageReviewComplete": false,
+    "imagesActuallyReadThisIntake": [
+      "CQ11",
+      "JZ53",
+      "XQ13",
+      "CQ10",
+      "CQ09",
+      "BQ084"
+    ],
+    "newCardImplementations": 0,
+    "imageFinding": "CQ09 original image includes 梦龙 in both subtype lists; old normalized spec omits it. Not yet implemented or promoted."
+  },
+  "proposedCandidates": [
+    {
+      "id": "CQ11",
+      "name": "暴乱煽动者",
+      "color": "红",
+      "image": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg",
+      "imageSha256": "8906b607ea300248c417f346a7d5fee0b3bb215e525f06a5862bdfe04adaa2c4",
+      "printedText": [
+        "进场触发 在本地区生成一个邪教徒角色指示物。"
+      ],
+      "mechanisms": [
+        "token",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ011_baoluanshandongzhe.tres",
+          "sha": "41772ab6d586f9b55f7c281313587d0b1adbd714"
+        }
+      ]
+    },
+    {
+      "id": "JZ53",
+      "name": "尸舞舒拉密兹",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg",
+      "imageSha256": "a84d896c1b552dabda05a1fc12c55224275a31b63a8408446508775235cc4623",
+      "printedText": [
+        "进场触发 将你墓地中的目标死亡领域角色牌置于你的手中。",
+        "触发 每当一张角色牌离开你的墓地时，在目标地区生成一个行尸角色指示物。"
+      ],
+      "mechanisms": [
+        "graveRecovery",
+        "token",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/JZ/JZ053_shiwushulamizi.tres",
+          "sha": "ae2c6b737aa2d986d404095bb3f7be457f9ddbd9"
+        }
+      ]
+    },
+    {
+      "id": "XQ13",
+      "name": "焚血之道",
+      "color": "蓝",
+      "image": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg",
+      "imageSha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a",
+      "printedText": [
+        "结附于本方秘社",
+        "你只能操控至多一个道途。",
+        "【持续】所有本方吸血鬼角色，其上的所有永久调查、永久势力、临时调查和临时势力能力图标都替换为永久战斗1。"
+      ],
+      "mechanisms": [
+        "attachment",
+        "society",
+        "continuous",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/XQ/XQ013_fenxuezhidao.tres",
+          "sha": "23a26044cbc9fba939f62ff05c96becbc07601ff"
+        }
+      ]
+    },
+    {
+      "id": "CQ10",
+      "name": "朱苏德拉·纳匹什提姆",
+      "color": "蓝",
+      "image": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg",
+      "imageSha256": "034b75bf01c010c74474f8357d089862603cfe27fc537b0dd2f537e541e7e2bb",
+      "printedText": [
+        "公开〔日形〕领袖",
+        "进场触发 你抓一张牌，目标玩家弃一张手牌。你的秘社上每有一个隐秘〔月形〕标志，就重复一次该过程。",
+        "准备步骤触发 若你的手牌数量比所有其他玩家都多，在目标地区上放置一个本方势力标志。"
+      ],
+      "mechanisms": [
+        "mysticContest",
+        "leader",
+        "deckChoice",
+        "confrontation",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ010_zhusudelanapishentimu.tres",
+          "sha": "ca7c118d48125829494aac3405fbadb9d390301a"
+        }
+      ]
+    },
+    {
+      "id": "CQ09",
+      "name": "依莲娜·弗朗索瓦",
+      "color": "蓝",
+      "image": "resource/ymsj-fun.github.io/cards/CQ09 依莲娜·弗朗索瓦.jpg",
+      "imageSha256": "2822860ecfd29ee98df34cb8f6a1ede534faae6b6b1d9ebc7fc5eec712984143",
+      "printedText": [
+        "现身触发 进行一次隐秘对抗。本次隐秘对抗中你所展示的吸血鬼、法师角色牌获得隐秘+3。",
+        "结束步骤触发 本回合中，若你曾赢得隐秘对抗，将你墓地中印刷费用小于或等于③的目标吸血鬼、法师角色牌放置进场，并置于本地区。"
+      ],
+      "mechanisms": [
+        "hidden",
+        "mysticContest",
+        "graveRecovery",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ009_yiliannafulangsuowa.tres",
+          "sha": "d49506808fd3bf630c2c658ebe90b66422f8aeb3"
+        }
+      ]
+    },
+    {
+      "id": "BQ084",
+      "name": "战栗凶灵",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg",
+      "imageSha256": "c6e661db496bbde8718a5af312ec64704f597d41bce424f9a0034132a16080af",
+      "printedText": [
+        "非资产；灵体",
+        "进场触发 你可以将一张封印在本方秘社上且名为精神锚点的牌洗入其拥有者的牌库，若你如此做，将你墓地中的目标角色牌放置进场并置于本地区。"
+      ],
+      "mechanisms": [
+        "nonAsset",
+        "spirit",
+        "seal",
+        "graveRecovery",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ084_zhanlixiongling.tres",
+          "sha": "9bf5f5b7cb3a7e53082e97fe60a5f5841c06cff4"
+        }
+      ]
+    },
+    {
+      "id": "XQ35",
+      "name": "白骨仆人",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg",
+      "imageSha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3",
+      "printedText": [
+        "白骨仆人不能正面打出或付费现身。",
+        "【墓地标准行动】1，将你墓地中的另一张角色牌封印在本方秘社上：将白骨仆人从你的墓地移回场上并横置，且置于地区一。该能力每回合只能发动一次。"
+      ],
+      "mechanisms": [
+        "graveRecovery",
+        "gravePlay",
+        "seal",
+        "society",
+        "exhaust"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/XQ/XQ035_baigupuren.tres",
+          "sha": "b29abb75c1ed862c42976b0d917bf4e066b70c07"
+        }
+      ]
+    },
+    {
+      "id": "BQ086",
+      "name": "雅加达的萨迪金",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg",
+      "imageSha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407",
+      "printedText": [
+        "创伤1",
+        "触发 当一个本方角色死亡时，目标敌方玩家牺牲一个角色或暗藏者。",
+        "进场触发 将你墓地中名为无名尸体的目标牌封印在目标本方研究附属上。"
+      ],
+      "mechanisms": [
+        "combatKeywords",
+        "sacrifice",
+        "hidden",
+        "seal",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ086_yajiadadesadijin.tres",
+          "sha": "d7fe6a178d18b0f4c7a3e3a253a99bedf1e7ed6d"
+        }
+      ]
+    },
+    {
+      "id": "BQ088",
+      "name": "生化泄露",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/BQ088 生化泄露.jpg",
+      "imageSha256": "1a9665d4cc1fbed411f6e4592a056cf2d2b86db904a4677af4c518d029b25fb9",
+      "printedText": [
+        "行动 将你的牌库顶牌置于墓地，在目标地区生成一个行尸指示物角色，然后你可以将本方墓地中一张名为无名尸体的牌封印在副名为圣甲虫产业的本方附属上。你的秘社上每有一个隐秘标志，就可以重复一次该过程。"
+      ],
+      "mechanisms": [
+        "deckChoice",
+        "token",
+        "seal",
+        "mysticContest"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ088_shenghuaxielou.tres",
+          "sha": "a3487b414c6c9e1b90bcd169374d267ed7a2a3e3"
+        }
+      ]
+    },
+    {
+      "id": "CQ27",
+      "name": "骨根灵主",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/CQ27 骨根灵主.jpg",
+      "imageSha256": "19c1a81185aaf17365c8888005b7ac4eb926db248e1349710b43de3b0aa1814d",
+      "printedText": [
+        "公开〔日形〕非资产；混乱；不能移动",
+        "准备步骤触发 将你墓地中的一张角色牌置于你的牌库底，然后在本地区生成一个行尸指示物角色。",
+        "墓地行动 牺牲三个角色：将骨根灵主从墓地放置进场。"
+      ],
+      "mechanisms": [
+        "mysticContest",
+        "nonAsset",
+        "chaos",
+        "mobility",
+        "deckChoice",
+        "token",
+        "gravePlay",
+        "graveRecovery",
+        "sacrifice",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ027_gugenlingzhu.tres",
+          "sha": "d869ffaf3dca71e68df4759c57eb435cb3bed393"
+        }
+      ]
+    },
+    {
+      "id": "CQ14",
+      "name": "盖罗涅的召令",
+      "color": "红",
+      "image": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg",
+      "imageSha256": "61fc824fb7543d22664b7589c39ea8d659ca3af5de626033a42579be3d237422",
+      "printedText": [
+        "持续 若你操控名为盖罗涅的角色，你可以从墓地中打出盖罗涅的召令，如同其在你手中一样，但需要弃一张红色牌作为额外费用。",
+        "行动 在至多三个目标地区上生成至多三个邪教徒角色指示物，令这些角色横置进场。"
+      ],
+      "mechanisms": [
+        "continuous",
+        "gravePlay",
+        "deckChoice",
+        "token",
+        "exhaust"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ014_gailuoniedezhaoling.tres",
+          "sha": "b2e7801ecb5939aa49f47eb7ad869657462ec1a8"
+        }
+      ]
+    },
+    {
+      "id": "XG19",
+      "name": "枪火谈判",
+      "color": "灰",
+      "image": "resource/ymsj-fun.github.io/cards/XG19 枪火谈判.jpg",
+      "imageSha256": "b2d24aa248cd0ca74a6440737880f992ac4f3fbdc41d767ff1667d26796a00c2",
+      "printedText": [
+        "非资产",
+        "行动 选择目标地区，然后选择一项。若敌方秘社上有两个公开〔日形〕标志，则改为两项全选：",
+        "消灭该地区上的至多两个目标暗藏者。",
+        "在该地区生成两个警察角色指示物。"
+      ],
+      "mechanisms": [
+        "nonAsset",
+        "mysticContest",
+        "hidden",
+        "token"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/XG/XG019_qianghuotanpan.tres",
+          "sha": "c31ce040f52ba5feab424b92c4145fe3bb24e658"
+        }
+      ]
+    },
+    {
+      "id": "BQ047",
+      "name": "灭世魔",
+      "color": "红",
+      "image": "resource/ymsj-fun.github.io/cards/BQ047 灭世魔.jpg",
+      "imageSha256": "14880ec17c29501d6b10eca7edded6b3c287ca1713acc5eda5482472aff65a29",
+      "printedText": [
+        "隐秘地区势力+3",
+        "传闻；杀伤1",
+        "进场强制触发 毁灭本地区。若本方秘社为末日钟，则每位玩家各牺牲四个资产。"
+      ],
+      "mechanisms": [
+        "starlightInfluence",
+        "rumor",
+        "combatTraits",
+        "timeDestroy",
+        "sacrifice",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ047_mieshimo.tres",
+          "sha": "e3b9c81c1e3cd5215b77647969fc3ae2e095a67f"
+        }
+      ]
+    },
+    {
+      "id": "CQ13",
+      "name": "命定的薇儿丹迪",
+      "color": "红",
+      "image": "resource/ymsj-fun.github.io/cards/CQ13 命定的薇儿丹迪.jpg",
+      "imageSha256": "393d38a51b63e1fcb59fff63f05e28a5531179f0de3bd63e52b5779e0c7ad968",
+      "printedText": [
+        "进场触发 若本方秘社为末日钟，毁灭目标地区，或在目标已毁灭的地区上放置一个本方势力标志。",
+        "快速行动③：进行一次隐秘对抗。若你赢得本次隐秘对抗，令命定的薇儿丹迪闪烁。",
+        "离场强制触发 消灭本地区上的所有其他角色。"
+      ],
+      "mechanisms": [
+        "society",
+        "timeDestroy",
+        "confrontation",
+        "mysticContest",
+        "blink",
+        "priority",
+        "uniqueInPlay",
+        "temporaryIcons"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/CQ/CQ013_mingdingdeweierdandi.tres",
+          "sha": "83cd01ef0970efa7fc35fedc6e933021bf03b466"
+        }
+      ]
+    },
+    {
+      "id": "BQ095",
+      "name": "圣甲虫药业集团总部",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/BQ095 圣甲虫药业集团总部.jpg",
+      "imageSha256": "42f82a8ceb0d3513c0861995026f2891ae64d20699c3c49d44aa5a4120a749cc",
+      "printedText": [
+        "结附于本方秘社",
+        "进场触发 为本方秘社创建一个名为集团总部的区域。将本方墓地中的所有牌置于集团总部区。本局游戏中，你所拥有的卡牌上注明本方墓地的，改为集团总部区，将被置入本方墓地的，改为置入集团总部区。",
+        "准备步骤触发 抓两张牌，然后弃一张牌。"
+      ],
+      "mechanisms": [
+        "attachment",
+        "society",
+        "graveRecovery",
+        "deckChoice",
+        "continuous",
+        "uniqueInPlay"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ095_shengjiachongyaoyejituanzongbu.tres",
+          "sha": "33c4901016ee0ed271065cf6c83786393cf347f7"
+        }
+      ]
+    },
+    {
+      "id": "JC028",
+      "name": "鲜血奴仆",
+      "color": "蓝",
+      "image": "resource/ymsj-fun.github.io/cards/JC028 鲜血奴仆.jpg",
+      "imageSha256": "a7b42c0aaf9e6a291ee06371d28c3863a43d3d5124dc8ac6e2ec7117bcb17eee",
+      "printedText": [
+        "【快速】行动　牺牲鲜血奴仆：将鲜血奴仆移回场上，成为一个名为鲜血的附属并结附于目标吸血鬼角色。鲜血不具有能力图标和防御力，且具有“受此结附的角色获得+1防御和额外的【永久战斗】”的能力。"
+      ],
+      "mechanisms": [
+        "sacrifice",
+        "attachment",
+        "blood",
+        "continuous",
+        "priority",
+        "loyalty"
+      ],
+      "openQuestionIds": [
+        "bloodConversionIdentity"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/JC/JC028_xianxuenupu.tres",
+          "sha": "ce987c06358b5c6753e389169a164e2301b58833"
+        }
+      ]
+    },
+    {
+      "id": "JC053",
+      "name": "鸣钟教派徽记",
+      "color": "红",
+      "image": "resource/ymsj-fun.github.io/cards/JC053 鸣钟教派徽记.jpg",
+      "imageSha256": "4c73e85c89642da97842fdf17e2a520a4075c457044119d68a56ca4106b5b04c",
+      "printedText": [
+        "结附于本方秘社",
+        "【快速行动】【横置】本回合中你下一张正面打出或翻面的鸣钟教派牌的所需费用减少1。",
+        "【快速行动】2，【横置】：本回合中，若有敌方势力标志曾被移除，你可以抓一张牌。"
+      ],
+      "mechanisms": [
+        "attachment",
+        "society",
+        "costReduction",
+        "exhaust",
+        "deckChoice",
+        "priority",
+        "uniqueInPlay"
+      ],
+      "openQuestionIds": [
+        "bellBadgeRemovalHistory"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/JC/JC053_mingzhongjiaopaihuiji.tres",
+          "sha": "f05f887f6cb3b018b9b57f2c2aa21eea488241dd"
+        }
+      ]
+    },
+    {
+      "id": "JC097",
+      "name": "阿斯旺",
+      "color": "黑",
+      "image": "resource/ymsj-fun.github.io/cards/JC097 阿斯旺.jpg",
+      "imageSha256": "3e83f0398bdd11ac653ccd1adabd4c0677925bdc86a04539dc81fb9b0e85691f",
+      "printedText": [
+        "隐匿（该角色不能正面打出，只能以秘密派遣方式作为暗藏者进场。）",
+        "袭击X，X等于你墓地中角色牌的数量。"
+      ],
+      "mechanisms": [
+        "hiddenOnly",
+        "combatKeywords",
+        "hidden",
+        "priority"
+      ],
+      "openQuestionIds": [
+        "derivedAssaultXTiming"
+      ],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/JC/JC097_asiwang.tres",
+          "sha": "82accc20dc098791b4dd2f2ddb5bf6f2733acd78"
+        }
+      ]
+    },
+    {
+      "id": "BQ055",
+      "name": "研究员戴维斯",
+      "color": "灰",
+      "image": "resource/ymsj-fun.github.io/cards/BQ055 研究员戴维斯.jpg",
+      "imageSha256": "f2976ba17f3ffd78583f62c16ee5b46631e4e65100f5312edad5f2fd9b79d49c",
+      "printedText": [
+        "公开",
+        "持续 打出或付费现身本方核心角色的费用减少①。",
+        "持续 在进行隐秘对抗时，若本方核心角色在场，你所展示的牌获得地区势力+3。"
+      ],
+      "mechanisms": [
+        "public",
+        "core",
+        "costReduction",
+        "mysticContest",
+        "starlightInfluence",
+        "temporaryIcons",
+        "uniqueInPlay"
+      ],
+      "openQuestionIds": [],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ055_yanjiuyuandaiweisi.tres",
+          "sha": "b71028a7cb679a5bca3515af084e5e1f55a8fbd3"
+        }
+      ]
+    },
+    {
+      "id": "BQ056",
+      "name": "便衣警探",
+      "color": "灰",
+      "image": "resource/ymsj-fun.github.io/cards/BQ056 便衣警探.jpg",
+      "imageSha256": "9564f3a33e2340f9d5da011959f36b40a845700090d62865a63d9fec421c03b1",
+      "printedText": [
+        "持续 若本地区有具有锁定标志的敌方角色或暗藏者，便衣警探获得临时调查1。",
+        "触发 当本方核心角色进场时，在目标角色或暗藏者上放置一个锁定标志，然后遏制1。"
+      ],
+      "mechanisms": [
+        "lock",
+        "hidden",
+        "core",
+        "repress",
+        "continuous",
+        "temporaryIcons"
+      ],
+      "openQuestionIds": [],
+      "referenceDataCandidates": [
+        {
+          "path": "Cards/Data/PlayerCards/BQ/BQ056_bianyijingtan.tres",
+          "sha": "0ee2380c6c4ea8e321d9c0eaf655a0d45ef98774"
+        }
+      ]
+    }
+  ],
+  "UWProVerifiedBlobManifest": [
+    {
+      "id": "CQ11",
+      "blob": "41772ab6d586f9b55f7c281313587d0b1adbd714",
+      "sha256": "83e6b6cb6185cbe3b13234cc5d1066ae683fe35aa48c93a941a1527dcd033eb1",
+      "bytes": 1079
+    },
+    {
+      "id": "JZ53",
+      "blob": "ae2c6b737aa2d986d404095bb3f7be457f9ddbd9",
+      "sha256": "8f2c5bca8179f148c6d815f7ce8e309fb11a4326bdfe03a59b1afa277da81a25",
+      "bytes": 1192
+    },
+    {
+      "id": "XQ13",
+      "blob": "23a26044cbc9fba939f62ff05c96becbc07601ff",
+      "sha256": "7a939ec36dd6a47a9c1abac4c1d133d408181008037926645056921cc05c1e3a",
+      "bytes": 1207
+    },
+    {
+      "id": "CQ10",
+      "blob": "ca7c118d48125829494aac3405fbadb9d390301a",
+      "sha256": "86a1b71c4d09ec2ff2944c34292371e4e7546dde062964488f52c2c16844fbca",
+      "bytes": 1301
+    },
+    {
+      "id": "CQ09",
+      "blob": "d49506808fd3bf630c2c658ebe90b66422f8aeb3",
+      "sha256": "6b556b8ba2b417f94288e9c333a11898b302c60ec443b37711ab5d3806b665cd",
+      "bytes": 1328
+    },
+    {
+      "id": "BQ084",
+      "blob": "9bf5f5b7cb3a7e53082e97fe60a5f5841c06cff4",
+      "sha256": "db6f47963479206272c53089bc9c53805a24641611ca96cb2bccde09e19ae05b",
+      "bytes": 1084
+    },
+    {
+      "id": "XQ35",
+      "blob": "b29abb75c1ed862c42976b0d917bf4e066b70c07",
+      "sha256": "5b639ad2fef7d4c87224554d0e12f91e4c9532b361066207ba4005158934b56e",
+      "bytes": 1126
+    },
+    {
+      "id": "BQ086",
+      "blob": "d7fe6a178d18b0f4c7a3e3a253a99bedf1e7ed6d",
+      "sha256": "d54cf2e6714e152f6b7f4ed4fa69a37eb90b99bc235672a5e016f87b8cb9b6fc",
+      "bytes": 1236
+    },
+    {
+      "id": "BQ088",
+      "blob": "a3487b414c6c9e1b90bcd169374d267ed7a2a3e3",
+      "sha256": "ff97cb617e2547e96dbf98749fa66205890739cb53c3b00d839f5529094b8782",
+      "bytes": 1297
+    },
+    {
+      "id": "CQ27",
+      "blob": "d869ffaf3dca71e68df4759c57eb435cb3bed393",
+      "sha256": "cd8c608ce6bf4f5b203746ed8370298bba6813e59fbe0301dbdf720cda6bccb9",
+      "bytes": 1260
+    },
+    {
+      "id": "CQ14",
+      "blob": "b2e7801ecb5939aa49f47eb7ad869657462ec1a8",
+      "sha256": "d43017ef235d71b1b82c1f68c1f0fbf70744db00fe798bc813d82a8ce70a59e3",
+      "bytes": 1307
+    },
+    {
+      "id": "XG19",
+      "blob": "c31ce040f52ba5feab424b92c4145fe3bb24e658",
+      "sha256": "78a389fdcdbd7bd5a59e76640c3e52de441c1e5ff60139d05c27924bd167fd99",
+      "bytes": 1242
+    },
+    {
+      "id": "BQ047",
+      "blob": "e3b9c81c1e3cd5215b77647969fc3ae2e095a67f",
+      "sha256": "096fd3c822823e327de2a6fb17ee8ce2c3e8189cc12b8a7ebf971a78f68936ba",
+      "bytes": 1138
+    },
+    {
+      "id": "CQ13",
+      "blob": "83cd01ef0970efa7fc35fedc6e933021bf03b466",
+      "sha256": "f34d494be306c81a8c28b4c99dbe7c1190a29783657bc42e1ced687c9d655c56",
+      "bytes": 1333
+    },
+    {
+      "id": "BQ095",
+      "blob": "33c4901016ee0ed271065cf6c83786393cf347f7",
+      "sha256": "3eb4c782ea0e1408c7b35874d5552d0f65ff3a741d961fae1d5f5df20885f41f",
+      "bytes": 1394
+    }
+  ],
+  "deferredIdentityDrafts": [
+    "TEST015",
+    "TEST034",
+    "TEST052",
+    "TEST033",
+    "ZHWM026"
+  ],
+  "caution": "Twenty proposals are not twenty completed cards or twenty migrated C# effects. Five later metadata-only additions have not had their TRES fetched/read in this intake. No implementation started."
+}
