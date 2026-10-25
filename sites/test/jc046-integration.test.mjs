@@ -19,7 +19,7 @@ const catalog=JSON.parse(abi.catalog());
 assert.deepEqual(catalog,fixtures.catalog);
 assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 assert.equal(catalog.cardPoolVersion,'limited-v2.102-import20-rulings-complete');
-assert.equal(catalog.cards.length,272);
+assert.equal(catalog.cards.length,277);assert.equal(catalog.cards.filter(card=>card.supported).length,233);for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
 assert.equal(fixtures.scenarios.length,37);
 assert.equal(new Set(fixtures.scenarios.map(s=>s.name)).size,37);
 

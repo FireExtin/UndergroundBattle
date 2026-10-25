@@ -5,6 +5,7 @@ import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'n
 import {gzipSync, gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {candidateNativePath} from './candidate-native-path.mjs';
 import {catalog, moduleBytes} from '../rust-game-wasm/tests/current-kernel.mjs';
 
 const moduleUrl = import.meta.url;
@@ -45,8 +46,10 @@ export function assertCurrentSourceBindings(binding) {
   }
 }
 
+export const currentFixturePath = relativePath => candidateNativePath(relativePath, root);
+
 export function loadCurrentFixture(relativePath) {
-  const bundle = JSON.parse(gunzipSync(readFileSync(path.join(root, relativePath))));
+  const bundle = JSON.parse(gunzipSync(readFileSync(currentFixturePath(relativePath))));
   assert.equal(bundle.format, 'current-native-fixture-v1');
   assert.equal(bundle.currentSourceManifestSha256, currentSourceManifestSha256);
   assert.equal(bundle.wasmSha256, currentWasmSha256);
@@ -57,7 +60,7 @@ export function loadCurrentFixture(relativePath) {
 
 export function writeCurrentFixture(relativePath, fixture) {
   const json = JSON.stringify(fixture);
-  const destination = path.join(root, relativePath);
+  const destination = currentFixturePath(relativePath);
   const bundle = {format: 'current-native-fixture-v1', currentSourceManifestSha256,
     wasmSha256: currentWasmSha256, raw: {json, bytes: Buffer.byteLength(json), sha256: sha256(json)}};
   mkdirSync(path.dirname(destination), {recursive: true});

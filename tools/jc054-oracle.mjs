@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import {currentIdentity,currentWasmSha256,currentSourceManifestSha256,assertCurrentCatalog,assertCurrentSourceBindings} from './current-native-source.mjs';
+import {currentIdentity,currentWasmSha256,currentSourceManifestSha256,assertCurrentCatalog,assertCurrentSourceBindings, currentFixturePath} from './current-native-source.mjs';
 // Keep the Node directory URL out of Vite's static web-asset rewriting.
 const moduleUrl=import.meta.url;
 const root=fileURLToPath(new URL('../',moduleUrl));
@@ -21,7 +21,7 @@ export function assertSources(binding) {
 export function validateNative(raw) {
   assert.equal(raw.format,'jc054-native81-v1');assertSources(raw.sourceBindings);
   assertCurrentCatalog(raw.catalog);
-  assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
+  assert.equal(raw.catalog.cards.length,277);assert.equal(raw.catalog.cards.filter(card=>card.supported).length,233);for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(raw.catalog.cards.find(card=>card.id===id).supported,false);assert.equal(raw.catalog.societies.length,12);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
   assert.deepEqual(raw.invalid.map(s=>s.name).sort(),invalidNames);
   let commands=0,projections=0,rejected=0;
@@ -41,7 +41,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,projections,rejected,invalid:raw.invalid.length};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/jc054Native112.fixture.json.gz'));
+  const bytes=readFileSync(currentFixturePath('rust-game-wasm/tests/jc054Native112.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'jc054-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

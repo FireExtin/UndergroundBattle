@@ -27,7 +27,8 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
 it('uses the current candidate and retains the reviewed XQ18', () => {
   expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
   expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
-  expect(catalog.cards).toHaveLength(272);
+  expect(catalog.cards).toHaveLength(277);
+  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])expect(definitions.get(id).supported,id).toBe(false);
   expect(catalog.cards.filter(card => card.supported)).toHaveLength(233);
   expect(definitions.has('XQ18')).toBe(true);
 });

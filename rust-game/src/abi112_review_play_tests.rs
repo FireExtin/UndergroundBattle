@@ -3,9 +3,9 @@
 use crate::{catalog, model::*, room::{Decision, RoomCommand, RoomEnvelope, SessionAction}, unit_support::*};
 use serde_json::{json, Value};
 
-struct Trace { name: String, room: RoomEnvelope, initial: Value, steps: Vec<Value> }
+pub(super) struct Trace { name: String, pub(super) room: RoomEnvelope, initial: Value, steps: Vec<Value> }
 impl Trace {
-    fn new(mut game: Game, name: String, index: usize) -> Self {
+    pub(super) fn new(mut game: Game, name: String, index: usize) -> Self {
         game.room_id = format!("112{:021x}", index + 100);
         game.invite_code = "112ABC".into();
         game.seed = u64::MAX - 112;
@@ -15,7 +15,7 @@ impl Trace {
             "views":(0..4).map(|seat|room.view(seat,0)).collect::<Vec<_>>()});
         Self { name, room, initial, steps: vec![] }
     }
-    fn step(&mut self, seat: usize, action: SessionAction) {
+    pub(super) fn step(&mut self, seat: usize, action: SessionAction) {
         let state = serde_json::to_string(&self.room).unwrap();
         let command = RoomCommand { command_id: format!("review-{}-{}",self.name,self.steps.len()),
             expected_version: self.room.revision, action };
@@ -25,12 +25,12 @@ impl Trace {
         self.steps.push(json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0",
             "expected":expected,"views":(0..4).map(|seat|self.room.view(seat,0)).collect::<Vec<_>>()}));
     }
-    fn action(&mut self, seat: usize, action: Action) { self.step(seat,SessionAction::Game{action}); }
-    fn choose(&mut self, ids: Vec<String>) {
+    pub(super) fn action(&mut self, seat: usize, action: Action) { self.step(seat,SessionAction::Game{action}); }
+    pub(super) fn choose(&mut self, ids: Vec<String>) {
         let p=self.room.game.pending.as_ref().unwrap();
         self.action(p.seat,Action{choice_id:Some(p.choice.id.clone()),selected:Some(ids),..Action::new("choose")});
     }
-    fn pass(&mut self) {
+    pub(super) fn pass(&mut self) {
         if let Some(w)=&self.room.pacing.window {
             let seat=*w.members.iter().find(|(_,d)|matches!(d,Decision::Undecided{..})).unwrap().0;
             self.step(seat,SessionAction::PassResponse{window_id:w.id.clone()});
@@ -39,11 +39,11 @@ impl Trace {
             self.action(seat,Action::new("pass"));
         }
     }
-    fn until_pending(&mut self) {
+    pub(super) fn until_pending(&mut self) {
         for _ in 0..128 { if self.room.game.pending.is_some(){return;} self.pass(); }
         panic!("{}: normal pending not reached",self.name);
     }
-    fn value(self) -> Value { json!({"name":self.name,"seedDecimal":self.room.game.seed.to_string(),
+    pub(super) fn value(self) -> Value { json!({"name":self.name,"seedDecimal":self.room.game.seed.to_string(),
         "initial":self.initial,"steps":self.steps}) }
 }
 

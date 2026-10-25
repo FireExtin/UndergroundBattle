@@ -5,7 +5,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-import {currentIdentity,currentWasmSha256,currentSourceManifestSha256,assertCurrentCatalog,assertCurrentSourceBindings} from './current-native-source.mjs';
+import {currentIdentity,currentWasmSha256,currentSourceManifestSha256,assertCurrentCatalog,assertCurrentSourceBindings, currentFixturePath} from './current-native-source.mjs';
 const moduleUrl=import.meta.url;
 const root=fileURLToPath(new URL('../',moduleUrl));
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
@@ -18,7 +18,7 @@ export function assertSources(binding) {
 export function validateNative(raw) {
   assert.equal(raw.format,'msjc0405-native83-v1');assertSources(raw.sourceBindings);
   assertCurrentCatalog(raw.catalog);
-  assert.equal(raw.catalog.cards.length,272);assert.equal(raw.catalog.societies.length,12);
+  assert.equal(raw.catalog.cards.length,277);assert.equal(raw.catalog.cards.filter(card=>card.supported).length,233);for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(raw.catalog.cards.find(card=>card.id===id).supported,false);assert.equal(raw.catalog.societies.length,12);
   assert.deepEqual(raw.scenarios.map(s=>s.name).sort(),scenarioNames);
   let commands=0,rejected=0,projections=0;
   for(const scenario of raw.scenarios) {
@@ -38,7 +38,7 @@ export function validateNative(raw) {
   return {scenarios:raw.scenarios.length,commands,rejected,projections};
 }
 export function loadFixture() {
-  const bytes=readFileSync(path.join(root,'rust-game-wasm/tests/msjc0405Native112.fixture.json.gz'));
+  const bytes=readFileSync(currentFixturePath('rust-game-wasm/tests/msjc0405Native112.fixture.json.gz'));
   const bundle=JSON.parse(gunzipSync(bytes));
   assert.equal(bundle.format,'msjc0405-native93-raw-v1');
   assert.equal(bundle.currentSourceManifestSha256,currentSourceManifestSha256);

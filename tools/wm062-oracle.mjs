@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256 } from './current-native-source.mjs';
+import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256, currentFixturePath} from './current-native-source.mjs';
 const moduleUrl = import.meta.url;
 const root = fileURLToPath(new URL('../', moduleUrl));
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
@@ -43,7 +43,7 @@ export function validateBundle(bundle) {
   assert.deepEqual(bundle.counts,counts,'Incomplete continuous Native command set');
   return {...bundle,scenarios,invalid};
 }
-export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(path.join(root,'rust-game-wasm/tests/wm062Native112.fixture.json.gz')))));}
+export function loadFixture(){return validateBundle(JSON.parse(gunzipSync(readFileSync(currentFixturePath('rust-game-wasm/tests/wm062Native112.fixture.json.gz')))));}
 export function compare(fixture,abi,bytes){
   assert.equal(sha256(bytes),fixture.wasmSha256);assert.deepEqual(JSON.parse(abi.catalog()),fixture.catalog);
   for(const s of fixture.scenarios){

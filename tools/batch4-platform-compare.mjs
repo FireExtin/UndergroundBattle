@@ -8,7 +8,7 @@ const [rawFile,destination,receiptFile]=process.argv.slice(2);
 if(!rawFile||!destination||!receiptFile)throw Error('Expected raw Native witness, NEW repository-relative gzip destination and receipt');
 const native=JSON.parse(readFileSync(rawFile,'utf8'));assert.equal(native.format,'batch4-abi95-native-witness-v1');assert.deepEqual(native.catalog,catalog);
 assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');assert.equal(catalog.cardPoolVersion,'limited-v2.102-import20-rulings-complete');
-assert.equal(catalog.cards.length,272);assert.equal(catalog.cards.filter(c=>c.supported).length,233);assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
+assert.equal(catalog.cards.length,277);assert.equal(catalog.cards.filter(card=>card.supported).length,233);for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);assert.equal(catalog.cards.filter(c=>c.supported).length,233);assert.equal(catalog.cards.find(c=>c.id==='JZ56').supported,false);
 let commands=0,views=0,polls=0,duplicates=0,restoreRejections=0;const cases=[];
 for(const scenario of native.cases){
  const seed=`"seed":${scenario.seedDecimal}`,random=`"random":${scenario.seedDecimal}`;

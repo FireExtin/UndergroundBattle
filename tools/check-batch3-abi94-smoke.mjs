@@ -9,7 +9,7 @@ const bytes=readFileSync(path);const native=JSON.parse(bytes);
 assert.equal(native.format,'batch3-native94-integration-smoke-v1');
 assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
 assert.deepEqual(native.catalog,catalog,'Native/WASM full catalog must match');
-assert.equal(catalog.cards.length,272);
+assert.equal(catalog.cards.length,277);assert.equal(catalog.cards.filter(card=>card.supported).length,233);for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
 assert.equal(catalog.cards.filter(c=>c.supported).length,233);
 assert.equal(catalog.cards.filter(c=>!c.supported).length,39);
 assert(catalog.cards.some(c=>c.id==='CQ07'&&c.supported));

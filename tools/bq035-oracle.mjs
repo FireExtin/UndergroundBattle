@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256 } from './current-native-source.mjs';
+import { currentIdentity, currentWasmSha256, assertCurrentCatalog, assertCurrentSourceBindings, currentSourceManifestSha256, currentFixturePath} from './current-native-source.mjs';
 
 const moduleUrl = import.meta.url;
 const repository = fileURLToPath(new URL('../', moduleUrl));
@@ -81,7 +81,7 @@ export function validateBq035Bundle(bundle) {
   assert.match(bundle.wasmSha256, /^[a-f0-9]{64}$/);
   return { ...bundle, scenarios, invalid };
 }
-export function loadBq035Fixture(filename = path.join(repository, 'rust-game-wasm/tests/bq035Native112.fixture.json.gz')) {
+export function loadBq035Fixture(filename = currentFixturePath('rust-game-wasm/tests/bq035Native112.fixture.json.gz')) {
   return validateBq035Bundle(JSON.parse(gunzipSync(readFileSync(filename), { maxOutputLength: 128 * 1024 * 1024 }).toString('utf8')));
 }
 export function compareBq035Fixture(fixture, abi, wasm) {
