@@ -1,0 +1,171 @@
+{
+  "status": "ARCHIVED_ON_DEVELOPMENT_LINE_AS_DISABLED_WIP",
+  "at_utc": "2026-10-25T06:48:27.282377+00:00",
+  "repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "fix/game-abi112-wm057-ack-20261024",
+  "pre_integration_head": "bb74e675bc78cf41ac875451658ea5a898b283ef",
+  "code_merge_head": "f665abb98ab13155ce54a65617cbbbd1e2b0f22b",
+  "source_head": "83e564dcdda460e4603aaf2d86494da18085b80f",
+  "base": "476e09bc162afcec63cc22e7d96365da65499304",
+  "original_commits_preserved": [
+    "f8ac51a7b2d6a5a92347b59c95481b9224b5d8bd",
+    "83e564dcdda460e4603aaf2d86494da18085b80f"
+  ],
+  "source_files": 21,
+  "source_files_byte_identical": true,
+  "raw_inputs_32_preserved": true,
+  "existing_tracked_files_modified": [],
+  "runtime_wiring": "NOT_ENABLED",
+  "four_cards_in_production_catalogue": false,
+  "public_admission": "UNCHANGED_CLOSED",
+  "ABI": 112,
+  "core_patch": {
+    "status": "ARCHIVED_ONLY_NOT_APPLIED",
+    "apply_check": "PASS",
+    "path": "docs/NEXT20_BLUE_VAMPIRES_PARTIAL_CORE_WIRING_2026-10-25.patch",
+    "reason": "Archive milestone has no content conflicts; patch is incomplete and touches public protocols. No safe minimal conflict required applying it."
+  },
+  "validation": {
+    "rustfmt": "PASS",
+    "main_workspace_all_targets_cargo_check": "PASS",
+    "harness_syntax": "PASS",
+    "isolated_native": {
+      "isolated-blue": {
+        "passed": 19,
+        "failed": 0
+      },
+      "isolated-black": {
+        "passed": 22,
+        "failed": 0
+      }
+    },
+    "limitation": "Production cargo check excludes detached WIP modules; their type checking and 41 tests use limited isolated native wiring only."
+  },
+  "rulings_pending": [
+    {
+      "id": "R1",
+      "question": "外来控制的XG25死亡并封印后，例外行动由拥有者还是死亡时操控者发动？",
+      "status": "PENDING_RULING"
+    },
+    {
+      "id": "R2",
+      "question": "XG25死亡时有隐秘标志，替代响应期间失去标志，是否仍封印或回退入墓？",
+      "status": "PENDING_RULING"
+    },
+    {
+      "id": "R3",
+      "question": "CQ25来源在响应中离场后，尚未开始的检索是否跳过？",
+      "status": "PENDING_RULING"
+    }
+  ],
+  "NOT_RUN": [
+    "Full baseline regression",
+    "BQ033 real-cost deploy and paid-reveal command path with durable receipts",
+    "XG25 sealed-card legal-action generation and full command path",
+    "XG25 pre-grave replacement target/response/continuation",
+    "All nested contest combinations",
+    "WASM",
+    "Worker",
+    "Normal browser UI/both seats for these four cards",
+    "Independent review (parent owns)",
+    "Deployment",
+    "Publication",
+    "GitHub CI"
+  ],
+  "review": "PENDING_PARENT_INDEPENDENT_REVIEW",
+  "original_table": {
+    "table": "97EC1A99E58C",
+    "interaction_this_task": "NONE",
+    "historical_handoff_only": "v5 ABI112 turn8 natural terminal A9:B6 both refreshed"
+  },
+  "environment": {
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+    "network_used_for_integration": false,
+    "webcodex_checkout_skills": "Attempted, tunnel_client_not_seen; no local checkout AGENTS.md/skill found",
+    "model_fast_state": "Parent requested 6.1-sol/max/fast; active fast flag not exposed or changed"
+  },
+  "git_identity_note": "Initial merge stopped before modifying index/worktree because committer identity was absent. After read-only confirmation, command-scoped Codex identity completed the merge; no global config changed.",
+  "build_environment_note": "Initial main check failed in SQLite C compilation because the plain Zig wrapper did not normalize the Rust target triple. The same check passed using the existing project batch3-zig-cc wrapper; initial failure and successful retry logs are both retained. No source changed.",
+  "permissions": {
+    "denied": false,
+    "uncertain_mutation": false
+  },
+  "push": "NOT_ATTEMPTED",
+  "CI": "NOT_RUN",
+  "main_merge": false,
+  "worktree_created": false,
+  "historical_evidence": "Author handoff and logs retain original LOCAL_WIP_NOT_INTEGRATED status and red runs as historical records; this manifest describes current archival integration only.",
+  "whitespace_note": "Original 7 raw-log EOF blanks and 2 unified-diff blank context lines retained byte-for-byte; Rust sources pass rustfmt. Three fresh raw validation logs also have their original EOF blank lines; retained with original SHA-256 rather than normalized.",
+  "files": [
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/fixture-generation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/isolated-black.log",
+      "sha256": "a41c82163451e9c1412af3127511e91a4e6884e48aced93ecc7ae8a1f680a2a4",
+      "bytes": 4394
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/isolated-blue.log",
+      "sha256": "55e8aa60c16b391c818244e43985efb3d81ecf0ae232c9b019bc3d3c5c9f7cd4",
+      "bytes": 5343
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/main-build-target-recheck.py",
+      "sha256": "434035b4bddbf0a9dc74aee8481d06fae4de89d1e2f73f0e232803968e354965",
+      "bytes": 3239
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/main-workspace-all-targets-check-target-normalized.log",
+      "sha256": "ea6f29389a3b303408bdfdf5763f4fefbb76f1e291f5103b9d3ca19e726317c0",
+      "bytes": 5746
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/main-workspace-all-targets-check.log",
+      "sha256": "a0da5bdd0cc110d4c5f048dbb3ce63316d4056839515814b7f306e427afbc33a",
+      "bytes": 4909
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/merge-receipt.json",
+      "sha256": "038880368dbca1b0fe4d8f90a078760453810ae63c19f34f70888c1f00a13668",
+      "bytes": 5982
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/patch-apply-check-only.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/preflight.json",
+      "sha256": "3b30665224ba39dd829225b9d695732ce4de74ee9770277bed59fdd0bd587101",
+      "bytes": 17581
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/rustfmt-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/source-handoff.json",
+      "sha256": "f245cda1406b24f6b909531a17cff5b3504633b7c1bcfbf831bf29421d9bbd94",
+      "bytes": 4778
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/validation-initial.json",
+      "sha256": "6be7e33568ea5dabf962e8e13c522d919c00f4d0bb44c41de1a2c038d89f221e",
+      "bytes": 6271
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/validation.json",
+      "sha256": "05f7923b8fa865229fb33765b85ef2a6b8e12dfbc24781f1bb85c9e72173a18d",
+      "bytes": 7687
+    },
+    {
+      "path": "docs/evidence/next20-wip-integration-20261025/verification-recipe.py",
+      "sha256": "e053ec7cdf0bca1c3c85689bb47c0559507218789826c85225f6455f06568c92",
+      "bytes": 5379
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "state": "MERGED_AS_DISABLED_WIP",
+  "at_utc": "2026-10-25T06:44:45.807613+00:00",
+  "repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "branch": "fix/game-abi112-wm057-ack-20261024",
+  "head": "f665abb98ab13155ce54a65617cbbbd1e2b0f22b",
+  "parents": [
+    "bb74e675bc78cf41ac875451658ea5a898b283ef",
+    "83e564dcdda460e4603aaf2d86494da18085b80f"
+  ],
+  "original_commits_preserved": [
+    "f8ac51a7b2d6a5a92347b59c95481b9224b5d8bd",
+    "83e564dcdda460e4603aaf2d86494da18085b80f"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "bundle",
+        "verify",
+        "/home/ddd/Documents/Codex/2026-10-24/task-6/next20-blue-black-20261025.bundle"
+      ],
+      "exit_code": 0,
+      "stdout": "The bundle contains this ref:\n83e564dcdda460e4603aaf2d86494da18085b80f refs/heads/dev/next20-blue-black-20261025\nThe bundle requires this ref:\n476e09bc162afcec63cc22e7d96365da65499304 \nThe bundle uses this hash algorithm: sha1\n",
+      "stderr": "/home/ddd/Documents/Codex/2026-10-24/task-6/next20-blue-black-20261025.bundle is okay\n"
+    },
+    {
+      "argv": [
+        "git",
+        "fetch",
+        "--no-tags",
+        "--no-write-fetch-head",
+        "/home/ddd/Documents/Codex/2026-10-24/task-6/next20-blue-black-20261025.bundle",
+        "refs/heads/dev/next20-blue-black-20261025"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "merge.autostash=false",
+        "merge",
+        "--no-ff",
+        "--no-edit",
+        "--no-gpg-sign",
+        "-m",
+        "Merge next20 blue and black WIP sources without enabling runtime",
+        "83e564dcdda460e4603aaf2d86494da18085b80f"
+      ],
+      "exit_code": 128,
+      "stdout": "",
+      "stderr": "Committer identity unknown\n\n*** Please tell me who you are.\n\nRun\n\n  git config --global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: unable to auto-detect email address (got 'ddd@ddd-System-Product-Name.(none)')\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "merge.autostash=false",
+        "merge",
+        "--no-ff",
+        "--no-edit",
+        "--no-gpg-sign",
+        "-m",
+        "Merge next20 blue and black WIP sources without enabling runtime",
+        "83e564dcdda460e4603aaf2d86494da18085b80f"
+      ],
+      "exit_code": 0,
+      "stdout": "Merge made by the 'ort' strategy.\n docs/NEXT20_BLACK_WRAITHS_WIP_2026-10-25.md        |   50 +\n ...E_VAMPIRES_CATALOGUE_SUGGESTION_2026-10-25.json |  139 +++\n .../next20-black-continuation-review-red.log       |   83 ++\n .../next20-black-final-test.log                    |   70 ++\n .../next20-black-first-test.log                    |  112 +++\n .../next20-black-second-test.log                   |   75 ++\n .../next20-black-third-test.log                    |   77 ++\n .../next20-blue-fifth-test.log                     |   86 ++\n .../next20-blue-final-test.log                     |   68 ++\n .../next20-blue-first-test.log                     |  241 +++++\n .../next20-blue-fourth-test.log                    |   89 ++\n .../next20-blue-second-test.log                    |  150 +++\n .../next20-blue-third-test.log                     |   71 ++\n docs/NEXT20_BLUE_VAMPIRES_HARNESS_2026-10-25.py    |  100 ++\n ...E_VAMPIRES_PARTIAL_CORE_WIRING_2026-10-25.patch |  307 ++++++\n ...T20_BLUE_VAMPIRES_TEST_EVIDENCE_2026-10-25.json |  203 ++++\n docs/NEXT20_BLUE_VAMPIRES_WIP_2026-10-25.md        |   52 +\n rust-game/src/next20_black_wraiths.rs              |  852 ++++++++++++++++\n rust-game/src/next20_black_wraiths_tests.rs        |  562 +++++++++++\n rust-game/src/next20_blue_vampires.rs              | 1033 ++++++++++++++++++++\n rust-game/src/next20_blue_vampires_tests.rs        |  635 ++++++++++++\n 21 files changed, 5055 insertions(+)\n create mode 100644 docs/NEXT20_BLACK_WRAITHS_WIP_2026-10-25.md\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_CATALOGUE_SUGGESTION_2026-10-25.json\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-continuation-review-red.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-final-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-first-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-second-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-black-third-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-fifth-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-final-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-first-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-fourth-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-second-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_EVIDENCE_20261025/next20-blue-third-test.log\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_HARNESS_2026-10-25.py\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_PARTIAL_CORE_WIRING_2026-10-25.patch\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_TEST_EVIDENCE_2026-10-25.json\n create mode 100644 docs/NEXT20_BLUE_VAMPIRES_WIP_2026-10-25.md\n create mode 100644 rust-game/src/next20_black_wraiths.rs\n create mode 100644 rust-game/src/next20_black_wraiths_tests.rs\n create mode 100644 rust-game/src/next20_blue_vampires.rs\n create mode 100644 rust-game/src/next20_blue_vampires_tests.rs\n",
+      "stderr": ""
+    }
+  ],
+  "source_files_byte_identical": true,
+  "raw_inputs_32_preserved": true,
+  "runtime_wiring": "NOT_ENABLED",
+  "catalogue_or_admission_changed": false,
+  "working_tree_tracked": "CLEAN",
+  "push": "NOT_ATTEMPTED",
+  "CI": "NOT_RUN"
+}

@@ -1,0 +1,112 @@
+{
+  "status": "SAFE_LOCAL_WIP_HANDOFF_PENDING_PARENT_INTEGRATION",
+  "at_utc": "2026-10-25T06:38:37.496510+00:00",
+  "repo": "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black",
+  "branch": "dev/next20-blue-black-20261025",
+  "base": "476e09bc162afcec63cc22e7d96365da65499304",
+  "HEAD": "83e564dcdda460e4603aaf2d86494da18085b80f",
+  "commits": [
+    "f8ac51a7b2d6a5a92347b59c95481b9224b5d8bd",
+    "83e564dcdda460e4603aaf2d86494da18085b80f"
+  ],
+  "source_cards": [
+    "BQ033 热夜之梦",
+    "BQ034 雾羽弥生",
+    "CQ25 伥虎",
+    "XG25 伥鬼"
+  ],
+  "source_module_files": [
+    "rust-game/src/next20_blue_vampires.rs",
+    "rust-game/src/next20_blue_vampires_tests.rs",
+    "rust-game/src/next20_black_wraiths.rs",
+    "rust-game/src/next20_black_wraiths_tests.rs"
+  ],
+  "source_patch": {
+    "path": "/home/ddd/Documents/Codex/2026-10-24/task-6/next20-blue-black-source-20261025.patch",
+    "sha256": "b3e6c3e65e7ad8ca8fc0621d24cb5dc5cadfab0631b368e8d13fbc5d50f5b3d5"
+  },
+  "bundle": {
+    "path": "/home/ddd/Documents/Codex/2026-10-24/task-6/next20-blue-black-20261025.bundle",
+    "sha256": "b27f20f3fdb7fa8887d837e0b13c03bc03262346793068c8880cdffd28758dd4",
+    "verified": true,
+    "prerequisite": "476e09bc162afcec63cc22e7d96365da65499304",
+    "ref": "refs/heads/dev/next20-blue-black-20261025"
+  },
+  "integration_wiring_suggestion": "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black/docs/NEXT20_BLUE_VAMPIRES_PARTIAL_CORE_WIRING_2026-10-25.patch",
+  "catalogue_suggestion": "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black/docs/NEXT20_BLUE_VAMPIRES_CATALOGUE_SUGGESTION_2026-10-25.json",
+  "evidence": "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black/docs/NEXT20_BLUE_VAMPIRES_TEST_EVIDENCE_2026-10-25.json",
+  "notes": [
+    "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black/docs/NEXT20_BLUE_VAMPIRES_WIP_2026-10-25.md",
+    "/home/ddd/Documents/Codex/2026-10-24/task-6/UndergroundBattle-next20-blue-black/docs/NEXT20_BLACK_WRAITHS_WIP_2026-10-25.md"
+  ],
+  "validation": {
+    "isolated_native_blue": {
+      "pass": 19,
+      "fail": 0
+    },
+    "isolated_native_black": {
+      "pass": 22,
+      "fail": 0
+    },
+    "rustfmt": "PASS",
+    "partial_patch_apply_check": "PASS",
+    "working_tree": "CLEAN",
+    "source_changes_to_reserved_core_catalogue_ABI_WASM": []
+  },
+  "pending_parent_actions": [
+    {
+      "target": "engine.rs/model.rs printed fees + continuations",
+      "action": "BQ033 real extra-cost receipt on deploy AND paid reveal, with complete recovery validation",
+      "status": "PENDING",
+      "reason": "shared file ownership; BQ009 runtime absent",
+      "completed": "owned mandatory-selection guard, candidate/payment/receipt helpers, directed tests"
+    },
+    {
+      "target": "engine.rs legal actions / sealed-card source routing",
+      "action": "XG25 sealed-on-character action exception",
+      "status": "PENDING",
+      "reason": "shared file ownership; foreign-control actor policy needs ruling",
+      "completed": "owned source/target/fee/once checks and direct adapter test"
+    },
+    {
+      "target": "resolution.rs::remove_dead_with_snapshot / death_observers receipts",
+      "action": "XG25 pre-grave replacement target/response continuation",
+      "status": "PENDING",
+      "reason": "current engine commits grave before Death event; cannot emulate by taking back from grave",
+      "completed": "owned replacement helpers and directed no-intermediate-grave tests"
+    }
+  ],
+  "rulings_pending": [
+    "foreign-controlled XG25 sealed-action actor",
+    "XG25 secrecy lost during replacement response",
+    "CQ25 source gone before search: proceed versus pre-search skip"
+  ],
+  "NOT_RUN": [
+    "full baseline regression",
+    "production-main integration",
+    "BQ033 normal deploy/paid-reveal with real anchor cost receipt",
+    "XG25 sealed-card legal-action generation and full command path",
+    "XG25 pre-grave target/response/replacement continuation",
+    "all nested contest combinations",
+    "WASM",
+    "Worker",
+    "normal browser UI/both seats",
+    "deployment",
+    "publication",
+    "GitHub CI"
+  ],
+  "critical_primary_source_findings": [
+    "CQ25 original image says enemy character death; old shared specification says own character death incorrectly",
+    "CQ25 Spirit is conditional on personal secrecy",
+    "BQ033 additional anchor cost applies to ordinary deploy AND paid reveal"
+  ],
+  "permissions": {
+    "denied": false,
+    "uncertain_mutation": false
+  },
+  "publication": "NONE",
+  "push": "NONE",
+  "CI": "NOT_RUN",
+  "browser_desktop_table": "UNUSED",
+  "whole_card_or_batch_completion_claim": false
+}

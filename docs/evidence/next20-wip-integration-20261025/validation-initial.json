@@ -1,0 +1,144 @@
+{
+  "state": "complete",
+  "source_head": "f665abb98ab13155ce54a65617cbbbd1e2b0f22b",
+  "main_repo": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+  "started_utc": "2026-10-25T06:45:29.199553+00:00",
+  "offline": true,
+  "affinity": [
+    31
+  ],
+  "jobs": 1,
+  "tests_threads": 1,
+  "runtime_wiring": "NOT_ENABLED",
+  "checks": [
+    {
+      "name": "harness_syntax_and_path_redirect",
+      "status": "PASS",
+      "original_sha256": "5a03949ef20142057a5a2ce0659e08c14c5708150767b37f528630dc0275f802",
+      "only_change": "Hardcoded fixture output root redirected to a fresh disk-backed validation folder"
+    }
+  ],
+  "runs": [
+    {
+      "name": "rustfmt-check",
+      "argv": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--check",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/next20_blue_vampires.rs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/next20_blue_vampires_tests.rs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/next20_black_wraiths.rs",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/next20_black_wraiths_tests.rs"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/rustfmt-check.log",
+      "exit_code": 0,
+      "seconds": 0.026,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "patch-apply-check-only",
+      "argv": [
+        "git",
+        "apply",
+        "--check",
+        "docs/NEXT20_BLUE_VAMPIRES_PARTIAL_CORE_WIRING_2026-10-25.patch"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/patch-apply-check-only.log",
+      "exit_code": 0,
+      "seconds": 0.002,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "main-workspace-all-targets-check",
+      "argv": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "--workspace",
+        "--all-targets"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/main-workspace-all-targets-check.log",
+      "exit_code": 101,
+      "seconds": 17.907,
+      "log_sha256": "a0da5bdd0cc110d4c5f048dbb3ce63316d4056839515814b7f306e427afbc33a"
+    },
+    {
+      "name": "fixture-generation",
+      "argv": [
+        "python3",
+        "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/isolated-harness.py",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/fixture-generation.log",
+      "exit_code": 0,
+      "seconds": 0.132,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "isolated-blue",
+      "argv": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/fixture/rust-game/Cargo.toml",
+        "--lib",
+        "--no-default-features",
+        "next20_blue_vampires_tests::",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/fixture",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/isolated-blue.log",
+      "exit_code": 0,
+      "seconds": 35.925,
+      "log_sha256": "55e8aa60c16b391c818244e43985efb3d81ecf0ae232c9b019bc3d3c5c9f7cd4"
+    },
+    {
+      "name": "isolated-black",
+      "argv": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/tools/build-storage.mjs",
+        "--",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/fixture/rust-game/Cargo.toml",
+        "--lib",
+        "--no-default-features",
+        "next20_black_wraiths_tests::",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/fixture",
+      "state": "complete",
+      "log": "/home/ddd/Documents/Codex/2026-10-24/task-7/next20-validation-20261025/isolated-black.log",
+      "exit_code": 0,
+      "seconds": 1.352,
+      "log_sha256": "a41c82163451e9c1412af3127511e91a4e6884e48aced93ecc7ae8a1f680a2a4"
+    }
+  ],
+  "fixture_scope": "Temporary limited wiring and test catalogue only; not production card admission",
+  "finished_utc": "2026-10-25T06:46:24.993002+00:00",
+  "all_commands_passed": false
+}
