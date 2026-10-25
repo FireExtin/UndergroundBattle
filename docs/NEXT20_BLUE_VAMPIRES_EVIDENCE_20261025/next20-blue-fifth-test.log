@@ -1,0 +1,86 @@
+   Compiling hegemony-server v0.1.0 (/tmp/next20-blue-black-harness/rust-game)
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: function `validate_action` is never used
+  --> rust-game/src/next20_black_wraiths.rs:74:15
+   |
+74 | pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+   |               ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+
+warning: `hegemony-server` (lib test) generated 6 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 16.15s
+     Running unittests src/lib.rs (/tmp/next20-blue-black-target/debug/deps/hegemony_server-28c642ca9eeb1baf)
+
+running 18 tests
+test next20_blue_vampires_tests::next20_blue_actions_require_mandatory_anchor_on_play_and_paid_reveal ... ok
+test next20_blue_vampires_tests::next20_blue_bq033_extra_payment_is_exact_own_society_and_returns_to_real_owner ... ok
+test next20_blue_vampires_tests::next20_blue_bq033_invalid_anchor_does_not_mutate_or_spend ... ok
+test next20_blue_vampires_tests::next20_blue_bq033_random_discard_is_one_real_hand_card_and_empty_hand_is_noop ... ok
+test next20_blue_vampires_tests::next20_blue_counter_corruption_is_rejected_before_sacrifice ... ok
+test next20_blue_vampires_tests::next20_blue_counter_decline_does_not_sacrifice_or_stop_card ... ok
+test next20_blue_vampires_tests::next20_blue_counter_does_not_take_teammates_attachment_or_other_host ... ok
+test next20_blue_vampires_tests::next20_blue_counter_keeps_declared_observer_after_departure_but_missing_card_costs_nothing ... ok
+test next20_blue_vampires_tests::next20_blue_counter_normal_enemy_play_trigger_response_choice_and_room_restore ... FAILED
+test next20_blue_vampires_tests::next20_blue_counter_sacrifices_exact_attachment_and_stops_original_card_without_refund ... ok
+test next20_blue_vampires_tests::next20_blue_definitions_reject_transplant_missing_trigger_and_extra_program ... ok
+test next20_blue_vampires_tests::next20_blue_entry_feeds_from_current_controllers_grave_or_society ... ok
+test next20_blue_vampires_tests::next20_blue_feed_never_uses_hand_or_wrong_recipient ... ok
+test next20_blue_vampires_tests::next20_blue_pending_roundtrip_preserves_current_blood_options_and_rejects_forgery ... ok
+test next20_blue_vampires_tests::next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted ... ok
+test next20_blue_vampires_tests::next20_blue_shown_post_effect_uses_real_contest_and_resumes_after_blood ... ok
+test next20_blue_vampires_tests::next20_blue_state_rejects_duplicate_target_observations_and_response_shell_edits ... ok
+test next20_blue_vampires_tests::next20_blue_target_observer_is_personal_vampire_and_unique_per_bound_instance ... ok
+
+failures:
+
+---- next20_blue_vampires_tests::next20_blue_counter_normal_enemy_play_trigger_response_choice_and_room_restore stdout ----
+
+thread 'next20_blue_vampires_tests::next20_blue_counter_normal_enemy_play_trigger_response_choice_and_room_restore' panicked at rust-game/src/unit_support.rs:97:19:
+called `Result::unwrap()` on an `Err` value: "可用费用不足"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    next20_blue_vampires_tests::next20_blue_counter_normal_enemy_play_trigger_response_choice_and_room_restore
+
+test result: FAILED. 17 passed; 1 failed; 0 ignored; 0 measured; 2513 filtered out; finished in 1.18s
+
+error: test failed, to rerun pass `--lib`

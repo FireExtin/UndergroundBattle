@@ -1,0 +1,70 @@
+warning: unused import: `catalog`
+ --> rust-game/src/batch4_clock_spell.rs:3:13
+  |
+3 | use crate::{catalog, engine::RuleResult, model::*, mystic_contest::{ContestOutcome,MysticPhase}, rules::*};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `RoomCommand` and `SessionAction`
+  --> rust-game/src/bounded_search_tests.rs:10:12
+   |
+10 |     room::{RoomCommand, RoomEnvelope, SessionAction},
+   |            ^^^^^^^^^^^                ^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+   --> rust-game/src/batch4_night_tests.rs:366:19
+    |
+366 |         if let Ok(mut accepted) = room_restored.clone() {
+    |                   ----^^^^^^^^
+    |                   |
+    |                   help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `g`
+  --> rust-game/src/batch4_omega_tests.rs:16:12
+   |
+16 | fn invalid(g:&Game,v:serde_json::Value){let s=serde_json::to_string(&v).unwrap();let r=std::panic::catch_unwind(||Game::from_persisted(&s...
+   |            ^ help: if this is intentional, prefix it with an underscore: `_g`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: constant `KEY` is never used
+ --> rust-game/src/batch4_conference_tests.rs:2:7
+  |
+2 | const KEY:&str=crate::batch4_conference::KEY;
+  |       ^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `hegemony-server` (lib test) generated 5 warnings (run `cargo fix --lib -p hegemony-server --tests` to apply 3 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running unittests src/lib.rs (/tmp/next20-blue-black-target/debug/deps/hegemony_server-28c642ca9eeb1baf)
+
+running 22 tests
+test next20_black_wraiths_tests::next20_black_cq25_actual_shared_contest_binds_bonus_to_actor_and_restores_outcome ... ok
+test next20_black_wraiths_tests::next20_black_cq25_bonus_only_own_displayed_curse_in_its_entry_contest ... ok
+test next20_black_wraiths_tests::next20_black_cq25_deck_search_shuffles_and_resets_identity ... ok
+test next20_black_wraiths_tests::next20_black_cq25_failed_deck_search_still_shuffles_and_requires_confirmation ... ok
+test next20_black_wraiths_tests::next20_black_cq25_foreign_zone_wrong_player_and_corrupt_death_do_not_mutate ... ok
+test next20_black_wraiths_tests::next20_black_cq25_grave_search_seals_on_original_instance_without_shuffle ... ok
+test next20_black_wraiths_tests::next20_black_cq25_only_real_enemy_faceup_characters_in_original_region ... ok
+test next20_black_wraiths_tests::next20_black_cq25_source_leaving_never_seals_on_replacement_tiger ... ok
+test next20_black_wraiths_tests::next20_black_cq25_spirit_requires_current_personal_secrecy_and_faceup ... ok
+test next20_black_wraiths_tests::next20_black_printed_fields_spirit_and_fixed_abilities ... ok
+test next20_black_wraiths_tests::next20_black_search_pending_roundtrip_and_corruption_checks ... ok
+test next20_black_wraiths_tests::next20_black_state_rejects_duplicate_death_and_paid_move_with_wrong_public_target_region ... ok
+test next20_black_wraiths_tests::next20_black_xg25_death_adapter_seals_before_grave_and_preserves_owner ... ok
+test next20_black_wraiths_tests::next20_black_xg25_death_replacement_is_conditioned_on_original_controllers_secrecy ... ok
+test next20_black_wraiths_tests::next20_black_xg25_invalid_original_host_falls_back_to_owner_grave ... ok
+test next20_black_wraiths_tests::next20_black_xg25_moves_adjacent_enemy_with_attachments_and_one_fee ... ok
+test next20_black_wraiths_tests::next20_black_xg25_normal_board_action_uses_public_payment_response_and_restore ... ok
+test next20_black_wraiths_tests::next20_black_xg25_original_region_is_frozen_and_replacement_region_does_not_receive ... ok
+test next20_black_wraiths_tests::next20_black_xg25_replacement_rejects_duplicate_physical_card ... ok
+test next20_black_wraiths_tests::next20_black_xg25_sealed_on_character_can_pay_and_move_without_granting_other_text ... ok
+test next20_black_wraiths_tests::next20_black_xg25_sealed_on_society_has_no_activation_and_host_departure_returns_to_owner ... ok
+test next20_black_wraiths_tests::next20_black_xg25_target_predicate_rejects_friendly_same_region_hidden_and_nonadjacent ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 2510 filtered out; finished in 1.33s
+
