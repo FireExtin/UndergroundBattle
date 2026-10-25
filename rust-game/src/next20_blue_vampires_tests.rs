@@ -373,7 +373,7 @@ fn next20_blue_counter_corruption_is_rejected_before_sacrifice() {
     }
 }
 #[test]
-fn next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted() {
+fn next20_blue_printed_fields_keep_dream_closed_and_admit_yayoi() {
     let dream = catalog::card("BQ033");
     assert_eq!(
         (dream.cost, dream.defense, dream.unique, dream.supported),
@@ -382,7 +382,7 @@ fn next20_blue_printed_fields_are_image_specific_and_never_publicly_admitted() {
     let yayoi = catalog::card("BQ034");
     assert_eq!(
         (yayoi.cost, yayoi.defense, yayoi.unique, yayoi.supported),
-        (4, Some(1), true, false)
+        (4, Some(1), true, true)
     );
     assert_eq!(yayoi.loyalty, vec!["蓝色", "蓝色"]);
     assert_eq!(yayoi.subtitle.as_deref(), Some("美浓之鬼"));

@@ -71,7 +71,7 @@ fn import20_xg13_original_fields_unique_two_loyalty_and_closed_public_pool() {
     assert_eq!(d.defense, Some(1));
     assert!(d.text.contains("下一张鸣钟教派牌")); assert!(!d.text.contains("下一张灾难牌"));
     crate::unit_support::assert_current_serial_catalog();
-    assert_eq!(catalog::catalog().cards.iter().filter(|d| d.supported).count(), 233);
+    assert_eq!(catalog::catalog().cards.iter().filter(|d| d.supported).count(), 236);
     assert_eq!(catalog::card("XQ19").cost_appearance,Some(catalog::CostAppearance::Dash));
     assert_eq!(catalog::ENGINE_VERSION, "rust-v0.2.112-shared-keyword-rewards");
     assert_eq!(definition(c::ID).abilities[1].timing, Timing::Fast);

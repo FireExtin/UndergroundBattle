@@ -57,10 +57,6 @@ pub(crate) fn copy_limit_for_society(card: &CardDefinition, society_id: Option<&
     if card.name == "精神锚点" && society_id == Some("MSJC10") { None } else { copy_limit(card) }
 }
 pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {
-    #[cfg(test)]
-    if let Some(cards) = crate::next20_natural_room_tests::candidate_registry() {
-        return validate_with_cards(draft, &cards);
-    }
     validate_with_cards(draft, &catalog::catalog().cards)
 }
 /// The caller supplies a typed registry; game entry points always use the active catalog.

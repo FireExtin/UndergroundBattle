@@ -54,10 +54,10 @@ fn fire(g: &mut Game, target: &str) {
 }
 
 #[test]
-fn next20_black_core_all_four_remain_closed_without_fake_anchor() {
+fn next20_black_core_three_admitted_without_fake_anchor_dream() {
     assert_current_serial_catalog();
     for id in ["BQ033", "BQ034", "CQ25", "XG25"] {
-        assert!(!catalog::card(id).supported);
+        assert_eq!(catalog::card(id).supported,id!="BQ033");
     }
     assert!(!catalog::card("BQ009").supported);
     assert!(catalog::runtime_implemented(catalog::card("BQ009")));

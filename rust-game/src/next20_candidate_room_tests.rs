@@ -1,5 +1,5 @@
 //! Internal candidate Room witnesses. Initial layouts are explicit; all later
-//! transitions use the shared production Room reducer. Public admission stays closed.
+//! transitions use the shared production Room reducer. BQ033 supply stays closed; natural admission is separately tested.
 use crate::{abi112_review_play_tests::Trace, catalog, model::*, room::{RoomCommand,RoomEnvelope,SessionAction}, unit_support::*};
 use serde_json::{json,Value};
 
@@ -92,7 +92,8 @@ fn next20_candidate_actual_room_four_closed_card_witnesses() {
             step["duplicate"]=serde_json::to_value(duplicate).unwrap();
         }
     }
-    for id in ["BQ033","BQ034","CQ25","XG25","BQ009"] {assert!(!catalog::card(id).supported);}
+    for id in ["BQ033","BQ009"] {assert!(!catalog::card(id).supported);}
+    for id in ["BQ034","CQ25","XG25"] {assert!(catalog::card(id).supported);}
     if let Ok(file)=std::env::var("NEXT20_CANDIDATE_NATIVE_OUT") {
         use std::io::Write;
         let mut f=std::fs::OpenOptions::new().write(true).create_new(true).open(file).unwrap();

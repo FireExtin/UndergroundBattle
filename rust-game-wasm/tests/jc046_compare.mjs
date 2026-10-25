@@ -37,7 +37,7 @@ const invalidStatesInput=invalidFiles.map(file=>{
 const fixture=loadCurrentFixture(process.argv[2] || 'rust-game-wasm/tests/current112/jc046.json.gz');
 assert.deepEqual(fixture.catalog,catalog);
 assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
-assert.equal(catalog.cardPoolVersion,'limited-v2.102-import20-rulings-complete');
+assert.equal(catalog.cardPoolVersion,'limited-v2.103-next20-three-admitted');
 assert.equal(catalog.cards.length,272);
 assert.equal(fixture.scenarios.length,37);
 assert.equal(new Set(fixture.scenarios.map(s=>s.name)).size,37);

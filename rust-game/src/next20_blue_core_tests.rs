@@ -45,10 +45,10 @@ fn enemy_card(g: &mut Game, target: &str) {
 }
 
 #[test]
-fn next20_blue_core_registry_is_real_and_admission_stays_closed() {
+fn next20_blue_core_registry_admits_yayoi_but_keeps_anchor_dream_closed() {
     assert_current_serial_catalog();
     for id in blue::CARDS {
-        assert!(!catalog::card(id).supported);
+        assert_eq!(catalog::card(id).supported,*id=="BQ034");
         assert!(catalog::runtime_implemented(catalog::card(id)));
     }
     assert_eq!(catalog::card("BQ034").subtitle.as_deref(), Some("美浓之鬼"));
@@ -56,7 +56,7 @@ fn next20_blue_core_registry_is_real_and_admission_stays_closed() {
     assert!(catalog::runtime_implemented(catalog::card("BQ009")));
     assert!(["CQ25", "XG25"]
         .iter()
-        .all(|id| !catalog::card(id).supported));
+        .all(|id| catalog::card(id).supported));
 }
 
 #[test]

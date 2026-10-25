@@ -24,8 +24,8 @@ for(const societyId of ['MSJC04','MSJC05'])test(`${societyId} enters with a name
   };
   const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
   assert.equal(catalog.cards.length,277);
-  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
-  assert.equal(catalog.cards.filter(card=>card.supported).length,233);assert.equal(catalog.societies.length,12);
+  for(const id of ['BQ033','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
+  assert.equal(catalog.cards.filter(card=>card.supported).length,236);assert.equal(catalog.societies.length,12);
   const draft=(id,count=25)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count;const cards=[];
     for(const card of catalog.cards.filter(c=>c.supported&&c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {

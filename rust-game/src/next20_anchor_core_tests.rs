@@ -240,7 +240,7 @@ fn next20_anchor_core_copy_limit_is_conditional_and_public_admission_remains_clo
     );
     // MSJC10 and the actual supply cards remain outside this implementation.
     assert!(crate::society::definition("MSJC10").is_err());
-    assert!(["BQ033", "BQ034", "CQ25", "XG25"]
+    assert!(["BQ033", "BQ009"]
         .iter()
         .all(|id| !catalog::card(id).supported));
 }

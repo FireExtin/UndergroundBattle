@@ -1,22 +1,10 @@
-//! Candidate-only construction; every operation after lobby creation is a real
+//! Public construction; every operation after lobby creation is a real
 //! Room command. No runtime cards, assets, grave entries or markers are injected.
-use crate::{catalog::{self,CardDefinition,DeckEntry},deck::DeckDraft,model::*,room::{Decision,RoomCommand,RoomEnvelope,SessionAction}};
+use crate::{catalog::{self,DeckEntry},deck::DeckDraft,model::*,room::{Decision,RoomCommand,RoomEnvelope,SessionAction}};
 use serde_json::{json,Value};
-use std::{cell::Cell,collections::BTreeMap,fs::File,io::Write,path::PathBuf};
+use std::{collections::BTreeMap,fs::File,io::Write,path::PathBuf};
 
-const CANDIDATES:&[&str]=&["BQ034","CQ25","XG25"];
-thread_local! { static CANDIDATE_DECKS:Cell<bool>=const {Cell::new(false)}; }
-pub(crate) fn candidate_registry()->Option<Vec<CardDefinition>> {
-    if !CANDIDATE_DECKS.with(Cell::get) {return None;}
-    let mut cards=catalog::catalog().cards.clone();
-    for c in &mut cards {if CANDIDATES.contains(&c.id.as_str()){c.supported=true;}}
-    Some(cards)
-}
-fn candidate_scope<T>(run:impl FnOnce()->T)->T {
-    struct Reset(bool);
-    impl Drop for Reset {fn drop(&mut self){CANDIDATE_DECKS.with(|v|v.set(self.0));}}
-    let prior=CANDIDATE_DECKS.with(|v|v.replace(true));let _reset=Reset(prior);run()
-}
+const ADMITTED:&[&str]=&["BQ034","CQ25","XG25"];
 
 #[derive(Clone,Copy,Debug,PartialEq)]
 enum Case {Entry,Shown,Black,Unique}
@@ -46,7 +34,7 @@ fn draft(case:Case,seat:usize)->DeckDraft {
         if names.contains(&c.name){continue;}
         names.push(c.name.clone());let count=(50-n).min(3);entries.push(DeckEntry{card_id:id,count});n+=count;
     }
-    let d=DeckDraft{id:format!("natural-{}-{seat}",case.name()),name:format!("Natural candidate {seat}"),description:"Candidate-only three-definition construction; ordinary copies and all real commands".into(),society_id:None,cards:entries,
+    let d=DeckDraft{id:format!("natural-{}-{seat}",case.name()),name:format!("Natural candidate {seat}"),description:"Public legal construction; ordinary copies and all real commands".into(),society_id:None,cards:entries,
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-25T00:00:00Z".into()};
     let d=crate::deck::validate(d).unwrap();let mut by_name=BTreeMap::<String,usize>::new();
     for e in &d.cards {assert!(e.count<=3);*by_name.entry(catalog::card(&e.card_id).name.clone()).or_default()+=e.count;}
@@ -64,7 +52,7 @@ impl Natural {
         let room=RoomEnvelope::from_game(game);
         let out=if record {std::env::var_os("NEXT20_NATURAL_OUT_DIR").map(|dir|{let p=PathBuf::from(dir);std::fs::create_dir_all(&p).unwrap();File::options().write(true).create_new(true).open(p.join(format!("{}.jsonl",case.name()))).unwrap()})}else{None};
         let mut t=Self{case,room,sequence:0,out,record,region:0,adjacent:1,targets:BTreeMap::new(),show_bq034:false,unique_choices:0};
-        if record {t.write(&json!({"kind":"initial","format":"next20-natural-candidate-room-v1","case":case.name(),"seedDecimal":seed.to_string(),"candidateConstructionOnly":CANDIDATES,"publicAdmission":false,"decks":decks,"createGameState":created,"state":serde_json::to_string(&t.room).unwrap(),"catalog":catalog::catalog(),"views":t.views()}));}t
+        if record {t.write(&json!({"kind":"initial","format":"next20-natural-public-room-v1","case":case.name(),"seedDecimal":seed.to_string(),"candidateConstructionOnly":[],"admittedCards":ADMITTED,"publicAdmission":true,"decks":decks,"createGameState":created,"state":serde_json::to_string(&t.room).unwrap(),"catalog":catalog::catalog(),"views":t.views()}));}t
     }
     fn write(&mut self,v:&Value){if let Some(out)=&mut self.out {serde_json::to_writer(&mut *out,v).unwrap();out.write_all(b"\n").unwrap();out.flush().unwrap();}}
     fn views(&self)->Vec<Value>{(0..2).map(|s|serde_json::to_value(self.room.view(s,0)).unwrap()).collect()}
@@ -146,7 +134,7 @@ impl Natural {
     fn finish(&mut self,details:Value){assert!(self.idle());assert!(self.room.game.death_replacements.is_empty());
         self.step(0,SessionAction::PauseRoom);assert!(self.room.pacing.pause.is_some());
         self.step(0,SessionAction::ResumeRoom);assert!(self.room.pacing.pause.is_none());
-        self.write(&json!({"kind":"complete","case":self.case.name(),"seedDecimal":self.room.game.seed.to_string(),"commands":self.sequence,"publicAdmission":false,"candidateConstructionOnly":CANDIDATES,"details":details,"finalState":serde_json::to_string(&self.room).unwrap(),"views":self.views()}));
+        self.write(&json!({"kind":"complete","case":self.case.name(),"seedDecimal":self.room.game.seed.to_string(),"commands":self.sequence,"publicAdmission":true,"candidateConstructionOnly":[],"admittedCards":ADMITTED,"details":details,"finalState":serde_json::to_string(&self.room).unwrap(),"views":self.views()}));
         eprintln!("NATURAL COMPLETE {} seed={} commands={} turn={}",self.case.name(),self.room.game.seed,self.sequence,self.room.game.turn);}
 }
 
@@ -162,7 +150,7 @@ fn selected_seed(case:Case)->u64{
     }panic!("recorded seed no longer supplies the verified natural opening for {:?}",case)
 }
 
-fn blue(case:Case){candidate_scope(||{
+fn blue(case:Case){
     let seed=selected_seed(case);let mut t=Natural::lobby(case,seed,true);t.boot();let mut stage=0;let mut blood=String::new();
     for _ in 0..1800 {
         assert_eq!(t.room.game.status,"playing");assert!(t.room.game.turn<=15,"bounded natural turns");
@@ -191,9 +179,9 @@ fn blue(case:Case){candidate_scope(||{
         }}
         t.pass();t.settle();
     }panic!("natural blue state machine did not finish stage {stage}");
-});}
+}
 
-fn black(){candidate_scope(||{
+fn black(){
     let seed=selected_seed(Case::Black);let mut t=Natural::lobby(Case::Black,seed,true);t.boot();let mut stage=0;let mut ghost=String::new();let mut moved=String::new();
     for _ in 0..1800 {
         assert_eq!(t.room.game.status,"playing");assert!(t.room.game.turn<=15);
@@ -224,28 +212,26 @@ fn black(){candidate_scope(||{
         }
         t.pass();t.settle();
     }panic!("natural black state machine did not finish stage {stage}");
-});}
+}
 
 #[test]
-fn next20_natural_candidate_admission_is_scoped_and_copy_limited(){
-    let d=candidate_scope(||draft(Case::Black,0));assert!(crate::deck::validate(d.clone()).is_err());
-    candidate_scope(||{assert!(crate::deck::validate(d.clone()).is_ok());
-        let registry=candidate_registry().unwrap();assert_eq!(registry.iter().filter(|c|c.supported!=catalog::card(&c.id).supported).map(|c|c.id.as_str()).collect::<Vec<_>>(),CANDIDATES);
-        for id in ["BQ009","BQ033"]{let mut bad=d.clone();bad.cards.push(DeckEntry{card_id:id.into(),count:1});assert!(crate::deck::validate(bad).is_err());}
-        let mut bad=d.clone();bad.cards.iter_mut().find(|e|e.card_id=="XG25").unwrap().count=4;assert!(crate::deck::validate(bad).is_err());
-        let mut bad=draft(Case::Entry,0);assert_eq!(bad.cards.iter().find(|e|e.card_id=="BQ034").unwrap().count,1);
-        bad.cards.iter_mut().find(|e|e.card_id=="BQ034").unwrap().count=4;assert!(crate::deck::validate(bad).is_err());
-        for id in CANDIDATES {assert!(!catalog::card(id).supported);}
-    });assert!(crate::deck::validate(d).is_err());
+fn next20_natural_public_admission_keeps_anchor_closed_and_copy_limits(){
+    for id in ADMITTED {assert!(catalog::card(id).supported);}
+    let d=draft(Case::Black,0);assert!(crate::deck::validate(d.clone()).is_ok());
+    for id in ["BQ009","BQ033"] {assert!(!catalog::card(id).supported);let mut bad=d.clone();bad.cards.push(DeckEntry{card_id:id.into(),count:1});assert!(crate::deck::validate(bad).unwrap_err().contains("不能加入"));}
+    let mut bad=d.clone();bad.cards.iter_mut().find(|e|e.card_id=="XG25").unwrap().count=4;assert!(crate::deck::validate(bad).unwrap_err().contains("同名"));
+    let source=draft(Case::Entry,0);let yayoi=catalog::card("BQ034");assert!(yayoi.unique);assert!(yayoi.keywords.is_empty());assert_eq!(yayoi.deck_copy_limit,Some(3));
+    for copies in 1..=3 {let mut legal=source.clone();legal.cards.iter_mut().find(|e|e.card_id=="BQ034").unwrap().count=copies;assert!(crate::deck::validate(legal).is_ok());}
+    let mut bad=source;bad.cards.iter_mut().find(|e|e.card_id=="BQ034").unwrap().count=4;assert!(crate::deck::validate(bad).unwrap_err().contains("同名"));
 }
 #[test]fn next20_natural_bq034_entry_and_counter_from_deck(){blue(Case::Entry);}
 #[test]fn next20_natural_bq034_shown_target_and_blood_from_deck(){blue(Case::Shown);}
 #[test]fn next20_natural_cq25_xg25_search_death_seal_and_sealed_action_from_deck(){black();}
 
 #[test]
-fn next20_natural_bq034_two_same_name_enter_choose_one_sacrifice(){candidate_scope(||{
-    let seed=(1..=4096).find(|seed|{let mut t=Natural::lobby(Case::Unique,*seed,false);t.boot();
-        t.hand(0,"BQ034")==2&&t.room.game.regions.iter().any(|r|r.card.definition=="DQJC115")}).expect("bounded two-BQ034 natural opening");
+fn next20_natural_bq034_two_same_name_enter_choose_one_sacrifice(){
+    let seed=171;let mut opening=Natural::lobby(Case::Unique,seed,false);opening.boot();
+    assert_eq!(opening.hand(0,"BQ034"),2);assert!(opening.room.game.regions.iter().any(|r|r.card.definition=="DQJC115"));
     eprintln!("NATURAL SELECTED Unique seed={seed}");
     let mut t=Natural::lobby(Case::Unique,seed,true);t.boot();let mut first=None;
     for _ in 0..1800 {
@@ -266,4 +252,4 @@ fn next20_natural_bq034_two_same_name_enter_choose_one_sacrifice(){candidate_sco
         }
         t.pass();t.settle();
     }panic!("bounded real double-unique trajectory");
-});}
+}

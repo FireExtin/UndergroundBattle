@@ -59,8 +59,8 @@ pub(crate) fn assert_current_serial_catalog() {
     assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..269].to_vec()))).unwrap())),"d865602732ed70be23cb7679f136d82902ba36d2070435683d23835b42240e6f");
     assert_eq!(cards.len(),277);assert_eq!(catalog::catalog().cards.len(),cards.len());
     assert!(catalog::catalog().cards[..213].iter().all(|c|c.supported));
-    assert!(catalog::catalog().cards[213..].iter().all(|c|c.supported==crate::import20_entropy::BATCH20.contains(&c.id.as_str())));
-    assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),233);
+    assert!(catalog::catalog().cards[213..].iter().all(|c|c.supported==(crate::import20_entropy::BATCH20.contains(&c.id.as_str())||["BQ034","CQ25","XG25"].contains(&c.id.as_str()))));
+    assert_eq!(catalog::catalog().cards.iter().filter(|c|c.supported).count(),236);
     assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..271].to_vec()))).unwrap())),"ded1ecf727d37296800157f503621fe88968bc4d6ec083483d4cef9095d4bbb4");
 }
 pub(crate) fn field(g: &mut Game, id: &str, seat: usize) -> String {
