@@ -298,6 +298,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ001SealStarHandOnSociety,
     Next20Wraith(crate::next20_black_wraiths::WraithProgram),
     Next20Blue(crate::next20_blue_vampires::BlueProgram),
     XQ19FromHand { witnesses: Option<Vec<crate::import20_entropy::TimeWitness>> },
@@ -696,6 +697,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    BQ001MysticAnchorShown,
     WM064HostLeaderRenownCriminal,
     JZ56ChosenUndeadAura,
     XG18RenownAssetPlay,
@@ -787,6 +789,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
+    if crate::bq001::related(ability) { return crate::bq001::validate_ability(card_id,ability); }
     if crate::next20_anchor::related(card_id,ability) { return crate::next20_anchor::validate_ability(card_id,ability); }
     if crate::next20_blue_vampires::related(ability) { return crate::next20_blue_vampires::validate_ability(card_id,ability); }
     if crate::next20_black_wraiths::related(ability) { return crate::next20_black_wraiths::validate_ability(card_id,ability); }
@@ -1580,6 +1583,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         if definition.abilities.iter().any(crate::renown::reward_related) {
             return Err(format!("cardId={card_id}: 声望/威名奖励只能由实际事件生成"));
         }
+        crate::bq001::validate_definition(card_id,definition)?;
         crate::next20_anchor::validate_definition(card_id,definition)?;
         crate::next20_blue_vampires::validate_definition(card_id,definition)?;
         crate::next20_black_wraiths::validate_definition(card_id,definition)?;
@@ -2263,6 +2267,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
+        m.insert(crate::bq001::ID.into(),crate::bq001::definition());
         m.insert(crate::next20_anchor::ID.into(),crate::next20_anchor::definition());
         for id in crate::next20_blue_vampires::CARDS { m.insert((*id).into(), crate::next20_blue_vampires::definition(id).unwrap()); }
         for id in crate::import20_industry::CARDS { m.insert((*id).into(),crate::import20_industry::definition(id).unwrap()); }

@@ -3,11 +3,11 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 
 pub const RULES_VERSION: &str = "hegemony-pdf-v1";
-pub const POOL_VERSION: &str = "limited-v2.103-next20-three-admitted";
+pub const POOL_VERSION: &str = "limited-v2.104-bq001-anchor-source-wip";
 #[cfg(not(feature = "society-fixtures"))]
-pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards";
+pub const ENGINE_VERSION: &str = "rust-v0.2.113-bq001-anchor-source-wip";
 #[cfg(feature = "society-fixtures")]
-pub const ENGINE_VERSION: &str = "rust-v0.2.112-shared-keyword-rewards-fixture";
+pub const ENGINE_VERSION: &str = "rust-v0.2.113-bq001-anchor-source-wip-fixture";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all="lowercase")]
@@ -248,6 +248,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
     if crate::next20_black_wraiths::CARDS.contains(&d.id.as_str()) { return true; }
+    if d.id==crate::bq001::ID { return true; }
     if d.id==crate::next20_anchor::ID { return true; }
     if crate::next20_blue_vampires::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id=="XQ19" { return true; }

@@ -1,7 +1,7 @@
 {
   "rulesVersion": "hegemony-pdf-v1",
-  "cardPoolVersion": "limited-v2.103-next20-three-admitted",
-  "engineVersion": "rust-v0.2.112-shared-keyword-rewards",
+  "cardPoolVersion": "limited-v2.104-bq001-anchor-source-wip",
+  "engineVersion": "rust-v0.2.113-bq001-anchor-source-wip",
   "sourceSha256": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
   "cards": [
     {
@@ -11121,6 +11121,46 @@
       "keywords": [],
       "unique": false,
       "supported": false
+    },
+    {
+      "id": "BQ001",
+      "name": "脑叶专家",
+      "subtitle": null,
+      "kind": "character",
+      "cost": 1,
+      "loyalty": [
+        "黄色"
+      ],
+      "color": "黄",
+      "magic": "心灵",
+      "subtypes": [
+        "人类",
+        "法师",
+        "学者"
+      ],
+      "text": "持续 在进行隐秘对抗时，你所展示的牌获得隐秘+X，X等于封印在本方秘社上的名为精神锚点之卡牌的数量。\n现身触发 从你手中选择一张星辰领域的牌，将其封印在本方秘社上，然后抓一张牌。",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "keywords": [],
+      "unique": false,
+      "supported": false,
+      "source": {
+        "imagePath": "resource/ymsj-fun.github.io/cards/BQ001 脑叶专家.jpg",
+        "imageSha256": "c2c6de0b1d71e37a913c9b2e2c358a0e28702037d6983430bc7bc10a9a1b78a1",
+        "printedCollectorCode": "01/48",
+        "normalization": "Purple +X is the existing mystic value symbol; prior research prose calling it regional influence is not used."
+      }
     }
   ],
   "decks": [

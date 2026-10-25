@@ -13,6 +13,8 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() =
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct MysticShown {
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub anchor_witness: Option<crate::bq001::AnchorShownWitness>,
     pub politician_asset: Option<Card>,
     pub seat: usize,
     pub card: Card,
@@ -268,6 +270,7 @@ impl Game {
         let added = bonuses.iter().filter(|b| b.frame.actor == shown.seat).try_fold(0u32, |a,b| a.checked_add(b.amount)).ok_or("隐秘加值溢出")?;
         printed.cost.checked_add(Self::mystic_printed_bonus(shown))
             .and_then(|n| n.checked_add(self.mystic_extra_shown_bonus(shown).ok()?))
+            .and_then(|n| n.checked_add(self.bq001_shown_bonus(shown).ok()?))
             .and_then(|n| n.checked_add(added))
             .and_then(|n| n.checked_add(self.cq25_contest_bonus(origin,key,actor,shown.seat,&shown.card)))
             .and_then(|n| n.checked_add(if shown.seat == actor { actor_bonus } else { 0 }))
@@ -294,7 +297,7 @@ impl Game {
             let manor = if self.xq15_owner_aura(&c) { self.attachments.iter().find(|a| a.card.definition == "XQ15" && !a.card.face_down
                 && a.card.controller == c.owner && self.society_host_seat(&a.host_id) == Some(c.owner) && self.attachment_host_valid(a)).cloned() } else { None };
             let politician_asset = if c.definition=="XG20" { self.players[*seat].assets.iter().find(|a| catalog::card(&a.definition).subtypes.iter().any(|s|s=="政治家")).cloned() } else {None};
-            let mut item = MysticShown { politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
+            let mut item = MysticShown { anchor_witness: self.bq001_shown_witness(*seat), politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
                 destroyed_regions: self.regions.iter().filter(|r| !r.vacant && r.destroyed).map(|r| r.card.id.clone()).collect(),
                 destruction_markers: self.players[*seat].destruction_markers };
             item.value = self.mystic_value(&item, state.frame.actor, state.actor_bonus, &state.bonuses, &state.frame.source, &state.frame.ability_key)?;

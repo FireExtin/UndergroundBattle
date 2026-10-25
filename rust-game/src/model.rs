@@ -726,6 +726,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ001StarHand,
     Next20Wraith(crate::next20_black_wraiths::WraithChoice),
     Next20Blue(crate::next20_blue_vampires::BlueChoice),
     CQ15Search { search: crate::import20_swords::SwordSearch },
@@ -1076,6 +1077,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_bq001_state()?;
         self.validate_next20_black_state()?;
         self.validate_death_continuations()?;
         self.validate_anchor_state()?;

@@ -1,3 +1,4 @@
+mod bq001;
 #[cfg(test)]
 mod bq001_tests;
 mod next20_black_wraiths;

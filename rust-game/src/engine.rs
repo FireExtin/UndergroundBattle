@@ -778,6 +778,7 @@ impl Game {
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
+                crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
@@ -880,6 +881,7 @@ impl Game {
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
+                crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::jc052::validate_character_action(&c.definition, &a)?;
@@ -2275,6 +2277,7 @@ impl Game {
         crate::pack_a_contest::validate_choice_action(&p, &a)?;
         crate::next20_blue_gray::validate_choice_action(&p, &a)?;
         crate::next20_anchor::validate_choice_action(&p,&a)?;
+        crate::bq001::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
