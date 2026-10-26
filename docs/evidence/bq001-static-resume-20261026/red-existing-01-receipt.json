@@ -1,0 +1,31 @@
+{
+  "state": "complete",
+  "atUtc": "2026-10-26T14:23:46.467786+00:00",
+  "HEAD": "42bcb148d1aeef92c345f0a1ce8b784d4dc90164",
+  "worktreeDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": [
+    "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/node-v24.22.1-linux-x64/bin/node",
+    "--max-old-space-size=64",
+    "--test",
+    "--test-concurrency=1",
+    "tools/cards/next20-three-admission-source.test.mjs",
+    "tools/cards/import20-rulings-source.test.mjs"
+  ],
+  "scope": "STATIC SOURCE CHECKS ONLY; no Cargo, WASM, Worker, UI, browser, bot, server or GPU",
+  "singleCpu": 30,
+  "nice": 19,
+  "v8HeapLimitMiB": 64,
+  "timeoutSeconds": 60,
+  "sourceSha256": {
+    "tools/cards/next20-three-admission-source.test.mjs": "192b7666bd1a6ba4d3998f32d11f56455996833519497116b8f1be4d9f5f97e1",
+    "tools/cards/import20-rulings-source.test.mjs": "137d73c4d623c8f5620e85f3808c30cb1ac591ecbb89b0813a3d7b1357463874",
+    "rust-game/data/cards.json": "e03f8f27ad9e80ed8f3e9fea6fb4bfc02792b0efd379cdf2d16bb601fc8256c2",
+    "rust-game/src/catalog.rs": "0eb5a1f26802625cced184079aeaf41269c88518a57fb18dffd4cf93dcce3f10",
+    "tools/cards/import20-spec-history.mjs": "e6749e75e9726f2ed7b9debe70fb7d16fa664b388e49002b4dcbbd440a70e102",
+    "docs/factions/card-specifications.json": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2"
+  },
+  "exitCode": 1,
+  "seconds": 0.166,
+  "maxChildRssKiB": 67944,
+  "logSha256": "232345e2599e40eae7cbd4945dcaf1d3e297a377b429a35fe49e4707ebb87b2a"
+}

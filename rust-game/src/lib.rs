@@ -463,3 +463,6 @@ mod next20_death_core_tests;
 
 #[cfg(test)]
 mod bq001_natural_room_tests;
+
+#[cfg(test)]
+mod bq001_shared_grant_tests;
