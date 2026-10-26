@@ -1,0 +1,31 @@
+{
+  "atUtc": "2026-10-26T14:53:26.037354+00:00",
+  "state": "APPLIED_AFTER_NORMAL_APPROVAL",
+  "attemptAfterNewEvidence": 1,
+  "baseHEAD": "29d742bb76ec5b6a6d178ef152a9e18145762278",
+  "proposalSha256": "7ad4cceb223dd3a28d538cd697e397771539854eb80aea0e0c4e775ce32e53e9",
+  "proposalBytes": 7596,
+  "targets": [
+    "tools/cards/next20-three-admission-source.test.mjs",
+    "tools/cards/import20-rulings-source.test.mjs"
+  ],
+  "beforeSha256": {
+    "tools/cards/next20-three-admission-source.test.mjs": "192b7666bd1a6ba4d3998f32d11f56455996833519497116b8f1be4d9f5f97e1",
+    "tools/cards/import20-rulings-source.test.mjs": "137d73c4d623c8f5620e85f3808c30cb1ac591ecbb89b0813a3d7b1357463874"
+  },
+  "afterSha256": {
+    "tools/cards/next20-three-admission-source.test.mjs": "d6feae0b970ad5ada4d0946f654ed83be63ec564e71f7ef2e34fc49a5ff88e8d",
+    "tools/cards/import20-rulings-source.test.mjs": "098260573d4d7d366cd223cae0f2bf0478fbbf0861a83ab31fc2ce633bfadf06"
+  },
+  "preservedInputsSha256": {
+    "rust-game/data/cards.json": "e03f8f27ad9e80ed8f3e9fea6fb4bfc02792b0efd379cdf2d16bb601fc8256c2",
+    "rust-game/src/catalog.rs": "0eb5a1f26802625cced184079aeaf41269c88518a57fb18dffd4cf93dcce3f10",
+    "docs/factions/card-specifications.json": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+    "docs/factions/import20-rulings-2026-10-24.json": "0a0bead250054d4f59c2a0834a22e08b171b1068522525368b14116e8deb9d7c",
+    "tools/cards/import20-spec-history.mjs": "e6749e75e9726f2ed7b9debe70fb7d16fa664b388e49002b4dcbbd440a70e102"
+  },
+  "appliedWorktreeDiffSha256": "c8d455856b98c4b041659988df3e05b434f505ab2fb4c86b5f96640438e72ef0",
+  "historicalRunRecordsChanged": false,
+  "runtimeOrAdmissionChanged": false,
+  "pushAttempted": false
+}

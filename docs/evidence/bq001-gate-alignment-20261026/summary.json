@@ -1,0 +1,39 @@
+{
+  "atUtc": "2026-10-26T14:55:41.835022+00:00",
+  "state": "WIP_ALIGNED_STATIC_GATES",
+  "baseSHA": "29d742bb76ec5b6a6d178ef152a9e18145762278",
+  "normalApprovalRetryAfterNewEvidence": 1,
+  "approvalOutcome": "approved; exact proposal applied",
+  "proposalSha256": "7ad4cceb223dd3a28d538cd697e397771539854eb80aea0e0c4e775ce32e53e9",
+  "proposalHistoricalFilename": "legacy-gate-alignment-UNAPPLIED.diff; now applied via approved retry, original artifact left unchanged",
+  "userScope": "Latest instruction allows evolving current rules/kernel without historical compatibility; historical runs, art, digests and rulings remain preserved",
+  "staticChecks": {
+    "currentSourceGates": "5/0",
+    "bq001SourceContract": "15/0 including12 mutation subtests",
+    "combined": "20/0; static source assertions only",
+    "seconds": 0.115,
+    "maxChildRssKiB": 96396,
+    "singleCpu": 30,
+    "nice": 19,
+    "v8HeapLimitMiB": 64
+  },
+  "oldFailuresAndRefusalPreserved": true,
+  "preservedInputsSha256": {
+    "rust-game/data/cards.json": "e03f8f27ad9e80ed8f3e9fea6fb4bfc02792b0efd379cdf2d16bb601fc8256c2",
+    "rust-game/src/catalog.rs": "0eb5a1f26802625cced184079aeaf41269c88518a57fb18dffd4cf93dcce3f10",
+    "docs/factions/card-specifications.json": "bd9e0bcd70a7fce7b27439fe02e48baa6a86b59b2e57109d35bd04d832da91c2",
+    "docs/factions/import20-rulings-2026-10-24.json": "0a0bead250054d4f59c2a0834a22e08b171b1068522525368b14116e8deb9d7c",
+    "tools/cards/import20-spec-history.mjs": "e6749e75e9726f2ed7b9debe70fb7d16fa664b388e49002b4dcbbd440a70e102"
+  },
+  "original32Unchanged": true,
+  "newNativeSharedGrantCase": "NOT_RUN",
+  "fullNativeWasmWorkerUiBrowser": "NOT_RUN",
+  "runtimeCardRegistryAdmissionChanged": false,
+  "BQ001_BQ009_BQ033": "supported:false",
+  "pushAttempted": false,
+  "ciPermission": "pending user answer; 2026-10-25 one-time permission not reused",
+  "workflowRefusalRetried": false,
+  "servicesStarted": false,
+  "gpuUsed": false,
+  "modelFilesOrProcessesChanged": false
+}
