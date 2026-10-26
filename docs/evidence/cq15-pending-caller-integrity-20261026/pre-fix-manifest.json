@@ -1,0 +1,10 @@
+{
+  "base_sha": "fffab715d01dcae772e3acde0d6fc864fad571f3",
+  "recorded_utc": "2026-10-26T15:28:01.314950+00:00",
+  "finding": "Static-only: completed DeathCaller with same frame_id may coexist with pending CQ15 search; not a proven ordinary-click replay",
+  "tests": "NOT_RUN",
+  "source_sha256": {
+    "rust-game/src/death_continuation.rs": "86c9b2653c9304f1565d8a4728a7b2b59694a4999211c3ceef19878047887d23",
+    "rust-game/src/bq001_shared_grant_tests.rs": "5c5d0ad02bc64b49ad966c335c495896e690203753ae85e00ec90422e5983f88"
+  }
+}

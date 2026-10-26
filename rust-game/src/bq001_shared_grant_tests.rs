@@ -294,3 +294,84 @@ fn bq001_shared_grant_sword_death_wait_rejects_search_rebinding_and_duplicate_ca
         assert!(crate::room::RoomEnvelope::from_persisted(&room.to_string()).is_err());
     }
 }
+
+#[test]
+fn bq001_shared_grant_sword_search_rejects_completed_caller_replay_snapshot() {
+    let (mut g, host, _, _, _) = shared_death_layout();
+    shared_death_pending(&g);
+    shared_room_restore(&mut g);
+    let mut stale = g
+        .effects
+        .iter()
+        .find_map(|e| match e {
+            Effect::DeathCaller { caller } => Some((**caller).clone()),
+            _ => None,
+        })
+        .unwrap();
+    assert_eq!(stale.waits.len(), 1);
+    choose(&mut g, vec![]);
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind, swords::SEARCH);
+    assert!(g.death_replacements.is_empty() && g.effects.is_empty());
+    let grave = g.players[2]
+        .graveyard
+        .iter()
+        .find(|c| c.definition == "XG25")
+        .unwrap()
+        .id
+        .clone();
+    stale.waits[0].destination =
+        Some(crate::death_continuation::DeathDestination::Grave { instance: grave });
+    let ChoiceResolution::Frame { frame, .. } = &g.pending.as_ref().unwrap().resolution else {
+        panic!("expected original CQ15 search frame")
+    };
+    assert_eq!(frame.frame_id, stale.frame.frame_id);
+    // Its frozen frame and completed death receipt are individually valid.
+    // The corruption is two live continuations for the same frame instance.
+    g.validate_death_caller(&stale).unwrap();
+    shared_room_restore(&mut g);
+
+    // Explicit unit capture of the completed-only boundary, not a public
+    // command trajectory: without the pending copy it must still restore once.
+    let mut completed = g.clone();
+    completed.pending = None;
+    completed.effects.push_back(Effect::DeathCaller {
+        caller: Box::new(stale.clone()),
+    });
+    shared_room_restore(&mut completed);
+    completed.drive().unwrap();
+    assert_eq!(
+        completed.pending.as_ref().unwrap().choice.kind,
+        swords::SEARCH
+    );
+    shared_room_restore(&mut completed);
+    choose(&mut completed, vec![]);
+    assert!(
+        completed.pending.is_none() && completed.effects.is_empty() && completed.stack.is_empty()
+    );
+    assert!(completed.board(&host).unwrap().1.exhausted);
+    assert_eq!(
+        completed.players[0]
+            .hand
+            .iter()
+            .filter(|c| c.definition == "CQ15")
+            .count(),
+        1
+    );
+
+    // Forge the saved caller into a legal, already-created search snapshot.
+    // Both persisted-state entry points must reject it before it can execute.
+    let mut room = serde_json::to_value(crate::jc029_tests::envelope(&g)).unwrap();
+    g.effects.push_back(Effect::DeathCaller {
+        caller: Box::new(stale),
+    });
+    let corrupt = serde_json::to_value(&g).unwrap();
+    let error = Game::from_persisted(&corrupt.to_string())
+        .err()
+        .expect("a pending frame and completed caller cannot share a frame instance");
+    assert!(error.contains("死亡原调用方不能重复续帧"), "{error}");
+    room["game"] = corrupt;
+    let error = crate::room::RoomEnvelope::from_persisted(&room.to_string())
+        .err()
+        .expect("Room must reject the same damaged game snapshot");
+    assert!(error.contains("死亡原调用方不能重复续帧"), "{error}");
+}

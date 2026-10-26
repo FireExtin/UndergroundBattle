@@ -640,7 +640,16 @@ impl Game {
             Effect::DeathFinish{death_instance} if self.effects.iter().skip(position+1).any(|e| matches!(e,Effect::Declare{declaration:d} if d.ability.key == crate::next20_black_wraiths::SEAL && d.source.card.id == *death_instance)) => return Err("死亡去向不能越过尚未声明的原触发".into()),
             Effect::DeathCaller{caller}=>{self.validate_death_caller(caller)?;
                 for w in &caller.waits { if w.destination.is_none() && self.effects.iter().position(|e| matches!(e,Effect::DeathFinish{death_instance} if *death_instance == w.source.card.id)).is_none_or(|i| i >= position) { return Err("原调用方不能越过未决死亡的原收束边界".into()); } }
-                if !callers.insert(&caller.frame.frame_id)||self.stack.iter().any(|s|s.id==caller.frame.frame_id)||self.effects.iter().any(|e|matches!(e,Effect::Frame{frame} if frame.frame_id==caller.frame.frame_id)){return Err("死亡原调用方不能重复续帧或同时在堆栈执行".into());}},_=>(),
+                if !callers.insert(&caller.frame.frame_id)
+                    || self.stack.iter().any(|s| s.id == caller.frame.frame_id)
+                    || self.effects.iter().any(|e| matches!(e, Effect::Frame { frame } if frame.frame_id == caller.frame.frame_id))
+                    || self.pending.as_ref().is_some_and(|p| matches!(
+                        &p.resolution,
+                        ChoiceResolution::Frame { frame, .. } if frame.frame_id == caller.frame.frame_id
+                    ))
+                {
+                    return Err("死亡原调用方不能重复续帧或同时在堆栈、待选中执行".into());
+                }},_=>(),
         }
         }
         Ok(())

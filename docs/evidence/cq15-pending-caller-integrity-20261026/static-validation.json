@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-10-26T15:28:37.471490+00:00",
+  "base_sha": "fffab715d01dcae772e3acde0d6fc864fad571f3",
+  "status": "WIP_UNCOMPILED",
+  "checks": [
+    {
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/bq001_shared_grant_tests.rs"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parsing or whitespace check only; no typecheck/compile/runtime test"
+    },
+    {
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--emit=stdout",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/death_continuation.rs"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parsing or whitespace check only; no typecheck/compile/runtime test"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parsing or whitespace check only; no typecheck/compile/runtime test"
+    }
+  ],
+  "files": {
+    "rust-game/src/death_continuation.rs": "c8d8c195313a6c3133800ceb73af32a5c29b3484f2a5e7b6a16b5292b2774caa",
+    "rust-game/src/bq001_shared_grant_tests.rs": "c2cb4e1c2560d48681954ab00ed1f0b82198368c3436178edbe0725116d00810"
+  },
+  "test_added": "bq001_shared_grant_sword_search_rejects_completed_caller_replay_snapshot",
+  "test_assertions": [
+    "valid waiting Game/Room restore",
+    "valid completed-only caller Game/Room restore and exactly-once search/payment",
+    "completed caller plus same-frame pending search rejected by Game and Room loaders"
+  ],
+  "native": "NOT_RUN",
+  "wasm_worker_ui_browser": "NOT_RUN",
+  "runtime_reproduction": "NOT_RUN; damaged-snapshot static proof only, not a normal-click exploit claim",
+  "push": "NOT_ATTEMPTED; prior one-time CI exception consumed at fffab715",
+  "rules_admission_abi_catalog": "UNCHANGED",
+  "original_inputs": {
+    "count": 32,
+    "hash_mismatches": []
+  }
+}
