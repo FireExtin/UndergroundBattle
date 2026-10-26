@@ -1,0 +1,87 @@
+{
+  "recorded_utc": "2026-10-26T15:13:57.577367+00:00",
+  "base_sha": "0c587fa1d80455a5775edb1ad843e4096f217133",
+  "status": "WIP_UNCOMPILED",
+  "scope": "BQ001/CQ15 shared-host static adversarial review; finite XG25 pre-grave continuation only",
+  "files": {
+    "rust-game/src/import20_swords.rs": "bc169eb303efeaf87a066a8f5b1228c4c8a1190eec432b9e42abda129aaa24a2",
+    "rust-game/src/death_continuation.rs": "86c9b2653c9304f1565d8a4728a7b2b59694a4999211c3ceef19878047887d23",
+    "rust-game/src/bq001_shared_grant_tests.rs": "5c5d0ad02bc64b49ad966c335c495896e690203753ae85e00ec90422e5983f88"
+  },
+  "checks": [
+    {
+      "file": "rust-game/src/import20_swords.rs",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--emit=stdout",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/import20_swords.rs"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parser only; no typecheck, compile, or test execution"
+    },
+    {
+      "file": "rust-game/src/death_continuation.rs",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--emit=stdout",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/death_continuation.rs"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parser only; no typecheck, compile, or test execution"
+    },
+    {
+      "file": "rust-game/src/bq001_shared_grant_tests.rs",
+      "command": [
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/.tools/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "--emit=stdout",
+        "--edition",
+        "2021",
+        "/home/ddd/Documents/Codex/2026-10-21/task-3/UndergroundBattle-game-serial/rust-game/src/bq001_shared_grant_tests.rs"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "meaning": "Rust syntax/format parser only; no typecheck, compile, or test execution"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "counterexample_execution": "NOT_RUN; tests authored before production fix; no red/green runtime result claimed",
+  "tests_added": [
+    "bq001_shared_grant_sword_waits_for_xg25_grave_before_three_zone_search",
+    "bq001_shared_grant_sword_sealed_xg25_is_excluded_then_other_copy_can_be_sealed",
+    "bq001_shared_grant_sword_death_wait_rejects_search_rebinding_and_duplicate_callers"
+  ],
+  "fixture_boundary": "Explicit unit Game layout (field/held/fund), secrecy=1 preset for XG25, synthetic valid RoomEnvelope pacing. Actions/restore asserted by tests, not executed this slice; not public/natural game reachability proof.",
+  "native": "NOT_RUN",
+  "wasm": "NOT_RUN",
+  "worker_ui_browser": "NOT_RUN",
+  "source_gates": "Prior 20/0 belongs only to 0c587fa1; not rerun or relabeled for this change.",
+  "original_inputs": {
+    "count": 32,
+    "mismatches": [],
+    "modified": false
+  },
+  "admission_catalog_and_specification": "UNCHANGED; BQ001/BQ009/BQ033 supported:false",
+  "remote_push": "AUTHORIZED_ONCE_NOT_ATTEMPTED_AT_RECORD_TIME; current user explicitly allowed this WIP push even if CI triggers",
+  "new_services_or_workers": false,
+  "remote_before_push": {
+    "repository": "FireExtin/UndergroundBattle",
+    "ref": "refs/heads/review/game-serial-abi99-wip-20261024",
+    "sha": "42bcb148d1aeef92c345f0a1ce8b784d4dc90164",
+    "read_method": "GitHub connector GET git/ref (not Actions)"
+  }
+}

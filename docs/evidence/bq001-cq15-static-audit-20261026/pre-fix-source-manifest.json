@@ -1,0 +1,10 @@
+{
+  "HEAD": "0c587fa1d80455a5775edb1ad843e4096f217133",
+  "sourceSha256": {
+    "rust-game/src/import20_swords.rs": "cfd273490a0330794ebb5e71fbf96b2c00a22ead32c987f2d6dbad4ac2b2213f",
+    "rust-game/src/death_continuation.rs": "f1053b59a07aedf320119f60e4cc3c2427555fb74ea7573024f3e10818f6f4c2",
+    "rust-game/src/bq001_shared_grant_tests.rs": "65421baf0b0fd404d5a70e55b6195c6f3274ad9b63f9480aa6803d2be539b761"
+  },
+  "nativeCounterexampleExecution": "NOT_RUN",
+  "finding": "CQ15 immediate search bypasses generic post-op death-caller deferral; XG25 destination not yet committed"
+}

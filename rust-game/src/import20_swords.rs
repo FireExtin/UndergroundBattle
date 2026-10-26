@@ -335,19 +335,48 @@ impl Game {
             .collect()
     }
     pub(crate) fn cq15_destroy_search(&mut self, f: ResolutionFrame) -> RuleResult<()> {
-        self.cq15_validated_frame(&f)?;
-        if f.cursor != 1 || !matches!(f.guard, GuardState::Accepted) {
+        if !self.cq15_validated_frame(&f)?
+            || f.cursor != 1
+            || !matches!(f.guard, GuardState::Accepted)
+        {
             return Err("双剑须通过正常响应与目标守卫".into());
         }
         let Some((_, c)) = self.in_play(&f.targets[0].id) else {
             return Ok(());
         };
-        let mut search = SwordSearch {
+        let search = SwordSearch {
             controller: c.controller,
             name: catalog::card(&c.definition).name.clone(),
             offered: vec![],
         };
+        let before_deaths = self.death_instances();
         self.remove_dead(&f.targets[0].id, RemovalCause::Destroy);
+        // The destroyed card can still be deciding between its seal and grave.
+        // Freeze identity now, but build the three-zone offer after that decision.
+        if self.defer_death_caller(
+            f.clone(),
+            crate::death_continuation::DeathCallerKind::CQ15Search {
+                search: search.clone(),
+            },
+            &before_deaths,
+        ) {
+            return Ok(());
+        }
+        self.cq15_search_after_death(f, search)
+    }
+    pub(crate) fn cq15_search_after_death(
+        &mut self,
+        f: ResolutionFrame,
+        mut search: SwordSearch,
+    ) -> RuleResult<()> {
+        if !self.cq15_validated_frame(&f)?
+            || f.cursor != 1
+            || !matches!(f.guard, GuardState::Accepted)
+            || search.controller >= self.players.len()
+            || !search.offered.is_empty()
+        {
+            return Err("双剑死亡后检索须保留原已付费用及未生成的选项".into());
+        }
         if self.players[f.actor].eliminated || self.players[search.controller].eliminated {
             return Ok(());
         }

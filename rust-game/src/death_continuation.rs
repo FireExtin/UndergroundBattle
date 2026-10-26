@@ -31,6 +31,9 @@ pub struct DeathWait {
 #[serde(deny_unknown_fields)]
 pub enum DeathCallerKind {
     Frame,
+    CQ15Search {
+        search: crate::import20_swords::SwordSearch,
+    },
     JZ24 {
         remaining_players: Vec<usize>,
     },
@@ -445,6 +448,19 @@ impl Game {
                     return Err("死亡续帧须保留完整原程序及尚未执行的操作".into());
                 }
             }
+            DeathCallerKind::CQ15Search { search } => {
+                if !self.cq15_validated_frame(f)? || f.cursor != 1 {
+                    return Err("双剑死亡后检索须引用完整原授予程序".into());
+                }
+                let killed = c.waits.iter().find(|w| w.source.card.id == f.targets[0].id)
+                    .ok_or("双剑死亡后检索缺少原消灭目标的去向收据")?;
+                if search.controller != killed.source.card.controller
+                    || search.name != catalog::card(&killed.source.card.definition).name
+                    || !search.offered.is_empty()
+                {
+                    return Err("双剑死亡后不得更换原目标操控者、同名条件或预置检索选项".into());
+                }
+            }
             DeathCallerKind::JZ24 { remaining_players } => {
                 if f.source.card.definition != "JZ24"
                     || f.ability_key != "local-enemy-sacrifice"
@@ -513,6 +529,7 @@ impl Game {
         }
         match c.kind {
             DeathCallerKind::Frame => self.resolve_frame(*c.frame),
+            DeathCallerKind::CQ15Search { search } => self.cq15_search_after_death(*c.frame, search),
             DeathCallerKind::JZ24 { remaining_players } => {
                 self.jz24_next(*c.frame, remaining_players)
             }
