@@ -267,12 +267,13 @@ export function DeckLibrary({ catalog, disabled = false, onSelectDraft, selected
         </div>
         <label className="hg-field">牌组说明<textarea value={draft.description} onChange={event => edit({ ...draft, description: event.target.value })} maxLength={500} rows={2} disabled={disabled} /></label>
         <section className="hg-library-society" aria-label="可选秘社">
-          <label className="hg-field">秘社（可选）<select value={draft.societyId || ''} disabled={disabled || !societies.length} onChange={event => edit({ ...draft, societyId: event.target.value || null })}>
+          <label className="hg-field">秘社（可选）<select value={draft.societyId || ''} disabled={disabled || !societies.length} onChange={event => edit({ ...draft, societyId: event.target.value || null, coreCardId:undefined })}>
             <option value="">不选择秘社</option>
             {draft.societyId && !society && <option value={draft.societyId}>已保存选择 · {draft.societyId}（当前未开放）</option>}
             {societies.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
           </select></label>
-          {draft.societyId !== null && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit({ ...draft, societyId: null })}>清除秘社选择</button>}
+          {draft.societyId==='MSBQ02'&&<label className="hg-field">独立核心（50+1）<select aria-label="独立核心（50+1）" value={draft.coreCardId||''} disabled={disabled} onChange={event=>edit({...draft,coreCardId:event.target.value||undefined})}><option value="">请选择核心</option>{catalog.cards.filter(c=>c.id==='BQ046'&&c.supported!==false&&c.subtitle==='修格斯').map(c=><option key={c.id} value={c.id}>{c.name}</option>)}{draft.coreCardId&&!catalog.cards.some(c=>c.id===draft.coreCardId&&c.supported!==false)&&<option value={draft.coreCardId}>已保存核心 · {draft.coreCardId}（未开放）</option>}</select></label>}
+          {draft.societyId !== null && <button type="button" className="hg-button hg-button-quiet" disabled={disabled} onClick={() => edit({ ...draft, societyId: null, coreCardId:undefined })}>清除秘社选择</button>}
           <p>{!societies.length && '当前目录尚未开放秘社。'}{draft.societyId === null ? '不选择秘社时，起手 6 张。' : society ? `选定秘社起手 ${Number.isSafeInteger(society.startingHand) && society.startingHand >= 0 ? society.startingHand : '待确认'} 张。` : '已保存的秘社当前不可用于开局。'}</p>
           {society && <>
             {society.subtitle && <strong>{society.subtitle}</strong>}

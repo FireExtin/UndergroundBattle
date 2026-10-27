@@ -34,7 +34,7 @@ fn draft(case:Case,seat:usize)->DeckDraft {
         if names.contains(&c.name){continue;}
         names.push(c.name.clone());let count=(50-n).min(3);entries.push(DeckEntry{card_id:id,count});n+=count;
     }
-    let d=DeckDraft{id:format!("natural-{}-{seat}",case.name()),name:format!("Natural candidate {seat}"),description:"Public legal construction; ordinary copies and all real commands".into(),society_id:None,cards:entries,
+    let d=DeckDraft{id:format!("natural-{}-{seat}",case.name()),name:format!("Natural candidate {seat}"),description:"Public legal construction; ordinary copies and all real commands".into(),society_id:None, core_card_id:None,cards:entries,
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-25T00:00:00Z".into()};
     let d=crate::deck::validate(d).unwrap();let mut by_name=BTreeMap::<String,usize>::new();
     for e in &d.cards {assert!(e.count<=3);*by_name.entry(catalog::card(&e.card_id).name.clone()).or_default()+=e.count;}

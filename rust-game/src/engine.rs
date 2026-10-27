@@ -643,6 +643,9 @@ impl Game {
         if seat >= self.players.len() {
             return Err("无此座位".into());
         }
+        self.validate_msbq02_state()?;
+        self.validate_bq_commands()?;
+        self.validate_core_zones()?;
         self.validate_next20_black_state()?;
         self.validate_death_continuations()?;
         self.validate_anchor_state()?;
@@ -670,6 +673,9 @@ impl Game {
             Ok(())
         })?;
         next.drive()?;
+        next.validate_msbq02_state()?;
+        next.validate_bq_commands()?;
+        next.validate_core_zones()?;
         next.prune_inspection_receipts();
         next.prune_attachment_declines();
         next.validate_next20_black_state()?;
@@ -766,7 +772,8 @@ impl Game {
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
-                let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
+                if a.kind=="deploy" {self.msbq02_allow_play(seat,&c)?;if self.msbq02_chaos(&c){return Err("本候选尚未开放三失控时的核心派遣：响应降失控后的进场选区待裁定；这不是原规则禁止".into());}}
+                let chaos_play = a.kind == "deploy" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c));
                 let r = if chaos_play {
                     if a.region.is_some() { return Err("混乱进场不能指定地区".into()); }
                     if !(0..self.regions.len()).any(|r| self.region_live(r)) { return Err("没有可进场的地区".into()); }
@@ -840,7 +847,7 @@ impl Game {
                         return Err("忠诚不足".into());
                     }
                     self.xg20_check_play(seat,&c)?;
-                    let mut paid = self.pay_printed(seat, &c, true)?;
+                    let mut paid = self.pay_printed_choice(seat, &c, true,a.option.as_deref()==Some("honor-rest"))?;
                     if c.definition == "BQ033" { paid.push(self.pay_bq033_extra(seat, &a)?); }
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
                     if c.definition=="CQ24" && a.option.as_deref()==Some("pay-extra-3") { paid.push(self.cq24_pay_extra(seat)?); }
@@ -874,6 +881,7 @@ impl Game {
                     self.wm041_observe_last_play();
                     self.omega_observe_last_play();
                     let paid_play = self.stack.last().unwrap().frame.as_ref().unwrap().clone();
+                    self.msbq02_observe_play(&paid_play);
                     self.pete_observe_attachment(&paid_play);
                     self.observe_batch4_disaster(&paid_play);
                     self.batch3_register_entry_order(&paid_play.frame_id, play_observers);
@@ -883,6 +891,7 @@ impl Game {
                 let id = a.card_id.as_deref().ok_or("请选择暗藏者")?;
                 let (r, c) = self.board(id).ok_or("实体引用已失效")?;
                 if c.definition=="XQ19"{return Err("熵力化身不能付费现身".into())}
+                self.msbq02_allow_play(seat,c)?;
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
@@ -946,6 +955,7 @@ impl Game {
                     steps: vec![],
                     chosen_region: Some(r),
                 });
+                let paid=self.stack.last().unwrap().frame.as_ref().unwrap().clone();self.msbq02_observe_play(&paid);
             }
             "play" => {
                 let id = a.card_id.as_deref().ok_or("请选择事务或附属")?;
@@ -985,6 +995,8 @@ impl Game {
                 if c.definition == "XQ27" && (a.region.is_some() || a.target_id.is_some()) {
                     return Err("XQ27消灭所有暗藏者，不能预声明地区或目标".into());
                 }
+                self.msbq02_allow_play(seat,&c)?;
+                self.bq_command_action(seat,&c,&a)?;
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 if !self.loyalty(seat, &c.definition) {
@@ -1071,6 +1083,13 @@ impl Game {
         Ok(self.players[seat].hand.remove(p))
     }
     pub(crate) fn start(&mut self) -> RuleResult<()> {
+        let decks=self.players.iter().map(|p|match p.deck_snapshot.clone(){Some(d)=>crate::deck::validate(d),None=>crate::deck::preset(&p.deck_id)}).collect::<RuleResult<Vec<_>>>()?;
+        self.start_validated_decks(decks)
+    }
+    // Internal initialization shared with a closed-registry construction test.
+    // Every production caller validates against the public admission registry above.
+    pub(crate) fn start_validated_decks(&mut self,decks:Vec<crate::deck::DeckDraft>)->RuleResult<()> {
+        if decks.len()!=self.players.len(){return Err("开局牌组与座位数量不符".into());}
         self.core_zones.clear();
         self.status = "playing".into();
         self.modifiers.clear();
@@ -1105,16 +1124,14 @@ impl Game {
             self.players[seat].destruction_markers = 0;
             self.players[seat].society_zone = Default::default();
             self.players[seat].eliminated = false;
-            let snapshot = match self.players[seat].deck_snapshot.clone() {
-                Some(snapshot) => crate::deck::validate(snapshot)?,
-                None => crate::deck::preset(&self.players[seat].deck_id)?,
-            };
+            let snapshot = decks[seat].clone();
             let entries = snapshot.cards.clone();
             if let Some(id) = &snapshot.society_id {
                 let mut entity = self.make_card(id, seat);
                 entity.face_down = true;
                 self.players[seat].society_zone.card = Some(entity);
             }
+            if let Some(id)=&snapshot.core_card_id {let core=self.make_card(id,seat);self.core_zones.push(crate::core_zone::CoreZone{owner:seat,definition:id.clone(),card:Some(core),rest:0});}
             self.players[seat].deck_snapshot = Some(snapshot);
             let mut pile = vec![];
             for entry in entries {
@@ -1308,6 +1325,7 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_bq_command_play(&item)?;
         self.validate_bq086_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
@@ -1341,7 +1359,7 @@ impl Game {
         self.validate_wm062_frame(&frame)?;
         self.validate_black_next20_frame(&frame)?;
         if let Some(c) = item.card.take() {
-            let chaos = card(&c.definition).kind == "character" && rules::definition(&c.definition).traits.chaos;
+            let chaos = card(&c.definition).kind == "character" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c));
             let destination = if chaos { self.chaos_region() } else { item.deploy_region };
             if chaos && destination.is_none() { self.effects.push_front(Effect::Bury { card: c }); return Ok(()); }
             if let Some(region) = destination {
@@ -1977,6 +1995,7 @@ impl Game {
                 scored.controller = seat;
                 scored = self.fresh(scored);
                 self.players[seat].score_cards.push(scored);
+                self.msbq02_observe_score(seat);
                 let destroyed = self.regions[region].destroyed;
                 if destroyed { self.players[seat].destruction_markers += 1; }
                 self.note(format!(
@@ -3044,13 +3063,13 @@ impl Game {
                     ));
                 }
                 if d.kind == "character" {
-                    if rules::definition(&d.id).traits.chaos {
+                    if (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("派遣 {}（混乱：随机地区）", d.name)));
                     }
                     for r in 0..self.regions.len() {
                         if !self.region_live(r) { continue; }
                         for kind in ["deploy", "conceal"] {
-                            if kind == "deploy" && rules::definition(&d.id).traits.chaos { continue; }
+                            if kind == "deploy" && (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)) { continue; }
                             candidates.push((
                                 Action {
                                     card_id: Some(c.id.clone()),
@@ -3088,7 +3107,7 @@ impl Game {
                 }}
                 if self.omega_can_play_assets(seat) { for c in &self.players[seat].assets {
                     if self.omega_asset_play(seat, c).is_none() { continue; }
-                    if rules::definition(&c.definition).traits.chaos {
+                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("资产正面打出 {}（混乱）", card(&c.definition).name)));
                     } else { for r in 0..self.regions.len() { if self.region_live(r) {
                         candidates.push((Action { card_id: Some(c.id.clone()), region: Some(r), ..Action::new("deploy") }, format!("资产正面打出 {} → 地区{}", card(&c.definition).name,r+1)));
@@ -3102,7 +3121,7 @@ impl Game {
                     {
                         continue;
                     }
-                    if rules::definition(&c.definition).traits.chaos {
+                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("墓地正面打出 {}（混乱：随机地区）", card(&c.definition).name)));
                         continue;
                     }
@@ -3168,9 +3187,10 @@ impl Game {
                 candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
             }
         }
-        for z in self.core_zones.iter().filter(|z|z.owner==seat) {if let Some(c)=&z.card {for r in 0..self.regions.len() {
-            candidates.push((Action{card_id:Some(c.id.clone()),region:Some(r),..Action::new("deploy")},format!("派遣核心 {} → 地区{}",card(&c.definition).name,r+1)));
-        }}}
+        for z in self.core_zones.iter().filter(|z|z.owner==seat) {if let Some(c)=&z.card {
+            let regions=if self.msbq02_chaos(c){vec![None]}else{(0..self.regions.len()).map(Some).collect::<Vec<_>>()};
+            for region in regions{let label=format!("派遣核心 {} → {}",card(&c.definition).name,region.map_or("随机地区".into(),|r|format!("地区{}",r+1)));let a=Action{card_id:Some(c.id.clone()),region,..Action::new("deploy")};candidates.push((a.clone(),label.clone()));if z.rest>0{let mut a=a;a.option=Some("honor-rest".into());candidates.push((a,format!("{label}（以名誉支付全部休整）")));}}
+        }}
         let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
         candidates.extend(self.xq35_actions(seat));
         candidates.extend(self.xg25_sealed_actions(seat));

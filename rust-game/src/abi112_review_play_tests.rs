@@ -10,6 +10,11 @@ impl Trace {
         game.invite_code = "112ABC".into();
         game.seed = u64::MAX - 112;
         game.random = game.seed;
+        Self::new_preserving_rng(game,name,index)
+    }
+    pub(super) fn new_preserving_rng(mut game:Game,name:String,index:usize)->Self {
+        game.room_id = format!("112{:021x}", index + 100);
+        game.invite_code = "112ABC".into();
         let room = crate::jc029_tests::envelope(&game);
         let initial = json!({"state":serde_json::to_string(&room).unwrap(),
             "views":(0..4).map(|seat|room.view(seat,0)).collect::<Vec<_>>()});

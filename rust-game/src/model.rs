@@ -649,6 +649,8 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CoreRestHonor { before:u32, rest:u32 },
+    MSBQ02Honor { before:u32 },
     BQ046Honor { before: u32 },
     BQ033Anchor(Box<crate::next20_blue_vampires::AnchorPayment>),
     CQ15Returned(Box<crate::import20_swords::SwordPayment>),
@@ -1097,6 +1099,8 @@ impl Game {
         self.validate_core_zones()?;
         self.validate_bq046_state()?;
         self.validate_bq048_state()?;
+        self.validate_bq_commands()?;
+        self.validate_msbq02_state()?;
         self.validate_bq056_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;

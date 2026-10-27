@@ -6,6 +6,7 @@ export type DeckDraft = {
   name: string;
   description: string;
   societyId: string | null;
+  coreCardId?: string;
   cards: { cardId: string; count: number }[];
   rulesVersion: string;
   cardPoolVersion: string;
@@ -104,6 +105,11 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (limit !== null && group.count > limit) issue('copies', `「${name}」同名最多 ${limit} 张，当前合计 ${group.count} 张。`, group.ids[0]);
     }
   }
+  if(draft.societyId==='MSBQ02') {
+    const core=catalog.cards.find(c=>c.id===draft.coreCardId&&c.id==='BQ046'&&c.supported!==false&&c.subtitle==='修格斯');
+    if(!core)issue('core','请选择已开放的修格斯核心角色；当前采用50张普通牌另加1张核心。');
+    if(core&&draft.cards.some(e=>catalog.cards.some(c=>c.id===e.cardId&&c.name===core.name)))issue('core','所选核心须独立设置，不同时加入普通牌堆；49+1尚未支持。');
+  } else if(draft.coreCardId)issue('core','当前秘社不能选择修格斯核心。');
   if (draft.societyId !== null) {
     const society = selectableSocieties(catalog).find(card => card.id === draft.societyId);
     if (!society) issue('society', '当前目录未开放此秘社，请清除选择或更换为已注册秘社。');
@@ -111,6 +117,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='shoggoth'&&society.id==='MSBQ02') {
+          let commands=0;for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['灰','红','中立'].includes(card.color||''))issue('society-color','修格斯仅允许灰、红、中立牌。',card.id);if(card?.subtypes?.includes('命令'))commands+=entry.count;}
+          if(commands<12)issue('society-command',`修格斯至少需要12张命令，当前${commands}张。`);continue;
+        }
         if (constraint.kind === 'greenNeutralOrPrintedHumanCombat' && society.id === 'MSJC11') {
           for (const entry of draft.cards) {
             const card = catalog.cards.find(card => card.id === entry.cardId);
@@ -134,7 +144,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
 
 export function publicDeckDraft(draft: DeckDraft): DeckDraft {
   return {
-    id: draft.id, name: draft.name, description: draft.description, societyId: draft.societyId,
+    id: draft.id, name: draft.name, description: draft.description, societyId: draft.societyId, ...(draft.coreCardId ? {coreCardId:draft.coreCardId} : {}),
     cards: draft.cards.map(({ cardId, count }) => ({ cardId, count })),
     rulesVersion: draft.rulesVersion, cardPoolVersion: draft.cardPoolVersion, engineVersion: draft.engineVersion, updatedAt: draft.updatedAt,
   };
@@ -171,6 +181,7 @@ function record(value: unknown): value is Record<string, unknown> {
 
 export function decodeDraft(value: unknown): DeckDraft | null {
   if (!record(value) || typeof value.id !== 'string' || !value.id.trim() || typeof value.name !== 'string' || typeof value.description !== 'string' || !Array.isArray(value.cards)) return null;
+  if(value.coreCardId!==undefined&&(typeof value.coreCardId!=='string'||!value.coreCardId.trim()))return null;
   if (value.societyId !== null && (typeof value.societyId !== 'string' || !value.societyId.trim())) return null;
   if (typeof value.rulesVersion !== 'string' || typeof value.cardPoolVersion !== 'string' || typeof value.engineVersion !== 'string' || typeof value.updatedAt !== 'string' || !Number.isFinite(Date.parse(value.updatedAt))) return null;
   const cards: DeckDraft['cards'] = [];
@@ -180,7 +191,7 @@ export function decodeDraft(value: unknown): DeckDraft | null {
     seen.add(entry.cardId);
     cards.push({ cardId: entry.cardId, count: entry.count });
   }
-  return { id: value.id, name: value.name, description: value.description, societyId: value.societyId, cards, rulesVersion: value.rulesVersion, cardPoolVersion: value.cardPoolVersion, engineVersion: value.engineVersion, updatedAt: value.updatedAt };
+  return { id: value.id, name: value.name, description: value.description, societyId: value.societyId, ...(typeof value.coreCardId==='string'?{coreCardId:value.coreCardId}:{}), cards, rulesVersion: value.rulesVersion, cardPoolVersion: value.cardPoolVersion, engineVersion: value.engineVersion, updatedAt: value.updatedAt };
 }
 
 export function localDeckStorage(): DeckStorage | null {

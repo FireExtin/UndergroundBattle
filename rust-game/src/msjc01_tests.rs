@@ -34,7 +34,7 @@ fn draft(yellow: usize, total: usize) -> deck::DeckDraft {
         id: "msjc01-tests".into(),
         name: "MSJC01机制测试".into(),
         description: String::new(),
-        society_id: Some("MSJC01".into()),
+        society_id: Some("MSJC01".into()), core_card_id:None,
         cards,
         rules_version: catalog::RULES_VERSION.into(),
         card_pool_version: catalog::POOL_VERSION.into(),

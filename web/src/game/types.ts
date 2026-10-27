@@ -14,7 +14,7 @@ export type SocietyDefinition = CardDefinition & {
   subtitle?: string;
   printedCost?: null;
   startingHand: number;
-  deckConstraints: ({ kind: 'minimumColor'; color: string; count: number } | { kind: 'greenNeutralOrPrintedHumanCombat' })[];
+  deckConstraints: ({ kind: 'minimumColor'; color: string; count: number } | { kind: 'greenNeutralOrPrintedHumanCombat' } | {kind:'shoggoth'})[];
   unresolvedAbilities: Record<string, string>;
 };
 export type Card = {

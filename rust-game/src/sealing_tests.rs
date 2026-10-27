@@ -1157,7 +1157,7 @@ fn sealing_fresh_lobby_legal_match_terminal_restart_and_persisted_next_choice() 
             id: format!("fresh-sealed-{seat}"),
             name: format!("Restart lifecycle P{seat}"),
             description: "Legal custom deck, deterministic fresh-lobby test only".into(),
-            society_id: None,
+            society_id: None, core_card_id:None,
             cards: entries
                 .into_iter()
                 .map(|(id, count)| catalog::DeckEntry {

@@ -172,7 +172,7 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
         {societyAttachments.length > 0 && <div className="hg-society-attachments" aria-label={`${player.name}的秘社附属`}>{societyAttachments.map(renderCard)}</div>}
         {!!player.destructionMarkers && <small>毁灭标志 {player.destructionMarkers} · 已计入分数扣减</small>}
       </section>
-      {coreZone && <section className="hg-society-zone" aria-label={`${player.name}的核心区`} data-core-player={player.id}><strong>核心区</strong>{coreZone.rest > 0 && <small>休整 {coreZone.rest} · 再派遣额外费用 {coreZone.rest * 2}</small>}{coreZone.card ? renderCard(coreZone.card) : <small>核心当前不在此区</small>}</section>}
+      {coreZone && <section className="hg-society-zone" aria-label={`${player.name}的核心区`} data-core-player={player.id}><strong>核心区</strong>{coreZone.rest > 0 && <small>休整 {coreZone.rest} · 再派遣额外代价 {coreZone.rest * 2}（费用或名誉）</small>}{coreZone.card ? renderCard(coreZone.card) : <small>核心当前不在此区</small>}</section>}
     </div>
     {!mine && <div className="hg-other-hand" aria-label={`${player.name}的手牌，${player.handCount}张，身份隐藏`} data-hand-owner={player.id} data-hand-count={player.handCount}><span>手牌 {player.handCount}</span><div aria-hidden="true">{Array.from({ length: Math.min(player.handCount, 8) }, (_, index) => <i key={index} className="hg-card-back">◈</i>)}</div></div>}
   </section>;

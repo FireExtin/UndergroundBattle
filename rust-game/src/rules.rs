@@ -21,6 +21,8 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    MSBQ02TaskScored,
+    MSBQ02RedPlayed,
     OwnCoreEnter,
     BQ086Death,
     CQ09EndStep,
@@ -83,6 +85,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    MSBQ02Honor,
     BQ046Honor,
     CQ15ReturnSword(Box<crate::model::Attachment>),
     Honor(u32),
@@ -143,6 +146,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    BQ050EnemySocietyAttachment,
     BQ048CoreOrTentacleRegion,
     Next20XG25AdjacentEnemy,
     WM057HiddenOrSecretPlan,
@@ -249,6 +253,7 @@ pub enum MagicIcon {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CardFilter {
+    MSBQ02Command,
     JC055Disaster,
     WM038BloodCard,
     NamedCharacter(String),
@@ -271,6 +276,7 @@ pub enum CardFilter {
 impl CardFilter {
     pub(crate) fn matches(&self, definition: &crate::catalog::CardDefinition) -> bool {
         match self {
+            Self::MSBQ02Command => definition.subtypes.iter().any(|s|s=="命令"),
             Self::JC055Disaster => definition.subtypes.iter().any(|s| s == "灾难"),
             Self::WM038BloodCard => definition.magic_icon == MagicIcon::Blood,
             Self::PrintedColor(color) => definition.color == *color,
@@ -307,6 +313,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    MSBQ02TaskWin {scored:Option<Vec<crate::model::Card>>},
+    MSBQ02Loss { played:Option<Box<crate::model::SourceSnapshot>>,event:Option<String> },
+    BQ051Sweep,
     BQ056Lock {entry:Option<Box<crate::bq056::Entry>>},
     BQ056Repress,
     BQ048InvokeCore,
@@ -812,6 +821,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
     if crate::bq056::related(ability) {return crate::bq056::validate_ability(card_id,ability);}
+    if card_id==crate::msbq02::ID||crate::msbq02::related(ability) {return crate::msbq02::validate_ability(card_id,ability);}
+    if crate::bq_commands::related(ability) {return crate::bq_commands::validate_ability(card_id,ability);}
     if crate::bq048::related(ability) {return crate::bq048::validate_ability(card_id,ability);}
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
@@ -1617,6 +1628,8 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq055::validate_definition(card_id,definition)?;
         crate::bq056::validate_definition(card_id,definition)?;
         crate::bq048::validate_definition(card_id,definition)?;
+        crate::bq_commands::validate_definition(card_id,definition)?;
+        crate::msbq02::validate_definition(card_id,definition)?;
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
@@ -2308,6 +2321,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
         m.insert(crate::bq056::ID.into(),crate::bq056::definition());
         m.insert(crate::bq048::ID.into(),crate::bq048::definition());
+        m.insert(crate::msbq02::ID.into(),crate::msbq02::definition());
+        for id in crate::bq_commands::IDS {m.insert(id.into(),crate::bq_commands::definition(id));}
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());

@@ -39,7 +39,7 @@ fn batch4_night_original_cost_loyalty_full_program_and_closed_deck_gate() {
     assert_eq!((c.cost, c.defense, c.unique, c.supported), (2, None, false, false));
     assert_eq!(c.loyalty, ["黑色"]); assert_eq!(c.subtypes, ["仪式"]); assert_eq!(c.magic, "死亡");
     assert!(catalog::runtime_implemented(c));
-    let draft = crate::deck::DeckDraft { id: "night".into(), name: "native only".into(), description: String::new(), society_id: None,
+    let draft = crate::deck::DeckDraft { id: "night".into(), name: "native only".into(), description: String::new(), society_id: None, core_card_id:None,
         cards: vec![catalog::DeckEntry { card_id: "JC125".into(), count: 49 }, catalog::DeckEntry { card_id: "JZ56".into(), count: 1 }],
         rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(), engine_version: catalog::ENGINE_VERSION.into(), updated_at: "2026-10-23".into() };
     assert!(crate::deck::validate(draft).is_err());

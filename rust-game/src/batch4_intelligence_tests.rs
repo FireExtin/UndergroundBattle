@@ -120,7 +120,7 @@ fn wm044_hidden_slow_partial_definition_does_not_claim_whole_card_or_admission()
     assert_eq!(d.abilities[1].event,Some(Event::MysticContestWon));
     assert_eq!(d.abilities[2].event,Some(Event::Enter));
     assert!(catalog::catalog().societies.iter().any(|s|s.card.id=="MSJC14"));
-    let draft = crate::deck::DeckDraft { id:"wm044-wip".into(),name:"not admitted".into(),description:String::new(),society_id:None,
+    let draft = crate::deck::DeckDraft { id:"wm044-wip".into(),name:"not admitted".into(),description:String::new(),society_id:None, core_card_id:None,
         cards:vec![catalog::DeckEntry{card_id:"JC125".into(),count:49},catalog::DeckEntry{card_id:"WM044".into(),count:1}],
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-23".into() };
     assert!(crate::deck::validate(draft).is_err());

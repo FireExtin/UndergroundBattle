@@ -35,6 +35,7 @@ pub struct SocietyZoneView {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "camelCase")]
 pub enum SocietyDeckConstraint {
+    Shoggoth,
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
     ClockmakersOffColorMaximum,
@@ -85,6 +86,10 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::Shoggoth => {
+                if society.card.id!="MSBQ02"||entries.iter().any(|e|cards.iter().find(|c|c.id==e.card_id).is_none_or(|c|!matches!(c.color.as_str(),"灰"|"红"|"中立"))) {return Err("修格斯构筑仅允许灰、红、中立牌".into());}
+                let commands:usize=entries.iter().filter(|e|cards.iter().any(|c|c.id==e.card_id&&c.subtypes.iter().any(|s|s=="命令"))).map(|e|e.count).sum();if commands<12{return Err("修格斯牌组须至少12张命令".into());}
+            },
             SocietyDeckConstraint::ClockmakersOffColorMaximum => {
                 if society.card.id != "MSJC13" { return Err("计时者构筑限制不能移植".into()); }
                 let off: usize = entries.iter().filter(|e| cards.iter().any(|c| c.id == e.card_id
@@ -444,6 +449,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
             crate::batch4_clock::society(),
         ]);
         societies.push(crate::sentinel::society());
+        societies.push(crate::msbq02::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]

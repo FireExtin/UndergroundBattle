@@ -13,6 +13,8 @@ pub struct DeckDraft {
     pub name: String,
     pub description: String,
     pub society_id: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub core_card_id: Option<String>,
     pub cards: Vec<DeckEntry>,
     pub rules_version: String,
     pub card_pool_version: String,
@@ -61,9 +63,10 @@ pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {
 }
 /// The caller supplies a typed registry; game entry points always use the active catalog.
 pub fn validate_with_cards(
-    mut draft: DeckDraft,
+    draft: DeckDraft,
     cards: &[CardDefinition],
-) -> Result<DeckDraft, String> {
+) -> Result<DeckDraft, String> {validate_with_registry(draft,cards,&catalog::catalog().societies)}
+pub(crate) fn validate_with_registry(mut draft:DeckDraft,cards:&[CardDefinition],societies:&[crate::society::SocietyDefinition])->Result<DeckDraft,String>{
     if draft.rules_version != catalog::RULES_VERSION
         || draft.card_pool_version != catalog::POOL_VERSION
         || draft.engine_version != catalog::ENGINE_VERSION
@@ -73,9 +76,14 @@ pub fn validate_with_cards(
     let society = draft
         .society_id
         .as_deref()
-        .map(crate::society::definition)
+        .map(|id|societies.iter().find(|s|s.card.id==id).ok_or_else(||format!("未知秘社：{id}")))
         .transpose()?;
     if society.is_some_and(|s| !s.card.supported) { return Err("该秘社尚未开放构筑".into()); }
+    if draft.society_id.as_deref()==Some("MSBQ02") {
+        let id=draft.core_card_id.as_deref().ok_or("修格斯构筑须另选一张核心（当前支持50+1路径）")?;
+        let core=cards.iter().find(|c|c.id==id&&c.supported&&c.kind=="character"&&c.subtitle.as_deref()==Some("修格斯")&&crate::core_zone::is_core(id)).ok_or("核心必须是已开放的修格斯副名角色")?;
+        if draft.cards.iter().any(|e|cards.iter().any(|c|c.id==e.card_id&&c.name==core.name)){return Err("当前50+1路径的核心独立设置，不得同时加入普通牌堆；49+1尚未支持，未裁定非法".into());}
+    } else if draft.core_card_id.is_some(){return Err("该秘社不能指定修格斯核心".into());}
     draft.id = draft.id.trim().into();
     draft.name = draft.name.trim().into();
     if draft.id.is_empty()
@@ -157,7 +165,7 @@ pub fn preset(id: &str) -> Result<DeckDraft, String> {
         id: deck.id.clone(),
         name: deck.name.clone(),
         description: deck.description.clone(),
-        society_id: None,
+        society_id: None, core_card_id:None,
         cards: deck.cards.clone(),
         rules_version: catalog::RULES_VERSION.into(),
         card_pool_version: catalog::POOL_VERSION.into(),

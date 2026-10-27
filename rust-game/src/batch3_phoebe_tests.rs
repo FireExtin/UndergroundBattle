@@ -194,7 +194,7 @@ fn batch3_twenty_candidate_admits_all_twenty_and_real_deck_save_excludes_deferre
     cards.push(catalog::DeckEntry { card_id: "CQ07".into(), count: 1 });
     let draft = crate::deck::DeckDraft {
         id: "batch3-twenty".into(), name: "Current twenty candidate".into(), description: "Real deck validation".into(),
-        society_id: None, cards, rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(),
+        society_id: None, core_card_id:None, cards, rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(),
         engine_version: catalog::ENGINE_VERSION.into(), updated_at: "0".into(),
     };
     let saved = crate::deck::validate(draft).unwrap();

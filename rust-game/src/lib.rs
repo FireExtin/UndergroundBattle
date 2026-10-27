@@ -498,3 +498,9 @@ mod bq001_shared_grant_tests;
 mod bq095;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq095_tests;
+
+mod bq_commands;
+
+mod msbq02;
+
+#[cfg(test)] mod shoggoth_tests;

@@ -53,7 +53,7 @@ it.each(deployments)('$name selects the real core card and submits its exact pai
  const confirm=ui.container.querySelector(`[data-action-kind="deploy"][data-action-region="${wanted.region}"]`);expect(confirm).toHaveAttribute('data-action-id',legal.id);fireEvent.click(confirm);
  expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);
  expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
- if(view.coreZones[0].rest===1)expect(screen.getByText('休整 1 · 再派遣额外费用 2')).toBeInTheDocument();
+ if(view.coreZones[0].rest===1)expect(screen.getByText('休整 1 · 再派遣额外代价 2（费用或名誉）')).toBeInTheDocument();
 });
 const commands=fixture.cases.filter(c=>c.name.startsWith('bq048-command-core-')).map(row=>({name:row.name,step:row.steps[0]}));
 it.each(commands)('$name uses the printed paid command mode through the actual card action button',({step})=>{

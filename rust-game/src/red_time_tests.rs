@@ -12,7 +12,7 @@ fn red_time_xq18_restored_admission_and_legacy_state_rejection() {
     assert!(definitions().contains_key("XQ18"));
     assert!(crate::red_time::definition("XQ18").is_some());
     let draft = crate::deck::DeckDraft {
-        id: "timer".into(), name: "timer".into(), description: String::new(), society_id: None,
+        id: "timer".into(), name: "timer".into(), description: String::new(), society_id: None, core_card_id:None,
         cards: vec![catalog::DeckEntry { card_id: "JC125".into(), count: 47 },
             catalog::DeckEntry { card_id: "XQ18".into(), count: 3 }],
         rules_version: catalog::RULES_VERSION.into(), card_pool_version: catalog::POOL_VERSION.into(),

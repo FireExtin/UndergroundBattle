@@ -11324,6 +11324,88 @@
         "image": "resource/ymsj-fun.github.io/cards/BQ056 便衣警探.jpg",
         "imageSha256": "9564f3a33e2340f9d5da011959f36b40a845700090d62865a63d9fec421c03b1"
       }
+    },
+    {
+      "id": "BQ050",
+      "name": "破坏欲",
+      "kind": "spell",
+      "subtypes": [
+        "命令",
+        "攻击"
+      ],
+      "cost": 4,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "修格斯秘社限定；非资产 额外费用 若你操控本方核心角色，打出破坏欲的费用减少③。 行动 选择一项或多项：对目标角色造成1点伤害；消灭结附于敌方秘社的目标附属。",
+      "keywords": [
+        "修格斯秘社限定",
+        "非资产",
+        "非资产"
+      ],
+      "unique": false,
+      "supported": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ050",
+        "image": "resource/ymsj-fun.github.io/cards/BQ050 破坏欲.jpg",
+        "imageSha256": "e0a79b04247f4c67c9b9c3fee9dc6ab13e4acf41364b2c714ada93d3675938cd"
+      }
+    },
+    {
+      "id": "BQ051",
+      "name": "大暴走",
+      "kind": "spell",
+      "subtypes": [
+        "命令",
+        "攻击",
+        "灾难"
+      ],
+      "cost": 5,
+      "loyalty": [
+        "红色"
+      ],
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "修格斯秘社限定 行动 消灭本方核心角色和触手角色所在地区上的所有非核心角色和暗藏者。在本方秘社上放置若干个失控标志直到其数量为三个。",
+      "keywords": [
+        "修格斯秘社限定"
+      ],
+      "unique": false,
+      "supported": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ051",
+        "image": "resource/ymsj-fun.github.io/cards/BQ051 大暴走.jpg",
+        "imageSha256": "9b85eac467903a688407c6d575645000f3e626af9cc3f2b31f5f172d76f3e4de"
+      }
     }
   ],
   "decks": [

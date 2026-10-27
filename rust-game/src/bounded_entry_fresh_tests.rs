@@ -15,7 +15,7 @@ fn fresh_entry_legal_decks_normal_commands_reach_both_printed_searches() {
         id: format!("fresh-entry-{seat}"),
         name: "有限进场检索真实合法牌组".into(),
         description: "Fresh factory; no hand/board edits".into(),
-        society_id: None,
+        society_id: None, core_card_id:None,
         cards: [("BQ104", 3), ("XQ48", 3), ("JC125", 44)]
             .into_iter()
             .map(|(id, count)| catalog::DeckEntry {

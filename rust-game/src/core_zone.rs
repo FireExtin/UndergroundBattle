@@ -121,16 +121,17 @@ impl Game {
   let relevant=item.card.as_ref().is_some_and(|c|is_core(&c.definition))||item.frame.as_ref().is_some_and(|f|matches!(f.source.play_source,Some(PlaySource::CoreZone{..}))||(is_core(&f.source.card.definition)&&matches!(f.ability_key.as_str(),"deploy"|"reveal")));
   if !relevant{return Ok(());}
   let f=item.frame.as_ref().ok_or("核心派遣事务缺原帧")?;let c=&f.source.card;
-  let extra=if let Some(PlaySource::CoreZone{rest})=f.source.play_source {
+  let mut extra=if let Some(PlaySource::CoreZone{rest})=f.source.play_source {
     if c.owner!=f.actor||!self.core_zones.iter().any(|z|z.owner==f.actor&&z.definition==c.definition&&z.rest==rest&&z.card.is_none()){return Err("核心区派遣原拥有者或休整记录无效".into());}
     rest.checked_mul(2).ok_or("核心休整费用溢出")?
   }else{0};
+  let ids=match f.already_paid.as_slice(){[PaidCost::Assets(ids)]=>ids,[PaidCost::Assets(ids),PaidCost::CoreRestHonor{before,rest}]if *rest>0&&matches!(f.source.play_source,Some(PlaySource::CoreZone{rest:r})if r==*rest)&&rest.checked_mul(2).is_some_and(|n|*before>=n)=>{extra=0;ids},_=>return Err("核心派遣费用回执无效".into())};
   if !is_core(&c.definition)||c.owner>=self.players.len()||c.controller!=f.actor||f.actor>=self.players.len()
    ||!matches!(f.ability_key.as_str(),"deploy"|"reveal")||f.ability_key=="deploy"&&(c.face_down||!f.source.valid_character_play())||f.ability_key=="reveal"&&(!c.face_down||f.source.play_source.is_some())||f.cursor!=0||!matches!(f.guard,GuardState::Unchecked)||!f.steps.is_empty()||!f.targets.is_empty()
-   ||f.source.region.is_none_or(|r|r>=self.regions.len())||f.chosen_region!=f.source.region||f.source.source_region_instance.as_deref().is_none_or(|id|!self.mystic_instance_valid(id))
+   ||f.source.region.map_or(!(f.ability_key=="deploy"&&self.msbq02_chaos(c)),|r|r>=self.regions.len())||f.chosen_region!=f.source.region||f.source.source_region_instance.as_deref().map_or(f.source.region.is_some(),|id|f.source.region.is_none()||!self.mystic_instance_valid(id))
    ||f.source.attachment_host_instance.is_some()||f.source.death_echo.is_some()||f.source.observed_death.is_some()||f.source.observed_exposure.is_some()||f.source.observed_mobility_grant.is_some()
    ||!self.mystic_instance_valid(&f.frame_id)||!self.mystic_instance_valid(&c.id)||item.id!=f.frame_id||item.controller!=f.actor||item.reveal!=(f.ability_key=="reveal")||item.target.is_some()||item.deploy_region!=f.source.region
-   ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)]if f.money_units(0)>=extra as usize&&f.money_units(0)<=extra.saturating_add(crate::catalog::card(&c.definition).cost) as usize&&ids.iter().all(|id|self.mystic_instance_valid(id)&&*id!=c.id)&&ids.iter().collect::<std::collections::BTreeSet<_>>().len()==ids.len())
+   ||!(f.money_units(0)>=extra as usize&&f.money_units(0)<=extra.saturating_add(crate::catalog::card(&c.definition).cost) as usize&&ids.iter().all(|id|self.mystic_instance_valid(id)&&*id!=c.id)&&ids.iter().collect::<std::collections::BTreeSet<_>>().len()==ids.len())
    ||item.card.as_ref().is_none_or(|actual|!self.pack_a_transaction_matches(f,actual)){return Err("核心派遣实体、原来源、休整费用或堆叠帧无效".into());}
   self.mobility_immutable_identity(c)
  }

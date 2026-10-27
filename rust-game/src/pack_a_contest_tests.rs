@@ -402,7 +402,7 @@ fn ab_card_closure_all_ten_paid_runtime_entries_views_and_deck_gate() {
     use crate::deck::{DeckDraft,validate};
     use crate::catalog::DeckEntry;
     let control=DeckDraft{id:"ab-closure-control".into(),name:"AB closure".into(),description:String::new(),
-        society_id:None,cards:vec![DeckEntry{card_id:"JC125".into(),count:50}],
+        society_id:None, core_card_id:None,cards:vec![DeckEntry{card_id:"JC125".into(),count:50}],
         rules_version:catalog::RULES_VERSION.into(),card_pool_version:catalog::POOL_VERSION.into(),
         engine_version:catalog::ENGINE_VERSION.into(),updated_at:"2026-10-22".into()};
     assert!(validate(control.clone()).is_ok());

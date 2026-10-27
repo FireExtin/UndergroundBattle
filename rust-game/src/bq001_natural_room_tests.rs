@@ -82,7 +82,7 @@ fn draft(seat: usize) -> DeckDraft {
         description:
             "Internal catalog candidate; normal fifty-card construction and real Room commands"
                 .into(),
-        society_id: None,
+        society_id: None, core_card_id:None,
         cards: entries,
         rules_version: catalog::RULES_VERSION.into(),
         card_pool_version: catalog::POOL_VERSION.into(),

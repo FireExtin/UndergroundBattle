@@ -134,6 +134,7 @@ impl Game {
         region: Option<usize>,
         kind: &str,
     ) -> Vec<(Action, String)> {
+        if c.definition=="BQ050" && kind=="play" {return self.bq050_candidates(actor,c);}
         if c.definition=="CQ28" && kind=="play" { return vec![(Action{card_id:Some(c.id.clone()),..Action::new("play")},"咒欲之门：先声明两次同项及目标".into())]; }
         if c.definition == "MSJC14" && kind == "activate" { return self.sentinel_candidates(actor, c); }
         if c.definition == "JC065" && kind == "play" { return self.jc065_action_candidates(actor, c); }
@@ -510,7 +511,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(self.bq055_reduction(actor,c)).saturating_sub(self.wm024_cost_reduction(actor, c)).saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14" | "XG15") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
+        card(&c.definition).cost.saturating_sub(self.bq050_reduction(actor,c)).saturating_sub(self.bq055_reduction(actor,c)).saturating_sub(self.wm024_cost_reduction(actor, c)).saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14" | "XG15") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -543,9 +544,12 @@ impl Game {
         actor: usize,
         c: &Card,
         face_up_play: bool,
-    ) -> RuleResult<Vec<PaidCost>> {
+    ) -> RuleResult<Vec<PaidCost>> {self.pay_printed_choice(actor,c,face_up_play,false)}
+    pub(crate) fn pay_printed_choice(&mut self,actor:usize,c:&Card,face_up_play:bool,honor_rest:bool)->RuleResult<Vec<PaidCost>> {
+        let rest=self.core_zones.iter().find(|z|z.owner==actor&&z.card.as_ref().is_some_and(|core|core.id==c.id)).map_or(0,|z|z.rest);
+        let honor=if honor_rest {if !face_up_play||rest==0{return Err("名誉休整支付只适用于有休整标志的核心区派遣".into());}let needed=rest.checked_mul(2).ok_or("休整名誉溢出")?;let before=self.players[actor].honor;if before<needed{return Err("休整名誉不足".into());}Some(PaidCost::CoreRestHonor{before,rest})}else{None};
         let amount = if face_up_play {
-            self.effective_cost(actor, c).checked_add(self.core_zones.iter().find(|z|z.owner==actor&&z.card.as_ref().is_some_and(|core|core.id==c.id)).map_or(Some(0),|z|z.rest.checked_mul(2)).ok_or("核心休整费用溢出")?).ok_or("核心休整费用溢出")?
+            self.effective_cost(actor, c).checked_add(if honor_rest {0}else{rest.checked_mul(2).ok_or("核心休整费用溢出")?}).ok_or("核心休整费用溢出")?
         } else {
             self.paid_reveal_cost(actor, c)
         };
@@ -566,7 +570,7 @@ impl Game {
         for i in used {
             self.modifiers[i].uses -= 1;
         }
-        Ok(vec![payment])
+        let mut paid=vec![payment];if let Some(receipt)=honor{self.players[actor].honor-=rest*2;paid.push(receipt);}Ok(paid)
     }
     pub(crate) fn ability_for_action(
         &self,
@@ -762,6 +766,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::BQ050EnemySocietyAttachment => self.bq050_attachment(actor,source,&c.id),
                                 TargetPredicate::BQ048CoreOrTentacleRegion => self.bq048_region_target(actor,source,&c.id),
                                 TargetPredicate::Next20XG25AdjacentEnemy => self.xg25_adjacent_target(actor,source,&c.id),
                                 TargetPredicate::PackAOwnGraveCharacter => self.pack_a_grave_target(actor, source, c),
@@ -933,6 +938,7 @@ impl Game {
         a: &Action,
     ) -> RuleResult<Vec<BoundTarget>> {
         rules::validate_ability(&source.card.definition, spec)?;
+        if source.card.definition=="BQ050" && spec.targets.len()==2 {return self.bq050_bind(actor,source,spec,a);}
         if source.card.definition=="CQ28" { return self.cq28_bind(actor,source,spec,a); }
         if source.card.definition=="CQ19" { crate::import20_sentinel::validate_action(spec,a)?; }
         if source.card.definition == "CQ24" && spec.targets.len()==2 { return self.cq24_bind(actor,source,spec,a); }
@@ -1005,6 +1011,7 @@ impl Game {
         for cost in &spec.costs {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
+                Cost::MSBQ02Honor => paid.push(self.msbq02_pay_honor(actor,source,spec)?),
                 Cost::BQ046Honor => paid.push(self.bq046_pay_honor(actor,source,spec,1)?),
                 Cost::Honor(n) => paid.push(self.pete_pay_honor(actor,source,spec,*n)?),
                 Cost::RemoveChargeX => paid.push(self.cq19_pay_charge(source,a)?),
@@ -1160,7 +1167,7 @@ impl Game {
         self.push_stack(actor, label, transaction, None, false, target);
         frame.frame_id = self.stack.last().unwrap().id.clone();
         if observe_spell { self.cq07_observe_spell_targets(&frame); }
-        if observe_disaster { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); self.observe_batch4_disaster(&frame); }
+        if observe_disaster { self.msbq02_observe_play(&frame); self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); self.observe_batch4_disaster(&frame); }
         self.bq038_observe_raid(&frame);
         self.batch3_register_entry_order(&frame.frame_id, previous);
         self.stack.last_mut().unwrap().frame = Some(frame);
@@ -1182,7 +1189,7 @@ impl Game {
                 // Preserve the established immediate-card ordering: capture
                 // target events now, execute the card without a response item,
                 // then declare observers. A later tax finds no stack card.
-                if transaction.is_some() { self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); }
+                if transaction.is_some() { self.msbq02_observe_play(&frame); self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); }
                 if transaction.is_some() { self.observe_batch4_disaster(&frame); }
                 if transaction.as_ref().is_some_and(|c| card(&c.definition).kind == "spell") {
                     self.cq07_observe_spell_targets(&frame);
@@ -1286,7 +1293,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1684,6 +1691,8 @@ impl Game {
         self.validate_cq09_frame(&frame)?;
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
+        self.validate_bq_command_frame(&frame)?;
+        self.validate_msbq02_frame(&frame)?;
         self.validate_bq056_frame(&frame)?;
         self.validate_cq10_frame(&frame)?;
         self.validate_bq084_frame(&frame)?;
@@ -1737,6 +1746,9 @@ impl Game {
                 Op::XQ19FromHand { .. } => self.xq19_place_hand(&frame)?,
                 Op::BQ056Lock{..}=>self.bq056_lock(&frame)?,
                 Op::BQ056Repress=>return self.bq056_repress(frame),
+                Op::MSBQ02TaskWin{..}=>self.msbq02_task_win(&frame)?,
+                Op::MSBQ02Loss{..}=>self.msbq02_loss(&frame)?,
+                Op::BQ051Sweep=>self.bq051_sweep(&frame)?,
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
                 Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,
                 Op::CQ15DestroySearch { .. } => return self.cq15_destroy_search(frame),

@@ -174,7 +174,7 @@ fn blue_expansion_blood_prints_share_constructed_name_limit_three() {
             id: "blue-expansion".into(),
             name: "蓝候选".into(),
             description: String::new(),
-            society_id: None,
+            society_id: None, core_card_id:None,
             cards: vec![
                 catalog::DeckEntry {
                     card_id: "JC125".into(),

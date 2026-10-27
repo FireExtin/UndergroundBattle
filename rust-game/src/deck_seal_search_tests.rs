@@ -261,7 +261,7 @@ fn deck_seal_fresh_legal_four_seat_factory_reaches_both_actual_cards_without_lay
         id: format!("fresh-deck-seal-{seat}"),
         name: "检索封印合法50张".into(),
         description: "Fresh factory; no layout edits".into(),
-        society_id: None,
+        society_id: None, core_card_id:None,
         cards: [
             ("JZ02", 1),
             ("XQ44", 3),

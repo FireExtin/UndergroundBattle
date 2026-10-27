@@ -25,7 +25,7 @@ pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()> {
 pub(crate) fn validate_action(id:&str,a:&Action)->RuleResult<()> {
     if id!=ID {return Ok(());}
     if matches!(a.kind.as_str(),"deploy"|"conceal"|"reveal"|"asset") {
-        let expected=Action{card_id:a.card_id.clone(),region:if matches!(a.kind.as_str(),"deploy"|"conceal"){a.region}else{None},..Action::new(&a.kind)};
+        let expected=Action{card_id:a.card_id.clone(),option:if a.kind=="deploy"&&a.option.as_deref()==Some("honor-rest"){a.option.clone()}else{None},region:if matches!(a.kind.as_str(),"deploy"|"conceal"){a.region}else{None},..Action::new(&a.kind)};
         if *a!=expected {return Err("核心角色区域操作不能夹带额外载荷".into());}
         return Ok(());
     }
