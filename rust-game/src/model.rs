@@ -1082,6 +1082,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_cq09_state()?;
         self.validate_cq10_state()?;
         self.validate_bq084_state()?;
         self.validate_xq35_state()?;

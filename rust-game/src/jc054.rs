@@ -187,24 +187,25 @@ impl Game {
             .flat_map(|(r, region)| region.cards.iter().map(move |c| (r, c)))
             .filter(|(_, c)| c.definition == "JC054" && !c.face_down && !self.players[c.controller].eliminated)
             .map(|(r, c)| self.source_snapshot(c, Some(r))).collect::<Vec<_>>();
-        if sources.is_empty() { return; }
+        if sources.is_empty() && !self.cq09_end_available() { return; }
         let event_id = self.id();
         for source in sources {
             let mut ability = definition().abilities[1].clone();
             ability.ops = vec![Op::JC054EndHide { observation: Some(EndStepObservation { event_id: event_id.clone(), turn: self.turn }) }];
             self.effects.push_back(Effect::Declare { declaration: Declaration { actor: source.card.controller, source, ability } });
         }
+        self.cq09_begin_end(&event_id);
         self.jc054_sort_batch(&event_id);
     }
     /// Sort only declarations from this observation, preserving unrelated queue positions.
     pub(crate) fn jc054_sort_batch(&mut self, event_id: &str) {
         let mut declarations = self.effects.iter().filter_map(|e| match e {
-            Effect::Declare { declaration: d } if declaration_event(d) == Some(event_id) => Some(d.clone()), _ => None,
+            Effect::Declare { declaration: d } if declaration_event(d).or_else(||crate::cq09::declaration_event(d)) == Some(event_id) => Some(d.clone()), _ => None,
         }).collect::<Vec<_>>();
         declarations.sort_by_key(|d| (self.team(d.actor) != self.first_team, d.actor, d.source.card.id.clone()));
         let mut ordered = declarations.into_iter();
         for e in &mut self.effects {
-            if matches!(e, Effect::Declare { declaration: d } if declaration_event(d) == Some(event_id)) {
+            if matches!(e, Effect::Declare { declaration: d } if declaration_event(d).or_else(||crate::cq09::declaration_event(d)) == Some(event_id)) {
                 *e = Effect::Declare { declaration: ordered.next().unwrap() };
             }
         }
