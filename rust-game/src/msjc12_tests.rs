@@ -5,7 +5,7 @@ fn action(g:&Game,key:&str,ids:Vec<String>,target:Option<usize>)->Action {Action
 fn trio(g:&mut Game,def:&str)->Vec<String>{(0..3).map(|r|{let c=g.make_card(def,0);let id=c.id.clone();g.regions[r].cards.push(c);id}).collect()}
 #[test]
 fn msjc12_catalog_printed_construction_and_closed_admission(){
- let s=crate::society::definition(m::ID).unwrap();assert!(!s.card.supported);assert_eq!(s.starting_hand,6);assert_eq!(s.subtitle,"黑色家族");
+ let s=crate::society::definition(m::ID).unwrap();assert!(!s.card.supported);assert_eq!(s.card.color,"蓝");assert_eq!(s.starting_hand,6);assert_eq!(s.subtitle,"黑色家族");
  let cards=&catalog::catalog().cards;
  for c in cards {let expected=matches!(c.color.as_str(),"蓝"|"中立")||(c.kind=="character"&&c.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"奴仆")));assert_eq!(crate::society::validate_construction(s,&[catalog::DeckEntry{card_id:c.id.clone(),count:1}],cards).is_ok(),expected,"{}",c.id);}
  let mut d=crate::deck::preset("watchers").unwrap();d.society_id=Some(m::ID.into());assert!(crate::deck::validate(d).is_err());
@@ -66,4 +66,28 @@ fn msjc12_paid_trio_remains_paid_after_character_leaves_during_response(){let mu
 fn source_bindings()->serde_json::Value {
  use sha2::{Digest,Sha256};let mut binding=crate::jc066_tests::source_bindings();
  for (name,bytes) in [("rust-game/src/msjc12.rs",include_bytes!("msjc12.rs").as_slice()),("rust-game/src/msjc12_tests.rs",include_bytes!("msjc12_tests.rs").as_slice()),("rust-game/src/society.rs",include_bytes!("society.rs").as_slice()),("rust-game/src/control.rs",include_bytes!("control.rs").as_slice()),("rust-game/src/abi112_review_play_tests.rs",include_bytes!("abi112_review_play_tests.rs").as_slice())] {binding["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}binding
+}
+#[test]
+fn msjc12_grant_tracks_control_conversion_hide_and_departure(){
+ let mut g=setup();let id=field(&mut g,"JC125",2);
+ let slave=|g:&Game,id:&str|g.current_subtypes(g.board(id).unwrap().1).iter().any(|s|s=="奴仆");
+ assert!(!slave(&g,&id));g.add_control(&id,0,ControlLifetime::TurnEnd{turn:g.turn},SubtypeChange::None);assert!(slave(&g,&id));restore(&mut g);
+ g.add_control(&id,0,ControlLifetime::TurnEnd{turn:g.turn},SubtypeChange::HumanToVampire);assert!(!slave(&g,&id));assert!(g.current_subtypes(g.board(&id).unwrap().1).iter().any(|s|s=="吸血鬼"));restore(&mut g);
+ let own=field(&mut g,"JC125",0);assert!(slave(&g,&own));let hidden=g.hide_in_place_successor(&own).unwrap();assert!(g.current_subtypes(&hidden).is_empty());restore(&mut g);
+ let own=field(&mut g,"JC125",0);g.remove_dead(&own,RemovalCause::Destroy);let grave=g.players[0].graveyard.last().unwrap();assert!(!g.current_subtypes(grave).iter().any(|s|s=="奴仆"));restore(&mut g);
+}
+#[test]
+fn msjc12_draw_empty_deck_uses_real_elimination_and_one_card_draw_is_mandatory(){
+ for n in [0,1]{let mut g=setup();deck_cards(&mut g,0,&vec!["JC125";n]);let ids=trio(&mut g,"JC125");let a=action(&g,m::DRAW,ids,None);act(&mut g,0,a);pass_top(&mut g);assert_eq!(g.players[0].eliminated,n==0);assert_eq!(g.players[0].hand.len(),n);assert!(g.pending.is_none());restore(&mut g);}
+}
+#[test]
+fn msjc12_discard_empty_single_and_response_draw_keep_original_enemy(){
+ for n in [0,1,2]{let mut g=setup();let vampire=catalog::catalog().cards.iter().find(|c|c.kind=="character"&&c.subtypes.iter().any(|s|s=="吸血鬼")&&c.supported).unwrap().id.clone();let ids=trio(&mut g,&vampire);if n==1{held(&mut g,"JC125",2);}let a=action(&g,m::DISCARD,ids.clone(),Some(2));act(&mut g,0,a);
+  // Explicit response-boundary component exercise: the enemy gains a hand card
+  // after declaration, and a paid character changes controller. Not natural play.
+  if n==2{deck_cards(&mut g,2,&["JC125"]);g.draw(2,1).unwrap();g.add_control(&ids[0],2,ControlLifetime::TurnEnd{turn:g.turn},SubtypeChange::None);}
+  restore(&mut g);pass_top(&mut g);
+  if n==0{assert!(g.pending.is_none());}else{let p=g.pending.clone().unwrap();assert_eq!(p.seat,2);assert_eq!(p.choice.min,Some(1));reject(&mut g,2,Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![]),..Action::new("choose")});choose(&mut g,vec![p.choice.options[0].id.clone()]);assert!(g.players[2].hand.is_empty());assert_eq!(g.players[2].graveyard.len(),1);}
+  assert_eq!(g.resources(0),2);assert!(g.players[0].society_zone.card.as_ref().unwrap().exhausted);restore(&mut g);
+ }
 }
