@@ -151,6 +151,7 @@ pub enum TargetPredicate {
     JZ40CharacterOrAttachment,
     XG17PersonalPlan,
     Batch4DestroyedRegion,
+    BQ084OwnGraveCharacter,
     Batch3OwnGraveCharacter,
     BQ042SocietyOrOriginalRegion,
     BQ077WaterRegion,
@@ -342,6 +343,7 @@ pub enum Op {
     XQ20MoveMarkers,
     LC16PrepareSearch { event_id: Option<String> },
     JZ51TopEightCorpses,
+    BQ084AnchorEntry,
     XQ35GraveReturn,
     JZ51GraveEntry,
     XG18RenownPlay { observation: Option<crate::batch4_omega::RenownPlay> },
@@ -791,6 +793,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
+    if crate::bq084::related(ability) { return crate::bq084::validate_ability(card_id,ability); }
     if crate::xq35::related(ability) { return crate::xq35::validate_ability(card_id,ability); }
     if crate::bq001::related(ability) { return crate::bq001::validate_ability(card_id,ability); }
     if crate::next20_anchor::related(card_id,ability) { return crate::next20_anchor::validate_ability(card_id,ability); }
@@ -1587,6 +1590,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("cardId={card_id}: 声望/威名奖励只能由实际事件生成"));
         }
         if (card_id==crate::xq35::ID || definition.abilities.iter().any(crate::xq35::related)) && serde_json::to_value(definition).unwrap()!=serde_json::to_value(crate::xq35::definition()).unwrap() { return Err("白骨仆人完整定义不能增删".into()); }
+        crate::bq084::validate_definition(card_id,definition)?;
         crate::bq001::validate_definition(card_id,definition)?;
         crate::next20_anchor::validate_definition(card_id,definition)?;
         crate::next20_blue_vampires::validate_definition(card_id,definition)?;
@@ -2271,6 +2275,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
+        m.insert(crate::bq084::ID.into(),crate::bq084::definition());
         m.insert(crate::xq35::ID.into(),crate::xq35::definition());
         m.insert(crate::bq001::ID.into(),crate::bq001::definition());
         m.insert(crate::next20_anchor::ID.into(),crate::next20_anchor::definition());

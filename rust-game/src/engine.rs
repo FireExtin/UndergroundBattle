@@ -780,6 +780,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::bq084::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
@@ -884,6 +885,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::bq084::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
@@ -2284,6 +2286,7 @@ impl Game {
         crate::bq001::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
+        crate::bq084::validate_choice(&p,&a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
         crate::batch4_conference::validate_choice_action(&p, &a)?;
