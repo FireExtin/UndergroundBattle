@@ -48,7 +48,7 @@ fn field_at(g: &mut Game,id:&str,seat:usize,region:usize)->String {
 
 #[test]
 fn import20_vampire_prints_exact_closed_native_definitions_and_latest_identity(){
-    assert_eq!(catalog::ENGINE_VERSION,"rust-v0.2.112-shared-keyword-rewards");
+    assert_eq!(catalog::ENGINE_VERSION,"rust-v0.2.113-bq001-anchor-source-wip");
     for id in v::CARDS{let d=catalog::card(id);assert!(d.supported);assert!(catalog::runtime_implemented(d));assert_eq!(d.color,"蓝");}
     let d=catalog::card("WM025");assert_eq!((d.cost,d.defense,d.unique),(8,Some(4),true));assert_eq!(d.loyalty,["蓝色","蓝色","蓝色"]);
     assert_eq!(d.permanent_icons,Icons{investigation:1,combat:2,influence:2});assert_eq!(d.temporary_icons,Icons{investigation:1,..Icons::default()});
