@@ -1005,6 +1005,7 @@ impl Game {
                 Cost::RemoveChargeX => paid.push(self.cq19_pay_charge(source,a)?),
                 Cost::IndustryExhaustOther => paid.push(self.industry_pay_other(actor,source,a)?),
                 Cost::BQ036SacrificeAttachment => paid.push(self.bq036_pay_attachment(actor, a)?),
+                Cost::XQ35SealCharacter => paid.push(self.xq35_pay(actor,source,a)?),
                 Cost::JZ51SealThreeCorpses => return Err("温迪戈封印费用必须通过墓地专属待选支付".into()),
                 Cost::JZ36SacrificeBatch => paid.push(self.jz36_pay(actor, a)?),
                 Cost::JZ39SacrificeDemon => paid.push(self.pay_jz39_demon(actor, a)?),
@@ -1659,6 +1660,7 @@ impl Game {
         self.validate_jz35_frame(&frame)?;
         self.validate_next20_black_play_frame(&frame)?;
         if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_xq35_frame(&frame)?;
         self.validate_bq001_frame(&frame)?;
         self.validate_anchor_frame(&frame)?;
         self.validate_next20_blue_play_frame(&frame)?;
@@ -1757,6 +1759,7 @@ impl Game {
                 Op::XQ20MoveMarkers => self.xq20_resolve(&frame)?,
                 Op::LC16PrepareSearch { .. } => self.jc035_resolve(&frame)?,
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
+                Op::XQ35GraveReturn => self.xq35_return(&frame)?,
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
                 Op::JZ36TimeAndDestroyTargetRegion => self.jz36_resolve(&frame)?,
                 Op::JZ40TimeAndDestroyHost => self.jz40_resolve(&frame),

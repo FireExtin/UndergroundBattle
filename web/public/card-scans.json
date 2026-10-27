@@ -1318,5 +1318,10 @@
     "url": "/cards/XG25.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
     "sha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661"
-  }
+  },
+  "XQ35": {
+  "url": "/cards/XQ35.jpg",
+  "source": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg",
+  "sha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3"
+}
 }

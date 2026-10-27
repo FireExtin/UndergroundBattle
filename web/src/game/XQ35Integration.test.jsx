@@ -1,0 +1,35 @@
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,screen,fireEvent} from '@testing-library/react';
+import {kernel as abi,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+import {Table} from './Table';
+import {DeckCardFace} from './DeckCardFace';
+import {cardScanUrl} from './cardScans';
+import {actionForRoom} from './api';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/xq35.json.gz');
+const card=catalog.cards.find(c=>c.id==='XQ35');
+afterEach(cleanup);
+it('delivers the pinned original dash-cost face without enabling public construction',()=>{
+ const specs=JSON.parse(readFileSync(resolve('../docs/factions/card-specifications.json'))).cards.XQ35;
+ const scans=JSON.parse(readFileSync(resolve('public/card-scans.json')));
+ const {imagePath,imageSha256}=specs.sourceVerification;
+ const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
+ expect(hash(resolve('..',imagePath))).toBe(imageSha256);expect(hash(resolve('public/cards/XQ35.jpg'))).toBe(imageSha256);
+ expect(scans.XQ35).toEqual({url:'/cards/XQ35.jpg',source:imagePath,sha256:imageSha256});expect(cardScanUrl('XQ35')).toBe('/cards/XQ35.jpg');
+ expect(card).toMatchObject({supported:false,costAppearance:'dash',permanentIcons:{combat:1},defense:1});
+ render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:'白骨仆人原始牌面'})).toHaveAttribute('src','/cards/XQ35.jpg');
+});
+it('submits the actual grave action including its selected sealing cost from the table',()=>{
+ const step=fixture.steps[0],view=JSON.parse(abi.view(step.state,step.seat)),wanted=step.command.action.action;
+ expect(view).toEqual(fixture.initial.views[step.seat]);
+ const submit=vi.fn();const ui=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
+ const pile=ui.container.querySelector('[data-pile-owner="p0"][data-pile-kind="graveyard"]');fireEvent.click(pile.querySelector('summary'));
+ const source=pile.querySelector(`[data-card-instance="${wanted.cardId}"]`);expect(source).toBeInTheDocument();fireEvent.click(source);
+ const legal=view.legalActions.find(a=>a.abilityId==='xq35-grave-return');expect(legal.costSelected).toEqual(wanted.costSelected);
+ fireEvent.click(screen.getByRole('button',{name:legal.label}));
+ expect(submit).toHaveBeenCalled();expect(actionForRoom(view,submit.mock.calls.at(-1)[0])).toEqual(step.command.action);
+ const actual=JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'));expect(actual).toEqual(step.expected);
+});

@@ -655,6 +655,7 @@ pub enum PaidCost {
     IndustryExhausted(Box<SourceSnapshot>),
     CQ24ExtraAssets(Vec<String>),
     BQ036Attachment(Box<crate::batch4_vampire_contest::AttachmentPayment>),
+    XQ35Sealed(crate::xq35::Payment),
     JZ51Corpses(crate::batch4_wendigo::CorpsePayment),
     JZ36Sacrificed(Vec<SourceSnapshot>),
     JZ39Demon(Box<crate::batch4_tattoo::DemonPayment>),
@@ -1077,6 +1078,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_xq35_state()?;
         self.validate_bq001_state()?;
         self.validate_next20_black_state()?;
         self.validate_death_continuations()?;

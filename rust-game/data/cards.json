@@ -11161,7 +11161,8 @@
         "printedCollectorCode": "01/48",
         "normalization": "Purple +X is the existing mystic value symbol; prior research prose calling it regional influence is not used."
       }
-    }
+    },
+    {"id": "XQ35", "name": "白骨仆人", "kind": "character", "type": "不死生物/骨骼/奴仆", "cost": 0, "costAppearance": "dash", "loyalty": [], "color": "黑", "magic": "死亡", "subtypes": ["不死生物", "骨骼", "奴仆"], "text": "白骨仆人不能正面打出或付费现身。墓地行动1，将你墓地中的另一张角色牌封印在本方秘社上：将白骨仆人从你的墓地移回场上并横置，且置于地区一。该能力每回合只能发动一次。", "defense": 1, "keywords": [], "supported": false, "icons": {"permanent": {"investigation": 0, "combat": 1, "influence": 0}, "temporary": {"investigation": 0, "combat": 0, "influence": 0}}, "source": {"file": "docs/factions/card-specifications.json", "record": "XQ35", "image": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg", "imageSha256": "16848181852ab99f7caa29cf84b65a1a018c644da3ad6b4e1aa0bb635c7920b3"}}
   ],
   "decks": [
     {

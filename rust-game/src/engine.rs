@@ -759,6 +759,7 @@ impl Game {
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
                 let r = if chaos_play {
@@ -778,6 +779,7 @@ impl Game {
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
+                if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
@@ -881,6 +883,7 @@ impl Game {
                 crate::batch3::validate_action(&c.definition, &a)?;
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
+                if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
@@ -996,6 +999,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref()==Some(crate::xq35::KEY) {return self.xq35_begin(seat,&a);}
                 if a.ability_id.as_deref()==Some(crate::import20_entropy::HAND){return self.xq19_begin_hand(seat,&a);}
                 if a.ability_id.as_deref().is_some_and(|k|k.starts_with(crate::import20_swords::PREFIX)) { return self.cq15_begin(seat,&a); }
                 if a.ability_id.as_deref()==Some(crate::import20_tax_ban::ASSET) { return self.pete_begin_asset(seat,&a); }
@@ -3119,6 +3123,7 @@ impl Game {
             }
         }
         let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
+        candidates.extend(self.xq35_actions(seat));
         candidates.extend(self.xg25_sealed_actions(seat));
         self.bq033_payment_candidates(seat, candidates)
             .into_iter()
