@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            core_zones: vec![],
             state_schema: 2,
             death_replacements: vec![],
             step_resources: vec![],
@@ -747,6 +748,7 @@ impl Game {
                 }
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
+                if c.definition==crate::bq046::ID {return Err("核心角色不能建立资产".into());}
                 if self.current_non_asset(&c,seat) { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
                 self.players[seat].assets.push(c);
@@ -772,6 +774,7 @@ impl Game {
                     if !self.accessible(seat, r) { return Err("超出正常派遣距离".into()); }
                     Some(r)
                 };
+                crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
@@ -880,6 +883,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
@@ -953,6 +957,7 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::batch20::validate_action(&c.definition, &a)?;
@@ -1029,6 +1034,7 @@ impl Game {
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
+                crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
                 crate::jz46::validate_action(&c.definition, &a)?;
@@ -1059,6 +1065,7 @@ impl Game {
         Ok(self.players[seat].hand.remove(p))
     }
     pub(crate) fn start(&mut self) -> RuleResult<()> {
+        self.core_zones.clear();
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
@@ -2755,6 +2762,7 @@ impl Game {
             })
             .collect();
         View {
+            core_zones: self.core_zone_views(seat),
             room_id: self.room_id.clone(),
             invite_code: self.invite_code.clone(),
             version: self.version,

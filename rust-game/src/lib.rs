@@ -4,6 +4,13 @@ mod bq086_tests;
 mod cq09;
 #[cfg(test)]
 mod cq09_tests;
+mod bq046;
+mod bq055;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bq055_tests;
+mod core_zone;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bq046_tests;
 mod cq10;
 #[cfg(test)]
 mod cq10_tests;

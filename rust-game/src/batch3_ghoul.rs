@@ -39,6 +39,7 @@ impl Game {
     }
     pub(crate) fn batch3_physical_cards(&self)->impl Iterator<Item=&Card>{
         self.regions.iter().flat_map(|r|std::iter::once(&r.card).chain(&r.cards))
+            .chain(self.core_zones.iter().filter_map(|z|z.card.as_ref()))
             .chain(self.players.iter().flat_map(|p|p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter())))
             .chain(self.death_replacements.iter().filter_map(|d| d.card.as_ref()))
             .chain(&self.world).chain(self.attachments.iter().map(|a|&a.card)).chain(self.sealed_cards.iter().map(|s|&s.card))

@@ -102,6 +102,7 @@ export type PassRecord = {
   responseWindowId?: string; reason: 'pass' | 'response' | 'cancelResponse' | 'timeout';
 };
 export type View = {
+  coreZones?: { playerId: string; definition: string; card: Card | null }[];
   revealedHands?: { playerId: string; cards: Card[] }[];
   roomId: string; inviteCode: string; version: number; mode: 'duel' | 'teams';
   status: 'lobby' | 'playing' | 'finished'; you: string; players: Player[];

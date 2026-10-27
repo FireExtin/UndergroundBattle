@@ -1327,5 +1327,7 @@
   "BQ084": {"url": "/cards/BQ084.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg", "sha256": "c6e661db496bbde8718a5af312ec64704f597d41bce424f9a0034132a16080af"},
   "CQ10": {"url": "/cards/CQ10.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg", "sha256": "034b75bf01c010c74474f8357d089862603cfe27fc537b0dd2f537e541e7e2bb"},
   "CQ09": {"url": "/cards/CQ09.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ09 依莲娜·弗朗索瓦.jpg", "sha256": "2822860ecfd29ee98df34cb8f6a1ede534faae6b6b1d9ebc7fc5eec712984143"},
-  "BQ086": {"url": "/cards/BQ086.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg", "sha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407"}
+  "BQ086": {"url": "/cards/BQ086.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg", "sha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407"},
+  "BQ046": {"url": "/cards/BQ046.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ046 探巡者莫佳娜.jpg", "sha256": "d02d1b7fdea4fa25fbba1c49df617d4dbe4b77728ce935156a18d6c8f9784ba1"},
+  "BQ055": {"url": "/cards/BQ055.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ055 研究员戴维斯.jpg", "sha256": "f2976ba17f3ffd78583f62c16ee5b46631e4e65100f5312edad5f2fd9b79d49c"}
 }

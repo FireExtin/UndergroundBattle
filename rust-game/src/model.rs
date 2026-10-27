@@ -316,6 +316,8 @@ pub struct WaitingChoice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct View {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub core_zones: Vec<crate::core_zone::CoreZoneView>,
     pub room_id: String,
     pub invite_code: String,
     pub version: u64,
@@ -645,6 +647,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    BQ046Honor { before: u32 },
     BQ033Anchor(Box<crate::next20_blue_vampires::AnchorPayment>),
     CQ15Returned(Box<crate::import20_swords::SwordPayment>),
     WM057Borrowed(crate::wm057_borrow::BorrowPermission),
@@ -983,6 +986,8 @@ pub struct Pending {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub core_zones: Vec<crate::core_zone::CoreZone>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub cq10_continuations: Vec<crate::cq10::Continuation>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub death_replacements: Vec<crate::death_continuation::PendingDeath>,
@@ -1084,6 +1089,8 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_core_zones()?;
+        self.validate_bq046_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;
         self.validate_cq10_state()?;
