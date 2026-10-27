@@ -62,3 +62,12 @@ it.each(commands)('$name uses the printed paid command mode through the actual c
  fireEvent.click(ui.container.querySelector(`[data-card-instance="${wanted.cardId}"]`));const button=Array.from(ui.container.querySelectorAll('[data-action-id]')).find(el=>el.getAttribute('data-action-id')===legal.id);expect(button).toBeEnabled();fireEvent.click(button);
  expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
 });
+it('BQ048 damage chooses a printed mode and real character target through the card UI',()=>{
+ const step=fixture.cases.find(c=>c.name==='bq048-command-damage').steps[0];
+ const view=JSON.parse(abi.view(step.state,step.seat)),wanted=step.command.action.action,submit=vi.fn();const ui=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
+ const legal=view.legalActions.find(a=>a.kind==='play'&&a.cardId===wanted.cardId&&a.option==='damage'&&a.targetId===wanted.targetId);expect(legal).toBeDefined();
+ fireEvent.click(ui.container.querySelector(`[data-card-instance="${wanted.cardId}"]`));
+ const group=groupObjectActions(view.legalActions.filter(a=>a.cardId===wanted.cardId)).find(g=>g.actions.some(a=>a.id===legal.id));fireEvent.click(screen.getByRole('button',{name:group.label}));
+ fireEvent.click(ui.container.querySelector(`[data-card-instance="${wanted.targetId}"]`));fireEvent.click(screen.getByRole('button',{name:`确认 · ${legal.label}`}));
+ expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
+});

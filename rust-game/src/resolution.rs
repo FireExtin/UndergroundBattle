@@ -762,6 +762,7 @@ impl Game {
                             .predicate
                             .as_ref()
                             .is_none_or(|predicate| match predicate {
+                                TargetPredicate::BQ048CoreOrTentacleRegion => self.bq048_region_target(actor,source,&c.id),
                                 TargetPredicate::Next20XG25AdjacentEnemy => self.xg25_adjacent_target(actor,source,&c.id),
                                 TargetPredicate::PackAOwnGraveCharacter => self.pack_a_grave_target(actor, source, c),
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),

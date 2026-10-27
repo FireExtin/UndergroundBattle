@@ -143,6 +143,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    BQ048CoreOrTentacleRegion,
     Next20XG25AdjacentEnemy,
     WM057HiddenOrSecretPlan,
     WM043LockedTarget,
