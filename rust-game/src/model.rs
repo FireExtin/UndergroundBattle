@@ -720,6 +720,7 @@ pub struct Declaration {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum DeclareChoice {
+    BQ086Host { corpse: Box<BoundTarget> },
     AttachmentOrder,
     Accept,
     Mode,
@@ -727,6 +728,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ086Sacrifice,
     CQ10Discard,
     BQ084Anchor,
     BQ001StarHand,
@@ -1082,6 +1084,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_bq086_state()?;
         self.validate_cq09_state()?;
         self.validate_cq10_state()?;
         self.validate_bq084_state()?;

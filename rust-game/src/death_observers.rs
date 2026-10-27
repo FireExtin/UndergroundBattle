@@ -38,6 +38,7 @@ impl Game {
         let mut observers = Vec::new();
         let tigers = self.cq25_capture_sources();
         let black_sources = self.capture_black_death_sources();
+        let bq086_sources = self.bq086_sources();
         let host_sources = self.wm035_death_sources();
         let ghoul_sources = self.bq079_sources();
         for (r, region) in self.regions.iter().enumerate() {
@@ -85,6 +86,7 @@ impl Game {
                 if let Some(observation) = black_death {
                     let observation = self.emit_black_death(&black_sources, observation);
                     self.wm035_emit_host_death(&host_sources, &observation);
+                    self.bq086_observe(&bq086_sources,&observation);
                 }
                 self.jz34_observe_death(&red_observers, &dead.card);
                 for observer in &observers {
@@ -101,7 +103,7 @@ impl Game {
         let mut simultaneous = self.effects.split_off(previous_effects).into_iter().collect::<Vec<_>>();
         simultaneous.sort_by_key(|e| match e {
             Effect::Declare { declaration } if matches!(declaration.ability.event,
-                Some(Event::Next20WraithDeath | Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
+                Some(Event::BQ086Death | Event::Next20WraithDeath | Event::JZ38HostDied | Event::Death | Event::CharacterDeathObserved | Event::BlackCharacterDeathObserved | Event::JZ34OtherDeath | Event::WM035HostDeath | Event::BQ079CorpseGrave)) =>
                 (self.team(declaration.actor) != self.first_team, declaration.actor),
             _ => (true, usize::MAX),
         });

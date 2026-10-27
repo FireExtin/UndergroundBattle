@@ -115,7 +115,7 @@ pub(crate) fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> 
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if d.traits.wound > 0 || d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
+    } else if (d.traits.wound > 0 && !(id == crate::bq086::ID && d.traits.wound == 1)) || d.traits.chaos || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())

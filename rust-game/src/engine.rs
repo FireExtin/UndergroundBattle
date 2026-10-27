@@ -781,6 +781,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::bq086::validate_action(&c.definition,&a)?;
                 crate::cq09::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
@@ -888,6 +889,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::bq086::validate_action(&c.definition,&a)?;
                 crate::cq09::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
@@ -1288,6 +1290,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+        self.validate_bq086_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
         if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {
@@ -2297,6 +2300,7 @@ impl Game {
         crate::bq001::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
+        crate::bq086::validate_choice(&p,&a)?;
         crate::cq09::validate_choice(&p,&a)?;
         crate::cq10::validate_choice(&p,&a)?;
         crate::bq084::validate_choice(&p,&a)?;

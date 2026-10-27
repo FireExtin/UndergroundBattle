@@ -1,3 +1,6 @@
+mod bq086;
+#[cfg(test)]
+mod bq086_tests;
 mod cq09;
 #[cfg(test)]
 mod cq09_tests;
