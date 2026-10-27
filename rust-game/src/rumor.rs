@@ -418,6 +418,7 @@ impl Game {
         self.validate_batch3_frame(f)?;
         self.validate_pack_a_frame(f)?;
         self.validate_cq28_frame(f)?;
+        self.validate_cq10_frame(f)?;
         if f.source.observed_death.is_some() {
             // The original observer was accepted before the random/nonrandom
             // discard. Authenticate its captured death and paid-once limit at
@@ -439,7 +440,11 @@ impl Game {
             },
             _ => false,
         };
-        let dynamic = observer_discard || self.pack_a_rumor_frame(f)? || matches!(
+        let cq10_discard = f.source.card.definition == crate::cq10::ID
+            && f.ability_key == crate::cq10::ENTRY && f.cursor == 1
+            && !b.from_deck && !b.redraw && b.originals.len() == 1
+            && f.targets.first().is_some_and(|t| t.id == player_id(b.holder));
+        let dynamic = cq10_discard || observer_discard || self.pack_a_rumor_frame(f)? || matches!(
             f.steps.get(f.cursor - 1).map(|s| &s.op),
             Some(Op::JC034CombatDiscard { .. } | Op::Batch20Prepare { .. } | Op::Batch3Prepare { .. })
         );
@@ -511,6 +516,7 @@ impl Game {
                 .and_then(|s| s.parse::<usize>().ok()),
         };
         let allowed = match &step.op {
+            Op::CQ10Entry { .. } => cq10_discard,
             Op::CQ28Mode { mode: 0, .. } => {
                 b.from_deck && !b.redraw
                     && f.source.card.definition == "CQ28"

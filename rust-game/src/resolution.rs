@@ -485,7 +485,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -1265,6 +1265,7 @@ impl Game {
     }
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
         self.validate_bq001_declaration(&declaration)?;
         self.validate_anchor_declaration(&declaration)?;
@@ -1367,6 +1368,7 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
         self.validate_bq001_declaration(&declaration)?;
         self.validate_anchor_declaration(&declaration)?;
@@ -1663,6 +1665,7 @@ impl Game {
         self.validate_jz35_frame(&frame)?;
         self.validate_next20_black_play_frame(&frame)?;
         if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
+        self.validate_cq10_frame(&frame)?;
         self.validate_bq084_frame(&frame)?;
         self.validate_xq35_frame(&frame)?;
         self.validate_bq001_frame(&frame)?;
@@ -1763,6 +1766,9 @@ impl Game {
                 Op::XQ20MoveMarkers => self.xq20_resolve(&frame)?,
                 Op::LC16PrepareSearch { .. } => self.jc035_resolve(&frame)?,
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
+                Op::CQ10Entry { .. } => return self.cq10_run(frame),
+                Op::CQ10Repeat => return self.cq10_repeat(frame),
+                Op::CQ10Prepare { .. } => self.jc035_resolve(&frame)?,
                 Op::BQ084AnchorEntry => return self.bq084_start(frame),
                 Op::XQ35GraveReturn => self.xq35_return(&frame)?,
                 Op::JZ51GraveEntry => return self.jz51_grave_entry(frame),
@@ -2761,6 +2767,7 @@ impl Game {
                 if chooser != frame.actor { return Err("进场检索的选择者无效".into()); }
                 self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
             }
+            FrameChoice::CQ10Discard => return self.cq10_discard(*frame,chooser,&selected),
             FrameChoice::BQ084Anchor => return self.bq084_finish(*frame,chooser,&a,&selected),
             FrameChoice::BQ001StarHand => return self.bq001_complete(*frame,chooser,&a,&selected),
             FrameChoice::HandSeal { seat, host_id } => {

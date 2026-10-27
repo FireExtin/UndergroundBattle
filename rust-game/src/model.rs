@@ -727,6 +727,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    CQ10Discard,
     BQ084Anchor,
     BQ001StarHand,
     Next20Wraith(crate::next20_black_wraiths::WraithChoice),
@@ -980,6 +981,8 @@ pub struct Pending {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub cq10_continuations: Vec<crate::cq10::Continuation>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub death_replacements: Vec<crate::death_continuation::PendingDeath>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub step_resources: Vec<crate::step_resources::StepCredit>,
@@ -1079,6 +1082,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_cq10_state()?;
         self.validate_bq084_state()?;
         self.validate_xq35_state()?;
         self.validate_bq001_state()?;

@@ -65,6 +65,7 @@ impl Game {
             wm058_receipts: vec![],
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
+            cq10_continuations: vec![],
             jc035_preparation: None,
             entry_order_groups: vec![],
             attachment_declines: vec![],
@@ -780,6 +781,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
@@ -885,6 +887,7 @@ impl Game {
                 crate::batch4::validate_action(&c.definition, &a)?;
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
+                crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
@@ -1234,6 +1237,7 @@ impl Game {
             .collect()
     }
     pub(crate) fn finish(&mut self, team: usize) {
+        self.cq10_continuations.clear();
         self.status = "finished".into();
         self.winner_team = Some(team);
         self.pending = None;
@@ -1282,6 +1286,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+        self.validate_cq10_play(&item)?;
         if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {
             return Err("白骨仆人不能正面打出或付费现身".into());
         }
@@ -2289,6 +2294,7 @@ impl Game {
         crate::bq001::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
+        crate::cq10::validate_choice(&p,&a)?;
         crate::bq084::validate_choice(&p,&a)?;
         crate::batch3_grave::validate_choice_action(&p, &a)?;
         crate::batch4_feast::validate_choice_action(&p, &a)?;
