@@ -11,6 +11,7 @@ const read=path=>readFileSync(resolve('..',path));
 const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
+const newlyAdmitted=['BQ034','CQ25','XG25'];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -18,7 +19,7 @@ const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof v
 afterEach(cleanup);
 
 it('preserves all241 prior source-index records and all239 prior runtime URLs',()=>{
-  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)));
+  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)));
   expect(Object.keys(prior)).toHaveLength(241);
   expect(sha(JSON.stringify(canonical(prior)))).toBe('8391a760ca9b2d25d1767b53ebb2f092eb3f106f2d326b924a6eaa43e1de79b8');
   const runtime=Object.fromEntries(Object.keys(prior).filter(id=>!['BQ041','JZ38'].includes(id)).map(id=>[id,cardScanUrl(id)]));
@@ -38,13 +39,28 @@ it.each(batch)('%s displays its pinned original pixels through the real collecti
   expect(screen.queryByText('暂无原始牌面')).not.toBeInTheDocument();
 });
 
-it('does not admit any additional card or replace the current kernel while adding artwork',()=>{
-  expect(registry.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
-  expect(currentCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+it.each(newlyAdmitted)('%s delivers the tracked original scan through both indexes and the card component',id=>{
+  const card=registry.cards.find(card=>card.id===id);
+  const {imagePath:source,imageSha256:expected}=primary.cards[id].sourceVerification;
+  expect(typeof expected).toBe('string');
+  expect(sha(read(source))).toBe(expected);
+  expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(expected);
+  expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source,sha256:expected});
+  expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);
+  expect(card.supported).toBe(true);
+  render(<DeckCardFace card={card} large/>);
+  expect(screen.getByRole('img',{name:`${card.name}原始牌面`})).toHaveAttribute('src',`/cards/${id}.jpg`);
+  expect(screen.queryByText('暂无原始牌面')).not.toBeInTheDocument();
+});
+
+it('keeps the current kernel and reviewed admission set while delivering artwork',()=>{
+  expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+  expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(277);
-  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
-  expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(233);
-  expect(registry.cards.slice(213).filter(card=>card.supported).map(card=>card.id).sort()).toEqual([...batch].sort());
+  expect(registry.cards).toHaveLength(278);
+  for(const id of ['BQ033','BQ009','BQ001'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
+  for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
+  expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);
+  expect(registry.cards.slice(213).filter(card=>card.supported).map(card=>card.id).sort()).toEqual([...batch,'BQ034','CQ25','XG25'].sort());
   expect(cardScanUrl('unknown-private-card')).toBeUndefined();
 });

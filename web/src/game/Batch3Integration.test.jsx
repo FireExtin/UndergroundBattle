@@ -10,10 +10,11 @@ const definition=(id)=>testCatalog.cards.find(c=>c.id===id);
 it('admits the complete twenty-card local candidate and excludes deferred cards',()=>{
   // Recheck the third cohort against the sole current kernel; later private
   // definitions and the new20 admissions are checked independently.
-  expect(testCatalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
-  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(44);
-  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])expect(definition(id).supported,id).toBe(false);
-  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(233);
+  expect(testCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(42);
+  for(const id of ['BQ033','BQ009','BQ001'])expect(definition(id).supported,id).toBe(false);
+  for(const id of ['BQ034','CQ25','XG25'])expect(definition(id).supported,id).toBe(true);
+  expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(236);
   expect(definition('CQ07').supported).toBe(true);
   expect(definition('CQ11')).toBeUndefined();expect(definition('TK008')).toBeUndefined();
   expect(definition('BQ026').additionalKinds).toEqual(['attachment']);

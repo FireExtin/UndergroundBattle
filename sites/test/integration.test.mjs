@@ -40,13 +40,13 @@ test('real workerd/WASM with D1 SQLite: concurrency, receipts, rollback and reop
   const path = (session, action) => `/api/rooms/${session.roomId}/${action}`;
   try {
     const health = await api('/api/health'); assert.equal(health.body.transport, 'polling');
-    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 277); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37','JZ30','BQ028','BQ040','WM059','BQ078','JZ44','JZ45','WM062','JC054','JC044','JC066','JC041','XQ23','JC035']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true); assert(catalog.body.cards.some(c => c.id === 'XQ18')); assert(catalog.body.cards.some(c => c.id === 'XQ24'));
+    const catalog = await api('/api/catalog'); assert.equal(catalog.body.cards.length, 278); for (const id of ['JC075','JC104','JZ31','JZ55','JZ49','JZ48','JC089','XQ40','XQ41','XQ45','JZ50','BQ104','XQ48','XQ37','JZ30','BQ028','BQ040','WM059','BQ078','JZ44','JZ45','WM062','JC054','JC044','JC066','JC041','XQ23','JC035']) assert(catalog.body.cards.some(c => c.id === id)); assert.equal(catalog.body.entryIdempotency, true); assert(catalog.body.cards.some(c => c.id === 'XQ18')); assert(catalog.body.cards.some(c => c.id === 'XQ24'));
     assert.equal(catalog.body.cards.filter(card=>card.supported).length,236);
-    for(const id of ['BQ033','BQ009'])assert.equal(catalog.body.cards.find(card=>card.id===id).supported,false);
+    for(const id of ['BQ033','BQ009','BQ001'])assert.equal(catalog.body.cards.find(card=>card.id===id).supported,false);
     assert(catalog.body.cards.some(card => card.id === 'JC047'));
     assert(catalog.body.cards.some(card => card.id === 'JC007'));
-    assert.equal(catalog.body.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');
-    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.103-next20-three-admitted');
+    assert.equal(catalog.body.engineVersion, 'rust-v0.2.113-bq001-anchor-source-wip');
+    assert.equal(catalog.body.cardPoolVersion, 'limited-v2.104-bq001-anchor-source-wip');
     assert.equal(catalog.body.deckBuildRules.minimumCards, 50);
     assert.equal(catalog.body.cards.find(card => card.id === 'JC125').deckCopyLimit, null);
     // A missing request ID must not create an unrecoverable lobby/seat.

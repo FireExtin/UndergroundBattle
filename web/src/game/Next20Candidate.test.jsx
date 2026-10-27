@@ -5,12 +5,13 @@ import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
 import {kernel,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {Table} from './Table';
 
-const closed=['BQ033','BQ034','CQ25','XG25','BQ009'];
+const closed=['BQ033','BQ009','BQ001'];
 const draft=()=>({id:'next20-public-reject',name:'Public admission control',description:'local synthetic test',societyId:null,
   cards:structuredClone(catalog.decks.find(d=>d.id==='watchers').cards),rulesVersion:catalog.rulesVersion,
   cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:'2026-10-25T00:00:00Z'});
 
-it('public new/join reject all five closed definitions while a normal Room creates, restores and resumes',()=>{
+it('public new/join reject all three closed WIP definitions while a normal Room creates, restores and resumes',()=>{
+  for(const id of ['BQ034','CQ25','XG25'])expect(catalog.cards.find(card=>card.id===id).supported,id).toBe(true);
   const valid=draft();
   let result=JSON.parse(kernel.newGameWithDeck('a11200000000000000000001','N20PUB','duel','P0',JSON.stringify(valid),'18446744073709551503'));
   const created=result.state;

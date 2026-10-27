@@ -11,7 +11,7 @@ import {assertCurrentCatalog, currentIdentity, currentSourceManifestSha256,
 
 const [rootArgument, ...options] = process.argv.slice(2);
 assert(rootArgument, 'Provide the fresh Native evidence root.');
-assert.equal(currentIdentity.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');
+assert.equal(currentIdentity.engineVersion, 'rust-v0.2.113-bq001-anchor-source-wip');
 const root = path.resolve(rootArgument);
 const option = name => options.find(value => value.startsWith(`--${name}=`))?.slice(name.length + 3);
 assert(options.every(value => /^--(groups|inputs)=.+/.test(value)), 'Unknown assembler argument.');

@@ -243,7 +243,13 @@ fn sentinel_local_worker_room_witness() {
         let before=serde_json::to_string(&room).unwrap();let out=room.transition(seat,Some(command.clone()),n).unwrap();
         assert!(out.error_code.is_none());room=RoomEnvelope::from_persisted(&out.state).unwrap();
         let views=(0..4).map(|s|room.view(s,n)).collect::<Vec<_>>();
-        steps.push(serde_json::json!({"before":before,"seat":seat,"command":command,"now":n.to_string(),"expected":out,"views":views}));
+        // Probe the actual Native reducer, retaining this original command/clock.
+        let duplicate=room.transition(seat,Some(command.clone()),n).unwrap();
+        assert_eq!(duplicate.state,out.state);
+        assert_eq!(duplicate.outcome,"rejected"); // This witness uses Game/PassResponse only.
+        assert!(!duplicate.changed && duplicate.journal.is_empty());
+        RoomEnvelope::from_persisted(&duplicate.state).unwrap();
+        steps.push(serde_json::json!({"before":before,"seat":seat,"command":command,"now":n.to_string(),"expected":out,"duplicate":duplicate,"views":views}));
     }
     assert!(room.game.stack.is_empty());assert_eq!(room.game.board(&mover).unwrap().0,1);assert_eq!(room.game.resources(0),0);
     std::fs::write(path,serde_json::to_vec_pretty(&serde_json::json!([{"name":"sentinel-inherited-lock","initial":initial,"initialViews":initial_views,"steps":steps}])).unwrap()).unwrap();

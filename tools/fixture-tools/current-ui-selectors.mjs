@@ -8,7 +8,7 @@ import {catalog} from '../../rust-game-wasm/tests/current-kernel.mjs';
 import {assertCurrentCatalog, assertCurrentSourceBindings, currentIdentity,
   writeCurrentFixture} from '../current-native-source.mjs';
 
-assert.equal(currentIdentity.engineVersion, 'rust-v0.2.112-shared-keyword-rewards');
+assert.equal(currentIdentity.engineVersion, 'rust-v0.2.113-bq001-anchor-source-wip');
 const evidence = path.resolve(process.argv[2]);
 const read = file => JSON.parse(readFileSync(file, 'utf8'));
 const identities = {rules:currentIdentity.rulesVersion,

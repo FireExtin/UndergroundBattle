@@ -1303,5 +1303,20 @@
     "url": "/cards/XQ19.jpg",
     "source": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg",
     "sha256": "6c70ae44fd73ee1f1e7821654c876baa8525d65bbf6b4cfa13ffe7d4adf3a1eb"
+  },
+  "BQ034": {
+    "url": "/cards/BQ034.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg",
+    "sha256": "f91de56f6dfdaa41bb0d32759fcf32ad01985dc4c00998fc0753e8622fec59b2"
+  },
+  "CQ25": {
+    "url": "/cards/CQ25.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ25 伥虎.jpg",
+    "sha256": "9b18fbff8a4063a6cba2276032bd8653be61ee58f0948256b7531aaeed3638ab"
+  },
+  "XG25": {
+    "url": "/cards/XG25.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg",
+    "sha256": "cf05544939b89fffc4c94fe38f0f2e463fd5091a8ea5293835613afc0f49a661"
   }
 }
