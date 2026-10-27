@@ -502,5 +502,8 @@ mod bq095_tests;
 mod bq_commands;
 
 mod msbq02;
+mod msjc12;
+#[cfg(test)]
+mod msjc12_tests;
 
 #[cfg(test)] mod shoggoth_tests;

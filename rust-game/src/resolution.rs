@@ -191,6 +191,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::MSJC12ExhaustTrio)) {
+                    self.msjc12_trios(actor,&ability.key).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::IndustryExhaustOther)) {
                     self.industry_cost_candidates(actor,&source.card.id).into_iter().map(|id|Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ036SacrificeAttachment)) {
@@ -267,7 +269,9 @@ impl Game {
                                         t.id
                                     ))
                                     .unwrap_or_default(),
-                                cost.as_ref()
+                                if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio)) {
+                                    format!("（费用：横置{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
+                                } else { cost.as_ref()
                                     .and_then(|ids| ids.first())
                                     .and_then(|id| ability.costs.iter().any(|c| matches!(c, Cost::RemoveOneTimeFromSelectedControlledCard))
                                         .then(|| self.jc044_time_payments(actor).into_iter().find(|p| p.carrier.id == *id)).flatten()
@@ -291,7 +295,7 @@ impl Game {
                                             r + 1,
                                             c.id
                                         )))))
-                                    .unwrap_or_default()
+                                    .unwrap_or_default() }
                             );
                             result.push((a, label));
                         }
@@ -1011,6 +1015,7 @@ impl Game {
         for cost in &spec.costs {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
+                Cost::MSJC12ExhaustTrio => paid.push(self.msjc12_pay_trio(actor,source,spec,a)?),
                 Cost::MSBQ02Honor => paid.push(self.msbq02_pay_honor(actor,source,spec)?),
                 Cost::BQ046Honor => paid.push(self.bq046_pay_honor(actor,source,spec,1)?),
                 Cost::Honor(n) => paid.push(self.pete_pay_honor(actor,source,spec,*n)?),

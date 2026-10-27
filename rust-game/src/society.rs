@@ -36,6 +36,7 @@ pub struct SocietyZoneView {
 #[serde(tag = "kind", rename_all = "camelCase")]
 pub enum SocietyDeckConstraint {
     Shoggoth,
+    BlueNeutralOrPrintedVampireSlave,
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
     ClockmakersOffColorMaximum,
@@ -86,6 +87,9 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::BlueNeutralOrPrintedVampireSlave => {
+                if society.card.id != "MSJC12" || entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c| !matches!(c.color.as_str(),"蓝"|"中立") && !(c.kind=="character" && c.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"奴仆")))) { return Err("爱弗罗德构筑仅允许蓝、中立及其他派系印刷吸血鬼或奴仆角色".into()); }
+            },
             SocietyDeckConstraint::Shoggoth => {
                 if society.card.id!="MSBQ02"||entries.iter().any(|e|cards.iter().find(|c|c.id==e.card_id).is_none_or(|c|!matches!(c.color.as_str(),"灰"|"红"|"中立"))) {return Err("修格斯构筑仅允许灰、红、中立牌".into());}
                 let commands:usize=entries.iter().filter(|e|cards.iter().any(|c|c.id==e.card_id&&c.subtypes.iter().any(|s|s=="命令"))).map(|e|e.count).sum();if commands<12{return Err("修格斯牌组须至少12张命令".into());}
@@ -450,6 +454,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         ]);
         societies.push(crate::sentinel::society());
         societies.push(crate::msbq02::society());
+    societies.push(crate::msjc12::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -521,7 +526,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12"]
             );
         }
         assert_eq!(

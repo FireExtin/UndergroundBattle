@@ -117,6 +117,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='blueNeutralOrPrintedVampireSlave'&&society.id==='MSJC12') {
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['蓝','中立'].includes(card.color||'')||(card.kind==='character'&&card.subtypes?.some(s=>['吸血鬼','奴仆'].includes(s)))))issue('society-vampire-slave','爱弗罗德仅允许蓝、中立及其他派系印刷吸血鬼或奴仆角色。',card.id);}
+          continue;
+        }
         if(constraint.kind==='shoggoth'&&society.id==='MSBQ02') {
           let commands=0;for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['灰','红','中立'].includes(card.color||''))issue('society-color','修格斯仅允许灰、红、中立牌。',card.id);if(card?.subtypes?.includes('命令'))commands+=entry.count;}
           if(commands<12)issue('society-command',`修格斯至少需要12张命令，当前${commands}张。`);continue;

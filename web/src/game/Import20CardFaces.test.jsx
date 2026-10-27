@@ -20,7 +20,7 @@ const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof v
 afterEach(cleanup);
 
 it('preserves all241 prior source-index records and all239 prior runtime URLs',()=>{
-  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&!closedCandidates.includes(id)&&id!=="MSBQ02"));
+  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&!closedCandidates.includes(id)&&!["MSBQ02","MSJC12"].includes(id)));
   expect(Object.keys(prior)).toHaveLength(241);
   expect(sha(JSON.stringify(canonical(prior)))).toBe('8391a760ca9b2d25d1767b53ebb2f092eb3f106f2d326b924a6eaa43e1de79b8');
   const runtime=Object.fromEntries(Object.keys(prior).filter(id=>!['BQ041','JZ38'].includes(id)).map(id=>[id,cardScanUrl(id)]));
@@ -65,3 +65,5 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.cards.slice(213).filter(card=>card.supported).map(card=>card.id).sort()).toEqual([...batch,'BQ034','CQ25','XG25'].sort());
   expect(cardScanUrl('unknown-private-card')).toBeUndefined();
 });
+
+it("MSJC12 preserves pinned original and remains a closed society",()=>{const id="MSJC12",source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);const card=currentCatalog.societies.find(c=>c.id===id);expect(card.supported).toBe(false);render(<DeckCardFace card={card} large/>);expect(screen.getByRole("img",{name:`${card.name}原始牌面`})).toHaveAttribute("src",`/cards/${id}.jpg`);});
