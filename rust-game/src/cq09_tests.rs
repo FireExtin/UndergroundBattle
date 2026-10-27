@@ -8,12 +8,20 @@ fn cq09_room_native_witness(){
   let mut t=Trace::new(g,format!("cq09-reveal-end-{accept}"),909+usize::from(accept));
   t.action(0,Action{card_id:Some(id),region:Some(0),..Action::new("conceal")});let hidden=t.room.game.regions[0].cards.iter().find(|c|c.definition==cq09::ID).unwrap().id.clone();t.action(0,Action{card_id:Some(hidden),..Action::new("reveal")});t.until_pending();t.choose(vec!["accept".into()]);t.until_pending();
   for(seat,id)in shown.into_iter().enumerate(){assert_eq!(t.room.game.pending.as_ref().unwrap().seat,seat);let id=t.room.game.players[seat].hand.iter().find(|c|c.definition==id).unwrap().id.clone();t.choose(vec![id]);}
-  for _ in 0..128{
+  // Five live regions each have six four-seat response windows, plus action/rewards.
+  let end_budget=64+t.room.game.regions.len()*32;
+  for _ in 0..end_budget{
    if t.room.game.jc054_end_step_turn==Some(turn)&&t.room.game.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Declare{declaration,..} if declaration.ability.key==cq09::END)){break;}
    assert_eq!(t.room.game.turn,turn);
-   if let Some(p)=t.room.game.pending.as_ref(){let selected=p.choice.options.iter().take(p.choice.min.unwrap_or(0)).map(|o|o.id.clone()).collect();t.choose(selected);}else{t.pass();}
+   if let Some(p)=t.room.game.pending.clone(){
+    if matches!(&p.resolution,ChoiceResolution::Forecast{..}|ChoiceResolution::Frame{choice:FrameChoice::Forecast{..},..}){
+     // Forecast partitions every offered card; preserve the returned order on top.
+     let top=p.choice.options.iter().map(|o|o.id.clone()).collect();
+     t.action(p.seat,Action{choice_id:Some(p.choice.id),top:Some(top),bottom:Some(vec![]),..Action::new("choose")});
+    }else{let selected=p.choice.options.iter().take(p.choice.min.unwrap_or(0)).map(|o|o.id.clone()).collect();t.choose(selected);}
+   }else{t.pass();}
   }
-  assert!(t.room.game.pending.as_ref().is_some_and(|p|p.choice.options.iter().any(|o|o.id==target)));
+  assert!(t.room.game.pending.as_ref().is_some_and(|p|p.choice.options.iter().any(|o|o.id==target)), "CQ09 end target not reached: window={:?}, pending={:?}, end={:?}, history={:?}",t.room.game.window,t.room.game.pending,t.room.game.jc054_end_step_turn,t.room.game.mystic_history);
   t.choose(if accept{vec![target.clone()]}else{vec![]});for _ in 0..32{if t.room.game.stack.is_empty(){break;}t.pass();}
   assert!(t.room.game.pending.is_none()&&t.room.game.stack.is_empty());assert_eq!(t.room.game.players[0].graveyard.iter().any(|c|c.id==target),!accept);
   cases.push(t.value());
