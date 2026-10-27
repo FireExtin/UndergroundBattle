@@ -1,5 +1,17 @@
 use crate::{bq084,catalog,model::*,rules::*,unit_support::*};
 use crate::jc029_tests::pass_top;
+#[test]
+fn bq084_returned_character_host_is_registered_for_real_attachment_observation(){
+ let(mut g,source,_,_)=setup(None);
+ field(&mut g,"BQ030",0);fund(&mut g,0,"JC073",3);
+ let attachment=held(&mut g,"JC073",0);
+ act(&mut g,0,Action{card_id:Some(source),region:Some(0),..Action::new("deploy")});pass_top(&mut g);choose(&mut g,vec![]);
+ let host=g.regions[0].cards.iter().find(|c|c.definition=="BQ084").unwrap().id.clone();
+ act(&mut g,0,Action{card_id:Some(attachment),target_id:Some(host.clone()),..Action::new("play")});pass_top(&mut g);
+ assert!(g.attachments.iter().any(|a|a.card.definition=="JC073"&&a.host_id==host));
+ let before=g.players[0].hand.len();choose(&mut g,vec!["accept".into()]);pass_top(&mut g);
+ assert_eq!(g.players[0].hand.len(),before+1);assert!(g.pending.is_none()&&g.stack.is_empty());restore(&mut g);
+}
 fn grave(g:&mut Game,id:&str,seat:usize)->String{let c=g.make_card(id,seat);let id=c.id.clone();g.players[seat].graveyard.push(c);id}
 fn setup(anchor_owner:Option<usize>)->(Game,String,String,Option<String>){
  let mut g=game();fund(&mut g,0,"JC096",5);let source=held(&mut g,"BQ084",0);let target=grave(&mut g,"JC001",0);

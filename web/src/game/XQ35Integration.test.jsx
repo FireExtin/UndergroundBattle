@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {afterEach,expect,it,vi} from 'vitest';
-import {cleanup,render,screen,fireEvent} from '@testing-library/react';
+import {cleanup,render,screen,fireEvent,within} from '@testing-library/react';
 import {kernel as abi,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
 import {Table} from './Table';
@@ -11,6 +11,20 @@ import {cardScanUrl} from './cardScans';
 import {actionForRoom} from './api';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/xq35.json.gz');
 const card=catalog.cards.find(c=>c.id==='XQ35');
+it('accepts the actual BQ030 attachment observation after grave return',()=>{
+ const step=fixture.steps.find(s=>s.command.action.action?.kind==='choose');
+ expect(step).toBeDefined();
+ const view=JSON.parse(abi.view(step.state,step.seat));
+ const submit=vi.fn();render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
+ const dialog=screen.getByRole('dialog',{name:'待完成的选择'});
+ for(const id of step.command.action.action.selected){
+  const option=Array.from(dialog.querySelectorAll('[data-choice-option]')).find(el=>el.getAttribute('data-choice-option')===id);
+  expect(option).toBeDefined();fireEvent.click(option);
+ }
+ fireEvent.click(within(dialog).getByRole('button',{name:'确认选择'}));
+ expect(actionForRoom(view,submit.mock.calls.at(-1)[0])).toEqual(step.command.action);
+ expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
+});
 afterEach(cleanup);
 it('delivers the pinned original dash-cost face without enabling public construction',()=>{
  const specs=JSON.parse(readFileSync(resolve('../docs/factions/card-specifications.json'))).cards.XQ35;

@@ -105,6 +105,9 @@ impl Game {
     pub(crate) fn validate_xq35_state(&self)->RuleResult<()> {
         let mut ids=BTreeSet::new();
         for item in &self.stack {
+            if item.card.as_ref().is_some_and(|c| c.definition == ID) {
+                return Err("白骨仆人不能作为正面打出或付费现身事务恢复".into());
+            }
             if let Some(f)=&item.frame { if related_frame(f) || f.source.card.definition==ID {
                 self.validate_xq35_frame(f)?;
                 if !ids.insert(&f.frame_id) || item.id!=f.frame_id || item.controller!=f.actor || item.card.is_some()

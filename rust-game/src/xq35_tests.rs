@@ -1,5 +1,65 @@
 use crate::{catalog, model::*, unit_support::*, xq35};
 use crate::jc029_tests::pass_top;
+
+#[test]
+fn xq35_restore_rejects_foreign_play_shell_in_game_and_room() {
+    use crate::{jc029_tests::envelope, room::RoomEnvelope};
+    let mut g = game();
+    fund(&mut g, 0, "JC001", 1);
+    let source = held(&mut g, "JC001", 0);
+    act(&mut g, 0, Action {
+        card_id: Some(source), region: Some(0), ..Action::new("deploy")
+    });
+    assert!(Game::from_persisted(&serde_json::to_string(&g).unwrap()).is_ok());
+    assert!(RoomEnvelope::from_persisted(&serde_json::to_string(&envelope(&g)).unwrap()).is_ok());
+    let mut outcomes = vec![];
+    let valid_room = envelope(&g);
+    for remove_frame in [false, true] {
+        let mut bad = g.clone();
+        let item = bad.stack.last_mut().unwrap();
+        assert_eq!(item.frame.as_ref().unwrap().source.card.definition, "JC001");
+        item.card.as_mut().unwrap().definition = xq35::ID.into();
+        if remove_frame { item.frame = None; }
+        let game_rejected = Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err();
+        let mut bad_room = valid_room.clone();
+        bad_room.game = bad.clone();
+        let room_rejected = RoomEnvelope::from_persisted(&serde_json::to_string(&bad_room).unwrap()).is_err();
+        outcomes.push((remove_frame, game_rejected, room_rejected));
+        let item = bad.stack.pop().unwrap();
+        let before = serde_json::to_value(&bad).unwrap();
+        assert!(bad.resolve_stack(item).is_err());
+        assert_eq!(serde_json::to_value(&bad).unwrap(), before);
+    }
+    assert!(outcomes.iter().all(|(_, game, room)| *game && *room), "{outcomes:?}");
+}
+
+#[test]
+fn xq35_return_accepts_attachment_with_bq030_and_restores() {
+    use crate::{jc029_tests::envelope, room::RoomEnvelope};
+    let (mut g, source, paid) = setup();
+    act(&mut g, 0, action(&source, &paid));
+    pass_top(&mut g);
+    let returned = g.regions[0].cards.iter().find(|c| c.definition == xq35::ID).unwrap().id.clone();
+    field(&mut g, "BQ030", 0);
+    fund(&mut g, 0, "JC073", 3);
+    let attachment = held(&mut g, "JC073", 0);
+    act(&mut g, 0, Action {
+        card_id: Some(attachment), target_id: Some(returned.clone()), ..Action::new("play")
+    });
+    pass_top(&mut g);
+    assert!(g.attachments.iter().any(|a| a.card.definition == "JC073" && a.host_id == returned));
+    restore(&mut g);
+    assert!(RoomEnvelope::from_persisted(&serde_json::to_string(&envelope(&g)).unwrap()).is_ok());
+    let before = g.players[0].hand.len();
+    let pending = g.pending.as_ref().expect("actual BQ030 attachment observation");
+    let selected = pending.choice.options[0].id.clone();
+    choose(&mut g, vec![selected]);
+    pass_top(&mut g);
+    assert!(g.pending.is_none() && g.stack.is_empty());
+    assert_eq!(g.players[0].hand.len(), before + 1);
+    restore(&mut g);
+    assert!(RoomEnvelope::from_persisted(&serde_json::to_string(&envelope(&g)).unwrap()).is_ok());
+}
 fn grave(g:&mut Game,id:&str,seat:usize)->String {let c=g.make_card(id,seat);let id=c.id.clone();g.players[seat].graveyard.push(c);id}
 fn setup()->(Game,String,String){let mut g=game();fund(&mut g,0,"JC001",1);let source=grave(&mut g,"XQ35",0);let paid=grave(&mut g,"JC001",0);(g,source,paid)}
 fn action(source:&str,paid:&str)->Action{Action{card_id:Some(source.into()),ability_id:Some(xq35::KEY.into()),cost_selected:Some(vec![paid.into()]),..Action::new("activate")}}
@@ -57,10 +117,22 @@ fn xq35_limit_is_per_original_instance_and_paid_before_response(){
 #[test]
 fn xq35_room_native_witness(){
  use crate::{abi112_review_play_tests::Trace,room::{RoomEnvelope,RoomCommand}};
- let(g,source,paid)=setup();let mut t=Trace::new(g,"xq35-grave-return".into(),835);
+ let(mut g,source,paid)=setup();
+ field(&mut g,"BQ030",0);fund(&mut g,0,"JC073",4);
+ let attachment=held(&mut g,"JC073",0);
+ let mut t=Trace::new(g,"xq35-grave-return".into(),835);
  t.action(0,action(&source,&paid));
  for _ in 0..32 {if t.room.game.stack.is_empty(){break;}t.pass();}
  assert!(t.room.game.stack.is_empty());assert!(t.room.game.regions[0].cards.iter().any(|c|c.definition=="XQ35"&&c.exhausted));
+ let returned=t.room.game.regions[0].cards.iter().find(|c|c.definition=="XQ35").unwrap().id.clone();
+ t.action(0,Action{card_id:Some(attachment),target_id:Some(returned.clone()),..Action::new("play")});
+ t.until_pending();
+ assert!(t.room.game.attachments.iter().any(|a|a.card.definition=="JC073"&&a.host_id==returned));
+ let before=t.room.game.players[0].hand.len();
+ t.choose(vec!["accept".into()]);
+ for _ in 0..32 {if t.room.game.stack.is_empty(){break;}t.pass();}
+ assert!(t.room.game.stack.is_empty()&&t.room.game.pending.is_none());
+ assert_eq!(t.room.game.players[0].hand.len(),before+1);
  let mut value=t.value();
  value["catalog"]=serde_json::to_value(catalog::catalog()).unwrap();
  let mut bindings=crate::jc066_tests::source_bindings();

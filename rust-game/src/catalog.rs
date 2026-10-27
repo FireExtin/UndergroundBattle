@@ -247,6 +247,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
+    if matches!(d.id.as_str(), crate::xq35::ID | crate::bq084::ID) { return true; }
     if crate::next20_black_wraiths::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id==crate::bq001::ID { return true; }
     if d.id==crate::next20_anchor::ID { return true; }

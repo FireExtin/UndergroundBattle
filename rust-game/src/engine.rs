@@ -1282,6 +1282,9 @@ impl Game {
         Ok(())
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+        if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {
+            return Err("白骨仆人不能正面打出或付费现身".into());
+        }
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
         self.validate_next20_black_play_frame(&frame)?;
