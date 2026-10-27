@@ -31,3 +31,13 @@ UI 的构筑/牌面/牌组 58 项及核心操作 42 项全部通过，共 6 文�
 Worker 最终 11/11 通过，0 failed、0 skipped，634.44 秒：570 条真实本地 HTTP 命令、570 次重复提交、570 次 D1 冷恢复；其中封闭注册表自然链 487 条/487 次冷恢复，最后还核验完成后首命令原回执不变。没有触发公开发布。最终源码仍保留上述三项失败；三行目录提案未应用。
 
 主要命令、完整日志及资源回执见证据包 `results.json` 和 `logs/`。环境：Rust/Cargo 1.90.0、wasm-bindgen 0.2.104、Node 24.19.0；`UNDERGROUNDBATTLE_BUILD_ROOT=/workspace/undergroundbattle-build`、`CARGO_BUILD_JOBS=1`、`RUST_TEST_THREADS=1`。所有 Native 构建使用 `--offline --locked`，WASM 使用 `CARGO_NET_OFFLINE=true`。子进程最大 RSS 与共享 cgroup 范围分开记录，cgroup 包含并行本地构建及文件缓存，不当作单进程用量。
+
+## 目录期待收束与 witness 实测（07）
+
+以 `66a234125a46a8ae98c463a6d05c8fc551e74642` 为基线，按授权只将三个目录期待补齐关闭的 BQ084/MSBQ02，没有改动生产机制、准入或未实现负断言。原失败日志完整保留。BQ084、MSBQ02 的 tracked 原图哈希与规格记录一致，源码分别仍为关闭候选。
+
+定向实测 5/5 通过：三个原失败函数，以及 `sentinel_local_worker_room_witness`、`wm044_local_platform_room_witness`。两 witness 通过真实新路径显式运行，分别导出 1/2 个非空预设布局场景，共 11 条 Native 命令、44 个视图、11 次重复提交；末态堆叠与待选为空。使用现存生产 WASM 逐步比较这 11 条新轨迹全部一致；本轮仅测试期待改动，未重建 WASM 或重复既有昂贵 UI/Worker 长链，该模块仍为上一轮 66a23412 产物。
+
+随后同一源码完整 `--lib` 实际发现 2696 项：2695 passed、0 failed、1 ignored，1668.25 秒。两个 witness 在全库中也显式运行，使用不同新输出路径，与定向结果逐字节一致，不再标作主体 NOT_RUN。定向5项与完整库有重叠，不能相加。唯一 ignored 仍为 `bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment`，原因是内部候选注册表尚未公开准入。
+
+本轮没有实现新的 BQ048 ready 或三失控派遣语义。重新核对原图、基础规则、霸权说明书及官方勘误后，剩余两个具体裁定点已写入 `CANDIDATE-REVIEW-AND-RULES-2026-10-27.md`：核心区是否是 BQ048 重置/新增标志的作用对象；三失控声明后响应降为二的补选地区时点。场上重置与离场清除旧标志已有明文，不再混同为未知。候选保持关闭；全库通过不替代独审或完整卡牌实现，未重试被拒审查、未推送、合并或部署。

@@ -63,7 +63,7 @@ fn deck_seal_draft_dream_filter_includes_transaction_and_character() {
         .filter(|d| dream_card(d))
         .map(|d| d.id.as_str())
         .collect::<Vec<_>>();
-    assert_eq!(matches, ["XQ41", "XQ45", "BQ033"]);
+    assert_eq!(matches, ["XQ41", "XQ45", "BQ033", "BQ084"]);
     let dream = catalog().cards.iter().find(|d| d.id == "BQ033").unwrap();
     assert_eq!(dream.kind, "character");
     assert!(!dream.supported);

@@ -43,3 +43,12 @@ BQ095 原文完整规定集团总部新区、全局墓地引用与目的地替�
 ## 2026-10-27 core construction evidence follow-up
 
 See `CORE-RULE-EVIDENCE-2026-10-27.md`: official printed p13 lists50 ordinary cards plus a separately listed core. The narrow unanswered minimum-size case is49 ordinary+1 core versus50 ordinary+1 core; the supported example is not a blanket ruling. Printed p20 explicitly permits other-zone ordinary use after movement, now implemented. BQ048 core-invocation mode and BQ056 are closed candidates; no new independent review requested.
+
+## 修格斯收束复核：剩余两个精确裁定点
+
+本轮重新核对 tracked 原图、《霸权说明书》《隐秘世界规则手册》及《隐秘世界勘误及释疑》V1.1，没有引用第三方实现。勘误及释疑全文未涉及修格斯、核心区或混乱，未提供下列边界裁定。
+
+1. **BQ048 重置模式的核心区对象范围**。原图为“重置本方核心角色，并在其上放置一个永久战斗1能力图标标志”。《隐秘世界规则手册》印刷第2页定义场上范围为争夺区、资产区、秘社及争夺中的地区牌；第11页明确“当场上的牌离场或翻面时，从其上移除所有指示物标志”。《霸权说明书》第20页新增核心区，并仅明确核心能力在场上/核心区均有效。已明确：场上核心的重置含义，以及离场清除旧指示物，不再作为未知问题。仍需裁定：本模式是否也能影响停在核心区的核心并新增战斗标志；若声明时核心在场、响应后返回核心区，结算时是否继续影响该核心？当前没有据此开放 ready 模式，也没有把核心区不受影响臆定为官方规则。
+2. **MSBQ02 三失控派遣在响应降失控后的地区选择**。秘社原图是“若此秘社上有三个失控标志，核心角色获得混乱”；《霸权说明书》第18页混乱为“持续能力。当混乱角色进场时，不能指定进入的地区，改为随机选择其将要进入的地区。”第20页同样说明三失控时地区随机且不能指定。已明确：混乱持续依赖当前条件，不能将其无条件冻结到声明时。仍需裁定：三失控时声明、未指定地区，响应中通过既有移除失控效果降为二后，应在哪一时点由谁补选普通进场地区？响应窗口不能为了只支持无响应分支而关闭。当前该入口仍明确标记候选未实现，而非原规则禁止。
+
+三个目录期待已经仅补入已存在且关闭的 BQ084/MSBQ02；原图哈希核对通过。未实现负断言、公开准入及此前独审拒绝状态全部保留。
