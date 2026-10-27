@@ -7,6 +7,16 @@ assert(process.argv[2],'Provide the fresh BQ046/BQ055 Native Room JSON.');
 const bytes=readFileSync(process.argv[2]),raw=JSON.parse(bytes);
 assertCurrentSourceBindings(raw.sourceBindings);assertCurrentCatalog(raw.catalog);
 assert.deepEqual(raw.cases.map(c=>c.name),['bq046-paid-bottom','bq046-prepared-core-false','bq046-prepared-core-true','bq055-real-contest','bq046-deploy-death-return-false','bq046-deploy-death-return-true','bq048-command-core-false','bq048-command-core-true','bq048-command-damage','bq056-core-entry-lock-repress']);
+const inputHashes={core:sha256(bytes)};
+if(process.argv[3]){
+ const naturalBytes=readFileSync(process.argv[3]),natural=JSON.parse(naturalBytes);
+ assertCurrentSourceBindings(natural.sourceBindings);
+ assert.equal(natural.construction.ordinaryCount,50);assert.equal(natural.construction.coreCount,1);
+ assert.equal(natural.construction.noLayoutOrResourceMutation,true);
+ assert.equal(natural.construction.deck.cards.reduce((n,c)=>n+c.count,0),50);
+ raw.cases.push(natural);inputHashes.natural=sha256(naturalBytes);
+}
+raw.nativeInputSha256=inputHashes;
 let commands=0,projections=0;
 for(const scenario of raw.cases){let state=scenario.initial.state;
  for(const step of scenario.steps){
@@ -16,4 +26,4 @@ for(const scenario of raw.cases){let state=scenario.initial.state;
  }
 }
 writeCurrentFixture('rust-game-wasm/tests/current113/core-candidate.json.gz',raw);
-console.log(JSON.stringify({nativeRawSha256:sha256(bytes),scenarios:raw.cases.length,commands,projections,duplicates:commands,preparedLayout:true}));
+console.log(JSON.stringify({nativeRawSha256:sha256(bytes),scenarios:raw.cases.length,commands,projections,duplicates:commands,preparedLayoutCases:10,naturalConstructionCases:raw.cases.length-10,nativeInputSha256:inputHashes}));

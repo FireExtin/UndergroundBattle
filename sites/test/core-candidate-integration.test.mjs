@@ -1,4 +1,4 @@
-// Explicit Native layout; real local HTTP/Worker/D1, not a natural opening.
+// Fresh Native prepared and optional closed-registry natural cases; local HTTP/Worker/D1, not browser play.
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
@@ -6,7 +6,7 @@ import {harness} from './xq23-http-harness.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/core-candidate.json.gz');
 for(const scenario of fixture.cases)
-test(`BQ046/BQ048/BQ055/BQ056 ${scenario.name}: prepared layout HTTP core choice, bottom move and contest, receipts and cold D1 reopening`,async t=>{
+test(`BQ046/BQ048/BQ055/BQ056 ${scenario.name}: HTTP core choice, bottom move and contest, receipts and cold D1 reopening`,async t=>{
  const h=await harness(t,scenario);let reopened=0;
  for(const step of scenario.steps){
   assert.equal((await h.store().room(h.id)).state,step.state);
@@ -20,5 +20,5 @@ test(`BQ046/BQ048/BQ055/BQ056 ${scenario.name}: prepared layout HTTP core choice
  }
  const first=scenario.steps[0],saved=await h.snapshot();
  const duplicate=await h.api('commands',first.seat,first.command);assert.equal(duplicate.status,200);assertPublicView(duplicate.body,first.expected.view);assert.deepEqual(await h.snapshot(),saved);
- t.diagnostic(JSON.stringify({preparedNativeLayout:true,commands:scenario.steps.length,coldReopens:reopened,originalReceiptAfterCompletion:true}));
+ t.diagnostic(JSON.stringify({preparedNativeLayout:!scenario.construction,naturalClosedRegistry:!!scenario.construction,commands:scenario.steps.length,coldReopens:reopened,originalReceiptAfterCompletion:true}));
 });
