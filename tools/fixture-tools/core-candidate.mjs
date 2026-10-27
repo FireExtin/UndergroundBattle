@@ -6,7 +6,7 @@ import {assertCurrentCatalog,assertCurrentSourceBindings,writeCurrentFixture,sha
 assert(process.argv[2],'Provide the fresh BQ046/BQ055 Native Room JSON.');
 const bytes=readFileSync(process.argv[2]),raw=JSON.parse(bytes);
 assertCurrentSourceBindings(raw.sourceBindings);assertCurrentCatalog(raw.catalog);
-assert.deepEqual(raw.cases.map(c=>c.name),['bq046-paid-bottom','bq046-prepared-core-false','bq046-prepared-core-true','bq055-real-contest','bq046-deploy-death-return-false','bq046-deploy-death-return-true']);
+assert.deepEqual(raw.cases.map(c=>c.name),['bq046-paid-bottom','bq046-prepared-core-false','bq046-prepared-core-true','bq055-real-contest','bq046-deploy-death-return-false','bq046-deploy-death-return-true','bq048-command-core-false','bq048-command-core-true','bq056-core-entry-lock-repress']);
 let commands=0,projections=0;
 for(const scenario of raw.cases){let state=scenario.initial.state;
  for(const step of scenario.steps){

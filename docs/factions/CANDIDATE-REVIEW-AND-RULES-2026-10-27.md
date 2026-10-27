@@ -39,3 +39,7 @@ BQ095 原文完整规定集团总部新区、全局墓地引用与目的地替�
 后续 BQ095 推进记录：已实现隔离的首次创建与访问基础层，尚未接入对局；深入生命周期时发现“离场后再次进场如何处理同名总部区域”的具体缺口，详见 `BQ095-FOUNDATION-2026-10-27.md`。这是后续新发现，不回写成此前已有规则结论。
 
 旧目录长度/尾部断言及卡图基线排除集合统一留待整批精确提案，保留规则、数量与牌面完整性检查，不为单卡逐项改绿。中立、双色仍暂停。
+
+## 2026-10-27 core construction evidence follow-up
+
+See `CORE-RULE-EVIDENCE-2026-10-27.md`: official printed p13 lists50 ordinary cards plus a separately listed core. The narrow unanswered minimum-size case is49 ordinary+1 core versus50 ordinary+1 core; the supported example is not a blanket ruling. Printed p20 explicitly permits other-zone ordinary use after movement, now implemented. BQ048 core-invocation mode and BQ056 are closed candidates; no new independent review requested.

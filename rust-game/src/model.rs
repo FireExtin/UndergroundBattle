@@ -733,6 +733,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ056Opponent,
+    BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ086Sacrifice,
     CQ10Discard,
     BQ084Anchor,
@@ -1094,6 +1096,8 @@ impl Game {
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
         self.validate_core_zones()?;
         self.validate_bq046_state()?;
+        self.validate_bq048_state()?;
+        self.validate_bq056_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;
         self.validate_cq10_state()?;

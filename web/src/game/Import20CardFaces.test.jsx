@@ -12,7 +12,7 @@ const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
 const newlyAdmitted=['BQ034','CQ25','XG25'];
-const closedCandidates=["XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055"];
+const closedCandidates=["XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056"];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -58,7 +58,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(285);
+  expect(registry.cards).toHaveLength(287);
   for(const id of ['BQ033','BQ009','BQ001',...closedCandidates])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);

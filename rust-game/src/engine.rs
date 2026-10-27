@@ -445,6 +445,7 @@ impl Game {
             .saturating_add(self.jc060_friendly_sources(c));
         permanent_result.influence += if self.jz32_destroyed(c) { 2 } else { 0 };
         let mut temporary_result = d.temporary_icons.add(sealed_temporary);
+        temporary_result.investigation += self.bq056_investigation(c,region);
         let (night, enhanced_night) = self.jz56_aura(c);
         permanent_result.combat = permanent_result.combat.saturating_add(enhanced_night);
         temporary_result.influence = temporary_result.influence.saturating_add(night);
@@ -748,7 +749,8 @@ impl Game {
                 }
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
-                if c.definition==crate::bq046::ID {return Err("核心角色不能建立资产".into());}
+                crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq046::validate_action(&c.definition,&a)?;
                 if self.current_non_asset(&c,seat) { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
                 self.players[seat].assets.push(c);
@@ -762,7 +764,6 @@ impl Game {
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
-                if c.definition==crate::bq046::ID && !matches!(play_source,PlaySource::CoreZone{..}) {return Err("当前仅接入所选核心区的正面派遣，其他核心来源尚未开放".into());}
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
@@ -775,6 +776,7 @@ impl Game {
                     if !self.accessible(seat, r) { return Err("超出正常派遣距离".into()); }
                     Some(r)
                 };
+                crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -884,6 +886,7 @@ impl Game {
                 if c.controller != seat || !c.face_down {
                     return Err("只能现身自己的暗藏者".into());
                 }
+                crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -958,6 +961,7 @@ impl Game {
                 if d.kind != "spell" && d.kind != "attachment" {
                     return Err("该牌不是事务或附属".into());
                 }
+                crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -1035,6 +1039,7 @@ impl Game {
                 crate::next20_anchor::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
+                crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -1302,6 +1307,7 @@ impl Game {
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.validate_core_play(&item)?;
+        self.validate_bq048_play(&item)?;
         self.validate_bq086_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
@@ -2308,6 +2314,7 @@ impl Game {
         self.validate_death_observers()?;
         self.validate_deck_seal_choice()?;
         self.validate_entry_search_choice()?;
+        self.validate_bq056_state()?;
         let p = self.pending.clone().ok_or("没有待选")?;
         crate::import20_tax_ban::validate_choice_action(&p, &a)?;
         crate::mystic_contest::validate_choice_action(&p, &a)?;

@@ -6,7 +6,7 @@ import {harness} from './xq23-http-harness.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/core-candidate.json.gz');
 for(const scenario of fixture.cases)
-test(`BQ046/BQ055 ${scenario.name}: prepared layout HTTP core choice, bottom move and contest, receipts and cold D1 reopening`,async t=>{
+test(`BQ046/BQ048/BQ055/BQ056 ${scenario.name}: prepared layout HTTP core choice, bottom move and contest, receipts and cold D1 reopening`,async t=>{
  const h=await harness(t,scenario);let reopened=0;
  for(const step of scenario.steps){
   assert.equal((await h.store().room(h.id)).state,step.state);

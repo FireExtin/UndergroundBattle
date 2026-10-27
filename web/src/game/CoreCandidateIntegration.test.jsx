@@ -12,14 +12,14 @@ import {actionForRoom} from './api';
 import {groupObjectActions} from './objectActions';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/core-candidate.json.gz');
 afterEach(()=>{cleanup();sessionStorage.clear();});
-it.each(['BQ046','BQ055'])('%s preserves original, public scan, index and closed current definition',id=>{
+it.each(['BQ046','BQ055','BQ048','BQ056'])('%s preserves original, public scan, index and closed current definition',id=>{
  const spec=JSON.parse(readFileSync(resolve('../docs/factions/card-specifications.json'))).cards[id];
  const scans=JSON.parse(readFileSync(resolve('public/card-scans.json'))),{imagePath,imageSha256}=spec.sourceVerification;
  const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
  expect(hash(resolve('..',imagePath))).toBe(imageSha256);expect(hash(resolve(`public/cards/${id}.jpg`))).toBe(imageSha256);
  expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:imagePath,sha256:imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);
- const sourceCards=JSON.parse(readFileSync(resolve('../rust-game/data/cards.json')));expect(sourceCards.cards.find(c=>c.id===id).subtitle).toBe(spec.fields.subtitle);
- const card=catalog.cards.find(c=>c.id===id);expect(card).toMatchObject({supported:false,name:spec.fields.name,cost:spec.fields.printedCost,permanentIcons:spec.fields.permanentIcons,temporaryIcons:spec.fields.temporaryIcons,defense:spec.fields.defense});
+ const sourceCards=JSON.parse(readFileSync(resolve('../rust-game/data/cards.json')));expect((sourceCards.cards.find(c=>c.id===id).subtitle??null)).toBe(spec.fields.subtitle??null);
+ const card=catalog.cards.find(c=>c.id===id);expect(card).toMatchObject({supported:false,name:spec.fields.name,cost:spec.fields.printedCost,permanentIcons:spec.fields.permanentIcons,temporaryIcons:spec.fields.temporaryIcons,...(spec.fields.defense===null?{}:{defense:spec.fields.defense})});
  render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:`${card.name}原始牌面`})).toHaveAttribute('src',`/cards/${id}.jpg`);
 });
 it('shows the actual parked core outside all regions without inventing a core activation button',()=>{
@@ -54,4 +54,11 @@ it.each(deployments)('$name selects the real core card and submits its exact pai
  expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);
  expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
  if(view.coreZones[0].rest===1)expect(screen.getByText('休整 1 · 再派遣额外费用 2')).toBeInTheDocument();
+});
+const commands=fixture.cases.filter(c=>c.name.startsWith('bq048-command-core-')).map(row=>({name:row.name,step:row.steps[0]}));
+it.each(commands)('$name uses the printed paid command mode through the actual card action button',({step})=>{
+ const view=JSON.parse(abi.view(step.state,step.seat)),wanted=step.command.action.action,submit=vi.fn();const ui=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
+ const legal=view.legalActions.find(a=>a.kind==='play'&&a.cardId===wanted.cardId&&a.option==='core');expect(legal).toBeDefined();
+ fireEvent.click(ui.container.querySelector(`[data-card-instance="${wanted.cardId}"]`));const button=Array.from(ui.container.querySelectorAll('[data-action-id]')).find(el=>el.getAttribute('data-action-id')===legal.id);expect(button).toBeEnabled();fireEvent.click(button);
+ expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
 });

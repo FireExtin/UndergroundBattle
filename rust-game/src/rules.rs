@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    OwnCoreEnter,
     BQ086Death,
     CQ09EndStep,
     Next20WraithDeath,
@@ -305,6 +306,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ056Lock {entry:Option<Box<crate::bq056::Entry>>},
+    BQ056Repress,
+    BQ048InvokeCore,
     BQ001SealStarHandOnSociety,
     Next20Wraith(crate::next20_black_wraiths::WraithProgram),
     Next20Blue(crate::next20_blue_vampires::BlueProgram),
@@ -712,6 +716,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    BQ056LockedEnemyInvestigation,
     BQ055CoreSupport,
     BQ001MysticAnchorShown,
     WM064HostLeaderRenownCriminal,
@@ -805,6 +810,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
+    if crate::bq056::related(ability) {return crate::bq056::validate_ability(card_id,ability);}
+    if crate::bq048::related(ability) {return crate::bq048::validate_ability(card_id,ability);}
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
@@ -1607,6 +1614,8 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         }
         if (card_id==crate::xq35::ID || definition.abilities.iter().any(crate::xq35::related)) && serde_json::to_value(definition).unwrap()!=serde_json::to_value(crate::xq35::definition()).unwrap() { return Err("白骨仆人完整定义不能增删".into()); }
         crate::bq055::validate_definition(card_id,definition)?;
+        crate::bq056::validate_definition(card_id,definition)?;
+        crate::bq048::validate_definition(card_id,definition)?;
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
@@ -2296,6 +2305,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
+        m.insert(crate::bq056::ID.into(),crate::bq056::definition());
+        m.insert(crate::bq048::ID.into(),crate::bq048::definition());
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());

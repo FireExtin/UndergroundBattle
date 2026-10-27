@@ -24,12 +24,13 @@ pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()> {
 }
 pub(crate) fn validate_action(id:&str,a:&Action)->RuleResult<()> {
     if id!=ID {return Ok(());}
-    if a.kind=="deploy" {
-        if *a!=(Action{card_id:a.card_id.clone(),region:a.region,..Action::new("deploy")}) {return Err("核心派遣不能夹带额外载荷".into());}
+    if matches!(a.kind.as_str(),"deploy"|"conceal"|"reveal"|"asset") {
+        let expected=Action{card_id:a.card_id.clone(),region:if matches!(a.kind.as_str(),"deploy"|"conceal"){a.region}else{None},..Action::new(&a.kind)};
+        if *a!=expected {return Err("核心角色区域操作不能夹带额外载荷".into());}
         return Ok(());
     }
     let expected=Action{card_id:a.card_id.clone(),ability_id:a.ability_id.clone(),..Action::new("activate")};
-    if *a!=expected||a.ability_id.as_deref()!=Some(ACTION) {return Err("BQ046当前只开放内部布局中的普通行动；核心出入区与外部发动尚未接入".into());}
+    if *a!=expected||a.ability_id.as_deref()!=Some(ACTION) {return Err("BQ046普通行动须使用印刷行动键；不能直接免费发动核心".into());}
     Ok(())
 }
 fn related_frame(f:&ResolutionFrame)->bool {f.ability_key.starts_with("bq046-")||f.already_paid.iter().any(|p|matches!(p,PaidCost::BQ046Honor{..}))}

@@ -5,6 +5,12 @@ mod cq09;
 #[cfg(test)]
 mod cq09_tests;
 mod bq046;
+mod bq048;
+mod bq056;
+#[cfg(test)]
+mod bq056_tests;
+#[cfg(test)]
+mod bq048_tests;
 mod bq055;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq055_tests;

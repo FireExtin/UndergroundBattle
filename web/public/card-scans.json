@@ -1329,5 +1329,7 @@
   "CQ09": {"url": "/cards/CQ09.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ09 依莲娜·弗朗索瓦.jpg", "sha256": "2822860ecfd29ee98df34cb8f6a1ede534faae6b6b1d9ebc7fc5eec712984143"},
   "BQ086": {"url": "/cards/BQ086.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg", "sha256": "0a1ba46138c000ee4025aadf1b365048d1536fbb7f3feb0a7c536c9a3d100407"},
   "BQ046": {"url": "/cards/BQ046.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ046 探巡者莫佳娜.jpg", "sha256": "d02d1b7fdea4fa25fbba1c49df617d4dbe4b77728ce935156a18d6c8f9784ba1"},
-  "BQ055": {"url": "/cards/BQ055.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ055 研究员戴维斯.jpg", "sha256": "f2976ba17f3ffd78583f62c16ee5b46631e4e65100f5312edad5f2fd9b79d49c"}
+  "BQ055": {"url": "/cards/BQ055.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ055 研究员戴维斯.jpg", "sha256": "f2976ba17f3ffd78583f62c16ee5b46631e4e65100f5312edad5f2fd9b79d49c"},
+  "BQ048": {"url": "/cards/BQ048.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ048 位格压迫.jpg", "sha256": "4c4092c719d9073706e47096a0f375ddf0dab4fe3293b191fdc81b2127641467"},
+  "BQ056": {"url": "/cards/BQ056.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ056 便衣警探.jpg", "sha256": "9564f3a33e2340f9d5da011959f36b40a845700090d62865a63d9fec421c03b1"}
 }

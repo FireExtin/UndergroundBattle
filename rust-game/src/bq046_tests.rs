@@ -33,10 +33,14 @@ fn bq046_rejects_extra_payload_and_duplicate_usage_then_resets_next_turn(){
  g.turn+=1;g.turn_ability_usage.clear();restore(&mut g);act(&mut g,0,action(&id));pass_top(&mut g);assert_eq!(g.players[0].honor,0);
 }
 #[test]
-fn bq046_layout_only_admission_does_not_invent_core_asset_or_conceal_permissions(){
- let mut g=game();fund(&mut g,0,"JC096",8);let id=held(&mut g,b::ID,0);
- reject(&mut g,0,Action{card_id:Some(id.clone()),..Action::new("asset")});
- for kind in ["deploy","conceal"] {reject(&mut g,0,Action{card_id:Some(id.clone()),region:Some(0),..Action::new(kind)});}
+fn bq046_core_zone_cannot_asset_or_conceal_but_hand_has_ordinary_permissions(){
+ let mut g=core_layout(true);fund(&mut g,0,"JC042",1);fund(&mut g,0,"JC056",6);let id=g.core_zones[0].card.as_ref().unwrap().id.clone();
+ reject(&mut g,0,Action{card_id:Some(id.clone()),..Action::new("asset")});reject(&mut g,0,Action{card_id:Some(id),region:Some(0),..Action::new("conceal")});
+ for kind in ["asset","conceal","deploy"] {let mut g=game();fund(&mut g,0,"JC042",1);fund(&mut g,0,"JC056",6);let id=held(&mut g,b::ID,0);
+ act(&mut g,0,Action{card_id:Some(id),region:if kind=="asset"{None}else{Some(0)},..Action::new(kind)});
+ if kind=="asset" {assert!(g.players[0].assets.iter().any(|c|c.definition==b::ID));}
+ else if kind=="conceal" {let id=g.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().id.clone();act(&mut g,0,Action{card_id:Some(id),..Action::new("reveal")});pass_top(&mut g);assert!(!g.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().face_down);}
+ else{pass_top(&mut g);}restore(&mut g);}
  assert!(!crate::catalog::card(b::ID).supported);
 }
 fn core_layout(parked:bool)->Game {
@@ -79,8 +83,10 @@ fn bq046_bq055_native_component_witness(){
   assert!(t.room.game.pending.is_none()&&t.room.game.stack.is_empty());cases.push(t.value());
  }
 
+ cases.extend(crate::bq048_tests::native_cases());
+ cases.push(crate::bq056_tests::native_case());
  for v in &mut cases {for step in v["steps"].as_array_mut().unwrap(){let room=RoomEnvelope::from_persisted(step["expected"]["state"].as_str().unwrap()).unwrap();let cmd:RoomCommand=serde_json::from_value(step["command"].clone()).unwrap();let duplicate=room.transition(step["seat"].as_u64().unwrap() as usize,Some(cmd),0).unwrap();assert_eq!(duplicate.outcome,"rejected");assert!(!duplicate.changed&&duplicate.journal.is_empty());assert_eq!(duplicate.state,step["expected"]["state"]);step["duplicate"]=serde_json::to_value(duplicate).unwrap();}}
- let mut bindings=crate::jc066_tests::source_bindings();for(name,bytes)in[("rust-game/src/bq046.rs",include_bytes!("bq046.rs").as_slice()),("rust-game/src/bq046_tests.rs",include_bytes!("bq046_tests.rs").as_slice()),("rust-game/src/bq055.rs",include_bytes!("bq055.rs").as_slice()),("rust-game/src/bq055_tests.rs",include_bytes!("bq055_tests.rs").as_slice()),("rust-game/src/core_zone.rs",include_bytes!("core_zone.rs").as_slice()),("rust-game/src/play_sources.rs",include_bytes!("play_sources.rs").as_slice())]{bindings["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
+ let mut bindings=crate::jc066_tests::source_bindings();for(name,bytes)in[("rust-game/src/bq046.rs",include_bytes!("bq046.rs").as_slice()),("rust-game/src/bq046_tests.rs",include_bytes!("bq046_tests.rs").as_slice()),("rust-game/src/bq055.rs",include_bytes!("bq055.rs").as_slice()),("rust-game/src/bq055_tests.rs",include_bytes!("bq055_tests.rs").as_slice()),("rust-game/src/core_zone.rs",include_bytes!("core_zone.rs").as_slice()),("rust-game/src/play_sources.rs",include_bytes!("play_sources.rs").as_slice()),("rust-game/src/bq048.rs",include_bytes!("bq048.rs").as_slice()),("rust-game/src/bq048_tests.rs",include_bytes!("bq048_tests.rs").as_slice()),("rust-game/src/bq056.rs",include_bytes!("bq056.rs").as_slice()),("rust-game/src/bq056_tests.rs",include_bytes!("bq056_tests.rs").as_slice())]{bindings["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
  if let Ok(path)=std::env::var("BQ046_BQ055_NATIVE_OUT"){std::fs::write(path,serde_json::to_vec_pretty(&serde_json::json!({"catalog":crate::catalog::catalog(),"sourceBindings":bindings,"cases":cases})).unwrap()).unwrap();}
 }
 
