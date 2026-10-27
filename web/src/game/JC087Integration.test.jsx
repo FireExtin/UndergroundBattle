@@ -17,7 +17,7 @@ const definition=catalog.cards.find(c=>c.id==='JC087');
 
 it('exposes the original JC087 card face and complete conditional self-hide/influence/retreat definition',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(definition).toMatchObject({name:'格鲁尼的走私客',color:'黑',cost:4,loyalty:['黑色','黑色'],defense:2,
     subtypes:['人类','罪犯'],permanentIcons:{investigation:0,combat:1,influence:1},temporaryIcons:{investigation:1,combat:1,influence:0},keywords:['撤回']});
   expect(definition.abilities).toMatchObject([{key:'jc087-enter-region-hide-influence',costs:[],triggered:true}]);

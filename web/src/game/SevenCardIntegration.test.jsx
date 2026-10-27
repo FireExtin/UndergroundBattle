@@ -25,11 +25,12 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
   expect(screen.getByRole('img', { name: `${definition.name}原始牌面` })).toHaveAttribute('src', registered.url);
 });
 it('uses the current candidate and retains the reviewed XQ18', () => {
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
-  expect(catalog.cards).toHaveLength(277);
-  for(const id of ['BQ033','BQ034','CQ25','XG25','BQ009'])expect(definitions.get(id).supported,id).toBe(false);
-  expect(catalog.cards.filter(card => card.supported)).toHaveLength(233);
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.104-bq001-anchor-source-wip');
+  expect(catalog.cards).toHaveLength(278);
+  for(const id of ['BQ033','BQ009','BQ001'])expect(definitions.get(id).supported,id).toBe(false);
+  for(const id of ['BQ034','CQ25','XG25'])expect(definitions.get(id).supported,id).toBe(true);
+  expect(catalog.cards.filter(card => card.supported)).toHaveLength(236);
   expect(definitions.has('XQ18')).toBe(true);
 });
 it('rejects the preserved engine57 opaque room without upgrading its state', () => {

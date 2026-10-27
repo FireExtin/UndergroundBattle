@@ -97,7 +97,7 @@ test('public closed next20: real HTTP create/join rejection, original receipts a
     return {status:r.status,body:await r.json()};
   };
   const catalog=(await api('/api/catalog')).body;
-  assert.equal(catalog.cards.length,277);assert.equal(catalog.cards.filter(c=>c.supported).length,236);
+  assert.equal(catalog.cards.length,278);assert.equal(catalog.cards.filter(c=>c.supported).length,236);
   const draft=()=>({id:'next20-public',name:'Public control',description:'local synthetic entry',societyId:null,
     cards:structuredClone(catalog.decks.find(d=>d.id==='watchers').cards),rulesVersion:catalog.rulesVersion,
     cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:'2026-10-25T00:00:00Z'});
@@ -105,7 +105,7 @@ test('public closed next20: real HTTP create/join rejection, original receipts a
   const created=await api('/api/rooms',create);assert.equal(created.status,200);assert.deepEqual(await api('/api/rooms',create),created);
   const counts=async()=>Promise.all(['rooms','seats','entry_receipts'].map(async table=>(await db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).first()).n));
   const before=await counts(),original=(await new RoomStore(db).room(created.body.roomId)).state;
-  for(const id of ['BQ033','BQ009']){
+  for(const id of ['BQ033','BQ009','BQ001']){
     assert.equal(catalog.cards.find(c=>c.id===id).supported,false);
     const bad=draft();bad.cards.push({cardId:id,count:1});
     assert.equal((await api('/api/rooms',{...create,deckDraft:bad,requestId:crypto.randomUUID()})).status,400);
@@ -135,5 +135,5 @@ test('public closed next20: real HTTP create/join rejection, original receipts a
   assert.deepEqual(await api(route(first.seat,'commands'),first.cmd,sessions[first.seat]),first.result);
   assert.equal((await new RoomStore(db).room(created.body.roomId)).state,state);
   await command(0,{kind:'resumeRoom'});assert(all.every(v=>!v.pause));
-  t.diagnostic(JSON.stringify({publicAdmission:false,closedCardsRejectedAtCreateAndJoin:5,originalEntryAndCommandReceipts:true,opaquePausedStateRestored:true,players:2}));
+  t.diagnostic(JSON.stringify({publicAdmission:false,closedCardsRejectedAtCreateAndJoin:3,originalEntryAndCommandReceipts:true,opaquePausedStateRestored:true,players:2}));
 });

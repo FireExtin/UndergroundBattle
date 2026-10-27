@@ -16,7 +16,7 @@ const fixture = loadCurrentFixture('rust-game-wasm/tests/current112/wm023.json.g
 const catalog=JSON.parse(abi.catalog()),definition=catalog.cards.find(c=>c.id==='WM023');
 it('reads the complete pinned public/slow unique WM023 face and paid exhaustion ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(definition).toMatchObject({name:'尽职的珍珠',subtitle:'庄园仆役',color:'蓝',cost:4,loyalty:['蓝色'],unique:true,defense:1,
     subtypes:['人类','奴仆'],magic:'',keywords:['公开','迟缓'],permanentIcons:{investigation:0,combat:0,influence:1},temporaryIcons:{investigation:0,combat:0,influence:0}});
   expect(definition.abilities).toMatchObject([{key:'wm023-unique-hand-entry',timing:'standard',triggered:false}]);

@@ -14,8 +14,8 @@ abi.initSync({module:wasm});
 const catalog=JSON.parse(abi.catalog());
 const fixture = loadCurrentFixture('rust-game-wasm/tests/current112/jz35.json.gz');
 it('uses the newly built JZ35 catalog and the exact matching Native93 ABI hash',()=>{
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.104-bq001-anchor-source-wip');
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
   expect(catalog.cards.find(c=>c.id==='JZ35').abilities).toMatchObject([{key:'jz35-sacrifice-return-controlled-hosts',timing:'standard',triggered:false,costs:[]}]);
 });

@@ -12,8 +12,8 @@ import {groupObjectActions} from './objectActions';
 const bytes=currentBytes;abi.initSync({module:bytes});
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/jc037.json.gz'),catalog=JSON.parse(abi.catalog());
 it('binds the complete JC037 face and actual source-built ABI93',()=>{
- expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
- expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
+ expect(catalog).toEqual(fixture.catalog);expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+ expect(catalog.cardPoolVersion).toBe('limited-v2.104-bq001-anchor-source-wip');expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
  expect(catalog.cards.find(c=>c.id==='JC037')).toMatchObject({color:'蓝',subtitle:'寂静女士',keywords:['领袖'],permanentIcons:{investigation:0,combat:2,influence:2},abilities:[]});
 });
 it('rejects preserved Native73 states through both current ABI entrypoints',()=>{

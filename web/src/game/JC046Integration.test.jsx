@@ -23,8 +23,8 @@ afterEach(() => { sessionStorage.clear(); vi.useRealTimers(); });
 
 it('binds the integrated chooser to the exact source-built JC046 ABI93 and unchanged Native traces', () => {
   expect(catalog).toEqual(fixture.catalog);
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
-  expect(catalog.cardPoolVersion).toBe('limited-v2.102-import20-rulings-complete');
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
+  expect(catalog.cardPoolVersion).toBe('limited-v2.104-bq001-anchor-source-wip');
   expect(createHash('sha256').update(bytes).digest('hex')).toBe(fixture.wasmSha256);
   expect(fixture.scenarios).toHaveLength(37);
 });

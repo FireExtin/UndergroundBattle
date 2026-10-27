@@ -19,7 +19,7 @@ const definition=catalog.cards.find(c=>c.id==='JC094');
 
 it('reads the complete original JC094 face and standard local-other-sacrifice ability',()=>{
   expect(createHash('sha256').update(wasm).digest('hex')).toBe(fixture.wasmSha256);
-  expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+  expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(definition).toMatchObject({name:'威达的汀巴巴迪',subtitle:'巫毒大师',color:'黑',unique:true,cost:6,
     loyalty:['黑色','黑色','黑色'],magic:'死亡',defense:3,subtypes:['人类','法师','罪犯'],
     permanentIcons:{investigation:0,combat:0,influence:2},temporaryIcons:{investigation:3,combat:0,influence:0},keywords:[]});

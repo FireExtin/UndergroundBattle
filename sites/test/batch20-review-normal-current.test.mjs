@@ -5,7 +5,7 @@ import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
 import {harness} from './xq23-http-harness.mjs';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/batch20-review-normal.json.gz');
-assert.equal(fixture.catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
+assert.equal(fixture.catalog.engineVersion,'rust-v0.2.113-bq001-anchor-source-wip');
 for(const scenario of fixture.cases)test(`actual current Worker batch20 review: ${scenario.name}`,async t=>{
   const h=await harness(t,scenario);let views=0,duplicates=0;
   const allViews=async expected=>{

@@ -8,7 +8,7 @@ import {Table} from './Table';
 import {actionForRoom} from './api';
 
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current112/batch20-review-normal.json.gz');
-expect(catalog.engineVersion).toBe('rust-v0.2.112-shared-keyword-rewards');
+expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
 expect(catalog).toEqual(fixture.catalog);
 const cases=fixture.cases.map(scenario=>{
   const kind=scenario.name.startsWith('cq28-')?'rumor':'batch3-entry-order';

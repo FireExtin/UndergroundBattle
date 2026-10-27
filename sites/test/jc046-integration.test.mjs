@@ -17,9 +17,9 @@ abi.initSync({ module: currentBytes });
 const fixtures = loadCurrentFixture('rust-game-wasm/tests/current112/jc046.json.gz');
 const catalog=JSON.parse(abi.catalog());
 assert.deepEqual(catalog,fixtures.catalog);
-assert.equal(catalog.engineVersion,'rust-v0.2.112-shared-keyword-rewards');
-assert.equal(catalog.cardPoolVersion,'limited-v2.103-next20-three-admitted');
-assert.equal(catalog.cards.length,277);assert.equal(catalog.cards.filter(card=>card.supported).length,236);for(const id of ['BQ033','BQ009'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
+assert.equal(catalog.engineVersion,'rust-v0.2.113-bq001-anchor-source-wip');
+assert.equal(catalog.cardPoolVersion,'limited-v2.104-bq001-anchor-source-wip');
+assert.equal(catalog.cards.length,278);assert.equal(catalog.cards.filter(card=>card.supported).length,236);for(const id of ['BQ033','BQ009','BQ001'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
 assert.equal(fixtures.scenarios.length,37);
 assert.equal(new Set(fixtures.scenarios.map(s=>s.name)).size,37);
 
