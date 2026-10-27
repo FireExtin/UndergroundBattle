@@ -481,3 +481,7 @@ mod bq001_natural_room_tests;
 
 #[cfg(test)]
 mod bq001_shared_grant_tests;
+
+mod bq095;
+#[cfg(all(test, not(feature = "society-fixtures")))]
+mod bq095_tests;
