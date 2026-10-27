@@ -24,6 +24,10 @@ pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()> {
 }
 pub(crate) fn validate_action(id:&str,a:&Action)->RuleResult<()> {
     if id!=ID {return Ok(());}
+    if a.kind=="deploy" {
+        if *a!=(Action{card_id:a.card_id.clone(),region:a.region,..Action::new("deploy")}) {return Err("核心派遣不能夹带额外载荷".into());}
+        return Ok(());
+    }
     let expected=Action{card_id:a.card_id.clone(),ability_id:a.ability_id.clone(),..Action::new("activate")};
     if *a!=expected||a.ability_id.as_deref()!=Some(ACTION) {return Err("BQ046当前只开放内部布局中的普通行动；核心出入区与外部发动尚未接入".into());}
     Ok(())

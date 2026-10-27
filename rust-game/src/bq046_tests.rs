@@ -41,7 +41,7 @@ fn bq046_layout_only_admission_does_not_invent_core_asset_or_conceal_permissions
 }
 fn core_layout(parked:bool)->Game {
  let mut g=game();let c=if parked {Some(g.make_card(b::ID,0))} else {field(&mut g,b::ID,0);None};
- g.core_zones.push(crate::core_zone::CoreZone{owner:0,definition:b::ID.into(),card:c});restore(&mut g);g
+ g.core_zones.push(crate::core_zone::CoreZone{rest:0,owner:0,definition:b::ID.into(),card:c});restore(&mut g);g
 }
 #[test]
 fn bq046_core_component_forecasts_three_from_board_and_core_zone_without_honor(){
@@ -68,7 +68,49 @@ fn bq046_bq055_native_component_witness(){
  let(mut g,id)=setup();g.players[0].honor=1;let mut t=Trace::new(g,"bq046-paid-bottom".into(),460);t.action(0,action(&id));while !t.room.game.stack.is_empty(){t.pass();}let mut cases=vec![t.value()];
  for parked in [false,true]{let mut g=core_layout(parked);g.resolve_selected_bq046_core(0).unwrap();g.drive().unwrap();let mut t=Trace::new(g,format!("bq046-prepared-core-{parked}"),461+usize::from(parked));let p=t.room.game.pending.clone().unwrap();let ids=p.choice.options.iter().map(|o|o.id.clone()).collect::<Vec<_>>();t.action(0,Action{choice_id:Some(p.choice.id),top:Some(vec![ids[2].clone(),ids[0].clone()]),bottom:Some(vec![ids[1].clone()]),..Action::new("choose")});assert!(t.room.game.pending.is_none());let mut v=t.value();v["preparedComponentInvocation"]=true.into();cases.push(v);}
  cases.push(crate::bq055_tests::native_case());
+ for back in [false,true] {
+  let mut g=funded_core(0);fund(&mut g,0,"JC056",2);fund(&mut g,0,"JC084",2);let spell=held(&mut g,"BQ090",0);let core=g.core_zones[0].card.as_ref().unwrap().id.clone();
+  let mut t=Trace::new(g,format!("bq046-deploy-death-return-{back}"),470+usize::from(back));
+  t.action(0,Action{card_id:Some(core),region:Some(0),..Action::new("deploy")});while !t.room.game.stack.is_empty(){t.pass();}
+  let core=t.room.game.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().id.clone();
+  t.action(0,Action{card_id:Some(spell),target_id:Some(core),..Action::new("play")});t.until_pending();assert_eq!(t.room.game.pending.as_ref().unwrap().choice.kind,"core-return");t.choose(vec![if back{"core"}else{"destination"}.into()]);
+  if back {let core=t.room.game.core_zones[0].card.as_ref().unwrap().id.clone();t.action(0,Action{card_id:Some(core),region:Some(0),..Action::new("deploy")});while !t.room.game.stack.is_empty(){t.pass();}assert_eq!(t.room.game.core_zones[0].rest,1);assert_eq!(t.room.game.resources(0),1);}
+  else {assert!(t.room.game.players[0].graveyard.iter().any(|c|c.definition==b::ID));}
+  assert!(t.room.game.pending.is_none()&&t.room.game.stack.is_empty());cases.push(t.value());
+ }
+
  for v in &mut cases {for step in v["steps"].as_array_mut().unwrap(){let room=RoomEnvelope::from_persisted(step["expected"]["state"].as_str().unwrap()).unwrap();let cmd:RoomCommand=serde_json::from_value(step["command"].clone()).unwrap();let duplicate=room.transition(step["seat"].as_u64().unwrap() as usize,Some(cmd),0).unwrap();assert_eq!(duplicate.outcome,"rejected");assert!(!duplicate.changed&&duplicate.journal.is_empty());assert_eq!(duplicate.state,step["expected"]["state"]);step["duplicate"]=serde_json::to_value(duplicate).unwrap();}}
- let mut bindings=crate::jc066_tests::source_bindings();for(name,bytes)in[("rust-game/src/bq046.rs",include_bytes!("bq046.rs").as_slice()),("rust-game/src/bq046_tests.rs",include_bytes!("bq046_tests.rs").as_slice()),("rust-game/src/bq055.rs",include_bytes!("bq055.rs").as_slice()),("rust-game/src/bq055_tests.rs",include_bytes!("bq055_tests.rs").as_slice()),("rust-game/src/core_zone.rs",include_bytes!("core_zone.rs").as_slice())]{bindings["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
+ let mut bindings=crate::jc066_tests::source_bindings();for(name,bytes)in[("rust-game/src/bq046.rs",include_bytes!("bq046.rs").as_slice()),("rust-game/src/bq046_tests.rs",include_bytes!("bq046_tests.rs").as_slice()),("rust-game/src/bq055.rs",include_bytes!("bq055.rs").as_slice()),("rust-game/src/bq055_tests.rs",include_bytes!("bq055_tests.rs").as_slice()),("rust-game/src/core_zone.rs",include_bytes!("core_zone.rs").as_slice()),("rust-game/src/play_sources.rs",include_bytes!("play_sources.rs").as_slice())]{bindings["files"].as_object_mut().unwrap().insert(name.into(),serde_json::json!(format!("{:x}",Sha256::digest(bytes))));}
  if let Ok(path)=std::env::var("BQ046_BQ055_NATIVE_OUT"){std::fs::write(path,serde_json::to_vec_pretty(&serde_json::json!({"catalog":crate::catalog::catalog(),"sourceBindings":bindings,"cases":cases})).unwrap()).unwrap();}
+}
+
+fn funded_core(rest:u32)->Game {let mut g=core_layout(true);g.core_zones[0].rest=rest;fund(&mut g,0,"JC042",1);fund(&mut g,0,"JC056",6);g}
+fn deploy_core(g:&mut Game){let id=g.core_zones[0].card.as_ref().unwrap().id.clone();let a=Action{card_id:Some(id),region:Some(0),..Action::new("deploy")};assert!(g.legal_actions(0).iter().any(|v|v.action==a));act(g,0,a);pass_top(g);}
+#[test]
+fn bq046_real_core_deploy_pays_printed_plus_rest_not_honor(){
+ let mut g=funded_core(1);let before=g.resources(0);let honor=g.players[0].honor;deploy_core(&mut g);assert_eq!(g.resources(0),before-5);assert_eq!(g.players[0].honor,honor);assert!(g.core_zones[0].card.is_none());assert!(g.regions[0].cards.iter().any(|c|c.definition==b::ID));restore(&mut g);
+ let mut g=funded_core(3);let id=g.core_zones[0].card.as_ref().unwrap().id.clone();reject(&mut g,0,Action{card_id:Some(id),region:Some(0),..Action::new("deploy")});assert_eq!(g.resources(0),7);
+}
+#[test]
+fn bq046_return_choice_for_death_hand_bottom_preserves_original_destination(){
+ for destination in 0..3 {for back in [false,true] {let mut g=funded_core(0);deploy_core(&mut g);let id=g.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().id.clone();
+ match destination{0=>g.return_hand(&id),1=>g.to_bottom(&id),_=>g.remove_dead(&id,RemovalCause::Destroy)};restore(&mut g);g.drive().unwrap();restore(&mut g);assert_eq!(g.pending.as_ref().unwrap().choice.kind,"core-return");assert!(!g.players[0].graveyard.iter().any(|c|c.definition==b::ID));
+ choose(&mut g,vec![if back{"core"}else{"destination"}.into()]);assert_eq!(g.core_zones[0].rest,u32::from(back));assert_eq!(g.core_zones[0].card.is_some(),back);
+ if !back {let cards=match destination{0=>&g.players[0].hand,1=>&g.players[0].deck,_=>&g.players[0].graveyard};assert!(cards.iter().any(|c|c.definition==b::ID&&c.id!=id));}
+ restore(&mut g);
+ }}
+}
+#[test]
+fn bq046_return_waiting_corruption_and_core_play_missing_frame_rejected(){
+ let mut g=funded_core(0);let id=g.core_zones[0].card.as_ref().unwrap().id.clone();act(&mut g,0,Action{card_id:Some(id),region:Some(0),..Action::new("deploy")});
+ let mut bad=g.clone();bad.stack.last_mut().unwrap().frame=None;assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());pass_top(&mut g);
+ let id=g.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().id.clone();g.return_hand(&id);g.drive().unwrap();
+ for n in 0..3 {let mut bad=g.clone();let p=bad.pending.as_mut().unwrap();if n==0{p.choice.options.pop();}else if let ChoiceResolution::CoreReturn{departure}=&mut p.resolution {if n==1{departure.source.card.definition="JC001".into();}else{bad.players[0].hand.push(departure.card.clone());}}
+ assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());let mut room=envelope(&g);room.game=bad;assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_err());}
+ choose(&mut g,vec!["core".into()]);assert_eq!(g.core_zones[0].rest,1);
+}
+
+#[test]
+fn bq046_elimination_clears_parked_and_waiting_core(){
+ for waiting in [false,true] {let mut g=funded_core(0);if waiting{deploy_core(&mut g);let id=g.regions[0].cards.iter().find(|c|c.definition==b::ID).unwrap().id.clone();g.return_hand(&id);g.drive().unwrap();}g.eliminate(0);assert!(g.core_zones.is_empty());assert!(g.pending.is_none());restore(&mut g);}
 }

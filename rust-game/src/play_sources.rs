@@ -22,6 +22,11 @@ impl Game {
         id: &str,
         concealed: bool,
     ) -> RuleResult<(Card, PlaySource)> {
+        if let Some(z)=self.core_zones.iter().find(|z|z.owner==actor&&z.card.as_ref().is_some_and(|c|c.id==id)) {
+            self.validate_core_zones()?;
+            if concealed {return Err("核心区不能秘密派遣".into());}
+            return Ok((z.card.clone().unwrap(),PlaySource::CoreZone{rest:z.rest}));
+        }
         if let Some(c) = self.players[actor].hand.iter().find(|c| c.id == id) {
             if !concealed && card(&c.definition).kind == "character" && self.jz52_grant(actor).is_some() {
                 return Err("大维齐尔迈哈穆德在场时不能从手牌正面打出角色".into());
@@ -54,6 +59,10 @@ impl Game {
         source: PlaySource,
     ) -> RuleResult<Card> {
         match source {
+            PlaySource::CoreZone{rest}=>{
+                let z=self.core_zones.iter_mut().find(|z|z.owner==actor&&z.rest==rest&&z.card.as_ref().is_some_and(|c|c.id==id)).ok_or("核心派遣原来源失效")?;
+                Ok(z.card.take().unwrap())
+            },
             PlaySource::Hand => self.remove_hand(actor, id),
             PlaySource::AssetByXG18(_) => {
                 let i = self.players[actor].assets.iter().position(|c| c.id == id).ok_or("资产出牌引用已失效")?;
@@ -84,6 +93,7 @@ impl SourceSnapshot {
     /// Frozen permission remains valid if the granting character leaves during responses.
     pub(crate) fn valid_character_play(&self) -> bool {
         match &self.play_source {
+            Some(PlaySource::CoreZone{..})=>crate::core_zone::is_core(&self.card.definition)&&self.card.owner==self.card.controller&&!self.card.face_down,
             Some(PlaySource::Hand) => true,
             Some(PlaySource::AssetByXG18(grant)) => crate::batch4_omega::valid_asset_play(self, grant),
             Some(PlaySource::Graveyard) => rules::definition(&self.card.definition).graveyard_face_up,

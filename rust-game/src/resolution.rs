@@ -545,7 +545,7 @@ impl Game {
         face_up_play: bool,
     ) -> RuleResult<Vec<PaidCost>> {
         let amount = if face_up_play {
-            self.effective_cost(actor, c)
+            self.effective_cost(actor, c).checked_add(self.core_zones.iter().find(|z|z.owner==actor&&z.card.as_ref().is_some_and(|core|core.id==c.id)).map_or(Some(0),|z|z.rest.checked_mul(2)).ok_or("核心休整费用溢出")?).ok_or("核心休整费用溢出")?
         } else {
             self.paid_reveal_cost(actor, c)
         };
@@ -1583,8 +1583,10 @@ impl Game {
             let owner = c.owner;
             let c = self.reset_zone_card(c);
             let deferred = character && snapshot.card.definition == "XG25";
-            let grave_instance = if deferred { String::new() } else { c.id.clone() };
+            let core_return=self.selected_core_card(&c);
+            let grave_instance = if deferred||core_return { String::new() } else { c.id.clone() };
             if deferred { self.hold_pregrave_death(&snapshot, c); }
+            else if core_return {self.defer_core_departure(snapshot.clone(),c,crate::core_zone::Destination::Grave);}
             else { self.commit_owner_grave(c, ghoul_sources); }
             self.note(format!(
                 "{}：{}",

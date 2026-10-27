@@ -9,6 +9,7 @@ import {Table} from './Table';
 import {DeckCardFace} from './DeckCardFace';
 import {cardScanUrl} from './cardScans';
 import {actionForRoom} from './api';
+import {groupObjectActions} from './objectActions';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/core-candidate.json.gz');
 afterEach(()=>{cleanup();sessionStorage.clear();});
 it.each(['BQ046','BQ055'])('%s preserves original, public scan, index and closed current definition',id=>{
@@ -40,4 +41,17 @@ it.each(choices)('$name sends the exact Native choice including a nontrivial for
  }
  fireEvent.click(within(dialog).getByRole('button',{name:'确认选择'}));expect(submit).toHaveBeenCalled();expect(actionForRoom(view,submit.mock.calls.at(-1)[0])).toEqual(step.command.action);
  expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
+});
+const deployments=fixture.cases.flatMap(row=>row.steps.filter(s=>s.command.action.action?.kind==='deploy').map((step,index)=>({name:row.name+' '+index,step})));
+it.each(deployments)('$name selects the real core card and submits its exact paid deployment',({step})=>{
+ const view=JSON.parse(abi.view(step.state,step.seat)),wanted=step.command.action.action,submit=vi.fn();
+ const ui=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
+ const legal=view.legalActions.find(a=>a.kind==='deploy'&&a.cardId===wanted.cardId&&a.region===wanted.region);expect(legal).toBeDefined();
+ const source=ui.container.querySelector(`[data-card-instance="${wanted.cardId}"]`);expect(source).toBeInTheDocument();fireEvent.click(source);
+ const group=groupObjectActions(view.legalActions.filter(a=>a.cardId===wanted.cardId)).find(g=>g.actions.some(a=>a.id===legal.id));fireEvent.click(screen.getByRole('button',{name:group.label}));
+ const region=view.regions.find(r=>r.index===wanted.region);fireEvent.click(screen.getByRole('button',{name:`查看地区${wanted.region+1} ${region.name}`}));
+ const confirm=ui.container.querySelector(`[data-action-kind="deploy"][data-action-region="${wanted.region}"]`);expect(confirm).toHaveAttribute('data-action-id',legal.id);fireEvent.click(confirm);
+ expect(submit).toHaveBeenCalledOnce();expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);
+ expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);
+ if(view.coreZones[0].rest===1)expect(screen.getByText('休整 1 · 再派遣额外费用 2')).toBeInTheDocument();
 });

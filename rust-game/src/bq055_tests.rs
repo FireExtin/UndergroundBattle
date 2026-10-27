@@ -1,6 +1,6 @@
 use crate::{bq055 as b,core_zone::CoreZone,model::*,unit_support::*};
 use crate::jc029_tests::{pass_top,envelope};
-fn setup(parked:bool)->(Game,String){let mut g=game();let core=if parked{Some(g.make_card("BQ046",0))}else{field(&mut g,"BQ046",0);None};g.core_zones.push(CoreZone{owner:0,definition:"BQ046".into(),card:core});let observer=field(&mut g,b::ID,0);restore(&mut g);(g,observer)}
+fn setup(parked:bool)->(Game,String){let mut g=game();let core=if parked{Some(g.make_card("BQ046",0))}else{field(&mut g,"BQ046",0);None};g.core_zones.push(CoreZone{rest:0,owner:0,definition:"BQ046".into(),card:core});let observer=field(&mut g,b::ID,0);restore(&mut g);(g,observer)}
 #[test]
 fn bq055_discount_only_own_selected_core_and_only_live_personal_observer(){
  let(mut g,observer)=setup(true);let core=g.core_zones[0].card.as_ref().unwrap().clone();assert_eq!(g.effective_cost(0,&core),2);assert_eq!(g.paid_reveal_cost(0,&core),2);

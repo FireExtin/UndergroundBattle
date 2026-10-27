@@ -762,6 +762,7 @@ impl Game {
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                if c.definition==crate::bq046::ID && !matches!(play_source,PlaySource::CoreZone{..}) {return Err("当前仅接入所选核心区的正面派遣，其他核心来源尚未开放".into());}
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 let chaos_play = a.kind == "deploy" && rules::definition(&c.definition).traits.chaos;
@@ -1190,6 +1191,9 @@ impl Game {
     pub(crate) fn eliminate(&mut self, seat: usize) {
         self.players[seat].eliminated = true;
         self.cancel_pregrave_owner(seat);
+        self.core_zones.retain(|z|z.owner!=seat);
+        if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::CoreReturn{departure}if departure.card.owner==seat)){self.pending=None;}
+        self.effects.retain(|e|!matches!(e,Effect::CoreReturn{departure}if departure.card.owner==seat));
         self.return_sealed_cards(&format!("society:p{seat}"));
         self.players[seat].hand.clear();
         self.players[seat].deck.clear();
@@ -1297,6 +1301,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+        self.validate_core_play(&item)?;
         self.validate_bq086_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
@@ -1729,6 +1734,7 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::CoreReturn{departure}=>self.core_departure_choice(*departure)?,
             Effect::DeathFinish { death_instance } => self.finish_pregrave_death(&death_instance)?,
             Effect::DeathCaller { caller } => self.resume_death_caller(*caller)?,
             Effect::MysticQueueFence { .. } => return Err("临时隐秘队列边界不得作为效果执行".into()),
@@ -2156,7 +2162,9 @@ impl Game {
         self.players[seat].deck = deck;
     }
     pub(crate) fn return_hand(&mut self, target: &str) {
+        let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
+            if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Hand);return;}
             c = self.fresh(c);
             c.face_down = false;
             c.exhausted = false;
@@ -2168,7 +2176,9 @@ impl Game {
         }
     }
     pub(crate) fn to_bottom(&mut self, target: &str) {
+        let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
+            if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Bottom);return;}
             c = self.fresh(c);
             c.face_down = false;
             c.exhausted = false;
@@ -2359,6 +2369,7 @@ impl Game {
         } else { None };
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::CoreReturn{departure}=>self.finish_core_departure(*departure,&a,&selected)?,
             ChoiceResolution::CQ28Draft {draft} => self.cq28_choose(*draft,seat,&a,&selected)?,
             ChoiceResolution::JZ51Payment { draft } => self.jz51_finish_payment(*draft,&selected)?,
             ChoiceResolution::JZ36Payment { draft } => self.jz36_finish_cost(*draft,selected)?,
@@ -3150,6 +3161,9 @@ impl Game {
                 candidates.extend(self.rule_action_candidates(seat, c, None, "activate"));
             }
         }
+        for z in self.core_zones.iter().filter(|z|z.owner==seat) {if let Some(c)=&z.card {for r in 0..self.regions.len() {
+            candidates.push((Action{card_id:Some(c.id.clone()),region:Some(r),..Action::new("deploy")},format!("派遣核心 {} → 地区{}",card(&c.definition).name,r+1)));
+        }}}
         let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
         candidates.extend(self.xq35_actions(seat));
         candidates.extend(self.xg25_sealed_actions(seat));

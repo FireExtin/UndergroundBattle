@@ -500,6 +500,7 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    CoreReturn {departure:Box<crate::core_zone::Departure>},
     DeathFinish { death_instance: String },
     DeathCaller { caller: Box<crate::death_continuation::DeathCaller> },
     // A transient append fence used only while executing one command/effect.
@@ -630,6 +631,7 @@ pub struct ObservedMobilityGrant {
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum PlaySource {
+    CoreZone { rest: u32 },
     AssetByXG18(Box<crate::batch4_omega::OmegaAssetPlay>),
     Hand,
     Graveyard,
@@ -932,6 +934,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    CoreReturn {departure:Box<crate::core_zone::Departure>},
     CQ28Draft { draft:Box<crate::import20_gate::GateDraft> },
     CQ24Reattach { draft: Box<crate::import20_carmen::CarmenDraft> },
     JZ51Payment { draft: Box<crate::batch4_wendigo::GraveDraft> },
