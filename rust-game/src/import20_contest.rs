@@ -6,12 +6,13 @@ use std::collections::BTreeSet;
 pub(crate) const CARDS: &[&str] = &["BQ090", "BQ064"];
 pub(crate) const DESTROY: &str = "import20-bq090-destroy";
 pub(crate) const HAND: &str = "import20-bq090-hand-contest";
+pub(crate) const TEST034_HAND:&str="import20-test034-hand-contest";
 pub(crate) const EYE_HAND: &str = "import20-bq039-hand-contest";
 pub(crate) const SAMPLES: &str = "import20-bq064-take-samples";
 
-pub(crate) fn is_hand_key(key: &str) -> bool { matches!(key, HAND | EYE_HAND | crate::import20_industry::HAND) }
+pub(crate) fn is_hand_key(key: &str) -> bool { matches!(key, HAND | EYE_HAND | TEST034_HAND | crate::import20_industry::HAND) }
 pub(crate) fn hand_ability(id: &str) -> Option<AbilitySpec> {
-    let key = match id { "BQ090" => HAND, "BQ039" => EYE_HAND, "BQ092" => crate::import20_industry::HAND, _ => return None };
+    let key = match id { "TEST034" => TEST034_HAND, "BQ090" => HAND, "BQ039" => EYE_HAND, "BQ092" => crate::import20_industry::HAND, _ => return None };
     let mut hand = ability(key, "手牌行动：支付2并弃自身，进行隐秘对抗", Timing::Standard,
         vec![Cost::Assets(2), Cost::DiscardSelectedHandCard], vec![],
         vec![Op::MysticContest { actor_bonus: 0 }], None);
@@ -61,6 +62,7 @@ pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
     else { Err("首批隐秘卡能力须保留原卡完整费用、目标与程序".into()) }
 }
 pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
+    if id == "TEST034" {return crate::test034::validate_action(id,a);}
     if id == "BQ092" { return crate::import20_industry::validate_action(id,a); }
     if id == "BQ039" { return crate::import20_observers::validate_action(id, a); }
     if !CARDS.contains(&id) { return Ok(()); }
@@ -75,12 +77,12 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if *a == expected { Ok(()) } else { Err("本卡行动不可夹带额外目标、费用或选择".into()) }
 }
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
-    matches!((id, key, bonus), ("BQ090", HAND, 0) | ("BQ039", EYE_HAND, 0) | ("BQ092", crate::import20_industry::HAND, 0))
+    matches!((id, key, bonus), ("TEST034", TEST034_HAND, 0) | ("BQ090", HAND, 0) | ("BQ039", EYE_HAND, 0) | ("BQ092", crate::import20_industry::HAND, 0))
 }
 
 impl Game {
     pub(crate) fn import20_begin_hand(&mut self, actor: usize, a: &Action) -> RuleResult<()> {
-        let id = match a.ability_id.as_deref() { Some(HAND) => "BQ090", Some(EYE_HAND) => "BQ039", Some(crate::import20_industry::HAND) => "BQ092", _ => return Err("非准入神秘学博弈手牌能力".into()) };
+        let id = match a.ability_id.as_deref() { Some(TEST034_HAND) => "TEST034", Some(HAND) => "BQ090", Some(EYE_HAND) => "BQ039", Some(crate::import20_industry::HAND) => "BQ092", _ => return Err("非准入神秘学博弈手牌能力".into()) };
         validate_action(id, a)?;
         let player = self.players.get(actor).filter(|p| !p.eliminated).ok_or("手牌行动玩家无效")?;
         let c = player.hand.iter().find(|c| Some(c.id.as_str()) == a.card_id.as_deref()

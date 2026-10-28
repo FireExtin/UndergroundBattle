@@ -647,6 +647,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
         self.validate_mscq02_state()?;
+        self.validate_test034_state()?;
         self.validate_bq_commands()?;
         self.validate_core_zones()?;
         self.validate_next20_black_state()?;
@@ -680,6 +681,7 @@ impl Game {
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
         next.validate_mscq02_state()?;
+        next.validate_test034_state()?;
         next.validate_bq_commands()?;
         next.validate_core_zones()?;
         next.prune_inspection_receipts();
@@ -804,6 +806,7 @@ impl Game {
                 crate::cq09::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
+                crate::test034::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
@@ -916,6 +919,7 @@ impl Game {
                 crate::cq09::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
+                crate::test034::validate_action(&c.definition,&a)?;
                 crate::bq001::validate_action(&c.definition,&a)?;
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;

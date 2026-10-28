@@ -827,6 +827,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
     if crate::bq056::related(ability) {return crate::bq056::validate_ability(card_id,ability);}
+    if card_id==crate::test034::ID||ability.key==crate::import20_contest::TEST034_HAND{return crate::test034::validate_ability(card_id,ability);}
     if card_id==crate::mscq02::ID||crate::mscq02::related(ability){return crate::mscq02::validate_ability(card_id,ability);}
     if card_id==crate::mswm02::ID||crate::mswm02::related(ability){return crate::mswm02::validate_ability(card_id,ability);}
     if card_id==crate::msjc12::ID||crate::msjc12::related(ability) {return crate::msjc12::validate_ability(card_id,ability);}
@@ -1642,6 +1643,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::msjc12::validate_definition(card_id,definition)?;
         crate::mswm02::validate_definition(card_id,definition)?;
         crate::mscq02::validate_definition(card_id,definition)?;
+        crate::test034::validate_definition(card_id,definition)?;
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
@@ -2337,6 +2339,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::msjc12::ID.into(),crate::msjc12::definition());
         m.insert(crate::mswm02::ID.into(),crate::mswm02::definition());
         m.insert(crate::mscq02::ID.into(),crate::mscq02::definition());
+        m.insert(crate::test034::ID.into(),crate::test034::definition());
         for id in crate::bq_commands::IDS {m.insert(id.into(),crate::bq_commands::definition(id));}
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());

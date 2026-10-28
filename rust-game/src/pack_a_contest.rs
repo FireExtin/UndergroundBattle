@@ -167,6 +167,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition==crate::test034::ID{return self.test034_frame(f);}
         if f.source.card.definition==crate::mswm02::ID||f.ability_key.starts_with("mswm02-"){return self.mswm02_frame(f);}
         if crate::cq09::frame_related(f) { return self.validate_cq09_frame(f); }
         self.validate_next20_black_play_frame(f)?;

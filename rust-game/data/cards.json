@@ -11406,6 +11406,47 @@
         "image": "resource/ymsj-fun.github.io/cards/BQ051 大暴走.jpg",
         "imageSha256": "9b85eac467903a688407c6d575645000f3e626af9cc3f2b31f5f172d76f3e4de"
       }
+    },
+    {
+      "id": "TEST034",
+      "name": "兽性直觉",
+      "kind": "attachment",
+      "subtypes": [
+        "状态",
+        "超能力"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "蓝色"
+      ],
+      "color": "蓝",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "非资产。结附于目标吸血鬼角色。持续：受此结附的角色获得永久调查1。神秘学博弈2：手牌行动2，从手中弃掉此牌，进行一次隐秘对抗。",
+      "keywords": [
+        "非资产"
+      ],
+      "unique": false,
+      "supported": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "TEST034",
+        "image": "resource/ymsj-fun.github.io/cards/TEST034 兽性直觉.jpg",
+        "imageSha256": "51b211a96598671a2fc92dd3192dac1fb146a1bdfdde2e219febe8e7754b0ee5",
+        "printedTestWatermarkObserved": true,
+        "formalReleaseEligibility": "unconfirmed"
+      }
     }
   ],
   "decks": [
