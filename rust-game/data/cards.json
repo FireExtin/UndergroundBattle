@@ -11447,6 +11447,45 @@
         "printedTestWatermarkObserved": true,
         "formalReleaseEligibility": "unconfirmed"
       }
+    },
+    {
+      "id": "BQ063",
+      "name": "神话威严",
+      "kind": "spell",
+      "subtypes": [
+        "命令",
+        "精神"
+      ],
+      "cost": 3,
+      "loyalty": [
+        "灰色"
+      ],
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "text": "修格斯秘社限定\n行动 选择一项：将所有本方核心角色和触手角色所在地区的角色翻面为暗藏者，遏制1；将所有本方核心角色和触手角色所在地区的暗藏者移回其拥有者手上，遏制1；发动两次核心能力，遏制1。",
+      "keywords": [
+        "修格斯秘社限定"
+      ],
+      "unique": false,
+      "supported": false,
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "BQ063",
+        "image": "resource/ymsj-fun.github.io/cards/BQ063 神话威严.jpg",
+        "imageSha256": "1d9702f3d600ce4c7c1f50776a3a008c15b7b5d34706be8bd8ac2bef42246c98"
+      }
     }
   ],
   "decks": [

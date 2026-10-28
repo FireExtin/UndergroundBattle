@@ -57,11 +57,15 @@ impl Game {
     /// Future command producers must retain their own paid frame/provenance.
     #[allow(dead_code)]
     pub(crate) fn resolve_selected_bq046_core(&mut self,seat:usize)->RuleResult<()> {
+        let (_,amount)=self.selected_bq046_core_program(seat)?;
+        if self.pending.is_some() {return Err("不能覆盖尚未完成的选择".into());}
+        self.effects.push_front(Effect::Forecast{seat,amount,draw:false});
+        Ok(())
+    }
+    pub(crate) fn selected_bq046_core_program(&self,seat:usize)->RuleResult<(SourceSnapshot,usize)> {
         let s=self.selected_core_source(seat)?;
         if s.card.definition!=crate::bq046::ID {return Err("仅实现莫佳娜核心预测3".into());}
-        if self.pending.is_some() {return Err("不能覆盖尚未完成的选择".into());}
-        self.effects.push_front(Effect::Forecast{seat,amount:3,draw:false});
-        Ok(())
+        Ok((s,3))
     }
     pub(crate) fn core_zone_views(&self,viewer:usize)->Vec<CoreZoneView> {
         self.core_zones.iter().map(|z|CoreZoneView{player_id:player_id(z.owner),definition:z.definition.clone(),rest:z.rest,

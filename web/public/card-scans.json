@@ -1338,5 +1338,6 @@
   "MSJC12": {"url": "/cards/MSJC12.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg", "sha256": "31d71c702fb3bc44e421633cb241cacd4dd3cb734e2fa1917dadc25955fba51e"},
   "MSWM02": {"url": "/cards/MSWM02.jpg", "source": "resource/ymsj-fun.github.io/cards/MSWM02 公众安全委员会.jpg", "sha256": "5558c826295a0254220d0f4a14bb6160c8a8b326efb375fd73fb593525f4f128"},
   "MSCQ02": {"url": "/cards/MSCQ02.jpg", "source": "resource/ymsj-fun.github.io/cards/MSCQ02 诺尔维隐修会.jpg", "sha256": "b5807e65cf0166dfff9a501be22745c3d76e9f39cf69202564a94b2a5086074c"},
-  "TEST034": {"url": "/cards/TEST034.jpg", "source": "resource/ymsj-fun.github.io/cards/TEST034 兽性直觉.jpg", "sha256": "51b211a96598671a2fc92dd3192dac1fb146a1bdfdde2e219febe8e7754b0ee5"}
+  "TEST034": {"url": "/cards/TEST034.jpg", "source": "resource/ymsj-fun.github.io/cards/TEST034 兽性直觉.jpg", "sha256": "51b211a96598671a2fc92dd3192dac1fb146a1bdfdde2e219febe8e7754b0ee5"},
+  "BQ063": {"url": "/cards/BQ063.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ063 神话威严.jpg", "sha256": "1d9702f3d600ce4c7c1f50776a3a008c15b7b5d34706be8bd8ac2bef42246c98"}
 }

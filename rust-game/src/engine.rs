@@ -648,6 +648,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_bq063_state()?;
         self.validate_bq_commands()?;
         self.validate_core_zones()?;
         self.validate_next20_black_state()?;
@@ -682,6 +683,7 @@ impl Game {
         next.validate_mswm02_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
+        next.validate_bq063_state()?;
         next.validate_bq_commands()?;
         next.validate_core_zones()?;
         next.prune_inspection_receipts();
@@ -764,6 +766,7 @@ impl Game {
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                self.bq063_action(seat,&c,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if self.current_non_asset(&c,seat) { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
@@ -792,6 +795,7 @@ impl Game {
                     Some(r)
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
+                self.bq063_action(seat,&c,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -905,6 +909,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                self.bq063_action(seat,&c,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -982,6 +987,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                self.bq063_action(seat,&c,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -1062,6 +1068,7 @@ impl Game {
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
+                self.bq063_action(seat,&c,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -1336,6 +1343,7 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_bq063_play(&item)?;
         self.validate_bq_command_play(&item)?;
         self.validate_bq086_play(&item)?;
         self.validate_cq09_play(&item)?;
@@ -2396,7 +2404,7 @@ impl Game {
                 | ChoiceResolution::Bottom { .. }
                 | ChoiceResolution::Damage { .. }
                 | ChoiceResolution::Frame {
-                    choice: FrameChoice::Forecast { .. },
+                    choice: FrameChoice::Forecast { .. } | FrameChoice::BQ063Forecast { .. },
                     ..
                 }
         ) && (selected.len() < p.choice.min.unwrap_or(0)
@@ -6303,7 +6311,7 @@ mod tests {
         match p.resolution {
             ChoiceResolution::Forecast { .. }
             | ChoiceResolution::Frame {
-                choice: FrameChoice::Forecast { .. },
+                choice: FrameChoice::Forecast { .. } | FrameChoice::BQ063Forecast { .. },
                 ..
             } => {
                 a.top = Some(p.choice.options.iter().map(|o| o.id.clone()).collect());
