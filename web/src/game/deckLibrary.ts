@@ -117,6 +117,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='redNeutralOrPrintedDisasterTimeFate'&&society.id==='MSCQ02'){
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['红','中立'].includes(card.color||'')||card.subtypes?.some(s=>['灾难','时间','命运'].includes(s))))issue('society-disaster-time-fate','诺尔维仅红、中立及灾难、时间、命运牌。',card.id);}
+          continue;
+        }
         if(constraint.kind==='grayYellowNeutralOrPrintedAgentMediaInternet'&&society.id==='MSWM02'){
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['灰','黄','中立'].includes(card.color||'')||card.subtypes?.some(s=>['特工','媒体','互联网'].includes(s))))issue('society-agent-media','公众安全委员会仅灰黄中立或其他派系印刷特工、媒体、互联网牌。',card.id);}
           continue;

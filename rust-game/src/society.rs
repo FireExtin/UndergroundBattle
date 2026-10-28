@@ -17,6 +17,9 @@ pub struct SocietyZone {
     // Only starting a new game replaces this zone and clears these ability keys.
     #[serde(default)]
     pub used_once_per_game: BTreeSet<String>,
+    /// Internal MSCQ02 event receipts; never projected as once-per-game abilities.
+    #[serde(default, skip_serializing_if = "BTreeSet::is_empty")]
+    pub(crate) mscq02_observed: BTreeSet<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -38,6 +41,7 @@ pub enum SocietyDeckConstraint {
     Shoggoth,
     BlueNeutralOrPrintedVampireSlave,
     GrayYellowNeutralOrPrintedAgentMediaInternet,
+    RedNeutralOrPrintedDisasterTimeFate,
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
     ClockmakersOffColorMaximum,
@@ -88,6 +92,9 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::RedNeutralOrPrintedDisasterTimeFate => {
+                if society.card.id!="MSCQ02"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"红"|"中立")&&!c.subtypes.iter().any(|s|matches!(s.as_str(),"灾难"|"时间"|"命运"))){return Err("诺尔维构筑仅红、中立及灾难、时间、命运牌".into());}
+            },
             SocietyDeckConstraint::GrayYellowNeutralOrPrintedAgentMediaInternet => {
                 if society.card.id!="MSWM02"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"灰"|"黄"|"中立")&&!c.subtypes.iter().any(|s|matches!(s.as_str(),"特工"|"媒体"|"互联网"))){return Err("公众安全委员会构筑仅灰黄中立或其他派系印刷特工、媒体、互联网牌".into());}
             },
@@ -460,6 +467,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.push(crate::msbq02::society());
     societies.push(crate::msjc12::society());
         societies.push(crate::mswm02::society());
+        societies.push(crate::mscq02::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -531,7 +539,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12", "MSWM02"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12", "MSWM02", "MSCQ02"]
             );
         }
         assert_eq!(

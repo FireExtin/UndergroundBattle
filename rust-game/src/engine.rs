@@ -646,6 +646,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_mscq02_state()?;
         self.validate_bq_commands()?;
         self.validate_core_zones()?;
         self.validate_next20_black_state()?;
@@ -678,6 +679,7 @@ impl Game {
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
+        next.validate_mscq02_state()?;
         next.validate_bq_commands()?;
         next.validate_core_zones()?;
         next.prune_inspection_receipts();
@@ -1174,6 +1176,7 @@ impl Game {
         self.first_team = self.random_below(2);
         self.turn = 1;
         self.privilege_used = false;
+        self.mscq02_observe_start();
         for seat in 0..self.players.len() {
             self.players[seat].asset_used = false;
             self.players[seat].conceal_used = false;
@@ -1739,6 +1742,7 @@ impl Game {
     }
     pub(crate) fn drive(&mut self) -> RuleResult<()> {
         let mut processed = 0;
+        self.mscq02_continuous();
         while self.pending.is_none() && self.status == "playing" {
             // Mobility has a specific first-team-before-rear-team order. Do not
             // declare the next move until the current responsive stack resolves.
@@ -1757,6 +1761,7 @@ impl Game {
                 return Err("效果步骤超过有界上限".into());
             }
             self.mystic_effect_scope(|g| g.effect(effect))?;
+            self.mscq02_continuous();
         }
         Ok(())
     }
@@ -2035,6 +2040,7 @@ impl Game {
                         Some(region),
                     );
                     self.emit_event(seat, source, Event::RegionWon);
+                    if destroyed { self.mscq02_observe_win(seat); }
                 }
             }
             Effect::Unique { seat } => {

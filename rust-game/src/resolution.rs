@@ -1286,6 +1286,7 @@ impl Game {
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
+        self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
         self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
@@ -1393,6 +1394,7 @@ impl Game {
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
+        self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
         self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
@@ -1730,6 +1732,7 @@ impl Game {
         self.validate_jc041_frame(&frame)?;
         self.validate_xq23_frame(&frame)?;
         self.validate_jc035_frame(&frame)?;
+        self.mscq02_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             self.cancel_pregrave_frame(&frame)?;
             self.jc035_cancel_guarded_frame(&frame)?;
@@ -1792,6 +1795,7 @@ impl Game {
                 Op::BQ027ShownFeed { .. } | Op::BQ031WinFeed { .. } | Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
+                Op::MSCQ02 { .. } => self.mscq02_resolve(&frame)?,
                 Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
                 Op::MysticContest { actor_bonus } => {
                     if frame.source.card.definition==crate::mswm02::ID{return self.mswm02_start(frame);}
@@ -2705,6 +2709,7 @@ impl Game {
                     return Err("禁止嵌套的玩家遍历声明".into())
                 }
             }
+            self.mscq02_continuous();
             self.settle_deaths();
             if self.pending.is_some() {
                 if frame.cursor < frame.steps.len() { self.effects.push_front(Effect::Frame { frame: Box::new(frame) }); }
