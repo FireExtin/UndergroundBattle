@@ -646,6 +646,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_msbq03_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_bq063_state()?;
@@ -670,6 +671,7 @@ impl Game {
         self.validate_jc041_state()?;
         self.validate_xq23_state()?;
         self.validate_jc035_state()?;
+        self.msbq03_action(seat,&action)?;
         let mut next = self.clone();
         next.version = revision;
         next.mystic_effect_scope(|g| {
@@ -681,6 +683,7 @@ impl Game {
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
+        next.validate_msbq03_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
         next.validate_bq063_state()?;
@@ -2708,7 +2711,7 @@ impl Game {
                 Some(
                     region
                         .map(|r| self.icons(c, r))
-                        .unwrap_or(d.permanent_icons),
+                        .unwrap_or_else(|| {let mut icons=d.permanent_icons;if kind==Some("attachment")&&!c.face_down&&!c.exhausted{icons.influence+=self.msbq03_influence(c);}icons}),
                 )
             },
             defense: if hidden || asset || d.kind != "character" {

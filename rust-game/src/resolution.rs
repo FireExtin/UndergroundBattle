@@ -779,6 +779,7 @@ impl Game {
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
+                                TargetPredicate::MSBQ03Industry => self.msbq03_industry(actor,source,c),
                                 TargetPredicate::BQ086Corpse => self.bq086_corpse(actor,source,c),
                                 TargetPredicate::CQ09OwnGraveCharacter => self.cq09_grave_target(actor,source,c),
                                 TargetPredicate::BQ084OwnGraveCharacter => self.bq084_grave_target(actor,source,c),
@@ -1800,6 +1801,7 @@ impl Game {
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::MSCQ02 { .. } => self.mscq02_resolve(&frame)?,
+                Op::MSBQ03 { search } => return self.msbq03_resolve(frame,search),
                 Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
                 Op::MysticContest { actor_bonus } => {
                     if frame.source.card.definition==crate::mswm02::ID{return self.mswm02_start(frame);}
@@ -2763,6 +2765,7 @@ impl Game {
             FrameChoice::BQ036TopSix { inspected_ids } => return self.bq036_search_finish(&frame, &inspected_ids, &selected),
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
+            FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
             FrameChoice::BQ063Opponent=>return self.bq063_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Repress{seat,regions}=>return self.bq063_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),

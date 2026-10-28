@@ -88,7 +88,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
     const group = named.get(name) || { count: 0, limits: new Set<number | null>(), ids: [], missingLimit: false };
     group.count += entry.count;
     group.ids.push(card.id);
-    if (card.deckCopyLimit === null || (typeof card.deckCopyLimit === 'number' && Number.isSafeInteger(card.deckCopyLimit) && card.deckCopyLimit >= 1)) group.limits.add(card.deckCopyLimit);
+    if (card.deckCopyLimit === null || (typeof card.deckCopyLimit === 'number' && Number.isSafeInteger(card.deckCopyLimit) && card.deckCopyLimit >= 1)) group.limits.add(draft.societyId==='MSBQ03'&&card.name==='无名尸体'?null:card.deckCopyLimit);
     else group.missingLimit = true;
     named.set(name, group);
   }
@@ -117,6 +117,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='blackWhiteNeutralCorpse'&&society.id==='MSBQ03'){
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['黑','白','中立'].includes(card.color||''))issue('society-scarab','圣甲虫药业仅黑白中立。',card.id);}
+          continue;
+        }
         if(constraint.kind==='redNeutralOrPrintedDisasterTimeFate'&&society.id==='MSCQ02'){
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['红','中立'].includes(card.color||'')||card.subtypes?.some(s=>['灾难','时间','命运'].includes(s))))issue('society-disaster-time-fate','诺尔维仅红、中立及灾难、时间、命运牌。',card.id);}
           continue;
