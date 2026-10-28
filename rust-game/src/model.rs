@@ -652,6 +652,7 @@ pub enum PaidCost {
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
+    MSWM02Discard { card: Card, subtypes: Vec<String> },
     BQ046Honor { before: u32 },
     BQ033Anchor(Box<crate::next20_blue_vampires::AnchorPayment>),
     CQ15Returned(Box<crate::import20_swords::SwordPayment>),
@@ -1103,6 +1104,7 @@ impl Game {
         self.validate_bq_commands()?;
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
+        self.validate_mswm02_state()?;
         self.validate_bq056_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;

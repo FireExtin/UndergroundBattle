@@ -645,6 +645,7 @@ impl Game {
         }
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
+        self.validate_mswm02_state()?;
         self.validate_bq_commands()?;
         self.validate_core_zones()?;
         self.validate_next20_black_state()?;
@@ -676,6 +677,7 @@ impl Game {
         next.drive()?;
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
+        next.validate_mswm02_state()?;
         next.validate_bq_commands()?;
         next.validate_core_zones()?;
         next.prune_inspection_receipts();

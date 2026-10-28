@@ -36,3 +36,7 @@
 唯一 ignored 为 `bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment`，原理由 `Internal candidate catalog variant only; mainline admission remains closed`；未打开准入或移除ignore。本轮无新失败，不覆盖此前失败证据。
 
 生产源码、Cargo/npm锁文件与361d9437完全一致。此前同源WASM/UI/Worker证据保留原身份，不重新签旧fixture；本轮未重复昂贵跨端套件、8个独立集成目标或真实浏览器试玩。全库自测通过不解除独审/规则边界。到此收束并停止新增工作，未发起复审、推送、合并或发布。
+
+## 2026-10-28 继续开发增量
+
+收到继续推进授权后，以91cd260b为基线新增单灰秘社MSWM02公众安全委员会。前文14项及其历史测试原样保留；现有封闭记录15项（包括尚未接Game的BQ095基础层），并非15张完整通过审查的卡。MSWM02构筑、每局一次两模式清除秘社标志、媒体/互联网弃牌隐秘对抗已实现并保持关闭，原图与本轮实测详见 `MSWM02-CLOSED-WIP-2026-10-28.md`。未重试此前被拒独审；旧未决规则不变，公开新批次仍3/20。

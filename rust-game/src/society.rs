@@ -37,6 +37,7 @@ pub struct SocietyZoneView {
 pub enum SocietyDeckConstraint {
     Shoggoth,
     BlueNeutralOrPrintedVampireSlave,
+    GrayYellowNeutralOrPrintedAgentMediaInternet,
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
     ClockmakersOffColorMaximum,
@@ -87,6 +88,9 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::GrayYellowNeutralOrPrintedAgentMediaInternet => {
+                if society.card.id!="MSWM02"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"灰"|"黄"|"中立")&&!c.subtypes.iter().any(|s|matches!(s.as_str(),"特工"|"媒体"|"互联网"))){return Err("公众安全委员会构筑仅灰黄中立或其他派系印刷特工、媒体、互联网牌".into());}
+            },
             SocietyDeckConstraint::BlueNeutralOrPrintedVampireSlave => {
                 if society.card.id != "MSJC12" || entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c| !matches!(c.color.as_str(),"蓝"|"中立") && !(c.kind=="character" && c.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"奴仆")))) { return Err("爱弗罗德构筑仅允许蓝、中立及其他派系印刷吸血鬼或奴仆角色".into()); }
             },
@@ -455,6 +459,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.push(crate::sentinel::society());
         societies.push(crate::msbq02::society());
     societies.push(crate::msjc12::society());
+        societies.push(crate::mswm02::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -526,7 +531,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12", "MSWM02"]
             );
         }
         assert_eq!(

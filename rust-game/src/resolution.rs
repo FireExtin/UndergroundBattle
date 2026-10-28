@@ -191,6 +191,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSWM02MediaDiscard)){
+                    self.players[actor].hand.iter().filter(|c|self.mswm02_media(c)).map(|c|Some(vec![c.id.clone()])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::MSJC12ExhaustTrio)) {
                     self.msjc12_trios(actor,&ability.key).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::IndustryExhaustOther)) {
@@ -283,7 +285,7 @@ impl Game {
                                         .filter(|_| ability
                                             .costs
                                             .iter()
-                                            .any(|c| matches!(c, Cost::DiscardSelectedHandCard)))
+                                            .any(|c| matches!(c, Cost::DiscardSelectedHandCard|Cost::MSWM02MediaDiscard)))
                                         .map(|c| format!(
                                             "（费用：弃掉{} [{}]）",
                                             card(&c.definition).name,
@@ -1015,6 +1017,7 @@ impl Game {
         for cost in &spec.costs {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
+                Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
                 Cost::MSJC12ExhaustTrio => paid.push(self.msjc12_pay_trio(actor,source,spec,a)?),
                 Cost::MSBQ02Honor => paid.push(self.msbq02_pay_honor(actor,source,spec)?),
                 Cost::BQ046Honor => paid.push(self.bq046_pay_honor(actor,source,spec,1)?),
@@ -1789,7 +1792,9 @@ impl Game {
                 Op::BQ027ShownFeed { .. } | Op::BQ031WinFeed { .. } | Op::BQ027FeedTarget | Op::BQ032RevealFeed | Op::BQ038RaidFeed { .. } => return self.vampire_feed_start(frame),
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
+                Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
                 Op::MysticContest { actor_bonus } => {
+                    if frame.source.card.definition==crate::mswm02::ID{return self.mswm02_start(frame);}
                     if frame.source.card.definition=="WM037" {return self.wm037_offer_contest(frame);}
                     return self.mystic_contest_start(frame,actor_bonus);
                 },

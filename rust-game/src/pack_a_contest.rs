@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if id==crate::mswm02::ID{return key==crate::mswm02::CONTEST&&bonus==0;}
     if id == crate::cq09::ID && key == crate::cq09::REVEAL && bonus == 0 { return true; }
     if id == "CQ25" && key == crate::next20_black_wraiths::CONTEST && bonus == 0 { return true; }
     if id == "WM057" && key == crate::import20_broker::ACT && bonus == 0 { return true; }
@@ -166,6 +167,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition==crate::mswm02::ID||f.ability_key.starts_with("mswm02-"){return self.mswm02_frame(f);}
         if crate::cq09::frame_related(f) { return self.validate_cq09_frame(f); }
         self.validate_next20_black_play_frame(f)?;
         if crate::next20_black_wraiths::frame_related(f) { return self.validate_next20_black_program_frame(f); }

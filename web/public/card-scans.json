@@ -1335,5 +1335,6 @@
   "BQ050": {"url": "/cards/BQ050.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ050 破坏欲.jpg", "sha256": "e0a79b04247f4c67c9b9c3fee9dc6ab13e4acf41364b2c714ada93d3675938cd"},
   "BQ051": {"url": "/cards/BQ051.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ051 大暴走.jpg", "sha256": "9b85eac467903a688407c6d575645000f3e626af9cc3f2b31f5f172d76f3e4de"},
   "MSBQ02": {"url": "/cards/MSBQ02.jpg", "source": "resource/ymsj-fun.github.io/cards/MSBQ02 修格斯.jpg", "sha256": "d91745c377071d62e4073a839f24666127aaa5b59fd648db1801ac19ce6fd713"},
-  "MSJC12": {"url": "/cards/MSJC12.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg", "sha256": "31d71c702fb3bc44e421633cb241cacd4dd3cb734e2fa1917dadc25955fba51e"}
+  "MSJC12": {"url": "/cards/MSJC12.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg", "sha256": "31d71c702fb3bc44e421633cb241cacd4dd3cb734e2fa1917dadc25955fba51e"},
+  "MSWM02": {"url": "/cards/MSWM02.jpg", "source": "resource/ymsj-fun.github.io/cards/MSWM02 公众安全委员会.jpg", "sha256": "5558c826295a0254220d0f4a14bb6160c8a8b326efb375fd73fb593525f4f128"}
 }
