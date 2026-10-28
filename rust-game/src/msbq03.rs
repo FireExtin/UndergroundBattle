@@ -61,6 +61,7 @@ impl Game{
   for i in &self.stack{if let Some(f)=&i.frame{check(f)?;if ours(f)&&(i.card.is_some()||i.id!=f.frame_id||i.controller!=f.actor||i.reveal||i.deploy_region.is_some()||i.target.as_deref()!=f.targets.first().map(|t|t.id.as_str())||f.cursor!=0){return Err("圣甲虫实际堆叠外壳不符".into());}}}
   for e in &self.effects{match e{Effect::Frame{frame:f}=>{check(f)?;if ours(f){return Err("圣甲虫单步没有独立执行续体".into());}},Effect::Declare{declaration:d}if d.source.card.definition==ID||related(&d.ability)=>return Err("圣甲虫没有触发声明".into()),_=>{}}}
   if let Some(p)=&self.pending{match &p.resolution{ChoiceResolution::Frame{frame:f,choice}if ours(f)||matches!(choice,FrameChoice::MSBQ03{..})=>{
+   if f.source.card.definition!=ID||f.actor>=self.players.len(){return Err("圣甲虫待选必须携带原秘社与有效行动者".into());}
    check(f)?;let FrameChoice::MSBQ03{search}=choice else{return Err("圣甲虫待选类型不能替换".into());};let options=self.msbq03_options(f,*search);
    let expected=Choice{id:p.choice.id.clone(),kind:if *search{"search"}else{"msbq03-corpse"}.into(),title:if *search{"检索产业，展示入手后洗牌"}else{"选择墓地一张无名尸体封印"}.into(),description:"选择符合数量限制的选项，然后确认。".into(),player_id:player_id(f.actor),options,min:Some(1),max:Some(1),amount:None,allow_decline:Some(false),preview_cards:vec![]};
    if !ours(f)||f.cursor!=1||*search!=(f.ability_key==SEARCH)||p.seat!=f.actor||!self.mystic_instance_valid(&p.choice.id)||expected.options.is_empty()||!same(&expected,&p.choice)||!*search&&(!self.valid_bound_target(f.actor,&f.source,&f.targets[0])||!self.seal_host_valid(&f.targets[0].id)){return Err("圣甲虫待选、原目标或实际可选牌损坏".into());}
