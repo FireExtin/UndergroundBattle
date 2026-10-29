@@ -95,6 +95,7 @@ impl Game {
     }
     pub(crate) fn mobility_immutable_identity(&self, old: &Card) -> RuleResult<()> {
         self.validate_generated_identity(old)?;
+        self.validate_jc028_identity(old)?;
         if old.chosen_subtype.is_some() && old.definition != "JZ56" { return Err("亡者之夜类别不能移植到其他来源".into()); }
         let private = self.players.iter().flat_map(|p| {
             p.hand
@@ -126,7 +127,7 @@ impl Game {
         if current.len() > 1
             || current
                 .iter()
-                .any(|live| live.definition != old.definition || live.owner != old.owner || live.generated != old.generated)
+                .any(|live| live.definition != old.definition || live.owner != old.owner || live.generated != old.generated || live.blood_origin != old.blood_origin)
         {
             return Err("机动历史UID与现存实体的印刷定义或拥有者矛盾".into());
         }
@@ -172,7 +173,7 @@ impl Game {
     ) -> RuleResult<()> {
         self.validate_mobility_recipient(actor,s)?;
         let c = &s.card;
-        let admitted = |c: &Card, kind: &str| catalog::catalog().cards.iter().any(|d|d.id==c.definition&&d.kind==kind);
+        let admitted = |c: &Card, kind: &str| catalog::known_card(&c.definition).is_some_and(|d|d.kind==kind);
         if printed(&c.definition) || s.observed_exposure.is_some() {
             if s.observed_exposure.is_some_and(|n| !matches!(c.definition.as_str(), "WM040" | "XG18") || n == 0) || (printed(&c.definition) && s.observed_exposure.is_some()) { return Err("条件机动必须保留已准入日形角色的实际暴露观察".into()); }
             if s.observed_mobility_grant.is_some() {

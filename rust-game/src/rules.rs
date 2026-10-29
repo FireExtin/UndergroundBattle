@@ -89,6 +89,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    JC028Sacrifice,
     MSJC16SealSeven,
     MSBQ02Honor,
     BQ045ExhaustTentacle,
@@ -331,6 +332,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JC028Blood,
     JC097Raid {observation:Option<crate::jc097::Observation>},
     JZ53Generate {departure:Option<crate::jz53::Departure>},
     CQ27Prepare {event_id:Option<String>},
@@ -896,6 +898,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::bq045::ID||crate::bq045::related(ability){return crate::bq045::validate_ability(card_id,ability);}
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
+    if crate::jc028::related(ability) { return crate::jc028::validate_ability(card_id,ability); }
     if crate::jc097::related(ability) { return crate::jc097::validate_ability(card_id,ability); }
     if crate::jz53::related(ability) { return crate::jz53::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
@@ -1727,6 +1730,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq086::validate_definition(card_id,definition)?;
         crate::jz53::validate_definition(card_id,definition)?;
         crate::jc097::validate_definition(card_id,definition)?;
+        crate::jc028::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
         crate::cq27::validate_definition(card_id,definition)?;
         crate::bq088::validate_definition(card_id,definition)?;
@@ -1958,7 +1962,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: unsupported attachment host specification"
                 ));
             }
-            if card_id != "BQ026" && !definition.abilities.iter().any(|a| {
+            if card_id != "BQ026" && card_id != crate::jc028::FORM && !definition.abilities.iter().any(|a| {
                 a.event.is_none()
                     && a.timing == Timing::Standard
                     && a.targets.len() == 1
@@ -2445,6 +2449,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());
         m.insert(crate::jz53::ID.into(),crate::jz53::definition());
         m.insert(crate::jc097::ID.into(),crate::jc097::definition());
+        m.insert(crate::jc028::ID.into(),crate::jc028::definition());
+        m.insert(crate::jc028::FORM.into(),crate::jc028::form_definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());
         m.insert("CQ27".into(),crate::cq27::definition());
         for id in ["BQ088","TK001"]{m.insert(id.into(),crate::bq088::definition(id));}

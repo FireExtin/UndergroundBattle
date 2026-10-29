@@ -203,7 +203,7 @@ impl Game {
         if self.regions.iter().any(|r| r.card.time_markers > 0 && (r.vacant || !catalog::catalog().cards.iter().any(|d| d.id == r.card.definition && d.kind == "region"))) { return Err("时间标志只能属于仍在场的地区实体".into()); }
         for a in &self.attachments {
             if a.card.time_markers > 0 && (a.card.face_down && !crate::batch4_plans::secret(&a.card)
-                || catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
+                || a.card.definition!=crate::jc028::FORM && catalog::catalog().cards.iter().find(|d| d.id == a.card.definition)
                     .is_none_or(|d| !catalog::has_kind(d,"attachment"))
                 || self.board(&a.host_id).is_some_and(|(_, host)| !catalog::catalog().cards.iter()
                     .any(|d| d.id == host.definition))

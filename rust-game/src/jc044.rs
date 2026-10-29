@@ -162,7 +162,7 @@ impl Game {
             self.jc044_player(f)?;
             let [PaidCost::RemovedTime(p)] = f.already_paid.as_slice() else { return Err("JC044须恰好支付一个时间标志".into()); };
             let c = &p.carrier;
-            let kind = catalog::catalog().cards.iter().find(|d| d.id == c.definition && catalog::runtime_implemented(d)).map(|d| d.kind.as_str());
+            let kind = catalog::known_card(&c.definition).filter(|d|catalog::runtime_implemented(d)).map(|d| d.kind.as_str());
             if c.id.is_empty() || c.owner >= self.players.len() || c.controller != f.actor || c.face_down
                 || c.time_markers.checked_sub(1) != Some(p.remaining)
                 || p.region.is_some_and(|r| r >= self.regions.len())

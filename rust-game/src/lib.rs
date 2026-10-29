@@ -22,6 +22,8 @@ mod core_zone;
 mod bq046_tests;
 mod jz53;
 mod jc097;
+mod jc028;
+#[cfg(test)] mod jc028_tests;
 #[cfg(test)] mod jc097_tests;
 #[cfg(test)] mod jz53_tests;
 mod cq27;

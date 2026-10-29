@@ -12106,6 +12106,39 @@
     "loyalty": [],
     "loyaltyText": "",
     "defense": 1
+},
+{
+    "id": "JC028",
+    "name": "鲜血奴仆",
+    "unique": false,
+    "kind": "character",
+    "cost": 1,
+    "color": "蓝",
+    "magic": "鲜血",
+    "icons": {
+        "permanent": {
+            "investigation": 0,
+            "combat": 1,
+            "influence": 0
+        },
+        "temporary": {
+            "investigation": 0,
+            "combat": 0,
+            "influence": 0
+        }
+    },
+    "subtypes": [
+        "吸血鬼",
+        "奴仆"
+    ],
+    "text": "快速行动 牺牲鲜血奴仆：将鲜血奴仆移回场上，成为一个名为鲜血的附属并结附于目标吸血鬼角色。鲜血不具有能力图标和防御力，且具有“受此结附的角色获得+1防御和额外的永久战斗1”的能力。",
+    "supported": false,
+    "keywords": [],
+    "loyalty": [
+        "蓝色"
+    ],
+    "loyaltyText": "蓝",
+    "defense": 1
 }
   ],
   "decks": [

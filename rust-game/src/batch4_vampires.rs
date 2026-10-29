@@ -219,7 +219,7 @@ impl Game {
                 let h = &o.host; let a = &o.attachment;
                 let Some(event) = self.vampire_id(&o.event_id) else { return Err("雾羽千军结附事件身份无效".into()); };
                 let printed = catalog::catalog().cards.iter().find(|d| d.id == h.card.definition && catalog::runtime_implemented(d)).ok_or("结附宿主不是准入牌面")?;
-                let attached = catalog::catalog().cards.iter().find(|d| d.id == a.card.definition && catalog::runtime_implemented(d)).ok_or("结附观察不是准入附属")?;
+                let attached = catalog::known_card(&a.card.definition).filter(|d|catalog::runtime_implemented(d)).ok_or("结附观察不是准入附属")?;
                 if source.card.definition != "BQ031" || o.turn != self.turn || h.card.controller != actor || h.card.face_down
                     || h.card.owner >= self.players.len() || a.card.owner >= self.players.len() || a.card.controller >= self.players.len()
                     || self.batch3_physical_cards().any(|c| c.id == o.event_id) || self.stack.iter().any(|s| s.id == o.event_id)

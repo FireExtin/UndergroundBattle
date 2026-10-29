@@ -16,7 +16,7 @@ fn same<T: serde::Serialize>(a: &T, b: &T) -> bool {
 fn admitted_card(c: &Card) -> RuleResult<()> {
     static IDS: OnceLock<BTreeSet<&'static str>> = OnceLock::new();
     let ids = IDS.get_or_init(|| catalog::catalog().cards.iter().map(|d| d.id.as_str())
-        .chain(catalog::catalog().societies.iter().map(|d| d.card.id.as_str())).collect());
+        .chain(catalog::catalog().societies.iter().map(|d| d.card.id.as_str())).chain(std::iter::once(crate::jc028::FORM)).collect());
     if !ids.contains(c.definition.as_str()) {
         return Err("时间程序投影前发现非准入卡牌定义".into());
     }

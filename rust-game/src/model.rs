@@ -381,6 +381,8 @@ pub struct PrivateInspectionView {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub blood_origin: Option<crate::jc028::BloodOrigin>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub generated: Option<crate::generated::GeneratedOrigin>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub chosen_number: Option<u32>,
@@ -656,6 +658,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JC028Sacrificed(crate::death_observers::CharacterDeathReceipt),
     CQ27Sacrificed(Vec<SourceSnapshot>),
     MSJC16Sealed(Vec<Card>),
     CoreRestHonor { before:u32, rest:u32 },
@@ -1148,6 +1151,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
+        self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
         self.validate_xg19_state()?;

@@ -259,7 +259,7 @@ impl Game {
             || c.owner >= self.players.len()
             || c.controller >= self.players.len()
             || c.face_down
-            || !catalog::catalog()
+            || !(c.definition==crate::jc028::FORM && kind=="attachment" && self.validate_jc028_identity(c).is_ok()) && !catalog::catalog()
                 .cards
                 .iter()
                 .any(|d| d.id == c.definition && catalog::runtime_implemented(d) && catalog::has_kind(d, kind))
@@ -274,6 +274,7 @@ impl Game {
             if live.next().is_some()
                 || current.definition != c.definition
                 || current.owner != c.owner
+                || current.blood_origin != c.blood_origin
                 || (kind == "character"
                     && self.board(&c.id).is_none())
                 || (kind == "attachment" && !self.attachments.iter().any(|a| a.card.id == c.id))

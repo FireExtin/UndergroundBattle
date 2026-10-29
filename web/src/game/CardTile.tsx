@@ -74,6 +74,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const attachment = card.kind === 'attachment';
   const society = card.kind === 'society';
   const dualCharacter = !asset && definition?.kind === 'character' && !!definition.additionalKinds?.includes('attachment');
+  const transformedAttachment = attachment && definition?.kind === 'character' && !dualCharacter;
   const character = card.kind === 'character' || (attachment && dualCharacter);
   const subtitle = definition && typeof definition.subtitle === 'string' ? definition.subtitle : undefined;
   const startingHand = society && definition && 'startingHand' in definition && typeof definition.startingHand === 'number' && Number.isSafeInteger(definition.startingHand) && definition.startingHand >= 0 ? definition.startingHand : undefined;
@@ -83,12 +84,12 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const absentCost = card.costAppearance === 'absent' || definition?.costAppearance === 'absent';
   const actualCost = card.effectiveCost ?? printedCost;
   const adjustedCost = !dashCost && !absentCost && card.effectiveCost !== undefined && actualCost !== printedCost;
-  const printedIcons = definition?.icons?.permanent || definition?.permanentIcons;
+  const printedIcons = transformedAttachment ? undefined : definition?.icons?.permanent || definition?.permanentIcons;
   const permanent = printedIcons || card.icons;
-  const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
+  const temporary = transformedAttachment ? undefined : definition?.icons?.temporary || definition?.temporaryIcons;
   const hasTemporary = temporary && Object.values(temporary).some(n => n > 0);
   const effectiveStats = !compact && !card.faceDown && character && card.region !== undefined;
-  const defense = card.defense ?? definition?.defense;
+  const defense = transformedAttachment ? card.defense : card.defense ?? definition?.defense;
   const type = hidden ? '身份未公开' : archive && asset ? '资产' : dualCharacter ? `角色／附属 · ${definition?.subtypes?.join(' · ') || ''}` : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
     <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={absentCost ? '无印刷费用；触手仅在数值比较时按0计算，不能普通付费现身' : dashCost ? '印刷费用为横杠；比较费用时按0计算' : adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={absentCost ? '无印刷费用' : dashCost ? '印刷费用 —' : adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{absentCost ? '无' : dashCost ? '—' : actualCost}</span>}</span>

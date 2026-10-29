@@ -152,6 +152,7 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        if c.definition==crate::jc028::FORM {c.definition=crate::jc028::ID.into();c.blood_origin=None;c.controller=c.owner;}
         c.advancement_markers = 0;
         c.named_character = None;
         c.chosen_number = None;
@@ -176,6 +177,7 @@ impl Game {
         card(definition);
         Card {
             generated: None,
+            blood_origin: None,
             charge_markers: 0,
             advancement_markers: 0,
             named_character: None,
@@ -664,6 +666,7 @@ impl Game {
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
+        self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
         self.validate_xg19_state()?;
@@ -718,6 +721,7 @@ impl Game {
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
+        next.validate_jc028_state()?;
         next.validate_cq27_state()?;
         next.validate_bq088_state()?;
         next.validate_xg19_state()?;
@@ -1435,6 +1439,7 @@ impl Game {
         self.validate_bq086_play(&item)?;
         self.validate_jz53_play(&item)?;
         self.validate_jc097_play(&item)?;
+        self.validate_jc028_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
         if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {

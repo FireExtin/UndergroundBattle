@@ -81,7 +81,7 @@ impl Game {
         let [Op::BQ041BloodDemand { observation: Some(o) }] = ops else { return Err("欢宴缺少实际鲜血结附观察".into()); };
         let n = self.bq041_instance(&o.event_id).ok_or("欢宴事件身份无效")?;
         let a = &o.attachment; let h = &o.host; let uid = s.source_region_instance.as_ref().ok_or("欢宴缺少原地区")?;
-        let blood = catalog::catalog().cards.iter().find(|d| d.id == a.card.definition);
+        let blood = catalog::known_card(&a.card.definition);
         let host = catalog::catalog().cards.iter().find(|d| d.id == h.card.definition);
         if o.turn != self.turn || self.batch3_physical_cards().any(|c| c.id == o.event_id)
             || s.region.is_none() || s.attachment_host_instance.as_ref() != Some(uid)

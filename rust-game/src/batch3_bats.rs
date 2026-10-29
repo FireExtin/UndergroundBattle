@@ -92,7 +92,7 @@ impl Game {
     }
     pub(crate) fn validate_bq026_state(&self) -> RuleResult<()> {
         for a in &self.attachments {
-            let d=catalog::catalog().cards.iter().find(|d|d.id==a.card.definition).ok_or("附属不是登记卡牌")?;
+            let d=catalog::known_card(&a.card.definition).ok_or("附属不是登记卡牌")?;
             if d.kind == "character"
                 && (a.card.definition != "BQ026" || a.card.face_down || self.attachment_region(a).is_none() || !self.attachment_host_valid(a))
             { return Err("双类型角色的结附状态或宿主图无效".into()); }

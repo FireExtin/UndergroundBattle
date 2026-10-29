@@ -131,7 +131,7 @@ impl Game {
             if ac.face_down || self.wm029_instance(&ac.id).is_none() || ac.id == c.id
                 || ac.owner >= self.players.len() || ac.controller >= self.players.len() || !ids.insert(&ac.id)
                 || self.batch3_physical_cards().any(|live| live.id == ac.id) && !self.attachments.iter().any(|live| live.card.id == ac.id)
-                || !catalog::catalog().cards.iter().any(|d| d.id == ac.definition && catalog::runtime_implemented(d) && (d.kind == "attachment" || d.id == "BQ026")) {
+                || !catalog::known_card(&ac.definition).is_some_and(|d|catalog::runtime_implemented(d) && (d.kind == "attachment" || d.id == "BQ026")) {
                 return Err("附属指示物声望须保留原宿主及实际标志来源".into());
             } self.mobility_immutable_identity(ac)?;
         }
