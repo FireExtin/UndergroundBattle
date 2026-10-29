@@ -36053,12 +36053,12 @@
         ],
         "permanentIcons": {
           "investigation": 0,
-          "combat": 0,
+          "combat": 1,
           "influence": 0
         },
         "temporaryIcons": {
           "investigation": 0,
-          "combat": 2,
+          "combat": 1,
           "influence": 0
         },
         "defense": 1,

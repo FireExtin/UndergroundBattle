@@ -352,6 +352,7 @@ impl Game {
             || f.source.observed_death.is_some() || f.source.observed_exposure.is_some() || f.source.observed_mobility_grant.is_some()
             || f.cursor != 0 || !matches!(f.guard, GuardState::Unchecked) || f.chosen_region.is_some() || !f.already_paid.is_empty()
             || self.batch3_physical_cards().any(|c| c.id == f.source.card.id) && self.in_play(&f.source.card.id).is_none() { return Ok(false); }
+        if f.ability_key == crate::jc097::KEY { self.validate_jc097_frame(f)?; return Ok(true); }
         if f.ability_key == "jc038-granted-raid" { return self.validated_cross_card_frame(f); }
         if f.source.card.definition == "XG11" && f.ability_key == crate::batch4_spectral::KEY { self.validate_xg11_frame(f)?; return Ok(true); }
         let Some(a) = crate::rules::definition(&f.source.card.definition).abilities.iter().find(|a| a.key == f.ability_key && a.key.starts_with("raid-") && a.event == Some(Event::Reveal)) else { return Ok(false); };

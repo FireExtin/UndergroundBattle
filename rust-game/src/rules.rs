@@ -331,6 +331,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JC097Raid {observation:Option<crate::jc097::Observation>},
     JZ53Generate {departure:Option<crate::jz53::Departure>},
     CQ27Prepare {event_id:Option<String>},
     CQ27GraveReturn,
@@ -895,6 +896,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::bq045::ID||crate::bq045::related(ability){return crate::bq045::validate_ability(card_id,ability);}
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
+    if crate::jc097::related(ability) { return crate::jc097::validate_ability(card_id,ability); }
     if crate::jz53::related(ability) { return crate::jz53::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
     if card_id=="CQ27"||crate::cq27::related(ability){return crate::cq27::validate_ability(card_id,ability);}
@@ -1724,6 +1726,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::jz53::validate_definition(card_id,definition)?;
+        crate::jc097::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
         crate::cq27::validate_definition(card_id,definition)?;
         crate::bq088::validate_definition(card_id,definition)?;
@@ -1932,7 +1935,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                 "cardId=XQ43: only the complete admitted region attachment is supported".into(),
             );
         }
-        if definition.traits.stealth && card_id != "JZ26" {return Err(format!("cardId={card_id}: only the complete JZ26 stealth definition is admitted"));}
+        if definition.traits.stealth && !matches!(card_id.as_str(),"JZ26"|"JC097") {return Err(format!("cardId={card_id}: only the complete JZ26 stealth definition is admitted"));}
         for ability in &definition.abilities {
             validate_ability(card_id, ability)?;
         }
@@ -2441,6 +2444,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());
         m.insert(crate::jz53::ID.into(),crate::jz53::definition());
+        m.insert(crate::jc097::ID.into(),crate::jc097::definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());
         m.insert("CQ27".into(),crate::cq27::definition());
         for id in ["BQ088","TK001"]{m.insert(id.into(),crate::bq088::definition(id));}
