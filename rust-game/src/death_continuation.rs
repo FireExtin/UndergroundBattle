@@ -13,6 +13,10 @@ pub enum DeathDestination {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PendingDeath {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub declared_frame: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub blood: Option<crate::msbq01::BloodDeparture>,
     pub turn: u32,
     pub source: SourceSnapshot,
     pub transition_instance: String,
@@ -24,6 +28,8 @@ pub struct PendingDeath {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeathWait {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub blood: Option<crate::msbq01::BloodDeparture>,
     pub source: SourceSnapshot,
     pub destination: Option<DeathDestination>,
 }
@@ -61,6 +67,8 @@ impl Game {
     pub(crate) fn hold_pregrave_death(&mut self, source: &SourceSnapshot, card: Card) {
         debug_assert!(source.card.definition == "XG25" && !source.card.face_down);
         self.death_replacements.push(PendingDeath {
+            blood: None,
+            declared_frame: None,
             turn: self.turn,
             source: source.clone(),
             transition_instance: card.id.clone(),
@@ -83,6 +91,7 @@ impl Game {
     /// after payment has created its original caller and any earlier sibling
     /// declarations. No card-specific receipt exception or second stack is used.
     pub(crate) fn record_pregrave_choice(&mut self) -> RuleResult<()> {
+        self.record_msbq01_choice()?;
         let Some((source, choice)) = self.pending.as_ref().and_then(|p| match &p.resolution {
             ChoiceResolution::Declare { declaration, .. }
                 if declaration.ability.key == crate::next20_black_wraiths::SEAL =>
@@ -107,6 +116,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn decline_pregrave_declaration(&mut self, d: &Declaration) -> RuleResult<()> {
+        if let Some(id)=crate::msbq01::declaration_id(d){self.validate_msbq01_declaration(d)?;return self.commit_pregrave_fallback(id);}
         if d.ability.key == crate::next20_black_wraiths::SEAL {
             self.validate_xg25_death_source(d.actor, &d.source)?;
             self.commit_pregrave_fallback(&d.source.card.id)?;
@@ -114,6 +124,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn cancel_pregrave_frame(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
+        if let Some(id)=crate::msbq01::frame_id(f){self.validate_msbq01_frame(f)?;return self.commit_pregrave_fallback(id);}
         if f.ability_key == crate::next20_black_wraiths::SEAL {
             self.validate_xg25_death_source(f.actor, &f.source)?;
             self.commit_pregrave_fallback(&f.source.card.id)?;
@@ -133,6 +144,7 @@ impl Game {
             .iter()
             .filter(|d| !before.contains(&d.source.card.id))
             .map(|d| DeathWait {
+                blood: d.blood.clone(),
                 source: d.source.clone(),
                 destination: d.destination.clone(),
             })
@@ -154,6 +166,7 @@ impl Game {
         true
     }
     fn pregrave_source(&self, s: &SourceSnapshot) -> RuleResult<()> {
+        if crate::msbq01::blood(&s.card) { return self.validate_msbq01_attachment_source(s); }
         let c = &s.card;
         if c.definition != "XG25"
             || c.face_down
@@ -276,7 +289,7 @@ impl Game {
         }
         Ok(())
     }
-    fn commit_pregrave_fallback(&mut self, id: &str) -> RuleResult<()> {
+    pub(crate) fn commit_pregrave_fallback(&mut self, id: &str) -> RuleResult<()> {
         let index = self
             .death_replacements
             .iter()
@@ -371,7 +384,7 @@ impl Game {
             .is_some_and(|(a, b)| a < b)
             || self
                 .batch3_physical_cards()
-                .any(|c| c.id == *id && (c.definition != "XG25" || c.owner != s.card.owner))
+                .any(|c| c.id == *id && (c.definition != crate::msbq01::departed_definition(&s.card) || c.owner != s.card.owner))
         {
             return Err("死亡最终去向更换了原牌身份或拥有者".into());
         }
@@ -403,6 +416,7 @@ impl Game {
         self.validate_pack_a_frame(&proof)?;
         let mut ids = BTreeSet::new();
         for w in &c.waits {
+            self.validate_msbq01_wait(w)?;
             self.pregrave_source(&w.source)?;
             if !ids.insert(&w.source.card.id) {
                 return Err("原调用方重复等待同次死亡".into());
@@ -452,10 +466,10 @@ impl Game {
                 if !self.cq15_validated_frame(f)? || f.cursor != 1 {
                     return Err("双剑死亡后检索须引用完整原授予程序".into());
                 }
-                let killed = c.waits.iter().find(|w| w.source.card.id == f.targets[0].id)
+                let killed = c.waits.iter().find_map(|w| if w.source.card.id == f.targets[0].id {Some(&w.source)} else {w.blood.as_ref().filter(|b|b.host.card.id==f.targets[0].id).map(|b|&b.host)})
                     .ok_or("双剑死亡后检索缺少原消灭目标的去向收据")?;
-                if search.controller != killed.source.card.controller
-                    || search.name != catalog::card(&killed.source.card.definition).name
+                if search.controller != killed.card.controller
+                    || search.name != catalog::card(&killed.card.definition).name
                     || !search.offered.is_empty()
                 {
                     return Err("双剑死亡后不得更换原目标操控者、同名条件或预置检索选项".into());
@@ -541,6 +555,11 @@ impl Game {
         let mut held = BTreeSet::new();
         let mut callers = BTreeSet::new();
         for d in &self.death_replacements {
+            if d.blood.is_some() {
+                if !ids.insert(&d.source.card.id)||!held.insert(&d.transition_instance){return Err("附属待定离场身份重复".into());}
+                self.validate_msbq01_departure(d)?;continue;
+            }
+            if d.declared_frame.is_some(){return Err("伥鬼记录不可夹带鲜血原帧绑定".into());}
             self.pregrave_source(&d.source)?;
             if self.status!="playing"||d.turn!=self.turn||!ids.insert(&d.source.card.id)||!held.insert(&d.transition_instance)||!self.mystic_instance_number(&d.source.card.id).zip(self.mystic_instance_number(&d.transition_instance)).is_some_and(|(a,b)|a<b)
                 ||d.baseline_stack.iter().collect::<BTreeSet<_>>().len()!=d.baseline_stack.len()||d.baseline_stack.iter().any(|id|!self.mystic_instance_number(id).zip(self.mystic_instance_number(d.declaration_choice.as_ref().unwrap_or(&d.transition_instance))).is_some_and(|(a,b)|a<b))
@@ -655,6 +674,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn cancel_pregrave_owner(&mut self, owner: usize) {
+        self.cancel_msbq01_owner(owner);
         for d in &mut self.death_replacements {
             if d.source.card.owner == owner {
                 d.card = None;

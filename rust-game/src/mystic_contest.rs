@@ -112,6 +112,7 @@ impl Game {
     /// removals (elimination), front inserts and entry-order references keep
     /// their existing semantics. No paid frame or effect is copied/replayed.
     pub(crate) fn mystic_effect_scope(&mut self, run: impl FnOnce(&mut Self) -> RuleResult<()>) -> RuleResult<()> {
+        let before_blood=self.death_replacements.iter().filter(|d|d.blood.is_some()).map(|d|d.source.card.id.clone()).collect::<std::collections::BTreeSet<_>>();
         let barrier = self.effects.iter().find_map(|e| match e {
             Effect::MysticContinue { contest_id } | Effect::MysticFinish { contest_id }
                 if self.mystic_states().any(|s| s.contest_id == *contest_id) => Some((contest_id.clone(),if matches!(e,Effect::MysticFinish { .. }) {1} else {0})),
@@ -119,23 +120,26 @@ impl Game {
                 if self.death_replacements.iter().any(|d| d.source.card.id == *death_instance) => Some((death_instance.clone(),2)),
             _ => None,
         });
-        let Some(barrier) = barrier else { return run(self); };
+        if barrier.is_none() && !self.players.iter().any(|p|p.society_zone.card.as_ref().is_some_and(|c|c.definition==crate::msbq01::ID)){return run(self);}
         let depth = self.effects.iter().filter(|e| matches!(e, Effect::MysticQueueFence { .. })).count();
         self.effects.push_back(Effect::MysticQueueFence { depth });
         let result = run(self);
         if let Some(index) = self.effects.iter().position(|e| matches!(e, Effect::MysticQueueFence { depth:d } if *d == depth)) {
             let mut appended = self.effects.split_off(index);
             appended.pop_front();
-            let index = self.effects.iter().position(|e| match e {
+            let new_blood=self.death_replacements.iter().any(|d|d.blood.is_some()&&!before_blood.contains(&d.source.card.id));
+            let index = barrier.as_ref().and_then(|barrier|self.effects.iter().position(|e| match e {
                 Effect::MysticContinue { contest_id } => barrier.1 == 0 && *contest_id == barrier.0,
                 Effect::MysticFinish { contest_id } => barrier.1 == 1 && *contest_id == barrier.0,
                 Effect::DeathFinish { death_instance } => barrier.1 == 2 && *death_instance == barrier.0,
                 _ => false,
-            });
+            }));
+            let index=if new_blood&&barrier.is_none(){Some(0)}else{index};
             if let Some(index) = index {
                 let tail = self.effects.split_off(index);
                 self.effects.extend(appended);
                 self.effects.extend(tail);
+            } else if barrier.is_none(){self.effects.extend(appended);
             } else if self.status == "playing" {
                 return Err("效果队列丢失原对抗或离场续体边界".into());
             }

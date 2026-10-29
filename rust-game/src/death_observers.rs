@@ -114,7 +114,7 @@ impl Game {
         let held = self.death_replacements.iter().filter(|d| !before_deaths.contains(&d.source.card.id))
             .map(|d| d.source.card.id.clone()).collect::<Vec<_>>();
         if !held.is_empty() {
-            for death_instance in held { self.effects.push_back(Effect::DeathFinish { death_instance }); }
+            for death_instance in held { if !self.effects.iter().any(|e|matches!(e,Effect::DeathFinish{death_instance:id}if *id==death_instance)){self.effects.push_back(Effect::DeathFinish { death_instance });} }
             // Suspend the pre-existing tail (including the originating spell's
             // Bury) until the real death response and destination finish.
             let emitted = self.effects.split_off(previous_effects);

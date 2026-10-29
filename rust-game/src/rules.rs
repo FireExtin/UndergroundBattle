@@ -23,6 +23,7 @@ pub enum ResponsePolicy {
 pub enum Event {
     JZ53GraveDeparture,
     MSJZ04HostDeath,
+    MSBQ01BloodLeft,
     MSBQ02TaskScored,
     MSBQ02RedPlayed,
     OwnCoreEnter,
@@ -336,6 +337,7 @@ pub enum SearchVisibility {
 pub enum Op {
     JC028Blood,
     JC053Draw,
+    MSBQ01Seal { attachment: Option<String> },
     JC097Raid {observation:Option<crate::jc097::Observation>},
     JZ53Generate {departure:Option<crate::jz53::Departure>},
     CQ27Prepare {event_id:Option<String>},
@@ -902,6 +904,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
     if crate::jc028::related(ability) { return crate::jc028::validate_ability(card_id,ability); }
+    if crate::msbq01::related(ability) { return crate::msbq01::validate_ability(card_id,ability); }
     if crate::jc053::related(ability) { return crate::jc053::validate_ability(card_id,ability); }
     if crate::jc097::related(ability) { return crate::jc097::validate_ability(card_id,ability); }
     if crate::jz53::related(ability) { return crate::jz53::validate_ability(card_id,ability); }
@@ -1735,6 +1738,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::jz53::validate_definition(card_id,definition)?;
         crate::jc097::validate_definition(card_id,definition)?;
         crate::jc053::validate_definition(card_id,definition)?;
+        crate::msbq01::validate_definition(card_id,definition)?;
         crate::jc028::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
         crate::cq27::validate_definition(card_id,definition)?;
@@ -2455,6 +2459,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::jz53::ID.into(),crate::jz53::definition());
         m.insert(crate::jc097::ID.into(),crate::jc097::definition());
         m.insert(crate::jc053::ID.into(),crate::jc053::definition());
+        m.insert(crate::msbq01::ID.into(),crate::msbq01::definition());
         m.insert(crate::jc028::ID.into(),crate::jc028::definition());
         m.insert(crate::jc028::FORM.into(),crate::jc028::form_definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());

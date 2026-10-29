@@ -197,6 +197,7 @@ impl Game {
                     .any(|s| self.target_subtypes(host, &spec.host).contains(s)))
     }
     pub(crate) fn host_leaves(&mut self, host_id: &str) {
+        let blood_departure=self.capture_msbq01_host(host_id);
         self.return_sealed_cards(host_id);
         let children = self.attachments.iter().filter(|a| a.host_id == host_id && card(&a.card.definition).kind == "character")
             .map(|a| (a.card.id.clone(), RemovalCause::Destroy, self.source_snapshot(&a.card, self.attachment_region(a)))).collect::<Vec<_>>();
@@ -207,6 +208,7 @@ impl Game {
             .partition(|attachment| attachment.host_id == host_id);
         self.attachments = staying;
         for attachment in departing {
+            if let Some(context)=&blood_departure {if crate::msbq01::blood(&attachment.card)&&rules::definition(&attachment.card.definition).attachment.as_ref().is_some_and(|s|matches!(s.host_leaves,HostLeaveDestination::OwnerGraveyard))&&!self.players[attachment.card.owner].eliminated{self.hold_msbq01_attachment(attachment,context.clone());continue;}}
             let owner = attachment.card.owner;
             let name = card(&attachment.card.definition).name.clone();
             let destination = rules::definition(&attachment.card.definition)
@@ -227,6 +229,7 @@ impl Game {
                 }
             }
         }
+        self.append_msbq01_boundaries(host_id);
     }
     pub(crate) fn leave_board(&mut self, id: &str) -> Option<(usize, Card)> {
         let region = self.board(id)?.0;

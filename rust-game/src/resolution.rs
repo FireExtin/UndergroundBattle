@@ -1207,6 +1207,7 @@ impl Game {
         if observe_disaster { self.msbq02_observe_play(&frame); self.pete_observe_attachment(&frame); self.wm058_observe_card(&frame); self.bq034_observe_card(&frame); self.observe_batch4_disaster(&frame); }
         self.bq038_observe_raid(&frame);
         self.batch3_register_entry_order(&frame.frame_id, previous);
+        self.record_msbq01_frame(&frame);
         self.stack.last_mut().unwrap().frame = Some(frame);
     }
     pub(crate) fn dispatch_frame(
@@ -1316,6 +1317,7 @@ impl Game {
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_msjz04_declaration(&declaration)?;
+        self.validate_msbq01_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_jz53_declaration(&declaration)?;
@@ -1428,6 +1430,7 @@ impl Game {
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
         self.validate_msjz04_declaration(&declaration)?;
+        self.validate_msbq01_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_jz53_declaration(&declaration)?;
@@ -1743,6 +1746,7 @@ impl Game {
         self.validate_jz53_frame(&frame)?;
         self.validate_jc097_frame(&frame)?;
         self.validate_jc053_frame(&frame)?;
+        self.validate_msbq01_frame(&frame)?;
         self.validate_jc028_frame(&frame)?;
         self.validate_cq09_frame(&frame)?;
         self.validate_bq045_frame(&frame)?;
@@ -1903,6 +1907,7 @@ impl Game {
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::BQ086Death { .. } => return self.bq086_sacrifice(frame),
                 Op::BQ086Seal => self.bq086_seal(&frame)?,
+                Op::MSBQ01Seal{..}=>self.resolve_msbq01_seal(&frame)?,
                 Op::JC053Draw=>return self.jc053_draw_start(frame),
                 Op::JC028Blood => self.jc028_blood(&frame)?,
                 Op::JC097Raid { .. } => self.jc097_raid(&frame)?,

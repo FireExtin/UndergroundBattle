@@ -668,6 +668,7 @@ impl Game {
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
+        self.validate_msbq01_state()?;
         self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
@@ -724,6 +725,7 @@ impl Game {
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
         next.validate_jc053_state()?;
+        next.validate_msbq01_state()?;
         next.validate_jc028_state()?;
         next.validate_cq27_state()?;
         next.validate_bq088_state()?;
@@ -2493,7 +2495,7 @@ impl Game {
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
-        if matches!(&p.resolution,ChoiceResolution::Declare{declaration:d,..}if d.source.card.definition==crate::msjz04::ID)&&a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("破茧者触发选择不能夹带其他载荷".into());}
+        if matches!(&p.resolution,ChoiceResolution::Declare{declaration:d,..}if matches!(d.source.card.definition.as_str(),crate::msjz04::ID|crate::msbq01::ID))&&a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("破茧者触发选择不能夹带其他载荷".into());}
         let option_ids = p
             .choice
             .options

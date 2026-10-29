@@ -478,6 +478,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.push(crate::sentinel::society());
         societies.push(crate::msbq02::society());
     societies.push(crate::msjz04::society());
+    societies.push(crate::msbq01::society());
     societies.push(crate::msjc12::society());
     societies.push(crate::mswm01::society());
         societies.push(crate::mswm02::society());
@@ -555,7 +556,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSBQ01", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
             );
         }
         assert_eq!(
