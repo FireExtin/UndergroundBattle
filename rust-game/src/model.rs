@@ -651,6 +651,7 @@ pub struct BoundTarget {
 pub enum PaidCost {
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
+    BQ045Exhausted(Box<SourceSnapshot>),
     BQ052Sacrificed(Vec<SourceSnapshot>),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
     MSWM02Discard { card: Card, subtypes: Vec<String> },
@@ -738,6 +739,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ045Core(crate::bq045::CoreChoice),
     BQ056Opponent,
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ063Forecast {seat:usize, invocation:usize, core:Box<SourceSnapshot>},
@@ -1104,6 +1106,7 @@ impl Game {
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
         self.validate_core_zones()?;
+        self.validate_bq045_state()?;
         self.validate_bq046_state()?;
         self.validate_bq048_state()?;
         self.validate_bq_commands()?;

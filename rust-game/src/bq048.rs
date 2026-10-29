@@ -46,7 +46,7 @@ impl Game {
  pub(crate) fn validate_bq048_state(&self)->RuleResult<()> {
   for item in &self.stack{self.validate_bq048_play(item)?;}
   for e in &self.effects{if let Effect::Frame{frame}=e{self.validate_bq048_frame(frame)?;}}
-  if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Frame{frame,..}if frame_related(frame))){return Err("BQ048单次发动不能伪装其他帧待选".into());}Ok(())
+  if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Frame{frame,choice}if frame_related(frame)&&!matches!(choice,FrameChoice::BQ045Core(_)))){return Err("BQ048单次发动不能伪装其他帧待选".into());}Ok(())
  }
  pub(crate) fn bq048_invoke(&mut self,f:&ResolutionFrame)->RuleResult<()> {
   self.validate_bq048_frame(f)?;

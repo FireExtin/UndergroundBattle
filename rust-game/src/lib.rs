@@ -4,6 +4,9 @@ mod bq086_tests;
 mod cq09;
 #[cfg(test)]
 mod cq09_tests;
+mod bq045;
+#[cfg(test)]
+mod bq045_tests;
 mod bq046;
 mod bq048;
 mod bq056;

@@ -74,6 +74,7 @@ impl Game {
         self.validate_bq063_frame(&f)?;
         if !matches!(f.cursor,1|2)||!matches!(f.steps[f.cursor-1].op,Op::BQ063InvokeCore) { return Err("神话威严核心发动顺序无效".into()); }
         let actor=f.actor;
+        if self.selected_core_source(actor).is_ok_and(|s|s.card.definition==crate::bq045::ID){return self.bq045_core_start(f);}
         // Keep the original paid frame in the forecast continuation, never a detached cursor beside it.
         if self.selected_core_source(actor).is_ok() {
             let (core,amount)=self.selected_bq046_core_program(actor)?;
@@ -133,6 +134,7 @@ impl Game {
         if let Some(p)=&self.pending {match &p.resolution {
             ChoiceResolution::Frame{frame:f,choice} if frame_related(f)||matches!(choice,FrameChoice::BQ063Forecast{..}|FrameChoice::BQ063Opponent|FrameChoice::BQ063Repress{..})=>{
                 check(f)?;
+                if matches!(choice,FrameChoice::BQ045Core(_)){return Ok(());}
                 if let FrameChoice::BQ063Forecast{seat,invocation,core}=choice {
                     let (actual,count)=self.selected_bq046_core_program(*seat)?;
                     let options=self.players[*seat].deck.iter().take(count).map(|c|self.option(c,*seat,None,None)).collect::<Vec<_>>();let n=options.len();

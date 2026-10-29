@@ -193,6 +193,8 @@ impl Game {
                         .collect()
                 } else if ability.costs.iter().any(|c|matches!(c,Cost::MSWM02MediaDiscard)){
                     self.players[actor].hand.iter().filter(|c|self.mswm02_media(c)).map(|c|Some(vec![c.id.clone()])).collect()
+                } else if ability.costs.iter().any(|c|matches!(c,Cost::BQ045ExhaustTentacle)){
+                    self.bq045_cost_candidates(actor).into_iter().map(|id|Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ052SacrificeThree)) {
                     self.bq052_trios(actor).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::MSJC12ExhaustTrio)) {
@@ -275,7 +277,7 @@ impl Game {
                                     .unwrap_or_default(),
                                 if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree)) {
                                     format!("（费用：牺牲{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
-                                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio)) {
+                                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio|Cost::BQ045ExhaustTentacle)) {
                                     format!("（费用：横置{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
                                 } else { cost.as_ref()
                                     .and_then(|ids| ids.first())
@@ -496,7 +498,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -811,6 +813,7 @@ impl Game {
                                     source.card.definition == "JZ55"
                                         && !c.face_down && d.kind == "character" && d.unique
                                 }
+                                TargetPredicate::BQ045Locked => source.card.definition==crate::bq045::ID && self.sentinel_has_effective_lock(c),
                                 TargetPredicate::WM043LockedTarget => source.card.definition == "WM043" && self.sentinel_has_effective_lock(c),
                                 TargetPredicate::SentinelLockedAnchor => source.card.definition == "MSJC14" && self.board(&c.id).is_some() && self.sentinel_has_effective_lock(c),
                                 rules::TargetPredicate::JC069LockedAnchor => {
@@ -1023,6 +1026,7 @@ impl Game {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
                 Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
+                Cost::BQ045ExhaustTentacle => paid.push(self.bq045_pay(actor,source,spec,a)?),
                 Cost::BQ052SacrificeThree => paid.push(self.bq052_pay(actor,source,spec,a)?),
                 Cost::MSJC12ExhaustTrio => paid.push(self.msjc12_pay_trio(actor,source,spec,a)?),
                 Cost::MSBQ02Honor => paid.push(self.msbq02_pay_honor(actor,source,spec)?),
@@ -1308,7 +1312,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.bq045_forced(&declaration)? || self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1706,6 +1710,7 @@ impl Game {
         if crate::next20_black_wraiths::frame_related(&frame) { self.validate_next20_black_program_frame(&frame)?; }
         self.validate_bq086_frame(&frame)?;
         self.validate_cq09_frame(&frame)?;
+        self.validate_bq045_frame(&frame)?;
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
         self.validate_bq063_frame(&frame)?;
@@ -1768,6 +1773,8 @@ impl Game {
                 Op::MSBQ02TaskWin{..}=>self.msbq02_task_win(&frame)?,
                 Op::MSBQ02Loss{..}=>self.msbq02_loss(&frame)?,
                 Op::BQ051Sweep=>self.bq051_sweep(&frame)?,
+                Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
+                Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
@@ -2750,6 +2757,7 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::BQ045Core(c)=>return self.bq045_core_choose(*frame,c,chooser,&a,&selected),
             FrameChoice::Next20Wraith(crate::next20_black_wraiths::WraithChoice::TigerSearch) => return self.cq25_search_finish(&frame,chooser,&selected),
             FrameChoice::Next20Blue(choice) => return match choice {
                 crate::next20_blue_vampires::BlueChoice::ShownTarget => self.bq034_shown_target(*frame,chooser,&selected),

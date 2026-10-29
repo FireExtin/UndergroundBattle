@@ -20,7 +20,7 @@ pub struct CoreZoneView {
     pub card:Option<CardView>,
     pub rest:u32,
 }
-pub(crate) fn is_core(id:&str)->bool {id==crate::bq046::ID}
+pub(crate) fn is_core(id:&str)->bool {matches!(id,crate::bq046::ID|crate::bq045::ID)}
 impl Game {
     pub(crate) fn validate_core_zones(&self)->RuleResult<()> {
         let mut owners=std::collections::BTreeSet::new();

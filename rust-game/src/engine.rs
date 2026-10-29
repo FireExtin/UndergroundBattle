@@ -649,6 +649,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_bq045_state()?;
         self.validate_bq052_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
@@ -688,6 +689,7 @@ impl Game {
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
+        next.validate_bq045_state()?;
         next.validate_bq052_state()?;
         next.validate_tentacle_state()?;
         next.validate_msbq03_state()?;
@@ -777,6 +779,7 @@ impl Game {
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 self.bq063_action(seat,&c,&a)?;
+                crate::bq045::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if self.current_non_asset(&c,seat) { return Err("非资产牌不能建立资产".into()); }
                 c = self.fresh(c);
@@ -806,6 +809,7 @@ impl Game {
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
                 self.bq063_action(seat,&c,&a)?;
+                crate::bq045::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -921,6 +925,7 @@ impl Game {
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 self.bq063_action(seat,&c,&a)?;
+                crate::bq045::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -999,6 +1004,7 @@ impl Game {
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 self.bq063_action(seat,&c,&a)?;
+                crate::bq045::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
@@ -1080,6 +1086,7 @@ impl Game {
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
                 self.bq063_action(seat,&c,&a)?;
+                crate::bq045::validate_action(&c.definition,&a)?;
                 crate::bq046::validate_action(&c.definition,&a)?;
                 if a.kind != "activate" { crate::import20_tax_ban::validate_action(&c.definition, &a)?; }
                 crate::exposure::validate_action(&c.definition, &a)?;
