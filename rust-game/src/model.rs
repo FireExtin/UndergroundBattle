@@ -1141,6 +1141,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_xg19_state()?;
         self.validate_cq11_state()?;
         self.validate_bq052_state()?;
         self.validate_generated_state()?;

@@ -1362,5 +1362,15 @@
     "url": "/cards/TK008.jpg",
     "source": "resource/ymsj-fun.github.io/cards/TK008 邪教徒.jpg",
     "sha256": "b5b76f1d15859421d7780829c491f5853e09723a85a17a4e02cad6132f75e779"
+  },
+  "XG19": {
+    "url": "/cards/XG19.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/XG19 枪火谈判.jpg",
+    "sha256": "b2d24aa248cd0ca74a6440737880f992ac4f3fbdc41d767ff1667d26796a00c2"
+  },
+  "TK003": {
+    "url": "/cards/TK003.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/TK003 警察.jpg",
+    "sha256": "87655a55aca95302110ead41a70dc047e791fb33312cd73a2691071393fe654b"
   }
 }

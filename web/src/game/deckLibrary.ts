@@ -82,7 +82,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
     total += entry.count;
     const card = definitions.get(entry.cardId);
     if (!card) { issue('unknown', `未知卡牌「${entry.cardId}」，请移除或等待目录支持。`, entry.cardId); continue; }
-    if (card.id === 'TK008') issue('generated', '指示物角色只能由效果生成，不能加入牌组。', card.id);
+    if (['TK008','TK003'].includes(card.id)) issue('generated', '指示物角色只能由效果生成，不能加入牌组。', card.id);
     if (!playerKinds.has(card.kind)) issue('kind', `「${card.name}」不是可加入玩家牌组的角色、事务或附属。`, card.id);
     if (card.supported !== true) issue('unsupported', `「${card.name}」尚未确认已实现，不能用于开局。`, card.id);
     const name = card.name.trim();

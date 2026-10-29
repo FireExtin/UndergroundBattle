@@ -661,6 +661,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
+        self.validate_xg19_state()?;
         self.validate_cq11_state()?;
         self.validate_bq052_state()?;
         self.validate_generated_state()?;
@@ -710,6 +711,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
+        next.validate_xg19_state()?;
         next.validate_cq11_state()?;
         next.validate_bq052_state()?;
         next.validate_generated_state()?;
@@ -1405,6 +1407,7 @@ impl Game {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;
         self.validate_bq052_play(&item)?;
         self.validate_bq049_play(&item)?;

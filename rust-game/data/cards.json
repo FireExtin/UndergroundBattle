@@ -11869,6 +11869,72 @@
       "keywords": [
         "非资产"
       ]
+    },
+    {
+      "id": "XG19",
+      "name": "枪火谈判",
+      "kind": "spell",
+      "cost": 3,
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "subtypes": [
+        "策略",
+        "局势"
+      ],
+      "text": "非资产 行动 选择目标地区，然后选择一项。若敌方秘社上有两个公开〔日形〕标志，则改为两项全选： 消灭该地区上的至多两个目标暗藏者。 在该地区生成两个警察角色指示物。",
+      "supported": false,
+      "keywords": [
+        "非资产"
+      ],
+      "loyalty": [
+        "灰色",
+        "灰色"
+      ],
+      "loyaltyText": "灰色 灰色"
+    },
+    {
+      "id": "TK003",
+      "name": "警察",
+      "kind": "character",
+      "cost": 0,
+      "color": "灰",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "subtypes": [
+        "人类",
+        "警察"
+      ],
+      "text": "公开",
+      "supported": false,
+      "keywords": [
+        "公开",
+        "非资产"
+      ],
+      "costAppearance": "absent",
+      "defense": 1
     }
   ],
   "decks": [
