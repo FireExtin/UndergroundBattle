@@ -170,7 +170,7 @@ impl Game {
                 let ops = mode.map_or(&ability.ops, |m| &m.ops);
                 let regions = if ops
                     .iter()
-                    .any(|op| matches!(op, Op::Move(_, Destination::HiddenInChosenRegion)))
+                    .any(|op| matches!(op, Op::Move(_, Destination::HiddenInChosenRegion)|Op::MSJC16Revive))
                 {
                     (0..self.regions.len()).filter(|&r| self.region_live(r)).map(Some).collect()
                 } else {
@@ -785,6 +785,7 @@ impl Game {
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
+                                TargetPredicate::MSJC16Death => self.players[actor].graveyard.iter().any(|v|v.id==c.id)&&d.magic_icon==MagicIcon::Death,
                                 TargetPredicate::MSBQ03Industry => self.msbq03_industry(actor,source,c),
                                 TargetPredicate::BQ086Corpse => self.bq086_corpse(actor,source,c),
                                 TargetPredicate::CQ09OwnGraveCharacter => self.cq09_grave_target(actor,source,c),
@@ -931,7 +932,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1025,6 +1026,7 @@ impl Game {
         for cost in &spec.costs {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
+                Cost::MSJC16SealSeven => paid.push(self.msjc16_pay(actor,source,a)?),
                 Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
                 Cost::BQ045ExhaustTentacle => paid.push(self.bq045_pay(actor,source,spec,a)?),
                 Cost::BQ052SacrificeThree => paid.push(self.bq052_pay(actor,source,spec,a)?),
@@ -1746,6 +1748,7 @@ impl Game {
         self.validate_xq23_frame(&frame)?;
         self.validate_jc035_frame(&frame)?;
         self.mscq02_frame(&frame)?;
+        self.msjc16_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             self.cancel_pregrave_frame(&frame)?;
             self.jc035_cancel_guarded_frame(&frame)?;
@@ -1778,7 +1781,7 @@ impl Game {
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
-                Op::BQ052Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } => self.jc035_resolve(&frame)?,
                 Op::BQ052PlaceCore => self.bq052_place_core(&frame)?,
                 Op::BQ063Repress=>return self.bq063_repress(frame),
                 Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,
@@ -1816,6 +1819,7 @@ impl Game {
                 Op::BQ031AttachmentDiscard { .. } => return self.bq031_discard(frame),
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::MSCQ02 { .. } => self.mscq02_resolve(&frame)?,
+                Op::MSJC16Mill|Op::MSJC16Revive => self.msjc16_resolve(&frame)?,
                 Op::MSBQ03 { search } => return self.msbq03_resolve(frame,search),
                 Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
                 Op::MysticContest { actor_bonus } => {

@@ -20,7 +20,7 @@ const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof v
 afterEach(cleanup);
 
 it('preserves all241 prior source-index records and all239 prior runtime URLs',()=>{
-  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&!closedCandidates.includes(id)&&id!=="TK010"&&!["MSBQ02","MSJC12","MSWM02","MSCQ02","MSBQ03"].includes(id)));
+  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&!closedCandidates.includes(id)&&id!=="TK010"&&!["MSBQ02","MSJC12","MSWM02","MSCQ02","MSBQ03","MSJC16"].includes(id)));
   expect(Object.keys(prior)).toHaveLength(241);
   expect(sha(JSON.stringify(canonical(prior)))).toBe('8391a760ca9b2d25d1767b53ebb2f092eb3f106f2d326b924a6eaa43e1de79b8');
   const runtime=Object.fromEntries(Object.keys(prior).filter(id=>!['BQ041','JZ38'].includes(id)).map(id=>[id,cardScanUrl(id)]));
@@ -66,7 +66,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(cardScanUrl('unknown-private-card')).toBeUndefined();
 });
 
-it.each(["MSJC12","MSWM02","MSCQ02","MSBQ03"])("%s preserves pinned original and remains a closed society",id=>{const source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);const card=currentCatalog.societies.find(c=>c.id===id);expect(card.supported).toBe(false);render(<DeckCardFace card={card} large/>);expect(screen.getByRole("img",{name:`${card.name}原始牌面`})).toHaveAttribute("src",`/cards/${id}.jpg`);});
+it.each(["MSJC12","MSWM02","MSCQ02","MSBQ03","MSJC16"])("%s preserves pinned original and remains a closed society",id=>{const source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);const card=currentCatalog.societies.find(c=>c.id===id);expect(card.supported).toBe(false);render(<DeckCardFace card={card} large/>);expect(screen.getByRole("img",{name:`${card.name}原始牌面`})).toHaveAttribute("src",`/cards/${id}.jpg`);});
 
 it('TK010 preserves its original PNG and stays outside admission',()=>{const id='TK010',card=registry.cards.find(c=>c.id===id),source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read('web/public/cards/TK010.png'))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:'/cards/TK010.png',source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/TK010.png');expect(card.supported).toBe(false);expect(card.subtypes).toEqual(['突变体','器官']);render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:'触手原始牌面'})).toHaveAttribute('src','/cards/TK010.png');});
 

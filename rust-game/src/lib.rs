@@ -508,6 +508,8 @@ mod msbq02;
 mod msjc12;
 mod mswm02;
 mod msbq03;
+mod msjc16;
+#[cfg(test)] mod msjc16_tests;
 #[cfg(test)]
 mod msbq03_tests;
 mod mscq02;

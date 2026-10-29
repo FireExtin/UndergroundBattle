@@ -649,6 +649,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    MSJC16Sealed(Vec<Card>),
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
     BQ045Exhausted(Box<SourceSnapshot>),
@@ -947,6 +948,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    MSJC16Payment { draft: Box<crate::msjc16::PaymentDraft> },
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     CQ28Draft { draft:Box<crate::import20_gate::GateDraft> },
     CQ24Reattach { draft: Box<crate::import20_carmen::CarmenDraft> },
@@ -1116,6 +1118,7 @@ impl Game {
         self.validate_bq052_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
+        self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_bq063_state()?;

@@ -653,6 +653,7 @@ impl Game {
         self.validate_bq052_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
+        self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_bq063_state()?;
@@ -678,6 +679,7 @@ impl Game {
         self.validate_xq23_state()?;
         self.validate_jc035_state()?;
         self.msbq03_action(seat,&action)?;
+        self.msjc16_action(seat,&action)?;
         let mut next = self.clone();
         next.version = revision;
         next.mystic_effect_scope(|g| {
@@ -693,6 +695,7 @@ impl Game {
         next.validate_bq052_state()?;
         next.validate_tentacle_state()?;
         next.validate_msbq03_state()?;
+        next.validate_msjc16_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
         next.validate_bq063_state()?;
@@ -1096,6 +1099,7 @@ impl Game {
                 let spec = self.ability_for_action(&c.definition, &a)?;
                 self.check_timing(seat, &spec)?;
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
+                if source.card.definition==crate::msjc16::ID&&spec.key==crate::msjc16::REVIVE&&a.cost_selected.is_none(){return self.msjc16_begin_payment(seat,source,a,targets);}
                 if source.card.definition == "JC055" { return self.jc055_begin_payment(source, &a); }
                 if source.card.definition == "XG21" && spec.key == crate::batch4_phantom::KEY { self.phantom_validate_activation(&source)?; }
                 let paid = self.pay_ability_costs(seat, &source, &spec, &a)?;
@@ -2446,6 +2450,7 @@ impl Game {
             ChoiceResolution::JZ38EchoTarget { declaration } => self.statue_echo_target(*declaration, seat, &a, selected)?,
             ChoiceResolution::Batch3EntryOrder { entry_instance } => self.batch3_choose_entry_order(&entry_instance,seat,&a,&selected)?,
             ChoiceResolution::JC055TimePayment { source } => self.jc055_finish_payment(source, &a, &selected)?,
+            ChoiceResolution::MSJC16Payment{draft}=>self.msjc16_finish_payment(*draft,&a,&selected)?,
             ChoiceResolution::JC055PreparationTarget { declaration, remaining } => self.jc055_preparation_target(declaration, remaining, &a, &selected)?,
             ChoiceResolution::Rumor { batch } => self.rumor_complete(batch, seat, &selected)?,
             ChoiceResolution::JC035PreparationOrder { declarations } => self.jc035_choose_order(declarations, &a, &selected)?,

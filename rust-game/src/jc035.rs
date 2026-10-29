@@ -44,7 +44,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::BQ052Prepare { .. } | Op::WM028Prepare { .. } | Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } | Op::CQ10Prepare { .. } => true,
+        Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } | Op::WM028Prepare { .. } | Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } | Op::CQ10Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             uses(std::slice::from_ref(exhausted)) || uses(std::slice::from_ref(ready)),
@@ -75,21 +75,22 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "BQ052" | "WM028" | "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08" | "CQ10") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "MSJC16" | "BQ052" | "WM028" | "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08" | "CQ10") }
 pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "WM028" | "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
-    [Op::BQ052Prepare { event_id }] | [Op::WM028Prepare { event_id }] | [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] | [Op::CQ10Prepare { event_id }] => event_id.as_deref(), _ => None,
+    [Op::MSJC16Prepare { event_id }] | [Op::BQ052Prepare { event_id }] | [Op::WM028Prepare { event_id }] | [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] | [Op::CQ10Prepare { event_id }] => event_id.as_deref(), _ => None,
 }}
 fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
     let mut a = if id == "JC035" { definition().abilities[1].clone() }
         else if id == "JC055" { crate::next20_red::definition(id).unwrap().abilities[0].clone() }
+        else if id == "MSJC16" { crate::msjc16::definition().abilities[0].clone() }
         else if id == "BQ052" { crate::bq052::definition().abilities[1].clone() }
         else if id == "CQ10" { crate::cq10::definition().abilities[1].clone() }
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).or_else(|| crate::batch4::definition(id)).or_else(|| crate::import20_observers::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "BQ052" { vec![Op::BQ052Prepare { event_id }] } else if id == "WM028" { vec![Op::WM028Prepare { event_id }] } else if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ10" { vec![Op::CQ10Prepare { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if id == "MSJC16" {vec![Op::MSJC16Prepare{event_id}]} else if id == "BQ052" { vec![Op::BQ052Prepare { event_id }] } else if id == "WM028" { vec![Op::WM028Prepare { event_id }] } else if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ10" { vec![Op::CQ10Prepare { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -134,7 +135,7 @@ impl Game {
                 && (c.definition != s.card.definition || c.owner != s.card.owner || (c.face_down && s.card.definition != "JC055"))) {
             return Err("JC035冻结来源、拥有者或操控席位不符".into());
         }
-        if prepared && matches!(s.card.definition.as_str(), "BQ052" | "JC068" | "WM028") {
+        if prepared && s.card.definition=="MSJC16" {if s.region.is_some()||s.source_region_instance.is_some()||s.attachment_host_instance.is_some(){return Err("颂亡者准备来源只能原秘社".into());}} else if prepared && matches!(s.card.definition.as_str(), "BQ052" | "JC068" | "WM028") {
             let host = s.attachment_host_instance.as_deref().ok_or("秘社准备来源缺少宿主")?;
             if host != format!("society:p{actor}") || s.region.is_some() || s.source_region_instance.is_some() {
                 return Err("秘社准备触发不得伪装地区宿主".into());
@@ -170,6 +171,7 @@ impl Game {
             let s = &entry.source; let actor = s.card.controller;
             self.jc035_source(s, actor, true)?;
             if !sources.insert(s.card.id.clone()) || o.hands[actor].eliminated
+                || (s.card.definition=="MSJC16" && o.turn!=1)
                 || (s.card.definition == "WM028" && self.team(actor) != o.first_team)
                 || (s.card.definition == "JC035" && !o.hands.iter().any(|h| !h.eliminated && self.team(h.seat) != self.team(actor) && h.count <= 3))
                 || (preparation_forced(&s.card.definition) && !self.players[actor].eliminated && matches!(entry.decision, Some(PreparationDecision::Declined))) {
@@ -207,10 +209,11 @@ impl Game {
         let hands = self.players.iter().map(|p| PreparationHand {
             seat: p.seat, count: p.hand.len(), eliminated: p.eliminated,
         }).collect::<Vec<_>>();
-        let mut sources = self.in_play_cards().into_iter()
+        let mut sources = self.in_play_cards().into_iter().chain(self.players.iter().filter_map(|p|p.society_zone.card.as_ref().filter(|c|c.definition=="MSJC16").map(|c|(None,c))))
             .filter(|(_, c)| preparation_card(&c.definition) && !c.face_down && !self.players[c.controller].eliminated)
             .filter(|(_, c)| c.definition != "JC035" || hands.iter().any(|h|
                 !h.eliminated && self.team(h.seat) != self.team(c.controller) && h.count <= 3))
+            .filter(|(_,c)|c.definition!="MSJC16"||self.turn==1)
             .filter(|(_, c)| c.definition != "CQ08" || self.cq08_count(c.controller) >= 3)
             .filter(|(_, c)| c.definition != "WM028" || self.team(c.controller) == self.first_team)
             .filter(|(_, c)| c.definition != "BQ087" || self.players[c.controller].graveyard.iter().any(|grave| grave.owner==c.controller && catalog::catalog().cards.iter().any(|d|d.id==grave.definition && d.kind=="character")))
@@ -398,6 +401,7 @@ impl Game {
         }
         entry.decision = Some(PreparationDecision::Resolved { frame_id: f.frame_id.clone() });
         if matches!(f.source.card.definition.as_str(), "CQ08" | "WM028") { return Ok(()); }
+        if f.source.card.definition=="MSJC16" {return self.mill_cards_with_cause(f.actor,3,Some(f));}
         if f.source.card.definition == "BQ052" { return self.bq052_generate(f.actor); }
         if f.source.card.definition == "LC16" { return self.lc16_search_start(f); }
         if f.source.card.definition == "CQ10" { return self.cq10_prepare(f); }
@@ -438,7 +442,7 @@ impl Game {
             }
         }
         if self.window == Some(Window::Prepare) && self.jc035_preparation.is_none()
-            && self.in_play_cards().iter().any(|(_, c)| preparation_card(&c.definition)) {
+            && (self.in_play_cards().iter().any(|(_, c)| preparation_card(&c.definition)) || self.turn==1&&self.players.iter().any(|p|!p.eliminated&&p.society_zone.card.as_ref().is_some_and(|c|c.definition=="MSJC16"&&!c.face_down))) {
             return Err("JC035准备步骤不能丢失整份观察及其声明".into());
         }
         if self.jc035_preparation.is_some() { self.jc035_context()?; }

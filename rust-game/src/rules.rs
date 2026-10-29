@@ -87,6 +87,7 @@ pub enum Event {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Cost {
+    MSJC16SealSeven,
     MSBQ02Honor,
     BQ045ExhaustTentacle,
     BQ052SacrificeThree,
@@ -169,6 +170,7 @@ pub enum TargetPredicate {
     Batch4DestroyedRegion,
     BQ084OwnGraveCharacter,
     BQ086Corpse,
+    MSJC16Death,
     MSBQ03Industry,
     CQ09OwnGraveCharacter,
     Batch3OwnGraveCharacter,
@@ -330,6 +332,9 @@ pub enum Op {
     BQ063Sweep { hide: bool },
     BQ063InvokeCore,
     BQ063Repress,
+    MSJC16Prepare { event_id: Option<String> },
+    MSJC16Mill,
+    MSJC16Revive,
     BQ052Prepare { event_id: Option<String> },
     BQ045Shield,
     BQ045Honor,
@@ -844,6 +849,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::test034::ID||ability.key==crate::import20_contest::TEST034_HAND{return crate::test034::validate_ability(card_id,ability);}
     if card_id==crate::mscq02::ID||crate::mscq02::related(ability){return crate::mscq02::validate_ability(card_id,ability);}
     if card_id==crate::bq052::ID||crate::bq052::related(ability){return crate::bq052::validate_ability(card_id,ability);}
+    if card_id==crate::msjc16::ID||crate::msjc16::related(ability){return crate::msjc16::validate_ability(card_id,ability);}
     if card_id==crate::msbq03::ID||crate::msbq03::related(ability){return crate::msbq03::validate_ability(card_id,ability);}
     if card_id==crate::mswm02::ID||crate::mswm02::related(ability){return crate::mswm02::validate_ability(card_id,ability);}
     if card_id==crate::msjc12::ID||crate::msjc12::related(ability) {return crate::msjc12::validate_ability(card_id,ability);}
@@ -1662,6 +1668,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::msbq02::validate_definition(card_id,definition)?;
         crate::msjc12::validate_definition(card_id,definition)?;
         crate::mswm02::validate_definition(card_id,definition)?;
+        crate::msjc16::validate_definition(card_id,definition)?;
         crate::msbq03::validate_definition(card_id,definition)?;
         crate::mscq02::validate_definition(card_id,definition)?;
         crate::test034::validate_definition(card_id,definition)?;
@@ -2361,6 +2368,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::msbq02::ID.into(),crate::msbq02::definition());
         m.insert(crate::msjc12::ID.into(),crate::msjc12::definition());
         m.insert(crate::mswm02::ID.into(),crate::mswm02::definition());
+        m.insert(crate::msjc16::ID.into(),crate::msjc16::definition());
         m.insert(crate::msbq03::ID.into(),crate::msbq03::definition());
         m.insert(crate::mscq02::ID.into(),crate::mscq02::definition());
         m.insert(crate::test034::ID.into(),crate::test034::definition());
