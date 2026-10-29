@@ -676,6 +676,7 @@ impl Game {
         spec: &TargetSlotSpec,
         id: &str,
     ) -> bool {
+        if spec.zone==Zone::Society&&!self.xq13_path_entry(actor,&source.card){return false;}
         if matches!(spec.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. })) {
             return self.cq24_host_binding(actor, source, spec, id);
         }

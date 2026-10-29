@@ -574,3 +574,6 @@ mod tentacle;
 mod bq052;
 #[cfg(test)]
 mod bq052_tests;
+
+mod xq13;
+#[cfg(test)] mod xq13_tests;

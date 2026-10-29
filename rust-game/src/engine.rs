@@ -507,7 +507,7 @@ impl Game {
                     temporary_result.add(spec.host_temporary_icons.unwrap_or_default());
             }
         }
-        self.xg15_double_icons(c, region, (permanent_result, temporary_result, ordinary))
+        self.xq13_icons(c,self.xg15_double_icons(c, region, (permanent_result, temporary_result, ordinary)))
     }
     // MSJC11 black-bottom eligibility: duration does not change icon category.
     pub(crate) fn current_permanent_combat(&self, c: &Card, region: usize) -> u32 {
@@ -669,6 +669,7 @@ impl Game {
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
+        self.validate_xq13_state()?;
         self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
@@ -726,6 +727,7 @@ impl Game {
         next.validate_jc097_state()?;
         next.validate_jc053_state()?;
         next.validate_msbq01_state()?;
+        next.validate_xq13_state()?;
         next.validate_jc028_state()?;
         next.validate_cq27_state()?;
         next.validate_bq088_state()?;
