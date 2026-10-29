@@ -533,6 +533,9 @@ mod msjc12_tests;
 
 #[cfg(test)]
 mod tentacle_tests;
+mod generated;
+#[cfg(test)]
+mod generated_tests;
 mod tentacle;
 mod bq052;
 #[cfg(test)]

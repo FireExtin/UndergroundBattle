@@ -38,7 +38,7 @@ impl Game {
         let regions=(0..self.regions.len()).filter(|r|self.region_live(*r)).collect::<Vec<_>>();
         if regions.is_empty(){return Ok(());}
         let region=regions[self.random_below(regions.len())];
-        let c=self.make_card(crate::tentacle::ID,actor);let id=c.id.clone();
+        let c=self.make_generated(crate::generated::GeneratedKind::Tentacle,actor)?;let id=c.id.clone();
         self.regions[region].cards.push(c);
         self.enter_triggers(actor,crate::tentacle::ID,&id,false);Ok(())
     }

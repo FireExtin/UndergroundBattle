@@ -94,6 +94,7 @@ impl Game {
         }
     }
     pub(crate) fn mobility_immutable_identity(&self, old: &Card) -> RuleResult<()> {
+        self.validate_generated_identity(old)?;
         if old.chosen_subtype.is_some() && old.definition != "JZ56" { return Err("亡者之夜类别不能移植到其他来源".into()); }
         let private = self.players.iter().flat_map(|p| {
             p.hand
@@ -125,7 +126,7 @@ impl Game {
         if current.len() > 1
             || current
                 .iter()
-                .any(|live| live.definition != old.definition || live.owner != old.owner)
+                .any(|live| live.definition != old.definition || live.owner != old.owner || live.generated != old.generated)
         {
             return Err("机动历史UID与现存实体的印刷定义或拥有者矛盾".into());
         }

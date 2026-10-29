@@ -64,7 +64,7 @@ pub(crate) fn assert_current_serial_catalog() {
     assert_eq!(format!("{:x}",Sha256::digest(serde_json::to_vec(&sorted(&Value::Array(cards[..271].to_vec()))).unwrap())),"ded1ecf727d37296800157f503621fe88968bc4d6ec083483d4cef9095d4bbb4");
 }
 pub(crate) fn field(g: &mut Game, id: &str, seat: usize) -> String {
-    let c = g.make_card(id, seat);
+    let c = if id==crate::tentacle::ID {g.make_generated(crate::generated::GeneratedKind::Tentacle,seat).unwrap()}else{g.make_card(id, seat)};
     let id = c.id.clone();
     g.regions[0].cards.push(c);
     id

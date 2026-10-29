@@ -1616,7 +1616,7 @@ impl Game {
             let c = self.reset_zone_card(c);
             let deferred = character && snapshot.card.definition == "XG25";
             let core_return=self.selected_core_card(&c);
-            let grave_instance = if deferred||core_return||crate::tentacle::generated(&c) { String::new() } else { c.id.clone() };
+            let grave_instance = if deferred||core_return||crate::generated::is_generated(&c) { String::new() } else { c.id.clone() };
             if deferred { self.hold_pregrave_death(&snapshot, c); }
             else if core_return {self.defer_core_departure(snapshot.clone(),c,crate::core_zone::Destination::Grave);}
             else { self.commit_owner_grave(c, ghoul_sources); }
@@ -2328,7 +2328,7 @@ impl Game {
                     }
                     if let Some(id) = Self::frame_entity(&frame, entity) {
                         if let Some(c) = self.take_entity(id) {
-                            if !matches!(destination, Destination::HiddenInChosenRegion) && self.tentacle_disappears(&c) { continue; }
+                            if !matches!(destination, Destination::HiddenInChosenRegion) && self.generated_disappears(&c) { continue; }
                             let mut c = self.reset_zone_card(c);
                             let owner = c.owner;
                             match destination {

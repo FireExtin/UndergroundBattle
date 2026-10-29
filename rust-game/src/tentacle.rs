@@ -1,4 +1,4 @@
-//! TK010 only: project lifecycle ruling of 2026-10-29, not a general token rule.
+//! TK010 printed abilities and TK010-only fee ruling; lifecycle lives in generated.rs.
 use crate::{catalog, engine::RuleResult, model::*};
 
 pub(crate) const ID: &str = "TK010";
@@ -17,7 +17,7 @@ pub(crate) fn validate_definition(id: &str, d: &crate::rules::Definition) -> Rul
     Ok(())
 }
 
-pub(crate) fn generated(c: &Card) -> bool { c.definition == ID }
+pub(crate) fn generated(c: &Card) -> bool { c.generated.as_ref().is_some_and(|o|o.kind==crate::generated::GeneratedKind::Tentacle) }
 
 // “触手角色” names the character. TK010's printed subtypes are 突变体/器官.
 pub(crate) fn character(c: &Card) -> bool {
@@ -26,14 +26,6 @@ pub(crate) fn character(c: &Card) -> bool {
 }
 
 impl Game {
-    /// Call only after normal host/departure cleanup. Never prune physical zones
-    /// afterwards: that would already have emitted false arrival observations.
-    pub(crate) fn tentacle_disappears(&mut self, c: &Card) -> bool {
-        if !generated(c) { return false; }
-        self.note("生成触手离场消失，不进入实体牌区".into());
-        true
-    }
-
     pub(crate) fn tentacle_core_defense(&self, c: &Card) -> u32 {
         if c.face_down || !self.board(&c.id).is_some_and(|(_, live)| live == c)
             || !self.selected_core_card(c) || c.controller != c.owner { return 0; }
@@ -48,7 +40,7 @@ impl Game {
     }
 
     pub(crate) fn validate_tentacle_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if generated(&f.source.card) && matches!(f.ability_key.as_str(), "deploy" | "conceal" | "reveal") {
+        if f.source.card.definition==ID && matches!(f.ability_key.as_str(), "deploy" | "conceal" | "reveal") {
             return Err("生成触手不能恢复普通打出或付费现身帧".into());
         }
         Ok(())
@@ -56,7 +48,7 @@ impl Game {
     pub(crate) fn validate_tentacle_play(&self, item: &StackItem) -> RuleResult<()> {
         // Effect-driven free flipping stays on the board; it is not a paid
         // character transaction. Inspect the actual card before trusting frame.
-        if item.card.as_ref().is_some_and(generated) {
+        if item.card.as_ref().is_some_and(|c|c.definition==ID) {
             return Err("生成触手不能作为普通打出或付费现身事务".into());
         }
         if let Some(f) = &item.frame { self.validate_tentacle_frame(f)?; }
@@ -71,14 +63,6 @@ impl Game {
         }}
         if let Some(p) = &self.pending { if let ChoiceResolution::Frame{frame,..} = &p.resolution { self.validate_tentacle_frame(frame)?; } }
 
-        // Retention exceptions are board (including face down), sealed, and a
-        // burial continuation. No physical deck card or ordinary paid reveal.
-        for c in self.batch3_physical_cards().filter(|c| generated(c)) {
-            let retained = self.regions.iter().any(|r| !r.vacant && r.cards.iter().any(|v| std::ptr::eq(v,c)))
-                || self.sealed_cards.iter().any(|s| std::ptr::eq(&s.card,c))
-                || self.effects.iter().any(|e| matches!(e, Effect::Bury {card} if std::ptr::eq(card,c)));
-            if !retained { return Err("生成触手不能存在于手牌、牌库、墓地或其他实体牌区".into()); }
-        }
         Ok(())
     }
 }

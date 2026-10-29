@@ -379,6 +379,8 @@ pub struct PrivateInspectionView {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Card {
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub generated: Option<crate::generated::GeneratedOrigin>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub chosen_number: Option<u32>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub charge_markers: u32,
@@ -1117,6 +1119,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq052_state()?;
+        self.validate_generated_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_msjc16_state()?;

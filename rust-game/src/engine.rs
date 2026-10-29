@@ -168,6 +168,7 @@ impl Game {
         // Only active definitions may be instantiated, before allocating an identity.
         card(definition);
         Card {
+            generated: None,
             charge_markers: 0,
             advancement_markers: 0,
             named_character: None,
@@ -651,6 +652,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
         self.validate_bq052_state()?;
+        self.validate_generated_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_msjc16_state()?;
@@ -694,6 +696,7 @@ impl Game {
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
         next.validate_bq052_state()?;
+        next.validate_generated_state()?;
         next.validate_tentacle_state()?;
         next.validate_msbq03_state()?;
         next.validate_msjc16_state()?;
@@ -2243,7 +2246,7 @@ impl Game {
     pub(crate) fn return_hand(&mut self, target: &str) {
         let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
-            if self.tentacle_disappears(&c) { return; }
+            if self.generated_disappears(&c) { return; }
             if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Hand);return;}
             c = self.fresh(c);
             c.face_down = false;
@@ -2258,7 +2261,7 @@ impl Game {
     pub(crate) fn to_bottom(&mut self, target: &str) {
         let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
-            if self.tentacle_disappears(&c) { return; }
+            if self.generated_disappears(&c) { return; }
             if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Bottom);return;}
             c = self.fresh(c);
             c.face_down = false;
