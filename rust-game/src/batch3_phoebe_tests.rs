@@ -186,7 +186,7 @@ fn batch3_cq07_actual_hidden_inspection_never_uses_the_hidden_front_to_award_a_d
 fn batch3_twenty_candidate_admits_all_twenty_and_real_deck_save_excludes_deferred_cards() {
     assert_eq!(crate::batch3::IMPLEMENTING.len(), 20);
     for id in crate::batch3::IMPLEMENTING { assert!(catalog::card(id).supported, "{id}"); }
-    assert!(!catalog::catalog().cards.iter().any(|c| matches!(c.id.as_str(), "CQ11" | "TK008")));
+    for id in ["CQ11", "TK008"] { assert!(!catalog::card(id).supported, "closed candidate {id} must not enter public decks"); }
     let mut cards = catalog::catalog().decks[0].cards.clone();
     let position = cards.iter().position(|entry| entry.card_id != "CQ07").unwrap();
     cards[position].count -= 1;

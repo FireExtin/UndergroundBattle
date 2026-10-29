@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            wm031_observations: vec![],
             first_marker_placements: vec![],
             bq065_cancelled: vec![],
             bq067_grants: vec![],
@@ -2283,6 +2284,7 @@ impl Game {
                 self.bq049_grants.clear();self.bq067_grants.clear();
                 self.turn += 1;
                 self.first_marker_placements.clear();
+                self.wm031_observations.clear();
                 self.mystic_history.clear();
                 self.influence_contests.clear();
                 self.turn_ability_usage.clear();

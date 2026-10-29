@@ -84,8 +84,11 @@ fn invalid(g: &Game, v: serde_json::Value) {
         std::fs::write(format!("{dir}/invalid-{n:04}.json"), serde_json::to_vec(&serde_json::json!({"state": state})).unwrap()).unwrap();
     }
 }
-fn deploy_jz30(g: &mut Game, actor: usize, accept: bool) -> String {
+fn deploy_jz30(g: &mut Game, actor: usize, accept: bool) -> String { deploy_jz30_owned(g,actor,actor,accept) }
+fn deploy_jz30_owned(g: &mut Game, actor: usize, owner: usize, accept: bool) -> String {
     fund(g, actor, "JZ30", 1); let h = held(g, "JZ30", actor);
+    // Prepared foreign-owned hand input precedes the real deploy and its receipts.
+    g.players[actor].hand.iter_mut().find(|c|c.id==h).unwrap().owner=owner;
     assert_eq!(g.players[actor].hand.iter().find(|c| c.id == h).unwrap().time_markers, 0);
     apply(g, actor, Action { card_id: Some(h), region: Some(2), ..Action::new("deploy") });
     pass_top(g);
@@ -170,9 +173,9 @@ fn red_time_jz30_entry_response_death_freezes_zero_and_cannot_mark_replacement()
 #[test]
 fn red_time_jz30_real_lethal_death_freezes_time_private_forecast_and_restore_no_draw() {
     for actor in 0..4 {
-        let mut g = initial(actor); let source = deploy_jz30(&mut g, actor, true);
+        let mut g = initial(actor); let owner = (actor + 1) % 4;
+        let source = deploy_jz30_owned(&mut g, actor, owner, true);
         g.board_mut(&source).unwrap().time_markers = 3; // Explicit prepared accumulated-mark layout.
-        let owner = (actor + 1) % 4; g.board_mut(&source).unwrap().owner = owner;
         fund(&mut g, actor, "JC104", 2); cast(&mut g, "JC102", actor, &source);
         assert!(g.board(&source).is_none()); assert_eq!(g.players[owner].graveyard[0].time_markers, 0);
         let ChoiceResolution::Declare { declaration: d, .. } = &g.pending.as_ref().unwrap().resolution else { panic!() };

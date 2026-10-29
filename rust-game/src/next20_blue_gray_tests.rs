@@ -422,6 +422,8 @@ fn next20_blue_gray_jz23_observes_reveal_pays_once_marker_persists_and_discard_i
     drain(&mut g);
     let before = g.icons(g.board(&id).unwrap().1, 0).combat;
     g.turn += 1;
+    // Explicit next-turn fixture, not a persisted record from the previous turn.
+    g.first_marker_placements.clear(); g.wm031_observations.clear();
     g.first_team = 1;
     restore(&mut g);
     assert_eq!(g.board(&id).unwrap().1.permanent_combat_markers, 1);

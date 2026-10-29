@@ -81,6 +81,8 @@ fn batch20_hourglass_recounts_after_death_and_cannot_skip_forced_preparation() {
     assert!(g.board(&carrier).is_none());
     assert_eq!(g.board(&hourglass).unwrap().1.time_markers, 2);
     g.turn += 1;
+    // Explicit next-turn fixture: keep the same boundary as Effect::NextTurn.
+    g.first_marker_placements.clear(); g.wm031_observations.clear();
     prepare(&mut g);
     choose(&mut g, vec![hourglass.clone()]);
     top(&mut g);

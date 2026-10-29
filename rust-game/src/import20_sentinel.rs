@@ -407,10 +407,12 @@ impl Game {
             .board_mut(&f.source.card.id)
             .filter(|c| c.definition == "CQ19" && !c.face_down)
         {
+            let before=c.charge_markers;let id=c.id.clone();
             c.charge_markers = c
                 .charge_markers
                 .checked_add(1)
                 .ok_or("充能标志超过当前表示范围")?;
+            self.record_board_marker_write(&id,crate::batch4_markers::MarkerKind::Charge,before);
         }
         Ok(())
     }

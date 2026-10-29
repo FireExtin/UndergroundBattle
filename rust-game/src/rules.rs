@@ -336,7 +336,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
-    WM031Wound { event: Option<Box<crate::marker_placement::MarkerPlacement>> },
+    WM031Wound { event: Option<Box<crate::wm031::Observation>> },
     JC028Blood,
     JC053Draw,
     MSBQ01Seal { attachment: Option<String> },

@@ -1032,6 +1032,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default,skip_serializing_if="Vec::is_empty")]
+    pub wm031_observations: Vec<crate::wm031::Observation>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub first_marker_placements: Vec<crate::marker_placement::MarkerPlacement>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
