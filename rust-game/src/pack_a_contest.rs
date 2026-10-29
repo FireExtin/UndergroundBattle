@@ -147,6 +147,7 @@ impl Game {
         if crate::import20_observers::related(&d.source.card.definition, &d.ability) {
             return self.validate_import20_observer_declaration(d);
         }
+        if crate::wm027::related(&d.ability) { return self.validate_wm027_declaration(d); }
         if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if crate::batch4_vampire_contest::key(&d.ability.key) || crate::batch4_vampire_contest::owns(&d.ability.ops) { return self.validate_b_contest_declaration(d); }
         if !CARDS.contains(&d.source.card.definition.as_str()) && !related(&d.ability) { return Ok(()); }
@@ -196,6 +197,7 @@ impl Game {
         }
         if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
         if f.ability_key == crate::wm043::SHOWN || f.steps.iter().any(|s| matches!(s.op, Op::WM043ShownLock { .. })) { return self.validate_wm043_post(f); }
+        if crate::wm027::frame_related(f) { return self.validate_wm027_frame(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if crate::batch4_vampire_contest::related(f) { return self.validate_b_contest_frame(f); }
         let id = f.source.card.definition.as_str();

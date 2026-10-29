@@ -1400,5 +1400,6 @@
   },
   "JC053": {"url": "/cards/JC053.jpg", "source": "resource/ymsj-fun.github.io/cards/JC053 鸣钟教派徽记.jpg", "sha256": "4c73e85c89642da97842fdf17e2a520a4075c457044119d68a56ca4106b5b04c"},
   "MSBQ01": {"url": "/cards/MSBQ01.jpg", "source": "resource/ymsj-fun.github.io/cards/MSBQ01 龙之欢宴.jpg", "sha256": "91403c1c0af4ce700bfbde7061c0d123869a83d85a648a96fec00640302e9d3d"},
-  "XQ13": {"url": "/cards/XQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg", "sha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"}
+  "XQ13": {"url": "/cards/XQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg", "sha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"},
+  "WM027": {"url": "/cards/WM027.jpg", "source": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg", "sha256": "f7a2fcfe47a2f412029229df4a01e89a8c3db7bb67fb5deeb3b78230d09fcfa0"}
 }

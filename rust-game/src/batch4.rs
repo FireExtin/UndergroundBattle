@@ -217,6 +217,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_declaration(&self, d: &Declaration) -> RuleResult<()> {
         if d.source.card.definition=="WM037" { return Err("戴森的计谋没有场内触发声明".into()); }
+        if crate::wm027::related(&d.ability) { return self.validate_wm027_declaration(d); }
         if crate::batch4_intelligence::related(&d.ability) { return self.validate_wm044_declaration(d); }
         if d.source.card.definition == "JZ56" { return self.validate_jz56_declaration(d); }
         if d.source.card.definition == "LC16" && !self.validated_cross_card_declaration(d)? { return self.validate_lc16_declaration(d); }
@@ -251,6 +252,7 @@ impl Game {
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
+        if crate::wm027::frame_related(f) { return self.validate_wm027_frame(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }
         if f.source.card.definition == "LC16" && !self.validated_cross_card_frame(f)? { return self.validate_lc16_frame(f); }

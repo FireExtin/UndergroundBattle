@@ -807,6 +807,8 @@ pub enum FrameChoice {
     BQ079Upkeep,
     XQ22Orientation,
     WM043ShownTarget,
+    WM027Player,
+    WM027Card { seat: usize },
     WM044Inspection { inspected: Card },
     JC062Inspection { inspected: Vec<Card> },
     WM033GraveSpell,
@@ -1158,6 +1160,7 @@ impl Game {
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
+        self.validate_wm027_state()?;
         self.validate_xq13_state()?;
         self.validate_jc028_state()?;
         self.validate_cq27_state()?;

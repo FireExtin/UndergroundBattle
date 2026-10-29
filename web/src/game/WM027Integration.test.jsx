@@ -1,0 +1,11 @@
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,fireEvent,screen} from '@testing-library/react';
+import {kernel,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+import {Table} from './Table';
+import {actionForRoom} from './api';
+import {validateDeckDraft} from './deckLibrary';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/wm027.json.gz');
+afterEach(()=>{cleanup();sessionStorage.clear();});
+it('keeps Shadow Path closed while its private legal fifty-card construction uses actual entry commands',()=>{expect(catalog.cards.find(c=>c.id==='WM027')).toMatchObject({supported:false,cost:1,color:'蓝',loyalty:['蓝色','蓝色','蓝色']});const d=fixture.cases[0].construction.deck;expect(validateDeckDraft(d,catalog).valid).toBe(false);const c=structuredClone(catalog);c.cards.find(c=>c.id==='WM027').supported=true;expect(validateDeckDraft(d,c).valid).toBe(true);expect(fixture.cases[0].construction.noLayoutOrResourceMutation).toBe(true);});
+for(const kind of ['wm027_enemy_deck','wm027_top_ten'])it(`${kind} restores actual private choice and submits the real Native command once`,()=>{const step=fixture.cases[0].steps.find(s=>JSON.parse(kernel.view(s.state,s.seat)).pendingChoice?.kind===kind),view=JSON.parse(kernel.view(step.state,step.seat)),wanted=step.command.action.action,submit=vi.fn();expect(wanted.selected).toHaveLength(1);const first=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);fireEvent.click(first.container.querySelector(`[data-choice-option="${wanted.selected[0]}"]`));first.unmount();render(<Table catalog={catalog} view={JSON.parse(kernel.view(step.state,step.seat))} busy={false} onAction={submit}/>);fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(kernel.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);expect(JSON.parse(kernel.applyRoom(step.expected.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.duplicate);for(let s=1;s<4;s++)expect(JSON.parse(kernel.view(step.state,s)).pendingChoice).toBeFalsy();});
