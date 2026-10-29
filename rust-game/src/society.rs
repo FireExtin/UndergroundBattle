@@ -39,6 +39,7 @@ pub struct SocietyZoneView {
 #[serde(tag = "kind", rename_all = "camelCase")]
 pub enum SocietyDeckConstraint {
     RedPurpleNeutral,
+    BlueGreenNeutral,
     BlackNeutralOrDeath,
     Shoggoth,
     BlackWhiteNeutralCorpse,
@@ -96,6 +97,7 @@ pub(crate) fn validate_construction(
 ) -> RuleResult<()> {
     for constraint in &society.deck_constraints {
         match constraint {
+            SocietyDeckConstraint::BlueGreenNeutral=>{if society.card.id!="MSBQ01"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"蓝"|"绿"|"中立")){return Err("龙之欢宴构筑仅蓝绿中立".into());}},
             SocietyDeckConstraint::RedPurpleNeutral=>{if society.card.id!="MSJZ04"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"红"|"紫"|"中立")){return Err("破茧者构筑仅红紫中立".into());}},
             SocietyDeckConstraint::BlackNeutralOrDeath => {if society.card.id!="MSJC16"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"黑"|"中立")&&c.magic_icon!=crate::rules::MagicIcon::Death){return Err("颂亡者构筑仅黑、中立或死亡领域牌".into());}},
             SocietyDeckConstraint::RedNeutralOrPrintedDisasterTimeFate => {

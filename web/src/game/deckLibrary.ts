@@ -89,7 +89,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
     const group = named.get(name) || { count: 0, limits: new Set<number | null>(), ids: [], missingLimit: false };
     group.count += entry.count;
     group.ids.push(card.id);
-    if (card.deckCopyLimit === null || (typeof card.deckCopyLimit === 'number' && Number.isSafeInteger(card.deckCopyLimit) && card.deckCopyLimit >= 1)) group.limits.add(draft.societyId==='MSBQ03'&&card.name==='无名尸体'?null:card.deckCopyLimit);
+    if (card.deckCopyLimit === null || (typeof card.deckCopyLimit === 'number' && Number.isSafeInteger(card.deckCopyLimit) && card.deckCopyLimit >= 1)) group.limits.add(((draft.societyId==='MSBQ03'&&card.name==='无名尸体')||(draft.societyId==='MSBQ01'&&card.name==='鲜血'))?null:card.deckCopyLimit);
     else group.missingLimit = true;
     named.set(name, group);
   }
@@ -120,6 +120,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       } else for (const constraint of society.deckConstraints) {
         if(constraint.kind==='blackNeutralOrDeath'&&society.id==='MSJC16'){
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['黑','中立'].includes(card.color||'')||card.magic==='死亡'))issue('society-death','颂亡者仅黑、中立及死亡领域牌。',card.id);}
+          continue;
+        }
+        if(constraint.kind==='blueGreenNeutral'&&society.id==='MSBQ01'){
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['蓝','绿','中立'].includes(card.color||''))issue('society-dragon','龙之欢宴构筑仅蓝绿中立。',card.id);}
           continue;
         }
         if(constraint.kind==='redPurpleNeutral'&&society.id==='MSJZ04'){

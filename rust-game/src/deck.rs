@@ -56,7 +56,7 @@ pub fn copy_limit(card: &CardDefinition) -> Option<usize> {
     }
 }
 pub(crate) fn copy_limit_for_society(card: &CardDefinition, society_id: Option<&str>) -> Option<usize> {
-    if (card.name == "精神锚点" && society_id == Some("MSJC10")) || (card.name=="无名尸体" && society_id==Some("MSBQ03")) { None } else { copy_limit(card) }
+    if (card.name == "精神锚点" && society_id == Some("MSJC10")) || (card.name=="无名尸体" && society_id==Some("MSBQ03")) || (card.name=="鲜血" && society_id==Some("MSBQ01")) { None } else { copy_limit(card) }
 }
 pub fn validate(draft: DeckDraft) -> Result<DeckDraft, String> {
     validate_with_cards(draft, &catalog::catalog().cards)

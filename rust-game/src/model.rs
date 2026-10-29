@@ -509,6 +509,7 @@ pub struct WinContext {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
     MSJZ04Opening {seat:usize},
+    MSBQ01Opening {seat:usize},
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     DeathFinish { death_instance: String },
     DeathCaller { caller: Box<crate::death_continuation::DeathCaller> },
@@ -972,6 +973,7 @@ pub enum RemovalCause {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
     MSJZ04Opening {seat:usize},
+    MSBQ01Opening {seat:usize},
     MSJC16Payment { draft: Box<crate::msjc16::PaymentDraft> },
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     CQ28Draft { draft:Box<crate::import20_gate::GateDraft> },
