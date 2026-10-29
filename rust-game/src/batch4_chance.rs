@@ -139,7 +139,7 @@ impl Game {
         self.wm058_finish_tax(&f, selected[0] == "pay")
     }
     pub(crate) fn wm058_reveal(&mut self, f: &ResolutionFrame) {
-        if let Some(r) = f.source.region.filter(|r| !self.regions[*r].vacant && f.source.source_region_instance.as_ref() == Some(&self.regions[*r].card.id)) { let enemy = 1 - self.team(f.actor); self.regions[r].influence[enemy] = 0; }
+        if let Some(r) = f.source.region.filter(|r| !self.regions[*r].vacant && f.source.source_region_instance.as_ref() == Some(&self.regions[*r].card.id)) { let enemy = 1 - self.team(f.actor); self.remove_influence_recorded(r,enemy,u32::MAX); }
     }
     pub(crate) fn validate_wm058_state(&self) -> RuleResult<()> {
         let mut frames = BTreeSet::new(); let mut events = BTreeSet::new();

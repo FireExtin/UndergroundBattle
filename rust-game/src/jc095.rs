@@ -96,7 +96,7 @@ impl Game {
         if amount == 0 {
             return;
         }
-        self.regions[region].influence[enemy] = 0;
+        self.remove_influence_recorded(region,enemy,amount);
         self.place_influence(f.actor, region, amount);
         // Existing WinContext owns any already-decided victory. The ordinary
         // Award guard prevents a second award for that region incarnation.

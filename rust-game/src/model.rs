@@ -755,6 +755,7 @@ pub enum DeclareChoice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
     MSJZ04Pay,
+    JC053Draw,
     BQ065Shield {card_id:String},
     MSJZ04Release,
     BQ045Core(crate::bq045::CoreChoice),
@@ -1039,6 +1040,8 @@ pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub cq10_continuations: Vec<crate::cq10::Continuation>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub influence_removals: Vec<crate::jc053::InfluenceRemoval>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub death_replacements: Vec<crate::death_continuation::PendingDeath>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub step_resources: Vec<crate::step_resources::StepCredit>,
@@ -1151,6 +1154,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
+        self.validate_jc053_state()?;
         self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;

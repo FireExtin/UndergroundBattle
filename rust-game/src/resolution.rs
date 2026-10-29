@@ -507,7 +507,7 @@ impl Game {
             source_region_instance: if matches!(c.definition.as_str(),"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JC053" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -600,6 +600,7 @@ impl Game {
         crate::import20_industry::validate_action(definition,a)?;
         if definition == "WM043" { crate::wm043::validate_action(a)?; }
         crate::next20_blue_gray::validate_action(definition, a)?;
+        if definition==crate::jc053::ID&&*a!=(Action{card_id:a.card_id.clone(),ability_id:a.ability_id.clone(),target_id:if a.kind=="play"{a.target_id.clone()}else{None},..Action::new(&a.kind)}){return Err("鸣钟徽记只声明原来源、能力及结附宿主".into());}
         if definition == "XQ23" && *a != (Action {
             card_id: a.card_id.clone(), target_id: a.target_id.clone(), ability_id: a.ability_id.clone(),
             ..Action::new(&a.kind)
@@ -1741,6 +1742,7 @@ impl Game {
         self.validate_bq086_frame(&frame)?;
         self.validate_jz53_frame(&frame)?;
         self.validate_jc097_frame(&frame)?;
+        self.validate_jc053_frame(&frame)?;
         self.validate_jc028_frame(&frame)?;
         self.validate_cq09_frame(&frame)?;
         self.validate_bq045_frame(&frame)?;
@@ -1901,6 +1903,7 @@ impl Game {
                 Op::JZ51TopEightCorpses => return self.jz51_search_start(frame),
                 Op::BQ086Death { .. } => return self.bq086_sacrifice(frame),
                 Op::BQ086Seal => self.bq086_seal(&frame)?,
+                Op::JC053Draw=>return self.jc053_draw_start(frame),
                 Op::JC028Blood => self.jc028_blood(&frame)?,
                 Op::JC097Raid { .. } => self.jc097_raid(&frame)?,
                 Op::JZ53Generate { .. } => self.jz53_generate(&frame)?,
@@ -2849,6 +2852,7 @@ impl Game {
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
+            FrameChoice::JC053Draw=>return self.jc053_draw_finish(&frame,chooser,&a,&selected),
             FrameChoice::MSJZ04Pay=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("效果支付不能夹带载荷".into());}return self.msjz04_pay(*frame,chooser,&selected);},
             FrameChoice::BQ065Shield{card_id}=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("护盾选择不可夹带载荷".into());}return self.bq065_shield(&frame,chooser,&card_id,&selected);},
             FrameChoice::MSJZ04Release=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("释放不能夹带其他载荷".into());}return self.msjz04_release_finish(&frame,chooser,&selected);},
@@ -3073,12 +3077,12 @@ impl Game {
                     .find(|(r, _)| *r == region)
                     .ok_or("遏制地区不属于原选项")?;
                 let team = self.team(seat);
-                let r = self
+                let _r = self
                     .regions
                     .get_mut(region)
                     .filter(|r| !r.vacant && r.card.id == original.1 && r.influence[team] > 0)
                     .ok_or("遏制地区或势力已失效")?;
-                r.influence[team] -= 1;
+                self.remove_influence_recorded(region,team,1);
                 self.note(format!(
                     "{} 从地区{}移除1个本方势力标志",
                     self.players[seat].name,

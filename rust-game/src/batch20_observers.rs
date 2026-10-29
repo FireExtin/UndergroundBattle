@@ -190,8 +190,8 @@ impl Game {
         let team = self.team(seat);
         for (r, uid, _) in regions {
             let count = selected.iter().filter(|id| id.starts_with(&format!("region:{r}:marker:"))).count() as u32;
-            let reg = self.regions.get_mut(*r).filter(|r| !r.vacant && r.card.id == *uid && r.influence[team] >= count).ok_or("遏制原地区已失效")?;
-            reg.influence[team] -= count;
+            let _reg = self.regions.get_mut(*r).filter(|r| !r.vacant && r.card.id == *uid && r.influence[team] >= count).ok_or("遏制原地区已失效")?;
+            self.remove_influence_recorded(*r,team,count);
         }
         Ok(())
     }

@@ -58,6 +58,7 @@ impl Game {
             core_zones: vec![],
             state_schema: 2,
             death_replacements: vec![],
+            influence_removals: vec![],
             step_resources: vec![],
             industry_bonuses: vec![],
             mystic_contest: None,
@@ -666,6 +667,7 @@ impl Game {
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
+        self.validate_jc053_state()?;
         self.validate_jc028_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
@@ -721,6 +723,7 @@ impl Game {
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
+        next.validate_jc053_state()?;
         next.validate_jc028_state()?;
         next.validate_cq27_state()?;
         next.validate_bq088_state()?;
@@ -1195,6 +1198,7 @@ impl Game {
         self.wm058_receipts.clear();
         self.inspection_receipts.clear();
         self.turn_ability_usage.clear();
+        self.influence_removals.clear();
                 self.jc054_end_step_turn = None;
                 self.jc035_preparation = None;
         self.regions.clear();
@@ -2105,6 +2109,7 @@ impl Game {
             }
             Effect::Score { seat, region } => {
                 if !self.region_live(region) { return Ok(()); }
+                for team in 0..2 { self.remove_influence_recorded(region,team,u32::MAX); }
                 let definition = self.regions[region].card.definition.clone();
                 let mut scored = self.regions[region].card.clone();
                 scored.owner = seat;
@@ -2266,6 +2271,7 @@ impl Game {
                 self.mystic_history.clear();
                 self.influence_contests.clear();
                 self.turn_ability_usage.clear();
+                self.influence_removals.clear();
                 self.jc054_end_step_turn = None;
                 self.jc035_preparation = None;
                 self.modifiers.clear();

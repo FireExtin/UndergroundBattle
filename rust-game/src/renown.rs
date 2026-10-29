@@ -177,7 +177,9 @@ impl Game {
         let team = self.team(seat);
         let enemy = 1 - team;
         let removed = amount.min(self.regions[region].influence[enemy]);
-        self.regions[region].influence[enemy] -= removed;
+        self.remove_influence_recorded(region,enemy,removed);
+        // The incoming markers are also removed by simultaneous cancellation.
+        self.record_influence_removal(region,team,removed);
         self.regions[region].influence[team] += amount - removed;
         if self.regions[region].influence[team]
             >= card(&self.regions[region].card.definition)

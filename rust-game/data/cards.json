@@ -12139,6 +12139,45 @@
     ],
     "loyaltyText": "蓝",
     "defense": 1
+},
+{
+  "id": "JC053",
+  "name": "鸣钟教派徽记",
+  "subtitle": "末日钟之印",
+  "kind": "attachment",
+  "subtypes": [
+    "徽章"
+  ],
+  "cost": 2,
+  "loyalty": [
+    "红色"
+  ],
+  "loyaltyText": "红色",
+  "color": "红",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    }
+  },
+  "defense": null,
+  "text": "结附于本方秘社。快速行动，横置：本回合中你下一张正面打出或翻面的鸣钟教派牌的所需费用减少1。快速行动2，横置：本回合中，若有敌方势力标志曾被移除，你可以抓一张牌。",
+  "keywords": [],
+  "unique": true,
+  "society": "鸣钟教派",
+  "supported": false,
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "JC053",
+    "image": "resource/ymsj-fun.github.io/cards/JC053 鸣钟教派徽记.jpg"
+  }
 }
   ],
   "decks": [

@@ -277,6 +277,7 @@ pub enum CardFilter {
     WM038BloodCard,
     NamedCharacter(String),
     PrintedColor(String),
+    PrintedSociety(String),
     Any,
     HasPrintedMagic,
     Kind(String),
@@ -299,6 +300,7 @@ impl CardFilter {
             Self::JC055Disaster => definition.subtypes.iter().any(|s| s == "灾难"),
             Self::WM038BloodCard => definition.magic_icon == MagicIcon::Blood,
             Self::PrintedColor(color) => definition.color == *color,
+            Self::PrintedSociety(s) => definition.society == *s,
             Self::Any => true,
             Self::HasPrintedMagic => definition.magic_icon != MagicIcon::None,
             Self::Kind(kind) => crate::catalog::has_kind(definition, kind),
@@ -333,6 +335,7 @@ pub enum SearchVisibility {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
     JC028Blood,
+    JC053Draw,
     JC097Raid {observation:Option<crate::jc097::Observation>},
     JZ53Generate {departure:Option<crate::jz53::Departure>},
     CQ27Prepare {event_id:Option<String>},
@@ -899,6 +902,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
     if crate::jc028::related(ability) { return crate::jc028::validate_ability(card_id,ability); }
+    if crate::jc053::related(ability) { return crate::jc053::validate_ability(card_id,ability); }
     if crate::jc097::related(ability) { return crate::jc097::validate_ability(card_id,ability); }
     if crate::jz53::related(ability) { return crate::jz53::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
@@ -1730,6 +1734,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq086::validate_definition(card_id,definition)?;
         crate::jz53::validate_definition(card_id,definition)?;
         crate::jc097::validate_definition(card_id,definition)?;
+        crate::jc053::validate_definition(card_id,definition)?;
         crate::jc028::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
         crate::cq27::validate_definition(card_id,definition)?;
@@ -1950,7 +1955,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "JC053" | "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2449,6 +2454,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());
         m.insert(crate::jz53::ID.into(),crate::jz53::definition());
         m.insert(crate::jc097::ID.into(),crate::jc097::definition());
+        m.insert(crate::jc053::ID.into(),crate::jc053::definition());
         m.insert(crate::jc028::ID.into(),crate::jc028::definition());
         m.insert(crate::jc028::FORM.into(),crate::jc028::form_definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());
