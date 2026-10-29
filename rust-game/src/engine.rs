@@ -665,7 +665,7 @@ impl Game {
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_msjz04_state()?;
-        self.validate_bq067_state()?;self.validate_bq049_state()?;
+        self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq_commands()?;
@@ -711,7 +711,7 @@ impl Game {
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
         next.validate_msjz04_state()?;
-        next.validate_bq067_state()?;next.validate_bq049_state()?;
+        next.validate_bq060_state()?;next.validate_bq067_state()?;next.validate_bq049_state()?;
         next.validate_bq061_state()?;
         next.validate_bq063_state()?;
         next.validate_bq_commands()?;
@@ -796,7 +796,7 @@ impl Game {
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -828,7 +828,7 @@ impl Game {
                     Some(r)
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
-                crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -946,7 +946,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1027,7 +1027,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1111,7 +1111,7 @@ impl Game {
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
-                crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;

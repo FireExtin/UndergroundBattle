@@ -1139,7 +1139,7 @@ impl Game {
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_msjz04_state()?;
-        self.validate_bq067_state()?;self.validate_bq049_state()?;
+        self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;

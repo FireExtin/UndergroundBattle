@@ -932,7 +932,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1721,6 +1721,7 @@ impl Game {
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
         self.validate_msjz04_frame(&frame)?;
+        self.validate_bq060_frame(&frame)?;
         self.validate_bq067_frame(&frame)?;
         self.validate_bq049_frame(&frame)?;
         self.validate_bq061_frame(&frame)?;
@@ -1796,6 +1797,7 @@ impl Game {
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
                 Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::BQ060Shield | Op::BQ060Generate => self.bq060_step(&frame)?,
                 Op::BQ067Barrier => self.bq067_grant(&frame)?,
                 Op::BQ052PlaceCore => self.bq052_place_core(&frame)?,
                 Op::BQ063Repress=>return self.bq063_repress(frame),

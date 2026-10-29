@@ -11732,6 +11732,43 @@
   "unique": false,
   "society": "",
   "supported": false
+},
+{
+  "id": "BQ060",
+  "name": "裂变",
+  "kind": "spell",
+  "subtypes": [
+    "命令",
+    "精神"
+  ],
+  "cost": 1,
+  "loyalty": [
+    "灰色"
+  ],
+  "color": "灰",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    }
+  },
+  "text": "修格斯秘社限定\n【快速】行动　选择一项：\n• 在本方核心角色上放置一个护盾标志。\n• 进行一次隐秘对抗。\n• 在目标地区生成一个触手指示物角色。",
+  "keywords": [],
+  "unique": false,
+  "supported": false,
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "BQ060",
+    "image": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg",
+    "imageSha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1"
+  }
 }
   ],
   "decks": [

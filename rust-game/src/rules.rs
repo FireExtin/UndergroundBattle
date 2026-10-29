@@ -346,6 +346,8 @@ pub enum Op {
     BQ052Prepare { event_id: Option<String> },
     BQ045Shield,
     BQ045Honor,
+    BQ060Shield,
+    BQ060Generate,
     BQ067Barrier,
     BQ052PlaceCore,
     BQ001SealStarHandOnSociety,
@@ -866,6 +868,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::msbq02::ID||crate::msbq02::related(ability) {return crate::msbq02::validate_ability(card_id,ability);}
     if crate::bq_commands::related(ability) {return crate::bq_commands::validate_ability(card_id,ability);}
     if card_id==crate::msjz04::ID||crate::msjz04::related(ability){return crate::msjz04::validate_ability(card_id,ability);}
+    if card_id==crate::bq060::ID||crate::bq060::related(ability){return crate::bq060::validate_ability(card_id,ability);}
     if card_id==crate::bq067::ID||crate::bq067::related(ability){return crate::bq067::validate_ability(card_id,ability);}
     if card_id==crate::bq049::ID||crate::bq049::related(ability){return crate::bq049::validate_ability(card_id,ability);}
     if card_id==crate::bq061::ID||crate::bq061::related(ability){return crate::bq061::validate_ability(card_id,ability);}
@@ -1687,6 +1690,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::mscq02::validate_definition(card_id,definition)?;
         crate::test034::validate_definition(card_id,definition)?;
         crate::msjz04::validate_definition(card_id,definition)?;
+        crate::bq060::validate_definition(card_id,definition)?;
         crate::bq067::validate_definition(card_id,definition)?;
         crate::bq049::validate_definition(card_id,definition)?;
         crate::bq061::validate_definition(card_id,definition)?;
@@ -2395,6 +2399,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq061::ID.into(),crate::bq061::definition());
         m.insert(crate::bq063::ID.into(),crate::bq063::definition());
         for id in crate::bq_commands::IDS {m.insert(id.into(),crate::bq_commands::definition(id));}
+        m.insert(crate::bq060::ID.into(),crate::bq060::definition());
         m.insert(crate::bq067::ID.into(),crate::bq067::definition());
         m.insert(crate::bq052::ID.into(),crate::bq052::definition());
         m.insert(crate::tentacle::ID.into(),crate::tentacle::definition());
