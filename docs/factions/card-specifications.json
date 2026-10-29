@@ -84468,7 +84468,7 @@
         "printedKeywords": [],
         "printedRuleTextLines": [
           "灵体",
-          "【准备步骤强制触发】若有敌方玩家的手牌数量少于或等于三张，转变。"
+          "【准备步骤触发】若有敌方玩家的手牌数量少于或等于三张，转变。"
         ],
         "additionalPrintedSymbols": []
       },
@@ -84482,7 +84482,7 @@
         {
           "id": "printed-2",
           "kind": "sourceTextOnly",
-          "printedText": "【准备步骤强制触发】若有敌方玩家的手牌数量少于或等于三张，转变。",
+          "printedText": "【准备步骤触发】若有敌方玩家的手牌数量少于或等于三张，转变。",
           "notExecutable": true
         }
       ],

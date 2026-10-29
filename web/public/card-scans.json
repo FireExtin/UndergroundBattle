@@ -1,4 +1,14 @@
 {
+  "WM026": {
+    "url": "/cards/WM026.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/WM026 古妮薇尔.jpg",
+    "sha256": "75a671983008abff26bfb01369d444eb7709a89ddab02cacc58da43fcd2ffdeb"
+  },
+  "ZHWM026": {
+    "url": "/cards/ZHWM026.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/ZHWM026 古妮薇尔.jpg",
+    "sha256": "665aa2f70395be7ea99b8f8efbd8664ad79551fd5a0ea8fe0da2e52b619ec114"
+  },
   "BQ044": {
   "url": "/cards/BQ044.jpg",
   "source": "resource/ymsj-fun.github.io/cards/BQ044 夷灭者厄贝尼亚.jpg",

@@ -1,0 +1,11 @@
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,fireEvent,screen} from '@testing-library/react';
+import {kernel,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+import {Table} from './Table';
+import {actionForRoom} from './api';
+import {validateDeckDraft} from './deckLibrary';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/wm026.json.gz');
+afterEach(()=>{cleanup();sessionStorage.clear();});
+it('keeps both forms closed while accepting the actual private natural input',()=>{for(const id of ['WM026','ZHWM026'])expect(catalog.cards.find(c=>c.id===id).supported).toBe(false);const d=fixture.cases[0].construction.deck;expect(validateDeckDraft(d,catalog).valid).toBe(false);const c=structuredClone(catalog);for(const id of ['WM026','WM036'])c.cards.find(c=>c.id===id).supported=true;expect(validateDeckDraft(d,c).valid).toBe(true);});
+it.each(['target','jc035-preparation-order'])('%s choice uses actual native command after UI refresh',kind=>{const step=fixture.cases[0].steps.find(s=>JSON.parse(kernel.view(s.state,s.seat)).pendingChoice?.kind===kind&&s.command.action.action?.selected?.length);expect(step).toBeTruthy();const view=JSON.parse(kernel.view(step.state,step.seat)),wanted=step.command.action.action,send=vi.fn();let ui=render(<Table catalog={catalog} view={view} busy={false} onAction={send}/>);for(const id of wanted.selected)fireEvent.click(ui.container.querySelector(`[data-choice-option="${id}"]`));ui.unmount();render(<Table catalog={catalog} view={JSON.parse(kernel.view(step.state,step.seat))} busy={false} onAction={send}/>);fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(send).toHaveBeenCalledOnce();expect(actionForRoom(view,send.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(kernel.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);expect(JSON.parse(kernel.applyRoom(step.expected.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.duplicate);});
