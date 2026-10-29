@@ -11575,7 +11575,43 @@
       "unique": true,
       "text": "护盾1。行动2，横置一个本方触手角色：消灭其上有锁定标志的目标角色或暗藏者，你获得1名誉点。核心：在目标角色或暗藏者上放置一个锁定标志。遏制1。",
       "supported": false
+    },
+{
+  "id": "BQ061",
+  "name": "钻研故纸堆",
+  "kind": "spell",
+  "subtypes": [
+    "策略"
+  ],
+  "cost": 1,
+  "loyalty": [
+    "灰色"
+  ],
+  "color": "灰",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
     }
+  },
+  "text": "隐秘+5\n行动 将你墓地中的计划、任务或命令牌置于你的手中。",
+  "keywords": [],
+  "unique": false,
+  "supported": false,
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "BQ061",
+    "image": "resource/ymsj-fun.github.io/cards/BQ061 钻研故纸堆.jpg",
+    "imageSha256": "deb8fe256760006dfe44627f8fbe769d7ff39be3d193e09cf78724e706e2ee69"
+  }
+}
   ],
   "decks": [
     {

@@ -1,0 +1,12 @@
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,screen,fireEvent,within} from '@testing-library/react';
+import {kernel as abi,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+import {Table} from './Table';
+import {actionForRoom} from './api';
+import {validateDeckDraft} from './deckLibrary';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/bq061.json.gz');
+afterEach(()=>{cleanup();sessionStorage.clear();});
+it('keeps formal gray recovery closed and uses the actual private natural input',()=>{expect(catalog.cards.find(c=>c.id==='BQ061')).toMatchObject({supported:false,color:'灰',cost:1,loyalty:['灰色'],subtypes:['策略']});const c=fixture.cases.find(c=>c.construction).construction;expect(c.noLayoutOrResourceMutation).toBe(true);expect(validateDeckDraft(c.deck,catalog).valid).toBe(false);});
+it.each(['bq061-natural-plan-paid-sacrifice-and-recover','bq061-prepared-mandatory'])('%s requires one original grave instance and submits the restored choice',name=>{const scenario=fixture.cases.find(c=>c.name===name),step=scenario.steps.find(s=>s.command.action.action?.kind==='choose'&&JSON.parse(abi.view(s.state,s.seat)).pendingChoice?.title?.startsWith('钻研故纸堆'));expect(step).toBeDefined();const view=JSON.parse(abi.view(step.state,step.seat)),submit=vi.fn();expect(view.pendingChoice).toMatchObject({kind:'graveyard',min:1,max:1,allowDecline:false});render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);const dialog=screen.getByRole('dialog',{name:'待完成的选择'}),confirm=within(dialog).getByRole('button',{name:/确认/});expect(confirm).toBeDisabled();const id=step.command.action.action.selected[0];fireEvent.click(dialog.querySelector(`[data-choice-option="${id}"]`));expect(confirm).toBeEnabled();fireEvent.click(confirm);expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);});
+it('empty grave finishes without an invented choice or draw',()=>{const s=fixture.cases.find(c=>c.name==='bq061-prepared-empty');for(const step of s.steps){expect(step.command.action.action?.kind).not.toBe('choose');expect(JSON.parse(abi.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);}expect(s.steps.at(-1).views[0].pendingChoice).toBeNull();});

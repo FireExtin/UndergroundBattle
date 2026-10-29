@@ -1344,5 +1344,6 @@
   "TK010": {"url": "/cards/TK010.png", "source": "docs/factions/recovered-originals/TK010 触手.png", "sha256": "cd0e9486e0ce96c5fb01bfa90290518b1fe6a63bf5cf614c2e6c0155a95bb3ef"},
   "BQ052": {"url": "/cards/BQ052.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ052 伊波·纳契的疯狂词典.jpg", "sha256": "6b5e6fc6354aeb0a799268d87256178e0a39b48063e5226a55897aef36d1329c"},
   "BQ045": {"url": "/cards/BQ045.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ045 追踪者赫卡忒.jpg", "sha256": "05ef5b4753fac65273984e4d58a288a0a8d11dc8cb1c786620e2505e557c9b61"},
-  "MSJC16": {"url": "/cards/MSJC16.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJC16 颂亡者.jpg", "sha256": "958c5d2b20829289ac4480ab2fb96a02ddb8b75cd7f3dfeec65718afc49a8899"}
+  "MSJC16": {"url": "/cards/MSJC16.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJC16 颂亡者.jpg", "sha256": "958c5d2b20829289ac4480ab2fb96a02ddb8b75cd7f3dfeec65718afc49a8899"},
+  "BQ061": {"url": "/cards/BQ061.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ061 钻研故纸堆.jpg", "sha256": "deb8fe256760006dfe44627f8fbe769d7ff39be3d193e09cf78724e706e2ee69"}
 }

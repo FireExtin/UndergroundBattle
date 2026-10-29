@@ -744,6 +744,7 @@ pub enum FrameChoice {
     BQ056Opponent,
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ063Forecast {seat:usize, invocation:usize, core:Box<SourceSnapshot>},
+    BQ061Recover,
     BQ063Opponent,
     MSBQ03 { search: bool },
     BQ063Repress {seat:usize,regions:Vec<(usize,String,u32)>},
@@ -1121,6 +1122,7 @@ impl Game {
         self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;
         self.validate_bq086_state()?;

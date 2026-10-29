@@ -1715,6 +1715,7 @@ impl Game {
         self.validate_bq045_frame(&frame)?;
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
+        self.validate_bq061_frame(&frame)?;
         self.validate_bq063_frame(&frame)?;
         self.validate_bq_command_frame(&frame)?;
         self.validate_msbq02_frame(&frame)?;
@@ -1779,6 +1780,7 @@ impl Game {
                 Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
+                Op::BQ061Recover=>return self.bq061_start(frame),
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
                 Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } => self.jc035_resolve(&frame)?,
@@ -2787,6 +2789,7 @@ impl Game {
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
+            FrameChoice::BQ061Recover=>return self.bq061_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Opponent=>return self.bq063_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Repress{seat,regions}=>return self.bq063_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::BloodFeed { state } => return self.blood_feed_complete(&frame,state,chooser,&a,&selected),
