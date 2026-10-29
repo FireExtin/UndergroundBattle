@@ -106,16 +106,17 @@ impl Game {
     pub(crate) fn mystic_states(&self) -> impl Iterator<Item = &MysticContest> {
         std::iter::successors(self.mystic_contest.as_ref(), |s| s.parent.as_deref())
     }
-    /// Existing card programs append emitted triggers. While a contest is
-    /// paused, those new effects belong before its continuation, not behind the
-    /// older queue tail. A non-serializable fence identifies only new appends;
+    /// Existing card programs append emitted triggers. While a contest or held
+    /// departure is paused, new effects belong before its continuation, not
+    /// behind the older queue tail. A non-serializable fence identifies only new appends;
     /// removals (elimination), front inserts and entry-order references keep
     /// their existing semantics. No paid frame or effect is copied/replayed.
     pub(crate) fn mystic_effect_scope(&mut self, run: impl FnOnce(&mut Self) -> RuleResult<()>) -> RuleResult<()> {
-        if self.mystic_contest.is_none() { return run(self); }
         let barrier = self.effects.iter().find_map(|e| match e {
             Effect::MysticContinue { contest_id } | Effect::MysticFinish { contest_id }
-                if self.mystic_states().any(|s| s.contest_id == *contest_id) => Some((contest_id.clone(),matches!(e,Effect::MysticFinish { .. }))),
+                if self.mystic_states().any(|s| s.contest_id == *contest_id) => Some((contest_id.clone(),if matches!(e,Effect::MysticFinish { .. }) {1} else {0})),
+            Effect::DeathFinish { death_instance }
+                if self.death_replacements.iter().any(|d| d.source.card.id == *death_instance) => Some((death_instance.clone(),2)),
             _ => None,
         });
         let Some(barrier) = barrier else { return run(self); };
@@ -126,8 +127,9 @@ impl Game {
             let mut appended = self.effects.split_off(index);
             appended.pop_front();
             let index = self.effects.iter().position(|e| match e {
-                Effect::MysticContinue { contest_id } => !barrier.1 && *contest_id == barrier.0,
-                Effect::MysticFinish { contest_id } => barrier.1 && *contest_id == barrier.0,
+                Effect::MysticContinue { contest_id } => barrier.1 == 0 && *contest_id == barrier.0,
+                Effect::MysticFinish { contest_id } => barrier.1 == 1 && *contest_id == barrier.0,
+                Effect::DeathFinish { death_instance } => barrier.1 == 2 && *death_instance == barrier.0,
                 _ => false,
             });
             if let Some(index) = index {
@@ -135,10 +137,10 @@ impl Game {
                 self.effects.extend(appended);
                 self.effects.extend(tail);
             } else if self.status == "playing" {
-                return Err("隐秘效果队列丢失原续体边界".into());
+                return Err("效果队列丢失原对抗或离场续体边界".into());
             }
         } else if self.status == "playing" {
-            return Err("隐秘效果队列丢失临时边界".into());
+            return Err("效果队列丢失临时追加边界".into());
         }
         result
     }

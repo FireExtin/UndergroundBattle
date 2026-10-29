@@ -571,3 +571,46 @@ fn next20_death_core_already_stacked_tiger_can_find_declined_or_cancelled_ghost(
         restore(&mut g);
     }
 }
+
+/// MSBQ01 prerequisite: a real non-death response must declare its observers
+/// before an older unresolved departure barrier, using the ordinary interpreter.
+#[test]
+fn next20_death_core_nondeath_response_observer_precedes_held_destination() {
+    let mut g = game();
+    let ghost = field(&mut g, "XG25", 0);
+    let host = field(&mut g, "JC125", 3);
+    field(&mut g, "CQ18", 0);
+    let returned = field(&mut g, "JC029", 3);
+    g.board_mut(&returned).unwrap().lock_markers = 1;
+    g.players[0].society_zone.secrecy = 1;
+    response_kills(&mut g, 1);
+    fund(&mut g, 2, "JC006", 2);
+    let bounce = held(&mut g, "JC006", 2);
+    kill(&mut g, &ghost);
+    death_choice(&mut g);
+    choose(&mut g, vec![host.clone()]);
+    act(&mut g, 2, Action {card_id:Some(bounce),target_id:Some(returned.clone()),..Action::new("play")});
+    for _ in 0..20 {
+        if g.board(&returned).is_none() { break; }
+        assert!(g.pending.is_none());
+        pass(&mut g);
+    }
+    assert!(g.board(&returned).is_none());
+    assert!(matches!(&g.pending.as_ref().map(|p|&p.resolution),Some(ChoiceResolution::Declare{declaration:d,..})if d.ability.key==crate::import20_sentinel::LEAVE),"non-death observer must not wait behind the older destination: {:?}",g.effects);
+    assert_eq!(g.death_replacements.len(),1);
+    assert!(g.death_replacements[0].destination.is_none());
+    assert_eq!(grave_count(&g),0);
+    restore(&mut g);
+    let mut room=crate::jc029_tests::envelope(&g);
+    room=crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).unwrap();
+    g=room.game;
+    let hand=g.players[0].hand.len();
+    choose(&mut g,vec!["accept".into()]);
+    top(&mut g);
+    assert_eq!(g.players[0].hand.len(),hand+1);
+    assert!(g.death_replacements[0].destination.is_none());
+    drain(&mut g);
+    assert!(g.death_replacements.is_empty());
+    assert_eq!(g.sealed_cards.iter().filter(|s|s.card.definition=="XG25"&&s.host_id==host).count(),1);
+    restore(&mut g);
+}
