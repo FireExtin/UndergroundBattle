@@ -56,3 +56,7 @@ WM031 本轮已封闭完成：逐次放置及附属宿主首次观察、可响�
 ## BQ044 ordinary-trigger WIP (after WM031 witness closure)
 
 The former single/all-enemies ambiguity is now a documented project choice: the resolving controller chooses one enemy player, without adding a printed-target contract. See `BQ044-WIP-2026-10-29.md`. The ordinary paid sacrifice trigger has a source implementation and targeted tests; core invocation and the natural entry chain remain engineering work. **Do not count BQ044 as complete or open admission.** This does not resolve WM026/BQ095 marker/lifecycle questions.
+
+## BQ044 closure superseding the WIP status above
+
+BQ044 ordinary trigger and core sacrifice→draw→repress continuation, private 50+1 natural entry, artwork/client mapping and applicable Native/WASM/UI/Worker recovery checks are closed. See `BQ044-CORE-CLOSURE-2026-10-29.md`. Count one complete closed implementation, zero independent approvals; public admission remains false. Earlier WIP and failed evidence remain historical records, not current missing work.
