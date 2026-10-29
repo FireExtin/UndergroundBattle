@@ -501,7 +501,7 @@ impl Game {
             source_region_instance: if c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -932,7 +932,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1439,6 +1439,7 @@ impl Game {
             return self.bq030_choose(declaration, stage, selected);
         }
         if declaration.source.card.definition==crate::bq086::ID && declaration.ability.key==crate::bq086::ENTRY { return self.bq086_choose_entry(declaration,stage,selected); }
+        if declaration.source.card.definition=="BQ065" && (!matches!(stage,DeclareChoice::Target)||selected.len()!=1) {return Err("修格斯计划强制选择一个原地区目标".into());}
         let Some(selected) = selected.first() else {
             self.decline_pregrave_declaration(&declaration)?;
             self.wm058_decline(&declaration)?;
@@ -1664,6 +1665,7 @@ impl Game {
                 || frame.source.card.definition == "XQ20" && !self.xq20_pair_current(frame)
             {
                 frame.guard = GuardState::Cancelled;
+                if frame.source.card.definition=="BQ065"&&frame.ability_key==crate::batch4_plans::COMPLETE&&self.attachments.iter().any(|a|a.card.id==frame.source.card.id){self.bq065_cancelled.push(frame.clone());}
                 self.note(format!(
                     "{}：原目标{}已离场或不再满足目标条件，整个卡牌或能力效果取消；费用不退",
                     card(&frame.source.card.definition).name,
@@ -2798,6 +2800,7 @@ impl Game {
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
             FrameChoice::MSJZ04Pay=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("效果支付不能夹带载荷".into());}return self.msjz04_pay(*frame,chooser,&selected);},
+            FrameChoice::BQ065Shield{card_id}=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("护盾选择不可夹带载荷".into());}return self.bq065_shield(&frame,chooser,&card_id,&selected);},
             FrameChoice::MSJZ04Release=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("释放不能夹带其他载荷".into());}return self.msjz04_release_finish(&frame,chooser,&selected);},
             FrameChoice::BQ049Sacrifice=>return self.bq049_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ061Recover=>return self.bq061_finish(&frame,chooser,&a,&selected),

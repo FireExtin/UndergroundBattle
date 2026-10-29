@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            bq065_cancelled: vec![],
             bq049_grants: vec![],
             core_zones: vec![],
             state_schema: 2,

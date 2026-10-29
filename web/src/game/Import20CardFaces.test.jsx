@@ -12,7 +12,7 @@ const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
 const newlyAdmitted=['BQ034','CQ25','XG25'];
-const closedCandidates=["BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
+const closedCandidates=["BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -58,7 +58,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(296);
+  expect(registry.cards).toHaveLength(297);
   for(const id of ['BQ033','BQ009','BQ001',...closedCandidates])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);
@@ -73,3 +73,4 @@ it('TK010 preserves its original PNG and stays outside admission',()=>{const id=
 it('BQ052 original book artwork, loyalty and closed status stay aligned',()=>{const id='BQ052',card=registry.cards.find(c=>c.id===id),source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read('web/public/cards/BQ052.jpg'))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:'/cards/BQ052.jpg',source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/BQ052.jpg');expect(card.supported).toBe(false);expect(card.loyalty).toEqual(['红色']);expect(card.unique).toBe(true);render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/BQ052.jpg');});
 
 it('BQ045 keeps the original core cube separate from its single gray loyalty',()=>{const id='BQ045',card=registry.cards.find(c=>c.id===id),source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read('web/public/cards/BQ045.jpg'))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:'/cards/BQ045.jpg',source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/BQ045.jpg');expect(card.supported).toBe(false);expect(card.loyalty).toEqual(['灰色']);expect(card.subtitle).toBe('修格斯');expect(card.cost).toBe(3);render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/BQ045.jpg');});
+it('BQ065 preserves the pinned original, public image and client scan mapping without admission',()=>{const id='BQ065',card=registry.cards.find(c=>c.id===id),source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe('353de36848cdae74af860cc046822f109d88f5d57df4a9a4b940df4220d3bee4');expect(sha(read('web/public/cards/BQ065.jpg'))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:'/cards/BQ065.jpg',source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/BQ065.jpg');expect(card.supported).toBe(false);expect(card.text).toContain('达成推进X时');expect(card.text).toContain('额外放置一个护盾');render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/BQ065.jpg');});

@@ -23,3 +23,5 @@ CQ11/TK008 的未印费用仍不套用 TK010 项目裁定；BQ049 任务地区�
 - Rust/Cargo1.90.0、Node24.19.0、wasm-bindgen0.2.104，默认 native/WASM 特性，Cargo jobs1、Rust test threads1、UI maxWorkers1。锁文件未修改。最终 Native 112.59秒，cgroup观测7.11–9.73GB，子进程最大RSS2777724KiB（cgroup含缓存/同环境进程，非单进程RSS）。
 - 原始记录 `/workspace/bq084-validation/logs/msjz04-*.log`；结果、命令、资源范围、历史失败随 `/workspace/msjz04-validation/evidence-06/` 保存。原始 Native SHA256 `0947eea766d2c71e07ff5856d9adc646aaeda761979f9c61f7260588eed0a9fa`；源码清单 SHA256 `4b9087e81c7191d88ae82c231ef101861c910d9e07d523b983ec566a8cda5ca4`；WASM SHA256 `62bb51923e4d885fed634e0d7130513bc253da4e02de801ff5dc427c329dd961`。
 - Library401 保持阻塞，证据只保存在本地，不宣称父端已可下载。无独审、无推送、无合并、无部署、无真实浏览器试玩。
+
+后续覆盖收束：在提交 `50d8395373ed621103e72461a0f9705086b68b96` 上重跑同一 UI 七文件，`msjz04-ui-08` 实际130/130通过（17.01秒），零失败。原129过1失败日志不覆盖。清理审计远端 main `d1c068ea8c4162212cd19fa023841513c4c67e33` 是 HEAD 祖先，HEAD独有357提交；单工作树、干净、无活跃测试，释放0字节。测得 checkout4603904000、build2607943680、当前证据327380992、native-validation2831884288字节；非全部历史证据总量。未合入源码、依赖、证据和未上传恢复包全部保留。

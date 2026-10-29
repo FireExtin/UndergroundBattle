@@ -1903,7 +1903,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2420,6 +2420,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         for id in ["CQ18", "CQ19"] { m.insert(id.into(),crate::import20_sentinel::definition(id).unwrap()); }
         m.insert("WM043".into(), crate::wm043::definition());
         m.insert("WM044".into(), crate::batch4_intelligence::definition());
+        m.insert("BQ065".into(),crate::batch4_plans::definition("BQ065").unwrap());
         for id in crate::batch4::IMPLEMENTING { m.insert((*id).into(), crate::batch4::definition(id).unwrap()); }
         for id in crate::pack_a_contest::CARDS { m.insert((*id).into(), crate::pack_a_contest::definition(id).unwrap()); }
         for id in crate::batch3::IMPLEMENTING { m.insert((*id).into(), crate::batch3::definition(id).unwrap()); }

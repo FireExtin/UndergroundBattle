@@ -744,6 +744,7 @@ pub enum DeclareChoice {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
     MSJZ04Pay,
+    BQ065Shield {card_id:String},
     MSJZ04Release,
     BQ045Core(crate::bq045::CoreChoice),
     BQ056Opponent,
@@ -1085,6 +1086,8 @@ pub struct Game {
     pub wm058_receipts: Vec<crate::batch4_chance::TaxReceipt>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub turn_ability_usage: Vec<TurnAbilityUsage>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub bq065_cancelled: Vec<ResolutionFrame>,
     #[serde(default)]
     pub control_effects: Vec<ControlEffect>,
     #[serde(default)]

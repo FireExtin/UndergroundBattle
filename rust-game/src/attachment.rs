@@ -244,6 +244,7 @@ impl Game {
             self.host_leaves(id);
         }
         let removed = self.remove_in_play(id);
+        if removed.is_some(){self.bq065_cancelled.retain(|f|f.source.card.id!=id);}
         // Removed snapshots retain their last controller for death triggers.
         // The old target/source identity cannot carry its effects into a new one.
         self.settle_controls();
