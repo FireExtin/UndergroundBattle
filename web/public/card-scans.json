@@ -1372,5 +1372,15 @@
     "url": "/cards/TK003.jpg",
     "source": "resource/ymsj-fun.github.io/cards/TK003 警察.jpg",
     "sha256": "87655a55aca95302110ead41a70dc047e791fb33312cd73a2691071393fe654b"
+  },
+  "BQ088": {
+    "url": "/cards/BQ088.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/BQ088 生化泄露.jpg",
+    "sha256": "1a9665d4cc1fbed411f6e4592a056cf2d2b86db904a4677af4c518d029b25fb9"
+  },
+  "TK001": {
+    "url": "/cards/TK001.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/TK001 行尸.jpg",
+    "sha256": "06cdd3b3396ef41cc1669192c5056cf0151460b5285f1645bede86809aa399e0"
   }
 }

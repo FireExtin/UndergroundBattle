@@ -11935,6 +11935,69 @@
       ],
       "costAppearance": "absent",
       "defense": 1
+    },
+    {
+      "id": "BQ088",
+      "name": "生化泄露",
+      "kind": "spell",
+      "cost": 1,
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "subtypes": [
+        "研究",
+        "灾难"
+      ],
+      "text": "行动 将你的牌库顶牌置于墓地，在目标地区生成一个行尸指示物角色，然后你可以将本方墓地中一张名为无名尸体的牌封印在目标副名为圣甲虫产业的本方附属上。你的秘社上每有一个隐秘标志，就可以重复一次该过程。",
+      "supported": false,
+      "keywords": [],
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色"
+    },
+    {
+      "id": "TK001",
+      "name": "行尸",
+      "kind": "character",
+      "cost": 0,
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "subtypes": [
+        "不死生物",
+        "行尸"
+      ],
+      "text": "迟缓（该角色横置进场）",
+      "supported": false,
+      "keywords": [
+        "迟缓",
+        "非资产"
+      ],
+      "costAppearance": "absent",
+      "defense": 1
     }
   ],
   "decks": [

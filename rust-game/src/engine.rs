@@ -70,6 +70,7 @@ impl Game {
             wm058_receipts: vec![],
             turn_ability_usage: vec![],
             jc054_end_step_turn: None,
+            bq088_continuations: vec![],
             cq10_continuations: vec![],
             jc035_preparation: None,
             entry_order_groups: vec![],
@@ -661,6 +662,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
+        self.validate_bq088_state()?;
         self.validate_xg19_state()?;
         self.validate_cq11_state()?;
         self.validate_bq052_state()?;
@@ -711,6 +713,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
+        next.validate_bq088_state()?;
         next.validate_xg19_state()?;
         next.validate_cq11_state()?;
         next.validate_bq052_state()?;
@@ -1355,6 +1358,7 @@ impl Game {
             .collect()
     }
     pub(crate) fn finish(&mut self, team: usize) {
+        self.bq088_continuations.clear();
         self.cq10_continuations.clear();
         self.status = "finished".into();
         self.winner_team = Some(team);
@@ -1407,6 +1411,7 @@ impl Game {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_bq088_play(&item)?;self.validate_bq088_token_play(&item)?;
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;
         self.validate_bq052_play(&item)?;

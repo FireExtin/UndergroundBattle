@@ -157,6 +157,7 @@ pub enum AttachmentHostCondition {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TargetPredicate {
+    BQ088Industry,
     BQ045Locked,
     BQ050EnemySocietyAttachment,
     BQ048CoreOrTentacleRegion,
@@ -327,6 +328,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ088(crate::bq088::Program),
     XG19Resolve { mode:u8, exposure:Option<Vec<u32>> },
     CQ11Generate,
     TK008Destroy,
@@ -888,6 +890,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
+    if card_id=="BQ088"||crate::bq088::related(ability){return crate::bq088::validate_ability(card_id,ability);}
     if card_id=="XG19"||crate::xg19::related(ability){return crate::xg19::validate_ability(card_id,ability);}
     if matches!(card_id,"CQ11"|"TK008")||crate::cq11::related(ability){return crate::cq11::validate_ability(card_id,ability);}
     if crate::cq10::related(ability) { return crate::cq10::validate_ability(card_id,ability); }
@@ -1713,6 +1716,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
+        crate::bq088::validate_definition(card_id,definition)?;
         crate::xg19::validate_definition(card_id,definition)?;
         crate::cq11::validate_definition(card_id,definition)?;
         crate::cq10::validate_definition(card_id,definition)?;
@@ -1828,6 +1832,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("cardId={card_id}: only the complete JZ48 criminal condition is admitted"));
         }
         let admitted_slow = match card_id.as_str() {
+            "TK001" => serde_json::to_value(definition).unwrap() == serde_json::to_value(crate::bq088::definition("TK001")).unwrap(),
             "JZ49" => serde_json::to_value(definition).unwrap() == serde_json::to_value(jz49_definition()).unwrap(),
             "WM023" => serde_json::to_value(definition).unwrap() == serde_json::to_value(crate::wm023::definition()).unwrap(),
             _ => false,
@@ -2426,6 +2431,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());
+        for id in ["BQ088","TK001"]{m.insert(id.into(),crate::bq088::definition(id));}
         for id in ["XG19","TK003"]{m.insert(id.into(),crate::xg19::definition(id));}
         for id in ["CQ11","TK008"]{m.insert(id.into(),crate::cq11::definition(id));}
         m.insert(crate::cq10::ID.into(),crate::cq10::definition());

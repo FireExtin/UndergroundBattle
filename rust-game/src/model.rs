@@ -764,6 +764,7 @@ pub enum FrameChoice {
     MSBQ03 { search: bool },
     BQ063Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ086Sacrifice,
+    BQ088 { repeat:bool },
     CQ10Discard,
     BQ084Anchor,
     BQ001StarHand,
@@ -1029,6 +1030,8 @@ pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub core_zones: Vec<crate::core_zone::CoreZone>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub bq088_continuations: Vec<crate::bq088::Continuation>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub cq10_continuations: Vec<crate::cq10::Continuation>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub death_replacements: Vec<crate::death_continuation::PendingDeath>,
@@ -1141,6 +1144,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_bq088_state()?;
         self.validate_xg19_state()?;
         self.validate_cq11_state()?;
         self.validate_bq052_state()?;
