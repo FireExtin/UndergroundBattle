@@ -43,6 +43,7 @@ pub enum SocietyDeckConstraint {
     Shoggoth,
     BlackWhiteNeutralCorpse,
     BlueNeutralOrPrintedVampireSlave,
+    BlueYellowNeutralOrPrintedVampireSpecter,
     GrayYellowNeutralOrPrintedAgentMediaInternet,
     RedNeutralOrPrintedDisasterTimeFate,
     MinimumColor { color: String, count: usize },
@@ -103,6 +104,9 @@ pub(crate) fn validate_construction(
             SocietyDeckConstraint::GrayYellowNeutralOrPrintedAgentMediaInternet => {
                 if society.card.id!="MSWM02"||entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c|!matches!(c.color.as_str(),"灰"|"黄"|"中立")&&!c.subtypes.iter().any(|s|matches!(s.as_str(),"特工"|"媒体"|"互联网"))){return Err("公众安全委员会构筑仅灰黄中立或其他派系印刷特工、媒体、互联网牌".into());}
             },
+            SocietyDeckConstraint::BlueYellowNeutralOrPrintedVampireSpecter => {
+                if society.card.id!="MSWM01" || entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c| !matches!(c.color.as_str(),"蓝"|"黄"|"中立") && !(c.kind=="character" && c.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"阴魂")))) {return Err("曼纽构筑仅蓝黄中立及其他派系吸血鬼或阴魂角色".into());}
+            }
             SocietyDeckConstraint::BlueNeutralOrPrintedVampireSlave => {
                 if society.card.id != "MSJC12" || entries.iter().filter_map(|e|cards.iter().find(|c|c.id==e.card_id)).any(|c| !matches!(c.color.as_str(),"蓝"|"中立") && !(c.kind=="character" && c.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"奴仆")))) { return Err("爱弗罗德构筑仅允许蓝、中立及其他派系印刷吸血鬼或奴仆角色".into()); }
             },
@@ -475,6 +479,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.push(crate::msbq02::society());
     societies.push(crate::msjz04::society());
     societies.push(crate::msjc12::society());
+    societies.push(crate::mswm01::society());
         societies.push(crate::mswm02::society());
         societies.push(crate::msbq03::society());
         societies.push(crate::mscq02::society());
@@ -550,7 +555,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJC12", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
             );
         }
         assert_eq!(

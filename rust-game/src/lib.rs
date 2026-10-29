@@ -506,6 +506,8 @@ mod bq_commands;
 
 mod msbq02;
 mod msjc12;
+mod mswm01;
+#[cfg(test)] mod mswm01_tests;
 mod mswm02;
 mod msbq03;
 mod msjc16;

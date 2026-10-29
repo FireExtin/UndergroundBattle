@@ -137,6 +137,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['灰','黄','中立'].includes(card.color||'')||card.subtypes?.some(s=>['特工','媒体','互联网'].includes(s))))issue('society-agent-media','公众安全委员会仅灰黄中立或其他派系印刷特工、媒体、互联网牌。',card.id);}
           continue;
         }
+        if(constraint.kind==='blueYellowNeutralOrPrintedVampireSpecter'&&society.id==='MSWM01'){
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['蓝','黄','中立'].includes(card.color||'')||(card.kind==='character'&&card.subtypes?.some(s=>['吸血鬼','阴魂'].includes(s)))))issue('society-vampire-specter','曼纽仅蓝黄中立及其他派系吸血鬼或阴魂角色。',card.id);}
+          continue;
+        }
         if(constraint.kind==='blueNeutralOrPrintedVampireSlave'&&society.id==='MSJC12') {
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['蓝','中立'].includes(card.color||'')||(card.kind==='character'&&card.subtypes?.some(s=>['吸血鬼','奴仆'].includes(s)))))issue('society-vampire-slave','爱弗罗德仅允许蓝、中立及其他派系印刷吸血鬼或奴仆角色。',card.id);}
           continue;

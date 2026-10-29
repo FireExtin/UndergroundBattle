@@ -14,6 +14,8 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() =
 #[serde(deny_unknown_fields)]
 pub struct MysticShown {
     #[serde(default,skip_serializing_if="Option::is_none")]
+    pub mswm01: Option<crate::mswm01::ShownWitness>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
     pub core_support: Option<crate::bq055::ShownWitness>,
     #[serde(default,skip_serializing_if="Option::is_none")]
     pub anchor_witness: Option<crate::bq001::AnchorShownWitness>,
@@ -275,6 +277,7 @@ impl Game {
             .and_then(|n| n.checked_add(self.mystic_extra_shown_bonus(shown).ok()?))
             .and_then(|n| n.checked_add(self.bq001_shown_bonus(shown).ok()?))
             .and_then(|n| n.checked_add(self.bq055_shown_bonus(shown).ok()?))
+            .and_then(|n| n.checked_add(self.mswm01_shown_bonus(shown).ok()?))
             .and_then(|n| n.checked_add(added))
             .and_then(|n| n.checked_add(self.cq25_contest_bonus(origin,key,actor,shown.seat,&shown.card)))
             .and_then(|n| n.checked_add(self.cq09_bonus(origin,key,actor,shown.seat,&shown.card,vampire)))
@@ -303,7 +306,7 @@ impl Game {
             let manor = if self.xq15_owner_aura(&c) { self.attachments.iter().find(|a| a.card.definition == "XQ15" && !a.card.face_down
                 && a.card.controller == c.owner && self.society_host_seat(&a.host_id) == Some(c.owner) && self.attachment_host_valid(a)).cloned() } else { None };
             let politician_asset = if c.definition=="XG20" { self.players[*seat].assets.iter().find(|a| catalog::card(&a.definition).subtypes.iter().any(|s|s=="政治家")).cloned() } else {None};
-            let mut item = MysticShown { core_support: self.bq055_shown_witness(*seat), anchor_witness: self.bq001_shown_witness(*seat), politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
+            let mut item = MysticShown { mswm01: self.mswm01_shown(*seat,&c), core_support: self.bq055_shown_witness(*seat), anchor_witness: self.bq001_shown_witness(*seat), politician_asset, seat: *seat, card: c, manor, vampire_observers, value: 0,
                 destroyed_regions: self.regions.iter().filter(|r| !r.vacant && r.destroyed).map(|r| r.card.id.clone()).collect(),
                 destruction_markers: self.players[*seat].destruction_markers };
             item.value = self.mystic_value(&item, state.frame.actor, state.actor_bonus, &state.bonuses, &state.frame.source, &state.frame.ability_key)?;

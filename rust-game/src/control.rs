@@ -113,6 +113,7 @@ impl Game {
             a.card.definition == "XG12" && !a.card.face_down && a.host_id == c.id)
             && !result.iter().any(|s| s == "蝙蝠") { result.push("蝙蝠".into()); }
         if self.msjc12_grants_slave(c) && result.iter().any(|s|s=="人类") && !result.iter().any(|s|s=="奴仆") {result.push("奴仆".into());}
+        if card(&c.definition).kind=="character" && !self.players.iter().any(|p|p.assets.iter().any(|a|a.id==c.id)) && !self.sealed_cards.iter().any(|s|s.card.id==c.id) && self.mswm01_grants.iter().any(|f|f.actor==c.owner) && result.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"法师")) && !result.iter().any(|s|s=="阴魂") {result.push("阴魂".into());}
         result
     }
     pub(crate) fn target_subtypes(&self, c: &Card, slot: &TargetSlotSpec) -> Vec<String> {

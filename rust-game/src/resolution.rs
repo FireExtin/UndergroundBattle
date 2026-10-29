@@ -197,6 +197,8 @@ impl Game {
                     self.bq045_cost_candidates(actor).into_iter().map(|id|Some(vec![id])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ052SacrificeThree)) {
                     self.bq052_trios(actor).into_iter().map(Some).collect()
+                } else if ability.costs.iter().any(|c| matches!(c, Cost::MSWM01ExhaustSpecter)) {
+                    self.mswm01_candidates(actor).iter().map(|c|Some(vec![c.id.clone()])).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::MSJC12ExhaustTrio)) {
                     self.msjc12_trios(actor,&ability.key).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::IndustryExhaustOther)) {
@@ -277,7 +279,7 @@ impl Game {
                                     .unwrap_or_default(),
                                 if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree)) {
                                     format!("（费用：牺牲{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
-                                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio|Cost::BQ045ExhaustTentacle)) {
+                                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio|Cost::MSWM01ExhaustSpecter|Cost::BQ045ExhaustTentacle)) {
                                     format!("（费用：横置{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
                                 } else { cost.as_ref()
                                     .and_then(|ids| ids.first())
@@ -1030,6 +1032,7 @@ impl Game {
                 Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
                 Cost::BQ045ExhaustTentacle => paid.push(self.bq045_pay(actor,source,spec,a)?),
                 Cost::BQ052SacrificeThree => paid.push(self.bq052_pay(actor,source,spec,a)?),
+                Cost::MSWM01ExhaustSpecter => paid.push(self.mswm01_pay(actor,source,spec,a)?),
                 Cost::MSJC12ExhaustTrio => paid.push(self.msjc12_pay_trio(actor,source,spec,a)?),
                 Cost::MSBQ02Honor => paid.push(self.msbq02_pay_honor(actor,source,spec)?),
                 Cost::BQ067Honor => paid.push(self.bq067_pay(actor,source,spec)?),
@@ -1760,6 +1763,7 @@ impl Game {
         self.validate_jc035_frame(&frame)?;
         self.mscq02_frame(&frame)?;
         self.msjc16_frame(&frame)?;
+        self.mswm01_frame(&frame)?;
         if !self.accept_frame_guard(&mut frame) {
             self.cancel_pregrave_frame(&frame)?;
             self.jc035_cancel_guarded_frame(&frame)?;
@@ -1840,6 +1844,7 @@ impl Game {
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::MSCQ02 { .. } => self.mscq02_resolve(&frame)?,
                 Op::MSJC16Mill|Op::MSJC16Revive => self.msjc16_resolve(&frame)?,
+                Op::MSWM01 { grant } => self.mswm01_resolve(&frame,grant)?,
                 Op::MSBQ03 { search } => return self.msbq03_resolve(frame,search),
                 Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
                 Op::MysticContest { actor_bonus } => {

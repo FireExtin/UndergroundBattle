@@ -1351,5 +1351,6 @@
   "BQ065": {"url": "/cards/BQ065.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ065 计划：修格斯.jpg", "sha256": "353de36848cdae74af860cc046822f109d88f5d57df4a9a4b940df4220d3bee4"},
   "BQ067": {"url": "/cards/BQ067.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ067 拟态.jpg", "sha256": "841cff95c3d76d7bfc9975665c43570dc66bc1fdf9c17f91728e2ade23ff093f"},
   "BQ060": {"url": "/cards/BQ060.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg", "sha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1"},
-  "BQ062": {"url": "/cards/BQ062.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg", "sha256": "6853c20e6b934b8733472e8fd1a5b50c8d90cc01250dc026fcbac2010d47fcdd"}
+  "BQ062": {"url": "/cards/BQ062.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg", "sha256": "6853c20e6b934b8733472e8fd1a5b50c8d90cc01250dc026fcbac2010d47fcdd"},
+  "MSWM01": {"url": "/cards/MSWM01.jpg", "source": "resource/ymsj-fun.github.io/cards/MSWM01 曼纽家族.jpg", "sha256": "137856482891485cc92ea659ff473da5ad5b7335dbe8b31cf662850d9e37346d"}
 }

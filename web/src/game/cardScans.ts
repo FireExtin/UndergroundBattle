@@ -16,6 +16,7 @@ const scans: Record<string, string> = {
   "BQ063": "/cards/BQ063.jpg",
   "MSBQ03": "/cards/MSBQ03.jpg",
   "MSCQ02": "/cards/MSCQ02.jpg",
+  "MSWM01":"/cards/MSWM01.jpg",
   "MSWM02":"/cards/MSWM02.jpg",
   "MSJC12":"/cards/MSJC12.jpg",
   "BQ050":"/cards/BQ050.jpg",

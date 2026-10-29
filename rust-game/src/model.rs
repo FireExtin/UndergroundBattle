@@ -661,6 +661,7 @@ pub enum PaidCost {
     MSBQ02Honor { before:u32 },
     BQ045Exhausted(Box<SourceSnapshot>),
     BQ052Sacrificed(Vec<SourceSnapshot>),
+    MSWM01Specter(crate::msjc12::ExhaustedCharacter),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
     MSWM02Discard { card: Card, subtypes: Vec<String> },
     BQ067Honor { before: u32 },
@@ -1018,6 +1019,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default,skip_serializing_if="Vec::is_empty")]
+    pub mswm01_grants: Vec<ResolutionFrame>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub bq049_grants: Vec<crate::bq049::Grant>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
@@ -1135,6 +1138,7 @@ impl Game {
         self.validate_bq_commands()?;
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
+        self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq052_state()?;
         self.validate_generated_state()?;

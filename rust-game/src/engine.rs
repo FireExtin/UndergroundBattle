@@ -62,6 +62,7 @@ impl Game {
             industry_bonuses: vec![],
             mystic_contest: None,
             mystic_history: vec![],
+            mswm01_grants: vec![],
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
             cq28_defense_reductions: vec![],
@@ -657,6 +658,7 @@ impl Game {
         }
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
+        self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
         self.validate_bq052_state()?;
@@ -693,6 +695,7 @@ impl Game {
         self.validate_jc035_state()?;
         self.msbq03_action(seat,&action)?;
         self.msjc16_action(seat,&action)?;
+        self.mswm01_action(seat,&action)?;
         let mut next = self.clone();
         next.version = revision;
         next.mystic_effect_scope(|g| {
@@ -703,6 +706,7 @@ impl Game {
         next.drive()?;
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
+        next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
         next.validate_bq052_state()?;
@@ -1180,6 +1184,7 @@ impl Game {
         self.winner_team = None;
         self.mystic_contest = None;
         self.mystic_history.clear();
+        self.mswm01_grants.clear();
         self.turn = 0;
         for seat in 0..self.players.len() {
             self.players[seat].hand.clear();
