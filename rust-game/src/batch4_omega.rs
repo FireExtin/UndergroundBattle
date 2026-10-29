@@ -52,7 +52,7 @@ pub(crate) fn valid_asset_play(s: &SourceSnapshot, g: &OmegaAssetPlay) -> bool {
         && g.source_region_instance != source.id && g.source_region_instance != c.id && g.turn > 0
         && c.owner == c.controller && c.owner < 4 && !c.face_down && !c.exhausted && !c.id.is_empty()
         && c == &hand_like && c.damage == 0 && c.wounds == 0 && c.shield == 0 && c.lock_markers == 0
-        && c.time_markers == 0 && c.advancement_markers == 0 && c.permanent_combat_markers == 0
+        && c.time_markers == 0 && c.advancement_markers == 0 && c.permanent_combat_markers == 0 && c.permanent_investigation_markers == 0
         && c.permanent_defense_markers == 0 && c.named_character.is_none()
         && qualification_valid(c, &g.qualification)
 }

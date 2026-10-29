@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if id==crate::bq062::ID{return key==crate::bq062::KEY&&bonus==0;}
     if id==crate::bq060::ID{return key==crate::bq060::KEY&&bonus==0;}
     if id==crate::mswm02::ID{return key==crate::mswm02::CONTEST&&bonus==0;}
     if id == crate::cq09::ID && key == crate::cq09::REVEAL && bonus == 0 { return true; }
@@ -168,6 +169,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if crate::bq062::frame_related(f){return self.validate_bq062_frame(f);}
         if crate::bq060::frame_related(f){return self.validate_bq060_frame(f);}
         if f.source.card.definition==crate::test034::ID{return self.test034_frame(f);}
         if f.source.card.definition==crate::mswm02::ID||f.ability_key.starts_with("mswm02-"){return self.mswm02_frame(f);}
@@ -306,7 +308,7 @@ impl Game {
         // changing payment, RNG, modifiers, or the transaction itself.
         expected.id = c.id.clone(); expected.face_down = false;
         expected.advancement_markers = 0; expected.named_character = None; expected.chosen_number = None; expected.chosen_subtype = None;
-        expected.time_markers = 0; expected.charge_markers = 0; expected.permanent_combat_markers = 0;
+        expected.time_markers = 0; expected.charge_markers = 0; expected.permanent_combat_markers = 0; expected.permanent_investigation_markers = 0;
         expected.permanent_defense_markers = 0; expected.lock_markers = 0;
         // fresh() allocates the transaction after its original source, and
         // push_stack() allocates the immediately following frame UID. Checking

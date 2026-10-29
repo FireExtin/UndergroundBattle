@@ -11769,6 +11769,44 @@
     "image": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg",
     "imageSha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1"
   }
+},
+{
+  "id": "BQ062",
+  "name": "信息灌注",
+  "kind": "spell",
+  "subtypes": [
+    "命令",
+    "研究",
+    "隐秘对抗"
+  ],
+  "cost": 2,
+  "loyalty": [
+    "灰色"
+  ],
+  "color": "灰",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    }
+  },
+  "text": "行动：选择一项：\n·在本方核心角色或触手角色上放置一个［黑眼］能力图标标志。预测2。\n·在目标角色或暗藏者上放置一个锁定标志。抓一张牌。\n·进行一次隐秘对抗，在本次隐秘对抗中你所展示的命令牌获得+4。",
+  "keywords": [],
+  "unique": false,
+  "supported": false,
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "BQ062",
+    "image": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg",
+    "imageSha256": "6853c20e6b934b8733472e8fd1a5b50c8d90cc01250dc026fcbac2010d47fcdd"
+  }
 }
   ],
   "decks": [

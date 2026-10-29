@@ -45,6 +45,7 @@ export type Card = {
   shield?: number; wounds?: number; timeMarkers?: number; color?: string; magic?: string;
   lockMarkers?: number; chargeMarkers?: number;
   permanentCombatMarkers?: number;
+  permanentInvestigationMarkers?: number;
   usedOncePerGame?: string[];
 };
 export type Attachment = Card & { hostId: string };

@@ -312,7 +312,7 @@ impl Game {
                 || c.charge_markers != 0
                 || c.advancement_markers != 0
                 || c.lock_markers != 0
-                || c.permanent_combat_markers != 0
+                || (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0)
                 || c.permanent_defense_markers != 0
                 || c.named_character.is_some()
                 || c.chosen_number.is_some()

@@ -1721,6 +1721,7 @@ impl Game {
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
         self.validate_msjz04_frame(&frame)?;
+        self.validate_bq062_frame(&frame)?;
         self.validate_bq060_frame(&frame)?;
         self.validate_bq067_frame(&frame)?;
         self.validate_bq049_frame(&frame)?;
@@ -1797,6 +1798,8 @@ impl Game {
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
                 Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } => self.jc035_resolve(&frame)?,
+                Op::BQ062Investigation=>return self.bq062_start(frame),
+                Op::BQ062Lock=>self.bq062_lock(&frame)?,
                 Op::BQ060Shield | Op::BQ060Generate => self.bq060_step(&frame)?,
                 Op::BQ067Barrier => self.bq067_grant(&frame)?,
                 Op::BQ052PlaceCore => self.bq052_place_core(&frame)?,
@@ -2808,6 +2811,7 @@ impl Game {
             FrameChoice::BQ065Shield{card_id}=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("护盾选择不可夹带载荷".into());}return self.bq065_shield(&frame,chooser,&card_id,&selected);},
             FrameChoice::MSJZ04Release=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("释放不能夹带其他载荷".into());}return self.msjz04_release_finish(&frame,chooser,&selected);},
             FrameChoice::BQ049Sacrifice=>return self.bq049_finish(&frame,chooser,&a,&selected),
+            FrameChoice::BQ062Investigation=>return self.bq062_finish(*frame,chooser,&a,&selected),
             FrameChoice::BQ061Recover=>return self.bq061_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Opponent=>return self.bq063_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Repress{seat,regions}=>return self.bq063_finish(&frame,chooser,&a,&selected,seat,&regions),
@@ -2896,7 +2900,7 @@ impl Game {
                 return self.jz24_complete(*frame, chooser, remaining_players, &selected);
             }
             FrameChoice::Forecast { seat } | FrameChoice::BQ063Forecast { seat, .. } => {
-                if frame.source.card.definition==crate::bq063::ID && (chooser!=frame.actor || a!=(Action{choice_id:a.choice_id.clone(),top:a.top.clone(),bottom:a.bottom.clone(),..Action::new("choose")})) {return Err("神话威严预测只接受原玩家完整顶底排列".into());}
+                if matches!(frame.source.card.definition.as_str(),"BQ062"|"BQ063") && (chooser!=frame.actor || a!=(Action{choice_id:a.choice_id.clone(),top:a.top.clone(),bottom:a.bottom.clone(),..Action::new("choose")})) {return Err("神话威严预测只接受原玩家完整顶底排列".into());}
                 let top = a.top.unwrap_or_default();
                 let bottom = a.bottom.unwrap_or_default();
                 let all = top.iter().chain(&bottom).cloned().collect::<Vec<_>>();

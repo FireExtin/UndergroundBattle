@@ -10,7 +10,7 @@ use std::collections::BTreeSet;
 struct MarkerRow {
     before: Card,
     host: Option<String>,
-    after: [u32; 8],
+    after: [u32; 9],
 }
 #[derive(Debug, PartialEq, Eq)]
 pub(crate) struct PreparedMarkerMove {
@@ -70,11 +70,11 @@ impl Game {
             }
         }
         if seen.insert(to.to_string()) { ids.push(to.to_string()); }
-        let mut total = [0u32; 8];
+        let mut total = [0u32; 9];
         let mut rows = Vec::with_capacity(ids.len());
         for id in ids {
             let c = self.in_play(&id).ok_or("标志的物理承载者已离场")?.1;
-            let mut after = [0; 8];
+            let mut after = [0; 9];
             for (i, k) in MarkerKind::ALL.into_iter().enumerate() {
                 if id == to { after[i] = k.count(c); }
                 else { total[i] = total[i].checked_add(k.count(c)).ok_or("指示物总数超过当前表示范围")?; }

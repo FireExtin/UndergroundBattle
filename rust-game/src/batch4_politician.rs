@@ -14,7 +14,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() =
 pub(crate) fn marker_count(c: &Card) -> u32 {
     // Damage is a turn-local amount, not a marker. Wounds and shields are
     // explicitly markers in the Hegemony glossary (printed pages17/18).
-    [c.advancement_markers, c.permanent_combat_markers, c.permanent_defense_markers,
+    [c.advancement_markers, c.permanent_investigation_markers, c.permanent_combat_markers, c.permanent_defense_markers,
         c.time_markers, c.wounds, c.shield, c.lock_markers].into_iter().fold(0, u32::saturating_add)
 }
 pub(crate) fn definition() -> Definition {

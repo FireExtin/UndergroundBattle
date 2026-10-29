@@ -943,7 +943,7 @@ impl Game {
                 .chain(&p.graveyard)
                 .chain(&p.assets)
                 .chain(&p.score_cards)
-                .any(|c| c.permanent_combat_markers != 0)
+                .any(|c| (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0))
             {
                 return Err("永久图标标志不能继承到新区域实体".into());
             }
@@ -959,12 +959,12 @@ impl Game {
                     .iter()
                     .filter_map(|p| p.society_zone.card.as_ref()),
             )
-            .any(|c| c.permanent_combat_markers != 0)
+            .any(|c| (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0))
         {
             return Err("永久图标标志不能存在于无效承载区域".into());
         }
         if self.regions.iter().flat_map(|r| &r.cards).chain(self.attachments.iter().map(|a| &a.card)).any(|c| {
-            c.permanent_combat_markers > 0
+            (c.permanent_combat_markers > 0 || c.permanent_investigation_markers > 0)
                 && !self.marker_move_carrier(&c.id)
         }) {
             return Err("永久图标标志只能存在于有效角色或附属".into());
@@ -1015,7 +1015,7 @@ impl Game {
                                 || c.owner != f.source.card.owner
                                 || c.controller != f.actor
                                 || c.face_down
-                                || c.permanent_combat_markers != 0
+                                || (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0)
                         })
                     {
                         return Err("蓝灰响应堆栈外壳不符".into());

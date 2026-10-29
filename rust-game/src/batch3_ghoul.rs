@@ -53,7 +53,7 @@ impl Game {
         let c=&o.arrived;
         if s.card.definition!="BQ079" || s.card.face_down || s.card.controller!=actor || actor>=self.players.len()
             || s.play_source.is_some() || s.region.is_none() || s.source_region_instance.is_none()
-            || c.id.is_empty() || c.owner!=actor || c.controller!=actor || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || c.permanent_combat_markers!=0 || c.permanent_defense_markers!=0 || c.named_character.is_some()
+            || c.id.is_empty() || c.owner!=actor || c.controller!=actor || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0) || c.permanent_defense_markers!=0 || c.named_character.is_some()
             || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.name=="无名尸体")
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id
             || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence)

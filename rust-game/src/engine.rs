@@ -156,7 +156,7 @@ impl Game {
         c.chosen_subtype = None;
         c.time_markers = 0;
         c.charge_markers = 0;
-        c.permanent_combat_markers = 0;
+        c.permanent_combat_markers = 0; c.permanent_investigation_markers = 0;
         c.permanent_defense_markers = 0;
         // Only the new finite grants are removed here; old attribute cleanup
         // retains its published timing. A replacement cannot inherit a grant.
@@ -180,6 +180,7 @@ impl Game {
             chosen_number: None,
             chosen_subtype: None,
             permanent_combat_markers: 0,
+            permanent_investigation_markers: 0,
             permanent_defense_markers: 0,
             time_markers: 0,
             id: self.id(),
@@ -436,6 +437,7 @@ impl Game {
         let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
         let mut permanent_result = d.permanent_icons.add(sealed_permanent);
         permanent_result = permanent_result.add(self.wm030_cultist_icons(c, region));
+        permanent_result.investigation = permanent_result.investigation.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentInvestigation));
         permanent_result.combat = permanent_result.combat.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentCombat))
             .saturating_add(self.cq17_combat_bonus(c, region));
         if c.definition == "JC045" && !c.face_down
@@ -665,7 +667,7 @@ impl Game {
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_msjz04_state()?;
-        self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
+        self.validate_bq062_state()?;self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq_commands()?;
@@ -711,7 +713,7 @@ impl Game {
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
         next.validate_msjz04_state()?;
-        next.validate_bq060_state()?;next.validate_bq067_state()?;next.validate_bq049_state()?;
+        next.validate_bq062_state()?;next.validate_bq060_state()?;next.validate_bq067_state()?;next.validate_bq049_state()?;
         next.validate_bq061_state()?;
         next.validate_bq063_state()?;
         next.validate_bq_commands()?;
@@ -796,7 +798,7 @@ impl Game {
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -828,7 +830,7 @@ impl Game {
                     Some(r)
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
-                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -946,7 +948,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1027,7 +1029,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
-                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1111,7 +1113,7 @@ impl Game {
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
-                self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -2657,6 +2659,7 @@ impl Game {
             chosen_number: if !asset && !c.face_down && kind==Some("attachment") && c.definition=="XG20" { c.chosen_number } else { None },
             chosen_subtype: if !asset && !c.face_down && kind == Some("attachment") { c.chosen_subtype.map(|kind| kind.label().into()) } else { None },
             permanent_defense_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
+            permanent_investigation_markers: (!asset && !c.face_down && (region.is_some() || kind == Some("attachment")) && c.permanent_investigation_markers > 0).then_some(c.permanent_investigation_markers),
             permanent_combat_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
             current_domains: if hidden || asset || c.face_down || region.is_none() {

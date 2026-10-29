@@ -278,6 +278,7 @@ impl Game {
             .and_then(|n| n.checked_add(added))
             .and_then(|n| n.checked_add(self.cq25_contest_bonus(origin,key,actor,shown.seat,&shown.card)))
             .and_then(|n| n.checked_add(self.cq09_bonus(origin,key,actor,shown.seat,&shown.card,vampire)))
+            .and_then(|n| n.checked_add(if origin.card.definition==crate::bq062::ID&&key==crate::bq062::KEY&&shown.seat==actor&&printed.subtypes.iter().any(|s|s=="命令"){4}else{0}))
             .and_then(|n| n.checked_add(if shown.seat == actor { actor_bonus } else { 0 }))
             .and_then(|n| n.checked_add((shown.vampire_observers.len() as u32).checked_mul(2)?))
             .ok_or_else(|| "隐秘对抗数值超出表示范围".into())

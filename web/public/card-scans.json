@@ -1350,5 +1350,6 @@
   "MSJZ04": {"url": "/cards/MSJZ04.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJZ04 破茧者教团.jpg", "sha256": "9ac85802bb8114b8dbdc0aa83d5c70dd38a35f1736c94a2ab2631a05d5c69b75"},
   "BQ065": {"url": "/cards/BQ065.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ065 计划：修格斯.jpg", "sha256": "353de36848cdae74af860cc046822f109d88f5d57df4a9a4b940df4220d3bee4"},
   "BQ067": {"url": "/cards/BQ067.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ067 拟态.jpg", "sha256": "841cff95c3d76d7bfc9975665c43570dc66bc1fdf9c17f91728e2ade23ff093f"},
-  "BQ060": {"url": "/cards/BQ060.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg", "sha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1"}
+  "BQ060": {"url": "/cards/BQ060.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg", "sha256": "5be1ef3265c68c9c67395331146db754291bd553f8554f898c84cd2ee9a735c1"},
+  "BQ062": {"url": "/cards/BQ062.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg", "sha256": "6853c20e6b934b8733472e8fd1a5b50c8d90cc01250dc026fcbac2010d47fcdd"}
 }

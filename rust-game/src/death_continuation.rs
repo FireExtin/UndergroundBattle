@@ -567,7 +567,7 @@ impl Game {
                     expected.time_markers = 0;
                     expected.charge_markers = 0;
                     expected.advancement_markers = 0;
-                    expected.permanent_combat_markers = 0;
+                    expected.permanent_combat_markers = 0; expected.permanent_investigation_markers = 0;
                     expected.permanent_defense_markers = 0;
                     expected.named_character = None;
                     expected.chosen_number = None;

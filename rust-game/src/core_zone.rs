@@ -30,7 +30,7 @@ impl Game {
             if let Some(c)=&z.card {
                 if c.definition!=z.definition||c.owner!=z.owner||c.controller!=z.owner||c.face_down||c.exhausted
                     ||c.damage!=0||c.wounds!=0||c.shield!=0||c.lock_markers!=0||c.time_markers!=0||c.charge_markers!=0
-                    ||c.permanent_combat_markers!=0||c.permanent_defense_markers!=0
+                    ||(c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0)||c.permanent_defense_markers!=0
                     ||!self.mystic_instance_valid(&c.id)
                     ||self.batch3_physical_cards().filter(|live|live.id==c.id).count()!=1 {
                     return Err("核心区实体、拥有者、跨区状态或唯一性无效".into());

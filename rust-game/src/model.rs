@@ -97,6 +97,8 @@ pub struct CardView {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_combat_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub permanent_investigation_markers: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub permanent_defense_markers: Option<u32>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub current_public: Option<bool>,
@@ -392,6 +394,8 @@ pub struct Card {
     pub chosen_subtype: Option<crate::batch4_night::UndeadKind>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub permanent_combat_markers: u32,
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub permanent_investigation_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub permanent_defense_markers: u32,
     #[serde(default, skip_serializing_if = "is_zero")]
@@ -752,6 +756,7 @@ pub enum FrameChoice {
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ063Forecast {seat:usize, invocation:usize, core:Box<SourceSnapshot>},
     BQ049Sacrifice,
+    BQ062Investigation,
     BQ061Recover,
     BQ063Opponent,
     MSBQ03 { search: bool },
@@ -1139,7 +1144,7 @@ impl Game {
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_msjz04_state()?;
-        self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
+        self.validate_bq062_state()?;self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;
