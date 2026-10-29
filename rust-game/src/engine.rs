@@ -661,6 +661,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
+        self.validate_cq11_state()?;
         self.validate_bq052_state()?;
         self.validate_generated_state()?;
         self.validate_tentacle_state()?;
@@ -709,6 +710,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
+        next.validate_cq11_state()?;
         next.validate_bq052_state()?;
         next.validate_generated_state()?;
         next.validate_tentacle_state()?;
@@ -850,6 +852,7 @@ impl Game {
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
                 crate::bq086::validate_action(&c.definition,&a)?;
                 crate::cq09::validate_action(&c.definition,&a)?;
+                crate::cq11::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
                 crate::test034::validate_action(&c.definition,&a)?;
@@ -968,6 +971,7 @@ impl Game {
                 if c.definition=="XQ35" && a.kind=="reveal" {return Err("白骨仆人不能付费现身".into());}
                 crate::bq086::validate_action(&c.definition,&a)?;
                 crate::cq09::validate_action(&c.definition,&a)?;
+                crate::cq11::validate_action(&c.definition,&a)?;
                 crate::cq10::validate_action(&c.definition,&a)?;
                 crate::bq084::validate_action(&c.definition,&a)?;
                 crate::test034::validate_action(&c.definition,&a)?;
@@ -1401,6 +1405,7 @@ impl Game {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_cq11_play(&item)?;
         self.validate_bq052_play(&item)?;
         self.validate_bq049_play(&item)?;
         self.validate_bq061_play(&item)?;

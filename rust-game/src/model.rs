@@ -660,6 +660,7 @@ pub enum PaidCost {
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
     BQ045Exhausted(Box<SourceSnapshot>),
+    TK008Sacrificed(Vec<crate::cq11::Victim>),
     BQ052Sacrificed(Vec<SourceSnapshot>),
     MSWM01Specter(crate::msjc12::ExhaustedCharacter),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
@@ -1140,6 +1141,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_cq11_state()?;
         self.validate_bq052_state()?;
         self.validate_generated_state()?;
         self.validate_tentacle_state()?;

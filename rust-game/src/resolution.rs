@@ -195,6 +195,8 @@ impl Game {
                     self.players[actor].hand.iter().filter(|c|self.mswm02_media(c)).map(|c|Some(vec![c.id.clone()])).collect()
                 } else if ability.costs.iter().any(|c|matches!(c,Cost::BQ045ExhaustTentacle)){
                     self.bq045_cost_candidates(actor).into_iter().map(|id|Some(vec![id])).collect()
+                } else if ability.costs.iter().any(|c|matches!(c,Cost::TK008SacrificeThree)){
+                    self.cq11_trios(actor).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::BQ052SacrificeThree)) {
                     self.bq052_trios(actor).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c| matches!(c, Cost::MSWM01ExhaustSpecter)) {
@@ -277,7 +279,7 @@ impl Game {
                                         t.id
                                     ))
                                     .unwrap_or_default(),
-                                if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree)) {
+                                if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree|Cost::TK008SacrificeThree)) {
                                     format!("（费用：牺牲{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
                                 } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio|Cost::MSWM01ExhaustSpecter|Cost::BQ045ExhaustTentacle)) {
                                     format!("（费用：横置{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
@@ -500,7 +502,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if matches!(c.definition.as_str(),"CQ11"|"TK008") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JZ41") || rules::definition(&c.definition)
@@ -934,7 +936,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "TK008" | "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1031,6 +1033,7 @@ impl Game {
                 Cost::MSJC16SealSeven => paid.push(self.msjc16_pay(actor,source,a)?),
                 Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
                 Cost::BQ045ExhaustTentacle => paid.push(self.bq045_pay(actor,source,spec,a)?),
+                Cost::TK008SacrificeThree => paid.push(self.cq11_pay(actor,source,spec,a)?),
                 Cost::BQ052SacrificeThree => paid.push(self.bq052_pay(actor,source,spec,a)?),
                 Cost::MSWM01ExhaustSpecter => paid.push(self.mswm01_pay(actor,source,spec,a)?),
                 Cost::MSJC12ExhaustTrio => paid.push(self.msjc12_pay_trio(actor,source,spec,a)?),
@@ -1305,6 +1308,7 @@ impl Game {
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
+        self.validate_cq11_declaration(&declaration)?;
         self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
         self.validate_bq001_declaration(&declaration)?;
@@ -1414,6 +1418,7 @@ impl Game {
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
+        self.validate_cq11_declaration(&declaration)?;
         self.validate_cq10_declaration(&declaration)?;
         self.validate_bq084_declaration(&declaration)?;
         self.validate_bq001_declaration(&declaration)?;
@@ -1733,6 +1738,7 @@ impl Game {
         self.validate_bq_command_frame(&frame)?;
         self.validate_msbq02_frame(&frame)?;
         self.validate_bq056_frame(&frame)?;
+        self.validate_cq11_frame(&frame)?;
         self.validate_cq10_frame(&frame)?;
         self.validate_bq084_frame(&frame)?;
         self.validate_xq35_frame(&frame)?;
@@ -1806,6 +1812,7 @@ impl Game {
                 Op::BQ062Lock=>self.bq062_lock(&frame)?,
                 Op::BQ060Shield | Op::BQ060Generate => self.bq060_step(&frame)?,
                 Op::BQ067Barrier => self.bq067_grant(&frame)?,
+                Op::CQ11Generate | Op::TK008Destroy => self.cq11_step(&frame)?,
                 Op::BQ052PlaceCore => self.bq052_place_core(&frame)?,
                 Op::BQ063Repress=>return self.bq063_repress(frame),
                 Op::CQ28Mode {mode,slot} => self.cq28_resolve_mode(&frame,mode,slot)?,

@@ -109,7 +109,7 @@ pub(crate) fn validate_with_registry(mut draft:DeckDraft,cards:&[CardDefinition]
             .iter()
             .find(|card| card.id == entry.card_id)
             .ok_or_else(|| format!("未知或未开放卡牌：{}", entry.card_id))?;
-        if card.id == crate::tentacle::ID || !card.supported
+        if matches!(card.id.as_str(),"TK010"|"TK008") || !card.supported
             || card.kind == "region"
             || (card.kind != "character" && card.kind != "spell" && card.kind != "attachment")
         {

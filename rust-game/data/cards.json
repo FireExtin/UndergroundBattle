@@ -11807,7 +11807,69 @@
     "image": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg",
     "imageSha256": "6853c20e6b934b8733472e8fd1a5b50c8d90cc01250dc026fcbac2010d47fcdd"
   }
-}
+},
+    {
+      "id": "CQ11",
+      "name": "暴乱煽动者",
+      "kind": "character",
+      "cost": 2,
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "text": "进场触发 在本地区生成一个邪教徒角色指示物。",
+      "supported": false,
+      "loyalty": [
+        "红色"
+      ],
+      "loyaltyText": "红色"
+    },
+    {
+      "id": "TK008",
+      "name": "邪教徒",
+      "kind": "character",
+      "cost": 0,
+      "color": "红",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "subtypes": [
+        "人类",
+        "邪教徒"
+      ],
+      "text": "【行动】牺牲三个邪教徒角色：毁灭目标地区。",
+      "supported": false,
+      "costAppearance": "absent",
+      "keywords": [
+        "非资产"
+      ]
+    }
   ],
   "decks": [
     {
