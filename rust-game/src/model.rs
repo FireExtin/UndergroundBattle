@@ -510,6 +510,7 @@ pub struct WinContext {
 pub enum Effect {
     MSJZ04Opening {seat:usize},
     MSBQ01Opening {seat:usize},
+    BQ044CoreResume {frame:Box<ResolutionFrame>,state:crate::bq044_core::State},
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     DeathFinish { death_instance: String },
     DeathCaller { caller: Box<crate::death_continuation::DeathCaller> },
@@ -770,6 +771,7 @@ pub enum FrameChoice {
     BQ063Opponent,
     MSBQ03 { search: bool },
     BQ063Repress {seat:usize,regions:Vec<(usize,String,u32)>},
+    BQ044Core(crate::bq044_core::State),
     BQ044Enemy,
     BQ044Sacrifice { seat: usize },
     BQ086Sacrifice,
@@ -1190,6 +1192,7 @@ impl Game {
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;
         self.validate_bq044_state()?;
+        self.validate_bq044_core_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;
         self.validate_cq10_state()?;

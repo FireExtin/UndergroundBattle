@@ -107,7 +107,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
     }
   }
   if(draft.societyId==='MSBQ02') {
-    const core=catalog.cards.find(c=>c.id===draft.coreCardId&&c.id==='BQ046'&&c.supported!==false&&c.subtitle==='修格斯');
+    const core=catalog.cards.find(c=>c.id===draft.coreCardId&&['BQ044','BQ045','BQ046'].includes(c.id)&&c.supported!==false&&c.subtitle==='修格斯');
     if(!core)issue('core','请选择已开放的修格斯核心角色；当前采用50张普通牌另加1张核心。');
     if(core&&draft.cards.some(e=>catalog.cards.some(c=>c.id===e.cardId&&c.name===core.name)))issue('core','所选核心须独立设置，不同时加入普通牌堆；49+1尚未支持。');
   } else if(draft.coreCardId)issue('core','当前秘社不能选择修格斯核心。');

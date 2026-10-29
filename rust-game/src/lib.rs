@@ -1,3 +1,4 @@
+mod bq044_core;
 mod bq044;
 #[cfg(test)] mod bq044_tests;
 mod wm031;

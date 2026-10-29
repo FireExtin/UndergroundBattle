@@ -1830,6 +1830,7 @@ impl Game {
                 Op::MSBQ02Loss{..}=>self.msbq02_loss(&frame)?,
                 Op::BQ051Sweep=>self.bq051_sweep(&frame)?,
                 Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
+                Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq044::ID)=>return self.bq044_core_start(frame),
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
                 Op::MSJZ04Release{..}=>return self.msjz04_release(frame),
@@ -2941,6 +2942,7 @@ impl Game {
                 if chooser != frame.actor { return Err("进场检索的选择者无效".into()); }
                 self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
             }
+            FrameChoice::BQ044Core(s)=>return self.bq044_core_choose(*frame,s,chooser,&a,&selected),
             FrameChoice::BQ044Enemy => return self.bq044_enemy_choose(*frame,chooser,&selected),
             FrameChoice::BQ044Sacrifice { seat } => return self.bq044_finish(*frame,seat,chooser,&selected),
             FrameChoice::BQ086Sacrifice => return self.bq086_finish_sacrifice(*frame,chooser,&selected),

@@ -673,6 +673,7 @@ impl Game {
         self.validate_msbq01_state()?;
         self.validate_marker_placements()?;
         self.validate_bq044_state()?;
+        self.validate_bq044_core_state()?;
         self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
@@ -736,6 +737,7 @@ impl Game {
         next.validate_msbq01_state()?;
         next.validate_marker_placements()?;
         next.validate_bq044_state()?;
+        next.validate_bq044_core_state()?;
         next.validate_wm031_state()?;
         next.validate_wm036_state()?;
         next.validate_wm027_state()?;
@@ -1376,6 +1378,7 @@ impl Game {
             Effect::Declare { declaration } => declaration.actor != seat,
             Effect::Frame { frame } => frame.actor != seat,
             Effect::DeathCaller { caller } => caller.frame.actor != seat,
+            Effect::BQ044CoreResume { frame, .. } => frame.actor != seat,
             Effect::Bury { card } => card.owner != seat,
             _ => true,
         });
@@ -1893,6 +1896,7 @@ impl Game {
     }
     pub(crate) fn effect(&mut self, e: Effect) -> RuleResult<()> {
         match e {
+            Effect::BQ044CoreResume{frame,state}=>self.bq044_core_after(*frame,state)?,
             Effect::CoreReturn{departure}=>self.core_departure_choice(*departure)?,
             Effect::DeathFinish { death_instance } => self.finish_pregrave_death(&death_instance)?,
             Effect::DeathCaller { caller } => self.resume_death_caller(*caller)?,

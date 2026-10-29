@@ -36,6 +36,7 @@ pub struct DeathWait {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub enum DeathCallerKind {
+    BQ044Core {state:crate::bq044_core::State},
     Frame,
     CQ15Search {
         search: crate::import20_swords::SwordSearch,
@@ -433,6 +434,7 @@ impl Game {
             }
         }
         match &c.kind {
+            DeathCallerKind::BQ044Core{state}=>{self.bq044_core_state(f,state)?;let crate::bq044_core::Phase::After{victim}=&state.phase else{return Err("BQ044核心死亡续体阶段不符".into())};if !c.waits.iter().all(|w|w.source.card.id==victim.card.id||w.blood.as_ref().is_some_and(|b|b.host.card.id==victim.card.id)){return Err("BQ044核心不得等待无关死亡".into())}}
             DeathCallerKind::Frame => {
                 let canonical = definition(&f.source.card.definition)
                     .abilities
@@ -542,6 +544,7 @@ impl Game {
             return Ok(());
         }
         match c.kind {
+            DeathCallerKind::BQ044Core{state}=>self.bq044_core_after(*c.frame,state),
             DeathCallerKind::Frame => self.resolve_frame(*c.frame),
             DeathCallerKind::CQ15Search { search } => self.cq15_search_after_death(*c.frame, search),
             DeathCallerKind::JZ24 { remaining_players } => {

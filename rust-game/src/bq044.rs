@@ -1,5 +1,5 @@
-//! BQ044 WIP: actual personal sacrifice observation and paid optional trigger.
-//! Core invocation is not yet wired; public and internal complete admission remain closed.
+//! BQ044: actual personal sacrifice observation and paid optional trigger.
+//! Command-invoked core continuation lives in bq044_core; public admission stays closed.
 use crate::{catalog,engine::RuleResult,model::*,rules::*,black_next20::BlackDeathObservation};
 use std::collections::BTreeSet;
 pub(crate) const ID:&str="BQ044";
