@@ -52,3 +52,7 @@
 WM036 本轮已实现原图普通事务、非资产及可选计时者展示后置，Native 定向与相关回归、同源 WASM/UI/Worker 验证及前端构建已通过；见 `WM036-CLOSED-MECHANISM-2026-10-29.md`。独审/准入仍关闭，不能将红圈项目选择标成官方规则。
 
 WM031 本轮已封闭完成：逐次放置及附属宿主首次观察、可响应强制选择、集中创伤、暴露条件混乱和同源跨端验证，见 `WM031-CLOSED-MECHANISM-2026-10-29.md`。太阳符号已按手册纠正为暴露条件，不是临时/先手图标。新增完整正式红卡1，独审0、准入关闭；不能再把它列为未实现，也不能用本次自测代替完整批次独审。
+
+## BQ044 ordinary-trigger WIP (after WM031 witness closure)
+
+The former single/all-enemies ambiguity is now a documented project choice: the resolving controller chooses one enemy player, without adding a printed-target contract. See `BQ044-WIP-2026-10-29.md`. The ordinary paid sacrifice trigger has a source implementation and targeted tests; core invocation and the natural entry chain remain engineering work. **Do not count BQ044 as complete or open admission.** This does not resolve WM026/BQ095 marker/lifecycle questions.

@@ -672,6 +672,7 @@ impl Game {
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
         self.validate_marker_placements()?;
+        self.validate_bq044_state()?;
         self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
@@ -734,6 +735,7 @@ impl Game {
         next.validate_jc053_state()?;
         next.validate_msbq01_state()?;
         next.validate_marker_placements()?;
+        next.validate_bq044_state()?;
         next.validate_wm031_state()?;
         next.validate_wm036_state()?;
         next.validate_wm027_state()?;
@@ -2486,6 +2488,7 @@ impl Game {
         crate::bq001::validate_choice_action(&p,&a)?;
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
+        crate::bq044::validate_choice(&p,&a)?;
         crate::bq086::validate_choice(&p,&a)?;
         crate::jz53::validate_choice(&p,&a)?;
         crate::jc097::validate_choice(&p,&a)?;

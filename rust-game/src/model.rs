@@ -770,6 +770,8 @@ pub enum FrameChoice {
     BQ063Opponent,
     MSBQ03 { search: bool },
     BQ063Repress {seat:usize,regions:Vec<(usize,String,u32)>},
+    BQ044Enemy,
+    BQ044Sacrifice { seat: usize },
     BQ086Sacrifice,
     BQ088 { repeat:bool },
     CQ27Bottom,
@@ -1187,6 +1189,7 @@ impl Game {
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;
+        self.validate_bq044_state()?;
         self.validate_bq086_state()?;
         self.validate_cq09_state()?;
         self.validate_cq10_state()?;
