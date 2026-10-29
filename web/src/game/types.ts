@@ -1,7 +1,7 @@
 export type Icons = { investigation: number; combat: number; influence: number };
 export type CardDefinition = {
   subtitle?: string;
-  id: string; name: string; kind: string; additionalKinds?: string[]; type?: string; cost: number; costAppearance?: 'dash';
+  id: string; name: string; kind: string; additionalKinds?: string[]; type?: string; cost: number; costAppearance?: 'dash' | 'absent';
   loyalty?: string[]; loyaltyText?: string; subtypes?: string[]; color?: string; magic?: string; text: string;
   icons?: { permanent: Icons; temporary: Icons };
   permanentIcons?: Icons; temporaryIcons?: Icons; defense?: number;
@@ -41,7 +41,7 @@ export type Card = {
   currentSubtypes?: string[];
   instanceId: string; cardId?: string; name: string; owner: string; controller: string;
   kind: string; region?: number; exhausted: boolean; faceDown: boolean;
-  cost?: number; costAppearance?: 'dash'; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
+  cost?: number; costAppearance?: 'dash' | 'absent'; effectiveCost?: number; text?: string; icons?: Icons; defense?: number; damage?: number;
   shield?: number; wounds?: number; timeMarkers?: number; color?: string; magic?: string;
   lockMarkers?: number; chargeMarkers?: number;
   permanentCombatMarkers?: number;

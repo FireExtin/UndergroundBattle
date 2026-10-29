@@ -69,3 +69,18 @@ fn accept(g:&mut Game){pending(g);assert!(matches!(&g.pending.as_ref().unwrap().
     let composing=room.transition(composer,Some(start),0).unwrap();assert_eq!(composing.error_code,None,"{:?}",composing.error_message);let room=RoomEnvelope::from_persisted(&composing.state).unwrap();assert!(matches!(room.pacing.window.as_ref().unwrap().members.get(&composer),Some(Decision::Composing{intent_id}) if intent_id=="retained-intent"));
     let before=serde_json::to_value(&room.pacing.window).unwrap();let cmd=RoomCommand{command_id:"free-inspect-response".into(),expected_version:room.revision,action:SessionAction::Game{action:Action{card_id:Some(monitor),target_id:Some(hidden),..Action::new("inspect-hidden")}}};assert!(room.view(2,0).game.legal_actions.iter().any(|a|a.action.kind=="inspect-hidden"));let accepted=room.transition(2,Some(cmd),0).unwrap();assert_eq!(accepted.error_code,None);let next=RoomEnvelope::from_persisted(&accepted.state).unwrap();assert_eq!(serde_json::to_value(&next.pacing.window).unwrap(),before);assert_eq!(next.game.stack.len(),1);
 }
+
+#[test]
+fn batch3_jz26_tentacle_absent_cost_compares_as_zero_only_and_hidden_is_excluded() {
+    for hide_token in [false,true] {
+        let mut g=game();let trap=hidden(&mut g,0);fund(&mut g,0,"JC029",2);
+        let token=field(&mut g,"TK010",2);let higher=field(&mut g,"JC029",2);
+        assert_eq!(catalog::card("TK010").cost,0);
+        if hide_token {g.hide_in_place(&token);}
+        g.observe_hidden_inspection(2,&trap);accept(&mut g);let mut restored=Game::from_persisted(&serde_json::to_string(&g).unwrap()).unwrap();
+        top(&mut g);top(&mut restored);assert_eq!(serde_json::to_string(&g).unwrap(),serde_json::to_string(&restored).unwrap());
+        assert_eq!(g.board(&higher).is_some(),!hide_token);
+        assert_eq!(g.batch3_physical_cards().filter(|c|c.definition=="TK010").count(),usize::from(hide_token));
+        assert!(!g.players[2].graveyard.iter().any(|c|c.definition=="TK010"));restore(&mut g);
+    }
+}

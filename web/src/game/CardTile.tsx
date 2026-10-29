@@ -66,7 +66,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
     <span className="hg-card-top"><span className="hg-card-kind">已封印 · 场外空白牌</span></span>
     <strong className="hg-card-name">{card.name}</strong>
     {!compact && archive && <ArchiveArtwork key={card.instanceId} card={card} />}
-    <span className="hg-card-text">公开放置在载体上，不在场内；当前没有卡牌能力、图标或防御，不能成为效果目标。载体离场或翻暗时回到拥有者手牌。</span>
+    <span className="hg-card-text">公开放置在载体上，不在场内；当前没有卡牌能力、图标或防御，不能成为效果目标。{card.cardId === 'TK010' ? '载体离场或翻暗时触手消失，不进入手牌。' : '载体离场或翻暗时回到拥有者手牌。'}</span>
   </>;
   const hidden = !card.cardId && card.faceDown;
   const asset = card.kind === 'asset';
@@ -80,8 +80,9 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const concealedCompact = compact && card.kind === 'hidden';
   const printedCost = card.cost ?? definition?.cost ?? 0;
   const dashCost = card.costAppearance === 'dash' || definition?.costAppearance === 'dash';
+  const absentCost = card.costAppearance === 'absent' || definition?.costAppearance === 'absent';
   const actualCost = card.effectiveCost ?? printedCost;
-  const adjustedCost = !dashCost && card.effectiveCost !== undefined && actualCost !== printedCost;
+  const adjustedCost = !dashCost && !absentCost && card.effectiveCost !== undefined && actualCost !== printedCost;
   const printedIcons = definition?.icons?.permanent || definition?.permanentIcons;
   const permanent = printedIcons || card.icons;
   const temporary = definition?.icons?.temporary || definition?.temporaryIcons;
@@ -90,7 +91,7 @@ export function CardContent({ card: source, definition: sourceDefinition, compac
   const defense = card.defense ?? definition?.defense;
   const type = hidden ? '身份未公开' : archive && asset ? '资产' : dualCharacter ? `角色／附属 · ${definition?.subtypes?.join(' · ') || ''}` : card.currentSubtypes ? `角色 · ${card.currentSubtypes.join(' · ')}` : attachment ? `附属${definition?.subtypes?.length ? ` · ${definition.subtypes.join(' · ')}` : ''}` : definition?.type || definition?.subtypes?.join(' · ') || ({ character: '角色', event: '事件', spell: '咒术', region: '地区', asset: '资产', society: '秘社', hidden: '暗藏角色' }[card.kind] || '卡牌');
   return <>
-    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={dashCost ? '印刷费用为横杠；比较费用时按0计算' : adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={dashCost ? '印刷费用 —' : adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{dashCost ? '—' : actualCost}</span>}</span>
+    <span className="hg-card-top"><span className="hg-card-kind">{type}</span>{!hidden && !asset && !region && !society && <span className={`hg-cost${adjustedCost ? ' hg-cost-adjusted' : ''}`} title={absentCost ? '无印刷费用；触手仅在数值比较时按0计算，不能普通付费现身' : dashCost ? '印刷费用为横杠；比较费用时按0计算' : adjustedCost ? `当前费用 ${actualCost} · 印刷费用 ${printedCost}` : '费用'} aria-label={absentCost ? '无印刷费用' : dashCost ? '印刷费用 —' : adjustedCost ? `当前费用 ${actualCost}，印刷费用 ${printedCost}` : `费用 ${actualCost}`}>{absentCost ? '无' : dashCost ? '—' : actualCost}</span>}</span>
     <strong className="hg-card-name">{hidden ? '暗藏者' : card.name}</strong>
     {!compact && subtitle && <span className="hg-card-subtitle">{subtitle}</span>}
     {!compact && startingHand !== undefined && <span className="hg-society-hand">起手 {startingHand} 张</span>}

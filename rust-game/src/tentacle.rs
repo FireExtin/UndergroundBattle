@@ -47,13 +47,35 @@ impl Game {
             && core.controller == c.controller && core.owner == c.controller && self.selected_core_card(core)) { 2 } else { 0 }
     }
 
+    pub(crate) fn validate_tentacle_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if generated(&f.source.card) && matches!(f.ability_key.as_str(), "deploy" | "conceal" | "reveal") {
+            return Err("生成触手不能恢复普通打出或付费现身帧".into());
+        }
+        Ok(())
+    }
+    pub(crate) fn validate_tentacle_play(&self, item: &StackItem) -> RuleResult<()> {
+        // Effect-driven free flipping stays on the board; it is not a paid
+        // character transaction. Inspect the actual card before trusting frame.
+        if item.card.as_ref().is_some_and(generated) {
+            return Err("生成触手不能作为普通打出或付费现身事务".into());
+        }
+        if let Some(f) = &item.frame { self.validate_tentacle_frame(f)?; }
+        Ok(())
+    }
     pub(crate) fn validate_tentacle_state(&self) -> RuleResult<()> {
+        for item in &self.stack { self.validate_tentacle_play(item)?; }
+        for e in &self.effects { match e {
+            Effect::Frame{frame} | Effect::JZ57AfterMill{frame} => self.validate_tentacle_frame(frame)?,
+            Effect::DeathCaller{caller} => self.validate_tentacle_frame(&caller.frame)?,
+            _ => ()
+        }}
+        if let Some(p) = &self.pending { if let ChoiceResolution::Frame{frame,..} = &p.resolution { self.validate_tentacle_frame(frame)?; } }
+
         // Retention exceptions are board (including face down), sealed, and a
-        // real reveal transaction/burial continuation. No physical deck card.
+        // burial continuation. No physical deck card or ordinary paid reveal.
         for c in self.batch3_physical_cards().filter(|c| generated(c)) {
             let retained = self.regions.iter().any(|r| !r.vacant && r.cards.iter().any(|v| std::ptr::eq(v,c)))
                 || self.sealed_cards.iter().any(|s| std::ptr::eq(&s.card,c))
-                || self.stack.iter().any(|s| s.reveal && s.card.as_ref().is_some_and(|v| std::ptr::eq(v,c)))
                 || self.effects.iter().any(|e| matches!(e, Effect::Bury {card} if std::ptr::eq(card,c)));
             if !retained { return Err("生成触手不能存在于手牌、牌库、墓地或其他实体牌区".into()); }
         }

@@ -7,9 +7,19 @@ import {assertPublicView,assertSessionJournal} from './assert-session-journal.mj
 const cases=['bq052','tentacle'].flatMap(id=>loadCurrentFixture(`rust-game-wasm/tests/current113/${id}.json.gz`).cases);
 for(const scenario of cases)
 test(`${scenario.name}: actual Native generation/lifecycle, receipts and cold reopening`,async t=>{
- const h=await harness(t,scenario);let reopened=0;
+ const h=await harness(t,scenario);let reopened=0,rejectedPaidReveal=0;
  for(const step of scenario.steps){
   assert.equal((await h.store().room(h.id)).state,step.state);
+  const negative=scenario.paidRevealRejection;
+  if(negative&&negative.state===step.state){
+   const before=await h.snapshot();
+   for(let retry=0;retry<2;retry++){
+    const result=await h.api('commands',negative.seat,negative.command);
+    assert.equal(result.status,400);assert.equal(result.body.error,negative.expected.errorCode);
+    assertPublicView(result.body.view,negative.expected.view);assert.deepEqual(await h.snapshot(),before);
+   }
+   rejectedPaidReveal++;
+  }
   const response=await h.api('commands',step.seat,step.command);
   assert.equal(response.status,200);assertPublicView(response.body,step.expected.view);
   assert.equal((await h.store().room(h.id)).state,step.expected.state);
@@ -20,5 +30,6 @@ test(`${scenario.name}: actual Native generation/lifecycle, receipts and cold re
  }
  const first=scenario.steps[0],saved=await h.snapshot();
  const duplicate=await h.api('commands',first.seat,first.command);assert.equal(duplicate.status,200);assertPublicView(duplicate.body,first.expected.view);assert.deepEqual(await h.snapshot(),saved);
- t.diagnostic(JSON.stringify({preparedNativeLayout:!scenario.construction,naturalClosedRegistry:!!scenario.construction,commands:scenario.steps.length,coldReopens:reopened,originalReceiptAfterCompletion:true}));
+ assert.equal(rejectedPaidReveal,scenario.paidRevealRejection?1:0);
+ t.diagnostic(JSON.stringify({rejectedPaidReveal,preparedNativeLayout:!scenario.construction,naturalClosedRegistry:!!scenario.construction,commands:scenario.steps.length,coldReopens:reopened,originalReceiptAfterCompletion:true}));
 });

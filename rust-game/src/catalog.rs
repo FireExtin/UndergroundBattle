@@ -11,7 +11,7 @@ pub const ENGINE_VERSION: &str = "rust-v0.2.113-bq001-anchor-source-wip-fixture"
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all="lowercase")]
-pub enum CostAppearance { Dash }
+pub enum CostAppearance { Dash, Absent }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

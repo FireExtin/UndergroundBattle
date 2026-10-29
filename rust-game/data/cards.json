@@ -11492,6 +11492,7 @@
       "name": "触手",
       "kind": "character",
       "cost": 0,
+      "costAppearance": "absent",
       "color": "红",
       "magic": "鲜血",
       "icons": {

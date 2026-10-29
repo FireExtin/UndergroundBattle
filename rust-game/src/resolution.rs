@@ -1684,6 +1684,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.validate_tentacle_frame(&frame)?;
         self.validate_xq19_frame(&frame)?;
         self.validate_cq28_frame(&frame)?;
         self.validate_resource_frame(&frame)?;

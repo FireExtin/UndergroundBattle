@@ -59,7 +59,7 @@ export function DeckCardPreview({ card, count, disabled, copyLabel, sameNameCoun
           <h2>{card.name}</h2>{card.subtitle && <p>{card.subtitle}</p>}
           <p className={`hg-card-admission hg-admission-${admission.status}`} data-card-admission={admission.status}>卡牌准入：{admission.label} · {admission.reason}</p>
           <p>{card.id} · {({ character: '角色', spell: '事务', event: '事务（旧目录）', attachment: '附属', region: '地区', society: '秘社' }[card.kind] || card.kind)}{card.subtypes?.length ? ` · ${card.subtypes.join(' / ')}` : card.type ? ` · ${card.type}` : ''}</p>
-          {card.kind !== 'society' && card.kind !== 'region' && <p>印刷费用 {card.costAppearance === 'dash' ? '—' : card.cost} · {card.color || '颜色未标'}{card.magic ? ` · ${card.magic}` : ''}</p>}
+          {card.kind !== 'society' && card.kind !== 'region' && <p>印刷费用 {card.costAppearance === 'absent' ? '无' : card.costAppearance === 'dash' ? '—' : card.cost} · {card.color || '颜色未标'}{card.magic ? ` · ${card.magic}` : ''}</p>}
           {(card.icons?.permanent || card.permanentIcons) && <p>永久图标 <IconStrip icons={card.icons?.permanent || card.permanentIcons} /></p>}
           {(card.icons?.temporary || card.temporaryIcons) && <p>先手图标 <IconStrip icons={card.icons?.temporary || card.temporaryIcons} temporary /></p>}
           {typeof card.defense === 'number' && <p>印刷防御 {card.defense}</p>}

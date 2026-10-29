@@ -3,6 +3,7 @@ import {cleanup,render,screen,fireEvent,within} from '@testing-library/react';
 import {kernel as abi,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
 import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
 import {Table} from './Table';
+import {CardContent} from './CardTile';
 import {actionForRoom} from './api';
 import {validateDeckDraft} from './deckLibrary';
 const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/bq052.json.gz');
@@ -40,4 +41,31 @@ it('selects each real preparation trigger without creating tokens through UI sho
   fireEvent.click(within(dialog).getByRole('button',{name:/确认/}));expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);n++;cleanup();
  }
  expect(n).toBe(3);
+});
+
+it('shows a generated tentacle as absent printed cost, never a printed zero',()=>{
+ const steps=fixture.cases[0].steps;
+ const view=steps.map(s=>JSON.parse(abi.view(s.expected.state,0))).find(v=>v.regions.some(r=>r.characters.some(c=>c.cardId==='TK010'&&!c.faceDown)));
+ const card=view.regions.flatMap(r=>r.characters).find(c=>c.cardId==='TK010'&&!c.faceDown);
+ expect(card.cost).toBeUndefined();expect(card.effectiveCost).toBeUndefined();expect(card.costAppearance).toBe('absent');
+ render(<CardContent card={card} definition={catalog.cards.find(c=>c.id==='TK010')}/>);
+ expect(screen.getByLabelText('无印刷费用')).toHaveTextContent('无');
+ expect(screen.queryByLabelText('费用 0')).toBeNull();
+});
+
+it('omits ordinary reveal and rejects a direct command using the real Native negative case',()=>{
+ const c=loadCurrentFixture('rust-game-wasm/tests/current113/tentacle.json.gz').cases[0].paidRevealRejection;
+ const view=JSON.parse(abi.view(c.state,c.seat));
+ expect(view.legalActions.some(a=>a.kind==='reveal'&&a.cardId===c.command.action.action.cardId)).toBe(false);
+ expect(JSON.parse(abi.applyRoom(c.state,c.seat,JSON.stringify(c.command),c.serverNowMs))).toEqual(c.expected);
+});
+
+it('shows sealed tentacle disappearance instead of the ordinary return-to-hand hint',()=>{
+ const scenario=loadCurrentFixture('rust-game-wasm/tests/current113/tentacle.json.gz').cases.find(c=>c.name==='tentacle-prepared-seal-and-host-hide');
+ const view=scenario.steps.map(s=>JSON.parse(abi.view(s.expected.state,0))).find(v=>(v.sealedCards??[]).some(s=>s.cardId==='TK010'));
+ const card=view.sealedCards.find(s=>s.cardId==='TK010');
+ render(<CardContent card={card} definition={catalog.cards.find(c=>c.id==='TK010')}/>);
+ expect(screen.getByText(/载体离场或翻暗时触手消失/)).toBeDefined();
+ expect(screen.queryByText(/回到拥有者手牌/)).toBeNull();
+ expect(screen.queryByLabelText('费用 0')).toBeNull();
 });

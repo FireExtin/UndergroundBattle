@@ -913,6 +913,7 @@ impl Game {
             "reveal" => {
                 let id = a.card_id.as_deref().ok_or("请选择暗藏者")?;
                 let (r, c) = self.board(id).ok_or("实体引用已失效")?;
+                if crate::tentacle::generated(c) {return Err("生成触手无印刷费用，不能普通付费现身".into());}
                 if c.definition=="XQ19"{return Err("熵力化身不能付费现身".into())}
                 self.msbq02_allow_play(seat,c)?;
                 if c.controller != seat || !c.face_down {
@@ -1351,6 +1352,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+        self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
         self.validate_bq052_play(&item)?;
@@ -3183,6 +3185,7 @@ impl Game {
                     continue;
                 }
                 if c.face_down {
+                    if crate::tentacle::generated(c) { continue; }
                     candidates.push((
                         Action {
                             card_id: Some(c.id.clone()),

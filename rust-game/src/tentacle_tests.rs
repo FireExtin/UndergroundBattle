@@ -123,7 +123,7 @@ fn tentacle_name_not_a_fabricated_subtype_and_current_directory_remains_closed()
 }
 
 #[test]
-fn tentacle_prepared_room_hide_reveal_return_and_duplicate_export() {
+fn tentacle_prepared_room_hide_core_deploy_return_and_duplicate_export() {
     use crate::abi112_review_play_tests::Trace;
     fn settle(t: &mut Trace) {
         for _ in 0..80 {
@@ -139,6 +139,9 @@ fn tentacle_prepared_room_hide_reveal_return_and_duplicate_export() {
     let mut g = game();
     g.players[0].society_zone.card = Some(g.make_card("MSBQ02", 0));
     fund(&mut g, 0, "JC069", 6);
+    fund(&mut g, 0, "JC042", 3);
+    let core = g.make_card("BQ046",0); let core_id=core.id.clone();
+    g.core_zones.push(crate::core_zone::CoreZone{owner:0,definition:"BQ046".into(),card:Some(core),rest:0});
     field(&mut g, "TK010", 0);
     field(&mut g, "TK010", 0);
     let hide = held(&mut g, "BQ063", 0);
@@ -148,13 +151,21 @@ fn tentacle_prepared_room_hide_reveal_return_and_duplicate_export() {
     settle(&mut t);
     assert_eq!(t.room.game.regions[0].cards.iter().filter(|c| c.definition == "TK010" && c.face_down).count(), 2);
     let hidden = t.room.game.regions[0].cards.iter().find(|c| c.definition == "TK010").unwrap().id.clone();
-    t.action(0, Action {card_id:Some(hidden), ..Action::new("reveal")});
+    let rejection_state=serde_json::to_string(&t.room).unwrap();
+    let rejection_command=crate::room::RoomCommand{command_id:"tentacle-paid-reveal-forbidden".into(),expected_version:t.room.revision,
+        action:crate::room::SessionAction::Game{action:Action{card_id:Some(hidden),..Action::new("reveal")}}};
+    let rejected=t.room.transition(0,Some(rejection_command.clone()),0).unwrap();
+    assert_eq!(rejected.outcome,"rejected");assert!(!rejected.changed&&rejected.journal.is_empty());assert_eq!(rejected.state,rejection_state);
+    assert!(rejected.error_message.as_deref().unwrap().contains("生成触手无印刷费用"));
+    let rejection=serde_json::json!({"state":rejection_state,"seat":0,"command":rejection_command,"serverNowMs":"0","expected":rejected});
+    t.action(0, Action {card_id:Some(core_id),region:Some(0), ..Action::new("deploy")});
     settle(&mut t);
     t.action(0, Action { card_id:Some(back), ability_id:Some(crate::bq063::KEY.into()), option:Some("return".into()), ..Action::new("play") });
     settle(&mut t);
-    assert_eq!(t.room.game.batch3_physical_cards().filter(|c| c.definition == "TK010").count(), 1);
-    assert!(!t.room.game.regions[0].cards.iter().find(|c| c.definition == "TK010").unwrap().face_down);
+    assert_eq!(t.room.game.batch3_physical_cards().filter(|c| c.definition == "TK010").count(), 0);
+    assert!(t.room.game.regions[0].cards.iter().any(|c|c.definition=="BQ046"&&!c.face_down));
     let mut value = t.value();
+    value["paidRevealRejection"]=rejection;
     for step in value["steps"].as_array_mut().unwrap() {
         let room = crate::room::RoomEnvelope::from_persisted(step["expected"]["state"].as_str().unwrap()).unwrap();
         let duplicate = room.transition(step["seat"].as_u64().unwrap() as usize, Some(serde_json::from_value(step["command"].clone()).unwrap()), 0).unwrap();
@@ -225,4 +236,44 @@ fn sealed_room_trace()->serde_json::Value {
     assert!(t.room.game.pending.is_none()&&t.room.game.stack.is_empty());assert!(t.room.game.sealed_cards.is_empty());
     let tokens=t.room.game.batch3_physical_cards().filter(|c|c.definition=="TK010").collect::<Vec<_>>();assert_eq!(tokens.len(),1);assert!(tokens[0].face_down);
     let mut value=t.value();for step in value["steps"].as_array_mut().unwrap(){let room=crate::room::RoomEnvelope::from_persisted(step["expected"]["state"].as_str().unwrap()).unwrap();let d=room.transition(step["seat"].as_u64().unwrap()as usize,Some(serde_json::from_value(step["command"].clone()).unwrap()),0).unwrap();assert_eq!(d.outcome,"rejected");assert_eq!(d.state,step["expected"]["state"]);assert!(!d.changed&&d.journal.is_empty());step["duplicate"]=serde_json::to_value(d).unwrap();}value
+}
+
+#[test]
+fn tentacle_cost_ruling_absent_display_and_paid_reveal_rejected() {
+    let mut g=game();let id=field(&mut g,"TK010",0);
+    let d=serde_json::to_value(crate::catalog::card("TK010")).unwrap();
+    assert_eq!(d["costAppearance"],"absent");
+    for seat in 0..4 {let v=g.view(seat);let c=v.regions[0].characters.iter().find(|c|c.instance_id==id).unwrap();assert_eq!(c.cost,None);assert_eq!(c.effective_cost,None);}
+    g.hide_in_place(&id);let id=g.regions[0].cards.iter().find(|c|c.definition=="TK010").unwrap().id.clone();
+    assert!(!g.legal_actions(0).iter().any(|a|a.action.kind=="reveal"&&a.action.card_id.as_deref()==Some(&id)));
+    reject(&mut g,0,Action{card_id:Some(id),..Action::new("reveal")});restore(&mut g);
+}
+
+#[test]
+fn tentacle_cost_ruling_forged_paid_stack_frame_and_missing_frame_reject_both_loaders() {
+    let mut g=game();fund(&mut g,0,"JC125",2);let id=field(&mut g,"JC125",0);g.hide_in_place(&id);
+    let id=g.regions[0].cards[0].id.clone();act(&mut g,0,Action{card_id:Some(id),..Action::new("reveal")});
+    for mode in 0..5 {
+        let mut bad=g.clone();let item=bad.stack.last_mut().unwrap();
+        if mode!=3 {item.card.as_mut().unwrap().definition="TK010".into();}
+        if mode==0 || mode==3 {item.frame.as_mut().unwrap().source.card.definition="TK010".into();}
+        if mode==2 {item.frame=None;}
+        if mode==4 {let mut f=item.frame.clone().unwrap();f.source.card.definition="TK010".into();bad.stack.clear();bad.effects.push_front(Effect::Frame{frame:Box::new(f)});}
+        assert!(bad.validate_tentacle_state().is_err());
+        assert!(Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err());
+        let mut room=crate::jc029_tests::envelope(&g);room.game=bad.clone();assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_err());
+        if let Some(item)=bad.stack.pop() {assert!(bad.resolve_stack(item).is_err());}else{assert!(bad.drive().is_err());}
+    }
+}
+
+#[test]
+fn tentacle_cost_ruling_real_florence_effect_still_reveals_without_payment() {
+    let mut g=game();let old=field(&mut g,"TK010",0);g.board_mut(&old).unwrap().exhausted=true;g.hide_in_place(&old);
+    let hidden=g.regions[0].cards[0].id.clone();let world=g.make_card("DQJC108",0);let source=g.source_snapshot(&world,Some(0));
+    g.emit_event(0,source,crate::rules::Event::RegionWon);g.drive().unwrap();choose(&mut g,vec!["accept".into()]);
+    for _ in 0..32 {if g.pending.is_some(){break;}pass(&mut g);}
+    assert!(matches!(&g.pending.as_ref().unwrap().resolution,ChoiceResolution::Frame{choice:FrameChoice::FreeReveal{..},..}));
+    choose(&mut g,vec![hidden.clone()]);
+    let c=g.regions[0].cards.iter().find(|c|c.definition=="TK010").unwrap();assert!(!c.face_down&&c.exhausted);assert_ne!(c.id,hidden);
+    assert!(g.players[0].assets.is_empty());restore(&mut g);
 }
