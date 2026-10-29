@@ -36,7 +36,7 @@ pub(crate) fn ability() -> AbilitySpec {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::MoveOnBoard { .. } | Op::XG12GrantedMobility { .. } => true,
+        Op::MoveOnBoard { .. } | Op::XG12GrantedMobility { .. } | Op::BQ049Move { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted {
             exhausted, ready, ..
@@ -51,7 +51,7 @@ pub(crate) fn related_ability(a: &AbilitySpec) -> bool {
         || a.modes.iter().any(|m| uses(&m.ops))
 }
 pub(crate) fn canonical(a: &AbilitySpec) -> bool {
-    same(a, &ability()) || crate::batch4_shape::canonical_mobility(a)
+    same(a, &ability()) || crate::batch4_shape::canonical_mobility(a) || crate::bq049::canonical_mobility(a)
 }
 pub(crate) fn canonical_target(slot: &TargetSlotSpec) -> bool {
     slot.range == Range::Mobility && same(slot, &ability().targets[0])
@@ -75,7 +75,7 @@ impl Game {
         self.board(&c.id).is_some_and(|(_, live)| {
             !live.face_down && !self.attached_character(&live.id)
                 && catalog::card(&live.definition).kind == "character"
-                && (printed(&live.definition) || (matches!(live.definition.as_str(), "WM040" | "XG18") && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some() || self.xg12_mobility_grant(live).is_some())
+                && (printed(&live.definition) || (matches!(live.definition.as_str(), "WM040" | "XG18") && self.society_exposure(live.controller) > 0) || self.bq035_mobility_witness(&live.id).is_some() || self.xg12_mobility_grant(live).is_some() || self.bq049_mobility(live).is_some())
         })
     }
     pub(crate) fn mobility_source(&self, c: &Card, region: usize) -> SourceSnapshot {
@@ -221,6 +221,7 @@ impl Game {
     }
     pub(crate) fn validate_mobility_event_source(&self, d: &Declaration) -> RuleResult<()> {
         if !canonical(&d.ability) { return Err("机动事件必须保留完整规范程序".into()); }
+        if let Some(p)=crate::bq049::mobility_proof(&d.ability){return self.validate_bq049_mobility_source(d.actor,&d.source,p);}
         if let Some(p) = crate::batch4_shape::mobility_proof(&d.ability) {
             self.validate_xg12_mobility_source(d.actor,&d.source,p)
         } else { self.validate_mobility_source(d.actor,&d.source) }
@@ -242,7 +243,7 @@ impl Game {
         }
         let a = if let [Step { op: Op::XG12GrantedMobility { proof }, .. }] = f.steps.as_slice() {
             crate::batch4_shape::mobility_ability((**proof).clone())
-        } else { ability() };
+        } else if let [Step{op:Op::BQ049Move{proof},..}]=f.steps.as_slice(){crate::bq049::mobility_ability((**proof).clone())}else { ability() };
         self.validate_mobility_event_source(&Declaration { actor:f.actor,source:f.source.clone(),ability:a.clone() })?;
         self.validate_mobility_capture(&f.source.card.id)?;
         if f.ability_key != a.key

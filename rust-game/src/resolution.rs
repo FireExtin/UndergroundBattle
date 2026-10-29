@@ -932,7 +932,7 @@ impl Game {
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
         slot.zone == Zone::Region
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1228,7 +1228,7 @@ impl Game {
     pub(crate) fn emit_event(&mut self, actor: usize, source: SourceSnapshot, event: Event) {
         if event==Event::Enter {self.observe_bq056_core_entry(&source);}
         if event == Event::ConfrontationStart {
-            let ability = self.xg12_event_ability(actor,&source).unwrap_or_else(crate::mobility::ability);
+            let ability = self.bq049_event_ability(actor,&source).or_else(||self.xg12_event_ability(actor,&source)).unwrap_or_else(crate::mobility::ability);
             let declaration = Declaration { actor, source, ability };
             if self.validate_mobility_event_source(&declaration).is_ok()
                 && !self.turn_ability_usage.iter().any(|u| u.ability_key == "mobility"
@@ -1715,6 +1715,7 @@ impl Game {
         self.validate_bq045_frame(&frame)?;
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
+        self.validate_bq049_frame(&frame)?;
         self.validate_bq061_frame(&frame)?;
         self.validate_bq063_frame(&frame)?;
         self.validate_bq_command_frame(&frame)?;
@@ -1780,6 +1781,9 @@ impl Game {
                 Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
+                Op::BQ049Sacrifice=>return self.bq049_sacrifice(frame),
+                Op::BQ049Grant=>self.bq049_grant(&frame)?,
+                Op::BQ049Generate=>self.bq049_generate(&frame)?,
                 Op::BQ061Recover=>return self.bq061_start(frame),
                 Op::BQ063Sweep{hide}=>self.bq063_sweep(&frame,hide)?,
                 Op::BQ063InvokeCore=>return self.bq063_invoke(frame),
@@ -1910,7 +1914,7 @@ impl Game {
                 Op::WM060CriminalObservation { .. } => {},
                 Op::WM060RepressTwo => return self.wm060_repress_start(frame),
                 Op::XG12Reattach => self.reattach_source(&frame.source.card.id, &frame.targets[0].id),
-                Op::XG12GrantedMobility { .. } => {
+                Op::XG12GrantedMobility { .. } | Op::BQ049Move { .. } => {
                     if let Some(region) = self.frame_region(&frame, RegionRef::Target(0)) {
                         self.move_on_board_instance(&frame.source.card.id, region);
                     }
@@ -2789,6 +2793,7 @@ impl Game {
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
+            FrameChoice::BQ049Sacrifice=>return self.bq049_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ061Recover=>return self.bq061_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Opponent=>return self.bq063_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Repress{seat,regions}=>return self.bq063_finish(&frame,chooser,&a,&selected,seat,&regions),

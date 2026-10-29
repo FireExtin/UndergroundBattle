@@ -746,6 +746,7 @@ pub enum FrameChoice {
     BQ056Opponent,
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ063Forecast {seat:usize, invocation:usize, core:Box<SourceSnapshot>},
+    BQ049Sacrifice,
     BQ061Recover,
     BQ063Opponent,
     MSBQ03 { search: bool },
@@ -1007,6 +1008,8 @@ pub struct Pending {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub bq049_grants: Vec<crate::bq049::Grant>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub core_zones: Vec<crate::core_zone::CoreZone>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub cq10_continuations: Vec<crate::cq10::Continuation>,
@@ -1125,6 +1128,7 @@ impl Game {
         self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;

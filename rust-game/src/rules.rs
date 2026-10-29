@@ -323,6 +323,10 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    BQ049Sacrifice,
+    BQ049Grant,
+    BQ049Generate,
+    BQ049Move {proof:Box<crate::bq049::Grant>},
     BQ061Recover,
     MSBQ02TaskWin {scored:Option<Vec<crate::model::Card>>},
     MSBQ02Loss { played:Option<Box<crate::model::SourceSnapshot>>,event:Option<String> },
@@ -856,6 +860,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::msjc12::ID||crate::msjc12::related(ability) {return crate::msjc12::validate_ability(card_id,ability);}
     if card_id==crate::msbq02::ID||crate::msbq02::related(ability) {return crate::msbq02::validate_ability(card_id,ability);}
     if crate::bq_commands::related(ability) {return crate::bq_commands::validate_ability(card_id,ability);}
+    if card_id==crate::bq049::ID||crate::bq049::related(ability){return crate::bq049::validate_ability(card_id,ability);}
     if card_id==crate::bq061::ID||crate::bq061::related(ability){return crate::bq061::validate_ability(card_id,ability);}
     if card_id==crate::bq063::ID||crate::bq063::related(ability){return crate::bq063::validate_ability(card_id,ability);}
     if crate::bq048::related(ability) {return crate::bq048::validate_ability(card_id,ability);}
@@ -1674,6 +1679,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::msbq03::validate_definition(card_id,definition)?;
         crate::mscq02::validate_definition(card_id,definition)?;
         crate::test034::validate_definition(card_id,definition)?;
+        crate::bq049::validate_definition(card_id,definition)?;
         crate::bq061::validate_definition(card_id,definition)?;
         crate::bq063::validate_definition(card_id,definition)?;
         crate::bq045::validate_definition(card_id,definition)?;
@@ -2375,6 +2381,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::msbq03::ID.into(),crate::msbq03::definition());
         m.insert(crate::mscq02::ID.into(),crate::mscq02::definition());
         m.insert(crate::test034::ID.into(),crate::test034::definition());
+        m.insert(crate::bq049::ID.into(),crate::bq049::definition());
         m.insert(crate::bq061::ID.into(),crate::bq061::definition());
         m.insert(crate::bq063::ID.into(),crate::bq063::definition());
         for id in crate::bq_commands::IDS {m.insert(id.into(),crate::bq_commands::definition(id));}

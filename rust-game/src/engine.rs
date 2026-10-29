@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            bq049_grants: vec![],
             core_zones: vec![],
             state_schema: 2,
             death_replacements: vec![],
@@ -159,6 +160,7 @@ impl Game {
         // retains its published timing. A replacement cannot inherit a grant.
         self.turn_attribute_modifiers
             .retain(|m| m.target_instance != c.id || (m.kill_bonus == 0 && !m.grants_retreat));
+        self.bq049_grants.retain(|g|g.recipient.id!=c.id);
         self.industry_bonuses.retain(|m| m.target_instance != c.id);
         c.id = self.id();
         c.lock_markers = 0;
@@ -658,6 +660,7 @@ impl Game {
         self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq_commands()?;
@@ -702,6 +705,7 @@ impl Game {
         next.validate_msjc16_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
+        next.validate_bq049_state()?;
         next.validate_bq061_state()?;
         next.validate_bq063_state()?;
         next.validate_bq_commands()?;
@@ -786,6 +790,7 @@ impl Game {
                 let mut c = self.remove_hand(seat, a.card_id.as_deref().ok_or("请选择手牌")?)?;
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -817,6 +822,7 @@ impl Game {
                     Some(r)
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -934,6 +940,7 @@ impl Game {
                     return Err("只能现身自己的暗藏者".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1014,6 +1021,7 @@ impl Game {
                     return Err("该牌不是事务或附属".into());
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1097,6 +1105,7 @@ impl Game {
                 crate::next20_blue_vampires::validate_action(&c.definition,&a)?;
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
+                crate::bq049::validate_action(&c,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1140,6 +1149,7 @@ impl Game {
     pub(crate) fn start_validated_decks(&mut self,decks:Vec<crate::deck::DeckDraft>)->RuleResult<()> {
         if decks.len()!=self.players.len(){return Err("开局牌组与座位数量不符".into());}
         self.core_zones.clear();
+        self.bq049_grants.clear();
         self.status = "playing".into();
         self.modifiers.clear();
         self.turn_attribute_modifiers.clear();
@@ -1264,6 +1274,7 @@ impl Game {
         self.players[seat].eliminated = true;
         self.cancel_pregrave_owner(seat);
         self.core_zones.retain(|z|z.owner!=seat);
+        self.bq049_grants.retain(|g|g.recipient.owner!=seat);
         if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::CoreReturn{departure}if departure.card.owner==seat)){self.pending=None;}
         self.effects.retain(|e|!matches!(e,Effect::CoreReturn{departure}if departure.card.owner==seat));
         self.return_sealed_cards(&format!("society:p{seat}"));
@@ -1377,6 +1388,7 @@ impl Game {
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
         self.validate_bq052_play(&item)?;
+        self.validate_bq049_play(&item)?;
         self.validate_bq061_play(&item)?;
         self.validate_bq063_play(&item)?;
         self.validate_bq_command_play(&item)?;
@@ -2201,6 +2213,7 @@ impl Game {
             Effect::NextTurn => {
                 self.step_resources.clear();
                 self.industry_bonuses.clear();
+                self.bq049_grants.clear();
                 self.turn += 1;
                 self.mystic_history.clear();
                 self.influence_contests.clear();

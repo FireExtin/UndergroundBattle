@@ -11611,6 +11611,43 @@
     "image": "resource/ymsj-fun.github.io/cards/BQ061 钻研故纸堆.jpg",
     "imageSha256": "deb8fe256760006dfe44627f8fbe769d7ff39be3d193e09cf78724e706e2ee69"
   }
+},
+{
+  "id": "BQ049",
+  "name": "吞噬蔓延",
+  "kind": "spell",
+  "subtypes": [
+    "命令",
+    "强化"
+  ],
+  "cost": 2,
+  "loyalty": [
+    "红色"
+  ],
+  "color": "红",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    }
+  },
+  "text": "快速行动 选择一项：牺牲一个角色，你获得4名誉点；本方核心角色和触手角色获得机动直到回合结束，你获得1名誉点；在目标地区生成一个触手指示物角色，若该地区是本方任务地区，在该地区上放置一个本方势力标志。",
+  "keywords": [],
+  "unique": false,
+  "supported": false,
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "BQ049",
+    "image": "resource/ymsj-fun.github.io/cards/BQ049 吞噬蔓延.jpg",
+    "imageSha256": "ed1844a377f715735b62f542eef25255475f756accbffe452c598aa355bd4f36"
+  }
 }
   ],
   "decks": [
