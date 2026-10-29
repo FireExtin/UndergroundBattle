@@ -163,8 +163,9 @@ fn tentacle_prepared_room_hide_reveal_return_and_duplicate_export() {
         assert!(!duplicate.changed && duplicate.journal.is_empty());
         step["duplicate"] = serde_json::to_value(duplicate).unwrap();
     }
+    let sealed = sealed_room_trace();
     if let Ok(path) = std::env::var("TENTACLE_NATIVE_OUT") {
-        std::fs::write(path, serde_json::to_vec_pretty(&serde_json::json!({"catalog":crate::catalog::catalog(),"cases":[value]})).unwrap()).unwrap();
+        std::fs::write(path, serde_json::to_vec_pretty(&serde_json::json!({"catalog":crate::catalog::catalog(),"sourceBindings":crate::bq052_tests::source_bindings(),"cases":[value,sealed]})).unwrap()).unwrap();
     }
 }
 
@@ -206,4 +207,22 @@ fn tentacle_sealing_suspends_core_aura_and_death_receipt_has_no_phantom_grave() 
     assert_eq!(g.tentacle_core_defense(g.board(&core).unwrap().1), 0);
     assert_eq!(g.sealed_cards.len(), 1);
     restore(&mut g);
+}
+
+fn sealed_room_trace()->serde_json::Value {
+    use crate::abi112_review_play_tests::Trace;
+    let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSBQ02",0));
+    fund(&mut g,0,"JC066",5);fund(&mut g,0,"JC069",3);
+    let token=field(&mut g,"TK010",0);field(&mut g,"TK010",0);
+    let host=held(&mut g,"JC066",0);let hide=held(&mut g,"BQ063",0);
+    let mut t=Trace::new_preserving_rng(g,"tentacle-prepared-seal-and-host-hide".into(),683);
+    t.action(0,Action{card_id:Some(host),region:Some(0),..Action::new("deploy")});
+    t.until_pending();t.choose(vec![token]);
+    for _ in 0..64 {if t.room.game.pending.is_none()&&t.room.game.stack.is_empty()&&t.room.game.effects.is_empty(){break;}t.pass();}
+    assert_eq!(t.room.game.sealed_cards.len(),1);assert_eq!(t.room.game.sealed_cards[0].card.definition,"TK010");
+    t.action(0,Action{card_id:Some(hide),ability_id:Some(crate::bq063::KEY.into()),option:Some("hide".into()),..Action::new("play")});
+    for _ in 0..80 {if let Some(p)=&t.room.game.pending{assert_eq!(p.choice.kind,"bq063-opponent");let id=p.choice.options[0].id.clone();t.choose(vec![id]);}else if t.room.game.stack.is_empty()&&t.room.game.effects.is_empty(){break;}else{t.pass();}}
+    assert!(t.room.game.pending.is_none()&&t.room.game.stack.is_empty());assert!(t.room.game.sealed_cards.is_empty());
+    let tokens=t.room.game.batch3_physical_cards().filter(|c|c.definition=="TK010").collect::<Vec<_>>();assert_eq!(tokens.len(),1);assert!(tokens[0].face_down);
+    let mut value=t.value();for step in value["steps"].as_array_mut().unwrap(){let room=crate::room::RoomEnvelope::from_persisted(step["expected"]["state"].as_str().unwrap()).unwrap();let d=room.transition(step["seat"].as_u64().unwrap()as usize,Some(serde_json::from_value(step["command"].clone()).unwrap()),0).unwrap();assert_eq!(d.outcome,"rejected");assert_eq!(d.state,step["expected"]["state"]);assert!(!d.changed&&d.journal.is_empty());step["duplicate"]=serde_json::to_value(d).unwrap();}value
 }

@@ -452,6 +452,7 @@ impl Game {
         let (black_permanent, black_temporary) = self.black_next20_icon_bonus(c, region);
         permanent_result = permanent_result.add(black_permanent);
         temporary_result = temporary_result.add(black_temporary);
+        permanent_result.influence += self.bq052_influence(c);
         temporary_result.combat += self.tentacle_temporary_combat(c, region);
         temporary_result.influence += self.jc051_aura(c);
         temporary_result.influence += u32::from(self.xg26_local_influence(c, region));
@@ -648,6 +649,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_bq052_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_mscq02_state()?;
@@ -686,6 +688,7 @@ impl Game {
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
+        next.validate_bq052_state()?;
         next.validate_tentacle_state()?;
         next.validate_msbq03_state()?;
         next.validate_mscq02_state()?;
@@ -1350,6 +1353,7 @@ impl Game {
     pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_bq052_play(&item)?;
         self.validate_bq063_play(&item)?;
         self.validate_bq_command_play(&item)?;
         self.validate_bq086_play(&item)?;
@@ -1453,7 +1457,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn enter_triggers(&mut self, seat: usize, definition: &str, id: &str, reveal: bool) { self.enter_triggers_with_extra(seat,definition,id,reveal,None,None,false); }
-    fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,carmen:Option<crate::import20_carmen::ExtraPayment>,final_region:bool) {
+    pub(crate) fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,carmen:Option<crate::import20_carmen::ExtraPayment>,final_region:bool) {
         let previous=self.effects.len();
         if !final_region { self.route_chaos_entry(id); }
         if definition == "XG14" { if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }

@@ -11513,6 +11513,36 @@
       ],
       "text": "持续 本方核心角色获得防御+1。持续 若本方核心角色位于本地区，触手获得临时战斗2。",
       "supported": false
+    },
+    {
+      "id": "BQ052",
+      "name": "伊波·纳契的疯狂辞典",
+      "subtitle": "呢喃语录",
+      "kind": "attachment",
+      "cost": 2,
+      "loyalty": [
+        "红色"
+      ],
+      "color": "红",
+      "magic": "心灵",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "subtypes": [
+        "书籍"
+      ],
+      "unique": true,
+      "text": "结附于本方秘社 准备步骤触发 在随机地区上生成一个触手指示物角色。 持续 若本方核心角色在场上，或本方秘社上有隐秘标志，则所有本方触手角色获得永久势力1。 行动 牺牲三个本方触手角色：将本方核心角色从核心区放置进场并置于随机地区。",
+      "supported": false
     }
   ],
   "decks": [

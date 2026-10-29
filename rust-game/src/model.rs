@@ -651,6 +651,7 @@ pub struct BoundTarget {
 pub enum PaidCost {
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
+    BQ052Sacrificed(Vec<SourceSnapshot>),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
     MSWM02Discard { card: Card, subtypes: Vec<String> },
     BQ046Honor { before: u32 },
@@ -1109,6 +1110,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_bq052_state()?;
         self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_mscq02_state()?;
