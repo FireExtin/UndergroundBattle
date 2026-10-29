@@ -118,8 +118,9 @@ impl Game {
     pub(crate) fn place_wounds(&mut self, allocations: BTreeMap<String, u32>) -> RuleResult<()> {
         let mut recipients = vec![];
         for (id, amount) in allocations.into_iter().filter(|(_, n)| *n > 0) {
-            if let Some(c) = self.board_mut(&id) {
-                c.wounds = c.wounds.checked_add(amount).ok_or("创伤标志超出数值范围")?;
+            if let Some((_, c)) = self.in_play(&id) {
+                c.wounds.checked_add(amount).ok_or("创伤标志超出数值范围")?;
+                self.place_board_markers(&id, crate::batch4_markers::MarkerKind::Wound, amount);
                 recipients.push(id);
             }
         }

@@ -79,8 +79,8 @@ impl Game {
             && self.marker_move_carrier(&c.id)
     }
     pub(crate) fn clock_add_time(&mut self, f:&ResolutionFrame) {
-        if let Some(c)=f.targets.first().and_then(|t|self.board_mut(&t.id)) {
-            c.time_markers=c.time_markers.saturating_add(1);
+        if let Some(t)=f.targets.first() {
+            self.place_board_markers(&t.id, crate::batch4_markers::MarkerKind::Time, 1);
         }
     }
     pub(crate) fn clock_sweep(&mut self, f:&ResolutionFrame) -> RuleResult<()> {

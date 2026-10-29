@@ -94,10 +94,21 @@ impl Game {
             return Err("标志移动的当前目标或物理承载者已改变".into());
         }
         let plan_changes = prepared.rows.iter().map(|r| (r.before.id.clone(), r.before.advancement_markers)).collect::<Vec<_>>();
+        let mut placements = Vec::new();
+        let turn = self.turn;
         for row in prepared.rows {
             let c = self.board_mut(&row.before.id).expect("validated in-play physical carrier");
             for (k, n) in MarkerKind::ALL.into_iter().zip(row.after) { *k.field(c) = n; }
+            for (kind, after) in MarkerKind::ALL.into_iter().zip(row.after) {
+                let before = kind.count(&row.before);
+                if after > before { placements.push(crate::marker_placement::MarkerPlacement {
+                    turn, carrier: c.clone(), kind, before, placed: after-before,
+                }); }
+            }
         }
+        // Observe actual additions from this prepared atomic operation, not a
+        // before/after command diff; removals cannot undo the placement event.
+        for event in placements { self.record_marker_placement(event); }
         for (id, before) in plan_changes { self.observe_plan_advancement(&id, before); }
         Ok(())
     }

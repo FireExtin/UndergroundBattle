@@ -1,3 +1,5 @@
+mod marker_placement;
+#[cfg(test)] mod marker_placement_tests;
 mod bq086;
 #[cfg(test)]
 mod bq086_tests;

@@ -1031,6 +1031,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub first_marker_placements: Vec<crate::marker_placement::MarkerPlacement>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
     pub mswm01_grants: Vec<ResolutionFrame>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -1160,6 +1162,7 @@ impl Game {
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
+        self.validate_marker_placements()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
         self.validate_xq13_state()?;

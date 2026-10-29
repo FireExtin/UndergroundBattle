@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            first_marker_placements: vec![],
             bq065_cancelled: vec![],
             bq067_grants: vec![],
             bq049_grants: vec![],
@@ -669,6 +670,7 @@ impl Game {
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
+        self.validate_marker_placements()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
         self.validate_xq13_state()?;
@@ -729,6 +731,7 @@ impl Game {
         next.validate_jc097_state()?;
         next.validate_jc053_state()?;
         next.validate_msbq01_state()?;
+        next.validate_marker_placements()?;
         next.validate_wm036_state()?;
         next.validate_wm027_state()?;
         next.validate_xq13_state()?;
@@ -2277,6 +2280,7 @@ impl Game {
                 self.industry_bonuses.clear();
                 self.bq049_grants.clear();self.bq067_grants.clear();
                 self.turn += 1;
+                self.first_marker_placements.clear();
                 self.mystic_history.clear();
                 self.influence_contests.clear();
                 self.turn_ability_usage.clear();

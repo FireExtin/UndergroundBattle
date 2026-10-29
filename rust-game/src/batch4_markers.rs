@@ -132,8 +132,9 @@ impl Game {
             // Reuse normal threshold disclosure and the owner's forced trigger.
             self.advance_plan_instance(controller, id);
         } else {
-            let c = self.board_mut(id).ok_or("原标志目标已离场")?;
-            let n = kind.field(c); *n = n.checked_add(1).ok_or("指示物数量超过当前表示范围")?;
+            let c = self.in_play(id).ok_or("原标志目标已离场")?.1;
+            kind.count(c).checked_add(1).ok_or("指示物数量超过当前表示范围")?;
+            self.place_board_markers(id, kind, 1);
         }
         Ok(())
     }
