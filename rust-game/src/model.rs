@@ -659,6 +659,7 @@ pub enum PaidCost {
     BQ052Sacrificed(Vec<SourceSnapshot>),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
     MSWM02Discard { card: Card, subtypes: Vec<String> },
+    BQ067Honor { before: u32 },
     BQ046Honor { before: u32 },
     BQ033Anchor(Box<crate::next20_blue_vampires::AnchorPayment>),
     CQ15Returned(Box<crate::import20_swords::SwordPayment>),
@@ -1014,6 +1015,8 @@ pub struct Pending {
 pub struct Game {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub bq049_grants: Vec<crate::bq049::Grant>,
+    #[serde(default,skip_serializing_if="Vec::is_empty")]
+    pub bq067_grants: Vec<crate::bq067::Grant>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub core_zones: Vec<crate::core_zone::CoreZone>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -1136,7 +1139,7 @@ impl Game {
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
         self.validate_msjz04_state()?;
-        self.validate_bq049_state()?;
+        self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
         self.validate_bq056_state()?;

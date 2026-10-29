@@ -11692,6 +11692,46 @@
   "unique": false,
   "society": "",
   "supported": false
+},
+{
+  "id": "BQ067",
+  "name": "拟态",
+  "kind": "attachment",
+  "subtypes": [
+    "命令",
+    "进化"
+  ],
+  "cost": 2,
+  "loyalty": [
+    "灰色"
+  ],
+  "loyaltyText": "灰",
+  "color": "灰",
+  "magic": "",
+  "icons": {
+    "permanent": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    },
+    "temporary": {
+      "investigation": 0,
+      "combat": 0,
+      "influence": 0
+    }
+  },
+  "defense": null,
+  "text": "结附于本方秘社\n持续 本方核心角色获得防御+1，然后本方核心区每有一个休整标志，就额外获得防御+1。\n快速行动 支付1名誉点，牺牲拟态：本方核心角色获得屏障直到回合结束。",
+  "keywords": [],
+  "source": {
+    "file": "docs/factions/card-specifications.json",
+    "record": "BQ067",
+    "image": "resource/ymsj-fun.github.io/cards/BQ067 拟态.jpg",
+    "imageSha256": "841cff95c3d76d7bfc9975665c43570dc66bc1fdf9c17f91728e2ade23ff093f"
+  },
+  "unique": false,
+  "society": "",
+  "supported": false
 }
   ],
   "decks": [
