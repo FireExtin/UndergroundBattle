@@ -12334,7 +12334,74 @@
   "unique": true,
   "text": "触发：当你牺牲一个角色时，你可以支付3，若你如此做，敌方玩家牺牲一个角色或附属。本方秘社上每有一个失控标志，你可以少支付1。核心：牺牲一个角色，抓一张牌，遏制1。",
   "supported": false
-}
+},
+    {
+      "id": "WM026",
+      "name": "古妮薇尔",
+      "subtitle": "卡迪纳家族密使",
+      "kind": "character",
+      "cost": 4,
+      "loyalty": [
+        "蓝色",
+        "蓝色"
+      ],
+      "color": "蓝",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 1,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "subtypes": [
+        "吸血鬼",
+        "法师"
+      ],
+      "unique": true,
+      "text": "死亡触发：转变，而非置入墓地。",
+      "supported": false,
+      "keywords": [],
+      "abilities": []
+    },
+    {
+      "id": "ZHWM026",
+      "name": "古妮薇尔",
+      "subtitle": "卡迪纳家族密使",
+      "kind": "character",
+      "cost": 0,
+      "loyalty": [],
+      "color": "蓝",
+      "magic": "",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "subtypes": [
+        "雾"
+      ],
+      "unique": true,
+      "text": "灵体；准备步骤触发：若有敌方玩家手牌不多于三张，转变。",
+      "supported": false,
+      "keywords": [],
+      "abilities": [],
+      "costAppearance": "absent"
+    }
 ],
   "decks": [
     {

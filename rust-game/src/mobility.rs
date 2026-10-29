@@ -127,7 +127,7 @@ impl Game {
         if current.len() > 1
             || current
                 .iter()
-                .any(|live| live.definition != old.definition || live.owner != old.owner || live.generated != old.generated || live.blood_origin != old.blood_origin)
+                .any(|live| crate::wm026::printed_id(&live.definition) != crate::wm026::printed_id(&old.definition) || live.owner != old.owner || live.generated != old.generated || live.blood_origin != old.blood_origin)
         {
             return Err("机动历史UID与现存实体的印刷定义或拥有者矛盾".into());
         }

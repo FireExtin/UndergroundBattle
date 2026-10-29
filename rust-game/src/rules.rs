@@ -337,6 +337,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    WM026Transform,
+    WM026Prepare {event_id:Option<String>},
     WM031Wound { event: Option<Box<crate::wm031::Observation>> },
     JC028Blood,
     JC053Draw,
@@ -877,6 +879,7 @@ pub struct Definition {
 // These are interpreter limits, not rules for resolving partially invalid targets.
 // Reject unsupported declarations before publishing actions or offering trigger choices.
 pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(), String> {
+    if crate::wm026::related(ability) { return crate::wm026::validate_ability(card_id,ability); }
     if crate::wm031::related(ability) { return crate::wm031::validate_ability(card_id,ability); }
     // Shared granted programs are checked before recipient-specific native
     // text. Domain validators still require their exact event-time grant;
@@ -1731,6 +1734,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::mswm01::validate_definition(card_id,definition)?;
         crate::msjc12::validate_definition(card_id,definition)?;
         crate::mswm02::validate_definition(card_id,definition)?;
+        crate::wm026::validate_definition(card_id,definition)?;
         crate::wm031::validate_definition(card_id,definition)?;
         crate::msjc16::validate_definition(card_id,definition)?;
         crate::msbq03::validate_definition(card_id,definition)?;
@@ -2465,6 +2469,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq052::ID.into(),crate::bq052::definition());
         m.insert(crate::tentacle::ID.into(),crate::tentacle::definition());
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
+        m.insert(crate::wm026::ID.into(),crate::wm026::definition(false));
+        m.insert(crate::wm026::FORM.into(),crate::wm026::definition(true));
         m.insert(crate::wm031::ID.into(),crate::wm031::definition());
         m.insert(crate::wm036::ID.into(),crate::wm036::definition());
         m.insert(crate::wm027::ID.into(),crate::wm027::definition());

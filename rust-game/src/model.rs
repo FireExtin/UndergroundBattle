@@ -1036,6 +1036,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if="Vec::is_empty")]
+    pub wm026_pending: Vec<SourceSnapshot>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
     pub wm031_observations: Vec<crate::wm031::Observation>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -1170,6 +1172,7 @@ impl Game {
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
         self.validate_marker_placements()?;
+        self.validate_wm026_state()?;
         self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;

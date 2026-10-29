@@ -1,3 +1,5 @@
+mod wm026;
+#[cfg(test)] mod wm026_tests;
 mod bq044_core;
 mod bq044;
 #[cfg(test)] mod bq044_tests;

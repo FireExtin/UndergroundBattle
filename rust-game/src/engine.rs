@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            wm026_pending: vec![],
             wm031_observations: vec![],
             first_marker_placements: vec![],
             bq065_cancelled: vec![],
@@ -155,6 +156,7 @@ impl Game {
         }
     }
     pub(crate) fn fresh(&mut self, mut c: Card) -> Card {
+        if c.definition==crate::wm026::FORM {c.definition=crate::wm026::ID.into();}
         if c.definition==crate::jc028::FORM {c.definition=crate::jc028::ID.into();c.blood_origin=None;c.controller=c.owner;}
         c.advancement_markers = 0;
         c.named_character = None;
@@ -674,6 +676,7 @@ impl Game {
         self.validate_marker_placements()?;
         self.validate_bq044_state()?;
         self.validate_bq044_core_state()?;
+        self.validate_wm026_state()?;
         self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
@@ -738,6 +741,7 @@ impl Game {
         next.validate_marker_placements()?;
         next.validate_bq044_state()?;
         next.validate_bq044_core_state()?;
+        next.validate_wm026_state()?;
         next.validate_wm031_state()?;
         next.validate_wm036_state()?;
         next.validate_wm027_state()?;
@@ -1331,6 +1335,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn eliminate(&mut self, seat: usize) {
+        self.wm026_pending.retain(|s|s.card.controller!=seat);
         self.players[seat].eliminated = true;
         self.cancel_pregrave_owner(seat);
         self.core_zones.retain(|z|z.owner!=seat);
@@ -1397,6 +1402,7 @@ impl Game {
             .collect()
     }
     pub(crate) fn finish(&mut self, team: usize) {
+        self.wm026_pending.clear();
         self.bq088_continuations.clear();
         self.cq10_continuations.clear();
         self.status = "finished".into();
@@ -2415,6 +2421,7 @@ impl Game {
             for r in 0..self.regions.len() {
                 for c in self.region_characters(r) {
                     if !c.face_down
+                        && !self.wm026_waiting(&c.id)
                         && card(&c.definition).kind == "character"
                         && c.damage >= self.defense(c, r)
                     {
