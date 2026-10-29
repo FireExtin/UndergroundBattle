@@ -33,7 +33,7 @@ it('selects each real preparation trigger without creating tokens through UI sho
  for(const step of fixture.cases[0].steps){
   if(step.command.action.action?.kind!=='choose')continue;
   const view=JSON.parse(abi.view(step.state,step.seat));
-  if(!view.pendingChoice?.options.some(o=>o.card?.cardId==='BQ052'))continue;
+  if(view.pendingChoice?.kind!=='jc035-preparation-order'||!view.pendingChoice.options.some(o=>o.card?.cardId==='BQ052'))continue;
   const submit=vi.fn();render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);
   const dialog=screen.getByRole('dialog',{name:'待完成的选择'});
   for(const id of step.command.action.action.selected){fireEvent.click(Array.from(dialog.querySelectorAll('[data-choice-option]')).find(el=>el.getAttribute('data-choice-option')===id));}

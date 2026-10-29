@@ -39,3 +39,32 @@ BQ052准备生成、三触手牺牲支付和随机核心进场自然链；同源
 - 准备布局另验证翻暗/现身/回手消失，以及真实JC066封印、BQ063令宿主翻暗、封印触手释放时消失；各步恢复、四席视图和实际重复命令。
 
 本源码检查点：WASM/Worker/UI与一次累积全Native库待执行。不能将作者自测当独审；不重试既有独审拒绝，不推送/合main/部署。
+
+## 同源验证与费用边界（收尾追加，2026-10-29）
+
+本轮已测源码为 9714245521463b5e4b5f1cd7d659e9ce56f8c0d5；随后只改 UI 测试的准备选择筛选条件，明确要求 `jc035-preparation-order`，排除初始换牌选择。没有删掉准备次数断言，也未改业务代码。
+
+- 默认 WASM 构建通过；三个新 Native 场景共669条命令、2676个席位视图、669次真实重复请求与 WASM 一致。其中自然私有候选632条，准备布局21和16条，不能都称自然开局。
+- Worker 三场景3/3通过，逐命令冷重开669次，验证原回执在终态后仍可识别；耗时861.37秒。自然场景632条、另外两场景为准备布局。不是浏览器试玩。
+- 相关 UI 首轮57项中56通过、1失败：初始换牌也含BQ052，被测试误数为第四次准备。上述选择器修正后该文件3/3通过；其余54项源码未受影响，不能把两轮通过数相加。
+- web构建通过。全库原进程仍执行中，终态另行追加；不将中途通过行数当完整结果。
+
+### 未裁定：无印刷费用不等于零费
+
+原图 `docs/factions/recovered-originals/TK010 触手.png` 无费用圆圈与忠诚位。`B07-evidence-package.md` 明确无费用指示物字段应为null/空表，不能转成手牌0费玩家卡；`TK008_RULING_GAP_2026-10-21.md` 分别保留普通付费现身和无印刷费用比较的未知点。TK008的记录是风险定位，不是TK010的裁定。已确定的三项触手生命周期项目裁定没有覆盖这两项。
+
+当前封闭WIP在目录数值字段仍使用0，准备布局21命令场景也经过普通0费现身。这只是现有实现的机械一致性，**不得将该步骤的PASS当规则验收**；此缺口未解决，TK010/BQ052保持关闭。自然632命令链及封印16命令链不依赖普通触手现身；已确定生命周期的证据单独保留，不因该缺口取消。
+
+具体影响：翻暗触手的普通`reveal`入口与费用/UI显示；JZ26袖中毒物在同地区敌方明置触手及其他角色之间选择最低印刷费用者时，当前会把触手当0。BQ089仅选墓地角色，触手按已定离场消失规则不能进入墓地，故它不是当前可达触手场景，不能拿泛化清单冒充现存漏洞。
+
+建议作为**新增项目裁定而非官方解释**：没有可支付的印刷费用，不能普通付费现身；明确效果翻面仍按效果执行。仅在效果必须作数值比较时将触手视为0，并在UI/数据中保留“无印刷费用”而非印刷0，禁止手牌打出/构筑的既有边界不变。这样比较机制仍有确定结果，又不把不存在的费用变成可支付费用。备选是不参与费用比较，但须明确只有无费用候选时效果落空的规则。建议尚未获确认，未据此修改生产规则，不推广其他生成物。
+
+### 原全库最终结果
+
+`bq052-full-07` 正常退出0：2766发现、2765通过、0失败、1忽略、0过滤，测试1760.93秒，总计1761.54秒。唯一忽略项仍为 `bq001_natural_room_tests::bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment`，原因是内部候选目录、主线准入仍关闭；未打开它。全库与此前定向测试重叠，计数不可相加，也不等于全工程所有集成/UI/Worker测试。
+
+完整命令：`node tools/build-storage.mjs -- cargo test --offline --locked -p hegemony-server --lib -- --nocapture --test-threads=1`。`CARGO_BUILD_JOBS=1`、`RUST_TEST_THREADS=1`、`UNDERGROUNDBATTLE_BUILD_ROOT=/workspace/undergroundbattle-build`。显式输出环境为 `SENTINEL_WORKER_WITNESS=/workspace/tentacle-validation/full-07/sentinel.json`、`SENTINEL_PLATFORM_WITNESS=/workspace/tentacle-validation/full-07/wm044.json`、`BQ052_NATIVE_OUT=/workspace/tentacle-validation/full-07/bq052.json`、`TENTACLE_NATIVE_OUT=/workspace/tentacle-validation/full-07/tentacle.json`。两个witness主体实际执行，分别1场景5命令、2场景5+1命令，不是early-return；仅准备布局，不是自然开局或浏览器试玩。
+
+全库导出的BQ052/触手文件与07定向原始文件逐字节相同。382个冻结源码/输入文件哈希未变化。工具链Rust/Cargo1.90.0、Node24.19.0、wasm-bindgen0.2.104、Linux GCC14.2.0；Cargo与web/sites锁文件保持不变。全库子进程最大RSS1074296KiB，cgroup采样峰值4797792256字节（包括同环境重叠任务）；容器上限17179869184字节。所有阶段日志与原失败独立保存。
+
+收尾仍未执行：独立审查（既有平台拒绝不重试）、完整web/sites全suite、本增量单独的全部集成目标、真实浏览器试玩。触手费用项目裁定尚待确认；闭合候选不计完成新20批次。本次不推送、不触发Actions、不合main、不部署。
