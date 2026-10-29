@@ -1297,6 +1297,7 @@ impl Game {
     }
     pub(crate) fn declare_trigger_ordered(&mut self, declaration: Declaration) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_msjz04_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
@@ -1405,6 +1406,7 @@ impl Game {
         selected: Vec<String>,
     ) -> RuleResult<()> {
         self.validated_cross_card_declaration(&declaration)?;
+        self.validate_msjz04_declaration(&declaration)?;
         self.validate_bq086_declaration(&declaration)?;
         self.mscq02_declaration(&declaration)?;
         self.validate_cq09_declaration(&declaration)?;
@@ -1715,6 +1717,7 @@ impl Game {
         self.validate_bq045_frame(&frame)?;
         self.validate_bq046_frame(&frame)?;
         self.validate_bq048_frame(&frame)?;
+        self.validate_msjz04_frame(&frame)?;
         self.validate_bq049_frame(&frame)?;
         self.validate_bq061_frame(&frame)?;
         self.validate_bq063_frame(&frame)?;
@@ -1781,6 +1784,7 @@ impl Game {
                 Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
+                Op::MSJZ04Release{..}=>return self.msjz04_release(frame),
                 Op::BQ049Sacrifice=>return self.bq049_sacrifice(frame),
                 Op::BQ049Grant=>self.bq049_grant(&frame)?,
                 Op::BQ049Generate=>self.bq049_generate(&frame)?,
@@ -2793,6 +2797,8 @@ impl Game {
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),
+            FrameChoice::MSJZ04Pay=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("效果支付不能夹带载荷".into());}return self.msjz04_pay(*frame,chooser,&selected);},
+            FrameChoice::MSJZ04Release=>{if a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("释放不能夹带其他载荷".into());}return self.msjz04_release_finish(&frame,chooser,&selected);},
             FrameChoice::BQ049Sacrifice=>return self.bq049_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ061Recover=>return self.bq061_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ063Opponent=>return self.bq063_choose_opponent(&frame,chooser,&a,&selected),

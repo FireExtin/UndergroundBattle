@@ -660,6 +660,7 @@ impl Game {
         self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_msjz04_state()?;
         self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
@@ -705,6 +706,7 @@ impl Game {
         next.validate_msjc16_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
+        next.validate_msjz04_state()?;
         next.validate_bq049_state()?;
         next.validate_bq061_state()?;
         next.validate_bq063_state()?;
@@ -1240,7 +1242,7 @@ impl Game {
                 .map(crate::society::definition)
                 .transpose()?
                 .map_or(6, |s| s.starting_hand);
-            self.draw(seat, starting_hand)?;
+            if !self.msjz04_defer_hand(seat) {self.draw(seat, starting_hand)?;}
             self.effects.push_back(Effect::Mulligan { seat });
         }
         self.begin_window(Window::Prepare);
@@ -1839,6 +1841,7 @@ impl Game {
             Effect::Declare { declaration } => self.declare_trigger(declaration)?,
             Effect::Frame { frame } => self.resolve_frame(*frame)?,
             Effect::Draw { seat, count } => self.draw(seat, count)?,
+            Effect::MSJZ04Opening{seat}=>self.msjz04_open(seat)?,
             Effect::Mulligan { seat } => {
                 let options = self.players[seat]
                     .hand
@@ -2437,6 +2440,7 @@ impl Game {
         if p.seat != seat || a.choice_id.as_deref() != Some(&p.choice.id) {
             return Err("选择者或选择ID不符".into());
         }
+        if matches!(&p.resolution,ChoiceResolution::Declare{declaration:d,..}if d.source.card.definition==crate::msjz04::ID)&&a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("破茧者触发选择不能夹带其他载荷".into());}
         let option_ids = p
             .choice
             .options
@@ -2485,6 +2489,7 @@ impl Game {
             ChoiceResolution::Frame { frame, choice } => {
                 self.choose_frame(frame, choice, seat, a, selected, option_ids)?
             }
+            ChoiceResolution::MSJZ04Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msjz04_open_finish(s,&selected)?;},
             ChoiceResolution::Mulligan => {
                 let mut held = vec![];
                 for id in selected {

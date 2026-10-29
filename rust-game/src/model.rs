@@ -502,6 +502,7 @@ pub struct WinContext {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
+    MSJZ04Opening {seat:usize},
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     DeathFinish { death_instance: String },
     DeathCaller { caller: Box<crate::death_continuation::DeathCaller> },
@@ -742,6 +743,8 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    MSJZ04Pay,
+    MSJZ04Release,
     BQ045Core(crate::bq045::CoreChoice),
     BQ056Opponent,
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
@@ -952,6 +955,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    MSJZ04Opening {seat:usize},
     MSJC16Payment { draft: Box<crate::msjc16::PaymentDraft> },
     CoreReturn {departure:Box<crate::core_zone::Departure>},
     CQ28Draft { draft:Box<crate::import20_gate::GateDraft> },
@@ -1128,6 +1132,7 @@ impl Game {
         self.validate_msjc16_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
+        self.validate_msjz04_state()?;
         self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;

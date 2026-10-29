@@ -93,14 +93,17 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const deckSealZero = ['xq44_dream_seal_search', 'jz02_space_seal_search'].includes(choice.kind)
     && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
   const privateInspectionZero = ['jz46-hidden-inspect', 'jc057-hand-inspect', 'wm057-inspection-confirm'].includes(choice.kind) && !choice.allowDecline && min === 0 && max === 0 && choice.options.length === 0;
-  const zeroConfirmation = (timePayment && min === 0) || (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
+  const zeroConfirmation = (choice.kind === 'msjz04-opening' && min === 0) || (timePayment && min === 0) || (choice.kind === 'jc032_top_six' && min === 0 && max === 0 && choice.options.length === 0) || jz50Search || entrySearchZero || deckSealZero || privateInspectionZero;
+  const distinctNames = choice.kind === 'msjz04-opening';
+  const optionName = (id: string) => { const option = choice.options.find(o => o.id === id); return option?.card?.name || option?.label || id; };
   const complete = (current: ChoiceDraft) => damage ? Object.values(current.allocations).reduce((total, n) => total + n, 0) === amount
     : ordering ? current.top.length + current.bottom.length === choice.options.length
-      : current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline && !triggerOrder || zeroConfirmation);
+      : (!distinctNames || new Set(current.selected.map(optionName)).size === current.selected.length) && current.selected.length >= min && current.selected.length <= max && (current.selected.length > 0 || canDecline && !triggerOrder || zeroConfirmation);
   const valid = complete(draft);
   const selectionFull = selected.length >= max;
   const selectionHint = max === 1
     ? '再次点击已选项可取消；点击其他项可直接替换。'
+    : distinctNames ? '至多选择五张不同名称的梦魔；同名牌只能选择一张。'
     : selectionFull ? '已达选择上限，先取消一项可继续换选。'
       : `还可再选 ${max - selected.length} 项；再次点击已选项可取消。`;
   const choose = (id: string) => {
@@ -202,11 +205,12 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
       : <><div className="hg-choice-options">{visibleOptions.map(({ option, index }) => {
         const selectedIndex = selected.indexOf(option.id);
         const isSelected = selectedIndex >= 0;
-        const atLimit = !isSelected && max !== 1 && selectionFull;
+        const sameName = distinctNames && !isSelected && selected.some(id => optionName(id) === optionName(option.id));
+        const atLimit = sameName || !isSelected && max !== 1 && selectionFull;
         const candidateNumber = option.card && option.card.region === undefined && choice.options.length > 1 ? index + 1 : undefined;
         const contextId = option.card && (candidateNumber || option.card.region !== undefined) ? `${choice.id}-option-context-${index}` : undefined;
         return <div key={option.id} className="hg-choice-option-entry"><button type="button" data-choice-option={option.id} data-choice-target-number={option.card?.region === undefined ? undefined : index + 1} data-choice-candidate-number={candidateNumber} className={`hg-choice-option ${isSelected ? 'hg-selected' : ''}`} disabled={busy || atLimit} onKeyDown={event => moveCardGridFocus(event, optionsRegion.current, '.hg-choice-option')} onClick={() => choose(option.id)} aria-pressed={isSelected} aria-describedby={max > 0 ? selectionHintId : undefined}>
-        <span className="hg-choice-selection-state" aria-hidden="true"><span className="hg-choice-check">{isSelected ? selectedIndex + 1 : '+'}</span><span>{isSelected ? '已选 · 再点取消' : atLimit ? '已达上限' : max === 1 && selected.length > 0 ? '换选此项' : '点击选择'}</span></span>
+        <span className="hg-choice-selection-state" aria-hidden="true"><span className="hg-choice-check">{isSelected ? selectedIndex + 1 : '+'}</span><span>{isSelected ? '已选 · 再点取消' : sameName ? '已选同名牌' : atLimit ? '已达上限' : max === 1 && selected.length > 0 ? '换选此项' : '点击选择'}</span></span>
         {candidateNumber && <span className="hg-choice-candidate" id={contextId}>候选 {candidateNumber}</span>}
         {option.card?.region !== undefined && <span className="hg-choice-target-context" id={contextId}><span className="hg-target-number" style={{ color: 'inherit', marginLeft: 0 }}>{triggerOrder ? '触发' : '目标'} {index + 1}</span>{' '}<small>{playerLabels?.[option.card.owner] || option.card.owner} 拥有{option.card.controller !== option.card.owner && ` · ${playerLabels?.[option.card.controller] || option.card.controller} 操控`} · 地区 {option.card.region + 1}{triggerOrder && ` · #${instanceTag(option.card.instanceId)}`}</small></span>}
         {option.card ? <CardContent card={option.card} definition={definitions.get(option.card.cardId || '')} viewerId={viewerId} /> : <strong className="hg-choice-option-label">{option.label}</strong>}

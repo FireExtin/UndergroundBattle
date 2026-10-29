@@ -21,6 +21,7 @@ pub enum ResponsePolicy {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
+    MSJZ04HostDeath,
     MSBQ02TaskScored,
     MSBQ02RedPlayed,
     OwnCoreEnter,
@@ -323,6 +324,7 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    MSJZ04Release {observation:Option<crate::black_next20::BlackDeathObservation>},
     BQ049Sacrifice,
     BQ049Grant,
     BQ049Generate,
@@ -860,6 +862,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::msjc12::ID||crate::msjc12::related(ability) {return crate::msjc12::validate_ability(card_id,ability);}
     if card_id==crate::msbq02::ID||crate::msbq02::related(ability) {return crate::msbq02::validate_ability(card_id,ability);}
     if crate::bq_commands::related(ability) {return crate::bq_commands::validate_ability(card_id,ability);}
+    if card_id==crate::msjz04::ID||crate::msjz04::related(ability){return crate::msjz04::validate_ability(card_id,ability);}
     if card_id==crate::bq049::ID||crate::bq049::related(ability){return crate::bq049::validate_ability(card_id,ability);}
     if card_id==crate::bq061::ID||crate::bq061::related(ability){return crate::bq061::validate_ability(card_id,ability);}
     if card_id==crate::bq063::ID||crate::bq063::related(ability){return crate::bq063::validate_ability(card_id,ability);}
@@ -1679,6 +1682,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::msbq03::validate_definition(card_id,definition)?;
         crate::mscq02::validate_definition(card_id,definition)?;
         crate::test034::validate_definition(card_id,definition)?;
+        crate::msjz04::validate_definition(card_id,definition)?;
         crate::bq049::validate_definition(card_id,definition)?;
         crate::bq061::validate_definition(card_id,definition)?;
         crate::bq063::validate_definition(card_id,definition)?;
@@ -2381,6 +2385,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::msbq03::ID.into(),crate::msbq03::definition());
         m.insert(crate::mscq02::ID.into(),crate::mscq02::definition());
         m.insert(crate::test034::ID.into(),crate::test034::definition());
+        m.insert(crate::msjz04::ID.into(),crate::msjz04::definition());
         m.insert(crate::bq049::ID.into(),crate::bq049::definition());
         m.insert(crate::bq061::ID.into(),crate::bq061::definition());
         m.insert(crate::bq063::ID.into(),crate::bq063::definition());

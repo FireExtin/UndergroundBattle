@@ -121,6 +121,10 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['黑','中立'].includes(card.color||'')||card.magic==='死亡'))issue('society-death','颂亡者仅黑、中立及死亡领域牌。',card.id);}
           continue;
         }
+        if(constraint.kind==='redPurpleNeutral'&&society.id==='MSJZ04'){
+          for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['红','紫','中立'].includes(card.color||''))issue('society-cocoon','破茧者构筑仅红紫中立。',card.id);}
+          continue;
+        }
         if(constraint.kind==='blackWhiteNeutralCorpse'&&society.id==='MSBQ03'){
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!['黑','白','中立'].includes(card.color||''))issue('society-scarab','圣甲虫药业仅黑白中立。',card.id);}
           continue;

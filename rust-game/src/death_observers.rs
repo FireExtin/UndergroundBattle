@@ -38,6 +38,7 @@ impl Game {
         let mut observers = Vec::new();
         let tigers = self.cq25_capture_sources();
         let black_sources = self.capture_black_death_sources();
+        let msjz04_sources = self.msjz04_sources();
         let bq086_sources = self.bq086_sources();
         let host_sources = self.wm035_death_sources();
         let ghoul_sources = self.bq079_sources();
@@ -86,6 +87,7 @@ impl Game {
                 if let Some(observation) = black_death {
                     let observation = self.emit_black_death(&black_sources, observation);
                     self.wm035_emit_host_death(&host_sources, &observation);
+                    self.msjz04_observe(&msjz04_sources,&observation);
                     self.bq086_observe(&bq086_sources,&observation);
                 }
                 self.jz34_observe_death(&red_observers, &dead.card);
